@@ -1,5 +1,13 @@
 # DRON
 
+Drone-as-a-service platform — clients order drone services, certified operators handle everything.
+
+**MVP services:** aerial photo/video · package delivery · building inspection
+**Audience:** 18–50, Ukraine + Europe, mobile-first, trust-driven
+**Brief:** see [`CLAUDE.md`](CLAUDE.md)
+
+---
+
 Design repository — research, wireframes, tokens, components, and handoff materials.
 
 ---
