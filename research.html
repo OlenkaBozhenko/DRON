@@ -39,38 +39,57 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV ── */
-    nav {
-      position: sticky;
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed;
       top: 0;
+      left: 0;
+      bottom: 0;
+      width: 240px;
       z-index: 100;
       display: flex;
-      align-items: center;
-      gap: 2px;
-      padding: 0 32px;
-      height: 52px;
-      background: rgba(8,8,8,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      padding: 24px 16px;
+      background: var(--bg-2);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
     }
-    .nav-brand {
-      font-size: 13px;
+    .sidebar-brand {
+      font-size: 15px;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--white);
-      margin-right: 24px;
+      padding: 0 12px;
+      margin-bottom: 4px;
     }
-    nav a {
+    .sidebar-tagline {
+      font-size: 11px;
+      color: var(--text-3);
+      padding: 0 12px;
+      margin-bottom: 24px;
+    }
+    .sidebar-group {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      padding: 0 12px;
+      margin: 18px 0 8px;
+    }
+    .sidebar a {
+      display: block;
       text-decoration: none;
       color: var(--text-2);
       font-size: 13px;
-      padding: 6px 14px;
-      border-radius: 6px;
+      padding: 8px 12px;
+      border-radius: 7px;
       transition: color 0.15s, background 0.15s;
     }
-    nav a:hover { color: var(--white); background: var(--bg-4); }
-    .nav-right { margin-left: auto; }
+    .sidebar a:hover { color: var(--white); background: var(--bg-4); }
+    .sidebar a.active { color: var(--white); background: var(--bg-3); }
+    .sidebar-spacer { flex: 1; }
     .btn {
       display: inline-flex;
       align-items: center;
@@ -89,6 +108,7 @@
     .btn-ghost:hover { background: var(--bg-4); }
 
     /* ── LAYOUT ── */
+    body { padding-left: 240px; }
     main { max-width: 1200px; margin: 0 auto; padding: 0 32px 80px; }
 
     section { padding: 72px 0 0; }
@@ -475,29 +495,52 @@
     .footer-note { font-size: 12px; color: var(--text-3); }
 
     @media (max-width: 768px) {
+      body { padding-left: 0; }
+      .sidebar {
+        position: static;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        gap: 4px;
+        height: 52px;
+        padding: 0 16px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .sidebar-tagline,
+      .sidebar-group,
+      .sidebar-spacer { display: none; }
+      .sidebar-brand { margin-bottom: 0; margin-right: 12px; white-space: nowrap; }
+      .sidebar a { white-space: nowrap; padding: 6px 12px; }
       main { padding: 0 20px 60px; }
-      nav { padding: 0 20px; }
       .screens-grid { grid-template-columns: repeat(2, 1fr); }
       .pattern-grid { grid-template-columns: 1fr; }
       .cards-grid { grid-template-columns: 1fr; }
-      nav a.hide-mobile { display: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- ─── NAV ─── -->
-<nav>
-  <span class="nav-brand">DRON</span>
+<!-- ─── SIDEBAR ─── -->
+<aside class="sidebar">
+  <div class="sidebar-brand">DRON</div>
+  <div class="sidebar-tagline">Drone-as-a-service</div>
+
+  <div class="sidebar-group">Pages</div>
+  <a href="research.html" class="active">Research</a>
+  <a href="ux-research.html">UX Research</a>
+
+  <div class="sidebar-group">On this page</div>
   <a href="#competitors">Competitors</a>
-  <a href="#benchmark" class="hide-mobile">Benchmark</a>
-  <a href="#patterns" class="hide-mobile">Patterns</a>
+  <a href="#benchmark">Benchmark</a>
+  <a href="#patterns">Patterns</a>
   <a href="#conclusions">Conclusions</a>
-  <a href="ux-research.html" style="margin-left:8px; border:1px solid rgba(255,255,255,0.12); border-radius:6px;">UX Research</a>
-  <div class="nav-right">
-    <a href="https://github.com/bozhenko55-arch/DRON" class="btn btn-ghost" target="_blank">GitHub ↗</a>
-  </div>
-</nav>
+
+  <div class="sidebar-spacer"></div>
+  <a href="https://github.com/bozhenko55-arch/DRON" target="_blank">GitHub ↗</a>
+</aside>
 
 <!-- ─── HERO ─── -->
 <main>
