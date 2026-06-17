@@ -16,7 +16,10 @@ The "Pages" group of the sidebar. Each page is a collapsible dropdown
 - `#patterns` — Patterns
 - `#conclusions` — Conclusions
 
-### UX Research → `ux-research.html` (`ux-research/`) — live
+### UX Research → in-page sections of `research.html` (`ux-research/`) — live
+Personas and CJM render as sections **on `research.html` itself** (same page as the
+Research sections), not on a separate page. `ux-research.html` remains as a standalone
+full report (user stories, benchmarks, etc.).
 - `#personas` — User personas
 - `#cjm` — CJM
 
