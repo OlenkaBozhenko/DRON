@@ -90,6 +90,64 @@
     .sidebar a:hover { color: var(--white); background: var(--bg-4); }
     .sidebar a.active { color: var(--white); background: var(--bg-3); }
     .sidebar-spacer { flex: 1; }
+
+    /* collapsible page groups */
+    .nav-section { margin: 1px 0; }
+    .nav-section > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--text);
+      font-size: 13px;
+      padding: 8px 12px;
+      border-radius: 7px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-section > summary::-webkit-details-marker { display: none; }
+    .nav-section > summary:hover { color: var(--white); background: var(--bg-4); }
+    .nav-section[open] > summary { color: var(--white); }
+    .nav-section > summary::after {
+      content: "›";
+      font-size: 15px;
+      line-height: 1;
+      color: var(--text-3);
+      transition: transform 0.18s ease;
+    }
+    .nav-section[open] > summary::after { transform: rotate(90deg); }
+    .nav-children {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      margin: 2px 0 6px 26px;
+      padding-left: 10px;
+      border-left: 1px solid var(--border);
+    }
+    .nav-children a { font-size: 12.5px; padding: 6px 12px; }
+
+    /* coming-soon (non-clickable) pages */
+    .nav-soon {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 8px 12px;
+      border-radius: 7px;
+      color: var(--text-3);
+      cursor: default;
+    }
+    .nav-soon::after {
+      content: "Soon";
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      border: 1px solid var(--border-2);
+      border-radius: 4px;
+      padding: 1px 5px;
+    }
     .btn {
       display: inline-flex;
       align-items: center;
