@@ -5,10 +5,13 @@ Drone-as-a-service platform — clients order drone services, certified operator
 **MVP services:** aerial photo/video · package delivery · building inspection
 **Audience:** 18–50, Ukraine + Europe, mobile-first, trust-driven
 **Brief:** see [`CLAUDE.md`](CLAUDE.md)
+**Visual preview:** [research.html](https://bozhenko55-arch.github.io/DRON/research.html)
 
 ---
 
 Design repository — research, wireframes, tokens, components, and handoff materials.
+
+**[→ Live research report](https://bozhenko55-arch.github.io/DRON/research.html)**
 
 ---
 
@@ -32,6 +35,7 @@ Design repository — research, wireframes, tokens, components, and handoff mate
 ## Research
 
 - [`research/research.md`](research/research.md) — main research log
+- [research.html — live report](https://bozhenko55-arch.github.io/DRON/research.html) — published UX research page
 
 ---
 
