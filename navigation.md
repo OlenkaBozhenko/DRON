@@ -7,28 +7,26 @@ then mirror the change into the HTML visual preview.**
 
 ## Pages
 
-The "Pages" group of the sidebar. The currently open page is marked `active`.
+The "Pages" group of the sidebar. Each page is a collapsible dropdown
+(`<details>/<summary>` with a chevron arrow) whose children are its section anchors.
 
-| # | Title       | Visual preview (HTML) | Source content   | Status |
-|---|-------------|-----------------------|------------------|--------|
-| 1 | Research    | research.html         | `research/`      | live   |
-| 2 | UX Research | ux-research.html      | `ux-research/`   | live   |
-
-To add a page: add a row here, create its `.md` source folder, build the HTML
-visual preview, and add one `<a>` under the "Pages" group of every sidebar.
-
-## On this page (section anchors)
-
-The "On this page" group lists in-page section anchors, per page.
-
-### research.html
+### Research → `research.html` (`research/`) — live
 - `#competitors` — Competitors
 - `#benchmark` — Benchmark
 - `#patterns` — Patterns
 - `#conclusions` — Conclusions
 
-### ux-research.html
-- _(to be defined — currently uses its own top nav)_
+### UX Research → `ux-research.html` (`ux-research/`) — live
+- `#personas` — User personas
+- `#cjm` — CJM
+
+## Coming soon
+
+Non-clickable placeholder pages in their own "Coming soon" group, each tagged `Soon`.
+
+- Design system → `design-system/`
+- Components → `components/`
+- Wireframe → `wireframes/`
 
 ## Sidebar specification
 
@@ -37,7 +35,7 @@ The "On this page" group lists in-page section anchors, per page.
 - Background: `--bg-2`, right border `--border`
 - Groups, top to bottom:
   1. Brand (`DRON`) + tagline (`Drone-as-a-service`)
-  2. **Pages** — the page list above
-  3. **On this page** — section anchors for the current page
+  2. **Pages** — collapsible dropdowns (chevron arrow); children are section anchors
+  3. **Coming soon** — non-clickable placeholder pages, each tagged `Soon`
   4. Footer: GitHub link (pinned to bottom)
 - Responsive: below 768px the sidebar collapses into a horizontal scrolling top bar.
