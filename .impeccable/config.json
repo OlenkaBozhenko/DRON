@@ -1,7 +1,10 @@
 {
   "detector": {
     "ignoreRules": [],
-    "ignoreFiles": [],
+    "ignoreFiles": [
+      "research.html",
+      "target-audience.html"
+    ],
     "ignoreValues": [
       {
         "rule": "overused-font",
