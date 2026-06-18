@@ -133,6 +133,21 @@ Ukrainian (primary), English
 
 ---
 
+## Design Focus — Research Conclusions
+
+**Primary persona — C-1:** Urban Ukraine, first-time drone user, Bolt/Glovo mental model. If the experience diverges from that model in the first 60 seconds, they leave. Trust anxiety is twofold: the drone itself (noise, privacy, safety) precedes anxiety about the operator.
+
+**Main job (MJ-1):** Hand the job to a certified professional without managing anything — get the outcome without thinking about the drone or the operator.
+
+**Top-3 jobs for MVP core:**
+1. **RJ-C1** — Confirm the operator is real and qualified: verified badge + insurance visible on the list card, no tap required. Highest single drop-off in the CJM.
+2. **RJ-C2** — Close the void between payment and arrival: operator name + photo + live map on the confirmation screen. No generic "order received" state.
+3. **RJ-O3** — Operator gets paid automatically after job close: auto-release to wallet within 30 min of client confirmation. Fastest churn trigger if absent.
+
+Sources: `research/target-audience.md`, `research/jtbd.md`
+
+---
+
 ## Content Rules
 
 **Single source of truth: `.md` files.**

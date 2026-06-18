@@ -34,8 +34,19 @@ Design repository — research, wireframes, tokens, components, and handoff mate
 
 ## Research
 
-- [`research/research.md`](research/research.md) — main research log
-- [research.html — live report](https://bozhenko55-arch.github.io/DRON/research.html) — published UX research page
+- [`research/research.md`](research/research.md) — competitive analysis, benchmark study, post-persona findings
+- [research.html — live report](https://bozhenko55-arch.github.io/DRON/research.html)
+
+---
+
+## People
+
+| File | What lives here |
+|---|---|
+| [`research/target-audience.md`](research/target-audience.md) | 4 personas: C-1 (primary client), C-2 (planning client), O-1 (primary operator), O-2 (new operator). Each has context, jobs, pains, trust triggers. Includes post-research updates June 2026 and 10 honest knowledge gaps. |
+| [`research/jtbd.md`](research/jtbd.md) | JTBD hierarchy: 2 main jobs, 8 related jobs, 3 emotional, 1 social, 3 hypotheses. Matrix with importance scores by persona and competitive coverage. Conclusions: 3 core MVP jobs, 2 features to cut, 1 critical missing gap (EJ-2 dispute flow). |
+
+**[→ Live personas & JTBD](https://bozhenko55-arch.github.io/DRON/target-audience.html)**
 
 ---
 
