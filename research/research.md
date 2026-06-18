@@ -101,6 +101,103 @@
 
 ---
 
+---
+
+## Post-Persona Research — June 2026
+
+**Trigger:** claim audit (`research/claim-audit.md`) identified three unconfirmed claims affecting design decisions: (1) ghosting on Kabanchik, (2) pricing opacity before conversation, (3) "stranger with a drone" as primary anxiety. Targeted web research conducted to test these claims.
+
+**Sources fetched:** kabanchik.ua/kyiv/category/aeroziomka · kabanchik.ua specific operator listing · kabanchik.info/forum/12 · abd-video.com · isure.in.ua · wing app store reviews · SciTechDaily drone delivery acceptance study · Springer / Future Business Journal drone acceptance research · Google drone consumer trust studies 2024–2025.
+
+---
+
+### Finding 1 — Kabanchik aerial photography: pricing IS visible, license is NOT
+
+**What we found:**
+Kabanchik drone operator cards in Kyiv show: star rating, review count, years of experience, passport verification badge. Pricing range is publicly visible on the category page: **500–1,500 UAH/session**, average ~1,290 UAH/hour. One operator's listing showed 1,000 UAH per flight (one battery charge).
+
+What is **not** shown on operator cards: drone pilot certification (CAA/DASU), liability insurance, airspace authorization. The platform guarantees up to 1,000 UAH compensation for unreliable service — not drone-specific.
+
+**Market size signal:** 87+ completed reviews in the Kyiv aerial photography category. One operator (Yaroslav K.) has 468 reviews at 4.9★. One operator notes: *"Drone footage (pending military approval during wartime)"* — wartime airspace restrictions are an active operational constraint, visible to clients.
+
+**Source:** kabanchik.ua/ua/kyiv/category/aeroziomka · kabanchik.ua/ua/advert/31893
+
+**Impact on claims:**
+- Claim "no pricing before DM on Kabanchik" → **WRONG for Kabanchik**. Pricing is visible on operator cards. Professional studios (Instagram, ABD Video) still require quote requests — pricing opacity is confirmed there.
+- Claim "no credential verification on Kabanchik" → **CONFIRMED**. Passport verified; drone license and insurance not shown.
+
+---
+
+### Finding 2 — Ghosting on Kabanchik: documented for general services, not confirmed for drone operators
+
+**What we found:**
+The Kabanchik complaints forum (kabanchik.info) documents real platform-wide problems: *"Actual prices nearly double advertised rates"*, *"Came when absent and stole"*, *"Requested specific specialist, different person came"*, *"Terribly unqualified workers."*
+
+However, **these complaints are from construction, plumbing, and handyman services — not from drone/aerial photography clients.** Zero drone-specific ghosting reviews found. Drone operator reviews on the category page are uniformly positive ("worked qualitatively and productively the whole day with two drones").
+
+**Source:** kabanchik.info/uk/forum/12 · kabanchik.ua/ua/kyiv/category/aeroziomka reviews
+
+**Impact on claims:**
+- Claim "operators frequently ignore messages / ghosting" → **NOT CONFIRMED for drone operators specifically.** Remains an analog from Rover. Drone operators on Kabanchik appear to be licensed professionals with motivation to respond — not casual gig workers. This claim must be treated as a hypothesis, not a fact. The C-1 mood quote derived from this is fabricated.
+
+---
+
+### Finding 3 — Primary client anxiety is about the DRONE, not the operator
+
+**What we found:**
+Multiple studies on drone delivery consumer acceptance (2024–2025) consistently identify the same top fears:
+- **Privacy** (surveillance, being watched)
+- **Safety** (drone falling, property damage)
+- **Noise** (low-altitude traffic, annoyance)
+
+*"More than half of US respondents reported little or no trust in drones to deliver products"* — driven by these three factors, not by operator identity.
+
+**Key counterweight:** *"87% of residents reported positive sentiment after actually experiencing the service."* The gap between pre-experience anxiety and post-experience positivity is documented: abstract fear of drone technology collapses on first use.
+
+**What this means for DRON:** The Whalen Emotion framing in the CJM — *"a stranger with a drone near my home"* — points at the human operator as the anxiety source. The research points at the drone itself (noise, falling, surveillance) as the anxiety source. These are different design problems:
+- "Stranger" anxiety → solved by operator verification, photo, credentials
+- "Drone" anxiety → solved by explaining the technology, showing safety record, normalizing the experience
+
+Both are real. But the ordering in the CJM may be wrong: drone anxiety may precede operator anxiety, not follow it.
+
+**Source:** SciTechDaily — "First People in the US to Experience Drone Delivery" · WebSearch: drone delivery consumer trust research 2024–2025 · Springer Future Business Journal drone acceptance study
+
+---
+
+### Finding 4 — Drone insurance in Ukraine: wartime context changes everything
+
+**What we found:**
+Per isure.in.ua (Ukrainian drone insurance provider): *"During martial law, insurance of individuals with drones is not provided."* Only commercial entities receive insurance quotes. Coverage rates: 3.5–5% of drone value, 5–20% deductible. The insurance covers the drone itself (damage, theft) — not third-party liability.
+
+**No published data on third-party liability insurance amounts** (what covers client property damage). The "500,000 UAH insurance" number in C-03 acceptance criteria has **no basis in the actual UA insurance market** and cannot be used as UI copy without legal verification.
+
+**Additional wartime context:** Operators require military/aviation authority approval for flights. One Kabanchik operator lists this explicitly. This is a real friction point for the platform that appears nowhere in the current CJM.
+
+**Source:** isure.in.ua/other/dron-insuranse-ukraine
+
+---
+
+### Finding 5 — Professional aerial studios: pricing opacity confirmed, zero booking UX
+
+**What we found:**
+ABD Video (Kyiv professional aerial studio): pricing not listed — *"Cost depends on team size, expertise level, and hours."* Booking requires consultation call or email. Mentions *"detailed flight coordination with authorities guaranteeing safety and legality"* and *"equipment insurance minimizes your risks"* — but no liability insurance for client property. Zero client testimonials on the page.
+
+This confirms the C-2 pain: professional studios require DM/call for pricing, have no self-serve booking, and provide no verifiable credentials on their pages.
+
+**Source:** abd-video.com/ua/prodakshn-studiya/aerozjomka-kiiv
+
+---
+
+### Open Questions After This Research
+
+| # | Question | Status |
+|---|---|---|
+| Q-1 | Are Kabanchik drone operators actually responsive — or does ghosting happen at DM stage (not visible in reviews)? | Still unconfirmed. Reviews show results, not booking friction. Needs mystery shopping or operator interviews. |
+| Q-2 | Does the "drone anxiety" (tech, noise, safety) precede or follow "operator anxiety" in a first UA drone service session? | Not answered by available research. All studies are US/EU markets. |
+| Q-3 | What is the actual third-party liability insurance amount available to commercial drone operators in UA during martial law? | Not found. Legal/insurance consultation needed before using any number in UI copy. |
+
+---
+
 ## Screens
 See [`screens/`](screens/) for reference screenshots.
 

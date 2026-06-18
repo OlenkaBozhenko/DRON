@@ -130,3 +130,17 @@ Ukrainian (primary), English
 5. Components → `components/`
 6. Design system → `design-system/`
 7. Handoff → `handoff/`
+
+---
+
+## Content Rules
+
+**Single source of truth: `.md` files.**
+All project content — research findings, personas, user stories, decisions, annotations — lives in `.md` files.
+HTML files are a read-only display layer generated from `.md` content. Never write or update information directly in HTML.
+
+When content changes:
+1. Update the `.md` file first.
+2. Reflect the change in HTML only after the `.md` is updated.
+
+**All file contents must be written in English.**

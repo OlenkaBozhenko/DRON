@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "reason": "Matches research.html design system — user asked to replicate that design",
+        "createdAt": "2026-06-18T21:36:34.918Z"
+      }
+    ]
+  }
+}
