@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DRON — Target Audience &amp; JTBD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #080808;
+      --bg-2:       #0f0f0f;
+      --bg-3:       #161616;
+      --bg-4:       #1c1c1c;
+      --border:     rgba(255,255,255,0.07);
+      --border-2:   rgba(255,255,255,0.12);
+      --text:       #d8d8d8;
+      --text-2:     #909090;
+      --text-3:     #555;
+      --white:      #f0f0f0;
+      --accent:     #ffffff;
+      --risk-hi:    #e05252;
+      --risk-mid:   #c4943a;
+      --risk-lo:    #4a9e6b;
+      --tag-bg:     rgba(255,255,255,0.06);
+      --client:     #5b8fde;
+      --operator:   #7ecb9e;
+      --hyp:        #c4943a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0; width: 240px;
+      z-index: 100; display: flex; flex-direction: column;
+      padding: 24px 16px;
+      background: var(--bg-2); border-right: 1px solid var(--border);
+      overflow-y: auto;
+    }
+    .sidebar-brand { font-size: 15px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); padding: 0 12px; margin-bottom: 4px; }
+    .sidebar-tagline { font-size: 11px; color: var(--text-3); padding: 0 12px; margin-bottom: 24px; }
+    .sidebar-group { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); padding: 0 12px; margin: 18px 0 8px; }
+    .sidebar a { display: block; text-decoration: none; color: var(--text-2); font-size: 13px; padding: 8px 12px; border-radius: 7px; transition: color 0.15s, background 0.15s; border: none; }
+    .sidebar a:hover { color: var(--white); background: var(--bg-4); }
+    .sidebar a.active { color: var(--white); background: var(--bg-3); }
+    .sidebar-spacer { flex: 1; }
+    .nav-section { margin: 1px 0; }
+    .nav-section > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--text); font-size: 13px; padding: 8px 12px; border-radius: 7px; transition: color 0.15s, background 0.15s; }
+    .nav-section > summary::-webkit-details-marker { display: none; }
+    .nav-section > summary:hover { color: var(--white); background: var(--bg-4); }
+    .nav-section[open] > summary { color: var(--white); }
+    .nav-section > summary::after { content: "›"; font-size: 15px; line-height: 1; color: var(--text-3); transition: transform 0.18s ease; }
+    .nav-section[open] > summary::after { transform: rotate(90deg); }
+    .nav-children { display: flex; flex-direction: column; gap: 1px; margin: 2px 0 6px 26px; padding-left: 10px; border-left: 1px solid var(--border); }
+    .nav-children a { font-size: 12.5px; padding: 6px 12px; }
+    .nav-soon { display: flex; align-items: center; justify-content: space-between; font-size: 13px; padding: 8px 12px; border-radius: 7px; color: var(--text-3); cursor: default; }
+    .nav-soon::after { content: "Soon"; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); border: 1px solid var(--border-2); border-radius: 4px; padding: 1px 5px; }
+
+    /* ── LAYOUT ── */
+    body { padding-left: 240px; }
+    main { max-width: 1200px; margin: 0 auto; padding: 0 32px 80px; }
+    section { padding: 72px 0 0; }
+    section + section { border-top: 1px solid var(--border); margin-top: 64px; }
+    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+    h2 { font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 6px; letter-spacing: -0.02em; }
+    .section-desc { color: var(--text-2); font-size: 14px; max-width: 640px; margin-bottom: 36px; line-height: 1.7; }
+    h3 { font-size: 15px; font-weight: 600; color: var(--white); margin: 40px 0 16px; }
+    h3:first-of-type { margin-top: 0; }
+    p { color: var(--text); line-height: 1.7; margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+    a { color: var(--text-2); text-decoration: none; border-bottom: 1px solid var(--border-2); }
+    a:hover { color: var(--white); }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x: auto; margin: 0 -4px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead tr { border-bottom: 1px solid var(--border-2); }
+    thead th { padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); white-space: nowrap; }
+    thead th:first-child { padding-left: 0; }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,0.025); }
+    tbody td { padding: 12px 14px; vertical-align: top; color: var(--text); line-height: 1.55; }
+    tbody td:first-child { padding-left: 0; }
+    .td-label { font-weight: 500; color: var(--white); white-space: nowrap; font-size: 13px; }
+    .td-dim { color: var(--text-2); font-size: 12px; }
+    .td-muted { color: var(--text-3); font-size: 12px; font-style: italic; }
+
+    /* ── TAGS / BADGES ── */
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; background: var(--tag-bg); color: var(--text-2); border: 1px solid var(--border); margin: 1px; white-space: nowrap; }
+    .tag-client { background: rgba(91,143,222,0.1); color: var(--client); border-color: rgba(91,143,222,0.25); }
+    .tag-operator { background: rgba(126,203,158,0.1); color: var(--operator); border-color: rgba(126,203,158,0.25); }
+    .tag-primary { background: rgba(255,255,255,0.08); color: var(--white); border-color: var(--border-2); font-weight: 600; letter-spacing: 0.04em; }
+    .tag-hyp { background: rgba(196,148,58,0.1); color: var(--hyp); border-color: rgba(196,148,58,0.25); }
+    .tag-confirmed { background: rgba(74,158,107,0.1); color: var(--risk-lo); border-color: rgba(74,158,107,0.25); }
+    .tag-accent { background: rgba(255,255,255,0.08); color: var(--white); border-color: var(--border-2); }
+    .tag-risk-hi { background: rgba(224,82,82,0.08); color: var(--risk-hi); border-color: rgba(224,82,82,0.2); }
+
+    /* importance scores */
+    .imp { display: inline-flex; align-items: center; justify-content: center; min-width: 28px; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; font-family: 'JetBrains Mono', monospace; }
+    .imp-3 { background: rgba(224,82,82,0.1); color: #e07070; }
+    .imp-2 { background: rgba(196,148,58,0.1); color: #d4aa52; }
+    .imp-1 { background: rgba(74,158,107,0.1); color: #5ec98a; }
+    .imp-na { color: var(--text-3); font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+    .imp-q { background: rgba(196,148,58,0.08); color: var(--hyp); border: 1px solid rgba(196,148,58,0.2); border-radius: 4px; font-size: 11px; padding: 2px 6px; font-family: 'JetBrains Mono', monospace; }
+
+    /* ── PERSONA CARDS ── */
+    .personas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .persona-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .persona-card.client { border-top: 2px solid var(--client); }
+    .persona-card.operator { border-top: 2px solid var(--operator); }
+    .persona-card.is-primary { box-shadow: 0 0 0 1px rgba(255,255,255,0.06); }
+    .persona-head { padding: 22px 24px 18px; border-bottom: 1px solid var(--border); }
+    .persona-head-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+    .persona-avatar { width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .avatar-client { background: rgba(91,143,222,0.1); border: 1px solid rgba(91,143,222,0.2); }
+    .avatar-operator { background: rgba(126,203,158,0.1); border: 1px solid rgba(126,203,158,0.2); }
+    .persona-meta { flex: 1; min-width: 0; }
+    .persona-id { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-3); margin-bottom: 3px; letter-spacing: 0.06em; }
+    .persona-name { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+    .persona-role { font-size: 12px; color: var(--text-2); margin-bottom: 6px; }
+    .persona-badges { display: flex; gap: 5px; flex-wrap: wrap; }
+    .persona-quote { font-size: 12.5px; color: var(--text-2); font-style: italic; line-height: 1.55; border-left: 2px solid var(--border-2); padding-left: 10px; }
+    .persona-body { padding: 18px 24px; }
+    .persona-section-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-3); margin-bottom: 8px; margin-top: 18px; }
+    .persona-section-label:first-child { margin-top: 0; }
+    .persona-list { list-style: none; }
+    .persona-list li { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12.5px; color: var(--text-2); line-height: 1.5; }
+    .persona-list li:last-child { border-bottom: none; }
+    .pl-dot { width: 5px; height: 5px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+    .pl-dot-client { background: var(--client); }
+    .pl-dot-operator { background: var(--operator); }
+    .pl-dash { color: var(--risk-hi); font-size: 11px; margin-top: 2px; flex-shrink: 0; }
+    .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .trust-col-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-3); margin-bottom: 6px; }
+    .trust-item { background: var(--bg-3); border: 1px solid var(--border); border-radius: 7px; padding: 8px 10px; font-size: 12px; color: var(--text-2); line-height: 1.45; }
+    .trust-item.exit { border-color: rgba(224,82,82,0.15); background: rgba(224,82,82,0.04); color: var(--text-2); }
+    .persona-mood { margin-top: 16px; padding: 14px 16px; background: var(--bg-3); border: 1px solid var(--border); border-radius: 8px; }
+    .persona-mood-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-3); margin-bottom: 6px; }
+    .persona-mood-text { font-size: 13px; color: var(--white); font-style: italic; line-height: 1.55; }
+    .persona-mood-warning { font-size: 11px; color: var(--hyp); margin-top: 6px; line-height: 1.5; }
+    .hyp-flag { display: inline-flex; align-items: center; gap: 3px; font-size: 11px; color: var(--hyp); background: rgba(196,148,58,0.08); border: 1px solid rgba(196,148,58,0.2); border-radius: 4px; padding: 1px 6px; white-space: nowrap; }
+
+    /* ── JOBS ── */
+    .jobs-group { margin-bottom: 48px; }
+    .jobs-group-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .job-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin-bottom: 10px; }
+    .job-card.is-hypothesis { border-style: dashed; border-color: rgba(196,148,58,0.25); background: rgba(196,148,58,0.03); }
+    .job-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+    .job-id { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); min-width: 48px; padding-top: 2px; letter-spacing: 0.06em; }
+    .job-title-group { flex: 1; }
+    .job-statement { font-size: 13.5px; color: var(--text); line-height: 1.6; }
+    .job-statement .when { color: var(--text-3); }
+    .job-statement .want { color: var(--white); font-weight: 500; }
+    .job-statement .so { color: var(--text-2); }
+    .job-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; align-items: center; }
+    .job-basis { font-size: 12px; color: var(--text-3); margin-top: 8px; line-height: 1.55; }
+    .job-basis code { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: var(--bg-4); border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; color: var(--text-3); }
+    .hyp-why { font-size: 12px; color: var(--hyp); margin-top: 8px; line-height: 1.55; padding: 10px 12px; background: rgba(196,148,58,0.04); border-radius: 6px; border-left: 2px solid rgba(196,148,58,0.3); }
+
+    /* ── MATRIX ── */
+    .matrix-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-3); }
+    td .imp { margin: 1px; }
+    .td-function { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+    .td-function strong { color: var(--white); }
+    .td-competitors { font-size: 11.5px; color: var(--text-3); line-height: 1.55; }
+    .td-competitors strong { color: var(--text-2); }
+    .td-missing { font-size: 12px; color: var(--risk-hi); font-style: italic; }
+    .td-job-id { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); display: block; margin-bottom: 2px; }
+    .td-job-name { font-size: 13px; font-weight: 500; color: var(--white); }
+    .td-source { font-size: 11px; color: var(--text-3); display: block; margin-top: 3px; }
+
+    /* conclusions */
+    .conclusion-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; padding: 22px 24px; margin-bottom: 12px; }
+    .conclusion-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); margin-bottom: 6px; }
+    .conclusion-title { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 10px; }
+    .conclusion-body { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+    .conclusion-body strong { color: var(--text); }
+    .removal-card { background: rgba(224,82,82,0.03); border: 1px solid rgba(224,82,82,0.12); border-radius: 10px; padding: 22px 24px; margin-bottom: 12px; }
+    .removal-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--risk-hi); margin-bottom: 6px; }
+    .removal-title { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 10px; }
+    .gap-card { background: rgba(196,148,58,0.03); border: 1px solid rgba(196,148,58,0.2); border-radius: 10px; padding: 22px 24px; margin-top: 32px; }
+    .gap-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--hyp); margin-bottom: 6px; }
+    .gap-title { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 10px; }
+
+    /* gaps table */
+    .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
+    .dot-partial { background: var(--hyp); }
+    .dot-open { background: var(--risk-hi); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 32px; max-width: 1200px; margin: 64px auto 0; display: flex; align-items: center; justify-content: space-between; }
+    .footer-brand { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+    .footer-note { font-size: 12px; color: var(--text-3); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      body { padding-left: 0; }
+      .sidebar { position: static; width: 100%; height: auto; padding: 16px; border-right: none; border-bottom: 1px solid var(--border); overflow-y: visible; }
+      .sidebar-tagline, .sidebar-spacer { display: none; }
+      main { padding: 0 20px 60px; }
+      .personas-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── SIDEBAR ─── -->
+<aside class="sidebar">
+  <div class="sidebar-brand">DRON</div>
+  <div class="sidebar-tagline">Drone-as-a-service</div>
+
+  <div class="sidebar-group">Pages</div>
+
+  <details class="nav-section">
+    <summary>Research</summary>
+    <div class="nav-children">
+      <a href="research.html#competitors">Competitors</a>
+      <a href="research.html#benchmark">Benchmark</a>
+      <a href="research.html#patterns">Patterns</a>
+      <a href="research.html#conclusions">Conclusions</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>UX Research</summary>
+    <div class="nav-children">
+      <a href="research.html#personas">User personas (old)</a>
+      <a href="research.html#cjm">CJM</a>
+    </div>
+  </details>
+
+  <details class="nav-section" open>
+    <summary>Target Audience</summary>
+    <div class="nav-children">
+      <a href="#personas" class="active">Personas</a>
+      <a href="#jobs">Jobs (JTBD)</a>
+      <a href="#matrix">JTBD Matrix</a>
+      <a href="#conclusions">Conclusions</a>
+      <a href="#gaps">Knowledge gaps</a>
+    </div>
+  </details>
+
+  <div class="sidebar-group">Coming soon</div>
+  <span class="nav-soon">Design system</span>
+  <span class="nav-soon">Components</span>
+  <span class="nav-soon">Wireframe</span>
+
+  <div class="sidebar-spacer"></div>
+  <a href="https://github.com/bozhenko55-arch/DRON" target="_blank" style="border:none;">GitHub ↗</a>
+</aside>
+
+<!-- ─── MAIN ─── -->
+<main>
+
+<!-- HERO -->
+<div style="padding: 64px 0 48px; border-bottom: 1px solid var(--border);">
+  <div class="section-label">Target Audience · June 2026</div>
+  <h2 style="font-size: 28px; margin-bottom: 12px;">Personas &amp; Jobs to Be Done</h2>
+  <p class="section-desc" style="margin-bottom: 24px;">
+    4 personas built on competitive analysis, benchmarks, and CJM. No real user interviews conducted.
+    Where data is absent: <span class="hyp-flag">[?] hypothesis</span> — not a design input until confirmed.
+    JTBD formulated in "When / I want / so that" format with matrix and MVP conclusions.
+  </p>
+  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+    <span class="tag tag-client">2 Client personas</span>
+    <span class="tag tag-operator">2 Operator personas</span>
+    <span class="tag">14 confirmed jobs</span>
+    <span class="tag tag-hyp">3 hypothesis jobs</span>
+    <span class="tag">Post-persona research: June 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════ PERSONAS -->
+<section id="personas">
+  <div class="section-label">Section 01</div>
+  <h2>Personas</h2>
+  <p class="section-desc">Primary persona = the person for whom every MVP drop-off is most lethal. Secondary = same platform, distinct flow or segment.</p>
+
+  <!-- SELECTION LOGIC -->
+  <h3>Selection Logic</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Persona</th>
+          <th>Role</th>
+          <th>Priority</th>
+          <th>Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="td-job-id">C-1</span><span class="td-job-name">Urgent Client</span></td>
+          <td class="td-dim">Delivery / same-day aerial</td>
+          <td><span class="tag tag-primary">PRIMARY</span></td>
+          <td>Represents the core JTBD. Auto-dispatch designed for this mental model. All 5 CJM drop-offs are most lethal on this person's first session.</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">C-2</span><span class="td-job-name">Planning Client</span></td>
+          <td class="td-dim">Aerial photo / inspection</td>
+          <td><span class="tag">SECONDARY</span></td>
+          <td>Same platform, different flow mode. Lower urgency gives more time to build trust. Distinct but narrower use case.</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">O-1</span><span class="td-job-name">Experienced Pilot</span></td>
+          <td class="td-dim">Freelance drone operator</td>
+          <td><span class="tag tag-primary">PRIMARY</span></td>
+          <td>Without this person there is no supply. Carries the highest churn risk (direct client bypass). Defines what the SRM must do.</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">O-2</span><span class="td-job-name">Newly Certified Pilot</span></td>
+          <td class="td-dim">Zero client base</td>
+          <td><span class="tag">SECONDARY</span></td>
+          <td>Less churn risk, less market-defining. Important for supply scaling but no research data specific to their experience. <span class="hyp-flag">[?]</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PERSONA CARDS -->
+  <h3 style="margin-top:48px;">Client Personas</h3>
+  <div class="personas-grid">
+
+    <!-- C-1 -->
+    <div class="persona-card client is-primary">
+      <div class="persona-head">
+        <div class="persona-head-row">
+          <div class="persona-avatar avatar-client">👤</div>
+          <div class="persona-meta">
+            <div class="persona-id">C-1 / PERSONA</div>
+            <div class="persona-name">"I want it done. I don't want to think about it."</div>
+            <div class="persona-role">Urban Ukraine · First or second drone service user · Bolt/Glovo mental model</div>
+            <div class="persona-badges">
+              <span class="tag tag-primary">PRIMARY</span>
+              <span class="tag tag-client">Client</span>
+              <span class="tag tag-confirmed">Delivery / Same-day aerial</span>
+            </div>
+          </div>
+        </div>
+        <div class="persona-quote">"I want it done. I don't want to think about it."</div>
+      </div>
+      <div class="persona-body">
+
+        <div class="persona-section-label">Context</div>
+        <p style="font-size:12.5px;color:var(--text-2);line-height:1.6;margin:0 0 4px;">
+          Urban Ukraine. Heard about drone service from a friend, TikTok, or a quick Google search. First time considering a drone service. Has a Bolt/Glovo mental model: open app → tap → thing happens. If the experience diverges from that model in the first 60 seconds, they leave.
+        </p>
+        <p style="font-size:11px;color:var(--text-3);margin:0;">
+          Current path: Kabanchik / OLX → message operator → wait → maybe get ghosted → negotiate → trust blindly.
+          Source: <code style="font-size:11px;color:var(--text-3);background:var(--bg-4);border:1px solid var(--border);border-radius:3px;padding:1px 5px;font-family:'JetBrains Mono',monospace;">research.md</code> — Kabanchik gap G-1
+        </p>
+
+        <div class="persona-section-label">Jobs</div>
+        <ul class="persona-list">
+          <li><span class="pl-dot pl-dot-client"></span>Get a parcel, document, or item delivered to a hard-to-reach location</li>
+          <li><span class="pl-dot pl-dot-client"></span>Not touch or think about the drone at all</li>
+          <li><span class="pl-dot pl-dot-client"></span>Know a qualified professional is handling it — not a random person from the internet</li>
+          <li><span class="pl-dot pl-dot-client"></span>Confirm something happened and have proof it happened</li>
+        </ul>
+
+        <div class="persona-section-label">Pains with today's solutions</div>
+        <ul class="persona-list">
+          <li>
+            <span class="pl-dash">!</span>
+            <span><span class="hyp-flag">[?]</span> Messages operators, gets no reply — <strong style="color:var(--text);">hypothesis, not confirmed for drone operators.</strong> Post-research found zero drone-specific ghosting; drone operators on Kabanchik have 87+ reviews and appear professionally responsive.</span>
+          </li>
+          <li><span class="pl-dash">!</span><span><strong style="color:var(--text);">Pricing opacity</strong> — confirmed for studios (DM/call required); Kabanchik shows ranges (500–1,500 UAH/session).</span></li>
+          <li><span class="pl-dash">!</span><span><strong style="color:var(--text);">No drone license or insurance visible</strong> on Kabanchik cards — passport verified, certification and liability insurance not shown.</span></li>
+          <li><span class="pl-dash">!</span><span>No live tracking during job execution — Kabanchik/OLX have no tracking layer.</span></li>
+          <li><span class="pl-dash">!</span><span>After payment, no visibility into who is coming or when — post-booking vacuum is highest-anxiety moment.</span></li>
+        </ul>
+
+        <div class="persona-section-label">Trust triggers</div>
+        <div class="trust-grid">
+          <div>
+            <div class="trust-col-label">Triggers trust</div>
+            <div class="trust-item">Operator photo + star rating on list card without tapping</div>
+            <div class="trust-item" style="margin-top:4px;">"Verified by DRON" + insurance badge before payment <span class="hyp-flag">[?] amount — legal verification needed</span></div>
+            <div class="trust-item" style="margin-top:4px;">Price shown on service details — locked, no surprises</div>
+            <div class="trust-item" style="margin-top:4px;">Operator name + photo + ETA + live map after payment</div>
+            <div class="trust-item" style="margin-top:4px;">Push: "Operator is 2 min away"</div>
+            <div class="trust-item" style="margin-top:4px;"><strong style="color:var(--text);">NEW (June 2026):</strong> Explanation of what the drone does / won't do — drone tech anxiety precedes operator anxiety in first-time users</div>
+          </div>
+          <div>
+            <div class="trust-col-label">Triggers exit</div>
+            <div class="trust-item exit">Operator card with no photo or "0 reviews"</div>
+            <div class="trust-item exit" style="margin-top:4px;">Any "plus fees" or line-item surprise at checkout</div>
+            <div class="trust-item exit" style="margin-top:4px;">Generic "order received" screen after payment — no operator name</div>
+            <div class="trust-item exit" style="margin-top:4px;">Registration form — manual input is a hard stop</div>
+            <div class="trust-item exit" style="margin-top:4px;">Drone jargon (UAV, payload, LiPo)</div>
+            <div class="trust-item exit" style="margin-top:4px;">No explanation of the drone itself before or during first order</div>
+          </div>
+        </div>
+
+        <div class="persona-mood">
+          <div class="persona-mood-label">Mood quote</div>
+          <div class="persona-mood-text">"I messaged three operators on Kabanchik. Two never replied. One replied four days later."</div>
+          <div class="persona-mood-warning">⚠ POST-RESEARCH NOTE (June 2026): This quote is a paraphrase of the Rover/Kinship.com platform failure applied by analogy. Direct research of Kabanchik drone listings found no evidence of ghosting — drone operators have 87+ reviews and appear professionally responsive. Do NOT use as design input until confirmed by client interviews or mystery shopping. See research.md — Finding 2.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- C-2 -->
+    <div class="persona-card client">
+      <div class="persona-head">
+        <div class="persona-head-row">
+          <div class="persona-avatar avatar-client">📋</div>
+          <div class="persona-meta">
+            <div class="persona-id">C-2 / PERSONA</div>
+            <div class="persona-name">"I need professional aerial documentation. I'm planning, not rushing."</div>
+            <div class="persona-role">Realtor · event organizer · property owner · small business owner</div>
+            <div class="persona-badges">
+              <span class="tag">SECONDARY</span>
+              <span class="tag tag-client">Client</span>
+              <span class="tag tag-hyp">[?] profile unconfirmed</span>
+            </div>
+          </div>
+        </div>
+        <div class="persona-quote">"Is this actually available where I live?"</div>
+      </div>
+      <div class="persona-body">
+
+        <div class="persona-section-label">Context</div>
+        <p style="font-size:12.5px;color:var(--text-2);line-height:1.6;margin:0 0 4px;">
+          <span class="hyp-flag">[?]</span> Exact profile unconfirmed — hypothesis based on service type logic.
+          Needs aerial photography for a listing, a roof inspection, or event footage. Scheduling matters: weather window, daylight, client presence. Has tried finding local studios on Instagram — opaque process ("DM for pricing", no formal report format).
+        </p>
+        <p style="font-size:11px;color:var(--text-3);margin:0;">
+          Source: research.md — "Aerial photo/video studios" as incumbents. Profile extrapolated from CLAUDE.md service types.
+        </p>
+
+        <div class="persona-section-label">Jobs</div>
+        <ul class="persona-list">
+          <li><span class="pl-dot pl-dot-client"></span>Schedule aerial work for a specific date, time, and weather window</li>
+          <li><span class="pl-dot pl-dot-client"></span>Receive a structured deliverable (annotated photo set, inspection report) usable professionally</li>
+          <li><span class="pl-dot pl-dot-client"></span>Show clients / insurers / buyers documented proof from a qualified operator</li>
+          <li><span class="pl-dot pl-dot-client"></span>Not spend hours DMing Instagram accounts to get a quote</li>
+        </ul>
+
+        <div class="persona-section-label">Pains with today's solutions</div>
+        <ul class="persona-list">
+          <li><span class="pl-dash">!</span><span>Studios require DM or call for pricing — confirmed: ABD Video "Cost depends on team size and hours," consultation required.</span></li>
+          <li><span class="pl-dash">!</span><span>Result format undefined upfront — no standard for what "aerial inspection" delivers to a B2C client.</span></li>
+          <li><span class="pl-dash">!</span><span>No formal operator license or insurance visible on studio pages — ABD Video mentions equipment insurance but no pilot certification or client liability.</span></li>
+          <li><span class="pl-dash">!</span><span><span class="hyp-flag">[?]</span> Whether they compare DRON to a local studio — price/quality tradeoff unknown.</span></li>
+        </ul>
+
+        <div class="persona-section-label">Trust triggers</div>
+        <div class="trust-grid">
+          <div>
+            <div class="trust-col-label">Triggers trust</div>
+            <div class="trust-item">Ability to pick a specific date/time slot (Calendar-First flow)</div>
+            <div class="trust-item" style="margin-top:4px;">Portfolio examples visible on operator profile</div>
+            <div class="trust-item" style="margin-top:4px;">License and insurance in profile header — before bio</div>
+            <div class="trust-item" style="margin-top:4px;">Structured in-app result delivery: photos + notes + operator signature</div>
+          </div>
+          <div>
+            <div class="trust-col-label">Triggers exit</div>
+            <div class="trust-item exit">Auto-dispatch for a planned service</div>
+            <div class="trust-item exit" style="margin-top:4px;">No example of what the final report looks like</div>
+            <div class="trust-item exit" style="margin-top:4px;">"Message us for details" — any friction before pricing</div>
+            <div class="trust-item exit" style="margin-top:4px;">Report delivered as a random file via chat</div>
+          </div>
+        </div>
+
+        <div class="persona-mood">
+          <div class="persona-mood-label">Mood quote</div>
+          <div class="persona-mood-text">"Is this actually available where I live?"</div>
+          <div class="persona-mood-warning">⚠ Synthesized from CJM Whalen Language friction analysis — not a verbatim user quote.</div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /client personas grid -->
+
+  <h3 style="margin-top:40px;">Operator Personas</h3>
+  <div class="personas-grid">
+
+    <!-- O-1 -->
+    <div class="persona-card operator is-primary">
+      <div class="persona-head">
+        <div class="persona-head-row">
+          <div class="persona-avatar avatar-operator">🚁</div>
+          <div class="persona-meta">
+            <div class="persona-id">O-1 / PERSONA</div>
+            <div class="persona-name">"I want jobs, not a second job finding jobs."</div>
+            <div class="persona-role">Licensed pilot · 1–2+ yrs commercial experience · on Kabanchik/OLX today</div>
+            <div class="persona-badges">
+              <span class="tag tag-primary">PRIMARY</span>
+              <span class="tag tag-operator">Operator</span>
+            </div>
+          </div>
+        </div>
+        <div class="persona-quote">"Another platform that takes 30%?"</div>
+      </div>
+      <div class="persona-body">
+
+        <div class="persona-section-label">Context</div>
+        <p style="font-size:12.5px;color:var(--text-2);line-height:1.6;margin:0 0 4px;">
+          Licensed, insured, has equipment. Currently finds clients through Kabanchik, OLX, word of mouth. Spends significant time on non-flying activities: messaging, negotiating, chasing payment, handling admin. Skeptical of new platforms.
+        </p>
+        <p style="font-size:11px;color:var(--text-3);margin:0;">
+          Source: research.md — Kabanchik "closest current behavior"; user-stories-cjm.md — Operator Stage 1: "another platform that takes 30%?"
+        </p>
+
+        <div class="persona-section-label">Jobs</div>
+        <ul class="persona-list">
+          <li><span class="pl-dot pl-dot-operator"></span>Receive a steady flow of pre-qualified jobs without hunting for clients</li>
+          <li><span class="pl-dot pl-dot-operator"></span>Accept or decline a job in under 10 seconds from a push notification</li>
+          <li><span class="pl-dot pl-dot-operator"></span>Get paid automatically after job close — no invoicing, no chasing</li>
+          <li><span class="pl-dot pl-dot-operator"></span>Build a verifiable reputation (rating + reviews) they can take with them</li>
+          <li><span class="pl-dot pl-dot-operator"></span>Work under platform insurance/legal protection rather than solo liability</li>
+        </ul>
+
+        <div class="persona-section-label">Pains with today's solutions</div>
+        <ul class="persona-list">
+          <li><span class="pl-dash">!</span><span>Client acquisition takes as much time as the work itself — Kabanchik/OLX listing maintenance, DM negotiations, prospect drop-offs.</span></li>
+          <li><span class="pl-dash">!</span><span>Payment is informal — depends on client goodwill; cash or bank transfer, sometimes delayed or disputed.</span></li>
+          <li><span class="pl-dash">!</span><span>Each client explains what they want differently — no standard job format on classifieds.</span></li>
+          <li><span class="pl-dash">!</span><span><strong style="color:var(--text);">Solo liability if something goes wrong — wartime context:</strong> individual drone insurance suspended during martial law in Ukraine. Only commercial entities receive coverage. Operators under DRON have a different risk profile than solo freelancers.</span></li>
+          <li><span class="pl-dash">!</span><span>No portable reputation — reviews stay locked in each platform's silo.</span></li>
+        </ul>
+
+        <div class="persona-section-label">Trust triggers</div>
+        <div class="trust-grid">
+          <div>
+            <div class="trust-col-label">Triggers trust</div>
+            <div class="trust-item">Commission rate stated clearly on landing page — before signup</div>
+            <div class="trust-item" style="margin-top:4px;">Verification ETA shown immediately after document upload</div>
+            <div class="trust-item" style="margin-top:4px;">Automatic payment to wallet within 30 min of client confirmation</div>
+            <div class="trust-item" style="margin-top:4px;">Transparent rating: per service type + review text</div>
+            <div class="trust-item" style="margin-top:4px;">Platform provides insurance cover and handles client disputes</div>
+          </div>
+          <div>
+            <div class="trust-col-label">Triggers exit</div>
+            <div class="trust-item exit">"Contact us for pricing" on the operator sign-up page</div>
+            <div class="trust-item exit" style="margin-top:4px;">Document upload → silence → no status update</div>
+            <div class="trust-item exit" style="margin-top:4px;">Payment delay &gt; 24 hours</div>
+            <div class="trust-item exit" style="margin-top:4px;">Rating shown but no way to understand what drove a low score</div>
+            <div class="trust-item exit" style="margin-top:4px;">Platform takes cut but operator is still alone with problems</div>
+          </div>
+        </div>
+
+        <div class="persona-mood">
+          <div class="persona-mood-label">Mood quote</div>
+          <div class="persona-mood-text">"Another platform that takes 30%?"</div>
+          <div class="persona-mood-warning">⚠ Synthesized from CJM Operator Stage 1 — not a verbatim quote. Hypothesis: confirmed once Telegram drone pilot community research is conducted.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- O-2 -->
+    <div class="persona-card operator">
+      <div class="persona-head">
+        <div class="persona-head-row">
+          <div class="persona-avatar avatar-operator">🎓</div>
+          <div class="persona-meta">
+            <div class="persona-id">O-2 / PERSONA</div>
+            <div class="persona-name">"I have a license and a drone. I need someone to give me the first job."</div>
+            <div class="persona-role">Recently certified · 0–2 paid commercial jobs · cold-start problem</div>
+            <div class="persona-badges">
+              <span class="tag">SECONDARY</span>
+              <span class="tag tag-operator">Operator</span>
+              <span class="tag tag-hyp">[?] profile is hypothesis</span>
+            </div>
+          </div>
+        </div>
+        <div class="persona-quote">"How long will the review take?"</div>
+      </div>
+      <div class="persona-body">
+
+        <div class="persona-section-label">Context</div>
+        <p style="font-size:12.5px;color:var(--text-2);line-height:1.6;margin:0 0 4px;">
+          <span class="hyp-flag">[?]</span> Profile is a hypothesis — no research data specific to newly certified operators.
+          Recently passed certification. Has equipment. Has never done a paid commercial job. Cold-start problem: zero reviews make it hard to compete with experienced operators on Kabanchik/OLX where ratings dominate.
+        </p>
+        <p style="font-size:11px;color:var(--text-3);margin:0;">
+          Source: user-stories-cjm.md — Operator Stage 2 (verification friction). This persona type is inferred from the verification flow; no direct research confirms existence or market size.
+        </p>
+
+        <div class="persona-section-label">Jobs</div>
+        <ul class="persona-list">
+          <li><span class="pl-dot pl-dot-operator"></span>Land first paying commercial jobs to build a portfolio and rating</li>
+          <li><span class="pl-dot pl-dot-operator"></span>Understand professional job standards (checklists, client communication, report format)</li>
+          <li><span class="pl-dot pl-dot-operator"></span>Get platform-provided insurance cover while building independent coverage</li>
+          <li><span class="pl-dot pl-dot-operator"></span>Establish a reputation that works for them as they grow</li>
+        </ul>
+
+        <div class="persona-section-label">Pains with today's solutions</div>
+        <ul class="persona-list">
+          <li><span class="pl-dash">!</span><span>Cold-start on Kabanchik/OLX: zero reviews → invisible in listing rankings — platforms favor operators with existing reviews.</span></li>
+          <li><span class="pl-dash">!</span><span><span class="hyp-flag">[?]</span> No guidance on how to price services or what to include — hypothesis, no source.</span></li>
+          <li><span class="pl-dash">!</span><span>Client expectations unclear before arrival — each job is a guess. No structured job brief in current tools.</span></li>
+          <li><span class="pl-dash">!</span><span><span class="hyp-flag">[?]</span> Liability risk without established insurance arrangements — hypothesis.</span></li>
+        </ul>
+
+        <div class="persona-section-label">Trust triggers</div>
+        <div class="trust-grid">
+          <div>
+            <div class="trust-col-label">Triggers trust</div>
+            <div class="trust-item">Platform assigns jobs — no need to compete with zero reviews on day 1</div>
+            <div class="trust-item" style="margin-top:4px;">Structured job checklists remove field uncertainty</div>
+            <div class="trust-item" style="margin-top:4px;">Platform insurance cover active from first job</div>
+            <div class="trust-item" style="margin-top:4px;">Clear earning projection before joining</div>
+          </div>
+          <div>
+            <div class="trust-col-label">Triggers exit</div>
+            <div class="trust-item exit">Lengthy unguided verification — documents submitted, no status</div>
+            <div class="trust-item exit" style="margin-top:4px;">Vague operator onboarding ("set up your profile" with no template)</div>
+            <div class="trust-item exit" style="margin-top:4px;">No explanation of how rating is built or what affects it</div>
+            <div class="trust-item exit" style="margin-top:4px;">Commission not stated until after onboarding is complete</div>
+          </div>
+        </div>
+
+        <div class="persona-mood">
+          <div class="persona-mood-label">Mood quote</div>
+          <div class="persona-mood-text">"How long will the review take?"</div>
+          <div class="persona-mood-warning">⚠ Synthesized from CJM Operator Stage 2 Activation (Whalen Memory + Emotion at verification step) — not a verbatim user quote.</div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /operator personas grid -->
+
+</section>
+
+
+<!-- ══════════════════════════════════ JOBS -->
+<section id="jobs">
+  <div class="section-label">Section 02</div>
+  <h2>Jobs to Be Done</h2>
+  <p class="section-desc">Format: "When [situation], I want [motivation], so that [result]." No feature names in formulations — only human progress. Jobs without research backing are in the Hypotheses group.</p>
+
+  <!-- MAIN JOBS -->
+  <div class="jobs-group">
+    <div class="jobs-group-label">Main Jobs of the Product — two-sided market</div>
+
+    <div class="job-card">
+      <div class="job-header">
+        <div class="job-id">MJ-1</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When I need a result that only a drone can deliver — a parcel moved, footage captured, a structure documented —</span><br>
+            <span class="want">I want to hand the job to a certified professional without managing anything myself,</span><br>
+            <span class="so">so that I get the outcome without ever thinking about the drone or the operator.</span>
+          </div>
+          <div class="job-meta">
+            <span class="tag tag-client">C-1 (primary)</span>
+            <span class="tag tag-client">C-2 (secondary)</span>
+          </div>
+          <div class="job-basis">Source: CLAUDE.md — "users have never operated a drone and never will"; ux-patterns.md — Reason 3: audience has no criteria to evaluate operators; auto-dispatch removes the decision entirely.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-header">
+        <div class="job-id">MJ-2</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When I have the license, equipment, and capacity to do drone work,</span><br>
+            <span class="want">I want a steady stream of pre-qualified jobs to reach me without me hunting for them,</span><br>
+            <span class="so">so that I can spend my time flying, not selling.</span>
+          </div>
+          <div class="job-meta">
+            <span class="tag tag-operator">O-1 (primary)</span>
+          </div>
+          <div class="job-basis">Source: user-stories-cjm.md — Operator Epic: "Manage incoming jobs with minimal admin overhead"; target-audience.md — O-1 pain: "client acquisition takes as much time as the work itself".</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED — CLIENT -->
+  <div class="jobs-group">
+    <div class="jobs-group-label">Related Jobs — Client · steps on the path to MJ-1</div>
+
+    <div class="job-card">
+      <div class="job-header">
+        <div class="job-id">RJ-C1</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When I've found a service I want but I've never used drone services before,</span><br>
+            <span class="want">I want to see proof of who will come — credentials, insurance, job history — without digging for it,</span><br>
+            <span class="so">so that I can commit without a lingering doubt about who I'm trusting.</span>
+          </div>
+          <div class="job-meta">
+            <span class="tag tag-client">C-1</span><span class="tag tag-client">C-2</span>
+          </div>
+          <div class="job-basis">Source: user-stories-cjm.md — Drop-off #1: "Operator selection screen — highest single drop-off point if trust signals missing"; benchmarks.md — M-2 (Airbnb: trust signals on the list card before any tap).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-header">
+        <div class="job-id">RJ-C2</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When I've paid and the money has left my account,</span><br>
+            <span class="want">I want to know immediately who is coming, when they will arrive, and where they are right now,</span><br>
+            <span class="so">so that the gap between payment and completion doesn't feel like a void.</span>
+          </div>
+          <div class="job-meta"><span class="tag tag-client">C-1</span></div>
+          <div class="job-basis">Source: benchmarks.md — M-1 (Bolt): post-payment screen with operator identity converts the highest-anxiety moment; user-stories-cjm.md — C-05 Stage 2 post-booking.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-header">
+        <div class="job-id">RJ-C3</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When I'm considering placing an order,</span><br>
+            <span class="want">I want to see the full cost upfront — no estimates, no "plus fees",</span><br>
+            <span class="so">so that I can decide without being surprised at checkout.</span>
+          </div>
+          <div class="job-meta"><span class="tag tag-client">C-1</span><span class="tag tag-client">C-2</span></div>
+          <div class="job-basis">Source: user-stories-cjm.md — Drop-off #2: "Any 'plus fees' or surprise on payment screen = abandonment"; Whalen Decision + Emotion: hidden cost is a rage-quit trigger.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-header">
+        <div class="job-id">RJ-C4</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When the operator has finished the work,</span><br>
+            <span class="want">I want to see a clear, documented result — a photo, a report, a confirmation —</span><br>
+            <span class="so">so that I have evidence I can use, share, or act on.</span>
+          </div>
+          <div class="job-meta"><span class="tag tag-client">C-1 (delivery confirm)</span><span class="tag tag-client">C-2 (inspection report)</span></div>
+          <div class="job-basis">Source: user-stories-cjm.md — C-06: "Report delivered in-app ≤ 15 min after job close"; Nova Poshta benchmark: 5M+ UA users trained to expect proactive status evidence.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-header">
+        <div class="job-id">RJ-C5</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When I want the same service again,</span><br>
+            <span class="want">I want to get back to "confirmed" in a single action,</span><br>
+            <span class="so">so that the second time feels easier than the first, not identical to it.</span>
+          </div>
+          <div class="job-meta"><span class="tag tag-client">C-1</span></div>
+          <div class="job-basis">Source: user-stories-cjm.md — Drop-off #4: "If no 'Book again' shortcut → goes to Kabanchik instead"; Whalen Memory: re-entry effort is the #4 critical drop-off.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED — OPERATOR -->
+  <div class="jobs-group">
+    <div class="jobs-group-label">Related Jobs — Operator · steps on the path to MJ-2</div>
+
+    <div class="job-card">
+      <div class="job-header">
+        <div class="job-id">RJ-O1</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When a job request appears while I'm between tasks or already on the move,</span><br>
+            <span class="want">I want to see everything I need — location, service type, duration, pay — in one glance,</span><br>
+            <span class="so">so that I can accept or pass without stopping to ask questions.</span>
+          </div>
+          <div class="job-meta"><span class="tag tag-operator">O-1</span><span class="tag tag-operator">O-2</span></div>
+          <div class="job-basis">Source: user-stories-cjm.md — O-01: "Accept / Decline in under 10 seconds. Push notification with service type + distance + time + price. Accept / Decline buttons on lock screen."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-header">
+        <div class="job-id">RJ-O2</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When I'm on site and the job has started,</span><br>
+            <span class="want">I want a structured checklist that covers everything the client expects,</span><br>
+            <span class="so">so that I don't miss a required step because I had to guess what "done" looks like.</span>
+          </div>
+          <div class="job-meta"><span class="tag tag-operator">O-1</span><span class="tag tag-operator">O-2</span></div>
+          <div class="job-basis">Source: user-stories-cjm.md — O-03: "Checklist auto-generated at job start." Field context: app used with gloves in sunlight → large touch targets, high contrast required.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-header">
+        <div class="job-id">RJ-O3</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When I've closed a job and the client has confirmed the result,</span><br>
+            <span class="want">I want the payment to move to my account on its own,</span><br>
+            <span class="so">so that I never have to chase money or issue an invoice.</span>
+          </div>
+          <div class="job-meta"><span class="tag tag-operator">O-1</span></div>
+          <div class="job-basis">Source: user-stories-cjm.md — Drop-off #5: "Payment delay &gt; 24h erodes trust"; research.md — H-5: "payment friction is the fastest trigger for direct client bypass."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMOTIONAL -->
+  <div class="jobs-group">
+    <div class="jobs-group-label">Emotional Jobs</div>
+
+    <div class="job-card">
+      <div class="job-header">
+        <div class="job-id">EJ-1</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When I consider using a drone service for the first time,</span><br>
+            <span class="want">I want to feel that someone accountable — not just available — is coming to me,</span><br>
+            <span class="so">so that "a stranger with a drone" stops feeling like a risk I'm taking alone.</span>
+          </div>
+          <div class="job-meta"><span class="tag tag-client">C-1</span></div>
+          <div class="job-basis">Source: Whalen Emotion: "A stranger with a drone will be near my home → abandonment. Emotion is the deepest mind." Research — H-4: first-time clients need a 15-second explainer. Post-persona research (June 2026): primary anxiety is about the drone itself (noise, privacy, safety), not only operator identity.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-header">
+        <div class="job-id">EJ-2</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When the result doesn't match what I expected,</span><br>
+            <span class="want">I want to know there's a clear path to resolution — not just a rating I can leave,</span><br>
+            <span class="so">so that one bad experience doesn't become a reason to never come back.</span>
+          </div>
+          <div class="job-meta"><span class="tag tag-client">C-1</span><span class="tag tag-risk-hi">⚠ No function assigned in MVP</span></div>
+          <div class="job-basis">Source: user-stories-cjm.md — Stage 3: "Issue/complaint — one bad experience taints platform." This job has no assigned user story, no screen, no acceptance criteria in the current MVP definition. Critical gap.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-header">
+        <div class="job-id">EJ-3</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When I complete jobs and get rated,</span><br>
+            <span class="want">I want to see clearly what clients valued and what they didn't,</span><br>
+            <span class="so">so that my effort to do good work translates into something I can point to and grow.</span>
+          </div>
+          <div class="job-meta"><span class="tag tag-operator">O-1</span></div>
+          <div class="job-basis">Source: user-stories-cjm.md — O-06: "Ratings tab: overall score + breakdown by service type + last 10 reviews." Whalen Emotion (Operator Stage 4): "Transparent, fair rating = loyalty."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIAL -->
+  <div class="jobs-group">
+    <div class="jobs-group-label">Social Jobs</div>
+
+    <div class="job-card">
+      <div class="job-header">
+        <div class="job-id">SJ-1</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When the service works the way it should,</span><br>
+            <span class="want">I want to share it with the people around me in a single action,</span><br>
+            <span class="so">so that I'm the one who showed them something they hadn't seen before.</span>
+          </div>
+          <div class="job-meta"><span class="tag tag-client">C-1</span></div>
+          <div class="job-basis">Source: user-stories-cjm.md — Stage 4 Retention: "Pride + advocate. One-tap share link." Social proof is the #2 discovery channel in Stage 1.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HYPOTHESES -->
+  <div class="jobs-group">
+    <div class="jobs-group-label">Hypotheses — no research backing · do not use as design input</div>
+
+    <div class="job-card is-hypothesis">
+      <div class="job-header">
+        <div class="job-id">HJ-1</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When I work through DRON,</span><br>
+            <span class="want">I want clients and peers to recognize "DRON-certified operator" as a meaningful credential,</span><br>
+            <span class="so">so that the platform adds to my professional standing, not just my job count.</span>
+          </div>
+          <div class="job-meta"><span class="tag tag-operator">O-1</span><span class="tag tag-operator">O-2</span><span class="tag tag-hyp">[?] hypothesis</span></div>
+          <div class="hyp-why">No research data on how Ukrainian drone pilots perceive platform-branded credentials vs. CAA/EASA licenses. No operator community interviews conducted. What would confirm it: operator community survey on Telegram drone pilot groups.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card is-hypothesis">
+      <div class="job-header">
+        <div class="job-id">HJ-2</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When I've heard of drone delivery or inspection but have never ordered it,</span><br>
+            <span class="want">I want to quickly grasp what exactly I can get and for how much,</span><br>
+            <span class="so">so that I can decide if it's relevant to my situation before investing more time.</span>
+          </div>
+          <div class="job-meta"><span class="tag tag-client">C-1</span><span class="tag tag-client">C-2</span><span class="tag tag-hyp">[?] hypothesis</span></div>
+          <div class="hyp-why">Discovery and education need are implied by CJM Stage 1 Language friction, but no data on how much education vs. instant booking the first-time client needs. Could be critical or noise. What would confirm it: first-session heatmaps; A/B test of homepage with/without service explainer.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card is-hypothesis">
+      <div class="job-header">
+        <div class="job-id">HJ-3</div>
+        <div class="job-title-group">
+          <div class="job-statement">
+            <span class="when">When I've had a great experience with a particular operator,</span><br>
+            <span class="want">I want to be able to request them specifically for future jobs,</span><br>
+            <span class="so">so that trust I've already built doesn't reset with every order.</span>
+          </div>
+          <div class="job-meta"><span class="tag tag-client">C-1</span><span class="tag tag-hyp">[?] hypothesis</span><span class="tag tag-risk-hi">Conflicts with auto-dispatch</span></div>
+          <div class="hyp-why">Conflicts with auto-dispatch model. No validation data. Building operator selection also undermines RJ-C1: users who cannot evaluate drone operators will be paralyzed by a choice list. What would confirm it: post-service survey on repeat clients; does "Book again" correlate with same-operator preference?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════ MATRIX -->
+<section id="matrix">
+  <div class="section-label">Section 03</div>
+  <h2>JTBD Matrix</h2>
+  <p class="section-desc">
+    Table 1: importance by persona (3 = critical, 2 = important, 1 = nice to have, — = not this persona's job).
+    Table 2: product function in DRON + competitive coverage.
+  </p>
+
+  <h3>Table 1 — Importance by Persona</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="min-width:180px">Job</th>
+          <th style="min-width:90px; text-align:center;">C-1</th>
+          <th style="min-width:90px; text-align:center;">C-2</th>
+          <th style="min-width:90px; text-align:center;">O-1</th>
+          <th style="min-width:90px; text-align:center;">O-2</th>
+          <th style="min-width:240px">Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="td-job-id">MJ-1</span><span class="td-job-name">Hand job to professional</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td class="td-dim">CLAUDE.md core JTBD; research.md JTBD statement</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">MJ-2</span><span class="td-job-name">Steady job flow</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td class="td-dim">target-audience.md O-1 core job; O-2 has zero client base — this is their entire problem</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-C1</span><span class="td-job-name">Confirm person is qualified</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td style="text-align:center;"><span class="imp imp-2">2</span></td>
+          <td style="text-align:center;"><span class="imp imp-2">2</span></td>
+          <td style="text-align:center;"><span class="imp imp-2">2</span></td>
+          <td class="td-dim">CJM Drop-off #1: "highest single drop-off"; planning mode gives more evaluation time; visible credentials → more bookings (indirect); platform vouching solves cold-start gap</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-C2</span><span class="td-job-name">Close post-payment void</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td style="text-align:center;"><span class="imp imp-1">1</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td class="td-dim">CJM Stage 2 post-booking "highest anxiety moment"; scheduled service = knows who/when; acute anxiety is lower</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-C3</span><span class="td-job-name">Price upfront</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td style="text-align:center;"><span class="imp imp-2">2</span></td>
+          <td style="text-align:center;"><span class="imp imp-1">1</span></td>
+          <td style="text-align:center;"><span class="imp imp-1">1</span></td>
+          <td class="td-dim">CJM Drop-off #2 "rage quit"; planning mode = more tolerance for quote-based pricing</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-C4</span><span class="td-job-name">Proof of work</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td style="text-align:center;"><span class="imp imp-2">2</span></td>
+          <td style="text-align:center;"><span class="imp imp-2">2</span></td>
+          <td class="td-dim">H-7; Nova Poshta 5M+ trained on status evidence; inspection report IS the deliverable for C-2</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-C5</span><span class="td-job-name">Repeat without starting over</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td style="text-align:center;"><span class="imp imp-1">1</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td class="td-dim">CJM Drop-off #4 "goes to Kabanchik if no shortcut"; H-6; Whalen Memory #4 drop-off</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-O1</span><span class="td-job-name">Quick job decision</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td class="td-dim">O-01: "accept/decline in &lt; 10 seconds; lock-screen"; first jobs critical for O-2</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-O2</span><span class="td-job-name">Execute without improvising</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp imp-2">2</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td class="td-dim">Experienced has mental model, but checklist reduces errors; O-2 has no routine — checklist is professional scaffolding</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-O3</span><span class="td-job-name">Auto payment</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td style="text-align:center;"><span class="imp imp-2">2</span></td>
+          <td class="td-dim">H-5: "payment friction = fastest churn trigger"; O-2 has no existing income comparison baseline</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">EJ-1</span><span class="td-job-name">First use feels safe</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td style="text-align:center;"><span class="imp imp-2">2</span></td>
+          <td style="text-align:center;"><span class="imp imp-1">1</span></td>
+          <td style="text-align:center;"><span class="imp imp-1">1</span></td>
+          <td class="td-dim">Whalen Emotion "deepest mind overrides all else"; H-4; planning context provides research time; more trust → more bookings (indirect)</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">EJ-2</span><span class="td-job-name">Resolution after bad experience</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td style="text-align:center;"><span class="imp imp-2">2</span></td>
+          <td style="text-align:center;"><span class="imp imp-2">2</span></td>
+          <td style="text-align:center;"><span class="imp imp-1">1</span></td>
+          <td class="td-dim">CJM Stage 3 "one bad experience = permanent churn" 🔴; professional context: unresolved issue blocks business use of deliverable</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">EJ-3</span><span class="td-job-name">Reputation worth building</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td style="text-align:center;"><span class="imp imp-3">3</span></td>
+          <td class="td-dim">O-06: "transparent fair rating = loyalty"; portable reputation; solves cold-start gap for O-2</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">SJ-1</span><span class="td-job-name">Client as introducer</span></td>
+          <td style="text-align:center;"><span class="imp imp-2">2</span></td>
+          <td style="text-align:center;"><span class="imp imp-1">1</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td class="td-dim">CJM Stage 4 referral; word of mouth = #2 discovery channel; professional context reduces sharing motivation</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">HJ-1</span><span class="td-job-name">Platform credential as identity</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp-q">[?]</span></td>
+          <td style="text-align:center;"><span class="imp-q">[?]</span></td>
+          <td class="td-dim">No operator community data</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">HJ-2</span><span class="td-job-name">Understand services available</span></td>
+          <td style="text-align:center;"><span class="imp-q">[?]</span></td>
+          <td style="text-align:center;"><span class="imp-q">[?]</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td class="td-dim">No data on education vs. instant-booking need</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">HJ-3</span><span class="td-job-name">Choose specific operator</span></td>
+          <td style="text-align:center;"><span class="imp-q">[?]</span></td>
+          <td style="text-align:center;"><span class="imp-q">[?]</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td style="text-align:center;"><span class="imp-na">—</span></td>
+          <td class="td-dim">Conflicts with auto-dispatch; no validation data</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:56px;">Table 2 — Product Function + Competitive Coverage</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="min-width:160px">Job</th>
+          <th style="min-width:280px">Function in DRON</th>
+          <th style="min-width:320px">Competitors — do they close it?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="td-job-id">MJ-1</span><span class="td-job-name">Hand job to professional</span></td>
+          <td class="td-function">Auto-dispatch (delivery); Calendar-first + auto-assign (photo / inspection)</td>
+          <td class="td-competitors">Kabanchik — covers JTBD via "search → message → negotiate → trust blind"; Glovo — delivery JTBD but not drone; Wing / Flytrex — drone but not in UA</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">MJ-2</span><span class="td-job-name">Steady job flow</span></td>
+          <td class="td-function">SRM: push notifications + auto-dispatch assignment to operator</td>
+          <td class="td-competitors">Kabanchik / OLX — operator self-sources; <strong>no UA drone platform pre-dispatches jobs</strong></td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-C1</span><span class="td-job-name">Confirm person is qualified</span></td>
+          <td class="td-function">Operator card (list view, no tap): photo · rating · Verified badge · Insured badge · job count; credential-first profile header</td>
+          <td class="td-competitors">Bolt — driver photo + rating on confirmation ✓; Kabanchik — no verification; OLX — no verification; DroneUA — credentials but B2B only, no consumer booking flow</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-C2</span><span class="td-job-name">Close post-payment void</span></td>
+          <td class="td-function">Post-payment screen = operator name + photo + live map + ETA; never a generic "order received"</td>
+          <td class="td-competitors">Bolt ★★★★★ live map + driver reveal; Glovo ★★★★★ live tracking; Wing — second-precise (not UA); <strong>Kabanchik — nothing after booking</strong></td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-C3</span><span class="td-job-name">Price upfront</span></td>
+          <td class="td-function">Price shown on service details screen before operator assignment; final price locked at payment</td>
+          <td class="td-competitors">Glovo — transparent ✓; Kabanchik / OLX — no structured pricing; DroneUA / Wing — pricing behind contact or login</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-C4</span><span class="td-job-name">Proof of work</span></td>
+          <td class="td-function">In-app result photo + notes upload (operator side); structured inspection report: cover photo + annotated findings + operator signature</td>
+          <td class="td-competitors">DroneDeploy — best-in-class inspection reports (B2B); Glovo — delivery photo ✓; Nova Poshta app — proactive push on delivery ✓; <strong>Kabanchik — no deliverable format</strong></td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-C5</span><span class="td-job-name">Repeat without starting over</span></td>
+          <td class="td-function">"Book again" one-tap shortcut on home screen; pre-fills previous service details</td>
+          <td class="td-competitors">Glovo — "Order again" ✓; Bolt — repeat ride shortcut ✓; <strong>Kabanchik — no repeat shortcut; no drone platform has this</strong></td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-O1</span><span class="td-job-name">Quick job decision</span></td>
+          <td class="td-function">Push notification: service type + distance + estimated duration + price; Accept / Decline on lock screen</td>
+          <td class="td-competitors">Kabanchik — notification exists but no structured brief; DroneDeploy — enterprise job management; <strong>no consumer drone platform has lock-screen accept/decline</strong></td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-O2</span><span class="td-job-name">Execute without improvising</span></td>
+          <td class="td-function">Auto-generated job checklist per service type: pre-flight → execution → delivery confirmation → result photo; large touch targets for gloves + sunlight</td>
+          <td class="td-competitors">DroneDeploy — checklists for B2B enterprise ✓; <strong>no consumer drone job checklist exists in UA market</strong></td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">RJ-O3</span><span class="td-job-name">Auto payment</span></td>
+          <td class="td-function">Auto-release to operator wallet within 30 min of client confirmation; auto-confirm after 2h silence</td>
+          <td class="td-competitors">Bolt — immediate payment ✓; TaskRabbit — structured payment ✓; <strong>Kabanchik / OLX — manual cash or bank transfer; no UA drone platform has automated payment</strong></td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">EJ-1</span><span class="td-job-name">First use feels safe</span></td>
+          <td class="td-function">15-second in-app explainer before first booking (H-4); insurance badge on operator card; Bolt-model operator reveal at confirmation</td>
+          <td class="td-competitors">Airbnb — AirCover guarantee ★★★★★; Bolt — driver identity + safety features ★★★★; Zipline — "60K lives saved" narrative; Kabanchik — no safety mechanisms</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">EJ-2</span><span class="td-job-name">Resolution after bad experience</span></td>
+          <td class="td-missing">⚠ NOT DEFINED — no user story covers dispute or support flow; no function assigned in current MVP definition</td>
+          <td class="td-competitors">Airbnb — AirCover ★★★★; Glovo — no-questions refund ✓; Bolt — safety button + share trip ✓; Kabanchik — no dispute resolution</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">EJ-3</span><span class="td-job-name">Reputation worth building</span></td>
+          <td class="td-function">Rating dashboard: overall score + breakdown by service type + last 10 review texts</td>
+          <td class="td-competitors">Kabanchik — basic star rating, no breakdown; Bolt — rating shown to drivers; no drone platform has per-service-type breakdown</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">SJ-1</span><span class="td-job-name">Client as introducer</span></td>
+          <td class="td-function">One-tap share link post-completion</td>
+          <td class="td-competitors">Glovo — share delivery ✓; Bolt — share trip ✓; no drone platform referral mechanic in UA</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">HJ-1</span><span class="td-job-name">Platform credential as identity</span></td>
+          <td class="td-function">DRON badge on operator profile</td>
+          <td class="td-competitors"><span class="hyp-flag">[?]</span> No data on how UA pilots value platform vs. CAA/EASA credentials</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">HJ-2</span><span class="td-job-name">Understand services available</span></td>
+          <td class="td-function">Service explainer / onboarding screens</td>
+          <td class="td-competitors">Wing — technology page; Zipline — safety narrative; Kabanchik — no service education</td>
+        </tr>
+        <tr>
+          <td><span class="td-job-id">HJ-3</span><span class="td-job-name">Choose specific operator</span></td>
+          <td class="td-missing">Would conflict with auto-dispatch — no function can be assigned without first resolving this against the core architecture</td>
+          <td class="td-competitors">Airbnb — host selection ✓; TaskRabbit — tasker selection ✓; Bolt — intentionally minimal operator info (brand over individual)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════ CONCLUSIONS -->
+<section id="conclusions">
+  <div class="section-label">Section 04</div>
+  <h2>Conclusions</h2>
+  <p class="section-desc">3 jobs for the MVP core. Features candidates for removal. 1 critical unscoped gap.</p>
+
+  <h3>3 Jobs for the MVP Core</h3>
+  <p style="font-size:12px;color:var(--text-3);margin-bottom:24px;">Criteria: critical (score 3) for primary persona + not closed by existing Ukrainian market.</p>
+
+  <div class="conclusion-card">
+    <div class="conclusion-num">01 / RJ-C1</div>
+    <div class="conclusion-title">Confirm the person coming is real and qualified</div>
+    <div class="conclusion-body">
+      <strong>C-1 score: 3</strong> — highest single drop-off in the entire CJM.<br>
+      <strong>Market gap:</strong> Kabanchik and OLX have zero verification layer for drone operators. Bolt solves this for transport but not in the drone context in Ukraine.<br>
+      <strong>What closes it:</strong> operator card with Verified badge + insurance + job count visible in the list <em>without a tap</em>. This is DRON's primary structural differentiator.
+    </div>
+  </div>
+
+  <div class="conclusion-card">
+    <div class="conclusion-num">02 / RJ-C2</div>
+    <div class="conclusion-title">Close the void between payment and arrival</div>
+    <div class="conclusion-body">
+      <strong>C-1 score: 3</strong> — documented as "highest anxiety moment" in CJM post-booking.<br>
+      <strong>Market gap:</strong> No Ukrainian drone service shows operator identity or live tracking after booking. Bolt and Glovo set the expectation; no drone player in UA meets it.<br>
+      <strong>What closes it:</strong> post-payment screen with operator name, photo, live map, and ETA — never a generic confirmation screen.
+    </div>
+  </div>
+
+  <div class="conclusion-card">
+    <div class="conclusion-num">03 / RJ-O3</div>
+    <div class="conclusion-title">Get paid without managing it</div>
+    <div class="conclusion-body">
+      <strong>O-1 score: 3</strong> — H-5 documents this as "the fastest trigger for direct client bypass".<br>
+      <strong>Market gap:</strong> Kabanchik and OLX rely on manual payment. No UA drone or freelance platform has automated payment release. This is the #1 operator retention mechanism and the #1 churn trigger if absent.<br>
+      <strong>What closes it:</strong> auto-release to operator wallet within 30 minutes of client confirmation.
+    </div>
+  </div>
+
+  <h3 style="margin-top:48px;">Feature Candidates for Removal</h3>
+  <p style="font-size:12px;color:var(--text-3);margin-bottom:24px;">Functions that do not close any documented job, or close only a hypothesis job.</p>
+
+  <div class="removal-card">
+    <div class="removal-label">Candidate for removal</div>
+    <div class="removal-title">SRM map view of nearby requests (O-07)</div>
+    <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Closes RJ-O1 partially — but RJ-O1 is already fully closed by the push notification with lock-screen accept/decline. The map adds spatial awareness that is a convenience, not a job. O-1 and O-2 scored 3 on RJ-O1 based on the notification, not the map. <strong style="color:var(--text);">Candidate for post-MVP.</strong></p>
+  </div>
+
+  <div class="removal-card">
+    <div class="removal-label">Candidate for removal</div>
+    <div class="removal-title">Operator selection screen / "choose your operator" flow</div>
+    <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Would close HJ-3 — which is a hypothesis flagged as conflicting with the auto-dispatch model. Building operator selection also directly undermines RJ-C1: users who cannot evaluate drone operators will be paralyzed by a choice list, not helped by it. <strong style="color:var(--text);">No job in the confirmed list requires this screen.</strong></p>
+  </div>
+
+  <div class="gap-card">
+    <div class="gap-label">Critical gap — missing feature</div>
+    <div class="gap-title">EJ-2 — Resolution after a bad experience</div>
+    <p style="font-size:13px;color:var(--text-2);line-height:1.65;">
+      Scored <strong style="color:var(--text);">3 for C-1</strong> (CJM Stage 3: "one bad experience = permanent churn"). Scored <strong style="color:var(--text);">2 for C-2 and O-1</strong>.<br><br>
+      No user story, no acceptance criteria, no screen is defined for dispute resolution or client support. This is <strong style="color:var(--risk-hi);">not a feature to remove — it is a missing feature.</strong> A support / resolution flow must be scoped before launch.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════ GAPS -->
+<section id="gaps">
+  <div class="section-label">Section 05</div>
+  <h2>Knowledge Gaps</h2>
+  <p class="section-desc">What we do not know. Honest gaps — each marked with current research status.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="min-width:40px">#</th>
+          <th style="min-width:280px">Unknown</th>
+          <th style="min-width:180px">Why it matters</th>
+          <th style="min-width:160px">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-dim">N-1</td>
+          <td>How Ukrainians actually hire drone operators on Kabanchik/OLX today — booking friction, ghosting at DM stage, what clients ask before hiring</td>
+          <td class="td-dim">Kabanchik is confirmed active (87+ reviews, 500–1,500 UAH/hr visible). Ghosting NOT confirmed for drone operators.</td>
+          <td><span class="dot dot-partial"></span> Partially closed — see research.md Finding 1, 2. Still needs: mystery shopping or operator interviews.</td>
+        </tr>
+        <tr>
+          <td class="td-dim">N-2</td>
+          <td>What price range clients consider fair per service type (inspection, delivery, photo/video)</td>
+          <td class="td-dim">Pricing model and operator earnings projections depend on this.</td>
+          <td><span class="dot dot-partial"></span> Partially closed — Kabanchik 500–1,500 UAH/hr aerial; studios quote-only. Still unknown: inspection and delivery expectations.</td>
+        </tr>
+        <tr>
+          <td class="td-dim">N-3</td>
+          <td>Diia / BankID registration conversion rate on mobile</td>
+          <td class="td-dim">If low, a fallback flow is required for activation.</td>
+          <td><span class="dot dot-open"></span> Open — no public data</td>
+        </tr>
+        <tr>
+          <td class="td-dim">N-4</td>
+          <td>How Wing and Zipline handle first-time user anxiety about a drone arriving</td>
+          <td class="td-dim">Critical for DRON onboarding design.</td>
+          <td><span class="dot dot-open"></span> Open — behind app login</td>
+        </tr>
+        <tr>
+          <td class="td-dim">N-5</td>
+          <td>What a B2C operator SRM dashboard looks like in practice</td>
+          <td class="td-dim">DroneDeploy is enterprise B2B; no consumer job-management UI reference exists.</td>
+          <td><span class="dot dot-open"></span> Open — no reference found</td>
+        </tr>
+        <tr>
+          <td class="td-dim">N-6</td>
+          <td>How many newly certified pilots exist in UA market and how they seek work</td>
+          <td class="td-dim">Defines whether O-2 is a real segment or marginal.</td>
+          <td><span class="dot dot-open"></span> Open — no data</td>
+        </tr>
+        <tr>
+          <td class="td-dim">N-7</td>
+          <td>Demographic breakdown within 18–50</td>
+          <td class="td-dim">An 18-year-old and a 49-year-old need different products.</td>
+          <td><span class="dot dot-open"></span> Open — no data</td>
+        </tr>
+        <tr>
+          <td class="td-dim">N-8</td>
+          <td>Real triggers for a first order — what makes someone try for the first time</td>
+          <td class="td-dim">Primary barrier is drone technology anxiety (privacy, noise, safety), not operator distrust. 87% positive after first use. Design problem may be normalizing the technology, not verifying the human.</td>
+          <td><span class="dot dot-partial"></span> Partially answered — see research.md Finding 3. All studies are US/EU; UA-specific data still needed.</td>
+        </tr>
+        <tr>
+          <td class="td-dim">N-9</td>
+          <td>What the client considers an acceptable wait time per service type</td>
+          <td class="td-dim">ETA display expectations inferred from Glovo/Bolt — not confirmed for drone context.</td>
+          <td><span class="dot dot-open"></span> Open — no data</td>
+        </tr>
+        <tr>
+          <td class="td-dim">N-10</td>
+          <td>Whether the C-2 persona (photo/inspection) is B2C, micro-business, or both</td>
+          <td class="td-dim">Affects pricing model, invoice format, and tax handling.</td>
+          <td><span class="dot dot-open"></span> Open — no data</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="display:flex; gap:16px; margin-top:16px; flex-wrap:wrap;">
+    <div style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-3);"><span class="dot dot-partial"></span> Partially closed</div>
+    <div style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-3);"><span class="dot dot-open"></span> Open — no data</div>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-brand">DRON</div>
+  <div class="footer-note">Target Audience · JTBD · June 2026 · No real user interviews conducted</div>
+</footer>
+
+</body>
+</html>
