@@ -1515,6 +1515,15 @@
 </footer>
 
 <script>
+  // ── Theme toggle ──
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('dron-theme', next);
+  });
+
+  // ── Nav ──
   const sidebar  = document.getElementById('sidebar');
   const overlay  = document.getElementById('navOverlay');
   const hamburger = document.getElementById('hamburger');
