@@ -353,6 +353,10 @@
       .table-wrap td:empty { display: none; }
       .table-wrap tr.stage-row td, .table-wrap tr.crit-row td { display: block; width: 100%; }
 
+      /* JTBD Matrix (Table 1): no divider under the title, scores follow directly */
+      .score-matrix tbody tr:not(.stage-row):not(.crit-row) td:first-child {
+        border-bottom: none; padding-bottom: 0; margin-bottom: 6px;
+      }
       /* JTBD Matrix (Table 1): the four persona-score columns sit together in one row of chips */
       .score-matrix tbody tr:not(.stage-row):not(.crit-row) td:nth-child(n+2):nth-child(-n+5) {
         display: inline-block; vertical-align: top;
