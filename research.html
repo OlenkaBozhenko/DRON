@@ -676,17 +676,19 @@
       .table-wrap tbody, .table-wrap tr, .table-wrap td { display: block; width: 100%; }
       .table-wrap td { white-space: normal !important; }
       .table-wrap tbody tr:not(.stage-row):not(.crit-row) {
-        background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px;
-        padding: 4px 14px; margin-bottom: 10px;
+        background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px;
+        padding: 14px 16px; margin-bottom: 12px;
       }
-      .table-wrap tbody tr:not(.stage-row):not(.crit-row) td {
-        padding: 9px 0; border: none; border-bottom: 1px solid var(--border);
+      .table-wrap tbody tr:not(.stage-row):not(.crit-row):hover { background: var(--bg-2); }
+      .table-wrap tbody tr:not(.stage-row):not(.crit-row) td { padding: 7px 0; border: none; }
+      .table-wrap tbody tr:not(.stage-row):not(.crit-row) td:first-child {
+        font-size: 15px; font-weight: 600; color: var(--white);
+        padding: 0 0 9px; margin-bottom: 7px; border-bottom: 1px solid var(--border-2);
       }
-      .table-wrap tbody tr:not(.stage-row):not(.crit-row) td:last-child { border-bottom: none; }
       .table-wrap td[data-label]::before {
         content: attr(data-label);
-        display: block; margin-bottom: 3px;
-        font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;
+        display: block; margin-bottom: 2px;
+        font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em;
         color: var(--text-3);
       }
       .table-wrap td:empty { display: none; }
