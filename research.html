@@ -1813,6 +1813,21 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
   sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
 
+  // ── Adaptive tables: label each cell with its column header (used by the mobile card layout) ──
+  document.querySelectorAll('.table-wrap table').forEach(table => {
+    const heads = [...table.querySelectorAll('thead th')].map(th => th.textContent.trim());
+    if (!heads.length) return;
+    table.querySelectorAll('tbody tr').forEach(tr => {
+      const cells = [...tr.children];
+      // skip rows that span all columns (section / note rows)
+      if (cells.length === 1 && cells[0].hasAttribute('colspan')) return;
+      cells.forEach((cell, i) => {
+        if (i === 0 || cell.hasAttribute('colspan')) return; // first cell is the card title
+        if (heads[i]) cell.setAttribute('data-label', heads[i]);
+      });
+    });
+  });
+
   // ── Horizontal table scrolling (desktop: wheel + mouse drag; touch: native) ──
   document.querySelectorAll('.table-wrap').forEach(wrap => {
     // Mouse wheel (incl. Shift+wheel) scrolls the table sideways
