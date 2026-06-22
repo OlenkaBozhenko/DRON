@@ -1020,5 +1020,40 @@
   <span class="footer-note">UX Research · June 2026 · <a href="https://github.com/bozhenko55-arch/DRON" target="_blank" style="border:none;">github.com/bozhenko55-arch/DRON</a></span>
 </footer>
 
+<script>
+  // ── Theme toggle ──
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('dron-theme', next);
+  });
+
+  // ── Nav drawer ──
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('navOverlay');
+  const hamburger = document.getElementById('hamburger');
+  const closeBtn  = document.getElementById('closeBtn');
+
+  function openNav() {
+    sidebar.classList.add('is-open');
+    overlay.classList.add('is-open');
+    hamburger.classList.add('is-open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    overlay.removeAttribute('aria-hidden');
+  }
+  function closeNav() {
+    sidebar.classList.remove('is-open');
+    overlay.classList.remove('is-open');
+    hamburger.classList.remove('is-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+  hamburger.addEventListener('click', () => sidebar.classList.contains('is-open') ? closeNav() : openNav());
+  overlay.addEventListener('click', closeNav);
+  closeBtn.addEventListener('click', closeNav);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+  sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+</script>
 </body>
 </html>
