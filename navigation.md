@@ -41,4 +41,18 @@ Non-clickable placeholder pages in their own "Coming soon" group, each tagged `S
   2. **Pages** — collapsible dropdowns (chevron arrow); children are section anchors
   3. **Coming soon** — non-clickable placeholder pages, each tagged `Soon`
   4. Footer: GitHub link (pinned to bottom)
-- Responsive: below 768px the sidebar collapses into a horizontal scrolling top bar.
+
+## Mobile behaviour (≤ 900px)
+
+On small screens the fixed sidebar is replaced by a slide-in drawer:
+
+- A fixed **mobile header** (52px) appears at the top with the `DRON` brand,
+  a **theme toggle** (sun / moon — light ↔ dark, persisted in `localStorage`
+  under `dron-theme`), and a **hamburger** button.
+- Tapping the hamburger slides the sidebar in from the left over a dimmed
+  overlay; tapping the overlay, the close (`✕`) button, any link, or `Esc`
+  closes it.
+- The same header and drawer are shared by every page (`research.html`,
+  `ux-research.html`, `target-audience.html`).
+- The light/dark theme applies site-wide via the `data-theme` attribute on
+  `<html>`, set before paint to avoid a flash.
