@@ -1558,6 +1558,19 @@
   closeBtn.addEventListener('click', closeNav);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
   sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+
+  // ── Drag / swipe to scroll wide tables horizontally ──
+  document.querySelectorAll('.table-wrap').forEach(wrap => {
+    let down = false, startX = 0, startLeft = 0;
+    const start = e => { down = true; startX = e.clientX; startLeft = wrap.scrollLeft; };
+    const move  = e => { if (down) wrap.scrollLeft = startLeft - (e.clientX - startX); };
+    const end   = () => { down = false; };
+    wrap.addEventListener('pointerdown', start);
+    wrap.addEventListener('pointermove', move);
+    wrap.addEventListener('pointerup', end);
+    wrap.addEventListener('pointercancel', end);
+    wrap.addEventListener('pointerleave', end);
+  });
 </script>
 </body>
 </html>
