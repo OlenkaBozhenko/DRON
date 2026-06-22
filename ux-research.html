@@ -63,24 +63,98 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      display: flex; align-items: center; gap: 2px;
-      padding: 0 32px; height: 52px;
-      background: rgba(8,8,8,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 240px; z-index: 100;
+      display: flex; flex-direction: column;
+      padding: 24px 16px;
+      background: var(--bg-2);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
     }
-    .nav-brand { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); margin-right: 24px; text-decoration: none; }
-    nav a { text-decoration: none; color: var(--text-2); font-size: 13px; padding: 6px 14px; border-radius: 6px; transition: color .15s, background .15s; border: none; }
-    nav a:hover, nav a.active { color: var(--white); background: var(--bg-4); }
-    .nav-right { margin-left: auto; display: flex; gap: 8px; }
-    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 7px; font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none; transition: opacity .15s; border: none; }
-    .btn-ghost { background: var(--tag-bg); color: var(--text); border: 1px solid var(--border-2); }
-    .btn-ghost:hover { background: var(--bg-4); }
+    .sidebar-brand { font-size: 15px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); padding: 0 12px; margin-bottom: 4px; }
+    .sidebar-tagline { font-size: 11px; color: var(--text-3); padding: 0 12px; margin-bottom: 24px; }
+    .sidebar-group { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); padding: 0 12px; margin: 18px 0 8px; }
+    .sidebar a { display: block; text-decoration: none; color: var(--text-2); font-size: 13px; padding: 8px 12px; border-radius: 7px; border: none; transition: color 0.15s, background 0.15s; }
+    .sidebar a:hover { color: var(--white); background: var(--bg-4); }
+    .sidebar a.active { color: var(--white); background: var(--bg-3); }
+    .sidebar-spacer { flex: 1; }
+
+    /* collapsible page groups */
+    .nav-section { margin: 1px 0; }
+    .nav-section > summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      color: var(--text); font-size: 13px;
+      padding: 8px 12px; border-radius: 7px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-section > summary::-webkit-details-marker { display: none; }
+    .nav-section > summary:hover { color: var(--white); background: var(--bg-4); }
+    .nav-section[open] > summary { color: var(--white); }
+    .nav-section > summary::after { content: "›"; font-size: 15px; line-height: 1; color: var(--text-3); transition: transform 0.18s ease; }
+    .nav-section[open] > summary::after { transform: rotate(90deg); }
+    .nav-children { display: flex; flex-direction: column; gap: 1px; margin: 2px 0 6px 26px; padding-left: 10px; border-left: 1px solid var(--border); }
+    .nav-children a { font-size: 12.5px; padding: 6px 12px; }
+
+    /* coming-soon (non-clickable) pages */
+    .nav-soon { display: flex; align-items: center; justify-content: space-between; font-size: 13px; padding: 8px 12px; border-radius: 7px; color: var(--text-3); cursor: default; }
+    .nav-soon::after { content: "Soon"; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); border: 1px solid var(--border-2); border-radius: 4px; padding: 1px 5px; }
+
+    /* ── MOBILE HEADER ── */
+    .mobile-header {
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0; height: 52px; z-index: 200;
+      background: var(--bg-2); border-bottom: 1px solid var(--border);
+      align-items: center; justify-content: space-between;
+      padding: 0 16px;
+    }
+    .mobile-brand { font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); }
+    .hamburger {
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 5px; width: 40px; height: 40px;
+      background: none; border: none; cursor: pointer;
+      padding: 8px; border-radius: 8px; transition: background 0.15s;
+    }
+    .hamburger:hover { background: var(--bg-4); }
+    .hamburger-line { display: block; width: 20px; height: 1.5px; background: var(--text); border-radius: 2px; transition: transform 0.22s ease, opacity 0.22s ease; transform-origin: center; }
+    .hamburger.is-open .hamburger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.is-open .hamburger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.is-open .hamburger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-actions { display: flex; align-items: center; gap: 4px; }
+    .theme-toggle {
+      width: 40px; height: 40px;
+      background: none; border: none; cursor: pointer;
+      padding: 8px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-2); transition: background 0.15s, color 0.15s;
+    }
+    .theme-toggle:hover { background: var(--bg-4); color: var(--white); }
+    .icon-sun { display: none; }
+    html[data-theme="light"] .icon-sun { display: block; }
+    html[data-theme="light"] .icon-moon { display: none; }
+
+    /* ── NAV OVERLAY ── */
+    .nav-overlay { display: none; position: fixed; inset: 0; z-index: 150; background: rgba(0,0,0,0.55); opacity: 0; transition: opacity 0.25s ease; }
+    .nav-overlay.is-open { opacity: 1; }
+
+    /* ── SIDEBAR CLOSE (mobile only) ── */
+    .sidebar-close {
+      display: none;
+      position: absolute; top: 12px; right: 12px;
+      width: 32px; height: 32px;
+      background: var(--bg-4); border: 1px solid var(--border-2);
+      border-radius: 8px; color: var(--text-2);
+      font-size: 16px; cursor: pointer;
+      align-items: center; justify-content: center;
+      transition: background 0.15s, color 0.15s;
+    }
+    .sidebar-close:hover { background: var(--bg-3); color: var(--white); }
 
     /* ── LAYOUT ── */
+    body { padding-left: 240px; }
     main { max-width: 1200px; margin: 0 auto; padding: 0 32px 80px; }
     section { padding: 72px 0 0; }
     section + section { border-top: 1px solid var(--border); margin-top: 64px; }
