@@ -1076,6 +1076,26 @@
   closeBtn.addEventListener('click', closeNav);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
   sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+
+  // ── Horizontal table scrolling (desktop: wheel + mouse drag; touch: native) ──
+  document.querySelectorAll('.table-wrap').forEach(wrap => {
+    // Mouse wheel (incl. Shift+wheel) scrolls the table sideways
+    wrap.addEventListener('wheel', e => {
+      if (wrap.scrollWidth <= wrap.clientWidth) return;
+      const d = Math.abs(e.deltaX) >= Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (!d) return;
+      wrap.scrollLeft += d;
+      e.preventDefault();
+    }, { passive: false });
+    // Click-and-drag with a mouse (touch uses native momentum scroll)
+    let down = false, sx = 0, sl = 0;
+    wrap.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'mouse') return;
+      down = true; sx = e.clientX; sl = wrap.scrollLeft; wrap.style.cursor = 'grabbing';
+    });
+    window.addEventListener('pointermove', e => { if (down) wrap.scrollLeft = sl - (e.clientX - sx); });
+    window.addEventListener('pointerup', () => { if (down) { down = false; wrap.style.cursor = ''; } });
+  });
 </script>
 </body>
 </html>
