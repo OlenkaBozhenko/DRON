@@ -23,6 +23,19 @@ full report (user stories, benchmarks, etc.).
 - `#personas` — User personas
 - `#cjm` — CJM
 
+### Target Audience → `target-audience.html` (`research/`) — live
+- `#personas` — Personas
+- `#conclusions` — Conclusions
+- `#gaps` — Knowledge gaps
+
+### JTBD → in-page sections of `target-audience.html` — live
+- `#jobs` — Jobs hierarchy
+- `#matrix` — Matrix
+
+Every page shows the same four dropdowns (Research, UX Research, Target Audience,
+JTBD); cross-page entries link to the owning page's anchors, so all four render with
+the same collapsible-dropdown UI, never as plain links.
+
 ## Coming soon
 
 Non-clickable placeholder pages in their own "Coming soon" group, each tagged `Soon`.
