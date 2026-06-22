@@ -663,6 +663,10 @@
       .screens-grid { grid-template-columns: repeat(2, 1fr); }
       .pattern-grid { grid-template-columns: 1fr; }
       .cards-grid { grid-template-columns: 1fr; }
+
+      /* Wide tables scroll horizontally instead of squeezing columns */
+      .table-wrap { margin: 0 -20px; padding: 0 20px; }
+      .table-wrap table { min-width: 680px; }
     }
   
     /* ── UX RESEARCH: personas + CJM (ported from ux-research.html) ── */
