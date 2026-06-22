@@ -402,15 +402,63 @@
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav>
-  <a href="index.html" class="nav-brand">DRON</a>
-  <a href="research.html">Research</a>
-  <a href="ux-research.html" class="active">UX Research</a>
-  <div class="nav-right">
-    <a href="https://github.com/bozhenko55-arch/DRON" class="btn btn-ghost" target="_blank">GitHub ↗</a>
+<!-- ─── MOBILE HEADER ─── -->
+<div class="mobile-header" id="mobileHeader">
+  <span class="mobile-brand">DRON</span>
+  <div class="mobile-actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
   </div>
-</nav>
+</div>
+
+<!-- ─── NAV OVERLAY ─── -->
+<div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
+<!-- ─── SIDEBAR ─── -->
+<aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="closeBtn" aria-label="Close navigation">✕</button>
+  <div class="sidebar-brand">DRON</div>
+  <div class="sidebar-tagline">Drone-as-a-service</div>
+
+  <div class="sidebar-group">Pages</div>
+
+  <details class="nav-section">
+    <summary>Research</summary>
+    <div class="nav-children">
+      <a href="research.html#competitors">Competitors</a>
+      <a href="research.html#benchmark">Benchmark</a>
+      <a href="research.html#patterns">Patterns</a>
+      <a href="research.html#conclusions">Conclusions</a>
+    </div>
+  </details>
+
+  <details class="nav-section" open>
+    <summary>UX Research</summary>
+    <div class="nav-children">
+      <a href="#personas">User personas</a>
+      <a href="#user-stories">User stories</a>
+      <a href="#cjm">CJM</a>
+    </div>
+  </details>
+
+  <a href="target-audience.html">Target Audience</a>
+  <a href="target-audience.html#jobs">JTBD</a>
+
+  <div class="sidebar-group">Coming soon</div>
+  <span class="nav-soon">Design system</span>
+  <span class="nav-soon">Components</span>
+  <span class="nav-soon">Wireframe</span>
+
+  <div class="sidebar-spacer"></div>
+  <a href="https://github.com/bozhenko55-arch/DRON" target="_blank">GitHub ↗</a>
+</aside>
 
 <main>
 
