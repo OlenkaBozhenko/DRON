@@ -32,9 +32,19 @@ full report (user stories, benchmarks, etc.).
 - `#jobs` — Jobs hierarchy
 - `#matrix` — Matrix
 
-Every page shows the same four dropdowns (Research, UX Research, Target Audience,
-JTBD); cross-page entries link to the owning page's anchors, so all four render with
-the same collapsible-dropdown UI, never as plain links.
+### Sitemap → `ia.html` (Sitemap tab) — live
+- `#screens` — Screens (Client + Operator tree, job per screen)
+- `#navigation` — Navigation (global nav + depth)
+- `#traceability` — Traceability (coverage matrix, orphans)
+
+### Flows → `ia.html` (Flows tab) — live
+- `#flows-client` — Client flows (Mermaid)
+- `#flows-operator` — Operator flows (Mermaid)
+
+`ia.html` is one page with two tabs (Sitemap, Flows). Sidebar links route to the right
+tab via the URL hash. Every page shows the same six dropdowns (Research, UX Research,
+Target Audience, JTBD, Sitemap, Flows); cross-page entries link to the owning page's
+anchors, so all render with the same collapsible-dropdown UI, never as plain links.
 
 ## Coming soon
 

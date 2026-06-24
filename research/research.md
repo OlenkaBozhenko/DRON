@@ -198,6 +198,19 @@ This confirms the C-2 pain: professional studios require DM/call for pricing, ha
 
 ---
 
+## Open Questions After IA (June 2026)
+
+Building the information architecture (`sitemap.md`, `flows.md`) surfaced product-config
+unknowns not covered by the competitive or persona research. Data gaps, not design gaps.
+
+| # | Question | Why it matters | Status |
+|---|---|---|---|
+| Q-4 | Which UA / EU regions are in service at launch (coverage zones)? | The MJ-1 flow now has a "not in your region" empty state and an "address outside service zone" error; both need a real coverage map | Open — no rollout data |
+| Q-5 | Operator payout config: minimum withdrawal amount, instant-card vs bank-transfer fees and timing in UA | The operator main flow ends in a withdrawal step (card instant / bank 1-3 days); thresholds and fees are assumed | Open — needs payment-provider terms |
+| Q-6 | Dispute policy inputs: support SLA, refund cap, third-party liability amount | The EJ-2 resolution flow resolves every path except when these are undefined (the one remaining dead-end) | Partially open — see Finding 4 and Q-3 (liability blocked on legal verification) |
+
+---
+
 ## Screens
 See [`screens/`](screens/) for reference screenshots.
 

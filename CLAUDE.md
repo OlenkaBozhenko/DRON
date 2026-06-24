@@ -148,6 +148,27 @@ Sources: `research/target-audience.md`, `research/jtbd.md`
 
 ---
 
+## Information Architecture
+
+**Sources of truth:** `sitemap.md` (entities, screens, navigation, traceability), `flows.md` (Mermaid user flows). Rendered at `ia.html`.
+
+**Top-level sitemap (per persona, grouped by human logic, not site sections):**
+- **Client:** Getting in → Ordering the job → The wait → The outcome → Coming back → When it goes wrong
+- **Operator:** Getting in (verify) → Ready to work → Taking a job → Doing the job → Getting paid & standing
+
+**Main flow — Client (MJ-1):** Choose service → Order setup + price → Pay → Operator revealed + live tracking → Result → Rate.
+**Main flow — Operator (MJ-2 + RJ-O3):** Accept job → Checklist → Upload result → Client confirms → Paid to balance → Withdraw (card instant / bank 1-3 days).
+
+**Global navigation (3 job-clusters + account utility):**
+- **Client:** Order · Activity · Help · Account
+- **Operator:** Jobs · Earnings · Ratings · Account
+
+**Depth to main job (primary personas):** Client C-1 = 3 taps (2 via "Book again"); Operator O-1 = 1 tap to accept, payment auto-released (depth-0).
+
+Sources: `sitemap.md`, `flows.md`, `ia.html`
+
+---
+
 ## Content Rules
 
 **Single source of truth: `.md` files.**

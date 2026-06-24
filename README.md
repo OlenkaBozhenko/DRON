@@ -50,6 +50,17 @@ Design repository — research, wireframes, tokens, components, and handoff mate
 
 ---
 
+## Information Architecture
+
+| File | What lives here |
+|---|---|
+| [`sitemap.md`](sitemap.md) | Product entities (Client & Operator), the screen tree with the job each screen serves, the navigation model (global / contextual / deep + depth to main job), and the traceability matrix (jobs × screens) with orphan verdicts. |
+| [`flows.md`](flows.md) | 11 Mermaid user flows, one per job, for both personas. Each flow shows decisions, states (empty / error / loading) and both ends — success and dead-ends. |
+
+**[→ Live IA: sitemap & flows](https://bozhenko55-arch.github.io/DRON/ia.html)**
+
+---
+
 ## Working process
 
 1. Research → `research/`
