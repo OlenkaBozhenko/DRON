@@ -1,0 +1,42 @@
+name: Sync HTML to GitHub Pages
+
+# Copies the rendered HTML from master to the gh-pages branch on every push.
+# Source .md files stay on master and are never published.
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - '*.html'
+      - '.github/pages/index.html'
+      - '.github/workflows/deploy-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-sync
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v4
+
+      - name: Assemble publish directory
+        run: |
+          mkdir -p _site
+          cp ia.html research.html target-audience.html ux-research.html _site/
+          cp .github/pages/index.html _site/index.html
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./_site
+          force_orphan: true
+          commit_message: "auto: sync HTML to gh-pages"
