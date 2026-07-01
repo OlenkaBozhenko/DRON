@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order confirmed / operator revealed · success (base)</title>
+<!-- SCREEN (sitemap): "Order confirmed / operator revealed". JOB (jtbd): RJ-C2 (close post-payment void) + RJ-C1 (operator real & qualified). STATE: success (base — milestone). Destination → Client tab bar (Activity). -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="order-confirmed.html" class="cur" aria-current="page">success</a>
+      <a href="order-confirmed-empty.html">empty</a>
+      <a href="order-confirmed-error.html">error</a>
+      <a href="order-confirmed-loading.html">loading</a>
+    </nav>
+    <h1>Order confirmed / operator revealed</h1>
+    <p class="sub">Client · MJ-1 · state: <b>success (base)</b> · file: order-confirmed.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-C2 — no void after payment; RJ-C1 — a named, verified, insured operator, no tap needed.<br><b>Exit:</b> Track live → <b>Live tracking &amp; ETA</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Confirmation</b> ▸ it worked</p><p><b>Operator</b> ▸ name · rating · Verified · Insured (RJ-C1)</p><p><b>Arrival</b> ▸ ETA + track (RJ-C2)</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="title" style="padding-left:16px;">Order confirmed</span><span class="spacer"></span></header>
+    <main>
+      <section class="center" aria-label="Confirmation" style="padding-top:8px;">
+        <span class="success-mark">DONE</span>
+        <p class="big-title">You're all set</p>
+        <p class="lead">Payment received. Your operator is on the way.</p>
+      </section>
+      <p class="zlabel">Your operator <span class="act">▸ who is coming (RJ-C1)</span></p>
+      <section aria-label="Operator">
+        <article class="op-card">
+          <span class="op-avatar">AM</span>
+          <span class="op-info">
+            <span class="op-name">Andriy M.</span>
+            <span class="op-rating">4.9 ★ · 214 jobs</span>
+            <span class="badges"><span class="badge">Verified by DRON</span><span class="badge">Insured</span></span>
+          </span>
+        </article>
+      </section>
+      <p class="zlabel">Arrival <span class="act">▸ where &amp; when (RJ-C2)</span></p>
+      <div class="kv" aria-label="Arrival">
+        <div class="kv-row"><span class="kv-key">ETA</span><span class="kv-val">~8 min</span></div>
+        <div class="kv-row"><span class="kv-key">Status</span><span class="kv-val">En route to pickup</span></div>
+      </div>
+    </main>
+    <footer class="tabbar">
+      <nav class="tabs" aria-label="Primary">
+        <a class="tab" href="listings.html"><span class="sq sq-24" aria-hidden="true"></span>Order</a>
+        <a class="tab" href="tracking.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Activity</a>
+        <a class="tab" href="help.html"><span class="sq sq-24" aria-hidden="true"></span>Help</a>
+        <a class="tab" href="account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+      </nav>
+      <div class="home-indicator"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
