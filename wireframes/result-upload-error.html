@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Result upload / close job · error</title>
+<!-- SCREEN: "Result upload / close job" — STATE: error (slow / failed upload). Grounded in flows.md MJ-2: "Error: slow or failed upload" → retry / queue offline; payment held until proof. EXIT: retry / queue offline. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="result-upload.html">success</a>
+      <a href="result-upload-error.html" class="cur" aria-current="page">error</a>
+      <a href="result-upload-loading.html">loading</a>
+    </nav>
+    <h1>Result upload / close job</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>error</b> · file: result-upload-error.html</p>
+    <div class="flow"><b>Error:</b> the result photo didn't upload — weak signal (flows.md MJ-2: "slow or failed upload").<br><b>Exit (not a dead-end):</b> retry now, or queue it to upload when back online. Payment is held until the proof arrives.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Result photo</b> → upload-failed notice + retry / queue offline</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Back</button><span class="title">Close job</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Result photo <span class="act">▸ upload failed</span></p>
+      <section aria-label="Upload error">
+        <div class="msg-block" role="alert">
+          <span class="msg-ph">UPLOAD</span>
+          <span class="msg-title">Upload failed</span>
+          <p class="msg-body">The result photo didn't upload — weak signal. Retry now, or queue it to upload automatically when you're back online. Payment is held until proof arrives.</p>
+          <div class="msg-actions">
+            <a class="btn btn-primary btn-block" href="result-upload-loading.html">Retry upload</a>
+            <a class="btn btn-secondary btn-block" href="result-upload-loading.html">Queue offline</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <p class="note">Payment stays held until the proof photo uploads.</p>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
