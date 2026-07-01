@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order confirmed / operator revealed · error</title>
+<!-- SCREEN (sitemap): "Order confirmed / operator revealed". JOB (jtbd): RJ-C2 (close post-payment void) + RJ-C1 (operator real & qualified). STATE: error. flows.md MJ-1: "no operator confirmed — auto-refund". -->
+<link rel="stylesheet" href="_wireframe.css">
+</head><body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="order-confirmed.html">success</a>
+      <a href="order-confirmed-empty.html">empty</a>
+      <a href="order-confirmed-error.html" class="cur" aria-current="page">error</a>
+      <a href="order-confirmed-loading.html">loading</a>
+    </nav>
+    <h1>Order confirmed / operator revealed</h1>
+    <p class="sub">Client · MJ-1 · state: <b>error</b> · file: order-confirmed-error.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-C2 — close the void after payment; RJ-C1 — a real, qualified operator. No certified operator could be confirmed, so the charge is auto-refunded rather than leaving the client waiting on nothing.<br><b>Exit:</b> Try again → <b>Home / start an order</b>, or Contact support.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Refund notice</b> ▸ no operator confirmed, money returned (MJ-1)</p><p><b>Recovery</b> ▸ retry the order · reach support</p></div>
+  </aside>
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="title" style="padding-left:16px;">Order confirmed</span><span class="spacer"></span></header>
+    <main>
+      <section aria-label="Refund" style="padding-top:8px;">
+        <div class="msg-block" role="alert">
+          <span class="msg-ph">REFUND</span>
+          <p class="msg-title">Couldn't confirm an operator</p>
+          <p class="msg-body">No certified operator could take the job just now. A full refund to your card is already on its way.</p>
+          <div class="msg-actions">
+            <a class="btn btn-primary" href="listings.html">Try again</a>
+            <a class="btn btn-secondary" href="help.html">Contact support</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="tabbar">
+      <nav class="tabs" aria-label="Primary">
+        <a class="tab" href="listings.html"><span class="sq sq-24" aria-hidden="true"></span>Order</a>
+        <a class="tab" href="tracking.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Activity</a>
+        <a class="tab" href="help.html"><span class="sq sq-24" aria-hidden="true"></span>Help</a>
+        <a class="tab" href="account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+      </nav>
+      <div class="home-indicator"><span></span></div>
+    </footer>
+  </div>
+  <script src="_wf-shell.js"></script>
+</body></html>
