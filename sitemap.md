@@ -95,7 +95,7 @@ Splitting them per-persona above keeps each viewpoint honest; this map keeps the
 
 ---
 
-## 4. Under Question — «під питанням»
+## 4. Under Question
 
 Objects with **no spawning job**, backed only by a **hypothesis**, or explicitly flagged for
 removal in `research/jtbd.md`. Kept out of the main list on purpose.
@@ -158,6 +158,36 @@ step 3.
 
 ---
 
+### 6.0 — SHARED entry — the role fork
+
+The **one** screen both personas pass through — first at registration, and again any time they
+choose to **switch sides** — immediately **before** any persona-specific screen. Right after it,
+each side gets a short **onboarding** screen, then enters its own path.
+
+```
+SHARED
+└─ Choose your role — Client or Operator ...... (MJ-1 · MJ-2 enabler)  [ C-1 · C-2 · O-1 · O-2 ]
+      ├─ (Client)   → Client onboarding ....... (EJ-1)             → Home / start an order
+      └─ (Operator) → Operator onboarding ..... (MJ-2 activation)  → Operator landing / fee terms
+```
+
+- **Choose your role — Client or Operator** — after registering, the person declares intent:
+  *I want a service done* (Client) or *I will provide services* (Operator). The choice routes them
+  through the matching **onboarding** into their path. It is an **enabler** of both main jobs (like
+  *Sign in*), so it earns no confirmed-job row of its own; it is left out of the `§8` coverage matrix
+  in this pass and flagged for the step-8 re-cut. Returning, already-classified users skip it.
+- **Switchable, not locked.** The first choice is not permanent. From **Account** on either side
+  (`§7.4`, Deep) the person can re-enter this fork and switch — a client who becomes an operator, or
+  an operator ordering a service as a client. Switching to a side not yet onboarded runs that side's
+  onboarding once; an already-onboarded side goes straight to its home.
+- **Client onboarding** / **Operator onboarding** — the persona-specific first-run screen that sits
+  between the fork and the path. Client onboarding carries `EJ-1` (the 15-second "you're covered"
+  explainer, skippable to a one-card version); Operator onboarding introduces how working on DRON
+  runs before the fee/verification gate (`MJ-2` activation). Both are one-time per side (re-shown
+  only on a first-time switch).
+
+---
+
 ### 6.1 — CLIENT sitemap
 
 > Primary: **C-1** (urgent: delivery / same-day). Secondary: **C-2** (planning: aerial photo / inspection).
@@ -167,7 +197,9 @@ CLIENT
 │
 ├─ Getting in — identity & first contact
 │   ├─ Welcome / first-use explainer .......... (EJ-1)               [ C-1 · C-2 ]
-│   └─ Sign in with Diia / BankID ............. (MJ-1 enabler · C-02) [ C-1 · C-2 ]
+│   ├─ Sign in with Diia / BankID ............. (MJ-1 enabler · C-02) [ C-1 · C-2 ]
+│   ├─ Choose your role — Client or Operator .. (MJ-1 · MJ-2 enabler) [ shared → §6.0 ]
+│   └─ Client onboarding ...................... (EJ-1)               [ C-1 · C-2 ]
 │
 ├─ Ordering the job — Service → Order → Price → Pay
 │   ├─ Home / start an order .................. (MJ-1 · RJ-C5 entry)  [ C-1 · C-2 ]
@@ -215,6 +247,8 @@ CLIENT
 OPERATOR
 │
 ├─ Getting in — join & get verified
+│   ├─ Choose your role — Client or Operator .. (MJ-1 · MJ-2 enabler)          [ shared → §6.0 ]
+│   ├─ Operator onboarding ................... (MJ-2 activation)               [ O-1 · O-2 ]
 │   ├─ Operator landing / fee terms .......... (MJ-2 activation · OE-12)        [ O-1 · O-2 ]
 │   ├─ Sign up / identity .................... (MJ-2)                          [ O-1 · O-2 ]
 │   ├─ Verification / document upload ........ (MJ-2 gate · Drop-off #3)       [ O-1 · O-2 ]
@@ -247,7 +281,10 @@ OPERATOR
 
 ---
 
-**Cross-persona note.** Client and Operator share **no** screen — they meet only through the
+**Cross-persona note.** Client and Operator share **exactly one** screen — the **role fork**
+(*Choose your role — Client or Operator*, `§6.0`), crossed at registration and again whenever a
+person switches sides (`§7.4`, Account → Switch role); each side's *onboarding* right after the fork
+is persona-specific, not shared. After that they share **no** screen — they meet only through the
 **boundary objects** (`§3`): the client's *Order confirmed / tracking* and the operator's *Job brief*
 are two screens onto one record; the client's *Result* and the operator's *Result upload* likewise;
 the client's *Rate the order* feeds the operator's *Ratings dashboard*. Each side keeps its own
@@ -276,7 +313,7 @@ Three job-clusters are always reachable, plus one persistent utility. Not "tabs 
 | **Order** (Home) | `MJ-1` — hand a drone job to a professional; `RJ-C5` — book again | The main job's launch point. Everything else exists to support placing an order. |
 | **Activity** | `RJ-C2` — track who is coming and when; `RJ-C4` — receive the proof; `RJ-C5` — history → repeat | The post-payment void and the proof of work are their own anxiety jobs; the client must reach an active order's status at any moment without re-navigating the booking flow. |
 | **Help** | `EJ-2` — resolution when something goes wrong | "Not feel abandoned" is a score-3 job for C-1. Must be reachable from anywhere, never buried. (Resolution flow scoped June 2026 — see `flows.md`; policy inputs still `[?]`.) |
-| *Account* (utility) | enabler of `MJ-1` (identity `C-02`, saved methods, saved address) | Not a job-cluster — a persistent utility holding identity and payment so the main flow stays short. |
+| *Account* (utility) | enabler of `MJ-1` (identity `C-02`, saved methods, saved address); **Switch role → Operator** (re-enters the `§6.0` fork) | Not a job-cluster — a persistent utility holding identity, payment, and the role switch so the main flow stays short. |
 
 ---
 
@@ -287,7 +324,7 @@ Three job-clusters are always reachable, plus one persistent utility. Not "tabs 
 | **Jobs** (Home) | `MJ-2` — a steady flow of pre-qualified jobs; `RJ-O1` — decide in seconds | The operator's main job lives here: status toggle + incoming and active jobs. |
 | **Earnings** | `RJ-O3` — get paid without managing it | Payment is the #1 retention mechanism and the fastest churn trigger; the wallet must be a permanent, glanceable destination. |
 | **Ratings** | `EJ-3` — reputation worth building | Reputation is the only path to standing (critical for O-2 cold-start); always reachable, not hidden behind a job. |
-| *Account* (utility) | verification status, profile, insurance (`OE-2`, `OE-3`, `OE-11`) | Not a job-cluster — the trust artifacts and one-time onboarding state. |
+| *Account* (utility) | verification status, profile, insurance (`OE-2`, `OE-3`, `OE-11`); **Switch role → Client** (re-enters the `§6.0` fork) | Not a job-cluster — the trust artifacts, one-time onboarding state, and the role switch. |
 
 ---
 
@@ -359,7 +396,7 @@ What is visible always, what surfaces inside a flow, and what is a rare, buried 
 |---|---|---|
 | **Global** (always visible) | Order (Home) · Activity · Help · Account | Jobs (Home) + status toggle · Earnings · Ratings · Account |
 | **Contextual** (appears in the flow) | Order setup + price · Payment · Order confirmed / operator revealed · Live tracking · Result · Rate the order · Share · Time-slot pick (C-2 only) · Report an issue · Resolution outcome · Contact human support | Job offer / accept-decline · Job brief · Checklist · Result upload / close · Withdraw to card / bank · Dispute / client issue |
-| **Deep** (rare actions) | First-use explainer · Edit profile / payment methods / saved addresses · Dispute detail (inside Help) · Language | Verification / document re-upload · Profile edit · Fee terms (pre-signup) · Insurance details |
+| **Deep** (rare actions) | First-use explainer · Client onboarding (re-run on switch) · Switch role (Client ⇄ Operator) · Edit profile / payment methods / saved addresses · Dispute detail (inside Help) · Language | Operator onboarding (re-run on switch) · Switch role (Operator ⇄ Client) · Verification / document re-upload · Profile edit · Fee terms (pre-signup) · Insurance details |
 
 **Reasoning.** Global = the doorways to the three job-clusters + account utility, nothing more
 (adding a 5th global item would dilute the main job's prominence). Contextual = screens that only

@@ -14,6 +14,69 @@ Jobs reference [`research/jtbd.md`](research/jtbd.md). Two personas kept separat
 ---
 ---
 
+# SHARED — entry
+
+## ROLE FORK — Client or Operator (after registration, then onboarding)
+
+> After registering with Diia / BankID for the first time, the person must declare which side they are on — **get a service done** (Client) or **provide services** (Operator) — before any persona-specific screen. Right after the fork each side runs a short **onboarding**, then enters its path. One-time; returning, already-classified users skip straight to their side. — `sitemap.md §6.0`
+
+```mermaid
+flowchart TD
+  R(["Registration complete — Diia / BankID"]) --> RF["Choose your role — Client or Operator"]
+  SWITCH(["Returning user: Account → Switch role"]) --> RF
+  RF --> D1{"Which side?"}
+  D1 -->|"Client — I want a service done"| CO["Client onboarding"]
+  D1 -->|"Operator — I will provide services"| OO["Operator onboarding"]
+  CO --> D2{"Understood / done? (skippable)"}
+  D2 -->|"skip / too long"| COS(["Fallback: one-card 15-second version"]):::state
+  COS --> CL
+  D2 -->|yes| CL(["Enters CLIENT MJ-1 flow → Home / start an order"]):::done
+  OO --> OP(["Enters OPERATOR MJ-2 activation flow → Operator landing / fee terms"]):::done
+  classDef state fill:#1c1813,stroke:#c4943a,color:#e8d9b8;
+  classDef dead fill:#241313,stroke:#e05252,color:#f0d6d6;
+  classDef done fill:#10241a,stroke:#4a9e6b,color:#d6f0e0;
+```
+
+**Decisions**
+- *Which side?* — the single classification that routes the whole product; no browsing, no mixing (`sitemap.md §6.0`).
+- *Understood / done?* — Client onboarding carries the `EJ-1` explainer; if skipped it collapses to a one-card version (never a dead-end).
+
+**States & dead-ends**
+- The fork itself is a stateless local choice — two fixed options, resolves instantly, no dead-end: both branches run an onboarding, then a persona main flow.
+- *Client onboarding* has one real state — `Empty` (skipped / too long) → one-card fallback. *Operator onboarding* is a stateless lead-in to the activation gate.
+
+---
+
+## CHANGE PERSONA — switch Client ⇄ Operator (any time, from Account)
+
+> A person is not locked to their first choice. From **Account** on either side (`sitemap.md §7.4`, Deep) they can re-enter the role fork and switch — a client who becomes an operator, or an operator ordering a service as a client. This entry exists in **every** flow via the persistent Account utility.
+
+```mermaid
+flowchart TD
+  A(["On any screen — open Account"]) --> SW["Switch role (Client ⇄ Operator)"]
+  SW --> D1{"Confirm switch?"}
+  D1 -->|no| BK(["Back to current side — nothing changes"]):::state
+  D1 -->|yes| RF["Choose your role — Client or Operator"]
+  RF --> D2{"Already onboarded on the target side?"}
+  D2 -->|no| ONB["Client onboarding / Operator onboarding"]
+  ONB --> HOME(["Success: now on the other side's home"]):::done
+  D2 -->|yes| HOME
+  classDef state fill:#1c1813,stroke:#c4943a,color:#e8d9b8;
+  classDef dead fill:#241313,stroke:#e05252,color:#f0d6d6;
+  classDef done fill:#10241a,stroke:#4a9e6b,color:#d6f0e0;
+```
+
+**Decisions**
+- *Confirm switch?* — a deliberate confirm so a mis-tap doesn't drop an in-progress order/job; decline returns unchanged.
+- *Already onboarded on the target side?* — first-ever switch runs that side's onboarding once; thereafter it goes straight to home.
+
+**States & dead-ends**
+- `State` — declined switch → back to the current side, no change.
+- `Success` — landed on the other side's home. No dead-end: switching is always reversible from the same Account entry.
+
+---
+---
+
 # CLIENT
 
 ## MAIN JOB · MJ-1 — Order a service quickly and reliably
@@ -27,7 +90,11 @@ flowchart TD
   A(["Open app"]) --> D0{"Signed in?"}
   D0 -->|no| B["Sign in with Diia / BankID"]
   D0 -->|yes| C["Home / start an order"]
-  B --> C
+  B --> RF0["Choose your role — Client or Operator"]
+  RF0 --> RFD{"Client or Operator?"}
+  RFD -->|Operator| OPX(["Switches to OPERATOR MJ-2 activation flow"]):::state
+  RFD -->|Client| CO0["Client onboarding"]
+  CO0 --> C
   C --> E["Service catalogue"]
   E --> DR{"Service available in your region?"}
   DR -->|no| NR(["Empty: not in your region yet"]):::state
@@ -72,6 +139,7 @@ flowchart TD
 
 **Decisions**
 - *Signed in?* — no → one-tap Diia / BankID (`C-02`); yes → straight to Home.
+- *Client or Operator?* — first-time only, straight after registration (`sitemap.md §6.0`), then **Client onboarding** before Home; returning clients skip both. Choosing Operator leaves this flow for the operator side. Persona is switchable later from **Account → Switch role** (`sitemap.md §7.4`; see *CHANGE PERSONA* flow above).
 - *Service available in your region? / Address within service zone?* — coverage gates (geography rollout UA + EU).
 - *Operator available now?* — availability shown before payment (`C-01`).
 - *Payment authorized?* — Apple/Google Pay outcome (`C-04`); on failure, retry or switch method.
@@ -481,7 +549,7 @@ flowchart TD
 ```
 
 **Decisions**
-- *Status = Available?* — gates dispatch (`O-02`).
+- *Status = Available?* — gates dispatch (`O-02`). The operator can also **Switch role → Client** from Account at any time (`sitemap.md §7.4`; *CHANGE PERSONA* flow above) — e.g. to order a service as a client.
 - *Accept within 10s?* — lock-screen decision (`RJ-O1`, `O-01`); declining loops back to offers, not a dead-end.
 - *Able to fly (airspace / weather)?* — wartime/weather abort → re-dispatch + client refund (`research.md` Finding 1/4).
 - *All steps captured? / Upload succeeded?* — execution gates; a failed upload **queues offline**, never closes without proof.
@@ -502,9 +570,13 @@ flowchart TD
 
 > **When** I have the licence and equipment, **I want** to get verified and live without silence, **so that** I can start receiving jobs. — `jtbd.md` MJ-2; CJM Operator Stage 2, Drop-off #3
 
+Reached from the **role fork** (`§SHARED`) → **Operator onboarding** → the activation gate below. Persona is switchable any time from **Account → Switch role** (`sitemap.md §7.4`; *CHANGE PERSONA* flow above).
+
 ```mermaid
 flowchart TD
-  L["Operator landing / fee terms"] --> D0{"Commission acceptable?"}
+  RF(["From role fork — chose Operator"]) --> OB["Operator onboarding"]
+  OB --> L["Operator landing / fee terms"]
+  L --> D0{"Commission acceptable?"}
   D0 -->|no| X0(["Dead-end: bounces — 'another platform that takes 30%?'"]):::dead
   D0 -->|yes| SU["Sign up / identity"]
   SU --> VU["Verification / document upload"]
