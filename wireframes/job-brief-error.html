@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Job brief / detail · error</title>
+<!-- SCREEN: "Job brief / detail" — STATE: error (stand down — airspace / weather). Grounded in flows.md MJ-2: "Able to fly? → no → stand down, re-dispatched, client refunded". EXIT: back to jobs. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="job-brief.html">success</a>
+      <a href="job-brief-error.html" class="cur" aria-current="page">error</a>
+    </nav>
+    <h1>Job brief / detail</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>error</b> · file: job-brief-error.html</p>
+    <div class="flow"><b>Error:</b> flights grounded here — airspace / weather (flows.md MJ-2: "Able to fly? → no → re-dispatched, client refunded").<br><b>Exit (not a dead-end):</b> back to jobs — nothing to do, no penalty.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Brief</b> → stand-down alert + recover</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Back</button><span class="title">Job brief</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Brief <span class="act">▸ error — stand down (exit)</span></p>
+      <section aria-label="Stood down">
+        <div class="msg-block" role="alert">
+          <span class="msg-ph">GROUNDED</span>
+          <span class="msg-title">Stood down — airspace restricted</span>
+          <p class="msg-body">Flights are grounded at this location right now (airspace / weather). The job was re-dispatched and the client refunded — no action needed.</p>
+          <div class="msg-actions">
+            <a class="btn btn-primary" href="operator-listings.html">Back to jobs</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <p class="note">No penalty — a stand-down isn't counted against you.</p>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
