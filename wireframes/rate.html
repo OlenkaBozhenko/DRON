@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Rate the order · success (base)</title>
+<!-- SCREEN (sitemap): "Rate the order". JOB (jtbd): EJ-3 (operator reputation) + RJ-C1 (feeds future clients' trust). STATE: success (base — terminal; the only state, per _screens.md). Submitting reaches the flow terminal "main job done" and releases operator pay (RJ-O3). EXIT → Submit / Book again. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Rate the order</h1>
+    <p class="sub">Client · MJ-1 · state: <b>success (base)</b> · file: rate.html</p>
+    <div class="flow"><b>Job (jtbd):</b> EJ-3 — build the operator's reputation; RJ-C1 — this rating feeds the next client's trust decision.<br><b>Terminal:</b> submitting reaches the flow's "main job done" and releases the operator's pay (RJ-O3).<br><b>States:</b> none (per _screens.md).<br><b>Exit:</b> Submit review → <b>Home</b>, or Book again → <b>Order setup</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Rating</b> ▸ 1–5 stars (4-star example)</p><p><b>Review</b> ▸ optional written feedback</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Back</button><span class="title">Rate the order</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Rating <span class="act">▸ tap to score 1–5</span></p>
+      <section aria-label="Rating">
+        <p class="big-title">How was it?</p>
+        <div class="rating" role="group" aria-label="Rating">
+          <button class="star" aria-pressed="true">★</button>
+          <button class="star" aria-pressed="true">★</button>
+          <button class="star" aria-pressed="true">★</button>
+          <button class="star" aria-pressed="true">★</button>
+          <button class="star" aria-pressed="false">★</button>
+        </div>
+      </section>
+      <p class="zlabel">Review <span class="act">▸ optional — a note for the operator</span></p>
+      <section aria-label="Review">
+        <textarea class="control" placeholder="What went well? Anything to improve?"></textarea>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="listings.html">Submit review</a>
+      <a class="btn btn-secondary btn-block" href="order-setup.html">Book again</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
