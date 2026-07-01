@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Job checklist (in progress) · error</title>
+<!-- SCREEN: "Job checklist (in progress)" — STATE: error (required step skipped — cannot close). Grounded in flows.md MJ-2: "required step skipped — cannot close" → back to the checklist. EXIT: complete the open step. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="job-checklist.html">success</a>
+      <a href="job-checklist-error.html" class="cur" aria-current="page">error</a>
+    </nav>
+    <h1>Job checklist (in progress)</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>error</b> · file: job-checklist-error.html</p>
+    <div class="flow"><b>Error:</b> tried to close with a required step still open (flows.md MJ-2: "required step skipped — cannot close").<br><b>Exit (not a dead-end):</b> complete the open step, then close.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Checklist</b> ▸ blocking notice + disabled close</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Back</button><span class="title">Checklist</span><span class="who">3 / 5</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Pre-flight &amp; job steps <span class="act">▸ required steps still open</span></p>
+      <ul class="checklist">
+        <li class="check-item done"><span class="check-box" aria-hidden="true">✓</span><span class="check-label">Pre-flight safety check</span></li>
+        <li class="check-item done"><span class="check-box" aria-hidden="true">✓</span><span class="check-label">Battery ≥ 80%</span></li>
+        <li class="check-item done"><span class="check-box" aria-hidden="true">✓</span><span class="check-label">Parcel secured</span></li>
+        <li class="check-item"><span class="check-box" aria-hidden="true"></span><span class="check-label">Capture delivery photo</span></li>
+        <li class="check-item"><span class="check-box" aria-hidden="true"></span><span class="check-label">Confirm handover with recipient</span></li>
+      </ul>
+      <section aria-label="Cannot close yet">
+        <div class="msg-block" role="alert">
+          <span class="msg-ph">STEP LEFT</span>
+          <span class="msg-title">Finish the required step</span>
+          <p class="msg-body">You can't close the job until every required step is checked. 'Capture delivery photo' is still open.</p>
+          <div class="msg-actions">
+            <button type="button" class="btn btn-primary">Complete the step</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <button type="button" class="btn btn-primary btn-block" disabled>Complete all steps to continue</button>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
