@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order review &amp; price · loading</title>
+<!-- SCREEN: "Order review & price" — STATE: loading (final price resolving / locking). EXIT: transient — Pay stays disabled until the price locks. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="order-review.html">success</a>
+      <a href="order-review-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Order review &amp; price</h1>
+    <p class="sub">Client · MJ-1 · state: <b>loading</b> · file: order-review-loading.html</p>
+    <div class="flow"><b>Loading:</b> the final price is being calculated and locked (RJ-C3 needs a firm number before paying).<br><b>Exit:</b> transient — Pay is disabled until the price is ready.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Price breakdown</b> ▸ skeleton rows while locking</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Back</button><span class="title">Review</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Summary <span class="act">▸ what you're ordering</span></p>
+      <div class="kv" aria-label="Order summary">
+        <div class="kv-row"><span class="kv-key">Service</span><span class="kv-val">Package delivery</span></div>
+        <div class="kv-row"><span class="kv-key">Pickup</span><span class="kv-val">Podil, 21</span></div>
+        <div class="kv-row"><span class="kv-key">Drop-off</span><span class="kv-val">Osokorky, 14</span></div>
+      </div>
+      <p class="zlabel">Price breakdown <span class="act">▸ loading — locking price</span></p>
+      <div class="kv" aria-label="Price is loading" aria-busy="true">
+        <div class="kv-row"><span class="sk-line sk-w40"></span><span class="sk-line sk-w30"></span></div>
+        <div class="kv-row"><span class="sk-line sk-w50"></span><span class="sk-line sk-w30"></span></div>
+        <div class="kv-row"><span class="sk-line sk-w40"></span><span class="sk-line sk-w30"></span></div>
+      </div>
+      <p class="hint" role="status">Calculating the final price…</p>
+    </main>
+    <footer class="actionbar">
+      <div class="price-line"><span class="lbl">Total</span><span class="val">…</span></div>
+      <button class="btn btn-primary btn-block" disabled>Locking price…</button>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
