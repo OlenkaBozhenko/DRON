@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order setup / details · error</title>
+<!-- SCREEN: "Order setup / details" — STATE: error (address outside service zone). Grounded in flows.md MJ-1: "Error: address outside service zone" → back to setup to fix. EXIT: edit address. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="order-setup.html">success</a>
+      <a href="order-setup-empty.html">empty</a>
+      <a href="order-setup-error.html" class="cur" aria-current="page">error</a>
+    </nav>
+    <h1>Order setup / details</h1>
+    <p class="sub">Client · MJ-1 · state: <b>error</b> · file: order-setup-error.html</p>
+    <div class="flow"><b>Error:</b> drop-off address is outside the coverage zone (flows.md MJ-1: "address outside service zone").<br><b>Exit (not a dead-end):</b> edit the address to one inside the zone.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Drop-off field</b> ▸ flagged + inline error</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Back</button><span class="title">Package delivery</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Details form <span class="act">▸ error — fix the address (exit)</span></p>
+      <form class="stack" aria-label="Order details" action="#">
+        <div class="form-field">
+          <label class="field-label" for="pk">Pickup address</label>
+          <span class="control"><span class="sq sq-20" aria-hidden="true"></span><input id="pk" value="Podil — Naberezhno-Khreshchatytska St, 21"></span>
+        </div>
+        <div class="form-field">
+          <label class="field-label" for="dp">Drop-off address</label>
+          <span class="control" style="border-color:var(--wf-ink);"><span class="sq sq-20" aria-hidden="true"></span><input id="dp" value="Irpin — Sadova St, 3"></span>
+          <span class="field-hint"><b>Outside the service zone.</b> DRON covers Kyiv city for delivery — try an address within the city.</span>
+        </div>
+        <div class="form-field">
+          <label class="field-label" for="sz">Parcel size</label>
+          <span class="control select"><span>Small — up to 2 kg</span><span aria-hidden="true">▾</span></span>
+        </div>
+      </form>
+    </main>
+    <footer class="actionbar">
+      <button type="button" class="btn btn-primary btn-block">Edit drop-off address</button>
+      <p class="note">Coverage: Kyiv (UA). More cities are rolling out.</p>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
