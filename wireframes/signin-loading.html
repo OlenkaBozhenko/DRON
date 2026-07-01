@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Sign in with Diia / BankID · loading</title>
+<!-- SCREEN: "Sign in with Diia / BankID" — STATE: loading (redirecting to the provider). EXIT: Cancel (transient, not a dead-end). -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="signin.html">success</a>
+      <a href="signin-error.html">error</a>
+      <a href="signin-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Sign in with Diia / BankID</h1>
+    <p class="sub">Shared entry · state: <b>loading</b> · file: signin-loading.html</p>
+    <div class="flow"><b>Loading:</b> redirecting to Diia to verify identity (external provider).<br><b>Exit:</b> Cancel returns to the sign-in options — transient, not a dead-end.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Sign in</b> ▸ "Opening Diia…" + Cancel</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="brand-ph">LOGO</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Sign in <span class="act">▸ loading — opening provider</span></p>
+      <section class="center" aria-label="Signing in" role="status" style="padding:32px 20px;">
+        <span class="success-mark">DIIA</span>
+        <p class="big-title">Opening Diia…</p>
+        <p class="lead">Redirecting you to Diia to confirm your identity. This takes a few seconds.</p>
+        <div class="stack" style="width:100%; margin-top:8px;">
+          <span class="sk-line sk-w90"></span>
+          <span class="sk-line sk-w70"></span>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-secondary btn-block" href="signin.html">Cancel</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
