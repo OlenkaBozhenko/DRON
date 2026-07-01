@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order confirmed / operator revealed · empty</title>
+<!-- SCREEN: "Order confirmed / operator revealed" — STATE: empty (operator has 0 reviews — newly certified O-2). Grounded in flows.md RJ-C1: "Empty: 0 reviews" → platform-backed reassurance → trust decision. EXIT: track anyway / re-dispatch. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="order-confirmed.html">success</a>
+      <a href="order-confirmed-empty.html" class="cur" aria-current="page">empty</a>
+      <a href="order-confirmed-error.html">error</a>
+      <a href="order-confirmed-loading.html">loading</a>
+    </nav>
+    <h1>Order confirmed / operator revealed</h1>
+    <p class="sub">Client · MJ-1 · state: <b>empty</b> · file: order-confirmed-empty.html</p>
+    <div class="flow"><b>Empty:</b> the assigned operator is newly certified — 0 reviews yet (flows.md RJ-C1).<br><b>Exit (not a dead-end):</b> platform-backed reassurance → track anyway, or ask for a different operator.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Operator</b> ▸ 0 reviews → DRON-verified reassurance</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="title" style="padding-left:16px;">Order confirmed</span><span class="spacer"></span></header>
+    <main>
+      <section class="center" aria-label="Confirmation" style="padding-top:8px;">
+        <span class="success-mark">DONE</span>
+        <p class="big-title">You're all set</p>
+        <p class="lead">Payment received. Your operator is on the way.</p>
+      </section>
+      <p class="zlabel">Your operator <span class="act">▸ empty — no reviews yet</span></p>
+      <section aria-label="Operator">
+        <article class="op-card">
+          <span class="op-avatar">KO</span>
+          <span class="op-info">
+            <span class="op-name">Kateryna O.</span>
+            <span class="op-rating">New operator · no reviews yet</span>
+            <span class="badges"><span class="badge">Verified by DRON</span><span class="badge">Insured</span></span>
+          </span>
+        </article>
+        <p class="hint">Every operator is licence-checked and insured by DRON before their first job — reviews build from here.</p>
+      </section>
+    </main>
+    <footer class="tabbar">
+      <nav class="tabs" aria-label="Primary">
+        <a class="tab" href="listings.html"><span class="sq sq-24" aria-hidden="true"></span>Order</a>
+        <a class="tab" href="tracking.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Activity</a>
+        <a class="tab" href="help.html"><span class="sq sq-24" aria-hidden="true"></span>Help</a>
+        <a class="tab" href="account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+      </nav>
+      <div class="home-indicator"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
