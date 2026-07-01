@@ -97,11 +97,13 @@
 
   /* service list */
   ul.list{ list-style:none; display:flex; flex-direction:column; gap:12px; }
-  a.card{ display:flex; align-items:center; gap:12px; padding:16px; text-decoration:none; color:inherit;
+  article.card{ position:relative; display:flex; align-items:center; gap:12px; padding:16px;
     background:var(--wf-surface); border:1px solid var(--wf-border); border-radius:8px; }
-  a.card:hover{ border-color:var(--wf-border-2); background:var(--wf-recessed); }
-  a.card:active{ background:var(--wf-fill); }
-  a.card:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  article.card:hover{ border-color:var(--wf-border-2); background:var(--wf-recessed); }
+  article.card:active{ background:var(--wf-fill); }
+  article.card:focus-within{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  .card-link{ position:absolute; inset:0; z-index:1; border-radius:8px; }
+  .card-link:focus{ outline:none; }
   .media-ph{ width:56px; height:56px; flex:none; border:1px dashed var(--wf-border-2); border-radius:6px;
     display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.06em; color:var(--wf-muted);
     background:var(--wf-recessed); }
