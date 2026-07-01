@@ -45,6 +45,13 @@
   .meta .legend p{ margin-bottom:6px; }
   .meta .legend b{ color:var(--wf-text); font-weight:600; }
 
+  /* states of this screen — quick switch (top of page) */
+  .state-switch{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+  .state-switch a{ font-size:12px; padding:5px 10px; border:1px solid var(--wf-border-2); border-radius:6px;
+    text-decoration:none; color:var(--wf-text-2); background:var(--wf-surface); }
+  .state-switch a:hover{ background:var(--wf-recessed); color:var(--wf-text); }
+  .state-switch a.cur{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+
   /* ── phone frame 375 × 812 (_conventions §6) ── */
   .wf-frame{
     width:375px; height:812px; flex:none;
