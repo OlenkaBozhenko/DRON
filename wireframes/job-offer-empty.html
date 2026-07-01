@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Incoming job offer / accept-decline · empty</title>
+<!-- SCREEN: "Incoming job offer / accept-decline" — STATE: empty (offer expired / reassigned). Grounded in flows.md MJ-2: "Accept within 10s? → no → offer expired, reassigned". EXIT: back to jobs. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="job-offer.html">success</a>
+      <a href="job-offer-empty.html" class="cur" aria-current="page">empty</a>
+    </nav>
+    <h1>Incoming job offer / accept-decline</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>empty</b> · file: job-offer-empty.html</p>
+    <div class="flow"><b>Empty:</b> the offer expired and was reassigned (flows.md MJ-2: "Accept within 10s? → no").<br><b>Exit (not a dead-end):</b> back to jobs — new offers arrive there.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Offer</b> → expired notice + recover</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="title" style="padding-left:16px;">New job</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Offer <span class="act">▸ empty — expired, recover (exit)</span></p>
+      <section aria-label="Offer expired">
+        <div class="msg-block" role="status">
+          <span class="msg-ph">EXPIRED</span>
+          <span class="msg-title">Offer expired</span>
+          <p class="msg-body">You didn't respond in time, so this job was reassigned to another operator. New offers will appear here.</p>
+          <div class="msg-actions">
+            <a class="btn btn-primary" href="operator-listings.html">Back to jobs</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <p class="note">Offers auto-expire after 10s to keep dispatch moving.</p>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
