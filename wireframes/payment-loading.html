@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Payment · loading</title>
+<!-- SCREEN: "Payment" — STATE: loading (authorizing). EXIT: transient; then auto-dispatch finds an operator. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="payment.html">success</a>
+      <a href="payment-error.html">error</a>
+      <a href="payment-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Payment</h1>
+    <p class="sub">Client · MJ-1 · state: <b>loading</b> · file: payment-loading.html</p>
+    <div class="flow"><b>Loading:</b> authorizing the payment; next, auto-dispatch finds the nearest operator.<br><b>Exit:</b> transient — resolves to Order confirmed, or to the error state.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Amount</b> → "Authorizing…" + disabled action</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="title" style="padding-left:16px;">Payment</span><span class="spacer"></span></header>
+    <main>
+      <section class="center" aria-label="Authorizing payment" role="status" style="padding:32px 20px;">
+        <span class="success-mark">₴180</span>
+        <p class="big-title">Authorizing…</p>
+        <p class="lead">Confirming your payment with Apple Pay. Don't close the app.</p>
+        <div class="stack" style="width:100%; margin-top:8px;">
+          <span class="sk-line sk-w90"></span>
+          <span class="sk-line sk-w50"></span>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <button class="btn btn-primary btn-block" disabled>Authorizing…</button>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
