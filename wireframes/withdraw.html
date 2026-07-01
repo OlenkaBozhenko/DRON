@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Withdraw to card / bank account · success (base)</title>
+<!-- SCREEN (sitemap): "Withdraw to card / bank account". JOB (jtbd): RJ-O3 — never chase money; the payout to an external account is the FINAL step (Bolt / Uklon cash-out model). STATE: base (the withdraw form). Flow: Withdraw → loading → "money on the way". Sticky action footer (not tabs). -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="withdraw.html" class="cur" aria-current="page">success</a>
+      <a href="withdraw-error.html">error</a>
+      <a href="withdraw-loading.html">loading</a>
+    </nav>
+    <h1>Withdraw to card / bank account</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>base</b> · file: withdraw.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O3 — cash out from an accumulated balance; the payout is the last step of the flow (flows.md MJ-2 Phase B).<br><b>Exit:</b> Withdraw → <b>loading</b> → "money on the way" (the final milestone).</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Amount</b> ▸ full balance to cash out</p><p><b>Payout method</b> ▸ instant card / bank transfer</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Back</button><span class="title">Withdraw</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Amount <span class="act">▸ full balance</span></p>
+      <section aria-label="Amount">
+        <p class="amount">₴3,240</p>
+        <p class="amount-sub">Full balance</p>
+      </section>
+
+      <p class="zlabel">Payout method <span class="act">▸ pick where the money lands</span></p>
+      <section aria-label="Payout method">
+        <ul class="list">
+          <li>
+            <label class="check-item done">
+              <input type="radio" name="payout" class="sr-only" checked>
+              <span class="check-box" aria-hidden="true">•</span>
+              <span class="check-label">Instant to card •••• 3318</span>
+              <span class="check-note">Arrives in under a minute</span>
+            </label>
+          </li>
+          <li>
+            <label class="check-item">
+              <input type="radio" name="payout" class="sr-only">
+              <span class="check-box" aria-hidden="true"></span>
+              <span class="check-label">Bank transfer</span>
+              <span class="check-note">1–3 business days</span>
+            </label>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <div class="price-line"><span class="lbl">To Visa •••• 3318</span><span class="val">₴3,240</span></div>
+      <a class="btn btn-primary btn-block" href="withdraw-loading.html">Withdraw ₴3,240</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
