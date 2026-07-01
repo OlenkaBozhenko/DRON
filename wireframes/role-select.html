@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Choose your role · success (base)</title>
+<!-- SCREEN (sitemap §6.0): "Choose your role — Client or Operator". JOB (jtbd): MJ-1 · MJ-2 enabler — routes each persona to its path. STATE: base only (matrix: no empty/error/loading). Pre-role: no bottom tab bar. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Choose your role — Client or Operator</h1>
+    <p class="sub">Shared entry · state: <b>base only</b> · file: role-select.html</p>
+    <div class="flow"><b>Job (jtbd):</b> MJ-1 · MJ-2 enabler — the one fork that routes the whole product (sitemap §6.0).<br><b>Exit:</b> Client → <b>Home / start an order</b>; Operator → <b>Operator onboarding</b>.<br><b>States:</b> none for this screen (per _screens.md matrix).</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Role choice</b> ▸ declare Client or Operator</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="brand-ph">LOGO</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Role choice <span class="act">▸ pick a side (switchable later)</span></p>
+      <section class="stack" aria-label="Choose your role">
+        <p class="big-title">How will you use DRON?</p>
+        <p class="lead">Pick a side to continue. You can switch anytime in Account.</p>
+        <div class="choice-list">
+          <a class="choice-card" href="listings.html">
+            <span class="media-ph">CLIENT</span>
+            <span class="body">
+              <span class="choice-title">I need a service done</span>
+              <span class="choice-desc">Order delivery, aerial photo/video or inspection — a verified operator handles it.</span>
+            </span>
+            <span class="chev" aria-hidden="true">›</span>
+          </a>
+          <a class="choice-card" href="onboarding-operator.html">
+            <span class="media-ph">PILOT</span>
+            <span class="body">
+              <span class="choice-title">I provide services</span>
+              <span class="choice-desc">You're a certified drone pilot — get dispatched jobs and get paid.</span>
+            </span>
+            <span class="chev" aria-hidden="true">›</span>
+          </a>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <p class="note">You can change this later in Account → Switch role.</p>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
