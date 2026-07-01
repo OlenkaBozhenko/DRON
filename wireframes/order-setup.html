@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order setup / details · success (base)</title>
+<!-- SCREEN (sitemap): "Order setup / details". JOB (jtbd): MJ-1 (enter the job) · RJ-C3 (price upfront, live). STATE: base. Flow step → order-review. Sticky action footer (not tabs). -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="order-setup.html" class="cur" aria-current="page">success</a>
+      <a href="order-setup-empty.html">empty</a>
+      <a href="order-setup-error.html">error</a>
+    </nav>
+    <h1>Order setup / details</h1>
+    <p class="sub">Client · MJ-1 · state: <b>success (base)</b> · file: order-setup.html</p>
+    <div class="flow"><b>Job (jtbd):</b> MJ-1 — enter the job; RJ-C3 — full price upfront, no "plus fees" (price locked above the button).<br><b>Exit:</b> Continue → <b>Order review &amp; price</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Details form</b> ▸ pickup / drop-off / parcel</p><p><b>Live price</b> ▸ locked total (RJ-C3)</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Back</button><span class="title">Package delivery</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Details form <span class="act">▸ enter pickup, drop-off, parcel</span></p>
+      <form class="stack" aria-label="Order details" action="#">
+        <div class="form-field">
+          <label class="field-label" for="pk">Pickup address</label>
+          <span class="control"><span class="sq sq-20" aria-hidden="true"></span><input id="pk" value="Podil — Naberezhno-Khreshchatytska St, 21"></span>
+        </div>
+        <div class="form-field">
+          <label class="field-label" for="dp">Drop-off address</label>
+          <span class="control"><span class="sq sq-20" aria-hidden="true"></span><input id="dp" value="Osokorky — Dniprovska Naberezhna, 14"></span>
+        </div>
+        <div class="form-field">
+          <label class="field-label" for="sz">Parcel size</label>
+          <span class="control select"><span>Small — up to 2 kg</span><span aria-hidden="true">▾</span></span>
+        </div>
+        <div class="form-field">
+          <label class="field-label" for="nt">Notes for the operator</label>
+          <textarea id="nt" class="control" placeholder="Floor, entrance code, what's inside…"></textarea>
+        </div>
+        <label class="check-item" style="border-radius:6px;"><span class="check-box" aria-hidden="true"></span><span class="check-label">Save this address for next time</span></label>
+      </form>
+    </main>
+    <footer class="actionbar">
+      <div class="price-line"><span class="lbl">Total · locked, no extra fees</span><span class="val">₴180</span></div>
+      <a class="btn btn-primary btn-block" href="order-review.html">Continue to review</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
