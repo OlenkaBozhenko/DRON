@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Job brief / detail · success (base)</title>
+<!-- SCREEN: "Job brief / detail" — STATE: success (base). JOB (jtbd): RJ-O1 · MJ-2 — see everything needed in one glance (location, service, duration, pay). Flow: MJ-2 "Job brief" → Details sufficient? → Able to fly? EXIT: Start job → Checklist. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="job-brief.html" class="cur" aria-current="page">success</a>
+      <a href="job-brief-error.html">error</a>
+    </nav>
+    <h1>Job brief / detail</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>success (base)</b> · file: job-brief.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O1 · MJ-2 — location, service, duration, pay in one glance.<br><b>Exit:</b> Start job → <b>Job checklist</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Route</b> ▸ map placeholder</p><p><b>Details</b> ▸ service · client · pay · time</p><p><b>Notes</b> ▸ client instructions</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Back</button><span class="title">Job brief</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Route <span class="act">▸ pickup → drop-off</span></p>
+      <div class="map-ph">ROUTE · Podil → Osokorky</div>
+
+      <p class="zlabel">Details <span class="act">▸ everything in one glance (RJ-O1)</span></p>
+      <div class="kv" aria-label="Job details">
+        <div class="kv-row"><span class="kv-key">Service</span><span class="kv-val">Package delivery</span></div>
+        <div class="kv-row"><span class="kv-key">Client</span><span class="kv-val">Olena H.</span></div>
+        <div class="kv-row"><span class="kv-key">Pickup</span><span class="kv-val">Podil, 21</span></div>
+        <div class="kv-row"><span class="kv-key">Drop-off</span><span class="kv-val">Osokorky, 14</span></div>
+        <div class="kv-row"><span class="kv-key">Pay</span><span class="kv-val">₴180</span></div>
+        <div class="kv-row"><span class="kv-key">Est. time</span><span class="kv-val">~18 min</span></div>
+      </div>
+
+      <p class="zlabel">Notes <span class="act">▸ client instructions</span></p>
+      <article class="card"><span class="body">Leave with the concierge, entrance code 4417.</span></article>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="job-checklist.html">Start job</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
