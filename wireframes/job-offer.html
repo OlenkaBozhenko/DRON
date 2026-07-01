@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Incoming job offer / accept-decline · success (base)</title>
+<!-- SCREEN: "Incoming job offer / accept-decline" — STATE: success (base). JOB (jtbd): RJ-O1 · O-01 — accept or pass without stopping to ask questions. Flow: MJ-2 "Incoming job offer" → Accept within 10s? EXIT: Accept → Job brief; Decline → Operator home. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="job-offer.html" class="cur" aria-current="page">success</a>
+      <a href="job-offer-empty.html">empty</a>
+    </nav>
+    <h1>Incoming job offer / accept-decline</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>success (base)</b> · file: job-offer.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O1 · O-01 — accept or pass in seconds (flows.md MJ-2: "Accept within 10s?").<br><b>Exit:</b> Accept → <b>Job brief</b>; Decline → back to <b>Operator home</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Offer</b> ▸ service · distance · pay</p><p><b>Route</b> ▸ pickup / drop-off</p><p><b>Countdown</b> ▸ decide before it expires</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="title" style="padding-left:16px;">New job</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Offer <span class="act">▸ service · distance · pay</span></p>
+      <article class="card stack-card">
+        <div class="card-top">
+          <span class="media-ph">DELIVERY</span>
+          <span class="body">
+            <span class="name">Package delivery</span>
+            <span class="desc">2.3 km · ~18 min · pickup near Podil</span>
+            <span class="meta-row"><span class="price">₴180</span><span class="avail">· pays on completion</span></span>
+          </span>
+        </div>
+      </article>
+
+      <p class="zlabel">Route <span class="act">▸ pickup → drop-off</span></p>
+      <div class="kv" aria-label="Route">
+        <div class="kv-row"><span class="kv-key">Pickup</span><span class="kv-val">Podil, 21</span></div>
+        <div class="kv-row"><span class="kv-key">Drop-off</span><span class="kv-val">Osokorky, 14</span></div>
+      </div>
+
+      <p class="zlabel">Decide fast <span class="act">▸ offer auto-expires, reassigns</span></p>
+      <p class="big-title">Expires in 8s</p>
+    </main>
+    <footer class="actionbar">
+      <div class="row2"><a class="btn btn-primary" href="job-brief.html">Accept</a><a class="btn btn-secondary" href="operator-listings.html">Decline</a></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
