@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Live tracking &amp; ETA · loading (waiting for GPS)</title>
+<!-- SCREEN (sitemap): "Live tracking & ETA". JOB (jtbd): RJ-C2 (know where the operator is right now, C-05). STATE: loading. flows.md RJ-C2: "Loading: waiting for GPS signal". -->
+<link rel="stylesheet" href="_wireframe.css">
+</head><body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="tracking.html">success</a>
+      <a href="tracking-empty.html">empty</a>
+      <a href="tracking-error.html">error</a>
+      <a href="tracking-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Live tracking &amp; ETA</h1>
+    <p class="sub">Client · MJ-1 · state: <b>loading (waiting for GPS)</b> · file: tracking-loading.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-C2 — the map and ETA appear once the operator's live GPS signal comes through.<br><b>Exit:</b> Transient → resolves to <b>live tracking</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Live map</b> ▸ acquiring GPS</p><p><b>ETA</b> ▸ skeleton until signal</p><p><b>Status</b> ▸ live "getting a signal" hint</p></div>
+  </aside>
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="title" style="padding-left:16px;">On the way</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Live map <span class="act">▸ acquiring GPS (RJ-C2)</span></p>
+      <section aria-label="Live map">
+        <div class="map-ph">ACQUIRING GPS…</div>
+      </section>
+      <p class="zlabel">ETA <span class="act">▸ loading (RJ-C2)</span></p>
+      <div class="kv" aria-label="ETA (loading)">
+        <div class="kv-row"><span class="sk-line sk-w40"></span><span class="sk-line sk-w30"></span></div>
+        <div class="kv-row"><span class="sk-line sk-w40"></span><span class="sk-line sk-w30"></span></div>
+      </div>
+      <p class="hint" role="status">Getting a live signal from the operator…</p>
+    </main>
+    <footer class="tabbar">
+      <nav class="tabs" aria-label="Primary">
+        <a class="tab" href="listings.html"><span class="sq sq-24" aria-hidden="true"></span>Order</a>
+        <a class="tab" href="tracking.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Activity</a>
+        <a class="tab" href="help.html"><span class="sq sq-24" aria-hidden="true"></span>Help</a>
+        <a class="tab" href="account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+      </nav>
+      <div class="home-indicator"><span></span></div>
+    </footer>
+  </div>
+  <script src="_wf-shell.js"></script>
+</body></html>
