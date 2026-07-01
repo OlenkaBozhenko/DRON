@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Account / profile · success (base)</title>
+<!-- SCREEN (sitemap §7.4 Account utility + §6.0 Switch role): "Account". JOB (jtbd): identity utility (C-02) + switch persona. STATE: base only. The role dropdown is the Client⇄Operator switch. Reachable from every tab bar's Account tab. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Account / profile</h1>
+    <p class="sub">Account utility · state: <b>base only</b> · file: account.html</p>
+    <div class="flow"><b>Job (jtbd):</b> identity &amp; payment utility (sitemap §7.4) + <b>Switch role</b> (§6.0) — the profile place to change mode.<br><b>Exit:</b> Mode dropdown → Client home (listings) or Operator home (operator-listings). Also the trust-branch return point (RJ-C1: not sure → check profile → back).<br><b>States:</b> none.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Profile</b> ▸ who you are (Diia-verified)</p><p><b>Mode</b> ▸ switch Client ⇄ Operator (dropdown)</p><p><b>Account</b> ▸ payment · address · language</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="title" style="padding-left:16px;">Account</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Profile <span class="act">▸ Diia-verified identity</span></p>
+      <section aria-label="Profile">
+        <article class="op-card">
+          <span class="op-avatar">OB</span>
+          <span class="op-info">
+            <span class="op-name">Olena B.</span>
+            <span class="op-rating">Verified with Diia</span>
+            <span class="badges"><span class="badge">Client</span><span class="badge">+380 •• 4417</span></span>
+          </span>
+        </article>
+      </section>
+
+      <p class="zlabel">Mode <span class="act">▸ switch Client ⇄ Operator</span></p>
+      <section aria-label="User mode">
+        <details class="dropdown">
+          <summary>Client mode<span aria-hidden="true">▾</span></summary>
+          <a href="listings.html">Client — order services<span class="tag">current</span></a>
+          <a href="operator-listings.html">Operator — provide services<span class="tag">switch</span></a>
+        </details>
+        <p class="hint">Switching changes what the app shows. Your Diia identity stays the same.</p>
+      </section>
+
+      <p class="zlabel">Account <span class="act">▸ identity &amp; preferences</span></p>
+      <div class="kv" aria-label="Account details">
+        <div class="kv-row"><span class="kv-key">Payment method</span><span class="kv-val">Visa •••• 4921</span></div>
+        <div class="kv-row"><span class="kv-key">Saved address</span><span class="kv-val">Podil, 21</span></div>
+        <div class="kv-row"><span class="kv-key">Language</span><span class="kv-val">English</span></div>
+        <div class="kv-row"><span class="kv-key">Member since</span><span class="kv-val">2026</span></div>
+      </div>
+    </main>
+
+    <footer class="tabbar">
+      <nav class="tabs" aria-label="Primary">
+        <a class="tab" href="listings.html"><span class="sq sq-24" aria-hidden="true"></span>Order</a>
+        <a class="tab" href="tracking.html"><span class="sq sq-24" aria-hidden="true"></span>Activity</a>
+        <a class="tab" href="account.html"><span class="sq sq-24" aria-hidden="true"></span>Help</a>
+        <a class="tab" href="account.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+      </nav>
+      <div class="home-indicator"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
