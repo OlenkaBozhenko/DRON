@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Withdraw to card / bank account · loading</title>
+<!-- SCREEN: "Withdraw to card / bank account" — STATE: loading (transfer in progress). Grounded in flows.md MJ-2: "Loading: instant transfer to card". EXIT: transient — resolves to "money on card / bank account". -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="withdraw.html">success</a>
+      <a href="withdraw-error.html">error</a>
+      <a href="withdraw-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Withdraw to card / bank account</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>loading</b> · file: withdraw-loading.html</p>
+    <div class="flow"><b>Loading:</b> instant transfer to the linked card in progress (flows.md MJ-2: "instant transfer to card").<br><b>Exit:</b> transient — resolves to "money on card / bank account, flow complete".</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Amount / method</b> → transferring status + receipt skeleton</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Back</button><span class="title">Withdraw</span><span class="spacer"></span></header>
+    <main>
+      <section class="center" role="status" style="padding-top:24px;">
+        <span class="success-mark">SEND</span>
+        <p class="big-title">Sending to your card…</p>
+        <p class="lead">Instant transfer to Visa •••• 3318 — usually under a minute.</p>
+      </section>
+      <section class="stack" aria-hidden="true">
+        <div class="sk-line sk-w90"></div>
+        <div class="sk-line sk-w50"></div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <button class="btn btn-primary btn-block" disabled>Transferring…</button>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
