@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Sign in with Diia / BankID · success (base)</title>
+<!-- SCREEN (sitemap): "Sign in with Diia / BankID". JOB (jtbd): MJ-1 enabler — a verified identity to transact (C-02). STATE: base. Pre-auth: no bottom tab bar. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="signin.html" class="cur" aria-current="page">success</a>
+      <a href="signin-error.html">error</a>
+      <a href="signin-loading.html">loading</a>
+    </nav>
+    <h1>Sign in with Diia / BankID</h1>
+    <p class="sub">Shared entry · state: <b>success (base)</b> · file: signin.html</p>
+    <div class="flow"><b>Job (jtbd):</b> MJ-1 enabler — handing the job over needs a verified identity (C-02, one-tap Diia / BankID).<br><b>Exit:</b> Continue with Diia / BankID → <b>Choose your role</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Sign in</b> ▸ verify with Diia or BankID</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="brand-ph">LOGO</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Sign in <span class="act">▸ verify once — to order or to work</span></p>
+      <section class="stack" aria-label="Sign in">
+        <p class="big-title">Sign in to DRON</p>
+        <p class="lead">One verification lets you order drone services — or take jobs as a certified operator.</p>
+        <p class="hint">Diia and BankID confirm who you are. DRON never sees your password.</p>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="role-select.html">Continue with Diia</a>
+      <a class="btn btn-secondary btn-block" href="role-select.html">Continue with BankID</a>
+      <p class="note">By continuing you agree to the Terms &amp; Privacy Policy.</p>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
