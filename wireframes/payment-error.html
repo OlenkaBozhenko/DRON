@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Payment · error</title>
+<!-- SCREEN: "Payment" — STATE: error (payment failed). Grounded in flows.md MJ-1: "Error: payment failed" → retry / change method / leave. EXIT: try again / change method. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="payment.html">success</a>
+      <a href="payment-error.html" class="cur" aria-current="page">error</a>
+      <a href="payment-loading.html">loading</a>
+    </nav>
+    <h1>Payment</h1>
+    <p class="sub">Client · MJ-1 · state: <b>error</b> · file: payment-error.html</p>
+    <div class="flow"><b>Error:</b> the payment was declined (flows.md MJ-1: "payment failed").<br><b>Exit (not a dead-end):</b> try again, or change method. Nothing was charged.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Amount</b> → error notice + retry / change method</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Back</button><span class="title">Payment</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Amount <span class="act">▸ not charged</span></p>
+      <section aria-label="Payment error">
+        <div class="msg-block" role="alert">
+          <span class="msg-ph">₴180</span>
+          <span class="msg-title">Payment declined</span>
+          <p class="msg-body">Apple Pay couldn't complete the charge. Nothing was taken from your account. Try again or use another method.</p>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="order-confirmed.html">Try again</a>
+      <a class="btn btn-secondary btn-block" href="payment.html">Change method</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
