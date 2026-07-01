@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Result upload / close job · loading</title>
+<!-- SCREEN: "Result upload / close job" — STATE: loading (uploading / saved offline; awaiting confirmation up to 2h). Grounded in flows.md MJ-2: "saved offline — uploads when online; payment held until proof" + "awaiting confirmation (up to 2h)". EXIT: transient — keep the app open. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="result-upload.html">success</a>
+      <a href="result-upload-error.html">error</a>
+      <a href="result-upload-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Result upload / close job</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>loading</b> · file: result-upload-loading.html</p>
+    <div class="flow"><b>Loading:</b> sending the result; if offline it queues and uploads when back online (flows.md MJ-2). Payment is held until the client confirms — auto-confirms after 2h.<br><b>Exit:</b> transient — no action; keep the app open.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Result photo</b> → uploading status + photo skeleton</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Back</button><span class="title">Close job</span><span class="spacer"></span></header>
+    <main>
+      <section class="center" role="status" style="padding-top:24px;">
+        <span class="success-mark">SEND</span>
+        <p class="big-title">Uploading result…</p>
+        <p class="lead">Sending the delivery photo. Keep the app open.</p>
+      </section>
+      <div class="sk-block" style="height:120px;" aria-hidden="true"></div>
+      <p class="hint">Payment is held until the client confirms — auto-confirms after 2h.</p>
+    </main>
+    <footer class="actionbar">
+      <button class="btn btn-primary btn-block" disabled>Uploading…</button>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
