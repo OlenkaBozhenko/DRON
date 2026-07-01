@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order setup / details · empty</title>
+<!-- SCREEN: "Order setup / details" — STATE: empty (no operator available now). Grounded in flows.md MJ-1: "Empty: none available — next slot ~40 min" → wait / save (notify) / leave. EXIT: notify / pick a later time. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="order-setup.html">success</a>
+      <a href="order-setup-empty.html" class="cur" aria-current="page">empty</a>
+      <a href="order-setup-error.html">error</a>
+    </nav>
+    <h1>Order setup / details</h1>
+    <p class="sub">Client · MJ-1 · state: <b>empty</b> · file: order-setup-empty.html</p>
+    <div class="flow"><b>Empty:</b> no operator free right now (flows.md MJ-1: "none available — next slot ~40 min").<br><b>Exit (not a dead-end):</b> notify me when free, or pick a later time.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Live price</b> → availability notice + recover</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Back</button><span class="title">Package delivery</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Details form <span class="act">▸ entered, but none available</span></p>
+      <div class="kv" aria-label="Order details summary">
+        <div class="kv-row"><span class="kv-key">Pickup</span><span class="kv-val">Podil, 21</span></div>
+        <div class="kv-row"><span class="kv-key">Drop-off</span><span class="kv-val">Osokorky, 14</span></div>
+        <div class="kv-row"><span class="kv-key">Parcel</span><span class="kv-val">Small · up to 2 kg</span></div>
+      </div>
+      <p class="zlabel">Availability <span class="act">▸ empty — recover, not a dead-end</span></p>
+      <section aria-label="No operator available">
+        <div class="msg-block" role="status">
+          <span class="msg-ph">~40 MIN</span>
+          <span class="msg-title">No operator free right now</span>
+          <p class="msg-body">All nearby operators are on jobs. The next one is likely free in about 40 minutes.</p>
+          <div class="msg-actions">
+            <button type="button" class="btn btn-primary">Notify me when one is free</button>
+            <button type="button" class="btn btn-secondary">Pick a later time</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <p class="note">We'll hold your details — no need to re-enter them.</p>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
