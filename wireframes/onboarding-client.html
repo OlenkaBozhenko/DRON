@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Client onboarding · success (base)</title>
+<!-- SCREEN (sitemap §6.0 / Client Getting in): "Client onboarding". JOB (jtbd): EJ-1 — first use feels safe (the 15-second explainer). STATE: base. Pre-app: no bottom tab bar. -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="onboarding-client.html" class="cur" aria-current="page">success</a>
+      <a href="onboarding-client-empty.html">empty</a>
+    </nav>
+    <h1>Client onboarding</h1>
+    <p class="sub">Shared entry · state: <b>success (base)</b> · file: onboarding-client.html</p>
+    <div class="flow"><b>Job (jtbd):</b> EJ-1 — "someone accountable is coming" so a stranger with a drone stops feeling like a risk.<br><b>Exit:</b> Got it → <b>Home / start an order</b>; Skip → same.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Explainer</b> ▸ verified · insured · live tracking</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="brand-ph">LOGO</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Explainer <span class="act">▸ what happens after you order</span></p>
+      <section class="stack" aria-label="How DRON works">
+        <p class="big-title">What happens after you order</p>
+        <p class="lead">15 seconds — then you're ready.</p>
+        <ul class="list">
+          <li><article class="card"><span class="media-ph">1</span><span class="body"><span class="name">A verified operator is assigned</span><span class="desc">DRON picks the nearest certified pilot automatically. No choosing, no guessing.</span></span></article></li>
+          <li><article class="card"><span class="media-ph">2</span><span class="body"><span class="name">You're insured from minute one</span><span class="desc">Every job is covered by DRON's platform insurance — not the operator alone.</span></span></article></li>
+          <li><article class="card"><span class="media-ph">3</span><span class="body"><span class="name">Track it live</span><span class="desc">After you pay, see the operator's name, photo and live position until it's done.</span></span></article></li>
+        </ul>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="listings.html">Got it — start ordering</a>
+      <a class="btn btn-tertiary btn-block" href="listings.html">Skip</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
