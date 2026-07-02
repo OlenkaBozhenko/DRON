@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Operator landing / fee terms · success (base)</title>
+<!--
+  SCREEN: "Operator landing / fee terms" (flows.md node "Operator landing / fee terms" → commission acceptable?).
+  PERSONA: Operator (MJ-2 activation gate — "Join and get verified").
+  JOB: MJ-2 activation — see the commission/payout terms before signing up.
+  STATE: base only (no state pages). Pre-live: no operator tabbar — topbar + actionbar.
+  flows.md node: "Operator landing / fee terms".
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Operator landing / fee terms</h1>
+    <p class="sub">Operator · MJ-2 activation · state: <b>base only</b> · file: operator-fee-terms.html</p>
+    <div class="flow"><b>Job (jtbd):</b> MJ-2 activation — the commission &amp; payout terms before commitment (flows.md "Operator landing / fee terms" → commission acceptable?).<br><b>Exit:</b> Accept &amp; continue → <b>Sign up / identity</b> (operator-signup). Maybe later → back to onboarding.<br><b>States:</b> none.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Value intro</b> ▸ what you get</p><p><b>Fee terms</b> ▸ commission, payout, insurance, minimum</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><a class="back" href="onboarding-operator.html">‹ Back</a><span class="title">Operator terms</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Value intro <span class="act">▸ what you get</span></p>
+      <section class="stack" aria-label="Why operate with DRON">
+        <p class="big-title">Earn on your schedule</p>
+        <p class="lead">DRON dispatches pre-qualified jobs to you, insures every flight, and pays out automatically. Here's what you keep and how you get paid.</p>
+      </section>
+
+      <p class="zlabel">Fee terms <span class="act">▸ commission, payout, insurance, minimum</span></p>
+      <div class="kv" aria-label="Fee terms">
+        <div class="kv-row"><span class="kv-key">Commission</span><span class="kv-val">18% per job</span></div>
+        <div class="kv-row"><span class="kv-key">Payout</span><span class="kv-val">Auto-release ≤30 min after client confirms</span></div>
+        <div class="kv-row"><span class="kv-key">Insurance</span><span class="kv-val">Covered from your first job</span></div>
+        <div class="kv-row"><span class="kv-key">Minimum payout</span><span class="kv-val">₴500</span></div>
+      </div>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="operator-signup.html">Accept &amp; continue</a>
+      <a class="btn btn-tertiary" href="onboarding-operator.html">Maybe later</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
