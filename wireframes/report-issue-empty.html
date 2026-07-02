@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Report an issue · empty</title>
+<!--
+  SCREEN: "Report an issue" — STATE: empty (submitted with no evidence).
+  PERSONA: Client C-1. JOB: EJ-2 — resolution after a bad experience.
+  FLOW NODE: flows.md EJ-2 "Empty: no evidence — weaker claim, manual review only" (EMP) → "Contact human support" (HS).
+  Same shell as report-issue.html (topbar Back → support, footer.actionbar); only the content changes.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="report-issue.html">success</a>
+      <a href="report-issue-empty.html" class="cur" aria-current="page">empty</a>
+      <a href="report-issue-loading.html">loading</a>
+    </nav>
+    <h1>Report an issue</h1>
+    <p class="sub">Client · EJ-2 · state: <b>empty</b> · file: report-issue-empty.html</p>
+    <div class="flow"><b>Empty — no evidence attached.</b><br>flows.md EJ-2: "no evidence — weaker claim, manual review only" → routes to <b>Contact human support</b>.<br><b>Exit (not a dead-end):</b> talk to a human, or go back and add a photo / note.</div>
+    <div class="legend"><p><b>Only the content changes</b> vs report-issue.html:</p><p><b>Form</b> → empty-state message + recovery</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">&lsaquo; Back</button><span class="title">Report an issue</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Report status <span class="act">▸ empty — no evidence (exit)</span></p>
+      <section aria-label="No evidence attached">
+        <div class="msg-block" role="status">
+          <span class="msg-ph">NO FILE</span>
+          <span class="msg-title">No evidence attached</span>
+          <p class="msg-body">Without a photo or note this is a weaker claim, so it goes to manual review only — which takes longer. Adding evidence gets you a faster decision.</p>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="contact-support.html">Contact human support</a>
+      <a class="btn btn-secondary btn-block" href="report-issue.html">Add evidence</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
