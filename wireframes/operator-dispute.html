@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Dispute / client issue · base</title>
+<!-- SCREEN (sitemap / _screens.md STEP 8): "Dispute / client issue" — operator side (EJ-2, OE-13). PERSONA: Operator O-1. JOB: MJ-2 — a client disputes the closed job; payment is held pending resolution and the operator responds with evidence. STATE: base. flows.md MJ-2: Client response? → disputes → Dispute / client issue → Resolved in operator's favour? Inside an active job — back to operator-listings, sticky actionbar (not a global tab destination). -->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-dispute.html" class="cur" aria-current="page">base</a>
+      <a href="operator-dispute-error.html">error</a>
+    </nav>
+    <h1>Dispute / client issue</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>base</b> · file: operator-dispute.html</p>
+    <div class="flow"><b>Job:</b> a client disputes the closed job; <b>payment is held</b> until it resolves (EJ-2). The operator answers the claim with evidence.<br>flows.md MJ-2: Client response? → disputes → <span class="cur">Dispute / client issue</span> → Resolved in operator's favour? → yes → paid · no → held pending EJ-2.<br><b>Exit:</b> Submit response → <b>Wallet</b> (pending release).</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Job</b> ▸ what's disputed</p><p><b>Claim</b> ▸ the client's report</p><p><b>Hold</b> ▸ payment held status</p><p><b>Response</b> ▸ reply + evidence</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><a class="back" href="operator-listings.html">‹ Back</a><span class="title">Dispute</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Job <span class="act">▸ what's disputed</span></p>
+      <section aria-label="Disputed job">
+        <article class="card">
+          <span class="media-ph">AERIAL</span>
+          <span class="body">
+            <span class="name">Job #DR-2841 · Aerial photo</span>
+            <span class="desc">Client: Olena H. · closed 22 min ago</span>
+            <span class="meta-row"><span class="price">₴800</span><span class="avail">· disputed</span></span>
+          </span>
+        </article>
+      </section>
+
+      <p class="zlabel">Client claim <span class="act">▸ the report</span></p>
+      <section aria-label="Client claim">
+        <article class="card stack-card">
+          <span class="desc" style="margin:0;">Client reports</span>
+          <blockquote class="lead" style="margin:0;">“The photos are blurry — I can't use them for the listing.”</blockquote>
+          <span class="badges"><span class="badge">Payment held</span></span>
+        </article>
+      </section>
+
+      <p class="zlabel">Your response <span class="act">▸ reply + evidence</span></p>
+      <form aria-label="Response to dispute" class="stack">
+        <div class="form-field">
+          <label class="field-label" for="reply">Reply to the client</label>
+          <textarea class="control" id="reply" placeholder="Explain what was delivered, weather, capture settings…" aria-label="Reply to the client"></textarea>
+        </div>
+        <div class="form-field">
+          <span class="field-label">Evidence</span>
+          <div class="upload-zone"><span class="up-ph">FLIGHT LOG / PHOTO</span><button type="button" class="btn btn-secondary btn-sm">Attach evidence</button></div>
+        </div>
+      </form>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="wallet.html">Submit response</a>
+      <a class="btn btn-tertiary" href="operator-dispute-error.html">Payment still held?</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
