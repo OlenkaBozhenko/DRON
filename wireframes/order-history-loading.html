@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order history · loading</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Order history" — STATE: loading.
+  PERSONA: Client C-1. JOB: RJ-C5 — repeat without starting over.
+  STATE: loading — fetching order history. Same shell as order-history.html; skeleton cards stand in for the list. Header/footer stay solid. Activity tab current.
+  flows.md node: RELATED · RJ-C5 → "Loading: fetching order history".
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="order-history.html">success</a>
+      <a href="order-history-empty.html">empty</a>
+      <a href="order-history-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Order history</h1>
+    <p class="sub">Client · Activity tab · state: <b>loading</b> · file: order-history-loading.html</p>
+    <div class="flow"><b>Loading — fetching order history.</b><br>flows.md RJ-C5: "Loading: fetching order history". Skeleton cards; transient, not a dead-end.</div>
+    <div class="legend"><p><b>Only the content changes</b> vs order-history.html:</p><p><b>Status</b> ▸ "Loading your orders…"</p><p><b>List</b> ▸ 3 skeleton cards</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="title" style="padding-left:16px;">Activity</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Order history <span class="act">▸ fetching…</span></p>
+      <p role="status">Loading your orders…</p>
+      <section aria-label="Order history is loading">
+        <ul class="list" aria-hidden="true">
+          <li>
+            <div class="sk-card">
+              <span class="sk-media"></span>
+              <span class="sk-body"><span class="sk-line sk-w50"></span><span class="sk-line sk-w90"></span><span class="sk-line sk-w40"></span></span>
+            </div>
+          </li>
+          <li>
+            <div class="sk-card">
+              <span class="sk-media"></span>
+              <span class="sk-body"><span class="sk-line sk-w70"></span><span class="sk-line sk-w90"></span><span class="sk-line sk-w40"></span></span>
+            </div>
+          </li>
+          <li>
+            <div class="sk-card">
+              <span class="sk-media"></span>
+              <span class="sk-body"><span class="sk-line sk-w50"></span><span class="sk-line sk-w70"></span><span class="sk-line sk-w40"></span></span>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="tabbar">
+      <nav class="tabs" aria-label="Primary">
+        <a class="tab" href="listings.html"><span class="sq sq-24" aria-hidden="true"></span>Order</a>
+        <a class="tab" href="order-history.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Activity</a>
+        <a class="tab" href="support.html"><span class="sq sq-24" aria-hidden="true"></span>Help</a>
+        <a class="tab" href="account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+      </nav>
+      <div class="home-indicator"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
