@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order history · empty</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Order history" — STATE: empty.
+  PERSONA: Client C-1. JOB: RJ-C5 — repeat without starting over.
+  STATE: empty — no orders yet; first-timer routed into the full order flow. Same shell as order-history.html; only the list changes. Activity tab current.
+  flows.md node: RELATED · RJ-C5 → "Empty: no history — full first-time flow".
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="order-history.html">success</a>
+      <a href="order-history-empty.html" class="cur" aria-current="page">empty</a>
+      <a href="order-history-loading.html">loading</a>
+    </nav>
+    <h1>Order history</h1>
+    <p class="sub">Client · Activity tab · state: <b>empty</b> · file: order-history-empty.html</p>
+    <div class="flow"><b>Empty — no orders yet.</b><br>flows.md RJ-C5: "Empty: no history — full first-time flow" → Service catalogue → Order setup.<br><b>Exit:</b> Browse services → <b>Home / start an order</b>.</div>
+    <div class="legend"><p><b>Only the content changes</b> vs order-history.html:</p><p><b>List</b> ▸ empty block + primary "Browse services"</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="title" style="padding-left:16px;">Activity</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Order history <span class="act">▸ nothing yet — start the first order</span></p>
+      <section aria-label="Past orders">
+        <div class="msg-block" role="status">
+          <span class="msg-ph">EMPTY</span>
+          <span class="msg-title">No orders yet</span>
+          <p class="msg-body">Your past orders show up here, ready to re-book in one tap. Start with your first drone service.</p>
+          <div class="msg-actions">
+            <a class="btn btn-primary" href="listings.html">Browse services</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="tabbar">
+      <nav class="tabs" aria-label="Primary">
+        <a class="tab" href="listings.html"><span class="sq sq-24" aria-hidden="true"></span>Order</a>
+        <a class="tab" href="order-history.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Activity</a>
+        <a class="tab" href="support.html"><span class="sq sq-24" aria-hidden="true"></span>Help</a>
+        <a class="tab" href="account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+      </nav>
+      <div class="home-indicator"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
