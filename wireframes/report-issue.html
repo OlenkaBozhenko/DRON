@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Report an issue · success (base)</title>
+<!--
+  SCREEN (sitemap / _screens.md): "Report an issue" — EJ-2 quality-claim branch.
+  PERSONA: Client C-1 (primary).
+  JOB (jtbd): EJ-2 — resolution after a bad experience (result not as expected).
+  STATE: base. Sibling states: -empty (no evidence), -loading (under review).
+  FLOW NODE: flows.md EJ-2 "Report an issue" (RI) → D4 "Evidence attached (photo / note)?".
+  Deep in the flow → topbar Back → support.html + sticky footer.actionbar (not tabs).
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="report-issue.html" class="cur" aria-current="page">success</a>
+      <a href="report-issue-empty.html">empty</a>
+      <a href="report-issue-loading.html">loading</a>
+    </nav>
+    <h1>Report an issue</h1>
+    <p class="sub">Client · EJ-2 · state: <b>success (base)</b> · file: report-issue.html</p>
+    <div class="flow"><b>Job (jtbd):</b> EJ-2 — the result wasn't as expected; describe it and attach evidence.<br>flows.md EJ-2: "Report an issue" → D4 "Evidence attached?" — evidence sets the strength of the claim.<br><b>Exit:</b> Submit → <b>Issue under review</b> (loading); no evidence → weaker, manual-review path.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Issue type</b> ▸ what went wrong</p><p><b>Description</b> ▸ what happened</p><p><b>Evidence</b> ▸ photo / note (stronger claim)</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">&lsaquo; Back</button><span class="title">Report an issue</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Report form <span class="act">▸ what went wrong · attach evidence</span></p>
+      <form class="stack" aria-label="Report an issue" action="#">
+        <div class="form-field">
+          <label class="field-label" for="it">Issue type</label>
+          <span class="control select"><span>Poor quality — result not as expected</span><span aria-hidden="true">&#9662;</span></span>
+          <span class="field-hint">Also: Damaged item · Wrong location</span>
+        </div>
+        <div class="form-field">
+          <label class="field-label" for="ds">What happened?</label>
+          <textarea id="ds" class="control" placeholder="Describe the problem — e.g. the roof photos were blurry and missed the north side."></textarea>
+        </div>
+        <div class="form-field">
+          <label class="field-label" for="ev">Evidence</label>
+          <div class="upload-zone" role="button" tabindex="0" aria-label="Add a photo or note">
+            <span class="up-ph">ADD PHOTO / NOTE</span>
+            <span class="field-hint">A photo makes your claim stronger. Order #DR-4821.</span>
+          </div>
+        </div>
+      </form>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="report-issue-loading.html">Submit report</a>
+      <a class="btn btn-tertiary" href="report-issue-empty.html">Submit without evidence</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
