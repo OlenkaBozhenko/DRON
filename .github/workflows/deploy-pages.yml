@@ -8,6 +8,7 @@ on:
     branches: [master]
     paths:
       - '*.html'
+      - 'wireframes/**'
       - '.github/pages/index.html'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
@@ -31,6 +32,11 @@ jobs:
           mkdir -p _site
           cp ia.html research.html target-audience.html ux-research.html _site/
           cp .github/pages/index.html _site/index.html
+          # Publish the clickable wireframe prototype (HTML pages + shared CSS/JS).
+          # The .md sources stay on master and are not published.
+          mkdir -p _site/wireframes
+          cp wireframes/*.html _site/wireframes/
+          cp wireframes/_wireframe.css wireframes/_wf-shell.js _site/wireframes/
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
