@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Profile setup · success (base)</title>
+<!--
+  SCREEN: "Profile setup" (flows.md MJ-2 — "approved → Profile setup → home").
+  PERSONA: Operator (MJ-2 activation gate — last step before going live).
+  JOB: MJ-2 activation — set the public profile clients see (RJ-C1 trust: photo, name, specializations).
+  STATE: base only (no state pages). Pre-live: no operator tabbar — topbar + actionbar.
+  flows.md node: "Profile setup" (approved → Profile setup → home).
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Profile setup</h1>
+    <p class="sub">Operator · MJ-2 activation · state: <b>base only</b> · file: operator-profile-setup.html</p>
+    <div class="flow"><b>Job (jtbd):</b> MJ-2 activation — the public profile clients see (RJ-C1 trust: photo, name, specializations). flows.md "approved → Profile setup → home".<br><b>Exit:</b> Save &amp; go live → <b>Operator home</b> (operator-listings).<br><b>States:</b> none.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Profile photo</b> ▸ how clients recognise you</p><p><b>Name &amp; bio</b> ▸ who you are</p><p><b>Specializations</b> ▸ which services you fly</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><a class="back" href="operator-verification.html">‹ Back</a><span class="title">Profile setup</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Profile photo <span class="act">▸ how clients recognise you</span></p>
+      <form class="stack" aria-label="Profile setup" action="#">
+        <div class="upload-zone"><span class="up-ph">PROFILE PHOTO</span><button type="button" class="btn btn-secondary btn-sm">Add photo</button></div>
+
+        <div class="form-field">
+          <label class="field-label" for="nm">Display name</label>
+          <span class="control"><input id="nm" placeholder="e.g. Andriy K."></span>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label" for="bio">Short bio</label>
+          <textarea id="bio" class="control" placeholder="Certified operator since 2023. Fast, careful deliveries across Kyiv…" aria-label="Short bio"></textarea>
+          <span class="field-hint">Need help? Start from a template — 1–2 lines is enough.</span>
+        </div>
+
+        <div class="form-field">
+          <span class="field-label">Service specializations</span>
+          <ul class="checklist" aria-label="Service specializations">
+            <li><label class="check-item done" style="border-radius:6px;"><span class="check-box" aria-hidden="true">✓</span><span class="check-label">Delivery</span></label></li>
+            <li><label class="check-item done" style="border-radius:6px;"><span class="check-box" aria-hidden="true">✓</span><span class="check-label">Aerial photo &amp; video</span></label></li>
+            <li><label class="check-item" style="border-radius:6px;"><span class="check-box" aria-hidden="true"></span><span class="check-label">Inspection</span></label></li>
+          </ul>
+        </div>
+      </form>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="operator-listings.html">Save &amp; go live</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
