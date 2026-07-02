@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Report an issue · loading</title>
+<!--
+  SCREEN: "Report an issue" — STATE: loading (issue under review).
+  PERSONA: Client C-1. JOB: EJ-2 — resolution after a bad experience.
+  FLOW NODE: flows.md EJ-2 "Loading: issue under review" (REV) → "Resolution outcome" (RO).
+  Same shell as report-issue.html; header/footer solid, sk-* skeletons stand in for the pending outcome.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="report-issue.html">success</a>
+      <a href="report-issue-empty.html">empty</a>
+      <a href="report-issue-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Report an issue</h1>
+    <p class="sub">Client · EJ-2 · state: <b>loading</b> · file: report-issue-loading.html</p>
+    <div class="flow"><b>Loading — issue under review.</b><br>flows.md EJ-2: "Loading: issue under review" → <b>Resolution outcome</b>.<br><b>Exit:</b> the decision lands on the resolution screen (refund / free re-do / human).</div>
+    <div class="legend"><p><b>Only the content changes</b> vs report-issue.html:</p><p><b>Form</b> → status line + outcome skeletons</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">&lsaquo; Back</button><span class="title">Report an issue</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Review status <span class="act">▸ loading — under review</span></p>
+      <p role="status" style="font-size:17px;font-weight:600;color:var(--wf-text);">Issue under review&hellip;</p>
+      <p class="lead">We're checking your report for order #DR-4821. This usually takes a few minutes.</p>
+      <div class="sk-card" aria-hidden="true">
+        <span class="sk-media"></span>
+        <span class="sk-body">
+          <span class="sk-line sk-w70"></span>
+          <span class="sk-line sk-w90"></span>
+          <span class="sk-line sk-w40"></span>
+        </span>
+      </div>
+      <div class="sk-block" aria-hidden="true"></div>
+      <p class="hint">You can leave this screen — we'll notify you when the outcome is ready.</p>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="resolution.html">View resolution</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
