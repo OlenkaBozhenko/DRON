@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Sign up / identity · loading</title>
+<!--
+  SCREEN: "Sign up / identity" (flows.md MJ-2 activation — Diia / BankID identity handoff).
+  PERSONA: Operator (MJ-2 activation gate).
+  JOB: MJ-2 activation.
+  STATE: loading — verifying identity with the provider. Transient; forward to verification when done.
+  flows.md node: "Sign up / identity" — verifying branch.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-signup.html">success</a>
+      <a href="operator-signup-error.html">error</a>
+      <a href="operator-signup-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Sign up / identity</h1>
+    <p class="sub">Operator · MJ-2 activation · state: <b>loading</b> · file: operator-signup-loading.html</p>
+    <div class="flow"><b>Loading:</b> verifying your identity with Diia / BankID (external provider).<br><b>Exit:</b> Continue → <b>Verification / document upload</b> once verified.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Sign up</b> ▸ "Verifying your identity…" + skeletons</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><a class="back" href="operator-fee-terms.html">‹ Back</a><span class="title">Sign up</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Sign up <span class="act">▸ loading — verifying identity</span></p>
+      <section class="center" aria-label="Verifying identity" style="padding:32px 20px;">
+        <span class="success-mark">DIIA</span>
+        <p class="big-title">Verifying your identity…</p>
+        <p role="status">Verifying your identity…</p>
+        <div class="stack" style="width:100%; margin-top:8px;">
+          <span class="sk-line sk-w90"></span>
+          <span class="sk-line sk-w70"></span>
+          <span class="sk-line sk-w50"></span>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="operator-verification.html">Continue</a>
+      <a class="btn btn-secondary btn-block" href="operator-signup.html">Cancel</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
