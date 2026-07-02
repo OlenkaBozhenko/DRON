@@ -21,7 +21,7 @@ Design repository — research, wireframes, tokens, components, and handoff mate
 |---|---|---|
 | [`research/`](research/) | Research notes, competitive analysis, user insights | 🔄 In progress |
 | [`research/screens/`](research/screens/) | Reference screenshots and visual inspiration | 🔄 In progress |
-| [`wireframes/`](wireframes/) | Lo-fi wireframes and flow sketches | ⬜ Not started |
+| [`wireframes/`](wireframes/) | Grayscale clickable wireframe prototype — every sitemap screen + its real states | ✅ Clickable prototype |
 | [`concept/`](concept/) | Visual concepts and moodboards | ⬜ Not started |
 | [`tokens/`](tokens/) | Design tokens (color, type, spacing, etc.) | ⬜ Not started |
 | [`components/`](components/) | Component specs and documentation | ⬜ Not started |
@@ -58,6 +58,29 @@ Design repository — research, wireframes, tokens, components, and handoff mate
 | [`flows.md`](flows.md) | 11 Mermaid user flows, one per job, for both personas. Each flow shows decisions, states (empty / error / loading) and both ends — success and dead-ends. |
 
 **[→ Live IA: sitemap & flows](https://bozhenko55-arch.github.io/DRON/ia.html)**
+
+---
+
+## Wireframes
+
+A **grayscale, clickable wireframe prototype** in [`wireframes/`](wireframes/) — mobile-first (375 × 812),
+San Francisco system font, English copy, no colour / shadow / icon / imagery (deferred). It proves
+**structure, hierarchy, zones and flow**, not looks. **80 HTML pages** cover **every** screen in
+[`sitemap.md`](sitemap.md) `§6.0/§6.1/§6.2` plus each screen's real states (`empty` / `error` / `loading`)
+from the [`_screens.md`](wireframes/_screens.md) matrix — the two main happy paths (Client MJ-1, Operator
+MJ-2 + RJ-O3) and every recovery / onboarding / EJ-2 resolution branch. Screens are wired into a walkable
+prototype along [`flows.md`](flows.md): a shared shell injects a left **screen-map tree** and a
+mobile/tablet/desktop **viewport switcher** on every page.
+
+| File | What lives here |
+|---|---|
+| [`wireframes/_conventions.md`](wireframes/_conventions.md) | The contract every page obeys — grayscale palette, SF type, 8px grid, semantic HTML, button/state rules, and the screen→file map (§12). |
+| [`wireframes/_screens.md`](wireframes/_screens.md) | Which screens exist and which of the four states (empty/error/loading/success) is real per screen — the state matrix. |
+| [`wireframes/_critique.md`](wireframes/_critique.md) | Audit & fix log — what was checked (shadows, placeholders, missing states, dead-ends, off-map) and what was fixed. |
+| `wireframes/_wireframe.css` · `_wf-shell.js` | Shared stylesheet + shared shell (nav tree + viewport switcher). |
+
+**Rules:** `.md` files are the source of truth; the HTML is a display layer. All copy is English; states only
+exist where a `flows.md` node produces them; every empty/error screen has a visible exit (no dead-ends).
 
 ---
 

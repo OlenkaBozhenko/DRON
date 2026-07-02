@@ -169,6 +169,36 @@ Sources: `sitemap.md`, `flows.md`, `ia.html`
 
 ---
 
+## Wireframes
+
+**Location:** `wireframes/`. A **grayscale, clickable wireframe prototype** — the step-2 deliverable of the
+working process. It proves **structure, hierarchy, zones and flow**, never looks.
+
+**Scope (built):** **80 HTML pages** covering **every** screen in `sitemap.md` `§6.0/§6.1/§6.2` plus each
+screen's real states (`empty` / `error` / `loading` / success) from the `_screens.md` matrix — both main happy
+paths (Client MJ-1, Operator MJ-2 + RJ-O3) and every recovery, onboarding and EJ-2 resolution branch. Screens
+are wired into a walkable prototype along `flows.md`; a shared shell (`_wf-shell.js`) injects a left screen-map
+tree and a mobile/tablet/desktop viewport switcher on every page.
+
+**Sources of truth (read before touching any page):**
+- `wireframes/_conventions.md` — the contract: grayscale palette, San Francisco type, 8px grid, semantic HTML,
+  button/state rules, and the screen→file map (§12). A page is "done" only when it passes its checklist.
+- `wireframes/_screens.md` — which screens exist and which of the four states is real per screen (the matrix).
+- `wireframes/_critique.md` — the audit & fix log.
+
+**Rules (do not violate):**
+- **Grayscale only** — no colour, shadow, icon, imagery, brand, or final type scale (all deferred). Media/icons
+  are uppercase text-label placeholders in bordered boxes (e.g. `MAP`, `OPERATOR PHOTO`, `LICENCE`).
+- **San Francisco** system-font stack; **English** copy; real domain text, never lorem.
+- **One page per state.** Base file = normal/success; `-empty` / `-error` / `-loading` are separate files with the
+  same structure. A state exists **only** where a `flows.md` node produces it — do not invent screens or states.
+- **No dead-ends** — every empty/error screen has a visible exit (recovery / retry / support).
+- Files are named lowercase-latin kebab-case; new pages link `_wireframe.css` + `_wf-shell.js` and are registered
+  in the shell's nav tree.
+- `.md` is the source of truth here too: update `_screens.md` / `_conventions.md` **before** adding HTML.
+
+---
+
 ## Content Rules
 
 **Single source of truth: `.md` files.**
