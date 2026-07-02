@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Share / refer · success (base)</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Share / refer".
+  PERSONA: Client C-1. JOB: SJ-1 — be the one who introduced something new (share in a single action).
+  STATE: base — referral link + copy, share targets, reward note. Deep in flow (after Rate): back → rate, sticky action footer.
+  flows.md node: RELATED · SJ-1 → "Share / refer" → share completed → referral attributed.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="share.html" class="cur" aria-current="page">success</a>
+      <a href="share-empty.html">empty</a>
+    </nav>
+    <h1>Share / refer</h1>
+    <p class="sub">Client · SJ-1 · state: <b>success (base)</b> · file: share.html</p>
+    <div class="flow"><b>Job (jtbd):</b> SJ-1 — share DRON in one action after a good order, so I'm the one who showed people something new.<br><b>flows.md:</b> Rate → <span class="cur">Share / refer</span> → share completed → referral attributed.<br><b>Exit:</b> Send invite → back to <b>Home / start an order</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Link</b> ▸ personal referral link + copy</p><p><b>Targets</b> ▸ Message · Email · More</p><p><b>Reward</b> ▸ what both sides get</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><a class="back" href="rate.html">‹ Back</a><span class="title">Share DRON</span><span class="spacer"></span></header>
+    <main>
+      <section class="center" aria-label="Invite intro" style="padding-top:4px;">
+        <span class="success-mark">SHARE</span>
+        <p class="big-title">Invite a friend</p>
+        <p class="lead">Send your link — you both get ₴100 off the next order.</p>
+      </section>
+
+      <p class="zlabel">Your link <span class="act">▸ copy and send</span></p>
+      <form aria-label="Referral link" action="#">
+        <div class="form-field">
+          <label class="field-label" for="reflink">Referral link</label>
+          <span class="control select"><span>dron.app/r/anna-k4</span><span aria-hidden="true">⧉</span></span>
+        </div>
+        <button type="button" class="btn btn-secondary btn-block" style="margin-top:8px;">Copy link</button>
+      </form>
+
+      <p class="zlabel">Share to <span class="act">▸ pick a channel</span></p>
+      <section aria-label="Share targets">
+        <div class="row2" style="display:flex;gap:8px;">
+          <button type="button" class="btn btn-secondary" style="flex:1;">Message</button>
+          <button type="button" class="btn btn-secondary" style="flex:1;">Email</button>
+          <button type="button" class="btn btn-secondary" style="flex:1;">More</button>
+        </div>
+      </section>
+
+      <p class="note">Your friend gets ₴100 off their first DRON order. When they complete it, ₴100 lands in your balance. No limit on invites.</p>
+    </main>
+
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="listings.html">Send invite</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
