@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Inspection report · success (base)</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Inspection report" (base = success milestone).
+  PERSONA: Client C-1 (C-2 inspection outcome). JOB: RJ-C4 — a clear, documented result I can act on.
+  STATE: success (base) — cover photo, findings list, photo set, operator signature. Client confirm here releases operator pay (RJ-O3). Deep: back → tracking, sticky action footer.
+  flows.md node: RELATED · RJ-C4 → "Inspection report" → Rate the order.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="inspection-report.html" class="cur" aria-current="page">success</a>
+      <a href="inspection-report-error.html">error</a>
+      <a href="inspection-report-loading.html">loading</a>
+    </nav>
+    <h1>Inspection report</h1>
+    <p class="sub">Client · MJ-1 (C-2) · state: <b>success (base)</b> · file: inspection-report.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-C4 — documented proof of the inspection: findings + photos I can trust and act on. Confirming here releases the operator's pay (RJ-O3).<br><b>Exit:</b> Rate the order → <b>Rate</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Cover</b> ▸ hero shot of the structure</p><p><b>Findings</b> ▸ what was found, by severity</p><p><b>Photo set</b> ▸ evidence frames</p><p><b>Signature</b> ▸ verified by DRON</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><a class="back" href="tracking.html">‹ Back</a><span class="title">Inspection report</span><span class="spacer"></span></header>
+    <main>
+      <section class="center" aria-label="Report ready" style="padding-top:4px;">
+        <span class="success-mark">DONE</span>
+        <p class="big-title">Report ready</p>
+        <p class="lead">Roof inspection · Osokorky, 14 · completed 15:42.</p>
+      </section>
+
+      <p class="zlabel">Cover <span class="act">▸ hero shot (RJ-C4)</span></p>
+      <section aria-label="Cover photo">
+        <span class="media-ph" style="width:100%;height:200px;">COVER PHOTO</span>
+      </section>
+
+      <p class="zlabel">Findings <span class="act">▸ what was found · severity</span></p>
+      <section aria-label="Findings">
+        <ul class="list">
+          <li>
+            <article class="card">
+              <span class="body">
+                <span class="name">Roof · north slope</span>
+                <span class="desc">2 cracked tiles near the ridge — water ingress risk.</span>
+                <span class="meta-row"><span class="badge">Severity · High</span></span>
+              </span>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <span class="body">
+                <span class="name">Gutter · east run</span>
+                <span class="desc">Leaf blockage over ~1.5 m, standing water.</span>
+                <span class="meta-row"><span class="badge">Severity · Medium</span></span>
+              </span>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <span class="body">
+                <span class="name">Chimney flashing</span>
+                <span class="desc">Sealed and intact — no action needed.</span>
+                <span class="meta-row"><span class="badge">Severity · None</span></span>
+              </span>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <p class="zlabel">Photo set <span class="act">▸ evidence frames</span></p>
+      <section aria-label="Inspection photos">
+        <div class="stack" style="flex-direction:row;gap:8px;">
+          <span class="media-ph" style="flex:1;height:88px;">INSPECTION IMAGE</span>
+          <span class="media-ph" style="flex:1;height:88px;">INSPECTION IMAGE</span>
+          <span class="media-ph" style="flex:1;height:88px;">INSPECTION IMAGE</span>
+        </div>
+      </section>
+
+      <p class="zlabel">Signature <span class="act">▸ who verified it</span></p>
+      <section aria-label="Operator signature">
+        <div class="kv">
+          <div class="kv-row"><span class="kv-key">Operator</span><span class="kv-val">Andriy M.</span></div>
+          <div class="kv-row"><span class="kv-key">Certificate</span><span class="kv-val">UA-DRN-04812</span></div>
+          <div class="kv-row"><span class="kv-key">Signed</span><span class="kv-val">2 Jul, 15:42 · <span class="badge">Verified by DRON</span></span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="rate.html">Rate the order</a>
+      <a class="btn btn-secondary btn-block" href="report-issue.html">Report an issue</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
