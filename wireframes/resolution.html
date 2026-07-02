@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Resolution outcome · success (base)</title>
+<!--
+  SCREEN (sitemap / _screens.md): "Resolution outcome" — EJ-2 decision result.
+  PERSONA: Client C-1 (primary).
+  JOB (jtbd): EJ-2 — one bad experience doesn't become a reason to never come back.
+  STATE: base only (no state pages — _screens.md row = "—").
+  FLOW NODE: flows.md EJ-2 "Resolution outcome" (RO) → D5 "Resolution?" refund / free re-do / needs human.
+  Deep in the flow → topbar Back → support.html + footer.actionbar.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Resolution outcome</h1>
+    <p class="sub">Client · EJ-2 · state: <b>base only</b> · file: resolution.html</p>
+    <dl>
+      <dt>Persona</dt><dd>Client C-1 (primary)</dd>
+      <dt>Job</dt><dd>EJ-2 — a fair, clear outcome</dd>
+      <dt>Node</dt><dd>flows.md EJ-2 · "Resolution outcome" → D5 "Resolution?"</dd>
+    </dl>
+    <div class="flow"><b>Outcome of the review.</b><br>flows.md EJ-2 D5 "Resolution?" → <b>refund</b> · <b>free re-do</b> · <b>needs human review</b>. This screen shows a refund; the re-do and human paths are the secondary exits.<br><b>States:</b> none.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Outcome</b> ▸ the decision + amount</p><p><b>Next steps</b> ▸ done · free re-do · escalate</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">&lsaquo; Back</button><span class="title">Resolution</span><span class="spacer"></span></header>
+    <main>
+      <section class="center" style="padding-top:8px;">
+        <span class="success-mark">DONE</span>
+        <h2 class="big-title">Refund issued</h2>
+        <p class="lead">We reviewed your report and refunded this order — no questions asked.</p>
+      </section>
+
+      <p class="zlabel">Outcome <span class="act">▸ the decision</span></p>
+      <div class="kv" aria-label="Resolution details">
+        <div class="kv-row"><span class="kv-key">Issue</span><span class="kv-val">Poor quality</span></div>
+        <div class="kv-row"><span class="kv-key">Order #</span><span class="kv-val">DR-4821</span></div>
+        <div class="kv-row price-total"><span class="kv-key">Decision</span><span class="kv-val">Refund issued &#8372;180</span></div>
+        <div class="kv-row"><span class="kv-key">Timeline</span><span class="kv-val">To card in 1&ndash;3 days</span></div>
+      </div>
+      <p class="note">Refunded to Visa &bull;&bull;&bull;&bull; 4921. Prefer a fresh attempt instead? Book a free re-do below.</p>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="listings.html">Done</a>
+      <div class="row2">
+        <a class="btn btn-secondary" href="order-confirmed.html">Book a free re-do</a>
+        <a class="btn btn-tertiary" href="contact-support.html">Still not resolved?</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
