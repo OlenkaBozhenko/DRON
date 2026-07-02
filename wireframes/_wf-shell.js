@@ -19,7 +19,8 @@
       { name: "Choose your role — Client or Operator", file: "role-select.html",        states: [] },
       { name: "Client onboarding",                     file: "onboarding-client.html",  states: [["empty","onboarding-client-empty.html"]] },
       { name: "Operator onboarding",                   file: "onboarding-operator.html",states: [] },
-      { name: "Switch role · global (step 8)",         file: "switch-role.html",        states: [] }
+      { name: "Account (profile · role switch)",       file: "account.html",            states: [] },
+      { name: "Switch role · global",                  file: "switch-role.html",        states: [] }
     ]},
     { title: "Client · MJ-1", screens: [
       { name: "Home / start an order",                 file: "listings.html",           states: [["empty","listings-empty.html"],["error","listings-error.html"],["loading","listings-loading.html"]] },
@@ -39,12 +40,31 @@
       { name: "Result upload / close job",             file: "result-upload.html",      states: [["error","result-upload-error.html"],["loading","result-upload-loading.html"]] },
       { name: "Wallet / earnings",                     file: "wallet.html",         success: true, states: [["empty","wallet-empty.html"]] },
       { name: "Withdraw to card / bank account",       file: "withdraw.html",       success: true, states: [["error","withdraw-error.html"],["loading","withdraw-loading.html"]] }
+    ]},
+    { title: "Client · step 8 (EJ-1/2 · C-2 · repeat)", screens: [
+      { name: "Welcome / first-use explainer",         file: "welcome.html",            states: [["empty","welcome-empty.html"]] },
+      { name: "Time-slot pick (calendar-first)",       file: "time-slot.html",          states: [["empty","time-slot-empty.html"]] },
+      { name: "Inspection report",                     file: "inspection-report.html", success: true, states: [["error","inspection-report-error.html"],["loading","inspection-report-loading.html"]] },
+      { name: "Order history",                         file: "order-history.html",      states: [["empty","order-history-empty.html"],["loading","order-history-loading.html"]] },
+      { name: "Share / refer",                         file: "share.html",              states: [["empty","share-empty.html"]] },
+      { name: "Support / dispute",                     file: "support.html",            states: [] },
+      { name: "Report an issue",                       file: "report-issue.html",       states: [["empty","report-issue-empty.html"],["loading","report-issue-loading.html"]] },
+      { name: "Resolution outcome",                    file: "resolution.html",         states: [] },
+      { name: "Contact human support",                 file: "contact-support.html",    states: [["error","contact-support-error.html"]] }
+    ]},
+    { title: "Operator · step 8 (activation · standing)", screens: [
+      { name: "Operator landing / fee terms",          file: "operator-fee-terms.html", states: [] },
+      { name: "Sign up / identity",                    file: "operator-signup.html",    states: [["error","operator-signup-error.html"],["loading","operator-signup-loading.html"]] },
+      { name: "Verification / document upload",        file: "operator-verification.html", states: [["error","operator-verification-error.html"],["loading","operator-verification-loading.html"]] },
+      { name: "Profile setup",                         file: "operator-profile-setup.html", states: [] },
+      { name: "Dispute / client issue",                file: "operator-dispute.html",   states: [["error","operator-dispute-error.html"]] },
+      { name: "Ratings dashboard",                     file: "ratings.html",            states: [["empty","ratings-empty.html"]] }
     ]}
   ];
 
-  /* Not-yet-built pages shown as "planned" (faint). Everything from the _screens.md
-     table is built; only the step-8 global "Switch role" screen remains. */
-  var PLANNED = { "switch-role.html": 1 };
+  /* Not-yet-built pages shown as "planned" (faint). All main-path + step-8 screens
+     are built — nothing planned remains. */
+  var PLANNED = {};
 
   /* Viewport presets for the preview switcher. */
   var SIZES = { mobile: [375, 812], tablet: [768, 1024], desktop: [1280, 800] };

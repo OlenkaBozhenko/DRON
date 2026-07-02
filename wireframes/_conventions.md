@@ -215,7 +215,7 @@ Buttons: height `≥ 44px`, radius `6`, horizontal padding `16`, label at `15px/
 | Choose your role — Client or Operator | `role-select.html` | — |
 | Client onboarding | `onboarding-client.html` | `onboarding-client-empty.html` |
 | Operator onboarding | `onboarding-operator.html` | — |
-| Switch role (global, step 8) | `switch-role.html` | — |
+| Switch role (global) *(step 8)* | `switch-role.html` | — |
 
 ### Client (MJ-1)
 | Screen | Base file | State pages |
@@ -239,6 +239,27 @@ Buttons: height `≥ 44px`, radius `6`, horizontal padding `16`, label at `15px/
 | Result upload / close job | `result-upload.html` | `result-upload-error.html`, `result-upload-loading.html` |
 | Wallet / earnings *(base = success)* | `wallet.html` | `wallet-empty.html` |
 | Withdraw to card / bank account *(base = success)* | `withdraw.html` | `withdraw-error.html`, `withdraw-loading.html` |
+
+### Step 8 — remaining sitemap screens (states traced in [`_screens.md`](_screens.md) "STEP 8")
+| Screen | Base file | State pages |
+|---|---|---|
+| Welcome / first-use explainer (`EJ-1`) | `welcome.html` | `welcome-empty.html` |
+| Time-slot pick — calendar-first (`C-2`) | `time-slot.html` | `time-slot-empty.html` |
+| Inspection report *(base = success)* (`RJ-C4`, `C-2`) | `inspection-report.html` | `inspection-report-error.html`, `inspection-report-loading.html` |
+| Order history (`RJ-C5`) | `order-history.html` | `order-history-empty.html`, `order-history-loading.html` |
+| Share / refer (`SJ-1`) | `share.html` | `share-empty.html` |
+| Support / dispute (`EJ-2` entry) | `support.html` | — |
+| Report an issue (`EJ-2`) | `report-issue.html` | `report-issue-empty.html`, `report-issue-loading.html` |
+| Resolution outcome (`EJ-2`) | `resolution.html` | — |
+| Contact human support (`EJ-2`) | `contact-support.html` | `contact-support-error.html` |
+| Operator landing / fee terms (`OE-12`) | `operator-fee-terms.html` | — |
+| Sign up / identity (`MJ-2`) | `operator-signup.html` | `operator-signup-error.html`, `operator-signup-loading.html` |
+| Verification / document upload (`MJ-2` gate) | `operator-verification.html` | `operator-verification-error.html`, `operator-verification-loading.html` |
+| Profile setup (`RJ-C1` · `EJ-3`) | `operator-profile-setup.html` | — |
+| Dispute / client issue — operator (`EJ-2`, `OE-13`) | `operator-dispute.html` | `operator-dispute-error.html` |
+| Ratings dashboard (`EJ-3`) | `ratings.html` | `ratings-empty.html` |
+
+*Service catalogue stays merged into `listings.html` (`sitemap.md §7.3`) — no separate file, by design.*
 
 ---
 

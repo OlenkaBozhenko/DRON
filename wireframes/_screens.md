@@ -256,13 +256,49 @@ Rows = main-path screens (in flow order). Columns = the four states. **✓** = r
 
 ---
 
-## Excluded from this pass (step 8)
+# STEP 8 — remaining sitemap screens (built July 2026)
 
-Screens with a job **but** off the main path, or one-time onboarding — not wireframed here, listed so nothing is silently dropped:
+Everything in `sitemap.md §6.1 / §6.2 / §6.0` that is **not** on the main happy path above: the recovery
+branches, one-time onboarding/activation, the C-2 planning + inspection variants, history/advocacy, the
+whole `EJ-2` resolution cluster, and the global role switch. Each is a real product screen with a backing
+job and a place in a `flows.md` diagram. Same contract as the main path (`_conventions.md`).
 
-- **Client:** Welcome / first-use explainer (`EJ-1`, one-time) · Time-slot pick (`C-2` planning branch) · Inspection report (`RJ-C4`, `C-2` variant of the outcome) · Order history (`RJ-C5`) · Share / refer (`SJ-1`) · Support / dispute · Report an issue · Resolution outcome · Contact human support (`EJ-2`).
-- **Operator:** Operator landing / fee terms · Sign up / identity · Verification / document upload · Profile setup (`MJ-2` activation, one-time) · Dispute / client issue (`EJ-2`, operator side) · Ratings dashboard (`EJ-3`).
+**State rule (unchanged).** A state page exists only where the screen's `flows.md` node genuinely produces
+it. States below are each traced to a flow node. `—` = not produced.
 
-These carry real jobs and belong to the product; they are simply not on the main happy path being cut into wireframes now.
+### Shared / entry — Step 8
 
-**Global action — Switch role (Client ⇄ Operator).** Not a main-path screen but reachable in every flow via **Account → Switch role** (`sitemap.md §7.4`; `flows.md` *CHANGE PERSONA*). It re-enters the fork (screen 2) and, on a first-time switch, re-runs that side's onboarding (2b / 11b). Wireframed with the Account/settings cluster in step 8, not here.
+| # | Screen (`sitemap.md`) | Job | Flow position (`flows.md`) | States (real) | Files |
+|---|---|---|---|:---|---|
+| S1 | **Switch role (Client ⇄ Operator)** | `§7.4` global utility | *CHANGE PERSONA*: Account → confirm? → re-enter fork | base only (a confirm/decision screen; decline → back, confirm → fork) | `switch-role.html` |
+
+### Client — Step 8
+
+| # | Screen | Job | Flow position | States (real) | Files |
+|---|---|---|:---|:---|---|
+| C1 | **Welcome / first-use explainer** | `EJ-1` | *EJ-1*: first-time open → Welcome → understood? | **Empty** ✓ (skipped / too long → one-card 15-sec fallback) | `welcome.html`, `welcome-empty.html` |
+| C2 | **Time-slot pick (calendar-first)** | `MJ-1` planning (`C-2`) | *MJ-1* setup → schedule a slot (aerial / inspection) → review | **Empty** ✓ (no slots free that day → pick another day) | `time-slot.html`, `time-slot-empty.html` |
+| C3 | **Inspection report** *(base = success)* | `RJ-C4` (`C-2` outcome) | *RJ-C4*: service type = photo/inspection → report | **Error** ✓ (no proof — job cannot complete) · **Loading** ✓ (report not uploaded yet) | `inspection-report.html`, `inspection-report-error.html`, `inspection-report-loading.html` |
+| C4 | **Order history** | `RJ-C5` | *RJ-C5*: Home → history → Book again / past order | **Empty** ✓ (no history / hard to find) · **Loading** ✓ (fetching order history) | `order-history.html`, `order-history-empty.html`, `order-history-loading.html` |
+| C5 | **Share / refer** | `SJ-1` | *SJ-1*: after a good order → Rate → Share | **Empty** ✓ (opened, didn't send → back to share) | `share.html`, `share-empty.html` |
+| C6 | **Support / dispute** | `EJ-2` (entry) | *EJ-2*: entry hub → "What went wrong?" triage | base only (a triage router; loadings live on the target screens) | `support.html` |
+| C7 | **Report an issue** | `EJ-2` | *EJ-2*: "result not as expected" → evidence? → review | **Empty** ✓ (no evidence — weaker claim, manual review) · **Loading** ✓ (issue under review) | `report-issue.html`, `report-issue-empty.html`, `report-issue-loading.html` |
+| C8 | **Resolution outcome** | `EJ-2` | *EJ-2*: review → Resolution? (refund / free re-do / human) | base only (shows the outcome; branches are links, not states) | `resolution.html` |
+| C9 | **Contact human support** | `EJ-2` | *EJ-2*: safety/trust or unresolved → agent | **Error** ✓ (unresolved with agent → escalation queue) | `contact-support.html`, `contact-support-error.html` |
+
+### Operator — Step 8
+
+| # | Screen | Job | Flow position | States (real) | Files |
+|---|---|---|:---|:---|---|
+| O1 | **Operator landing / fee terms** | `MJ-2` activation · `OE-12` | *MJ-2 activation*: onboarding → landing → commission acceptable? | base only (informational gate; decline is a legit exit, not a state page) | `operator-fee-terms.html` |
+| O2 | **Sign up / identity** | `MJ-2` | *MJ-2 activation*: fee accepted → Sign up → Verification | **Error** ✓ (identity declined / failed — Diia/BankID) · **Loading** ✓ (verifying identity) | `operator-signup.html`, `operator-signup-error.html`, `operator-signup-loading.html` |
+| O3 | **Verification / document upload** | `MJ-2` gate · Drop-off #3 | *MJ-2 activation*: upload → docs complete? → under review → approved? | **Error** ✓ (missing/invalid docs, or rejected → reason + resubmit) · **Loading** ✓ (under review — ETA 2-3 business days) | `operator-verification.html`, `operator-verification-error.html`, `operator-verification-loading.html` |
+| O4 | **Profile setup** | `RJ-C1` consumes · `EJ-3` | *MJ-2 activation*: approved → Profile setup → home | base only (a setup form; no data state in the flow) | `operator-profile-setup.html` |
+| O5 | **Dispute / client issue (operator side)** | `EJ-2` operator side · `OE-13` | *MJ-2 main*: client disputes → payment held pending EJ-2 | **Error** ✓ (payment held pending resolution) | `operator-dispute.html`, `operator-dispute-error.html` |
+| O6 | **Ratings dashboard** | `EJ-3` · `O-06` | *EJ-3*: home → Ratings → has ratings? | **Empty** ✓ (no ratings yet — cold-start O-2; auto-dispatch keeps feeding jobs) | `ratings.html`, `ratings-empty.html` |
+
+**Not a new screen.** *Service catalogue* (`sitemap.md §6.1`) stays **merged into `listings.html`** per
+`sitemap.md §7.3` (Home ⊃ Catalogue) — no separate file, by design. Recorded here so its absence is explicit.
+
+**Milestone (success = base) in Step 8:** only **Inspection report** (the `C-2` outcome, mirror of *Delivery
+confirmation*). Every other Step-8 base is a normal/entry view, not an "it worked" screen.
