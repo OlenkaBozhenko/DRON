@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Time-slot pick · empty</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Time-slot pick — calendar-first" — STATE: empty.
+  PERSONA: Client C-1. JOB: MJ-1 (C-2) — schedule aerial / inspection.
+  STATE: empty — no free slots on the chosen day (planning stock-out). Same shell as time-slot.html; only the slot list changes. Not a dead-end: pick another day or go back to setup.
+  flows.md node: MJ-1 (C-2 planning branch) — availability stock-out on a day.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="time-slot.html">success</a>
+      <a href="time-slot-empty.html" class="cur" aria-current="page">empty</a>
+    </nav>
+    <h1>Time-slot pick</h1>
+    <p class="sub">Client · MJ-1 (C-2) · state: <b>empty</b> · file: time-slot-empty.html</p>
+    <div class="flow"><b>Empty — no operator free on the chosen day.</b><br>Planning stock-out (never a dead-end): <b>pick another day</b>, or step back to setup.<br><b>Exit:</b> Pick another day → <b>Time-slot</b>; secondary → <b>Order setup</b>.</div>
+    <div class="legend"><p><b>Only the content changes</b> vs time-slot.html:</p><p><b>Day row</b> ▸ the sold-out day stays selected</p><p><b>Slots</b> ▸ empty block + recovery actions</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><a class="back" href="order-setup.html">‹ Back</a><span class="title">Pick a time</span><span class="spacer"></span></header>
+
+    <nav class="cats" aria-label="Pick a day">
+      <button class="chip">Tue 1</button>
+      <button class="chip">Wed 2</button>
+      <button class="chip" aria-current="true">Thu 3</button>
+      <button class="chip">Fri 4</button>
+      <button class="chip">Sat 5</button>
+    </nav>
+
+    <main>
+      <p class="zlabel">Slots · Thu 3 Jul <span class="act">▸ none free — recover</span></p>
+      <section aria-label="Available time slots">
+        <div class="msg-block" role="status">
+          <span class="msg-ph">EMPTY</span>
+          <span class="msg-title">No free slots on Thu 3 Jul</span>
+          <p class="msg-body">Every operator is booked that day. Try another date — Fri 4 and Sat 5 still have openings.</p>
+          <div class="msg-actions">
+            <a class="btn btn-primary" href="time-slot.html">Pick another day</a>
+            <a class="btn btn-secondary" href="order-setup.html">Back to setup</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="actionbar">
+      <div class="price-line"><span class="lbl">No slot selected</span><span class="val">₴800</span></div>
+      <a class="btn btn-primary btn-block" href="time-slot.html" aria-disabled="true">Confirm slot</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
