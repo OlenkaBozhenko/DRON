@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Inspection report · loading</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Inspection report" — STATE: loading.
+  PERSONA: Client C-1 (C-2). JOB: RJ-C4 — a documented result.
+  STATE: loading — operator closed the job but the result is not uploaded yet. Same shell as inspection-report.html; skeletons stand in for the not-yet-loaded report. Header/footer stay solid.
+  flows.md node: RELATED · RJ-C4 → "Loading: result not uploaded yet".
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="inspection-report.html">success</a>
+      <a href="inspection-report-error.html">error</a>
+      <a href="inspection-report-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Inspection report</h1>
+    <p class="sub">Client · MJ-1 (C-2) · state: <b>loading</b> · file: inspection-report-loading.html</p>
+    <div class="flow"><b>Loading — result not uploaded yet.</b><br>flows.md RJ-C4: "Loading: result not uploaded yet" — the operator is still uploading photos and findings. Transient, not a dead-end.</div>
+    <div class="legend"><p><b>Only the content changes</b> vs inspection-report.html:</p><p><b>Status</b> ▸ "Report not uploaded yet…"</p><p><b>Body</b> ▸ cover + findings skeletons</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><a class="back" href="tracking.html">‹ Back</a><span class="title">Inspection report</span><span class="spacer"></span></header>
+    <main>
+      <p role="status">Report not uploaded yet…</p>
+
+      <p class="zlabel">Cover <span class="act">▸ loading</span></p>
+      <section aria-label="Cover photo is loading">
+        <span class="sk-block" style="display:block;height:200px;"></span>
+      </section>
+
+      <p class="zlabel">Findings <span class="act">▸ loading</span></p>
+      <section aria-label="Findings are loading">
+        <ul class="list" aria-hidden="true">
+          <li>
+            <div class="sk-card">
+              <span class="sk-body"><span class="sk-line sk-w40"></span><span class="sk-line sk-w90"></span><span class="sk-line sk-w30"></span></span>
+            </div>
+          </li>
+          <li>
+            <div class="sk-card">
+              <span class="sk-body"><span class="sk-line sk-w50"></span><span class="sk-line sk-w70"></span><span class="sk-line sk-w30"></span></span>
+            </div>
+          </li>
+          <li>
+            <div class="sk-card">
+              <span class="sk-body"><span class="sk-line sk-w40"></span><span class="sk-line sk-w90"></span><span class="sk-line sk-w30"></span></span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <p class="zlabel">Photo set <span class="act">▸ loading</span></p>
+      <section aria-label="Photos are loading">
+        <div class="stack" style="flex-direction:row;gap:8px;" aria-hidden="true">
+          <span class="sk-media" style="flex:1;height:88px;width:auto;"></span>
+          <span class="sk-media" style="flex:1;height:88px;width:auto;"></span>
+          <span class="sk-media" style="flex:1;height:88px;width:auto;"></span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="inspection-report.html" aria-disabled="true">Rate the order</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
