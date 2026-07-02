@@ -41,10 +41,19 @@ full report (user stories, benchmarks, etc.).
 - `#flows-client` — Client flows (Mermaid)
 - `#flows-operator` — Operator flows (Mermaid)
 
+### Wireframes → `wireframes/role-select.html` (`wireframes/`) — live
+The grayscale clickable prototype (80 screens + states). Unlike the other pages, its
+children are **entry points into the prototype** (separate files under `wireframes/`),
+not in-page anchors; each opens the prototype, which carries its own left screen-map tree.
+- Client flow → `wireframes/listings.html`
+- Operator flow → `wireframes/operator-listings.html`
+- Start · role fork → `wireframes/role-select.html`
+
 `ia.html` is one page with two tabs (Sitemap, Flows). Sidebar links route to the right
-tab via the URL hash. Every page shows the same six dropdowns (Research, UX Research,
-Target Audience, JTBD, Sitemap, Flows); cross-page entries link to the owning page's
-anchors, so all render with the same collapsible-dropdown UI, never as plain links.
+tab via the URL hash. Every page shows the same seven dropdowns (Research, UX Research,
+Target Audience, JTBD, Sitemap, Flows, Wireframes); cross-page entries link to the owning
+page's anchors (or, for Wireframes, to the prototype's entry files), so all render with the
+same collapsible-dropdown UI, never as plain links.
 
 ## Coming soon
 
@@ -52,7 +61,6 @@ Non-clickable placeholder pages in their own "Coming soon" group, each tagged `S
 
 - Design system → `design-system/`
 - Components → `components/`
-- Wireframe → `wireframes/`
 
 ## Sidebar specification
 
