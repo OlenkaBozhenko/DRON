@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Share / refer · empty</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Share / refer" — STATE: empty.
+  PERSONA: Client C-1. JOB: SJ-1 — share in a single action.
+  STATE: empty — the share sheet was opened but nothing was sent. Same shell as share.html; only the content zone changes. Recovery: share again, or maybe later (not a dead-end).
+  flows.md node: RELATED · SJ-1 → "Empty: opened but didn't send" → back to Share.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="share.html">success</a>
+      <a href="share-empty.html" class="cur" aria-current="page">empty</a>
+    </nav>
+    <h1>Share / refer</h1>
+    <p class="sub">Client · SJ-1 · state: <b>empty</b> · file: share-empty.html</p>
+    <div class="flow"><b>Empty — opened but didn't send.</b><br>flows.md SJ-1: "Empty: opened but didn't send" → back to Share (a missed share is a silent advocacy leak, so always re-offer).<br><b>Recovery:</b> Share again (primary); Maybe later (secondary).</div>
+    <div class="legend"><p><b>Only the content changes</b> vs share.html:</p><p><b>Body</b> ▸ nudge to finish the share, no targets row</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><a class="back" href="rate.html">‹ Back</a><span class="title">Share DRON</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Invite <span class="act">▸ nothing sent yet</span></p>
+      <section aria-label="Invite not sent">
+        <div class="msg-block" role="status">
+          <span class="msg-ph">NOT SENT</span>
+          <span class="msg-title">You didn't send it yet</span>
+          <p class="msg-body">Your link is ready — dron.app/r/anna-k4. Pick a channel to send it, and you both get ₴100 off the next order.</p>
+          <div class="msg-actions">
+            <a class="btn btn-primary" href="share.html">Share again</a>
+            <a class="btn btn-secondary" href="listings.html">Maybe later</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="share.html">Share again</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
