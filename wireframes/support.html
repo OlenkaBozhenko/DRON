@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Support / dispute · success (base)</title>
+<!--
+  SCREEN (sitemap / _screens.md): "Support / dispute" — the EJ-2 resolution entry hub / triage.
+  PERSONA: Client C-1 (primary).
+  JOB (jtbd): EJ-2 — a clear path to resolution after a bad experience (not just a rating).
+  STATE: base (no state pages — _screens.md row = "—").
+  FLOW NODE: flows.md EJ-2 "Support / dispute" → D1 "What went wrong?" (didn't arrive / result not as expected / safety-trust).
+  GLOBAL destination — reached from the Help tab, so footer.tabbar with Help current.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Support / dispute</h1>
+    <p class="sub">Client · EJ-2 · state: <b>base only</b> · file: support.html</p>
+    <dl>
+      <dt>Persona</dt><dd>Client C-1 (primary)</dd>
+      <dt>Job</dt><dd>EJ-2 — a clear path to resolution</dd>
+      <dt>Node</dt><dd>flows.md EJ-2 · "Support / dispute" → D1 "What went wrong?"</dd>
+    </dl>
+    <div class="flow"><b>EJ-2 entry hub — triage the problem.</b><br>flows.md D1 "What went wrong?" routes to the right remedy: no-show → re-dispatch (Bolt) · quality → report an issue · safety → 24/7 human (Airbnb).<br><b>States:</b> none.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Triage list</b> ▸ pick what went wrong</p><p><b>Human fallback</b> ▸ talk to an agent</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="title" style="padding-left:16px;">Help &amp; support</span><span class="spacer"></span></header>
+    <main>
+      <section aria-label="Support intro">
+        <h2 class="big-title">How can we help?</h2>
+        <p class="lead">Tell us what went wrong with your order and we'll get it put right.</p>
+      </section>
+
+      <p class="zlabel">Triage list <span class="act">▸ pick what went wrong</span></p>
+      <section aria-label="What went wrong">
+        <ul class="choice-list" style="list-style:none;">
+          <li>
+            <a class="choice-card" href="order-confirmed-loading.html">
+              <span class="body">
+                <span class="choice-title">My order didn't arrive / no-show</span>
+                <span class="choice-desc">We'll re-dispatch a new operator now — or refund you, no questions.</span>
+              </span>
+              <span class="chev" aria-hidden="true">›</span>
+            </a>
+          </li>
+          <li>
+            <a class="choice-card" href="report-issue.html">
+              <span class="body">
+                <span class="choice-title">Result wasn't what I expected</span>
+                <span class="choice-desc">Report the issue with a photo or note and we'll review it.</span>
+              </span>
+              <span class="chev" aria-hidden="true">›</span>
+            </a>
+          </li>
+          <li>
+            <a class="choice-card" href="contact-support.html">
+              <span class="body">
+                <span class="choice-title">Safety or trust concern</span>
+                <span class="choice-desc">Talk to a human straight away — support is online 24/7.</span>
+              </span>
+              <span class="chev" aria-hidden="true">›</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <p class="zlabel">Human fallback <span class="act">▸ Airbnb-style 24/7 agent</span></p>
+      <section aria-label="Talk to a human" class="center" style="padding-top:8px;">
+        <a class="btn btn-secondary btn-block" href="contact-support.html">Talk to a human</a>
+        <p class="note">Can't find your issue above? A support agent is available any time, day or night.</p>
+      </section>
+    </main>
+
+    <footer class="tabbar">
+      <nav class="tabs" aria-label="Primary">
+        <a class="tab" href="listings.html"><span class="sq sq-24" aria-hidden="true"></span>Order</a>
+        <a class="tab" href="order-history.html"><span class="sq sq-24" aria-hidden="true"></span>Activity</a>
+        <a class="tab" href="support.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Help</a>
+        <a class="tab" href="account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+      </nav>
+      <div class="home-indicator"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
