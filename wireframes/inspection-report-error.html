@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Inspection report · error</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Inspection report" — STATE: error.
+  PERSONA: Client C-1 (C-2). JOB: RJ-C4 — a documented result.
+  STATE: error — no proof arrived within timeout, so the job cannot complete. Same shell as inspection-report.html; only the content zone changes. Recovery routes to support (EJ-2) with a refresh fallback.
+  flows.md node: RELATED · RJ-C4 → "Error: no proof — job cannot complete" → Support / dispute.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="inspection-report.html">success</a>
+      <a href="inspection-report-error.html" class="cur" aria-current="page">error</a>
+      <a href="inspection-report-loading.html">loading</a>
+    </nav>
+    <h1>Inspection report</h1>
+    <p class="sub">Client · MJ-1 (C-2) · state: <b>error</b> · file: inspection-report-error.html</p>
+    <div class="flow"><b>Error — no proof; the job cannot complete.</b><br>flows.md RJ-C4: proof didn't arrive within timeout → "Error: no proof — job cannot complete" → <b>Support / dispute</b> (EJ-2).<br><b>Recovery:</b> Contact support (primary); Refresh (secondary).</div>
+    <div class="legend"><p><b>Only the content changes</b> vs inspection-report.html:</p><p><b>Body</b> ▸ error message + recovery, no findings</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><a class="back" href="tracking.html">‹ Back</a><span class="title">Inspection report</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Report <span class="act">▸ no proof — cannot complete</span></p>
+      <section aria-label="Report unavailable">
+        <div class="msg-block" role="alert">
+          <span class="msg-ph">NO PROOF</span>
+          <span class="msg-title">No report received</span>
+          <p class="msg-body">The operator marked the inspection done but no photos or findings arrived in time. Without proof the job can't be completed or paid — let's sort it out.</p>
+          <div class="msg-actions">
+            <a class="btn btn-primary" href="support.html">Contact support</a>
+            <a class="btn btn-secondary" href="inspection-report.html">Refresh</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="support.html">Contact support</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
