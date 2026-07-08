@@ -285,7 +285,8 @@ Every page links one shared shell script (`<script src="_wf-shell.js"></script>`
 every page (grayscale, §4):
 
 - a **left screen-map tree** (section → screen → its real states, built 1:1 from `_screens.md` and the §12 map);
-- a **top toolbar** with the mobile / tablet / desktop viewport switcher;
+- a **top toolbar** with the mobile / tablet / desktop viewport switcher and a **"Hide annotations"**
+  toggle (hides the `.meta` doc panel + `.zlabel` zone labels on every page; choice persists via `localStorage`);
 - a **"Back to DRON"** button at the top of the tree — links to `../research.html`, the project's main/landing
   page. This is the single exit from the wireframe prototype back to the project hub.
 

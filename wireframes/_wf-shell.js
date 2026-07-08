@@ -115,6 +115,12 @@
     + '.wf-seg button:focus-visible{ outline:2px solid rgba(0,0,0,0.15); outline-offset:-2px; }'
     + '.wf-dim{ font-size:13px; color:#5A5A5A; font-variant-numeric:tabular-nums; }'
     + '.wf-tb-cur{ margin-left:auto; font-size:13px; color:#252525; font-weight:600; }'
+    + '.wf-anno{ height:32px; padding:0 14px; border:1px solid rgba(0,0,0,0.15); border-radius:6px;'
+    + '  background:#FFFFFF; font:inherit; font-size:13px; font-weight:600; color:#5A5A5A; cursor:pointer; }'
+    + '.wf-anno:hover{ background:#EEEEEE; }'
+    + '.wf-anno.on{ background:#111111; color:#FFFFFF; border-color:#111111; }'
+    + '.wf-anno:focus-visible{ outline:2px solid rgba(0,0,0,0.15); outline-offset:2px; }'
+    + 'body.wf-hide-anno .meta, body.wf-hide-anno .zlabel{ display:none !important; }'
     + '@media print{ .wf-tree,.wf-toolbar{ display:none; } .wf-shelled{ padding:0 !important; } }';
 
   function buildTreeHTML(cur){
@@ -177,6 +183,7 @@
       + '  <button type="button" data-size="desktop">Desktop</button>'
       + '</div>'
       + '<span class="wf-dim" aria-live="polite"></span>'
+      + '<button type="button" class="wf-anno" aria-pressed="false">Hide annotations</button>'
       + '<span class="wf-tb-cur">'+esc(currentName(cur))+'</span>';
     document.body.appendChild(bar);
     document.body.classList.add("wf-shelled");
@@ -199,6 +206,20 @@
     var saved = "mobile";
     try { saved = localStorage.getItem("wf-viewport") || "mobile"; } catch(e){}
     apply(saved);
+
+    /* annotations toggle — hides .meta panel + .zlabel zone labels on every page */
+    var anno = bar.querySelector(".wf-anno");
+    function applyAnno(hide){
+      document.body.classList.toggle("wf-hide-anno", hide);
+      anno.classList.toggle("on", hide);
+      anno.setAttribute("aria-pressed", hide ? "true" : "false");
+      anno.textContent = hide ? "Show annotations" : "Hide annotations";
+      try { localStorage.setItem("wf-hide-anno", hide ? "1" : "0"); } catch(e){}
+    }
+    anno.addEventListener("click", function(){ applyAnno(!document.body.classList.contains("wf-hide-anno")); });
+    var savedAnno = "0";
+    try { savedAnno = localStorage.getItem("wf-hide-anno") || "0"; } catch(e){}
+    applyAnno(savedAnno === "1");
 
     /* keep the current node in view within the tree */
     var active = tree.querySelector("a.current") || tree.querySelector("a.in-current");
