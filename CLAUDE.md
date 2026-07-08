@@ -6,6 +6,8 @@
 **Tagline:** People order a service, a certified operator handles everything with their drone.
 **Core insight:** Users have never operated a drone and never will — they want a trusted professional to do it for them.
 
+**Main page:** When the user refers to "the main page" / "home page" / "Головна", they mean **`research.html`** (repo root). It is the project's landing/hub page. The wireframe shell's "Back to DRON" button links here (`../research.html`).
+
 ---
 
 ## Business Model

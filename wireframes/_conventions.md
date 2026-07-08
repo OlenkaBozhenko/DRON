@@ -278,3 +278,17 @@ A page is done when **all** hold:
 - [ ] Every button shows its variant + all interaction states (§11).
 - [ ] Same DOM structure as its sibling state pages; only affected-zone content differs.
 - [ ] The state exists in the screen's `_screens.md` row (no invented states).
+
+## 13. Shared shell (`_wf-shell.js`)
+
+Every page links one shared shell script (`<script src="_wf-shell.js"></script>`). It injects, identically on
+every page (grayscale, §4):
+
+- a **left screen-map tree** (section → screen → its real states, built 1:1 from `_screens.md` and the §12 map);
+- a **top toolbar** with the mobile / tablet / desktop viewport switcher;
+- a **"Back to DRON"** button at the top of the tree — links to `../research.html`, the project's main/landing
+  page. This is the single exit from the wireframe prototype back to the project hub.
+
+The shell is prototype chrome, **not** page content — it is the one exception to "HTML is display-only" and lives
+in JS by design. Edit the shell in `_wf-shell.js` alone; do not hand-add nav, the switcher, or the back button to
+individual pages. New pages are registered in the shell's `TREE` (§12 map), never wired manually.

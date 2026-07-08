@@ -83,6 +83,10 @@
     + '.wf-tree{ position:fixed; top:0; left:0; bottom:0; width:248px; z-index:50; overflow-y:auto;'
     + '  background:#FFFFFF; border-right:1px solid rgba(0,0,0,0.12); padding:16px 10px 24px;'
     + '  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }'
+    + '.wf-back{ display:block; text-decoration:none; margin:0 0 12px; padding:8px 10px; border:1px solid rgba(0,0,0,0.15); border-radius:6px;'
+    + '  background:#F4F4F4; color:#111111; font-size:12px; font-weight:600; letter-spacing:.04em; }'
+    + '.wf-back:hover{ background:#E2E2E2; }'
+    + '.wf-back .wf-back-arrow{ margin-right:8px; color:#5A5A5A; }'
     + '.wf-tree-head{ font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#111111; padding:0 8px 2px; }'
     + '.wf-tree-note{ font-size:11px; color:#909090; padding:0 8px 12px; line-height:1.5; }'
     + '.wf-sec{ font-size:11px; font-weight:600; letter-spacing:.10em; text-transform:uppercase; color:#909090; padding:14px 8px 4px; }'
@@ -113,7 +117,8 @@
     + '@media print{ .wf-tree,.wf-toolbar{ display:none; } .wf-shelled{ padding:0 !important; } }';
 
   function buildTreeHTML(cur){
-    var out = '<div class="wf-tree-head">DRON · Wireframes</div>'
+    var out = '<a class="wf-back" href="../research.html"><span class="wf-back-arrow" aria-hidden="true">&larr;</span>Back to DRON</a>'
+            + '<div class="wf-tree-head">DRON · Wireframes</div>'
             + '<p class="wf-tree-note">Screen = success / base page. Indented = its states (only those real in _screens.md). Faint = planned, not built yet.</p>';
     for (var i=0;i<TREE.length;i++){
       var sec = TREE[i];
