@@ -87,6 +87,87 @@ Rule: **no principle without a line of data behind it.** Better three honest tha
 
 ---
 
+## Vocabulary — one concept, one word
+
+Every divergence flagged in `microcopy.md` (Step 01), resolved. **One word per concept, the same on every screen.** Terms are taken from the language of the personas and research — none invented. "Why" is written in the persona's own words, not office-speak.
+
+### Objects — what things are called
+
+| # | Concept | We say | Not | Why (in persona language) |
+|---|---|---|---|---|
+| O1 | the person who does the job | **operator** | ~~pilot~~ | C-1 is trusting a *person to be accountable*, not admiring flying skill: their trust triggers are the "operator photo", the "Verified operator" badge, "Operator terms" (`target-audience.md`, `jtbd.md`). *Pilot* is the competitor-generic word (`research.md` L-2). One name; see `P2`. |
+| O2 | operator's incoming work (before accepting) | **job** (a new one = **new job**) | ~~offer~~ | O-1's own words: *"I want jobs, not a second job finding jobs"* (`target-audience.md`); MJ-2 is *"a steady stream of pre-qualified jobs"* (`jtbd.md`). The operator thinks in *jobs*, never "offers". |
+| O3 | the work, per side | client side: **order** · operator side: **job** | mixing them | Two words, each bound to one persona, never crossed. C-1 has a Bolt/Glovo head — you place an *order* (`jtbd.md` MJ-1, RJ-C5 "book again"). O-1 does *jobs* (`target-audience.md`). Keep the split; kill the leak — a client screen never says "job", an operator screen never says "order". |
+| — | the client's list of past orders | **Activity** (the tab) holds **orders** (the items) | "Back to orders" as a destination | The section is named **Activity** in the nav; a back-button names the place by its nav label → **Back to Activity**, not "Back to orders" (fixes the `contact-support-error` leak, and A10). |
+| O4 | the client's complaint | **issue** | ~~problem~~, ~~went wrong~~ (as nouns) | CJM Stage 3 logs it as the *"issue/complaint"* (`jtbd.md` EJ-2). The client *reports an issue*. "Describe the problem" / "what went wrong" name the same thing three ways — collapse to **issue**. (The question prompt *"What happened?"* stays — it's a prompt, not a competing noun.) |
+| — | the contested case (operator side) | **dispute** | — | Deliberately distinct from *issue*, like order/job: the client *reports an issue* → when the operator's pay is held and they respond, that case is a **dispute** (`operator-dispute`). Two sides of one event, one word each. |
+| O5 | what the operator hands over | the concrete per-service name: **delivery photo** · **inspection report** · **photo/video set** | ~~result~~, ~~proof~~ (as object labels) | RJ-C4 says it plainly — *"a photo, a report, a confirmation"* (`jtbd.md`); C-2's deliverable *is* the "inspection report" (`target-audience.md`). Name the real thing on both client and operator screens. "Proof" survives only as plain reassurance in a sentence ("your parcel arrived — here's the photo"), never as a screen object. |
+| O6 | money moving | earnings landing in balance = **paid / payment** · balance → card/bank = **withdraw / withdrawal** | ~~cash out~~, ~~payout~~ | Two real money-moves, not synonyms. RJ-O3 is *"get paid… on its own"* (`jtbd.md`); CLAUDE.md says *"Withdraw (card instant / bank 1-3 days)"*. "Cash out" and "payout" are finance-slang O-1 doesn't use — replace "Minimum payout" → "Minimum withdrawal", "Payout method" → "Withdrawal method". |
+| O7 | entering the app | **Sign in** (with Diia / BankID) | ~~Sign up~~ | One Diia/BankID verification does both — `signin.html`: *"One verification lets you order… or take jobs."* Both personas **Sign in**. "Confirm your identity" is the plain description of what Diia does, not a second button. |
+| — | the operator's licence/insurance check | **Verification** | using it for sign-in | Reserved strictly for the document review (`operator-verification`) — a different thing from signing in (`jtbd.md` O-2 flow). Don't let "verify" drift onto the auth screen. |
+| O8 | who receives the delivery | **client** | ~~recipient~~ | Research has one researched actor — the **client** (C-1/C-2) — and no "recipient" persona. Default to *client* on operator screens too ("Confirm handover with the client"). Only introduce **recipient** if send-to-a-third-party becomes a real feature — not before (don't invent an actor the data doesn't have). |
+
+### Actions — what buttons are called
+
+| # | Action | We say | Not | Why (in persona language) |
+|---|---|---|---|---|
+| A1 | recover from an error | **Try again** (+ method if needed: "Try again with Diia") | ~~Refresh~~, ~~Retry~~ | Plain and human — the Bolt/Glovo word. One recovery verb everywhere; see `P5`. |
+| A2 | reach a person | **Contact support** | ~~Talk to a human~~, ~~Get help~~, ~~Contact human support~~, ~~Escalate~~ | EJ-2: the fear is *being abandoned* — one predictable label is the exit, always in the same place (`jtbd.md`). *(A phone-only action may say "Call support" — calling ≠ messaging.)* |
+| A3 | attach a file | **Add** + object: **Add photo / Add document / Add evidence** | ~~Upload~~, ~~Attach~~ | Apple HIG, mobile-native, shortest (`CLAUDE.md`). Same verb + the concrete object. |
+| A4 | open the catalogue to order | **Browse services** | ~~Start ordering~~, ~~Show services~~ | Says exactly where the tap lands — the Bolt/Glovo "browse then tap" model (C-1). *("Get started" is allowed only as the final onboarding button — a different moment: finish the intro.)* |
+| A5 | order the same thing again | **Book again** (free re-do = **Book again — free**) | ~~re-do~~, ~~re-book~~ | RJ-C5 / H-6 use it verbatim: the one-tap *"Book again"* shortcut (`jtbd.md`). |
+| A6 | open an order's detail | **View details** | ~~Delivery details~~ | One label for any order, not a per-service variant. |
+| A7 | operator goes to find work | **Find jobs** | ~~See available jobs~~ | O-1's word is *jobs* (`target-audience.md`). *(Distinct from **Go Available** — that toggles availability status, a different action, not "find work".)* |
+| A8 | ask to be told when a slot frees | **Notify me when available** | ~~Notify me when one is free~~ | Same request, one phrasing — the shorter. |
+| A9 | commit text/files | to the platform: **Submit** (report / review / response) · to a person: **Send** (Send invite, Send message) | crossing them | You *submit* to DRON; you *send* to a human. A real distinction, kept — not a synonym. |
+| A10 | go back to a section | **Back to {Section}** using its nav label (**Back to Activity / Back to Jobs**) | ~~Back to orders~~, mixed nouns | The button names the place by the same word that place is called in the nav (sitemap §7.1) — see O3. |
+
+### Form of address — fixed, every screen
+
+- **English (primary):** direct second person — **"you"**, always. Never third person ("the user"), never corporate ("customers should…"). *Why:* C-1 arrives from Bolt/Glovo, apps that talk *to you*, plainly — trust comes from a direct human register, not distance.
+- **Ukrainian (secondary):** informal singular — **«ти»**, the same on every screen; never «ви», never mixed. *Why:* it matches the Bolt/Glovo consumer register C-1 already lives in. *(Deliberate call: Diia itself uses formal «ви» — DRON does not follow it; we pick one register, «ти», and hold it everywhere.)*
+
+### Anglicisms — what's allowed in the Ukrainian copy
+
+- **Allowed** (users search and say these; no better native word): **дрон** (the actual search term — `research.md`: *"замовити дрон"*, OLX/Kabanchik *"дрон / квадрокоптер"*); brand & ID names **Diia, BankID, Apple Pay, Google Pay, Visa/Mastercard**; **онлайн**.
+- **Not allowed** (say it in Ukrainian): ~~кешаут / пейаут~~ → **вивести кошти / платіж**; ~~сабмітити~~ → **надіслати**; ~~трекати~~ → **відстежувати**; and never the hardware jargon of `P4` (~~UAV, БПЛА, payload, orthomosaic~~) in consumer copy — say **дрон**, **фото**, **звіт**.
+
+---
+
+## Don't use — never write this
+
+Each row: the pattern we ban, and a real fix. "Was" quotes come from our own `microcopy.md` **TONE** flags where we already slipped — this is the fix list, not a hypothetical one.
+
+### AI clichés (the reflex phrases)
+
+| Never write | Was → Should be |
+|---|---|
+| "Oops, something went wrong" / «Ой, щось пішло не так» | ~~"Oops! Something went wrong."~~ → **"Payment declined. Nothing was taken from your account. Try again or use another method."** (`P5`: name what happened + the money + the next step) |
+| "You're all set" (empty filler before the fact) | ~~"You're all set"~~ *(order-confirmed)* → **"Payment received. Your operator is on the way."** (the fact was already the next line — lead with it) |
+| "Welcome!" / "Congratulations!" / «Ласкаво просимо» / «Вітаємо!» | ~~"Welcome to DRON!"~~ → **"You order, a pro handles it."** (say what DRON does, not hello) |
+| chatty hedges — "let's sort it out", "no questions asked", "Hold on a moment" | ~~"…the job can't be paid — let's sort it out."~~ *(inspection-report-error)* → **"…the job can't be completed or paid. Contact support to resolve it."** |
+
+### Motivational / journey tone
+
+| Never write | Was → Should be |
+|---|---|
+| aspirational journey copy — "begin your journey to new possibilities" / «розпочни свій шлях до нової можливості» | ~~"Start your journey with DRON"~~ → **"Browse services"** / **"Order your first drone service."** (a plain CTA, not a mood) |
+| cheerleading — "Almost there!", "Keep going!" | ~~"Almost there / KEEP GOING"~~ *(wallet-empty)* → **"₴500 needed to withdraw. One more job reaches it."** (`P5`: the number, not a pep talk) |
+| filler headings — "The short version" | ~~"The short version"~~ *(onboarding-client-empty)* → **"How DRON works"** (or just show the three facts) |
+
+### Exclamations, emoji, and "successfully"
+
+| Never write | Was → Should be |
+|---|---|
+| exclamation marks in system / status / error copy | ~~"Payment failed!"~~ → **"Payment declined. Nothing was taken from your account."** |
+| emoji in system messages (a rating ★ is data, not emoji) | ~~"Order confirmed 🎉"~~ → **"Order confirmed. Your operator is on the way."** |
+| the word **"successfully"** / «успішно» | ~~"Payment completed successfully!"~~ → **"Payment received. ₴180 charged to Visa ···· 4921."** (a fact is proof; "successfully" adds nothing) |
+| "How was it?" and other cute prompts | ~~"How was it?"~~ *(rate)* → **"Rate this order."** |
+
+**One line to remember:** if a string cheers, hedges, or decorates, it is hiding the absence of a fact. Delete it and state the fact.
+
+---
+
 ## GEO & SEO — how this voice gets found
 
 The discipline that builds trust here — **specific facts, plain outcome words, one name per thing** — is the same discipline that makes DRON the result a search engine ranks and the answer an LLM quotes. Voice and findability are one problem, not two.
