@@ -88,12 +88,22 @@
 
   /* search & filters zone */
   .search-row{ display:flex; gap:8px; }
-  .field{ flex:1; min-width:0; height:44px; display:flex; align-items:center; gap:8px; padding:0 12px;
+  .field{ flex:1 1 auto; min-width:0; height:44px; display:flex; align-items:center; gap:8px; padding:0 12px;
     background:var(--wf-surface); border:1px solid var(--wf-border-2); border-radius:6px; }
   .field input{ flex:1; min-width:0; border:0; background:transparent; font:inherit; color:var(--wf-text); outline:none; }
   .field input::placeholder{ color:var(--wf-muted); }
-  .btn-filters{ flex:none; position:relative; }
-  .btn-filters .badge{ margin-left:6px; font-weight:700; }
+  /* Filters icon button (grayscale glyph placeholder — no real icon, per _conventions §8) */
+  .icon-btn{ flex:0 0 44px; width:44px; height:44px; padding:0; position:relative;
+    display:inline-flex; align-items:center; justify-content:center; border-radius:6px;
+    border:1px solid var(--wf-ink); background:var(--wf-ink); color:var(--wf-surface); cursor:pointer; text-decoration:none; }
+  .icon-btn:hover{ background:var(--wf-ink-max); }
+  .icon-btn:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  .ic-filter{ display:flex; flex-direction:column; align-items:center; gap:3px; width:20px; }
+  .ic-filter i{ height:2px; border-radius:1px; background:currentColor; }
+  .ic-filter i:nth-child(1){ width:20px; } .ic-filter i:nth-child(2){ width:13px; } .ic-filter i:nth-child(3){ width:7px; }
+  .count-badge{ position:absolute; top:-6px; right:-6px; min-width:18px; height:18px; padding:0 4px;
+    border-radius:999px; background:var(--wf-surface); color:var(--wf-ink); border:1px solid var(--wf-ink);
+    font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; }
 
   /* applied-filter chips (removable) */
   .applied{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
