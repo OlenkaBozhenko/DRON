@@ -97,7 +97,7 @@ Choose service → Enter details → See price → Pay → Track → Receive res
 
 ## Interface Languages
 
-Ukrainian (primary), English
+English (primary), Ukrainian (secondary)
 
 ---
 

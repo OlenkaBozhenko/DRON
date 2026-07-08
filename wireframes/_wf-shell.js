@@ -260,6 +260,20 @@
       applyLang(savedLang);
     }
 
+    /* back controls — make them work in the walkable prototype.
+       Many screens use <button class="back"> with no href (inert on click);
+       wire every .back to real history. When there is no history (a page opened
+       directly / deep-linked), an <a class="back" href> still follows its href. */
+    var backEls = document.querySelectorAll(".wf-frame .back");
+    for (var bi=0; bi<backEls.length; bi++){
+      (function(el){
+        if (el.tagName === "BUTTON") el.type = "button";
+        el.addEventListener("click", function(e){
+          if (window.history.length > 1){ e.preventDefault(); window.history.back(); }
+        });
+      })(backEls[bi]);
+    }
+
     /* keep the current node in view within the tree */
     var active = tree.querySelector("a.current") || tree.querySelector("a.in-current");
     if (active && active.scrollIntoView) active.scrollIntoView({ block: "center" });
