@@ -2,7 +2,7 @@
 
 _Every interface string across all 83 wireframe pages (`wireframes/*.html`), transcribed verbatim. This is step one — a faithful inventory. It becomes the **source of truth**: the table each product string is checked against._
 
-> Scope: text inside each page's `.wf-frame` (the actual screen). The `.meta` annotation panel and the JS-injected shell nav (`_wf-shell.js`) are excluded — they are wireframe scaffolding, not product copy.
+> Scope: text inside each page's `.wf-frame` (the actual screen). The `.meta` annotation panel and the JS-injected shell nav (`wireframes/_wf-shell.js`) are excluded — they are wireframe scaffolding, not product copy.
 
 > Language: English, per the project rule that all repo files are written in English (`CLAUDE.md` › Content Rules). The UI copy itself is already English.
 
@@ -14,7 +14,7 @@ _Every interface string across all 83 wireframe pages (`wireframes/*.html`), tra
 | _(blank)_ | Fixed UI copy — in scope for wording decisions. |
 | **USER** | Text an end-user writes (reviews, dispute claims, delivery notes, search query, operator bio). **We do not control or rewrite this.** |
 | **DATA** | Dynamic / sample values (operator & client names, avatars, addresses, prices, ETAs, dates, IDs, card numbers, referral link). Placeholder data, not fixed copy. |
-| **WF-PH** | Uppercase media / badge placeholder in a bordered box (`MAP`, `LICENCE`, `DELIVERY PHOTO`, `DONE`, `EMPTY`…). Intentional wireframe convention (`_conventions.md` §8), **not** leftover lorem. |
+| **WF-PH** | Uppercase media / badge placeholder in a bordered box (`MAP`, `LICENCE`, `DELIVERY PHOTO`, `DONE`, `EMPTY`…). Intentional wireframe convention (`wireframes/_conventions.md` §8), **not** leftover lorem. |
 | **O1–O8** | Same *thing* named differently across screens (see catalogue). |
 | **A1–A10** | Same *action* with different button labels (see catalogue). |
 | **TONE** | Cheery / conversational-AI phrasing to reconsider. |
