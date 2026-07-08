@@ -195,3 +195,26 @@ People do not search *"drone-as-a-service platform."* They search the **outcome 
 - **Anti-pattern (all engines):** the OLX keyword pile — *"зйомка з дрона, аерозйомка, квадрокоптер, відеозйомка, відео 4K"* — is penalized *and* breaks P4. Plain outcome phrasing wins on both trust and rank.
 
 **The convergence:** say the specific true thing, in plain words, once, and name it the same way everywhere. That single sentence is simultaneously the most trustworthy form and the most quotable one — which is the whole reason voice and GEO are the same job for DRON.
+
+---
+
+## Microcopy — rules by element type
+
+The last section. Rules for each kind of UI string, one real DRON example each. Every rule is checked against the **Principles** and the **Vocabulary** above — the "Checks" column names which. Screens and states referenced are the real ones in `wireframes/_screens.md`.
+
+| Element | Rule | DRON example | Checks |
+|---|---|---|---|
+| **Button** | An action verb whose result is visible in the label — never a bare noun; use the canonical verb from the Vocabulary. | `View details` — not `Details`. And `Pay ₴180` / `Withdraw ₴3,240` — the verb carries the exact outcome. | A1–A10 · P3 · P4 |
+| **Screen heading** | Name the place in the dictionary word for it, bound to the persona — the outcome, not the drone. | `Order confirmed` (client) · `New job` (operator) — not `Success!` or `Your drone is on its way`. | O1–O3 · P1 |
+| **Form field — label** | Says exactly *what* to enter, as a noun from the dictionary. | `Drop-off address` — not `Address 2`. | O-vocab · P4 |
+| **Form field — hint** | Says *how* — the format, by real example; never just repeats the label. | `e.g. UA-CAA-102938` (under *Licence number*) · `Floor, entrance code, what's inside…` (under *Notes for the operator*). | P4 |
+| **Form field — validation error** | Names *exactly what to fix* and how; states the fact, never blames the user. | `Outside the service zone. DRON delivers within Kyiv city — enter an address in the city.` — not `Invalid input`. | P5 · P3 · P4 |
+| **Empty state** | Say *why* it's empty (the fact), then the one action out. No pep talk. | `No orders yet. Your orders appear here, ready to re-book in a tap.` + button `Browse services`. | O3 · A4 · P5 · *Don't-use* |
+| **Error** | What happened + what it means for the user's money/state + the next action. No apology, no joke, no `!`. | `Payment declined. Nothing was taken from your account. Try again or use another method.` + `Try again`. | P5 · A1 · A2 · *Don't-use* |
+| **Loading** | Name the specific thing being fetched — never a bare "Loading…". | `Finding your operator…` — not `Loading…`. (`operator`, never `pilot`.) | O1 · P4 |
+| **Success** | Lead with the fact (the number/time), then the next step. No "successfully", no celebration, no emoji. Only the five real success screens earn one. | `Delivered. Your parcel arrived at 10:07.` + `Rate this order`. | P5 · *Don't-use* · `_screens.md` (success is deliberately few) |
+| **Dangerous action** | *Before* the tap, name the exact consequence and what cannot be undone, in plain words; the confirm button repeats the verb, never "OK/Yes". | `Decline this job? It goes to another operator and won't come back to you.` + `Decline` / `Keep job`. | O2 · P5 · *Don't-use* |
+
+**How to use the whole file.** Read the string's job → pick the element rule here → write it in the Vocabulary word → check it against the five Principles → make sure it isn't on the Don't-use list. If it cheers, hedges, or decorates, cut it and state the fact.
+
+**voice.md is complete.** From here, every product string — in `microcopy.md` and in the build — is written and checked against this file.
