@@ -218,6 +218,7 @@ Buttons: height `≥ 44px`, radius `6`, horizontal padding `16`, label at `15px/
 | Client onboarding | `onboarding-client.html` | `onboarding-client-empty.html` |
 | Operator onboarding | `onboarding-operator.html` | — |
 | Switch role (global) *(step 8)* | `switch-role.html` | — |
+| Account / profile | `account.html` | `account-edit.html` (edit settings — personal details, drone-document / insurance upload, save) |
 
 ### Client (MJ-1)
 | Screen | Base file | State pages |

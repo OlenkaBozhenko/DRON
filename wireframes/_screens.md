@@ -278,6 +278,7 @@ it. States below are each traced to a flow node. `—` = not produced.
 | # | Screen (`sitemap.md`) | Job | Flow position (`flows.md`) | States (real) | Files |
 |---|---|---|---|:---|---|
 | S1 | **Switch role (Client ⇄ Operator)** | `§7.4` global utility | *CHANGE PERSONA*: Account → confirm? → re-enter fork | base only (a confirm/decision screen; decline → back, confirm → fork) | `switch-role.html` |
+| S2 | **Account / profile** | `§7.4` identity &amp; preferences utility + MJ-2 credentials | Account tab (every tab bar) → Edit → save | base + **edit** sub-view (edit personal details, upload drone documents / insurance, save; no dead-end — Save / Cancel → Account) | `account.html`, `account-edit.html` |
 
 ### Client — Step 8
 
