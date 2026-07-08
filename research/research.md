@@ -224,3 +224,116 @@ See [`screens/`](screens/) for reference screenshots.
 | `zipline-home.png` | Zipline homepage |
 | `flytrex-home.png` | Flytrex homepage |
 | `dronedeploy-home.png` | DroneDeploy homepage |
+
+---
+
+## Competitor Language — how the market describes the service
+*(the «Мова конкурентів» section — verbatim listing/marketing copy, fetched July 2026)*
+
+**Why this section exists.** The competitive analysis above captured *what* competitors do; it did not capture the *words* they use to sell the service. This section records the literal copy — 13 competitor voices across the three verticals (delivery · aerial photo/video · inspection) and both markets (UA-local · international). Ukrainian phrases are given verbatim with an English gloss in brackets. The point is to find where **everyone sounds the same** — because a place where the whole field uses identical language is where DRON can differentiate through voice, not features. This section feeds `voice.md`.
+
+**Sources fetched (July 2026):** wing.com · zipline.com · manna.aero · dronedeploy.com · zeitview.com · dronegenuity.com · bark.com/en/gb/aerial-photography · kabanchik.ua/ua/kyiv/category/aeroziomka · olx.ua (aerial-photography listings) · abd-video.com. Flytrex, Nova Poshta and DroneUA copy is taken from the comparison table above (their sites were JS-gated on fetch).
+
+---
+
+### Delivery vertical
+
+**Wing** (wing.com) — *aspirational, spectacle-led*
+- "Delivery, elevated." · "The fastest way from point A to B."
+- "Wing delivers groceries, food, and more in as little as 30 minutes."
+- Steps: "Shop with our partners" → "Pick your delivery spot" → "Get drone delivery"
+- "real-time tracking down to the second"
+- Trust by number: "1M+ Commercial deliveries to homes" · "12+ Years of innovation, launched from the labs of Google" · "2 min 47 secs — Fastest delivery time"
+- CTA: "Get delivery"
+
+**Zipline** (zipline.com) — *spectacle-led, look-up-at-the-sky*
+- "Look up" · "The fastest way to get what you need. Delivered by drone."
+- "Your favorites, fresher" · "Medicine when it matters" · "Essentials, instantly"
+- "Hot stays hot. Cold stays cold. Everything arrives as it should."
+- "Reliable, predictable, and right where you need it. Every time."
+- Trust by number: "60K+ lives saved to date" · "86 SECS fastest delivery time" · "0 emissions per day"
+- CTA: "Try it now" · "Get delivery"
+
+**Manna** (manna.aero) — *playful, one-word claims*
+- "Get anything. From the sky. Seriously."
+- "Delivering medical equipment, food & more"
+- Single-word reassurances stacked as chips: "3 minute delivery" · "Cleaner air" · "Less traffic" · "Quiet" · "Regulated" · "Private"
+- CTA: "Learn more →" · "Explore →"
+
+**Flytrex** (from comparison table) — *regulatory proof*
+- "FAA-certified" · "200K+ deliveries" · "real-time drone map with zero delay"
+
+**Nova Poshta** (from comparison table) — *incumbent brand + tracking*
+- Leans on 30-year brand trust, physical branch network, proactive push notifications; the drone pilot is communicated as an extension of the existing parcel service, not a spectacle.
+
+---
+
+### Aerial photo / video vertical
+
+**Kabanchik** (kabanchik.ua/ua/kyiv/category/aeroziomka) — *UA marketplace, task-first*
+- "Аерозйомка в м. Київ" [Aerial photography in Kyiv] · "Необхідно зробити зйомку дроном?" [Need drone footage?]
+- Flow copy: "Створіть замовлення" [Create an order] → "Оберіть фахівця з кращою пропозицією" [Choose the specialist with the best offer] → "Отримайте послугу та лишіть відгук" [Get the service and leave a review]
+- Trust by number: "4.9" · "469 відгуків" [469 reviews] · "98% позитивних" [98% positive] · "Досвід роботи понад 15 років" [Over 15 years of experience] · "Зараз на сайті" [Currently online]
+- Price shown: "1290 грн / год" [1,290 UAH/hour]
+- CTA: "Запропонувати роботу" [Suggest a job] · "Створити замовлення" [Create an order]
+
+**OLX** (olx.ua, aerial-photography listings) — *UA classifieds, keyword pile + hardware*
+- Operator-written titles: "Якісна зйомка з дрона 4к аерозйомка" [Quality 4K drone filming, aerial photography] · "Фотограф. Відеозйомка. Аерозйомка." [Photographer. Video filming. Aerial photography.]
+- Keyword stacking as description: "зйомка з дрона, аерозйомка, квадрокоптер, відеозйомка, відео 4K" [drone filming, aerial photography, quadcopter, video filming, 4K video]
+- Hardware as credential: "Професійна аерозйомка та тепловізійне обстеження DJI Mavic 3T" [Professional aerial photography and thermal-imaging inspection, DJI Mavic 3T]
+- Price: "3 000 грн. Договірна" [3,000 UAH, negotiable] · "1 400 грн." [1,400 UAH]
+
+**ABD Video** (abd-video.com) — *UA studio, quote-gated, tech-forward*
+- "Замовити якісну аерозйомку у Києві" [Order quality aerial filming in Kyiv]
+- "професійна Аерозйомка… стає потужним інструментом для демонстрації об'єктів і подій із унікальної перспективи" [professional aerial filming… becomes a powerful tool for showing objects and events from a unique perspective]
+- "сучасні безпілотні платформи з камерами 4K і 6K" [modern unmanned platforms with 4K and 6K cameras]
+- Price hidden: "Вартість роботи залежить від кількості людей, які працюють над вашим проектом, рівня їх кваліфікації та кількості годин" [Cost depends on the number of people on your project, their qualification level and the hours]
+- Safety as legalese: "організовуємо детальні погодження польотів із відповідними органами, гарантувавши безпеку та законність" [we arrange detailed flight approvals with the relevant authorities, guaranteeing the safety and legality of the process]
+- "страхування обладнання мінімізує ваші ризики" [equipment insurance minimizes your risks] — note: *equipment* insurance, not client-liability
+- CTA: "зателефонуйте за номером…" [call this number…]
+
+**Dronegenuity** (dronegenuity.com) — *US network, "vetted pilots", quote-gated*
+- "NATIONWIDE DRONE SERVICES — SIMPLE, CONVENIENT, & COMPLETELY CUSTOM AERIAL DRONE PHOTOGRAPHY"
+- Vague qualification: "The certified pilots in our nationwide network have the skills & training required" · "vetted and experienced professional drone pilots" · "vetted and proven"
+- Service names in jargon: "Orthomosaics & Aerial Survey" · "Data Capture & Analysis"
+- Price hidden: "Custom" · CTA "Get a Quote" · "Get Started"
+
+**Bark** (bark.com, UK aerial-photography) — *listing platform, quote-first*
+- "Find Aerial Photographers near me" · "Tell us what you need"
+- "Civil Aviation Authority (CAA) certified and experienced drone pilots" · "state-of-the-art drones equipped with 4K cameras"
+- Trust by number: "4.92/5.00 based on 65,752 reviews" · "Fast Turnaround: We deliver edited, high-resolution images"
+- CTA: "Get quotes from Aerial Photographers near you"
+
+---
+
+### Inspection / mapping vertical
+
+**DroneDeploy** (dronedeploy.com) — *enterprise, AI/robotics jargon*
+- "Visual AI and robotics across all your sites" · "See and measure your sites from every angle with 360 cameras, robots and drones"
+- Results: "instant visual defect detection for issues like rust, leaks" · "automated safety risk identification"
+- Trust by number + logos: "Used on 3 million sites in 180 countries" (marquee clients: Turner, BP, Rio Tinto, Skanska…)
+- CTA: "Book a demo" · "Start a trial"
+
+**Zeitview** (zeitview.com, formerly DroneBase) — *enterprise, asset-intelligence jargon*
+- "Get the Right View with Zeitview" · "AI-powered asset intelligence & visualization solutions for critical infrastructure"
+- "View the true state of your assets… with detailed inspection imagery and analytics" · "View 3D twins"
+- Trust by client logo: CBRE, Vestas, EDF Renewables, Siemens Gamesa, Duke Energy
+- CTA: "Schedule a Demo" · "Get a Demo"
+
+**DroneUA** (from comparison table) — *UA B2B, certification + military track record*; technical credibility, project-based contracts, no consumer self-serve booking.
+
+---
+
+### Where everyone sounds the same — and DRON's opening
+
+Five moves recur across almost every competitor, in both markets. Each shared move is a gap DRON can own through voice (developed as principles in `voice.md`):
+
+| # | The move the whole field makes | Verbatim tells | DRON's counter through voice |
+|---|---|---|---|
+| L-1 | **Spotlight the drone as spectacle** | Wing "Delivery, elevated"; Zipline "Look up"; Manna "From the sky. Seriously." | Name the *outcome*, keep the drone boring — the drone is the anxiety source (Finding 3), not the selling point |
+| L-2 | **Qualification as an adjective** | "vetted and proven", "certified and experienced pilots", "professional aerial filming" — none show the actual licence/insurance | Show the specific, checkable proof (name · licence · insured · job count); never the word "professional" |
+| L-3 | **Price behind a quote** | "Get a Quote", "Custom", "Договірна" [negotiable], "Вартість залежить від…" [cost depends on…], "зателефонуйте" [call us] | State the full price as a locked fact, before the tap, no "from/quote/plus fees" |
+| L-4 | **Hardware & industry jargon to non-technical buyers** | "unmanned platforms with 4K/6K cameras", "DJI Mavic 3T", "orthomosaics", "3D twins", "тепловізійне обстеження" | Speak the job in the user's words ("roof inspection", "aerial photo"), never the equipment |
+| L-5 | **Numbers do the trust work** (the one good shared habit) | "1M+ deliveries", "60K+ lives saved", "3M sites / 180 countries", "469 відгуків / 98% позитивних", "4.92/5.00 · 65,752 reviews" | Keep this: prefer concrete numbers/specifics over adjectives — it is the field's one honest instinct and it doubles as GEO fuel |
+
+**Read:** L-1 through L-4 are where the market is uniform and weak — DRON differentiates by *not* doing them. L-5 is the one habit worth copying: the market has already trained users (and the LLMs that now answer their questions) that a number is more credible than an adjective.
