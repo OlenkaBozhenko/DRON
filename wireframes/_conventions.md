@@ -288,7 +288,10 @@ every page (grayscale, §4):
 - a **top toolbar** with the mobile / tablet / desktop viewport switcher and a **"Hide annotations"**
   toggle (hides the `.meta` doc panel + `.zlabel` zone labels on every page; choice persists via `localStorage`);
 - a **"Back to DRON"** button at the top of the tree — links to `../research.html`, the project's main/landing
-  page. This is the single exit from the wireframe prototype back to the project hub.
+  page. This is the single exit from the wireframe prototype back to the project hub;
+- a **language switcher** (`EN` / `UA`) injected into the top-right of each screen's `header.topbar` (opposite
+  the logo). **English is primary/default; Ukrainian is secondary.** The choice persists via `localStorage`.
+  The switcher proves the control's presence and placement only — page copy stays English per §9.
 
 The shell is prototype chrome, **not** page content — it is the one exception to "HTML is display-only" and lives
 in JS by design. Edit the shell in `_wf-shell.js` alone; do not hand-add nav, the switcher, or the back button to

@@ -121,6 +121,15 @@
     + '.wf-anno.on{ background:#111111; color:#FFFFFF; border-color:#111111; }'
     + '.wf-anno:focus-visible{ outline:2px solid rgba(0,0,0,0.15); outline-offset:2px; }'
     + 'body.wf-hide-anno .meta, body.wf-hide-anno .zlabel{ display:none !important; }'
+    /* language switcher — injected into the top-right of every screen's topbar */
+    + '.wf-frame header.topbar .wf-lang{ display:inline-flex; flex:none; margin-left:auto;'
+    + '  border:1px solid rgba(0,0,0,0.15); border-radius:6px; overflow:hidden; }'
+    + '.wf-frame header.topbar .wf-lang button{ height:28px; padding:0 10px; border:0;'
+    + '  border-right:1px solid rgba(0,0,0,0.09); background:#FFFFFF; font:inherit; font-size:12px;'
+    + '  font-weight:600; letter-spacing:.04em; color:#5A5A5A; cursor:pointer; }'
+    + '.wf-frame header.topbar .wf-lang button:last-child{ border-right:0; }'
+    + '.wf-frame header.topbar .wf-lang button.on{ background:#111111; color:#FFFFFF; }'
+    + '.wf-frame header.topbar .wf-lang button:focus-visible{ outline:2px solid rgba(0,0,0,0.15); outline-offset:-2px; }'
     + '@media print{ .wf-tree,.wf-toolbar{ display:none; } .wf-shelled{ padding:0 !important; } }';
 
   function buildTreeHTML(cur){
@@ -220,6 +229,36 @@
     var savedAnno = "0";
     try { savedAnno = localStorage.getItem("wf-hide-anno") || "0"; } catch(e){}
     applyAnno(savedAnno === "1");
+
+    /* language switcher — inject into the top-right of the screen's topbar (opposite the logo).
+       English is primary (default), Ukrainian is secondary. Copy itself stays English
+       (wireframe convention §9); the control proves presence + placement. */
+    var topbar = document.querySelector(".wf-frame header.topbar");
+    if (topbar){
+      var lang = document.createElement("div");
+      lang.className = "wf-lang";
+      lang.setAttribute("role", "group");
+      lang.setAttribute("aria-label", "Language");
+      lang.innerHTML = '<button type="button" data-lang="en">EN</button>'
+                     + '<button type="button" data-lang="ua">UA</button>';
+      topbar.appendChild(lang);
+      var langBtns = lang.querySelectorAll("button");
+      function applyLang(code){
+        if (code !== "en" && code !== "ua") code = "en";
+        for (var i=0;i<langBtns.length;i++){
+          var on = langBtns[i].getAttribute("data-lang") === code;
+          langBtns[i].classList.toggle("on", on);
+          langBtns[i].setAttribute("aria-pressed", on ? "true" : "false");
+        }
+        try { localStorage.setItem("wf-lang", code); } catch(e){}
+      }
+      for (var i=0;i<langBtns.length;i++){
+        (function(b){ b.addEventListener("click", function(){ applyLang(b.getAttribute("data-lang")); }); })(langBtns[i]);
+      }
+      var savedLang = "en";
+      try { savedLang = localStorage.getItem("wf-lang") || "en"; } catch(e){}
+      applyLang(savedLang);
+    }
 
     /* keep the current node in view within the tree */
     var active = tree.querySelector("a.current") || tree.querySelector("a.in-current");
