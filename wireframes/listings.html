@@ -92,10 +92,12 @@
 
   /* search & filters zone */
   .search-row{ display:flex; gap:8px; }
-  .field{ flex:1; height:44px; display:flex; align-items:center; gap:8px; padding:0 12px;
+  .field{ flex:1; min-width:0; height:44px; display:flex; align-items:center; gap:8px; padding:0 12px;
     background:var(--wf-surface); border:1px solid var(--wf-border-2); border-radius:6px; }
-  .field input{ flex:1; border:0; background:transparent; font:inherit; color:var(--wf-text); outline:none; }
+  .field input{ flex:1; min-width:0; border:0; background:transparent; font:inherit; color:var(--wf-text); outline:none; }
   .field input::placeholder{ color:var(--wf-muted); }
+  .btn-filters{ flex:none; }
+  .btn-filters .badge{ margin-left:6px; font-weight:700; }
 
   /* counter zone */
   .counter{ display:flex; align-items:center; justify-content:space-between; }
