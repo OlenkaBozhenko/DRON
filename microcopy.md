@@ -7,6 +7,33 @@ _Every interface string across all 83 wireframe pages (`wireframes/*.html`), tra
 > Language: English, per the project rule that all repo files are written in English (`CLAUDE.md` › Content Rules). The UI copy itself is already English.
 
 
+## Rewrite log — Batch 1: listings (base · empty · error · loading)
+
+First screens rewritten against `voice.md` (Step 02). **Text only — structure and markup unchanged.** Base `listings.html` was already voice-compliant, so its strings are kept. User content and wireframe placeholders are left as-is. The master table below still shows the pre-rewrite strings; it will be regenerated across all screens once this approach is approved.
+
+**Changed**
+
+| Screen | Zone | Type | Before | After | Why (voice.md) |
+|---|---|---|---|---|---|
+| listings-empty | Counter | State message | Nothing found | 0 services | Microcopy › empty: state the fact; mirrors base "3 services" |
+| listings-empty | Service list | State message (title) | Nothing found | No services match your search | Microcopy › empty: say *why* it's empty |
+| listings-empty | Service list | State message (body) | No services match “crop spraying” and your current filters. Clear the filters or change your search. | No services match “crop spraying” with your filters. Clear the filters or search again. | Tightened; leads straight to the action (query echo kept — it's the user's input) |
+| listings-error | Counter | State message | List unavailable | Couldn't load | Plain status |
+| listings-error | Service list | State message (title) | Couldn't load the list | Couldn't load services | Dictionary word *services*, not "the list"; Microcopy › error: what happened |
+| listings-error | Service list | State message (body) | No connection to the server. Check your internet and try again. | No internet connection. Check it and try again. | P4 plain (drop "server"); Microcopy › error: what to do |
+| listings-error | Service list | Button | Help | Contact support | Vocabulary **A2** — one label to reach a human |
+| listings-loading | Counter | State message | Loading… | Loading services… | Microcopy › loading: name what's loading, never a bare "Loading…" |
+| listings-loading | Service list | Button | Show services | Browse services | Vocabulary **A4** — retire "Show services" |
+
+**Kept deliberately (before = after)**
+- **`listings.html` (base) — all strings:** service cards (*Package delivery* / "Parcels, documents, small goods — across the city", *Aerial photo & video*, *Inspection*), counter *3 services available now · Kyiv*, *Sort: Recommended*, category chips (*All / Delivery / Aerial photo & video / Inspection*), footer nav (*Order · Activity · Help · Account*), search hint *Search services*. Already compliant — plain outcome words (P4), canonical nav, facts only.
+- **`crop spraying`** (empty-state search value) — **USER** content, never rewritten.
+- **`EMPTY` / `ERROR` / `LOGO`** badges — **WF-PH** wireframe placeholders, not product copy.
+- **`Try again`** (error), **`Clear filters`** / **`Notify me when available`** (empty) — already canonical (A1, A8).
+- **Footer `Help` tab** — kept: it is the global-nav *section* name (Order · Activity · **Help** · Account), a different thing from the *action* "Contact support" (which is why the error button changed but the tab did not).
+
+---
+
 ## How to read the Flag column
 
 | Flag | Meaning |
