@@ -287,11 +287,19 @@ A page is done when **all** hold:
 Every page links one shared shell script (`<script src="_wf-shell.js"></script>`). It injects, identically on
 every page (grayscale, §4):
 
-- a **left screen-map tree** (section → screen → its real states, built 1:1 from `_screens.md` and the §12 map);
-- a **top toolbar** with the mobile / tablet / desktop viewport switcher and a **"Hide annotations"**
-  toggle (hides the `.meta` doc panel + `.zlabel` zone labels on every page; choice persists via `localStorage`);
-- a **"Back to DRON"** button at the top of the tree — links to `../research.html`, the project's main/landing
-  page. This is the single exit from the wireframe prototype back to the project hub;
+- a **left screen-map tree** (section → screen → its real states, built 1:1 from `_screens.md` and the §12 map).
+  On desktop it is **pinned open** beside the frame; on narrow / mobile widths (`≤ 899px`) it **collapses into
+  the header burger** and slides in over a scrim (tap the scrim, the burger again, or `Esc` to close);
+- a **fixed top header** carrying, left → right: **three icon buttons** — **Back to DRON**, an **annotations
+  toggle**, and **Tone of voice** — then the current screen name, the mobile / tablet / desktop viewport
+  switcher (hidden on mobile — you are already at mobile), and the **burger / screen-map** button on the right.
+  The header icons are grayscale line glyphs (tool chrome only, not part of the §8 no-icons deliverable rule);
+- the **Back to DRON** icon button (filled black, top-left) links to `../research.html`, the project's
+  main/landing page — the single exit from the wireframe prototype back to the project hub;
+- the **annotations** icon button hides the `.meta` doc panel + `.zlabel` zone labels on every page and flips to
+  the filled state; choice persists via `localStorage` (`wf-hide-anno`, default = shown);
+- the **Tone of voice** icon button is a **placeholder** for the forthcoming voice page (`voice.md` → a rendered
+  page); kept inert for now so the prototype never dead-ends on a 404;
 - a **language switcher** (`EN` / `UA`) injected into the top-right of each screen's `header.topbar` (opposite
   the logo). **English is primary/default; Ukrainian is secondary.** The choice persists via `localStorage`.
   The switcher proves the control's presence and placement only — page copy stays English per §9.

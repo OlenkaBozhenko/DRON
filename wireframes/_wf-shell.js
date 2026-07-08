@@ -1,7 +1,12 @@
 /* ─────────────────────────────────────────────────────────────────────────
-   DRON wireframes — shared shell (nav tree + viewport switcher)
+   DRON wireframes — shared shell (nav tree + fixed header + viewport switcher)
    One source, included on every wireframe page:  <script src="_wf-shell.js"></script>
+   • Fixed top HEADER on every size: burger (opens the screen map) + current
+     screen name + preview switcher (desktop) + icon buttons.
+   • Header icon buttons: Back to DRON · annotations toggle · Tone of voice.
    • Left panel = a TREE: section → screen → its real states, indented.
+     Pinned open on desktop; on mobile it collapses into the burger and slides
+     in over a scrim (the preview switcher is hidden there — you're already mobile).
    • Structure is taken 1:1 from wireframes/_screens.md (state matrix) and the
      naming map in _conventions.md §12 — nothing invented.
    • Grayscale only, no colour. Current page is detected + marked automatically,
@@ -69,6 +74,14 @@
   /* Viewport presets for the preview switcher. */
   var SIZES = { mobile: [375, 812], tablet: [768, 1024], desktop: [1280, 800] };
 
+  /* Header icon glyphs — grayscale line icons (currentColor), tool chrome only. */
+  var IC = {
+    burger: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
+    back:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5l-7 7 7 7"/><path d="M4 12h15"/></svg>',
+    notes:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>',
+    voice:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg>'
+  };
+
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
   function currentFile(){
@@ -78,17 +91,48 @@
 
   /* ── styles (grayscale, from _conventions.md §4) ── */
   var CSS = ''
+    /* content offset: fixed top bar (all sizes) + pinned tree (desktop) */
     + '.wf-shelled{ padding:52px 24px 24px 272px !important; }'
     + '.wf-shelled .wf-frame{ order:-1; }'  /* frame sits right next to the tree, meta after */
-    + '.wf-tree{ position:fixed; top:0; left:0; bottom:0; width:248px; z-index:50; overflow-y:auto;'
+
+    /* ── fixed top header (full width, above everything) ── */
+    + '.wf-toolbar{ position:fixed; top:0; left:0; right:0; height:52px; z-index:60; display:flex; align-items:center; gap:10px;'
+    + '  padding:0 14px; background:#F4F4F4; border-bottom:1px solid rgba(0,0,0,0.12);'
+    + '  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,sans-serif; }'
+    + '.wf-burger{ display:none; width:36px; height:36px; flex:none; align-items:center; justify-content:center;'
+    + '  border:1px solid rgba(0,0,0,0.15); border-radius:8px; background:#FFFFFF; color:#252525; cursor:pointer; padding:0; }'
+    + '.wf-burger:hover{ background:#EEEEEE; }'
+    + '.wf-burger:focus-visible{ outline:2px solid rgba(0,0,0,0.2); outline-offset:2px; }'
+    + '.wf-burger svg{ width:20px; height:20px; display:block; }'
+    + '.wf-tb-cur{ font-size:13px; color:#252525; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }'
+    + '.wf-right{ margin-left:auto; display:flex; align-items:center; gap:10px; }'
+    + '.wf-tb-title{ font-size:11px; font-weight:600; letter-spacing:.10em; text-transform:uppercase; color:#909090; }'
+    + '.wf-seg{ display:flex; border:1px solid rgba(0,0,0,0.15); border-radius:6px; overflow:hidden; }'
+    + '.wf-seg button{ height:32px; padding:0 14px; border:0; border-right:1px solid rgba(0,0,0,0.09); background:#FFFFFF;'
+    + '  font:inherit; font-size:13px; font-weight:600; color:#5A5A5A; cursor:pointer; }'
+    + '.wf-seg button:last-child{ border-right:0; }'
+    + '.wf-seg button.on{ background:#111111; color:#FFFFFF; }'
+    + '.wf-seg button:focus-visible{ outline:2px solid rgba(0,0,0,0.15); outline-offset:-2px; }'
+    + '.wf-dim{ font-size:13px; color:#5A5A5A; font-variant-numeric:tabular-nums; }'
+
+    /* ── header icon buttons: Back to DRON · annotations · tone of voice ── */
+    + '.wf-actions{ display:flex; align-items:center; gap:8px; }'
+    + '.wf-ico{ width:36px; height:36px; flex:none; display:inline-flex; align-items:center; justify-content:center;'
+    + '  border:1px solid rgba(0,0,0,0.15); border-radius:8px; background:#FFFFFF; color:#252525; cursor:pointer;'
+    + '  padding:0; text-decoration:none; }'
+    + '.wf-ico svg{ width:18px; height:18px; display:block; }'
+    + '.wf-ico:hover{ background:#EEEEEE; }'
+    + '.wf-ico:focus-visible{ outline:2px solid rgba(0,0,0,0.2); outline-offset:2px; }'
+    + '.wf-ico-back{ background:#111111; border-color:#111111; color:#FFFFFF; }'
+    + '.wf-ico-back:hover{ background:#252525; }'
+    + '.wf-anno.on{ background:#111111; border-color:#111111; color:#FFFFFF; }'
+    + '.wf-voice[aria-disabled="true"]{ opacity:.45; cursor:not-allowed; }'
+
+    /* ── left tree (pinned on desktop, drawer on mobile) ── */
+    + '.wf-tree{ position:fixed; top:52px; left:0; bottom:0; width:248px; z-index:55; overflow-y:auto;'
     + '  background:#FFFFFF; border-right:1px solid rgba(0,0,0,0.12); padding:10px 10px 24px;'
     + '  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }'
-    + '.wf-tree a.wf-back{ position:sticky; top:8px; z-index:51; display:flex; align-items:center;'
-    + '  height:38px; margin:0 0 14px; padding:0 12px; border-radius:8px; text-decoration:none;'
-    + '  background:#111111; color:#FFFFFF; font-size:12px; font-weight:600; letter-spacing:.04em; }'
-    + '.wf-tree a.wf-back:hover{ background:#252525; }'
-    + '.wf-back .wf-back-arrow{ margin-right:8px; color:rgba(255,255,255,0.6); }'
-    + '.wf-tree-head{ font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#111111; padding:0 8px 2px; }'
+    + '.wf-tree-head{ font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#111111; padding:4px 8px 2px; }'
     + '.wf-tree-note{ font-size:11px; color:#909090; padding:0 8px 12px; line-height:1.5; }'
     + '.wf-sec{ font-size:11px; font-weight:600; letter-spacing:.10em; text-transform:uppercase; color:#909090; padding:14px 8px 4px; }'
     + '.wf-tree a{ display:block; text-decoration:none; border-radius:6px; color:#5A5A5A; }'
@@ -103,24 +147,13 @@
     + '.wf-tree a.current{ background:#E2E2E2; color:#111111; box-shadow:inset 2px 0 0 #111111; }'
     + '.wf-tree a.current .wf-dot{ background:#111111; }'
     + '.wf-tree a.in-current{ box-shadow:inset 2px 0 0 rgba(0,0,0,0.25); }'
-    + '.wf-toolbar{ position:fixed; top:0; left:248px; right:0; height:52px; z-index:40; display:flex; align-items:center; gap:12px;'
-    + '  padding:0 20px; background:#F4F4F4; border-bottom:1px solid rgba(0,0,0,0.12);'
-    + '  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,sans-serif; }'
-    + '.wf-tb-title{ font-size:11px; font-weight:600; letter-spacing:.10em; text-transform:uppercase; color:#909090; }'
-    + '.wf-seg{ display:flex; border:1px solid rgba(0,0,0,0.15); border-radius:6px; overflow:hidden; }'
-    + '.wf-seg button{ height:32px; padding:0 14px; border:0; border-right:1px solid rgba(0,0,0,0.09); background:#FFFFFF;'
-    + '  font:inherit; font-size:13px; font-weight:600; color:#5A5A5A; cursor:pointer; }'
-    + '.wf-seg button:last-child{ border-right:0; }'
-    + '.wf-seg button.on{ background:#111111; color:#FFFFFF; }'
-    + '.wf-seg button:focus-visible{ outline:2px solid rgba(0,0,0,0.15); outline-offset:-2px; }'
-    + '.wf-dim{ font-size:13px; color:#5A5A5A; font-variant-numeric:tabular-nums; }'
-    + '.wf-tb-cur{ margin-left:auto; font-size:13px; color:#252525; font-weight:600; }'
-    + '.wf-anno{ height:32px; padding:0 14px; border:1px solid rgba(0,0,0,0.15); border-radius:6px;'
-    + '  background:#FFFFFF; font:inherit; font-size:13px; font-weight:600; color:#5A5A5A; cursor:pointer; }'
-    + '.wf-anno:hover{ background:#EEEEEE; }'
-    + '.wf-anno.on{ background:#111111; color:#FFFFFF; border-color:#111111; }'
-    + '.wf-anno:focus-visible{ outline:2px solid rgba(0,0,0,0.15); outline-offset:2px; }'
+
+    /* scrim behind the mobile drawer (hidden until narrow + open) */
+    + '.wf-scrim{ display:none; }'
+
+    /* annotations hidden state — hides the .meta panel + .zlabel zone labels everywhere */
     + 'body.wf-hide-anno .meta, body.wf-hide-anno .zlabel{ display:none !important; }'
+
     /* language switcher — injected into the top-right of every screen's topbar */
     + '.wf-frame header.topbar .wf-lang{ display:inline-flex; flex:none; margin-left:auto;'
     + '  border:1px solid rgba(0,0,0,0.15); border-radius:6px; overflow:hidden; }'
@@ -130,11 +163,24 @@
     + '.wf-frame header.topbar .wf-lang button:last-child{ border-right:0; }'
     + '.wf-frame header.topbar .wf-lang button.on{ background:#111111; color:#FFFFFF; }'
     + '.wf-frame header.topbar .wf-lang button:focus-visible{ outline:2px solid rgba(0,0,0,0.15); outline-offset:-2px; }'
-    + '@media print{ .wf-tree,.wf-toolbar{ display:none; } .wf-shelled{ padding:0 !important; } }';
+
+    /* ── mobile / narrow: collapse the tree into the burger drawer ── */
+    + '@media (max-width:899px){'
+    + '  .wf-shelled{ padding:52px 12px 24px 12px !important; }'
+    + '  .wf-frame{ width:375px !important; max-width:100%; margin:0 auto; }'
+    + '  .wf-burger{ display:inline-flex; }'
+    + '  .wf-tb-title, .wf-seg, .wf-dim{ display:none; }'
+    + '  .wf-tb-cur{ max-width:38vw; }'
+    + '  .wf-tree{ transform:translateX(-100%); transition:transform .22s ease; width:min(84vw,300px); }'
+    + '  body.wf-nav-open .wf-tree{ transform:translateX(0); box-shadow:2px 0 20px rgba(0,0,0,0.20); }'
+    + '  .wf-scrim{ display:block; position:fixed; inset:52px 0 0 0; z-index:54; background:rgba(0,0,0,0.34);'
+    + '    opacity:0; pointer-events:none; transition:opacity .22s ease; }'
+    + '  body.wf-nav-open .wf-scrim{ opacity:1; pointer-events:auto; }'
+    + '}'
+    + '@media print{ .wf-tree,.wf-toolbar,.wf-scrim{ display:none; } .wf-shelled{ padding:0 !important; } }';
 
   function buildTreeHTML(cur){
-    var out = '<a class="wf-back" href="../research.html"><span class="wf-back-arrow" aria-hidden="true">&larr;</span>Back to DRON</a>'
-            + '<div class="wf-tree-head">DRON · Wireframes</div>'
+    var out = '<div class="wf-tree-head">DRON · Wireframes</div>'
             + '<p class="wf-tree-note">Screen = success / base page. Indented = its states (only those real in _screens.md). Faint = planned, not built yet.</p>';
     for (var i=0;i<TREE.length;i++){
       var sec = TREE[i];
@@ -174,26 +220,40 @@
     style.textContent = CSS;
     document.head.appendChild(style);
 
-    /* left tree */
+    /* left tree (screen map) */
     var tree = document.createElement("nav");
     tree.className = "wf-tree";
-    tree.setAttribute("aria-label", "Wireframe map");
+    tree.id = "wf-tree";
+    tree.setAttribute("aria-label", "Wireframe screen map");
     tree.innerHTML = buildTreeHTML(cur);
     document.body.appendChild(tree);
 
-    /* top toolbar — viewport switcher */
+    /* scrim behind the mobile drawer */
+    var scrim = document.createElement("div");
+    scrim.className = "wf-scrim";
+    scrim.setAttribute("aria-hidden", "true");
+    document.body.appendChild(scrim);
+
+    /* fixed top header — burger · current screen · preview switcher · icon buttons */
     var bar = document.createElement("div");
     bar.className = "wf-toolbar";
     bar.innerHTML =
-        '<span class="wf-tb-title">Preview</span>'
-      + '<div class="wf-seg" role="group" aria-label="Preview size">'
-      + '  <button type="button" data-size="mobile">Mobile</button>'
-      + '  <button type="button" data-size="tablet">Tablet</button>'
-      + '  <button type="button" data-size="desktop">Desktop</button>'
+        '<div class="wf-actions">'
+      + '  <a class="wf-ico wf-ico-back" href="../research.html" title="Back to DRON" aria-label="Back to DRON">'+IC.back+'</a>'
+      + '  <button type="button" class="wf-ico wf-anno" aria-pressed="false" title="Hide annotations" aria-label="Hide annotations">'+IC.notes+'</button>'
+      + '  <button type="button" class="wf-ico wf-voice" aria-disabled="true" title="Tone of voice — coming soon" aria-label="Tone of voice — coming soon">'+IC.voice+'</button>'
       + '</div>'
-      + '<span class="wf-dim" aria-live="polite"></span>'
-      + '<button type="button" class="wf-anno" aria-pressed="false">Hide annotations</button>'
-      + '<span class="wf-tb-cur">'+esc(currentName(cur))+'</span>';
+      + '<span class="wf-tb-cur">'+esc(currentName(cur))+'</span>'
+      + '<div class="wf-right">'
+      + '  <span class="wf-tb-title">Preview</span>'
+      + '  <div class="wf-seg" role="group" aria-label="Preview size">'
+      + '    <button type="button" data-size="mobile">Mobile</button>'
+      + '    <button type="button" data-size="tablet">Tablet</button>'
+      + '    <button type="button" data-size="desktop">Desktop</button>'
+      + '  </div>'
+      + '  <span class="wf-dim" aria-live="polite"></span>'
+      + '  <button type="button" class="wf-burger" aria-label="Screen map" aria-controls="wf-tree" aria-expanded="false">'+IC.burger+'</button>'
+      + '</div>';
     document.body.appendChild(bar);
     document.body.classList.add("wf-shelled");
 
@@ -201,6 +261,18 @@
     var dim = bar.querySelector(".wf-dim");
     var btns = bar.querySelectorAll(".wf-seg button");
 
+    /* burger drawer (mobile): open/close the screen map over a scrim */
+    var burger = bar.querySelector(".wf-burger");
+    function setNav(open){
+      document.body.classList.toggle("wf-nav-open", open);
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    burger.addEventListener("click", function(){ setNav(!document.body.classList.contains("wf-nav-open")); });
+    scrim.addEventListener("click", function(){ setNav(false); });
+    tree.addEventListener("click", function(e){ if (e.target.closest && e.target.closest("a")) setNav(false); });
+    document.addEventListener("keydown", function(e){ if (e.key === "Escape") setNav(false); });
+
+    /* preview viewport switcher (desktop) */
     function apply(key){
       if (!SIZES[key]) key = "mobile";
       var w = SIZES[key][0], h = SIZES[key][1];
@@ -216,19 +288,26 @@
     try { saved = localStorage.getItem("wf-viewport") || "mobile"; } catch(e){}
     apply(saved);
 
-    /* annotations toggle — hides .meta panel + .zlabel zone labels on every page */
+    /* annotations toggle (icon button) — hides .meta panel + .zlabel zone labels on every page */
     var anno = bar.querySelector(".wf-anno");
     function applyAnno(hide){
       document.body.classList.toggle("wf-hide-anno", hide);
       anno.classList.toggle("on", hide);
       anno.setAttribute("aria-pressed", hide ? "true" : "false");
-      anno.textContent = hide ? "Show annotations" : "Hide annotations";
+      var label = hide ? "Show annotations" : "Hide annotations";
+      anno.setAttribute("title", label);
+      anno.setAttribute("aria-label", label);
       try { localStorage.setItem("wf-hide-anno", hide ? "1" : "0"); } catch(e){}
     }
     anno.addEventListener("click", function(){ applyAnno(!document.body.classList.contains("wf-hide-anno")); });
     var savedAnno = "0";
     try { savedAnno = localStorage.getItem("wf-hide-anno") || "0"; } catch(e){}
     applyAnno(savedAnno === "1");
+
+    /* tone of voice (icon button) — placeholder; the voice page is added later.
+       Kept inert so the prototype never dead-ends on a 404. */
+    var voice = bar.querySelector(".wf-voice");
+    voice.addEventListener("click", function(e){ e.preventDefault(); });
 
     /* language switcher — inject into the top-right of the screen's topbar (opposite the logo).
        English is primary (default), Ukrainian is secondary. Copy itself stays English
