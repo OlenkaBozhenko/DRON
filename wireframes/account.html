@@ -6,6 +6,21 @@
 <title>DRON wireframe · Account / profile · success (base)</title>
 <!-- SCREEN (sitemap §7.4 Account utility + §6.0 Switch role): "Account". JOB (jtbd): identity utility (C-02) + switch persona. STATE: base only. The role dropdown is the Client⇄Operator switch. Reachable from every tab bar's Account tab. -->
 <link rel="stylesheet" href="_wireframe.css">
+<style>
+  /* Edit icon button — top-right corner of the profile card (grayscale glyph placeholder, no real icon) */
+  .op-card{ position:relative; }
+  .op-edit{ position:absolute; top:12px; right:12px; width:32px; height:32px; display:inline-flex;
+    align-items:center; justify-content:center; border:1px solid var(--wf-border-2); border-radius:6px;
+    background:var(--wf-surface); color:var(--wf-text-2); text-decoration:none; }
+  .op-edit:hover{ background:var(--wf-recessed); color:var(--wf-text); }
+  .op-edit:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  .ic-edit{ position:relative; width:16px; height:16px; }
+  .ic-edit .pencil{ position:absolute; top:1px; left:50%; transform:translateX(-50%) rotate(45deg);
+    display:flex; flex-direction:column; align-items:center; }
+  .ic-edit .body{ width:5px; height:10px; background:currentColor; border-radius:1px 1px 0 0; }
+  .ic-edit .tip{ width:0; height:0; border-left:2.5px solid transparent; border-right:2.5px solid transparent;
+    border-top:4px solid currentColor; }
+</style>
 </head>
 <body>
   <aside class="meta">
