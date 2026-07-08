@@ -203,7 +203,9 @@ Buttons: height `≥ 44px`, radius `6`, horizontal padding `16`, label at `15px/
 **Rules**
 - Path: `wireframes/<name>.html` for the base, `wireframes/<name>-<state>.html` per state.
 - `<name>`: **lowercase latin, kebab-case**, no spaces, no Cyrillic (e.g. `order-setup.html`, `order-setup-empty.html`, `order-setup-error.html`).
-- `<state>` ∈ { `empty`, `error`, `loading` }. Success/normal has no suffix (it is the base).
+- `<state>` ∈ { `empty`, `error`, `loading` }. Success/normal has no suffix (it is the base). A screen may
+  also have **named interaction sub-views** beyond the four data states (e.g. `listings-filters` = filter panel
+  open, `listings-filtered` = filters applied); these use a descriptive suffix and are documented in the map row.
 - Shared assets: `_wireframe.css` (tokens + components), this file, `_screens.md`. Leading `_` = not a screen.
 
 **Map** — every base file and the exact state pages to create (derived from the `_screens.md` state matrix; `base = success` marked where the base screen is a milestone):
@@ -220,7 +222,7 @@ Buttons: height `≥ 44px`, radius `6`, horizontal padding `16`, label at `15px/
 ### Client (MJ-1)
 | Screen | Base file | State pages |
 |---|---|---|
-| Home / start an order **+ Service catalogue** (merged per `sitemap.md §7.3`) | `listings.html` | `listings-empty.html` (no results / loosen filters), `listings-error.html` (load failure), `listings-loading.html` |
+| Home / start an order **+ Service catalogue** (merged per `sitemap.md §7.3`) | `listings.html` | `listings-filters.html` (filter panel open — Price / Time / Location), `listings-filtered.html` (filters applied — removable chips + Clear all), `listings-empty.html` (no results / loosen filters), `listings-error.html` (load failure), `listings-loading.html` |
 | Order setup / details | `order-setup.html` | `order-setup-empty.html`, `order-setup-error.html` |
 | Order review & price | `order-review.html` | `order-review-loading.html` |
 | Payment | `payment.html` | `payment-error.html`, `payment-loading.html` |

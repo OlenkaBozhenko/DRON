@@ -63,6 +63,13 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   - **Error ✓** *(added July 2026, build decision)* — the data-driven service list can fail to load (network) → retry / support (`listings-error.html`); consistent with `flows.md`'s error-recovery pattern (*"Retry, … or leave"*; errors route to Support).
   - **Loading ✓** — fetching order history / personalisation to surface "Book again" (`flows.md` RJ-C5: *"Loading: fetching order history"*).
   - **Success —** hands off to the catalogue; no "it worked" screen.
+- **Filter sub-views (added July 2026, build decision):** because *Service catalogue* is merged into Home,
+  browsing needs to be narrowable. Two named sub-views (not data states):
+  - **`listings-filters`** — the filter panel open: **Price** (Recommended / Low→High / High→Low), **Time**
+    (Available now / Today / This week / Pick a date), **Location** (district). *Apply* → filtered; *Close / Clear all* → Home.
+  - **`listings-filtered`** — filters applied: the removable applied-filter chips + *Clear all*, the re-sorted /
+    filtered result list, and the Filters button showing its active count. No dead-end — every chip and *Clear all* exit to the full list.
+  - Grounded in the merged-catalogue model (`sitemap.md §7.3`) and the existing `listings-empty` *"loosen filters"* recovery.
 
 ### 4. Service catalogue
 - **Job:** `MJ-1` — *"choose the result a drone delivers"* (`CE-2` Service).

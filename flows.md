@@ -95,6 +95,13 @@ flowchart TD
   RFD -->|Operator| OPX(["Switches to OPERATOR MJ-2 activation flow"]):::state
   RFD -->|Client| CO0["Client onboarding"]
   CO0 --> C
+  C --> FLT{"Narrow the list?"}
+  FLT -->|"tap Filters"| FP["Home — filters open (Price / Time / Location)"]
+  FP -->|apply| FD["Home — filters applied (removable chips + Clear all)"]
+  FP -->|"close / clear"| C
+  FD -->|"clear all / remove chip"| C
+  FD --> E
+  FLT -->|no| E
   C --> E["Service catalogue"]
   E --> DR{"Service available in your region?"}
   DR -->|no| NR(["Empty: not in your region yet"]):::state
