@@ -284,40 +284,72 @@
       <section aria-label="Incoming offers">
         <ul class="list">
 
-          <!-- offer card: whole card opens the brief; Accept/Decline act inline -->
+          <!-- offer card: header (service + status) · distance + options · route · fee + expiry · Accept/Decline -->
           <li>
-            <article class="card offer">
+            <article class="card offer oh-card">
               <a class="card-link" href="job-offer.html" aria-label="Package delivery job — open brief"></a>
-              <div class="card-top">
-                <span class="media-ph">DELIVERY</span>
-                <span class="body">
-                  <span class="name">Package delivery</span>
-                  <span class="desc">2.3 km · ~18 min · pickup near Podil</span>
-                  <span class="meta-row"><span class="price">₴180</span><span class="avail">· expires in 8s</span></span>
+              <span class="oh-head">
+                <span class="oh-title">Package delivery</span>
+                <span class="oh-status live">New</span>
+              </span>
+              <span class="oh-body">
+                <span class="oh-top">
+                  <span class="oh-date">2.3 km · ~18 min</span>
+                  <button class="oh-more" type="button" aria-label="Job options">
+                    <span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span>
+                  </button>
                 </span>
-              </div>
-              <div class="actions">
-                <a class="btn btn-primary" href="job-brief.html">Accept</a>
-                <a class="btn btn-secondary" href="operator-listings.html">Decline</a>
-              </div>
+                <span class="oh-route route-2">
+                  <span class="oh-stop">
+                    <span class="oh-dot" aria-hidden="true"></span>
+                    <span class="oh-addr"><span class="oh-addr-lbl">Pickup</span>Podil</span>
+                  </span>
+                  <span class="oh-stop">
+                    <span class="oh-dot oh-dot-end" aria-hidden="true"></span>
+                    <span class="oh-addr"><span class="oh-addr-lbl">Drop-off</span>Osokorky</span>
+                  </span>
+                </span>
+                <span class="oh-meta">
+                  <span class="oh-price">₴180</span>
+                  <span class="oh-eta">expires in 8s</span>
+                </span>
+                <div class="actions">
+                  <a class="btn btn-primary" href="job-brief.html">Accept</a>
+                  <a class="btn btn-secondary" href="operator-listings.html">Decline</a>
+                </div>
+              </span>
             </article>
           </li>
 
           <li>
-            <article class="card offer">
+            <article class="card offer oh-card">
               <a class="card-link" href="job-offer.html" aria-label="Roof inspection job — open brief"></a>
-              <div class="card-top">
-                <span class="media-ph">INSPECT</span>
-                <span class="body">
-                  <span class="name">Roof inspection</span>
-                  <span class="desc">5.1 km · ~35 min · Obolon district</span>
-                  <span class="meta-row"><span class="price">₴650</span><span class="avail">· expires in 6s</span></span>
+              <span class="oh-head">
+                <span class="oh-title">Roof inspection</span>
+                <span class="oh-status live">New</span>
+              </span>
+              <span class="oh-body">
+                <span class="oh-top">
+                  <span class="oh-date">5.1 km · ~35 min</span>
+                  <button class="oh-more" type="button" aria-label="Job options">
+                    <span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span>
+                  </button>
                 </span>
-              </div>
-              <div class="actions">
-                <a class="btn btn-primary" href="job-brief.html">Accept</a>
-                <a class="btn btn-secondary" href="operator-listings.html">Decline</a>
-              </div>
+                <span class="oh-route">
+                  <span class="oh-stop">
+                    <span class="oh-dot oh-dot-end" aria-hidden="true"></span>
+                    <span class="oh-addr"><span class="oh-addr-lbl">Location</span>Obolon district</span>
+                  </span>
+                </span>
+                <span class="oh-meta">
+                  <span class="oh-price">₴650</span>
+                  <span class="oh-eta">expires in 6s</span>
+                </span>
+                <div class="actions">
+                  <a class="btn btn-primary" href="job-brief.html">Accept</a>
+                  <a class="btn btn-secondary" href="operator-listings.html">Decline</a>
+                </div>
+              </span>
             </article>
           </li>
 
