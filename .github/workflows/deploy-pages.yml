@@ -38,6 +38,20 @@ jobs:
           cp wireframes/*.html _site/wireframes/
           cp wireframes/_wireframe.css wireframes/_wf-shell.js _site/wireframes/
 
+      - name: Cache-bust shared assets
+        run: |
+          # GitHub Pages serves everything with Cache-Control: max-age=600 and no
+          # way to override headers, so browsers (especially mobile) keep stale
+          # copies of the shared shell/CSS. Stamp the published HTML's references
+          # to _wf-shell.js / _wireframe.css with the commit SHA so a shell change
+          # produces a new asset URL and phones refetch it automatically.
+          # Only the published (gh-pages) copies are touched — master HTML stays clean.
+          STAMP="${GITHUB_SHA::8}"
+          find _site/wireframes -name '*.html' -print0 | xargs -0 sed -i \
+            -e "s#\"_wireframe.css\"#\"_wireframe.css?v=${STAMP}\"#g" \
+            -e "s#\"_wf-shell.js\"#\"_wf-shell.js?v=${STAMP}\"#g"
+          echo "Stamped shared-asset URLs with v=${STAMP}"
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
