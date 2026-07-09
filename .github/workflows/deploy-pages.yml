@@ -30,7 +30,7 @@ jobs:
       - name: Assemble publish directory
         run: |
           mkdir -p _site
-          cp ia.html research.html target-audience.html ux-research.html _site/
+          cp ia.html research.html target-audience.html ux-research.html tone-of-voice.html _site/
           cp .github/pages/index.html _site/index.html
           # Publish the clickable wireframe prototype (HTML pages + shared CSS/JS).
           # The .md sources stay on master and are not published.
