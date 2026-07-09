@@ -127,7 +127,27 @@
     + '.wf-ico-back{ background:#111111; border-color:#111111; color:#FFFFFF; }'
     + '.wf-ico-back:hover{ background:#252525; }'
     + '.wf-anno.on{ background:#111111; border-color:#111111; color:#FFFFFF; }'
-    + '.wf-voice[aria-disabled="true"]{ opacity:.45; cursor:not-allowed; }'
+    + '.wf-voice.on{ background:#111111; border-color:#111111; color:#FFFFFF; }'
+
+    /* ── right-side Tone-of-voice drawer ── */
+    + '.wf-voice-drawer{ position:fixed; top:52px; right:0; bottom:0; width:min(460px,92vw); z-index:58;'
+    + '  background:#FFFFFF; border-left:1px solid rgba(0,0,0,0.14); box-shadow:-8px 0 28px rgba(0,0,0,0.14);'
+    + '  transform:translateX(100%); transition:transform .24s ease; display:flex; flex-direction:column; }'
+    + '.wf-voice-drawer.open{ transform:translateX(0); }'
+    + '.wf-vd-head{ flex:none; height:46px; display:flex; align-items:center; gap:10px; padding:0 12px 0 16px;'
+    + '  border-bottom:1px solid rgba(0,0,0,0.10); font-size:12px; font-weight:600; letter-spacing:.10em;'
+    + '  text-transform:uppercase; color:#111111; background:#F4F4F4; }'
+    + '.wf-vd-head .sp{ flex:1; }'
+    + '.wf-vd-open{ font-size:12px; color:#5A5A5A; text-decoration:none; letter-spacing:0; text-transform:none; font-weight:600; }'
+    + '.wf-vd-open:hover{ color:#111111; }'
+    + '.wf-vd-close{ width:30px; height:30px; border:1px solid rgba(0,0,0,0.15); border-radius:7px; background:#FFFFFF;'
+    + '  color:#252525; cursor:pointer; font-size:15px; line-height:1; display:inline-flex; align-items:center; justify-content:center; }'
+    + '.wf-vd-close:hover{ background:#EEEEEE; }'
+    + '.wf-voice-drawer iframe{ flex:1; width:100%; border:0; background:#FFFFFF; }'
+    + '.wf-voice-scrim{ position:fixed; inset:52px 0 0 0; z-index:57; background:rgba(0,0,0,0.28); opacity:0;'
+    + '  pointer-events:none; transition:opacity .24s ease; }'
+    + '.wf-voice-scrim.on{ opacity:1; pointer-events:auto; }'
+    + '.wf-voice-link{ color:#111111 !important; border-top:1px solid rgba(0,0,0,0.08); border-bottom:1px solid rgba(0,0,0,0.08); margin-bottom:4px; }'
 
     /* ── left tree (pinned on desktop, drawer on mobile) ── */
     + '.wf-tree{ position:fixed; top:52px; left:0; bottom:0; width:248px; z-index:55; overflow-y:auto;'
@@ -182,7 +202,8 @@
 
   function buildTreeHTML(cur){
     var out = '<div class="wf-tree-head">DRON · Wireframes</div>'
-            + '<p class="wf-tree-note">Screen = success / base page. Indented = its states (only those real in _screens.md). Faint = planned, not built yet.</p>';
+            + '<p class="wf-tree-note">Screen = success / base page. Indented = its states (only those real in _screens.md). Faint = planned, not built yet.</p>'
+            + '<a class="wf-screen wf-voice-link" href="../tone-of-voice.html">Tone of Voice</a>';
     for (var i=0;i<TREE.length;i++){
       var sec = TREE[i];
       out += '<div class="wf-sec">'+esc(sec.title)+'</div>';
@@ -242,7 +263,7 @@
         '<div class="wf-actions">'
       + '  <a class="wf-ico wf-ico-back" href="../research.html" title="Back to DRON" aria-label="Back to DRON">'+IC.back+'</a>'
       + '  <button type="button" class="wf-ico wf-anno" aria-pressed="false" title="Hide annotations" aria-label="Hide annotations">'+IC.notes+'</button>'
-      + '  <button type="button" class="wf-ico wf-voice" aria-disabled="true" title="Tone of voice — coming soon" aria-label="Tone of voice — coming soon">'+IC.voice+'</button>'
+      + '  <button type="button" class="wf-ico wf-voice" aria-pressed="false" title="Tone of voice" aria-label="Tone of voice">'+IC.voice+'</button>'
       + '</div>'
       + '<span class="wf-tb-cur">'+esc(currentName(cur))+'</span>'
       + '<div class="wf-right">'
@@ -305,10 +326,44 @@
     try { savedAnno = localStorage.getItem("wf-hide-anno") || "0"; } catch(e){}
     applyAnno(savedAnno === "1");
 
-    /* tone of voice (icon button) — placeholder; the voice page is added later.
-       Kept inert so the prototype never dead-ends on a 404. */
+    /* tone of voice (icon button) — opens a right-side drawer with tone-of-voice.html
+       (generated from voice.md). Also opened by the "Tone of Voice" link in the tree. */
     var voice = bar.querySelector(".wf-voice");
-    voice.addEventListener("click", function(e){ e.preventDefault(); });
+    var vScrim = document.createElement("div");
+    vScrim.className = "wf-voice-scrim";
+    vScrim.setAttribute("aria-hidden", "true");
+    document.body.appendChild(vScrim);
+    var vDrawer = document.createElement("aside");
+    vDrawer.className = "wf-voice-drawer";
+    vDrawer.setAttribute("aria-label", "Tone of voice");
+    vDrawer.setAttribute("aria-hidden", "true");
+    vDrawer.innerHTML =
+        '<div class="wf-vd-head">Tone of voice'
+      + '  <span class="sp"></span>'
+      + '  <a class="wf-vd-open" href="../tone-of-voice.html" target="_blank" rel="noopener" title="Open full page">Open ↗</a>'
+      + '  <button type="button" class="wf-vd-close" aria-label="Close tone of voice">✕</button>'
+      + '</div>'
+      + '<iframe title="DRON tone of voice" data-src="../tone-of-voice.html"></iframe>';
+    document.body.appendChild(vDrawer);
+    var vIframe = vDrawer.querySelector("iframe");
+    var vLoaded = false;
+    function setVoice(open){
+      if (open && !vLoaded){ vIframe.src = vIframe.getAttribute("data-src"); vLoaded = true; }
+      vDrawer.classList.toggle("open", open);
+      vScrim.classList.toggle("on", open);
+      voice.classList.toggle("on", open);
+      voice.setAttribute("aria-pressed", open ? "true" : "false");
+      vDrawer.setAttribute("aria-hidden", open ? "false" : "true");
+    }
+    voice.addEventListener("click", function(){ setVoice(!vDrawer.classList.contains("open")); });
+    vScrim.addEventListener("click", function(){ setVoice(false); });
+    vDrawer.querySelector(".wf-vd-close").addEventListener("click", function(){ setVoice(false); });
+    document.addEventListener("keydown", function(e){ if (e.key === "Escape") setVoice(false); });
+    /* the "Tone of Voice" entry in the left tree opens the same drawer (href is the fallback) */
+    var vLinks = document.querySelectorAll(".wf-voice-link");
+    for (var vl=0; vl<vLinks.length; vl++){
+      vLinks[vl].addEventListener("click", function(e){ e.preventDefault(); setVoice(true); });
+    }
 
     /* language switcher — inject into the top-right of the screen's topbar (opposite the logo).
        English is primary (default), Ukrainian is secondary. Copy itself stays English

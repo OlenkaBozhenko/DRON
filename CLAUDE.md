@@ -201,6 +201,24 @@ tree and a mobile/tablet/desktop viewport switcher on every page.
 
 ---
 
+## Voice (Голос)
+
+**How the product speaks. Single source of truth: `voice.md`.** Rendered at `tone-of-voice.html` (linked in every page's sidebar; a "Tone of voice" button on the wireframe toolbar opens it in a right-hand drawer). Every product string is written and checked against `voice.md`, and inventoried in `microcopy.md` (master table + rewrite logs + audit).
+
+**Stance:** trust beats wit. Calm, specific, accountable — facts not adjectives, outcomes not equipment; in trouble, state what happened and what it costs the user. Not advertising.
+
+**Five principles:** (P1) name the outcome, not the drone; (P2) show the proof, not the adjective; (P3) state the price as a fact, before the tap; (P4) speak the user's words, not the equipment; (P5) in trouble, be plain and accountable, not cheery.
+
+**Vocabulary — one word per concept:** operator (never "pilot"); client-side work = **order**, operator-side = **job** (never crossed); complaint = **issue** (operator's held case = **dispute**); deliverable = **delivery photo** / **inspection report** (not "result"/"proof"); money out = **Withdraw/withdrawal**, earnings landing = **paid**; entry = **Sign in** (not "Sign up"); receiver = **client** (not "recipient"). Reach a human = **Contact support**; recover from an error = **Try again**; attach = **Add…**; open an order = **View details**. Address the user as **"you"** (UK: «ти»), consistently.
+
+**Never:** clichés ("Oops", "Welcome!", "You're all set"), motivational / journey tone, exclamation marks, emoji in system copy, the word "successfully".
+
+**State tone:** empty → why it's empty + one way out; error → what happened + what to do (no apology, no joke); loading → name what is loading; success → the fact + next step (no celebration).
+
+**Back buttons (Apple HIG, mobile client):** the nav-bar back shows the title of the screen you return to (`‹ Order review`), never "Back to…"; tab-root screens have no back.
+
+---
+
 ## Content Rules
 
 **Single source of truth: `.md` files.**

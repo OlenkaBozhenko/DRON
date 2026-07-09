@@ -233,6 +233,8 @@ _Nothing rewritten here — only marked. Each code below is applied in the Flag 
 
 ### TONE — cheery / conversational-AI phrasing
 
+_All rows below were the Step-01 finding; **all resolved** in the voice rewrite (see the rewrite logs and the Step-03 audit)._
+
 | Screen | String |
 |---|---|
 | inspection-report-error | The operator marked the inspection done but no photos or findings arrived in time. Without proof the job can't be completed or paid — let's sort it out. |
@@ -261,12 +263,50 @@ _Nothing rewritten here — only marked. Each code below is applied in the Flag 
 | ratings | Recent reviews | “Good shots overall, a couple came out a bit dark.” |
 | ratings | Recent reviews | “Clear roof footage, spotted the leak we couldn't see.” |
 
+## Audit — voice-compliance pass (Step 03)
+
+Rigorous re-check of every screen against `voice.md`. Kept here as source of truth — each defect and how it was resolved.
+
+**Fixed**
+
+| # | Screen | Element | Was | Now |
+|---|---|---|---|---|
+| V1 | inspection-report-error | body | Without **proof** the job can't be completed or paid. | Without **the report**, the job can't be completed or paid. |
+| V2 | result-upload | badge | `RESULT PHOTO` | `DELIVERY PHOTO` |
+| V3 | delivery-error | badge | `NO PROOF` | `NO PHOTO` |
+| V4 | inspection-report-error | badge | `NO PROOF` | `NO REPORT` |
+| V5 | onboarding-client | slide badge | `PROOF` | `REPORT` |
+| A1 | contact-support | button | `Still unresolved` | `Ask a senior agent` |
+| V7 | operator-account | Mode | `Operator — provide services` | `Operator — take jobs` |
+| V8 | operator-account | Account | `Payout method` | `Withdrawal method` |
+
+**Reviewed — kept (with reason)**
+
+| # | Item | Decision |
+|---|---|---|
+| V6 | `Continue with Diia / BankID` (signin, operator-signup) | Kept — standard provider-auth button pattern (cf. Apple's "Continue with Apple"); the screen heading already says "Sign in". |
+| A2 | `Change method` (payment-error) vs `Use bank transfer` (withdraw-error) | Kept — contextually distinct (choose among several vs the single alternative); both concrete. |
+| A3 | `Continue` on `-loading` screens | Kept — consistent across all loading stubs (a prototype advance, not a real CTA). |
+| A4 | `Skip` / `Cancel` / `Maybe later` | Kept — three distinct dismiss contexts (skip intro / cancel a form / decline an offer). |
+
+**Clean — no findings**
+- **Forbidden:** no exclamation marks, no emoji (`★` is a rating glyph), no "successfully", no clichés, no motivational tone.
+- **State tone:** errors state the fact + next step (no jokes); every empty state has an exit; loadings name what is loading; successes state the fact without celebration.
+
+**Sync (S1 — fixed)**
+- The **Master table** below was **regenerated from the current wireframes** — it had drifted to the pre-rewrite strings. Both directions reconciled: phantom "before" strings removed, current strings (incl. the Variant A back labels) added.
+- A new operator screen **`operator-account.html`** (the Operator Account tab, fixing a nav leak) appeared during this pass — audited (V7/V8) and included in the master table.
+- Sample-date DATA drift in `order-history` refreshed by the regeneration.
+
+---
+
 ## Master table — every string
 
-_Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string, in document order._
+_Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string, in document order. Regenerated from the current wireframes after the voice rewrite (Step 03 audit)._
 
 | Screen | Zone | Text | Type | Flag |
 |---|---|---|---|---|
+| account-edit | — | ‹ Account | Button |  |
 | account-edit | — | Edit account | Heading |  |
 | account-edit | Personal | Full name | Field label |  |
 | account-edit | Personal | Olena B. | Field value | DATA |
@@ -274,11 +314,11 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account-edit | Personal | Used for order updates and operator contact. | Body |  |
 | account-edit | Documents | Drone documents | Field label |  |
 | account-edit | Documents | DRONE REGISTRATION / DOCUMENTS | Body | WF-PH |
-| account-edit | Documents | Upload document | Button | A3 attach a file (Add/Upload/Attach) |
+| account-edit | Documents | Add document | Button |  |
 | account-edit | Documents | Registration, serial, or manufacturer papers (PDF / photo). | Body |  |
 | account-edit | Documents | Insurance | Field label |  |
 | account-edit | Documents | INSURANCE DOCUMENT | Body | WF-PH |
-| account-edit | Documents | Upload document | Button | A3 attach a file (Add/Upload/Attach) |
+| account-edit | Documents | Add document | Button |  |
 | account-edit | Documents | Valid liability insurance covering the drone. | Body |  |
 | account-edit | Preferences | Payment method | Field label |  |
 | account-edit | Preferences | Visa •••• 4921 | Body | DATA |
@@ -296,7 +336,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account | Mode | Client mode | Body |  |
 | account | Mode | Client — order services | Body |  |
 | account | Mode | current | Body |  |
-| account | Mode | Operator — provide services | Body |  |
+| account | Mode | Operator — take jobs | Body |  |
 | account | Mode | switch | Body |  |
 | account | Mode | Switching changes what the app shows. Your Diia identity stays the same. | Body |  |
 | account | Account | Payment method | Body |  |
@@ -310,12 +350,14 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account | Account | Activity | Button |  |
 | account | Account | Help | Button |  |
 | account | Account | Account | Button |  |
+| contact-support-error | — | ‹ Help | Button |  |
 | contact-support-error | — | Support | Heading |  |
 | contact-support-error | Escalation | QUEUE | State message | WF-PH |
-| contact-support-error | Escalation | Added to the escalation queue | State message |  |
+| contact-support-error | Escalation | Sent to a senior agent | State message |  |
 | contact-support-error | Escalation | We couldn't resolve this in chat, so a senior agent will review order #DR-4821 against our support policy and follow up. You don't need to wait here. | State message |  |
-| contact-support-error | Escalation | Back to orders | Button | O3 order/job (client vs operator name for the work) |
-| contact-support-error | Escalation | Try support again | Button | A1 recover from error (Try again/Refresh/Retry) |
+| contact-support-error | Escalation | Back to Activity | Button |  |
+| contact-support-error | Escalation | Contact support | Button |  |
+| contact-support | — | ‹ Help | Button |  |
 | contact-support | — | Support | Heading |  |
 | contact-support | Agent panel | DR | Body | DATA |
 | contact-support | Agent panel | DRON Support | Body |  |
@@ -323,26 +365,26 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | contact-support | Agent panel | Human agent | Body |  |
 | contact-support | Agent panel | Order #DR-4821 | Body |  |
 | contact-support | Message | Your message | Field label |  |
-| contact-support | Message | Tell the agent what's still wrong and what you'd like to happen. | Field placeholder |  |
-| contact-support | Message | Call support | Button | A2 reach a human (Contact support/Call support/Talk to a human/Get help) |
+| contact-support | Message | Describe the issue and what you'd like to happen. | Field placeholder |  |
+| contact-support | Message | Call support | Button |  |
 | contact-support | Message | Mark resolved | Button |  |
-| contact-support | Message | Escalate — still unresolved | Button | A2 reach a human (Contact support/Call support/Talk to a human/Get help) |
+| contact-support | Message | Ask a senior agent | Button |  |
 | delivery-error | — | Delivered | Heading |  |
-| delivery-error | Proof of delivery | NO PROOF | State message | WF-PH |
-| delivery-error | Proof of delivery | Proof of delivery is missing | State message | O5 result/proof/report (operator deliverable) |
-| delivery-error | Proof of delivery | The operator hasn't uploaded a delivery photo and the confirmation window has passed. Don't confirm until you have proof. | State message |  |
-| delivery-error | Proof of delivery | Back to live tracking | Button | A10 back-to-X object naming |
-| delivery-error | Proof of delivery | Report an issue | Button | O4 issue/problem/dispute (the complaint) |
+| delivery-error | Proof of delivery | NO PHOTO | State message | WF-PH |
+| delivery-error | Proof of delivery | Delivery photo is missing | State message |  |
+| delivery-error | Proof of delivery | The operator hasn't uploaded a delivery photo and the confirmation window has passed. Without it, the order can't be confirmed or paid. Report an issue and support will resolve it. | State message |  |
+| delivery-error | Proof of delivery | Back to live tracking | Button |  |
+| delivery-error | Proof of delivery | Report an issue | Button |  |
 | delivery-error | Proof of delivery | Order | Button |  |
 | delivery-error | Proof of delivery | Activity | Button |  |
 | delivery-error | Proof of delivery | Help | Button |  |
 | delivery-error | Proof of delivery | Account | Button |  |
 | delivery-loading | — | Delivered | Heading |  |
 | delivery-loading | — | WAIT | State message | WF-PH |
-| delivery-loading | — | Waiting for proof… | State message | O5 result/proof/report (operator deliverable) |
+| delivery-loading | — | Waiting for the delivery photo… | State message |  |
 | delivery-loading | — | Your operator is uploading the delivery photo now. | State message |  |
-| delivery-loading | Proof of delivery | This usually takes under a minute. | State message | O5 result/proof/report (operator deliverable) |
-| delivery-loading | Proof of delivery | Proof received | Button | O5 result/proof/report (operator deliverable) |
+| delivery-loading | Proof of delivery | This usually takes under a minute. | State message |  |
+| delivery-loading | Proof of delivery | View delivery photo | Button |  |
 | delivery-loading | Proof of delivery | Order | Button |  |
 | delivery-loading | Proof of delivery | Activity | Button |  |
 | delivery-loading | Proof of delivery | Help | Button |  |
@@ -351,30 +393,33 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | delivery | — | DONE | Body | WF-PH |
 | delivery | — | Delivered | Body |  |
 | delivery | — | Your parcel arrived at 10:07. | Body | DATA |
-| delivery | Proof of delivery | DELIVERY PHOTO | Body | O5 result/proof/report (operator deliverable) |
+| delivery | Proof of delivery | DELIVERY PHOTO | Body | WF-PH |
 | delivery | Details | Delivered to | Body |  |
 | delivery | Details | Osokorky, 14 | Body |  |
 | delivery | Details | Time | Body |  |
 | delivery | Details | Operator | Body |  |
 | delivery | Details | Andriy M. | Body | DATA |
-| delivery | Details | Rate the order | Button |  |
+| delivery | Details | Rate this order | Button |  |
 | delivery | Details | Order | Button |  |
 | delivery | Details | Activity | Button |  |
 | delivery | Details | Help | Button |  |
 | delivery | Details | Account | Button |  |
+| inspection-report-error | — | ‹ On the way | Button |  |
 | inspection-report-error | — | Inspection report | Heading |  |
-| inspection-report-error | Report | NO PROOF | State message | WF-PH |
-| inspection-report-error | Report | No report received | State message | O5 result/proof/report (operator deliverable) |
-| inspection-report-error | Report | The operator marked the inspection done but no photos or findings arrived in time. Without proof the job can't be completed or paid — let's sort it out. | State message | TONE |
-| inspection-report-error | Report | Contact support | Button | A2 reach a human (Contact support/Call support/Talk to a human/Get help) |
-| inspection-report-error | Report | Refresh | Button | A1 recover from error (Try again/Refresh/Retry) |
-| inspection-report-error | Report | Contact support | Button | A2 reach a human (Contact support/Call support/Talk to a human/Get help) |
+| inspection-report-error | Report | NO REPORT | State message | WF-PH |
+| inspection-report-error | Report | No report received | State message |  |
+| inspection-report-error | Report | The operator marked the inspection done but no photos or findings arrived in time. Without the report, the job can't be completed or paid. Contact support to resolve it. | State message |  |
+| inspection-report-error | Report | Contact support | Button |  |
+| inspection-report-error | Report | Try again | Button |  |
+| inspection-report-error | Report | Contact support | Button |  |
+| inspection-report-loading | — | ‹ On the way | Button |  |
 | inspection-report-loading | — | Inspection report | Heading |  |
-| inspection-report-loading | — | Report not uploaded yet… | State message | O5 result/proof/report (operator deliverable) |
-| inspection-report-loading | Photo set | Rate the order | Button |  |
+| inspection-report-loading | — | The operator is still uploading the report… | State message |  |
+| inspection-report-loading | Photo set | Rate this order | Button |  |
+| inspection-report | — | ‹ On the way | Button |  |
 | inspection-report | — | Inspection report | Heading |  |
 | inspection-report | — | DONE | Body | WF-PH |
-| inspection-report | — | Report ready | Body | O5 result/proof/report (operator deliverable) |
+| inspection-report | — | Report ready | Body |  |
 | inspection-report | — | Roof inspection · Osokorky, 14 · completed 15:42. | Body | DATA |
 | inspection-report | Cover | COVER PHOTO | Body | WF-PH |
 | inspection-report | Findings | Roof · north slope | Heading |  |
@@ -396,14 +441,16 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | inspection-report | Signature | Signed | Body |  |
 | inspection-report | Signature | 2 Jul, 15:42 · | Body | DATA |
 | inspection-report | Signature | Verified by DRON | Body |  |
-| inspection-report | Signature | Rate the order | Button |  |
-| inspection-report | Signature | Report an issue | Button | O4 issue/problem/dispute (the complaint) |
+| inspection-report | Signature | Rate this order | Button |  |
+| inspection-report | Signature | Report an issue | Button |  |
+| job-brief-error | — | ‹ Jobs | Button |  |
 | job-brief-error | — | Job brief | Heading |  |
 | job-brief-error | Brief | GROUNDED | State message | WF-PH |
 | job-brief-error | Brief | Stood down — airspace restricted | State message |  |
 | job-brief-error | Brief | Flights are grounded at this location right now (airspace / weather). The job was re-dispatched and the client refunded — no action needed. | State message |  |
-| job-brief-error | Brief | Back to jobs | Button | O3 order/job (client vs operator name for the work) |
+| job-brief-error | Brief | Back to Jobs | Button |  |
 | job-brief-error | Brief | No penalty. A stand-down isn't counted against you. | Body |  |
+| job-brief | — | ‹ Jobs | Button |  |
 | job-brief | — | Job brief | Heading |  |
 | job-brief | Route | ROUTE · Podil → Osokorky | Body | DATA |
 | job-brief | Details | Service | Body |  |
@@ -419,35 +466,37 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | job-brief | Details | ~18 min | Body | DATA |
 | job-brief | Notes | Leave with the concierge, entrance code 4417. | Body | USER |
 | job-brief | Notes | Start job | Button |  |
+| job-checklist-error | — | ‹ Job brief | Button |  |
 | job-checklist-error | — | Checklist | Heading |  |
 | job-checklist-error | Pre-flight & job steps | Pre-flight safety check | Field label |  |
 | job-checklist-error | Pre-flight & job steps | Battery ≥ 80% | Field label |  |
 | job-checklist-error | Pre-flight & job steps | Parcel secured | Field label |  |
 | job-checklist-error | Pre-flight & job steps | Capture delivery photo | Field label |  |
-| job-checklist-error | Pre-flight & job steps | Confirm handover with recipient | Field label | O8 client/recipient (delivery receiver) |
+| job-checklist-error | Pre-flight & job steps | Confirm handover with the client | Field label |  |
 | job-checklist-error | Pre-flight & job steps | STEP LEFT | State message | WF-PH |
-| job-checklist-error | Pre-flight & job steps | Finish the required step | State message |  |
+| job-checklist-error | Pre-flight & job steps | Required steps still open | State message |  |
 | job-checklist-error | Pre-flight & job steps | You can't close the job until every required step is checked. 'Capture delivery photo' is still open. | State message |  |
 | job-checklist-error | Pre-flight & job steps | Complete the step | Button |  |
 | job-checklist-error | Pre-flight & job steps | Complete all steps to continue | Button |  |
+| job-checklist | — | ‹ Job brief | Button |  |
 | job-checklist | — | Checklist | Heading |  |
 | job-checklist | Pre-flight & job steps | Pre-flight safety check | Field label |  |
 | job-checklist | Pre-flight & job steps | Battery ≥ 80% | Field label |  |
 | job-checklist | Pre-flight & job steps | Parcel secured | Field label |  |
 | job-checklist | Pre-flight & job steps | Capture delivery photo | Field label |  |
-| job-checklist | Pre-flight & job steps | Confirm handover with recipient | Field label | O8 client/recipient (delivery receiver) |
-| job-checklist | Pre-flight & job steps | Complete & upload result | Button |  |
-| job-offer-empty | — | New job | Heading | O2 job/offer (operator incoming) |
+| job-checklist | Pre-flight & job steps | Confirm handover with the client | Field label |  |
+| job-checklist | Pre-flight & job steps | Complete & add delivery photo | Button |  |
+| job-offer-empty | — | New job | Heading |  |
 | job-offer-empty | Offer | EXPIRED | State message | WF-PH |
-| job-offer-empty | Offer | Offer expired | State message | O2 job/offer (operator incoming) |
-| job-offer-empty | Offer | You didn't respond in time, so this job was reassigned to another operator. New offers will appear here. | State message | O2 job/offer (operator incoming) |
-| job-offer-empty | Offer | Back to jobs | Button | O3 order/job (client vs operator name for the work) |
-| job-offer-empty | Offer | Offers auto-expire after 10s to keep dispatch moving. | Body | O2 job/offer (operator incoming) |
-| job-offer | — | New job | Heading | O2 job/offer (operator incoming) |
+| job-offer-empty | Offer | Job expired | State message |  |
+| job-offer-empty | Offer | You didn't respond in time, so this job was reassigned to another operator. New jobs will appear here. | State message |  |
+| job-offer-empty | Offer | Back to Jobs | Button |  |
+| job-offer-empty | Offer | Jobs auto-expire after 10s to keep dispatch moving. | Body |  |
+| job-offer | — | New job | Heading |  |
 | job-offer | Offer | DELIVERY | Body | WF-PH |
 | job-offer | Offer | Package delivery | Heading |  |
 | job-offer | Offer | 2.3 km · ~18 min · pickup near Podil | Body | DATA |
-| job-offer | Offer | · pays on completion | Body |  |
+| job-offer | Offer | · paid on completion | Body |  |
 | job-offer | Route | Pickup | Body |  |
 | job-offer | Route | Podil, 21 | Body |  |
 | job-offer | Route | Drop-off | Body |  |
@@ -463,13 +512,13 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-empty | Search & filters | Search services | Field placeholder |  |
 | listings-empty | Search & filters | crop spraying | Field value | USER |
 | listings-empty | Search & filters | Filters | Button |  |
-| listings-empty | Counter | Nothing found | State message |  |
+| listings-empty | Counter | 0 services | State message |  |
 | listings-empty | Counter | Sort: Recommended ▾ | Button |  |
 | listings-empty | Service list | EMPTY | State message | WF-PH |
-| listings-empty | Service list | Nothing found | State message |  |
-| listings-empty | Service list | No services match “crop spraying” and your current filters. Clear the filters or change your search. | State message |  |
+| listings-empty | Service list | No services match your search | State message |  |
+| listings-empty | Service list | No services match “crop spraying” with your filters. Clear the filters or search again. | State message |  |
 | listings-empty | Service list | Clear filters | Button |  |
-| listings-empty | Service list | Notify me when available | Button | A8 notify when free (two phrasings) |
+| listings-empty | Service list | Notify me when available | Button |  |
 | listings-empty | Service list | Order | Button |  |
 | listings-empty | Service list | Activity | Button |  |
 | listings-empty | Service list | Help | Button |  |
@@ -481,13 +530,13 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-error | — | Inspection | Button |  |
 | listings-error | Search & filters | Search services | Field placeholder |  |
 | listings-error | Search & filters | Filters | Button |  |
-| listings-error | Counter | List unavailable | State message |  |
+| listings-error | Counter | Couldn't load | State message |  |
 | listings-error | Counter | Sort: Recommended ▾ | Button |  |
 | listings-error | Service list | ERROR | State message | WF-PH |
-| listings-error | Service list | Couldn't load the list | State message |  |
-| listings-error | Service list | No connection to the server. Check your internet and try again. | State message |  |
-| listings-error | Service list | Try again | Button | A1 recover from error (Try again/Refresh/Retry) |
-| listings-error | Service list | Help | Button |  |
+| listings-error | Service list | Couldn't load services | State message |  |
+| listings-error | Service list | No internet connection. Check it and try again. | State message |  |
+| listings-error | Service list | Try again | Button |  |
+| listings-error | Service list | Contact support | Button |  |
 | listings-error | Service list | Order | Button |  |
 | listings-error | Service list | Activity | Button |  |
 | listings-error | Service list | Help | Button |  |
@@ -516,7 +565,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filtered | Service list · cards | Help | Button |  |
 | listings-filtered | Service list · cards | Account | Button |  |
 | listings-filters | — | Filters | Heading |  |
-| listings-filters | — | Reset | Body |  |
+| listings-filters | — | Clear all | Body |  |
 | listings-filters | Price | Price | Heading |  |
 | listings-filters | Price | Recommended | Body |  |
 | listings-filters | Price | default | Body |  |
@@ -553,9 +602,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-loading | — | Inspection | Button |  |
 | listings-loading | Search & filters | Search services | Field placeholder |  |
 | listings-loading | Search & filters | Filters | Button |  |
-| listings-loading | Counter | Loading… | State message |  |
+| listings-loading | Counter | Loading services… | State message |  |
 | listings-loading | Counter | Sort: Recommended ▾ | Button |  |
-| listings-loading | Service list | Show services | Button | A4 begin ordering (Get started/Start ordering/Browse services) |
+| listings-loading | Service list | Browse services | Button |  |
 | listings-loading | Service list | Order | Button |  |
 | listings-loading | Service list | Activity | Button |  |
 | listings-loading | Service list | Help | Button |  |
@@ -583,20 +632,20 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings | Service list · cards | Help | Button |  |
 | listings | Service list · cards | Account | Button |  |
 | onboarding-client-empty | Explainer | 15 SEC | State message | WF-PH |
-| onboarding-client-empty | Explainer | The short version | State message | TONE |
-| onboarding-client-empty | Explainer | A certified, insured operator does the job. You track it live and pay only online — nothing to manage. | State message | O1 operator/pilot |
-| onboarding-client-empty | Explainer | Start ordering | Button | A4 begin ordering (Get started/Start ordering/Browse services) |
+| onboarding-client-empty | Explainer | How DRON works | State message |  |
+| onboarding-client-empty | Explainer | A certified, insured operator does the work. You track it live and pay only online — nothing to manage. | State message |  |
+| onboarding-client-empty | Explainer | Get started | Button |  |
 | onboarding-client | — | VERIFIED | Body | WF-PH |
 | onboarding-client | — | A verified operator | Body |  |
-| onboarding-client | — | DRON assigns the nearest certified, insured pilot. You don't choose or guess. | Body | O1 operator/pilot |
+| onboarding-client | — | DRON assigns the nearest certified, insured operator. You don't choose or guess. | Body |  |
 | onboarding-client | — | LIVE | Body | WF-PH |
-| onboarding-client | — | Watch it live | Body |  |
+| onboarding-client | — | Track it live | Body |  |
 | onboarding-client | — | See the operator's name, photo and live position the moment you pay. | Body |  |
-| onboarding-client | — | PROOF | Body | WF-PH |
-| onboarding-client | — | Proof every time | Body |  |
-| onboarding-client | — | Get a photo or a report the moment the job is done. | Body |  |
+| onboarding-client | — | REPORT | Body | WF-PH |
+| onboarding-client | — | A photo or report, every time | Body |  |
+| onboarding-client | — | Get a photo or a report the moment it's done. | Body |  |
 | onboarding-client | — | Skip | Button |  |
-| onboarding-client | — | Get started | Button | A4 begin ordering (Get started/Start ordering/Browse services) |
+| onboarding-client | — | Get started | Button |  |
 | onboarding-operator | — | JOBS | Body | WF-PH |
 | onboarding-operator | — | Jobs come to you | Body |  |
 | onboarding-operator | — | Auto-dispatch sends pre-qualified jobs. Accept or decline in seconds — no bidding. | Body |  |
@@ -607,51 +656,79 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | onboarding-operator | — | Get paid automatically | Body |  |
 | onboarding-operator | — | Earnings land within 30 min of client confirmation. Withdraw to card or bank. | Body | DATA |
 | onboarding-operator | — | Skip | Button |  |
-| onboarding-operator | — | Get started | Button | A4 begin ordering (Get started/Start ordering/Browse services) |
-| operator-dispute-error | — | Dispute | Heading | O4 issue/problem/dispute (the complaint) |
+| onboarding-operator | — | Get started | Button |  |
+| operator-account | — | Account | Heading |  |
+| operator-account | Profile | IK | Body | DATA |
+| operator-account | Profile | Ivan K. | Body | DATA |
+| operator-account | Profile | 4.9 ★ · 214 jobs · Verified by DRON | Body |  |
+| operator-account | Profile | Operator | Body |  |
+| operator-account | Profile | Insured | Body |  |
+| operator-account | Profile | CAA licence | Body |  |
+| operator-account | Mode | Operator mode | Body |  |
+| operator-account | Mode | Operator — take jobs | Body |  |
+| operator-account | Mode | current | Body |  |
+| operator-account | Mode | Client — order services | Body |  |
+| operator-account | Mode | switch | Body |  |
+| operator-account | Mode | Switching changes what the app shows. Your Diia identity stays the same. | Body |  |
+| operator-account | Account | Withdrawal method | Body |  |
+| operator-account | Account | Card •••• 4921 | Body | DATA |
+| operator-account | Account | Service area | Body |  |
+| operator-account | Account | Podil · Obolon | Body |  |
+| operator-account | Account | Drone | Body |  |
+| operator-account | Account | DJI Mavic 3 · reg. verified | Body | DATA |
+| operator-account | Account | Language | Body |  |
+| operator-account | Account | English | Body |  |
+| operator-account | Account | Operator since | Body |  |
+| operator-account | Account | Jobs | Button |  |
+| operator-account | Account | Earnings | Button |  |
+| operator-account | Account | Ratings | Button |  |
+| operator-account | Account | Account | Button |  |
+| operator-dispute-error | — | ‹ Jobs | Button |  |
+| operator-dispute-error | — | Dispute | Heading |  |
 | operator-dispute-error | Job | AERIAL | State message | WF-PH |
 | operator-dispute-error | Job | Job #DR-2841 · Aerial photo | Heading |  |
-| operator-dispute-error | Job | Client: Olena H. · disputed | State message | O4 issue/problem/dispute (the complaint) |
+| operator-dispute-error | Job | Client: Olena H. · disputed | State message |  |
 | operator-dispute-error | Job | · held | State message |  |
 | operator-dispute-error | Status | HELD | State message | WF-PH |
 | operator-dispute-error | Status | Payment held | State message |  |
-| operator-dispute-error | Status | ₴800 for Job #DR-2841 stays on hold while the dispute is reviewed. Add more evidence to your response, or bring in a human to resolve it. | State message | DATA |
+| operator-dispute-error | Status | ₴800 for Job #DR-2841 stays on hold while the dispute is reviewed. Add more evidence to your response, or contact support to resolve it. | State message | DATA |
 | operator-dispute-error | Status | Update response | Button |  |
-| operator-dispute-error | Status | Contact support | Button | A2 reach a human (Contact support/Call support/Talk to a human/Get help) |
-| operator-dispute-error | Status | Back to jobs | Button | O3 order/job (client vs operator name for the work) |
-| operator-dispute | — | Dispute | Heading | O4 issue/problem/dispute (the complaint) |
+| operator-dispute-error | Status | Contact support | Button |  |
+| operator-dispute-error | Status | Back to Jobs | Button |  |
+| operator-dispute | — | ‹ Jobs | Button |  |
+| operator-dispute | — | Dispute | Heading |  |
 | operator-dispute | Job | AERIAL | Body | WF-PH |
 | operator-dispute | Job | Job #DR-2841 · Aerial photo | Heading |  |
 | operator-dispute | Job | Client: Olena H. · closed 22 min ago | Body | DATA |
-| operator-dispute | Job | · disputed | Body | O4 issue/problem/dispute (the complaint) |
-| operator-dispute | Client claim | Client reports | Body |  |
+| operator-dispute | Job | · disputed | Body |  |
+| operator-dispute | Client claim | Client's issue | Body |  |
 | operator-dispute | Client claim | “The photos are blurry — I can't use them for the listing.” | Body | USER |
 | operator-dispute | Client claim | Payment held | Body |  |
-| operator-dispute | Your response | Reply to the client | Field label |  |
+| operator-dispute | Your response | Your response | Field label |  |
 | operator-dispute | Your response | Explain what was delivered, weather, capture settings… | Field placeholder |  |
 | operator-dispute | Your response | Evidence | Field label |  |
 | operator-dispute | Your response | FLIGHT LOG / PHOTO | Body | WF-PH |
-| operator-dispute | Your response | Attach evidence | Button | A3 attach a file (Add/Upload/Attach) |
+| operator-dispute | Your response | Add evidence | Button |  |
 | operator-dispute | Your response | Submit response | Button |  |
-| operator-dispute | Your response | Payment still held? | Button | O4 issue/problem/dispute (the complaint) |
+| operator-dispute | Your response | Payment still held? | Button |  |
 | operator-fee-terms | — | Operator terms | Heading |  |
 | operator-fee-terms | Value intro | Earn on your schedule | Body |  |
-| operator-fee-terms | Value intro | DRON dispatches pre-qualified jobs to you, insures every flight, and pays out automatically. Here's what you keep and how you get paid. | Body |  |
+| operator-fee-terms | Value intro | DRON dispatches pre-qualified jobs to you, insures every flight, and pays you automatically. Here's what you keep and how you get paid. | Body |  |
 | operator-fee-terms | Fee terms | Commission | Body |  |
 | operator-fee-terms | Fee terms | 18% per job | Body |  |
-| operator-fee-terms | Fee terms | Payout | Body | O6 withdraw/cash out/payout |
-| operator-fee-terms | Fee terms | Auto-release ≤30 min after client confirms | Body | O6 withdraw/cash out/payout |
+| operator-fee-terms | Fee terms | Payment | Body |  |
+| operator-fee-terms | Fee terms | Auto-release ≤30 min after client confirms | Body | DATA |
 | operator-fee-terms | Fee terms | Insurance | Body |  |
 | operator-fee-terms | Fee terms | Covered from your first job | Body |  |
-| operator-fee-terms | Fee terms | Minimum payout | Body | O6 withdraw/cash out/payout |
+| operator-fee-terms | Fee terms | Minimum withdrawal | Body |  |
 | operator-fee-terms | Fee terms | Accept & continue | Button |  |
 | operator-fee-terms | Fee terms | Maybe later | Button |  |
 | operator-listings-empty | — | IK | Body | DATA |
 | operator-listings-empty | — | Ivan K. | Body | DATA |
-| operator-listings-empty | — | Incoming · 0 | Body | O2 job/offer (operator incoming) |
+| operator-listings-empty | — | Incoming · 0 | Body |  |
 | operator-listings-empty | — | Active · 0 | Body |  |
 | operator-listings-empty | Status | You are Offline | State message |  |
-| operator-listings-empty | Status | · no offers while offline | State message | O2 job/offer (operator incoming) |
+| operator-listings-empty | Status | · no jobs while offline | State message |  |
 | operator-listings-empty | Status | Availability status | State message |  |
 | operator-listings-empty | Status | Available | Field label |  |
 | operator-listings-empty | Status | available | Field value | DATA |
@@ -660,19 +737,19 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-listings-empty | Status | Offline | Field label |  |
 | operator-listings-empty | Status | offline | Field value | DATA |
 | operator-listings-empty | Offers | OFFLINE | State message | WF-PH |
-| operator-listings-empty | Offers | No offers while you're offline | State message | O2 job/offer (operator incoming) |
-| operator-listings-empty | Offers | Go Available to start receiving pre-qualified jobs near you. | State message | O2 job/offer (operator incoming) |
-| operator-listings-empty | Offers | Go Available | Button | A7 go get work (Find jobs/See available jobs/Go Available) |
+| operator-listings-empty | Offers | No jobs while you're offline | State message |  |
+| operator-listings-empty | Offers | Go Available to start receiving pre-qualified jobs near you. | State message |  |
+| operator-listings-empty | Offers | Go Available | Button |  |
 | operator-listings-empty | Offers | Jobs | Button |  |
 | operator-listings-empty | Offers | Earnings | Button |  |
 | operator-listings-empty | Offers | Ratings | Button |  |
 | operator-listings-empty | Offers | Account | Button |  |
 | operator-listings | — | IK | Body | DATA |
 | operator-listings | — | Ivan K. | Body | DATA |
-| operator-listings | — | Incoming · 2 | Body | O2 job/offer (operator incoming) |
+| operator-listings | — | Incoming · 2 | Body |  |
 | operator-listings | — | Active · 1 | Body |  |
 | operator-listings | Status | You are Available | Body |  |
-| operator-listings | Status | · receiving offers near Podil | Body | O2 job/offer (operator incoming) |
+| operator-listings | Status | · receiving jobs near Podil | Body |  |
 | operator-listings | Status | Availability status | Body |  |
 | operator-listings | Status | Available | Field label |  |
 | operator-listings | Status | available | Field value | DATA |
@@ -680,87 +757,102 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-listings | Status | busy | Field value | DATA |
 | operator-listings | Status | Offline | Field label |  |
 | operator-listings | Status | offline | Field value | DATA |
-| operator-listings | Counter | 2 new offers | Body | O2 job/offer (operator incoming) |
-| operator-listings | Counter | · 1 active job · nearest first | Body | O2 job/offer (operator incoming) |
-| operator-listings | Incoming offers · cards | DELIVERY | Body | WF-PH |
-| operator-listings | Incoming offers · cards | Package delivery | Heading |  |
-| operator-listings | Incoming offers · cards | 2.3 km · ~18 min · pickup near Podil | Body | DATA |
-| operator-listings | Incoming offers · cards | · expires in 8s | Body |  |
+| operator-listings | Counter | 2 new jobs | Body |  |
+| operator-listings | Counter | · 1 active job · nearest first | Body |  |
+| operator-listings | Incoming offers · cards | Package delivery | Body |  |
+| operator-listings | Incoming offers · cards | New | Body |  |
+| operator-listings | Incoming offers · cards | 2.3 km · ~18 min | Body | DATA |
+| operator-listings | Incoming offers · cards | Pickup | Body |  |
+| operator-listings | Incoming offers · cards | Podil | Body |  |
+| operator-listings | Incoming offers · cards | Drop-off | Body |  |
+| operator-listings | Incoming offers · cards | Osokorky | Body |  |
+| operator-listings | Incoming offers · cards | expires in 8s | Body |  |
 | operator-listings | Incoming offers · cards | Accept | Button |  |
 | operator-listings | Incoming offers · cards | Decline | Button |  |
-| operator-listings | Incoming offers · cards | INSPECT | Body | WF-PH |
-| operator-listings | Incoming offers · cards | Roof inspection | Heading |  |
-| operator-listings | Incoming offers · cards | 5.1 km · ~35 min · Obolon district | Body | DATA |
-| operator-listings | Incoming offers · cards | · expires in 6s | Body |  |
+| operator-listings | Incoming offers · cards | Roof inspection | Body |  |
+| operator-listings | Incoming offers · cards | New | Body |  |
+| operator-listings | Incoming offers · cards | 5.1 km · ~35 min | Body | DATA |
+| operator-listings | Incoming offers · cards | Location | Body |  |
+| operator-listings | Incoming offers · cards | Obolon district | Body |  |
+| operator-listings | Incoming offers · cards | expires in 6s | Body |  |
 | operator-listings | Incoming offers · cards | Accept | Button |  |
 | operator-listings | Incoming offers · cards | Decline | Button |  |
-| operator-listings | Active jobs · cards | AERIAL | Body | WF-PH |
-| operator-listings | Active jobs · cards | Aerial photo & video | Heading |  |
-| operator-listings | Active jobs · cards | Client: Olena H. · in progress · checklist 3 / 5 | Body |  |
-| operator-listings | Active jobs · cards | · next: capture rooftop set | Body |  |
+| operator-listings | Active jobs · cards | Aerial photo & video | Body |  |
+| operator-listings | Active jobs · cards | In progress | Body |  |
+| operator-listings | Active jobs · cards | Client · Olena H. | Body |  |
+| operator-listings | Active jobs · cards | Location | Body |  |
+| operator-listings | Active jobs · cards | Trukhaniv Island | Body |  |
+| operator-listings | Active jobs · cards | checklist 3 / 5 | Body |  |
 | operator-listings | Active jobs · cards | Continue | Button |  |
 | operator-listings | Active jobs · cards | Jobs | Button |  |
 | operator-listings | Active jobs · cards | Earnings | Button |  |
 | operator-listings | Active jobs · cards | Ratings | Button |  |
 | operator-listings | Active jobs · cards | Account | Button |  |
+| operator-profile-setup | — | ‹ Verification | Button |  |
 | operator-profile-setup | — | Profile setup | Heading |  |
 | operator-profile-setup | Profile photo | PROFILE PHOTO | Body | WF-PH |
-| operator-profile-setup | Profile photo | Add photo | Button | A3 attach a file (Add/Upload/Attach) |
+| operator-profile-setup | Profile photo | Add photo | Button |  |
 | operator-profile-setup | Profile photo | Display name | Field label |  |
 | operator-profile-setup | Profile photo | e.g. Andriy K. | Field placeholder |  |
 | operator-profile-setup | Profile photo | Short bio | Field label |  |
 | operator-profile-setup | Profile photo | Certified operator since 2023. Fast, careful deliveries across Kyiv… | Field placeholder | USER |
-| operator-profile-setup | Profile photo | Need help? Start from a template — 1–2 lines is enough. | Body | TONE |
+| operator-profile-setup | Profile photo | 1–2 lines clients see. Your experience and the area you cover. | Body |  |
 | operator-profile-setup | Profile photo | Service specializations | Field label |  |
 | operator-profile-setup | Profile photo | Delivery | Field label |  |
 | operator-profile-setup | Profile photo | Aerial photo & video | Field label |  |
 | operator-profile-setup | Profile photo | Inspection | Field label |  |
 | operator-profile-setup | Profile photo | Save & go live | Button |  |
-| operator-signup-error | — | Sign up | Heading | O7 sign in/sign up/confirm identity/verify |
+| operator-signup-error | — | ‹ Operator terms | Button |  |
+| operator-signup-error | — | Sign in | Heading |  |
 | operator-signup-error | Sign up | AUTH | State message | WF-PH |
-| operator-signup-error | Sign up | Identity couldn't be verified | State message | O7 sign in/sign up/confirm identity/verify |
-| operator-signup-error | Sign up | Diia declined the request or the details didn't match. You can try again, or get help if this keeps happening. | State message |  |
-| operator-signup-error | Sign up | Try again | Button | A1 recover from error (Try again/Refresh/Retry) |
-| operator-signup-error | Sign up | Get help | Button | A2 reach a human (Contact support/Call support/Talk to a human/Get help) |
-| operator-signup-loading | — | Sign up | Heading | O7 sign in/sign up/confirm identity/verify |
+| operator-signup-error | Sign up | Identity couldn't be verified | State message |  |
+| operator-signup-error | Sign up | Diia declined the request or the details didn't match. You're not verified yet. Try again, or contact support if this keeps happening. | State message |  |
+| operator-signup-error | Sign up | Try again | Button |  |
+| operator-signup-error | Sign up | Contact support | Button |  |
+| operator-signup-loading | — | ‹ Operator terms | Button |  |
+| operator-signup-loading | — | Sign in | Heading |  |
 | operator-signup-loading | Sign up | DIIA | State message | WF-PH |
-| operator-signup-loading | Sign up | Hold on a moment | State message | TONE |
-| operator-signup-loading | Sign up | Verifying your identity… | State message | O7 sign in/sign up/confirm identity/verify |
+| operator-signup-loading | Sign up | Verifying your identity… | State message |  |
+| operator-signup-loading | Sign up | Confirming your details with Diia. This takes a few seconds. | State message |  |
 | operator-signup-loading | Sign up | Continue | Button |  |
 | operator-signup-loading | Sign up | Cancel | Button |  |
-| operator-signup | — | Sign up | Heading | O7 sign in/sign up/confirm identity/verify |
-| operator-signup | Sign up | Confirm your identity | Body | O7 sign in/sign up/confirm identity/verify |
-| operator-signup | Sign up | DRON verifies every operator. Confirm who you are with Diia or BankID — then upload your licence and insurance. | Body |  |
+| operator-signup | — | ‹ Operator terms | Button |  |
+| operator-signup | — | Sign in | Heading |  |
+| operator-signup | Sign up | Confirm your identity | Body |  |
+| operator-signup | Sign up | DRON verifies every operator. Confirm who you are with Diia or BankID — then add your licence and insurance. | Body |  |
 | operator-signup | Sign up | Diia and BankID confirm who you are. DRON never sees your password. | Body |  |
 | operator-signup | Sign up | Continue with Diia | Button |  |
 | operator-signup | Sign up | Continue with BankID | Button |  |
 | operator-signup | Sign up | Secure national ID — your data stays with the provider. | Body |  |
-| operator-verification-error | — | Verification | Heading | O7 sign in/sign up/confirm identity/verify |
+| operator-verification-error | — | ‹ Sign in | Button |  |
+| operator-verification-error | — | Verification | Heading |  |
 | operator-verification-error | Documents | DOCS | State message | WF-PH |
 | operator-verification-error | Documents | Documents were rejected | State message |  |
-| operator-verification-error | Documents | Insurance document is expired. Upload a current policy that covers commercial drone operation, then resubmit. | State message |  |
-| operator-verification-error | Documents | Re-upload documents | Button |  |
-| operator-verification-error | Documents | Contact support | Button | A2 reach a human (Contact support/Call support/Talk to a human/Get help) |
-| operator-verification-loading | — | Verification | Heading | O7 sign in/sign up/confirm identity/verify |
+| operator-verification-error | Documents | Insurance document is expired. Add a current policy that covers commercial drone operation, then submit again. | State message |  |
+| operator-verification-error | Documents | Add document again | Button |  |
+| operator-verification-error | Documents | Contact support | Button |  |
+| operator-verification-loading | — | ‹ Sign in | Button |  |
+| operator-verification-loading | — | Verification | Heading |  |
 | operator-verification-loading | Documents | DOCS | State message | WF-PH |
 | operator-verification-loading | Documents | Documents submitted | State message |  |
 | operator-verification-loading | Documents | Under review — ETA 2–3 business days | State message |  |
 | operator-verification-loading | Documents | We'll notify you when it's approved. | State message |  |
 | operator-verification-loading | Documents | Continue (approved) | Button |  |
-| operator-verification-loading | Documents | Back to home | Button | A10 back-to-X object naming |
-| operator-verification | — | Verification | Heading | O7 sign in/sign up/confirm identity/verify |
+| operator-verification-loading | Documents | Back to Jobs | Button |  |
+| operator-verification | — | ‹ Sign in | Button |  |
+| operator-verification | — | Verification | Heading |  |
 | operator-verification | Documents | LICENCE (CAA/DASU) | Body | WF-PH |
-| operator-verification | Documents | Add document | Button | A3 attach a file (Add/Upload/Attach) |
+| operator-verification | Documents | Add document | Button |  |
 | operator-verification | Documents | INSURANCE DOCUMENT | Body | WF-PH |
-| operator-verification | Documents | Add document | Button | A3 attach a file (Add/Upload/Attach) |
+| operator-verification | Documents | Add document | Button |  |
 | operator-verification | Documents | Licence number | Field label |  |
 | operator-verification | Documents | e.g. UA-CAA-102938 | Field placeholder | DATA |
 | operator-verification | Documents | Review takes 2–3 business days. | Body |  |
 | operator-verification | Documents | Submit for review | Button |  |
 | order-confirmed-empty | — | Order confirmed | Heading |  |
 | order-confirmed-empty | — | DONE | State message | WF-PH |
-| order-confirmed-empty | — | You're all set | State message | TONE |
-| order-confirmed-empty | — | Payment received. Your operator is on the way. | State message |  |
+| order-confirmed-empty | — | Payment received | State message |  |
+| order-confirmed-empty | — | Your operator is on the way. | State message |  |
 | order-confirmed-empty | Your operator | KO | State message | DATA |
 | order-confirmed-empty | Your operator | Kateryna O. | State message | DATA |
 | order-confirmed-empty | Your operator | New operator · no reviews yet | State message |  |
@@ -776,9 +868,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-confirmed-error | — | Order confirmed | Heading |  |
 | order-confirmed-error | — | REFUND | State message | WF-PH |
 | order-confirmed-error | — | Couldn't confirm an operator | State message |  |
-| order-confirmed-error | — | No certified operator could take the job just now. A full refund to your card is already on its way. | State message |  |
-| order-confirmed-error | — | Try again | Button | A1 recover from error (Try again/Refresh/Retry) |
-| order-confirmed-error | — | Contact support | Button | A2 reach a human (Contact support/Call support/Talk to a human/Get help) |
+| order-confirmed-error | — | No certified operator could take your order just now. A full refund to your card is already on its way. | State message |  |
+| order-confirmed-error | — | Try again | Button |  |
+| order-confirmed-error | — | Contact support | Button |  |
 | order-confirmed-error | — | Order | Button |  |
 | order-confirmed-error | — | Activity | Button |  |
 | order-confirmed-error | — | Help | Button |  |
@@ -786,7 +878,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-confirmed-loading | — | Order confirmed | Heading |  |
 | order-confirmed-loading | — | MATCH | State message | WF-PH |
 | order-confirmed-loading | — | Finding your operator… | State message |  |
-| order-confirmed-loading | — | Matching you with the nearest certified, insured pilot near Podil. | State message | O1 operator/pilot |
+| order-confirmed-loading | — | Matching you with the nearest certified, insured operator near Podil. | State message |  |
 | order-confirmed-loading | Your operator | Operator found | Button |  |
 | order-confirmed-loading | Your operator | Order | Button |  |
 | order-confirmed-loading | Your operator | Activity | Button |  |
@@ -794,8 +886,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-confirmed-loading | Your operator | Account | Button |  |
 | order-confirmed | — | Order confirmed | Heading |  |
 | order-confirmed | — | DONE | Body | WF-PH |
-| order-confirmed | — | You're all set | Body | TONE |
-| order-confirmed | — | Payment received. Your operator is on the way. | Body |  |
+| order-confirmed | — | Payment received | Body |  |
+| order-confirmed | — | Your operator is on the way. | Body |  |
 | order-confirmed | Your operator | AM | Body | DATA |
 | order-confirmed | Your operator | Andriy M. | Body | DATA |
 | order-confirmed | Your operator | 4.9 ★ · 214 jobs | Body |  |
@@ -813,8 +905,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-history-empty | — | Activity | Heading |  |
 | order-history-empty | Order history | EMPTY | State message | WF-PH |
 | order-history-empty | Order history | No orders yet | State message |  |
-| order-history-empty | Order history | Your past orders show up here, ready to re-book in one tap. Start with your first drone service. | State message |  |
-| order-history-empty | Order history | Browse services | Button | A4 begin ordering (Get started/Start ordering/Browse services) |
+| order-history-empty | Order history | Your orders appear here, ready to re-book in a tap. | State message |  |
+| order-history-empty | Order history | Browse services | Button |  |
 | order-history-empty | Order history | Order | Button |  |
 | order-history-empty | Order history | Activity | Button |  |
 | order-history-empty | Order history | Help | Button |  |
@@ -826,31 +918,41 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-history-loading | Order history | Help | Button |  |
 | order-history-loading | Order history | Account | Button |  |
 | order-history | — | Activity | Heading |  |
-| order-history | Order history | DELIVERY | Body | WF-PH |
-| order-history | Order history | Package delivery | Heading |  |
-| order-history | Order history | Today · Podil → Osokorky | Body | DATA |
-| order-history | Order history | · In progress · ETA ~6 min | Body | DATA |
-| order-history | Order history | View details | Button | A6 see order/job detail (View details/Delivery details) |
-| order-history | Order history | DELIVERY | Body | WF-PH |
-| order-history | Order history | Package delivery | Heading |  |
-| order-history | Order history | 28 Jun · Podil → Osokorky | Body | DATA |
-| order-history | Order history | · Delivered | Body |  |
-| order-history | Order history | Book again | Button | A5 re-order (Book again/Book a free re-do) |
-| order-history | Order history | AERIAL | Body | WF-PH |
-| order-history | Order history | Aerial photo & video | Heading |  |
-| order-history | Order history | 14 Jun · Trukhaniv Island | Body | DATA |
-| order-history | Order history | · Delivered | Body |  |
-| order-history | Order history | Book again | Button | A5 re-order (Book again/Book a free re-do) |
-| order-history | Order history | INSPECT | Body | WF-PH |
-| order-history | Order history | Roof inspection | Heading |  |
-| order-history | Order history | 2 Jun · Osokorky, 14 | Body | DATA |
-| order-history | Order history | · Delivered | Body |  |
-| order-history | Order history | Book again | Button | A5 re-order (Book again/Book a free re-do) |
+| order-history | Order history | Package delivery | Body |  |
+| order-history | Order history | In progress | Body |  |
+| order-history | Order history | Today · 9 Jul 2026 · 10:03 | Body | DATA |
+| order-history | Order history | From | Body |  |
+| order-history | Order history | Podil | Body |  |
+| order-history | Order history | To | Body |  |
+| order-history | Order history | Osokorky | Body |  |
+| order-history | Order history | ETA ~6 min | Body | DATA |
+| order-history | Order history | View details | Button |  |
+| order-history | Order history | Package delivery | Body |  |
+| order-history | Order history | Delivered | Body |  |
+| order-history | Order history | 28 Jun 2026 · 14:20 | Body | DATA |
+| order-history | Order history | From | Body |  |
+| order-history | Order history | Podil | Body |  |
+| order-history | Order history | To | Body |  |
+| order-history | Order history | Osokorky | Body |  |
+| order-history | Order history | Book again | Button |  |
+| order-history | Order history | Aerial photo & video | Body |  |
+| order-history | Order history | Delivered | Body |  |
+| order-history | Order history | 14 Jun 2026 · 11:30 | Body | DATA |
+| order-history | Order history | Location | Body |  |
+| order-history | Order history | Trukhaniv Island | Body |  |
+| order-history | Order history | Book again | Button |  |
+| order-history | Order history | Roof inspection | Body |  |
+| order-history | Order history | Delivered | Body |  |
+| order-history | Order history | 2 Jun 2026 · 09:15 | Body | DATA |
+| order-history | Order history | Location | Body |  |
+| order-history | Order history | Osokorky, 14 | Body |  |
+| order-history | Order history | Book again | Button |  |
 | order-history | Order history | Order | Button |  |
 | order-history | Order history | Activity | Button |  |
 | order-history | Order history | Help | Button |  |
 | order-history | Order history | Account | Button |  |
-| order-review-loading | — | Review | Heading |  |
+| order-review-loading | — | ‹ Package delivery | Button |  |
+| order-review-loading | — | Order review | Heading |  |
 | order-review-loading | Summary | Service | State message |  |
 | order-review-loading | Summary | Package delivery | State message |  |
 | order-review-loading | Summary | Pickup | State message |  |
@@ -860,7 +962,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-review-loading | Price breakdown | Calculating the final price… | State message |  |
 | order-review-loading | Price breakdown | Total | Field label |  |
 | order-review-loading | Price breakdown | Continue | Button |  |
-| order-review | — | Review | Heading |  |
+| order-review | — | ‹ Package delivery | Button |  |
+| order-review | — | Order review | Heading |  |
 | order-review | Summary | Service | Body |  |
 | order-review | Summary | Package delivery | Body |  |
 | order-review | Summary | Pickup | Body |  |
@@ -878,6 +981,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-review | Price breakdown | This is the final price. Nothing is added at checkout. | Body |  |
 | order-review | Price breakdown | Total | Field label |  |
 | order-review | Price breakdown | Pay ₴180 | Button |  |
+| order-setup-empty | — | ‹ Order | Button |  |
 | order-setup-empty | — | Package delivery | Heading |  |
 | order-setup-empty | Details form | Pickup | State message |  |
 | order-setup-empty | Details form | Podil, 21 | State message |  |
@@ -888,20 +992,22 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-setup-empty | Availability | ~40 MIN | State message | DATA |
 | order-setup-empty | Availability | No operator free right now | State message |  |
 | order-setup-empty | Availability | All nearby operators are on jobs. The next one is likely free in about 40 minutes. | State message |  |
-| order-setup-empty | Availability | Notify me when one is free | Button | A8 notify when free (two phrasings) |
+| order-setup-empty | Availability | Notify me when available | Button |  |
 | order-setup-empty | Availability | Pick a later time | Button |  |
 | order-setup-empty | Availability | We'll hold your details — no need to re-enter them. | Body |  |
+| order-setup-error | — | ‹ Order | Button |  |
 | order-setup-error | — | Package delivery | Heading |  |
 | order-setup-error | Details form | Pickup address | Field label |  |
 | order-setup-error | Details form | Podil — Naberezhno-Khreshchatytska St, 21 | Field value | DATA |
 | order-setup-error | Details form | Drop-off address | Field label |  |
 | order-setup-error | Details form | Irpin — Sadova St, 3 | Field value | DATA |
 | order-setup-error | Details form | Outside the service zone. | State message |  |
-| order-setup-error | Details form | DRON covers Kyiv city for delivery — try an address within the city. | State message |  |
+| order-setup-error | Details form | DRON delivers within Kyiv city — enter an address in the city. | State message |  |
 | order-setup-error | Details form | Parcel size | Field label |  |
 | order-setup-error | Details form | Small — up to 2 kg | State message | DATA |
 | order-setup-error | Details form | Edit drop-off address | Button |  |
 | order-setup-error | Details form | Coverage: Kyiv (UA). More cities are rolling out. | Body |  |
+| order-setup | — | ‹ Order | Button |  |
 | order-setup | — | Package delivery | Heading |  |
 | order-setup | Details form | Pickup address | Field label |  |
 | order-setup | Details form | Podil — Naberezhno-Khreshchatytska St, 21 | Field value | DATA |
@@ -914,15 +1020,17 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-setup | Details form | Save this address for next time | Field label |  |
 | order-setup | Details form | Total · locked, no extra fees | Field label |  |
 | order-setup | Details form | Continue to review | Button |  |
+| payment-error | — | ‹ Order review | Button |  |
 | payment-error | — | Payment | Heading |  |
 | payment-error | Amount | Payment declined | State message |  |
 | payment-error | Amount | Apple Pay couldn't complete the charge. Nothing was taken from your account. Try again or use another method. | State message |  |
-| payment-error | Amount | Try again | Button | A1 recover from error (Try again/Refresh/Retry) |
+| payment-error | Amount | Try again | Button |  |
 | payment-error | Amount | Change method | Button |  |
 | payment-loading | — | Payment | Heading |  |
-| payment-loading | — | Authorizing… | State message |  |
+| payment-loading | — | Authorizing your payment… | State message |  |
 | payment-loading | — | Confirming your payment with Apple Pay. Don't close the app. | State message |  |
 | payment-loading | — | Continue | Button |  |
+| payment | — | ‹ Order review | Button |  |
 | payment | — | Payment | Heading |  |
 | payment | Amount | Package delivery · Podil → Osokorky | Body | DATA |
 | payment | Payment method | Apple Pay | Field label |  |
@@ -930,16 +1038,17 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | payment | Payment method | Visa •••• 4921 | Field label |  |
 | payment | Payment method | Pay with Apple Pay | Field label |  |
 | payment | Payment method | Pay ₴180 | Button |  |
+| rate | — | ‹ Delivered | Button |  |
 | rate | — | Rate the order | Heading |  |
-| rate | Rating | How was it? | Body | TONE |
-| rate | Review | What went well? Anything to improve? | Field placeholder |  |
+| rate | Rating | Rate this order | Body |  |
+| rate | Review | What the operator did well, and anything to improve | Field placeholder |  |
 | rate | Review | Submit review | Button |  |
-| rate | Review | Book again | Button | A5 re-order (Book again/Book a free re-do) |
+| rate | Review | Book again | Button |  |
 | ratings-empty | — | Ratings | Heading |  |
 | ratings-empty | Overall | NEW | State message | WF-PH |
 | ratings-empty | Overall | No ratings yet | State message |  |
-| ratings-empty | Overall | You haven't been rated yet. Ratings build from your first jobs — the platform keeps auto-dispatching work to you until they do. | State message |  |
-| ratings-empty | Overall | See available jobs | Button | A7 go get work (Find jobs/See available jobs/Go Available) |
+| ratings-empty | Overall | You haven't been rated yet. Ratings build from your first jobs — the platform keeps sending you jobs until they do. | State message |  |
+| ratings-empty | Overall | Find jobs | Button |  |
 | ratings-empty | Overall | Jobs | Button |  |
 | ratings-empty | Overall | Earnings | Button |  |
 | ratings-empty | Overall | Ratings | Button |  |
@@ -965,32 +1074,36 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | ratings | Recent reviews | Earnings | Button |  |
 | ratings | Recent reviews | Ratings | Button |  |
 | ratings | Recent reviews | Account | Button |  |
-| report-issue-empty | — | Report an issue | Heading | O4 issue/problem/dispute (the complaint) |
+| report-issue-empty | — | ‹ Help | Button |  |
+| report-issue-empty | — | Report an issue | Heading |  |
 | report-issue-empty | Report status | NO FILE | State message | WF-PH |
 | report-issue-empty | Report status | No evidence attached | State message |  |
 | report-issue-empty | Report status | Without a photo or note this is a weaker claim, so it goes to manual review only — which takes longer. Adding evidence gets you a faster decision. | State message |  |
-| report-issue-empty | Report status | Contact human support | Button | A2 reach a human (Contact support/Call support/Talk to a human/Get help) |
-| report-issue-empty | Report status | Add evidence | Button | A3 attach a file (Add/Upload/Attach) |
-| report-issue-loading | — | Report an issue | Heading | O4 issue/problem/dispute (the complaint) |
-| report-issue-loading | Review status | Issue under review… | State message | O4 issue/problem/dispute (the complaint) |
+| report-issue-empty | Report status | Contact support | Button |  |
+| report-issue-empty | Report status | Add evidence | Button |  |
+| report-issue-loading | — | ‹ Help | Button |  |
+| report-issue-loading | — | Report an issue | Heading |  |
+| report-issue-loading | Review status | Issue under review… | State message |  |
 | report-issue-loading | Review status | We're checking your report for order #DR-4821. This usually takes a few minutes. | State message |  |
 | report-issue-loading | Review status | You can leave this screen — we'll notify you when the outcome is ready. | State message |  |
 | report-issue-loading | Review status | View resolution | Button |  |
-| report-issue | — | Report an issue | Heading | O4 issue/problem/dispute (the complaint) |
-| report-issue | Report form | Issue type | Field label | O4 issue/problem/dispute (the complaint) |
-| report-issue | Report form | Poor quality — result not as expected | Body |  |
+| report-issue | — | ‹ Help | Button |  |
+| report-issue | — | Report an issue | Heading |  |
+| report-issue | Report form | Issue type | Field label |  |
+| report-issue | Report form | Poor quality — not as expected | Body |  |
 | report-issue | Report form | Also: Damaged item · Wrong location | Body |  |
-| report-issue | Report form | What happened? | Field label | O4 issue/problem/dispute (the complaint) |
-| report-issue | Report form | Describe the problem — e.g. the roof photos were blurry and missed the north side. | Field placeholder | O4 issue/problem/dispute (the complaint) |
+| report-issue | Report form | What happened? | Field label |  |
+| report-issue | Report form | Describe the issue — e.g. the roof photos were blurry and missed the north side. | Field placeholder |  |
 | report-issue | Report form | Evidence | Field label |  |
 | report-issue | Report form | ADD PHOTO / NOTE | Body | WF-PH |
 | report-issue | Report form | A photo makes your claim stronger. Order #DR-4821. | Body |  |
 | report-issue | Report form | Submit report | Button |  |
 | report-issue | Report form | Submit without evidence | Button |  |
+| resolution | — | ‹ Help | Button |  |
 | resolution | — | Resolution | Heading |  |
 | resolution | — | DONE | Body | WF-PH |
 | resolution | — | Refund issued | Heading |  |
-| resolution | — | We reviewed your report and refunded this order — no questions asked. | Body | TONE |
+| resolution | — | We reviewed your report and refunded this order in full. | Body |  |
 | resolution | Outcome | Issue | Body |  |
 | resolution | Outcome | Poor quality | Body |  |
 | resolution | Outcome | Order # | Body |  |
@@ -999,27 +1112,30 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | resolution | Outcome | Refund issued ₴180 | Body | DATA |
 | resolution | Outcome | Timeline | Body |  |
 | resolution | Outcome | To card in 1–3 days | Body |  |
-| resolution | Outcome | Refunded to Visa •••• 4921. Prefer a fresh attempt instead? Book a free re-do below. | Body | DATA |
+| resolution | Outcome | Refunded to Visa •••• 4921. Or book this order again for free below. | Body | DATA |
 | resolution | Outcome | Done | Button |  |
-| resolution | Outcome | Book a free re-do | Button | A5 re-order (Book again/Book a free re-do) |
-| resolution | Outcome | Still not resolved? | Button |  |
+| resolution | Outcome | Book again — free | Button |  |
+| resolution | Outcome | Contact support | Button |  |
+| result-upload-error | — | ‹ Checklist | Button |  |
 | result-upload-error | — | Close job | Heading |  |
 | result-upload-error | Result photo | UPLOAD | State message | WF-PH |
 | result-upload-error | Result photo | Upload failed | State message |  |
-| result-upload-error | Result photo | The result photo didn't upload — weak signal. Retry now, or queue it to upload automatically when you're back online. Payment is held until proof arrives. | State message | O5 result/proof/report (operator deliverable) |
-| result-upload-error | Result photo | Retry upload | Button | A1 recover from error (Try again/Refresh/Retry) |
+| result-upload-error | Result photo | The delivery photo didn't upload — weak signal. Try again, or queue it to upload automatically when you're back online. Payment is held until the photo uploads. | State message |  |
+| result-upload-error | Result photo | Try again | Button |  |
 | result-upload-error | Result photo | Queue offline | Button |  |
-| result-upload-error | Result photo | Payment stays held until the proof photo uploads. | Body | O5 result/proof/report (operator deliverable) |
+| result-upload-error | Result photo | Payment stays held until the delivery photo uploads. | Body |  |
+| result-upload-loading | — | ‹ Checklist | Button |  |
 | result-upload-loading | — | Close job | Heading |  |
 | result-upload-loading | — | SEND | State message | WF-PH |
-| result-upload-loading | — | Uploading result… | State message | O5 result/proof/report (operator deliverable) |
+| result-upload-loading | — | Uploading delivery photo… | State message |  |
 | result-upload-loading | — | Sending the delivery photo. Keep the app open. | State message |  |
 | result-upload-loading | — | Payment is held until the client confirms — auto-confirms after 2h. | State message |  |
 | result-upload-loading | — | Uploading… | Button |  |
+| result-upload | — | ‹ Checklist | Button |  |
 | result-upload | — | Close job | Heading |  |
-| result-upload | Result photo | RESULT PHOTO | Body | O5 result/proof/report (operator deliverable) |
-| result-upload | Result photo | Add photo | Button | A3 attach a file (Add/Upload/Attach) |
-| result-upload | Notes | Handover notes, recipient name… | Field placeholder | O8 client/recipient (delivery receiver) |
+| result-upload | Result photo | DELIVERY PHOTO | Body | WF-PH |
+| result-upload | Result photo | Add photo | Button |  |
+| result-upload | Notes | Handover notes, client name… | Field placeholder |  |
 | result-upload | Job | Service | Body |  |
 | result-upload | Job | Package delivery | Body |  |
 | result-upload | Job | Client | Body |  |
@@ -1031,17 +1147,19 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | role-select | Role choice | CLIENT | Body | WF-PH |
 | role-select | Role choice | I need a service done | Body |  |
 | role-select | Role choice | Order delivery, aerial photo/video or inspection — a verified operator handles it. | Body |  |
-| role-select | Role choice | PILOT | Body | O1 operator/pilot |
+| role-select | Role choice | OPERATOR | Body | WF-PH |
 | role-select | Role choice | I provide services | Body |  |
-| role-select | Role choice | You're a certified drone pilot — get dispatched jobs and get paid. | Body | O1 operator/pilot |
+| role-select | Role choice | You're a certified drone operator — take jobs and get paid. | Body |  |
 | role-select | Role choice | You can change this later in Account → Switch role. | Body | DATA |
+| share-empty | — | ‹ Rate the order | Button |  |
 | share-empty | — | Share DRON | Heading |  |
 | share-empty | Invite | NOT SENT | State message | WF-PH |
-| share-empty | Invite | You didn't send it yet | State message |  |
+| share-empty | Invite | Invite not sent yet | State message |  |
 | share-empty | Invite | Your link is ready — dron.app/r/anna-k4. Pick a channel to send it, and you both get ₴100 off the next order. | State message | DATA |
 | share-empty | Invite | Share again | Button |  |
 | share-empty | Invite | Maybe later | Button |  |
 | share-empty | Invite | Share again | Button |  |
+| share | — | ‹ Rate the order | Button |  |
 | share | — | Share DRON | Heading |  |
 | share | — | SHARE | Body | WF-PH |
 | share | — | Invite a friend | Body |  |
@@ -1054,38 +1172,39 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | share | Share to | Email | Button |  |
 | share | Share to | More | Button |  |
 | share | Share to | Your friend gets ₴100 off their first DRON order. When they complete it, ₴100 lands in your balance. No limit on invites. | Body | DATA |
-| share | Share to | Send invite | Button | A9 submit vs send |
+| share | Share to | Send invite | Button |  |
 | signin-error | Sign in | AUTH | State message | WF-PH |
-| signin-error | Sign in | Sign-in didn't complete | State message | O7 sign in/sign up/confirm identity/verify |
+| signin-error | Sign in | Sign-in didn't complete | State message |  |
 | signin-error | Sign in | Diia declined or cancelled the verification. You can try again, or continue with BankID instead. | State message |  |
-| signin-error | Sign in | Try again with Diia | Button | A1 recover from error (Try again/Refresh/Retry) |
+| signin-error | Sign in | Try again with Diia | Button |  |
 | signin-error | Sign in | Use BankID instead | Button |  |
 | signin-loading | Sign in | DIIA | State message | WF-PH |
 | signin-loading | Sign in | Opening Diia… | State message |  |
 | signin-loading | Sign in | Redirecting you to Diia to confirm your identity. This takes a few seconds. | State message |  |
 | signin-loading | Sign in | Continue | Button |  |
 | signin-loading | Sign in | Cancel | Button |  |
-| signin | Sign in | Sign in to DRON | Body | O7 sign in/sign up/confirm identity/verify |
+| signin | Sign in | Sign in to DRON | Body |  |
 | signin | Sign in | One verification lets you order drone services — or take jobs as a certified operator. | Body |  |
 | signin | Sign in | Diia and BankID confirm who you are. DRON never sees your password. | Body |  |
 | signin | Sign in | Continue with Diia | Button |  |
 | signin | Sign in | Continue with BankID | Button |  |
 | signin | Sign in | By continuing you agree to the Terms & Privacy Policy. | Body |  |
 | support | — | Help & support | Heading |  |
-| support | — | How can we help? | Heading |  |
-| support | — | Tell us what went wrong with your order and we'll get it put right. | Body | O4 issue/problem/dispute (the complaint) |
+| support | — | What happened? | Heading |  |
+| support | — | Pick the issue with your order and we'll route it to the right fix. | Body |  |
 | support | Triage list | My order didn't arrive / no-show | Body |  |
-| support | Triage list | We'll re-dispatch a new operator now — or refund you, no questions. | Body |  |
-| support | Triage list | Result wasn't what I expected | Body |  |
-| support | Triage list | Report the issue with a photo or note and we'll review it. | Body | O4 issue/problem/dispute (the complaint) |
+| support | Triage list | We'll send a new operator now, or refund your order. | Body |  |
+| support | Triage list | The photo or report wasn't what I expected | Body |  |
+| support | Triage list | Report the issue with a photo or note and we'll review it. | Body |  |
 | support | Triage list | Safety or trust concern | Body |  |
-| support | Triage list | Talk to a human straight away — support is online 24/7. | Body |  |
-| support | Human fallback | Talk to a human | Button | A2 reach a human (Contact support/Call support/Talk to a human/Get help) |
+| support | Triage list | Contact support straight away — online 24/7. | Body |  |
+| support | Human fallback | Contact support | Button |  |
 | support | Human fallback | Can't find your issue above? A support agent is available any time, day or night. | Body |  |
 | support | Human fallback | Order | Button |  |
 | support | Human fallback | Activity | Button |  |
 | support | Human fallback | Help | Button |  |
 | support | Human fallback | Account | Button |  |
+| switch-role | — | ‹ Account | Button |  |
 | switch-role | — | Switch role | Heading |  |
 | switch-role | Switch | SWITCH | Body | WF-PH |
 | switch-role | Switch | Switch to Operator? | Heading |  |
@@ -1097,8 +1216,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | switch-role | What happens | Switch back | Body |  |
 | switch-role | What happens | Any time from Account | Body |  |
 | switch-role | What happens | Switching is always reversible from the same Account entry. | Body |  |
-| switch-role | What happens | Confirm & switch | Button |  |
+| switch-role | What happens | Switch to Operator | Button |  |
 | switch-role | What happens | Cancel | Button |  |
+| time-slot-empty | — | ‹ Package delivery | Button |  |
 | time-slot-empty | — | Pick a time | Heading |  |
 | time-slot-empty | — | Tue 1 | Button |  |
 | time-slot-empty | — | Wed 2 | Button |  |
@@ -1107,11 +1227,12 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | time-slot-empty | — | Sat 5 | Button |  |
 | time-slot-empty | Slots · Thu 3 Jul | EMPTY | State message | WF-PH |
 | time-slot-empty | Slots · Thu 3 Jul | No free slots on Thu 3 Jul | State message | DATA |
-| time-slot-empty | Slots · Thu 3 Jul | Every operator is booked that day. Try another date — Fri 4 and Sat 5 still have openings. | State message |  |
+| time-slot-empty | Slots · Thu 3 Jul | Every operator is booked that day. Pick another day — Fri 4 and Sat 5 still have openings. | State message |  |
 | time-slot-empty | Slots · Thu 3 Jul | Pick another day | Button |  |
-| time-slot-empty | Slots · Thu 3 Jul | Back to setup | Button | A10 back-to-X object naming |
+| time-slot-empty | Slots · Thu 3 Jul | Back to Order setup | Button |  |
 | time-slot-empty | Slots · Thu 3 Jul | No slot selected | Field label |  |
 | time-slot-empty | Slots · Thu 3 Jul | Confirm slot | Button |  |
+| time-slot | — | ‹ Package delivery | Button |  |
 | time-slot | — | Pick a time | Heading |  |
 | time-slot | — | Tue 1 | Button |  |
 | time-slot | — | Wed 2 | Button |  |
@@ -1135,7 +1256,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | tracking-empty | Late notice | Running a few minutes late | State message |  |
 | tracking-empty | Late notice | Traffic near the drop-off is slowing your operator. They're still on the way. | State message |  |
 | tracking-empty | Late notice | Keep waiting | Button |  |
-| tracking-empty | Late notice | Contact support | Button | A2 reach a human (Contact support/Call support/Talk to a human/Get help) |
+| tracking-empty | Late notice | Contact support | Button |  |
 | tracking-empty | Operator | AM | State message | DATA |
 | tracking-empty | Operator | Andriy M. | State message | DATA |
 | tracking-empty | Operator | 4.9 ★ · 214 jobs | State message |  |
@@ -1153,9 +1274,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | tracking-error | — | On the way | Heading |  |
 | tracking-error | Live map | NO GPS | State message | WF-PH |
 | tracking-error | Live map | Live tracking lost | State message |  |
-| tracking-error | Live map | We've lost the live signal from the operator's device. The job is still active. | State message |  |
-| tracking-error | Live map | Refresh | Button | A1 recover from error (Try again/Refresh/Retry) |
-| tracking-error | Live map | Contact support | Button | A2 reach a human (Contact support/Call support/Talk to a human/Get help) |
+| tracking-error | Live map | We've lost the live signal from the operator's device. Your order is still active. | State message |  |
+| tracking-error | Live map | Try again | Button |  |
+| tracking-error | Live map | Contact support | Button |  |
 | tracking-error | ETA | ETA | State message |  |
 | tracking-error | ETA | ~6 min | State message | DATA |
 | tracking-error | ETA | Status | State message |  |
@@ -1177,7 +1298,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | tracking-loading | — | On the way | Heading |  |
 | tracking-loading | Live map | ACQUIRING GPS… | State message | WF-PH |
 | tracking-loading | ETA | Getting a live signal from the operator… | State message |  |
-| tracking-loading | ETA | Signal restored | Button | A1 recover from error (Try again/Refresh/Retry) |
+| tracking-loading | ETA | Signal restored | Button |  |
 | tracking-loading | ETA | Order | Button |  |
 | tracking-loading | ETA | Activity | Button |  |
 | tracking-loading | ETA | Help | Button |  |
@@ -1197,22 +1318,22 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | tracking | Progress | Parcel picked up | Body |  |
 | tracking | Progress | En route | Body |  |
 | tracking | Progress | Arriving | Body |  |
-| tracking | Progress | Delivery details | Button | A6 see order/job detail (View details/Delivery details) |
+| tracking | Progress | View details | Button |  |
 | tracking | Progress | Contact operator | Button |  |
 | wallet-empty | — | Earnings | Heading |  |
-| wallet-empty | Balance | Below the ₴500 minimum to withdraw | State message | O6 withdraw/cash out/payout |
-| wallet-empty | Balance | KEEP GOING | State message | TONE |
-| wallet-empty | Balance | Almost there | State message | TONE |
-| wallet-empty | Balance | You need ₴500 to cash out. Take one more job to reach the payout minimum. | State message | O6 withdraw/cash out/payout |
-| wallet-empty | Balance | Find jobs | Button | A7 go get work (Find jobs/See available jobs/Go Available) |
+| wallet-empty | Balance | Below the ₴500 minimum to withdraw | State message | DATA |
+| wallet-empty | Balance | EMPTY | State message | WF-PH |
+| wallet-empty | Balance | Below the withdrawal minimum | State message |  |
+| wallet-empty | Balance | You need ₴500 to withdraw. Take one more job to reach the minimum. | State message | DATA |
+| wallet-empty | Balance | Find jobs | Button |  |
 | wallet-empty | Balance | Jobs | Button |  |
 | wallet-empty | Balance | Earnings | Button |  |
 | wallet-empty | Balance | Ratings | Button |  |
 | wallet-empty | Balance | Account | Button |  |
 | wallet | — | Earnings | Heading |  |
-| wallet | Balance | Available to withdraw | Body | O6 withdraw/cash out/payout |
-| wallet | Balance | Paid: ₴800 for 'Aerial photo & video' added 12 min ago. | Body | DATA |
-| wallet | Balance | Withdraw | Button | O6 withdraw/cash out/payout |
+| wallet | Balance | Available to withdraw | Body |  |
+| wallet | Balance | ₴800 paid for 'Aerial photo & video', added to your balance 12 min ago. | Body | DATA |
+| wallet | Balance | Withdraw ₴3,240 | Button |  |
 | wallet | Recent | Package delivery | Heading |  |
 | wallet | Recent | Today, 10:07 | Body | DATA |
 | wallet | Recent | Aerial photo & video | Heading |  |
@@ -1226,7 +1347,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | welcome-empty | — | Skip | Body |  |
 | welcome-empty | One-card fallback | DRON | State message | WF-PH |
 | welcome-empty | One-card fallback | DRON in 15 seconds | State message |  |
-| welcome-empty | One-card fallback | Order a drone service — a certified, insured operator does the flying. You see their name, photo and live position the moment you pay, and get proof when it's done. The drone flies a set route and only records what your job needs. | State message |  |
+| welcome-empty | One-card fallback | Order a drone service — a certified, insured operator does the flying. You see their name, photo and live position the moment you pay, and get a photo or report when it's done. The drone flies a set route and only records what your order needs. | State message |  |
 | welcome-empty | One-card fallback | Continue | Button |  |
 | welcome | — | Skip | Body |  |
 | welcome | — | ORDER | Body | WF-PH |
@@ -1237,25 +1358,28 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | welcome | — | The moment you pay you see their name, photo and live position. Someone accountable is on the way. | Body |  |
 | welcome | — | DRONE | Body | WF-PH |
 | welcome | — | What the drone does — and doesn't | Body |  |
-| welcome | — | It flies a set route, keeps its distance, and only records what your job needs. Brief low noise on take-off and landing; no filming of your neighbours. | Body |  |
-| welcome | — | Get started | Button | A4 begin ordering (Get started/Start ordering/Browse services) |
-| withdraw-error | — | Withdraw | Heading | O6 withdraw/cash out/payout |
+| welcome | — | It flies a set route, keeps its distance, and only records what your order needs. Brief low noise on take-off and landing; no filming of your neighbours. | Body |  |
+| welcome | — | Get started | Button |  |
+| withdraw-error | — | ‹ Earnings | Button |  |
+| withdraw-error | — | Withdraw | Heading |  |
 | withdraw-error | Amount | FAILED | State message | WF-PH |
-| withdraw-error | Amount | Payout didn't go through | State message | O6 withdraw/cash out/payout |
+| withdraw-error | Amount | Withdrawal didn't go through | State message |  |
 | withdraw-error | Amount | The transfer to your card failed and the ₴3,240 is back in your balance. Check the card details, or try a bank transfer instead. | State message | DATA |
-| withdraw-error | Amount | Try again | Button | A1 recover from error (Try again/Refresh/Retry) |
+| withdraw-error | Amount | Try again | Button |  |
 | withdraw-error | Amount | Use bank transfer | Button |  |
 | withdraw-error | Amount | Funds returned to your balance — nothing was lost. | Body |  |
-| withdraw-loading | — | Withdraw | Heading | O6 withdraw/cash out/payout |
+| withdraw-loading | — | ‹ Earnings | Button |  |
+| withdraw-loading | — | Withdraw | Heading |  |
 | withdraw-loading | — | SEND | State message | WF-PH |
 | withdraw-loading | — | Sending to your card… | State message |  |
 | withdraw-loading | — | Instant transfer to Visa •••• 3318 — usually under a minute. | State message | DATA |
 | withdraw-loading | — | Transferring… | Button |  |
-| withdraw | — | Withdraw | Heading | O6 withdraw/cash out/payout |
+| withdraw | — | ‹ Earnings | Button |  |
+| withdraw | — | Withdraw | Heading |  |
 | withdraw | Amount | Full balance | Body |  |
-| withdraw | Payout method | Instant to card •••• 3318 | Field label |  |
-| withdraw | Payout method | Arrives in under a minute | Body |  |
-| withdraw | Payout method | Bank transfer | Field label |  |
-| withdraw | Payout method | 1–3 business days | Body |  |
-| withdraw | Payout method | To Visa •••• 3318 | Field label |  |
-| withdraw | Payout method | Withdraw ₴3,240 | Button |  |
+| withdraw | Withdrawal method | Instant to card •••• 3318 | Field label |  |
+| withdraw | Withdrawal method | Arrives in under a minute | Body |  |
+| withdraw | Withdrawal method | Bank transfer | Field label |  |
+| withdraw | Withdrawal method | 1–3 business days | Body |  |
+| withdraw | Withdrawal method | To Visa •••• 3318 | Field label |  |
+| withdraw | Withdrawal method | Withdraw ₴3,240 | Button |  |

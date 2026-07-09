@@ -84,6 +84,28 @@ exist where a `flows.md` node produces them; every empty/error screen has a visi
 
 ---
 
+## Voice
+
+How the product speaks. The single source of truth is [`voice.md`](voice.md), rendered as a page at
+[`tone-of-voice.html`](tone-of-voice.html) (linked in every sidebar; a **Tone of voice** button on the
+wireframe toolbar opens it in a right-hand drawer). Every product string is written against `voice.md` and
+inventoried in [`microcopy.md`](microcopy.md).
+
+**Stance:** trust beats wit — calm, specific, accountable. Facts not adjectives, outcomes not equipment.
+
+| File | What lives here |
+|---|---|
+| [`voice.md`](voice.md) | The rules: 5 principles, the vocabulary (one word per concept), the "Don't use" list, per-element microcopy rules, and GEO/SEO. |
+| [`microcopy.md`](microcopy.md) | Every UI string across all screens (master table), the rewrite logs, and the audit — the inventory each string is checked against. |
+| [`tone-of-voice.html`](tone-of-voice.html) | `voice.md` rendered as a readable page (in every sidebar + the wireframe drawer). |
+
+**Five principles:** name the outcome not the drone · show the proof not the adjective · price as a fact before
+the tap · the user's words not the equipment · in trouble, plain and accountable not cheery.
+**One word per concept:** operator (not "pilot"), order (client) / job (operator), issue / dispute,
+delivery photo / inspection report, Withdraw, Sign in, Contact support, Try again, Add…, View details.
+
+---
+
 ## Working process
 
 1. Research → `research/`
