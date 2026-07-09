@@ -182,15 +182,15 @@ After the full pass, every term pinned by the `voice.md` **Vocabulary** is now a
 
 | # | Same action | Labels now in the build (screens) | Recommended canonical | Status |
 |---|---|---|---|---|
-| **D1** | **Top-bar back chevron** | `‹ Back` (~16 screens) · `‹ Back to Account` (account-edit, switch-role) · `‹ Back to Help` (contact-support ×2, report-issue ×3) · `‹ Back to Verification` (operator-profile-setup) | **`‹ Back`** on the top-bar everywhere; keep `Back to {Section}` **only** for in-content recovery buttons in empty/error states | needs your call → I'll fix |
-| **D2** | Attach a document, redo after rejection | `Add document` (account, operator-verification) · `Add documents again` (operator-verification-error) | `Add document` / redo = **`Add document again`** (singular) | minor → I'll fix |
+| **D1** | **Top-bar back chevron** | was `‹ Back` (~16 screens) vs `Back to {Section}` (a few) | **decision: `Back to {Section}` everywhere** — every top-bar back names its destination | **Resolved** — applied to all 36 top-bar backs |
+| **D2** | Attach a document, redo after rejection | `Add document` vs `Add documents again` | `Add document` / redo = **`Add document again`** (singular) | **Resolved** |
 | **D3** | Escalate an unresolved case | `Still unresolved` (contact-support) · `Contact support` (resolution) | keep split: inside the support chat = escalation `Still unresolved`; from elsewhere = `Contact support` | confirm |
 | **D4** | Switch to another pay/payout method | `Change method` (payment-error) · `Use bank transfer` (withdraw-error) | contextual (each names the alternative) — acceptable, or standardize to `Change method` | your call |
 | **D5** | Transient loading-advance vs the real CTA | `Continue` (order-review-loading, payment-loading, signin-loading, operator-signup-loading) vs the success CTA (`Pay ₴180`, …) | a disabled copy of the real verb (e.g. disabled `Pay ₴180`) | structural, later |
 | **D6** | Dismiss / defer a step | `Skip` (onboarding) · `Cancel` (forms/dialogs) · `Maybe later` (fee-terms, share) | contextual split (skip intro / cancel action / decline offer) — acceptable | note |
 | **D7** | In-content back to a non-nav destination | `Back to Jobs` (×4, correct) · `Back to setup` (time-slot) · `Back to live tracking` (delivery) | `Back to {Section}` where a nav section exists; contextual name otherwise | acceptable |
 
-**D1 is the only real must-fix** — it is a genuine either/or (bare `‹ Back` vs `Back to {Section}` on the top bar) that the agents split on. Recommendation: bare `‹ Back` on the top-bar chevron (platform convention; ~16 screens already do it), with `Back to {Section}` reserved for the in-content recovery buttons where there is no chevron.
+**D1 resolved — decision: `Back to {Section}` everywhere.** All 36 top-bar back buttons now name their destination; no bare `‹ Back` remains. Destinations use the nav-section label where the target is a section (`Back to Jobs · Earnings · Activity · Account · Help · Order`) and the destination screen's name for in-flow steps (`Back to Order setup · Order review · Checklist · Job brief · Sign in · Operator terms · Verification · live tracking · rating · intro`). The in-content recovery buttons that already named a destination were aligned to the same wording (e.g. `Back to setup` → `Back to Order setup`). **D2 resolved** (`Add document again`). D3–D7 left as noted — contextually acceptable — pending any further call.
 
 ---
 
