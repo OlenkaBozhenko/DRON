@@ -182,7 +182,7 @@ After the full pass, every term pinned by the `voice.md` **Vocabulary** is now a
 
 | # | Same action | Labels now in the build (screens) | Recommended canonical | Status |
 |---|---|---|---|---|
-| **D1** | **Top-bar back chevron** | was `‹ Back` (~16 screens) vs `Back to {Section}` (a few) | **decision: `Back to {Section}` everywhere** — every top-bar back names its destination | **Resolved** — applied to all 36 top-bar backs |
+| **D1** | **Nav-bar back button** | mixed `‹ Back` / `Back to {Section}` | **decision: iOS HIG (Variant A)** — `‹ {previous screen's title}`; bare `‹ Back` only when the previous screen has no title; tab roots get no back | **Resolved** — 43 backs relabelled, `support` (Help tab root) back removed |
 | **D2** | Attach a document, redo after rejection | `Add document` vs `Add documents again` | `Add document` / redo = **`Add document again`** (singular) | **Resolved** |
 | **D3** | Escalate an unresolved case | `Still unresolved` (contact-support) · `Contact support` (resolution) | keep split: inside the support chat = escalation `Still unresolved`; from elsewhere = `Contact support` | confirm |
 | **D4** | Switch to another pay/payout method | `Change method` (payment-error) · `Use bank transfer` (withdraw-error) | contextual (each names the alternative) — acceptable, or standardize to `Change method` | your call |
@@ -190,7 +190,7 @@ After the full pass, every term pinned by the `voice.md` **Vocabulary** is now a
 | **D6** | Dismiss / defer a step | `Skip` (onboarding) · `Cancel` (forms/dialogs) · `Maybe later` (fee-terms, share) | contextual split (skip intro / cancel action / decline offer) — acceptable | note |
 | **D7** | In-content back to a non-nav destination | `Back to Jobs` (×4, correct) · `Back to setup` (time-slot) · `Back to live tracking` (delivery) | `Back to {Section}` where a nav section exists; contextual name otherwise | acceptable |
 
-**D1 resolved — decision: `Back to {Section}` everywhere.** All 36 top-bar back buttons now name their destination; no bare `‹ Back` remains. Destinations use the nav-section label where the target is a section (`Back to Jobs · Earnings · Activity · Account · Help · Order`) and the destination screen's name for in-flow steps (`Back to Order setup · Order review · Checklist · Job brief · Sign in · Operator terms · Verification · live tracking · rating · intro`). The in-content recovery buttons that already named a destination were aligned to the same wording (e.g. `Back to setup` → `Back to Order setup`). **D2 resolved** (`Add document again`). D3–D7 left as noted — contextually acceptable — pending any further call.
+**D1 resolved — decision: iOS HIG (Variant A).** Per Apple's Human Interface Guidelines (the client-mobile standard in `CLAUDE.md`), each nav-bar back button now shows the **title of the screen it returns to**, prefixed with `‹` — e.g. `‹ Order review` (on Payment), `‹ Sign in` (on Verification), `‹ Jobs` (on Dispute), `‹ Help` (on Support/Report an issue) — never `Back to …`. Bare `‹ Back` is kept only where the previous screen has no title (`operator-fee-terms`, whose previous is the title-less onboarding slider). The Help **tab root** (`support.html`) had its back button **removed** (tab roots are reached by switching tabs, not by a back). The in-content recovery buttons in empty/error blocks (e.g. `Back to Jobs`) are a different element — content CTAs, not the nav-bar back — and keep their descriptive wording. **D2 resolved** (`Add document again`). D3–D7 left as noted.
 
 ---
 
