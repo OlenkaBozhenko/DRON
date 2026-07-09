@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Operator account / profile · success (base)</title>
+<!-- SCREEN: "Operator account" — the Account tab in the OPERATOR global nav (Jobs · Earnings · Ratings · Account).
+     PERSONA: Operator O-1. JOB: identity / payout utility + switch persona (Operator ⇄ Client).
+     Fixes the flow leak where the operator's Account tab landed on the client account page (client bottom nav). -->
+<link rel="stylesheet" href="_wireframe.css">
+<style>
+  /* Edit icon button — top-right corner of the profile card (grayscale glyph placeholder, no real icon) */
+  .op-card{ position:relative; }
+  .op-edit{ position:absolute; top:12px; right:12px; width:32px; height:32px; display:inline-flex;
+    align-items:center; justify-content:center; border:1px solid var(--wf-border-2); border-radius:6px;
+    background:var(--wf-surface); color:var(--wf-text-2); text-decoration:none; }
+  .op-edit:hover{ background:var(--wf-recessed); color:var(--wf-text); }
+  .op-edit:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  .ic-edit{ position:relative; width:16px; height:16px; }
+  .ic-edit .pencil{ position:absolute; top:1px; left:50%; transform:translateX(-50%) rotate(45deg);
+    display:flex; flex-direction:column; align-items:center; }
+  .ic-edit .body{ width:5px; height:10px; background:currentColor; border-radius:1px 1px 0 0; }
+  .ic-edit .tip{ width:0; height:0; border-left:2.5px solid transparent; border-right:2.5px solid transparent;
+    border-top:4px solid currentColor; }
+</style>
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-account.html" class="cur" aria-current="page">success</a>
+      <a href="account-edit.html">edit</a>
+    </nav>
+    <h1>Operator account / profile</h1>
+    <p class="sub">Operator · Account utility · state: <b>base only</b> · file: operator-account.html</p>
+    <div class="flow"><b>Job (jtbd):</b> operator identity &amp; payout utility + <b>Switch role</b> (Operator ⇄ Client).<br><b>Exit:</b> Mode dropdown → Operator home (operator-listings) or Client home (listings).<br><b>Why this page exists:</b> the operator Account tab used to open the client <b>account.html</b> (client bottom nav) — dropping the operator into the client flow. This keeps the operator inside the operator flow.<br><b>States:</b> none.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Profile</b> ▸ who you are (Diia-verified operator)</p><p><b>Mode</b> ▸ switch Operator ⇄ Client (dropdown)</p><p><b>Account</b> ▸ payout · service area · language</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="title" style="padding-left:16px;">Account</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Profile <span class="act">▸ Diia-verified operator</span></p>
+      <section aria-label="Profile">
+        <article class="op-card">
+          <span class="op-avatar">IK</span>
+          <span class="op-info">
+            <span class="op-name">Ivan K.</span>
+            <span class="op-rating">4.9 ★ · 214 jobs · Verified by DRON</span>
+            <span class="badges"><span class="badge">Operator</span><span class="badge">Insured</span><span class="badge">CAA licence</span></span>
+          </span>
+          <a class="op-edit" href="account-edit.html" aria-label="Edit profile">
+            <span class="ic-edit" aria-hidden="true"><span class="pencil"><span class="body"></span><span class="tip"></span></span></span>
+          </a>
+        </article>
+      </section>
+
+      <p class="zlabel">Mode <span class="act">▸ switch Operator ⇄ Client</span></p>
+      <section aria-label="User mode">
+        <details class="dropdown">
+          <summary>Operator mode<span aria-hidden="true">▾</span></summary>
+          <a href="operator-listings.html">Operator — provide services<span class="tag">current</span></a>
+          <a href="switch-role.html">Client — order services<span class="tag">switch</span></a>
+        </details>
+        <p class="hint">Switching changes what the app shows. Your Diia identity stays the same.</p>
+      </section>
+
+      <p class="zlabel">Account <span class="act">▸ payout &amp; preferences</span></p>
+      <div class="kv" aria-label="Account details">
+        <div class="kv-row"><span class="kv-key">Payout method</span><span class="kv-val">Card •••• 4921</span></div>
+        <div class="kv-row"><span class="kv-key">Service area</span><span class="kv-val">Podil · Obolon</span></div>
+        <div class="kv-row"><span class="kv-key">Drone</span><span class="kv-val">DJI Mavic 3 · reg. verified</span></div>
+        <div class="kv-row"><span class="kv-key">Language</span><span class="kv-val">English</span></div>
+        <div class="kv-row"><span class="kv-key">Operator since</span><span class="kv-val">2026</span></div>
+      </div>
+    </main>
+
+    <footer class="tabbar">
+      <nav class="tabs" aria-label="Primary">
+        <a class="tab" href="operator-listings.html"><span class="sq sq-24" aria-hidden="true"></span>Jobs</a>
+        <a class="tab" href="wallet.html"><span class="sq sq-24" aria-hidden="true"></span>Earnings</a>
+        <a class="tab" href="ratings.html"><span class="sq sq-24" aria-hidden="true"></span>Ratings</a>
+        <a class="tab" href="operator-account.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+      </nav>
+      <div class="home-indicator"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
