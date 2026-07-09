@@ -34,6 +34,166 @@ First screens rewritten against `voice.md` (Step 02). **Text only — structure 
 
 ---
 
+## Rewrite log — Batch 2: all remaining screens
+
+Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one agent per screen. **Text only; structure, hrefs, the `.meta` annotation panel, user content and placeholder badges untouched.** Fully voice-compliant screens were left unchanged and are noted below. Changes were auto-committed per file by the repo's `auto: update` automation.
+
+**Screens already compliant (no change):** `onboarding-operator`, `signin`.
+
+**123 strings changed across 34 screens.**
+
+
+| Screen | File | Zone | Type | Before | After |
+|---|---|---|---|---|---|
+| account | account.html | Mode | body | Operator — provide services | Operator — take jobs |
+| account | account-edit.html | Header / topbar | button | ‹ Back | ‹ Back to Account |
+| account | account-edit.html | Documents (Drone documents) | button | Upload document | Add document |
+| account | account-edit.html | Documents (Insurance) | button | Upload document | Add document |
+| contact-support | contact-support.html | Topbar | button | ‹ Back | ‹ Back to Help |
+| contact-support | contact-support.html | Message | placeholder | Tell the agent what's still wrong and what you'd like to happen. | Describe the issue and what you'd like to happen. |
+| contact-support | contact-support.html | Outcome (actionbar) | button | Escalate — still unresolved | Still unresolved |
+| contact-support | contact-support-error.html | Topbar | button | ‹ Back | ‹ Back to Help |
+| contact-support | contact-support-error.html | Escalation | state message | Added to the escalation queue | Sent to a senior agent |
+| contact-support | contact-support-error.html | Outcome (actionbar) | button | Back to orders | Back to Activity |
+| contact-support | contact-support-error.html | Outcome (actionbar) | button | Try support again | Contact support |
+| delivery | delivery.html | Confirmation / footer CTA | button | Rate the order | Rate this order |
+| delivery | delivery-error.html | Proof of delivery (error alert) | state message | Proof of delivery is missing | Delivery photo is missing |
+| delivery | delivery-error.html | Proof of delivery (error alert) | state message | The operator hasn't uploaded a delivery photo and the confirmation window has passed. Don't confirm until you have proof. | The operator hasn't uploaded a delivery photo and the confirmation window has passed. Without it, the order can't be confirmed or paid. Report an issue and support will resolve it. |
+| delivery | delivery-loading.html | Waiting for proof (loading) | state message | Waiting for proof… | Waiting for the delivery photo… |
+| delivery | delivery-loading.html | Waiting for proof (loading, aria-label) | body | Waiting for proof | Waiting for the delivery photo |
+| delivery | delivery-loading.html | Proof of delivery (loading CTA) | button | Proof received | View delivery photo |
+| inspection-report | inspection-report.html | Action footer | button | Rate the order | Rate this order |
+| inspection-report | inspection-report-error.html | Report (no proof) | state message | The operator marked the inspection done but no photos or findings arrived in time. Without proof the job can't be completed or paid — let's sort it out. | The operator marked the inspection done but no photos or findings arrived in time. Without proof the job can't be completed or paid. Contact support to resolve it. |
+| inspection-report | inspection-report-error.html | Report (recovery) | button | Refresh | Try again |
+| inspection-report | inspection-report-loading.html | Status | state message | Report not uploaded yet… | The operator is still uploading the report… |
+| inspection-report | inspection-report-loading.html | Action footer | button | Rate the order | Rate this order |
+| job-brief | job-brief-error.html | Brief (stand-down) | button | Back to jobs | Back to Jobs |
+| job-checklist | job-checklist.html | Pre-flight & job steps (checklist) | body | Confirm handover with recipient | Confirm handover with the client |
+| job-checklist | job-checklist.html | Action bar (footer CTA) | button | Complete & upload result | Complete & add delivery photo |
+| job-checklist | job-checklist-error.html | Pre-flight & job steps (checklist) | body | Confirm handover with recipient | Confirm handover with the client |
+| job-checklist | job-checklist-error.html | Cannot close yet (error block) | state message | Finish the required step | Required steps still open |
+| job-offer | job-offer.html | Offer | body | · pays on completion | · paid on completion |
+| job-offer | job-offer-empty.html | Offer (empty state) | state message | Offer expired | Job expired |
+| job-offer | job-offer-empty.html | Offer (empty state) | state message | You didn't respond in time, so this job was reassigned to another operator. New offers will appear here. | You didn't respond in time, so this job was reassigned to another operator. New jobs will appear here. |
+| job-offer | job-offer-empty.html | Offer (empty state) | button | Back to jobs | Back to Jobs |
+| job-offer | job-offer-empty.html | Footer note | body | Offers auto-expire after 10s to keep dispatch moving. | Jobs auto-expire after 10s to keep dispatch moving. |
+| listings-subviews | listings-filters.html | Filter sheet header | button | Reset | Clear all |
+| onboarding-client | onboarding-client.html | Slider · Slide 1 (verified) | body | DRON assigns the nearest certified, insured pilot. You don't choose or guess. | DRON assigns the nearest certified, insured operator. You don't choose or guess. |
+| onboarding-client | onboarding-client.html | Slider · Slide 2 (live) | heading | Watch it live | Track it live |
+| onboarding-client | onboarding-client.html | Slider · Slide 3 (proof) | heading | Proof every time | A photo or report, every time |
+| onboarding-client | onboarding-client.html | Slider · Slide 3 (proof) | body | Get a photo or a report the moment the job is done. | Get a photo or a report the moment it's done. |
+| onboarding-client | onboarding-client-empty.html | Explainer · one-card fallback | heading | The short version | How DRON works |
+| onboarding-client | onboarding-client-empty.html | Explainer · one-card fallback | body | A certified, insured operator does the job. You track it live and pay only online — nothing to manage. | A certified, insured operator does the work. You track it live and pay only online — nothing to manage. |
+| onboarding-client | onboarding-client-empty.html | Action bar | button | Start ordering | Get started |
+| operator-dispute | operator-dispute.html | Client claim | body | Client reports | Client's issue |
+| operator-dispute | operator-dispute.html | Your response | field label | Reply to the client | Your response |
+| operator-dispute | operator-dispute.html | Your response / Evidence | button | Attach evidence | Add evidence |
+| operator-dispute | operator-dispute-error.html | Status — Payment held | state message | ₴800 for Job #DR-2841 stays on hold while the dispute is reviewed. Add more evidence to your response, or bring in a human to resolve it. | ₴800 for Job #DR-2841 stays on hold while the dispute is reviewed. Add more evidence to your response, or contact support to resolve it. |
+| operator-dispute | operator-dispute-error.html | Actionbar | button | Back to jobs | Back to Jobs |
+| operator-fee-terms | operator-fee-terms.html | Value intro | body | DRON dispatches pre-qualified jobs to you, insures every flight, and pays out automatically. Here's what you keep and how you get paid. | DRON dispatches pre-qualified jobs to you, insures every flight, and pays you automatically. Here's what you keep and how you get paid. |
+| operator-fee-terms | operator-fee-terms.html | Fee terms | field label | Payout | Payment |
+| operator-fee-terms | operator-fee-terms.html | Fee terms | field label | Minimum payout | Minimum withdrawal |
+| operator-listings | operator-listings.html | Status | state message | · receiving offers near Podil | · receiving jobs near Podil |
+| operator-listings | operator-listings.html | Counter | state message | 2 new offers · 1 active job · nearest first | 2 new jobs · 1 active job · nearest first |
+| operator-listings | operator-listings.html | Incoming offers | placeholder | Package delivery offer — open brief | Package delivery job — open brief |
+| operator-listings | operator-listings.html | Incoming offers | placeholder | Roof inspection offer — open brief | Roof inspection job — open brief |
+| operator-listings | operator-listings-empty.html | Status | state message | · no offers while offline | · no jobs while offline |
+| operator-listings | operator-listings-empty.html | Offers (empty state) | state message | No offers while you're offline | No jobs while you're offline |
+| operator-profile-setup | operator-profile-setup.html | Topbar | button | ‹ Back | ‹ Back to Verification |
+| operator-profile-setup | operator-profile-setup.html | Name & bio — Short bio | placeholder | Need help? Start from a template — 1–2 lines is enough. | 1–2 lines clients see. Your experience and the area you cover. |
+| operator-signup | operator-signup.html | Header / top bar | heading | Sign up | Sign in |
+| operator-signup | operator-signup.html | Sign up (identity) | body | DRON verifies every operator. Confirm who you are with Diia or BankID — then upload your licence and insurance. | DRON verifies every operator. Confirm who you are with Diia or BankID — then add your licence and insurance. |
+| operator-signup | operator-signup-error.html | Header / top bar | heading | Sign up | Sign in |
+| operator-signup | operator-signup-error.html | Sign up (error) | state message | Diia declined the request or the details didn't match. You can try again, or get help if this keeps happening. | Diia declined the request or the details didn't match. You're not verified yet. Try again, or contact support if this keeps happening. |
+| operator-signup | operator-signup-error.html | Sign up (error) — action bar | button | Get help | Contact support |
+| operator-signup | operator-signup-loading.html | Header / top bar | heading | Sign up | Sign in |
+| operator-signup | operator-signup-loading.html | Sign up (loading) | state message | Hold on a moment | Verifying your identity… |
+| operator-signup | operator-signup-loading.html | Sign up (loading) | state message | Verifying your identity… | Confirming your details with Diia. This takes a few seconds. |
+| operator-verification | operator-verification-error.html | Documents | state message | Insurance document is expired. Upload a current policy that covers commercial drone operation, then resubmit. | Insurance document is expired. Add a current policy that covers commercial drone operation, then submit again. |
+| operator-verification | operator-verification-error.html | Documents | button | Re-upload documents | Add documents again |
+| operator-verification | operator-verification-loading.html | Documents | button | Back to home | Back to Jobs |
+| order-confirmed | order-confirmed.html | Confirmation | heading | You're all set | Payment received |
+| order-confirmed | order-confirmed.html | Confirmation | state message | Payment received. Your operator is on the way. | Your operator is on the way. |
+| order-confirmed | order-confirmed-empty.html | Confirmation | heading | You're all set | Payment received |
+| order-confirmed | order-confirmed-empty.html | Confirmation | state message | Payment received. Your operator is on the way. | Your operator is on the way. |
+| order-confirmed | order-confirmed-error.html | Refund | state message | No certified operator could take the job just now. A full refund to your card is already on its way. | No certified operator could take your order just now. A full refund to your card is already on its way. |
+| order-confirmed | order-confirmed-loading.html | Matching | state message | Matching you with the nearest certified, insured pilot near Podil. | Matching you with the nearest certified, insured operator near Podil. |
+| order-history | order-history-empty.html | Past orders (empty state) | state message | Your past orders show up here, ready to re-book in one tap. Start with your first drone service. | Your orders appear here, ready to re-book in a tap. |
+| order-review | order-review.html | Topbar | heading | Review | Order review |
+| order-review | order-review-loading.html | Topbar | heading | Review | Order review |
+| order-setup | order-setup-empty.html | Availability / No operator available | button | Notify me when one is free | Notify me when available |
+| order-setup | order-setup-error.html | Details form / Drop-off field | state message | Outside the service zone. DRON covers Kyiv city for delivery — try an address within the city. | Outside the service zone. DRON delivers within Kyiv city — enter an address in the city. |
+| payment | payment-loading.html | Authorizing payment | state message | Authorizing… | Authorizing your payment… |
+| rate | rate.html | Rating | heading | How was it? | Rate this order |
+| rate | rate.html | Review | placeholder | What went well? Anything to improve? | What the operator did well, and anything to improve |
+| ratings | ratings-empty.html | Overall (no ratings yet) | state message | You haven't been rated yet. Ratings build from your first jobs — the platform keeps auto-dispatching work to you until they do. | You haven't been rated yet. Ratings build from your first jobs — the platform keeps sending you jobs until they do. |
+| ratings | ratings-empty.html | Overall (no ratings yet) | button | See available jobs | Find jobs |
+| report-issue | report-issue.html | Topbar | button | ‹ Back | ‹ Back to Help |
+| report-issue | report-issue.html | Report form · Issue type | field label | Poor quality — result not as expected | Poor quality — not as expected |
+| report-issue | report-issue.html | Report form · What happened? | placeholder | Describe the problem — e.g. the roof photos were blurry and missed the north side. | Describe the issue — e.g. the roof photos were blurry and missed the north side. |
+| report-issue | report-issue-empty.html | Topbar | button | ‹ Back | ‹ Back to Help |
+| report-issue | report-issue-empty.html | Actionbar | button | Contact human support | Contact support |
+| report-issue | report-issue-loading.html | Topbar | button | ‹ Back | ‹ Back to Help |
+| resolution | resolution.html | Outcome | body | We reviewed your report and refunded this order — no questions asked. | We reviewed your report and refunded this order in full. |
+| resolution | resolution.html | Outcome | body | Refunded to Visa •••• 4921. Prefer a fresh attempt instead? Book a free re-do below. | Refunded to Visa •••• 4921. Or book this order again for free below. |
+| resolution | resolution.html | Next steps | button | Book a free re-do | Book again — free |
+| resolution | resolution.html | Next steps | button | Still not resolved? | Contact support |
+| result-upload | result-upload.html | Notes | placeholder | Handover notes, recipient name… | Handover notes, client name… |
+| result-upload | result-upload-error.html | Result photo (upload error) | state message | The result photo didn't upload — weak signal. Retry now, or queue it to upload automatically when you're back online. Payment is held until proof arrives. | The delivery photo didn't upload — weak signal. Try again, or queue it to upload automatically when you're back online. Payment is held until the photo uploads. |
+| result-upload | result-upload-error.html | Result photo (upload error) | button | Retry upload | Try again |
+| result-upload | result-upload-error.html | Action bar note | state message | Payment stays held until the proof photo uploads. | Payment stays held until the delivery photo uploads. |
+| result-upload | result-upload-loading.html | Uploading status | state message | Uploading result… | Uploading delivery photo… |
+| role-select | role-select.html | Role choice | body | PILOT | OPERATOR |
+| role-select | role-select.html | Role choice | body | You're a certified drone pilot — get dispatched jobs and get paid. | You're a certified drone operator — take jobs and get paid. |
+| share | share-empty.html | Invite not sent (empty state) | state message | You didn't send it yet | Invite not sent yet |
+| support | support.html | Support intro | heading | How can we help? | What happened? |
+| support | support.html | Support intro | body | Tell us what went wrong with your order and we'll get it put right. | Pick the issue with your order and we'll route it to the right fix. |
+| support | support.html | Triage list — didn't arrive | body | We'll re-dispatch a new operator now — or refund you, no questions. | We'll send a new operator now, or refund your order. |
+| support | support.html | Triage list — quality | button | Result wasn't what I expected | The photo or report wasn't what I expected |
+| support | support.html | Triage list — safety | body | Talk to a human straight away — support is online 24/7. | Contact support straight away — online 24/7. |
+| support | support.html | Human fallback | button | Talk to a human | Contact support |
+| switch-role | switch-role.html | Topbar | button | ‹ Back | ‹ Back to Account |
+| switch-role | switch-role.html | Confirm / Cancel (actionbar) | button | Confirm & switch | Switch to Operator |
+| time-slot | time-slot-empty.html | Slots (empty state) | state message | Every operator is booked that day. Try another date — Fri 4 and Sat 5 still have openings. | Every operator is booked that day. Pick another day — Fri 4 and Sat 5 still have openings. |
+| tracking | tracking.html | Actionbar (footer) | button | Delivery details | View details |
+| tracking | tracking-error.html | Live map / tracking lost | state message | We've lost the live signal from the operator's device. The job is still active. | We've lost the live signal from the operator's device. Your order is still active. |
+| tracking | tracking-error.html | Live map / tracking lost | button | Refresh | Try again |
+| wallet | wallet.html | Balance | state message | Paid: ₴800 for 'Aerial photo & video' added 12 min ago. | ₴800 paid for 'Aerial photo & video', added to your balance 12 min ago. |
+| wallet | wallet.html | Balance | button | Withdraw | Withdraw ₴3,240 |
+| wallet | wallet-empty.html | Keep earning / empty | heading | Almost there | Below the withdrawal minimum |
+| wallet | wallet-empty.html | Keep earning / empty | state message | You need ₴500 to cash out. Take one more job to reach the payout minimum. | You need ₴500 to withdraw. Take one more job to reach the minimum. |
+| wallet | wallet-empty.html | Keep earning / empty | placeholder | KEEP GOING | EMPTY |
+| welcome | welcome.html | Slider · slide 3 (drone facts) | body | It flies a set route, keeps its distance, and only records what your job needs. Brief low noise on take-off and landing; no filming of your neighbours. | It flies a set route, keeps its distance, and only records what your order needs. Brief low noise on take-off and landing; no filming of your neighbours. |
+| welcome | welcome-empty.html | One-card fallback (15-second version) | body | Order a drone service — a certified, insured operator does the flying. You see their name, photo and live position the moment you pay, and get proof when it's done. The drone flies a set route and only records what your job needs. | Order a drone service — a certified, insured operator does the flying. You see their name, photo and live position the moment you pay, and get a photo or report when it's done. The drone flies a set route and only records what your order needs. |
+| withdraw | withdraw.html | Withdrawal method | field label | Payout method | Withdrawal method |
+| withdraw | withdraw.html | Withdrawal method | field label | aria-label="Payout method" | aria-label="Withdrawal method" |
+| withdraw | withdraw-error.html | Payout error | state message | Payout didn't go through | Withdrawal didn't go through |
+
+### Cross-screen consistency check
+
+After the full pass, every term pinned by the `voice.md` **Vocabulary** is now applied the same way on every screen — verified across all final button/heading labels:
+
+- **reach a human = `Contact support`** everywhere (the `Help` tab is the global-nav *section* name, a different thing — kept); phone action stays `Call support`.
+- **recover from error = `Try again`** (all `Refresh` / `Retry` / `Get help`-as-recover eliminated); the qualified `Try again with Diia` is the allowed variant.
+- **attach = `Add …`** (`Upload` / `Attach` gone) · **open an order = `View details`** (`Delivery details` gone) · **re-order = `Book again`** (free variant `Book again — free`) · **operator find work = `Find jobs`** (`See available jobs` gone) · **submit to platform = `Submit …`**, send to a person = `Send …`.
+- Object terms fully unified: **operator** (no `pilot`), client **order** vs operator **job** (no cross-leak, no stray `offer`), **issue** (no `problem`/`went wrong`), **delivery photo / inspection report** (no `result`/`proof` as an object), **Withdraw / withdrawal** + **paid/payment** (no `cash out`/`payout`), **Sign in** (no `Sign up`), **client** (no `recipient`).
+
+**Remaining divergences** — labels the Vocabulary does *not* pin, which different agents worded differently. Nothing auto-fixed; listed for your decision:
+
+| # | Same action | Labels now in the build (screens) | Recommended canonical | Status |
+|---|---|---|---|---|
+| **D1** | **Top-bar back chevron** | `‹ Back` (~16 screens) · `‹ Back to Account` (account-edit, switch-role) · `‹ Back to Help` (contact-support ×2, report-issue ×3) · `‹ Back to Verification` (operator-profile-setup) | **`‹ Back`** on the top-bar everywhere; keep `Back to {Section}` **only** for in-content recovery buttons in empty/error states | needs your call → I'll fix |
+| **D2** | Attach a document, redo after rejection | `Add document` (account, operator-verification) · `Add documents again` (operator-verification-error) | `Add document` / redo = **`Add document again`** (singular) | minor → I'll fix |
+| **D3** | Escalate an unresolved case | `Still unresolved` (contact-support) · `Contact support` (resolution) | keep split: inside the support chat = escalation `Still unresolved`; from elsewhere = `Contact support` | confirm |
+| **D4** | Switch to another pay/payout method | `Change method` (payment-error) · `Use bank transfer` (withdraw-error) | contextual (each names the alternative) — acceptable, or standardize to `Change method` | your call |
+| **D5** | Transient loading-advance vs the real CTA | `Continue` (order-review-loading, payment-loading, signin-loading, operator-signup-loading) vs the success CTA (`Pay ₴180`, …) | a disabled copy of the real verb (e.g. disabled `Pay ₴180`) | structural, later |
+| **D6** | Dismiss / defer a step | `Skip` (onboarding) · `Cancel` (forms/dialogs) · `Maybe later` (fee-terms, share) | contextual split (skip intro / cancel action / decline offer) — acceptable | note |
+| **D7** | In-content back to a non-nav destination | `Back to Jobs` (×4, correct) · `Back to setup` (time-slot) · `Back to live tracking` (delivery) | `Back to {Section}` where a nav section exists; contextual name otherwise | acceptable |
+
+**D1 is the only real must-fix** — it is a genuine either/or (bare `‹ Back` vs `Back to {Section}` on the top bar) that the agents split on. Recommendation: bare `‹ Back` on the top-bar chevron (platform convention; ~16 screens already do it), with `Back to {Section}` reserved for the in-content recovery buttons where there is no chevron.
+
+---
+
 ## How to read the Flag column
 
 | Flag | Meaning |
