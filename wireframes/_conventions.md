@@ -261,8 +261,11 @@ Buttons: height `≥ 44px`, radius `6`, horizontal padding `16`, label at `15px/
 | Profile setup (`RJ-C1` · `EJ-3`) | `operator-profile-setup.html` | — |
 | Dispute / client issue — operator (`EJ-2`, `OE-13`) | `operator-dispute.html` | `operator-dispute-error.html` |
 | Ratings dashboard (`EJ-3`) | `ratings.html` | `ratings-empty.html` |
+| Operator account / profile (`§7.4` operator · role switch) | `operator-account.html` | — |
 
 *Service catalogue stays merged into `listings.html` (`sitemap.md §7.3`) — no separate file, by design.*
+
+*Operator vs client Account: the operator global nav's **Account** tab opens `operator-account.html` (operator bottom nav + payout/service-area/drone details), never the client `account.html`. Both share the `account-edit.html` edit sub-view (drone documents / insurance).*
 
 ---
 

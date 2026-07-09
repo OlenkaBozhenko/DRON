@@ -304,6 +304,7 @@ it. States below are each traced to a flow node. `—` = not produced.
 | O4 | **Profile setup** | `RJ-C1` consumes · `EJ-3` | *MJ-2 activation*: approved → Profile setup → home | base only (a setup form; no data state in the flow) | `operator-profile-setup.html` |
 | O5 | **Dispute / client issue (operator side)** | `EJ-2` operator side · `OE-13` | *MJ-2 main*: client disputes → payment held pending EJ-2 | **Error** ✓ (payment held pending resolution) | `operator-dispute.html`, `operator-dispute-error.html` |
 | O6 | **Ratings dashboard** | `EJ-3` · `O-06` | *EJ-3*: home → Ratings → has ratings? | **Empty** ✓ (no ratings yet — cold-start O-2; auto-dispatch keeps feeding jobs) | `ratings.html`, `ratings-empty.html` |
+| O7 | **Operator account / profile** | `§7.4` operator utility + role switch | *Account tab*: operator taps Account → own account (mode dropdown Operator ⇄ Client) | base only (fixes the leak where the operator Account tab opened the client `account.html` and dropped them into the client flow) | `operator-account.html` |
 
 **Not a new screen.** *Service catalogue* (`sitemap.md §6.1`) stays **merged into `listings.html`** per
 `sitemap.md §7.3` (Home ⊃ Catalogue) — no separate file, by design. Recorded here so its absence is explicit.

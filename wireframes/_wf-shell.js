@@ -63,7 +63,8 @@
       { name: "Verification / document upload",        file: "operator-verification.html", states: [["error","operator-verification-error.html"],["loading","operator-verification-loading.html"]] },
       { name: "Profile setup",                         file: "operator-profile-setup.html", states: [] },
       { name: "Dispute / client issue",                file: "operator-dispute.html",   states: [["error","operator-dispute-error.html"]] },
-      { name: "Ratings dashboard",                     file: "ratings.html",            states: [["empty","ratings-empty.html"]] }
+      { name: "Ratings dashboard",                     file: "ratings.html",            states: [["empty","ratings-empty.html"]] },
+      { name: "Operator account (profile · role switch)", file: "operator-account.html", states: [] }
     ]}
   ];
 
