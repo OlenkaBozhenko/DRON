@@ -9,6 +9,7 @@ on:
     paths:
       - '*.html'
       - 'wireframes/**'
+      - 'concept/**'
       - '.github/pages/index.html'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
@@ -37,6 +38,10 @@ jobs:
           mkdir -p _site/wireframes
           cp wireframes/*.html _site/wireframes/
           cp wireframes/_wireframe.css wireframes/_wf-shell.js _site/wireframes/
+          # Publish the concept design-direction pages (HTML only).
+          # The .md sources stay on master and are not published.
+          mkdir -p _site/concept
+          cp concept/*.html _site/concept/
 
       - name: Cache-bust shared assets
         run: |
