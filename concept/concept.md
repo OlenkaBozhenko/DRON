@@ -236,6 +236,32 @@ Warm base from Monarch, salad-green accent (Operate hue family), AA-safe. First-
 
 ---
 
+## 5. Three directions — the chosen language, tuned (`concept/directions.html`)
+
+Three tunings of the **Fauna Robotics** language on the one primary, salad-green `#9bcf4a` (fill-only, charcoal on top). Same DNA in each: flat / soft-border cards, real-photo-ready tiles, flat monochrome Phosphor icons, generous whitespace, one accent used sparingly, rounded-rect buttons (Fauna, not pills). All Apple HIG (44px targets, system UI type, light + dark aware) and WCAG AA.
+
+| # | Direction | Register | Ground | Display type |
+|---|-----------|----------|--------|--------------|
+| 01 | **Daylight** | Pure Fauna read; maximum air | `#FFFFFF` white | Hanken Grotesk |
+| 02 | **Studio** | Company / careers register; more structure & density | `#F6F7F9` mist | **SF Pro Display** |
+| 03 | **Nocturne** | The language after dark (CoffeeTech / A-5); green glows | `#14161A` graphite | Geist |
+
+### 02 Studio — expanded (the chosen tuning, built out)
+
+Studio is developed into a full design-language showcase (the `.studio-lab` block in `directions.html`), driven from the designer's Figma reference board (`node 833-49948`). The reference's electric lime `#C4F000` is **not** adopted; the locked primary `#9bcf4a` stays.
+
+- **Type** — **SF Pro Display** for headings, **SF Pro Text** for body / UI (Apple HIG). Replaces Schibsted Grotesk; on non-Apple systems it falls back to the system stack.
+- **Palette** — Mist `#F6F7F9` page · Porcelain `#FFFFFF` card · Ink `#1A1A1A` · Slate `#5F636B` · Hairline `#E4E6E9` · Signal Green `#9BCF4A` (primary / live) · Graphite `#1F2124` (dark secondary / dark surface) · Soft `#EFF1F3` (icon wells).
+- **Buttons & actions** (Figma-inspired) — **solid green** primary (charcoal on top, 8.8:1), **no gradient**; **graphite** secondary (`#1F2124`, white text); white / hairline ghost; and **circular icon actions** (green call / green navigate / graphite message / soft chevron) for map & courier rows. Full state set (hover / active / focus-visible / disabled).
+- **Card variants** — live order + route timeline (Accepted → En route → On-site → Done) with ETA; operator / fleet-unit card (certified + rating + call / navigate); parcel card with a weight / dimensions / insured stat trio; delivery-status row with a chevron.
+- **Map & route** — line-grid map with a green traveled path + dashed remaining, a drone marker mid-route, a destination pin, an "Arriving in" ETA chip, and a live-tracking footer with call / message.
+- **Imagery** — the same frame on **light** (charcoal on porcelain) and **dark** (green glows over graphite) surfaces; real photography per A-3, not gradient decoration.
+- **Backgrounds & textures** — Mist, Porcelain, Green wash (12% tint), Graphite, Green glow (radial, dark hero), Dot grid, Line grid, Hatch, Contour. Subtle surface treatments only; the green is never a button gradient.
+
+Verified in-browser (desktop + mobile): no horizontal overflow, solid-fill buttons only, AA contrast held.
+
+---
+
 ## Change log
 - **2026-07-17** — Created. Refero MCP styles (Monarch/N26/Perplexity/Operate) + screens (Airbnb/PayPal/Klarna) extracted with full data; base = Monarch; grafts G-1…G-6 defined; WCAG AA correction on Monarch's primary button documented. No new competitor research (per brief). Published as the DRON artifact (URL above).
 - **2026-07-17 (rev 2)** — Accent changed from Monarch's orange to a **salad-green**, per designer preference. Hue promoted from Operate's green family (S-4), so it stays sourced, not arbitrary.
@@ -244,3 +270,4 @@ Warm base from Monarch, salad-green accent (Operate hue family), AA-safe. First-
 - **2026-07-17 (rev 5)** — Designer resolved both: **A-4 → build the icon set** (added **§0.2 Icon set** — flat monochromatic line icons, 24-grid / 1.75px, `currentColor`, green only as a fill behind the icon; SF Symbols on mobile + matching custom set on web; full inventory mapped to the IA). **A-5 → keep both light and dark themes**, following the device appearance (Apple HIG). Sample icons drawn in the artifact.
 - **2026-07-17 (rev 6)** — Under `/impeccable` (product register). Built **`concept/directions.html`** — three *contrasting* language directions (not shades of one green), each with palette+hex, a font pair, live "Incoming offers" cards, buttons, badge, and Phosphor icons in its own weight: **01 Certified** (light · oxblood `#8B2635` · Archivo · linear icons), **02 Instrument** (dark graphite · periwinkle `#93A4FF` · Geist + JetBrains Mono · bold-duotone icons), **03 Field** (light · magenta `#D6176B` · Big Shoulders + Hanken · bold icons). All AA-verified, HIG-compliant (44px targets, system UI type, light/dark-aware), and reflex-dodging (no blue/cyan/green/orange, no warm SaaS cream — per PRODUCT.md anti-refs incl. "no Bolt/Glovo colour"). Awaiting the designer's pick; the product `DESIGN.md` is generated next from the chosen direction. (No root `DESIGN.md` existed, so nothing was renamed to `DESIGN-artifacts.md`.)
 - **2026-07-17 (rev 7)** — Designer rejected the three contrasting directions and chose the **Fauna Robotics** language (faunarobotics.com/company) with **salad-green `#9bcf4a` as the primary** (as in the artifact). Rebuilt **`concept/directions.html`** as three *tunings of that one language*: **01 Daylight** (pure white · Hanken Grotesk), **02 Studio** (soft mist canvas · Schibsted Grotesk), **03 Nocturne** (dark · Geist). All share the Fauna DNA — flat/soft-border cards, real-photo-ready tiles, flat monochrome Phosphor icons, generous whitespace, one accent used sparingly — with green as the single primary, **fill-only, charcoal on top (9.46:1)**, rounded-rect buttons (Fauna, not pills). HIG (44px, system UI type, light+dark) and WCAG AA verified. Awaiting the pick of one tuning.
+- **2026-07-23 (rev 8)** — Under `/impeccable` (product register). Added **§5 Three directions** and **expanded direction 02 Studio** into a full design language in `concept/directions.html`, from the designer's Figma reference board (`node 833-49948`): font → **SF Pro Display / SF Pro Text**; **Figma-inspired buttons** (solid green primary + graphite secondary + circular icon actions, **no salad-green gradient**, per the designer); several **card variants**; a **map & route** card; **imagery on light & dark**; and **backgrounds & textures**. Kept the locked primary `#9bcf4a` (not the reference's `#C4F000`). Battle-tested in a real browser (desktop + mobile) — AA held, no horizontal overflow. Artifact §06 Studio card synced (font label + change log).
