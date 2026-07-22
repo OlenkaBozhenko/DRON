@@ -232,7 +232,8 @@ body{font-family:var(--sf); background:var(--shell-bg); color:var(--shell-ink);
 .scard{ background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:18px;
   box-shadow:0 1px 2px rgba(20,20,20,.05), 0 14px 32px -24px rgba(20,20,20,.30); display:flex; flex-direction:column; gap:15px; }
 .scard-cap{ font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); }
-.scard-top{ display:flex; align-items:center; gap:12px; }
+.scard-top{ display:flex; align-items:flex-start; gap:12px; }
+.scard-top .status-pill{ margin-top:3px; }
 .scard-ic{ width:46px; height:46px; border-radius:13px; background:var(--soft); display:flex; align-items:center; justify-content:center; color:var(--ink); flex:none; }
 .scard-ic .ic{ width:24px; height:24px; }
 .scard-ic.on-green{ background:var(--green); color:var(--on-green); }
