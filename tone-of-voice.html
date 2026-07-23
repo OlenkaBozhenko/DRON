@@ -318,5 +318,18 @@
 <p><strong>How to use the whole file.</strong> Read the string's job → pick the element rule here → write it in the Vocabulary word → check it against the five Principles → make sure it isn't on the Don't-use list. If it cheers, hedges, or decorates, cut it and state the fact.</p>
 <p><strong>voice.md is complete.</strong> From here, every product string — in <code>microcopy.md</code> and in the build — is written and checked against this file.</p>
   </main>
+
+<script>
+(function(){
+  var sb=document.getElementById('sidebar'), ham=document.getElementById('hamburger'), ov=document.getElementById('navOverlay');
+  function toggle(o){ if(sb) sb.classList.toggle('is-open',o); if(ham) ham.classList.toggle('is-open',o); if(ov) ov.classList.toggle('is-open',o); }
+  if(ham) ham.addEventListener('click',function(){ toggle(!sb.classList.contains('is-open')); });
+  if(ov) ov.addEventListener('click',function(){ toggle(false); });
+  if(sb) sb.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ if(innerWidth<=768) toggle(false); }); });
+  var tt=document.getElementById('themeToggle');
+  function cur(){ var a=document.documentElement.getAttribute('data-theme'); if(a) return a; return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
+  if(tt) tt.addEventListener('click',function(){ var n=cur()==='dark'?'light':'dark'; document.documentElement.setAttribute('data-theme',n); try{localStorage.setItem('dron-theme',n);}catch(e){} });
+})();
+</script>
 </body>
 </html>
