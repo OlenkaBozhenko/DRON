@@ -45,6 +45,45 @@
   th{ background:var(--panel); color:var(--ink); font-weight:600; white-space:nowrap; }
   tr:last-child td{ border-bottom:0; }
   td code, th code{ white-space:nowrap; }
+  /* ── HUB SIDEBAR (shell) ── */
+  body{padding-left:240px;}
+  .sidebar{position:fixed;top:0;left:0;bottom:0;width:240px;z-index:100;display:flex;flex-direction:column;padding:24px 16px;background:var(--panel);border-right:1px solid var(--line);overflow-y:auto;}
+  .sidebar-brand{font-size:15px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:0 12px;margin-bottom:4px;}
+  .sidebar-tagline{font-size:11px;color:var(--muted);padding:0 12px;margin-bottom:24px;}
+  .sidebar-group{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:0 12px;margin:18px 0 8px;}
+  .sidebar a{display:block;text-decoration:none;color:var(--text-2);font-size:13px;padding:8px 12px;border-radius:7px;transition:color .15s,background .15s;}
+  .sidebar a:hover{color:var(--ink);background:var(--fill);text-decoration:none;}
+  .sidebar-spacer{flex:1;}
+  .nav-section{margin:1px 0;}
+  .nav-section>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--text);font-size:13px;padding:8px 12px;border-radius:7px;transition:color .15s,background .15s;}
+  .nav-section>summary::-webkit-details-marker{display:none;}
+  .nav-section>summary:hover{color:var(--ink);background:var(--fill);}
+  .nav-section[open]>summary{color:var(--ink);}
+  .nav-section>summary::after{content:"\203A";font-size:15px;line-height:1;color:var(--muted);transition:transform .18s ease;}
+  .nav-section[open]>summary::after{transform:rotate(90deg);}
+  .nav-children{display:flex;flex-direction:column;gap:1px;margin:2px 0 6px 26px;padding-left:10px;border-left:1px solid var(--line);}
+  .nav-children a{font-size:12.5px;padding:6px 12px;}
+  .nav-soon{display:flex;align-items:center;justify-content:space-between;font-size:13px;padding:8px 12px;border-radius:7px;color:var(--muted);cursor:default;}
+  .nav-soon::after{content:"Soon";font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line-2);border-radius:4px;padding:1px 5px;}
+  .theme-toggle{display:flex;align-items:center;gap:8px;background:none;border:0;cursor:pointer;color:var(--text-2);font:inherit;font-size:13px;padding:8px 12px;border-radius:7px;width:100%;transition:color .15s,background .15s;}
+  .theme-toggle:hover{color:var(--ink);background:var(--fill);}
+  .theme-toggle svg{width:16px;height:16px;flex:none;}
+  .icon-sun{display:none;} :root[data-theme="light"] .icon-sun{display:block;} :root[data-theme="light"] .icon-moon{display:none;}
+  .mobile-header{display:none;position:fixed;top:0;left:0;right:0;height:52px;z-index:200;background:var(--panel);border-bottom:1px solid var(--line);align-items:center;justify-content:space-between;padding:0 16px;}
+  .mobile-brand{font-size:14px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);}
+  .hamburger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;background:none;border:0;cursor:pointer;padding:8px;border-radius:8px;}
+  .hamburger span{display:block;width:20px;height:1.5px;background:var(--text);border-radius:2px;transition:transform .22s,opacity .22s;}
+  .hamburger.is-open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .hamburger.is-open span:nth-child(2){opacity:0;}
+  .hamburger.is-open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+  .nav-overlay{display:none;position:fixed;inset:0;z-index:150;background:rgba(0,0,0,.5);opacity:0;transition:opacity .25s;}
+  .nav-overlay.is-open{opacity:1;}
+  @media(max-width:768px){
+    .mobile-header{display:flex;} .nav-overlay{display:block;}
+    body{padding-left:0;padding-top:52px;}
+    .sidebar{width:min(280px,85vw);z-index:160;transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);}
+    .sidebar.is-open{transform:translateX(0);}
+  }
   /* generated from voice.md — do not edit here; edit voice.md and regenerate */
 </style>
 </head>
