@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DRON — Tone of Voice</title>
+<script>(function(){var t=localStorage.getItem('dron-theme');if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
 <style>
   :root{
     --bg:#FFFFFF; --panel:#F7F7F7; --line:rgba(0,0,0,0.10); --line-2:rgba(0,0,0,0.16);
@@ -55,7 +56,7 @@
 <p><strong>Derived from:</strong> <code>CLAUDE.md</code> · <code>research/research.md</code> (incl. <em>Competitor Language</em>) · <code>research/target-audience.md</code> (personas) · <code>research/jtbd.md</code> · supporting: <code>ux-research/benchmarks.md</code>. Naming/tone cross-references point at <code>microcopy.md</code>.</p>
 <p>Rule: <strong>no principle without a line of data behind it.</strong> Better three honest than five pretty — these five each carry their source.</p>
 <hr>
-<h2>Principles</h2>
+<h2 id="principles">Principles</h2>
 <h3>P1 — Name the outcome, not the drone</h3>
 <p><strong>Rule.</strong> The product speaks in the result the client gets — a parcel delivered, a roof documented, footage ready — and keeps the drone in the background; it never sells the flight as a spectacle.</p>
 <p><strong>Example (per the rule)</strong></p>
@@ -127,7 +128,7 @@
 </ul>
 <p><strong>Why (from data).</strong> EJ-2 (<code>jtbd.md</code>): the client needs <em>"a clear path to resolution — not just a rating I can leave"</em>; CJM Stage 3 flags <em>"one bad experience = permanent churn"</em> 🔴. Benchmarks (<code>benchmarks.md</code>): Airbnb AirCover scores first-use anxiety ★★★★★ precisely by being a calm, concrete guarantee; Glovo's <em>"no-questions refund"</em> is stated flatly, never celebrated. This is the <em>trust-over-wit</em> context in its sharpest form: at a money-or-safety moment, cheer reads as evasion. Our own copy already slips here — <code>microcopy.md</code> <strong>TONE</strong> flags <em>"You're all set"</em> and <em>"Almost there / KEEP GOING"</em> — this principle is the fix.</p>
 <hr>
-<h2>Vocabulary — one concept, one word</h2>
+<h2 id="vocabulary">Vocabulary — one concept, one word</h2>
 <p>Every divergence flagged in <code>microcopy.md</code> (Step 01), resolved. <strong>One word per concept, the same on every screen.</strong> Terms are taken from the language of the personas and research — none invented. "Why" is written in the persona's own words, not office-speak.</p>
 <h3>Objects — what things are called</h3>
 <div class="tbl-wrap"><table>
@@ -171,7 +172,7 @@
 <li><strong>Not allowed</strong> (say it in Ukrainian): ~~кешаут / пейаут~~ → <strong>вивести кошти / платіж</strong>; ~~сабмітити~~ → <strong>надіслати</strong>; ~~трекати~~ → <strong>відстежувати</strong>; and never the hardware jargon of <code>P4</code> (~~UAV, БПЛА, payload, orthomosaic~~) in consumer copy — say <strong>дрон</strong>, <strong>фото</strong>, <strong>звіт</strong>.</li>
 </ul>
 <hr>
-<h2>Don't use — never write this</h2>
+<h2 id="dont-use">Don't use — never write this</h2>
 <p>Each row: the pattern we ban, and a real fix. "Was" quotes come from our own <code>microcopy.md</code> <strong>TONE</strong> flags where we already slipped — this is the fix list, not a hypothetical one.</p>
 <h3>AI clichés (the reflex phrases)</h3>
 <div class="tbl-wrap"><table>
@@ -201,7 +202,7 @@
 </tbody></table></div>
 <p><strong>One line to remember:</strong> if a string cheers, hedges, or decorates, it is hiding the absence of a fact. Delete it and state the fact.</p>
 <hr>
-<h2>GEO &amp; SEO — how this voice gets found</h2>
+<h2 id="geo">GEO &amp; SEO — how this voice gets found</h2>
 <p>The discipline that builds trust here — <strong>specific facts, plain outcome words, one name per thing</strong> — is the same discipline that makes DRON the result a search engine ranks and the answer an LLM quotes. Voice and findability are one problem, not two.</p>
 <h3>How the user actually searches their pain</h3>
 <p>People do not search <em>"drone-as-a-service platform."</em> They search the <strong>outcome + place + worry</strong>, and increasingly they <em>ask an assistant</em> in a full sentence:</p>
@@ -230,7 +231,7 @@
 </ul>
 <p><strong>The convergence:</strong> say the specific true thing, in plain words, once, and name it the same way everywhere. That single sentence is simultaneously the most trustworthy form and the most quotable one — which is the whole reason voice and GEO are the same job for DRON.</p>
 <hr>
-<h2>Microcopy — rules by element type</h2>
+<h2 id="microcopy">Microcopy — rules by element type</h2>
 <p>The last section. Rules for each kind of UI string, one real DRON example each. Every rule is checked against the <strong>Principles</strong> and the <strong>Vocabulary</strong> above — the "Checks" column names which. Screens and states referenced are the real ones in <code>wireframes/_screens.md</code>.</p>
 <div class="tbl-wrap"><table>
 <thead><tr><th>Element</th><th>Rule</th><th>DRON example</th><th>Checks</th></tr></thead>
