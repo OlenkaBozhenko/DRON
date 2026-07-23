@@ -236,15 +236,20 @@ Warm base from Monarch, salad-green accent (Operate hue family), AA-safe. First-
 
 ---
 
-## 5. Three directions — the chosen language, tuned (`concept/directions.html`)
+## 5. Directions — the chosen language (`concept/directions.html`)
+
+> **DECISION — direction 02 «Studio» is chosen** (2026-07-23). It is built out in detail in the artifact's *"02 Studio, built out"* (`concept/concept-artifact.html` §06) and promoted to the **design-language testbed `concept/concept.html`**. Daylight (01) and Nocturne (03) stay recorded below as alternatives we can return to.
 
 Three tunings of the **Fauna Robotics** language on the one primary, salad-green `#9bcf4a` (fill-only, charcoal on top). Same DNA in each: flat / soft-border cards, real-photo-ready tiles, flat monochrome Phosphor icons, generous whitespace, one accent used sparingly, rounded-rect buttons (Fauna, not pills). All Apple HIG (44px targets, system UI type, light + dark aware) and WCAG AA.
 
-| # | Direction | Register | Ground | Display type |
-|---|-----------|----------|--------|--------------|
-| 01 | **Daylight** | Pure Fauna read; maximum air | `#FFFFFF` white | Hanken Grotesk |
-| 02 | **Studio** | Company / careers register; more structure & density | `#F6F7F9` mist | **SF Pro Display** |
-| 03 | **Nocturne** | The language after dark (CoffeeTech / A-5); green glows | `#14161A` graphite | Geist |
+| # | Direction | Status | Register | Ground | Display type |
+|---|-----------|--------|----------|--------|--------------|
+| 01 | **Daylight** | alternative | Pure Fauna read; maximum air | `#FFFFFF` white | Hanken Grotesk |
+| 02 | **Studio** | ✅ **CHOSEN** | Company / careers register; more structure & density; warm-grey cards on a light page | warm `#F7F5F2` page, `#ECE9E4` cards | **SF Pro Display** |
+| 03 | **Nocturne** | alternative | The language after dark (CoffeeTech / A-5); green glows | `#14161A` graphite | Geist |
+
+**Daylight (01) — kept for later.** Pure white ground, Hanken Grotesk, the airiest read. Return to it if the product wants a lighter, more consumer feel.
+**Nocturne (03) — kept for later.** Deep graphite ground, Geist, the green genuinely glows. Return to it for a dark-first / low-light register.
 
 ### 02 Studio — expanded (the chosen tuning, built out)
 
@@ -276,3 +281,4 @@ Verified in-browser (desktop + mobile): no horizontal overflow, outline icons on
 - **2026-07-23 (rev 10)** — Designer review of the Studio retune: **reverted the accent from electric lime back to salad-green `#9bcf4a`**; corrected the surfaces so the **page / theme background stays light** and only the **card backgrounds are grey** (grey cards on a light page — the original intent). Buttons: **primary green in the interface, card action buttons grey secondary** (green reserved for the primary CTA + status). Designer supplied **real drone renders + a map-with-route image**, now **embedded as base64 data-URIs** (CSP-safe) on the operator-card hero, the dark imagery tile, and the Map & route card; the light imagery tile keeps the vector line-drone. Outline icons and the large-rounded palette were retained. All applied in the artifact (redeployed to the same URL); `directions.html` parity still pending.
 - **2026-07-23 (rev 11)** — Designer polish on Studio: **warmed the grey ramp and widened its contrast** — light interface `#F7F5F2`, distinctly darker warm-grey cards `#ECE9E4`, and a third warm grey `#D6D2C9` for card secondary buttons (interface / card / button read as separate warm tones). Removed the stray **frame around the Order·live timeline labels** (they had inherited the global `.lbl` bordered-tag style; nodes unchanged, per the designer). Swapped the order card's camera glyph for a **drone (quadcopter) icon**. AA re-checked; no overflow.
 - **2026-07-23 (rev 12)** — More designer polish: **removed the borders** from cards and circular buttons (separation now by shadow + warm tone; borders kept only where genuinely needed, e.g. stat-trio dividers). **Rebuilt the operator card** — *Certified* + *drone-model* badges overlaid on the drone photo, rating under the name, call / navigate opposite the name, "Reach the operator" removed. **Lifted the Map & route vignette** from black to a warm grey (route / pins / drone preserved; done by re-processing the supplied image). **Decline** button is now a true outline (no fill).
+- **2026-07-23 (rev 13)** — **Direction 02 «Studio» selected** and fixed in §5 (Daylight / Nocturne kept as recorded alternatives). Built the design-language testbed **`concept/concept.html`**: the language shown *live first* (tab-bar, card variants, map, buttons — as on `directions.html`), then the specification — **palette** (primary / accent / neutral + semantic, each swatch attributed), **typography** (SF Pro Display + Text, 8-step size scale), **form** (radii / elevation / 8-px spacing), **Phosphor line icons** by coverage plan (tab-bar / metadata / badge / buttons / states), **3 live components** (primary + secondary action buttons, card), and a **WCAG AA contrast table**. Every decision labelled with the attribute it serves. Self-contained (SF stack, inline SVG, base64 drone + map).
