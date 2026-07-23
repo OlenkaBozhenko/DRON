@@ -58,6 +58,10 @@
   .themebtn{font-family:var(--mono);font-size:12px;color:var(--muted);background:transparent;border:1px solid var(--hairline);
     border-radius:9999px;padding:6px 12px;cursor:pointer;display:flex;gap:7px;align-items:center;}
   .themebtn:hover{color:var(--text);border-color:var(--accent);}
+  .topbar-left{display:flex;align-items:center;gap:14px;}
+  .back-dron{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:var(--text);background:var(--surface);border:1px solid var(--hairline);border-radius:9999px;padding:6px 13px 6px 10px;text-decoration:none;transition:background .15s,border-color .15s;}
+  .back-dron:hover{border-color:var(--accent);}
+  .back-dron svg{width:16px;height:16px;}
 
   /* ---- hero ---- */
   .hero{padding:64px 0 40px;border-bottom:1px solid var(--hairline);}
@@ -248,7 +252,7 @@
 
 
 <div class="topbar"><div class="wrap">
-  <div class="brand"><span class="dot"></span>DRON &#183; CONCEPT</div>
+  <div class="topbar-left"><a class="back-dron" href="https://bozhenko55-arch.github.io/DRON/research.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.5l-6.5 6.5 6.5 6.5"/></svg>Back to DRON</a><div class="brand"><span class="dot"></span>DRON &#183; CONCEPT</div></div>
   <button class="themebtn" id="tbtn" aria-label="Toggle colour theme"><span id="tico">&#9680;</span><span id="tlbl">Theme</span></button>
 </div></div>
 
