@@ -214,6 +214,29 @@ tr:last-child td{border-bottom:0}
 .comp .cc h4{font-size:14px; font-weight:600} .comp .cc .note{font-size:12.5px; color:var(--slate); line-height:1.5}
 .comp .stage{background:var(--page); border-radius:14px; padding:18px; display:flex; flex-direction:column; gap:11px; align-items:flex-start}
 
+/* imagery — the drone render library */
+.dgrid{display:grid; gap:14px; grid-template-columns:repeat(auto-fill,minmax(148px,1fr)); margin-top:16px}
+.dcell{display:flex; flex-direction:column; gap:8px}
+.dwell{background:var(--media); border-radius:var(--r-media); aspect-ratio:1; padding:8px; overflow:hidden}
+.dwell img{width:100%; height:100%; object-fit:contain; display:block}
+.dcell .fn{font-family:var(--mono); font-size:11px; color:var(--ink)}
+.dcell .ds{font-size:11.5px; color:var(--slate); line-height:1.35; margin-top:-5px}
+.dctx{display:grid; gap:16px; grid-template-columns:1fr; margin-top:16px}
+@media(min-width:700px){.dctx{grid-template-columns:1fr 1fr}}
+.dctx figure{background:var(--card); border-radius:var(--r-card); overflow:hidden; box-shadow:var(--sh-card)}
+.dctx .stagew{aspect-ratio:16/10; display:grid; place-items:center; padding:20px}
+.dctx .stagew.light{background:var(--media)}
+.dctx .stagew.dark{background:var(--graphite)}
+.dctx .stagew img{max-width:100%; max-height:100%; object-fit:contain; display:block}
+.dctx figcaption{padding:13px 15px; font-size:12.5px; color:var(--slate); line-height:1.5}
+.dctx figcaption b{color:var(--ink); font-weight:600}
+.dsheet{margin-top:16px; background:var(--media); border-radius:var(--r-card); padding:12px; box-shadow:var(--sh-sm)}
+.dsheet img{width:100%; display:block; border-radius:9px}
+.rules{margin-top:16px; display:grid; gap:10px; grid-template-columns:1fr; list-style:none}
+@media(min-width:820px){.rules{grid-template-columns:1fr 1fr}}
+.rules li{background:var(--card); border-radius:var(--r-media); padding:13px 15px; font-size:13px; line-height:1.5; color:var(--slate); box-shadow:var(--sh-sm)}
+.rules li b{color:var(--ink); font-weight:600}
+
 footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:12px; line-height:1.7}
 
 @media(prefers-reduced-motion:reduce){.btn{transition:none}}
