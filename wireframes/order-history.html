@@ -148,19 +148,15 @@
   .ohl-ic{ width:44px; height:44px; flex:none; border-radius:12px; background:var(--media);
     color:var(--ink); display:flex; align-items:center; justify-content:center; }  /* concept .well */
   .ohl-ic svg.ic{ width:24px; height:24px; }
-  .ohl-id{ flex:1; min-width:0; }                                          /* concept .id */
-  .ohl-title{ display:block; font-size:15px; font-weight:600; line-height:1.2;
+  .ohl-title{ flex:1; min-width:0; font-size:15px; font-weight:600; line-height:1.2;
     color:var(--ink); }                                                    /* concept .id .k */
-  .ohl-date{ display:block; font-size:12.5px; color:var(--slate); margin-top:2px; }  /* concept .id .s */
-  .ohl-top .oh-status{ margin-top:1px; }
-  /* Delivered cards carry a status pill as well as the well and the title. On a
-     255px row that leaves the title ~110px and it wraps, so the pill shares the
-     second line with the date instead: the title then gets the full 199px and no
-     service name breaks, at any of the three lengths on this screen. */
-  .ohl-meta{ display:flex; align-items:center; justify-content:space-between; gap:6px; margin-top:2px; }
-  /* the date is one atomic value — it must never break across lines; measured, the
-     longest of the three (115px) + pill (77px) + 6px gap = 198px in the 199px row */
-  .ohl-meta .ohl-date{ margin-top:0; white-space:nowrap; }
+  /* Meta line under the header, spanning the full card width. Measured at 375px:
+     the header row can hold well(44) + the longest title(151) + kebab(28) + gaps,
+     but a 255px row cannot also fit a 77px status pill — indenting the meta under
+     the title left only 159px for date(115) + pill(77) and both broke. Spanning the
+     full width gives the pair 255px, so nothing wraps on any of the four cards. */
+  .ohl-sub{ display:flex; align-items:center; justify-content:space-between; gap:6px; }
+  .ohl-date{ font-size:12.5px; color:var(--slate); white-space:nowrap; }   /* concept .id .s */
 
   /* progress rail — concept .rt (4 nodes, 3 segments, labels beneath) */
   .ohl-rail{ display:block; }
