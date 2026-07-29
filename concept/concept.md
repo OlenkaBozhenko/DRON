@@ -272,13 +272,22 @@ Verified in-browser (desktop + mobile): no horizontal overflow, outline icons on
 
 The language now owns a real photographic layer. Until now imagery was a placeholder problem (§5: "real renders are supplied by the designer"); this section fixes the supply and the rules.
 
-**Source.** Designer's Figma → file `YlGWlsWWjKSCxhONMzGG2F` (*My-projects*), node **`19:59139` «Drons images»**. One transparent `3072 × 2048` PNG sheet holding a **4 × 3 grid of 12 drone renders**.
+Two sets, from two Figma nodes, in **two different registers** — and the difference matters more than the file count:
 
-**Extraction.** The sheet was sliced on its **alpha channel** (row / column runs of fully transparent pixels), not on guessed coordinates — so every cut lands in the gap, never on a rotor. Each drone is then trimmed to its own alpha bounding box, centred on a **square transparent canvas with 6 % padding**, and written at **1024 × 1024 PNG** (lossless; transparency rules out JPEG). Result: 12 files that all sit at the same optical scale and can be dropped into any square or any well without re-cropping.
+| Set | Node | Register | What it shows |
+|---|---|---|---|
+| **§6.1 The fleet** | `19:59139` «Drons images» | **studio / catalogue** — a unit on a payload, no context | 12 drones, each on a lime cargo box |
+| **§6.2 In flight & people** | `38:122` «images 2» | **editorial / in use** — the job happening | 4 drones flying, an operator, a client, 3 scenes |
 
-**Why these renders fit the language.** Every unit in the fleet is charcoal, graphite or white with a **lime cargo box that reads as Signal Green `#9BCF4A`** — the concept's single accent. That is §2's *"green is fill-only"* rule arriving as a physical object instead of as UI paint: **the green is the payload.** It also serves P1 (*name the outcome, not the drone*) visually — what the eye lands on is the box being carried, not the machine carrying it.
+`assets/` is organised by subject, not by source: **`assets/drones/`** · **`assets/people/`** · **`assets/scenes/`**. Everything is transparent PNG (lossless — transparency rules out JPEG). Source sheets are kept beside the cuts as `_source-*.png` so any crop can be redone without going back to Figma.
 
-### 6.1 Inventory
+**Why these renders fit the language.** In the fleet set, every unit is charcoal, graphite or white with a **lime cargo box that reads as Signal Green `#9BCF4A`** — the concept's single accent. That is §2's *"green is fill-only"* rule arriving as a physical object instead of as UI paint: **the green is the payload.** It also serves P1 (*name the outcome, not the drone*) visually — what the eye lands on is the box being carried, not the machine carrying it. In the scene set the same discipline holds on the **uniform**: grey shell, lime as a seam detail and the controller screen. One accent, wherever it appears.
+
+### 6.1 The fleet — 12 studio renders
+
+**Source.** Node **`19:59139` «Drons images»** — one transparent `3072 × 2048` PNG sheet holding a **4 × 3 grid of 12 drone renders**.
+
+**Extraction.** The sheet was sliced on its **alpha channel** (row / column runs of fully transparent pixels), not on guessed coordinates — so every cut lands in the gap, never on a rotor. Each drone is then trimmed to its own alpha bounding box, centred on a **square transparent canvas with 6 % padding**, and written at **1024 × 1024 PNG**. Result: 12 files that all sit at the same optical scale and can be dropped into any square or any well without re-cropping.
 
 `assets/drones/` · 1024 × 1024 · transparent PNG · ~0.3 MB each (3.9 MB total)
 
@@ -301,14 +310,41 @@ The language now owns a real photographic layer. Until now imagery was a placeho
 
 Filenames are **numbers, not descriptions**, on purpose: the descriptor in the table is a judgement that may be revised, while every reference in code must stay stable.
 
-### 6.2 Rules of use
+### 6.2 In flight & people — the scene library
+
+**Source.** Node **`38:122` «images 2»** — four generated images: a **3-drone flight sheet** and three **scenes with people**.
+
+**Extraction.** Each subject is isolated by its own **connected alpha component** — labelled at half resolution, dilated by 4 px so anti-aliased edges survive, then trimmed — **not** by bounding box. That is not fussiness: in `receive` the client's fingertips and the base of the hanging cargo box share a 20-pixel band, so a bounding-box crop would have left a slice of lime box floating above her hands. Component masks make a cutout structurally incapable of carrying a fragment of the subject standing next to it. The spray drone's motion-blurred plume survives the same way — it is part of that component, so it is not clipped.
+
+**What this set adds that the fleet renders cannot: people.** The research puts the two highest-value client jobs on a human, not a machine — **RJ-C1** (confirm the operator is real and qualified) and **RJ-C2** (close the void between payment and arrival). `people/operator.png` is therefore the most load-bearing image in the product: it is the face on the operator card, where trust is actually claimed. `people/client-receiving.png` is MJ-1's outcome in a single frame.
+
+| File | Subject | Native | Intended use |
+|---|---|---|---|
+| `people/operator.png` | Operator, ¾ from behind, controller in hand, grey-and-lime uniform | 595 × 702 | **Operator card hero (RJ-C1)** — beside the verified badge and the insurance line |
+| `people/client-receiving.png` | Client reaching up, hands open, looking at the drone | 726 × 619 | Delivered / rate-the-job screens — the outcome of MJ-1 |
+| `scenes/handover.png` | Operator **+** client **+** drone lowering the box | 1324 × 941 | Hero / onboarding — the whole DRON promise in one frame |
+| `scenes/receive.png` | Client **+** drone lowering the box on a tether | 1107 × 1077 | **Confirmation / tracking screen (RJ-C2)** — the wait made concrete |
+| `scenes/operator-at-work.png` | Operator **+** drone overhead | 1400 × 961 | Operator-side onboarding, SRM empty states |
+| `drones/drone-flight-delivery.png` | In flight, cargo box on a tether | 869 × 477 | **Package delivery** service card · live tracking |
+| `drones/drone-flight-camera.png` | In flight, large gimbal camera | 392 × 291 | **Aerial photo / video** service card |
+| `drones/drone-flight-clean.png` | In flight, no payload, amber blade tips | 409 × 174 | **Inspection** service card · neutral use |
+| `drones/drone-flight-spray.png` | In flight, spray canister, plume visible | 489 × 300 | Post-MVP — agricultural spraying |
+
+`drones/_source-flight-sheet.png` (1389 × 303) — the untouched 3-drone strip, kept for provenance.
+
+The scene fleet looks **deliberately different** from §6.1: dark grey bodies, amber blade tips, no cargo box unless one is being carried. These units are *working*; the §6.1 units are *catalogued*. Keep the two registers apart (see rules).
+
+### 6.3 Rules of use
 
 - **Transparent PNG, never a rectangle.** The drone sits *in* a surface — media well `#E4E1DA`, radius `--r-media` 13px — it is never a bordered photo tile. No white box, no frame.
 - **Do not recolour, tint or gradient-map.** The lime already *is* the accent; a second green would break the one-accent budget (~1 green element per screen). Anti-reference §0: no gradients over photography.
 - **No added drop shadow.** Each render carries its own lighting and contact shadow; a CSS shadow under a transparent PNG shows the canvas, not the drone.
 - **One drone per well.** A grid of drones is a specification (this page), never product UI — in the product a screen shows the *one* unit doing the *one* job.
 - **Both registers.** Verified against the light well `#E4E1DA` and graphite `#1F2124`: the white bodies hold on graphite and the graphite bodies hold on the light well, because every unit carries the lime box as its own separation. `drone-08.png` is the dark-surface default, `drone-03.png` / `drone-05.png` the light-surface defaults.
-- **Scale.** 1024 × 1024 is the master — downscale, never upscale. Below ~96 px the rotors stop resolving; use `drone-12.png` (simplest silhouette) or a line icon instead.
+- **Scale.** For the fleet, 1024 × 1024 is the master — downscale, never upscale. Below ~96 px the rotors stop resolving; use `drone-12.png` (simplest silhouette) or a line icon instead.
+- **Never upscale a §6.2 cutout.** They are native, and some are small — `drone-flight-clean.png` is 409 × 174. Past native size they soften visibly. Where a card needs a large image, reach for a fleet render (1024²) or a scene, not an enlarged cutout.
+- **One register per screen.** §6.1 is studio-on-a-payload; §6.2 is in-flight-and-in-use. Both on one screen reads as two different products. Pick the register per surface: catalogue and pickers get the fleet, live and outcome screens get the scenes.
+- **People are not decoration.** `people/operator.png` exists to answer RJ-C1 — it belongs where trust is being claimed, next to the verified badge and the insurance line. Never as background texture, never cropped so the face and the controller are both lost.
 - **Alt text names the outcome, not the equipment** (voice P1 / P4): *"Your parcel on its way"*, not *"quadcopter with lime cargo box"*. Descriptive alt is correct **only on spec pages** like `concept.html`, where the asset itself is the subject.
 - **Base64 only for artifacts.** `concept-artifact.html` publishes under a CSP that blocks external image URLs, so any drone used *there* must be inlined. `concept.html` and every repo page reference `assets/drones/*.png` directly — 12 × 0.3 MB inlined would be indefensible.
 
@@ -329,3 +365,4 @@ Filenames are **numbers, not descriptions**, on purpose: the descriptor in the t
 - **2026-07-23 (rev 12)** — More designer polish: **removed the borders** from cards and circular buttons (separation now by shadow + warm tone; borders kept only where genuinely needed, e.g. stat-trio dividers). **Rebuilt the operator card** — *Certified* + *drone-model* badges overlaid on the drone photo, rating under the name, call / navigate opposite the name, "Reach the operator" removed. **Lifted the Map & route vignette** from black to a warm grey (route / pins / drone preserved; done by re-processing the supplied image). **Decline** button is now a true outline (no fill).
 - **2026-07-23 (rev 13)** — **Direction 02 «Studio» selected** and fixed in §5 (Daylight / Nocturne kept as recorded alternatives). Built the design-language testbed **`concept/concept.html`**: the language shown *live first* (tab-bar, card variants, map, buttons — as on `directions.html`), then the specification — **palette** (primary / accent / neutral + semantic, each swatch attributed), **typography** (SF Pro Display + Text, 8-step size scale), **form** (radii / elevation / 8-px spacing), **Phosphor line icons** by coverage plan (tab-bar / metadata / badge / buttons / states), **3 live components** (primary + secondary action buttons, card), and a **WCAG AA contrast table**. Every decision labelled with the attribute it serves. Self-contained (SF stack, inline SVG, base64 drone + map).
 - **2026-07-30 (rev 14)** — Added **§6 Imagery — the drone render library** and a matching **§08 Imagery** section to `concept/concept.html`. The designer's Figma sheet (`YlGWlsWWjKSCxhONMzGG2F`, node `19:59139` «Drons images») was pulled through the Figma MCP as one transparent 3072 × 2048 PNG and **sliced on its alpha channel** into **12 individual renders** — trimmed, centred on a square transparent canvas, 1024 × 1024, written to **`assets/drones/`** with the source sheet kept beside them for provenance. (Figma held only 11 hand-made crops for the 12 drones, so slicing the sheet was the only way to get the complete set at a uniform scale.) Documented: full inventory with body / optics / payload / view and an intended first use per unit, plus 8 rules of use. The reading that makes them fit the language: every unit carries a **lime cargo box that reads as Signal Green `#9BCF4A`** — the single accent arriving as a physical object rather than UI paint, which is also P1 (*name the outcome, not the drone*) made visual. The new page section shows all 12 in media wells, the same unit proved on light `#E4E1DA` **and** graphite `#1F2124`, the source sheet, and the rules; images are referenced by path (not base64) — inlining 3.9 MB would be indefensible, and the CSP constraint applies only to the published artifact.
+- **2026-07-30 (rev 15)** — Second imagery set added from Figma node **`38:122` «images 2»** (same file), covering what the fleet renders could not: **people**. Four source images — a 3-drone flight sheet and three scenes — were cut into **10 assets** by **connected alpha component** (labelled at half resolution, dilated 4 px so anti-aliased edges survive, then trimmed) rather than by bounding box; in `receive` the client's fingertips and the base of the hanging cargo box share a 20-pixel band, so a box crop would have left a slice of lime box floating above her hands. `assets/` reorganised by subject into **`drones/` · `people/` · `scenes/`**: `people/operator.png` (the operator card hero — the image that answers **RJ-C1**), `people/client-receiving.png`, `scenes/handover.png` / `receive.png` / `operator-at-work.png`, and four in-flight drones mapped to the MVP services (`-delivery` / `-camera` / `-clean`) plus post-MVP spraying (`-spray`). §6 restructured into **§6.1 the fleet** (studio / catalogue register) and **§6.2 in flight & people** (editorial / in-use register), because the two sets are visually different fleets and mixing them on one screen reads as two products — a new rule says so, alongside *never upscale a cutout* (some are 409 × 174 native) and *people are not decoration*. Verified in headless Chrome on both `#E4E1DA` and `#1F2124`: all 10 cut clean, no bleed between adjacent subjects, the spray plume intact.
