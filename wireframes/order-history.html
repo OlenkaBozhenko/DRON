@@ -134,7 +134,9 @@
        #1A1A1A on #F2F0EC → 15.29:1 · #5A5751 on #F2F0EC → 6.33:1  (both AA)
      Reused, already documented above: slate on media 5.51:1 (ETA pill),
      green-ink on green-wash 6.54:1 (direction chip + status pill).      ── */
-  .oh-live{ padding:16px; gap:14px; }                                      /* concept .card */
+  /* specificity has to match article.card.stack-card (which sets gap:12px) so the
+     concept card's own 14px rhythm wins */
+  article.card.oh-live{ padding:16px; gap:14px; }                          /* concept .card */
 
   /* header: icon well + title/date stack + status pill (+ the kebab this
      screen owns, which the concept card has no equivalent for) */
