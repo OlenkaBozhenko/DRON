@@ -192,6 +192,23 @@
     font-weight:600; padding:5px 10px; border-radius:var(--r-pill);
     background:var(--media); color:var(--slate); white-space:nowrap; }     /* concept .pill.mut */
   .ohl-eta svg.ic{ width:14px; height:14px; }
+
+  /* ── DELIVERED ORDER CARD ─────────────────────────────────────────────────
+     Same anatomy as the live card, three differences (per the reference):
+     the status pill is the secondary/muted variant, the rail reads fully
+     completed (every node done, "Done" carries the emphasis), and the
+     full-width green CTA is replaced by two secondary circular actions.  ── */
+  article.card.oh-done{ padding:16px; gap:14px; }                          /* concept .card */
+  /* secondary circular actions — concept .sbi / .sbi.grey.
+     z-index clears the full-card .card-link overlay beneath them. */
+  .sbi{ width:44px; height:44px; flex:none; border-radius:50%; display:inline-flex;
+    align-items:center; justify-content:center; border:0; cursor:pointer;
+    text-decoration:none; position:relative; z-index:2; }
+  .sbi svg.ic{ width:20px; height:20px; }
+  .sbi.grey{ background:var(--btn2); color:var(--ink); }                   /* concept .sbi.grey */
+  .sbi.grey:hover{ background:var(--media); }
+  .sbi:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
+  .ohl-acts{ display:flex; align-items:center; gap:8px; flex:none; }
 </style>
 </head>
 <body>
