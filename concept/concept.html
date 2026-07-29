@@ -224,12 +224,15 @@ tr:last-child td{border-bottom:0}
 .dcell .ds{font-size:11.5px; color:var(--slate); line-height:1.35; margin-top:-5px}
 /* the scene set — native aspect ratios, so the wells differ per subject */
 .fgrid,.pgrid,.sgrid{display:grid; gap:14px; margin-top:16px}
-.fgrid{grid-template-columns:repeat(auto-fill,minmax(238px,1fr))}
-.pgrid{grid-template-columns:repeat(auto-fill,minmax(196px,1fr))}
-.sgrid{grid-template-columns:repeat(auto-fill,minmax(276px,1fr))}
-.fgrid .dwell{aspect-ratio:16/10; display:grid; place-items:center}
-.pgrid .dwell{aspect-ratio:4/5; display:grid; place-items:center}
-.sgrid .dwell{aspect-ratio:4/3; display:grid; place-items:center}
+/* auto-fit, not auto-fill: 4 flight drones and 3 scenes fill their row exactly
+   instead of leaving a dead track at the end. People are capped — two portrait
+   wells stretched across a desktop row would dwarf everything above them. */
+.fgrid{grid-template-columns:repeat(auto-fit,minmax(232px,1fr))}
+.pgrid{grid-template-columns:repeat(auto-fit,minmax(180px,236px))}
+.sgrid{grid-template-columns:repeat(auto-fit,minmax(268px,1fr))}
+.fgrid .dwell{aspect-ratio:16/10; display:grid; place-items:center; padding:14px}
+.pgrid .dwell{aspect-ratio:4/5; display:grid; place-items:center; padding:14px}
+.sgrid .dwell{aspect-ratio:4/3; display:grid; place-items:center; padding:14px}
 .fgrid .dwell img,.pgrid .dwell img,.sgrid .dwell img{width:auto; height:auto; max-width:100%; max-height:100%}
 
 .dctx{display:grid; gap:16px; grid-template-columns:1fr; margin-top:16px}
@@ -674,19 +677,25 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
       <li><b>Do not recolour, tint or gradient-map.</b> The lime already <i>is</i> the accent; a second green breaks the one-green-per-screen budget.</li>
       <li><b>No added drop shadow.</b> Each render carries its own lighting and contact shadow; a CSS shadow under a transparent PNG shows the canvas, not the drone.</li>
       <li><b>One drone per well.</b> A grid of drones is a specification — this page. In the product a screen shows the one unit doing the one job.</li>
-      <li><b>Scale down, never up.</b> 1024² is the master. Below roughly 96 px the rotors stop resolving — use <span class="mono">drone-12</span> or a line icon instead.</li>
+      <li><b>Scale down, never up.</b> For the fleet, 1024² is the master. Below roughly 96 px the rotors stop resolving — use <span class="mono">drone-12</span> or a line icon instead.</li>
+      <li><b>Never upscale a cutout.</b> The scene cutouts are native, and some are small — <span class="mono">drone-flight-clean</span> is 409 × 174. Past native size they soften. Where a card needs a large image, reach for a fleet render or a scene.</li>
+      <li><b>One register per screen.</b> Studio-on-a-payload and in-flight-in-use are visually different fleets. Catalogue and pickers get the fleet; live and outcome screens get the scenes.</li>
+      <li><b>People are not decoration.</b> <span class="mono">operator.png</span> exists to answer RJ-C1 — it belongs where trust is claimed. Never background texture, never cropped so the face and the controller are both lost.</li>
       <li><b>Alt text names the outcome, not the equipment</b> (<span class="mono">P1 / P4</span>): “Your parcel on its way”, not “quadcopter with lime cargo box”. Descriptive alt is correct only here, where the asset is the subject.</li>
     </ul>
 
-    <div class="block-label" style="margin-top:34px">Source <span class="attr">figma · node 19:59139 «Drons images»</span></div>
-    <p class="secsub">One transparent <span class="mono">3072 × 2048</span> sheet, a 4 × 3 grid. Sliced on the <b>alpha channel</b> — runs of fully transparent rows and columns — so every cut lands in the gap and never on a rotor; each drone is then trimmed to its own bounding box and centred on a square canvas. Kept beside the renders as <span class="mono">_source-sheet.png</span> so the crops can be redone without going back to Figma.</p>
-    <div class="dsheet"><img src="../assets/drones/_source-sheet.png" alt="The source sheet: twelve drone renders in a four by three grid on a transparent background" loading="lazy" decoding="async"></div>
+    <div class="block-label" style="margin-top:34px">Source <span class="attr">figma · nodes 19:59139 + 38:122</span></div>
+    <p class="secsub"><b>The fleet</b> — node <span class="mono">19:59139</span> «Drons images», one transparent <span class="mono">3072 × 2048</span> sheet in a 4 × 3 grid. Sliced on the <b>alpha channel</b> (runs of fully transparent rows and columns) so every cut lands in the gap and never on a rotor, then trimmed and centred on a square canvas.</p>
+    <p class="secsub" style="margin-top:12px"><b>The scenes</b> — node <span class="mono">38:122</span> «images 2», four images. Here each subject is isolated by its own <b>connected alpha component</b>, dilated slightly so anti-aliased edges survive — not by bounding box. That is not fussiness: in <span class="mono">receive</span> the client's fingertips and the base of the hanging cargo box share a 20-pixel band, so a box crop would have left a slice of lime box floating above her hands. Component masks make a cutout structurally incapable of carrying a fragment of its neighbour; the spray plume survives for the same reason.</p>
+    <p class="secsub" style="margin-top:12px">Both source sheets are kept beside the cuts as <span class="mono">_source-sheet.png</span> and <span class="mono">_source-flight-sheet.png</span>, so any crop can be redone without going back to Figma.</p>
+    <div class="dsheet"><img src="../assets/drones/_source-sheet.png" alt="The fleet source sheet: twelve drone renders in a four by three grid on a transparent background" loading="lazy" decoding="async"></div>
+    <div class="dsheet"><img src="../assets/drones/_source-flight-sheet.png" alt="The flight source sheet: three drones in flight, carrying a spray canister, a gimbal camera, and no payload" loading="lazy" decoding="async"></div>
   </section>
 
   <footer>
     DRON · Studio — chosen design language · generated from concept/concept.md · SF Pro · Phosphor line icons · WCAG 2.1 AA.<br>
     Alternatives kept in concept.md: 01 Daylight (white · Hanken) · 03 Nocturne (graphite · Geist).<br>
-    Imagery: 12 drone renders in assets/drones/, from the designer's Figma sheet (node 19:59139).
+    Imagery: 22 assets in assets/drones/ · assets/people/ · assets/scenes/, from the designer's Figma (nodes 19:59139 + 38:122).
   </footer>
 
 </div>
