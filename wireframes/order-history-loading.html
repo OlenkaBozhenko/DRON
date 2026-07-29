@@ -9,8 +9,75 @@
   PERSONA: Client C-1. JOB: RJ-C5 — repeat without starting over.
   STATE: loading — fetching order history. Same shell as order-history.html; skeleton cards stand in for the list. Header/footer stay solid. Activity tab current.
   flows.md node: RELATED · RJ-C5 → "Loading: fetching order history".
+  VISUAL LAYER (2026-07-23): Studio design language from concept/concept.html applied to the
+  screen frame — palette, type, form, Phosphor-line icons; skeletons pulse to convey state
+  (with a reduced-motion fallback). Structure and copy unchanged.
 -->
 <link rel="stylesheet" href="_wireframe.css">
+<style>
+  /* ── DRON · Studio (concept/concept.html) applied to the phone frame only;
+     the wireframe annotation sidebar keeps its own chrome.
+     New text/bg pairs, contrast checked (WCAG AA):
+       #1A1A1A on #F7F5F2 → 15.99:1 · #5A5751 on #F7F5F2 → 6.62:1
+     (skeleton fills #D6D2C9 on #ECE9E4 are non-text). ── */
+  body{ background:#F7F5F2; }
+  .wf-frame{
+    --page:#F7F5F2; --card:#ECE9E4; --media:#E4E1DA; --btn2:#D6D2C9;
+    --ink:#1A1A1A; --slate:#5A5751; --line:#D9D5CE;
+    --green:#9BCF4A; --on-green:#1A1A1A; --green-ink:#3F5B18; --green-wash:#E7F0D2;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --r-btn:12px; --r-card:16px; --r-media:13px; --r-panel:22px; --r-pill:999px;
+    --sh-sm:0 1px 2px rgba(20,18,15,.05);
+    --sh-card:0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30);
+    --sh-raised:0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34);
+    /* wireframe tokens remapped to the Studio palette */
+    --wf-surface:var(--page); --wf-bg:var(--page); --wf-recessed:var(--media);
+    --wf-fill:var(--btn2); --wf-skeleton:var(--btn2); --wf-muted:var(--slate);
+    --wf-text-2:var(--slate); --wf-text:var(--ink); --wf-ink:var(--ink); --wf-ink-max:#000000;
+    --wf-border:var(--line); --wf-border-2:var(--line);
+    background:var(--page); border:1px solid var(--line); border-radius:var(--r-panel);
+  }
+  .wf-frame svg.ic{ display:block; }
+
+  /* system bars melt into the warm ground */
+  .statusbar{ background:var(--page); color:var(--ink); }
+  .statusbar .sysph{ gap:5px; align-items:center; }
+  header.topbar{ background:var(--page); border-bottom:1px solid var(--line); }
+  .topbar .title{ color:var(--ink); letter-spacing:-.01em; }
+  footer.tabbar{ background:var(--page); border-top:1px solid var(--line); }
+  footer .tabs{ height:60px; padding:6px 8px 4px; gap:4px; }
+  footer .tab{ gap:3px; font-weight:600; color:var(--slate); border-radius:16px; }
+  footer .tab[aria-current="page"]{ background:var(--green-wash); color:var(--green-ink); }
+  footer .tab svg.ic{ width:22px; height:22px; }
+  /* green-ink ring: raw green fails non-text 3:1 on this light ground (1.69:1); #3F5B18 → 7.09:1 */
+  footer .tab:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
+  footer .home-indicator{ height:30px; }
+  footer .home-indicator span{ background:var(--ink); }
+
+  /* zone annotation → concept block-label */
+  .zlabel{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.09em;
+    color:var(--slate); border-left:0; border-bottom:1px solid var(--line);
+    padding:0 0 9px; position:relative; margin-bottom:-4px; }
+  .zlabel::after{ content:""; position:absolute; left:0; bottom:-1px; width:30px; height:2px; background:var(--green); }
+  .zlabel .act{ color:var(--slate); font-size:11px; letter-spacing:.02em; }
+
+  /* loading status line names what is loading */
+  main > p[role="status"]{ font-size:14px; color:var(--slate); }
+
+  /* skeleton cards — rehearse the real order-card anatomy so content arrival does not reflow:
+     header band slab · date line · two route lines · price line · 44px button slab */
+  .sk-card{ background:var(--card); border:0; border-radius:var(--r-card); box-shadow:var(--sh-card);
+    flex-direction:column; align-items:stretch; gap:0; padding:0; overflow:hidden; }
+  .sk-media{ width:100%; height:45px; border-radius:0; background:var(--media); }
+  .sk-body{ padding:14px 16px 16px; gap:14px; }
+  .sk-line{ height:13px; border-radius:4px; background:var(--btn2); }
+  .sk-body::after{ content:""; height:44px; border-radius:var(--r-btn); background:var(--btn2); margin-top:2px; }
+  .sk-media,.sk-line,.sk-body::after{ animation:skPulse 1.4s ease-in-out infinite; }
+  ul.list li:nth-child(2) .sk-media, ul.list li:nth-child(2) .sk-line, ul.list li:nth-child(2) .sk-body::after{ animation-delay:-.47s; }
+  ul.list li:nth-child(3) .sk-media, ul.list li:nth-child(3) .sk-line, ul.list li:nth-child(3) .sk-body::after{ animation-delay:-.93s; }
+  @keyframes skPulse{ 0%,100%{ opacity:1; } 50%{ opacity:.5; } }
+  @media (prefers-reduced-motion:reduce){ .sk-media,.sk-line,.sk-body::after{ animation:none; } }
+</style>
 </head>
 <body>
   <aside class="meta">
@@ -26,7 +93,7 @@
   </aside>
 
   <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <div class="statusbar"><span>9:41</span><span class="sysph"><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
     <header class="topbar"><span class="title" style="padding-left:16px;">Activity</span><span class="spacer"></span></header>
     <main>
       <p class="zlabel">Order history <span class="act">▸ fetching…</span></p>
@@ -56,10 +123,10 @@
     </main>
     <footer class="tabbar">
       <nav class="tabs" aria-label="Primary">
-        <a class="tab" href="listings.html"><span class="sq sq-24" aria-hidden="true"></span>Order</a>
-        <a class="tab" href="order-history.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Activity</a>
-        <a class="tab" href="support.html"><span class="sq sq-24" aria-hidden="true"></span>Help</a>
-        <a class="tab" href="account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+        <a class="tab" href="listings.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+        <a class="tab" href="order-history.html" aria-current="page"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+        <a class="tab" href="support.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+        <a class="tab" href="account.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
       </nav>
       <div class="home-indicator"><span></span></div>
     </footer>
