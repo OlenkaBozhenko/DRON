@@ -209,36 +209,50 @@
       <section aria-label="Past orders">
         <ul class="list">
           <li>
-            <article class="card stack-card oh-card">
+            <article class="card stack-card oh-card oh-live">
               <a class="card-link" href="tracking.html" aria-label="Package delivery, in progress — view details"></a>
-              <span class="oh-head">
-                <span class="oh-title">Package delivery</span>
+              <span class="ohl-top">
+                <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.2v9.6l-8 4.2-8-4.2V7.2z"/><path d="M4 7.4l8 4.2 8-4.2"/><path d="M12 11.6V21"/></svg></span>
+                <span class="ohl-id">
+                  <span class="ohl-title">Package delivery</span>
+                  <span class="ohl-date">Today · 9 Jul 2026 · 10:03</span>
+                </span>
                 <span class="oh-status live">In progress</span>
+                <button class="oh-more" type="button" aria-label="Order options — delete">
+                  <span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span>
+                </button>
               </span>
-              <span class="oh-body">
-                <span class="oh-top">
-                  <span class="oh-date">Today · 9 Jul 2026 · 10:03</span>
-                  <button class="oh-more" type="button" aria-label="Order options — delete">
-                    <span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span>
-                  </button>
+              <span class="ohl-rail">
+                <span class="rail" aria-hidden="true">
+                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                  <span class="sg done"></span>
+                  <span class="nd now"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span>
+                  <span class="sg"></span><span class="nd"></span><span class="sg"></span><span class="nd"></span>
                 </span>
-                <span class="oh-route route-2">
-                  <span class="oh-stop">
-                    <span class="oh-dot" aria-hidden="true"></span>
-                    <span class="oh-addr"><span class="oh-addr-lbl">From</span>Podil</span>
-                  </span>
-                  <span class="oh-stop">
-                    <span class="oh-dot oh-dot-end" aria-hidden="true"></span>
-                    <span class="oh-addr"><span class="oh-addr-lbl">To</span>Osokorky</span>
-                  </span>
+                <span class="lbls">
+                  <span>Accepted</span><span class="now">En route</span><span>On&#8209;site</span><span>Done</span>
                 </span>
-                <span class="oh-meta">
-                  <span class="oh-price">₴180</span>
-                  <span class="oh-eta">ETA ~6 min</span>
+              </span>
+              <span class="ohl-route">
+                <span class="ohl-stop">
+                  <span class="ohl-lbl">From</span>
+                  <span class="ohl-place">Podil</span>
                 </span>
-                <span class="actions">
-                  <a class="btn btn-primary btn-sm" href="tracking.html">View details</a>
+                <span class="ohl-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+                <span class="ohl-stop ohl-stop-to">
+                  <span class="ohl-lbl">To</span>
+                  <span class="ohl-place">Osokorky</span>
                 </span>
+              </span>
+              <span class="ohl-fee">
+                <span>
+                  <span class="ohl-fee-lbl">Delivery fee</span>
+                  <span class="ohl-price">₴180</span>
+                </span>
+                <span class="ohl-eta"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg>ETA ~6 min</span>
+              </span>
+              <span class="actions">
+                <a class="btn btn-primary btn-sm" href="tracking.html">View details</a>
               </span>
             </article>
           </li>
