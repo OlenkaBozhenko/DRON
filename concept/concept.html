@@ -602,9 +602,58 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
     </div>
   </section>
 
+  <!-- ============ 08 · IMAGERY ============ -->
+  <section class="blk" style="border-bottom:0">
+    <div class="sechead"><span class="secnum">08</span><h2>Imagery — the drone render library</h2></div>
+    <p class="secsub">The photographic layer of the language, supplied by the designer. Twelve renders of the fleet, each one transparent, square and at the same optical scale. They fit because every unit carries a <b>lime cargo box that reads as Signal Green <span class="mono">#9BCF4A</span></b> — the one accent arriving as a physical object instead of as UI paint. The green is the payload, which is also <span class="mono">P1</span> (<i>name the outcome, not the drone</i>) made visual.</p>
+
+    <div class="block-label">The library · 12 renders <span class="attr">assets/drones/ · 1024² · transparent PNG</span></div>
+    <div class="dgrid">
+      <div class="dcell"><div class="dwell"><img src="../assets/drones/drone-01.png" alt="Graphite drone, arms folded low, carrying a lime cargo box" loading="lazy" decoding="async"></div><div class="fn">drone-01</div><div class="ds">Graphite, folded arms · package delivery</div></div>
+      <div class="dcell"><div class="dwell"><img src="../assets/drones/drone-02.png" alt="Silver-grey drone with a twin-lens camera pod, carrying a lime cargo box" loading="lazy" decoding="async"></div><div class="fn">drone-02</div><div class="ds">Silver, camera pod · aerial photo / video</div></div>
+      <div class="dcell"><div class="dwell"><img src="../assets/drones/drone-03.png" alt="Slim white drone on tall landing legs, carrying a lime cargo box" loading="lazy" decoding="async"></div><div class="fn">drone-03</div><div class="ds">White, slim · lightest read, light surfaces</div></div>
+      <div class="dcell"><div class="dwell"><img src="../assets/drones/drone-04.png" alt="Black drone with amber arms and twin sensor lenses, carrying a lime cargo box" loading="lazy" decoding="async"></div><div class="fn">drone-04</div><div class="ds">Black + amber arms · inspection</div></div>
+      <div class="dcell"><div class="dwell"><img src="../assets/drones/drone-05.png" alt="White drone with twin lenses, carrying a lime cargo box" loading="lazy" decoding="async"></div><div class="fn">drone-05</div><div class="ds">White, twin lens · operator card hero</div></div>
+      <div class="dcell"><div class="dwell"><img src="../assets/drones/drone-06.png" alt="White drone seen at an angle, carrying a lime cargo box" loading="lazy" decoding="async"></div><div class="fn">drone-06</div><div class="ds">White, angled · activity thumbnails</div></div>
+      <div class="dcell"><div class="dwell"><img src="../assets/drones/drone-07.png" alt="Black drone with a wide sensor pod seen head-on, carrying a lime cargo box" loading="lazy" decoding="async"></div><div class="fn">drone-07</div><div class="ds">Black, front-on · live tracking, approaching</div></div>
+      <div class="dcell"><div class="dwell"><img src="../assets/drones/drone-08.png" alt="Graphite drone in side profile, carrying a lime cargo box" loading="lazy" decoding="async"></div><div class="fn">drone-08</div><div class="ds">Graphite, profile · dark-surface default</div></div>
+      <div class="dcell"><div class="dwell"><img src="../assets/drones/drone-09.png" alt="White drone with a dark landing frame, carrying a lime cargo box" loading="lazy" decoding="async"></div><div class="fn">drone-09</div><div class="ds">White, dark frame · order review</div></div>
+      <div class="dcell"><div class="dwell"><img src="../assets/drones/drone-10.png" alt="Black drone with an amber pinstripe and twin blue lenses, carrying a lime cargo box" loading="lazy" decoding="async"></div><div class="fn">drone-10</div><div class="ds">Black + amber line · empty states</div></div>
+      <div class="dcell"><div class="dwell"><img src="../assets/drones/drone-11.png" alt="Black drone with an amber shell, carrying a dark composite case" loading="lazy" decoding="async"></div><div class="fn">drone-11</div><div class="ds">Amber shell · the only non-lime payload</div></div>
+      <div class="dcell"><div class="dwell"><img src="../assets/drones/drone-12.png" alt="Compact black drone with an amber sweep, carrying a lime cargo box" loading="lazy" decoding="async"></div><div class="fn">drone-12</div><div class="ds">Compact · simplest silhouette, icon scale</div></div>
+    </div>
+
+    <div class="block-label" style="margin-top:34px">Both registers, one asset <span class="attr">A-5 · light and dark aware</span></div>
+    <div class="dctx">
+      <figure>
+        <div class="stagew light"><img src="../assets/drones/drone-03.png" alt="Slim white drone carrying a lime cargo box, shown on the light media well" loading="lazy" decoding="async"></div>
+        <figcaption><b>Light well <span class="mono">#E4E1DA</span></b> — the white and silver bodies. The lime box gives the unit its own separation, so no border or shadow is needed under the render.</figcaption>
+      </figure>
+      <figure>
+        <div class="stagew dark"><img src="../assets/drones/drone-08.png" alt="Graphite drone carrying a lime cargo box, shown on the graphite surface" loading="lazy" decoding="async"></div>
+        <figcaption><b>Graphite <span class="mono">#1F2124</span></b> — the graphite and black bodies (Nocturne register). Same file, no recolour: the green is what carries the read.</figcaption>
+      </figure>
+    </div>
+
+    <div class="block-label" style="margin-top:34px">Rules of use <span class="attr">one accent · no gradients over photography</span></div>
+    <ul class="rules">
+      <li><b>Transparent PNG, never a rectangle.</b> The drone sits <i>in</i> a surface — media well, radius 13. Never a bordered photo tile, no white box, no frame.</li>
+      <li><b>Do not recolour, tint or gradient-map.</b> The lime already <i>is</i> the accent; a second green breaks the one-green-per-screen budget.</li>
+      <li><b>No added drop shadow.</b> Each render carries its own lighting and contact shadow; a CSS shadow under a transparent PNG shows the canvas, not the drone.</li>
+      <li><b>One drone per well.</b> A grid of drones is a specification — this page. In the product a screen shows the one unit doing the one job.</li>
+      <li><b>Scale down, never up.</b> 1024² is the master. Below roughly 96 px the rotors stop resolving — use <span class="mono">drone-12</span> or a line icon instead.</li>
+      <li><b>Alt text names the outcome, not the equipment</b> (<span class="mono">P1 / P4</span>): “Your parcel on its way”, not “quadcopter with lime cargo box”. Descriptive alt is correct only here, where the asset is the subject.</li>
+    </ul>
+
+    <div class="block-label" style="margin-top:34px">Source <span class="attr">figma · node 19:59139 «Drons images»</span></div>
+    <p class="secsub">One transparent <span class="mono">3072 × 2048</span> sheet, a 4 × 3 grid. Sliced on the <b>alpha channel</b> — runs of fully transparent rows and columns — so every cut lands in the gap and never on a rotor; each drone is then trimmed to its own bounding box and centred on a square canvas. Kept beside the renders as <span class="mono">_source-sheet.png</span> so the crops can be redone without going back to Figma.</p>
+    <div class="dsheet"><img src="../assets/drones/_source-sheet.png" alt="The source sheet: twelve drone renders in a four by three grid on a transparent background" loading="lazy" decoding="async"></div>
+  </section>
+
   <footer>
     DRON · Studio — chosen design language · generated from concept/concept.md · SF Pro · Phosphor line icons · WCAG 2.1 AA.<br>
-    Alternatives kept in concept.md: 01 Daylight (white · Hanken) · 03 Nocturne (graphite · Geist).
+    Alternatives kept in concept.md: 01 Daylight (white · Hanken) · 03 Nocturne (graphite · Geist).<br>
+    Imagery: 12 drone renders in assets/drones/, from the designer's Figma sheet (node 19:59139).
   </footer>
 
 </div>
