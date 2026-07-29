@@ -138,8 +138,12 @@
      concept card's own 14px rhythm wins */
   article.card.oh-live{ padding:16px; gap:14px; }                          /* concept .card */
 
-  /* header: icon well + title/date stack + status pill (+ the kebab this
-     screen owns, which the concept card has no equivalent for) */
+  /* header: icon well + title/date stack + the kebab this screen owns.
+     No status pill here, unlike the delivered cards: at 375px the row can hold
+     well(44) + title(118) + kebab(28) + gaps, but not a ~100px pill as well —
+     and the rail directly below already states the status ("En route", bold +
+     active node), so the pill is the one duplicated element. The delivered
+     cards keep their pill, since they carry no rail. */
   .ohl-top{ display:flex; align-items:flex-start; gap:12px; }              /* concept .card-top */
   .ohl-ic{ width:44px; height:44px; flex:none; border-radius:12px; background:var(--media);
     color:var(--ink); display:flex; align-items:center; justify-content:center; }  /* concept .well */
