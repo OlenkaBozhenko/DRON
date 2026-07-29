@@ -268,6 +268,52 @@ Verified in-browser (desktop + mobile): no horizontal overflow, outline icons on
 
 ---
 
+## 6. Imagery — the drone render library (`assets/drones/`)
+
+The language now owns a real photographic layer. Until now imagery was a placeholder problem (§5: "real renders are supplied by the designer"); this section fixes the supply and the rules.
+
+**Source.** Designer's Figma → file `YlGWlsWWjKSCxhONMzGG2F` (*My-projects*), node **`19:59139` «Drons images»**. One transparent `3072 × 2048` PNG sheet holding a **4 × 3 grid of 12 drone renders**.
+
+**Extraction.** The sheet was sliced on its **alpha channel** (row / column runs of fully transparent pixels), not on guessed coordinates — so every cut lands in the gap, never on a rotor. Each drone is then trimmed to its own alpha bounding box, centred on a **square transparent canvas with 6 % padding**, and written at **1024 × 1024 PNG** (lossless; transparency rules out JPEG). Result: 12 files that all sit at the same optical scale and can be dropped into any square or any well without re-cropping.
+
+**Why these renders fit the language.** Every unit in the fleet is charcoal, graphite or white with a **lime cargo box that reads as Signal Green `#9BCF4A`** — the concept's single accent. That is §2's *"green is fill-only"* rule arriving as a physical object instead of as UI paint: **the green is the payload.** It also serves P1 (*name the outcome, not the drone*) visually — what the eye lands on is the box being carried, not the machine carrying it.
+
+### 6.1 Inventory
+
+`assets/drones/` · 1024 × 1024 · transparent PNG · ~0.3 MB each (3.9 MB total)
+
+| File | Body | Optics | Payload | View | Intended first use |
+|---|---|---|---|---|---|
+| `drone-01.png` | Graphite, arms folded low | single forward lens, amber blade tip | lime cargo box | ¾ side, facing left | **Package delivery** — service card / hero |
+| `drone-02.png` | Silver-grey with black camera pod | twin-lens gimbal pod | lime cargo box | ¾ side, facing right | **Aerial photo / video** — service card |
+| `drone-03.png` | White, slim, tall landing legs | single gimbal lens | lime cargo box | ¾ side, facing right | Lightest read — order confirmed, light surfaces |
+| `drone-04.png` | Black with amber arms | twin sensor lenses | lime cargo box | ¾ front | **Inspection** — service card |
+| `drone-05.png` | White | twin lenses (green + blue) | lime cargo box | ¾ side, facing right | Operator / fleet-unit card hero (light) |
+| `drone-06.png` | White | twin lenses | lime cargo box | ¾ side, angled | Activity-list thumbnails |
+| `drone-07.png` | Black, wide sensor pod | twin lenses | lime hex cargo box | front-on | Live tracking / operator revealed — front-on reads as *approaching* |
+| `drone-08.png` | Graphite with vent panel | single lens | lime cargo box | side profile | Dark surfaces (Nocturne register) |
+| `drone-09.png` | White with dark landing frame | twin lenses | lime cargo box | side profile | Order review / price screen |
+| `drone-10.png` | Black with amber pinstripe | twin blue lenses | lime cargo box | ¾ front | Empty states — nothing ordered yet |
+| `drone-11.png` | Black with amber shell | twin lenses | **dark composite case** | ¾ front | **Inspection** — the only non-lime payload; use where the box must *not* read as a delivery |
+| `drone-12.png` | Black with amber sweep, compact | single lens | lime cargo box | ¾ side | Icon-scale and small thumbnails — simplest silhouette |
+
+`_source-sheet.png` — the untouched 3072 × 2048 sheet, kept for provenance and for re-slicing if the crops ever need to change.
+
+Filenames are **numbers, not descriptions**, on purpose: the descriptor in the table is a judgement that may be revised, while every reference in code must stay stable.
+
+### 6.2 Rules of use
+
+- **Transparent PNG, never a rectangle.** The drone sits *in* a surface — media well `#E4E1DA`, radius `--r-media` 13px — it is never a bordered photo tile. No white box, no frame.
+- **Do not recolour, tint or gradient-map.** The lime already *is* the accent; a second green would break the one-accent budget (~1 green element per screen). Anti-reference §0: no gradients over photography.
+- **No added drop shadow.** Each render carries its own lighting and contact shadow; a CSS shadow under a transparent PNG shows the canvas, not the drone.
+- **One drone per well.** A grid of drones is a specification (this page), never product UI — in the product a screen shows the *one* unit doing the *one* job.
+- **Both registers.** Verified against the light well `#E4E1DA` and graphite `#1F2124`: the white bodies hold on graphite and the graphite bodies hold on the light well, because every unit carries the lime box as its own separation. `drone-08.png` is the dark-surface default, `drone-03.png` / `drone-05.png` the light-surface defaults.
+- **Scale.** 1024 × 1024 is the master — downscale, never upscale. Below ~96 px the rotors stop resolving; use `drone-12.png` (simplest silhouette) or a line icon instead.
+- **Alt text names the outcome, not the equipment** (voice P1 / P4): *"Your parcel on its way"*, not *"quadcopter with lime cargo box"*. Descriptive alt is correct **only on spec pages** like `concept.html`, where the asset itself is the subject.
+- **Base64 only for artifacts.** `concept-artifact.html` publishes under a CSP that blocks external image URLs, so any drone used *there* must be inlined. `concept.html` and every repo page reference `assets/drones/*.png` directly — 12 × 0.3 MB inlined would be indefensible.
+
+---
+
 ## Change log
 - **2026-07-17** — Created. Refero MCP styles (Monarch/N26/Perplexity/Operate) + screens (Airbnb/PayPal/Klarna) extracted with full data; base = Monarch; grafts G-1…G-6 defined; WCAG AA correction on Monarch's primary button documented. No new competitor research (per brief). Published as the DRON artifact (URL above).
 - **2026-07-17 (rev 2)** — Accent changed from Monarch's orange to a **salad-green**, per designer preference. Hue promoted from Operate's green family (S-4), so it stays sourced, not arbitrary.
@@ -282,3 +328,4 @@ Verified in-browser (desktop + mobile): no horizontal overflow, outline icons on
 - **2026-07-23 (rev 11)** — Designer polish on Studio: **warmed the grey ramp and widened its contrast** — light interface `#F7F5F2`, distinctly darker warm-grey cards `#ECE9E4`, and a third warm grey `#D6D2C9` for card secondary buttons (interface / card / button read as separate warm tones). Removed the stray **frame around the Order·live timeline labels** (they had inherited the global `.lbl` bordered-tag style; nodes unchanged, per the designer). Swapped the order card's camera glyph for a **drone (quadcopter) icon**. AA re-checked; no overflow.
 - **2026-07-23 (rev 12)** — More designer polish: **removed the borders** from cards and circular buttons (separation now by shadow + warm tone; borders kept only where genuinely needed, e.g. stat-trio dividers). **Rebuilt the operator card** — *Certified* + *drone-model* badges overlaid on the drone photo, rating under the name, call / navigate opposite the name, "Reach the operator" removed. **Lifted the Map & route vignette** from black to a warm grey (route / pins / drone preserved; done by re-processing the supplied image). **Decline** button is now a true outline (no fill).
 - **2026-07-23 (rev 13)** — **Direction 02 «Studio» selected** and fixed in §5 (Daylight / Nocturne kept as recorded alternatives). Built the design-language testbed **`concept/concept.html`**: the language shown *live first* (tab-bar, card variants, map, buttons — as on `directions.html`), then the specification — **palette** (primary / accent / neutral + semantic, each swatch attributed), **typography** (SF Pro Display + Text, 8-step size scale), **form** (radii / elevation / 8-px spacing), **Phosphor line icons** by coverage plan (tab-bar / metadata / badge / buttons / states), **3 live components** (primary + secondary action buttons, card), and a **WCAG AA contrast table**. Every decision labelled with the attribute it serves. Self-contained (SF stack, inline SVG, base64 drone + map).
+- **2026-07-30 (rev 14)** — Added **§6 Imagery — the drone render library** and a matching **§08 Imagery** section to `concept/concept.html`. The designer's Figma sheet (`YlGWlsWWjKSCxhONMzGG2F`, node `19:59139` «Drons images») was pulled through the Figma MCP as one transparent 3072 × 2048 PNG and **sliced on its alpha channel** into **12 individual renders** — trimmed, centred on a square transparent canvas, 1024 × 1024, written to **`assets/drones/`** with the source sheet kept beside them for provenance. (Figma held only 11 hand-made crops for the 12 drones, so slicing the sheet was the only way to get the complete set at a uniform scale.) Documented: full inventory with body / optics / payload / view and an intended first use per unit, plus 8 rules of use. The reading that makes them fit the language: every unit carries a **lime cargo box that reads as Signal Green `#9BCF4A`** — the single accent arriving as a physical object rather than UI paint, which is also P1 (*name the outcome, not the drone*) made visual. The new page section shows all 12 in media wells, the same unit proved on light `#E4E1DA` **and** graphite `#1F2124`, the source sheet, and the rules; images are referenced by path (not base64) — inlining 3.9 MB would be indefensible, and the CSP constraint applies only to the published artifact.
