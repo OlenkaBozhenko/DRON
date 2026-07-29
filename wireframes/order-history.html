@@ -71,64 +71,31 @@
   article.card:focus-within{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
   .card-link{ border-radius:var(--r-card); }
 
-  /* buttons — green primary (the one CTA), warm-grey secondary */
+  /* buttons — the green primary is the live order's single CTA */
   .btn{ border-radius:var(--r-btn); transition:filter .15s, background .15s, transform .12s; }
   .btn:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
   .btn-primary{ background:var(--green); color:var(--on-green); box-shadow:var(--sh-sm); }
   .btn-primary:hover{ background:var(--green); filter:brightness(1.03); }
   .btn-primary:active{ background:var(--green); transform:translateY(1px) scale(.99); }
-  .btn-secondary{ background:var(--btn2); border-color:transparent; color:var(--ink); }
-  .btn-secondary:hover{ background:var(--media); }
-  .btn-secondary:active{ background:var(--media); }
   .btn-sm{ height:44px; font-size:15px; border-radius:var(--r-btn); }
   @media (prefers-reduced-motion:reduce){ .btn, article.card{ transition:none; } }
 
-  /* Order-history card anatomy (Studio skin):
-     header band (service + status pill) · date + kebab (delete) · route dots (From ▸ To) · price · CTA */
-  .oh-card{ padding:0; gap:0; overflow:hidden; }
-  .oh-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
-    padding:12px 16px; background:var(--media); }
-  .oh-title{ font-size:16px; font-weight:600; letter-spacing:-.01em; color:var(--ink); min-width:0; }
-  .oh-head .oh-status{ margin-top:1px; }
-  .oh-body{ padding:14px 16px 16px; display:flex; flex-direction:column; gap:12px; }
-  .oh-top{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
-  .oh-date{ font-size:12.5px; font-weight:500; color:var(--slate); }
-  .oh-more{ position:relative; z-index:2; width:28px; height:28px; flex:none; display:inline-flex;
-    align-items:center; justify-content:center; border:0; background:transparent; color:var(--slate);
-    border-radius:8px; cursor:pointer; }
-  .oh-more:hover{ background:var(--media); color:var(--ink); }
-  .oh-more:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
-  /* 28px glyph, 44px HIG hit area — the only destructive entry must not be the smallest target */
-  .oh-more::after{ content:""; position:absolute; inset:-8px; border-radius:12px; }
-  .ic-kebab{ display:inline-flex; flex-direction:column; align-items:center; gap:2.5px; }
-  .ic-kebab i{ width:3px; height:3px; border-radius:999px; background:currentColor; }
-  /* route: hollow origin dot → filled destination dot, joined by a connector line */
-  .oh-route{ position:relative; display:flex; flex-direction:column; gap:12px; }
-  .oh-route.route-2::before{ content:""; position:absolute; left:4px; top:9px; bottom:9px;
-    width:2px; background:var(--line); z-index:0; }
-  .oh-stop{ display:flex; align-items:flex-start; gap:10px; }
-  .oh-dot{ width:9px; height:9px; flex:none; margin-top:4px; position:relative; z-index:1; pointer-events:none;
-    border:1.5px solid var(--slate); border-radius:999px; background:var(--card); }
-  .oh-dot-end{ background:var(--ink); border-color:var(--ink); }
-  .oh-addr{ font-size:14px; color:var(--ink); line-height:1.3; }
-  .oh-addr .oh-addr-lbl{ display:block; font-family:var(--mono); font-size:11px; font-weight:600;
-    letter-spacing:.05em; text-transform:uppercase; color:var(--slate); }
-  .oh-meta{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
-  .oh-price{ font-size:17px; font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; color:var(--ink); }
-  .oh-eta{ font-size:12.5px; color:var(--slate); }
+  .oh-card{ overflow:hidden; }
   /* status pill: green wash for the live order, muted warm-grey for the past.
-     Sits on the media band, so the muted pill steps one tone deeper (btn2) — slate on #D6D2C9 = 4.77:1 AA */
+     The muted pill sits a tone deeper than the card it rests on — slate on #D6D2C9 = 4.77:1 AA */
   .oh-status{ flex:none; display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600;
     color:var(--slate); border:0; border-radius:var(--r-pill); padding:5px 10px;
     background:var(--btn2); white-space:nowrap; }
   .oh-status.live{ color:var(--green-ink); background:var(--green-wash); border:0; }
   .oh-status.live::before{ content:""; width:6px; height:6px; border-radius:50%; background:currentColor; }
 
-  /* ── LIVE ORDER CARD ──────────────────────────────────────────────────────
-     The in-progress order is the one card that carries a progress rail, so it
-     uses concept.html's plain padded .card anatomy (padding:16px; gap:14px)
-     rather than the header-band layout the delivered cards use. Every value
-     below is lifted from concept/concept.html, noted per rule.
+  /* ── ORDER CARD ───────────────────────────────────────────────────────────
+     All four cards share one anatomy, built on concept.html's plain padded
+     .card (padding:16px; gap:14px): well + title + kebab · date + status ·
+     progress rail · From▸To strip · fee + actions. The live order differs only
+     in what fills it — a rail still in progress, an ETA chip, and the single
+     green CTA; delivered orders read a completed rail and two secondary
+     circular actions. Every value below is lifted from concept/concept.html.
      New text/bg pair introduced here — the From▸To inset uses concept's own
      .stat3 blend, color-mix(page 55%, card) = #F2F0EC:
        #1A1A1A on #F2F0EC → 15.29:1 · #5A5751 on #F2F0EC → 6.33:1  (both AA)
@@ -138,12 +105,10 @@
      concept card's own 14px rhythm wins */
   article.card.oh-live{ padding:16px; gap:14px; }                          /* concept .card */
 
-  /* header: icon well + title/date stack + the kebab this screen owns.
-     No status pill here, unlike the delivered cards: at 375px the row can hold
-     well(44) + title(118) + kebab(28) + gaps, but not a ~100px pill as well —
-     and the rail directly below already states the status ("En route", bold +
-     active node), so the pill is the one duplicated element. The delivered
-     cards keep their pill, since they carry no rail. */
+  /* header: icon well + service name + the kebab this screen owns. The status
+     pill is NOT here: at 375px the row holds well(44) + the longest title(151)
+     + kebab(28) + gaps with nothing to spare, so the pill sits on the meta row
+     below, where the full 255px width fits it beside the date. */
   .ohl-top{ display:flex; align-items:center; gap:12px; }                  /* concept .card-top */
   .ohl-ic{ width:44px; height:44px; flex:none; border-radius:12px; background:var(--media);
     color:var(--ink); display:flex; align-items:center; justify-content:center; }  /* concept .well */
@@ -158,21 +123,30 @@
   .ohl-sub{ display:flex; align-items:center; justify-content:space-between; gap:6px; }
   .ohl-date{ font-size:12.5px; color:var(--slate); white-space:nowrap; }   /* concept .id .s */
 
-  /* progress rail — concept .rt (4 nodes, 3 segments, labels beneath) */
-  .ohl-rail{ display:block; }
-  .ohl-rail .rail{ display:flex; align-items:center; }
-  .ohl-rail .nd{ width:22px; height:22px; flex:none; border-radius:50%; display:flex;
+  /* progress rail — concept .rt values (22px node, 2px track, 10.5px label, 9px
+     label offset), laid out on a 4-column grid: each circle and its label share
+     one column and are both centre-aligned, so the circle is dead-centre above
+     its label and the four steps are evenly spaced by construction rather than
+     by eye. The track is drawn behind the circles from the centre of column 1
+     (12.5%) to the centre of column 4 (87.5%); --fill covers the walked span. */
+  .ohl-rail{ display:grid; grid-template-columns:repeat(4,1fr); position:relative; }
+  .ohl-rail::before,
+  .ohl-rail::after{ content:""; position:absolute; top:10px; height:2px; left:12.5%; }
+  .ohl-rail::before{ width:75%; background:var(--line); }
+  .ohl-rail::after{ width:var(--fill,0); background:var(--green); }
+  .ohl-rail.at-2{ --fill:25%; }   /* live order: walked step 1 → 2 of 4 */
+  .ohl-rail.at-4{ --fill:75%; }   /* delivered: the whole track is walked */
+  .ohl-step{ position:relative; z-index:1; display:flex; flex-direction:column;
+    align-items:center; gap:9px; }
+  .ohl-rail .nd{ width:22px; height:22px; border-radius:50%; display:flex;
     align-items:center; justify-content:center; border:2px solid var(--line);
     background:var(--card); color:var(--slate); }
   .ohl-rail .nd svg.ic{ width:12px; height:12px; }
   .ohl-rail .nd.done{ background:var(--green); border-color:var(--green); color:var(--on-green); }
   .ohl-rail .nd.now{ border-color:var(--green); color:var(--green);
     box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 20%,transparent); }
-  .ohl-rail .sg{ height:2px; flex:1; background:var(--line); }
-  .ohl-rail .sg.done{ background:var(--green); }
-  .ohl-rail .lbls{ display:flex; justify-content:space-between; margin-top:9px; }
-  .ohl-rail .lbls span{ font-size:10.5px; color:var(--slate); }
-  .ohl-rail .lbls span.now{ color:var(--ink); font-weight:600; }
+  .ohl-step-lbl{ font-size:10.5px; color:var(--slate); text-align:center; }
+  .ohl-step-lbl.now{ color:var(--ink); font-weight:600; }
 
   /* From ▸ To — one inset strip, concept .stat3 surface + radius, 13px inset */
   .ohl-route{ display:flex; align-items:center; gap:12px; border-radius:12px;
@@ -241,14 +215,16 @@
                 <span class="ohl-top">
                   <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.2v9.6l-8 4.2-8-4.2V7.2z"/><path d="M4 7.4l8 4.2 8-4.2"/><path d="M12 11.6V21"/></svg></span>
                   <span class="ohl-title">Package delivery</span>
-                  <button class="oh-more" type="button" aria-label="Order options — delete"><span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span></button>
                 </span>
                 <span class="ohl-sub">
                   <span class="ohl-date">Today · 9 Jul 2026 · 10:03</span>
+                  <span class="oh-status live">In progress</span>
                 </span>
-                <span class="ohl-rail">
-                  <span class="rail" aria-hidden="true"><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd now"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="sg"></span><span class="nd"></span><span class="sg"></span><span class="nd"></span></span>
-                  <span class="lbls"><span>Accepted</span><span class="now">En route</span><span>On&#8209;site</span><span>Done</span></span>
+                <span class="ohl-rail at-2">
+                  <span class="ohl-step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl">Accepted</span></span>
+                  <span class="ohl-step" aria-current="step"><span class="nd now" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="ohl-step-lbl now">En route</span></span>
+                  <span class="ohl-step"><span class="nd" aria-hidden="true"></span><span class="ohl-step-lbl">On&#8209;site</span></span>
+                  <span class="ohl-step"><span class="nd" aria-hidden="true"></span><span class="ohl-step-lbl">Done</span></span>
                 </span>
                 <span class="ohl-route">
                   <span class="ohl-stop"><span class="ohl-lbl">From</span><span class="ohl-place">Podil</span></span>
@@ -270,15 +246,16 @@
                 <span class="ohl-top">
                   <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.2v9.6l-8 4.2-8-4.2V7.2z"/><path d="M4 7.4l8 4.2 8-4.2"/><path d="M12 11.6V21"/></svg></span>
                   <span class="ohl-title">Package delivery</span>
-                  <button class="oh-more" type="button" aria-label="Order options — delete"><span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span></button>
                 </span>
                 <span class="ohl-sub">
                   <span class="ohl-date">28 Jun 2026 · 14:20</span>
                   <span class="oh-status">Delivered</span>
                 </span>
-                <span class="ohl-rail">
-                  <span class="rail" aria-hidden="true"><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span></span>
-                  <span class="lbls"><span>Accepted</span><span>En route</span><span>On&#8209;site</span><span class="now">Done</span></span>
+                <span class="ohl-rail at-4">
+                  <span class="ohl-step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl">Accepted</span></span>
+                  <span class="ohl-step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl">En route</span></span>
+                  <span class="ohl-step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl">On&#8209;site</span></span>
+                  <span class="ohl-step" aria-current="step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl now">Done</span></span>
                 </span>
                 <span class="ohl-route">
                   <span class="ohl-stop"><span class="ohl-lbl">From</span><span class="ohl-place">Podil</span></span>
@@ -297,15 +274,16 @@
                 <span class="ohl-top">
                   <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></span>
                   <span class="ohl-title">Aerial photo &amp; video</span>
-                  <button class="oh-more" type="button" aria-label="Order options — delete"><span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span></button>
                 </span>
                 <span class="ohl-sub">
                   <span class="ohl-date">14 Jun 2026 · 11:30</span>
                   <span class="oh-status">Delivered</span>
                 </span>
-                <span class="ohl-rail">
-                  <span class="rail" aria-hidden="true"><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span></span>
-                  <span class="lbls"><span>Accepted</span><span>En route</span><span>On&#8209;site</span><span class="now">Done</span></span>
+                <span class="ohl-rail at-4">
+                  <span class="ohl-step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl">Accepted</span></span>
+                  <span class="ohl-step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl">En route</span></span>
+                  <span class="ohl-step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl">On&#8209;site</span></span>
+                  <span class="ohl-step" aria-current="step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl now">Done</span></span>
                 </span>
                 <span class="ohl-route">
                   <span class="ohl-stop"><span class="ohl-lbl">Location</span><span class="ohl-place">Trukhaniv Island</span></span>
@@ -322,15 +300,16 @@
                 <span class="ohl-top">
                   <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l8-7 8 7"/><path d="M6 10.5V19a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-8.5"/><path d="M9.5 15l2 2 3.5-4"/></svg></span>
                   <span class="ohl-title">Roof inspection</span>
-                  <button class="oh-more" type="button" aria-label="Order options — delete"><span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span></button>
                 </span>
                 <span class="ohl-sub">
                   <span class="ohl-date">2 Jun 2026 · 09:15</span>
                   <span class="oh-status">Delivered</span>
                 </span>
-                <span class="ohl-rail">
-                  <span class="rail" aria-hidden="true"><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span></span>
-                  <span class="lbls"><span>Accepted</span><span>En route</span><span>On&#8209;site</span><span class="now">Done</span></span>
+                <span class="ohl-rail at-4">
+                  <span class="ohl-step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl">Accepted</span></span>
+                  <span class="ohl-step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl">En route</span></span>
+                  <span class="ohl-step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl">On&#8209;site</span></span>
+                  <span class="ohl-step" aria-current="step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl now">Done</span></span>
                 </span>
                 <span class="ohl-route">
                   <span class="ohl-stop"><span class="ohl-lbl">Location</span><span class="ohl-place">Osokorky, 14</span></span>
