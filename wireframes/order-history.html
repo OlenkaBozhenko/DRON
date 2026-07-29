@@ -144,7 +144,7 @@
      and the rail directly below already states the status ("En route", bold +
      active node), so the pill is the one duplicated element. The delivered
      cards keep their pill, since they carry no rail. */
-  .ohl-top{ display:flex; align-items:flex-start; gap:12px; }              /* concept .card-top */
+  .ohl-top{ display:flex; align-items:center; gap:12px; }                  /* concept .card-top */
   .ohl-ic{ width:44px; height:44px; flex:none; border-radius:12px; background:var(--media);
     color:var(--ink); display:flex; align-items:center; justify-content:center; }  /* concept .well */
   .ohl-ic svg.ic{ width:24px; height:24px; }
@@ -238,194 +238,107 @@
           <li>
             <article class="card stack-card oh-card oh-live">
               <a class="card-link" href="tracking.html" aria-label="Package delivery, in progress — view details"></a>
-              <span class="ohl-top">
-                <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.2v9.6l-8 4.2-8-4.2V7.2z"/><path d="M4 7.4l8 4.2 8-4.2"/><path d="M12 11.6V21"/></svg></span>
-                <span class="ohl-id">
+                <span class="ohl-top">
+                  <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.2v9.6l-8 4.2-8-4.2V7.2z"/><path d="M4 7.4l8 4.2 8-4.2"/><path d="M12 11.6V21"/></svg></span>
                   <span class="ohl-title">Package delivery</span>
+                  <button class="oh-more" type="button" aria-label="Order options — delete"><span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span></button>
+                </span>
+                <span class="ohl-sub">
                   <span class="ohl-date">Today · 9 Jul 2026 · 10:03</span>
                 </span>
-                <button class="oh-more" type="button" aria-label="Order options — delete">
-                  <span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span>
-                </button>
-              </span>
-              <span class="ohl-rail">
-                <span class="rail" aria-hidden="true">
-                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-                  <span class="sg done"></span>
-                  <span class="nd now"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span>
-                  <span class="sg"></span><span class="nd"></span><span class="sg"></span><span class="nd"></span>
+                <span class="ohl-rail">
+                  <span class="rail" aria-hidden="true"><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd now"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="sg"></span><span class="nd"></span><span class="sg"></span><span class="nd"></span></span>
+                  <span class="lbls"><span>Accepted</span><span class="now">En route</span><span>On&#8209;site</span><span>Done</span></span>
                 </span>
-                <span class="lbls">
-                  <span>Accepted</span><span class="now">En route</span><span>On&#8209;site</span><span>Done</span>
+                <span class="ohl-route">
+                  <span class="ohl-stop"><span class="ohl-lbl">From</span><span class="ohl-place">Podil</span></span>
+                  <span class="ohl-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+                  <span class="ohl-stop ohl-stop-to"><span class="ohl-lbl">To</span><span class="ohl-place">Osokorky</span></span>
                 </span>
-              </span>
-              <span class="ohl-route">
-                <span class="ohl-stop">
-                  <span class="ohl-lbl">From</span>
-                  <span class="ohl-place">Podil</span>
+                <span class="ohl-fee">
+                  <span><span class="ohl-fee-lbl">Delivery fee</span><span class="ohl-price">&#8372;180</span></span>
+                  <span class="ohl-eta"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg>ETA ~6 min</span>
                 </span>
-                <span class="ohl-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
-                <span class="ohl-stop ohl-stop-to">
-                  <span class="ohl-lbl">To</span>
-                  <span class="ohl-place">Osokorky</span>
+                <span class="actions">
+                  <a class="btn btn-primary btn-sm" href="tracking.html">View details</a>
                 </span>
-              </span>
-              <span class="ohl-fee">
-                <span>
-                  <span class="ohl-fee-lbl">Delivery fee</span>
-                  <span class="ohl-price">₴180</span>
-                </span>
-                <span class="ohl-eta"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg>ETA ~6 min</span>
-              </span>
-              <span class="actions">
-                <a class="btn btn-primary btn-sm" href="tracking.html">View details</a>
-              </span>
             </article>
           </li>
           <li>
             <article class="card stack-card oh-card oh-done">
               <a class="card-link" href="order-setup.html" aria-label="Package delivery, 28 Jun 2026, delivered — reopen"></a>
-              <span class="ohl-top">
-                <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.2v9.6l-8 4.2-8-4.2V7.2z"/><path d="M4 7.4l8 4.2 8-4.2"/><path d="M12 11.6V21"/></svg></span>
-                <span class="ohl-id">
+                <span class="ohl-top">
+                  <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.2v9.6l-8 4.2-8-4.2V7.2z"/><path d="M4 7.4l8 4.2 8-4.2"/><path d="M12 11.6V21"/></svg></span>
                   <span class="ohl-title">Package delivery</span>
-                  <span class="ohl-meta">
-                    <span class="ohl-date">28 Jun 2026 · 14:20</span>
-                    <span class="oh-status">Delivered</span>
-                  </span>
+                  <button class="oh-more" type="button" aria-label="Order options — delete"><span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span></button>
                 </span>
-              </span>
-              <span class="ohl-rail">
-                <span class="rail" aria-hidden="true">
-                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-                  <span class="sg done"></span>
-                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-                  <span class="sg done"></span>
-                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-                  <span class="sg done"></span>
-                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                <span class="ohl-sub">
+                  <span class="ohl-date">28 Jun 2026 · 14:20</span>
+                  <span class="oh-status">Delivered</span>
                 </span>
-                <span class="lbls">
-                  <span>Accepted</span><span>En route</span><span>On&#8209;site</span><span class="now">Done</span>
+                <span class="ohl-rail">
+                  <span class="rail" aria-hidden="true"><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span></span>
+                  <span class="lbls"><span>Accepted</span><span>En route</span><span>On&#8209;site</span><span class="now">Done</span></span>
                 </span>
-              </span>
-              <span class="ohl-route">
-                <span class="ohl-stop">
-                  <span class="ohl-lbl">From</span>
-                  <span class="ohl-place">Podil</span>
+                <span class="ohl-route">
+                  <span class="ohl-stop"><span class="ohl-lbl">From</span><span class="ohl-place">Podil</span></span>
+                  <span class="ohl-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+                  <span class="ohl-stop ohl-stop-to"><span class="ohl-lbl">To</span><span class="ohl-place">Osokorky</span></span>
                 </span>
-                <span class="ohl-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
-                <span class="ohl-stop ohl-stop-to">
-                  <span class="ohl-lbl">To</span>
-                  <span class="ohl-place">Osokorky</span>
+                <span class="ohl-fee">
+                  <span><span class="ohl-fee-lbl">Delivery fee</span><span class="ohl-price">&#8372;180</span></span>
+                  <span class="ohl-acts"><a class="sbi grey" href="order-setup.html" aria-label="Book again"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.2" cy="19.4" r="1.5"/><circle cx="17" cy="19.4" r="1.5"/><path d="M3 4.5h2.3l2.4 10.3a1 1 0 0 0 1 .8h8.2a1 1 0 0 0 1-.78L20 8.6H6.5"/></svg></a><a class="sbi grey" href="delivery.html" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
                 </span>
-              </span>
-              <span class="ohl-fee">
-                <span>
-                  <span class="ohl-fee-lbl">Delivery fee</span>
-                  <span class="ohl-price">₴180</span>
-                </span>
-                <span class="ohl-acts">
-                  <a class="sbi grey" href="order-setup.html" aria-label="Book again"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 0 1 12.6-5.5L20 9"/><path d="M19.5 12a7.5 7.5 0 0 1-12.6 5.5L4 15"/><path d="M20 4.5V9h-4.5M4 19.5V15h4.5"/></svg></a>
-                  <button class="sbi grey" type="button" aria-label="Order options — delete">
-                    <span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span>
-                  </button>
-                </span>
-              </span>
             </article>
           </li>
           <li>
             <article class="card stack-card oh-card oh-done">
               <a class="card-link" href="order-setup.html" aria-label="Aerial photo and video, 14 Jun 2026, delivered — reopen"></a>
-              <span class="ohl-top">
-                <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></span>
-                <span class="ohl-id">
+                <span class="ohl-top">
+                  <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></span>
                   <span class="ohl-title">Aerial photo &amp; video</span>
-                  <span class="ohl-meta">
-                    <span class="ohl-date">14 Jun 2026 · 11:30</span>
-                    <span class="oh-status">Delivered</span>
-                  </span>
+                  <button class="oh-more" type="button" aria-label="Order options — delete"><span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span></button>
                 </span>
-              </span>
-              <span class="ohl-rail">
-                <span class="rail" aria-hidden="true">
-                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-                  <span class="sg done"></span>
-                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-                  <span class="sg done"></span>
-                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-                  <span class="sg done"></span>
-                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                <span class="ohl-sub">
+                  <span class="ohl-date">14 Jun 2026 · 11:30</span>
+                  <span class="oh-status">Delivered</span>
                 </span>
-                <span class="lbls">
-                  <span>Accepted</span><span>En route</span><span>On&#8209;site</span><span class="now">Done</span>
+                <span class="ohl-rail">
+                  <span class="rail" aria-hidden="true"><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span></span>
+                  <span class="lbls"><span>Accepted</span><span>En route</span><span>On&#8209;site</span><span class="now">Done</span></span>
                 </span>
-              </span>
-              <span class="ohl-route">
-                <span class="ohl-stop">
-                  <span class="ohl-lbl">Location</span>
-                  <span class="ohl-place">Trukhaniv Island</span>
+                <span class="ohl-route">
+                  <span class="ohl-stop"><span class="ohl-lbl">Location</span><span class="ohl-place">Trukhaniv Island</span></span>
                 </span>
-              </span>
-              <span class="ohl-fee">
-                <span>
-                  <span class="ohl-fee-lbl">Total</span>
-                  <span class="ohl-price">&#8372;800</span>
+                <span class="ohl-fee">
+                  <span><span class="ohl-fee-lbl">Total</span><span class="ohl-price">&#8372;800</span></span>
+                  <span class="ohl-acts"><a class="sbi grey" href="order-setup.html" aria-label="Book again"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.2" cy="19.4" r="1.5"/><circle cx="17" cy="19.4" r="1.5"/><path d="M3 4.5h2.3l2.4 10.3a1 1 0 0 0 1 .8h8.2a1 1 0 0 0 1-.78L20 8.6H6.5"/></svg></a><a class="sbi grey" href="delivery.html" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
                 </span>
-                <span class="ohl-acts">
-                  <a class="sbi grey" href="order-setup.html" aria-label="Book again"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 0 1 12.6-5.5L20 9"/><path d="M19.5 12a7.5 7.5 0 0 1-12.6 5.5L4 15"/><path d="M20 4.5V9h-4.5M4 19.5V15h4.5"/></svg></a>
-                  <button class="sbi grey" type="button" aria-label="Order options — delete">
-                    <span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span>
-                  </button>
-                </span>
-              </span>
             </article>
           </li>
           <li>
             <article class="card stack-card oh-card oh-done">
               <a class="card-link" href="order-setup.html" aria-label="Roof inspection, 2 Jun 2026, delivered — reopen"></a>
-              <span class="ohl-top">
-                <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l8-7 8 7"/><path d="M6 10.5V19a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-8.5"/><path d="M9.5 15l2 2 3.5-4"/></svg></span>
-                <span class="ohl-id">
+                <span class="ohl-top">
+                  <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l8-7 8 7"/><path d="M6 10.5V19a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-8.5"/><path d="M9.5 15l2 2 3.5-4"/></svg></span>
                   <span class="ohl-title">Roof inspection</span>
-                  <span class="ohl-meta">
-                    <span class="ohl-date">2 Jun 2026 · 09:15</span>
-                    <span class="oh-status">Delivered</span>
-                  </span>
+                  <button class="oh-more" type="button" aria-label="Order options — delete"><span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span></button>
                 </span>
-              </span>
-              <span class="ohl-rail">
-                <span class="rail" aria-hidden="true">
-                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-                  <span class="sg done"></span>
-                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-                  <span class="sg done"></span>
-                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-                  <span class="sg done"></span>
-                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                <span class="ohl-sub">
+                  <span class="ohl-date">2 Jun 2026 · 09:15</span>
+                  <span class="oh-status">Delivered</span>
                 </span>
-                <span class="lbls">
-                  <span>Accepted</span><span>En route</span><span>On&#8209;site</span><span class="now">Done</span>
+                <span class="ohl-rail">
+                  <span class="rail" aria-hidden="true"><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="sg done"></span><span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span></span>
+                  <span class="lbls"><span>Accepted</span><span>En route</span><span>On&#8209;site</span><span class="now">Done</span></span>
                 </span>
-              </span>
-              <span class="ohl-route">
-                <span class="ohl-stop">
-                  <span class="ohl-lbl">Location</span>
-                  <span class="ohl-place">Osokorky, 14</span>
+                <span class="ohl-route">
+                  <span class="ohl-stop"><span class="ohl-lbl">Location</span><span class="ohl-place">Osokorky, 14</span></span>
                 </span>
-              </span>
-              <span class="ohl-fee">
-                <span>
-                  <span class="ohl-fee-lbl">Total</span>
-                  <span class="ohl-price">&#8372;650</span>
+                <span class="ohl-fee">
+                  <span><span class="ohl-fee-lbl">Total</span><span class="ohl-price">&#8372;650</span></span>
+                  <span class="ohl-acts"><a class="sbi grey" href="order-setup.html" aria-label="Book again"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.2" cy="19.4" r="1.5"/><circle cx="17" cy="19.4" r="1.5"/><path d="M3 4.5h2.3l2.4 10.3a1 1 0 0 0 1 .8h8.2a1 1 0 0 0 1-.78L20 8.6H6.5"/></svg></a><a class="sbi grey" href="inspection-report.html" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
                 </span>
-                <span class="ohl-acts">
-                  <a class="sbi grey" href="order-setup.html" aria-label="Book again"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 0 1 12.6-5.5L20 9"/><path d="M19.5 12a7.5 7.5 0 0 1-12.6 5.5L4 15"/><path d="M20 4.5V9h-4.5M4 19.5V15h4.5"/></svg></a>
-                  <button class="sbi grey" type="button" aria-label="Order options — delete">
-                    <span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span>
-                  </button>
-                </span>
-              </span>
             </article>
           </li>
         </ul>
