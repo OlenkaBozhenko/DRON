@@ -157,8 +157,10 @@
      255px row that leaves the title ~110px and it wraps, so the pill shares the
      second line with the date instead: the title then gets the full 199px and no
      service name breaks, at any of the three lengths on this screen. */
-  .ohl-meta{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:2px; }
-  .ohl-meta .ohl-date{ margin-top:0; min-width:0; }
+  .ohl-meta{ display:flex; align-items:center; justify-content:space-between; gap:6px; margin-top:2px; }
+  /* the date is one atomic value — it must never break across lines; measured, the
+     longest of the three (115px) + pill (77px) + 6px gap = 198px in the 199px row */
+  .ohl-meta .ohl-date{ margin-top:0; white-space:nowrap; }
 
   /* progress rail — concept .rt (4 nodes, 3 segments, labels beneath) */
   .ohl-rail{ display:block; }
@@ -291,9 +293,11 @@
                 <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.2v9.6l-8 4.2-8-4.2V7.2z"/><path d="M4 7.4l8 4.2 8-4.2"/><path d="M12 11.6V21"/></svg></span>
                 <span class="ohl-id">
                   <span class="ohl-title">Package delivery</span>
-                  <span class="ohl-date">28 Jun 2026 · 14:20</span>
+                  <span class="ohl-meta">
+                    <span class="ohl-date">28 Jun 2026 · 14:20</span>
+                    <span class="oh-status">Delivered</span>
+                  </span>
                 </span>
-                <span class="oh-status">Delivered</span>
               </span>
               <span class="ohl-rail">
                 <span class="rail" aria-hidden="true">
@@ -341,9 +345,11 @@
                 <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></span>
                 <span class="ohl-id">
                   <span class="ohl-title">Aerial photo &amp; video</span>
-                  <span class="ohl-date">14 Jun 2026 · 11:30</span>
+                  <span class="ohl-meta">
+                    <span class="ohl-date">14 Jun 2026 · 11:30</span>
+                    <span class="oh-status">Delivered</span>
+                  </span>
                 </span>
-                <span class="oh-status">Delivered</span>
               </span>
               <span class="ohl-rail">
                 <span class="rail" aria-hidden="true">
@@ -386,9 +392,11 @@
                 <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l8-7 8 7"/><path d="M6 10.5V19a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-8.5"/><path d="M9.5 15l2 2 3.5-4"/></svg></span>
                 <span class="ohl-id">
                   <span class="ohl-title">Roof inspection</span>
-                  <span class="ohl-date">2 Jun 2026 · 09:15</span>
+                  <span class="ohl-meta">
+                    <span class="ohl-date">2 Jun 2026 · 09:15</span>
+                    <span class="oh-status">Delivered</span>
+                  </span>
                 </span>
-                <span class="oh-status">Delivered</span>
               </span>
               <span class="ohl-rail">
                 <span class="rail" aria-hidden="true">
