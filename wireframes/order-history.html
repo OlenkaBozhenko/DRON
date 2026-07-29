@@ -153,6 +153,12 @@
     color:var(--ink); }                                                    /* concept .id .k */
   .ohl-date{ display:block; font-size:12.5px; color:var(--slate); margin-top:2px; }  /* concept .id .s */
   .ohl-top .oh-status{ margin-top:1px; }
+  /* Delivered cards carry a status pill as well as the well and the title. On a
+     255px row that leaves the title ~110px and it wraps, so the pill shares the
+     second line with the date instead: the title then gets the full 199px and no
+     service name breaks, at any of the three lengths on this screen. */
+  .ohl-meta{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:2px; }
+  .ohl-meta .ohl-date{ margin-top:0; min-width:0; }
 
   /* progress rail — concept .rt (4 nodes, 3 segments, labels beneath) */
   .ohl-rail{ display:block; }
@@ -329,59 +335,91 @@
             </article>
           </li>
           <li>
-            <article class="card stack-card oh-card">
+            <article class="card stack-card oh-card oh-done">
               <a class="card-link" href="order-setup.html" aria-label="Aerial photo and video, 14 Jun 2026, delivered — reopen"></a>
-              <span class="oh-head">
-                <span class="oh-title">Aerial photo &amp; video</span>
+              <span class="ohl-top">
+                <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></span>
+                <span class="ohl-id">
+                  <span class="ohl-title">Aerial photo &amp; video</span>
+                  <span class="ohl-date">14 Jun 2026 · 11:30</span>
+                </span>
                 <span class="oh-status">Delivered</span>
               </span>
-              <span class="oh-body">
-                <span class="oh-top">
-                  <span class="oh-date">14 Jun 2026 · 11:30</span>
-                  <button class="oh-more" type="button" aria-label="Order options — delete">
+              <span class="ohl-rail">
+                <span class="rail" aria-hidden="true">
+                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                  <span class="sg done"></span>
+                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                  <span class="sg done"></span>
+                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                  <span class="sg done"></span>
+                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                </span>
+                <span class="lbls">
+                  <span>Accepted</span><span>En route</span><span>On&#8209;site</span><span class="now">Done</span>
+                </span>
+              </span>
+              <span class="ohl-route">
+                <span class="ohl-stop">
+                  <span class="ohl-lbl">Location</span>
+                  <span class="ohl-place">Trukhaniv Island</span>
+                </span>
+              </span>
+              <span class="ohl-fee">
+                <span>
+                  <span class="ohl-fee-lbl">Total</span>
+                  <span class="ohl-price">&#8372;800</span>
+                </span>
+                <span class="ohl-acts">
+                  <a class="sbi grey" href="order-setup.html" aria-label="Book again"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 0 1 12.6-5.5L20 9"/><path d="M19.5 12a7.5 7.5 0 0 1-12.6 5.5L4 15"/><path d="M20 4.5V9h-4.5M4 19.5V15h4.5"/></svg></a>
+                  <button class="sbi grey" type="button" aria-label="Order options — delete">
                     <span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span>
                   </button>
-                </span>
-                <span class="oh-route">
-                  <span class="oh-stop">
-                    <span class="oh-dot oh-dot-end" aria-hidden="true"></span>
-                    <span class="oh-addr"><span class="oh-addr-lbl">Location</span>Trukhaniv Island</span>
-                  </span>
-                </span>
-                <span class="oh-meta">
-                  <span class="oh-price">₴800</span>
-                </span>
-                <span class="actions">
-                  <a class="btn btn-secondary btn-sm" href="order-setup.html">Book again</a>
                 </span>
               </span>
             </article>
           </li>
           <li>
-            <article class="card stack-card oh-card">
+            <article class="card stack-card oh-card oh-done">
               <a class="card-link" href="order-setup.html" aria-label="Roof inspection, 2 Jun 2026, delivered — reopen"></a>
-              <span class="oh-head">
-                <span class="oh-title">Roof inspection</span>
+              <span class="ohl-top">
+                <span class="ohl-ic" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l8-7 8 7"/><path d="M6 10.5V19a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-8.5"/><path d="M9.5 15l2 2 3.5-4"/></svg></span>
+                <span class="ohl-id">
+                  <span class="ohl-title">Roof inspection</span>
+                  <span class="ohl-date">2 Jun 2026 · 09:15</span>
+                </span>
                 <span class="oh-status">Delivered</span>
               </span>
-              <span class="oh-body">
-                <span class="oh-top">
-                  <span class="oh-date">2 Jun 2026 · 09:15</span>
-                  <button class="oh-more" type="button" aria-label="Order options — delete">
+              <span class="ohl-rail">
+                <span class="rail" aria-hidden="true">
+                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                  <span class="sg done"></span>
+                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                  <span class="sg done"></span>
+                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                  <span class="sg done"></span>
+                  <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                </span>
+                <span class="lbls">
+                  <span>Accepted</span><span>En route</span><span>On&#8209;site</span><span class="now">Done</span>
+                </span>
+              </span>
+              <span class="ohl-route">
+                <span class="ohl-stop">
+                  <span class="ohl-lbl">Location</span>
+                  <span class="ohl-place">Osokorky, 14</span>
+                </span>
+              </span>
+              <span class="ohl-fee">
+                <span>
+                  <span class="ohl-fee-lbl">Total</span>
+                  <span class="ohl-price">&#8372;650</span>
+                </span>
+                <span class="ohl-acts">
+                  <a class="sbi grey" href="order-setup.html" aria-label="Book again"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 0 1 12.6-5.5L20 9"/><path d="M19.5 12a7.5 7.5 0 0 1-12.6 5.5L4 15"/><path d="M20 4.5V9h-4.5M4 19.5V15h4.5"/></svg></a>
+                  <button class="sbi grey" type="button" aria-label="Order options — delete">
                     <span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span>
                   </button>
-                </span>
-                <span class="oh-route">
-                  <span class="oh-stop">
-                    <span class="oh-dot oh-dot-end" aria-hidden="true"></span>
-                    <span class="oh-addr"><span class="oh-addr-lbl">Location</span>Osokorky, 14</span>
-                  </span>
-                </span>
-                <span class="oh-meta">
-                  <span class="oh-price">₴650</span>
-                </span>
-                <span class="actions">
-                  <a class="btn btn-secondary btn-sm" href="order-setup.html">Book again</a>
                 </span>
               </span>
             </article>
