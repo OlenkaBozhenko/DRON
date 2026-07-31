@@ -110,9 +110,21 @@
        #1A1A1A on #F2F0EC → 15.29:1 · #5A5751 on #F2F0EC → 6.33:1  (both AA)
      Reused, already documented above: slate on media 5.51:1 (ETA pill),
      green-ink on green-wash 6.54:1 (direction chip + status pill).      ── */
-  /* specificity has to match article.card.stack-card (which sets gap:12px) so the
-     concept card's own 14px rhythm wins */
-  article.card.oh-live{ padding:16px; gap:14px; }                          /* concept .card */
+  /* ── SPACING SCALE ────────────────────────────────────────────────────────
+     The card used to run 16 padding · 14 between every group · 12 between cards
+     · 13/14 inside the route strip — nine intervals, all between 12 and 16. With
+     no contrast between within-group and between-group space the four groups
+     carried equal weight and read as one block, and because the gap *between*
+     cards (12) was smaller than the gaps *inside* one (14), proximity actually
+     pointed the wrong way: the shadow was doing the grouping that spacing should.
+     Three steps now, on a 4-unit base, so the eye gets the hierarchy for free:
+       4 / 8   within a group   — title to date, date to pill
+       20      between groups   — identity · route · money, and the card's inset
+       28      between cards    — always greater than any interval inside a card
+     ── */
+  /* specificity has to match article.card.stack-card (which sets gap:12px) */
+  .wf-frame main .list{ gap:28px; }
+  article.card.oh-live{ padding:20px; gap:20px; }                          /* concept .card */
 
   /* header: icon well + a title-over-meta stack, the status pill sitting opposite
      the date. Dropping the kebab freed the header row, but not enough for the
