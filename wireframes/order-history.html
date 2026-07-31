@@ -128,8 +128,9 @@
 
   /* header: drone well + a title-over-meta stack, the status pill opposite the
      date. The budget at 375px, after the card's 20px inset: 286px of content,
-     less well(88) + gap(16) = 182px for the text column. Title 152 fits with 30
-     to spare; the meta pair is date(85) + gap(8) + pill(78) = 171, 11 to spare.
+     less well(76) + gap(16) = 194px for the text column. Title 152 fits with 42
+     to spare. The binding pair is the live card's — date(80) + gap(8) + the wider
+     "In progress" pill(101) = 189, 5 to spare; a delivered card needs only 171.
      That budget is what pays for the bigger well — the dates dropped their year
      (every order in the list is 2026 and the newest reads "Today"), which took
      the widest date from 119px to 85px. Keeping it would have capped the well
@@ -144,13 +145,14 @@
      transparent PNG contained, no border and no shadow (the render carries its
      own). The well is landscape because the subject is: each render is a 1024²
      canvas holding a ~1.37 subject, so a square well would spend a fifth of its
-     height on nothing. 88 × 66 puts the drone at 80px wide — the widest the
-     header can pay for, and every one is a downscale from 1024. */
-  .ohl-ic{ width:88px; height:66px; flex:none; border-radius:var(--r-media);
+     height on nothing. 76 × 58 draws the drone at 68px — the widest that still
+     leaves the live card's date+pill pair a real margin, and every one is a
+     downscale from 1024. */
+  .ohl-ic{ width:76px; height:58px; flex:none; border-radius:var(--r-media);
     background:var(--media); color:var(--ink); display:flex; align-items:center;
     justify-content:center; padding:4px; overflow:hidden; }                /* concept .dwell */
   .ohl-ic img{ width:100%; height:100%; object-fit:contain; display:block; }
-  .ohl-head{ flex:1; min-width:0; display:flex; flex-direction:column; gap:5px; }
+  .ohl-head{ flex:1; min-width:0; display:flex; flex-direction:column; gap:4px; }
   .ohl-title{ font-size:15px; font-weight:600; line-height:1.2; color:var(--ink); }  /* concept .id .k */
   .ohl-meta{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
   /* below 375px the pair runs out of room; the date yields (it is the softer
@@ -185,7 +187,7 @@
 
   /* From ▸ To — one inset strip, concept .stat3 surface + radius, 13px inset */
   .ohl-route{ display:flex; align-items:center; gap:12px; border-radius:12px;
-    padding:13px 14px; background:color-mix(in srgb,var(--page) 55%,var(--card)); }
+    padding:16px; background:color-mix(in srgb,var(--page) 55%,var(--card)); }
   .ohl-stop{ flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
   .ohl-stop-to{ align-items:flex-end; text-align:right; }
   .ohl-lbl{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.05em;
@@ -200,7 +202,7 @@
   .ohl-fee{ display:flex; align-items:flex-end; justify-content:space-between; gap:12px; }
   .ohl-fee-lbl{ display:block; font-size:11px; color:var(--slate); }       /* concept .foot .cap */
   .ohl-price{ display:block; font-size:20px; font-weight:700; letter-spacing:-.02em;
-    font-variant-numeric:tabular-nums; line-height:1; margin-top:3px; color:var(--ink); }  /* concept .foot .big */
+    font-variant-numeric:tabular-nums; line-height:1; margin-top:4px; color:var(--ink); }  /* concept .foot .big */
   .ohl-eta{ flex:none; display:inline-flex; align-items:center; gap:6px; font-size:12px;
     font-weight:600; padding:5px 10px; border-radius:var(--r-pill);
     background:var(--media); color:var(--slate); white-space:nowrap; }     /* concept .pill.mut */
@@ -212,7 +214,7 @@
      (the job is over — four ticked nodes only cost 60px of card), and the
      full-width green CTA is replaced by two secondary circular actions —
      delete this order, and open its delivery photo / inspection report.   ── */
-  article.card.oh-done{ padding:16px; gap:14px; }                          /* concept .card */
+  article.card.oh-done{ padding:20px; gap:20px; }                          /* concept .card */
   /* secondary circular actions — concept .sbi / .sbi.grey.
      z-index clears the full-card .card-link overlay beneath them. */
   .sbi{ width:44px; height:44px; flex:none; padding:0; border-radius:50%;
@@ -223,6 +225,20 @@
   .sbi.grey:hover{ background:var(--media); }
   .sbi:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
   .ohl-acts{ display:flex; align-items:center; gap:8px; flex:none; }
+
+  /* Narrow tier. The phone frame is fluid (max-width:100%), so on a 360px device
+     it renders at 321px and the text column loses 54px — enough that every date
+     was ellipsising. The scale steps down one notch rather than letting content
+     truncate, and the meta line may wrap as the last resort: a pill on its own
+     row still reads, a clipped date does not. */
+  @media (max-width:389px){
+    article.card.oh-live, article.card.oh-done{ padding:16px; gap:18px; }
+    .wf-frame main .list{ gap:22px; }
+    .ohl-top{ gap:12px; }
+    .ohl-ic{ width:56px; height:42px; }
+    .ohl-meta{ flex-wrap:wrap; row-gap:6px; }
+    .ohl-route{ padding:14px; }
+  }
 </style>
 </head>
 <body>
@@ -249,7 +265,7 @@
             <article class="card stack-card oh-card oh-live">
               <a class="card-link" href="tracking.html" aria-label="Package delivery, in progress — view details"></a>
                 <span class="ohl-top">
-                  <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-flight-delivery.png" alt="" loading="lazy" decoding="async"></span>
+                  <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-08.png" alt="" loading="lazy" decoding="async"></span>
                   <span class="ohl-head">
                     <span class="ohl-title">Package delivery</span>
                     <span class="ohl-meta">
@@ -282,11 +298,11 @@
             <article class="card stack-card oh-card oh-done">
               <a class="card-link" href="order-setup.html" aria-label="Package delivery, 28 Jun 2026, delivered — reopen"></a>
                 <span class="ohl-top">
-                  <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-flight-delivery.png" alt="" loading="lazy" decoding="async"></span>
+                  <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-08.png" alt="" loading="lazy" decoding="async"></span>
                   <span class="ohl-head">
                     <span class="ohl-title">Package delivery</span>
                     <span class="ohl-meta">
-                      <span class="ohl-date">28 Jun 2026 · 14:20</span>
+                      <span class="ohl-date">28 Jun · 14:20</span>
                       <span class="oh-status">Delivered</span>
                     </span>
                   </span>
@@ -306,11 +322,11 @@
             <article class="card stack-card oh-card oh-done">
               <a class="card-link" href="order-setup.html" aria-label="Aerial photo and video, 14 Jun 2026, delivered — reopen"></a>
                 <span class="ohl-top">
-                  <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-flight-camera.png" alt="" loading="lazy" decoding="async"></span>
+                  <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-02.png" alt="" loading="lazy" decoding="async"></span>
                   <span class="ohl-head">
                     <span class="ohl-title">Aerial photo &amp; video</span>
                     <span class="ohl-meta">
-                      <span class="ohl-date">14 Jun 2026 · 11:30</span>
+                      <span class="ohl-date">14 Jun · 11:30</span>
                       <span class="oh-status">Delivered</span>
                     </span>
                   </span>
@@ -328,11 +344,11 @@
             <article class="card stack-card oh-card oh-done">
               <a class="card-link" href="order-setup.html" aria-label="Roof inspection, 2 Jun 2026, delivered — reopen"></a>
                 <span class="ohl-top">
-                  <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-flight-clean.png" alt="" loading="lazy" decoding="async"></span>
+                  <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-11.png" alt="" loading="lazy" decoding="async"></span>
                   <span class="ohl-head">
                     <span class="ohl-title">Roof inspection</span>
                     <span class="ohl-meta">
-                      <span class="ohl-date">2 Jun 2026 · 09:15</span>
+                      <span class="ohl-date">2 Jun · 09:15</span>
                       <span class="oh-status">Delivered</span>
                     </span>
                   </span>
