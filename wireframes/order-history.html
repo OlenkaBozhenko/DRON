@@ -109,19 +109,22 @@
      concept card's own 14px rhythm wins */
   article.card.oh-live{ padding:16px; gap:14px; }                          /* concept .card */
 
-  /* header: icon well + title/date stack + the status pill opposite the title.
-     Dropping the kebab freed the row that once forced the pill onto a meta line
-     of its own. Measured at 375px: card content is 311px, so well(44) + gap(12)
-     leaves 255px. Worst pair per card — live: title(118) + gap(12) + "In
-     progress"(100) = 230; delivered: the longest title(151) + gap(12) +
-     "Delivered"(81) = 244. Both clear 255px, so nothing wraps. The date sits
-     under the title in that same 255px column, where no length can break it. */
+  /* header: icon well + a title-over-meta stack, the status pill sitting opposite
+     the date. Dropping the kebab freed the header row, but not enough for the
+     pill: measured at 375px the well(44) + gap(12) leaves 238px, and the worst
+     title+pill pair is 152 + 12 + 78 = 242 — four pixels over, so every long
+     title wrapped. On the meta line the same pill is cheap: the widest pair is
+     date(119) + gap(8) + pill(78) = 205 of 238. So the service name owns a full
+     238px line and never wraps, and the date carries the pill across from it.
+     The live card's date is trimmed to "Today · 10:03" for the same budget —
+     spelling out today's date as well cost 153px and broke the pair at 262. */
   .ohl-top{ display:flex; align-items:center; gap:12px; }                  /* concept .card-top */
   .ohl-ic{ width:44px; height:44px; flex:none; border-radius:12px; background:var(--media);
     color:var(--ink); display:flex; align-items:center; justify-content:center; }  /* concept .well */
   .ohl-ic svg.ic{ width:24px; height:24px; }
-  .ohl-head{ flex:1; min-width:0; display:flex; flex-direction:column; gap:3px; }
+  .ohl-head{ flex:1; min-width:0; display:flex; flex-direction:column; gap:5px; }
   .ohl-title{ font-size:15px; font-weight:600; line-height:1.2; color:var(--ink); }  /* concept .id .k */
+  .ohl-meta{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
   .ohl-date{ font-size:12.5px; line-height:1.2; color:var(--slate);
     white-space:nowrap; }                                                  /* concept .id .s */
 
