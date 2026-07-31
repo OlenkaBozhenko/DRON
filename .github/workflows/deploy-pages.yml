@@ -10,6 +10,7 @@ on:
       - '*.html'
       - 'wireframes/**'
       - 'concept/**'
+      - 'assets/**'
       - '.github/pages/index.html'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
@@ -42,6 +43,10 @@ jobs:
           # The .md sources stay on master and are not published.
           mkdir -p _site/concept
           cp concept/*.html _site/concept/
+          # Publish the imagery set (drones, people, scenes). The concept pages and
+          # the wireframes reference these by root-relative path, so the folder has
+          # to exist on gh-pages verbatim or every <img> 404s.
+          cp -r assets _site/assets
 
       - name: Cache-bust shared assets
         run: |
