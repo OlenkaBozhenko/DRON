@@ -214,22 +214,16 @@
   .ohl-eta svg.ic{ width:14px; height:14px; }
 
   /* ── DELIVERED ORDER CARD ─────────────────────────────────────────────────
-     Same anatomy as the live card, four differences (per the reference):
+     Same anatomy as the live card, three differences (per the reference):
      the status pill is the secondary/muted variant, the progress rail is gone
-     (the job is over — four ticked nodes only cost 60px of card), the From▸To
-     strip loses its surface, and the full-width green CTA is replaced by two
-     secondary circular actions — delete this order, and open its delivery
-     photo / inspection report.                                            ── */
+     (the job is over — four ticked nodes only cost 60px of card), and the
+     full-width green CTA is replaced by two secondary circular actions —
+     delete this order, and open its delivery photo / inspection report.
+     The From▸To strip keeps its surface on every card: it was tried flush on
+     delivered orders (2026-08-01) and the designer read the panel as better —
+     the route is a distinct kind of fact from the header and the fee, and the
+     tile is what says so at a glance.                                     ── */
   article.card.oh-done{ padding:20px; gap:20px; }                          /* concept .card */
-  /* The route panel goes: on a finished order the route is a record, not a live
-     fact, and that tile was the heaviest mark on a card whose only job left is
-     to be scanned. Losing it also pulls FROM/TO out to the card's own 20px
-     inset, so header, route and fee finally share one left edge. Separation is
-     the card's 20px gap — the same interval that already divides the other
-     groups, so nothing needs a surface to be legible as its own row.
-     The text moves from the .stat3 blend onto --card: #1A1A1A on #ECE9E4 and
-     #5A5751 on #ECE9E4 → 5.95:1, both already documented at the top. */
-  .oh-done .ohl-route{ background:none; padding:0; border-radius:0; }
   /* secondary circular actions — concept .sbi / .sbi.grey.
      z-index clears the full-card .card-link overlay beneath them. */
   .sbi{ width:44px; height:44px; flex:none; padding:0; border-radius:50%;
