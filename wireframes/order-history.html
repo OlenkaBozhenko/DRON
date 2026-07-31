@@ -125,8 +125,10 @@
   .ohl-head{ flex:1; min-width:0; display:flex; flex-direction:column; gap:5px; }
   .ohl-title{ font-size:15px; font-weight:600; line-height:1.2; color:var(--ink); }  /* concept .id .k */
   .ohl-meta{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
-  .ohl-date{ font-size:12.5px; line-height:1.2; color:var(--slate);
-    white-space:nowrap; }                                                  /* concept .id .s */
+  /* below 375px the pair runs out of room; the date yields (it is the softer
+     fact — the pill is the one the eye scans for), so the pill is never clipped */
+  .ohl-date{ min-width:0; font-size:12.5px; line-height:1.2; color:var(--slate);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }         /* concept .id .s */
 
   /* progress rail — the live order only; a delivered card has nothing left to
      track. concept .rt values (22px node, 2px track, 10.5px label, 9px label
