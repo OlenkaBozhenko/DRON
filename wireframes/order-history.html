@@ -91,11 +91,11 @@
 
   /* ── ORDER CARD ───────────────────────────────────────────────────────────
      All four cards share one anatomy, built on concept.html's plain padded
-     .card (padding:16px; gap:14px): well + title + kebab · date + status ·
-     progress rail · From▸To strip · fee + actions. The live order differs only
-     in what fills it — a rail still in progress, an ETA chip, and the single
-     green CTA; delivered orders read a completed rail and two secondary
-     circular actions. Every value below is lifted from concept/concept.html.
+     .card (padding:16px; gap:14px): well + title/date stack + status pill ·
+     From▸To strip · fee + actions. The live order adds what only it needs — a
+     progress rail, an ETA chip and the single green CTA; a delivered order has
+     no rail (the walk is over, four ticked nodes said nothing) and carries two
+     secondary circular actions. Every value below is lifted from concept/concept.html.
      New text/bg pair introduced here — the From▸To inset uses concept's own
      .stat3 blend, color-mix(page 55%, card) = #F2F0EC:
        #1A1A1A on #F2F0EC → 15.29:1 · #5A5751 on #F2F0EC → 6.33:1  (both AA)
