@@ -105,23 +105,21 @@
      concept card's own 14px rhythm wins */
   article.card.oh-live{ padding:16px; gap:14px; }                          /* concept .card */
 
-  /* header: icon well + service name + the kebab this screen owns. The status
-     pill is NOT here: at 375px the row holds well(44) + the longest title(151)
-     + kebab(28) + gaps with nothing to spare, so the pill sits on the meta row
-     below, where the full 255px width fits it beside the date. */
+  /* header: icon well + title/date stack + the status pill opposite the title.
+     Dropping the kebab freed the row that once forced the pill onto a meta line
+     of its own. Measured at 375px: card content is 311px, so well(44) + gap(12)
+     leaves 255px. Worst pair per card — live: title(118) + gap(12) + "In
+     progress"(100) = 230; delivered: the longest title(151) + gap(12) +
+     "Delivered"(81) = 244. Both clear 255px, so nothing wraps. The date sits
+     under the title in that same 255px column, where no length can break it. */
   .ohl-top{ display:flex; align-items:center; gap:12px; }                  /* concept .card-top */
   .ohl-ic{ width:44px; height:44px; flex:none; border-radius:12px; background:var(--media);
     color:var(--ink); display:flex; align-items:center; justify-content:center; }  /* concept .well */
   .ohl-ic svg.ic{ width:24px; height:24px; }
-  .ohl-title{ flex:1; min-width:0; font-size:15px; font-weight:600; line-height:1.2;
-    color:var(--ink); }                                                    /* concept .id .k */
-  /* Meta line under the header, spanning the full card width. Measured at 375px:
-     the header row can hold well(44) + the longest title(151) + kebab(28) + gaps,
-     but a 255px row cannot also fit a 77px status pill — indenting the meta under
-     the title left only 159px for date(115) + pill(77) and both broke. Spanning the
-     full width gives the pair 255px, so nothing wraps on any of the four cards. */
-  .ohl-sub{ display:flex; align-items:center; justify-content:space-between; gap:6px; }
-  .ohl-date{ font-size:12.5px; color:var(--slate); white-space:nowrap; }   /* concept .id .s */
+  .ohl-head{ flex:1; min-width:0; display:flex; flex-direction:column; gap:3px; }
+  .ohl-title{ font-size:15px; font-weight:600; line-height:1.2; color:var(--ink); }  /* concept .id .k */
+  .ohl-date{ font-size:12.5px; line-height:1.2; color:var(--slate);
+    white-space:nowrap; }                                                  /* concept .id .s */
 
   /* progress rail — concept .rt values (22px node, 2px track, 10.5px label, 9px
      label offset), laid out on a 4-column grid: each circle and its label share
