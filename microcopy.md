@@ -224,7 +224,7 @@ _Nothing rewritten here — only marked. Each code below is applied in the Flag 
 | **A2** | reach a human | **Contact support** (7×), **Call support**, **Contact human support**, **Talk to a human**, **Get help**, and **Escalate — still unresolved** all mean "get a person". |
 | **A3** | attach a file | **Add photo** / **Add document** / **Upload document** / **Add evidence** / **Attach evidence** — the same attach action. Note **Add document** and **Upload document** appear for the very same document-upload pattern (`operator-verification` vs `account-edit`). |
 | **A4** | begin ordering (client CTA) | **Get started** (welcome, both onboardings) vs **Start ordering** (`onboarding-client-empty`) vs **Browse services** (`order-history-empty`) vs **Show services** (`listings-loading`). Same "start ordering" intent. |
-| **A5** | re-order the same service | **Book again** (`order-history`, `rate`) vs **Book a free re-do** (`resolution`) vs body "re-book in one tap". |
+| **A5** | re-order the same service | **Book again** (`rate`) vs **Book a free re-do** (`resolution`) vs body "re-book in one tap". On `order-history` the labelled button is gone — tapping a past card reopens setup, so the repeat path carries no string of its own. |
 | **A6** | see order/job detail | **View details** (`order-history`) vs **Delivery details** (`tracking`) for opening the same order. |
 | **A7** | operator: go get work | **Find jobs** (`wallet-empty`) vs **See available jobs** (`ratings-empty`) vs **Go Available** (`operator-listings-empty`). |
 | **A8** | notify me when a slot/operator frees up | **Notify me when available** (`listings-empty`) vs **Notify me when one is free** (`order-setup-empty`). |
@@ -920,7 +920,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-history | — | Activity | Heading |  |
 | order-history | Order history | Package delivery | Body |  |
 | order-history | Order history | In progress | Body |  |
-| order-history | Order history | Today · 9 Jul 2026 · 10:03 | Body | DATA |
+| order-history | Order history | Today · 10:03 | Body | DATA |
 | order-history | Order history | From | Body |  |
 | order-history | Order history | Podil | Body |  |
 | order-history | Order history | To | Body |  |
@@ -934,19 +934,19 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-history | Order history | Podil | Body |  |
 | order-history | Order history | To | Body |  |
 | order-history | Order history | Osokorky | Body |  |
-| order-history | Order history | Book again | Button |  |
+| order-history | Order history | Delete order | Button |  |
 | order-history | Order history | Aerial photo & video | Body |  |
 | order-history | Order history | Delivered | Body |  |
 | order-history | Order history | 14 Jun 2026 · 11:30 | Body | DATA |
 | order-history | Order history | Location | Body |  |
 | order-history | Order history | Trukhaniv Island | Body |  |
-| order-history | Order history | Book again | Button |  |
+| order-history | Order history | Delete order | Button |  |
 | order-history | Order history | Roof inspection | Body |  |
 | order-history | Order history | Delivered | Body |  |
 | order-history | Order history | 2 Jun 2026 · 09:15 | Body | DATA |
 | order-history | Order history | Location | Body |  |
 | order-history | Order history | Osokorky, 14 | Body |  |
-| order-history | Order history | Book again | Button |  |
+| order-history | Order history | Delete order | Button |  |
 | order-history | Order history | Order | Button |  |
 | order-history | Order history | Activity | Button |  |
 | order-history | Order history | Help | Button |  |
