@@ -126,16 +126,15 @@
   .wf-frame main .list{ gap:28px; }
   article.card.oh-live{ padding:20px; gap:20px; }                          /* concept .card */
 
-  /* header: icon well + a title-over-meta stack, the status pill sitting opposite
-     the date. Dropping the kebab freed the header row, but not enough for the
-     pill: measured at 375px the well(44) + gap(12) leaves 238px, and the worst
-     title+pill pair is 152 + 12 + 78 = 242 — four pixels over, so every long
-     title wrapped. On the meta line the same pill is cheap: the widest pair is
-     date(119) + gap(8) + pill(78) = 205 of 238. So the service name owns a full
-     238px line and never wraps, and the date carries the pill across from it.
-     The live card's date is trimmed to "Today · 10:03" for the same budget —
-     spelling out today's date as well cost 153px and broke the pair at 262. */
-  .ohl-top{ display:flex; align-items:center; gap:12px; }                  /* concept .card-top */
+  /* header: drone well + a title-over-meta stack, the status pill opposite the
+     date. The budget at 375px, after the card's 20px inset: 286px of content,
+     less well(88) + gap(16) = 182px for the text column. Title 152 fits with 30
+     to spare; the meta pair is date(85) + gap(8) + pill(78) = 171, 11 to spare.
+     That budget is what pays for the bigger well — the dates dropped their year
+     (every order in the list is 2026 and the newest reads "Today"), which took
+     the widest date from 119px to 85px. Keeping it would have capped the well
+     at ~62px, and the drone has to be legible before it is worth showing. */
+  .ohl-top{ display:flex; align-items:center; gap:16px; }                  /* concept .card-top */
   /* the well carries the drone doing this job, not a line icon — concept §6.2,
      the in-flight register: the payload is the service (cargo box = delivery,
      gimbal = photo/video, nothing slung = inspection). concept .dwell exactly:
