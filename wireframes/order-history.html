@@ -119,9 +119,17 @@
      The live card's date is trimmed to "Today · 10:03" for the same budget —
      spelling out today's date as well cost 153px and broke the pair at 262. */
   .ohl-top{ display:flex; align-items:center; gap:12px; }                  /* concept .card-top */
-  .ohl-ic{ width:44px; height:44px; flex:none; border-radius:12px; background:var(--media);
-    color:var(--ink); display:flex; align-items:center; justify-content:center; }  /* concept .well */
-  .ohl-ic svg.ic{ width:24px; height:24px; }
+  /* the well carries the drone doing this job, not a line icon — concept §6.2,
+     the in-flight register: the payload is the service (cargo box = delivery,
+     gimbal = photo/video, nothing slung = inspection). concept .dwell exactly:
+     --media ground, --r-media radius, transparent PNG contained, no border and
+     no shadow (the render carries its own). 64px is the ceiling the header can
+     pay — see the budget above — and the widest cutout is 869px native, so
+     every one of these is a downscale. */
+  .ohl-ic{ width:64px; height:64px; flex:none; border-radius:var(--r-media);
+    background:var(--media); color:var(--ink); display:flex; align-items:center;
+    justify-content:center; padding:5px; overflow:hidden; }                /* concept .dwell */
+  .ohl-ic img{ width:100%; height:100%; object-fit:contain; display:block; }
   .ohl-head{ flex:1; min-width:0; display:flex; flex-direction:column; gap:5px; }
   .ohl-title{ font-size:15px; font-weight:600; line-height:1.2; color:var(--ink); }  /* concept .id .k */
   .ohl-meta{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
