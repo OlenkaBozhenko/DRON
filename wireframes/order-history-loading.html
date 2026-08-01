@@ -83,7 +83,10 @@
      every card in the list. The live order's extras (progress rail, ETA chip,
      green CTA) are deliberately not rehearsed: a skeleton that draws a rail
      promises a live order that may not be there, and Activity often loads with
-     none. Widths vary per card so the list does not read as one stamped block.
+     none. Widths vary per card so the list does not read as one stamped block,
+     and the third drops to a single stop — the real list mixes From▸To orders
+     with single-Location ones, so a skeleton that always drew two stops would
+     be describing a list it has not loaded yet.
      Height check, at 375px: 20 + 72 + 20 + 64 + 20 + 44 + 20 = 260px against
      the real delivered card's 259px — the swap does not reflow.           ── */
   .sk-card{ background:var(--card); border:0; border-radius:var(--r-card); box-shadow:var(--sh-card);
