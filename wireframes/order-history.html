@@ -94,13 +94,28 @@
   @media (prefers-reduced-motion:reduce){ .btn, article.card{ transition:none; } }
 
   .oh-card{ overflow:hidden; }
-  /* status pill: green wash for the live order, muted warm-grey for the past.
-     The muted pill sits a tone deeper than the card it rests on — slate on #D6D2C9 = 4.77:1 AA */
-  .oh-status{ flex:none; display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600;
-    color:var(--slate); border:0; border-radius:var(--r-pill); padding:5px 10px;
-    background:var(--btn2); white-space:nowrap; }
-  .oh-status.live{ color:var(--green-ink); background:var(--green-wash); border:0; }
-  .oh-status.live::before{ content:""; width:6px; height:6px; border-radius:50%; background:currentColor; }
+  /* ── STATUS INDICATOR ─────────────────────────────────────────────────────
+     Replaces the labelled pill ("In progress" / "Delivered"). Two marks that
+     differ by shape and by behaviour, never by colour alone (WCAG 1.4.1): a dot
+     that breathes while the order is still running, a settled check once it is
+     done. Each keeps its old wording as its accessible name, so a screen reader
+     loses nothing — the words moved off the glass, they were not deleted.
+     Contrast: the mark carries the 3:1, not the disc (WCAG 1.4.11). Raw --green
+     is 1.52:1 on the card — nowhere near enough alone — so the live dot wears a
+     --green-ink ring at 6.37:1 to draw its own boundary; the check is --ink on
+     --btn2 at 11.54:1. The discs are surface, not signal.
+     Dropping the pill is also what paid for the bigger drone well: the widest
+     badge was 101px, this is 20px.                                        ── */
+  .oh-ind{ width:20px; height:20px; flex:none; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    background:var(--btn2); color:var(--ink); }
+  .oh-ind svg.ic{ width:12px; height:12px; }
+  .oh-ind.live{ background:var(--green-wash); }
+  .oh-ind.live::before{ content:""; width:8px; height:8px; border-radius:50%;
+    background:var(--green); box-shadow:0 0 0 1.5px var(--green-ink);
+    animation:oh-breathe 2.4s ease-in-out infinite; }
+  @keyframes oh-breathe{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(.68); } }
+  @media (prefers-reduced-motion:reduce){ .oh-ind.live::before{ animation:none; } }
 
   /* ── ORDER CARD ───────────────────────────────────────────────────────────
      All four cards share one anatomy, built on concept.html's plain padded
