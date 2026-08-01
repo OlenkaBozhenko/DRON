@@ -74,8 +74,15 @@
   /* empty message block — warm-grey card, drone render as the media banner.
      Modest downward shift balances the void above the tab bar without leaving the thumb zone */
   /* flat, like .kv — no --sh-card on cards (concept.md rev 29) */
+  /* Bottom inset 32, not 20 (designer call 2026-08-01, concept.md rev 35): the
+     button needed more air under it than the 16 it gets above. 32 is the value
+     the ask lands on — she gave a range of +8 to +16 and asked for whichever is
+     right by HIG, and of 28 / 32 / 36 only 32 is on the 8-pt grid the language
+     is built on (§5: the 4/8/12/16/24/32/48 scale). It also reads as the grid's
+     next step up from the 16 inset rather than a one-off number. Sides and top
+     stay 16 — this is a bottom inset, not a new card inset. */
   .msg-block{ background:var(--card); border:0; border-radius:var(--r-card);
-    padding:16px 16px 20px; gap:12px; margin-top:56px; }
+    padding:16px 16px 32px; gap:12px; margin-top:56px; }
   /* No ground under the drone (designer call, concept.md rev 34) — the same
      move the list cards took when .ohl-ic dropped its --media fill, reached a
      different way. The render here is an inline *JPEG*, which has no alpha: its
