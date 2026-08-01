@@ -113,8 +113,12 @@
      trust is actually claimed, beside the verified badge and the insurance
      line" (RJ-C1). The initials well becomes that render.               ── */
   .op-card{ background:var(--card); border:0; border-radius:var(--r-card);
-    box-shadow:var(--sh-card); padding:16px; gap:14px; align-items:center; }
-  .op-avatar{ width:56px; height:56px; border:0; border-radius:var(--r-media);
+    box-shadow:var(--sh-card); padding:16px; gap:12px; align-items:center; }
+  /* 44px, not the wireframe's 56 — concept .well, the size the operator block
+     uses there. It is also what buys the trust chips their single row: the card
+     gives .op-info 294 - avatar - gap, and the pair needs 143 + 6 + 85 = 234.
+     At 56 the column was 224 and "Insured" dropped to a second line. */
+  .op-avatar{ width:44px; height:44px; border:0; border-radius:12px;
     background:var(--media); overflow:hidden; display:flex; align-items:flex-end;
     justify-content:center; color:transparent; font-size:0; }
   .op-avatar img{ width:100%; height:100%; object-fit:cover; object-position:center 18%;
@@ -126,7 +130,10 @@
   /* verification badge — concept .pill.live / .pill.mut, same shield glyph as
      concept §09's "Verified" icon cell. Green wash carries the claim, warm grey
      carries the supporting fact; both keep their wording. */
-  .badges{ gap:8px; margin-top:9px; }
+  /* one row: gap 6 is concept's own .pill spacing, and the row is only wide
+     enough for both chips at that value. wrap stays as the fallback below
+     390px, where no value fits them side by side. */
+  .badges{ gap:6px; margin-top:9px; }
   .badge{ display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600;
     letter-spacing:0; text-transform:none; padding:5px 10px; border:0;
     border-radius:var(--r-pill); background:var(--green-wash); color:var(--green-ink); }
