@@ -234,15 +234,23 @@ The **visual language**, chosen and built out. The single source of truth is
 [`concept/concept.html`](concept/concept.html), where every token, component and image is shown at
 production size with its contrast measured on the page.
 
+**[`DESIGN.md`](DESIGN.md) at the repo root is the token-level spec**, extracted from the ten
+painted product pages and verified by computed style in a browser — palette with every measured
+ratio, the ten type steps, the six radii, the spacing scale, the component set, imagery, and the
+do's and don'ts. It is generated *from* the wireframes, so it follows them: the designer edits the
+frames by hand, and where a document disagrees with a frame, the document is corrected. `concept.md`
+carries the reasoning and the history; `DESIGN.md` carries the values. A machine-readable copy for
+tooling sits at `.impeccable/design.json`.
+
 **Direction 02 «Studio»** is the chosen tuning of the Fauna Robotics language: warm `#F7F5F2` page,
 `#ECE9E4` grey cards, SF Pro, flat outline icons on a 24-grid at 1.7px, rounded-rect buttons.
 
 | Rule | What it means in practice |
 |---|---|
 | **One accent, fill only** | Signal Green `#9BCF4A` is a fill or a tint, **never text and never an icon stroke** — raw green is 1.52:1 on a card. Anything sitting on green is charcoal: 9.46:1 on the fill, 14.75:1 on the tint. |
-| **~One green element per screen** | The primary CTA, *or* the active status node, *or* the verified badge — not all three loud at once. Green stays ≤ ~5% of pixels and is never spent inside card UI. |
+| **One green control per screen, ≤ ~5% of the frame** | Measured on the build, not asserted: solid green covers **4.43% / 5.09% / 4.71%** of `order-history` / `tracking` / `delivery`, and the primary CTA is **81–100%** of it. Exactly one green *control* — status marks may also be solid green, being under 6% of the screen's green; the `--green-wash` tint is not counted, at 1.085:1 against the page. Green is never spent inside card UI. |
 | **Every pair is measured** | A new colour/background pair is not used until its ratio is computed and written down. §07 of `concept.html` is the standing contrast table. Zero text-contrast failures across the four painted surfaces. |
-| **Surfaces are flat** | No card and no media well casts a shadow — separation is warm tone plus the 16px radius (`#ECE9E4` on `#F7F5F2` is a real 1.11:1 step). Exactly two shadows are spent: `--sh-sm` under the green primary, and `--sh-onphoto` under a chip floating over a photograph, where it is legibility rather than decoration. |
+| **Surfaces are flat** | No card and no media well casts a shadow — separation is warm tone plus the 16px radius (`#ECE9E4` on `#F7F5F2` is a real 1.11:1 step). **Exactly one shadow is spent on a product surface:** `--sh-sm` under the green primary. `--sh-card`, `--sh-raised` and `--sh-onphoto` are declared rungs applied to nothing — `--sh-onphoto` is a `concept.html` token held for the first chip that actually floats over a photograph, and appears on none of the ten painted pages. |
 | **A closed ramp of six radii** | `10` input · `12` button · `13` media · `16` card · `22` panel · `999` pill. A shape that is none of these is a shape nobody chose. |
 | **Ten type steps, all in use** | The scale describes the product rather than preceding it: `22` display · `20` number · `17` title · `15` heading · `14` body · `13` body-sm · `12.5` meta · `12` caption · `11` micro · `10.5` micro-sm. |
 | **Imagery is real, never decoration** | Drone renders (`assets/drones/`), people (`assets/people/`), scenes and the live map (`assets/scenes/`, `assets/map/`). A transparent cutout sits *in* a well and is contained; a photograph *is* the surface and covers it. In the product a cutout has no well at all — it sits straight on the card. Pages serve a `thumbs/` copy at ~2× the CSS box; the master stays in the repo. |
@@ -253,7 +261,8 @@ production size with its contrast measured on the page.
 [`tracking`](wireframes/tracking.html) and [`delivery`](wireframes/delivery.html) (with their states)
 carry the Studio layer. Each family shares one byte-identical `<style>` block, so every repeat of a
 component holds the same values. The whole set is audited against `concept.md` and the findings
-are closed in the change log, most recently rev 39.
+are closed in the change log, most recently rev 42 — the pass that wrote `DESIGN.md` and corrected
+`concept.md` to match the frames.
 
 **Change log:** `concept.md` records every revision, including the ones that were tried and reverted —
 so a rejected idea is not re-proposed later as a new one.

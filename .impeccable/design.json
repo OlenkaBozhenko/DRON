@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-01T00:00:00Z",
+  "title": "Design System: DRON",
+  "extensions": {
+    "note": "Extracted from the ten painted product surfaces and verified by computed style in a browser. No tonal ramps are recorded: the project declares no tonal scale, and synthesising one would put colours in this file that no surface uses.",
+    "colorMeta": {
+      "green":       { "role": "primary",  "displayName": "Signal Green",     "canonical": "#9BCF4A", "usage": "fill only — primary button, walked progress node, live status disc. 1.69:1 on page and 1.52:1 on card, so never text and never an icon stroke." },
+      "on-green":    { "role": "primary",  "displayName": "On Green",         "canonical": "#1A1A1A", "usage": "the only colour permitted on a green fill — 9.46:1. Never white (1.84:1)." },
+      "green-wash":  { "role": "primary",  "displayName": "Green Wash",       "canonical": "#E7F0D2", "usage": "the one green tint — selected tab, verified badge, milestone marks. Charcoal on it 14.75:1; 1.085:1 against the page, so it is a hue signal, not a luminance one." },
+      "page":        { "role": "neutral",  "displayName": "Page",             "canonical": "#F7F5F2", "usage": "screen ground and every system bar, so chrome melts into the page." },
+      "card":        { "role": "neutral",  "displayName": "Card",             "canonical": "#ECE9E4", "usage": "every card surface. 1.11:1 step on the page." },
+      "media":       { "role": "neutral",  "displayName": "Media",            "canonical": "#E4E1DA", "usage": "media wells, muted chips, skeleton ground. 1.20:1 step on the page." },
+      "btn2":        { "role": "neutral",  "displayName": "Secondary Button",  "canonical": "#D6D2C9", "usage": "secondary button, circular icon actions, skeleton bars, settled status disc." },
+      "inset":       { "role": "neutral",  "displayName": "Inset",            "canonical": "#F2F0EC", "usage": "derived color-mix(page 55%, card) — the From/To strip. 1.06:1 above the card." },
+      "ink":         { "role": "neutral",  "displayName": "Deep Charcoal",    "canonical": "#1A1A1A", "usage": "titles, values, button labels, every icon glyph, the focus ring." },
+      "slate":       { "role": "neutral",  "displayName": "Slate",            "canonical": "#5A5751", "usage": "labels, dates, keys, body copy, unselected tabs, pending milestones." },
+      "line":        { "role": "neutral",  "displayName": "Hairline",         "canonical": "#D9D5CE", "usage": "bar borders, row rules, the pending progress track. 1.21:1 on the card." },
+      "warn":        { "role": "tertiary", "displayName": "Warn (unspent)",   "canonical": "#E4A11B", "usage": "declared, drawn nowhere — 1.84:1 on the card, so it cannot carry a mark." },
+      "warn-ink":    { "role": "tertiary", "displayName": "Warn Ink",         "canonical": "#7A5200", "usage": "5.65:1 on its wash — the ETA-slipping mark." },
+      "warn-wash":   { "role": "tertiary", "displayName": "Warn Wash",        "canonical": "#F6E7C4", "usage": "the well behind the late-notice glyph." },
+      "danger":      { "role": "tertiary", "displayName": "Danger (unspent)", "canonical": "#C4462A", "usage": "declared, drawn nowhere — reaches only 4.07:1 on the card." },
+      "danger-ink":  { "role": "tertiary", "displayName": "Danger Ink",       "canonical": "#9A3115", "usage": "5.49:1 on its wash — signal lost, upload missing." },
+      "danger-wash": { "role": "tertiary", "displayName": "Danger Wash",      "canonical": "#F2D8CF", "usage": "the well behind the error glyph." }
+    },
+    "typographyMeta": {
+      "display":  { "displayName": "Display",  "purpose": "The outcome screen's own title — Delivered." },
+      "number":   { "displayName": "Number",   "purpose": "Money and hero figures, tabular." },
+      "title":    { "displayName": "Title",    "purpose": "Nav-bar screen title and alert title." },
+      "heading":  { "displayName": "Heading",  "purpose": "Card title, operator name, button label." },
+      "body":     { "displayName": "Body",     "purpose": "Place names and milestone text." },
+      "body-sm":  { "displayName": "Body S",   "purpose": "Row keys and alert copy." },
+      "meta":     { "displayName": "Meta",     "purpose": "Dates, ratings, list metadata." },
+      "caption":  { "displayName": "Caption",  "purpose": "Chips and badges." },
+      "micro":    { "displayName": "Micro",    "purpose": "Mono zone labels, route labels, loading hints." },
+      "micro-sm": { "displayName": "Micro S",  "purpose": "Milestone labels under a progress rail." }
+    },
+    "fontStacks": {
+      "ui": "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, sans-serif",
+      "mono": "ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace"
+    },
+    "shadows": [
+      { "name": "sh-sm",     "value": "0 1px 2px rgba(20,18,15,.05)", "purpose": "The only shadow spent in the system — under the green primary." },
+      { "name": "sh-card",   "value": "0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30)", "purpose": "Declared on all ten pages, applied to nothing. A recorded rung." },
+      { "name": "sh-raised", "value": "0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34)", "purpose": "Declared, applied to nothing." },
+      { "name": "ring-cutout", "value": "0 0 0 2px var(--card)", "purpose": "Geometry, not depth — the cutout ring around a status disc." },
+      { "name": "ring-now",    "value": "0 0 0 4px color-mix(in srgb, var(--green) 20%, transparent)", "purpose": "Geometry, not depth — the halo on the current milestone node." }
+    ],
+    "motion": [
+      { "name": "btn",      "value": "filter .15s, background .15s, transform .12s", "purpose": "Button state change; active adds translateY(1px) scale(.99)." },
+      { "name": "oh-ping",  "value": "1.8s cubic-bezier(.22,.61,.36,1) infinite",    "purpose": "One ring leaving a live status disc and fading. Far under 3 flashes/second." },
+      { "name": "skPulse",  "value": "1.4s ease-in-out infinite",                    "purpose": "Skeleton opacity 1 → .5, offset -.47s / -.93s per card." },
+      { "name": "skUp",     "value": "1.6s cubic-bezier(.22,.61,.36,1) infinite",    "purpose": "The arrow leaves the upload tray; the tray holds still. Rests visible at 0% and 100%." },
+      { "name": "reduced",  "value": "@media (prefers-reduced-motion: reduce) { animation: none }", "purpose": "Every loop above is switched off." }
+    ],
+    "breakpoints": [
+      { "name": "narrow", "value": "389px", "purpose": "order-history only: card inset 20→16, group 20→18, list 28→22, drone box 96x72→68x52." }
+    ],
+    "frame": { "width": "375px", "height": "812px", "radius": "22px", "border": "1px solid #D9D5CE", "contentColumn": "341px" }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single green element on most screens. Fill only, charcoal label at 9.46:1.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">View details</button>",
+      "css": ".ds-btn{ min-height:44px; padding:0 16px; border-radius:12px; font:600 15px/21px -apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; border:1px solid transparent; display:inline-flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; transition:filter .15s, background .15s, transform .12s; } .ds-btn-primary{ background:#9BCF4A; color:#1A1A1A; box-shadow:0 1px 2px rgba(20,18,15,.05); } .ds-btn-primary:hover{ filter:brightness(1.03); } .ds-btn-primary:active{ transform:translateY(1px) scale(.99); } .ds-btn-primary:focus-visible{ outline:2.5px solid #1A1A1A; outline-offset:2px; } .ds-btn-primary:disabled{ background:#D6D2C9; color:#5A5751; cursor:not-allowed; box-shadow:none; } @media (prefers-reduced-motion:reduce){ .ds-btn{ transition:none; } }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Warm grey, no shadow. Every action that is not the one the screen is steering toward.",
+      "html": "<button class=\"ds-btn ds-btn-secondary\">Contact support</button>",
+      "css": ".ds-btn{ min-height:44px; padding:0 16px; border-radius:12px; font:600 15px/21px -apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; border:1px solid transparent; display:inline-flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; transition:filter .15s, background .15s, transform .12s; } .ds-btn-secondary{ background:#D6D2C9; color:#1A1A1A; } .ds-btn-secondary:hover{ background:#E4E1DA; } .ds-btn-secondary:active{ background:#E4E1DA; transform:translateY(1px) scale(.99); } .ds-btn-secondary:focus-visible{ outline:2.5px solid #1A1A1A; outline-offset:2px; } @media (prefers-reduced-motion:reduce){ .ds-btn{ transition:none; } }"
+    },
+    {
+      "name": "Circular Icon Action",
+      "kind": "button",
+      "refersTo": "button-icon",
+      "description": "44x44 secondary action on a card. Icon-only, so it carries its own aria-label.",
+      "html": "<button class=\"ds-sbi\" aria-label=\"Delete order\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 6.6h16\"/><path d=\"M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7\"/><path d=\"M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1\"/><path d=\"M10.3 10.4v6M13.7 10.4v6\"/></svg></button>",
+      "css": ".ds-sbi{ width:44px; height:44px; padding:0; border:0; border-radius:50%; background:#D6D2C9; color:#1A1A1A; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:background .15s; } .ds-sbi svg{ display:block; } .ds-sbi:hover{ background:#E4E1DA; } .ds-sbi:focus-visible{ outline:2.5px solid #1A1A1A; outline-offset:2px; }"
+    },
+    {
+      "name": "Row Panel",
+      "kind": "card",
+      "refersTo": "row-panel",
+      "description": "One component, two screens: the tracking ETA panel and the delivery details panel. Flat, hairline rows, tabular values.",
+      "html": "<div class=\"ds-kv\"><div class=\"ds-kv-row\"><span class=\"ds-kv-key\">Delivered to</span><span class=\"ds-kv-val\">Osokorky, 14</span></div><div class=\"ds-kv-row\"><span class=\"ds-kv-key\">Time</span><span class=\"ds-kv-val\">10:07</span></div><div class=\"ds-kv-row\"><span class=\"ds-kv-key\">Operator</span><span class=\"ds-kv-val\">Andriy M.</span></div></div>",
+      "css": ".ds-kv{ background:#ECE9E4; border:0; border-radius:16px; padding:2px 16px; font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; } .ds-kv-row{ display:flex; justify-content:space-between; gap:12px; padding:13px 0; border-bottom:1px solid #D9D5CE; } .ds-kv-row:last-child{ border-bottom:0; } .ds-kv-key{ color:#5A5751; font-size:13px; line-height:18.2px; } .ds-kv-val{ color:#1A1A1A; font-size:15px; font-weight:600; line-height:21px; text-align:right; font-variant-numeric:tabular-nums; }"
+    },
+    {
+      "name": "Inset Strip",
+      "kind": "custom",
+      "refersTo": "inset-strip",
+      "description": "The From/To route inside an order card. A plane inside the card at 1.06:1, with a neutral direction chip — green is not spent inside card UI.",
+      "html": "<div class=\"ds-route\"><span class=\"ds-stop\"><span class=\"ds-lbl\">From</span><span class=\"ds-place\">Podil</span></span><span class=\"ds-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" width=\"14\" height=\"14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4.5 12h13\"/><path d=\"M13 7.5l4.5 4.5-4.5 4.5\"/></svg></span><span class=\"ds-stop ds-stop-to\"><span class=\"ds-lbl\">To</span><span class=\"ds-place\">Osokorky</span></span></div>",
+      "css": ".ds-route{ display:flex; align-items:center; gap:12px; padding:16px; border-radius:12px; background:#F2F0EC; font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; } .ds-stop{ flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; } .ds-stop-to{ align-items:flex-end; text-align:right; } .ds-lbl{ font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace; font-size:11px; font-weight:600; line-height:15.4px; letter-spacing:.05em; text-transform:uppercase; color:#5A5751; } .ds-place{ font-size:14px; line-height:18.2px; color:#1A1A1A; } .ds-arrow{ width:26px; height:26px; flex:none; border-radius:999px; background:#E4E1DA; color:#1A1A1A; display:flex; align-items:center; justify-content:center; } .ds-arrow svg{ display:block; }"
+    },
+    {
+      "name": "Chips",
+      "kind": "chip",
+      "refersTo": "chip-live",
+      "description": "Live/claim carries the green tint and charcoal; muted/fact carries the media grey and slate. Same geometry.",
+      "html": "<span class=\"ds-chip ds-chip-live\"><svg viewBox=\"0 0 24 24\" width=\"13\" height=\"13\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z\"/><path d=\"M9 11.5l2.2 2.2L15 10\"/></svg>Verified by DRON</span> <span class=\"ds-chip ds-chip-muted\"><svg viewBox=\"0 0 24 24\" width=\"13\" height=\"13\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z\"/></svg>Insured</span>",
+      "css": ".ds-chip{ display:inline-flex; align-items:center; gap:6px; padding:5px 10px; border:0; border-radius:999px; font:600 12px/16.8px -apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; } .ds-chip svg{ display:block; } .ds-chip-live{ background:#E7F0D2; color:#1A1A1A; } .ds-chip-muted{ background:#E4E1DA; color:#5A5751; }"
+    },
+    {
+      "name": "Status Indicator",
+      "kind": "custom",
+      "refersTo": "status-live",
+      "description": "Rides on the drone box. Two marks that differ by shape and behaviour, never by colour alone; each keeps its wording as its accessible name.",
+      "html": "<span class=\"ds-ind ds-ind-live\" role=\"img\" aria-label=\"In progress\"></span> <span class=\"ds-ind ds-ind-done\" role=\"img\" aria-label=\"Delivered\"><svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 6\"/></svg></span>",
+      "css": ".ds-ind{ position:relative; width:20px; height:20px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 0 0 2px #ECE9E4; } .ds-ind svg{ display:block; } .ds-ind-done{ background:#D6D2C9; color:#1A1A1A; } .ds-ind-live{ background:#9BCF4A; } .ds-ind-live::after{ content:''; position:absolute; inset:0; border-radius:50%; animation:ds-ping 1.8s cubic-bezier(.22,.61,.36,1) infinite; } @keyframes ds-ping{ 0%{ box-shadow:0 0 0 0 color-mix(in srgb,#9BCF4A 90%,transparent); } 70%{ box-shadow:0 0 0 8px color-mix(in srgb,#9BCF4A 0%,transparent); } 100%{ box-shadow:0 0 0 0 color-mix(in srgb,#9BCF4A 0%,transparent); } } @media (prefers-reduced-motion:reduce){ .ds-ind-live::after{ animation:none; } }"
+    },
+    {
+      "name": "Progress Nodes",
+      "kind": "custom",
+      "refersTo": "node-done",
+      "description": "One 22px node, two axes — horizontal on the order card, vertical on tracking. Done / now / pending.",
+      "html": "<span class=\"ds-nd ds-nd-done\"><svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 6\"/></svg></span> <span class=\"ds-nd ds-nd-now\"><svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"3.4\"/></svg></span> <span class=\"ds-nd\"></span>",
+      "css": ".ds-nd{ width:22px; height:22px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; border:2px solid #D9D5CE; background:#ECE9E4; color:#5A5751; } .ds-nd svg{ display:block; } .ds-nd-done{ background:#9BCF4A; border-color:#9BCF4A; color:#1A1A1A; } .ds-nd-now{ border-color:#9BCF4A; color:#1A1A1A; box-shadow:0 0 0 4px color-mix(in srgb,#9BCF4A 20%,transparent); }"
+    },
+    {
+      "name": "Milestone Mark",
+      "kind": "custom",
+      "refersTo": "mark-success",
+      "description": "64px circle on the green tint. Delivered and waiting share the well and differ by glyph and screen title, not by colour.",
+      "html": "<span class=\"ds-mark\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" width=\"32\" height=\"32\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"8.5\"/><path d=\"M8.5 12l2.5 2.5 4.5-5\"/></svg></span>",
+      "css": ".ds-mark{ width:64px; height:64px; border:0; border-radius:50%; background:#E7F0D2; color:#1A1A1A; display:inline-flex; align-items:center; justify-content:center; } .ds-mark svg{ display:block; }"
+    },
+    {
+      "name": "State Mark",
+      "kind": "custom",
+      "refersTo": "mark-danger",
+      "description": "52px well at the media radius. A semantic state is a pale wash carrying its own darkened ink; the raw hue is never drawn.",
+      "html": "<span class=\"ds-msgph ds-msgph-neutral\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" width=\"26\" height=\"26\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"13.5\" r=\"7\"/><path d=\"M12 13.5V9.5\"/><path d=\"M9.5 3.2h5\"/></svg></span> <span class=\"ds-msgph ds-msgph-warn\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" width=\"26\" height=\"26\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 4.5l8 14H4z\"/><path d=\"M12 10v4M12 16.4v.2\"/></svg></span> <span class=\"ds-msgph ds-msgph-danger\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" width=\"26\" height=\"26\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" opacity=\".55\"><path d=\"M2.5 9.5a15 15 0 0 1 19 0\"/><path d=\"M5.8 13.4a10 10 0 0 1 12.4 0\"/><path d=\"M9.1 17.3a5 5 0 0 1 5.8 0\"/></svg></span>",
+      "css": ".ds-msgph{ width:52px; height:52px; border:0; border-radius:13px; display:inline-flex; align-items:center; justify-content:center; } .ds-msgph svg{ display:block; } .ds-msgph-neutral{ background:#E4E1DA; color:#5A5751; } .ds-msgph-warn{ background:#F6E7C4; color:#7A5200; } .ds-msgph-danger{ background:#F2D8CF; color:#9A3115; }"
+    },
+    {
+      "name": "Tab Bar",
+      "kind": "nav",
+      "refersTo": "tab-selected",
+      "description": "The accent cannot be the label colour at 1.69:1, so selection moves it into the fill: a tint appears and the ink darkens slate to charcoal. Two signals, not one.",
+      "html": "<nav class=\"ds-tabs\" aria-label=\"Primary\"><a class=\"ds-tab\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"4\" y=\"4\" width=\"7\" height=\"7\" rx=\"1.6\"/><rect x=\"13\" y=\"4\" width=\"7\" height=\"7\" rx=\"1.6\"/><rect x=\"4\" y=\"13\" width=\"7\" height=\"7\" rx=\"1.6\"/><rect x=\"13\" y=\"13\" width=\"7\" height=\"7\" rx=\"1.6\"/></svg>Order</a><a class=\"ds-tab\" href=\"#\" aria-current=\"page\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 6h11M9 12h11M9 18h11\"/><circle cx=\"4.6\" cy=\"6\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"4.6\" cy=\"12\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"4.6\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>Activity</a><a class=\"ds-tab\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8.5\"/><path d=\"M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9\"/><circle cx=\"12\" cy=\"17\" r=\".9\" fill=\"currentColor\" stroke=\"none\"/></svg>Help</a><a class=\"ds-tab\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"8\" r=\"3.4\"/><path d=\"M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8\"/></svg>Account</a></nav>",
+      "css": ".ds-tabs{ display:flex; height:60px; padding:6px 8px 4px; gap:4px; background:#F7F5F2; border-top:1px solid #D9D5CE; } .ds-tab{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; border-radius:16px; text-decoration:none; color:#5A5751; font:600 11px/15.4px -apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; } .ds-tab svg{ display:block; } .ds-tab[aria-current=\"page\"]{ background:#E7F0D2; color:#1A1A1A; } .ds-tab:focus-visible{ outline:2.5px solid #1A1A1A; outline-offset:2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": null,
+    "overview": "Extracted from the ten painted product surfaces and verified by computed style in a browser, 2026-08-01. Four painted surfaces on one warm ramp — page #F7F5F2, card #ECE9E4, media #E4E1DA, secondary button #D6D2C9 — with no white and no black anywhere in the palette. Two inks: #1A1A1A and #5A5751; every rendered string on all ten pages is one of the two. One accent, #9BCF4A, always a fill or a tint and never text or an icon stroke, measured at 4.43% / 5.09% / 4.71% of the frame on the three base screens. No card and no media surface casts a shadow; one shadow is spent in the whole system, under the green primary. 98 icons, all on a 24-grid at stroke-width 1.7. One font stack, ten type sizes, six radii plus circles. Zero text-contrast failures, the lowest pair being 4.77:1.",
+    "keyCharacteristics": [
+      "Four painted surfaces, one warm ramp — no white and no black in the palette",
+      "Two inks: #1A1A1A and #5A5751, and nothing else on a product surface",
+      "One accent, fill only — 1.69:1 on the page and 1.52:1 on the card, so never text and never a stroke",
+      "Measured green budget: 4.43% / 5.09% / 4.71% of the frame, the CTA being 81-100% of it",
+      "Flat: no card, panel, well, map or photograph casts a shadow",
+      "One icon system: 98 SVGs, 24-grid, stroke-width 1.7, fill none, currentColor",
+      "One font stack declared once; ten type sizes, all in use",
+      "Six radii plus circles; leading is 1.4 by inheritance and overridden only where the box demands it",
+      "Zero text-contrast failures; lowest pair 4.77:1"
+    ],
+    "rules": [
+      { "name": "The Fill-Only Rule", "body": "Green is a fill, a tint, or a ring. It is never a text colour, never an icon stroke, and never a border on its own. Anything sitting on green or on the green tint is --ink.", "section": "colors" },
+      { "name": "The Two-Ink Rule", "body": "A string is --ink or --slate. There is no third text colour on a product surface, and no colour-coded text of any kind.", "section": "colors" },
+      { "name": "The Wash-Carries-Ink Rule", "body": "A semantic state is a pale wash with its own darkened ink on top. The saturated hue is declared for reference and drawn nowhere.", "section": "colors" },
+      { "name": "The No-White-No-Black Rule", "body": "The palette has no #FFFFFF and no #000000. Even the shadows are warm — every one is rgba(20, 18, 15, ...).", "section": "colors" },
+      { "name": "The Ten-Sizes Rule", "body": "On a product surface the ten sizes are the whole scale. A size that is none of them is a size nobody chose.", "section": "typography" },
+      { "name": "The Tabular Rule", "body": "Any figure a user compares or verifies — money, time, ETA, rating — carries font-variant-numeric: tabular-nums.", "section": "typography" },
+      { "name": "The Mono-Is-Structure Rule", "body": "The mono face labels structure, never content: zone annotations, FROM / TO / LOCATION, loading hints. No product string is set in mono.", "section": "typography" },
+      { "name": "The Between-Beats-Within Rule", "body": "The gap between two cards (28) is always larger than any gap inside one (<=20), so proximity groups in the right direction without a border or a shadow.", "section": "layout" },
+      { "name": "The Skeleton-Measures-The-Load Rule", "body": "A loading block is the size of the thing it waits for. A skeleton is a claim about the loaded screen, so it expires when that screen changes treatment.", "section": "layout" },
+      { "name": "The One-Shadow Rule", "body": "Exactly one shadow is spent, and it is under the primary button. A card that casts no shadow at rest cannot grow one on hover.", "section": "elevation" },
+      { "name": "The Tone-Step Rule", "body": "Separation between two surfaces is a warm tone step plus a radius, and the step is measured before it is used. A surface boundary is a decorative edge — not text (1.4.3), not a control or state indicator (1.4.11) — so no contrast minimum applies to it.", "section": "elevation" },
+      { "name": "The Closed-Ramp Rule", "body": "Six radii and a circle. Closed means closed: a shape that is none of them is a shape nobody chose.", "section": "shapes" },
+      { "name": "The Cut-By-The-Parent Rule", "body": "A full-bleed child is square and the parent's overflow:hidden gives it the corner. It never restates the parent's radius.", "section": "shapes" },
+      { "name": "The One-Component-One-Value Rule", "body": "The same component drawn on two screens carries the same numbers. The tracking ETA panel and the delivery details panel are one component; the order card's node and the tracking timeline's node are one node.", "section": "components" },
+      { "name": "The Built-Not-Dimmed Rule", "body": "A disabled or inactive control is built from its own colour pair. Blanket opacity is never the mechanism — it produces a ratio nobody measured.", "section": "components" },
+      { "name": "The Shape-And-Behaviour Rule", "body": "Two states never differ by colour alone. A dot pings and a check sits; a clock is not a check; each keeps a text accessible name.", "section": "components" }
+    ],
+    "dos": [
+      "Do spend green as a fill and put --ink on it — 9.46:1 on the fill, 14.75:1 on the tint.",
+      "Do keep solid green at or under ~5% of the frame, with the primary CTA as most of it.",
+      "Do separate surfaces with a warm tone step and a radius, and measure the step before using it.",
+      "Do give a state two signals — a shape and an ink change, or a glyph and a title.",
+      "Do use min-height for anything that must stay a 44pt target.",
+      "Do size a skeleton block to the element it waits for, and re-measure it when that element changes treatment.",
+      "Do let a cutout sit straight on the card and a photograph cover its whole surface.",
+      "Do write the contrast ratio next to any new pair, before it ships.",
+      "Do check every decision against HIG and WCAG 2.1 AA, and report a mismatch with the exact value, the named criterion and the number."
+    ],
+    "donts": [
+      "Don't set text or an icon stroke in --green — 1.69:1 on the page, 1.52:1 on the card.",
+      "Don't put white on green: 1.84:1.",
+      "Don't introduce a darkened green as an ink. --green-ink #3F5B18 was deleted for exactly this reason: a darkened accent is still the accent used as text.",
+      "Don't add a shadow to a card, a panel, a well, a map or a photograph. One shadow exists and it is under the primary button.",
+      "Don't spend green inside card UI — the direction chip, the route strip and card actions are neutral.",
+      "Don't use a radius outside the six, and don't restate a parent's radius on a full-bleed child.",
+      "Don't dim a control with blanket opacity — build the disabled state from its own pair.",
+      "Don't draw the raw semantic hue. A state is a wash carrying its own ink.",
+      "Don't let a state be carried by colour alone.",
+      "Don't upscale a cutout, add a ground under one in the product, or mix a grid of drones into a product screen.",
+      "Don't compensate an icon's stroke-width to hold a constant rendered weight — declare 1.7 on the 24-grid and change the size instead."
+    ]
+  }
+}
