@@ -151,9 +151,30 @@ read at 96px.
 Mood: competent, quiet, trustworthy. Real equipment doing real work. Unbranded.
 ```
 
+### Block A-U — house style for **user content** (never edit)
+
+Register U cannot take Block A: a studio key light contradicts a photo someone took on a doorstep.
+Everything about the colour survives; the lighting does not.
+
+```
+Photographed on a phone, on site, in available daylight - a real record rather
+than a styled shot. Slightly off-centre framing, a natural handheld angle,
+everything that matters in focus.
+
+Light: late-afternoon daylight leaning warm, 5000-5400K. Soft open shadows,
+no flash, no golden-hour glow, no HDR.
+
+Colour: warm neutral throughout - greys, stone and timber sit on the warm side
+of neutral, ground hue around 36 degrees. NO lime and no brand colour anywhere:
+this is a picture a client or an operator took, and it would not carry the brand.
+
+Mood: plain and factual, unremarkable the way real evidence is.
+```
+
 ### Block B — subject (one line, swap per image)
 
-See §5 for the line to use per register.
+See §5 for the line to use per register. **Register P takes Block A; Register U takes Block A-U.**
+The negative prompt below is the same for both.
 
 ### Negative prompt (always)
 
