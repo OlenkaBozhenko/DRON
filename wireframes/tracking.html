@@ -2,7 +2,175 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DRON wireframe · Live tracking &amp; ETA · success (base)</title>
 <!-- SCREEN (sitemap): "Live tracking & ETA". JOB (jtbd): RJ-C2 (know where the operator is right now, C-05). STATE: success (base). flows.md MJ-1: Order confirmed → Live tracking & ETA → Delivery confirmation. -->
+
+<!--
+  VISUAL LAYER (2026-08-01): Studio design language transferred from concept/concept.html
+  and the painted wireframes/order-history.html — palette, radii, shadows, Phosphor-line
+  icons, the live map render, and the operator trust layer. Structure and copy unchanged;
+  only media/icon placeholders became the real marks they always stood for. The <style>
+  block is byte-identical across all four tracking states, so every repeat of a component
+  carries the same values. New pairs contrast-checked in that block. See concept.md rev 21.
+-->
 <link rel="stylesheet" href="_wireframe.css">
+<style>
+  /* ── DRON · Studio (concept/concept.html) applied to the phone frame only;
+     the wireframe annotation sidebar keeps its own chrome. Identical block on
+     all four tracking pages, so every repeat of a component carries the same
+     values. Transferred from concept/concept.html and wireframes/order-history.html
+     — no new decisions, only the same language on this screen.
+     Text/bg pairs, contrast checked (WCAG AA):
+       #1A1A1A on #F7F5F2 → 15.99:1 · #1A1A1A on #E4E1DA → 13.33:1
+       #5A5751 on #E4E1DA → 5.51:1  · #1A1A1A on #D6D2C9 → 11.54:1
+       #5A5751 on #D6D2C9 → 4.77:1  · #5A5751 on #ECE9E4 → 5.95:1
+       #1A1A1A on #ECE9E4 → 14.37:1 · #3F5B18 on #E7F0D2 → 6.54:1
+     New here — the two semantic families this screen needs (concept §07 tokens,
+     first product use; both are wash + ink, never the raw hue as a mark, because
+     raw #E4A11B on the card is 1.84:1):
+       #7A5200 on #F6E7C4 → 5.65:1  · #7A5200 on #ECE9E4 → 5.72:1   (late)
+       #9A3115 on #F2D8CF → 5.49:1  · #9A3115 on #ECE9E4 → 6.14:1   (lost)
+     Focus ring uses green-ink, not green: #3F5B18 on page 7.09:1 / on card 6.37:1
+     (raw #9BCF4A fails WCAG 1.4.11 non-text 3:1 at 1.69:1 / 1.52:1). ── */
+  body{ background:#F7F5F2; }
+  .wf-frame{
+    --page:#F7F5F2; --card:#ECE9E4; --media:#E4E1DA; --btn2:#D6D2C9;
+    --ink:#1A1A1A; --slate:#5A5751; --line:#D9D5CE;
+    --green:#9BCF4A; --on-green:#1A1A1A; --green-ink:#3F5B18; --green-wash:#E7F0D2;
+    --warn:#E4A11B; --warn-ink:#7A5200; --warn-wash:#F6E7C4;
+    --danger:#C4462A; --danger-ink:#9A3115; --danger-wash:#F2D8CF;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --r-btn:12px; --r-card:16px; --r-media:13px; --r-panel:22px; --r-pill:999px; --r-input:10px;
+    --sh-sm:0 1px 2px rgba(20,18,15,.05);
+    --sh-card:0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30);
+    --sh-raised:0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34);
+    /* wireframe tokens remapped to the Studio palette */
+    --wf-surface:var(--page); --wf-bg:var(--page); --wf-recessed:var(--media);
+    --wf-fill:var(--btn2); --wf-skeleton:var(--btn2); --wf-muted:var(--slate);
+    --wf-text-2:var(--slate); --wf-text:var(--ink); --wf-ink:var(--ink); --wf-ink-max:#000000;
+    --wf-border:var(--line); --wf-border-2:var(--line);
+    background:var(--page); border:1px solid var(--line); border-radius:var(--r-panel);
+  }
+  .wf-frame svg.ic{ display:block; }
+
+  /* system bars melt into the warm ground */
+  .statusbar{ background:var(--page); color:var(--ink); }
+  .statusbar .sysph{ gap:5px; align-items:center; }
+  header.topbar{ background:var(--page); border-bottom:1px solid var(--line); }
+  .topbar .title{ color:var(--ink); letter-spacing:-.01em; }
+  footer.tabbar{ background:var(--page); border-top:1px solid var(--line); }
+  footer .tabs{ height:60px; padding:6px 8px 4px; gap:4px; }
+  footer .tab{ gap:3px; font-weight:600; color:var(--slate); border-radius:16px; }
+  footer .tab[aria-current="page"]{ background:var(--green-wash); color:var(--green-ink); }
+  footer .tab svg.ic{ width:22px; height:22px; }
+  footer .tab:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
+  footer .home-indicator{ height:30px; }
+  footer .home-indicator span{ background:var(--ink); }
+  footer.actionbar{ background:var(--page); border-top:1px solid var(--line); }
+
+  /* zone annotation → concept block-label */
+  .zlabel{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.09em;
+    color:var(--slate); border-left:0; border-bottom:1px solid var(--line);
+    padding:0 0 9px; position:relative; margin-bottom:-4px; }
+  .zlabel::after{ content:""; position:absolute; left:0; bottom:-1px; width:30px; height:2px; background:var(--green); }
+  .zlabel .act{ color:var(--slate); font-size:11px; letter-spacing:.02em; }
+
+  /* buttons — concept .btn.primary / .btn.secondary */
+  .btn{ border-radius:var(--r-btn); transition:filter .15s, background .15s, transform .12s; }
+  .btn:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
+  .btn-primary{ background:var(--green); color:var(--on-green); border-color:transparent;
+    box-shadow:var(--sh-sm); }
+  .btn-primary:hover{ background:var(--green); filter:brightness(1.03); }
+  .btn-primary:active{ background:var(--green); transform:translateY(1px) scale(.99); }
+  .btn-secondary{ background:var(--btn2); color:var(--ink); border-color:transparent; }
+  .btn-secondary:hover{ background:var(--media); }
+  .btn-secondary:active{ background:var(--media); transform:translateY(1px) scale(.99); }
+  @media (prefers-reduced-motion:reduce){ .btn{ transition:none; } }
+
+  /* ── LIVE MAP ─────────────────────────────────────────────────────────────
+     concept .mapc / .mapv verbatim: card radius, raised shadow, the same city
+     render at its native 1.99 aspect, cover-positioned. The image is the one
+     from concept.html's --map-img, extracted to assets/map/live-map.jpg rather
+     than inlined four times as base64. The former "LIVE MAP · operator position"
+     placeholder label survives as the accessible name.                     ── */
+  .map-ph{ border:0; border-radius:var(--r-card); overflow:hidden; box-shadow:var(--sh-raised);
+    background:url(../assets/map/live-map.jpg) center/cover no-repeat, var(--media);
+    aspect-ratio:1.99; height:auto; min-height:0; padding:0; color:transparent;
+    font-size:0; line-height:0; }
+  /* the loading state has no signal yet, so it shows the well, not the city */
+  .map-ph.acquiring{ background:var(--media); box-shadow:none; color:var(--slate);
+    font-family:var(--mono); font-size:11px; letter-spacing:.09em; line-height:1.5;
+    display:flex; align-items:center; justify-content:center; }
+
+  /* ── ETA rows — concept .stat3 surface, hairline rows ─────────────────── */
+  .kv{ background:var(--card); border:0; border-radius:var(--r-card);
+    box-shadow:var(--sh-card); padding:2px 16px; }
+  .kv-row{ border-bottom:1px solid var(--line); padding:13px 0; }
+  .kv-key{ color:var(--slate); font-size:13px; }
+  .kv-val{ color:var(--ink); font-weight:600; font-size:15px; font-variant-numeric:tabular-nums; }
+
+  /* ── OPERATOR CARD — concept .card + .well + .id, and the trust layer ────
+     concept.md §6.2 puts people/operator.png on exactly this card: "the most
+     load-bearing image in the product — the face on the operator card, where
+     trust is actually claimed, beside the verified badge and the insurance
+     line" (RJ-C1). The initials well becomes that render.               ── */
+  .op-card{ background:var(--card); border:0; border-radius:var(--r-card);
+    box-shadow:var(--sh-card); padding:16px; gap:14px; align-items:center; }
+  .op-avatar{ width:56px; height:56px; border:0; border-radius:var(--r-media);
+    background:var(--media); overflow:hidden; display:flex; align-items:flex-end;
+    justify-content:center; color:transparent; font-size:0; }
+  .op-avatar img{ width:100%; height:100%; object-fit:cover; object-position:center 18%;
+    display:block; }
+  .op-name{ font-size:15px; font-weight:600; color:var(--ink); line-height:1.2; }
+  .op-rating{ font-size:12.5px; color:var(--slate); margin-top:2px;
+    font-variant-numeric:tabular-nums; }
+
+  /* verification badge — concept .pill.live / .pill.mut, same shield glyph as
+     concept §09's "Verified" icon cell. Green wash carries the claim, warm grey
+     carries the supporting fact; both keep their wording. */
+  .badges{ gap:8px; margin-top:9px; }
+  .badge{ display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600;
+    letter-spacing:0; text-transform:none; padding:5px 10px; border:0;
+    border-radius:var(--r-pill); background:var(--green-wash); color:var(--green-ink); }
+  .badge svg.ic{ width:13px; height:13px; }
+  .badge + .badge{ background:var(--media); color:var(--slate); }
+
+  /* ── PROGRESS — the same node the order card's rail uses (concept .nd):
+     22px circle, 2px track, green when walked, --line when not. The axis is
+     vertical here because this screen's structure is a vertical list; every
+     value on the node itself matches order-history exactly.              ── */
+  .timeline{ gap:0; }
+  .tl-item{ gap:12px; padding-bottom:18px; align-items:flex-start; }
+  .tl-item:not(:last-child)::before{ content:""; position:absolute; left:10px; top:22px;
+    bottom:-4px; width:2px; background:var(--line); }
+  .tl-item.done:not(:last-child)::before{ background:var(--green); }
+  .tl-dot{ width:22px; height:22px; border-radius:50%; flex:none; margin-top:0; z-index:1;
+    display:flex; align-items:center; justify-content:center;
+    border:2px solid var(--line); background:var(--card); color:var(--slate); }
+  .tl-dot svg.ic{ width:12px; height:12px; }
+  .tl-item.done .tl-dot{ background:var(--green); border-color:var(--green); color:var(--on-green); }
+  .tl-text{ font-size:14px; color:var(--slate); padding-top:2px; }
+  .tl-item.done .tl-text{ color:var(--ink); font-weight:600; }
+
+  /* ── MESSAGE BLOCK — concept .card with a wash-filled well. The two semantic
+     families are the concept's own --warn / --danger tokens, used as wash + ink
+     exactly the way green is used as green-wash + green-ink, so every mark keeps
+     its contrast (raw --warn on the card is 1.84:1 and could not carry it). ── */
+  .msg-block{ background:var(--card); border:0; border-radius:var(--r-card);
+    box-shadow:var(--sh-card); padding:22px 18px; gap:12px; }
+  .msg-ph{ width:52px; height:52px; border:0; border-radius:var(--r-media);
+    background:var(--media); color:var(--slate); font-size:0;
+    display:flex; align-items:center; justify-content:center; }
+  .msg-ph svg.ic{ width:26px; height:26px; }
+  .msg-ph.warn{ background:var(--warn-wash); color:var(--warn-ink); }
+  .msg-ph.danger{ background:var(--danger-wash); color:var(--danger-ink); }
+  .msg-title{ font-size:17px; font-weight:600; color:var(--ink); letter-spacing:-.01em; }
+  .msg-body{ font-size:13.5px; color:var(--slate); line-height:1.5; }
+  .msg-actions{ gap:10px; margin-top:6px; }
+
+  /* ── LOADING — concept surfaces for the skeleton and the live hint ────── */
+  .sk-line{ background:var(--btn2); border-radius:var(--r-pill); height:13px; }
+  .hint{ font-family:var(--mono); font-size:11.5px; color:var(--slate); }
+  .stack{ gap:12px; }
+</style>
 </head><body>
   <aside class="meta">
     <nav class="state-switch" aria-label="States of this screen">
@@ -17,12 +185,12 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Live map</b> ▸ operator position</p><p><b>ETA</b> ▸ time + status</p><p><b>Operator</b> ▸ who is coming · contact</p><p><b>Progress</b> ▸ job milestones</p></div>
   </aside>
   <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <div class="statusbar"><span>9:41</span><span class="sysph"><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
     <header class="topbar"><span class="title" style="padding-left:16px;">On the way</span><span class="spacer"></span></header>
     <main>
       <p class="zlabel">Live map <span class="act">▸ operator position (RJ-C2 · C-05)</span></p>
       <section aria-label="Live map">
-        <div class="map-ph">LIVE MAP · operator position</div>
+        <div class="map-ph" role="img" aria-label="Live map · operator position"></div>
       </section>
       <p class="zlabel">ETA <span class="act">▸ when they arrive (RJ-C2)</span></p>
       <div class="kv" aria-label="ETA">
@@ -33,11 +201,11 @@
       <section aria-label="Operator">
         <div class="stack">
           <article class="op-card">
-            <span class="op-avatar">AM</span>
+            <span class="op-avatar"><img src="../assets/people/operator.png" alt="" loading="lazy" decoding="async"></span>
             <span class="op-info">
               <span class="op-name">Andriy M.</span>
               <span class="op-rating">4.9 ★ · 214 jobs</span>
-              <span class="badges"><span class="badge">Verified by DRON</span><span class="badge">Insured</span></span>
+              <span class="badges"><span class="badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON</span><span class="badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured</span></span>
             </span>
           </article>
         </div>
@@ -45,9 +213,9 @@
       <p class="zlabel">Progress <span class="act">▸ job milestones (RJ-C2)</span></p>
       <section aria-label="Progress">
         <ul class="timeline">
-          <li class="tl-item done"><span class="tl-dot"></span><span class="tl-text">Accepted</span></li>
-          <li class="tl-item done"><span class="tl-dot"></span><span class="tl-text">Parcel picked up</span></li>
-          <li class="tl-item done"><span class="tl-dot"></span><span class="tl-text">En route</span></li>
+          <li class="tl-item done"><span class="tl-dot"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="tl-text">Accepted</span></li>
+          <li class="tl-item done"><span class="tl-dot"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="tl-text">Parcel picked up</span></li>
+          <li class="tl-item done"><span class="tl-dot"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="tl-text">En route</span></li>
           <li class="tl-item"><span class="tl-dot"></span><span class="tl-text">Arriving</span></li>
         </ul>
       </section>
