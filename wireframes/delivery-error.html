@@ -111,15 +111,20 @@
   .lead{ font-size:15px; color:var(--slate); line-height:1.55; }
 
   /* ── DELIVERY PHOTO ───────────────────────────────────────────────────────
-     The proof itself (RJ-C4), so it gets concept's media well verbatim:
-     --media ground, --r-media radius, the render contained and never upscaled
-     (concept §6, rule "never upscale a cutout" — 726px native into a 180px
-     well). concept.md §6.2 assigns people/client-receiving.png to exactly this
-     screen: "Delivered / rate-the-job screens — the outcome of MJ-1". The
-     former "DELIVERY PHOTO" label survives as the accessible name.      ── */
+     The proof itself (RJ-C4): the parcel where it was actually left, on the
+     client's steps. scenes/delivered-at-door.jpg (concept.md §6.2b), the
+     designer's pick from Figma node 47:4 — it replaces client-receiving.png,
+     which showed the moment of handover rather than the evidence of it, and a
+     delivery photo has to be the thing the operator photographed.
+     Full-bleed photograph, so the well fills rather than insets it: no padding,
+     object-fit:cover, edge to edge. That is the concept's own split — a
+     transparent cutout sits *in* a well and is contained (§6.3 "the drone sits
+     in a surface"), a photograph *is* the surface, the way the live map is
+     center/cover. 1100px native into a ~317px box, so it is a downscale.
+     The former "DELIVERY PHOTO" label survives as the accessible name.   ── */
   .media-ph{ border:0; border-radius:var(--r-media); background:var(--media);
-    overflow:hidden; padding:12px; color:transparent; font-size:0; }
-  .media-ph img{ width:100%; height:100%; object-fit:contain; display:block; }
+    overflow:hidden; padding:0; color:transparent; font-size:0; }
+  .media-ph img{ width:100%; height:100%; object-fit:cover; display:block; }
 
   /* ── DETAILS — concept .card surface, hairline rows (= tracking's ETA rows) */
   .kv{ background:var(--card); border:0; border-radius:var(--r-card);
