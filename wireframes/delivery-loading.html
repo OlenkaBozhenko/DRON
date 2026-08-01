@@ -5,7 +5,149 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DRON wireframe · Delivery confirmation · loading</title>
 <!-- SCREEN: "Delivery confirmation" — STATE: loading (result not uploaded yet — waiting on the operator's upload). Grounded in flows.md RJ-C4: "Loading: result not uploaded yet". EXIT: transient — resolves to success when proof arrives. -->
+
+<!--
+  VISUAL LAYER (2026-08-01): Studio design language transferred from concept/concept.html
+  and the painted wireframes/order-history.html + wireframes/tracking.html. Structure and
+  copy unchanged; the "WAIT" placeholder became concept §09's "Time" glyph on the neutral
+  well — nothing has arrived yet, so nothing on this screen is green — and the photo
+  skeleton took the --btn2 fill and the 1.4s pulse from the order-history skeleton, with
+  the same reduced-motion fallback. The <style> block is byte-identical across all three
+  delivery states. See concept.md rev 22.
+-->
 <link rel="stylesheet" href="_wireframe.css">
+<style>
+  /* ── DRON · Studio (concept/concept.html) applied to the phone frame only;
+     the wireframe annotation sidebar keeps its own chrome. This block is
+     identical on all three delivery pages, so every repeat of a component
+     carries the same values. Everything here is transferred from
+     concept/concept.html and the already-painted wireframes/order-history.html
+     + wireframes/tracking.html — no new decisions, only the same language on
+     this screen.
+     Text/bg pairs, contrast checked (WCAG AA). This screen introduces no new
+     pair — each one is already carried by concept §07 or a painted page:
+       #1A1A1A on #F7F5F2 → 15.99:1 · #5A5751 on #F7F5F2 →  6.62:1
+       #1A1A1A on #ECE9E4 → 14.37:1 · #5A5751 on #ECE9E4 →  5.95:1
+       #1A1A1A on #D6D2C9 → 11.54:1 · #5A5751 on #E4E1DA →  5.51:1
+       #1A1A1A on #9BCF4A →  9.46:1 · #3F5B18 on #E7F0D2 →  6.54:1
+       #9A3115 on #F2D8CF →  5.49:1 · #9A3115 on #ECE9E4 →  6.14:1
+     (concept §07 records the green button pair as 8.8:1; recomputed here at
+     9.46:1 — the same pair, and AA either way.)
+     Focus ring uses green-ink, not green: #3F5B18 on page 7.09:1 / on card
+     6.37:1 (raw #9BCF4A fails WCAG 1.4.11 non-text 3:1 at 1.69:1 / 1.52:1).
+     Skeleton and well fills (#D6D2C9 on #F7F5F2, #E4E1DA on #F7F5F2) are
+     non-text surfaces and carry no meaning on their own.               ── */
+  body{ background:#F7F5F2; }
+  .wf-frame{
+    --page:#F7F5F2; --card:#ECE9E4; --media:#E4E1DA; --btn2:#D6D2C9;
+    --ink:#1A1A1A; --slate:#5A5751; --line:#D9D5CE;
+    --green:#9BCF4A; --on-green:#1A1A1A; --green-ink:#3F5B18; --green-wash:#E7F0D2;
+    --warn:#E4A11B; --warn-ink:#7A5200; --warn-wash:#F6E7C4;
+    --danger:#C4462A; --danger-ink:#9A3115; --danger-wash:#F2D8CF;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --r-btn:12px; --r-card:16px; --r-media:13px; --r-panel:22px; --r-pill:999px; --r-input:10px;
+    --sh-sm:0 1px 2px rgba(20,18,15,.05);
+    --sh-card:0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30);
+    --sh-raised:0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34);
+    /* wireframe tokens remapped to the Studio palette */
+    --wf-surface:var(--page); --wf-bg:var(--page); --wf-recessed:var(--media);
+    --wf-fill:var(--btn2); --wf-skeleton:var(--btn2); --wf-muted:var(--slate);
+    --wf-text-2:var(--slate); --wf-text:var(--ink); --wf-ink:var(--ink); --wf-ink-max:#000000;
+    --wf-border:var(--line); --wf-border-2:var(--line);
+    background:var(--page); border:1px solid var(--line); border-radius:var(--r-panel);
+  }
+  .wf-frame svg.ic{ display:block; }
+
+  /* system bars melt into the warm ground */
+  .statusbar{ background:var(--page); color:var(--ink); }
+  .statusbar .sysph{ gap:5px; align-items:center; }
+  header.topbar{ background:var(--page); border-bottom:1px solid var(--line); }
+  .topbar .title{ color:var(--ink); letter-spacing:-.01em; }
+  footer.tabbar{ background:var(--page); border-top:1px solid var(--line); }
+  footer .tabs{ height:60px; padding:6px 8px 4px; gap:4px; }
+  footer .tab{ gap:3px; font-weight:600; color:var(--slate); border-radius:16px; }
+  footer .tab[aria-current="page"]{ background:var(--green-wash); color:var(--green-ink); }
+  footer .tab svg.ic{ width:22px; height:22px; }
+  footer .tab:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
+  footer .home-indicator{ height:30px; }
+  footer .home-indicator span{ background:var(--ink); }
+
+  /* zone annotation → concept block-label */
+  .zlabel{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.09em;
+    color:var(--slate); border-left:0; border-bottom:1px solid var(--line);
+    padding:0 0 9px; position:relative; margin-bottom:-4px; }
+  .zlabel::after{ content:""; position:absolute; left:0; bottom:-1px; width:30px; height:2px; background:var(--green); }
+  .zlabel .act{ color:var(--slate); font-size:11px; letter-spacing:.02em; }
+
+  /* buttons — concept .btn.primary / .btn.secondary */
+  .btn{ border-radius:var(--r-btn); transition:filter .15s, background .15s, transform .12s; }
+  .btn:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
+  .btn-primary{ background:var(--green); color:var(--on-green); border-color:transparent;
+    box-shadow:var(--sh-sm); }
+  .btn-primary:hover{ background:var(--green); filter:brightness(1.03); }
+  .btn-primary:active{ background:var(--green); transform:translateY(1px) scale(.99); }
+  .btn-secondary{ background:var(--btn2); color:var(--ink); border-color:transparent; }
+  .btn-secondary:hover{ background:var(--media); }
+  .btn-secondary:active{ background:var(--media); transform:translateY(1px) scale(.99); }
+  @media (prefers-reduced-motion:reduce){ .btn{ transition:none; } }
+
+  /* ── MILESTONE MARK ───────────────────────────────────────────────────────
+     concept §09 draws the "Success" state icon in --green-ink, so the mark is
+     that circle-check on --green-wash — the same wash + ink pairing the error
+     and warning marks already use on tracking-error, and the reason the screen
+     still holds only one solid-green element (the CTA), which is concept A-1's
+     "green, sparingly". The waiting variant is the neutral well with concept's
+     "Time" glyph: nothing has arrived yet, so nothing is green.          ── */
+  .success-mark{ width:64px; height:64px; border:0; border-radius:50%;
+    background:var(--green-wash); color:var(--green-ink); font-size:0; }
+  .success-mark svg.ic{ width:32px; height:32px; }
+  .success-mark.waiting{ background:var(--media); color:var(--slate); }
+  .big-title{ font-size:22px; font-weight:700; letter-spacing:-.02em; color:var(--ink); }
+  .lead{ font-size:15px; color:var(--slate); line-height:1.55; }
+
+  /* ── DELIVERY PHOTO ───────────────────────────────────────────────────────
+     The proof itself (RJ-C4), so it gets concept's media well verbatim:
+     --media ground, --r-media radius, the render contained and never upscaled
+     (concept §6, rule "never upscale a cutout" — 726px native into a 180px
+     well). concept.md §6.2 assigns people/client-receiving.png to exactly this
+     screen: "Delivered / rate-the-job screens — the outcome of MJ-1". The
+     former "DELIVERY PHOTO" label survives as the accessible name.      ── */
+  .media-ph{ border:0; border-radius:var(--r-media); background:var(--media);
+    overflow:hidden; padding:12px; color:transparent; font-size:0; }
+  .media-ph img{ width:100%; height:100%; object-fit:contain; display:block; }
+
+  /* ── DETAILS — concept .card surface, hairline rows (= tracking's ETA rows) */
+  .kv{ background:var(--card); border:0; border-radius:var(--r-card);
+    box-shadow:var(--sh-card); padding:2px 16px; }
+  .kv-row{ border-bottom:1px solid var(--line); padding:13px 0; }
+  .kv-key{ color:var(--slate); font-size:13px; }
+  .kv-val{ color:var(--ink); font-weight:600; font-size:15px; font-variant-numeric:tabular-nums; }
+
+  /* ── MESSAGE BLOCK — concept .card with a wash-filled well. The semantic
+     family is the concept's own --danger token, used as wash + ink exactly the
+     way green is used as green-wash + green-ink, so the mark keeps its
+     contrast (raw --danger on the card would not).                      ── */
+  .msg-block{ background:var(--card); border:0; border-radius:var(--r-card);
+    box-shadow:var(--sh-card); padding:22px 18px; gap:12px; }
+  .msg-ph{ width:52px; height:52px; border:0; border-radius:var(--r-media);
+    background:var(--media); color:var(--slate); font-size:0;
+    display:flex; align-items:center; justify-content:center; }
+  .msg-ph svg.ic{ width:26px; height:26px; }
+  .msg-ph.warn{ background:var(--warn-wash); color:var(--warn-ink); }
+  .msg-ph.danger{ background:var(--danger-wash); color:var(--danger-ink); }
+  .msg-title{ font-size:17px; font-weight:600; color:var(--ink); letter-spacing:-.01em; }
+  .msg-body{ font-size:13.5px; color:var(--slate); line-height:1.5; }
+  .msg-actions{ gap:10px; margin-top:6px; }
+
+  /* ── LOADING — the photo well before the photo: the same --btn2 skeleton
+     fill and 1.4s pulse the order-history skeleton carries, with the same
+     reduced-motion fallback. It is the only motion on the screen.       ── */
+  .sk-block{ background:var(--btn2); border-radius:var(--r-media);
+    animation:skPulse 1.4s ease-in-out infinite; }
+  @keyframes skPulse{ 0%,100%{ opacity:1; } 50%{ opacity:.5; } }
+  @media (prefers-reduced-motion:reduce){ .sk-block{ animation:none; } }
+  .hint{ font-family:var(--mono); font-size:11.5px; color:var(--slate); }
+</style>
 </head>
 <body>
   <aside class="meta">
@@ -21,7 +163,7 @@
   </aside>
 
   <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <div class="statusbar"><span>9:41</span><span class="sysph"><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
     <header class="topbar"><span class="title" style="padding-left:16px;">Delivered</span><span class="spacer"></span></header>
     <main>
       <section class="center" role="status" aria-label="Waiting for the delivery photo" style="padding-top:8px;">
@@ -36,10 +178,10 @@
     </main>
     <footer class="tabbar">
       <nav class="tabs" aria-label="Primary">
-        <a class="tab" href="listings.html"><span class="sq sq-24" aria-hidden="true"></span>Order</a>
-        <a class="tab" href="order-history.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Activity</a>
-        <a class="tab" href="support.html"><span class="sq sq-24" aria-hidden="true"></span>Help</a>
-        <a class="tab" href="account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+        <a class="tab" href="listings.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+        <a class="tab" href="order-history.html" aria-current="page"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+        <a class="tab" href="support.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+        <a class="tab" href="account.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
       </nav>
       <div class="home-indicator"><span></span></div>
     </footer>
