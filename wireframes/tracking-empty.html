@@ -109,9 +109,11 @@
     font-family:var(--mono); font-size:11px; letter-spacing:.09em; line-height:1.5;
     display:flex; align-items:center; justify-content:center; }
 
-  /* ── ETA rows — concept .stat3 surface, hairline rows ─────────────────── */
+  /* ── ETA rows — concept .stat3 surface, hairline rows. Flat: no --sh-card,
+     the same value as delivery's details card — one component, one value.
+     Designer call 2026-08-01 (concept.md rev 28).                       ── */
   .kv{ background:var(--card); border:0; border-radius:var(--r-card);
-    box-shadow:var(--sh-card); padding:2px 16px; }
+    padding:2px 16px; }
   .kv-row{ border-bottom:1px solid var(--line); padding:13px 0; }
   .kv-key{ color:var(--slate); font-size:13px; }
   .kv-val{ color:var(--ink); font-weight:600; font-size:15px; font-variant-numeric:tabular-nums; }

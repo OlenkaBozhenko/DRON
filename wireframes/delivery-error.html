@@ -130,9 +130,13 @@
     overflow:hidden; padding:0; color:transparent; font-size:0; }
   .media-ph img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-  /* ── DETAILS — concept .card surface, hairline rows (= tracking's ETA rows) */
+  /* ── DETAILS — concept .card surface, hairline rows (= tracking's ETA rows).
+     Flat: no --sh-card. The card is #ECE9E4 on the #F7F5F2 page and every row
+     carries its own --line hairline, so the edge reads without a shadow.
+     Designer call 2026-08-01 (concept.md rev 28) — carried to tracking's ETA
+     card in the same pass, because it is the same component.            ── */
   .kv{ background:var(--card); border:0; border-radius:var(--r-card);
-    box-shadow:var(--sh-card); padding:2px 16px; }
+    padding:2px 16px; }
   .kv-row{ border-bottom:1px solid var(--line); padding:13px 0; }
   .kv-key{ color:var(--slate); font-size:13px; }
   .kv-val{ color:var(--ink); font-weight:600; font-size:15px; font-variant-numeric:tabular-nums; }
