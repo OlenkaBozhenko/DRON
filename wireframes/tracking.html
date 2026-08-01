@@ -129,7 +129,13 @@
   /* 44px, not the wireframe's 56 — concept .well, the size the operator block
      uses there. It is also what buys the trust chips their single row: the card
      gives .op-info 294 - avatar - gap, and the pair needs 143 + 6 + 85 = 234.
-     At 56 the column was 224 and "Insured" dropped to a second line. */
+     At 56 the column was 224 and "Insured" dropped to a second line.
+     The avatar sits to the RIGHT of the text (designer call, concept.md rev 32).
+     It is moved in the markup rather than with order / row-reverse, so DOM order
+     and visual order still agree — and the order that results is the better one
+     to hear: the name and the verification are read before the decorative photo,
+     which carries alt="". rev 23 still holds, it is top-aligned to the content,
+     not centred. */
   .op-avatar{ width:44px; height:44px; border:0; border-radius:12px;
     background:var(--media); overflow:hidden; display:flex; align-items:flex-end;
     justify-content:center; color:transparent; font-size:0; }
@@ -225,12 +231,12 @@
       <section aria-label="Operator">
         <div class="stack">
           <article class="op-card">
-            <span class="op-avatar"><img src="../assets/people/operator.png" alt="" loading="lazy" decoding="async"></span>
             <span class="op-info">
               <span class="op-name">Andriy M.</span>
               <span class="op-rating">4.9 ★ · 214 jobs</span>
               <span class="badges"><span class="badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON</span><span class="badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured</span></span>
             </span>
+            <span class="op-avatar"><img src="../assets/people/operator.png" alt="" loading="lazy" decoding="async"></span>
           </article>
         </div>
       </section>
