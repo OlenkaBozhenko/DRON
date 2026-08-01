@@ -94,9 +94,7 @@ section.blk{padding:clamp(30px,4vw,52px) 0; border-bottom:1px solid var(--line);
 .tab.on svg.ic{color:var(--ink)}
 
 /* ---------- cards ---------- */
-.cardgrid{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); align-items:start; margin-top:16px;}
 .card{background:var(--card); border-radius:var(--r-card); padding:16px; display:flex; flex-direction:column; gap:14px;} /* flat — §5 Elevation */
-.card-cap{font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--slate);}
 .card-top{display:flex; align-items:flex-start; gap:12px;}
 .well{width:44px; height:44px; border-radius:12px; background:var(--media); display:flex; align-items:center; justify-content:center; color:var(--ink); flex:none;}
 .well svg.ic{width:23px; height:23px}
@@ -263,6 +261,107 @@ tr:last-child td{border-bottom:0}
 footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:12px; line-height:1.7}
 
 @media(prefers-reduced-motion:reduce){.btn{transition:none}}
+
+/* ══ 01 · THE REAL CARDS ════════════════════════════════════════════════════
+   Not mock-ups of the components: the markup in §01 is copied out of
+   wireframes/order-history.html, wireframes/tracking.html and
+   wireframes/delivery.html unchanged — only the hrefs are re-pointed at
+   ../wireframes/. The rules below are the same values those files carry,
+   scoped under .prodcards so this page's own demo classes cannot reach into
+   the cards and the cards cannot reach out. Columns are 341px, the width a
+   card gets inside the phone frame (375 − 2×1 border − 2×16 main padding), so
+   each one stands here at production size — which is the point of this page.
+   Anything already defined above and identical in both places (.nd, .sbi,
+   .pill, .btn) is deliberately not repeated. ── */
+.prodcards{display:grid; grid-template-columns:repeat(auto-fit,341px); justify-content:start; align-items:start; gap:26px 20px; margin-top:16px}
+/* the column is a fixed 341 so the cards are never stretched or squeezed out of
+   production size; below a phone width that would overflow the page, so there
+   the grid gives up the fixed column rather than the horizontal scroll. */
+@media (max-width:420px){.prodcards{grid-template-columns:minmax(0,1fr)}}
+.pc{display:flex; flex-direction:column; gap:9px; min-width:0}
+/* the phone frame runs 15px/1.4 (wireframes/_wireframe.css body); this page runs
+   16px/1.55, and inherited leading is what decides a card height. Restated here
+   so every ported card resolves to the height it has in the product. */
+.prodcards .card,.prodcards .op-card,.prodcards .kv{font-size:15px; line-height:1.4}
+.pclab{font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--slate); line-height:1.45}
+.pclab b{color:var(--ink); font-weight:600}
+
+/* base classes the wireframe markup relies on — wireframes/_wireframe.css */
+.prodcards .card{position:relative; display:flex; flex-direction:column}
+.prodcards .card-link{position:absolute; inset:0; z-index:1; border-radius:var(--r-card)}
+.prodcards .card .actions{display:flex; gap:8px}
+.prodcards .op-name,.prodcards .op-rating{display:block}
+.prodcards .kv-row{display:flex; justify-content:space-between; gap:12px; font-size:15px; border-bottom:1px solid var(--line); padding:13px 0}
+.prodcards .kv-row:last-child{border-bottom:0}
+.prodcards .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:0 16px; border:1px solid transparent; background:transparent; color:var(--ink); font-size:15px; font-weight:600; text-decoration:none; cursor:pointer}
+
+/* ── order-history.html · the list card ── */
+.prodcards .oh-card{overflow:hidden}
+.prodcards article.card.oh-live,
+.prodcards article.card.oh-done{padding:20px; gap:20px}
+.prodcards .ohl-top{display:flex; align-items:center; gap:16px}
+.prodcards .ohl-ic{position:relative; width:96px; height:72px; flex:none; border-radius:var(--r-media); color:var(--ink); display:flex; align-items:center; justify-content:center; padding:4px}
+.prodcards .ohl-ic img{width:100%; height:100%; object-fit:contain; display:block}
+.prodcards .oh-ind{position:absolute; top:6px; right:6px; z-index:1; width:20px; height:20px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--btn2); color:var(--ink); box-shadow:0 0 0 2px var(--card)}
+.prodcards .oh-ind svg.ic{width:12px; height:12px}
+.prodcards .oh-ind.live{background:var(--green)}
+.prodcards .oh-ind.live::after{content:""; position:absolute; inset:0; border-radius:50%; animation:oh-ping 1.8s cubic-bezier(.22,.61,.36,1) infinite}
+@keyframes oh-ping{
+  0%  {box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 90%,transparent)}
+  70% {box-shadow:0 0 0 8px color-mix(in srgb,var(--green) 0%,transparent)}
+  100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 0%,transparent)}
+}
+@media (prefers-reduced-motion:reduce){.prodcards .oh-ind.live::after{animation:none}}
+.prodcards .ohl-head{flex:1; min-width:0; display:flex; flex-direction:column; gap:4px}
+.prodcards .ohl-title{font-size:15px; font-weight:600; line-height:1.2; color:var(--ink)}
+.prodcards .ohl-date{min-width:0; font-size:12.5px; line-height:1.2; color:var(--slate); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.prodcards .ohl-rail{display:grid; grid-template-columns:repeat(4,1fr); position:relative}
+.prodcards .ohl-rail::before,
+.prodcards .ohl-rail::after{content:""; position:absolute; top:10px; height:2px; left:12.5%}
+.prodcards .ohl-rail::before{width:75%; background:var(--line)}
+.prodcards .ohl-rail::after{width:var(--fill,0); background:var(--green)}
+.prodcards .ohl-rail.at-2{--fill:25%}
+.prodcards .ohl-step{position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:9px}
+.prodcards .ohl-rail .nd{width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:2px solid var(--line); background:var(--card); color:var(--slate)}
+.prodcards .ohl-rail .nd svg.ic{width:12px; height:12px}
+.prodcards .ohl-rail .nd.done{background:var(--green); border-color:var(--green); color:var(--on-green)}
+.prodcards .ohl-rail .nd.now{border-color:var(--green); color:var(--ink); box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 20%,transparent)}
+.prodcards .ohl-step-lbl{font-size:10.5px; color:var(--slate); text-align:center}
+.prodcards .ohl-step-lbl.now{color:var(--ink); font-weight:600}
+.prodcards .ohl-route{display:flex; align-items:center; gap:12px; border-radius:12px; padding:16px; background:color-mix(in srgb,var(--page) 55%,var(--card))}
+.prodcards .ohl-stop{flex:1; min-width:0; display:flex; flex-direction:column; gap:2px}
+.prodcards .ohl-stop-to{align-items:flex-end; text-align:right}
+.prodcards .ohl-lbl{font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--slate)}
+.prodcards .ohl-place{font-size:14px; color:var(--ink); line-height:1.3}
+.prodcards .ohl-arrow{width:26px; height:26px; flex:none; border-radius:var(--r-pill); background:var(--media); color:var(--ink); display:flex; align-items:center; justify-content:center}
+.prodcards .ohl-arrow svg.ic{width:14px; height:14px}
+.prodcards .ohl-fee{display:flex; align-items:flex-end; justify-content:space-between; gap:12px}
+.prodcards .ohl-fee-lbl{display:block; font-size:11px; color:var(--slate)}
+.prodcards .ohl-price{display:block; font-size:20px; font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; line-height:1; margin-top:4px; color:var(--ink)}
+.prodcards .ohl-eta{flex:none; display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; padding:5px 10px; border-radius:var(--r-pill); background:var(--media); color:var(--slate); white-space:nowrap}
+.prodcards .ohl-eta svg.ic{width:14px; height:14px}
+.prodcards .ohl-acts{display:flex; align-items:center; gap:8px; flex:none}
+.prodcards .btn-primary{background:var(--green); color:var(--on-green); box-shadow:var(--sh-sm); border-radius:var(--r-btn)}
+.prodcards .btn-sm{height:44px; font-size:15px; border-radius:var(--r-btn); padding:0 16px}
+.prodcards .sbi{position:relative; z-index:2}
+
+/* ── tracking.html · the operator card ── */
+.prodcards .op-card{display:flex; align-items:stretch; gap:12px; background:var(--card); border:0; border-radius:var(--r-card); padding:16px; overflow:hidden}
+.prodcards .op-avatar{align-self:stretch; flex:none; margin:-16px 0 -16px -16px; width:117px; height:auto; border:0; border-radius:0; background:none; overflow:hidden; display:flex; align-items:flex-end; justify-content:center; color:transparent; font-size:0}
+.prodcards .op-avatar img{width:100%; height:100%; object-fit:cover; object-position:center; display:block}
+.prodcards .op-info{flex:1; min-width:0}
+.prodcards .op-name{font-size:15px; font-weight:600; color:var(--ink); line-height:1.2}
+.prodcards .op-rating{font-size:12.5px; color:var(--slate); margin-top:2px; font-variant-numeric:tabular-nums}
+.prodcards .badges{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px}
+.prodcards .badge{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; padding:5px 10px; border:0; border-radius:var(--r-pill); background:var(--green-wash); color:var(--ink)}
+.prodcards .badge svg.ic{width:13px; height:13px}
+.prodcards .badge + .badge{background:var(--media); color:var(--slate)}
+
+/* ── delivery.html · the details card ── */
+.prodcards .kv{background:var(--card); border:0; border-radius:var(--r-card); padding:2px 16px}
+.prodcards .kv-key{color:var(--slate); font-size:13px}
+.prodcards .kv-val{color:var(--ink); font-weight:600; font-size:15px; font-variant-numeric:tabular-nums; text-align:right}
+
 </style>
 </head>
 <body>
@@ -286,7 +385,7 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
   <!-- ============ 01 · LANGUAGE, LIVE ============ -->
   <section class="blk">
     <div class="sechead"><span class="secnum">01</span><h2>The language, live</h2></div>
-    <p class="secsub">First the direction in motion — the same surfaces it wore on <span class="mono">directions.html</span>, now built out: a tab-bar, real card variants, and the button set. The specification (palette, scales, tables) sits below.</p>
+    <p class="secsub">First the direction in motion: a tab-bar, the button set, and — instead of card mock-ups — the <b>actual cards from the prototype</b>, copied out of <span class="mono">wireframes/order-history.html</span>, <span class="mono">wireframes/tracking.html</span> and <span class="mono">wireframes/delivery.html</span> and shown at the width the phone frame gives them (341px). The specification (palette, scales, tables) sits below.</p>
 
     <div class="block-label">Tab bar · client navigation <span class="attr n">nav · 3 clusters + account</span></div>
     <div class="demo-frame">
@@ -298,71 +397,87 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
       </div>
     </div>
 
-    <div class="block-label">Card variants <span class="attr">A-2 · trust proof up front</span></div>
-    <div class="cardgrid">
-      <!-- order + live route -->
-      <article class="card">
-        <span class="card-cap">Order · live</span>
-        <div class="card-top">
-          <div class="well"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></div>
-          <div class="id"><div class="k">#DR-4821</div><div class="s">Aerial photo · Podil</div></div>
-          <span class="pill live"><span class="dot"></span>En route</span>
-        </div>
-        <div class="rt">
-          <div class="rail">
-            <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-            <span class="sg done"></span>
-            <span class="nd now"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span>
-            <span class="sg"></span><span class="nd"></span><span class="sg"></span><span class="nd"></span>
-          </div>
-          <div class="lbls"><span>Accepted</span><span class="now">En route</span><span>On&#8209;site</span><span>Done</span></div>
-        </div>
-        <div class="foot">
-          <div><div class="big">~14 min</div><div class="cap">to arrival</div></div>
-          <button class="sbi grey grow" type="button" aria-label="Call"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.8 4h2.8l1.3 3.4-1.7 1.3a10.5 10.5 0 0 0 5.1 5.1l1.3-1.7 3.4 1.3v2.8a1.6 1.6 0 0 1-1.7 1.6A14.6 14.6 0 0 1 5.2 5.7 1.6 1.6 0 0 1 6.8 4z"/></svg></button>
-          <button class="sbi grey" type="button" aria-label="Message"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6h15a1 1 0 0 1 1 1v7.5a1 1 0 0 1-1 1H10.5L6.5 19v-3.5H4.5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z"/></svg></button>
-        </div>
-      </article>
+    <div class="block-label">Cards, as built <span class="attr">A-2 · the real components, at production width</span></div>
+    <div class="prodcards">
+      <div class="pc">
+        <div class="pclab"><b>order-history.html</b> · live order · the only card with a rail, an ETA chip and the green CTA</div>
+        <article class="card stack-card oh-card oh-live">
+          <a class="card-link" href="../wireframes/tracking.html" aria-label="Package delivery, in progress — view details"></a>
+            <span class="ohl-top">
+              <span class="ohl-ic">
+                <img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async">
+                <span class="oh-ind live" role="img" aria-label="In progress"></span>
+              </span>
+              <span class="ohl-head">
+                <span class="ohl-title">Package delivery</span>
+                <span class="ohl-date">Today · 10:03</span>
+              </span>
+            </span>
+            <span class="ohl-rail at-2">
+              <span class="ohl-step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl">Accepted</span></span>
+              <span class="ohl-step" aria-current="step"><span class="nd now" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="ohl-step-lbl now">En route</span></span>
+              <span class="ohl-step"><span class="nd" aria-hidden="true"></span><span class="ohl-step-lbl">On&#8209;site</span></span>
+              <span class="ohl-step"><span class="nd" aria-hidden="true"></span><span class="ohl-step-lbl">Done</span></span>
+            </span>
+            <span class="ohl-route">
+              <span class="ohl-stop"><span class="ohl-lbl">From</span><span class="ohl-place">Podil</span></span>
+              <span class="ohl-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+              <span class="ohl-stop ohl-stop-to"><span class="ohl-lbl">To</span><span class="ohl-place">Osokorky</span></span>
+            </span>
+            <span class="ohl-fee">
+              <span><span class="ohl-fee-lbl">Delivery fee</span><span class="ohl-price">&#8372;180</span></span>
+              <span class="ohl-eta"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg>ETA ~6 min</span>
+            </span>
+            <span class="actions">
+              <a class="btn btn-primary btn-sm" href="../wireframes/tracking.html">View details</a>
+            </span>
+        </article>
+      </div>
 
-      <!-- operator (real drone render + badges) -->
-      <article class="card">
-        <span class="card-cap">Operator</span>
-        <div class="media">
-          <div class="badges">
-            <span class="pill live"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Certified</span>
-            <span class="pill model">Aero X5 · heavy lift</span>
-          </div>
-        </div>
-        <div class="card-top" style="align-items:center">
-          <div class="well"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.2v9.6l-8 4.2-8-4.2V7.2z"/><path d="M4 7.4l8 4.2 8-4.2"/><path d="M12 11.6V21"/></svg></div>
-          <div class="id"><div class="k">Dmytro K.</div><span class="rating"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z"/></svg>4.9<span class="n">(128)</span></span></div>
-          <div class="btnrow" style="gap:9px; margin-left:auto">
-            <button class="sbi grey" type="button" aria-label="Call"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.8 4h2.8l1.3 3.4-1.7 1.3a10.5 10.5 0 0 0 5.1 5.1l1.3-1.7 3.4 1.3v2.8a1.6 1.6 0 0 1-1.7 1.6A14.6 14.6 0 0 1 5.2 5.7 1.6 1.6 0 0 1 6.8 4z"/></svg></button>
-            <button class="sbi grey" type="button" aria-label="Navigate"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 3.5L3.5 10l7 2.5 2.5 7z"/><path d="M20.5 3.5L11 13"/></svg></button>
-          </div>
-        </div>
-      </article>
+      <div class="pc">
+        <div class="pclab"><b>order-history.html</b> · delivered order · no rail, two circular actions</div>
+        <article class="card stack-card oh-card oh-done">
+          <a class="card-link" href="../wireframes/order-setup.html" aria-label="Aerial photo and video, 14 Jun 2026, delivered — reopen"></a>
+            <span class="ohl-top">
+              <span class="ohl-ic">
+                <img src="../assets/drones/thumbs/drone-flight-camera.png" alt="" loading="lazy" decoding="async">
+                <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+              </span>
+              <span class="ohl-head">
+                <span class="ohl-title">Aerial photo &amp; video</span>
+                <span class="ohl-date">14 Jun · 11:30</span>
+              </span>
+            </span>
+            <span class="ohl-route">
+              <span class="ohl-stop"><span class="ohl-lbl">Location</span><span class="ohl-place">Trukhaniv Island</span></span>
+            </span>
+            <span class="ohl-fee">
+              <span><span class="ohl-fee-lbl">Total</span><span class="ohl-price">&#8372;800</span></span>
+              <span class="ohl-acts"><button class="sbi grey" type="button" aria-label="Delete order"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="sbi grey" href="../wireframes/delivery.html" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
+            </span>
+        </article>
+      </div>
 
-      <!-- parcel -->
-      <article class="card">
-        <span class="card-cap">Parcel</span>
-        <div class="card-top">
-          <div class="well"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.2v9.6l-8 4.2-8-4.2V7.2z"/><path d="M4 7.4l8 4.2 8-4.2"/><path d="M12 11.6V21"/></svg></div>
-          <div class="id"><div class="k">SHP&#8209;20901</div><div class="s">Documents · sealed</div></div>
-          <span class="pill mut"><span class="dot"></span>Transit</span>
-        </div>
-        <div class="stat3"><div class="st"><div class="v">2.4 kg</div><div class="l">Weight</div></div><div class="st"><div class="v">24&#215;24&#215;10</div><div class="l">cm</div></div><div class="st"><div class="v">&#8372;4,800</div><div class="l">Insured</div></div></div>
-      </article>
+      <div class="pc">
+        <div class="pclab"><b>tracking.html</b> · operator · the trust card (RJ-C1)</div>
+        <article class="op-card">
+          <span class="op-avatar"><img src="../assets/people/thumbs/operator.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="op-info">
+            <span class="op-name">Andriy M.</span>
+            <span class="op-rating">4.9 ★ · 214 jobs</span>
+            <span class="badges"><span class="badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON</span><span class="badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured</span></span>
+          </span>
+        </article>
+      </div>
 
-      <!-- status -->
-      <article class="card" style="justify-content:center">
-        <span class="card-cap">Status</span>
-        <div class="card-top">
-          <div class="well on"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg></div>
-          <div class="id"><div class="k">Delivered</div><div class="s">Nova Post · today 15:24</div></div>
-          <button class="sbi grey" type="button" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 5.5l6.5 6.5-6.5 6.5"/></svg></button>
+      <div class="pc">
+        <div class="pclab"><b>delivery.html</b> · delivery details · key over value, hairline rows</div>
+        <div class="kv" aria-label="Delivery details">
+          <div class="kv-row"><span class="kv-key">Delivered to</span><span class="kv-val">Osokorky, 14</span></div>
+          <div class="kv-row"><span class="kv-key">Time</span><span class="kv-val">10:07</span></div>
+          <div class="kv-row"><span class="kv-key">Operator</span><span class="kv-val">Andriy M.</span></div>
         </div>
-      </article>
+      </div>
     </div>
 
     <!-- map & route -->
