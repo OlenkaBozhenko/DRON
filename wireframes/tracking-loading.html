@@ -118,28 +118,37 @@
      load-bearing image in the product — the face on the operator card, where
      trust is actually claimed, beside the verified badge and the insurance
      line" (RJ-C1). The initials well becomes that render.               ── */
-  /* align-items:flex-start is concept .card-top's own default — the well sits
-     against the top of the identity block, not centred on it, so the card reads
-     from its first line down. (concept.html's own operator card overrides that
-     to center; on this screen the block is three lines tall, and centring left
-     the avatar floating against the rating.) */
-  /* flat, like .kv — no --sh-card on cards (concept.md rev 29) */
+  /* flat, like .kv — no --sh-card on cards (concept.md rev 29).
+     overflow:hidden so the card radius cuts the photo panel's two left corners. */
   .op-card{ background:var(--card); border:0; border-radius:var(--r-card);
-    padding:16px; gap:12px; align-items:flex-start; }
-  /* 44px, not the wireframe's 56 — concept .well, the size the operator block
-     uses there. It is also what buys the trust chips their single row: the card
-     gives .op-info 294 - avatar - gap, and the pair needs 143 + 6 + 85 = 234.
-     At 56 the column was 224 and "Insured" dropped to a second line.
-     The avatar sits to the RIGHT of the text (designer call, concept.md rev 32).
-     It is moved in the markup rather than with order / row-reverse, so DOM order
-     and visual order still agree — and the order that results is the better one
-     to hear: the name and the verification are read before the decorative photo,
-     which carries alt="". rev 23 still holds, it is top-aligned to the content,
-     not centred. */
-  .op-avatar{ width:44px; height:44px; border:0; border-radius:12px;
-    background:var(--media); overflow:hidden; display:flex; align-items:flex-end;
-    justify-content:center; color:transparent; font-size:0; }
-  .op-avatar img{ width:100%; height:100%; object-fit:cover; object-position:center 18%;
+    padding:16px; gap:12px; align-items:stretch; overflow:hidden; }
+  /* The photo is back on the LEFT and now runs the FULL HEIGHT of the card
+     (designer call 2026-08-01, concept.md rev 34) — which supersedes rev 32's
+     right-hand placement and rev 23's 44px well.
+     How the height is taken: align-self:stretch sizes the MARGIN box to the
+     card's content height, and the -16px top/bottom/left margins push the border
+     box back out over the card's own inset. The panel is therefore exactly as
+     tall as the card and flush with its left edge, without hard-coding a pixel
+     height that a copy change could invalidate.
+     The width is 117px because that is the asset's own 595 x 702 ratio at the
+     height this card resolves to (138.1px) -- 117 / 138.1 = 0.847 against the
+     file's 0.848, so the operator is shown whole, uncropped and undistorted.
+     It has to be a number, not aspect-ratio: the card's height comes from the
+     text column, the text column's width comes from the panel, and a panel
+     sized from the height would close that loop -- the browser resolves it by
+     falling back to the image's natural 595px and blowing the card to 702px
+     tall, which is exactly what it did when tried. object-fit:cover means a
+     later copy change crops the photo rather than letterboxing it.
+     No ground: §6.3 as amended by rev 32 — in the product a cutout sits straight
+     on the card. Same asset class as the drone on order-history, same rule.
+     The span is moved in the markup, not with order / row-reverse, so DOM order
+     and visual order still agree; the photo carries alt="" and so is skipped by
+     a screen reader either way. */
+  .op-avatar{ align-self:stretch; flex:none; margin:-16px 0 -16px -16px;
+    width:117px; height:auto; border:0; border-radius:0; background:none; overflow:hidden;
+    display:flex; align-items:flex-end; justify-content:center;
+    color:transparent; font-size:0; }
+  .op-avatar img{ width:100%; height:100%; object-fit:cover; object-position:center;
     display:block; }
   .op-name{ font-size:15px; font-weight:600; color:var(--ink); line-height:1.2; }
   .op-rating{ font-size:12.5px; color:var(--slate); margin-top:2px;
