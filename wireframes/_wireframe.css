@@ -340,15 +340,29 @@ footer.actionbar .row2{ display:flex; gap:8px; } footer.actionbar .row2 .btn{ fl
    cutouts, and cropping one costs the subject a hand or a rotor. Anchored to
    the bottom, so the figure meets the edge rather than floating above it. */
 .slider.is-bleed{ flex:1; padding:0; }
-.slider.is-bleed .slide{ padding:8px 20px 0; }   /* 16 slider + 4 slide, kept */
+.slider.is-bleed .slide{ position:relative; justify-content:center; padding:8px 20px; }
+
+/* The picture is the slide's background: it fills the frame edge to edge and
+   the copy sits centred on top of it. Bottom-anchored and contained, never
+   cropped — these are transparent cutouts and a crop costs a hand or a rotor. */
 .slider.is-bleed .slide-ph{
-  align-self:stretch; flex:0 1 auto;
-  height:72%; max-height:72%; min-height:160px;
-  width:auto;
-  margin:auto -20px 0;                           /* auto top pins it down */
+  position:absolute; inset:0; z-index:0;
+  width:auto; height:auto; min-height:0; margin:0;
   border:0; background:none; padding:0;
+  opacity:.40;
 }
-.slider.is-bleed .slide-ph img{ object-position:center bottom; }
+.slider.is-bleed .slide-ph img{ object-fit:contain; object-position:center bottom; }
+
+/* Why .40 and not full strength: the copy is centred, so it lands on whatever
+   the picture puts in the middle of the frame. Measured on the three real
+   assets at the built 373 x 573 slide, worst pixel inside the text box:
+     full   1.37:1  ·  .65  2.09:1  ·  .50  3.57:1  ·  .45  4.27:1  ·  .40  4.93:1
+   The operator is the binding case — a portrait cutout fills the frame, so at
+   full strength 41% of the text box sits under AA. .40 is the first step where
+   all three clear 4.5:1 with the ink unchanged. */
+.slider.is-bleed .big-title,
+.slider.is-bleed .lead{ position:relative; z-index:1; }
+
 .slider.is-bleed + .pager{ margin-top:0; }
 
 .pager{ display:flex; gap:8px; justify-content:center; margin-top:12px; }
