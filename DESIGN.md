@@ -68,6 +68,7 @@ typography:
     fontWeight: 400
     lineHeight: "14.7px"
 rounded:
+  detail: "4px"
   input: "10px"
   btn: "12px"
   media: "13px"
@@ -462,6 +463,7 @@ not a control or state indicator (1.4.11) — so no contrast minimum applies to 
 
 | Token | Value | Applied to |
 |---|---|---|
+| `detail` | 4px | internal details only — skeleton bars. Not a token; the 2/4/8 floor below the ramp |
 | `--r-input` | 10px | declared, applied to nothing on these ten pages |
 | `--r-btn` | 12px | buttons; the From ▸ To inset strip |
 | `--r-media` | 13px | media wells, state marks, the delivery photo |
