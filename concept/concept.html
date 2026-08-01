@@ -27,7 +27,9 @@
   --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
   /* radii */
   --r-btn:12px; --r-card:16px; --r-media:13px; --r-panel:22px; --r-pill:999px; --r-input:10px;
-  /* shadow */
+  /* shadow — only two of these are spent: --sh-sm under the green primary and
+     --sh-raised under media. --sh-card is recorded as part of the ramp and
+     applied to nothing: card surfaces are flat (§5 Elevation, change log 28-30). */
   --sh-sm:0 1px 2px rgba(20,18,15,.05);
   --sh-card:0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30);
   --sh-raised:0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34);
