@@ -99,6 +99,9 @@
   .sk-card{ background:var(--card); border:0; border-radius:var(--r-card); box-shadow:var(--sh-card);
     flex-direction:column; align-items:stretch; gap:20px; padding:20px; }
   .wf-frame main ul.list{ gap:28px; }
+  /* the bar base comes first: every .sk-* height below is a single-class rule
+     too, so a later .sk-line would out-cascade all of them on equal specificity */
+  .sk-line{ height:13px; border-radius:4px; background:var(--btn2); }
 
   /* header — well + name-over-date stack (= .ohl-top / .ohl-ic / .ohl-head) */
   .sk-top{ display:flex; align-items:center; gap:16px; }
