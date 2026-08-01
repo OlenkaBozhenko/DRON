@@ -106,12 +106,21 @@
      that circle-check on --green-wash — the same wash + ink pairing the error
      and warning marks already use on tracking-error, and the reason the screen
      still holds only one solid-green element (the CTA), which is concept A-1's
-     "green, sparingly". The waiting variant is the neutral well with concept's
-     "Time" glyph: nothing has arrived yet, so nothing is green.          ── */
+     "green, sparingly".
+     The waiting variant used to be the neutral --media well with --slate on it,
+     on the reasoning that nothing had arrived yet so nothing should be green.
+     Designer call 2026-08-01 (concept.md rev 40): it belongs in the green family
+     too, so it takes the same --green-wash well and the same --ink glyph -- the
+     one green tint this language has. A paler step of its own was drawn and
+     measured first and does not exist: --green-wash is already only 1.085:1
+     against the page, and every mix paler than it lands at 1.03-1.05 against the
+     page and 1.03-1.07 against the wash -- a disc nobody can see, next to a state
+     nobody can tell apart. So the two states are one well, and the difference is
+     carried where the language already carries it: the glyph (clock vs check) and
+     the screen title. WCAG 1.4.1 is satisfied by shape and text, not colour.  ── */
   .success-mark{ width:64px; height:64px; border:0; border-radius:50%;
     background:var(--green-wash); color:var(--ink); font-size:0; }
   .success-mark svg.ic{ width:32px; height:32px; }
-  .success-mark.waiting{ background:var(--media); color:var(--slate); }
   .big-title{ font-size:22px; font-weight:700; letter-spacing:-.02em; color:var(--ink); }
   .lead{ font-size:15px; color:var(--slate); line-height:1.55; }
 
