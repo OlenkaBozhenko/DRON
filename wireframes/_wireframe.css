@@ -326,6 +326,31 @@ footer.actionbar .row2{ display:flex; gap:8px; } footer.actionbar .row2 .btn{ fl
 .slide{ flex:0 0 100%; scroll-snap-align:center; display:flex; flex-direction:column; align-items:center; text-align:center; gap:16px; padding:8px 4px; }
 .slide-ph{ width:120px; height:120px; border:1px dashed var(--wf-border-2); border-radius:8px; background:var(--wf-recessed);
   display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.06em; color:var(--wf-muted); }
+/* ── FULL-BLEED SLIDE ─────────────────────────────────────────────────────
+   A slide can run its picture edge to edge along the bottom of the frame:
+   the subject stands on the bottom of the screen instead of floating in a
+   120px well, and the copy sits above it. Designer call 2026-08-02.
+
+   Opt-in with .is-bleed on the slider, not automatic on :has(img), because a
+   slider whose slides mix the two treatments reads as broken — and two of the
+   nine slides in onboarding-* are still text labels waiting on a picture.
+   Switch those on the day their images land.
+
+   The picture keeps object-fit:contain, never cover: these are transparent
+   cutouts, and cropping one costs the subject a hand or a rotor. Anchored to
+   the bottom, so the figure meets the edge rather than floating above it. */
+.slider.is-bleed{ flex:1; padding:0; }
+.slider.is-bleed .slide{ padding:8px 20px 0; }   /* 16 slider + 4 slide, kept */
+.slider.is-bleed .slide-ph{
+  align-self:stretch; flex:0 1 auto;
+  height:72%; max-height:72%; min-height:160px;
+  width:auto;
+  margin:auto -20px 0;                           /* auto top pins it down */
+  border:0; background:none; padding:0;
+}
+.slider.is-bleed .slide-ph img{ object-position:center bottom; }
+.slider.is-bleed + .pager{ margin-top:0; }
+
 .pager{ display:flex; gap:8px; justify-content:center; margin-top:12px; }
 .pager a{ width:8px; height:8px; border-radius:999px; background:var(--wf-fill); border:1px solid var(--wf-border-2); }
 .pager a.on{ background:var(--wf-ink); border-color:var(--wf-ink); }
