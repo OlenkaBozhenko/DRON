@@ -1173,7 +1173,7 @@
 <section id="forms">
   <h2>Forms <span class="count">9</span></h2>
   <p class="sec-note">
-    <b>The largest gap in the system.</b> Nothing a person types into, checks, picks or uploads has
+    <b>The largest gap in the system, and the one whose ground rule is now settled.</b> Nothing a person types into, checks, picks or uploads has
     been painted &#8212; not one field on any of the three painted screens. <code>--r-input 10px</code>
     is declared in the token block and drawn nowhere; this is what it was reserved for. Every row
     below needs a focus treatment, an error treatment and a disabled treatment, each with a
@@ -1205,7 +1205,7 @@
         </td>
         <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
         <td class="c-screens"><span class="scr">8</span><span class="scr-sub">0 painted</span></td>
-        <td class="c-where"><p class="where" style="max-width:34ch">Focus cannot be a green ring &#8212; the accent is not a line. The painted focus ring is <code>2.5px --ink</code> at 15.99:1, and the field should take that. Error text needs a pair the palette does not yet have: <code>--danger-ink</code> on the page is untested.</p></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Settled 2026-08-02: no border.</b> 1.4.11 governs a boundary that is <em>drawn</em>, not one that is absent &#8212; a field identified by its label, placeholder and row separator has nothing to measure. <b>The failure was the border already there:</b> the grayscale <code>1px --line</code> is <b>1.21:1</b> and does not survive painting.<br><br>HIG got there first &#8212; the native form row is label, value, separator, no box. So a field <b>lives in a row panel and is the row that accepts typing</b>.<br><br>Value <code>--ink</code> <b>14.37:1</b> &#183; label and placeholder <code>--slate</code> <b>5.95:1</b> &#183; focus <code>2.5px --ink</code> <b>14.37:1</b> &#183; error <code>--danger-ink</code> <b>6.14:1</b>, carried by words or a glyph, never a boundary alone.</p></td>
         <td class="c-where"><p class="where">account-edit, support, setup, verification&#8230;</p></td>
       </tr>
 
@@ -1217,7 +1217,7 @@
         </td>
         <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
         <td class="c-screens"><span class="scr">10</span><span class="scr-sub">0 painted</span></td>
-        <td class="c-where"><p class="where" style="max-width:34ch">Ground is the open question: <code>--card</code> would make a field indistinguishable from the panel it sits on at 1.11:1. A field probably needs the page ground inside a hairline, which is a pair nobody has measured.</p></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Settled 2026-08-02:</b> same call &#8212; no border, no ground of its own. The 44px row height stays. The select keeps its chevron, which rotates on open.</p></td>
         <td class="c-where"><p class="where">Ten screens across both personas</p></td>
       </tr>
 
@@ -1229,7 +1229,7 @@
         </td>
         <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
         <td class="c-screens"><span class="scr">2</span><span class="scr-sub">0 painted</span></td>
-        <td class="c-where"><p class="where" style="max-width:34ch">Blocked on the field &#8212; it is that component in a row with an icon action.</p></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Settled 2026-08-02: the one field that keeps a ground</b>, because it is not in a grouped list &#8212; a filled rounded rect on the page, <code>--media</code> at <code>--r-input</code> 10px, no border. That is the iOS search bar, and it gives <code>--r-input</code> its only home: declared since the token seed and drawn nowhere until now. Value <b>13.33:1</b>, placeholder <b>5.51:1</b>.</p></td>
         <td class="c-where"><p class="where">listings &#183; listings-filtered</p></td>
       </tr>
 
