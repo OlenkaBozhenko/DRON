@@ -919,7 +919,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-history-loading | Order history | Account | Button |  |
 | order-history | — | Activity | Heading |  |
 | order-history | Order history | Package delivery | Body |  |
-| order-history | Order history | In progress | Body |  |
+| order-history | Order history | In progress | Label | status indicator — accessible name, not visible text |
 | order-history | Order history | Today · 10:03 | Body | DATA |
 | order-history | Order history | From | Body |  |
 | order-history | Order history | Podil | Body |  |
@@ -928,7 +928,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-history | Order history | ETA ~6 min | Body | DATA |
 | order-history | Order history | View details | Button |  |
 | order-history | Order history | Package delivery | Body |  |
-| order-history | Order history | Delivered | Body |  |
+| order-history | Order history | Delivered | Label | status indicator — accessible name, not visible text |
 | order-history | Order history | 28 Jun · 14:20 | Body | DATA |
 | order-history | Order history | From | Body |  |
 | order-history | Order history | Podil | Body |  |
@@ -936,13 +936,13 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-history | Order history | Osokorky | Body |  |
 | order-history | Order history | Delete order | Button |  |
 | order-history | Order history | Aerial photo & video | Body |  |
-| order-history | Order history | Delivered | Body |  |
+| order-history | Order history | Delivered | Label | status indicator — accessible name, not visible text |
 | order-history | Order history | 14 Jun · 11:30 | Body | DATA |
 | order-history | Order history | Location | Body |  |
 | order-history | Order history | Trukhaniv Island | Body |  |
 | order-history | Order history | Delete order | Button |  |
 | order-history | Order history | Roof inspection | Body |  |
-| order-history | Order history | Delivered | Body |  |
+| order-history | Order history | Delivered | Label | status indicator — accessible name, not visible text |
 | order-history | Order history | 2 Jun · 09:15 | Body | DATA |
 | order-history | Order history | Location | Body |  |
 | order-history | Order history | Osokorky, 14 | Body |  |

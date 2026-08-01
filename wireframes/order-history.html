@@ -24,6 +24,12 @@
   intervals all between 12 and 16, with the gap between cards smaller than the gaps
   inside one. Replaced with a three-step scale — 4/8 within a group, 20 between groups
   and as the card inset, 28 between cards — plus a narrow tier under 390px.
+  INDICATOR (2026-08-01, designer feedback — /impeccable): the "In progress" and
+  "Delivered" pills become a status mark riding on the drone well — a green dot that
+  pings for a live order, a settled check for a finished one, each keeping its old
+  wording as its accessible name. Shape and behaviour carry the difference, never
+  colour alone. Off the title row, the mark costs the text nothing, which is what let
+  the well reach 96px — the size concept.md §6.3 asks for. See concept.md rev 19.
 -->
 <link rel="stylesheet" href="_wireframe.css">
 <style>
@@ -95,27 +101,40 @@
 
   .oh-card{ overflow:hidden; }
   /* ── STATUS INDICATOR ─────────────────────────────────────────────────────
-     Replaces the labelled pill ("In progress" / "Delivered"). Two marks that
-     differ by shape and by behaviour, never by colour alone (WCAG 1.4.1): a dot
-     that breathes while the order is still running, a settled check once it is
-     done. Each keeps its old wording as its accessible name, so a screen reader
-     loses nothing — the words moved off the glass, they were not deleted.
+     Replaces the labelled pill ("In progress" / "Delivered"), and rides on the
+     drone well itself — the mark sits on the unit doing the job, the way a
+     presence badge sits on an avatar. Two marks that differ by shape and by
+     behaviour, never by colour alone (WCAG 1.4.1): a dot that pings green while
+     the order is still running, a settled check once it is done. Each keeps its
+     old wording as its accessible name, so a screen reader loses nothing — the
+     words moved off the glass, they were not deleted.
      Contrast: the mark carries the 3:1, not the disc (WCAG 1.4.11). Raw --green
      is 1.52:1 on the card — nowhere near enough alone — so the live dot wears a
      --green-ink ring at 6.37:1 to draw its own boundary; the check is --ink on
-     --btn2 at 11.54:1. The discs are surface, not signal.
-     Dropping the pill is also what paid for the bigger drone well: the widest
-     badge was 101px, this is 20px.                                        ── */
-  .oh-ind{ width:20px; height:20px; flex:none; border-radius:50%;
+     --btn2 at 11.54:1. Both discs carry a 2px --media ring so they stay legible
+     wherever they land on the render. The discs are surface, not signal.
+     The ping is one green ring leaving the dot and fading, on a 1.8s cycle —
+     well under the 3-flashes-per-second ceiling (WCAG 2.3.1), and off entirely
+     under prefers-reduced-motion. It is the only motion on the screen.
+     Moving the mark off the title row is what paid for the 96px well: the pill
+     was 101px wide, then 20px in the header, and now it costs the text nothing
+     at all — so the drone finally renders at the ~96px the concept asks for. */
+  .oh-ind{ position:absolute; top:6px; right:6px; z-index:1;
+    width:20px; height:20px; border-radius:50%;
     display:inline-flex; align-items:center; justify-content:center;
-    background:var(--btn2); color:var(--ink); }
+    background:var(--btn2); color:var(--ink); box-shadow:0 0 0 2px var(--media); }
   .oh-ind svg.ic{ width:12px; height:12px; }
   .oh-ind.live{ background:var(--green-wash); }
   .oh-ind.live::before{ content:""; width:10px; height:10px; border-radius:50%;
-    background:var(--green); box-shadow:0 0 0 2px var(--green-ink);
-    animation:oh-breathe 2.4s ease-in-out infinite; }
-  @keyframes oh-breathe{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(.68); } }
-  @media (prefers-reduced-motion:reduce){ .oh-ind.live::before{ animation:none; } }
+    background:var(--green); box-shadow:0 0 0 2px var(--green-ink); }
+  .oh-ind.live::after{ content:""; position:absolute; inset:0; border-radius:50%;
+    animation:oh-ping 1.8s cubic-bezier(.22,.61,.36,1) infinite; }
+  @keyframes oh-ping{
+    0%  { box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 90%,transparent); }
+    70% { box-shadow:0 0 0 8px color-mix(in srgb,var(--green) 0%,transparent); }
+    100%{ box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 0%,transparent); }
+  }
+  @media (prefers-reduced-motion:reduce){ .oh-ind.live::after{ animation:none; } }
 
   /* ── ORDER CARD ───────────────────────────────────────────────────────────
      All four cards share one anatomy, built on concept.html's plain padded
@@ -145,17 +164,14 @@
   .wf-frame main .list{ gap:28px; }
   article.card.oh-live{ padding:20px; gap:20px; }                          /* concept .card */
 
-  /* header: drone well + a two-row stack — service name with the status
-     indicator opposite it, date underneath spanning both columns. The budget at
-     375px, after the card's 20px inset: 286px of content, less well(84) +
-     gap(16) = 186px for the text column, and the binding row is the title's:
-     the longest name(152) + gap(8) + indicator(20) = 180, 6 to spare. The date
-     now owns a full 186px line against a widest 85px, so it cannot break.
-     Two earlier cuts paid for this. The dates dropped their year (every order is
-     2026 and the newest reads "Today"), 119px → 85px; and the pill became a
-     20px indicator, which returned another ~80px — that is what moved the status
-     up beside the name, where it was wanted in the first place, and still let
-     the well grow from 76 to 84. */
+  /* header: drone well carrying the status mark, then a plain name-over-date
+     stack. The budget at 375px, after the card's 20px inset: 286px of content,
+     less well(96) + gap(16) = 174px of text column, against a longest name of
+     152 and a longest date of 85 — both clear, neither competing with the other.
+     Three cuts got here. The dates dropped their year (every order is 2026 and
+     the newest reads "Today"), 119px → 85px; the pill became a 20px indicator;
+     and then the indicator moved onto the well, where it costs the text nothing
+     — which is what let the drone reach the size the concept asks for. */
   .ohl-top{ display:flex; align-items:center; gap:16px; }                  /* concept .card-top */
   /* the well carries the drone doing this job — concept §6.1, the studio fleet,
      one unit per service: drone-08 (package delivery, the designer's pick, Figma
@@ -166,24 +182,22 @@
      transparent PNG contained, no border and no shadow (the render carries its
      own). The well is landscape because the subject is: each render is a 1024²
      canvas holding a ~1.37 subject, so a square well would spend a fifth of its
-     height on nothing. 84 × 64 draws the drone at 76px — the widest the title
-     row can pay for once its indicator is placed, and every one is a downscale
-     from 1024. */
-  .ohl-ic{ width:84px; height:64px; flex:none; border-radius:var(--r-media);
-    background:var(--media); color:var(--ink); display:flex; align-items:center;
-    justify-content:center; padding:4px; overflow:hidden; }                /* concept .dwell */
+     height on nothing. 96 × 72 draws the drone at 88px, which is the size the
+     concept asks for — below roughly 96px §6.3 says the rotors stop resolving,
+     and every earlier revision of this card sat under it because the status
+     badge was eating the header. It is not clipped: the live ping leaves the
+     box, and object-fit:contain already keeps the render inside. */
+  .ohl-ic{ position:relative; width:96px; height:72px; flex:none;
+    border-radius:var(--r-media); background:var(--media); color:var(--ink);
+    display:flex; align-items:center; justify-content:center; padding:4px; }  /* concept .dwell */
   .ohl-ic img{ width:100%; height:100%; object-fit:contain; display:block; }
-  /* two rows, two columns: the name and its indicator share row 1 so the mark
-     sits against the thing it qualifies; the date spans both columns on row 2. */
-  .ohl-head{ flex:1; min-width:0; display:grid; grid-template-columns:1fr auto;
-    align-items:center; column-gap:8px; row-gap:4px; }
-  .ohl-title{ grid-area:1 / 1; font-size:15px; font-weight:600; line-height:1.2;
-    color:var(--ink); }                                                    /* concept .id .k */
-  .oh-ind{ grid-area:1 / 2; }
-  /* the ellipsis is insurance only — the date owns a 186px row against a widest
+  /* the indicator left this stack for the well, so the name and the date each
+     own the full text column — nothing here competes for width any more */
+  .ohl-head{ flex:1; min-width:0; display:flex; flex-direction:column; gap:4px; }
+  .ohl-title{ font-size:15px; font-weight:600; line-height:1.2; color:var(--ink); }  /* concept .id .k */
+  /* the ellipsis is insurance only — the date owns a 174px row against a widest
      85px, so it should never actually reach for it */
-  .ohl-date{ grid-area:2 / 1 / auto / -1; min-width:0; font-size:12.5px;
-    line-height:1.2; color:var(--slate);
+  .ohl-date{ min-width:0; font-size:12.5px; line-height:1.2; color:var(--slate);
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }         /* concept .id .s */
 
   /* progress rail — the live order only; a delivered card has nothing left to
@@ -257,14 +271,14 @@
   .ohl-acts{ display:flex; align-items:center; gap:8px; flex:none; }
 
   /* Narrow tier. The phone frame is fluid (max-width:100%), so on a 360px device
-     it renders at 321px and the text column loses 54px. The scale steps down one
-     notch rather than letting content truncate: at a 56px well the title row
-     keeps 189px against the 180px it needs. */
+     it renders at 321px, where the header row is 240px. A 68px well leaves the
+     text column 160px against the 152px the longest name needs, so nothing wraps
+     and nothing truncates; the rest of the scale steps down a notch with it. */
   @media (max-width:389px){
     article.card.oh-live, article.card.oh-done{ padding:16px; gap:18px; }
     .wf-frame main .list{ gap:22px; }
     .ohl-top{ gap:12px; }
-    .ohl-ic{ width:56px; height:42px; }
+    .ohl-ic{ width:68px; height:52px; }
     .ohl-route{ padding:14px; }
   }
 </style>
@@ -279,7 +293,7 @@
     <h1>Order history</h1>
     <p class="sub">Client · Activity tab · state: <b>success (base)</b> · file: order-history.html</p>
     <div class="flow"><b>Job (jtbd):</b> RJ-C5 — get the same service again in one tap, so the second time is easier than the first.<br><b>flows.md:</b> Home → (fetch history) → <span class="cur">Order history</span> → Book again → Order setup.<br><b>Exit:</b> tap a past card (the whole card is the "Book again" target) → <b>Order setup</b>.</div>
-    <div class="legend"><p><b>Zones:</b></p><p><b>Card anatomy</b> ▸ header (service well + name over date/time, status chip opposite) · route dots (From ▸ To, or single Location) · price + actions</p><p><b>In progress</b> ▸ active order at the top, the only card carrying a progress rail → View details (tracking)</p><p><b>CTA</b> ▸ View details if live; a past card reopens setup on tap, and offers delete + open the delivery photo / report</p></div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Card anatomy</b> ▸ header (drone well carrying the status indicator, name over date/time) · route dots (From ▸ To, or single Location) · price + actions</p><p><b>In progress</b> ▸ active order at the top: a green dot pinging on its drone, the only card carrying a progress rail → View details (tracking). A past order shows a settled check instead — shape and behaviour, not colour alone.</p><p><b>CTA</b> ▸ View details if live; a past card reopens setup on tap, and offers delete + open the delivery photo / report</p></div>
   </aside>
 
   <div class="wf-frame">
@@ -293,10 +307,12 @@
             <article class="card stack-card oh-card oh-live">
               <a class="card-link" href="tracking.html" aria-label="Package delivery, in progress — view details"></a>
                 <span class="ohl-top">
-                  <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-08.png" alt="" loading="lazy" decoding="async"></span>
+                  <span class="ohl-ic">
+                    <img src="../assets/drones/drone-08.png" alt="" loading="lazy" decoding="async">
+                    <span class="oh-ind live" role="img" aria-label="In progress"></span>
+                  </span>
                   <span class="ohl-head">
                     <span class="ohl-title">Package delivery</span>
-                    <span class="oh-ind live" role="img" aria-label="In progress"></span>
                     <span class="ohl-date">Today · 10:03</span>
                   </span>
                 </span>
@@ -324,10 +340,12 @@
             <article class="card stack-card oh-card oh-done">
               <a class="card-link" href="order-setup.html" aria-label="Package delivery, 28 Jun 2026, delivered — reopen"></a>
                 <span class="ohl-top">
-                  <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-08.png" alt="" loading="lazy" decoding="async"></span>
+                  <span class="ohl-ic">
+                    <img src="../assets/drones/drone-08.png" alt="" loading="lazy" decoding="async">
+                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                  </span>
                   <span class="ohl-head">
                     <span class="ohl-title">Package delivery</span>
-                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
                     <span class="ohl-date">28 Jun · 14:20</span>
                   </span>
                 </span>
@@ -346,10 +364,12 @@
             <article class="card stack-card oh-card oh-done">
               <a class="card-link" href="order-setup.html" aria-label="Aerial photo and video, 14 Jun 2026, delivered — reopen"></a>
                 <span class="ohl-top">
-                  <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-02.png" alt="" loading="lazy" decoding="async"></span>
+                  <span class="ohl-ic">
+                    <img src="../assets/drones/drone-02.png" alt="" loading="lazy" decoding="async">
+                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                  </span>
                   <span class="ohl-head">
                     <span class="ohl-title">Aerial photo &amp; video</span>
-                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
                     <span class="ohl-date">14 Jun · 11:30</span>
                   </span>
                 </span>
@@ -366,10 +386,12 @@
             <article class="card stack-card oh-card oh-done">
               <a class="card-link" href="order-setup.html" aria-label="Roof inspection, 2 Jun 2026, delivered — reopen"></a>
                 <span class="ohl-top">
-                  <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-11.png" alt="" loading="lazy" decoding="async"></span>
+                  <span class="ohl-ic">
+                    <img src="../assets/drones/drone-11.png" alt="" loading="lazy" decoding="async">
+                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                  </span>
                   <span class="ohl-head">
                     <span class="ohl-title">Roof inspection</span>
-                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
                     <span class="ohl-date">2 Jun · 09:15</span>
                   </span>
                 </span>
