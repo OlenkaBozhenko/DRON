@@ -87,7 +87,20 @@
   article.card{ background:var(--card); border:0; border-radius:var(--r-card);
     box-shadow:var(--sh-card); transition:box-shadow .15s; }
   article.card:hover{ background:var(--card); border:0; box-shadow:var(--sh-raised); }
-  article.card:focus-within{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
+  /* Focus ring, keyboard only. :focus-within fires on a mouse click too, so
+     every tap on a card flashed a green outline around it — and the shared
+     _wireframe.css carries its own :focus-within ring, which would otherwise
+     keep doing the same in warm grey. Both are switched off here and the ring is
+     re-hung on :has(> .card-link:focus-visible): :focus-visible does not match a
+     pointer click, so the outline now appears only when the card is reached by
+     Tab, which is the case that needs it (WCAG 2.4.7). Scoping to the card's own
+     link rather than any descendant also stops the card double-ringing when one
+     of its circular actions takes focus — that button draws its own.
+     :has() is baseline in every browser this prototype targets; older ones lose
+     the card ring, not the inner controls'. */
+  article.card:focus-within{ outline:none; }
+  article.card:has(> .card-link:focus-visible){ outline:2.5px solid var(--green-ink);
+    outline-offset:2px; }
   .card-link{ border-radius:var(--r-card); }
 
   /* buttons — the green primary is the live order's single CTA */
@@ -108,11 +121,17 @@
      the order is still running, a settled check once it is done. Each keeps its
      old wording as its accessible name, so a screen reader loses nothing — the
      words moved off the glass, they were not deleted.
-     Contrast: the mark carries the 3:1, not the disc (WCAG 1.4.11). Raw --green
-     is 1.52:1 on the card — nowhere near enough alone — so the live dot wears a
-     --green-ink ring at 6.37:1 to draw its own boundary; the check is --ink on
-     --btn2 at 11.54:1. Both discs carry a 2px --media ring so they stay legible
-     wherever they land on the render. The discs are surface, not signal.
+     Contrast, and the trade in it. The live mark is the brand lime and nothing
+     else — the --green-ink ring that used to draw its boundary read as black and
+     was dropped at the designer's call (2026-08-01). Lime is 1.69:1 on the well,
+     so this mark does not clear WCAG 1.4.11 on its own; it is a solid 20px disc
+     rather than a 10px dot precisely so that size does the work the ring used to.
+     What keeps the screen conformant is that the live state is never carried by
+     this mark alone — the same card is the only one with a progress rail, an ETA
+     chip and the green CTA, and the indicator's accessible name says it outright.
+     The finished mark has no such problem: --ink on --btn2 is 11.54:1. Both discs
+     carry a 2px --media ring so they stay legible wherever they land on the
+     render, over the drone or over bare well.
      The ping is one green ring leaving the dot and fading, on a 1.8s cycle —
      well under the 3-flashes-per-second ceiling (WCAG 2.3.1), and off entirely
      under prefers-reduced-motion. It is the only motion on the screen.
@@ -124,9 +143,7 @@
     display:inline-flex; align-items:center; justify-content:center;
     background:var(--btn2); color:var(--ink); box-shadow:0 0 0 2px var(--media); }
   .oh-ind svg.ic{ width:12px; height:12px; }
-  .oh-ind.live{ background:var(--green-wash); }
-  .oh-ind.live::before{ content:""; width:10px; height:10px; border-radius:50%;
-    background:var(--green); box-shadow:0 0 0 2px var(--green-ink); }
+  .oh-ind.live{ background:var(--green); }
   .oh-ind.live::after{ content:""; position:absolute; inset:0; border-radius:50%;
     animation:oh-ping 1.8s cubic-bezier(.22,.61,.36,1) infinite; }
   @keyframes oh-ping{
