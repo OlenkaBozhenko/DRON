@@ -194,7 +194,15 @@ Two axes, both mandatory. Differences are shown in **grayscale only** (fill, bor
 | Focus | `2px --wf-border-2` outline offset `2px` (accessibility, keep) |
 | Disabled | `--wf-fill` background, `--wf-muted` text, no border |
 
-Buttons: height `≥ 44px`, radius `6`, horizontal padding `16`, label at `15px/600`.
+Buttons: **`min-height: 44px`** — never a fixed `height` — radius `6`, horizontal padding `16`, label at `15px/600`.
+
+> **Why `min-height`.** `main` is a scrolling flex column, so a `.btn` placed directly in it is a flex
+> item. With a fixed `height` it shrinks the moment the page overflows, and the 44px HIG target
+> collapses to the line box — measured at **22.6px** on `delivery.html` (2026-08-01) and **36.4px** on
+> `listings-loading.html`. `min-height` is a floor `flex-shrink` cannot cross, and it also lets a
+> wrapped label grow the button instead of overflowing it. `.btn-sm` has to restate its own
+> `min-height: 32px`, or the base 44 wins. Any page-level `<style>` that re-declares `.btn` must copy
+> the `min-height` form; seven pages carried a stale fixed-height copy that shadowed the shared rule.
 
 ---
 

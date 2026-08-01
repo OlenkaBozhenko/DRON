@@ -247,8 +247,14 @@ article.card:focus-within{ outline:2px solid var(--wf-border-2); outline-offset:
 .sk-block{ height:56px; border-radius:8px; background:var(--wf-skeleton); }
 .sk-w90{ width:90%; } .sk-w70{ width:70%; } .sk-w50{ width:50%; } .sk-w40{ width:40%; } .sk-w30{ width:30%; }
 
-/* buttons — variants + all interaction states (_conventions §11) */
-.btn{ height:44px; padding:0 16px; border-radius:6px; font-size:15px; font-weight:600;
+/* buttons — variants + all interaction states (_conventions §11)
+   min-height, not height. `main` is a scrolling flex column, so a button that is
+   its direct child is a flex item: with a fixed height it shrinks the moment the
+   page overflows, and the 44px HIG target collapsed to whatever the line box was
+   (measured 22.6px on delivery). min-height is a floor flex-shrink cannot cross,
+   and it also lets a wrapped label grow the button instead of overflowing it.
+   Six pages put a .btn directly in main and were all exposed. */
+.btn{ min-height:44px; padding:0 16px; border-radius:6px; font-size:15px; font-weight:600;
   border:1px solid transparent; background:transparent; color:var(--wf-text); cursor:pointer;
   display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; }
 .btn:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
@@ -262,7 +268,8 @@ article.card:focus-within{ outline:2px solid var(--wf-border-2); outline-offset:
 .btn-tertiary{ background:transparent; color:var(--wf-text-2); }
 .btn-tertiary:hover{ color:var(--wf-text); }
 .btn-block{ width:100%; }
-.btn-sm{ height:32px; padding:0 12px; font-size:13px; border-radius:6px; }
+/* the small variant has to restate the floor, or the base 44px min-height wins */
+.btn-sm{ min-height:32px; height:32px; padding:0 12px; font-size:13px; border-radius:6px; }
 
 /* footer — bottom tab bar */
 footer.tabbar{ flex:none; background:var(--wf-surface); border-top:1px solid var(--wf-border); }

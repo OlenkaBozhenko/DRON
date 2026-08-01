@@ -139,7 +139,7 @@
   .card .desc{ display:block; font-size:13px; color:var(--wf-text-2); margin:2px 0 0; }
 
   /* buttons (_conventions §11) */
-  .btn{ height:44px; padding:0 16px; border-radius:6px; font-size:15px; font-weight:600;
+  .btn{ min-height:44px; padding:0 16px; border-radius:6px; font-size:15px; font-weight:600;
     border:1px solid transparent; background:transparent; color:var(--wf-text); cursor:pointer;
     display:inline-flex; align-items:center; justify-content:center; text-decoration:none; }
   .btn:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
@@ -148,7 +148,7 @@
   .btn-secondary:hover{ background:var(--wf-recessed); }
   .btn-tertiary{ background:transparent; color:var(--wf-text-2); }
   .btn-tertiary:hover{ color:var(--wf-text); }
-  .btn-sm{ height:32px; padding:0 12px; font-size:13px; border-radius:6px; }
+  .btn-sm{ min-height:32px; height:32px; padding:0 12px; font-size:13px; border-radius:6px; }
 
   /* footer — bottom bar (§7.1 global nav) */
   footer.tabbar{ flex:none; background:var(--wf-surface); border-top:1px solid var(--wf-border); }
