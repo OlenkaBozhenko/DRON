@@ -267,7 +267,7 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
    wireframes/order-history.html, wireframes/tracking.html and
    wireframes/delivery.html unchanged — only the hrefs are re-pointed at
    ../wireframes/. The rules below are the same values those files carry,
-   scoped under .prodcards so this page's own demo classes cannot reach into
+   scoped under .prod so this page's own demo classes cannot reach into
    the cards and the cards cannot reach out. Columns are 341px, the width a
    card gets inside the phone frame (375 − 2×1 border − 2×16 main padding), so
    each one stands here at production size — which is the point of this page.
@@ -282,85 +282,85 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
 /* the phone frame runs 15px/1.4 (wireframes/_wireframe.css body); this page runs
    16px/1.55, and inherited leading is what decides a card height. Restated here
    so every ported card resolves to the height it has in the product. */
-.prodcards .card,.prodcards .op-card,.prodcards .kv{font-size:15px; line-height:1.4}
+.prod .card,.prod .op-card,.prod .kv{font-size:15px; line-height:1.4}
 .pclab{font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--slate); line-height:1.45}
 .pclab b{color:var(--ink); font-weight:600}
 
 /* base classes the wireframe markup relies on — wireframes/_wireframe.css */
-.prodcards .card{position:relative; display:flex; flex-direction:column}
-.prodcards .card-link{position:absolute; inset:0; z-index:1; border-radius:var(--r-card)}
-.prodcards .card .actions{display:flex; gap:8px}
-.prodcards .op-name,.prodcards .op-rating{display:block}
-.prodcards .kv-row{display:flex; justify-content:space-between; gap:12px; font-size:15px; border-bottom:1px solid var(--line); padding:13px 0}
-.prodcards .kv-row:last-child{border-bottom:0}
-.prodcards .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:0 16px; border:1px solid transparent; background:transparent; color:var(--ink); font-size:15px; font-weight:600; text-decoration:none; cursor:pointer}
+.prod .card{position:relative; display:flex; flex-direction:column}
+.prod .card-link{position:absolute; inset:0; z-index:1; border-radius:var(--r-card)}
+.prod .card .actions{display:flex; gap:8px}
+.prod .op-name,.prod .op-rating{display:block}
+.prod .kv-row{display:flex; justify-content:space-between; gap:12px; font-size:15px; border-bottom:1px solid var(--line); padding:13px 0}
+.prod .kv-row:last-child{border-bottom:0}
+.prod .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:0 16px; border:1px solid transparent; background:transparent; color:var(--ink); font-size:15px; font-weight:600; text-decoration:none; cursor:pointer}
 
 /* ── order-history.html · the list card ── */
-.prodcards .oh-card{overflow:hidden}
-.prodcards article.card.oh-live,
-.prodcards article.card.oh-done{padding:20px; gap:20px}
-.prodcards .ohl-top{display:flex; align-items:center; gap:16px}
-.prodcards .ohl-ic{position:relative; width:96px; height:72px; flex:none; border-radius:var(--r-media); color:var(--ink); display:flex; align-items:center; justify-content:center; padding:4px}
-.prodcards .ohl-ic img{width:100%; height:100%; object-fit:contain; display:block}
-.prodcards .oh-ind{position:absolute; top:6px; right:6px; z-index:1; width:20px; height:20px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--btn2); color:var(--ink); box-shadow:0 0 0 2px var(--card)}
-.prodcards .oh-ind svg.ic{width:12px; height:12px}
-.prodcards .oh-ind.live{background:var(--green)}
-.prodcards .oh-ind.live::after{content:""; position:absolute; inset:0; border-radius:50%; animation:oh-ping 1.8s cubic-bezier(.22,.61,.36,1) infinite}
+.prod .oh-card{overflow:hidden}
+.prod article.card.oh-live,
+.prod article.card.oh-done{padding:20px; gap:20px}
+.prod .ohl-top{display:flex; align-items:center; gap:16px}
+.prod .ohl-ic{position:relative; width:96px; height:72px; flex:none; border-radius:var(--r-media); color:var(--ink); display:flex; align-items:center; justify-content:center; padding:4px}
+.prod .ohl-ic img{width:100%; height:100%; object-fit:contain; display:block}
+.prod .oh-ind{position:absolute; top:6px; right:6px; z-index:1; width:20px; height:20px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--btn2); color:var(--ink); box-shadow:0 0 0 2px var(--card)}
+.prod .oh-ind svg.ic{width:12px; height:12px}
+.prod .oh-ind.live{background:var(--green)}
+.prod .oh-ind.live::after{content:""; position:absolute; inset:0; border-radius:50%; animation:oh-ping 1.8s cubic-bezier(.22,.61,.36,1) infinite}
 @keyframes oh-ping{
   0%  {box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 90%,transparent)}
   70% {box-shadow:0 0 0 8px color-mix(in srgb,var(--green) 0%,transparent)}
   100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 0%,transparent)}
 }
-@media (prefers-reduced-motion:reduce){.prodcards .oh-ind.live::after{animation:none}}
-.prodcards .ohl-head{flex:1; min-width:0; display:flex; flex-direction:column; gap:4px}
-.prodcards .ohl-title{font-size:15px; font-weight:600; line-height:1.2; color:var(--ink)}
-.prodcards .ohl-date{min-width:0; font-size:12.5px; line-height:1.2; color:var(--slate); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.prodcards .ohl-rail{display:grid; grid-template-columns:repeat(4,1fr); position:relative}
-.prodcards .ohl-rail::before,
-.prodcards .ohl-rail::after{content:""; position:absolute; top:10px; height:2px; left:12.5%}
-.prodcards .ohl-rail::before{width:75%; background:var(--line)}
-.prodcards .ohl-rail::after{width:var(--fill,0); background:var(--green)}
-.prodcards .ohl-rail.at-2{--fill:25%}
-.prodcards .ohl-step{position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:9px}
-.prodcards .ohl-rail .nd{width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:2px solid var(--line); background:var(--card); color:var(--slate)}
-.prodcards .ohl-rail .nd svg.ic{width:12px; height:12px}
-.prodcards .ohl-rail .nd.done{background:var(--green); border-color:var(--green); color:var(--on-green)}
-.prodcards .ohl-rail .nd.now{border-color:var(--green); color:var(--ink); box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 20%,transparent)}
-.prodcards .ohl-step-lbl{font-size:10.5px; color:var(--slate); text-align:center}
-.prodcards .ohl-step-lbl.now{color:var(--ink); font-weight:600}
-.prodcards .ohl-route{display:flex; align-items:center; gap:12px; border-radius:12px; padding:16px; background:color-mix(in srgb,var(--page) 55%,var(--card))}
-.prodcards .ohl-stop{flex:1; min-width:0; display:flex; flex-direction:column; gap:2px}
-.prodcards .ohl-stop-to{align-items:flex-end; text-align:right}
-.prodcards .ohl-lbl{font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--slate)}
-.prodcards .ohl-place{font-size:14px; color:var(--ink); line-height:1.3}
-.prodcards .ohl-arrow{width:26px; height:26px; flex:none; border-radius:var(--r-pill); background:var(--media); color:var(--ink); display:flex; align-items:center; justify-content:center}
-.prodcards .ohl-arrow svg.ic{width:14px; height:14px}
-.prodcards .ohl-fee{display:flex; align-items:flex-end; justify-content:space-between; gap:12px}
-.prodcards .ohl-fee-lbl{display:block; font-size:11px; color:var(--slate)}
-.prodcards .ohl-price{display:block; font-size:20px; font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; line-height:1; margin-top:4px; color:var(--ink)}
-.prodcards .ohl-eta{flex:none; display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; padding:5px 10px; border-radius:var(--r-pill); background:var(--media); color:var(--slate); white-space:nowrap}
-.prodcards .ohl-eta svg.ic{width:14px; height:14px}
-.prodcards .ohl-acts{display:flex; align-items:center; gap:8px; flex:none}
-.prodcards .btn-primary{background:var(--green); color:var(--on-green); box-shadow:var(--sh-sm); border-radius:var(--r-btn)}
-.prodcards .btn-sm{height:44px; font-size:15px; border-radius:var(--r-btn); padding:0 16px}
-.prodcards .sbi{position:relative; z-index:2}
+@media (prefers-reduced-motion:reduce){.prod .oh-ind.live::after{animation:none}}
+.prod .ohl-head{flex:1; min-width:0; display:flex; flex-direction:column; gap:4px}
+.prod .ohl-title{font-size:15px; font-weight:600; line-height:1.2; color:var(--ink)}
+.prod .ohl-date{min-width:0; font-size:12.5px; line-height:1.2; color:var(--slate); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.prod .ohl-rail{display:grid; grid-template-columns:repeat(4,1fr); position:relative}
+.prod .ohl-rail::before,
+.prod .ohl-rail::after{content:""; position:absolute; top:10px; height:2px; left:12.5%}
+.prod .ohl-rail::before{width:75%; background:var(--line)}
+.prod .ohl-rail::after{width:var(--fill,0); background:var(--green)}
+.prod .ohl-rail.at-2{--fill:25%}
+.prod .ohl-step{position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:9px}
+.prod .ohl-rail .nd{width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:2px solid var(--line); background:var(--card); color:var(--slate)}
+.prod .ohl-rail .nd svg.ic{width:12px; height:12px}
+.prod .ohl-rail .nd.done{background:var(--green); border-color:var(--green); color:var(--on-green)}
+.prod .ohl-rail .nd.now{border-color:var(--green); color:var(--ink); box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 20%,transparent)}
+.prod .ohl-step-lbl{font-size:10.5px; color:var(--slate); text-align:center}
+.prod .ohl-step-lbl.now{color:var(--ink); font-weight:600}
+.prod .ohl-route{display:flex; align-items:center; gap:12px; border-radius:12px; padding:16px; background:color-mix(in srgb,var(--page) 55%,var(--card))}
+.prod .ohl-stop{flex:1; min-width:0; display:flex; flex-direction:column; gap:2px}
+.prod .ohl-stop-to{align-items:flex-end; text-align:right}
+.prod .ohl-lbl{font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--slate)}
+.prod .ohl-place{font-size:14px; color:var(--ink); line-height:1.3}
+.prod .ohl-arrow{width:26px; height:26px; flex:none; border-radius:var(--r-pill); background:var(--media); color:var(--ink); display:flex; align-items:center; justify-content:center}
+.prod .ohl-arrow svg.ic{width:14px; height:14px}
+.prod .ohl-fee{display:flex; align-items:flex-end; justify-content:space-between; gap:12px}
+.prod .ohl-fee-lbl{display:block; font-size:11px; color:var(--slate)}
+.prod .ohl-price{display:block; font-size:20px; font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; line-height:1; margin-top:4px; color:var(--ink)}
+.prod .ohl-eta{flex:none; display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; padding:5px 10px; border-radius:var(--r-pill); background:var(--media); color:var(--slate); white-space:nowrap}
+.prod .ohl-eta svg.ic{width:14px; height:14px}
+.prod .ohl-acts{display:flex; align-items:center; gap:8px; flex:none}
+.prod .btn-primary{background:var(--green); color:var(--on-green); box-shadow:var(--sh-sm); border-radius:var(--r-btn)}
+.prod .btn-sm{height:44px; font-size:15px; border-radius:var(--r-btn); padding:0 16px}
+.prod .sbi{position:relative; z-index:2}
 
 /* ── tracking.html · the operator card ── */
-.prodcards .op-card{display:flex; align-items:stretch; gap:12px; background:var(--card); border:0; border-radius:var(--r-card); padding:16px; overflow:hidden}
-.prodcards .op-avatar{align-self:stretch; flex:none; margin:-16px 0 -16px -16px; width:117px; height:auto; border:0; border-radius:0; background:none; overflow:hidden; display:flex; align-items:flex-end; justify-content:center; color:transparent; font-size:0}
-.prodcards .op-avatar img{width:100%; height:100%; object-fit:cover; object-position:center; display:block}
-.prodcards .op-info{flex:1; min-width:0}
-.prodcards .op-name{font-size:15px; font-weight:600; color:var(--ink); line-height:1.2}
-.prodcards .op-rating{font-size:12.5px; color:var(--slate); margin-top:2px; font-variant-numeric:tabular-nums}
-.prodcards .badges{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px}
-.prodcards .badge{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; padding:5px 10px; border:0; border-radius:var(--r-pill); background:var(--green-wash); color:var(--ink)}
-.prodcards .badge svg.ic{width:13px; height:13px}
-.prodcards .badge + .badge{background:var(--media); color:var(--slate)}
+.prod .op-card{display:flex; align-items:stretch; gap:12px; background:var(--card); border:0; border-radius:var(--r-card); padding:16px; overflow:hidden}
+.prod .op-avatar{align-self:stretch; flex:none; margin:-16px 0 -16px -16px; width:117px; height:auto; border:0; border-radius:0; background:none; overflow:hidden; display:flex; align-items:flex-end; justify-content:center; color:transparent; font-size:0}
+.prod .op-avatar img{width:100%; height:100%; object-fit:cover; object-position:center; display:block}
+.prod .op-info{flex:1; min-width:0}
+.prod .op-name{font-size:15px; font-weight:600; color:var(--ink); line-height:1.2}
+.prod .op-rating{font-size:12.5px; color:var(--slate); margin-top:2px; font-variant-numeric:tabular-nums}
+.prod .badges{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px}
+.prod .badge{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; padding:5px 10px; border:0; border-radius:var(--r-pill); background:var(--green-wash); color:var(--ink)}
+.prod .badge svg.ic{width:13px; height:13px}
+.prod .badge + .badge{background:var(--media); color:var(--slate)}
 
 /* ── delivery.html · the details card ── */
-.prodcards .kv{background:var(--card); border:0; border-radius:var(--r-card); padding:2px 16px}
-.prodcards .kv-key{color:var(--slate); font-size:13px}
-.prodcards .kv-val{color:var(--ink); font-weight:600; font-size:15px; font-variant-numeric:tabular-nums; text-align:right}
+.prod .kv{background:var(--card); border:0; border-radius:var(--r-card); padding:2px 16px}
+.prod .kv-key{color:var(--slate); font-size:13px}
+.prod .kv-val{color:var(--ink); font-weight:600; font-size:15px; font-variant-numeric:tabular-nums; text-align:right}
 
 </style>
 </head>
@@ -398,7 +398,7 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
     </div>
 
     <div class="block-label">Cards, as built <span class="attr">A-2 · the real components, at production width</span></div>
-    <div class="prodcards">
+    <div class="prodcards prod">
       <div class="pc">
         <div class="pclab"><b>order-history.html</b> · live order · the only card with a rail, an ETA chip and the green CTA</div>
         <article class="card stack-card oh-card oh-live">
@@ -705,18 +705,30 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
 
       <div class="cc">
         <h4>Card</h4>
-        <span class="attr">A-4 · iconed &amp; scannable</span>
-        <div class="stage" style="align-items:stretch">
-          <article class="card">
-            <div class="card-top">
-              <div class="well"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></div>
-              <div class="id"><div class="k">#DR-4821</div><div class="s">Aerial photo · Podil</div></div>
-              <span class="pill live"><span class="dot"></span>Live</span>
-            </div>
-            <div class="foot"><div><div class="big">~14 min</div><div class="cap">to arrival</div></div><button class="sbi grey grow" type="button" aria-label="Call"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.8 4h2.8l1.3 3.4-1.7 1.3a10.5 10.5 0 0 0 5.1 5.1l1.3-1.7 3.4 1.3v2.8a1.6 1.6 0 0 1-1.7 1.6A14.6 14.6 0 0 1 5.2 5.7 1.6 1.6 0 0 1 6.8 4z"/></svg></button></div>
+        <span class="attr">A-4 · the list card, as built</span>
+        <div class="stage prod" style="align-items:stretch">
+          <article class="card stack-card oh-card oh-done">
+            <a class="card-link" href="../wireframes/order-setup.html" aria-label="Aerial photo and video, 14 Jun 2026, delivered — reopen"></a>
+              <span class="ohl-top">
+                <span class="ohl-ic">
+                  <img src="../assets/drones/thumbs/drone-flight-camera.png" alt="" loading="lazy" decoding="async">
+                  <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                </span>
+                <span class="ohl-head">
+                  <span class="ohl-title">Aerial photo &amp; video</span>
+                  <span class="ohl-date">14 Jun · 11:30</span>
+                </span>
+              </span>
+              <span class="ohl-route">
+                <span class="ohl-stop"><span class="ohl-lbl">Location</span><span class="ohl-place">Trukhaniv Island</span></span>
+              </span>
+              <span class="ohl-fee">
+                <span><span class="ohl-fee-lbl">Total</span><span class="ohl-price">&#8372;800</span></span>
+                <span class="ohl-acts"><button class="sbi grey" type="button" aria-label="Delete order"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="sbi grey" href="../wireframes/delivery.html" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
+              </span>
           </article>
         </div>
-        <p class="note">Warm-grey surface, radius 16, flat (no border, no shadow). An icon well, a title, a status pill, and the metadata — trust and state before any tap.</p>
+        <p class="note">The delivered card out of <span class="mono">wireframes/order-history.html</span>, not a mock-up of it. Warm-grey surface, radius 16, flat — no border, no shadow. A 96 × 72 groundless well holding the drone that did the job, with the status mark riding on it; the service name over its date; the route on the <span class="mono">.stat3</span> blend; the fee opposite two circular actions. Spacing 4 / 8 inside a group, 20 between groups and as the inset. It renders here at the stage width, a little under the 341px the phone frame gives it — the same fluid range it already covers between a 360px and a 430px device.</p>
       </div>
 
     </div>
