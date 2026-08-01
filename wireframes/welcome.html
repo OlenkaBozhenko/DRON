@@ -30,20 +30,23 @@
     <header class="topbar"><span class="brand-ph">LOGO</span><span class="spacer"></span><a class="skip" href="welcome-empty.html">Skip</a></header>
     <main>
       <div class="slider is-bleed" aria-label="What to expect from DRON">
+        <!-- The picture comes last in the markup, not first: it is the bottom of
+             the slide visually, and it is decorative (alt=""), so a screen reader
+             should reach the heading before it rather than step over it. -->
         <section class="slide" id="w1" aria-label="Slide 1 of 3">
-          <span class="slide-ph"><img src="../assets/scenes/thumbs/handover.png" alt="" decoding="async"></span>
           <p class="big-title">You order, a pro handles it</p>
           <p class="lead">Pick a service and pay. A certified DRON operator does the flying — you never touch the drone.</p>
+          <span class="slide-ph"><img src="../assets/scenes/thumbs/handover.png" alt="" decoding="async"></span>
         </section>
         <section class="slide" id="w2" aria-label="Slide 2 of 3">
-          <span class="slide-ph"><img src="../assets/people/thumbs/wide/operator.png" alt="" loading="lazy" decoding="async"></span>
           <p class="big-title">A verified, insured operator</p>
           <p class="lead">The moment you pay you see their name, photo and live position. Someone accountable is on the way.</p>
+          <span class="slide-ph"><img src="../assets/people/thumbs/wide/operator.png" alt="" loading="lazy" decoding="async"></span>
         </section>
         <section class="slide" id="w3" aria-label="Slide 3 of 3">
-          <span class="slide-ph"><img src="../assets/drones/thumbs/wide/drone-flight-clean.png" alt="" loading="lazy" decoding="async"></span>
           <p class="big-title">What the drone does — and doesn't</p>
           <p class="lead">It flies a set route, keeps its distance, and only records what your order needs. Brief low noise on take-off and landing; no filming of your neighbours.</p>
+          <span class="slide-ph"><img src="../assets/drones/thumbs/wide/drone-flight-clean.png" alt="" loading="lazy" decoding="async"></span>
         </section>
       </div>
       <nav class="pager" aria-label="Slides">
