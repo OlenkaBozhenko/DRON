@@ -112,8 +112,13 @@
      load-bearing image in the product — the face on the operator card, where
      trust is actually claimed, beside the verified badge and the insurance
      line" (RJ-C1). The initials well becomes that render.               ── */
+  /* align-items:flex-start is concept .card-top's own default — the well sits
+     against the top of the identity block, not centred on it, so the card reads
+     from its first line down. (concept.html's own operator card overrides that
+     to center; on this screen the block is three lines tall, and centring left
+     the avatar floating against the rating.) */
   .op-card{ background:var(--card); border:0; border-radius:var(--r-card);
-    box-shadow:var(--sh-card); padding:16px; gap:12px; align-items:center; }
+    box-shadow:var(--sh-card); padding:16px; gap:12px; align-items:flex-start; }
   /* 44px, not the wireframe's 56 — concept .well, the size the operator block
      uses there. It is also what buys the trust chips their single row: the card
      gives .op-info 294 - avatar - gap, and the pair needs 143 + 6 + 85 = 234.
