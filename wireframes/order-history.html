@@ -111,8 +111,8 @@
     background:var(--btn2); color:var(--ink); }
   .oh-ind svg.ic{ width:12px; height:12px; }
   .oh-ind.live{ background:var(--green-wash); }
-  .oh-ind.live::before{ content:""; width:8px; height:8px; border-radius:50%;
-    background:var(--green); box-shadow:0 0 0 1.5px var(--green-ink);
+  .oh-ind.live::before{ content:""; width:10px; height:10px; border-radius:50%;
+    background:var(--green); box-shadow:0 0 0 2px var(--green-ink);
     animation:oh-breathe 2.4s ease-in-out infinite; }
   @keyframes oh-breathe{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(.68); } }
   @media (prefers-reduced-motion:reduce){ .oh-ind.live::before{ animation:none; } }
@@ -166,19 +166,24 @@
      transparent PNG contained, no border and no shadow (the render carries its
      own). The well is landscape because the subject is: each render is a 1024²
      canvas holding a ~1.37 subject, so a square well would spend a fifth of its
-     height on nothing. 76 × 58 draws the drone at 68px — the widest that still
-     leaves the live card's date+pill pair a real margin, and every one is a
-     downscale from 1024. */
-  .ohl-ic{ width:76px; height:58px; flex:none; border-radius:var(--r-media);
+     height on nothing. 84 × 64 draws the drone at 76px — the widest the title
+     row can pay for once its indicator is placed, and every one is a downscale
+     from 1024. */
+  .ohl-ic{ width:84px; height:64px; flex:none; border-radius:var(--r-media);
     background:var(--media); color:var(--ink); display:flex; align-items:center;
     justify-content:center; padding:4px; overflow:hidden; }                /* concept .dwell */
   .ohl-ic img{ width:100%; height:100%; object-fit:contain; display:block; }
-  .ohl-head{ flex:1; min-width:0; display:flex; flex-direction:column; gap:4px; }
-  .ohl-title{ font-size:15px; font-weight:600; line-height:1.2; color:var(--ink); }  /* concept .id .k */
-  .ohl-meta{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
-  /* below 375px the pair runs out of room; the date yields (it is the softer
-     fact — the pill is the one the eye scans for), so the pill is never clipped */
-  .ohl-date{ min-width:0; font-size:12.5px; line-height:1.2; color:var(--slate);
+  /* two rows, two columns: the name and its indicator share row 1 so the mark
+     sits against the thing it qualifies; the date spans both columns on row 2. */
+  .ohl-head{ flex:1; min-width:0; display:grid; grid-template-columns:1fr auto;
+    align-items:center; column-gap:8px; row-gap:4px; }
+  .ohl-title{ grid-area:1 / 1; font-size:15px; font-weight:600; line-height:1.2;
+    color:var(--ink); }                                                    /* concept .id .k */
+  .oh-ind{ grid-area:1 / 2; }
+  /* the ellipsis is insurance only — the date owns a 186px row against a widest
+     85px, so it should never actually reach for it */
+  .ohl-date{ grid-area:2 / 1 / auto / -1; min-width:0; font-size:12.5px;
+    line-height:1.2; color:var(--slate);
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }         /* concept .id .s */
 
   /* progress rail — the live order only; a delivered card has nothing left to
@@ -252,16 +257,14 @@
   .ohl-acts{ display:flex; align-items:center; gap:8px; flex:none; }
 
   /* Narrow tier. The phone frame is fluid (max-width:100%), so on a 360px device
-     it renders at 321px and the text column loses 54px — enough that every date
-     was ellipsising. The scale steps down one notch rather than letting content
-     truncate, and the meta line may wrap as the last resort: a pill on its own
-     row still reads, a clipped date does not. */
+     it renders at 321px and the text column loses 54px. The scale steps down one
+     notch rather than letting content truncate: at a 56px well the title row
+     keeps 189px against the 180px it needs. */
   @media (max-width:389px){
     article.card.oh-live, article.card.oh-done{ padding:16px; gap:18px; }
     .wf-frame main .list{ gap:22px; }
     .ohl-top{ gap:12px; }
     .ohl-ic{ width:56px; height:42px; }
-    .ohl-meta{ flex-wrap:wrap; row-gap:6px; }
     .ohl-route{ padding:14px; }
   }
 </style>
@@ -293,10 +296,8 @@
                   <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-08.png" alt="" loading="lazy" decoding="async"></span>
                   <span class="ohl-head">
                     <span class="ohl-title">Package delivery</span>
-                    <span class="ohl-meta">
-                      <span class="ohl-date">Today · 10:03</span>
-                      <span class="oh-status live">In progress</span>
-                    </span>
+                    <span class="oh-ind live" role="img" aria-label="In progress"></span>
+                    <span class="ohl-date">Today · 10:03</span>
                   </span>
                 </span>
                 <span class="ohl-rail at-2">
@@ -326,10 +327,8 @@
                   <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-08.png" alt="" loading="lazy" decoding="async"></span>
                   <span class="ohl-head">
                     <span class="ohl-title">Package delivery</span>
-                    <span class="ohl-meta">
-                      <span class="ohl-date">28 Jun · 14:20</span>
-                      <span class="oh-status">Delivered</span>
-                    </span>
+                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                    <span class="ohl-date">28 Jun · 14:20</span>
                   </span>
                 </span>
                 <span class="ohl-route">
@@ -350,10 +349,8 @@
                   <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-02.png" alt="" loading="lazy" decoding="async"></span>
                   <span class="ohl-head">
                     <span class="ohl-title">Aerial photo &amp; video</span>
-                    <span class="ohl-meta">
-                      <span class="ohl-date">14 Jun · 11:30</span>
-                      <span class="oh-status">Delivered</span>
-                    </span>
+                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                    <span class="ohl-date">14 Jun · 11:30</span>
                   </span>
                 </span>
                 <span class="ohl-route">
@@ -372,10 +369,8 @@
                   <span class="ohl-ic" aria-hidden="true"><img src="../assets/drones/drone-11.png" alt="" loading="lazy" decoding="async"></span>
                   <span class="ohl-head">
                     <span class="ohl-title">Roof inspection</span>
-                    <span class="ohl-meta">
-                      <span class="ohl-date">2 Jun · 09:15</span>
-                      <span class="oh-status">Delivered</span>
-                    </span>
+                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                    <span class="ohl-date">2 Jun · 09:15</span>
                   </span>
                 </span>
                 <span class="ohl-route">
