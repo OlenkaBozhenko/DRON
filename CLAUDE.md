@@ -201,6 +201,34 @@ tree and a mobile/tablet/desktop viewport switcher on every page.
 
 ---
 
+## Concept
+
+The **visual language**, chosen and built out. The single source of truth is
+[`concept/concept.md`](concept/concept.md); the live testbed is
+[`concept/concept.html`](concept/concept.html), where every token, component and image is shown at
+production size with its contrast measured on the page.
+
+**Direction 02 «Studio»** is the chosen tuning of the Fauna Robotics language: warm `#F7F5F2` page,
+`#ECE9E4` grey cards, SF Pro, flat outline icons on a 24-grid at 1.7px, rounded-rect buttons.
+
+| Rule | What it means in practice |
+|---|---|
+| **One accent, fill only** | Signal Green `#9BCF4A` is a fill or a tint, **never text and never an icon stroke** — raw green is 1.52:1 on a card. Anything sitting on green is charcoal: 9.46:1 on the fill, 14.75:1 on the tint. |
+| **~One green element per screen** | The primary CTA, *or* the active status node, *or* the verified badge — not all three loud at once. Green stays ≤ ~5% of pixels and is never spent inside card UI. |
+| **Every pair is measured** | A new colour/background pair is not used until its ratio is computed and written down. §07 of `concept.html` is the standing contrast table. |
+| **Imagery is real, never decoration** | Drone renders (`assets/drones/`), people (`assets/people/`), scenes and the live map (`assets/scenes/`, `assets/map/`). A transparent cutout sits *in* a well and is contained; a photograph *is* the surface and covers it. |
+| **Icons are one system** | Flat outline, 24-grid, 1.7px, `currentColor`, no fill. Active / done is a green shape *behind* a charcoal glyph. |
+
+**Applied to product surfaces:** [`order-history`](wireframes/order-history.html),
+[`tracking`](wireframes/tracking.html) and [`delivery`](wireframes/delivery.html) (with their states)
+carry the Studio layer. Each family shares one byte-identical `<style>` block, so every repeat of a
+component holds the same values.
+
+**Change log:** `concept.md` records every revision, including the ones that were tried and reverted —
+so a rejected idea is not re-proposed later as a new one.
+
+---
+
 ## Voice (Голос)
 
 **How the product speaks. Single source of truth: `voice.md`.** Rendered at `tone-of-voice.html` (linked in every page's sidebar; a "Tone of voice" button on the wireframe toolbar opens it in a right-hand drawer). Every product string is written and checked against `voice.md`, and inventoried in `microcopy.md` (master table + rewrite logs + audit).

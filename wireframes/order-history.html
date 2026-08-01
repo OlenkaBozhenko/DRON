@@ -39,15 +39,16 @@
        #1A1A1A on #F7F5F2 → 15.99:1 · #1A1A1A on #E4E1DA → 13.33:1
        #5A5751 on #E4E1DA → 5.51:1  · #1A1A1A on #D6D2C9 → 11.54:1
        #5A5751 on #D6D2C9 → 4.77:1  · #5A5751 on #ECE9E4 → 5.95:1
-     Focus ring uses green-ink, not green: #3F5B18 on page 7.09:1 / on card 6.37:1
-     (raw #9BCF4A fails WCAG 1.4.11 non-text 3:1 at 1.69:1 / 1.52:1).
+     Focus ring is --ink, not green: #1A1A1A on page 15.99:1 / on card 14.37:1.
+     Raw #9BCF4A fails WCAG 1.4.11 non-text 3:1 at 1.69:1 / 1.52:1, and a darkened
+     accent is still the accent used as a line, which concept.md §4 forbids too.
      Pairs already documented in concept.html §07: on-green 8.8:1, slate/page 6.7:1,
-     green-ink/wash 6.1:1. ── */
+     charcoal/tint 14.75:1. ── */
   body{ background:#F7F5F2; }
   .wf-frame{
     --page:#F7F5F2; --card:#ECE9E4; --media:#E4E1DA; --btn2:#D6D2C9;
     --ink:#1A1A1A; --slate:#5A5751; --line:#D9D5CE;
-    --green:#9BCF4A; --on-green:#1A1A1A; --green-ink:#3F5B18; --green-wash:#E7F0D2;
+    --green:#9BCF4A; --on-green:#1A1A1A; --green-wash:#E7F0D2;
     --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
     --r-btn:12px; --r-card:16px; --r-media:13px; --r-panel:22px; --r-pill:999px;
     --sh-sm:0 1px 2px rgba(20,18,15,.05);
@@ -66,13 +67,16 @@
   .statusbar{ background:var(--page); color:var(--ink); }
   .statusbar .sysph{ gap:5px; align-items:center; }
   header.topbar{ background:var(--page); border-bottom:1px solid var(--line); }
-  .topbar .title{ color:var(--ink); letter-spacing:-.01em; }
+  /* the screen title is the page heading, not a span: a screen reader needs one
+     entry point per screen (WCAG 1.3.1 / 2.4.6). Renders identically. */
+  .topbar h1.title{ margin:0; font-size:17px; font-weight:600; color:var(--ink);
+    letter-spacing:-.01em; }
   footer.tabbar{ background:var(--page); border-top:1px solid var(--line); }
   footer .tabs{ height:60px; padding:6px 8px 4px; gap:4px; }
   footer .tab{ gap:3px; font-weight:600; color:var(--slate); border-radius:16px; }
-  footer .tab[aria-current="page"]{ background:var(--green-wash); color:var(--green-ink); }
+  footer .tab[aria-current="page"]{ background:var(--green-wash); color:var(--ink); }
   footer .tab svg.ic{ width:22px; height:22px; }
-  footer .tab:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
+  footer .tab:focus-visible{ outline:2.5px solid var(--ink); outline-offset:2px; }
   footer .home-indicator{ height:30px; }
   footer .home-indicator span{ background:var(--ink); }
 
@@ -99,13 +103,13 @@
      :has() is baseline in every browser this prototype targets; older ones lose
      the card ring, not the inner controls'. */
   article.card:focus-within{ outline:none; }
-  article.card:has(> .card-link:focus-visible){ outline:2.5px solid var(--green-ink);
+  article.card:has(> .card-link:focus-visible){ outline:2.5px solid var(--ink);
     outline-offset:2px; }
   .card-link{ border-radius:var(--r-card); }
 
   /* buttons — the green primary is the live order's single CTA */
   .btn{ border-radius:var(--r-btn); transition:filter .15s, background .15s, transform .12s; }
-  .btn:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
+  .btn:focus-visible{ outline:2.5px solid var(--ink); outline-offset:2px; }
   .btn-primary{ background:var(--green); color:var(--on-green); box-shadow:var(--sh-sm); }
   .btn-primary:hover{ background:var(--green); filter:brightness(1.03); }
   .btn-primary:active{ background:var(--green); transform:translateY(1px) scale(.99); }
@@ -122,8 +126,8 @@
      old wording as its accessible name, so a screen reader loses nothing — the
      words moved off the glass, they were not deleted.
      Contrast, and the trade in it. The live mark is the brand lime and nothing
-     else — the --green-ink ring that used to draw its boundary read as black and
-     was dropped at the designer's call (2026-08-01). Lime is 1.69:1 on the well,
+     else — the dark ring that used to draw its boundary read as black and was
+     dropped at the designer's call (2026-08-01). Lime is 1.69:1 on the well,
      so this mark does not clear WCAG 1.4.11 on its own; it is a solid 20px disc
      rather than a 10px dot precisely so that size does the work the ring used to.
      What keeps the screen conformant is that the live state is never carried by
@@ -164,7 +168,7 @@
      .stat3 blend, color-mix(page 55%, card) = #F2F0EC:
        #1A1A1A on #F2F0EC → 15.29:1 · #5A5751 on #F2F0EC → 6.33:1  (both AA)
      Reused, already documented above: slate on media 5.51:1 (ETA pill),
-     green-ink on green-wash 6.54:1 (direction chip + status pill).      ── */
+     charcoal on green-wash 14.75:1 (§4: anything on a green tint is charcoal). ── */
   /* ── SPACING SCALE ────────────────────────────────────────────────────────
      The card used to run 16 padding · 14 between every group · 12 between cards
      · 13/14 inside the route strip — nine intervals, all between 12 and 16. With
@@ -237,7 +241,7 @@
     background:var(--card); color:var(--slate); }
   .ohl-rail .nd svg.ic{ width:12px; height:12px; }
   .ohl-rail .nd.done{ background:var(--green); border-color:var(--green); color:var(--on-green); }
-  .ohl-rail .nd.now{ border-color:var(--green); color:var(--green);
+  .ohl-rail .nd.now{ border-color:var(--green); color:var(--ink);
     box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 20%,transparent); }
   .ohl-step-lbl{ font-size:10.5px; color:var(--slate); text-align:center; }
   .ohl-step-lbl.now{ color:var(--ink); font-weight:600; }
@@ -250,8 +254,11 @@
   .ohl-lbl{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.05em;
     text-transform:uppercase; color:var(--slate); }                        /* = .oh-addr-lbl */
   .ohl-place{ font-size:14px; color:var(--ink); line-height:1.3; }         /* = .oh-addr */
+  /* neutral, not green: §5 keeps the accent for the primary CTA and status and
+     says it is "not spent inside card UI" — this direction chip is card UI. The
+     chip does not move; only its fill changes. */
   .ohl-arrow{ width:26px; height:26px; flex:none; border-radius:var(--r-pill);
-    background:var(--green-wash); color:var(--green-ink);
+    background:var(--media); color:var(--ink);
     display:flex; align-items:center; justify-content:center; }
   .ohl-arrow svg.ic{ width:14px; height:14px; }
 
@@ -284,7 +291,7 @@
   .sbi svg.ic{ width:20px; height:20px; }
   .sbi.grey{ background:var(--btn2); color:var(--ink); }                   /* concept .sbi.grey */
   .sbi.grey:hover{ background:var(--media); }
-  .sbi:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
+  .sbi:focus-visible{ outline:2.5px solid var(--ink); outline-offset:2px; }
   .ohl-acts{ display:flex; align-items:center; gap:8px; flex:none; }
 
   /* Narrow tier. The phone frame is fluid (max-width:100%), so on a 360px device
@@ -315,7 +322,7 @@
 
   <div class="wf-frame">
     <div class="statusbar"><span>9:41</span><span class="sysph"><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
-    <header class="topbar"><span class="title" style="padding-left:16px;">Activity</span><span class="spacer"></span></header>
+    <header class="topbar"><h1 class="title" style="padding-left:16px;">Activity</h1><span class="spacer"></span></header>
     <main>
       <p class="zlabel">Order history <span class="act">▸ tap to reopen · delete · open the result</span></p>
       <section aria-label="Past orders">
@@ -325,7 +332,7 @@
               <a class="card-link" href="tracking.html" aria-label="Package delivery, in progress — view details"></a>
                 <span class="ohl-top">
                   <span class="ohl-ic">
-                    <img src="../assets/drones/drone-08.png" alt="" loading="lazy" decoding="async">
+                    <img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async">
                     <span class="oh-ind live" role="img" aria-label="In progress"></span>
                   </span>
                   <span class="ohl-head">
@@ -334,14 +341,14 @@
                   </span>
                 </span>
                 <span class="ohl-rail at-2">
-                  <span class="ohl-step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl">Accepted</span></span>
-                  <span class="ohl-step" aria-current="step"><span class="nd now" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="ohl-step-lbl now">En route</span></span>
+                  <span class="ohl-step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl">Accepted</span></span>
+                  <span class="ohl-step" aria-current="step"><span class="nd now" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="ohl-step-lbl now">En route</span></span>
                   <span class="ohl-step"><span class="nd" aria-hidden="true"></span><span class="ohl-step-lbl">On&#8209;site</span></span>
                   <span class="ohl-step"><span class="nd" aria-hidden="true"></span><span class="ohl-step-lbl">Done</span></span>
                 </span>
                 <span class="ohl-route">
                   <span class="ohl-stop"><span class="ohl-lbl">From</span><span class="ohl-place">Podil</span></span>
-                  <span class="ohl-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+                  <span class="ohl-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
                   <span class="ohl-stop ohl-stop-to"><span class="ohl-lbl">To</span><span class="ohl-place">Osokorky</span></span>
                 </span>
                 <span class="ohl-fee">
@@ -358,8 +365,8 @@
               <a class="card-link" href="order-setup.html" aria-label="Package delivery, 28 Jun 2026, delivered — reopen"></a>
                 <span class="ohl-top">
                   <span class="ohl-ic">
-                    <img src="../assets/drones/drone-08.png" alt="" loading="lazy" decoding="async">
-                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                    <img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async">
+                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
                   </span>
                   <span class="ohl-head">
                     <span class="ohl-title">Package delivery</span>
@@ -368,12 +375,12 @@
                 </span>
                 <span class="ohl-route">
                   <span class="ohl-stop"><span class="ohl-lbl">From</span><span class="ohl-place">Podil</span></span>
-                  <span class="ohl-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+                  <span class="ohl-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
                   <span class="ohl-stop ohl-stop-to"><span class="ohl-lbl">To</span><span class="ohl-place">Osokorky</span></span>
                 </span>
                 <span class="ohl-fee">
                   <span><span class="ohl-fee-lbl">Delivery fee</span><span class="ohl-price">&#8372;180</span></span>
-                  <span class="ohl-acts"><button class="sbi grey" type="button" aria-label="Delete order"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="sbi grey" href="delivery.html" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
+                  <span class="ohl-acts"><button class="sbi grey" type="button" aria-label="Delete order"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="sbi grey" href="delivery.html" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
                 </span>
             </article>
           </li>
@@ -382,8 +389,8 @@
               <a class="card-link" href="order-setup.html" aria-label="Aerial photo and video, 14 Jun 2026, delivered — reopen"></a>
                 <span class="ohl-top">
                   <span class="ohl-ic">
-                    <img src="../assets/drones/drone-02.png" alt="" loading="lazy" decoding="async">
-                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                    <img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async">
+                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
                   </span>
                   <span class="ohl-head">
                     <span class="ohl-title">Aerial photo &amp; video</span>
@@ -395,7 +402,7 @@
                 </span>
                 <span class="ohl-fee">
                   <span><span class="ohl-fee-lbl">Total</span><span class="ohl-price">&#8372;800</span></span>
-                  <span class="ohl-acts"><button class="sbi grey" type="button" aria-label="Delete order"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="sbi grey" href="delivery.html" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
+                  <span class="ohl-acts"><button class="sbi grey" type="button" aria-label="Delete order"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="sbi grey" href="delivery.html" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
                 </span>
             </article>
           </li>
@@ -404,8 +411,8 @@
               <a class="card-link" href="order-setup.html" aria-label="Roof inspection, 2 Jun 2026, delivered — reopen"></a>
                 <span class="ohl-top">
                   <span class="ohl-ic">
-                    <img src="../assets/drones/drone-11.png" alt="" loading="lazy" decoding="async">
-                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                    <img src="../assets/drones/thumbs/drone-11.png" alt="" loading="lazy" decoding="async">
+                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
                   </span>
                   <span class="ohl-head">
                     <span class="ohl-title">Roof inspection</span>
@@ -417,7 +424,7 @@
                 </span>
                 <span class="ohl-fee">
                   <span><span class="ohl-fee-lbl">Total</span><span class="ohl-price">&#8372;650</span></span>
-                  <span class="ohl-acts"><button class="sbi grey" type="button" aria-label="Delete order"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="sbi grey" href="inspection-report.html" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
+                  <span class="ohl-acts"><button class="sbi grey" type="button" aria-label="Delete order"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="sbi grey" href="inspection-report.html" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
                 </span>
             </article>
           </li>

@@ -29,19 +29,20 @@
        #1A1A1A on #F7F5F2 → 15.99:1 · #5A5751 on #F7F5F2 →  6.62:1
        #1A1A1A on #ECE9E4 → 14.37:1 · #5A5751 on #ECE9E4 →  5.95:1
        #1A1A1A on #D6D2C9 → 11.54:1 · #5A5751 on #E4E1DA →  5.51:1
-       #1A1A1A on #9BCF4A →  9.46:1 · #3F5B18 on #E7F0D2 →  6.54:1
+       #1A1A1A on #9BCF4A →  9.46:1 · #1A1A1A on #E7F0D2 → 14.75:1
        #9A3115 on #F2D8CF →  5.49:1 · #9A3115 on #ECE9E4 →  6.14:1
      (concept §07 records the green button pair as 8.8:1; recomputed here at
      9.46:1 — the same pair, and AA either way.)
-     Focus ring uses green-ink, not green: #3F5B18 on page 7.09:1 / on card
-     6.37:1 (raw #9BCF4A fails WCAG 1.4.11 non-text 3:1 at 1.69:1 / 1.52:1).
+     Focus ring is --ink, not green: #1A1A1A on page 15.99:1 / on card 14.37:1.
+     Raw #9BCF4A fails WCAG 1.4.11 non-text 3:1 at 1.69:1 / 1.52:1, and a darkened
+     accent is still the accent used as a line, which concept.md §4 forbids too.
      Skeleton and well fills (#D6D2C9 on #F7F5F2, #E4E1DA on #F7F5F2) are
      non-text surfaces and carry no meaning on their own.               ── */
   body{ background:#F7F5F2; }
   .wf-frame{
     --page:#F7F5F2; --card:#ECE9E4; --media:#E4E1DA; --btn2:#D6D2C9;
     --ink:#1A1A1A; --slate:#5A5751; --line:#D9D5CE;
-    --green:#9BCF4A; --on-green:#1A1A1A; --green-ink:#3F5B18; --green-wash:#E7F0D2;
+    --green:#9BCF4A; --on-green:#1A1A1A; --green-wash:#E7F0D2;
     --warn:#E4A11B; --warn-ink:#7A5200; --warn-wash:#F6E7C4;
     --danger:#C4462A; --danger-ink:#9A3115; --danger-wash:#F2D8CF;
     --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
@@ -62,13 +63,16 @@
   .statusbar{ background:var(--page); color:var(--ink); }
   .statusbar .sysph{ gap:5px; align-items:center; }
   header.topbar{ background:var(--page); border-bottom:1px solid var(--line); }
-  .topbar .title{ color:var(--ink); letter-spacing:-.01em; }
+  /* the screen title is the page heading, not a span: a screen reader needs one
+     entry point per screen (WCAG 1.3.1 / 2.4.6). Renders identically. */
+  .topbar h1.title{ margin:0; font-size:17px; font-weight:600; color:var(--ink);
+    letter-spacing:-.01em; }
   footer.tabbar{ background:var(--page); border-top:1px solid var(--line); }
   footer .tabs{ height:60px; padding:6px 8px 4px; gap:4px; }
   footer .tab{ gap:3px; font-weight:600; color:var(--slate); border-radius:16px; }
-  footer .tab[aria-current="page"]{ background:var(--green-wash); color:var(--green-ink); }
+  footer .tab[aria-current="page"]{ background:var(--green-wash); color:var(--ink); }
   footer .tab svg.ic{ width:22px; height:22px; }
-  footer .tab:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
+  footer .tab:focus-visible{ outline:2.5px solid var(--ink); outline-offset:2px; }
   footer .home-indicator{ height:30px; }
   footer .home-indicator span{ background:var(--ink); }
 
@@ -87,7 +91,7 @@
      concept value restores it. */
   .btn{ min-height:44px; border-radius:var(--r-btn);
     transition:filter .15s, background .15s, transform .12s; }
-  .btn:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
+  .btn:focus-visible{ outline:2.5px solid var(--ink); outline-offset:2px; }
   .btn-primary{ background:var(--green); color:var(--on-green); border-color:transparent;
     box-shadow:var(--sh-sm); }
   .btn-primary:hover{ background:var(--green); filter:brightness(1.03); }
@@ -98,14 +102,14 @@
   @media (prefers-reduced-motion:reduce){ .btn{ transition:none; } }
 
   /* ── MILESTONE MARK ───────────────────────────────────────────────────────
-     concept §09 draws the "Success" state icon in --green-ink, so the mark is
+     concept §09 draws the "Success" state icon as charcoal on the tint, so it is
      that circle-check on --green-wash — the same wash + ink pairing the error
      and warning marks already use on tracking-error, and the reason the screen
      still holds only one solid-green element (the CTA), which is concept A-1's
      "green, sparingly". The waiting variant is the neutral well with concept's
      "Time" glyph: nothing has arrived yet, so nothing is green.          ── */
   .success-mark{ width:64px; height:64px; border:0; border-radius:50%;
-    background:var(--green-wash); color:var(--green-ink); font-size:0; }
+    background:var(--green-wash); color:var(--ink); font-size:0; }
   .success-mark svg.ic{ width:32px; height:32px; }
   .success-mark.waiting{ background:var(--media); color:var(--slate); }
   .big-title{ font-size:22px; font-weight:700; letter-spacing:-.02em; color:var(--ink); }
@@ -136,7 +140,7 @@
 
   /* ── MESSAGE BLOCK — concept .card with a wash-filled well. The semantic
      family is the concept's own --danger token, used as wash + ink exactly the
-     way green is used as green-wash + green-ink, so the mark keeps its
+     way the green tint carries charcoal, so the mark keeps its
      contrast (raw --danger on the card would not).                      ── */
   .msg-block{ background:var(--card); border:0; border-radius:var(--r-card);
     box-shadow:var(--sh-card); padding:22px 18px; gap:12px; }
@@ -182,7 +186,7 @@
 
   <div class="wf-frame">
     <div class="statusbar"><span>9:41</span><span class="sysph"><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
-    <header class="topbar"><span class="title" style="padding-left:16px;">Delivered</span><span class="spacer"></span></header>
+    <header class="topbar"><h1 class="title" style="padding-left:16px;">Delivered</h1><span class="spacer"></span></header>
     <main>
       <section class="center" role="status" aria-label="Waiting for the delivery photo" style="padding-top:8px;">
         <span class="success-mark waiting" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.3 2"/></svg></span>

@@ -1264,9 +1264,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | tracking-empty | Operator | Insured | State message |  |
 | tracking-empty | Operator | Contact operator | Button |  |
 | tracking-empty | Progress | Accepted | State message |  |
-| tracking-empty | Progress | Parcel picked up | State message |  |
 | tracking-empty | Progress | En route | State message |  |
-| tracking-empty | Progress | Arriving | State message |  |
+| tracking-empty | Progress | On-site | State message |  |
+| tracking-empty | Progress | Done | State message |  |
 | tracking-empty | Progress | Order | Button |  |
 | tracking-empty | Progress | Activity | Button |  |
 | tracking-empty | Progress | Help | Button |  |
@@ -1288,9 +1288,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | tracking-error | Operator | Insured | State message |  |
 | tracking-error | Operator | Contact operator | Button |  |
 | tracking-error | Progress | Accepted | State message |  |
-| tracking-error | Progress | Parcel picked up | State message |  |
 | tracking-error | Progress | En route | State message |  |
-| tracking-error | Progress | Arriving | State message |  |
+| tracking-error | Progress | On-site | State message |  |
+| tracking-error | Progress | Done | State message |  |
 | tracking-error | Progress | Order | Button |  |
 | tracking-error | Progress | Activity | Button |  |
 | tracking-error | Progress | Help | Button |  |
@@ -1315,9 +1315,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | tracking | Operator | Verified by DRON | Body |  |
 | tracking | Operator | Insured | Body |  |
 | tracking | Progress | Accepted | Body |  |
-| tracking | Progress | Parcel picked up | Body |  |
 | tracking | Progress | En route | Body |  |
-| tracking | Progress | Arriving | Body |  |
+| tracking | Progress | On-site | Body |  |
+| tracking | Progress | Done | Body |  |
 | tracking | Progress | View details | Button |  |
 | tracking | Progress | Contact operator | Button |  |
 | wallet-empty | — | Earnings | Heading |  |

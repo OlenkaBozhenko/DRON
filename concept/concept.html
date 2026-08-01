@@ -17,7 +17,7 @@
   --page:#F7F5F2; --card:#ECE9E4; --media:#E4E1DA; --btn2:#D6D2C9;
   --ink:#1A1A1A; --slate:#5A5751; --line:#D9D5CE; --graphite:#1F2124;
   /* primary / accent */
-  --green:#9BCF4A; --on-green:#1A1A1A; --green-ink:#3F5B18; --green-wash:#E7F0D2;
+  --green:#9BCF4A; --on-green:#1A1A1A; --green-wash:#E7F0D2;
   /* semantic */
   --warn:#E4A11B; --warn-ink:#7A5200; --warn-wash:#F6E7C4;
   --danger:#C4462A; --danger-ink:#9A3115; --danger-wash:#F2D8CF;
@@ -44,7 +44,7 @@ a{color:inherit}
 
 /* ---------- attribute tag (every decision is labelled) ---------- */
 .attr{display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:10.5px; font-weight:600;
-  letter-spacing:.02em; color:var(--green-ink); background:var(--green-wash); border-radius:var(--r-pill);
+  letter-spacing:.02em; color:var(--ink); background:var(--green-wash); border-radius:var(--r-pill);
   padding:3px 9px; white-space:nowrap;}
 .attr::before{content:""; width:5px; height:5px; border-radius:50%; background:var(--green);}
 .attr.n{color:var(--slate); background:var(--info-wash);} .attr.n::before{background:var(--slate);}
@@ -53,8 +53,8 @@ a{color:inherit}
 .hero{padding:8px 0 clamp(30px,4vw,52px); border-bottom:1px solid var(--line); margin-bottom:clamp(30px,4vw,52px);}
 .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.13em; text-transform:uppercase; color:var(--slate);
   display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
-.eyebrow b{color:var(--green-ink)}
-.back-dron{display:inline-flex; align-items:center; gap:5px; font-size:13px; font-weight:600; color:var(--ink); background:var(--card); border:1px solid var(--line); border-radius:var(--r-pill); padding:7px 13px 7px 11px; text-decoration:none; margin-bottom:22px; box-shadow:var(--sh-sm); transition:background .15s}
+.eyebrow b{color:var(--ink)}
+.back-dron{display:inline-flex; align-items:center; min-height:44px; gap:5px; font-size:13px; font-weight:600; color:var(--ink); background:var(--card); border:1px solid var(--line); border-radius:var(--r-pill); padding:7px 13px 7px 11px; text-decoration:none; margin-bottom:22px; box-shadow:var(--sh-sm); transition:background .15s}
 .back-dron:hover{background:var(--media)}
 .back-dron svg.ic{width:17px; height:17px}
 .hero h1{font-weight:700; font-size:clamp(30px,5vw,52px); line-height:1.03; letter-spacing:-.03em; margin:20px 0 0; max-width:17ch; text-wrap:balance;}
@@ -63,7 +63,7 @@ a{color:inherit}
 .chip{font-family:var(--mono); font-size:11.5px; color:var(--slate); border:1px solid var(--line);
   border-radius:var(--r-pill); padding:6px 12px; background:var(--card);}
 .chip b{color:var(--ink)}
-.chip.g{background:var(--green-wash); border-color:transparent; color:var(--green-ink);} .chip.g b{color:var(--green-ink)}
+.chip.g{background:var(--green-wash); border-color:transparent; color:var(--ink);} .chip.g b{color:var(--ink)}
 
 /* ---------- section scaffold ---------- */
 section.blk{padding:clamp(30px,4vw,52px) 0; border-bottom:1px solid var(--line);}
@@ -82,8 +82,8 @@ section.blk{padding:clamp(30px,4vw,52px) 0; border-bottom:1px solid var(--line);
 .tab{flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; padding:8px 4px; border:0; background:transparent;
   border-radius:16px; cursor:pointer; color:var(--slate); font-family:var(--sf); font-size:11px; font-weight:600;}
 .tab svg.ic{width:22px; height:22px}
-.tab.on{background:var(--green-wash); color:var(--green-ink);}
-.tab.on svg.ic{color:var(--green-ink)}
+.tab.on{background:var(--green-wash); color:var(--ink);}
+.tab.on svg.ic{color:var(--ink)}
 
 /* ---------- cards ---------- */
 .cardgrid{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); align-items:start; margin-top:16px;}
@@ -96,10 +96,10 @@ section.blk{padding:clamp(30px,4vw,52px) 0; border-bottom:1px solid var(--line);
 .id{flex:1; min-width:0} .id .k{font-size:15px; font-weight:600; font-variant-numeric:tabular-nums; line-height:1.2}
 .id .s{font-size:12.5px; color:var(--slate); margin-top:2px}
 .id .rating{display:inline-flex; align-items:center; gap:5px; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; margin-top:5px}
-.id .rating svg.ic{width:14px; height:14px; color:var(--green)} .id .rating .n{color:var(--slate); font-weight:500}
+.id .rating svg.ic{width:14px; height:14px; color:var(--ink)} /* §0.2: the stroke is never green */ .id .rating .n{color:var(--slate); font-weight:500}
 .pill{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; padding:5px 10px; border-radius:var(--r-pill); flex:none; white-space:nowrap;}
 .pill .dot{width:6px; height:6px; border-radius:50%; background:currentColor}
-.pill.live{background:var(--green-wash); color:var(--green-ink)}
+.pill.live{background:var(--green-wash); color:var(--ink)}
 .pill.mut{background:var(--media); color:var(--slate)}
 .pill svg.ic{width:13px; height:13px}
 .pill.model{background:rgba(255,255,255,.92); color:var(--ink)}
@@ -117,7 +117,7 @@ section.blk{padding:clamp(30px,4vw,52px) 0; border-bottom:1px solid var(--line);
   border:2px solid var(--line); background:var(--card); color:var(--slate)}
 .nd svg.ic{width:12px; height:12px}
 .nd.done{background:var(--green); border-color:var(--green); color:var(--on-green)}
-.nd.now{border-color:var(--green); color:var(--green); box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 20%,transparent)}
+.nd.now{border-color:var(--green); color:var(--ink); box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 20%,transparent)} /* §0.2: green is the ring, charcoal is the glyph */
 .sg{height:2px; flex:1; background:var(--line)} .sg.done{background:var(--green)}
 .lbls{display:flex; justify-content:space-between; margin-top:9px}
 .lbls span{font-size:10.5px; color:var(--slate)} .lbls span.now{color:var(--ink); font-weight:600}
@@ -172,7 +172,7 @@ th{font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform
 tr:last-child td{border-bottom:0}
 .mono{font-family:var(--mono)} .tnum{font-variant-numeric:tabular-nums}
 .verdict{font-family:var(--mono); font-size:11px; font-weight:700; padding:3px 9px; border-radius:var(--r-pill); white-space:nowrap}
-.verdict.pass{background:var(--green-wash); color:var(--green-ink)}
+.verdict.pass{background:var(--green-wash); color:var(--ink)}
 .swatch-pair{display:inline-flex; width:36px; height:22px; border-radius:6px; overflow:hidden; vertical-align:middle; margin-right:9px; box-shadow:inset 0 0 0 1px rgba(20,18,15,.08)}
 .swatch-pair span{flex:1; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800}
 
@@ -204,7 +204,7 @@ tr:last-child td{border-bottom:0}
 .icongrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(86px,1fr)); gap:10px}
 .iconcell{background:var(--card); border-radius:12px; padding:14px 6px 9px; display:flex; flex-direction:column; align-items:center; gap:8px; box-shadow:var(--sh-sm)}
 .iconcell svg.ic{width:24px; height:24px; color:var(--ink)}
-.iconcell.state svg.ic{color:var(--green-ink)}
+.iconcell.state svg.ic{color:var(--ink)}
 .iconcell .cap{font-family:var(--mono); font-size:9.5px; color:var(--slate); text-align:center; line-height:1.2}
 
 /* live components */
@@ -301,9 +301,9 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
         </div>
         <div class="rt">
           <div class="rail">
-            <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+            <span class="nd done"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
             <span class="sg done"></span>
-            <span class="nd now"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span>
+            <span class="nd now"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span>
             <span class="sg"></span><span class="nd"></span><span class="sg"></span><span class="nd"></span>
           </div>
           <div class="lbls"><span>Accepted</span><span class="now">En route</span><span>On&#8209;site</span><span>Done</span></div>
@@ -395,7 +395,6 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
     <div class="palgrid">
       <div class="sw"><div class="chip-c" style="background:#9BCF4A"></div><div class="nm">Signal Green</div><div class="hx">#9BCF4A</div><div class="ro">Primary · the one accent — CTAs, live, verified. Fill only.</div></div>
       <div class="sw"><div class="chip-c" style="background:#1A1A1A"></div><div class="nm">On-green / Ink</div><div class="hx">#1A1A1A</div><div class="ro">Charcoal that always sits on the green (8.8:1). Body text.</div></div>
-      <div class="sw"><div class="chip-c" style="background:#3F5B18"></div><div class="nm">Green-ink</div><div class="hx">#3F5B18</div><div class="ro">Green as text — the readable olive-lime for pills / labels.</div></div>
       <div class="sw"><div class="chip-c" style="background:#E7F0D2"></div><div class="nm">Green wash</div><div class="hx">#E7F0D2</div><div class="ro">Tint behind live / certified pills and active tabs.</div></div>
     </div>
 
@@ -413,7 +412,7 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
 
     <div class="block-label">Semantic <span class="attr">P5 · plain &amp; accountable in trouble</span></div>
     <div class="palgrid">
-      <div class="sw"><div class="chip-c" style="background:#9BCF4A"></div><div class="nm">Success</div><div class="hx">#9BCF4A · #3F5B18</div><div class="ro">Reuses the accent — delivered, certified, paid.</div></div>
+      <div class="sw"><div class="chip-c" style="background:#9BCF4A"></div><div class="nm">Success</div><div class="hx">#9BCF4A · #1A1A1A</div><div class="ro">Reuses the accent — delivered, certified, paid.</div></div>
       <div class="sw"><div class="chip-c" style="background:#E4A11B"></div><div class="nm">Warning</div><div class="hx">#E4A11B · #7A5200</div><div class="ro">Amber — delay, action needed, low balance.</div></div>
       <div class="sw"><div class="chip-c" style="background:#C4462A"></div><div class="nm">Danger</div><div class="hx">#C4462A · #9A3115</div><div class="ro">Clay red — failed, cancelled, issue. Never for decoration.</div></div>
       <div class="sw"><div class="chip-c" style="background:#4C5A66"></div><div class="nm">Info</div><div class="hx">#4C5A66</div><div class="ro">Calm slate-blue — neutral notices (no ride-share blue).</div></div>
@@ -608,7 +607,7 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
           <tr><td><span class="swatch-pair"><span style="background:#9BCF4A;color:#1A1A1A">Aa</span></span><span class="mono">#1A1A1A on #9BCF4A</span></td><td>Charcoal on the green button</td><td class="mono tnum">8.83 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
           <tr><td><span class="swatch-pair"><span style="background:#ECE9E4;color:#1A1A1A">Aa</span></span><span class="mono">#1A1A1A on #ECE9E4</span></td><td>Body text on card</td><td class="mono tnum">15.8 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
           <tr><td><span class="swatch-pair"><span style="background:#ECE9E4;color:#5A5751">Aa</span></span><span class="mono">#5A5751 on #ECE9E4</span></td><td>Slate metadata on card</td><td class="mono tnum">6.29 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
-          <tr><td><span class="swatch-pair"><span style="background:#E7F0D2;color:#3F5B18">Aa</span></span><span class="mono">#3F5B18 on #E7F0D2</span></td><td>Green-ink on the live / certified pill</td><td class="mono tnum">6.1 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
+          <tr><td><span class="swatch-pair"><span style="background:#E7F0D2;color:#1A1A1A">Aa</span></span><span class="mono">#1A1A1A on #E7F0D2</span></td><td>Charcoal on the live / certified tint — green is never the text</td><td class="mono tnum">14.75 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
           <tr><td><span class="swatch-pair"><span style="background:#F7F5F2;color:#5A5751">Aa</span></span><span class="mono">#5A5751 on #F7F5F2</span></td><td>Slate on the page ground</td><td class="mono tnum">6.7 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
           <tr><td><span class="swatch-pair"><span style="background:#F2D8CF;color:#9A3115">Aa</span></span><span class="mono">#9A3115 on #F2D8CF</span></td><td>Danger text on its wash</td><td class="mono tnum">5.2 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
         </tbody>

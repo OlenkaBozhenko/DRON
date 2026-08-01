@@ -178,7 +178,8 @@
     /* language switcher — injected into the top-right of every screen's topbar */
     + '.wf-frame header.topbar .wf-lang{ display:inline-flex; flex:none; margin-left:auto;'
     + '  border:1px solid rgba(0,0,0,0.15); border-radius:6px; overflow:hidden; }'
-    + '.wf-frame header.topbar .wf-lang button{ height:28px; padding:0 10px; border:0;'
+    + '.wf-frame header.topbar .wf-lang button{ height:44px; min-width:44px; padding:0 10px; border:0;'
+    // 44x44 is the HIG / WCAG 2.5.5 target; it was 28px tall and 38px wide.
     + '  border-right:1px solid rgba(0,0,0,0.09); background:#FFFFFF; font:inherit; font-size:12px;'
     + '  font-weight:600; letter-spacing:.04em; color:#5A5A5A; cursor:pointer; }'
     + '.wf-frame header.topbar .wf-lang button:last-child{ border-right:0; }'
