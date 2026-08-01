@@ -128,7 +128,7 @@ is appropriate and the exception is what it was named for.
 | **Search row** | `.search-row`, `.field` | 2 · 0 | grayscale | Blocked on the field — it is that component in a row with an icon action. |
 | **Checkbox · checklist** | `.check-item`, `.check-box`, `.checklist` | 5 · 0 | grayscale | **The one form control the system has already solved** — a ticked box is a green fill behind a charcoal check, exactly the walked progress node at **9.46:1**. Only the radius and the target need setting. |
 | **Choice card · radio** | `.choice-card`, `.choice-list`, `.choice-title`, `.choice-desc` | 2 · 0 | grayscale | **Half-settled 2026-08-02:** the selected card carries a **checkmark**, per HIG and the same call made on the disclosure row — charcoal on the card at **14.37:1**. Still open: whether the card itself changes behind the check. A green tint across a whole card would spend the screen's accent budget on a picker. |
-| **Disclosure row** | `details.dropdown` | 2 · 0 | grayscale | A native `<details>` — **it opens in flow and pushes the page down; it does not float.** **Decided 2026-08-02: card, not frame** — so on `--card` with `--line` rules between its rows it *becomes the row panel that opens*, one component rather than two. **Decided: the selected row carries a checkmark**, not the word "current". **Open: the chevron** — see §4. |
+| **Disclosure row** | `details.dropdown` | 2 · 0 | grayscale | A native `<details>` — **it opens in flow and pushes the page down; it does not float.** **Decided 2026-08-02: card, not frame** — so on `--card` with `--line` rules between its rows it *becomes the row panel that opens*, one component rather than two. **Decided: the selected row carries a checkmark**, not the word "current". **Decided: the chevron rotates 180° on open** — closed points down, open points up. Nothing left open on this component. |
 | **Stepper** | `.counter`, `.count` | 3 · 0 | grayscale | Both controls are 44pt targets and the figure is tabular. The circular icon action is the shape to borrow, already measured at **11.54:1**. |
 | **Upload zone** | `.upload-zone`, `.up-ph` | 6 · 0 | grayscale | The upload glyph and its motion already exist on `delivery-loading` at 32px and **5.51:1**; this is the same mark at rest, in a dashed well. |
 | **Icon slot** | `.sq`, `.sq-16 / -20 / -24` | 37 · **310 slots** | grayscale | A bordered square holding the place an icon goes. On the painted three the glyph is already in: the box gives way to a real 24-grid SVG **in the same slot**. **Nothing to decide — the icons go in.** The set is settled (flat outline, 24-grid, `stroke-width 1.7` declared once, `fill:none`, `currentColor`) and §0.2 maps a glyph to every service, status, trust signal, nav item and action. Drawing work against a finished spec — which is also why the slot count is the honest measure of how much of the prototype is still grayscale. |
@@ -167,12 +167,12 @@ this surface, or sit inside it**.
 
 ## 2. Motion
 
-Every loop is functional; none is decoration. All are `animation: none` under
+**Four entries, and the chevron did not add a fifth.** Every loop is functional; none is decoration. Loops carry information; the button row is a transition that answers a touch, and a chevron turning on open is that second kind. All are `animation: none` under
 `prefers-reduced-motion: reduce`.
 
 | Name | Duration | Easing | What moves |
 |---|---|---|---|
-| button | .15s / .12s | default | `filter`, `background`, `transform`; active `translateY(1px) scale(.99)` |
+| button | .15s / .12s | default | `filter`, `background`, `transform`; active `translateY(1px) scale(.99)`. **Also carries the disclosure chevron's 180° turn** (decided 2026-08-02) — feedback for a touch belongs here, not in a loop of its own. |
 | `oh-ping` | 1.8s | `cubic-bezier(.22,.61,.36,1)` | one ring leaving a live status disc and fading — far under the 3-flashes-per-second ceiling |
 | `skPulse` | 1.4s | `ease-in-out` | skeleton opacity 1 → .5 |
 | `skUp` | 1.6s | `cubic-bezier(.22,.61,.36,1)` | the arrow leaves the upload tray; the tray holds still. Rests **visible** at 0% and 100%, so a dropped animation leaves a legible icon |
@@ -208,11 +208,10 @@ single screen by its class names.
 
 | # | Question | Why it is open |
 |---|---|---|
-| 1 | **Does the chevron rotate when a disclosure opens?** | The chevron is `.chev` — a typed `›` at 22px on `role-select` / `support` / `time-slot`, and a typed `▾` inside the disclosure summary. It is **type, not an icon**: off the 24-grid, no 1.7 stroke, scaling with the font rather than with its box. §0.2 specifies it (`chevron-right` / `chevron.right`) and no painted screen draws it. Replacing it with the real glyph is settled. **Rotating it would be the first state transition in the system that is not a button press** — the four existing motion loops all carry information. |
-| 2 | **Does the selected choice card change behind the check?** | The checkmark is settled. Whether the card surface also changes is not — and a green tint across a whole card would spend the screen's accent budget on a picker. |
-| 3 | **One icon action or two shapes?** | `.sbi` is circular and painted; `.icon-btn` and `.ic-edit` are square and grey. Three class families, one control. |
-| 4 | **One card or two?** | The client listing card and the operator job card were built separately and never reconciled. |
-| 5 | **Does the total get a type step above `number`?** | The scale is closed at ten steps, so adding one is a real decision, not a tweak. |
+| 1 | **Does the selected choice card change behind the check?** | The checkmark is settled. Whether the card surface also changes is not — and a green tint across a whole card would spend the screen's accent budget on a picker. |
+| 2 | **One icon action or two shapes?** | `.sbi` is circular and painted; `.icon-btn` and `.ic-edit` are square and grey. Three class families, one control. |
+| 3 | **One card or two?** | The client listing card and the operator job card were built separately and never reconciled. |
+| 4 | **Does the total get a type step above `number`?** | The scale is closed at ten steps, so adding one is a real decision, not a tweak. |
 
 ---
 
@@ -227,6 +226,7 @@ single screen by its class names.
 | 2026-08-02 | **A surface is a card, not a frame.** A border does not survive the move into Studio: `--card` at the 1.11:1 tone step, `--r-card` 16, rows separated by their own `--line` hairline. | `concept.md` rev 43 |
 | 2026-08-02 | **A selected row carries a checkmark, per HIG** — not a word. `--ink` on `--card` = **14.37:1**, the same glyph the walked node draws. Governs every one-of-many list. | `concept.md` rev 43 |
 | 2026-08-02 | A floating surface belongs in a **modal, popover, drawer or dropdown menu**, and there it is appropriate. None exists yet, so `--sh-onphoto` stays unspent. | `concept.md` rev 43 |
+| 2026-08-02 | **The chevron rotates 180° on open** — closed points down, open points up. It joins the button's `transform .12s` rather than becoming a fifth motion loop, because it answers a touch instead of carrying continuous information. Under `prefers-reduced-motion` the glyph still turns, it just does not travel: the direction is information, the animation is only how it gets there. | `concept.md` rev 44 |
 
 ---
 

@@ -1290,7 +1290,7 @@
         </td>
         <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
         <td class="c-screens"><span class="scr">2</span><span class="scr-sub">0 painted</span></td>
-        <td class="c-where"><p class="where" style="max-width:34ch"><b>Decided 2026-08-02 &#8212; and the first call collapses it into another component.</b><br><br><b>1 &#183; Card, not frame.</b> <em>Settled.</em> A wireframe where everything sits in frames cannot be compared with UI, so the border does not survive. On <code>--card</code> with <code>--line</code> rules between its rows it <b>becomes the row panel that opens</b> &#8212; same fill, same 16px radius, same 13px row. One component, not two.<br><br><b>2 &#183; The chevron.</b> <em>Open.</em> It is a typed character today, not an icon &#8212; off the 24-grid, no 1.7 stroke. Replacing it with the real glyph is settled; whether it <b>rotates</b> on open is not.<br><br><b>3 &#183; Selected row.</b> <em>Settled: a checkmark, per HIG</em> &#8212; not the word &#8220;current&#8221;. Charcoal check on the card at <b>14.37:1</b>, the same glyph the walked node already draws. Applies to every one-of-many list, not just this one.</p></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Settled 2026-08-02 &#8212; nothing left open, and the first call collapses it into another component.</b><br><br><b>1 &#183; Card, not frame.</b> <em>Settled.</em> A wireframe where everything sits in frames cannot be compared with UI, so the border does not survive. On <code>--card</code> with <code>--line</code> rules between its rows it <b>becomes the row panel that opens</b> &#8212; same fill, same 16px radius, same 13px row. One component, not two.<br><br><b>2 &#183; The chevron.</b> <em>Settled: it rotates 180&#176; on open</em> &#8212; closed points down, open points up, and there is no third position for it to take. It joins the button&#8217;s <code>transform .12s</code> rather than becoming a fifth motion loop, because it answers a touch instead of carrying continuous information. Under reduced motion the glyph still turns, it just does not travel: the direction is information, the animation is only how it gets there. Replacing the typed character with the real 24-grid glyph is the first step either way.<br><br><b>3 &#183; Selected row.</b> <em>Settled: a checkmark, per HIG</em> &#8212; not the word &#8220;current&#8221;. Charcoal check on the card at <b>14.37:1</b>, the same glyph the walked node already draws. Applies to every one-of-many list, not just this one.</p></td>
         <td class="c-where"><p class="where">account &#183; operator-account</p></td>
       </tr>
 
@@ -1395,6 +1395,13 @@
     strength; a block the load replaces animates. The same rule gives opposite answers on the two
     painted loading screens, and that is the point &#8212; the question is never &#8220;should this
     pulse&#8221; but <b>does what loads replace this surface, or sit inside it</b>.
+  </p>
+  <p class="sec-note" style="margin-top:10px">
+    <b>Four motion entries, and the chevron did not add a fifth.</b> Three are loops that carry
+    information &#8212; <code>oh-ping</code> 1.8s, <code>skPulse</code> 1.4s, <code>skUp</code> 1.6s
+    &#8212; and one is the button&#8217;s transition, which answers a touch. The disclosure
+    chevron&#8217;s 180&#176; turn (decided 2026-08-02) is the second kind, so it takes the
+    button&#8217;s <code>transform .12s</code> rather than an easing of its own.
   </p>
 
   <div class="scroller">
