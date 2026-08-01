@@ -126,6 +126,19 @@
   .media-ph{ width:56px; height:56px; flex:none; border:1px dashed var(--wf-border-2); border-radius:6px;
     display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.06em; color:var(--wf-muted);
     background:var(--wf-recessed); }
+  /* ── IMAGERY ────────────────────────────────────────────────────────────
+     The service card now carries the drone that does that job, so the label
+     placeholder gives way to the render it stood for. Same rules as the
+     shared sheet (_wireframe.css → IMAGERY); repeated here because this page
+     is self-contained and links no stylesheet.
+     The well grows 56 → 96 × 72: concept.md §6.3 puts the floor at ~96px,
+     below which the rotors stop resolving, and order-history already took
+     this exact step for the same reason. Landscape because the subject is.
+     No ground and no border — in the product a cutout sits straight on the
+     card (§6.3, designer call 2026-08-01).                                 */
+  .media-ph:has(img){ width:96px; height:72px; border:0; background:none;
+    padding:0; overflow:hidden; font-size:0; line-height:0; color:transparent; }
+  .media-ph img{ width:100%; height:100%; display:block; object-fit:contain; }
   .card .body{ flex:1; min-width:0; }
   .card .name{ display:block; font-size:17px; font-weight:600; color:var(--wf-text); }
   .card .desc{ display:block; font-size:13px; color:var(--wf-text-2); margin:2px 0 0; }
