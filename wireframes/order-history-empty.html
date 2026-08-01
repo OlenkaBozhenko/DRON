@@ -92,9 +92,19 @@
      into the card itself: white disappears, the drop shadow under the box turns
      into a soft tint of the card rather than a grey blob, and the render sits on
      the card with no well. --card is lighter than the --media it replaces, so
-     the drone reads a shade cleaner than before, not darker. */
+     the drone reads a shade cleaner than before, not darker.
+     BALANCE (designer call, concept.md rev 35): the two gaps around the render
+     must match. They are measured on the drone's *ink*, not on its box — the
+     JPEG carries ~24px of white margin above the drone at this scale, which is
+     why the old center 92% looked top-heavy: 70px of air above the drone
+     against 41px down to the title. background-position:center 16px puts the
+     ink at rows 55..126 of the card, so the space above it (55px) and the space
+     from it to the title's cap line (55px) are equal, measured by pixel scan.
+     The box stays 150px and the card keeps its height — only the render moved.
+     Any change to background-size, the box height or the title's type re-opens
+     this number: it is a placement, not a rule. */
   .msg-ph{ width:100%; height:150px; border:0; border-radius:var(--r-media);
-    background-color:var(--card); background-size:auto 78%; background-position:center 15px;
+    background-color:var(--card); background-size:auto 78%; background-position:center 16px;
     background-repeat:no-repeat; background-blend-mode:multiply;
     color:transparent; font-size:0; letter-spacing:0; overflow:hidden; }
   .msg-title{ font-size:17px; font-weight:600; letter-spacing:-.01em; color:var(--ink); }
