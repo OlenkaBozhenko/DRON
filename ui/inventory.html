@@ -444,6 +444,58 @@
   .d-caret{ display:inline-block; width:2px; height:19px; background:#1A1A1A; vertical-align:-4px; margin-left:1px; }
   .d-chev{ color:#5A5751; display:inline-flex; margin-left:6px; vertical-align:-2px; }
 
+
+  /* a specimen whose subject is the space, not the object: the page ground
+     with no frame of its own, so the list does not read as sitting in a
+     container the product does not have */
+  .page-strip{
+    background:#F7F5F2; padding:0; border:0; border-radius:0;
+    display:inline-flex; flex-direction:column; align-items:stretch;
+    font-family:var(--ui); color:#1A1A1A; font-size:15px; line-height:1.4;
+  }
+  /* the interval, measured and labelled, because 28px of nothing is
+     invisible and the interval is the whole component */
+  .gap-rule{
+    position:relative; display:flex; align-items:center; justify-content:center;
+  }
+  .gap-rule::before, .gap-rule::after{
+    content:""; position:absolute; left:0; right:0; height:1px; background:#D9D5CE;
+  }
+  .gap-rule::before{ top:0; }
+  .gap-rule::after{ bottom:0; }
+  .gap-rule span{
+    font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.08em;
+    color:#5A5751; background:#F7F5F2; padding:0 6px; position:relative; z-index:1;
+  }
+
+
+  /* the iOS grouped form, in DRON colours. Apple's node 1:301 read across:
+     grouped card -> --card, separator -> --line inset past the label,
+     placeholder -> --slate, value -> --ink, caret -> --ink (green cannot be
+     a line at 1.52:1), clear button -> --btn2 disc with an --ink glyph. */
+  .d-form{ background:var(--card); border-radius:var(--r-card); overflow:hidden; width:250px; }
+  .d-frow{
+    min-height:44px; display:flex; align-items:center; gap:10px;
+    padding:0 16px; position:relative;
+  }
+  .d-frow + .d-frow::before{
+    content:""; position:absolute; left:16px; right:0; top:0; height:1px; background:var(--line);
+  }
+  .d-fval{ flex:1; font-size:15px; line-height:21px; color:var(--ink); }
+  .d-fph{ flex:1; font-size:15px; line-height:21px; color:var(--slate); }
+  .d-fcaret{ display:inline-block; width:2px; height:19px; background:var(--ink); vertical-align:-4px; margin-left:1px; }
+  .d-fclear{
+    width:20px; height:20px; flex:none; border-radius:50%;
+    background:var(--btn2); color:var(--ink);
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  /* the search field: the one that keeps a ground, per Apple's node 1:424 */
+  .d-search{
+    width:250px; min-height:44px; display:flex; align-items:center; gap:8px;
+    padding:0 12px; border-radius:var(--r-input); background:var(--media); color:var(--slate);
+  }
+  .d-search .t{ flex:1; font-size:15px; line-height:21px; color:var(--slate); }
+
   footer{ margin-top:72px; padding-top:24px; border-top:1px solid var(--rule); }
   footer h3{
     font-family:var(--mono); font-size:11px; font-weight:600;
@@ -1044,10 +1096,7 @@
           <span class="st painted">painted</span>
           <p class="desc">The rhythm between cards, and the only place the largest spacing step appears.</p>
         </td>
-        <td class="c-spec"><span class="plate col" style="width:200px;gap:28px;background:#F7F5F2">
-          <span class="d-card" style="padding:12px"><span style="display:block;font-size:15px;font-weight:600;line-height:18px">Package delivery</span></span>
-          <span class="d-card" style="padding:12px"><span style="display:block;font-size:15px;font-weight:600;line-height:18px">Aerial photo</span></span>
-        </span></td>
+        <td class="c-spec"><span class="plate col" style="width:200px;gap:28px;background:#F7F5F2"><span class="d-card" style="padding:12px"><span style="display:block;font-size:15px;font-weight:600;line-height:18px">Package delivery</span></span><span class="d-card" style="padding:12px"><span style="display:block;font-size:15px;font-weight:600;line-height:18px">Aerial photo</span></span></span></td>
         <td class="c-screens"><span class="scr">10</span><span class="scr-sub">1 painted</span></td>
         <td class="c-tok"><dl class="tok">
           <div><dt>gap</dt><dd>28px between cards</dd></div>
@@ -1215,7 +1264,7 @@
           <span class="st decided">decided &#183; not built</span>
           <p class="desc">Label, input, hint, error &#8212; the wrapper every typed value sits in.</p>
         </td>
-        <td class="c-spec"><span class="plate"><span class="d-kv" style="width:250px"><span class="d-kv-row"><span class="d-kv-k">Name</span><span class="d-kv-input">Olena B.<i class="d-caret"></i></span></span><span class="d-kv-row"><span class="d-kv-k">Phone</span><span class="d-kv-ph">+380 &#183;&#183; &#183;&#183;&#183; &#183;&#183; &#183;&#183;</span></span><span class="d-kv-row"><span class="d-kv-k">City</span><span class="d-kv-input">Kyiv<span class="d-chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5.5l6.5 6.5L9 18.5"/></svg></span></span></span></span></span></td>
+        <td class="c-spec"><span class="plate tight" style="background:#F7F5F2"><span class="d-form"><span class="d-frow"><span class="d-fph">Placeholder</span></span><span class="d-frow"><span class="d-fval"><i class="d-fcaret"></i></span></span><span class="d-frow"><span class="d-fval">Value<i class="d-fcaret"></i></span><span class="d-fclear" aria-hidden="true"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg></span></span><span class="d-frow"><span class="d-fval">Value</span></span></span></span></td>
         <td class="c-screens"><span class="scr">8</span><span class="scr-sub">0 painted</span></td>
         <td class="c-where"><p class="where" style="max-width:34ch"><b>Settled 2026-08-02: no border.</b> 1.4.11 governs a boundary that is <em>drawn</em>, not one that is absent &#8212; a field identified by its label, placeholder and row separator has nothing to measure. <b>The failure was the border already there:</b> the grayscale <code>1px --line</code> is <b>1.21:1</b> and does not survive painting.<br><br>HIG got there first &#8212; the native form row is label, value, separator, no box. So a field <b>lives in a row panel and is the row that accepts typing</b>.<br><br>Value <code>--ink</code> <b>14.37:1</b> &#183; label and placeholder <code>--slate</code> <b>5.95:1</b> &#183; focus <code>2.5px --ink</code> <b>14.37:1</b> &#183; error <code>--danger-ink</code> <b>6.14:1</b>, carried by words or a glyph, never a boundary alone.</p></td>
         <td class="c-where"><p class="where">account-edit, support, setup, verification&#8230;</p></td>
@@ -1224,7 +1273,7 @@
       <tr>
         <td class="c-name">
           <div class="nm">Input &#183; select</div><span class="sel">.control &#183; .select</span>
-          <span class="st gray">grayscale</span>
+          <span class="st decided">decided &#183; not built</span>
           <p class="desc">The typed box itself, and its dropdown sibling.</p>
         </td>
         <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
@@ -1236,10 +1285,10 @@
       <tr>
         <td class="c-name">
           <div class="nm">Search row</div><span class="sel">.search-row &#183; .field</span>
-          <span class="st gray">grayscale</span>
+          <span class="st decided">decided &#183; not built</span>
           <p class="desc">Search input beside a filter affordance, above the service list.</p>
         </td>
-        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-spec"><span class="plate tight" style="background:#F7F5F2"><span class="d-search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><span class="t">Search services</span></span></span></td>
         <td class="c-screens"><span class="scr">2</span><span class="scr-sub">0 painted</span></td>
         <td class="c-where"><p class="where" style="max-width:34ch"><b>Settled 2026-08-02: the one field that keeps a ground</b>, because it is not in a grouped list &#8212; a filled rounded rect on the page, <code>--media</code> at <code>--r-input</code> 10px, no border. That is the iOS search bar, and it gives <code>--r-input</code> its only home: declared since the token seed and drawn nowhere until now. Value <b>13.33:1</b>, placeholder <b>5.51:1</b>.</p></td>
         <td class="c-where"><p class="where">listings &#183; listings-filtered</p></td>
