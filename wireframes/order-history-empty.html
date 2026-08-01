@@ -73,8 +73,9 @@
 
   /* empty message block — warm-grey card, drone render as the media banner.
      Modest downward shift balances the void above the tab bar without leaving the thumb zone */
+  /* flat, like .kv — no --sh-card on cards (concept.md rev 29) */
   .msg-block{ background:var(--card); border:0; border-radius:var(--r-card);
-    box-shadow:var(--sh-card); padding:16px 16px 20px; gap:12px; margin-top:56px; }
+    padding:16px 16px 20px; gap:12px; margin-top:56px; }
   .msg-ph{ width:100%; height:150px; border:0; border-radius:var(--r-media);
     background-color:var(--media); background-size:auto 78%; background-position:center 92%;
     background-repeat:no-repeat; background-blend-mode:multiply;

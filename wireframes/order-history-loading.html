@@ -96,7 +96,8 @@
      Height check, measured at a 375px frame: 20 + 72 + 20 + 67 + 20 + 44 + 20
      = 263px against the real delivered card's 263.6px — the swap moves the
      list by half a pixel.                                                 ── */
-  .sk-card{ background:var(--card); border:0; border-radius:var(--r-card); box-shadow:var(--sh-card);
+  /* flat, like .kv — no --sh-card on cards (concept.md rev 29) */
+  .sk-card{ background:var(--card); border:0; border-radius:var(--r-card);
     flex-direction:column; align-items:stretch; gap:20px; padding:20px; }
   .wf-frame main ul.list{ gap:28px; }
   /* the bar base comes first: every .sk-* height below is a single-class rule

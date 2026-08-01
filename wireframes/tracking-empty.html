@@ -128,8 +128,9 @@
      from its first line down. (concept.html's own operator card overrides that
      to center; on this screen the block is three lines tall, and centring left
      the avatar floating against the rating.) */
+  /* flat, like .kv — no --sh-card on cards (concept.md rev 29) */
   .op-card{ background:var(--card); border:0; border-radius:var(--r-card);
-    box-shadow:var(--sh-card); padding:16px; gap:12px; align-items:flex-start; }
+    padding:16px; gap:12px; align-items:flex-start; }
   /* 44px, not the wireframe's 56 — concept .well, the size the operator block
      uses there. It is also what buys the trust chips their single row: the card
      gives .op-info 294 - avatar - gap, and the pair needs 143 + 6 + 85 = 234.
@@ -181,8 +182,9 @@
      families are the concept's own --warn / --danger tokens, used as wash + ink
      exactly the way the green tint carries charcoal, so every mark keeps its
      contrast (raw --warn on the card is 1.84:1 and could not carry it).    ── */
+  /* flat, like .kv — no --sh-card on cards (concept.md rev 29) */
   .msg-block{ background:var(--card); border:0; border-radius:var(--r-card);
-    box-shadow:var(--sh-card); padding:22px 18px; gap:12px; }
+    padding:22px 18px; gap:12px; }
   .msg-ph{ width:52px; height:52px; border:0; border-radius:var(--r-media);
     background:var(--media); color:var(--slate); font-size:0;
     display:flex; align-items:center; justify-content:center; }

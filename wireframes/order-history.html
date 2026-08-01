@@ -87,10 +87,12 @@
   .zlabel::after{ content:""; position:absolute; left:0; bottom:-1px; width:30px; height:2px; background:var(--green); }
   .zlabel .act{ color:var(--slate); font-size:11px; letter-spacing:.02em; }
 
-  /* cards — warm-grey surface, soft shadow, no border */
-  article.card{ background:var(--card); border:0; border-radius:var(--r-card);
-    box-shadow:var(--sh-card); transition:box-shadow .15s; }
-  article.card:hover{ background:var(--card); border:0; box-shadow:var(--sh-raised); }
+  /* cards — warm-grey surface, flat, no border. The shadow is gone by designer
+     call (concept.md rev 29), and the hover lift goes with it: a card that casts
+     no shadow at rest cannot grow one under the pointer, and hover is desktop-only
+     anyway. What marks the card as reachable is its own controls and the keyboard
+     focus ring below.                                                        ── */
+  article.card{ background:var(--card); border:0; border-radius:var(--r-card); }
   /* Focus ring, keyboard only. :focus-within fires on a mouse click too, so
      every tap on a card flashed a green outline around it — and the shared
      _wireframe.css carries its own :focus-within ring, which would otherwise
