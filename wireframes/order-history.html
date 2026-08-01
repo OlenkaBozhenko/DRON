@@ -145,15 +145,17 @@
   .wf-frame main .list{ gap:28px; }
   article.card.oh-live{ padding:20px; gap:20px; }                          /* concept .card */
 
-  /* header: drone well + a title-over-meta stack, the status pill opposite the
-     date. The budget at 375px, after the card's 20px inset: 286px of content,
-     less well(76) + gap(16) = 194px for the text column. Title 152 fits with 42
-     to spare. The binding pair is the live card's — date(80) + gap(8) + the wider
-     "In progress" pill(101) = 189, 5 to spare; a delivered card needs only 171.
-     That budget is what pays for the bigger well — the dates dropped their year
-     (every order in the list is 2026 and the newest reads "Today"), which took
-     the widest date from 119px to 85px. Keeping it would have capped the well
-     at ~62px, and the drone has to be legible before it is worth showing. */
+  /* header: drone well + a two-row stack — service name with the status
+     indicator opposite it, date underneath spanning both columns. The budget at
+     375px, after the card's 20px inset: 286px of content, less well(84) +
+     gap(16) = 186px for the text column, and the binding row is the title's:
+     the longest name(152) + gap(8) + indicator(20) = 180, 6 to spare. The date
+     now owns a full 186px line against a widest 85px, so it cannot break.
+     Two earlier cuts paid for this. The dates dropped their year (every order is
+     2026 and the newest reads "Today"), 119px → 85px; and the pill became a
+     20px indicator, which returned another ~80px — that is what moved the status
+     up beside the name, where it was wanted in the first place, and still let
+     the well grow from 76 to 84. */
   .ohl-top{ display:flex; align-items:center; gap:16px; }                  /* concept .card-top */
   /* the well carries the drone doing this job — concept §6.1, the studio fleet,
      one unit per service: drone-08 (package delivery, the designer's pick, Figma
