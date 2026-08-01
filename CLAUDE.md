@@ -121,6 +121,32 @@ English (primary), Ukrainian (secondary)
 | Desktop (client) | WCAG 2.1 AA |
 | Operator SRM | WCAG 2.1 AA |
 
+### The conformance check (standing rule, set by the designer 2026-08-01)
+
+**Every design decision is checked against HIG and WCAG before it is written down or built** —
+a colour pair, a type size, a touch target, a state indicator, a focus ring, a motion loop, a
+control's height. Not only new work: an existing value being documented gets the same check.
+
+**When a decision does not conform, do not silently fix it and do not silently keep it. Ask the
+designer — and in the same message state what the guideline actually prescribes,** so the choice
+is made against the rule rather than against an opinion. The report carries, in this order:
+
+1. **What is built** — the element, the exact value, the measured result (ratio, px, pt).
+2. **What the guideline prescribes** — the named criterion (`HIG · Tab bars`, `WCAG 1.4.3`,
+   `WCAG 1.4.11`, `WCAG 2.4.11`, `HIG · 44pt target`), and what it says in one line.
+3. **Whether it passes, and by how much** — a number, never "looks fine".
+4. **The options**, each with its consequence — including keeping it as built.
+
+Where the two standards pull apart, or where a project rule (`concept.md` §0 Designer's Taste,
+the fill-only accent) makes the literal guideline impossible, say so plainly and give the reading
+that satisfies both — the way the selected tab carries the accent as a **fill behind charcoal**
+instead of as a tinted label, because `#9BCF4A` as text is 1.69:1 and HIG's tint pattern would
+fail AA.
+
+**A conforming departure is recorded, not corrected.** Outline-only icons on the selected tab
+depart from the iOS filled-symbol convention by a deliberate `concept.md` §5 rule; that is
+documented as a decision with its reason, not filed as a defect.
+
 ---
 
 ## Working Process
