@@ -474,16 +474,19 @@ not a control or state indicator (1.4.11) — so no contrast minimum applies to 
 `.msg-ph`, `.media-ph` and `.map-ph` — every one overrides a bordered base rule. Hairlines survive
 only where they separate rows within a surface: `.kv-row`, the bar borders, the zone-label rule.
 
-**Two radii sit off the ramp**, both on `order-history-loading`: the skeleton bar at `4px` and the
-skeleton price at `5px`. `tracking-loading` draws the same bar at `--r-pill`.
+**Below the ramp, the 2 / 4 / 8 scale is permissible** for an internal detail that is not a surface
+of its own — a skeleton bar, a rule cap. The six are closed for anything the eye reads as an
+object: a surface, a control, a well, a chip. `order-history-loading` draws its skeleton bar at
+`4px` and `tracking-loading` draws the same bar at `--r-pill`; both are inside the rule.
 
 **One deliberate zero.** `.op-avatar` takes `border-radius:0` — it is a full-bleed panel, and the
 card's own `overflow:hidden` cuts its two outer corners to `--r-card`.
 
 ### Named rules
 
-**The Closed-Ramp Rule.** Six radii and a circle. Closed means closed: a shape that is none of them
-is a shape nobody chose.
+**The Closed-Ramp Rule.** Six radii and a circle for anything the eye reads as an object — a
+surface, a control, a well, a chip. Below that, an internal detail may take any radius on the
+2 / 4 / 8 scale.
 
 **The Cut-By-The-Parent Rule.** A full-bleed child is square and the parent's `overflow:hidden`
 gives it the corner. It never restates the parent's radius.
@@ -725,7 +728,8 @@ drop the 26 KB base64 blob out of the HTML.
   it is under the primary button.
 - **Don't** spend green inside card UI — the direction chip, the route strip and card actions are
   neutral.
-- **Don't** use a radius outside the six, and don't restate a parent's radius on a full-bleed child.
+- **Don't** give a surface, control, well or chip a radius outside the six, and don't restate a
+  parent's radius on a full-bleed child. Internal details may use the 2 / 4 / 8 scale.
 - **Don't** dim a control with blanket opacity — build the disabled state from its own pair.
 - **Don't** draw the raw semantic hue. A state is a wash carrying its own ink.
 - **Don't** let a state be carried by colour alone.
