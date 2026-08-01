@@ -127,9 +127,11 @@ English (primary), Ukrainian (secondary)
 a colour pair, a type size, a touch target, a state indicator, a focus ring, a motion loop, a
 control's height. Not only new work: an existing value being documented gets the same check.
 
-**When a decision does not conform, do not silently fix it and do not silently keep it. Ask the
-designer — and in the same message state what the guideline actually prescribes,** so the choice
-is made against the rule rather than against an opinion. The report carries, in this order:
+**Every question put to the designer opens with the standards, before the options — not only when
+something fails.** If she is being asked to decide, she gets what HIG and WCAG say about it first,
+so the choice is made against the rule rather than against an opinion. And when a decision does not
+conform, it is neither silently fixed nor silently kept: it is reported the same way. Where both
+options conform, say so plainly — that is an answer, not a gap. The report carries, in this order:
 
 1. **What is built** — the element, the exact value, the measured result (ratio, px, pt).
 2. **What the guideline prescribes** — the named criterion (`HIG · Tab bars`, `WCAG 1.4.3`,
