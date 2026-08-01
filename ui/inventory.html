@@ -1,0 +1,1558 @@
+<title>ui/inventory</title>
+
+<style>
+  /* &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;
+     ui/inventory &#8212; DRON component inventory
+     Page chrome is theme-aware. Specimens are NOT: they are pinned to the
+     Studio light values, because a spec page that recolours its own
+     specimens is lying about the system it documents. In dark mode the
+     chrome takes direction 03 &#171;Nocturne&#187;'s graphite #14161A and its
+     #ECE7DE ink &#8212; both recorded in concept.md, neither invented here.
+     &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; */
+
+  :root{
+    /* chrome &#8212; light */
+    --bg:        #F7F5F2;
+    --bg-sunk:   #EFECE8;
+    --fg:        #1A1A1A;
+    --fg-2:      #5A5751;
+    --fg-3:      #86827A;
+    --rule:      #DEDAD3;
+    --rule-2:    #C9C4BB;
+    --accent:    #9BCF4A;
+    --plate:     #E4E1DA;
+
+    --ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:      #14161A;
+      --bg-sunk: #1B1E23;
+      --fg:      #ECE7DE;
+      --fg-2:    #A8A29A;
+      --fg-3:    #7C7770;
+      --rule:    #2A2E35;
+      --rule-2:  #3A3F47;
+      --plate:   #23272E;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#14161A; --bg-sunk:#1B1E23; --fg:#ECE7DE; --fg-2:#A8A29A;
+    --fg-3:#7C7770; --rule:#2A2E35; --rule-2:#3A3F47; --plate:#23272E;
+  }
+  :root[data-theme="light"]{
+    --bg:#F7F5F2; --bg-sunk:#EFECE8; --fg:#1A1A1A; --fg-2:#5A5751;
+    --fg-3:#86827A; --rule:#DEDAD3; --rule-2:#C9C4BB; --plate:#E4E1DA;
+  }
+
+  body{
+    background:var(--bg); color:var(--fg);
+    font-family:var(--ui); font-size:15px; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    padding:0 24px 96px;
+  }
+  .wrap{ max-width:1180px; margin:0 auto; }
+
+  /* &#9472;&#9472; masthead &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */
+  header.mast{ padding:56px 0 28px; border-bottom:1px solid var(--rule); }
+  .eyebrow{
+    font-family:var(--mono); font-size:11px; font-weight:600;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--fg-2);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::after{ content:""; height:2px; width:34px; background:var(--accent); }
+  h1{
+    font-size:clamp(30px, 5.5vw, 44px); font-weight:700; letter-spacing:-.03em;
+    line-height:1.05; margin:14px 0 0; text-wrap:balance;
+  }
+  .standfirst{
+    margin-top:14px; max-width:62ch; color:var(--fg-2); font-size:16px; line-height:1.6;
+  }
+  .standfirst b{ color:var(--fg); font-weight:600; }
+
+  .provenance{
+    margin-top:26px; display:flex; flex-wrap:wrap; gap:8px 28px;
+    font-family:var(--mono); font-size:11.5px; color:var(--fg-3);
+  }
+  .provenance span b{ color:var(--fg-2); font-weight:600; }
+
+  /* &#9472;&#9472; the numbers strip &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */
+  .figures{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(132px, 1fr));
+    gap:1px; background:var(--rule); border:1px solid var(--rule);
+    margin:32px 0 8px;
+  }
+  .fig{ background:var(--bg); padding:16px 18px; }
+  .fig .n{
+    font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .fig .k{
+    margin-top:7px; font-family:var(--mono); font-size:10.5px; font-weight:600;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--fg-3); line-height:1.4;
+  }
+
+  /* &#9472;&#9472; section index &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */
+  nav.index{
+    position:sticky; top:0; z-index:10; background:var(--bg);
+    border-bottom:1px solid var(--rule); margin-top:40px;
+    padding:12px 0; display:flex; flex-wrap:wrap; gap:6px;
+  }
+  nav.index a{
+    font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.05em;
+    text-transform:uppercase; text-decoration:none; color:var(--fg-2);
+    padding:6px 10px; border:1px solid var(--rule-2); border-radius:999px;
+    white-space:nowrap;
+  }
+  nav.index a:hover{ color:var(--fg); border-color:var(--fg-2); }
+  nav.index a:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+  /* &#9472;&#9472; sections &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */
+  section{ margin-top:56px; scroll-margin-top:64px; }
+  h2{
+    font-size:21px; font-weight:700; letter-spacing:-.02em;
+    display:flex; align-items:baseline; gap:12px;
+  }
+  h2 .count{
+    font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.06em;
+    color:var(--fg-3);
+  }
+  .sec-note{ margin-top:8px; max-width:70ch; color:var(--fg-2); font-size:14px; }
+
+  /* &#9472;&#9472; the table &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */
+  .scroller{ overflow-x:auto; margin-top:20px; border:1px solid var(--rule); }
+  table{ border-collapse:collapse; width:100%; min-width:860px; }
+  thead th{
+    text-align:left; vertical-align:bottom;
+    font-family:var(--mono); font-size:10.5px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; color:var(--fg-3);
+    padding:12px 16px; border-bottom:1px solid var(--rule-2);
+    background:var(--bg-sunk); position:sticky; top:0;
+  }
+  tbody td{
+    padding:20px 16px; border-bottom:1px solid var(--rule); vertical-align:top;
+  }
+  tbody tr:last-child td{ border-bottom:0; }
+  td.c-spec{ width:1%; white-space:nowrap; }
+  td.c-name{ min-width:150px; }
+  td.c-tok{ min-width:196px; }
+  td.c-ratio{ width:1%; white-space:nowrap; }
+  td.c-where{ min-width:150px; }
+
+  .nm{ font-size:14px; font-weight:600; letter-spacing:-.01em; color:var(--fg); }
+  .sel{
+    display:inline-block; margin-top:5px;
+    font-family:var(--mono); font-size:11px; color:var(--fg-3);
+  }
+  .desc{ margin-top:8px; font-size:13px; line-height:1.5; color:var(--fg-2); max-width:34ch; }
+
+  dl.tok{ margin:0; font-family:var(--mono); font-size:11px; line-height:1.7; }
+  dl.tok div{ display:flex; gap:8px; }
+  dl.tok dt{ color:var(--fg-3); min-width:56px; }
+  dl.tok dd{ margin:0; color:var(--fg-2); }
+  .sw{
+    display:inline-block; width:9px; height:9px; border-radius:2px;
+    border:1px solid rgba(128,128,128,.35); vertical-align:-1px; margin-right:5px;
+  }
+
+  .ratio{
+    font-family:var(--mono); font-size:13px; font-weight:600;
+    font-variant-numeric:tabular-nums; letter-spacing:-.01em; color:var(--fg);
+  }
+  .lbl{
+    display:block; margin-top:4px; font-size:10px; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase; color:var(--fg-3);
+  }
+  .pass{ color:#3F6B12; }
+  @media (prefers-color-scheme: dark){ .pass{ color:#A9D96A; } }
+  :root[data-theme="dark"] .pass{ color:#A9D96A; }
+  :root[data-theme="light"] .pass{ color:#3F6B12; }
+  .exempt{ color:var(--fg-3); }
+
+  .where{ font-size:12.5px; line-height:1.6; color:var(--fg-2); }
+  .where code{
+    font-family:var(--mono); font-size:11px; color:var(--fg-3);
+    display:block;
+  }
+
+  /* &#9472;&#9472; the specimen plate: always Studio, never the viewer's theme &#9472;&#9472; */
+  /* The specimen's type and ink live HERE, not on the table row. Putting
+     color:#1A1A1A on the whole tbody made every component name inherit the
+     product's charcoal, which is invisible on the dark chrome. The plate is
+     the only place a specimen exists, so it is the only place that gets the
+     product's own typography. */
+  .plate{
+    background:#F7F5F2; border:1px solid #D9D5CE; border-radius:16px;
+    padding:18px; display:inline-flex; align-items:center; justify-content:center;
+    gap:12px; min-width:150px;
+    font-family:var(--ui); color:#1A1A1A; font-size:15px; line-height:1.4;
+  }
+  .plate.on-card{ background:#ECE9E4; }
+  .plate.wide{ width:341px; }
+  .plate.tight{ padding:12px; min-width:0; }
+  .plate.col{ flex-direction:column; align-items:stretch; }
+
+  /* &#9552;&#9552;&#9552; DRON components &#8212; values lifted from the painted pages &#9552;&#9552;&#9552; */
+  .dron{
+    --page:#F7F5F2; --card:#ECE9E4; --media:#E4E1DA; --btn2:#D6D2C9;
+    --inset:#F2F0EC; --ink:#1A1A1A; --slate:#5A5751; --line:#D9D5CE;
+    --green:#9BCF4A; --on-green:#1A1A1A; --green-wash:#E7F0D2;
+    --warn-ink:#7A5200; --warn-wash:#F6E7C4;
+    --danger-ink:#9A3115; --danger-wash:#F2D8CF;
+    --r-btn:12px; --r-media:13px; --r-card:16px; --r-pill:999px;
+    --sh-sm:0 1px 2px rgba(20,18,15,.05);
+    --m:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    /* custom properties only &#8212; no color, no font here. The row is chrome and
+       must follow the viewer's theme; only .plate carries the product's ink. */
+  }
+  .dron svg{ display:block; }
+
+  .d-btn{
+    min-height:44px; padding:0 16px; border-radius:var(--r-btn);
+    font:600 15px/21px var(--ui); border:1px solid transparent;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    cursor:pointer; text-decoration:none;
+    transition:filter .15s, background .15s, transform .12s;
+  }
+  .d-btn.primary{ background:var(--green); color:var(--on-green); box-shadow:var(--sh-sm); }
+  .d-btn.primary:hover{ filter:brightness(1.03); }
+  .d-btn.primary:active{ transform:translateY(1px) scale(.99); }
+  .d-btn.secondary{ background:var(--btn2); color:var(--ink); }
+  .d-btn.secondary:hover{ background:var(--media); }
+  .d-btn.secondary:active{ transform:translateY(1px) scale(.99); }
+  .d-btn[disabled]{ background:var(--btn2); color:var(--slate); cursor:not-allowed; box-shadow:none; }
+  .d-btn:focus-visible{ outline:2.5px solid var(--ink); outline-offset:2px; }
+  .d-btn.block{ width:100%; }
+
+  .d-sbi{
+    width:44px; height:44px; padding:0; border:0; border-radius:50%;
+    background:var(--btn2); color:var(--ink);
+    display:inline-flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:background .15s;
+  }
+  .d-sbi:hover{ background:var(--media); }
+  .d-sbi:focus-visible{ outline:2.5px solid var(--ink); outline-offset:2px; }
+
+  .d-card{ background:var(--card); border:0; border-radius:var(--r-card); padding:20px; }
+  .d-card.compact{ padding:16px; }
+
+  .d-kv{ background:var(--card); border:0; border-radius:var(--r-card); padding:2px 16px; }
+  .d-kv-row{ display:flex; justify-content:space-between; gap:12px; padding:13px 0; border-bottom:1px solid var(--line); }
+  .d-kv-row:last-child{ border-bottom:0; }
+  .d-kv-k{ color:var(--slate); font-size:13px; line-height:18.2px; }
+  .d-kv-v{ color:var(--ink); font-size:15px; font-weight:600; line-height:21px; font-variant-numeric:tabular-nums; }
+
+  .d-route{
+    display:flex; align-items:center; gap:12px; padding:16px;
+    border-radius:12px; background:var(--inset);
+  }
+  .d-stop{ flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+  .d-stop.to{ align-items:flex-end; text-align:right; }
+  .d-lbl{
+    font-family:var(--m); font-size:11px; font-weight:600; line-height:15.4px;
+    letter-spacing:.05em; text-transform:uppercase; color:var(--slate);
+  }
+  .d-place{ font-size:14px; line-height:18.2px; color:var(--ink); }
+  .d-arrow{
+    width:26px; height:26px; flex:none; border-radius:var(--r-pill);
+    background:var(--media); color:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  .d-chip{
+    display:inline-flex; align-items:center; gap:6px; padding:5px 10px;
+    border:0; border-radius:var(--r-pill); font:600 12px/16.8px var(--ui);
+  }
+  .d-chip.live{ background:var(--green-wash); color:var(--ink); }
+  .d-chip.muted{ background:var(--media); color:var(--slate); }
+
+  .d-ind{
+    position:relative; width:20px; height:20px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    box-shadow:0 0 0 2px var(--card);
+  }
+  .d-ind.done{ background:var(--btn2); color:var(--ink); }
+  .d-ind.live{ background:var(--green); }
+  .d-ind.live::after{
+    content:""; position:absolute; inset:0; border-radius:50%;
+    animation:d-ping 1.8s cubic-bezier(.22,.61,.36,1) infinite;
+  }
+  @keyframes d-ping{
+    0%  { box-shadow:0 0 0 0 color-mix(in srgb,#9BCF4A 90%,transparent); }
+    70% { box-shadow:0 0 0 8px color-mix(in srgb,#9BCF4A 0%,transparent); }
+    100%{ box-shadow:0 0 0 0 color-mix(in srgb,#9BCF4A 0%,transparent); }
+  }
+
+  .d-nd{
+    width:22px; height:22px; border-radius:50%; flex:none;
+    display:inline-flex; align-items:center; justify-content:center;
+    border:2px solid var(--line); background:var(--card); color:var(--slate);
+  }
+  .d-nd.done{ background:var(--green); border-color:var(--green); color:var(--on-green); }
+  .d-nd.now{
+    border-color:var(--green); color:var(--ink);
+    box-shadow:0 0 0 4px color-mix(in srgb,#9BCF4A 20%,transparent);
+  }
+
+  .d-rail{ display:grid; grid-template-columns:repeat(4,1fr); position:relative; width:252px; }
+  .d-rail::before, .d-rail::after{ content:""; position:absolute; top:10px; height:2px; left:12.5%; }
+  .d-rail::before{ width:75%; background:var(--line); }
+  .d-rail::after{ width:25%; background:var(--green); }
+  .d-step{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:9px; }
+  .d-step-lbl{ font-size:10.5px; line-height:14.7px; color:var(--slate); text-align:center; }
+  .d-step-lbl.now{ color:var(--ink); font-weight:600; }
+
+  .d-tl{ display:flex; flex-direction:column; width:190px; }
+  .d-tl-item{ display:flex; gap:12px; padding-bottom:18px; position:relative; align-items:flex-start; }
+  .d-tl-item:not(:last-child)::before{
+    content:""; position:absolute; left:10px; top:22px; bottom:-4px; width:2px; background:var(--line);
+  }
+  .d-tl-item.done:not(:last-child)::before{ background:var(--green); }
+  .d-tl-t{ font-size:14px; line-height:19.6px; color:var(--slate); padding-top:2px; }
+  .d-tl-item.done .d-tl-t, .d-tl-item.now .d-tl-t{ color:var(--ink); font-weight:600; }
+
+  .d-mark{
+    width:64px; height:64px; border:0; border-radius:50%;
+    background:var(--green-wash); color:var(--ink);
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  .d-msgph{
+    width:52px; height:52px; border:0; border-radius:var(--r-media);
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  .d-msgph.neutral{ background:var(--media); color:var(--slate); }
+  .d-msgph.warn{ background:var(--warn-wash); color:var(--warn-ink); }
+  .d-msgph.danger{ background:var(--danger-wash); color:var(--danger-ink); }
+
+  .d-tabs{
+    display:flex; width:307px; height:60px; padding:6px 8px 4px; gap:4px;
+    background:var(--page); border-top:1px solid var(--line);
+  }
+  .d-tab{
+    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:3px; border-radius:16px; text-decoration:none; color:var(--slate);
+    font:600 11px/15.4px var(--ui);
+  }
+  .d-tab[aria-current="page"]{ background:var(--green-wash); color:var(--ink); }
+  .d-tab:focus-visible{ outline:2.5px solid var(--ink); outline-offset:2px; }
+
+  .d-topbar{
+    width:307px; height:44px; display:flex; align-items:center; padding:0 16px;
+    background:var(--page); border-bottom:1px solid var(--line);
+  }
+  .d-title{ font-size:17px; font-weight:600; letter-spacing:-.01em; color:var(--ink); }
+  .d-home{ width:307px; height:30px; display:flex; align-items:center; justify-content:center; background:var(--page); }
+  .d-home i{ display:block; width:134px; height:5px; border-radius:999px; background:var(--ink); }
+
+  .d-zlabel{
+    width:252px; font-family:var(--m); font-size:11px; font-weight:600;
+    letter-spacing:.09em; color:var(--slate);
+    border-bottom:1px solid var(--line); padding:0 0 9px; position:relative;
+  }
+  .d-zlabel::after{ content:""; position:absolute; left:0; bottom:-1px; width:30px; height:2px; background:var(--green); }
+  .d-zlabel em{ font-style:normal; letter-spacing:.02em; }
+
+  .d-skline{ height:13px; border-radius:4px; background:var(--btn2); animation:d-pulse 1.4s ease-in-out infinite; }
+  .d-skwell{ width:96px; height:72px; border-radius:var(--r-media); background:var(--media); animation:d-pulse 1.4s ease-in-out infinite; }
+  @keyframes d-pulse{ 0%,100%{ opacity:1; } 50%{ opacity:.5; } }
+
+  .d-upwell{
+    width:150px; height:90px; border-radius:var(--r-media); background:var(--media);
+    color:var(--slate); display:flex; align-items:center; justify-content:center;
+  }
+  .d-uparrow{ animation:d-up 1.6s cubic-bezier(.22,.61,.36,1) infinite; }
+  @keyframes d-up{
+    0%,10%{ transform:translateY(0);     opacity:1; }
+    55%   { transform:translateY(-3.2px); opacity:0; }
+    56%   { transform:translateY(2.6px);  opacity:0; }
+    100%  { transform:translateY(0);     opacity:1; }
+  }
+
+  /* Media rows document the TREATMENT, not the asset, so nothing here
+     pretends to be a photograph. A gradient standing in for photography is
+     the &#167;0 anti-reference; a labelled well in the palette's own --media is
+     honest about being a specification. */
+  .d-well{
+    width:96px; height:72px; border-radius:var(--r-media);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--slate); font-family:var(--m); font-size:11px; font-weight:600;
+    letter-spacing:.05em; text-align:center; line-height:1.45;
+  }
+  .d-well.ground{ background:var(--media); }
+  .d-well.none{ border:1px dashed var(--line); }
+  .d-well.photo{ background:var(--media); width:170px; height:90px; }
+  .d-well.map{ background:var(--media); width:170px; height:85px; border-radius:var(--r-card); }
+
+  @media (prefers-reduced-motion: reduce){
+    .d-ind.live::after, .d-skline, .d-skwell, .d-uparrow{ animation:none; }
+    .d-btn, .d-sbi{ transition:none; }
+  }
+
+  /* &#9472;&#9472; footer &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */
+
+  /* &#9472;&#9472; status pill: does this component carry Studio values yet &#9472;&#9472; */
+  .st{
+    display:inline-block; margin-top:7px; padding:3px 8px; border-radius:999px;
+    font-family:var(--mono); font-size:10px; font-weight:600;
+    letter-spacing:.07em; text-transform:uppercase; white-space:nowrap;
+  }
+  .st.painted{ background:#E7F0D2; color:#1A1A1A; }
+  .st.gray{ background:var(--plate); color:var(--fg-2); }
+  .c-name .st + .desc{ margin-top:9px; }
+
+  /* a component with no values gets no specimen &#8212; a specimen would have to
+     invent the values it displays */
+  .nospec{
+    display:inline-flex; flex-direction:column; align-items:center; justify-content:center;
+    min-width:148px; min-height:66px; padding:14px 16px;
+    border:1px dashed var(--rule-2); border-radius:16px;
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.06em;
+    color:var(--fg-3); text-align:center; line-height:1.6;
+  }
+
+  td.c-screens{ width:1%; white-space:nowrap; }
+  .scr{
+    display:block; font-family:var(--mono); font-size:17px; font-weight:600;
+    font-variant-numeric:tabular-nums; color:var(--fg); line-height:1;
+  }
+  .scr-sub{
+    display:block; margin-top:6px; font-family:var(--mono); font-size:10px;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--fg-3);
+  }
+
+  /* one-off list */
+  .oneoff{ display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule); margin-top:20px; }
+  .oo{ background:var(--bg); padding:16px 18px; display:grid; grid-template-columns:168px 1fr; gap:18px; align-items:baseline; }
+  .oo .sc{ font-family:var(--mono); font-size:12px; font-weight:600; color:var(--fg); }
+  .oo .bits{ font-size:13.5px; color:var(--fg-2); line-height:1.65; }
+  .oo .bits em{ font-style:normal; color:var(--fg); font-weight:600; }
+  .oo .bits code{ font-family:var(--mono); font-size:11.5px; color:var(--fg-3); }
+  @media (max-width:640px){ .oo{ grid-template-columns:1fr; gap:6px; } }
+
+  h2 .count{ white-space:nowrap; }
+
+  footer{ margin-top:72px; padding-top:24px; border-top:1px solid var(--rule); }
+  footer h3{
+    font-family:var(--mono); font-size:11px; font-weight:600;
+    letter-spacing:.09em; text-transform:uppercase; color:var(--fg-3);
+  }
+  footer ul{ margin:14px 0 0; padding:0; list-style:none; display:grid; gap:9px; max-width:74ch; }
+  footer li{ font-size:13.5px; color:var(--fg-2); line-height:1.6; }
+  footer li b{ color:var(--fg); font-weight:600; }
+  footer code{ font-family:var(--mono); font-size:12px; color:var(--fg-3); }
+
+  .caveat{
+    margin-top:26px; padding:16px 18px; background:var(--bg-sunk);
+    border-left:2px solid var(--accent); font-size:13.5px; line-height:1.65;
+    color:var(--fg-2); max-width:74ch;
+  }
+  .caveat b{ color:var(--fg); font-weight:600; }
+
+  @media (max-width:640px){
+    body{ padding:0 16px 72px; }
+    header.mast{ padding-top:36px; }
+    .plate.wide{ width:100%; min-width:0; }
+  }
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow">DRON &#183; client mobile web</p>
+  <h1>ui/inventory</h1>
+  <p class="standfirst">
+    The component kit behind 40 screens. A component earns a row here by appearing on
+    <b>two screens or more</b> &#8212; that is what makes it a kit rather than a pile. Three screens
+    carry the Studio layer and are measured from computed style in a browser; the other 37 still
+    draw in the shared grayscale base, and their components are listed with <b>no values</b>,
+    because a specimen would have to invent them. What lives on exactly one screen is collected
+    at the end under <a href="#oneoff" style="color:inherit">One-off</a> and deliberately not
+    pulled into the kit.
+  </p>
+  <div class="provenance">
+    <span><b>Source</b> &#183; 84 files &#183; 40 screens</span>
+    <span><b>Painted</b> &#183; order-history, tracking, delivery</span>
+    <span><b>Spec</b> &#183; DESIGN.md</span>
+    <span><b>Read</b> &#183; 2026-08-02</span>
+  </div>
+
+  <div class="figures">
+    <div class="fig"><div class="n">49</div><div class="k">in the kit</div></div>
+    <div class="fig"><div class="n">26</div><div class="k">carry values</div></div>
+    <div class="fig"><div class="n">23</div><div class="k">still grayscale</div></div>
+    <div class="fig"><div class="n">3<span style="font-size:15px;color:var(--fg-3)"> / 40</span></div><div class="k">screens painted</div></div>
+    <div class="fig"><div class="n">10</div><div class="k">one-off blocks</div></div>
+    <div class="fig"><div class="n">2</div><div class="k">inks</div></div>
+    <div class="fig"><div class="n">6</div><div class="k">radii + circles</div></div>
+    <div class="fig"><div class="n">4.77</div><div class="k">contrast floor</div></div>
+  </div>
+</header>
+
+<nav class="index" aria-label="Sections">
+  <a href="#frame">Frame &amp; navigation</a>
+  <a href="#actions">Actions</a>
+  <a href="#surfaces">Content surfaces</a>
+  <a href="#chips">Chips &amp; badges</a>
+  <a href="#forms">Forms</a>
+  <a href="#money">Money</a>
+  <a href="#onboarding">Onboarding</a>
+  <a href="#loading">Loading</a>
+  <a href="#oneoff" style="border-color:var(--accent)">One-off</a>
+</nav>
+
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; FRAME & NAVIGATION &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section id="frame">
+  <h2>Frame &amp; navigation <span class="count">8</span></h2>
+  <p class="sec-note">
+    Every system bar takes the page ground, so the chrome melts into the page and only a hairline
+    separates it. These are the most reused components in the product &#8212; the status bar and nav
+    bar are on all 40 screens &#8212; and the three painted ones prove the values the other 37 will
+    inherit.
+  </p>
+
+  <div class="scroller">
+  <table>
+    <thead><tr>
+      <th scope="col">Component</th><th scope="col">Specimen</th><th scope="col">Screens</th>
+      <th scope="col">Values &#183; what to decide</th><th scope="col">Where</th>
+    </tr></thead>
+    <tbody class="dron">
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Nav bar</div><span class="sel">header.topbar &#183; h1.title</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The screen title is an <code>&lt;h1&gt;</code>, not a span &#8212; one entry point per screen.</p>
+        </td>
+        <td class="c-spec"><span class="plate tight"><span class="d-topbar"><span class="d-title">Delivered</span></span></span></td>
+        <td class="c-screens"><span class="scr">40</span><span class="scr-sub">3 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>height</dt><dd>44px</dd></div>
+          <div><dt>ground</dt><dd><span class="sw" style="background:#F7F5F2"></span>#F7F5F2</dd></div>
+          <div><dt>rule</dt><dd>1px #D9D5CE</dd></div>
+          <div><dt>type</dt><dd>17 / 600 / &#8722;.01em</dd></div>
+          <div><dt>ratio</dt><dd>15.99:1</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Every screen</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Status bar</div><span class="sel">.statusbar &#183; .sysph</span>
+          <span class="st painted">painted</span>
+          <p class="desc">System furniture: time plus signal, wi-fi and battery at 17px on the 24-grid.</p>
+        </td>
+        <td class="c-spec"><span class="plate tight"><span style="width:307px;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#F7F5F2;color:#1A1A1A;font-size:13px;font-weight:600"><span>9:41</span><span style="display:flex;gap:5px;align-items:center"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></span></span></td>
+        <td class="c-screens"><span class="scr">40</span><span class="scr-sub">3 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>height</dt><dd>44px</dd></div>
+          <div><dt>glyph</dt><dd>17px &#183; renders 1.20</dd></div>
+          <div><dt>ink</dt><dd><span class="sw" style="background:#1A1A1A"></span>#1A1A1A</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Every screen</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Zone label</div><span class="sel">.zlabel &#183; .act</span>
+          <span class="st painted">painted</span>
+          <p class="desc">A hairline rule with a 30 &#215; 2px green tick &#8212; the one place the accent is a line, and it is a fill, not a stroke.</p>
+        </td>
+        <td class="c-spec"><span class="plate"><span class="d-zlabel">Proof of delivery <em>&#9656; photo from the operator</em></span></span></td>
+        <td class="c-screens"><span class="scr">39</span><span class="scr-sub">3 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>type</dt><dd>mono 11 / 600</dd></div>
+          <div><dt>track</dt><dd>.09em</dd></div>
+          <div><dt>ink</dt><dd><span class="sw" style="background:#5A5751"></span>#5A5751</dd></div>
+          <div><dt>tick</dt><dd>30 &#215; 2px #9BCF4A</dd></div>
+          <div><dt>ratio</dt><dd>6.62:1</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Above every zone, on every screen</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Action bar</div><span class="sel">footer.actionbar</span>
+          <span class="st painted">painted</span>
+          <p class="desc">Replaces the tab bar where the screen has a standing action. The secondary sits above the primary, so the thumb lands on the primary first.</p>
+        </td>
+        <td class="c-spec"><span class="plate tight col" style="width:341px;gap:8px;background:#F7F5F2;padding:12px 16px 24px;border-top:1px solid #D9D5CE;border-radius:0">
+          <button class="d-btn secondary block" type="button">View details</button>
+          <button class="d-btn primary block" type="button">Contact operator</button>
+        </span></td>
+        <td class="c-screens"><span class="scr">29</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>pad</dt><dd>12px 16px 24px</dd></div>
+          <div><dt>gap</dt><dd>8px</dd></div>
+          <div><dt>rule</dt><dd>1px #D9D5CE top</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Most non-tab screens<code>painted only on tracking</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Tab bar</div><span class="sel">footer.tabbar &#183; .tab</span>
+          <span class="st painted">painted</span>
+          <p class="desc">Icons stay outline in both states &#8212; the iOS filled-symbol convention is deliberately not used, so the pill carries selection instead.</p>
+        </td>
+        <td class="c-spec"><span class="plate tight col">
+          <span class="d-tabs">
+            <a class="d-tab" href="#frame"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+            <a class="d-tab" href="#frame" aria-current="page"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+            <a class="d-tab" href="#frame"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+            <a class="d-tab" href="#frame"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+          </span>
+          <span class="d-home"><i></i></span>
+        </span></td>
+        <td class="c-screens"><span class="scr">12</span><span class="scr-sub">3 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>height</dt><dd>60 + 30</dd></div>
+          <div><dt>tab</dt><dd>r16 &#183; 86 &#215; 50</dd></div>
+          <div><dt>sel</dt><dd><span class="sw" style="background:#E7F0D2"></span>#E7F0D2 / #1A1A1A</dd></div>
+          <div><dt>rest</dt><dd>none / #5A5751</dd></div>
+          <div><dt>ratio</dt><dd>14.75 &#183; 6.62</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Tab-root screens<code>HIG tints the label; green is 1.69:1, so the fill carries it</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Home indicator</div><span class="sel">.home-indicator</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The system bar under the tab bar.</p>
+        </td>
+        <td class="c-spec"><span class="plate tight"><span class="d-home"><i></i></span></span></td>
+        <td class="c-screens"><span class="scr">12</span><span class="scr-sub">3 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>height</dt><dd>30px</dd></div>
+          <div><dt>bar</dt><dd>134 &#215; 5 &#183; r999</dd></div>
+          <div><dt>ink</dt><dd><span class="sw" style="background:#1A1A1A"></span>#1A1A1A</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">With the tab bar</p></td>
+      </tr>
+
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Brand slot</div><span class="sel">.brand-ph</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">The dashed 44 &#215; 24 box where the DRON mark goes, in the top bar of the entry and listing screens. Like the icon slot, it is a place held open &#8212; but this one is waiting on an asset that does not exist yet.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">8</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Blocked outside the design system.</b> There is no wordmark or logotype in the repo &#8212; <code>assets/</code> holds drones, people and scenes and nothing brand. Until one exists this slot cannot be painted, only reserved.</p></td>
+        <td class="c-where"><p class="where">listings &#183; onboarding &#215;2 &#183; welcome &#183; operator entry&#8230;</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Back button</div><span class="sel">.back</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">The HIG back control, showing the title of the screen you return to (<code>&#8249; Order review</code>), never &#8220;Back to&#8230;&#8221;.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">22</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">None of the three painted screens is a pushed screen, so the painted set has never drawn one. Needs a chevron on the 24-grid and a 44pt target &#8212; both already settled elsewhere.</p></td>
+        <td class="c-where"><p class="where">Most non-root screens</p></td>
+      </tr>
+
+    </tbody>
+  </table>
+  </div>
+</section>
+
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; ACTIONS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section id="actions">
+  <h2>Actions <span class="count">9</span></h2>
+  <p class="sec-note">
+    One green control per screen. Everything else that can be tapped is warm grey &#8212; green is
+    not spent inside card UI. Height is a <code>min-height</code>, never fixed: a button is a flex
+    item in a scrolling column and a fixed height gets shrunk below the 44pt target.
+  </p>
+
+  <div class="scroller">
+  <table>
+    <thead><tr>
+      <th scope="col">Component</th><th scope="col">Specimen</th><th scope="col">Screens</th>
+      <th scope="col">Values &#183; what to decide</th><th scope="col">Where</th>
+    </tr></thead>
+    <tbody class="dron">
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Primary button</div><span class="sel">.btn-primary</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The one control the screen is steering toward, and the only thing on a product surface with any depth.</p>
+        </td>
+        <td class="c-spec"><span class="plate"><button class="d-btn primary" type="button">View details</button></span></td>
+        <td class="c-screens"><span class="scr">35</span><span class="scr-sub">3 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>fill</dt><dd><span class="sw" style="background:#9BCF4A"></span>#9BCF4A</dd></div>
+          <div><dt>label</dt><dd><span class="sw" style="background:#1A1A1A"></span>#1A1A1A</dd></div>
+          <div><dt>radius</dt><dd>12px</dd></div>
+          <div><dt>pad</dt><dd>0 16px</dd></div>
+          <div><dt>height</dt><dd>min 44px</dd></div>
+          <div><dt>shadow</dt><dd>--sh-sm</dd></div>
+          <div><dt>ratio</dt><dd>9.46:1</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Nearly every screen<code>hover brightness 1.03</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Secondary button</div><span class="sel">.btn-secondary</span>
+          <span class="st painted">painted</span>
+          <p class="desc">Same geometry, no shadow. Carries every action that is not the primary one.</p>
+        </td>
+        <td class="c-spec"><span class="plate"><button class="d-btn secondary" type="button">Contact support</button></span></td>
+        <td class="c-screens"><span class="scr">28</span><span class="scr-sub">2 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>fill</dt><dd><span class="sw" style="background:#D6D2C9"></span>#D6D2C9</dd></div>
+          <div><dt>label</dt><dd><span class="sw" style="background:#1A1A1A"></span>#1A1A1A</dd></div>
+          <div><dt>hover</dt><dd>#E4E1DA</dd></div>
+          <div><dt>ratio</dt><dd>11.54:1</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Alert recovery &#183; action bars &#183; card actions</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Block button</div><span class="sel">.btn-block</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The default in an action bar and at the foot of a card. Shown at the real 341px content width.</p>
+        </td>
+        <td class="c-spec"><span class="plate wide"><button class="d-btn primary block" type="button">Rate this order</button></span></td>
+        <td class="c-screens"><span class="scr">30</span><span class="scr-sub">2 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>width</dt><dd>100%</dd></div>
+          <div><dt>column</dt><dd>341px @ 375</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Action bars &#183; empty states</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Small button</div><span class="sel">.btn-sm</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The in-card variant. On the painted card it carries a fixed <code>height:44px</code> where the language asks for <code>min-height</code> &#8212; it renders at exactly 44.0, so the target is met and the mechanism is recorded rather than corrected.</p>
+        </td>
+        <td class="c-spec"><span class="plate on-card"><button class="d-btn primary" type="button" style="font-size:15px">View details</button></span></td>
+        <td class="c-screens"><span class="scr">8</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>pad</dt><dd>0 16px</dd></div>
+          <div><dt>base</dt><dd>32px in grayscale</dd></div>
+          <div><dt>painted</dt><dd>44px</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Cards with an inline action<code>base and painted disagree on height</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Disabled</div><span class="sel">.btn:disabled</span>
+          <span class="st painted">painted</span>
+          <p class="desc">Built from its own pair, not dimmed. Blanket opacity would take charcoal-on-green to 2.35:1 &#8212; a ratio nobody measured.</p>
+        </td>
+        <td class="c-spec"><span class="plate"><button class="d-btn secondary" type="button" disabled>Unavailable</button></span></td>
+        <td class="c-screens"><span class="scr">37</span><span class="scr-sub">3 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>fill</dt><dd><span class="sw" style="background:#D6D2C9"></span>#D6D2C9</dd></div>
+          <div><dt>label</dt><dd><span class="sw" style="background:#5A5751"></span>#5A5751</dd></div>
+          <div><dt>via</dt><dd>token remap</dd></div>
+          <div><dt>ratio</dt><dd>4.77:1 &#183; floor</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Declared everywhere the base button is</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Tertiary button</div><span class="sel">.btn-tertiary</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">A text-only action &#8212; skip, cancel, &#8220;not now&#8221;. The quietest rung.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">8</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">Needs a decision the painted set never had to make: a borderless label still needs a 44pt target and a visible pressed state without a fill to change.</p></td>
+        <td class="c-where"><p class="where">Onboarding &#183; account &#183; dispute</p></td>
+      </tr>
+
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Paired buttons</div><span class="sel">.row2</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">Two actions side by side in one action-bar row &#8212; accept and decline, save and cancel.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">4</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">The painted action bar stacks its two buttons instead, so the thumb reaches the primary first. Decide whether side-by-side survives at all, or whether every pair stacks &#8212; at 341px two 44pt targets in a row leave each about 166px, which is enough but tight for a two-word label.</p></td>
+        <td class="c-where"><p class="where">job-offer &#183; account-edit &#183; resolution &#183; share</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Edit affordance</div><span class="sel">.op-edit &#183; .ic-edit &#183; .pencil</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">The pencil that turns a profile row into an editable one.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">2</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">Three classes for one control is the finding here. It is the circular icon action again &#8212; already measured at 44px and 11.54:1 &#8212; so this is a consolidation, not a new design.</p></td>
+        <td class="c-where"><p class="where">account &#183; operator-account</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Icon button</div><span class="sel">.icon-btn &#183; .ic-filter</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">A square icon affordance beside the search field. <b>The painted set already has this idea under another name</b> &#8212; the circular <code>.sbi</code> on the order card &#8212; so this is a naming collision waiting to be resolved, not a new component.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">2</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">Decide whether the kit has one icon action or two shapes. If one, the circular 44px version is already measured at 11.54:1.</p></td>
+        <td class="c-where"><p class="where">listings &#183; listings-filtered</p></td>
+      </tr>
+
+    </tbody>
+  </table>
+  </div>
+</section>
+
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; CONTENT SURFACES &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section id="surfaces">
+  <h2>Content surfaces <span class="count">13</span></h2>
+  <p class="sec-note">
+    Flat, all of them. No card, panel, well, map or photograph casts a shadow &#8212; separation is a
+    warm tone step plus a radius, and every step is measured before it is used.
+  </p>
+
+  <div class="scroller">
+  <table>
+    <thead><tr>
+      <th scope="col">Component</th><th scope="col">Specimen</th><th scope="col">Screens</th>
+      <th scope="col">Values &#183; what to decide</th><th scope="col">Where</th>
+    </tr></thead>
+    <tbody class="dron">
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Message block</div><span class="sel">.msg-block &#183; .msg-ph</span>
+          <span class="st painted">painted</span>
+          <p class="desc">One component doing three jobs &#8212; <b>empty state</b>, <b>error banner</b> and <b>notice</b>. The most reused content surface in the product after the button.</p>
+        </td>
+        <td class="c-spec"><span class="plate"><span class="d-card compact" style="width:214px;padding:22px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
+          <span class="d-msgph danger" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity=".55"><path d="M2.5 9.5a15 15 0 0 1 19 0"/><path d="M5.8 13.4a10 10 0 0 1 12.4 0"/><path d="M9.1 17.3a5 5 0 0 1 5.8 0"/></svg></span>
+          <span style="font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:23.8px">Live tracking lost</span>
+          <span style="font-size:13px;line-height:19.5px;color:#5A5751">We&#8217;ve lost the live signal from the operator&#8217;s device.</span>
+        </span></span></td>
+        <td class="c-screens"><span class="scr">25</span><span class="scr-sub">3 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>pad</dt><dd>22px 18px</dd></div>
+          <div><dt>gap</dt><dd>12px</dd></div>
+          <div><dt>title</dt><dd>17 / 600</dd></div>
+          <div><dt>body</dt><dd>13 / 400 &#183; 260px</dd></div>
+          <div><dt>mark</dt><dd>52px &#183; r13</dd></div>
+          <div><dt>warn</dt><dd><span class="sw" style="background:#F6E7C4"></span>5.65:1</dd></div>
+          <div><dt>danger</dt><dd><span class="sw" style="background:#F2D8CF"></span>5.49:1</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Every empty and error state<code>role=alert / role=status</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Empty-state banner</div><span class="sel">.msg-block + image .msg-ph</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The same block with a render instead of a glyph. A second inset, documented rather than drifted: <b>32px under the button</b> against 16 above it, because an action wants more clearance from the card edge than the text rhythm above it.</p>
+        </td>
+        <td class="c-spec"><span class="plate"><span class="d-card compact" style="width:200px;padding:16px 16px 32px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
+          <span class="d-well" style="width:100%;height:70px;background:#ECE9E4;border:1px dashed #D9D5CE">drone render<br>no ground</span>
+          <span style="font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:23.8px">No orders yet</span>
+          <span style="font-size:14px;line-height:21px;color:#5A5751">Your orders appear here, ready to re-book in a tap.</span>
+          <button class="d-btn primary" type="button" style="margin-top:2px">Browse services</button>
+        </span></span></td>
+        <td class="c-screens"><span class="scr">2</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>pad</dt><dd>16px 16px 32px</dd></div>
+          <div><dt>banner</dt><dd>100% &#215; 150px</dd></div>
+          <div><dt>radius</dt><dd>13px</dd></div>
+          <div><dt>ground</dt><dd>none &#183; blend multiply</dd></div>
+          <div><dt>offset</dt><dd>margin-top 56</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">order-history-empty<code>the one non-transparent image in the product</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Row panel</div><span class="sel">.kv &#183; .kv-row</span>
+          <span class="st painted">painted</span>
+          <p class="desc">One component, two painted screens: the tracking ETA panel and the delivery details panel are the same two rules. Values are tabular so a column of figures lines up.</p>
+        </td>
+        <td class="c-spec"><span class="plate"><span class="d-kv" style="width:230px">
+          <span class="d-kv-row"><span class="d-kv-k">Delivered to</span><span class="d-kv-v">Osokorky, 14</span></span>
+          <span class="d-kv-row"><span class="d-kv-k">Time</span><span class="d-kv-v">10:07</span></span>
+        </span></span></td>
+        <td class="c-screens"><span class="scr">15</span><span class="scr-sub">2 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>fill</dt><dd><span class="sw" style="background:#ECE9E4"></span>#ECE9E4</dd></div>
+          <div><dt>pad</dt><dd>2px 16px</dd></div>
+          <div><dt>row</dt><dd>13px 0</dd></div>
+          <div><dt>rule</dt><dd><span class="sw" style="background:#D9D5CE"></span>#D9D5CE</dd></div>
+          <div><dt>key</dt><dd>13 / 400 &#183; 5.95:1</dd></div>
+          <div><dt>value</dt><dd>15 / 600 &#183; 14.37:1</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Every screen that lists facts</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Card</div><span class="sel">article.card &#183; .card-link</span>
+          <span class="st painted">painted</span>
+          <p class="desc">A whole-card link with inner controls lifted above it, and a keyboard-only focus ring &#8212; <code>:focus-within</code> fires on a pointer click too, so the ring is re-hung on <code>:has(&gt; .card-link:focus-visible)</code>.</p>
+        </td>
+        <td class="c-spec"><span class="plate"><span class="d-card" style="width:186px">
+          <span style="display:block;font-size:15px;font-weight:600;line-height:18px">Package delivery</span>
+          <span style="display:block;margin-top:4px;font-size:12.5px;line-height:15px;color:#5A5751">Today &#183; 10:03</span>
+        </span></span></td>
+        <td class="c-screens"><span class="scr">11</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>fill</dt><dd><span class="sw" style="background:#ECE9E4"></span>#ECE9E4</dd></div>
+          <div><dt>radius</dt><dd>16px</dd></div>
+          <div><dt>pad</dt><dd>20px &#183; 16px compact</dd></div>
+          <div><dt>border</dt><dd>none</dd></div>
+          <div><dt>shadow</dt><dd>none</dd></div>
+          <div><dt>step</dt><dd>1.11:1 on page</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Listing and history screens<code>28px between, 20px within</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Operator card</div><span class="sel">.op-card &#183; .op-avatar &#183; .op-name &#183; .op-rating</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The trust surface. The photo is a full-height panel on the left edge at 117 &#215; 138.1 &#8212; the asset&#8217;s own ratio at the height the card resolves to, so the operator is shown whole. Five screens still draw the grayscale 56px avatar and are waiting for this card.</p>
+        </td>
+        <td class="c-spec"><span class="plate"><span class="d-card compact" style="width:200px">
+          <span style="display:block;font-size:15px;font-weight:600;line-height:18px">Andriy M.</span>
+          <span style="display:block;margin-top:2px;font-size:12.5px;line-height:17.5px;color:#5A5751;font-variant-numeric:tabular-nums">4.9 &#9733; &#183; 214 jobs</span>
+          <span style="display:flex;gap:6px;margin-top:9px;flex-wrap:wrap">
+            <span class="d-chip live"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON</span>
+            <span class="d-chip muted"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured</span>
+          </span>
+        </span></span></td>
+        <td class="c-screens"><span class="scr">5</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>pad</dt><dd>16px &#183; gap 12</dd></div>
+          <div><dt>panel</dt><dd>117 &#215; 138.1</dd></div>
+          <div><dt>name</dt><dd>15 / 600</dd></div>
+          <div><dt>rating</dt><dd>12.5 / 400 tabular</dd></div>
+          <div><dt>chips</dt><dd>wrap below 390</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">tracking &#215;3 painted<code>account, support, order-confirmed still grayscale</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Milestone mark</div><span class="sel">.success-mark</span>
+          <span class="st painted">painted</span>
+          <p class="desc">Delivered and waiting share one well. A paler green step was drawn and measured first &#8212; every mix below the wash lands at 1.03&#8211;1.05 against the page &#8212; so the difference is the glyph and the screen title, not the colour.</p>
+        </td>
+        <td class="c-spec"><span class="plate">
+          <span class="d-mark"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+          <span class="d-mark"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+        </span></td>
+        <td class="c-screens"><span class="scr">13</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>size</dt><dd>64px &#183; 50%</dd></div>
+          <div><dt>fill</dt><dd><span class="sw" style="background:#E7F0D2"></span>#E7F0D2</dd></div>
+          <div><dt>glyph</dt><dd>32px &#183; renders 2.27</dd></div>
+          <div><dt>ratio</dt><dd>14.75:1</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Every confirmation screen</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Outcome heading</div><span class="sel">.big-title &#183; .lead &#183; .center</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The <code>display</code> step and its lead paragraph, centred. The only place 22px appears.</p>
+        </td>
+        <td class="c-spec"><span class="plate col" style="text-align:center;align-items:center;width:220px">
+          <span style="font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:30.8px">Delivered</span>
+          <span style="margin-top:12px;font-size:15px;line-height:23.25px;color:#5A5751">Your parcel arrived at 10:07.</span>
+        </span></td>
+        <td class="c-screens"><span class="scr">20</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>title</dt><dd>22 / 700 / &#8722;.02em</dd></div>
+          <div><dt>lead</dt><dd>15 / 400 / 1.55</dd></div>
+          <div><dt>gap</dt><dd>12px</dd></div>
+          <div><dt>ratio</dt><dd>15.99 &#183; 6.62</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Confirmation and outcome screens</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Media well</div><span class="sel">.media-ph</span>
+          <span class="st painted">painted</span>
+          <p class="desc">Two treatments, one rule. A transparent cutout sits <b>in</b> the layout and is contained &#8212; in the product with no ground at all. A photograph <b>is</b> the surface and covers it edge to edge.</p>
+        </td>
+        <td class="c-spec"><span class="plate">
+          <span class="d-well none">cutout<br>no ground</span>
+          <span class="d-well ground">photo<br>cover</span>
+        </span></td>
+        <td class="c-screens"><span class="scr">7</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>radius</dt><dd>13px</dd></div>
+          <div><dt>ground</dt><dd><span class="sw" style="background:#E4E1DA"></span>#E4E1DA</dd></div>
+          <div><dt>cutout</dt><dd>contain &#183; no ground</dd></div>
+          <div><dt>photo</dt><dd>cover &#183; pad 0</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Result and listing screens</p></td>
+      </tr>
+
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Listing card</div><span class="sel">.card .body &#183; .name &#183; .desc &#183; .meta-row &#183; .price &#183; .avail &#183; .chev</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">The service card the whole client flow starts from: media, name, one line of description, then price beside availability, with a chevron. Also the operator&#8217;s job card and the wallet row &#8212; the most reused <b>content</b> anatomy in the product.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">12</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">The painted order card has solved every part of this except the chevron &#8212; media well, title over meta, a tabular figure opposite a chip. The open question is whether the two become one component or stay a client card and an operator card, which is the same question <code>operator-listings</code> raises in One-off.</p></td>
+        <td class="c-where"><p class="where">listings &#215;2 &#183; job-offer &#183; inspection-report &#183; ratings &#183; wallet &#183; dispute&#8230;</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">List container</div><span class="sel">ul.list</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The rhythm between cards, and the only place the largest spacing step appears.</p>
+        </td>
+        <td class="c-spec"><span class="plate col" style="width:200px;gap:28px;background:#F7F5F2">
+          <span class="d-card" style="padding:12px"><span style="display:block;font-size:15px;font-weight:600;line-height:18px">Package delivery</span></span>
+          <span class="d-card" style="padding:12px"><span style="display:block;font-size:15px;font-weight:600;line-height:18px">Aerial photo</span></span>
+        </span></td>
+        <td class="c-screens"><span class="scr">10</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>gap</dt><dd>28px between cards</dd></div>
+          <div><dt>narrow</dt><dd>22px under 390</dd></div>
+          <div><dt>base</dt><dd>12px in grayscale</dd></div>
+          <div><dt>rule</dt><dd>always &gt; any gap inside a card</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Every list screen<code>base and painted disagree: 12 vs 28</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Caption &#183; note</div><span class="sel">.hint &#183; .note</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The quietest text in the product. <code>.hint</code> is the mono loading line and is painted; <code>.note</code> is the centred explanatory caption and is not &#8212; two classes, one job, and they should probably be one.</p>
+        </td>
+        <td class="c-spec"><span class="plate col" style="width:200px;align-items:center;text-align:center">
+          <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;line-height:15.4px;color:#5A5751">This usually takes under a minute.</span>
+        </span></td>
+        <td class="c-screens"><span class="scr">13</span><span class="scr-sub">2 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>hint</dt><dd>mono 11 / 400</dd></div>
+          <div><dt>ink</dt><dd><span class="sw" style="background:#5A5751"></span>#5A5751</dd></div>
+          <div><dt>ratio</dt><dd>6.62:1</dd></div>
+          <div><dt>note</dt><dd>no values yet</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Loading lines &#183; form footers &#183; payment small print</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Tip block</div><span class="sel">.tip</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">A short advisory panel on the account screens &#8212; what a field is for, what happens next.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">2</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">Close enough to the neutral message block that it may not need to exist. Decide whether the kit has one advisory surface or two before giving this one values.</p></td>
+        <td class="c-where"><p class="where">account &#183; operator-account</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Map</div><span class="sel">.map-ph</span>
+          <span class="st painted">painted</span>
+          <p class="desc">Card radius, not media &#8212; the map is a surface in the layout rather than a well inside a card. Held at its native 1.99 aspect, never stretched, never a texture behind text.</p>
+        </td>
+        <td class="c-spec"><span class="plate"><span class="d-well map">cover &#183; 1.99<br>card radius</span></span></td>
+        <td class="c-screens"><span class="scr">2</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>radius</dt><dd>16px</dd></div>
+          <div><dt>fit</dt><dd>center / cover</dd></div>
+          <div><dt>aspect</dt><dd>1.99</dd></div>
+          <div><dt>shadow</dt><dd>none</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">tracking &#183; job-brief<code>job-brief still grayscale</code></p></td>
+      </tr>
+
+    </tbody>
+  </table>
+  </div>
+</section>
+
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; CHIPS & BADGES &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section id="chips">
+  <h2>Chips &amp; badges <span class="count">3</span></h2>
+  <p class="sec-note">
+    Same geometry, different jobs. The green tint carries a claim being made; the warm grey carries
+    a supporting fact. A chip is never reduced to a colour &#8212; each keeps its wording.
+  </p>
+
+  <div class="scroller">
+  <table>
+    <thead><tr>
+      <th scope="col">Component</th><th scope="col">Specimen</th><th scope="col">Screens</th>
+      <th scope="col">Values &#183; what to decide</th><th scope="col">Where</th>
+    </tr></thead>
+    <tbody class="dron">
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Verification badge</div><span class="sel">.badge &#183; .badges</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The trust claim, on the card where trust is actually claimed. Green arrives as a tint behind charcoal, never as the letters. The muted sibling carries the supporting fact.</p>
+        </td>
+        <td class="c-spec"><span class="plate on-card">
+          <span class="d-chip live"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON</span>
+          <span class="d-chip muted"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured</span>
+        </span></td>
+        <td class="c-screens"><span class="scr">8</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>claim</dt><dd><span class="sw" style="background:#E7F0D2"></span>#E7F0D2 / #1A1A1A</dd></div>
+          <div><dt>fact</dt><dd><span class="sw" style="background:#E4E1DA"></span>#E4E1DA / #5A5751</dd></div>
+          <div><dt>radius</dt><dd>999px</dd></div>
+          <div><dt>pad</dt><dd>5px 10px</dd></div>
+          <div><dt>type</dt><dd>12 / 600 &#183; glyph 13</dd></div>
+          <div><dt>ratio</dt><dd>14.75 &#183; 5.51</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Operator cards &#183; job cards<code>7 screens still grayscale</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Filter chip</div><span class="sel">.chip &#183; .cats</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">A scrolling row of category filters above a list. Selected currently inverts to solid ink.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">3</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Selected cannot invert to solid green</b> &#8212; the label would be 1.52:1. The tab bar has already answered this: green tint behind charcoal, plus an ink change so selection is not colour alone.</p></td>
+        <td class="c-where"><p class="where">listings &#183; listings-filtered &#183; time-slot</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Tag</div><span class="sel">.tag</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">A small non-interactive label on the account screens. <b>Its main use just went away:</b> the <code>current</code> tag on the mode switcher is replaced by a checkmark (decided 2026-08-02), so check what is left before giving this values.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">2</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">Probably the muted badge with no glyph &#8212; check whether it needs to exist separately at all before giving it values.</p></td>
+        <td class="c-where"><p class="where">account &#183; operator-account</p></td>
+      </tr>
+
+    </tbody>
+  </table>
+  </div>
+</section>
+
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; FORMS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section id="forms">
+  <h2>Forms <span class="count">9</span></h2>
+  <p class="sec-note">
+    <b>The largest gap in the system.</b> Nothing a person types into, checks, picks or uploads has
+    been painted &#8212; not one field on any of the three painted screens. <code>--r-input 10px</code>
+    is declared in the token block and drawn nowhere; this is what it was reserved for. Every row
+    below needs a focus treatment, an error treatment and a disabled treatment, each with a
+    measured pair, before it can leave grayscale.
+  </p>
+  <p class="sec-note" style="margin-top:10px">
+    <b>Nothing in the product floats.</b> Counted across all 40 screens: no modal, sheet, popover,
+    dialog, scrim or backdrop, and not one <code>position:fixed</code>. Every surface sits in the
+    flow, which is why the flat rule has never had to answer for an overlay and why
+    <code>--sh-onphoto</code> &#8212; the shadow named for a mark over pixels it cannot predict
+    &#8212; is still spent nowhere. <b>Where it is expected:</b> a modal, a popover, a drawer or a
+    dropdown menu &#8212; there a floating surface is appropriate and the exception is what it was
+    named for. Nothing in the product is one yet.
+  </p>
+
+  <div class="scroller">
+  <table>
+    <thead><tr>
+      <th scope="col">Component</th><th scope="col">Specimen</th><th scope="col">Screens</th>
+      <th scope="col">What to decide</th><th scope="col">Where</th>
+    </tr></thead>
+    <tbody class="dron">
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Form field</div><span class="sel">.form-field &#183; .field-label &#183; .field-hint</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">Label, input, hint, error &#8212; the wrapper every typed value sits in.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">8</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">Focus cannot be a green ring &#8212; the accent is not a line. The painted focus ring is <code>2.5px --ink</code> at 15.99:1, and the field should take that. Error text needs a pair the palette does not yet have: <code>--danger-ink</code> on the page is untested.</p></td>
+        <td class="c-where"><p class="where">account-edit, support, setup, verification&#8230;</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Input &#183; select</div><span class="sel">.control &#183; .select</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">The typed box itself, and its dropdown sibling.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">10</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">Ground is the open question: <code>--card</code> would make a field indistinguishable from the panel it sits on at 1.11:1. A field probably needs the page ground inside a hairline, which is a pair nobody has measured.</p></td>
+        <td class="c-where"><p class="where">Ten screens across both personas</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Search row</div><span class="sel">.search-row &#183; .field</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">Search input beside a filter affordance, above the service list.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">2</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">Blocked on the field &#8212; it is that component in a row with an icon action.</p></td>
+        <td class="c-where"><p class="where">listings &#183; listings-filtered</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Checkbox &#183; checklist</div><span class="sel">.check-item &#183; .check-box</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">The operator&#8217;s pre-flight checklist, and consent rows in payment and withdraw.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">5</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>The one form control the system has already solved</b> &#8212; a ticked box is a green fill behind a charcoal check, exactly the walked progress node at 9.46:1. Only the radius and the target need setting.</p></td>
+        <td class="c-where"><p class="where">job-checklist &#183; payment &#183; withdraw &#183; profile-setup</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Choice card &#183; radio</div><span class="sel">.choice-card &#183; .choice-list</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">One-of-many as full-width cards with a title and a description, not a dot.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">2</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Half-settled 2026-08-02:</b> the selected card carries a <b>checkmark</b>, per HIG and the same call made on the disclosure row &#8212; charcoal on the card at 14.37:1, the glyph the walked node already draws. What is still open is whether the card itself changes at all behind the check; a green tint across a whole card would spend the screen&#8217;s accent budget on a picker.</p></td>
+        <td class="c-where"><p class="where">role-select &#183; support</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Stepper</div><span class="sel">.counter &#183; .count</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">Minus, a figure, plus &#8212; quantity and duration.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">3</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">Both controls are 44pt targets and the figure is tabular. The circular icon action is the shape to borrow, already measured at 11.54:1.</p></td>
+        <td class="c-where"><p class="where">listings &#183; listings-filtered &#183; operator-listings</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Upload zone</div><span class="sel">.upload-zone &#183; .up-ph</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">Drop or pick a file &#8212; licence, dispute evidence, delivery photo, avatar.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">6</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">The upload glyph and its motion already exist on <code>delivery-loading</code> at 32px and 5.51:1; this is the same mark at rest, in a dashed well.</p></td>
+        <td class="c-where"><p class="where">verification &#183; dispute &#183; report-issue &#183; account-edit</p></td>
+      </tr>
+
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Disclosure row</div><span class="sel">details.dropdown</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">A native <code>&lt;details&gt;</code> on the account screens &#8212; switch between client and operator mode. <b>It opens in flow and pushes the page down; it does not float.</b> The 44px summary row carries a chevron, and the options stack inside the same box, each with a <code>.tag</code>.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">2</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Decided 2026-08-02 &#8212; and the first call collapses it into another component.</b><br><br><b>1 &#183; Card, not frame.</b> <em>Settled.</em> A wireframe where everything sits in frames cannot be compared with UI, so the border does not survive. On <code>--card</code> with <code>--line</code> rules between its rows it <b>becomes the row panel that opens</b> &#8212; same fill, same 16px radius, same 13px row. One component, not two.<br><br><b>2 &#183; The chevron.</b> <em>Open.</em> It is a typed character today, not an icon &#8212; off the 24-grid, no 1.7 stroke. Replacing it with the real glyph is settled; whether it <b>rotates</b> on open is not.<br><br><b>3 &#183; Selected row.</b> <em>Settled: a checkmark, per HIG</em> &#8212; not the word &#8220;current&#8221;. Charcoal check on the card at <b>14.37:1</b>, the same glyph the walked node already draws. Applies to every one-of-many list, not just this one.</p></td>
+        <td class="c-where"><p class="where">account &#183; operator-account</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Icon slot</div><span class="sel">.sq &#183; .sq-16 / -20 / -24</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">A bordered square holding the place an icon goes. <b>310 of them, on 37 of the 40 screens.</b> On the painted three the glyph is already in: the box gives way to a real 24-grid SVG in the same slot.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">310 slots waiting<br>for their glyph</span></td>
+        <td class="c-screens"><span class="scr">37</span><span class="scr-sub">310 slots</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Nothing to decide &#8212; the icons go in.</b> The set already exists and is settled: flat outline on a 24-grid, <code>stroke-width 1.7</code> declared once, <code>fill:none</code>, <code>currentColor</code>, and the inventory in concept.md &#167;0.2 maps a glyph to every service, status, trust signal, nav item and action. So this is drawing work against a finished spec, not a design question &#8212; which is also why the count is the honest measure of how much of the prototype is still grayscale.</p></td>
+        <td class="c-where"><p class="where">37 screens<code>310 slots</code></p></td>
+      </tr>
+
+    </tbody>
+  </table>
+  </div>
+</section>
+
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MONEY &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section id="money">
+  <h2>Money <span class="count">2</span></h2>
+  <p class="sec-note">
+    The figures the payment and payout flows turn on. The <code>number</code> step
+    (20 / 700 / tabular) already exists on the painted order card &#8212; these are that step at a
+    larger job, and they are not painted yet.
+  </p>
+
+  <div class="scroller">
+  <table>
+    <thead><tr>
+      <th scope="col">Component</th><th scope="col">Specimen</th><th scope="col">Screens</th>
+      <th scope="col">What to decide</th><th scope="col">Where</th>
+    </tr></thead>
+    <tbody class="dron">
+      <tr>
+        <td class="c-name">
+          <div class="nm">Price line</div><span class="sel">.price-line &#183; .lbl &#183; .val</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">Label opposite figure, in the action bar and the fee breakdown.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">5</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">The painted fee row already solves this on the order card &#8212; caption over a tabular figure, baseline-aligned against a chip. Port rather than decide.</p></td>
+        <td class="c-where"><p class="where">payment &#183; review &#183; wallet &#183; withdraw</p></td>
+      </tr>
+      <tr>
+        <td class="c-name">
+          <div class="nm">Total</div><span class="sel">.price-total &#183; .amount</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">The figure the user is about to authorise, and the balance they are about to withdraw.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">5</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">Voice rule P3 says the price is stated as a fact before the tap, so this figure is the one that may want a step above <code>number</code> &#8212; and the scale is closed at ten, so that is a real decision.</p></td>
+        <td class="c-where"><p class="where">order-review &#183; resolution &#183; wallet &#183; withdraw</p></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; ONBOARDING &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section id="onboarding">
+  <h2>Onboarding <span class="count">1</span></h2>
+  <p class="sec-note">
+    Three scroll-snapped slides with a dot pager, no JavaScript. The first thing a new client sees
+    and the last part of the product still entirely in grayscale.
+  </p>
+  <div class="scroller">
+  <table>
+    <thead><tr>
+      <th scope="col">Component</th><th scope="col">Specimen</th><th scope="col">Screens</th>
+      <th scope="col">What to decide</th><th scope="col">Where</th>
+    </tr></thead>
+    <tbody class="dron">
+      <tr>
+        <td class="c-name">
+          <div class="nm">Slider &#183; pager</div><span class="sel">.slider &#183; .slide &#183; .slide-ph &#183; .pager</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">Horizontal scroll-snap with a dot indicator and a skip affordance.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">3</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">The active pager dot is the one place a bare green dot might be right &#8212; and at 1.69:1 on the page it would still need a second signal, exactly as the live status disc does. The slide media is where the scene library finally gets used.</p></td>
+        <td class="c-where"><p class="where">welcome &#183; onboarding-client &#183; onboarding-operator</p></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; LOADING &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section id="loading">
+  <h2>Loading <span class="count">4</span></h2>
+  <p class="sec-note">
+    Chrome stays solid, content pulses. A surface the loaded screen also draws is painted at full
+    strength; a block the load replaces animates. The same rule gives opposite answers on the two
+    painted loading screens, and that is the point &#8212; the question is never &#8220;should this
+    pulse&#8221; but <b>does what loads replace this surface, or sit inside it</b>.
+  </p>
+
+  <div class="scroller">
+  <table>
+    <thead><tr>
+      <th scope="col">Component</th><th scope="col">Specimen</th><th scope="col">Screens</th>
+      <th scope="col">Values &#183; what to decide</th><th scope="col">Where</th>
+    </tr></thead>
+    <tbody class="dron">
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Skeleton bar</div><span class="sel">.sk-line &#183; .sk-w90/70/50/40/30</span>
+          <span class="st painted">painted</span>
+          <p class="desc">Widths vary per card so three skeletons do not read as one stamped block.</p>
+        </td>
+        <td class="c-spec"><span class="plate on-card col" style="width:200px;gap:8px">
+          <span class="d-skline" style="width:100%"></span>
+          <span class="d-skline" style="width:64%"></span>
+          <span class="d-skline" style="width:84px;height:18px"></span>
+        </span></td>
+        <td class="c-screens"><span class="scr">12</span><span class="scr-sub">2 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>fill</dt><dd><span class="sw" style="background:#D6D2C9"></span>#D6D2C9</dd></div>
+          <div><dt>height</dt><dd>13px</dd></div>
+          <div><dt>radius</dt><dd>4px &#183; 999px</dd></div>
+          <div><dt>pulse</dt><dd>1.4s &#183; 1 &#8594; .5</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Every -loading page<code>offset &#8722;.47s / &#8722;.93s per card</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Skeleton card</div><span class="sel">.sk-card</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The loaded card&#8217;s anatomy, block for block. It measures 263.0px against the delivered card&#8217;s 263.6 &#8212; the swap moves the list by half a pixel.</p>
+        </td>
+        <td class="c-spec"><span class="plate"><span class="d-card" style="width:186px;display:flex;flex-direction:column;gap:20px">
+          <span style="display:flex;gap:16px;align-items:center"><span class="d-skwell" style="width:68px;height:52px"></span><span style="flex:1;display:flex;flex-direction:column;gap:8px"><span class="d-skline" style="width:100%;height:14px"></span><span class="d-skline" style="width:60%;height:10px"></span></span></span>
+        </span></span></td>
+        <td class="c-screens"><span class="scr">5</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>surface</dt><dd>solid, does not pulse</dd></div>
+          <div><dt>pad</dt><dd>20px &#183; gap 20</dd></div>
+          <div><dt>rule</dt><dd>chrome solid, content pulses</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">List loading states</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Skeleton block</div><span class="sel">.sk-block</span>
+          <span class="st painted">painted</span>
+          <p class="desc">A media placeholder sized to the thing it waits for. On delivery it is 341 &#215; 180 against a photo of 341 &#215; 180 &#8212; the swap is exact, not approximate.</p>
+        </td>
+        <td class="c-spec"><span class="plate"><span class="d-skwell" style="width:150px;height:80px"></span></span></td>
+        <td class="c-screens"><span class="scr">4</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>fill</dt><dd><span class="sw" style="background:#E4E1DA"></span>#E4E1DA</dd></div>
+          <div><dt>radius</dt><dd>13px</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">Media loading states</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Skeleton body &#183; media</div><span class="sel">.sk-body &#183; .sk-media</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">The base loading blocks the unpainted loading screens still use.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-screens"><span class="scr">4</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">Each must be measured against its own loaded screen, the way the two painted skeletons were. A skeleton is a claim about the loaded screen, so it expires when that screen changes treatment.</p></td>
+        <td class="c-where"><p class="where">Four unpainted -loading pages</p></td>
+      </tr>
+
+    </tbody>
+  </table>
+  </div>
+</section>
+
+
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; ONE-OFF &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+<section id="oneoff">
+  <h2>One-off <span class="count">10 blocks &#183; 93 classes</span></h2>
+  <p class="sec-note">
+    Built for exactly one screen, so they are <b>not pulled into the kit</b>. Listing them is not
+    a complaint &#8212; a product needs bespoke screens. It is a watch-list: the moment one of these
+    is wanted on a second screen it stops being a one-off and has to earn a row above, with values
+    that hold in both places.
+  </p>
+  <p class="sec-note" style="margin-top:10px">
+    <b>The finding worth sitting with:</b> the two most developed components in the whole system
+    &#8212; the order card and the tracking timeline &#8212; are both here. Everything painted about
+    them is bound to a single screen by its class names.
+  </p>
+
+  <div class="oneoff">
+    <div class="oo">
+      <span class="sc">order-history</span>
+      <span class="bits"><em>The live and delivered order card, whole.</em> Its drone frame, the status indicator that rides on it, the four-node horizontal rail, the From&#8202;&#9656;&#8202;To inset strip, the fee row and the circular card actions &#8212; 28 classes, every one prefixed <code>ohl-</code> or <code>oh-</code>. The most measured component in the product and the least portable. <em>Promote first</em> if a second list screen is ever painted.</span>
+    </div>
+    <div class="oo">
+      <span class="sc">tracking</span>
+      <span class="bits"><em>The vertical milestone timeline</em> &#8212; <code>.timeline</code>, <code>.tl-item</code>, <code>.tl-dot</code>, <code>.tl-text</code> &#8212; plus the map&#8217;s acquiring state and the late-notice wash. The node inside it is byte-identical to the order card&#8217;s, which is the argument for promoting one shared node rather than two.</span>
+    </div>
+    <div class="oo">
+      <span class="sc">operator-listings</span>
+      <span class="bits"><em>The operator&#8217;s job card and its segmented header</em> &#8212; a second, parallel card family (<code>oh-head</code>, <code>oh-route</code>, <code>oh-stop</code>, <code>oh-price</code>, <code>oh-eta</code>&#8230;) built before the client card and never reconciled with it. Also the only <code>.grouptab</code>, <code>.avatar</code> and kebab action in the repo.</span>
+    </div>
+    <div class="oo">
+      <span class="sc">listings-filters</span>
+      <span class="bits"><em>The filter sheet</em> &#8212; <code>.fgroup</code>, <code>.opt</code>, <code>.radio</code>, <code>.txt</code>, <code>.reset</code>. This is the only true radio control in the product; the choice-card in the kit above is a different pattern with the same job.</span>
+    </div>
+    <div class="oo">
+      <span class="sc">listings-filtered</span>
+      <span class="bits"><em>The applied-filter row</em> &#8212; <code>.fchip</code>, <code>.count-badge</code>, <code>.applied</code>, <code>.clear-all</code>, <code>.x</code>. A dismissible chip is close enough to the kit&#8217;s filter chip that the two should probably be one component before either is painted.</span>
+    </div>
+    <div class="oo">
+      <span class="sc">rate</span>
+      <span class="bits"><em>The five-star rating input</em> &#8212; <code>.rating</code>, <code>.star</code>. Distinct from the rating <em>value</em> on the operator card, which is in the kit and painted. A filled star cannot be green: the accent is not an icon.</span>
+    </div>
+    <div class="oo">
+      <span class="sc">delivery</span>
+      <span class="bits"><em>The upload mark and its motion</em> &#8212; <code>.sk-up</code>, <code>.sk-arrow</code>, <code>.waiting</code>. Painted, measured, and used once. The upload zone in the kit is where it wants to go next.</span>
+    </div>
+    <div class="oo">
+      <span class="sc">job-offer</span>
+      <span class="bits"><em>The offer card header</em> &#8212; a lone <code>.card-top</code> that no other screen uses, though the painted order card has the same row under a different name.</span>
+    </div>
+    <div class="oo">
+      <span class="sc">withdraw</span>
+      <span class="bits"><em>The payout note</em> &#8212; <code>.check-note</code>, a caption under a checklist row. One line of copy with its own class.</span>
+    </div>
+    <div class="oo">
+      <span class="sc">welcome</span>
+      <span class="bits"><em>Skip</em> &#8212; <code>.skip</code>. The onboarding escape hatch; a tertiary button by another name.</span>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <h3>How to read this page</h3>
+  <ul>
+    <li><b>A component earns a row by repeating.</b> Two screens or more, counted across all 40 screens with their state pages collapsed &#8212; <code>-empty</code>, <code>-error</code> and <code>-loading</code> are states of a screen, not screens. Anything on exactly one screen is in One-off and stays out of the kit.</li>
+    <li><b>Painted rows are live and measured.</b> Every specimen marked <span class="st painted" style="margin:0">painted</span> is the real CSS from the three painted screens, read off computed style &#8212; hover a button, tab to it. Nothing is a screenshot.</li>
+    <li><b>Grayscale rows show nothing, on purpose.</b> A specimen for a component marked <span class="st gray" style="margin:0">grayscale</span> would have to invent the values it displays. The row says what the component is and what has to be decided instead.</li>
+    <li><b>Specimens do not follow your theme.</b> The system is light-only, so a specimen that recoloured itself would be lying about what it documents. The chrome around them does follow it; in dark it takes direction 03 &#171;Nocturne&#187;&#8217;s graphite <code>#14161A</code>, recorded in concept.md as the alternative ground.</li>
+    <li><b>Sources</b> &#8212; <code>DESIGN.md</code> for the values, <code>concept/concept.md</code> for the reasoning and the change log, <code>wireframes/_screens.md</code> for which screens and states exist at all.</li>
+  </ul>
+
+  <p class="caveat">
+    <b>This page is a snapshot, and a snapshot expires.</b> Counted and measured on 2026-08-02
+    against 84 files. The wireframes are edited by hand and they are the design &#8212; so when a
+    component changes there, or a fourth screen is painted, this inventory is wrong until it is
+    regenerated. Do not treat it as the source of truth; treat it as a view of one.
+  </p>
+</footer>
+
+</div>
