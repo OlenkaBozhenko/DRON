@@ -33,6 +33,12 @@
   --sh-sm:0 1px 2px rgba(20,18,15,.05);
   --sh-card:0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30);
   --sh-raised:0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34);
+  /* the one shadow spent on something that is NOT a surface: a chip floating over a
+     photograph, where separation from unpredictable pixels is legibility (§5 Elevation). */
+  --sh-onphoto:0 2px 8px rgba(20,18,15,.30);
+  /* disabled is BUILT, not dimmed (§4, rev 39): blanket opacity took charcoal-on-green
+     from 9.46:1 to 2.35:1 and .42 had no pair. Same colours as the secondary button. */
+  --disabled-bg:var(--btn2); --disabled-ink:var(--slate);
   --maxw:1180px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -104,14 +110,14 @@ section.blk{padding:clamp(30px,4vw,52px) 0; border-bottom:1px solid var(--line);
 .pill.live{background:var(--green-wash); color:var(--ink)}
 .pill.mut{background:var(--media); color:var(--slate)}
 .pill svg.ic{width:13px; height:13px}
-.pill.model{background:rgba(255,255,255,.92); color:var(--ink)}
+.pill.model{background:var(--card); color:var(--ink)}  /* was rgba(255,255,255,.92) — white has no pair in §5 */
 
 /* media banner (real drone render) */
 .media{height:150px; border-radius:var(--r-media); position:relative; overflow:hidden;
   background-image:var(--drone-img); background-size:auto 78%; background-position:center 92%; background-repeat:no-repeat;
   background-color:var(--media); background-blend-mode:multiply;}
 .media .badges{position:absolute; top:11px; right:11px; display:flex; gap:8px; z-index:2;}
-.media .badges .pill{box-shadow:0 2px 8px rgba(0,0,0,.30);}
+.media .badges .pill{box-shadow:var(--sh-onphoto);}
 
 /* route timeline */
 .rt .rail{display:flex; align-items:center}
@@ -149,7 +155,8 @@ section.blk{padding:clamp(30px,4vw,52px) 0; border-bottom:1px solid var(--line);
 .btn.primary:hover{filter:brightness(1.03)} .btn.primary:active{transform:translateY(1px) scale(.99)}
 .btn.secondary{background:var(--btn2); color:var(--ink)} .btn.secondary:hover{background:var(--media)}
 .btn.outline{background:transparent; border-color:#C8C3B9; color:var(--ink)} .btn.outline:hover{background:color-mix(in srgb,var(--graphite) 6%,transparent)}
-.btn:disabled{opacity:.42; cursor:not-allowed}
+.btn:disabled{background:var(--disabled-bg); color:var(--disabled-ink); box-shadow:none;
+  border-color:transparent; filter:none; transform:none; cursor:not-allowed}  /* slate on btn2 = 4.77:1 */
 .btn:focus-visible,.sbi:focus-visible,.tab:focus-visible{outline:2.5px solid var(--green); outline-offset:2px}
 .sbi{width:44px; height:44px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; border:0; cursor:pointer}
 .sbi svg.ic{width:20px; height:20px}
@@ -161,13 +168,13 @@ section.blk{padding:clamp(30px,4vw,52px) 0; border-bottom:1px solid var(--line);
 /* ---------- palette ---------- */
 .palgrid{display:grid; gap:14px; grid-template-columns:repeat(auto-fill,minmax(158px,1fr))}
 .sw{display:flex; flex-direction:column; gap:9px}
-.sw .chip-c{height:66px; border-radius:16px; box-shadow:inset 0 0 0 1px rgba(20,18,15,.07)}
+.sw .chip-c{height:66px; border-radius:16px; box-shadow:inset 0 0 0 1px rgba(20,18,15,.08)}
 .sw .nm{font-size:13px; font-weight:600}
 .sw .hx{font-family:var(--mono); font-size:11px; color:var(--slate); margin-top:-4px}
 .sw .ro{font-size:11.5px; color:var(--slate); line-height:1.35}
 
 /* ---------- generic table ---------- */
-.tblwrap{overflow-x:auto; border-radius:14px; box-shadow:var(--sh-sm); background:var(--card)}
+.tblwrap{overflow-x:auto; border-radius:var(--r-card); box-shadow:var(--sh-sm); background:var(--card)}
 table{width:100%; border-collapse:collapse; font-size:13.5px; min-width:520px}
 th,td{text-align:left; padding:11px 15px; border-bottom:1px solid var(--line); vertical-align:middle}
 th{font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--slate); font-weight:600}
@@ -175,7 +182,7 @@ tr:last-child td{border-bottom:0}
 .mono{font-family:var(--mono)} .tnum{font-variant-numeric:tabular-nums}
 .verdict{font-family:var(--mono); font-size:11px; font-weight:700; padding:3px 9px; border-radius:var(--r-pill); white-space:nowrap}
 .verdict.pass{background:var(--green-wash); color:var(--ink)}
-.swatch-pair{display:inline-flex; width:36px; height:22px; border-radius:6px; overflow:hidden; vertical-align:middle; margin-right:9px; box-shadow:inset 0 0 0 1px rgba(20,18,15,.08)}
+.swatch-pair{display:inline-flex; width:36px; height:22px; border-radius:var(--r-input); overflow:hidden; vertical-align:middle; margin-right:9px; box-shadow:inset 0 0 0 1px rgba(20,18,15,.08)}
 .swatch-pair span{flex:1; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800}
 
 /* type specimens */
@@ -183,7 +190,7 @@ tr:last-child td{border-bottom:0}
 .type-spec > div:last-child{border-bottom:0}
 .type-spec .meta{font-family:var(--mono); font-size:11px; color:var(--slate); width:180px; flex:none}
 .pair{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:20px}
-.pair .fc{flex:1; min-width:220px; background:var(--card); border-radius:14px; padding:18px; box-shadow:var(--sh-sm)}
+.pair .fc{flex:1; min-width:220px; background:var(--card); border-radius:var(--r-card); padding:18px; box-shadow:var(--sh-sm)}
 .pair .fc .big{font-size:30px; font-weight:700; letter-spacing:-.02em}
 .pair .fc .role{font-family:var(--mono); font-size:11px; color:var(--slate); margin-top:2px}
 .pair .fc .set{font-size:14px; color:var(--slate); margin-top:10px; line-height:1.5}
@@ -195,10 +202,10 @@ tr:last-child td{border-bottom:0}
 .radii .r{text-align:center; font-family:var(--mono); font-size:11px; color:var(--slate)}
 .radii .r i{display:block; width:70px; height:56px; background:var(--green-wash); border:1.5px solid var(--green); margin-bottom:7px}
 .shadows{display:flex; gap:18px; flex-wrap:wrap}
-.shadows .s{width:96px; height:70px; border-radius:14px; background:var(--card); display:flex; align-items:flex-end; justify-content:center; padding-bottom:7px; font-family:var(--mono); font-size:10.5px; color:var(--slate)}
+.shadows .s{width:96px; height:70px; border-radius:var(--r-card); background:var(--card); display:flex; align-items:flex-end; justify-content:center; padding-bottom:7px; font-family:var(--mono); font-size:10.5px; color:var(--slate)}
 .spacing{display:flex; align-items:flex-end; gap:12px; flex-wrap:wrap}
 .spacing .sp{text-align:center; font-family:var(--mono); font-size:10.5px; color:var(--slate)}
-.spacing .sp i{display:block; background:var(--green); border-radius:3px; margin:0 auto 6px}
+.spacing .sp i{display:block; background:var(--green); margin:0 auto 6px}  /* a measuring block is a rectangle */
 
 /* icon coverage */
 .iconsec{margin-top:22px}
@@ -214,7 +221,7 @@ tr:last-child td{border-bottom:0}
 @media(min-width:820px){.comp{grid-template-columns:1fr 1fr 1fr}}
 .comp .cc{background:var(--card); border-radius:var(--r-card); padding:18px; display:flex; flex-direction:column; gap:14px}
 .comp .cc h4{font-size:14px; font-weight:600} .comp .cc .note{font-size:12.5px; color:var(--slate); line-height:1.5}
-.comp .stage{background:var(--page); border-radius:14px; padding:18px; display:flex; flex-direction:column; gap:11px; align-items:flex-start}
+.comp .stage{background:var(--page); border-radius:var(--r-card); padding:18px; display:flex; flex-direction:column; gap:11px; align-items:flex-start}
 
 /* imagery — the drone render library */
 /* 170px → the 12 renders divide cleanly at every breakpoint: 6+6, 4+4+4, 2×6 */
@@ -247,7 +254,7 @@ tr:last-child td{border-bottom:0}
 .dctx figcaption{padding:13px 15px; font-size:12.5px; color:var(--slate); line-height:1.5}
 .dctx figcaption b{color:var(--ink); font-weight:600}
 .dsheet{margin-top:16px; background:var(--media); border-radius:var(--r-card); padding:12px; box-shadow:var(--sh-sm)}
-.dsheet img{width:100%; display:block; border-radius:9px}
+.dsheet img{width:100%; display:block; border-radius:var(--r-input)}
 .rules{margin-top:16px; display:grid; gap:10px; grid-template-columns:1fr; list-style:none}
 @media(min-width:820px){.rules{grid-template-columns:1fr 1fr}}
 .rules li{background:var(--card); border-radius:var(--r-media); padding:13px 15px; font-size:13px; line-height:1.5; color:var(--slate); box-shadow:var(--sh-sm)}
@@ -432,19 +439,21 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
       <div class="fc"><div class="big" style="font-weight:500">SF Pro Text</div><div class="role">Text · body, labels, metadata · weights 400/500/600</div><div class="set">A certified operator handles everything with their drone. You never touch it.</div></div>
     </div>
 
-    <div class="block-label">Size scale <span class="attr">fixed rem · not fluid</span></div>
+    <div class="block-label">Size scale <span class="attr">ten steps, all of them in use</span></div>
     <div class="tblwrap">
       <table>
         <thead><tr><th>Token</th><th>Size / line</th><th>Weight</th><th>Face</th><th>Use</th></tr></thead>
         <tbody>
-          <tr><td class="mono">display</td><td class="tnum">32 / 1.05</td><td>700</td><td>Display</td><td>Screen titles, hero numbers</td></tr>
-          <tr><td class="mono">title</td><td class="tnum">24 / 1.1</td><td>700</td><td>Display</td><td>Card / section titles</td></tr>
-          <tr><td class="mono">heading</td><td class="tnum">19 / 1.2</td><td>600</td><td>Display</td><td>Sub-headings, operator name</td></tr>
-          <tr><td class="mono">body</td><td class="tnum">16 / 1.55</td><td>400</td><td>Text</td><td>Default body</td></tr>
-          <tr><td class="mono">body-sm</td><td class="tnum">14 / 1.5</td><td>400</td><td>Text</td><td>Secondary body, list rows</td></tr>
-          <tr><td class="mono">label</td><td class="tnum">13 / 1.3</td><td>600</td><td>Text</td><td>Buttons, pills, tab labels</td></tr>
-          <tr><td class="mono">caption</td><td class="tnum">12 / 1.4</td><td>500</td><td>Text</td><td>Metadata, place, timestamps</td></tr>
-          <tr><td class="mono">micro</td><td class="tnum">10.5 / 1.2</td><td>600</td><td>Mono</td><td>Eyebrows, codes, uppercase tags</td></tr>
+          <tr><td class="mono">display</td><td class="tnum">22 / 1.1</td><td>700</td><td>Display</td><td>The outcome screen's own title &mdash; <i>Delivered</i></td></tr>
+          <tr><td class="mono">number</td><td class="tnum">20 / 1.1</td><td>700</td><td>Display</td><td>Money and hero figures &mdash; &#8372;180</td></tr>
+          <tr><td class="mono">title</td><td class="tnum">17 / 1.2</td><td>600</td><td>Display</td><td>The nav-bar screen title</td></tr>
+          <tr><td class="mono">heading</td><td class="tnum">15 / 1.2</td><td>600</td><td>Text</td><td>Card title, operator name, button label</td></tr>
+          <tr><td class="mono">body</td><td class="tnum">14 / 1.5</td><td>400</td><td>Text</td><td>Default body</td></tr>
+          <tr><td class="mono">body-sm</td><td class="tnum">13 / 1.5</td><td>400</td><td>Text</td><td>Secondary body, alert copy</td></tr>
+          <tr><td class="mono">meta</td><td class="tnum">12.5 / 1.2</td><td>400</td><td>Text</td><td>Dates, place, list metadata</td></tr>
+          <tr><td class="mono">caption</td><td class="tnum">12 / 1.3</td><td>600</td><td>Text</td><td>Chips and badges</td></tr>
+          <tr><td class="mono">micro</td><td class="tnum">11 / 1.2</td><td>600</td><td>Mono</td><td>Zone labels, eyebrows, mono captions</td></tr>
+          <tr><td class="mono">micro-sm</td><td class="tnum">10.5 / 1.2</td><td>400</td><td>Text</td><td>Milestone labels under a progress rail</td></tr>
         </tbody>
       </table>
     </div>

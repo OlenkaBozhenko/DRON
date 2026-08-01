@@ -124,7 +124,8 @@
   .btn-primary{ background:var(--green); color:var(--on-green); box-shadow:var(--sh-sm); }
   .btn-primary:hover{ background:var(--green); filter:brightness(1.03); }
   .btn-primary:active{ background:var(--green); transform:translateY(1px) scale(.99); }
-  .btn-sm{ height:44px; font-size:15px; border-radius:var(--r-btn); }
+  /* padding matches .btn: the green primary is one control, not two (rev 39) */
+  .btn-sm{ height:44px; font-size:15px; border-radius:var(--r-btn); padding:0 16px; }
   @media (prefers-reduced-motion:reduce){ .btn, article.card{ transition:none; } }
 
   .oh-card{ overflow:hidden; }
@@ -156,7 +157,7 @@
   .oh-ind{ position:absolute; top:6px; right:6px; z-index:1;
     width:20px; height:20px; border-radius:50%;
     display:inline-flex; align-items:center; justify-content:center;
-    background:var(--btn2); color:var(--ink); box-shadow:0 0 0 2px var(--media); }
+    background:var(--btn2); color:var(--ink); box-shadow:0 0 0 2px var(--card); }
   .oh-ind svg.ic{ width:12px; height:12px; }
   .oh-ind.live{ background:var(--green); }
   .oh-ind.live::after{ content:""; position:absolute; inset:0; border-radius:50%;

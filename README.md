@@ -98,14 +98,19 @@ production size with its contrast measured on the page.
 |---|---|
 | **One accent, fill only** | Signal Green `#9BCF4A` is a fill or a tint, **never text and never an icon stroke** — raw green is 1.52:1 on a card. Anything sitting on green is charcoal: 9.46:1 on the fill, 14.75:1 on the tint. |
 | **~One green element per screen** | The primary CTA, *or* the active status node, *or* the verified badge — not all three loud at once. Green stays ≤ ~5% of pixels and is never spent inside card UI. |
-| **Every pair is measured** | A new colour/background pair is not used until its ratio is computed and written down. §07 of `concept.html` is the standing contrast table. |
-| **Imagery is real, never decoration** | Drone renders (`assets/drones/`), people (`assets/people/`), scenes and the live map (`assets/scenes/`, `assets/map/`). A transparent cutout sits *in* a well and is contained; a photograph *is* the surface and covers it. |
-| **Icons are one system** | Flat outline, 24-grid, 1.7px, `currentColor`, no fill. Active / done is a green shape *behind* a charcoal glyph. |
+| **Every pair is measured** | A new colour/background pair is not used until its ratio is computed and written down. §07 of `concept.html` is the standing contrast table. Zero text-contrast failures across the four painted surfaces. |
+| **Surfaces are flat** | No card and no media well casts a shadow — separation is warm tone plus the 16px radius (`#ECE9E4` on `#F7F5F2` is a real 1.11:1 step). Exactly two shadows are spent: `--sh-sm` under the green primary, and `--sh-onphoto` under a chip floating over a photograph, where it is legibility rather than decoration. |
+| **A closed ramp of six radii** | `10` input · `12` button · `13` media · `16` card · `22` panel · `999` pill. A shape that is none of these is a shape nobody chose. |
+| **Ten type steps, all in use** | The scale describes the product rather than preceding it: `22` display · `20` number · `17` title · `15` heading · `14` body · `13` body-sm · `12.5` meta · `12` caption · `11` micro · `10.5` micro-sm. |
+| **Imagery is real, never decoration** | Drone renders (`assets/drones/`), people (`assets/people/`), scenes and the live map (`assets/scenes/`, `assets/map/`). A transparent cutout sits *in* a well and is contained; a photograph *is* the surface and covers it. In the product a cutout has no well at all — it sits straight on the card. Pages serve a `thumbs/` copy at ~2× the CSS box; the master stays in the repo. |
+| **Icons are one system** | Flat outline, 24-grid, `stroke-width:1.7` declared **once**, `currentColor`, no fill. The rendered line follows the box — 0.85 at 12px, 2.27 at 32px — the way SF Symbols scales weight; no glyph compensates its stroke. Active / done is a green shape *behind* a charcoal glyph. |
+| **States are built, not dimmed** | Disabled is `--disabled-bg` / `--disabled-ink` — the secondary button's own pair at 4.77:1 — never a blanket opacity, which silently drops charcoal-on-green to 2.35:1. |
 
 **Applied to product surfaces:** [`order-history`](wireframes/order-history.html),
 [`tracking`](wireframes/tracking.html) and [`delivery`](wireframes/delivery.html) (with their states)
 carry the Studio layer. Each family shares one byte-identical `<style>` block, so every repeat of a
-component holds the same values.
+component holds the same values. The whole set is audited against `concept.md` and the findings
+are closed in the change log, most recently rev 39.
 
 **Change log:** `concept.md` records every revision, including the ones that were tried and reverted —
 so a rejected idea is not re-proposed later as a new one.

@@ -156,7 +156,7 @@
   .msg-ph.warn{ background:var(--warn-wash); color:var(--warn-ink); }
   .msg-ph.danger{ background:var(--danger-wash); color:var(--danger-ink); }
   .msg-title{ font-size:17px; font-weight:600; color:var(--ink); letter-spacing:-.01em; }
-  .msg-body{ font-size:13.5px; color:var(--slate); line-height:1.5; }
+  .msg-body{ font-size:13px; color:var(--slate); line-height:1.5; }
   .msg-actions{ gap:10px; margin-top:6px; }
 
   /* ── LOADING — the photo well before the photo. rev 24's rule is "chrome
@@ -183,11 +183,12 @@
      Motion does, and there the arrow simply rests in the tray.          ── */
   .sk-block{ background:var(--media); border-radius:var(--r-media);
     display:flex; align-items:center; justify-content:center; color:var(--slate); }
-  /* 40px, but the stroke is compensated so it RENDERS at 1.70 -- the set's own
-     weight (§0.2). A 24-grid glyph blown up to 40 would draw its 1.7 at 2.83,
-     half again heavier than every other icon on the screen; the rule is one
-     rendered line weight, not one declared number at every scale. 1.7 x 24/40. */
-  .sk-up svg.ic{ width:40px; height:40px; stroke-width:1.02; display:block; }
+  /* 32px, the size .success-mark already uses on this same page, and no compensated
+     stroke: §0.2 declares 1.7 once on the 24-grid and lets the rendered line follow the
+     box (0.85 at 12px, 2.27 at 32px). rev 38 compensated this one glyph to hold 1.70 and
+     that made the rule exist in exactly one place; rev 39 reverted it and moved the size
+     onto a value the set already carries instead. */
+  .sk-up svg.ic{ width:32px; height:32px; display:block; }
   .sk-arrow{ animation:skUp 1.6s cubic-bezier(.22,.61,.36,1) infinite; }
   @keyframes skUp{
     0%,10%{ transform:translateY(0);     opacity:1; }
@@ -196,7 +197,7 @@
     100%  { transform:translateY(0);     opacity:1; }
   }
   @media (prefers-reduced-motion:reduce){ .sk-arrow{ animation:none; } }
-  .hint{ font-family:var(--mono); font-size:11.5px; color:var(--slate); }
+  .hint{ font-family:var(--mono); font-size:11px; color:var(--slate); }
 </style>
 </head>
 <body>
