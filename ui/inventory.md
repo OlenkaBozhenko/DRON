@@ -92,8 +92,8 @@ tone step plus a radius, and every step is measured before it is used.
 | **Operator card** | `.op-card`, `.op-avatar`, `.op-info`, `.op-name`, `.op-rating` | 5 · 1 | painted | The trust surface. `--card`, padding 16, gap 12, `align-items:stretch`, `overflow:hidden`. Photo is a full-height panel on the left edge at **117 × 138.1** — the asset's own 595 × 702 ratio at the height the card resolves to, so the operator is shown whole. Name 15/600, rating 12.5/400 tabular. Five screens still draw the grayscale 56px avatar and are waiting for this card. |
 | **Milestone mark** | `.success-mark` | 13 · 1 | painted | 64px circle, `--green-wash` + `--ink` — **14.75:1**; glyph 32px, rendered stroke 2.27. Delivered and waiting share one well: a paler green step was drawn and measured first and does not exist — every mix below the wash lands at 1.03–1.05 against the page. The difference is the glyph and the screen title. |
 | **Outcome heading** | `.big-title`, `.lead`, `.center` | 20 · 1 | painted | Title 22/700/−.02em — the only place 22px appears; lead 15/400 at 1.55; gap 12; centred. |
-| **Media well** | `.media-ph` | 7 · 1 | painted | `--r-media` 13. **Two treatments, one rule:** a transparent cutout sits *in* the layout and is `contain`-ed — in the product with no ground at all, straight on the card; a photograph *is* the surface, padding 0, `cover`, edge to edge. A photo floated inside a well reads as a sticker. |
-| **Map** | `.map-ph` | 2 · 1 | painted | `--r-card` 16, not media — the map is a surface in the layout rather than a well inside a card. `center/cover` at its native 1.99 aspect; `--media` as the pre-load ground; no shadow. Never stretched, never a texture behind text. |
+| **Media well** | `.media-ph` | 7 · 1 | painted | `--r-media` 13. **Two treatments, one rule:** a transparent cutout sits *in* the layout and is `contain`-ed — in the product with no ground at all, straight on the card; a photograph *is* the surface, padding 0, `cover`, edge to edge. A photo floated inside a well reads as a sticker. **Imagery landed 2026-08-02** on `listings`, `listings-filtered`, `job-offer` and `operator-dispute` — the well grows **56 → 96 × 72** when it carries a render, because `concept.md` §6.3 puts the floor at ~96px and `order-history` had already taken that step. The label placeholder and its dashed ground come off with it. Still a placeholder where the picture is a *user's* upload: `inspection-report`'s cover and photo strip — `visuals/gaps.md` B3. |
+| **Map** | `.map-ph` | 2 · 1 | painted | `--r-card` 16, not media — the map is a surface in the layout rather than a well inside a card. `center/cover` at its native 1.99 aspect; `--media` as the pre-load ground; no shadow. Never stretched, never a texture behind text. `job-brief` carries the client map as an **interim** since 2026-08-02; a job brief needs two pins, pickup and drop-off, where the client map has one — `visuals/gaps.md` B4. |
 | **Caption · note** | `.hint`, `.note` | 13 · 2 | painted (partly) | `.hint` is the mono loading line — mono 11/400 `--slate` **6.62:1** — and is painted. `.note` is the centred explanatory caption and is not. Two classes, one job; they should probably be one. |
 | **Tip block** | `.tip` | 2 · 0 | grayscale | A short advisory panel on the account screens. Close enough to the neutral message block that it may not need to exist — decide whether the kit has one advisory surface or two. |
 
@@ -147,7 +147,7 @@ on the painted order card; these are that step at a larger job, and neither is p
 
 | Component | Classes | Screens | Status | What to decide |
 |---|---|---|---|---|
-| **Slider · pager** | `.slider`, `.slide`, `.slide-ph`, `.pager`, `.on` | 3 · 0 | grayscale | The active pager dot is the one place a bare green dot might be right — and at 1.69:1 on the page it would still need a second signal, exactly as the live status disc does. The slide media is where the scene library finally gets used. |
+| **Slider · pager** | `.slider`, `.slide`, `.slide-ph`, `.pager`, `.on` | 3 · 0 | grayscale, media in | The active pager dot is the one place a bare green dot might be right — and at 1.69:1 on the page it would still need a second signal, exactly as the live status disc does. **The scene library is now in the slides** (2026-08-02): six of the nine carry `handover`, `operator`, `receive`, `operator-at-work` and a flight cutout. Three are still labels and need generating — `welcome:DRONE` is filled with an interim, `onboarding-client:REPORT` and `onboarding-operator:STEPS · PAID` are empty (`visuals/gaps.md` B2). |
 
 ### 1.8 Loading — 4
 
@@ -226,6 +226,7 @@ single screen by its class names.
 | 2026-08-02 | **A surface is a card, not a frame.** A border does not survive the move into Studio: `--card` at the 1.11:1 tone step, `--r-card` 16, rows separated by their own `--line` hairline. | `concept.md` rev 43 |
 | 2026-08-02 | **A selected row carries a checkmark, per HIG** — not a word. `--ink` on `--card` = **14.37:1**, the same glyph the walked node draws. Governs every one-of-many list. | `concept.md` rev 43 |
 | 2026-08-02 | A floating surface belongs in a **modal, popover, drawer or dropdown menu**, and there it is appropriate. None exists yet, so `--sh-onphoto` stays unspent. | `concept.md` rev 43 |
+| 2026-08-02 | **Imagery goes in wherever an asset already fits.** Fifteen slots on nine screens moved from a text label to a real render — service wells, onboarding slides, the job-brief map. A card well that carries a render grows **56 → 96 × 72**, because below ~96px the rotors stop resolving; the dashed well and its label ground come off, since in the product a cutout sits straight on the card. The remaining slots need pictures that do not exist yet. | `visuals/gaps.md` §A |
 | 2026-08-02 | **The chevron rotates 180° on open** — closed points down, open points up. It joins the button's `transform .12s` rather than becoming a fifth motion loop, because it answers a touch instead of carrying continuous information. Under `prefers-reduced-motion` the glyph still turns, it just does not travel: the direction is information, the animation is only how it gets there. | `concept.md` rev 44 |
 
 ---
@@ -241,6 +242,11 @@ single screen by its class names.
 - **[`wireframes/_conventions.md`](../wireframes/_conventions.md)** — the wireframe contract.
 - **[`voice.md`](../voice.md)** and **[`microcopy.md`](../microcopy.md)** — every string shown.
 - **[`CLAUDE.md`](../CLAUDE.md)** — design standards and the standing HIG + WCAG conformance check.
+- **[`visuals/README.md`](../visuals/README.md)** — how every image in the product is generated: the
+  house-style prompt, the two registers (product render vs user upload), the measured colour and
+  temperature contract, naming and output sizes.
+- **[`visuals/gaps.md`](../visuals/gaps.md)** — all 84 wireframes audited slot by slot: what was
+  placed, what still has to be generated, and which slots are glyphs that must never become pictures.
 
 **Counted and measured 2026-08-02 against 84 files.** The wireframes are edited by hand and they are
 the design — so when a component changes there, or a fourth screen is painted, this inventory is

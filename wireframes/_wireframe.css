@@ -134,6 +134,35 @@ article.card:focus-within{ outline:2px solid var(--wf-border-2); outline-offset:
 .media-ph{ width:56px; height:56px; flex:none; border:1px dashed var(--wf-border-2); border-radius:6px;
   display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.04em; color:var(--wf-muted);
   background:var(--wf-recessed); text-align:center; }
+
+/* ── IMAGERY ──────────────────────────────────────────────────────────────
+   A placeholder that carries a picture stops being a placeholder: the dashed
+   well and the label ground come off, because the label was standing in for
+   the picture that is now there (concept.md §6.3 — in the product a cutout
+   sits straight on the surface, no well).
+
+   Two treatments, one rule (DESIGN.md → Imagery):
+     · a transparent cutout sits IN the layout and is `contain`-ed — default;
+     · a photograph IS the surface and `cover`s it edge to edge — `.shot`.
+   A photo floated inside a well reads as a sticker, so the two never swap.
+
+   The service wells grow 56 → 96 × 72 to carry a render at all: §6.3 puts the
+   floor at ~96px, below which the rotors stop resolving, and `order-history`
+   already took this exact step for the same reason. 96 × 72 is landscape
+   because the subject is — a 1024² canvas holding a ~1.37 subject would spend
+   a fifth of a square well on nothing.
+   :has() is baseline in every browser this prototype targets; an older one
+   loses the well removal, not the picture.                                  */
+.media-ph:has(img), .slide-ph:has(img), .map-ph:has(img){
+  border:0; background:none; padding:0; overflow:hidden;
+  font-size:0; line-height:0; color:transparent; }
+.media-ph img, .slide-ph img, .map-ph img{
+  width:100%; height:100%; display:block; object-fit:contain; }
+/* the card well grows only when it actually carries a render; a .media-ph
+   given an explicit size inline (the report cover, the photo strip) keeps it */
+.media-ph:has(img):not([style*="height"]){ width:96px; height:72px; border-radius:8px; }
+.media-ph.shot img, .map-ph img{ object-fit:cover; }
+
 .card .body{ flex:1; min-width:0; }
 .card .name{ font-size:17px; font-weight:600; color:var(--wf-text); }
 .card .desc{ font-size:13px; color:var(--wf-text-2); margin:2px 0 6px; }
