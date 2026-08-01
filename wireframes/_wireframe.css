@@ -351,7 +351,15 @@ footer.actionbar .row2{ display:flex; gap:8px; } footer.actionbar .row2 .btn{ fl
   border:0; background:none; padding:0;
   opacity:.40;
 }
-.slider.is-bleed .slide-ph img{ object-fit:contain; object-position:center bottom; }
+/* Bottom-anchored, then pushed 40px further down and clipped by the slide.
+   That is what takes the drone in slide 1 out from under the copy: the text
+   box goes from 4.93:1 against the aircraft to 13.94:1 against bare ground.
+   `calc(100% + 40px)` reads as "bottom, plus 40" — with object-fit:contain a
+   percentage aligns the object inside the leftover space, so 100% is flush
+   bottom and the addition pushes past it. */
+.slider.is-bleed .slide-ph img{
+  object-fit:contain; object-position:center calc(100% + 40px);
+}
 
 /* Why .40 and not full strength: the copy is centred, so it lands on whatever
    the picture puts in the middle of the frame. Measured on the three real
