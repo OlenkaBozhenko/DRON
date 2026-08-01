@@ -93,8 +93,9 @@
      and the third drops to a single stop — the real list mixes From▸To orders
      with single-Location ones, so a skeleton that always drew two stops would
      be describing a list it has not loaded yet.
-     Height check, at 375px: 20 + 72 + 20 + 64 + 20 + 44 + 20 = 260px against
-     the real delivered card's 259px — the swap does not reflow.           ── */
+     Height check, measured at a 375px frame: 20 + 72 + 20 + 67 + 20 + 44 + 20
+     = 263px against the real delivered card's 263.6px — the swap moves the
+     list by half a pixel.                                                 ── */
   .sk-card{ background:var(--card); border:0; border-radius:var(--r-card); box-shadow:var(--sh-card);
     flex-direction:column; align-items:stretch; gap:20px; padding:20px; }
   .wf-frame main ul.list{ gap:28px; }
