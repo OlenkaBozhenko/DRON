@@ -90,17 +90,17 @@
   @media (prefers-reduced-motion:reduce){ .btn{ transition:none; } }
 
   /* ── LIVE MAP ─────────────────────────────────────────────────────────────
-     concept .mapc / .mapv verbatim: card radius, raised shadow, the same city
+     concept .mapc / .mapv verbatim: card radius, no shadow, the same city
      render at its native 1.99 aspect, cover-positioned. The image is the one
      from concept.html's --map-img, extracted to assets/map/live-map.jpg rather
      than inlined four times as base64. The former "LIVE MAP · operator position"
      placeholder label survives as the accessible name.                     ── */
-  .map-ph{ border:0; border-radius:var(--r-card); overflow:hidden; box-shadow:var(--sh-raised);
+  .map-ph{ border:0; border-radius:var(--r-card); overflow:hidden;
     background:url(../assets/map/live-map.jpg) center/cover no-repeat, var(--media);
     aspect-ratio:1.99; height:auto; min-height:0; padding:0; color:transparent;
     font-size:0; line-height:0; }
   /* the loading state has no signal yet, so it shows the well, not the city */
-  .map-ph.acquiring{ background:var(--media); box-shadow:none; color:var(--slate);
+  .map-ph.acquiring{ background:var(--media); color:var(--slate);
     font-family:var(--mono); font-size:11px; letter-spacing:.09em; line-height:1.5;
     display:flex; align-items:center; justify-content:center; }
 
