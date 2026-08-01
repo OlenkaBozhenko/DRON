@@ -53,7 +53,12 @@
   footer.tabbar{ background:var(--page); border-top:1px solid var(--line); }
   footer .tabs{ height:60px; padding:6px 8px 4px; gap:4px; }
   footer .tab{ gap:3px; font-weight:600; color:var(--slate); border-radius:16px; }
-  footer .tab[aria-current="page"]{ background:var(--green-wash); color:var(--green-ink); }
+  /* the selected tab is charcoal on the green tint, the same pair the other
+     seven painted pages carry: #1A1A1A on #E7F0D2 = 14.75:1. It was
+     --green-ink #3F5B18 here (7.09:1) — a leftover from before concept.md
+     rev 27 deleted that token, on the grounds that green is never a text
+     colour. Designer call 2026-08-01. */
+  footer .tab[aria-current="page"]{ background:var(--green-wash); color:var(--ink); }
   footer .tab svg.ic{ width:22px; height:22px; }
   /* green-ink ring: raw green fails non-text 3:1 on this light ground (1.69:1); #3F5B18 → 7.09:1 */
   footer .tab:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
