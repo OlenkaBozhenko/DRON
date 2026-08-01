@@ -433,6 +433,17 @@
 
   h2 .count{ white-space:nowrap; }
 
+
+  /* a third state: values decided, nothing built yet. The green band is an
+     inset fill, not a stroke &#8212; green is never a line. */
+  .st.decided{ background:var(--plate); color:var(--fg); box-shadow:inset 3px 0 0 #9BCF4A; }
+
+  /* the decided form row, drawn from rev 45 rather than invented */
+  .d-kv-input{ color:#1A1A1A; font-size:15px; font-weight:600; line-height:21px; text-align:right; }
+  .d-kv-ph{ color:#5A5751; font-size:15px; font-weight:400; line-height:21px; text-align:right; }
+  .d-caret{ display:inline-block; width:2px; height:19px; background:#1A1A1A; vertical-align:-4px; margin-left:1px; }
+  .d-chev{ color:#5A5751; display:inline-flex; margin-left:6px; vertical-align:-2px; }
+
   footer{ margin-top:72px; padding-top:24px; border-top:1px solid var(--rule); }
   footer h3{
     font-family:var(--mono); font-size:11px; font-weight:600;
@@ -1174,11 +1185,12 @@
   <h2>Forms <span class="count">9</span></h2>
   <p class="sec-note">
     <b>The largest gap in the system, and the one whose ground rule is now settled.</b> Nothing a person types into, checks, picks or uploads has
-    been painted &#8212; not one field on any of the three painted screens. <code>--r-input 10px</code>
-    is declared in the token block and drawn nowhere; this is what it was reserved for. Every row
-    below needs a focus treatment, an error treatment and a disabled treatment, each with a
-    measured pair, before it can leave grayscale.
-  </p>
+    been painted &#8212; not one field on any of the three painted screens. <b>The ground rule is settled &#8212; a field
+    has no border and lives in a row panel</b> (2026-08-02) &#8212; so the rows below now carry a
+    decided treatment rather than an open question, and <code>--r-input 10px</code> has finally
+    landed on the one field that keeps a ground, the search bar. What is still owed on each is the
+    part the decision did not cover: the disabled state, and for the pickers, what the surface does
+    behind a checkmark.</p>
   <p class="sec-note" style="margin-top:10px">
     <b>Nothing in the product floats.</b> Counted across all 40 screens: no modal, sheet, popover,
     dialog, scrim or backdrop, and not one <code>position:fixed</code>. Every surface sits in the
@@ -1200,10 +1212,10 @@
       <tr>
         <td class="c-name">
           <div class="nm">Form field</div><span class="sel">.form-field &#183; .field-label &#183; .field-hint</span>
-          <span class="st gray">grayscale</span>
+          <span class="st decided">decided &#183; not built</span>
           <p class="desc">Label, input, hint, error &#8212; the wrapper every typed value sits in.</p>
         </td>
-        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-spec"><span class="plate"><span class="d-kv" style="width:250px"><span class="d-kv-row"><span class="d-kv-k">Name</span><span class="d-kv-input">Olena B.<i class="d-caret"></i></span></span><span class="d-kv-row"><span class="d-kv-k">Phone</span><span class="d-kv-ph">+380 &#183;&#183; &#183;&#183;&#183; &#183;&#183; &#183;&#183;</span></span><span class="d-kv-row"><span class="d-kv-k">City</span><span class="d-kv-input">Kyiv<span class="d-chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5.5l6.5 6.5L9 18.5"/></svg></span></span></span></span></span></td>
         <td class="c-screens"><span class="scr">8</span><span class="scr-sub">0 painted</span></td>
         <td class="c-where"><p class="where" style="max-width:34ch"><b>Settled 2026-08-02: no border.</b> 1.4.11 governs a boundary that is <em>drawn</em>, not one that is absent &#8212; a field identified by its label, placeholder and row separator has nothing to measure. <b>The failure was the border already there:</b> the grayscale <code>1px --line</code> is <b>1.21:1</b> and does not survive painting.<br><br>HIG got there first &#8212; the native form row is label, value, separator, no box. So a field <b>lives in a row panel and is the row that accepts typing</b>.<br><br>Value <code>--ink</code> <b>14.37:1</b> &#183; label and placeholder <code>--slate</code> <b>5.95:1</b> &#183; focus <code>2.5px --ink</code> <b>14.37:1</b> &#183; error <code>--danger-ink</code> <b>6.14:1</b>, carried by words or a glyph, never a boundary alone.</p></td>
         <td class="c-where"><p class="where">account-edit, support, setup, verification&#8230;</p></td>
