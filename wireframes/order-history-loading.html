@@ -64,19 +64,77 @@
   /* loading status line names what is loading */
   main > p[role="status"]{ font-size:14px; color:var(--slate); }
 
-  /* skeleton cards — rehearse the real order-card anatomy so content arrival does not reflow:
-     header band slab · date line · two route lines · price line · 44px button slab */
+  /* ── SKELETON CARDS ───────────────────────────────────────────────────────
+     _conventions §11: a loading page is "the real layout with skeleton bars in
+     place of not-yet-loaded content" — so every block below sits where the real
+     order card puts it (order-history.html), on the same three-step spacing
+     scale (4/8 within a group · 20 between groups and as the inset · 28 between
+     cards, 16/18/22 under 390px). The old skeleton was a stale rehearsal of a
+     card that no longer exists: a full-width media band across the top, three
+     loose text lines and a 44px button slab. Nothing in it matched — the real
+     card leads with a 96×72 well beside a name-over-date stack, then an inset
+     From▸To strip, then fee + two circular actions — so content arrival jumped
+     the whole list.
+     What is chrome stays solid and what is content pulses: the card surface,
+     the drone well and the route inset are surfaces the real card also draws,
+     so they are painted at full strength; only the render stand-in, the status
+     mark, the text bars, the arrow and the action discs pulse.
+     All three cards carry the *delivered* anatomy — the common denominator of
+     every card in the list. The live order's extras (progress rail, ETA chip,
+     green CTA) are deliberately not rehearsed: a skeleton that draws a rail
+     promises a live order that may not be there, and Activity often loads with
+     none. Widths vary per card so the list does not read as one stamped block.
+     Height check, at 375px: 20 + 72 + 20 + 64 + 20 + 44 + 20 = 260px against
+     the real delivered card's 259px — the swap does not reflow.           ── */
   .sk-card{ background:var(--card); border:0; border-radius:var(--r-card); box-shadow:var(--sh-card);
-    flex-direction:column; align-items:stretch; gap:0; padding:0; overflow:hidden; }
-  .sk-media{ width:100%; height:45px; border-radius:0; background:var(--media); }
-  .sk-body{ padding:14px 16px 16px; gap:14px; }
+    flex-direction:column; align-items:stretch; gap:20px; padding:20px; }
+  .wf-frame main ul.list{ gap:28px; }
+
+  /* header — well + name-over-date stack (= .ohl-top / .ohl-ic / .ohl-head) */
+  .sk-top{ display:flex; align-items:center; gap:16px; }
+  .sk-well{ position:relative; width:96px; height:72px; flex:none; border-radius:var(--r-media);
+    background:var(--media); display:flex; align-items:center; justify-content:center; }
+  .sk-img{ width:60px; height:44px; border-radius:8px; background:var(--btn2); }
+  .sk-ind{ position:absolute; top:6px; right:6px; width:20px; height:20px; border-radius:50%;
+    background:var(--btn2); box-shadow:0 0 0 2px var(--media); }
+  .sk-head{ flex:1; min-width:0; display:flex; flex-direction:column; gap:8px; }
+  .sk-title{ height:14px; }
+  .sk-date{ height:10px; }
+
+  /* route — the .stat3 inset strip, label over place, arrow between */
+  .sk-route{ display:flex; align-items:center; gap:12px; padding:16px; border-radius:12px;
+    background:color-mix(in srgb,var(--page) 55%,var(--card)); }
+  .sk-stop{ flex:1; min-width:0; display:flex; flex-direction:column; gap:6px; }
+  .sk-stop-to{ align-items:flex-end; }
+  .sk-lbl{ height:11px; width:38px; }
+  .sk-stop-to .sk-lbl{ width:22px; }
+  .sk-place{ height:15px; }
+  .sk-arrow{ width:26px; height:26px; flex:none; border-radius:var(--r-pill); background:var(--btn2); }
+
+  /* fee row — price stack opposite the two circular actions (= .ohl-fee) */
+  .sk-fee{ display:flex; align-items:flex-end; justify-content:space-between; gap:12px; }
+  .sk-money{ flex:1; min-width:0; display:flex; flex-direction:column; gap:6px; }
+  .sk-fee-lbl{ height:9px; width:62px; }
+  .sk-price{ height:18px; width:84px; border-radius:5px; }
+  .sk-acts{ display:flex; align-items:center; gap:8px; flex:none; }
+  .sk-btn{ width:44px; height:44px; border-radius:50%; background:var(--btn2); }
+
   .sk-line{ height:13px; border-radius:4px; background:var(--btn2); }
-  .sk-body::after{ content:""; height:44px; border-radius:var(--r-btn); background:var(--btn2); margin-top:2px; }
-  .sk-media,.sk-line,.sk-body::after{ animation:skPulse 1.4s ease-in-out infinite; }
-  ul.list li:nth-child(2) .sk-media, ul.list li:nth-child(2) .sk-line, ul.list li:nth-child(2) .sk-body::after{ animation-delay:-.47s; }
-  ul.list li:nth-child(3) .sk-media, ul.list li:nth-child(3) .sk-line, ul.list li:nth-child(3) .sk-body::after{ animation-delay:-.93s; }
+  .sk-img,.sk-ind,.sk-line,.sk-arrow,.sk-btn{ animation:skPulse 1.4s ease-in-out infinite; }
+  ul.list li:nth-child(2) .sk-card *{ animation-delay:-.47s; }
+  ul.list li:nth-child(3) .sk-card *{ animation-delay:-.93s; }
   @keyframes skPulse{ 0%,100%{ opacity:1; } 50%{ opacity:.5; } }
-  @media (prefers-reduced-motion:reduce){ .sk-media,.sk-line,.sk-body::after{ animation:none; } }
+  @media (prefers-reduced-motion:reduce){ .sk-img,.sk-ind,.sk-line,.sk-arrow,.sk-btn{ animation:none; } }
+
+  /* narrow tier — same steps the real card takes under 390px */
+  @media (max-width:389px){
+    .sk-card{ padding:16px; gap:18px; }
+    .wf-frame main ul.list{ gap:22px; }
+    .sk-top{ gap:12px; }
+    .sk-well{ width:68px; height:52px; }
+    .sk-img{ width:44px; height:32px; }
+    .sk-route{ padding:14px; }
+  }
 </style>
 </head>
 <body>
