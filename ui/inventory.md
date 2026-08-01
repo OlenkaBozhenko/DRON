@@ -18,6 +18,8 @@ them gives **40 screens**, and that is the denominator everywhere below.
 **Class usage was read from inside the phone frame only** (`.wf-frame` onward), so the wireframe
 annotation sidebar and the state switcher are excluded — they are not product.
 
+**Out of scope, 2026-08-02:** the **operator job card** on `operator-listings` — and with it `.grouptab`, `.segment`, `.avatar` and the kebab action, which exist nowhere else. It is neither painted nor hand-edited and is being reworked, so counting it would inventory a draft. It comes back in when it is redone.
+
 **Inclusion rule, set by the designer 2026-08-02:** a component earns a row in the kit by appearing
 on **two screens or more**. That is what makes it a kit rather than a pile. Anything on exactly one
 screen is collected in [§3 One-off](#3-one-off) and deliberately not pulled in.
@@ -35,7 +37,7 @@ because a specimen would have to invent them. Those rows say what has to be deci
 | In the kit (2+ screens) | **49** |
 | — carrying Studio values | **26** |
 | — still grayscale | **23** |
-| One-off (1 screen) | **10 blocks · 93 classes** |
+| One-off (1 screen) | **9 blocks** (operator-listings excluded, see above) |
 
 ---
 
@@ -89,7 +91,7 @@ tone step plus a radius, and every step is measured before it is used.
 | **Card** | `article.card`, `.card-link` | 11 · 1 | painted | `--card` **1.11:1** on the page; `--r-card` 16; no border, no shadow; inset 20 on a list card, 16 compact, 32 at the bottom where the last element is a primary button. Whole-card link with inner controls lifted above it; focus ring is keyboard-only, re-hung on `:has(> .card-link:focus-visible)` because `:focus-within` fires on a pointer click too. No hover lift — a card flat at rest cannot grow a shadow. |
 | **Listing card** | `.card .body`, `.name`, `.desc`, `.meta-row`, `.price`, `.avail`, `.loc`, `.chev` | 12 · 0 | grayscale | The service card the client flow starts from — media, name, one line of description, price beside availability, chevron. Also the operator's job card and the wallet row. **The painted order card has solved every part of this except the chevron.**
 
-**Settled 2026-08-02: two cards, not one.** They answer different questions — *which service do I want* (drone, name, one line of description; three elements, tap opens setup) versus *do I take this job* (title, New badge, distance and time, kebab, route, fee, expiry timer, Accept / Decline; ten elements). Sharing only a name in the code is not sharing a component. The client card is painted next; the operator card is a separate pass and has been **neither painted nor hand-edited** — so unlike the three painted screens, nothing on it has passed through the designer yet and nothing about it is settled. |
+**Settled 2026-08-02: this row is the client service card only.** Drone, name, one line of description — three elements, tap opens setup. The operator job card is a separate component and is **out of this inventory for now**: it is neither painted nor hand-edited, and the designer is reworking it. |
 | **List container** | `ul.list` | 10 · 1 | painted | Gap **28px** between cards, 22 under 390px. Base is 12. **The gap between cards is always greater than any gap inside one**, so proximity groups in the right direction without a border or a shadow. |
 | **Operator card** | `.op-card`, `.op-avatar`, `.op-info`, `.op-name`, `.op-rating` | 5 · 1 | painted | The trust surface. `--card`, padding 16, gap 12, `align-items:stretch`, `overflow:hidden`. Photo is a full-height panel on the left edge at **117 × 138.1** — the asset's own 595 × 702 ratio at the height the card resolves to, so the operator is shown whole. Name 15/600, rating 12.5/400 tabular. Five screens still draw the grayscale 56px avatar and are waiting for this card. |
 | **Milestone mark** | `.success-mark` | 13 · 1 | painted | 64px circle, `--green-wash` + `--ink` — **14.75:1**; glyph 32px, rendered stroke 2.27. Delivered and waiting share one well: a paler green step was drawn and measured first and does not exist — every mix below the wash lands at 1.03–1.05 against the page. The difference is the glyph and the screen title. |
@@ -199,7 +201,6 @@ single screen by its class names.
 |---|---|
 | **order-history** | **The live and delivered order card, whole.** Its drone frame, the status indicator riding on it, the four-node horizontal rail, the From ▸ To inset strip, the fee row and the circular card actions — 28 classes, every one prefixed `ohl-` or `oh-`. The most measured component in the product and the least portable. **Promote first** if a second list screen is ever painted. |
 | **tracking** | **The vertical milestone timeline** — `.timeline`, `.tl-item`, `.tl-dot`, `.tl-text` — plus the map's acquiring state and the late-notice wash. The node inside it is byte-identical to the order card's, which is the argument for promoting one shared node rather than two. |
-| **operator-listings** | **The operator's job card and its segmented header** — a second, parallel card family (`oh-head`, `oh-route`, `oh-stop`, `oh-price`, `oh-eta`…) built before the client card and never reconciled with it. Also the only `.grouptab`, `.segment`, `.avatar` and kebab action in the repo. |
 | **listings-filters** | **The filter sheet** — `.fgroup`, `.opt`, `.radio`, `.txt`, `.reset`. The only true radio control in the product; the choice card in the kit is a different pattern with the same job. |
 | **listings-filtered** | **The applied-filter row** — `.fchip`, `.count-badge`, `.applied`, `.clear-all`, `.x`. A dismissible chip is close enough to the kit's filter chip that the two should probably be one component before either is painted. |
 | **rate** | **The five-star rating input** — `.rating`, `.star`. Distinct from the rating *value* on the operator card, which is in the kit and painted. A filled star cannot be green: the accent is not an icon. |
@@ -215,9 +216,8 @@ single screen by its class names.
 | # | Question | Why it is open |
 |---|---|---|
 | 1 | **Does the selected choice card change behind the check?** | The checkmark is settled. Whether the card surface also changes is not — and a green tint across a whole card would spend the screen's accent budget on a picker. |
-| 2 | **One route component or two?** | The operator job card draws `Podil → Osokorky` as two dots joined by a line (`.oh-route`, `.oh-stop`, `.oh-dot`); the painted order card draws the same fact as a `From ▸ To` inset strip. One fact, two constructions — the real duplication the two-card decision left behind. |
-| 3 | **One icon action or two shapes?** | `.sbi` is circular and painted; `.icon-btn` and `.ic-edit` are square and grey. Three class families, one control. |
-| 4 | **Does the total get a type step above `number`?** | The scale is closed at ten steps, so adding one is a real decision, not a tweak. |
+| 2 | **One icon action or two shapes?** | `.sbi` is circular and painted; `.icon-btn` and `.ic-edit` are square and grey. Three class families, one control. |
+| 3 | **Does the total get a type step above `number`?** | The scale is closed at ten steps, so adding one is a real decision, not a tweak. |
 
 ---
 

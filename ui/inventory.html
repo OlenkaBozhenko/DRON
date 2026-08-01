@@ -532,7 +532,7 @@
     draw in the shared grayscale base, and their components are listed with <b>no values</b>,
     because a specimen would have to invent them. What lives on exactly one screen is collected
     at the end under <a href="#oneoff" style="color:inherit">One-off</a> and deliberately not
-    pulled into the kit.
+    pulled into the kit. <b>Out of scope for now:</b> the operator job card on <code>operator-listings</code>, which is neither painted nor hand-edited and is being reworked &#8212; counting it would inventory a draft.
   </p>
   <div class="provenance">
     <span><b>Source</b> &#183; 84 files &#183; 40 screens</span>
@@ -546,7 +546,7 @@
     <div class="fig"><div class="n">26</div><div class="k">carry values</div></div>
     <div class="fig"><div class="n">23</div><div class="k">still grayscale</div></div>
     <div class="fig"><div class="n">3<span style="font-size:15px;color:var(--fg-3)"> / 40</span></div><div class="k">screens painted</div></div>
-    <div class="fig"><div class="n">10</div><div class="k">one-off blocks</div></div>
+    <div class="fig"><div class="n">9</div><div class="k">one-off blocks</div></div>
     <div class="fig"><div class="n">2</div><div class="k">inks</div></div>
     <div class="fig"><div class="n">6</div><div class="k">radii + circles</div></div>
     <div class="fig"><div class="n">4.77</div><div class="k">contrast floor</div></div>
@@ -1082,11 +1082,11 @@
         <td class="c-name">
           <div class="nm">Listing card</div><span class="sel">.card .body &#183; .name &#183; .desc &#183; .meta-row &#183; .price &#183; .avail &#183; .chev</span>
           <span class="st gray">grayscale</span>
-          <p class="desc">The service card the whole client flow starts from: media, name, one line of description, then price beside availability, with a chevron. Also the operator&#8217;s job card and the wallet row &#8212; the most reused <b>content</b> anatomy in the product.</p>
+          <p class="desc">The service card the client flow starts from: drone, name, one line of description &#8212; three elements, tap opens setup. <b>Settled 2026-08-02: this row is the client card only.</b> The operator job card is a separate component and is out of this inventory for now &#8212; neither painted nor hand-edited, and being reworked.</p>
         </td>
         <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
         <td class="c-screens"><span class="scr">12</span><span class="scr-sub">0 painted</span></td>
-        <td class="c-where"><p class="where" style="max-width:34ch">The painted order card has solved every part of this except the chevron &#8212; media well, title over meta, a tabular figure opposite a chip. The open question is whether the two become one component or stay a client card and an operator card, which is the same question <code>operator-listings</code> raises in One-off.</p></td>
+        <td class="c-where"><p class="where" style="max-width:34ch">The painted order card has already solved every part of this except the chevron &#8212; media well, title over meta, a tabular figure opposite a chip. Painting it is closer to a port than a decision.</p></td>
         <td class="c-where"><p class="where">listings &#215;2 &#183; job-offer &#183; inspection-report &#183; ratings &#183; wallet &#183; dispute&#8230;</p></td>
       </tr>
 
@@ -1547,7 +1547,7 @@
 
 <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; ONE-OFF &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section id="oneoff">
-  <h2>One-off <span class="count">10 blocks &#183; 93 classes</span></h2>
+  <h2>One-off <span class="count">9 blocks</span></h2>
   <p class="sec-note">
     Built for exactly one screen, so they are <b>not pulled into the kit</b>. Listing them is not
     a complaint &#8212; a product needs bespoke screens. It is a watch-list: the moment one of these
@@ -1569,10 +1569,7 @@
       <span class="sc">tracking</span>
       <span class="bits"><em>The vertical milestone timeline</em> &#8212; <code>.timeline</code>, <code>.tl-item</code>, <code>.tl-dot</code>, <code>.tl-text</code> &#8212; plus the map&#8217;s acquiring state and the late-notice wash. The node inside it is byte-identical to the order card&#8217;s, which is the argument for promoting one shared node rather than two.</span>
     </div>
-    <div class="oo">
-      <span class="sc">operator-listings</span>
-      <span class="bits"><em>The operator&#8217;s job card and its segmented header</em> &#8212; a second, parallel card family (<code>oh-head</code>, <code>oh-route</code>, <code>oh-stop</code>, <code>oh-price</code>, <code>oh-eta</code>&#8230;) built before the client card and never reconciled with it. Also the only <code>.grouptab</code>, <code>.avatar</code> and kebab action in the repo.</span>
-    </div>
+    
     <div class="oo">
       <span class="sc">listings-filters</span>
       <span class="bits"><em>The filter sheet</em> &#8212; <code>.fgroup</code>, <code>.opt</code>, <code>.radio</code>, <code>.txt</code>, <code>.reset</code>. This is the only true radio control in the product; the choice-card in the kit above is a different pattern with the same job.</span>
