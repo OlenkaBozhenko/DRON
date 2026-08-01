@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>wifi-none opacity probe</title>
+<style>
+  body{ background:#F7F5F2; font:14px -apple-system,"SF Pro Text",system-ui,sans-serif; color:#1A1A1A;
+        margin:0; padding:24px; }
+  .row{ display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; }
+  figure{ margin:0; display:flex; flex-direction:column; align-items:center; gap:8px; width:104px; }
+  .ph{ width:52px; height:52px; border-radius:13px; background:#F2D8CF; color:#9A3115;
+       display:flex; align-items:center; justify-content:center; }
+  .ph svg{ width:26px; height:26px; display:block; }
+  figcaption{ font-size:11px; color:#5A5751; text-align:center; line-height:1.4; }
+  h2{ font-size:13px; margin:24px 0 8px; color:#5A5751; font-weight:600; }
+</style></head><body>
+
+<h2>Uniform fade — all three arcs at one opacity</h2>
+<div class="row">
+  <figure><span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <g opacity="1"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g>
+  </svg></span><figcaption>1.00 · reference<br>5.49:1</figcaption></figure>
+
+  <figure><span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <g opacity="0.75"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g>
+  </svg></span><figcaption>0.75</figcaption></figure>
+
+  <figure><span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <g opacity="0.7"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g>
+  </svg></span><figcaption>0.70 · 3.20:1</figcaption></figure>
+
+  <figure><span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <g opacity="0.55"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g>
+  </svg></span><figcaption>0.55 · 2.43:1</figcaption></figure>
+
+  <figure><span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <g opacity="0.4"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g>
+  </svg></span><figcaption>0.40</figcaption></figure>
+</div>
+
+<h2>Graded — the source holds, the signal fades outward</h2>
+<div class="row">
+  <figure><span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.2 10.6a13 13 0 0 1 17.6 0" opacity="0.3"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0" opacity="0.5"/><path d="M10.4 19a3 3 0 0 1 3.2 0" opacity="1"/>
+  </svg></span><figcaption>0.3 / 0.5 / 1.0</figcaption></figure>
+
+  <figure><span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.2 10.6a13 13 0 0 1 17.6 0" opacity="0.4"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0" opacity="0.65"/><path d="M10.4 19a3 3 0 0 1 3.2 0" opacity="1"/>
+  </svg></span><figcaption>0.4 / 0.65 / 1.0</figcaption></figure>
+
+  <figure><span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.2 10.6a13 13 0 0 1 17.6 0" opacity="0.45"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0" opacity="0.45"/><path d="M10.4 19a3 3 0 0 1 3.2 0" opacity="1"/>
+  </svg></span><figcaption>0.45 / 0.45 / 1.0</figcaption></figure>
+</div>
+
+<h2>In place — the whole alert card, uniform 0.70 vs graded 0.45/0.45/1.0</h2>
+<div class="row">
+  <div style="width:341px; background:#ECE9E4; border-radius:16px; padding:22px 18px; display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center;">
+    <span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <g opacity="0.7"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g>
+    </svg></span>
+    <span style="font-size:17px; font-weight:600;">Live tracking lost</span>
+    <p style="font-size:13.5px; color:#5A5751; line-height:1.5; margin:0;">We've lost the live signal from the operator's device. Your order is still active.</p>
+  </div>
+  <div style="width:341px; background:#ECE9E4; border-radius:16px; padding:22px 18px; display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center;">
+    <span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3.2 10.6a13 13 0 0 1 17.6 0" opacity="0.45"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0" opacity="0.45"/><path d="M10.4 19a3 3 0 0 1 3.2 0" opacity="1"/>
+    </svg></span>
+    <span style="font-size:17px; font-weight:600;">Live tracking lost</span>
+    <p style="font-size:13.5px; color:#5A5751; line-height:1.5; margin:0;">We've lost the live signal from the operator's device. Your order is still active.</p>
+  </div>
+</div>
+
+</body></html>
