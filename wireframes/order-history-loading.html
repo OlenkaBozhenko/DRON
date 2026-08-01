@@ -104,13 +104,19 @@
      too, so a later .sk-line would out-cascade all of them on equal specificity */
   .sk-line{ height:13px; border-radius:4px; background:var(--btn2); }
 
-  /* header — well + name-over-date stack (= .ohl-top / .ohl-ic / .ohl-head) */
+  /* header — well + name-over-date stack (= .ohl-top / .ohl-ic / .ohl-head).
+     One block, not three: the drone stand-in and the status dot that sat inside
+     the well are gone by designer call (concept.md rev 31), and the well itself
+     is the single square standing for both. It keeps the loaded card's 96 × 72
+     and --r-media, so nothing moves on the swap. It does not pulse, and that is
+     the opposite of delivery-loading for a reason: there the photograph covers
+     the well, so the well is the content; here the drone is a transparent
+     cutout contained *inside* the well, so the well is chrome that survives the
+     load — and rev 24's rule is that chrome stays solid while content pulses.
+     On this card the content is the bars, the arrow and the action discs. ── */
   .sk-top{ display:flex; align-items:center; gap:16px; }
-  .sk-well{ position:relative; width:96px; height:72px; flex:none; border-radius:var(--r-media);
-    background:var(--media); display:flex; align-items:center; justify-content:center; }
-  .sk-img{ width:60px; height:44px; border-radius:8px; background:var(--btn2); }
-  .sk-ind{ position:absolute; top:6px; right:6px; width:20px; height:20px; border-radius:50%;
-    background:var(--btn2); box-shadow:0 0 0 2px var(--media); }
+  .sk-well{ width:96px; height:72px; flex:none; border-radius:var(--r-media);
+    background:var(--media); }
   .sk-head{ flex:1; min-width:0; display:flex; flex-direction:column; gap:8px; }
   .sk-title{ height:14px; }
   .sk-date{ height:10px; }
