@@ -78,8 +78,14 @@
   .zlabel::after{ content:""; position:absolute; left:0; bottom:-1px; width:30px; height:2px; background:var(--green); }
   .zlabel .act{ color:var(--slate); font-size:11px; letter-spacing:.02em; }
 
-  /* buttons — concept .btn.primary / .btn.secondary */
-  .btn{ border-radius:var(--r-btn); transition:filter .15s, background .15s, transform .12s; }
+  /* buttons — concept .btn.primary / .btn.secondary.
+     concept's .btn is min-height:44px, not the base wireframe's fixed
+     height:44px — and that difference matters here: a button is a flex item in
+     this scrolling column, so on the success screen it was being shrunk to
+     23px, under both the concept value and the 44pt HIG touch target. The
+     concept value restores it. */
+  .btn{ min-height:44px; border-radius:var(--r-btn);
+    transition:filter .15s, background .15s, transform .12s; }
   .btn:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
   .btn-primary{ background:var(--green); color:var(--on-green); border-color:transparent;
     box-shadow:var(--sh-sm); }
