@@ -18,7 +18,13 @@ them gives **40 screens**, and that is the denominator everywhere below.
 **Class usage was read from inside the phone frame only** (`.wf-frame` onward), so the wireframe
 annotation sidebar and the state switcher are excluded — they are not product.
 
-**Out of scope, 2026-08-02:** the **operator job card** on `operator-listings` — and with it `.grouptab`, `.segment`, `.avatar` and the kebab action, which exist nowhere else. It is neither painted nor hand-edited and is being reworked, so counting it would inventory a draft. It comes back in when it is redone.
+**Out of scope, 2026-08-02:** the **operator job card** on `operator-listings`, with `.avatar` and
+the kebab action that belong to it. It is neither painted nor hand-edited and is being reworked, so
+counting it would inventory a draft. It comes back in when it is redone.
+
+**Narrowed the same day.** This note first read "…and with it `.grouptab`, `.segment`" — the whole
+screen. That was wider than the instruction, which was about the **card**. `.grouptab` and
+`.segment` are separate controls that happen to share the screen, and they are now in the kit.
 
 **Inclusion rule, set by the designer 2026-08-02:** a component earns a row in the kit by appearing
 on **two screens or more**. That is what makes it a kit rather than a pile. Anything on exactly one
@@ -34,20 +40,36 @@ because a specimen would have to invent them. Those rows say what has to be deci
 |---|---|
 | Screens | **40** (from 84 files) |
 | Painted | **3** — order-history, tracking, delivery |
-| In the kit (2+ screens) | **50** |
+| In the kit | **53** |
 | — carrying Studio values | **26** |
-| — still grayscale | **24** |
-| One-off (1 screen) | **9 blocks** (operator-listings excluded, see above) |
+| — still grayscale | **27** |
+| One-off (1 screen) | **9 blocks** (the operator job card excluded, see above) |
 
-**Changed 2026-08-02:** 49 → 50. The checkbox and the radio were one row and are now two, because
-they are two controls with two shapes and two meanings. The radio also moved **out of §3 One-off** —
-counted as a control rather than as the class name `.radio`, it stands on three screens.
+**Changed 2026-08-02:** 49 → 50 → 53. The checkbox and the radio were one row and are now two,
+because they are two controls with two shapes and two meanings. The radio also moved **out of §3
+One-off** — counted as a control rather than as the class name `.radio`, it stands on three screens.
+Then the **segmented control**, the **in-page tabs** and the **switch** were added on the designer's
+count of what was missing.
+
+**The 2+ rule takes its first two exceptions, and they are named.** The segmented control and the
+in-page tabs stand on **one screen each** — `operator-listings`. They are in the kit anyway, because
+the rule exists to stop a kit becoming a pile, not to hide a control the system plainly needs; and a
+segmented control is a system control by nature, whichever screen happens to draw it first. Their
+counts are shown as **1 · 0**, unrounded, so the exception is visible rather than smoothed over.
+
+**A correction to the scope note above.** The designer's instruction was to leave the **operator job
+card** out while it is being reworked. That was widened here to the whole screen — `.grouptab`,
+`.segment` and the rest — which she did not ask for. The job card stays out; its neighbours come in.
+
+**The switch is counted at zero.** It earns a row by not existing: the question was asked, the 40
+screens were counted, and the answer is that the product has no on/off switch and `HIG · Toggles`
+says it should not have one. An absence that has been checked is a finding.
 
 ---
 
 ## 1. The kit
 
-### 1.1 Frame & navigation — 8
+### 1.1 Frame & navigation — 9
 
 Every system bar takes the page ground, so the chrome melts into the page and only a hairline
 separates it. The most reused components in the product.
@@ -59,6 +81,7 @@ separates it. The most reused components in the product.
 | **Zone label** | `.zlabel`, `.act` | 39 · 3 | painted | mono 11/600, `.09em`, `--slate` — **6.62:1**; 1px `--line` bottom rule; a 30 × 2px `--green` tick at its left end. The one place the accent is a line, and it is a fill, not a stroke. |
 | **Action bar** | `footer.actionbar` | 29 · 1 | painted | `--page`; 1px `--line` top; padding `12px 16px 24px`; gap 8; full-width buttons. Secondary above primary, so the thumb reaches the primary first. |
 | **Tab bar** | `footer.tabbar`, `.tabs`, `.tab` | 12 · 3 | painted | 60 + 30px; tab `--r-card` 16, target 86 × 50; selected `--green-wash` + `--ink` **14.75:1**, rest transparent + `--slate` **6.62:1**; icons 22px, labels 11/600. HIG tints the selected label with the accent — `#9BCF4A` is 1.69:1, so the accent moves into the fill and the ink darkens with it: **two signals where the convention gives one**. Icons stay outline in both states, so the iOS filled-symbol convention is deliberately not used. |
+| **In-page tabs** | `nav.groups`, `.grouptab` | 1 · 0 | grayscale · **admitted below the threshold** | A row of job groups above the list — *Incoming · 2*, *Active · 1*. Height **32px**, `r6`, 1px boundary, 13/600; selected inverts to `--wf-ink` fill with a `--wf-surface` label. **Three things are wrong with it and all three are measured.** (1) `HIG · 44pt target`: 32px is **12px short**, and unlike the small button there is no fixed-height mechanism making it 44 — the row it sits in is 48px, so there is space. (2) `WCAG 4.1.2`: it is an `<a href="#incoming" aria-current="true">` — a **link**, not a tab. `aria-current` says "the current item", which is honest for navigation but exposes no tab set; a view switcher needs `role="tablist"/"tab"` with `aria-selected`, or radios, which the segmented control beside it already uses correctly. (3) `HIG · Tab bars` puts a second row of tabs against the guideline: the tab bar is for **top-level sections**, and filtering a list *within* a section is a segmented control's job — and this screen carries the tab bar, these tabs **and** a segmented control, three selection mechanisms at once. |
 | **Home indicator** | `.home-indicator` | 12 · 3 | painted | 30px; bar 134 × 5 at `--r-pill`; `--ink`. |
 | **Brand slot** | `.brand` | 8 · 0 | **filled** | **Filled 2026-08-02, same day it was reserved.** The designer supplied the mark from Figma (`YlGWlsWWjKSCxhONMzGG2F`, node `56:52`): a single-path quadcopter silhouette seen head-on, no wordmark. Saved trimmed to its ink as `assets/brand/dron-logo.svg` — `viewBox 0 85 257 86`, aspect **2.99 : 1**. Drawn as a CSS mask filled with `currentColor` rather than an embedded file, so it takes the surface's ink and cannot introduce a second colour. Rendered **60 × 20**, up from the 44 × 24 the placeholder held, because 3:1 artwork inside 44px would stand only 14.7px tall. `#252525` on `#FFFFFF` measures **15.33 : 1** — `WCAG 1.4.11` asks 3:1 for a non-text graphic, so it clears by 5.1×. It carries `role="img" aria-label="DRON"` because on all 8 screens it is the only thing naming the product (`WCAG 1.1.1`). Verified in a headless render on all 16 files, both the shared-stylesheet pages and the six that carry their own `<style>`. |
 | **Back button** | `.back` | 22 · 0 | grayscale | None of the three painted screens is a pushed screen, so the painted set has never drawn one. Needs a chevron on the 24-grid and a 44pt target — both settled elsewhere. Shows the title of the screen you return to (`‹ Order review`), never "Back to…" (`voice.md`). |
@@ -116,7 +139,7 @@ supporting fact. A chip is never reduced to a colour — each keeps its wording.
 | **Filter chip** | `.chip`, `.cats` | 3 · 0 | grayscale | A scrolling row of category filters. Selected currently inverts to solid ink. **Selected cannot invert to solid green** — the label would be 1.52:1. The tab bar has already answered this: green tint behind charcoal plus an ink change, so selection is not colour alone. |
 | **Tag** | `.tag` | 2 · 0 | grayscale | A small non-interactive label. **Its main use just went away** — the `current` tag on the mode switcher is replaced by a checkmark (decided 2026-08-02). Check what is left before giving it values. |
 
-### 1.5 Forms — 10
+### 1.5 Forms — 12
 
 **The largest gap in the system.** Nothing a person types into, checks, picks or uploads has been
 painted — not one field on any of the three painted screens. `--r-input: 10px` is declared in the
@@ -148,6 +171,8 @@ is appropriate and the exception is what it was named for.
 **Anatomy.** `--media` fill · `--r-input` 10 · `min-height:44` (measured 44.0) · padding `0 12px` · gap 8 · 16px magnifier and placeholder both `--slate`, **5.51:1** · value `--ink` **13.33:1**. |
 | **Checkbox** | `.check-item`, `.check-box`, `.checklist` | 3 · 0 | grayscale · **shape settled** | **A square** — the control for options that are independent of each other, several of which can be on at once. 24px at `--r-detail` 4; unchecked outline **1px `--slate`** — **5.95:1**, because the grayscale `--line` outline is **1.21:1** and a drawn boundary that identifies a control has to clear 3:1 (`WCAG 1.4.11`); checked carries a charcoal check on a fill. The whole row is the 44pt target — measured 52px — so the box does not have to be. **Two gaps stay open:** the checked fill (see §4), and the fact that `job-checklist`, `operator-profile-setup` and `order-setup` draw the box as a static `<span aria-hidden>` with **no `<input>` at all** — no role and no state for `WCAG 4.1.2`. On `job-checklist` that is defensible, it is a progress readout rather than a control; on the other two it is not. |
 | **Radio** | `.check-item` + `type="radio"`, `.radio`, `.opt` | 3 · 0 | grayscale · **shape settled** | **A circle** — the control for a set of mutually exclusive options, exactly one of which is on. Same 24px box, `--r-pill`, same **5.95:1** unchecked outline; checked carries a filled dot, `inset:4px`. **Settled 2026-08-02 by the designer: shape carries the difference, not a glyph inside it** — circle means one, square means several. The correct circle already exists on `listings-filters`; `payment` and `withdraw` hold `type="radio"` in a **square** box and separate the two only by a 4px bullet against a 4px check. That is `WCAG 3.2.4 Consistent Identification`: one shape cannot mean two functions. **`HIG · Radio Buttons / Checkboxes` says the same thing** — radio for a mutually exclusive set, checkbox for independent on/off. iOS diverges by having no radio control at all and marking one-of-many with a trailing checkmark; DRON is mobile **web** in a browser with a WCAG 2.1 AA desktop, so the platform convention is the one that reads. |
+| **Segmented control** | `fieldset.segment`, `.seg` | 1 · 0 | grayscale · **admitted below the threshold** | The operator's availability — *Available / Busy / Offline* — three equal `flex:1` segments in one track. **Structurally the best-built control in the grayscale set:** a real `<fieldset>` of `type="radio"`, so `WCAG 4.1.2` is satisfied without an ARIA patch, and **44px exactly**, so `HIG · 44pt` passes on the nose. `HIG · Segmented controls` asks for mutually exclusive views or modes, up to about five, equal width, the same kind of content in each — all four hold. **Two things to settle when it is painted.** The boundary is `--wf-border-2`, which resolves to `--line` at **1.21:1** against 1.4.11's 3:1 — the third component to hit that number, and it takes the same answer: `--slate` at **5.95:1**, or no boundary at all and let the fill carry it. And the selected segment inverts to a dark fill on a light track, where iOS raises a **light plate inside a filled track** — the inverse. Both are legible; if the built one stays it is a recorded departure, not a defect. |
+| **Switch** | — | **0** | **does not exist** | Counted across all 40 screens: there is **no on/off switch in the product**, and `HIG · Toggles` says there should not be one. A switch is for a setting that takes effect the moment it is flipped, with no separate Save. The only independent toggle in the product is `order-setup`'s *"Save this address for next time"* — and it sits above a **Continue** button, so the change is not immediate. That makes it a **checkbox**, which is what it already is. The row is here so the absence is a recorded answer rather than a gap: **the kit does not carry a switch, and nothing in the product asks for one.** |
 | **Choice card** | `.choice-card`, `.choice-list`, `.choice-title`, `.choice-desc` | 2 · 0 | grayscale | **Corrected 2026-08-02: this is navigation, not a picker.** Both instances are `<a href>` that leave the screen — `role-select` to the two onboarding paths, `support` to three resolution routes. There is no selected state to design, which is why the earlier open question about "the card behind the check" was asked of the wrong component and is closed rather than answered. What it needs is a card's own set: `--card`, `--r-card` 16, a 44pt row, a chevron, and a keyboard-visible focus ring. |
 | **Disclosure row** | `details.dropdown` | 2 · 0 | grayscale | A native `<details>` — **it opens in flow and pushes the page down; it does not float.** **Decided 2026-08-02: card, not frame** — so on `--card` with `--line` rules between its rows it *becomes the row panel that opens*, one component rather than two. **Decided: the selected row carries a checkmark**, not the word "current". **Decided: the chevron rotates 180° on open** — closed points down, open points up. Nothing left open on this component. |
 | **Stepper** | `.counter`, `.count` | 3 · 0 | grayscale | Both controls are 44pt targets and the figure is tabular. The circular icon action is the shape to borrow, already measured at **11.54:1**. |
@@ -230,11 +255,16 @@ single screen by its class names.
 |---|---|---|
 | 1 | **What fills a checked box or a selected radio?** | Two pairs, both conforming. **Green `--green` + `--on-green` = 9.46:1** repeats the walked node `.tl-dot.done`, which is already painted exactly that way. **Charcoal `--ink` + `--card` = 14.37:1** is what the grayscale build already holds. `WCAG 1.4.11` needs 3:1 and both clear it by a wide margin, so this is not a contrast question. It is a budget question: `concept.md` allows **one green control per screen**, and on `payment` that is already the "Pay" button — a green radio beside it would be the second. |
 | 2 | **Does the total get a type step above `number`?** | The scale is closed at ten steps, so adding one is a real decision, not a tweak. |
-| 3 | **Is a lone on/off row a checkbox or a switch?** | `order-setup`'s "Save this address for next time" is the only independent toggle in the product. `HIG · Toggles` puts a **switch** in a form row for an immediate on/off setting and keeps the checkbox for a list of choices. One row, so it is a small call — but it decides whether the kit carries a switch at all. |
+| 3 | **Does the selected segment invert, or does it raise a light plate?** | What is built inverts — a dark fill on a light track. iOS does the opposite: a **light plate raised inside a filled track**. Both are legible and both clear 1.4.11; this is a look, not a failure. Keeping the inversion is a recorded departure. |
 
 **Closed 2026-08-02, not answered:** *"Does the selected choice card change behind the check?"* — the
 choice card turned out to be navigation. Both instances are links that leave the screen, so there is
 no selected state for a surface to change behind. The question was asked of the wrong component.
+
+**Closed 2026-08-02, answered by the guideline:** *"Is a lone on/off row a checkbox or a switch?"* —
+a **checkbox**, which is what it already is. `HIG · Toggles` reserves the switch for a setting that
+takes effect the moment it is flipped; `order-setup`'s "Save this address" sits above a **Continue**
+button, so the change is not immediate. The kit carries no switch.
 
 ---
 
@@ -257,6 +287,8 @@ no selected state for a surface to change behind. The question was asked of the 
 | 2026-08-02 | **Shape says how many: a radio is a circle, a checkbox is a square.** Circle = one of a mutually exclusive set; square = an independent on/off, several at a time. `HIG · Radio Buttons / Checkboxes` states exactly this. iOS diverges — it has no radio control and marks one-of-many with a trailing checkmark — but DRON is mobile **web** in a browser with a WCAG 2.1 AA desktop, so the platform convention is what a user reads. **This supersedes rev 43's blanket "a selected row carries a checkmark, governs every one-of-many list":** the checkmark stays for the disclosure row, which is a menu, and gives way to the circle wherever a form asks a question. The defect it names: `payment` and `withdraw` hold `type="radio"` in a **square** box and separate the two only by a 4px bullet against a 4px check, so one shape carries two functions — `WCAG 3.2.4`. **The wireframes are not being changed for it** — recorded here, applied when those screens are painted. | `ui/inventory.md` |
 | 2026-08-02 | **An unchecked control's outline is `--slate` `#5A5751`, not `--line`.** The grayscale `1px --line` is **1.21:1** on the card and `WCAG 1.4.11` needs **3:1** for a boundary that identifies a control; `--slate` is **5.95:1**. This is the same 1.21:1 that rev 45 found under the form field — there the answer was to remove the border, because HIG's form row has none; here the box *is* the control and cannot be removed, so it is darkened instead. | `ui/inventory.md` |
 | 2026-08-02 | **The choice card is navigation, not a picker** — both instances are `<a href>` leaving the screen. It has no selected state, so it needs a card's set (`--card`, `--r-card` 16, 44pt row, chevron, focus ring) and not a selection treatment. | `ui/inventory.md` |
+| 2026-08-02 | **The kit carries no switch, and nothing asks for one.** Counted across all 40 screens: there is no on/off switch in the product. `HIG · Toggles` reserves the switch for a setting that takes effect the moment it is flipped, with no separate Save. The only independent toggle is `order-setup`'s "Save this address for next time", and it sits above a **Continue** button — the change is not immediate, so it is a checkbox, which is what it already is. Recorded as a zero rather than left as a gap. | `ui/inventory.md` |
+| 2026-08-02 | **The 2+ rule takes its first two named exceptions.** The segmented control and the in-page tabs stand on one screen each and are in the kit anyway: the rule exists to stop a kit becoming a pile, not to hide a control the system plainly needs. Their counts are shown unrounded as **1 · 0** so the exception stays visible. At the same time the out-of-scope note was **narrowed back to the operator job card**, which is what the designer actually asked to leave out; `.grouptab` and `.segment` were swept in with it by mistake. | `ui/inventory.md` |
 | 2026-08-02 | **The chevron rotates 180° on open** — closed points down, open points up. It joins the button's `transform .12s` rather than becoming a fifth motion loop, because it answers a touch instead of carrying continuous information. Under `prefers-reduced-motion` the glyph still turns, it just does not travel: the direction is information, the animation is only how it gets there. | `concept.md` rev 44 |
 
 ---

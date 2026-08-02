@@ -203,6 +203,38 @@
   .plate{ white-space:normal; }
   .plate, .plate *{ box-sizing:border-box; }
   .plate *{ max-width:100%; }
+  /* The two controls the designer counted as missing. Neither is painted and
+     neither has a settled colour, so each specimen is drawn in the wireframe's
+     OWN grayscale tokens and labelled as such -- showing what is built rather
+     than inventing Studio values it has not been given.
+     --wf-surface #FFFFFF - --wf-ink #111111 - --wf-text-2 #5A5A5A
+     --wf-border rgba(0,0,0,.09) - --wf-border-2 rgba(0,0,0,.15) */
+  .d-gray{ display:flex; flex-direction:column; gap:9px; align-items:center; }
+  .d-gray .cap{
+    font-family:var(--mono); font-size:10px; letter-spacing:.06em;
+    text-transform:uppercase; color:#909090;
+  }
+  .d-segment{
+    display:flex; width:250px; border:1px solid rgba(0,0,0,.15);
+    border-radius:6px; overflow:hidden;
+  }
+  .d-seg{
+    flex:1; height:44px; display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:600; color:#5A5A5A; background:#FFFFFF;
+    border-right:1px solid rgba(0,0,0,.09);
+  }
+  .d-seg:last-child{ border-right:0; }
+  .d-seg.on{ background:#111111; color:#FFFFFF; }
+  .d-groups{
+    display:flex; gap:8px; align-items:center; width:250px; height:48px;
+    padding:0 16px; background:#FFFFFF; border-bottom:1px solid rgba(0,0,0,.09);
+  }
+  .d-gtab{
+    height:32px; padding:0 12px; border-radius:6px; border:1px solid rgba(0,0,0,.15);
+    background:#FFFFFF; color:#5A5A5A; font-size:13px; font-weight:600;
+    display:flex; align-items:center; flex:none;
+  }
+  .d-gtab.on{ background:#111111; color:#FFFFFF; border-color:#111111; }
   .d-brandbar{ width:200px; height:44px; display:flex; align-items:center;
     justify-content:center; }
   .plate.on-card{ background:#ECE9E4; }
@@ -596,9 +628,9 @@
   </div>
 
   <div class="figures">
-    <div class="fig"><div class="n">50</div><div class="k">in the kit</div></div>
+    <div class="fig"><div class="n">53</div><div class="k">in the kit</div></div>
     <div class="fig"><div class="n">26</div><div class="k">carry values</div></div>
-    <div class="fig"><div class="n">24</div><div class="k">still grayscale</div></div>
+    <div class="fig"><div class="n">27</div><div class="k">still grayscale</div></div>
     <div class="fig"><div class="n">3<span style="font-size:15px;color:var(--fg-3)"> / 40</span></div><div class="k">screens painted</div></div>
     <div class="fig"><div class="n">9</div><div class="k">one-off blocks</div></div>
     <div class="fig"><div class="n">2</div><div class="k">inks</div></div>
@@ -622,7 +654,7 @@
 
 <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; FRAME & NAVIGATION &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section id="frame">
-  <h2>Frame &amp; navigation <span class="count">8</span></h2>
+  <h2>Frame &amp; navigation <span class="count">9</span></h2>
   <p class="sec-note">
     Every system bar takes the page ground, so the chrome melts into the page and only a hairline
     separates it. These are the most reused components in the product &#8212; the status bar and nav
@@ -733,6 +765,18 @@
           <div><dt>ratio</dt><dd>14.75 &#183; 6.62</dd></div>
         </dl></td>
         <td class="c-where"><p class="where">Tab-root screens<code class="ln">HIG tints the label; green is 1.69:1, so the fill carries it</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">In-page tabs</div><span class="sel">nav.groups &#183; .grouptab</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">A row of job groups above the operator&#8217;s list &#8212; <em>Incoming</em>, <em>Active</em>.</p>
+        </td>
+        <td class="c-spec"><span class="plate tight" style="background:#FFFFFF;border-color:#E5E5E5"><span class="d-gray"><span class="d-groups"><span class="d-gtab on">Incoming &#183; 2</span><span class="d-gtab">Active &#183; 1</span></span><span class="cap">grayscale &#183; as built</span></span></span></td>
+        <td class="c-screens"><span class="scr">1</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Admitted below the 2+ threshold</b>, by name, because a view switcher is a system control whichever screen draws it first. <b>Three things are wrong with it and all three are measured.</b><br><br><b>1 &#183; <code>HIG &#183; 44pt target</code>.</b> It is <b>32px</b> &#8212; 12px short. The row it sits in is 48px, so the space is there; nothing forces the shortfall.<br><br><b>2 &#183; <code>WCAG 4.1.2</code>.</b> It is an <code>&lt;a href="#incoming" aria-current="true"&gt;</code> &#8212; a <b>link</b>, not a tab. <code>aria-current</code> says &#8220;the current item&#8221;, honest for navigation but it exposes no tab set. A view switcher needs <code>role="tablist"</code> / <code>role="tab"</code> with <code>aria-selected</code>, or radios &#8212; which the segmented control beside it already does correctly.<br><br><b>3 &#183; <code>HIG &#183; Tab bars</code>.</b> The tab bar is for <b>top-level sections</b>; filtering a list <em>within</em> a section is a segmented control&#8217;s job. This screen carries the tab bar, these tabs <b>and</b> a segmented control &#8212; three selection mechanisms at once.</p></td>
+        <td class="c-where"><p class="where">operator-listings</p></td>
       </tr>
 
       <tr>
@@ -1285,7 +1329,7 @@
 
 <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; FORMS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section id="forms">
-  <h2>Forms <span class="count">10</span></h2>
+  <h2>Forms <span class="count">12</span></h2>
   <p class="sec-note">
     <b>The largest gap in the system, and the one whose ground rules are now settled.</b> Nothing a person types into, checks, picks or uploads has
     been painted &#8212; not one field on any of the three painted screens. <b>Two rules landed on
@@ -1376,6 +1420,30 @@
         <td class="c-screens"><span class="scr">3</span><span class="scr-sub">0 painted</span></td>
         <td class="c-where"><p class="where" style="max-width:34ch"><b>Settled 2026-08-02 by the designer: shape says how many.</b> A circle is one of a set; a square is several. <code>HIG &#183; Radio Buttons / Checkboxes</code> says exactly this. iOS diverges &#8212; it has no radio control and marks one-of-many with a trailing checkmark &#8212; but DRON is mobile <b>web</b> in a browser with a WCAG 2.1&nbsp;AA desktop, so the platform convention is what a user reads. <b>This supersedes rev 43&#8217;s &#8220;a checkmark governs every one-of-many list&#8221;</b>: the checkmark keeps the disclosure row, which is a menu; the circle takes every form question.<br><br><b>The defect it names.</b> <code>payment</code> and <code>withdraw</code> hold <code>type="radio"</code> inside a <b>square</b> box and separate the two only by a 4px bullet against a 4px check &#8212; one shape carrying two functions, <code>WCAG 3.2.4 Consistent Identification</code>. The correct circle already exists on <code>listings-filters</code>; it has to be applied, not invented. <b>The wireframes are not being changed for it.</b></p></td>
         <td class="c-where"><p class="where">payment &#183; withdraw &#183; listings-filters</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Segmented control</div><span class="sel">fieldset.segment &#183; .seg</span>
+          <span class="st gray">grayscale</span>
+          <p class="desc">The operator&#8217;s availability &#8212; three equal segments in one track.</p>
+        </td>
+        <td class="c-spec"><span class="plate tight" style="background:#FFFFFF;border-color:#E5E5E5"><span class="d-gray"><span class="d-segment"><span class="d-seg on">Available</span><span class="d-seg">Busy</span><span class="d-seg">Offline</span></span><span class="cap">grayscale &#183; as built</span></span></span></td>
+        <td class="c-screens"><span class="scr">1</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Structurally the best-built control in the grayscale set.</b> A real <code>&lt;fieldset&gt;</code> of <code>type="radio"</code>, so <code>WCAG 4.1.2</code> is satisfied with no ARIA patch, and <b>44px exactly</b>, so <code>HIG &#183; 44pt</code> passes on the nose. <code>HIG &#183; Segmented controls</code> asks for mutually exclusive modes, up to about five, equal width, one kind of content &#8212; all four hold.<br><br><b>Two things to settle when it is painted.</b> The boundary is <code>--wf-border-2</code> at <b>1.41:1</b> on white, and <code>--line</code> at <b>1.21:1</b> once painted, against the <b>3:1</b> <code>WCAG 1.4.11</code> asks of a control boundary &#8212; the third component to land on that number, and it takes the same answer: <code>--slate</code> at <b>5.95:1</b>, or no boundary at all and let the fill carry it.<br><br>And the selected segment <b>inverts</b> to a dark fill (<b>18.88:1</b> as built) where iOS raises a <b>light plate inside a filled track</b> &#8212; the opposite. Both are legible and both clear 1.4.11, so this is a look, not a failure.</p></td>
+        <td class="c-where"><p class="where">operator-listings</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Switch</div><span class="sel">&#8212;</span>
+          <span class="st decided">does not exist</span>
+          <p class="desc">The on/off control iOS puts in a settings row.</p>
+        </td>
+        <td class="c-spec"><span class="nospec">no switch exists<br>in 40 screens</span></td>
+        <td class="c-screens"><span class="scr">0</span><span class="scr-sub">counted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Counted across all 40 screens: the product has no on/off switch, and <code>HIG &#183; Toggles</code> says it should not have one.</b><br><br>A switch is for a setting that takes effect <b>the moment it is flipped</b>, with no separate Save. The only independent toggle in the product is <code>order-setup</code>&#8217;s &#8220;Save this address for next time&#8221; &#8212; and it sits above a <b>Continue</b> button, so the change is not immediate. That makes it a <b>checkbox</b>, which is what it already is.<br><br>The row is here so the absence is a <b>recorded answer rather than a gap</b>. An absence that has been checked is a finding.</p></td>
+        <td class="c-where"><p class="where">nowhere &#8212; and correctly so</p></td>
       </tr>
 
       <tr>
