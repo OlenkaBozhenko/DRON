@@ -334,48 +334,77 @@ footer.actionbar .row2{ display:flex; gap:8px; } footer.actionbar .row2 .btn{ fl
 .slide{ flex:0 0 100%; scroll-snap-align:center; display:flex; flex-direction:column; align-items:center; text-align:center; gap:16px; padding:8px 4px; }
 .slide-ph{ width:120px; height:120px; border:1px dashed var(--wf-border-2); border-radius:8px; background:var(--wf-recessed);
   display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.06em; color:var(--wf-muted); }
-/* ── FULL-BLEED SLIDE ─────────────────────────────────────────────────────
-   A slide can run its picture edge to edge along the bottom of the frame:
-   the subject stands on the bottom of the screen instead of floating in a
-   120px well, and the copy sits above it. Designer call 2026-08-02.
+/* ── FULL-BLEED SLIDER ────────────────────────────────────────────────────
+   The picture is the background of the whole screen, not of the slide box.
+   Designer call 2026-08-02, second pass: the first build pinned the picture
+   inside the slider, so it started under the top bar and stopped above the
+   pager — a 373 x 573 window, not a background.
+
+   The mechanism: the slider is lifted out of main's flow and pinned to the
+   frame. `main` is deliberately left static — that is what makes .wf-frame
+   the containing block, and it is the only way the layer can reach above the
+   top bar and below the action bar. (An ancestor's overflow clips an
+   absolutely positioned descendant only when that ancestor is in its
+   containing-block chain, so main's overflow-y:auto does not cut it.)
+
+   The picture stays a child of its slide, so swiping still changes it. Three
+   slides, three backgrounds, one layer.
 
    Opt-in with .is-bleed on the slider, not automatic on :has(img), because a
    slider whose slides mix the two treatments reads as broken — and two of the
    nine slides in onboarding-* are still text labels waiting on a picture.
-   Switch those on the day their images land.
-
-   The picture keeps object-fit:contain, never cover: these are transparent
-   cutouts, and cropping one costs the subject a hand or a rotor. Anchored to
-   the bottom, so the figure meets the edge rather than floating above it. */
-.slider.is-bleed{ flex:1; padding:0; }
-.slider.is-bleed .slide{ position:relative; justify-content:center; padding:8px 20px; }
-
-/* The picture is the slide's background: it fills the frame edge to edge and
-   the copy sits centred on top of it. Bottom-anchored and contained, never
-   cropped — these are transparent cutouts and a crop costs a hand or a rotor. */
-.slider.is-bleed .slide-ph{
+   Switch those on the day their images land. */
+.slider.is-bleed{
   position:absolute; inset:0; z-index:0;
-  width:auto; height:auto; min-height:0; margin:0;
-  border:0; background:none; padding:0;
-  opacity:.40;
+  margin:0; padding:0; align-items:stretch;
 }
-/* Bottom-anchored, then pushed 40px further down and clipped by the slide.
-   That is what takes the drone in slide 1 out from under the copy: the text
-   box goes from 4.93:1 against the aircraft to 13.94:1 against bare ground.
-   `calc(100% + 40px)` reads as "bottom, plus 40" — with object-fit:contain a
-   percentage aligns the object inside the leftover space, so 100% is flush
-   bottom and the addition pushes past it. */
-.slider.is-bleed .slide-ph img{
-  object-fit:contain; object-position:center calc(100% + 40px);
+.slider.is-bleed .slide{
+  height:100%; position:relative; justify-content:center; padding:0 20px; gap:12px;
 }
 
-/* Why .40 and not full strength: the copy is centred, so it lands on whatever
-   the picture puts in the middle of the frame. Measured on the three real
-   assets at the built 373 x 573 slide, worst pixel inside the text box:
-     full   1.37:1  ·  .65  2.09:1  ·  .50  3.57:1  ·  .45  4.27:1  ·  .40  4.93:1
-   The operator is the binding case — a portrait cutout fills the frame, so at
-   full strength 41% of the text box sits under AA. .40 is the first step where
-   all three clear 4.5:1 with the ink unchanged. */
+/* The chrome floats on the picture instead of hiding it: the bars drop their
+   ground and their hairline, and rise above the layer. Everything they carry
+   was measured against the artwork below — see the ink note further down. */
+.wf-frame:has(.slider.is-bleed) > .statusbar,
+.wf-frame:has(.slider.is-bleed) > .topbar,
+.wf-frame:has(.slider.is-bleed) > .actionbar{
+  position:relative; z-index:1; background:transparent; border-color:transparent;
+}
+/* The pager cannot ride on the artwork. Measured over the three pictures it
+   read 1.00:1 / 4.69:1 / 17.17:1 for the active dot — on the operator's jacket
+   the mark that says which slide you are on disappears completely, and
+   `WCAG 1.4.11` asks 3:1 of a state indicator. So it is pinned to the top edge
+   of the picture layer, on the clean page ground, 12px above the artwork.
+   Anchoring it to the same 35% keeps that gap at any frame size. */
+.slider.is-bleed ~ .pager{
+  position:absolute; left:0; right:0; bottom:calc(35% + 12px); z-index:1;
+}
+
+/* The layer runs the full width of the frame and down to its bottom edge —
+   under the action bar, out to both sides. Its height is capped at 35% so no
+   subject can climb into the copy. That cap is measured, not chosen: the copy
+   is centred, so its box ends 455px down a 812px frame, and 35% starts the
+   artwork at 528px. That figure is set by the longest slide, not the average:
+   slide 3 runs to four lines and its copy ends at 480px, and the pager needs
+   its own band between the two.
+
+   The cap only ever binds a portrait subject. The two landscape cutouts are
+   width-bound and draw the same size with or without it: handover 750 x 533
+   renders 375 x 266, drone-flight 409 x 174 renders 375 x 160. The operator,
+   595 x 702, is the one it catches — full-bleed it filled the frame and put a
+   dark cap straight under the title at 1.00:1. Capped, all three share one
+   composition: the subject stands on the bottom edge, the copy sits clear
+   above it. */
+.slider.is-bleed .slide-ph{
+  position:absolute; left:0; right:0; bottom:0; top:auto; height:35%; z-index:0;
+  width:auto; min-height:0; margin:0;
+  border:0; background:none; padding:0;
+}
+/* contain, never cover: these are transparent cutouts, and covering a 375-wide
+   portrait would throw away most of a landscape's width. Anchored bottom, so
+   the figure meets the edge of the screen rather than floating above it. */
+.slider.is-bleed .slide-ph img{ object-fit:contain; object-position:center bottom; }
+
 .slider.is-bleed .big-title,
 .slider.is-bleed .lead{ position:relative; z-index:1; }
 
@@ -398,3 +427,8 @@ details.dropdown a{ display:flex; align-items:center; justify-content:space-betw
 details.dropdown a:first-of-type{ border-top:0; }
 details.dropdown a:hover{ background:var(--wf-recessed); }
 details.dropdown a .tag{ color:var(--wf-muted); font-size:13px; font-weight:400; }
+
+
+
+
+
