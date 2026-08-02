@@ -138,8 +138,10 @@
 
   /* fee row — price stack opposite the two circular actions (= .ohl-fee) */
   .sk-fee{ display:flex; align-items:flex-end; justify-content:space-between; gap:12px; }
-  .sk-money{ flex:1; min-width:0; display:flex; flex-direction:column; gap:6px; }
-  .sk-fee-lbl{ height:9px; width:62px; }
+  /* one bar now, not two: the loaded card lost its fee caption on 2026-08-02,
+     and a skeleton is a claim about the loaded screen. */
+  .sk-money{ flex:1; min-width:0; display:flex; flex-direction:column; }
+  /* .sk-fee-lbl removed 2026-08-02 with the caption it stood in for. */
   /* 4, not 5: an internal detail may take any radius on the 2/4/8 scale
      (concept.md §5, rev 42) and 5 was the one value in the painted set that
      sat off it. Same 4 the sibling .sk-line bar already uses. */
@@ -196,7 +198,7 @@
                 <span class="sk-stop sk-stop-to"><span class="sk-line sk-lbl"></span><span class="sk-line sk-place" style="width:72%"></span></span>
               </span>
               <span class="sk-fee">
-                <span class="sk-money"><span class="sk-line sk-fee-lbl"></span><span class="sk-line sk-price"></span></span>
+                <span class="sk-money"><span class="sk-line sk-price"></span></span>
                 <span class="sk-acts"><span class="sk-btn"></span><span class="sk-btn"></span></span>
               </span>
             </div>
@@ -213,7 +215,7 @@
                 <span class="sk-stop sk-stop-to"><span class="sk-line sk-lbl"></span><span class="sk-line sk-place" style="width:56%"></span></span>
               </span>
               <span class="sk-fee">
-                <span class="sk-money"><span class="sk-line sk-fee-lbl"></span><span class="sk-line sk-price" style="width:70px"></span></span>
+                <span class="sk-money"><span class="sk-line sk-price" style="width:70px"></span></span>
                 <span class="sk-acts"><span class="sk-btn"></span><span class="sk-btn"></span></span>
               </span>
             </div>
@@ -228,7 +230,7 @@
                 <span class="sk-stop"><span class="sk-line sk-lbl" style="width:56px"></span><span class="sk-line sk-place" style="width:44%"></span></span>
               </span>
               <span class="sk-fee">
-                <span class="sk-money"><span class="sk-line sk-fee-lbl" style="width:40px"></span><span class="sk-line sk-price" style="width:78px"></span></span>
+                <span class="sk-money"><span class="sk-line sk-price" style="width:78px"></span></span>
                 <span class="sk-acts"><span class="sk-btn"></span><span class="sk-btn"></span></span>
               </span>
             </div>

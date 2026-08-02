@@ -360,7 +360,9 @@ at unless it declares otherwise. Measured departures, and their reason:
 
 **One size, several roles.** 15px is `heading` at 600/1.2, the button label at 600/1.4, the `.kv`
 value at 600/1.4 tabular, and `.lead` at 400/1.55. 11px is mono-600 for zone and route labels,
-SF-600 for tab labels, and SF-400 for the fee caption.
+SF-600 for tab labels, and SF-400 for the fee caption **until 2026-08-02, when the designer removed
+that caption** — 11px now carries the mono zone and route labels and the tab label, and the fee
+figure stands alone.
 
 ### Named rules
 
