@@ -57,3 +57,38 @@ in-frame recovery action (**no hard dead-ends**). Classes **2 (filler)** and **5
 - `share.html`: `⧉` removed, `COPY` label present.
 - No `Contact support/operator` link points at `account.html` anymore.
 - No shadow/`<img>`/`<svg>` regressions introduced.
+
+---
+
+## 2026-08-02 — `welcome`: Skip moves into the action bar
+
+**What was built.** `welcome` and `welcome-empty` carried Skip as `a.skip`, a bare text link at
+the right end of the top bar. Measured on the render: **33.17 × 21px**, `--wf-text-2` `#5A5A5A`
+on `#FFFFFF`.
+
+**What the guideline says.** `HIG · 44pt target` sets 44 × 44pt as the minimum for any control a
+finger operates. `WCAG 1.4.3` governs the label's contrast.
+
+**Whether it passed.** The label was fine — **6.90:1**, well over the 4.5:1 AA asks. The target
+was not: **33 × 21** is **11px short across and 23px short down**, failing on both axes with no
+fixed-height mechanism making it up. Moved into the action bar as `.btn.btn-secondary.btn-block`
+it becomes **341 × 44** and clears the guideline.
+
+**No new pattern was invented.** `onboarding-client` and `onboarding-operator` — the two screens
+that share this slider — already carry exactly `Skip` (secondary, block) above `Get started`
+(primary, block). `welcome` now matches them, and the order follows the action-bar rule already
+in the system: secondary above primary, so the thumb reaches the primary first.
+
+**Consequence, reported and not acted on.** The action bar grew from 81px to **133px** (12 + 44 +
+8 + 44 + 24 + 1). The full-bleed picture layer is anchored to the frame's bottom edge, so the bar
+now covers **133px of its 284px band — 47%**. On slide 3 the drone is nearly gone. Raising the
+artwork to stand on the bar's top edge would fix it in one line; that is the designer's call, not
+a change to make unasked.
+
+**Also open, unchanged by this:** the pager still sits on the artwork — active dot **1.00:1** over
+the operator's jacket against the 3:1 `WCAG 1.4.11` asks of a state indicator; the inactive dot is
+**1.18:1** on every page in the set (`--wf-fill` on `--wf-bg`), which predates all of this.
+
+**`welcome-empty` note.** Its Skip and its primary `Continue` both point at `signin.html`. The
+structure now matches its base file, as §12 requires, but two controls with one destination is a
+question for whoever owns that state.
