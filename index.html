@@ -21,7 +21,15 @@
   <style>
     /* Deliberately single-theme. This is the project's index, not a product
        surface — it stands apart from the warm #F7F5F2 pages it points at, and
-       committing to one dark world is the choice rather than an omission. */
+       committing to one dark world is the choice rather than an omission.
+
+       It also sits off the DESIGN.md ramp on purpose: 28px display, 16px row,
+       14px radius, all inherited from the page this replaces. DESIGN.md scopes
+       itself to the phone frame — "the layer applies to .wf-frame, 375 x 812" —
+       and its steps top out at 22px because they were measured on a 375px
+       screen. Snapping a full-width desktop index onto a phone ramp would make
+       it read as a product screen, which it is not. Recorded as a departure,
+       not corrected; say the word and it moves onto the ramp. */
     :root {
       color-scheme: dark;
       --page: #0b0e14;
