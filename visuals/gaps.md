@@ -75,7 +75,7 @@ the camera. The existing cutout cannot be cropped into one.
 
 | # | Filename | Who | Pages | Prompt |
 |---|---|---|---|---|
-| 1 | `people/person-operator-ivan.png` | Ivan K. — the signed-in operator. Face forward, head-and-shoulders, **avatar-safe**: readable inside a 28px circle | `operator-listings`, `operator-listings-empty`, `operator-account` | §5.2 operator, pose `facing the camera, head and shoulders` |
+| ~~1~~ | ~~`people/person-operator-ivan.png`~~ | **Closed 2026-08-02.** The designer supplied Figma node `73:153` — face forward, head and shoulders, a true cutout with a transparent ground. Cropped **head-tight to 62% of the frame width and flush to the top**, because the hair touches the canvas edge and a centred square would have cut it; the face then fills the circle instead of floating in it. Checked at 28, 56 and 112px on all three grounds it meets. Served 128², so the 56px circle gets 2.3× and the 28px one 4.6×. | `operator-listings`, `operator-listings-empty`, `operator-account` **(all three filled)** | — |
 | 2 | `people/person-operator-kateryna.png` | Kateryna O. — a *newly certified* operator, 0 reviews. Must read as a different person from Andriy and Ivan | `order-confirmed-empty` | §5.2 operator, same pose |
 | 3 | `people/person-client-olena.png` | Olena B. — the signed-in **client**. Ordinary clothes, **no lime, no uniform** | `account` | §5.2 client |
 | 4 | `people/person-operator-andriy.png` | Andriy M. face forward — the same operator `tracking` already shows from behind. Needed because a round avatar cannot crop a back-of-head | `order-confirmed` | §5.2 operator, same pose |

@@ -70,6 +70,16 @@ header.topbar{ height:56px; flex:none; display:flex; align-items:center; gap:8px
   mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat; }
 .avatar{ width:28px; height:28px; border:1px solid var(--wf-border-2); border-radius:999px;
   display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; color:var(--wf-text-2); }
+/* A real face replaces the initials. The portrait is a cutout with a
+   transparent ground, so the circle keeps a fill of its own — otherwise the
+   top bar shows through the gap beside the shoulders and the head floats.
+   `cover`, not `contain`: the crop is already square and head-tight, and
+   contain would letterbox it inside the circle. */
+.avatar:has(img), .op-avatar:has(img){
+  background:var(--wf-recessed); overflow:hidden; padding:0;
+  font-size:0; line-height:0; color:transparent; }
+.avatar img, .op-avatar img{
+  width:100%; height:100%; display:block; object-fit:cover; border-radius:999px; }
 .who{ font-size:15px; font-weight:600; color:var(--wf-text); }
 .loc{ font-size:15px; font-weight:600; color:var(--wf-text); }
 .topbar .spacer{ flex:1; }
@@ -446,6 +456,8 @@ details.dropdown a{ display:flex; align-items:center; justify-content:space-betw
 details.dropdown a:first-of-type{ border-top:0; }
 details.dropdown a:hover{ background:var(--wf-recessed); }
 details.dropdown a .tag{ color:var(--wf-muted); font-size:13px; font-weight:400; }
+
+
 
 
 

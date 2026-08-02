@@ -163,3 +163,44 @@ the designer's.
 **Also standing, and older:** the pending well's label is `--wf-muted` `#909090` on `--wf-recessed`
 `#EEEEEE` — **2.75:1**, under the 4.5:1 `WCAG 1.4.3` asks. That is the placeholder pair used by
 every media well in the set (§8), not something this change introduced.
+
+---
+
+## 2026-08-02 — `operator-listings`: the header loses two things and gains a face
+
+### The notifications control is removed — from all seven pages that carried it
+
+**What was built.** A `24 × 24` bordered square, `aria-label="Notifications"`, in the top-right of
+`listings` · `-empty` · `-error` · `-filtered` · `-loading` and `operator-listings` · `-empty`.
+Empty, because §8 says an icon is a bordered box until the icon set exists.
+
+**What the guideline says.** `_conventions.md` §10: *a state exists only where a `flows.md` node
+produces it — do not invent screens or states*. §11: **no dead ends**. `HIG · Navigation bars`:
+every bar control leads somewhere.
+
+**Whether it passed.** It did not. Searched `sitemap.md`, `navigation.md`, `flows.md` and
+`_screens.md`: **there is no notifications screen anywhere in the product**. The only match is
+`sitemap.md` OE-6, a *push* notification on the operator's lock screen closing `RJ-O1` — an OS
+surface, not an in-app centre, and it is reached by the phone, not by a button in DRON's header. So
+the control was an affordance with no destination: a dead end by the file's own definition, and a
+screen invented at the header rather than in `_screens.md`.
+
+**Removed on all seven.** If a notifications centre is ever wanted, it starts in `sitemap.md` and
+`_screens.md` and arrives here afterwards — which is the order this file exists to keep.
+
+### The DRON mark leaves the operator's own top bar
+
+`operator-listings` and `-empty` carried the mark **and** the operator's avatar and name. That is
+two identities in one 56px bar. On the operator's home the bar answers *who is signed in*, not
+*whose app is this* — the client's `listings` keeps the mark because it has no personal identity to
+show. The avatar and the name are now flush left, which is where the eye starts.
+
+Count corrected: **27 files carry the mark**, not the 29 before.
+
+### Ivan gets a face
+
+`person-operator-ivan.png` — `visuals/gaps.md` B1 #1, the highest-value gap in the register, since a
+face is the load-bearing trust signal in `RJ-C1` and the initials `IK` carry none of it. It replaces
+the initials in the 28px top-bar circle on both listing screens and in the 56px card circle on
+`operator-account`. The circle keeps a `--wf-recessed` fill of its own: the portrait is a cutout, so
+without one the top bar shows through beside the shoulders and the head floats.

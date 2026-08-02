@@ -79,6 +79,12 @@
     mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat; }
   .avatar{ width:28px; height:28px; border:1px solid var(--wf-border-2); border-radius:999px;
     display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; color:var(--wf-text-2); }
+  /* A real face replaces the initials. The portrait is a cutout with a
+     transparent ground, so the circle keeps a fill of its own — otherwise the
+     top bar shows through beside the shoulders and the head floats. */
+  .avatar:has(img){ background:var(--wf-recessed); overflow:hidden; padding:0;
+    font-size:0; line-height:0; color:transparent; }
+  .avatar img{ width:100%; height:100%; display:block; object-fit:cover; border-radius:999px; }
   .who{ font-size:15px; font-weight:600; color:var(--wf-text); }
   .topbar .spacer{ flex:1; }
 
@@ -244,11 +250,9 @@
 
     <!-- HEADER · top bar -->
     <header class="topbar">
-      <span class="brand" role="img" aria-label="DRON"></span>
-      <span class="avatar" aria-hidden="true">IK</span>
+      <span class="avatar"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
       <span class="who">Ivan K.</span>
       <span class="spacer"></span>
-      <button class="sq sq-24" aria-label="Notifications" style="background:transparent;cursor:pointer;"></button>
     </header>
 
     <!-- NAV · job groups -->
