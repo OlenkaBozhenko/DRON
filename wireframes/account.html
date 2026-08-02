@@ -21,6 +21,7 @@
   .ic-edit .tip{ width:0; height:0; border-left:2.5px solid transparent; border-right:2.5px solid transparent;
     border-top:4px solid currentColor; }
 </style>
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -34,52 +35,52 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Profile</b> ▸ who you are (Diia-verified)</p><p><b>Mode</b> ▸ switch Client ⇄ Operator (dropdown)</p><p><b>Account</b> ▸ payment · address · language</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="title">Account</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Profile <span class="act">▸ Diia-verified identity</span></p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Account</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Profile <span class="dr-label__act">▸ Diia-verified identity</span></p>
       <section aria-label="Profile">
-        <article class="op-card">
-          <span class="op-avatar">OB</span>
-          <span class="op-info">
-            <span class="op-name">Olena B.</span>
-            <span class="op-rating">Verified with Diia</span>
-            <span class="badges"><span class="badge">Client</span><span class="badge">+380 •• 4417</span></span>
+        <article class="dr-op">
+          <span class="op-avatar"><img src="../assets/people/thumbs/person-client-olena.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="dr-op__info">
+            <span class="dr-op__name">Olena B.</span>
+            <span class="dr-op__rating">Verified with Diia</span>
+            <span class="dr-chips dr-op__badges"><span class="dr-chip">Client</span><span class="dr-chip">+380 •• 4417</span></span>
           </span>
-          <a class="op-edit" href="account-edit.html" aria-label="Edit profile">
-            <span class="ic-edit" aria-hidden="true"><span class="pencil"><span class="body"></span><span class="tip"></span></span></span>
+          <a class="dr-btn dr-btn--icon" href="account-edit.html" aria-label="Edit profile">
+            <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>
           </a>
         </article>
       </section>
 
-      <p class="zlabel">Mode <span class="act">▸ switch Client ⇄ Operator</span></p>
+      <p class="zlabel dr-label">Mode <span class="dr-label__act">▸ switch Client ⇄ Operator</span></p>
       <section aria-label="User mode">
-        <details class="dropdown">
-          <summary>Client mode<span aria-hidden="true">▾</span></summary>
-          <a href="listings.html">Client — order services<span class="tag">current</span></a>
-          <a href="switch-role.html">Operator — take jobs<span class="tag">switch</span></a>
+        <details class="dr-disclosure">
+          <summary>Client mode<span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span></summary>
+          <a class="dr-disclosure__item" href="listings.html">Client — order services<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+          <a class="dr-disclosure__item" href="switch-role.html">Operator — take jobs<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
         </details>
-        <p class="hint">Switching changes what the app shows. Your Diia identity stays the same.</p>
+        <p class="dr-hint">Switching changes what the app shows. Your Diia identity stays the same.</p>
       </section>
 
-      <p class="zlabel">Account <span class="act">▸ identity &amp; preferences</span></p>
-      <div class="kv" aria-label="Account details">
-        <div class="kv-row"><span class="kv-key">Payment method</span><span class="kv-val">Visa •••• 4921</span></div>
-        <div class="kv-row"><span class="kv-key">Saved address</span><span class="kv-val">Podil, 21</span></div>
-        <div class="kv-row"><span class="kv-key">Language</span><span class="kv-val">English</span></div>
-        <div class="kv-row"><span class="kv-key">Member since</span><span class="kv-val">2026</span></div>
+      <p class="zlabel dr-label">Account <span class="dr-label__act">▸ identity &amp; preferences</span></p>
+      <div class="dr-rows" aria-label="Account details">
+        <div class="dr-rows__row"><span class="dr-rows__key">Payment method</span><span class="dr-rows__val">Visa •••• 4921</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Saved address</span><span class="dr-rows__val">Podil, 21</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Language</span><span class="dr-rows__val">English</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Member since</span><span class="dr-rows__val">2026</span></div>
       </div>
     </main>
 
-    <footer class="tabbar">
-      <nav class="tabs" aria-label="Primary">
-        <a class="tab" href="listings.html"><span class="sq sq-24" aria-hidden="true"></span>Order</a>
-        <a class="tab" href="order-history.html"><span class="sq sq-24" aria-hidden="true"></span>Activity</a>
-        <a class="tab" href="support.html"><span class="sq sq-24" aria-hidden="true"></span>Help</a>
-        <a class="tab" href="account.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="listings.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+        <a class="dr-tab" href="order-history.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+        <a class="dr-tab" href="support.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+        <a class="dr-tab" href="account.html" aria-current="page"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
       </nav>
-      <div class="home-indicator"><span></span></div>
+      <div class="dr-home"><span></span></div>
     </footer>
   </div>
 
