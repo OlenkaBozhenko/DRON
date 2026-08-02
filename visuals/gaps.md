@@ -120,26 +120,29 @@ carry the brand.
 |---|---|---|---|
 | ~~12~~ | ~~`scenes/inspection-cover-roof.jpg`~~ | **Filled 2026-08-02 — with #13's picture, on the designer's instruction.** She supplied Figma node `70:139`, a close-up of two cracked tiles near the ridge, and put it in the cover slot. Saved by what it shows, not by where it sits: `scenes/inspection-roof-cracked-tiles.jpg`. The establishing shot this row asked for — the whole roof from the air — was never supplied and is no longer blocking; the cover now opens on the damage instead of on the building. | `inspection-report` — `media-ph:COVER PHOTO` **(filled)** |
 | ~~13~~ | ~~`scenes/inspection-roof-cracked-tiles.jpg`~~ | **Filled 2026-08-02.** The designer supplied nodes `72:148` · `72:149` · `72:150` — three frames of the same cracked tiles from three angles — and they take all three strip slots as `inspection-roof-crack-1/2/3.jpg`. So the second frame of the damage this row asked for exists, and two more besides. | `inspection-report` — `media-ph:INSPECTION IMAGE` 1/3 **(filled)** |
-| 14 | ~~`scenes/inspection-gutter-blocked.jpg`~~ **slot filled, subject not** | **Severity Medium** — the finding on the page still reads *Gutter · east run · leaf blockage over ~1.5 m, standing water*, and the frame beside it shows **cracked roof tiles**. The slot is no longer empty, so nothing looks unfinished — which is exactly why it is written down here. | `inspection-report` — 2/3 |
+| ~~14~~ | ~~`scenes/inspection-gutter-blocked.jpg`~~ | **Closed 2026-08-02.** The designer supplied node `71:141` — the run seen from directly above, choked with wet leaf debris and standing water, exactly what this row asked for. It replaced the third roof frame, so the strip now shows the roof twice and the gutter once. `inspection-roof-crack-3.jpg` stays in the repo, unused and available. | `inspection-report` — 3/3 **(filled)** |
 | 15 | ~~`scenes/inspection-chimney-flashing.jpg`~~ **slot filled, subject not** | **Severity None** — the finding reads *Chimney flashing · sealed and intact*, and the frame shows cracked roof tiles again. Same note as #14. | `inspection-report` — 3/3 |
 | 16 | `scenes/delivered-proof-2.jpg` | A second doorstep — an apartment landing, not a house | `order-history` carries **two** delivered package orders and one proof photo |
 | 17 | `scenes/aerial-trukhaniv-island.jpg` | The aerial deliverable — a riverside plot from ~60 m, late afternoon | the *Aerial photo & video* order in `order-history` (see the flow seam below) |
 | 18 | `scenes/dispute-evidence-aerial-blurry.jpg` | The disputed deliverable: an aerial frame that is genuinely soft, so the client's claim reads as fair | `operator-dispute` — `up-ph:FLIGHT LOG / PHOTO`, filled state |
 
-**The photo set no longer matches the findings, and that is a content question, not a picture one.**
-The report lists three findings — *Roof · north slope* (High), *Gutter · east run* (Medium),
-*Chimney flashing* (None) — and all four supplied photographs, cover included, show the same two
-cracked tiles. Nothing in the set shows a gutter or a flashing. The strip is labelled *Photo set ▸
-evidence frames* rather than one-per-finding, so it is legible as a set about the headline defect;
-but a report that names a blocked gutter and shows no gutter is evidence that does not carry its
-own claim. Two ways out: supply one gutter frame and one flashing frame, or cut the findings list
-to the roof.
+**The photo set half-matches the findings now.** The gutter arrived and the strip reads roof · roof ·
+gutter, against findings that read *Roof · north slope* (High), *Gutter · east run* (Medium),
+*Chimney flashing* (None). So two of the three claims are shown and one — the flashing — still is
+not. One frame closes it, and #15 says what it has to be.
+
+**A smaller open question with it: the order.** The findings run roof, gutter, chimney; the frames
+run roof, roof, gutter. Nothing binds them one-to-one — the strip is labelled *Photo set ▸ evidence
+frames*, not one per finding — but a reader scanning both columns will try to pair them. Moving the
+gutter to the middle would make the two lists read in step. Left as built, because the designer put
+it in slot three deliberately.
 
 **The four frames are not graded alike either.** Held against `README.md` §3 with `check-style.py`:
-the cover reads **+23.1** warm skew at hue **24°**, the three evidence frames read **+3.7 / +3.6 /
-+2.8** and are effectively neutral (saturation under 2%). Same roof, same tiles — but the cover
-looks like late afternoon and the evidence looks like overcast noon. None of the four sits inside
-the +4…+18 band. Reported, not corrected: a grade is the designer's call, and §7.2 already notes
+the cover reads **+23.1** warm skew at hue **24°**, the two roof frames read **+3.7** and **+3.6**
+and are effectively neutral (saturation under 2%), and the gutter frame reads **+21.9** at hue
+**27.8°**. So the set now splits in two: the cover and the gutter are golden, the roof frames are
+overcast, and the same roof appears to have been shot on two different afternoons. None of the five
+sits inside the +4…+18 band. Reported, not corrected: a grade is the designer's call, and §7.2 already notes
 that most of the existing set predates the band.
 
 ### B4 · Map — 1 file
