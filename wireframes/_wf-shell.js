@@ -180,11 +180,15 @@
 
        THE KIT IS THE SOURCE. ui/kit.css `.dr-lang` holds the canonical block
        and the reasoning; this is the same component expressed once for all 84
-       files. Only the 10 painted ones load the kit, so each value is written
-       `var(--token, fallback)`: the painted frames resolve the token, the
-       grayscale ones fall through to the ramp they already use. One rule, one
-       set of decisions, two palettes — instead of a scoped override that
-       painted 10 screens and left 74 on a black pill.
+       files. Only the painted ones load the kit, so each value is written
+       `var(--token, literal)` — and the literal is the KIT's value, not the
+       grayscale ramp's. Designer's call 2026-08-02: green chosen, grey not,
+       on every screen. The switch is one control and it should not change
+       colour depending on whether the screen behind it has been painted yet.
+
+       This is the third carve-out from the grayscale rule, after real imagery
+       and the DRON mark, and like those it is recorded rather than assumed —
+       `_conventions.md` §1.7.
 
        It is coloured as the designer's buttons are — primary and secondary.
        The chosen language is the primary fill, the other is the secondary.
@@ -221,14 +225,14 @@
     + '  border:0; cursor:pointer; font:inherit; font-size:12px; font-weight:600;'
     + '  letter-spacing:.04em;'
     // secondary: --btn2 / --ink painted, --wf-fill / --wf-text grayscale
-    + '  background:var(--btn2,#E2E2E2); color:var(--ink,#252525); }'
+    + '  background:var(--btn2,#D6D2C9); color:var(--ink,#1A1A1A); }'
     + '.wf-frame header.topbar .wf-lang button::after{ content:""; position:absolute; inset:-8px 0; }'
     // primary: --green / --on-green painted, --wf-ink / --wf-surface grayscale
-    + '.wf-frame header.topbar .wf-lang button.on{ background:var(--green,#111111);'
-    + '  color:var(--on-green,#FFFFFF); box-shadow:var(--sh-sm,none); }'
-    + '.wf-frame header.topbar .wf-lang button:hover:not(.on){ background:var(--media,#EEEEEE); }'
+    + '.wf-frame header.topbar .wf-lang button.on{ background:var(--green,#9BCF4A);'
+    + '  color:var(--on-green,#1A1A1A); box-shadow:var(--sh-sm,0 1px 2px rgba(20,18,15,.05)); }'
+    + '.wf-frame header.topbar .wf-lang button:hover:not(.on){ background:var(--media,#E4E1DA); }'
     + '.wf-frame header.topbar .wf-lang button:focus-visible{'
-    + '  outline:var(--focus-w,2px) solid var(--ink,#252525);'
+    + '  outline:var(--focus-w,2.5px) solid var(--ink,#1A1A1A);'
     + '  outline-offset:calc(-1 * var(--focus-offset,2px)); }'
 
     /* ── mobile / narrow: collapse the tree into the burger drawer ── */

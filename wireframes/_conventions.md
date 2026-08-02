@@ -15,7 +15,7 @@ Wireframes prove **structure, hierarchy, and zones** — not looks. If a decisio
 4. **One page per state.** Success/normal = the base file; `-empty` / `-error` / `-loading` are separate files with the **same structure, different content** (§10, §11).
 5. **8px grid.** Every spacing value is a multiple of 8 (4 allowed as the half-step). Radii are multiples of 2 (§6).
 6. **Mobile frame 375 × 812.** Every page is built inside it (§6).
-7. **No icons, no shadows, no colour, no final font** — deferred (§3, §8). Two carve-outs, both decided by the designer and both still grayscale: **real imagery** where a frame needs a picture to be judged, and the **DRON logo** in the reserved brand slot (§8).
+7. **No icons, no shadows, no colour, no final font** — deferred (§3, §8). **Three carve-outs, each decided by the designer.** Two are still grayscale: **real imagery** where a frame needs a picture to be judged, and the **DRON logo** in the reserved brand slot (§8). The third is not — the **language switch** carries the kit's colours on every screen, painted or not (2026-08-02): green for the chosen language, warm grey for the other. It is one control injected into all 84 files, and it should not change colour depending on whether the screen behind it has been painted yet. Values and measurements live in `ui/kit.css` `.dr-lang`; `ui/inventory.md` carries the row.
 
 ---
 
