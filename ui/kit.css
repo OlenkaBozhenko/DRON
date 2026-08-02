@@ -975,6 +975,50 @@ header.dr-topbar,
 .dr-segment__seg:has(input:checked){ background: var(--page); color: var(--ink); }  /* 1.20:1 / 15.99:1 */
 .dr-segment__seg:has(input:focus-visible){ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); }
 
+/* Language switch — EN / UA. It is a segmented control, so it takes .dr-segment's
+   structure rather than the tab's: a recessed --media track with a --page plate
+   raised inside it, no border and no dividers, the plate carrying the state.
+   That also keeps green out of it — the switch stands in the top bar of all 40
+   screens, and a green pill there would be a second green control on every
+   screen that already spends its one on the CTA.
+
+   It is SHORTER than .dr-segment on purpose. That one is --h-control 44px and
+   fills a form row; this one shares a 56px top bar with a title, so it takes
+   --h-pill 32px and buys the 44pt target back with a transparent ::after —
+   the same trick iOS uses on its own 32pt controls, and the same one the
+   in-page tabs took in ui/inventory.md.
+
+   Measured: selected --ink on the --page plate 15.99:1, unselected --slate on
+   the --media track 5.51:1. The plate is 1.20:1 against the track, under the
+   3:1 WCAG 1.4.11 asks of a state indicator standing alone — which is why the
+   ink moves --slate -> --ink with it. Two signals where one is offered, the
+   reading this system takes everywhere. aria-pressed carries it for AT. */
+.dr-lang{
+  display: inline-flex; flex: none;
+  height: var(--h-pill); padding: var(--sp-2);
+  background: var(--media); border: 0; border-radius: var(--r-btn);
+}
+.dr-lang button{
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  min-width: 34px; padding: 0 var(--sp-within-lg);
+  border: 0; background: transparent; cursor: pointer;
+  border-radius: var(--r-input);
+  font-family: var(--font-ui);
+  font-size: var(--t-caption-size); font-weight: var(--weight-medium);
+  letter-spacing: .04em;
+  color: var(--slate);
+}
+/* The visible pill is 32px; the finger gets 44 vertically. The button box is
+   28 (32 less the 2px track padding either side), so -8 top and bottom makes
+   exactly 44. Horizontally each segment stays its own width: iOS's segmented
+   control is 32pt tall with segments as wide as their label needs, and the
+   44pt rule governs a standalone control - widening each half to 44 would put
+   this back at 92px, which is the width the designer asked to lose. */
+.dr-lang button::after{ content: ""; position: absolute; inset: -8px 0; }
+.dr-lang button[aria-pressed="true"]{ background: var(--page); color: var(--ink); }
+.dr-lang button:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); }
+
 /* Native <details>. It opens IN FLOW and pushes the page down; nothing in this
    product floats. The chevron turns 180° on open — the direction is
    information, the animation is only how it gets there. */

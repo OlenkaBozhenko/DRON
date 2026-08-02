@@ -175,38 +175,51 @@
     /* annotations hidden state — hides the .meta panel + .zlabel zone labels everywhere */
     + 'body.wf-hide-anno .meta, body.wf-hide-anno .zlabel{ display:none !important; }'
 
-    /* language switcher — injected into the top-right of every screen's topbar */
+    /* Language switch — EN / UA, injected into every screen's top bar, so it is
+       the one control standing on all 40 screens.
+
+       THE KIT IS THE SOURCE. ui/kit.css `.dr-lang` holds the canonical block
+       and the reasoning; this is the same component expressed once for all 84
+       files. Only the 10 painted ones load the kit, so each value is written
+       `var(--token, fallback)`: the painted frames resolve the token, the
+       grayscale ones fall through to the ramp they already use. One rule, one
+       set of decisions, two palettes — instead of a scoped override that
+       painted 10 screens and left 74 on a black pill.
+
+       It takes the kit's SEGMENTED control, not the tab and not the button:
+       a recessed track with a raised plate, no border, no dividers, the plate
+       carrying the state. Green stays out — this control is on every screen,
+       and a green pill would be a second green control on each one that
+       already spends its single accent on the CTA (DESIGN.md, one per screen
+       at ~5%).
+
+       Measured — painted / grayscale:
+         selected label on the plate   15.99:1 / 15.33:1
+         unselected on the track        5.51:1 /  5.32:1
+         plate against the track        1.20:1 /  1.30:1
+       The plate alone is under the 3:1 WCAG 1.4.11 asks of a state indicator,
+       which is exactly why the ink moves with it: two signals where the
+       convention gives one. aria-pressed carries it for assistive tech.
+
+       32px visible, 44px touched vertically — the button box is 28, so -8 top and
+       bottom makes exactly 44. It shares a 56px bar with a title, so the
+       full 44pt control would crowd it; the target comes back through a
+       transparent ::after, the way iOS treats its own 32pt controls and the
+       way ui/inventory.md already settled the in-page tabs. */
     + '.wf-frame header.topbar .wf-lang{ display:inline-flex; flex:none; margin-left:auto;'
-    + '  border:1px solid rgba(0,0,0,0.15); border-radius:6px; overflow:hidden; }'
-    + '.wf-frame header.topbar .wf-lang button{ height:44px; min-width:44px; padding:0 10px; border:0;'
-    // 44x44 is the HIG / WCAG 2.5.5 target; it was 28px tall and 38px wide.
-    + '  border-right:1px solid rgba(0,0,0,0.09); background:#FFFFFF; font:inherit; font-size:12px;'
-    + '  font-weight:600; letter-spacing:.04em; color:#5A5A5A; cursor:pointer; }'
-    + '.wf-frame header.topbar .wf-lang button:last-child{ border-right:0; }'
-    + '.wf-frame header.topbar .wf-lang button.on{ background:#111111; color:#FFFFFF; }'
-    + '.wf-frame header.topbar .wf-lang button:focus-visible{ outline:2px solid rgba(0,0,0,0.15); outline-offset:-2px; }'
-
-    /* Painted pages take the kit instead of the grayscale ramp. Only .dr
-       frames declare the tokens, so the override is scoped to them and the
-       other 74 files keep the inverted-black pill the grayscale set uses for
-       every selected chip and group tab.
-
-       It is a segmented control, so it takes the kit's TAB values, not the
-       primary button's. A solid --green pill would be a second green control
-       on a screen that already spends its one on the CTA, and DESIGN.md caps
-       that at one per screen at ~5% of the frame. --green-wash does not count
-       against that budget: it is 1.085:1 against the page, a hue signal and
-       not a luminance one, which is why the ink darkens with it —
-       --slate 6.62:1 unselected, --ink 14.75:1 selected. Two signals where
-       HIG's tinted-label convention gives one, the same reading the tab bar
-       already took. */
-    + '.wf-frame.dr header.topbar .wf-lang{ border-color:var(--line); border-radius:var(--r-btn); }'
-    + '.wf-frame.dr header.topbar .wf-lang button{ background:transparent; color:var(--slate);'
-    + '  border-right-color:var(--line); }'
-    + '.wf-frame.dr header.topbar .wf-lang button:hover{ background:var(--card); color:var(--ink); }'
-    + '.wf-frame.dr header.topbar .wf-lang button.on{ background:var(--green-wash); color:var(--ink); }'
-    + '.wf-frame.dr header.topbar .wf-lang button:focus-visible{ outline:var(--focus-w) solid var(--ink);'
-    + '  outline-offset:calc(-1 * var(--focus-offset)); }'
+    + '  height:32px; padding:2px; border:0; border-radius:var(--r-btn,12px);'
+    + '  background:var(--media,#E2E2E2); }'
+    + '.wf-frame header.topbar .wf-lang button{ position:relative; display:flex;'
+    + '  align-items:center; justify-content:center; min-width:34px; padding:0 8px;'
+    + '  border:0; background:transparent; cursor:pointer; border-radius:var(--r-input,10px);'
+    + '  font:inherit; font-size:12px; font-weight:600; letter-spacing:.04em;'
+    + '  color:var(--slate,#5A5A5A); }'
+    + '.wf-frame header.topbar .wf-lang button::after{ content:""; position:absolute; inset:-8px 0; }'
+    + '.wf-frame header.topbar .wf-lang button.on{ background:var(--page,#FFFFFF);'
+    + '  color:var(--ink,#252525); }'
+    + '.wf-frame header.topbar .wf-lang button:focus-visible{'
+    + '  outline:var(--focus-w,2px) solid var(--ink,#252525);'
+    + '  outline-offset:calc(-1 * var(--focus-offset,2px)); }'
 
     /* ── mobile / narrow: collapse the tree into the burger drawer ── */
     + '@media (max-width:899px){'
