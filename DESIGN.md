@@ -543,7 +543,11 @@ card UI. Present on every order card, including delivered ones.
 
 ### Chips and badges
 
-`--r-pill`, padding `5px 10px`, 12/600, 13px leading glyph, gap 6.
+`--r-pill`, padding `5px 10px`, 12/600, **14px** leading glyph, gap 6.
+
+**One glyph size, settled 2026-08-02.** The build drew 13px in a badge (`.badge`) and 14px in the
+ETA pill (`.ohl-eta`) — one component with two values, against the One-Component-One-Value rule.
+The designer's call is **14 everywhere**.
 
 - **Live / claim:** `--green-wash` + `--ink` — *Verified by DRON*, the selected tab.
 - **Muted / fact:** `--media` + `--slate` — *Insured*, the ETA chip.
@@ -605,7 +609,8 @@ capped at 260px → actions, gap 10, full-width buttons. Carries `role="alert"` 
 
 ### Navigation
 
-- **Nav bar:** `--page`, `--line` bottom hairline, title as `<h1>` 17/600/−0.01em `--ink`.
+- **Nav bar:** **56px**, `--page`, `--line` bottom hairline, title as `<h1>` 17/600/−0.01em
+  `--ink`. The height was not stated here before and is measured on all ten painted pages.
 - **Tab bar:** `--page`, `--line` top hairline, 60px, four tabs, 22px icons over an 11/600 label,
   30px home indicator in `--ink`.
 - **Selected tab:** `--green-wash` pill at `--r-card`, label and icon `--ink` (14.75:1).

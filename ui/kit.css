@@ -165,6 +165,8 @@
   --pill-bleed:   calc((var(--h-control) - var(--h-pill)) / -2);
 
   --ic-12: 12px; --ic-13: 13px; --ic-14: 14px; --ic-16: 16px;
+  /* --ic-13 is a declared rung: the chip gave it up on 2026-08-02 when the
+     glyph settled at 14 everywhere, and nothing else spends it yet. */
   --ic-20: 20px; --ic-22: 22px; --ic-26: 26px; --ic-32: 32px;
   --ic-stroke: 1.7;      /* declared once. The rendered line follows the box. */
   --ic-grid: 0 0 24 24;
@@ -520,13 +522,10 @@
   background: var(--media); color: var(--slate);      /* fact — 5.51:1 */
 }
 .dr-chip--claim{ background: var(--green-wash); color: var(--ink); }  /* 14.75:1 */
-/* DRIFT, recorded not resolved: the reference draws this glyph at 13px in a
-   badge (.badge) and at 14px in the ETA pill (.ohl-eta) — one component, two
-   values, against the One-Component-One-Value rule. 13 is the default here
-   because it stands on more surfaces; .dr-ic--eta reproduces the 14 the order
-   card actually draws. The designer's call which one the system keeps. */
-.dr-chip .dr-ic{ width: var(--ic-13); height: var(--ic-13); }
-.dr-chip .dr-ic--eta{ width: var(--ic-14); height: var(--ic-14); }
+/* SETTLED 2026-08-02 by the designer: 14px, everywhere. The build drew 13px in
+   a badge (.badge) and 14px in the ETA pill (.ohl-eta) — one component with two
+   values, against the One-Component-One-Value rule. One value now. */
+.dr-chip .dr-ic{ width: var(--ic-14); height: var(--ic-14); }
 .dr-chips{ display: flex; flex-wrap: wrap; gap: var(--sp-6); }
 
 /* A row of places with one current — the tab bar's problem, so the tab bar's
