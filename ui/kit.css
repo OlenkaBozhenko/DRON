@@ -222,6 +222,7 @@
   --banner-shift: 56px;   /* the block drops toward the thumb zone */
   --banner-art:   78%;
   --banner-top:   16px;
+  --sz-upload-min: 140px;  /* the upload tray's floor, from the wireframe */
   /* Skeleton bar widths. They vary per card so three skeletons do not read as
      one stamped block. */
   --sk-w90: 90%; --sk-w70: 70%; --sk-w50: 50%; --sk-w40: 40%; --sk-w30: 30%;
@@ -788,6 +789,50 @@ header.dr-topbar,
 .dr-order__price{ display: block; }
 .dr-order__acts{ display: flex; align-items: center; gap: var(--sp-within-lg); flex: none; }
 
+/* ═══ THE LISTING CARD ═══════════════════════════════════════════════════
+   The client service card — approved 2026-08-03. Three elements, as the
+   hand-edited wireframe settled it: the drone doing the job, the name, one
+   line of description. The whole card is the tap target (dr-card__link); no
+   price row and no chevron — the frame is the reference, and it has neither.
+   Sits on .dr-card.dr-card--row with a .dr-well render. */
+.dr-listing__body{ flex: 1; min-width: 0; }
+.dr-listing__name{
+  display: block;
+  font-size: var(--t-heading-size); font-weight: var(--t-heading-weight);
+  line-height: var(--t-heading-line); color: var(--ink);          /* 14.37:1 */
+}
+.dr-listing__desc{
+  display: block; margin-top: var(--sp-2);
+  font-size: var(--t-bodysm-size); line-height: var(--t-bodysm-line);
+  color: var(--slate);                                            /* 5.95:1 */
+}
+
+/* ═══ THE CHOICE CARD ═════════════════════════════════════════════════════
+   Navigation, not a picker — both instances are links that leave the screen.
+   Approved 2026-08-03 with the values already decided: card ground, 16px
+   radius, a 44pt row by construction, a slate chevron, a keyboard-only ring. */
+.dr-choice{
+  position: relative;
+  display: flex; align-items: center; gap: var(--sp-snug);
+  padding: var(--sp-screen);
+  background: var(--card); border: 0; border-radius: var(--r-card);
+  text-decoration: none; color: var(--ink);
+}
+.dr-choice:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+.dr-choice__body{ flex: 1; min-width: 0; }
+.dr-choice__title{
+  display: block;
+  font-size: var(--t-title-size); font-weight: var(--t-title-weight);
+  line-height: var(--t-title-line); letter-spacing: var(--t-title-track);
+  color: var(--ink);
+}
+.dr-choice__desc{
+  display: block; margin-top: var(--sp-2);
+  font-size: var(--t-bodysm-size); line-height: var(--t-bodysm-line);
+  color: var(--slate);
+}
+.dr-choice__chev{ flex: none; color: var(--slate); display: inline-flex; }
+
 /* ═══ THE OPERATOR CARD ═══════════════════════════════════════════════════
    The trust surface. The photograph is a full-height panel on the left edge,
    sized by the asset's own ratio so the operator is shown whole. */
@@ -947,6 +992,20 @@ header.dr-topbar,
   text-decoration: none; color: var(--ink); font-size: var(--t-heading-size);
 }
 .dr-disclosure__item:first-of-type{ border-top: 0; }
+
+/* ═══ THE UPLOAD ZONE ═════════════════════════════════════════════════════
+   Approved 2026-08-03: the dashed boundary does not survive painting — rev 43
+   made a surface a card, not a frame, and rev 45 answered the same 1.21:1 by
+   removing the line. So the zone is a --media well carrying the tray glyph at
+   5.51:1, with an ordinary secondary button for the action. */
+.dr-upload{
+  min-height: var(--sz-upload-min);
+  border: 0; border-radius: var(--r-media);
+  background: var(--media); color: var(--slate);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--sp-snug); padding: var(--sp-24); text-align: center;
+}
+.dr-upload .dr-ic{ width: var(--ic-32); height: var(--ic-32); }
 
 /* ═══ SKELETONS ═══════════════════════════════════════════════════════════
    Chrome stays solid, content pulses. The question is never "should this

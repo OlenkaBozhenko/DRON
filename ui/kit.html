@@ -495,6 +495,71 @@
 </div>
 
 <!-- ═══ PROGRESS ══════════════════════════════════════════════════════════ -->
+<div class="row">
+  <div class="nm"><b>Listing card</b>
+    <code>.dr-card--row · .dr-listing__name · __desc · .dr-well</code>
+    <p><b>Approved 2026-08-03.</b> Three elements, as the hand-edited wireframe settled it: the
+       drone doing the job, the name, one line of description. The whole card is the tap target —
+       no price row and no chevron, because the frame has neither.</p></div>
+  <div class="spec col">
+    <article class="dr dr-card dr-card--row dr-listing" style="width:341px;max-width:100%">
+      <a class="dr-card__link" href="#" aria-label="Package delivery — start an order"></a>
+      <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt=""></span>
+      <span class="dr-listing__body">
+        <span class="dr-listing__name">Package delivery</span>
+        <span class="dr-listing__desc">Parcels, documents, small goods — across the city</span>
+      </span>
+    </article>
+    <article class="dr dr-card dr-card--row dr-listing" style="width:341px;max-width:100%">
+      <a class="dr-card__link" href="#" aria-label="Aerial photo and video — start an order"></a>
+      <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt=""></span>
+      <span class="dr-listing__body">
+        <span class="dr-listing__name">Aerial photo &amp; video</span>
+        <span class="dr-listing__desc">Events, real-estate listings, personal occasions</span>
+      </span>
+    </article>
+  </div>
+  <div class="notes">
+    <p>Name <code>--ink</code> 15/600, <b>14.37:1</b> · description <code>--slate</code> 13/400,
+       <b>5.95:1</b> · well <b>96 × 72</b>, cutout straight on the card, no ground.</p>
+    <p>Card inset 20, gap 12 — the list card's own numbers. The whole-card link keeps the
+       keyboard-only ring.</p>
+    <p><b>One correction against the proposal:</b> it offered a price row and a chevron; the
+       hand-edited frame has neither, and the frame wins.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Choice card</b>
+    <code>.dr-choice · __title · __desc · __chev</code>
+    <p><b>Approved 2026-08-03</b>, built to the values already decided: navigation, not a picker
+       — both instances are links that leave the screen.</p></div>
+  <div class="spec col">
+    <a class="dr dr-choice" href="#" style="width:341px;max-width:100%">
+      <span class="dr-well"><img src="../assets/objects/thumbs/cargo-box.png" alt=""></span>
+      <span class="dr-choice__body">
+        <span class="dr-choice__title">I need a service done</span>
+        <span class="dr-choice__desc">Order delivery, aerial photo/video or inspection — a verified operator handles it.</span>
+      </span>
+      <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+    </a>
+    <a class="dr dr-choice" href="#" style="width:341px;max-width:100%">
+      <span class="dr-well"><img src="../assets/drones/thumbs/drone-flight-front.png" alt=""></span>
+      <span class="dr-choice__body">
+        <span class="dr-choice__title">I provide services</span>
+        <span class="dr-choice__desc">You&rsquo;re a certified drone operator — take jobs and get paid.</span>
+      </span>
+      <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+    </a>
+  </div>
+  <div class="notes">
+    <p><code>--card</code> at <code>--r-card</code> 16 · title 17/600 <b>14.37:1</b> · description
+       13/400 <b>5.95:1</b> · chevron <code>--slate</code> on the 24-grid · the row clears 44pt by
+       construction · focus ring is keyboard-only, <code>2.5px --ink</code>.</p>
+    <p>No hover treatment: a card flat at rest stays flat, and the surface is the affordance.</p>
+  </div>
+</div>
+
 <h2 class="sec">Progress</h2>
 <div class="row">
   <div class="nm"><b>One node, two axes</b><code>.dr-node · --done · --now · .dr-rail · .dr-track</code>
@@ -809,6 +874,29 @@
     <p><b>Left open, deliberately.</b> <code>operator-listings</code> runs the tab bar, these tabs
        <i>and</i> a segmented control at once, where <code>HIG · Tab bars</code> assigns those roles
        differently. Painting does not fix a structural call; it belongs to that screen's rework.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Upload zone</b>
+    <code>.dr-upload</code>
+    <p><b>Approved 2026-08-03.</b> The dashed boundary does not survive painting — rev 43 made a
+       surface a card, not a frame, and rev 45 answered the same 1.21:1 by removing the line.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch">
+      <div class="dr dr-upload">
+        <svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+        <button class="dr-btn dr-btn--secondary" type="button">Add photo</button>
+      </div>
+      <span class="st">--media well · glyph 5.51:1 · at rest, no motion</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p>A <code>--media</code> well at <code>--r-media</code> 13, min-height 140. The glyph is the
+       delivery tray at rest — the same 32px mark <code>delivery-loading</code> animates; here the
+       arrow simply sits in the tray.</p>
+    <p>The action is an ordinary secondary button (<b>11.54:1</b>), labelled with the
+       <code>voice.md</code> verb: <b>Add…</b> — never &ldquo;Upload&rdquo;.</p>
   </div>
 </div>
 
