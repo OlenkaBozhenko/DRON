@@ -186,20 +186,28 @@
        set of decisions, two palettes — instead of a scoped override that
        painted 10 screens and left 74 on a black pill.
 
-       It takes the kit's SEGMENTED control, not the tab and not the button:
-       a recessed track with a raised plate, no border, no dividers, the plate
-       carrying the state. Green stays out — this control is on every screen,
-       and a green pill would be a second green control on each one that
-       already spends its single accent on the CTA (DESIGN.md, one per screen
-       at ~5%).
+       It is coloured as the designer's buttons are — primary and secondary.
+       The chosen language is the primary fill, the other is the secondary.
 
        Measured — painted / grayscale:
-         selected label on the plate   15.99:1 / 15.33:1
-         unselected on the track        5.51:1 /  5.32:1
-         plate against the track        1.20:1 /  1.30:1
-       The plate alone is under the 3:1 WCAG 1.4.11 asks of a state indicator,
-       which is exactly why the ink moves with it: two signals where the
-       convention gives one. aria-pressed carries it for assistive tech.
+         chosen  --on-green on --green     9.46:1 / 18.88:1
+         other   --ink on --btn2          11.54:1 / 11.83:1
+         the two fills against each other  1.22:1 / 14.58:1
+       That 1.22 is the catch, and it was found by measuring rather than by
+       looking: Signal Green and the warm grey sit at almost the same
+       luminance, and both halves carry the same #1A1A1A ink, so on a painted
+       screen the state would rest on hue alone — which WCAG 1.4.1 does not
+       allow. The chosen half therefore also takes --sh-sm, the shadow
+       .dr-btn--primary already wears and the secondary does not: the second
+       signal is the system's own way of saying primary. In grayscale the
+       question never arises, the fills being 14.58:1 apart. aria-pressed
+       carries it for assistive tech either way.
+
+       Recorded, not argued: this stands on all 40 screens and every one of
+       them already spends its single green on the CTA, so DESIGN.md's one
+       green control per screen becomes two, plus ~0.3% of the frame on top of
+       tracking's measured 5.09%. The designer set green and grey as the two
+       button weights; this follows that rule.
 
        32px visible, 44px touched vertically — the button box is 28, so -8 top and
        bottom makes exactly 44. It shares a 56px bar with a title, so the
@@ -207,16 +215,18 @@
        transparent ::after, the way iOS treats its own 32pt controls and the
        way ui/inventory.md already settled the in-page tabs. */
     + '.wf-frame header.topbar .wf-lang{ display:inline-flex; flex:none; margin-left:auto;'
-    + '  height:32px; padding:2px; border:0; border-radius:var(--r-btn,12px);'
-    + '  background:var(--media,#E2E2E2); }'
+    + '  height:32px; border:0; border-radius:var(--r-btn,6px); overflow:hidden; }'
     + '.wf-frame header.topbar .wf-lang button{ position:relative; display:flex;'
-    + '  align-items:center; justify-content:center; min-width:34px; padding:0 8px;'
-    + '  border:0; background:transparent; cursor:pointer; border-radius:var(--r-input,10px);'
-    + '  font:inherit; font-size:12px; font-weight:600; letter-spacing:.04em;'
-    + '  color:var(--slate,#5A5A5A); }'
+    + '  align-items:center; justify-content:center; min-width:36px; padding:0 8px;'
+    + '  border:0; cursor:pointer; font:inherit; font-size:12px; font-weight:600;'
+    + '  letter-spacing:.04em;'
+    // secondary: --btn2 / --ink painted, --wf-fill / --wf-text grayscale
+    + '  background:var(--btn2,#E2E2E2); color:var(--ink,#252525); }'
     + '.wf-frame header.topbar .wf-lang button::after{ content:""; position:absolute; inset:-8px 0; }'
-    + '.wf-frame header.topbar .wf-lang button.on{ background:var(--page,#FFFFFF);'
-    + '  color:var(--ink,#252525); }'
+    // primary: --green / --on-green painted, --wf-ink / --wf-surface grayscale
+    + '.wf-frame header.topbar .wf-lang button.on{ background:var(--green,#111111);'
+    + '  color:var(--on-green,#FFFFFF); box-shadow:var(--sh-sm,none); }'
+    + '.wf-frame header.topbar .wf-lang button:hover:not(.on){ background:var(--media,#EEEEEE); }'
     + '.wf-frame header.topbar .wf-lang button:focus-visible{'
     + '  outline:var(--focus-w,2px) solid var(--ink,#252525);'
     + '  outline-offset:calc(-1 * var(--focus-offset,2px)); }'

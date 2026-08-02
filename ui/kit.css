@@ -224,6 +224,7 @@
   --banner-top:   16px;
   --sz-upload-min: 140px;  /* the upload tray's floor, from the wireframe */
   --sz-pager-dot:  8px;
+  --sz-area-min:  80px;    /* the multiline field's floor, from the wireframe */
   /* Skeleton bar widths. They vary per card so three skeletons do not read as
      one stamped block. */
   --sk-w90: 90%; --sk-w70: 70%; --sk-w50: 50%; --sk-w40: 40%; --sk-w30: 30%;
@@ -790,6 +791,11 @@ header.dr-topbar,
 .dr-order__price{ display: block; }
 .dr-order__acts{ display: flex; align-items: center; gap: var(--sp-within-lg); flex: none; }
 
+/* The results counter — a fact on the left, the sort action on the right. */
+.dr-counter{ display: flex; align-items: center; justify-content: space-between; gap: var(--sp-within-lg); }
+.dr-counter__count{ font-size: var(--t-bodysm-size); color: var(--slate); }
+.dr-counter__count b{ color: var(--ink); font-weight: var(--weight-medium); }
+
 /* ═══ THE LISTING CARD ═══════════════════════════════════════════════════
    The client service card — approved 2026-08-03. Three elements, as the
    hand-edited wireframe settled it: the drone doing the job, the name, one
@@ -807,6 +813,7 @@ header.dr-topbar,
   font-size: var(--t-bodysm-size); line-height: var(--t-bodysm-line);
   color: var(--slate);                                            /* 5.95:1 */
 }
+.dr-listing__meta{ display: flex; align-items: baseline; gap: var(--sp-within-lg); margin-top: var(--sp-6); }
 
 /* ═══ THE CHOICE CARD ═════════════════════════════════════════════════════
    Navigation, not a picker — both instances are links that leave the screen.
@@ -900,6 +907,15 @@ header.dr-topbar,
   display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
 }
 .dr-field__err{ font-size: var(--t-caption-size); color: var(--danger-ink); }          /* 6.14:1 */
+/* the hint under a field lives inside the same panel, as its own quiet line */
+.dr-field__hint{
+  font-size: var(--t-caption-size); font-weight: var(--weight-regular);
+  color: var(--slate); padding: 0 var(--sp-screen) var(--sp-13);
+}
+/* the multiline field: the row that grows. Same anatomy, taller floor. */
+.dr-field--area{ min-height: var(--sz-area-min); align-items: stretch;
+  padding-top: var(--sp-snug); padding-bottom: var(--sp-snug); }
+.dr-field--area .dr-field__input{ resize: none; min-height: calc(var(--sz-area-min) - var(--sp-24)); }
 
 /* The ONE field that keeps a ground, because it is not in a grouped list.
    That is the iOS search bar, and it gives --r-input its only home. */
@@ -911,6 +927,8 @@ header.dr-topbar,
   background: var(--media); color: var(--slate);                                       /* 5.51:1 */
 }
 .dr-search .dr-ic{ width: var(--ic-16); height: var(--ic-16); }
+.dr-search-row{ display: flex; gap: var(--sp-within-lg); }
+.dr-search-row .dr-search{ flex: 1; }
 .dr-search input{
   flex: 1; min-width: 0; border: 0; background: transparent; outline: none;
   font-family: var(--font-ui); font-size: var(--t-heading-size); color: var(--ink);    /* 13.33:1 */
@@ -948,8 +966,10 @@ header.dr-topbar,
    shape behind a charcoal glyph"), and the exact pair the walked node paints:
    --on-green on --green, 9.46:1. On the green budget a checked box counts as
    a status mark, like the node — not as the screen's one green control. */
-.dr-pick input:checked + .dr-box{ background: var(--green); border-color: var(--green); color: var(--on-green); }
-.dr-pick input:focus-visible + .dr-box{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+.dr-pick input:checked + .dr-box,
+.dr-pick:has(input:checked) .dr-box{ background: var(--green); border-color: var(--green); color: var(--on-green); }
+.dr-pick input:focus-visible + .dr-box,
+.dr-pick:has(input:focus-visible) .dr-box{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 .dr-box .dr-ic{ width: var(--ic-14); height: var(--ic-14); }
 .dr-box__dot{ width: var(--sz-dot); height: var(--sz-dot); border-radius: var(--r-pill); background: currentColor; }
 
@@ -975,48 +995,50 @@ header.dr-topbar,
 .dr-segment__seg:has(input:checked){ background: var(--page); color: var(--ink); }  /* 1.20:1 / 15.99:1 */
 .dr-segment__seg:has(input:focus-visible){ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); }
 
-/* Language switch — EN / UA. It is a segmented control, so it takes .dr-segment's
-   structure rather than the tab's: a recessed --media track with a --page plate
-   raised inside it, no border and no dividers, the plate carrying the state.
-   That also keeps green out of it — the switch stands in the top bar of all 40
-   screens, and a green pill there would be a second green control on every
-   screen that already spends its one on the CTA.
+/* Language switch — EN / UA. Coloured as the designer's buttons are, primary
+   and secondary: the chosen language takes --green with --on-green on it,
+   the other takes --btn2 with --ink. Not the segmented control's recessed
+   track, which is what it wore before — she uses green and grey for the two
+   button weights, and this is a choice between two, so it says so in those
+   terms. Flush halves inside one --r-btn container, so it still reads as one
+   control with two states rather than as two buttons that happen to touch.
 
-   It is SHORTER than .dr-segment on purpose. That one is --h-control 44px and
-   fills a form row; this one shares a 56px top bar with a title, so it takes
-   --h-pill 32px and buys the 44pt target back with a transparent ::after —
-   the same trick iOS uses on its own 32pt controls, and the same one the
-   in-page tabs took in ui/inventory.md.
+   Measured: --on-green on --green 9.46:1, --ink on --btn2 11.54:1 — both clear
+   AA for text. But the two FILLS are only 1.22:1 apart: Signal Green and the
+   warm grey sit at almost the same luminance, and both halves carry the same
+   #1A1A1A ink, so on the painted screens the state would rest on hue alone.
+   WCAG 1.4.1 does not allow colour to be the only carrier. So the chosen half
+   also takes --sh-sm, which is what .dr-btn--primary already wears and the
+   secondary does not: the second signal is the same one the button system
+   uses to say primary, not a new invention. In grayscale the question does
+   not arise — the fills are 14.58:1 apart.
 
-   Measured: selected --ink on the --page plate 15.99:1, unselected --slate on
-   the --media track 5.51:1. The plate is 1.20:1 against the track, under the
-   3:1 WCAG 1.4.11 asks of a state indicator standing alone — which is why the
-   ink moves --slate -> --ink with it. Two signals where one is offered, the
-   reading this system takes everywhere. aria-pressed carries it for AT. */
+   What it costs, recorded rather than argued: this control stands in the top
+   bar of all 40 screens, and every screen already spends its one green on the
+   CTA. DESIGN.md caps green at one control per screen at ~5% of the frame;
+   this makes it two, and adds ~0.3% of the frame on top of tracking's
+   measured 5.09%. The designer set the rule for buttons and this follows it.
+
+   32px tall, 44 touched: the button box is 28, so ::after at -8 top and
+   bottom is exactly 44 - iOS's own trick on its 32pt controls. */
 .dr-lang{
   display: inline-flex; flex: none;
-  height: var(--h-pill); padding: var(--sp-2);
-  background: var(--media); border: 0; border-radius: var(--r-btn);
+  height: var(--h-pill); border: 0; border-radius: var(--r-btn); overflow: hidden;
 }
 .dr-lang button{
   position: relative;
   display: flex; align-items: center; justify-content: center;
-  min-width: 34px; padding: 0 var(--sp-within-lg);
-  border: 0; background: transparent; cursor: pointer;
-  border-radius: var(--r-input);
+  min-width: 36px; padding: 0 var(--sp-within-lg);
+  border: 0; cursor: pointer;
+  background: var(--btn2); color: var(--ink);                 /* secondary — 11.54:1 */
   font-family: var(--font-ui);
   font-size: var(--t-caption-size); font-weight: var(--weight-medium);
   letter-spacing: .04em;
-  color: var(--slate);
 }
-/* The visible pill is 32px; the finger gets 44 vertically. The button box is
-   28 (32 less the 2px track padding either side), so -8 top and bottom makes
-   exactly 44. Horizontally each segment stays its own width: iOS's segmented
-   control is 32pt tall with segments as wide as their label needs, and the
-   44pt rule governs a standalone control - widening each half to 44 would put
-   this back at 92px, which is the width the designer asked to lose. */
+/* The visible pill is 32px; the finger gets 44 vertically. */
 .dr-lang button::after{ content: ""; position: absolute; inset: -8px 0; }
-.dr-lang button[aria-pressed="true"]{ background: var(--page); color: var(--ink); }
+.dr-lang button[aria-pressed="true"]{ background: var(--green); color: var(--on-green); box-shadow: var(--sh-sm); }  /* primary — 9.46:1 */
+.dr-lang button:hover:not([aria-pressed="true"]){ background: var(--media); }
 .dr-lang button:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); }
 
 /* Native <details>. It opens IN FLOW and pushes the page down; nothing in this
@@ -1071,6 +1093,32 @@ header.dr-topbar,
 }
 .dr-pager .on{ background: var(--green); }
 .dr-pager a:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+
+/* ═══ THE PRICE LINE ══════════════════════════════════════════════════════
+   A label against a figure. The default is quiet — 13 slate over 17/600 ink.
+   The Total reads bigger by the designer's ruling of 2026-08-03: label
+   15/600, figure at the scale's own money step, 20/700 tabular — no eleventh
+   size. The same ruling reaches the row-panel variant below. */
+.dr-price{ display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-snug); }
+.dr-price__lbl{ font-size: var(--t-bodysm-size); color: var(--slate); }
+.dr-price__val{
+  font-size: var(--t-title-size); font-weight: var(--t-title-weight);
+  color: var(--ink); font-variant-numeric: tabular-nums;
+}
+.dr-price--total .dr-price__lbl{
+  font-size: var(--t-heading-size); font-weight: var(--weight-medium); color: var(--ink);
+}
+.dr-price--total .dr-price__val{
+  font-size: var(--t-number-size); font-weight: var(--t-number-weight);
+  letter-spacing: var(--t-number-track); line-height: var(--t-number-line);
+}
+.dr-rows__row--total .dr-rows__key{
+  font-size: var(--t-heading-size); font-weight: var(--weight-medium); color: var(--ink);
+}
+.dr-rows__row--total .dr-rows__val{
+  font-size: var(--t-number-size); font-weight: var(--t-number-weight);
+  letter-spacing: var(--t-number-track);
+}
 
 /* ═══ SKELETONS ═══════════════════════════════════════════════════════════
    Chrome stays solid, content pulses. The question is never "should this
