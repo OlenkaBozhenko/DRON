@@ -598,6 +598,30 @@
 </div>
 
 <!-- ═══ STATES ════════════════════════════════════════════════════════════ -->
+<div class="row">
+  <div class="nm"><b>Pager</b>
+    <code>.dr-pager · .on</code>
+    <p><b>Settled 2026-08-03 by the designer:</b> the active dot is green; the resting dots are
+       plain discs with no outline.</p></div>
+  <div class="spec">
+    <div class="plate">
+      <nav class="dr dr-pager" aria-label="Slides" style="margin-top:0">
+        <a href="#" class="on" aria-label="Go to slide 1"></a>
+        <a href="#" aria-label="Go to slide 2"></a>
+        <a href="#" aria-label="Go to slide 3"></a>
+      </nav>
+      <span class="st">8px discs · active --green · rest --btn2</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>The named number:</b> <code>--green</code> on the page is <b>1.69:1</b> against
+       <code>WCAG 1.4.11</code>&rsquo;s 3:1. Accepted on the live-disc precedent — the dot is never
+       the sole carrier: the slide itself shows position, and each dot keeps its accessible name
+       (<code>aria-label="Go to slide 1"</code>).</p>
+    <p>iOS dims its resting dots; here they are <code>--btn2</code> discs — built, not dimmed.</p>
+  </div>
+</div>
+
 <h2 class="sec">States</h2>
 <div class="row">
   <div class="nm"><b>Message block</b><code>.dr-msg · __title · __body · __actions · .dr-mark</code>
@@ -804,9 +828,10 @@
     <p><b>The unchecked outline is <code>--slate</code>, not <code>--line</code>.</b> An empty box is
        identified by its boundary alone, so <code>1.4.11</code> applies at <b>3:1</b>:
        <code>--line</code> is 1.21:1 and fails; <code>--slate</code> is <b>5.95:1</b> and passes.</p>
-    <p><b>Checked is charcoal, not green.</b> <code>--ink</code> on <code>--card</code> is
-       <b>14.37:1</b>, and the screen's one green control is its action, not its picker. The green
-       alternative measures 9.46:1 and remains open in <code>ui/inventory.md</code> §4.</p>
+    <p><b>Checked is green — settled 2026-08-03 by the designer.</b> A green fill behind a
+       charcoal glyph, <b>9.46:1</b> — the icon system's own rule, and the exact pair the walked
+       node paints. On the green budget it counts as a status mark, like the node — not as the
+       screen's one green control, so the Pay button keeps that role.</p>
     <p>The whole row is the 44pt target; the box does not have to be.</p>
   </div>
 </div>

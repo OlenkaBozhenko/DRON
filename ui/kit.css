@@ -223,6 +223,7 @@
   --banner-art:   78%;
   --banner-top:   16px;
   --sz-upload-min: 140px;  /* the upload tray's floor, from the wireframe */
+  --sz-pager-dot:  8px;
   /* Skeleton bar widths. They vary per card so three skeletons do not read as
      one stamped block. */
   --sk-w90: 90%; --sk-w70: 70%; --sk-w50: 50%; --sk-w40: 40%; --sk-w30: 30%;
@@ -942,9 +943,12 @@ header.dr-topbar,
 }
 .dr-box--check{ border-radius: var(--r-detail); }
 .dr-box--radio{ border-radius: var(--r-pill); }
-/* Charcoal, not green: a checked control is card UI, and the screen's one
-   green control is its action. --ink on --card is 14.37:1. */
-.dr-pick input:checked + .dr-box{ background: var(--ink); border-color: var(--ink); color: var(--card); }
+/* Settled 2026-08-03 by the designer: checked is a GREEN fill behind a
+   charcoal glyph — the icon system's own rule ("active / done is a green
+   shape behind a charcoal glyph"), and the exact pair the walked node paints:
+   --on-green on --green, 9.46:1. On the green budget a checked box counts as
+   a status mark, like the node — not as the screen's one green control. */
+.dr-pick input:checked + .dr-box{ background: var(--green); border-color: var(--green); color: var(--on-green); }
 .dr-pick input:focus-visible + .dr-box{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 .dr-box .dr-ic{ width: var(--ic-14); height: var(--ic-14); }
 .dr-box__dot{ width: var(--sz-dot); height: var(--sz-dot); border-radius: var(--r-pill); background: currentColor; }
@@ -1006,6 +1010,23 @@ header.dr-topbar,
   gap: var(--sp-snug); padding: var(--sp-24); text-align: center;
 }
 .dr-upload .dr-ic{ width: var(--ic-32); height: var(--ic-32); }
+
+/* ═══ THE PAGER ═══════════════════════════════════════════════════════════
+   Settled 2026-08-03 by the designer: the active dot is green, the resting
+   dots are plain --btn2 discs with no outline. Named number: --green on the
+   page is 1.69:1 against 1.4.11's 3:1 — accepted on the live-disc precedent,
+   because the dot is never the sole carrier: the slide itself shows position
+   and each dot keeps its accessible name. */
+.dr-pager{
+  display: flex; gap: var(--sp-within-lg); justify-content: center;
+  margin-top: var(--sp-snug);
+}
+.dr-pager a{
+  width: var(--sz-pager-dot); height: var(--sz-pager-dot);
+  border: 0; border-radius: var(--r-pill); background: var(--btn2);
+}
+.dr-pager .on{ background: var(--green); }
+.dr-pager a:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 
 /* ═══ SKELETONS ═══════════════════════════════════════════════════════════
    Chrome stays solid, content pulses. The question is never "should this
