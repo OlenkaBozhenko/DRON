@@ -64,7 +64,8 @@
   --green:       #9BCF4A;   /* fill only. As a foreground: 1.69:1 / 1.52:1 */
   --on-green:    #1A1A1A;   /* 9.46:1 — the only colour allowed on green */
   --green-wash:  #E7F0D2;   /* the one tint. Charcoal on it is 14.75:1 */
-  --warn:        #E4A11B;   /* declared, drawn nowhere — 1.84:1 on the card */
+  --warn:        #E4A11B;   /* the filled rating star (2026-08-03) — 1.84:1 on the card, so
+                               state is never colour alone: fill + aria-pressed carry it */
   --warn-ink:    #7A5200;   /* 5.65:1 on its wash */
   --warn-wash:   #F6E7C4;
   --danger:      #C4462A;   /* declared, drawn nowhere — 4.07:1 */
@@ -225,6 +226,11 @@
   --sz-upload-min: 140px;  /* the upload tray's floor, from the wireframe */
   --sz-pager-dot:  8px;
   --sz-area-min:  80px;    /* the multiline field's floor, from the wireframe */
+  --sz-star:      32px;
+  --sz-fchip-x:   18px;
+  --sz-grip-w:    36px;    /* the sheet's grabber */
+  --sz-grip-h:    5px;
+  --scrim: color-mix(in srgb, var(--ink) 40%, transparent);  /* warm, never black */
   /* Skeleton bar widths. They vary per card so three skeletons do not read as
      one stamped block. */
   --sk-w90: 90%; --sk-w70: 70%; --sk-w50: 50%; --sk-w40: 40%; --sk-w30: 30%;
@@ -924,7 +930,12 @@ header.dr-topbar,
 /* the multiline field: the row that grows. Same anatomy, taller floor. */
 .dr-field--area{ min-height: var(--sz-area-min); align-items: stretch;
   padding-top: var(--sp-snug); padding-bottom: var(--sp-snug); }
-.dr-field--area .dr-field__input{ resize: none; min-height: calc(var(--sz-area-min) - var(--sp-24)); }
+/* the label takes its own line and the area runs the full card width —
+   the designer's call 2026-08-03, and HIG's own multiline pattern */
+.dr-field--area .dr-field__label{ flex: 0 0 100%; }
+.dr-field--area .dr-field__group{ flex-basis: 100%; }
+.dr-field--area .dr-field__input{ resize: none; width: 100%; flex-basis: 100%;
+  min-height: calc(var(--sz-area-min) - var(--sp-24)); }
 
 /* The ONE field that keeps a ground, because it is not in a grouped list.
    That is the iOS search bar, and it gives --r-input its only home. */
@@ -1076,16 +1087,105 @@ header.dr-topbar,
 /* ═══ THE UPLOAD ZONE ═════════════════════════════════════════════════════
    Approved 2026-08-03: the dashed boundary does not survive painting — rev 43
    made a surface a card, not a frame, and rev 45 answered the same 1.21:1 by
-   removing the line. So the zone is a --media well carrying the tray glyph at
-   5.51:1, with an ordinary secondary button for the action. */
+   removing the line. Designer's call 2026-08-03: beside an explicit button
+   the well is decoration, so the base zone carries no fill — glyph (slate on
+   card, 5.95:1) plus the secondary button. Only where the zone is itself the
+   control (role="button") does the --media fill stay: an interactive target
+   keeps its visible boundary, the glyph at 5.51:1 on the well. */
 .dr-upload{
   min-height: var(--sz-upload-min);
   border: 0; border-radius: var(--r-media);
-  background: var(--media); color: var(--slate);
+  color: var(--slate);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: var(--sp-snug); padding: var(--sp-24); text-align: center;
 }
+.dr-upload[role="button"]{ background: var(--media); }
 .dr-upload .dr-ic{ width: var(--ic-32); height: var(--ic-32); }
+
+/* ═══ THE RATING ══════════════════════════════════════════════════════════
+   Settled 2026-08-03 by the designer: a filled star is yellow — the palette's
+   own --warn, drawn nowhere until now — and an unfilled star is grey with no
+   outline. Named number: --warn on the page is 1.84:1 against 1.4.11's 3:1,
+   so the state is never colour alone: the fill difference pairs with
+   aria-pressed, and the whole button is the 44pt target. The star is the one
+   glyph in the system that fills instead of stroking — a rating is a quantity,
+   not an icon. */
+.dr-rating{ display: flex; gap: var(--sp-within-lg); }
+.dr-star{
+  width: var(--h-control); min-height: var(--h-control); flex: none;
+  border: 0; background: transparent; padding: 0; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--btn2);
+}
+.dr-star[aria-pressed="true"]{ color: var(--warn); }
+.dr-star .dr-ic{ width: var(--sz-star); height: var(--sz-star); fill: currentColor; stroke: none; }
+.dr-star:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+
+/* ═══ THE DISMISSIBLE FILTER CHIP ═════════════════════════════════════════
+   Settled 2026-08-03: the applied filter sits on the green tint with no
+   boundary, and its remove control is a solid green pill carrying a charcoal
+   cross — 9.46:1, a status-mark spend, like the checked box. */
+.dr-fchips{ display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-within-lg); }
+.dr-fchip{
+  display: inline-flex; align-items: center; gap: var(--sp-6);
+  padding: var(--sp-5) var(--sp-5) var(--sp-5) var(--sp-snug);
+  border: 0; border-radius: var(--r-pill);
+  background: var(--green-wash); color: var(--ink);
+  font-size: var(--t-caption-size); font-weight: var(--t-caption-weight);
+  text-decoration: none; white-space: nowrap;
+}
+.dr-fchip__x{
+  width: var(--sz-fchip-x); height: var(--sz-fchip-x); flex: none;
+  border-radius: var(--r-pill); background: var(--green); color: var(--on-green);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: var(--t-caption-size); line-height: 1;
+}
+.dr-count-badge{
+  min-width: var(--sz-fchip-x); height: var(--sz-fchip-x); padding: 0 var(--sp-2);
+  border-radius: var(--r-pill); background: var(--green); color: var(--on-green);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: var(--t-microsm-size); font-weight: var(--weight-medium);
+}
+
+/* ═══ THE SHEET ═══════════════════════════════════════════════════════════
+   The system's first floating surface — and rev 43 already named its home:
+   "a floating surface belongs in a modal, popover, drawer or dropdown menu,
+   and there it is appropriate." So --sh-raised, a declared rung applied to
+   nothing since the token seed, is finally spent here, and the scrim is warm
+   ink, never black. Slides up from the bottom edge, top corners at the
+   panel radius. */
+.dr-scrim{ position: absolute; inset: 0; z-index: 5; background: var(--scrim); }
+.dr-sheet{
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 6;
+  background: var(--page);
+  border-radius: var(--r-panel) var(--r-panel) 0 0;
+  box-shadow: var(--sh-raised);
+  padding: var(--sp-snug) var(--sp-screen) var(--sp-24);
+  display: flex; flex-direction: column; gap: var(--sp-snug);
+}
+.dr-sheet__grip{
+  width: var(--sz-grip-w); height: var(--sz-grip-h); flex: none;
+  margin: 0 auto; border-radius: var(--r-pill); background: var(--line);
+}
+.dr-sheet__title{
+  font-size: var(--t-title-size); font-weight: var(--t-title-weight);
+  letter-spacing: var(--t-title-track); color: var(--ink); text-align: center;
+}
+/* a share channel: an icon over its label, on the secondary pair */
+.dr-sheet__channels{ display: flex; gap: var(--sp-within-lg); }
+.dr-channel{
+  flex: 1; min-height: var(--h-control);
+  border: 0; border-radius: var(--r-btn); cursor: pointer;
+  background: var(--btn2); color: var(--ink);                 /* 11.54:1 */
+  display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--sp-6); padding: var(--sp-snug) var(--sp-within-lg);
+  font-family: var(--font-ui);
+  font-size: var(--t-caption-size); font-weight: var(--t-caption-weight);
+  text-decoration: none;
+}
+.dr-channel .dr-ic{ width: var(--ic-22); height: var(--ic-22); }
+.dr-channel:hover{ background: var(--media); }
+.dr-channel:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 
 /* ═══ THE PAGER ═══════════════════════════════════════════════════════════
    Settled 2026-08-03 by the designer: the active dot is green, the resting

@@ -547,7 +547,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filtered | — | Aerial photo & video | Button |  |
 | listings-filtered | — | Inspection | Button |  |
 | listings-filtered | Search & filters | Search services | Field placeholder |  |
-| listings-filtered | Applied filters | Price: High → Low | Body | DATA |
+| listings-filtered | Applied filters | High → Low | Body | DATA · the "Price:" prefix came off at the designer's call, 2026-08-03 |
 | listings-filtered | Applied filters | Today | Body |  |
 | listings-filtered | Applied filters | Podil | Body |  |
 | listings-filtered | Applied filters | Clear all | Body |  |
@@ -997,9 +997,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-setup-empty | Availability | We'll hold your details — no need to re-enter them. | Body |  |
 | order-setup-error | — | ‹ Order | Button |  |
 | order-setup-error | — | Package delivery | Heading |  |
-| order-setup-error | Details form | Pickup address | Field label |  |
+| order-setup-error | Details form | Pickup address: | Field label | colon added 2026-08-03 |
 | order-setup-error | Details form | Podil — Naberezhno-Khreshchatytska St, 21 | Field value | DATA |
-| order-setup-error | Details form | Drop-off address | Field label |  |
+| order-setup-error | Details form | Drop-off address: | Field label | colon added 2026-08-03 |
 | order-setup-error | Details form | Irpin — Sadova St, 3 | Field value | DATA |
 | order-setup-error | Details form | Outside the service zone. | State message |  |
 | order-setup-error | Details form | DRON delivers within Kyiv city — enter an address in the city. | State message |  |
@@ -1009,9 +1009,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-setup-error | Details form | Coverage: Kyiv (UA). More cities are rolling out. | Body |  |
 | order-setup | — | ‹ Order | Button |  |
 | order-setup | — | Package delivery | Heading |  |
-| order-setup | Details form | Pickup address | Field label |  |
+| order-setup | Details form | Pickup address: | Field label | colon added 2026-08-03 |
 | order-setup | Details form | Podil — Naberezhno-Khreshchatytska St, 21 | Field value | DATA |
-| order-setup | Details form | Drop-off address | Field label |  |
+| order-setup | Details form | Drop-off address: | Field label | colon added 2026-08-03 |
 | order-setup | Details form | Osokorky — Dniprovska Naberezhna, 14 | Field value | DATA |
 | order-setup | Details form | Parcel size | Field label |  |
 | order-setup | Details form | Small — up to 2 kg | Body | DATA |
@@ -1172,7 +1172,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | share | Share to | Email | Button |  |
 | share | Share to | More | Button |  |
 | share | Share to | Your friend gets ₴100 off their first DRON order. When they complete it, ₴100 lands in your balance. No limit on invites. | Body | DATA |
-| share | Share to | Send invite | Button |  |
+| share | Share to | ~~Send invite~~ | Button | removed 2026-08-03 — the share-sheet redesign made the channels the send action, which also closes the A9 submit-vs-send drift |
 | signin-error | Sign in | AUTH | State message | WF-PH |
 | signin-error | Sign in | Sign-in didn't complete | State message |  |
 | signin-error | Sign in | Diia declined or cancelled the verification. You can try again, or continue with BankID instead. | State message |  |
