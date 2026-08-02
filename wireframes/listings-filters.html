@@ -185,29 +185,30 @@
 
       <!-- ZONE · time -->
       <p class="zlabel dr-label">Time <span class="dr-label__act">▸ when the service should happen</span></p>
-      <section class="dr-picks" aria-label="Time">
-        <h2>Time</h2>
-        <label class="dr-pick">
-          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-          <span class="dr-pick__label">Available now</span>
-          <input type="radio" name="time" value="now" checked>
-        </label>
-        <label class="dr-pick">
-          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-          <span class="dr-pick__label">Today</span>
-          <input type="radio" name="time" value="today">
-        </label>
-        <label class="dr-pick">
-          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-          <span class="dr-pick__label">This week</span>
-          <input type="radio" name="time" value="week">
-        </label>
-        <label class="dr-pick">
-          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-          <span class="dr-pick__label">Pick a date &amp; time…</span><span class="dr-hint">calendar</span>
-          <input type="radio" name="time" value="pick">
-        </label>
-      </section>
+      <fieldset aria-label="Time">
+        <ul class="dr-picks">
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">Available now</span>
+            <input type="radio" name="time" value="now" checked class="sr-only">
+          </label></li>
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">Today</span>
+            <input type="radio" name="time" value="today" class="sr-only">
+          </label></li>
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">This week</span>
+            <input type="radio" name="time" value="week" class="sr-only">
+          </label></li>
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">Pick a date &amp; time…</span><span class="dr-hint">calendar</span>
+            <input type="radio" name="time" value="pick" class="sr-only">
+          </label></li>
+        </ul>
+      </fieldset>
 
       <!-- ZONE · location -->
       <p class="zlabel dr-label">Location <span class="dr-label__act">▸ which area to serve</span></p>
