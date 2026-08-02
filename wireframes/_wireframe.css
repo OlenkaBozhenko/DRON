@@ -169,6 +169,18 @@ article.card:focus-within{ outline:2px solid var(--wf-border-2); outline-offset:
 /* the card well grows only when it actually carries a render; a .media-ph
    given an explicit size inline (the report cover, the photo strip) keeps it */
 .media-ph:has(img):not([style*="height"]){ width:96px; height:72px; border-radius:8px; }
+/* A solid subject is inset; an airy one is not. Two cutouts at the same 96 x 72
+   do not carry the same weight: the cargo box is 91% opaque and fills its own
+   bounds, the drone is 43% — a skeleton of arms and rotors. Drawn flush, the
+   box has 5.2x the ink of the drone and the card above reads twice as heavy as
+   the card below.
+   Matching ink exactly would put the box at 42 x 30, which is the wrong
+   correction — the drone is light because it is airy, not because it is small.
+   Splitting the two normalisations (ink parity 0.44, bounds parity 1.00) lands
+   on 0.66, and the four scales rendered side by side agree: 100 and 80 stay
+   top-heavy, 55 loses the box, 66 balances. 12/16 padding is the 4px-grid
+   value that hits it — content 64 x 48, two thirds of the well. */
+.media-ph.inset:has(img){ padding:12px 16px; }
 .media-ph.shot img, .map-ph img{ object-fit:cover; }
 
 .card .body{ flex:1; min-width:0; }
