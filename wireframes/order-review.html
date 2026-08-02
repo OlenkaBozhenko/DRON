@@ -6,6 +6,19 @@
 <title>DRON wireframe · Order review &amp; price · success (base)</title>
 <!-- SCREEN (sitemap): "Order review & price". JOB (jtbd): RJ-C3 — decide without surprise; the locked price before commitment. STATE: base. Flow step → payment. -->
 <link rel="stylesheet" href="_wireframe.css">
+<style>
+  /* Designer call 2026-08-03: on this screen the Total reads bigger than the
+     rows around it — the price is a fact stated before the tap (voice.md P3).
+     The figure takes the money step (20/700, tabular); its label steps up to
+     15/600. Both places carry the same fact, so both take the same size.
+     Everything else on the page stays the wireframe base. */
+  .price-total .kv-key{ font-size:15px; font-weight:600; }
+  .price-total .kv-val{ font-size:20px; font-weight:700;
+    font-variant-numeric:tabular-nums; letter-spacing:-.02em; }
+  footer.actionbar .price-line .lbl{ font-size:15px; font-weight:600; }
+  footer.actionbar .price-line .val{ font-size:20px; font-weight:700;
+    font-variant-numeric:tabular-nums; letter-spacing:-.02em; }
+</style>
 </head>
 <body>
   <aside class="meta">
