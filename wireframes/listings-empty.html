@@ -60,8 +60,11 @@
 
   header.topbar{ height:56px; flex:none; display:flex; align-items:center; gap:8px;
     padding:0 16px; background:var(--wf-surface); border-bottom:1px solid var(--wf-border); }
-  .brand-ph{ width:44px; height:24px; border:1px dashed var(--wf-border-2); border-radius:4px;
-    display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.08em; color:var(--wf-muted); }
+  /* The DRON mark (_conventions.md 8). A mask, not an embedded file, so it takes
+     the wireframe ink and stays grayscale. 60 x 20; #252525 on white is 15.33:1. */
+  .brand{ width:60px; height:20px; flex:none; background:var(--wf-text);
+    -webkit-mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat;
+    mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat; }
   .loc{ font-size:15px; font-weight:600; color:var(--wf-text); }
   .topbar .spacer{ flex:1; }
 
@@ -158,7 +161,7 @@
     </div>
 
     <header class="topbar">
-      <span class="brand-ph">LOGO</span>
+      <span class="brand" role="img" aria-label="DRON"></span>
       <button class="btn btn-tertiary loc" style="padding:0;">Kyiv, UA ▾</button>
       <span class="spacer"></span>
       <button class="sq sq-24" aria-label="Notifications" style="background:transparent;cursor:pointer;"></button>

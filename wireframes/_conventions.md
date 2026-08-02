@@ -15,7 +15,7 @@ Wireframes prove **structure, hierarchy, and zones** — not looks. If a decisio
 4. **One page per state.** Success/normal = the base file; `-empty` / `-error` / `-loading` are separate files with the **same structure, different content** (§10, §11).
 5. **8px grid.** Every spacing value is a multiple of 8 (4 allowed as the half-step). Radii are multiples of 2 (§6).
 6. **Mobile frame 375 × 812.** Every page is built inside it (§6).
-7. **No brand, no images, no icons, no shadows, no colour, no final font** — deferred (§3, §8).
+7. **No icons, no shadows, no colour, no final font** — deferred (§3, §8). Two carve-outs, both decided by the designer and both still grayscale: **real imagery** where a frame needs a picture to be judged, and the **DRON logo** in the reserved brand slot (§8).
 
 ---
 
@@ -139,11 +139,12 @@ A shared `_wireframe.css` should hold the tokens (§4), grid (§6), typography (
 
 ---
 
-## 8. Zones & placeholders (no images, no icons, no brand)
+## 8. Zones & placeholders (no icons; imagery and brand by exception)
 
-- **Media / image / map** → a bordered `--wf-recessed` box with a centred uppercase **text label** of what it is: `MAP`, `OPERATOR PHOTO`, `RESULT PHOTO`, `INSPECTION IMAGE`. Never an actual image. Keep the real aspect ratio (e.g. live map ≈ `343 × 200`).
+- **Media / image / map** → a bordered `--wf-recessed` box with a centred uppercase **text label** of what it is: `MAP`, `OPERATOR PHOTO`, `RESULT PHOTO`, `INSPECTION IMAGE`. Keep the real aspect ratio (e.g. live map ≈ `343 × 200`). **Exception (2026-08-02):** where the designer has supplied the real asset, the label is replaced by the picture itself — the well then drops its border and padding and the image fills it (`.media-ph:has(img)` in `_wireframe.css`). Fifteen slots across nine pages carry a real picture; every other well is still a label. `visuals/gaps.md` is the register of which is which.
 - **Icon** → a `24 × 24` (or `20`) bordered square, or just a text label (`‹ Back`, `Menu`, `Filter`). No icon fonts, no SVG glyphs.
-- **Brand / logo** → none. Where a wordmark would sit, use plain text `DRON` at body weight or a `LOGO` placeholder box. No styling, no lockup.
+- **Brand / logo** → the **DRON mark**, in the reserved brand slot only. The mark is `assets/brand/dron-logo.svg` — a single-path quadcopter silhouette from Figma (`YlGWlsWWjKSCxhONMzGG2F`, node `56:52`), trimmed to its ink (`viewBox 0 85 257 86`, aspect **2.99 : 1**). It is drawn as a CSS mask filled with `currentColor`, so it stays grayscale like everything else and never introduces a second colour. Rendered **60 × 20** — a growth from the 44 × 24 dashed placeholder it replaces, because 3:1 artwork inside 44px would stand only 14.7px tall. `#252525` on `#FFFFFF` measures **15.33 : 1**. Elsewhere a wordmark is still plain text `DRON` at body weight. No lockup, no tagline, no second mark.
+  - **The slot is reserved, not universal.** It exists on the 16 pages that have no screen title of their own — `welcome`, `signin`, `role-select`, `onboarding-*`, `listings*`, `operator-listings*`. The other 68 pages carry a `‹ Back` + title nav bar instead, per `HIG · Navigation bars`; the logo does not go there.
 - **Avatar** → a bordered circle (`radius: 999` allowed only for avatars) with initials as text.
 - **Charts / earnings graph** → a labelled `--wf-fill` block, e.g. `EARNINGS CHART`.
 
@@ -287,7 +288,8 @@ A page is done when **all** hold:
 - [ ] San Francisco stack; weights limited to 400/600; sizes from the §5 set.
 - [ ] All spacing a multiple of 8 (or 4); all radii a multiple of 2.
 - [ ] Real text; no lorem; state copy traceable to a `flows.md` node.
-- [ ] No images/icons/brand — placeholders per §8.
+- [ ] No icons; imagery and brand only where §8 allows them — everything else a placeholder per §8.
+- [ ] If the page has a brand slot, it holds the DRON mark (`.brand`, 60 × 20) and nothing else; if it has a screen title, it has no logo.
 - [ ] Correct file name (kebab latin) and it matches the §12 map.
 - [ ] Every button shows its variant + all interaction states (§11).
 - [ ] Same DOM structure as its sibling state pages; only affected-zone content differs.

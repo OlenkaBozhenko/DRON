@@ -60,6 +60,14 @@ header.topbar{ height:56px; flex:none; display:flex; align-items:center; gap:8px
   padding:0 16px; background:var(--wf-surface); border-bottom:1px solid var(--wf-border); }
 .brand-ph{ width:44px; height:24px; border:1px dashed var(--wf-border-2); border-radius:4px;
   display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.08em; color:var(--wf-muted); }
+/* The DRON mark (_conventions.md §8). Drawn as a mask rather than an image
+   element so it takes the wireframe ink and stays inside the grayscale ramp;
+   an embedded file would carry its own black and ignore --wf-text.
+   60 x 20 keeps the 2.99:1 artwork legible; #252525 on the white topbar
+   is 15.33:1. */
+.brand{ width:60px; height:20px; flex:none; background:var(--wf-text);
+  -webkit-mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat;
+  mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat; }
 .avatar{ width:28px; height:28px; border:1px solid var(--wf-border-2); border-radius:999px;
   display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; color:var(--wf-text-2); }
 .who{ font-size:15px; font-weight:600; color:var(--wf-text); }
