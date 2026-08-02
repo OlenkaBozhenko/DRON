@@ -20,150 +20,7 @@
   concept.md rev 24.
 -->
 <link rel="stylesheet" href="_wireframe.css">
-<style>
-  /* ── DRON · Studio (concept/concept.html) applied to the phone frame only;
-     the wireframe annotation sidebar keeps its own chrome.
-     New text/bg pairs, contrast checked (WCAG AA):
-       #1A1A1A on #F7F5F2 → 15.99:1 · #5A5751 on #F7F5F2 → 6.62:1
-     (skeleton fills #D6D2C9 on #ECE9E4 are non-text). ── */
-  body{ background:#F7F5F2; }
-  .wf-frame{
-    --page:#F7F5F2; --card:#ECE9E4; --media:#E4E1DA; --btn2:#D6D2C9;
-    --ink:#1A1A1A; --slate:#5A5751; --line:#D9D5CE;
-    --green:#9BCF4A; --on-green:#1A1A1A; --green-ink:#3F5B18; --green-wash:#E7F0D2;
-    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
-    --r-btn:12px; --r-card:16px; --r-media:13px; --r-panel:22px; --r-pill:999px;
-    --sh-sm:0 1px 2px rgba(20,18,15,.05);
-    --sh-card:0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30);
-    --sh-raised:0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34);
-    /* wireframe tokens remapped to the Studio palette */
-    --wf-surface:var(--page); --wf-bg:var(--page); --wf-recessed:var(--media);
-    --wf-fill:var(--btn2); --wf-skeleton:var(--btn2); --wf-muted:var(--slate);
-    --wf-text-2:var(--slate); --wf-text:var(--ink); --wf-ink:var(--ink); --wf-ink-max:#000000;
-    --wf-border:var(--line); --wf-border-2:var(--line);
-    background:var(--page); border:1px solid var(--line); border-radius:var(--r-panel);
-  }
-  .wf-frame svg.ic{ display:block; }
-
-  /* system bars melt into the warm ground */
-  .statusbar{ background:var(--page); color:var(--ink); }
-  .statusbar .sysph{ gap:5px; align-items:center; }
-  header.topbar{ background:var(--page); border-bottom:1px solid var(--line); }
-  .topbar .title{ color:var(--ink); letter-spacing:-.01em; }
-  footer.tabbar{ background:var(--page); border-top:1px solid var(--line); }
-  footer .tabs{ height:60px; padding:6px 8px 4px; gap:4px; }
-  footer .tab{ gap:3px; font-weight:600; color:var(--slate); border-radius:16px; }
-  /* the selected tab is charcoal on the green tint, the same pair the other
-     seven painted pages carry: #1A1A1A on #E7F0D2 = 14.75:1. It was
-     --green-ink #3F5B18 here (7.09:1) — a leftover from before concept.md
-     rev 27 deleted that token, on the grounds that green is never a text
-     colour. Designer call 2026-08-01. */
-  footer .tab[aria-current="page"]{ background:var(--green-wash); color:var(--ink); }
-  footer .tab svg.ic{ width:22px; height:22px; }
-  /* green-ink ring: raw green fails non-text 3:1 on this light ground (1.69:1); #3F5B18 → 7.09:1 */
-  footer .tab:focus-visible{ outline:2.5px solid var(--green-ink); outline-offset:2px; }
-  footer .home-indicator{ height:30px; }
-  footer .home-indicator span{ background:var(--ink); }
-
-  /* zone annotation → concept block-label */
-  .zlabel{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.09em;
-    color:var(--slate); border-left:0; border-bottom:1px solid var(--line);
-    padding:0 0 9px; position:relative; margin-bottom:-4px; }
-  .zlabel::after{ content:""; position:absolute; left:0; bottom:-1px; width:30px; height:2px; background:var(--green); }
-  .zlabel .act{ color:var(--slate); font-size:11px; letter-spacing:.02em; }
-
-  /* loading status line names what is loading */
-  main > p[role="status"]{ font-size:14px; color:var(--slate); }
-
-  /* ── SKELETON CARDS ───────────────────────────────────────────────────────
-     _conventions §11: a loading page is "the real layout with skeleton bars in
-     place of not-yet-loaded content" — so every block below sits where the real
-     order card puts it (order-history.html), on the same three-step spacing
-     scale (4/8 within a group · 20 between groups and as the inset · 28 between
-     cards, 16/18/22 under 390px). The old skeleton was a stale rehearsal of a
-     card that no longer exists: a full-width media band across the top, three
-     loose text lines and a 44px button slab. Nothing in it matched — the real
-     card leads with a 96×72 well beside a name-over-date stack, then an inset
-     From▸To strip, then fee + two circular actions — so content arrival jumped
-     the whole list.
-     What is chrome stays solid and what is content pulses: the card surface,
-     the drone well and the route inset are surfaces the real card also draws,
-     so they are painted at full strength; only the render stand-in, the status
-     mark, the text bars, the arrow and the action discs pulse.
-     All three cards carry the *delivered* anatomy — the common denominator of
-     every card in the list. The live order's extras (progress rail, ETA chip,
-     green CTA) are deliberately not rehearsed: a skeleton that draws a rail
-     promises a live order that may not be there, and Activity often loads with
-     none. Widths vary per card so the list does not read as one stamped block,
-     and the third drops to a single stop — the real list mixes From▸To orders
-     with single-Location ones, so a skeleton that always drew two stops would
-     be describing a list it has not loaded yet.
-     Height check, measured at a 375px frame: 20 + 72 + 20 + 67 + 20 + 44 + 20
-     = 263px against the real delivered card's 263.6px — the swap moves the
-     list by half a pixel.                                                 ── */
-  /* flat, like .kv — no --sh-card on cards (concept.md rev 29) */
-  .sk-card{ background:var(--card); border:0; border-radius:var(--r-card);
-    flex-direction:column; align-items:stretch; gap:20px; padding:20px; }
-  .wf-frame main ul.list{ gap:28px; }
-  /* the bar base comes first: every .sk-* height below is a single-class rule
-     too, so a later .sk-line would out-cascade all of them on equal specificity */
-  .sk-line{ height:13px; border-radius:4px; background:var(--btn2); }
-
-  /* header — well + name-over-date stack (= .ohl-top / .ohl-ic / .ohl-head).
-     One block, not three: the drone stand-in and the status dot that sat inside
-     the well are gone by designer call (concept.md rev 31), and the well itself
-     is the single square standing for both. It keeps the loaded card's 96 × 72
-     and --r-media, so nothing moves on the swap. It pulses — a correction that
-     rev 32 forced: it was solid while .ohl-ic still drew a --media ground the
-     load kept, which made it chrome under rev 24's rule, and the drone has now
-     lost that ground. What loads there is the render alone, so the square does
-     not survive the swap: it is a placeholder, and placeholders pulse. Same
-     reading as delivery-loading, reached from the other side. concept.md rev 33. */
-  .sk-top{ display:flex; align-items:center; gap:16px; }
-  .sk-well{ width:96px; height:72px; flex:none; border-radius:var(--r-media);
-    background:var(--media); }
-  .sk-head{ flex:1; min-width:0; display:flex; flex-direction:column; gap:8px; }
-  .sk-title{ height:14px; }
-  .sk-date{ height:10px; }
-
-  /* route — the .stat3 inset strip, label over place, arrow between */
-  .sk-route{ display:flex; align-items:center; gap:12px; padding:16px; border-radius:12px;
-    background:color-mix(in srgb,var(--page) 55%,var(--card)); }
-  .sk-stop{ flex:1; min-width:0; display:flex; flex-direction:column; gap:7px; }
-  .sk-stop-to{ align-items:flex-end; }
-  .sk-lbl{ height:12px; width:38px; }
-  .sk-stop-to .sk-lbl{ width:22px; }
-  .sk-place{ height:16px; }
-  .sk-arrow{ width:26px; height:26px; flex:none; border-radius:var(--r-pill); background:var(--btn2); }
-
-  /* fee row — price stack opposite the two circular actions (= .ohl-fee) */
-  .sk-fee{ display:flex; align-items:flex-end; justify-content:space-between; gap:12px; }
-  /* one bar now, not two: the loaded card lost its fee caption on 2026-08-02,
-     and a skeleton is a claim about the loaded screen. */
-  .sk-money{ flex:1; min-width:0; display:flex; flex-direction:column; }
-  /* .sk-fee-lbl removed 2026-08-02 with the caption it stood in for. */
-  /* 4, not 5: an internal detail may take any radius on the 2/4/8 scale
-     (concept.md §5, rev 42) and 5 was the one value in the painted set that
-     sat off it. Same 4 the sibling .sk-line bar already uses. */
-  .sk-price{ height:18px; width:84px; border-radius:4px; }
-  .sk-acts{ display:flex; align-items:center; gap:8px; flex:none; }
-  .sk-btn{ width:44px; height:44px; border-radius:50%; background:var(--btn2); }
-
-  .sk-well,.sk-line,.sk-arrow,.sk-btn{ animation:skPulse 1.4s ease-in-out infinite; }
-  ul.list li:nth-child(2) .sk-card *{ animation-delay:-.47s; }
-  ul.list li:nth-child(3) .sk-card *{ animation-delay:-.93s; }
-  @keyframes skPulse{ 0%,100%{ opacity:1; } 50%{ opacity:.5; } }
-  @media (prefers-reduced-motion:reduce){ .sk-well,.sk-line,.sk-arrow,.sk-btn{ animation:none; } }
-
-  /* narrow tier — same steps the real card takes under 390px */
-  @media (max-width:389px){
-    .sk-card{ padding:16px; gap:18px; }
-    .wf-frame main ul.list{ gap:22px; }
-    .sk-top{ gap:12px; }
-    .sk-well{ width:68px; height:52px; }
-    .sk-route{ padding:14px; }
-  }
-</style>
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -178,74 +35,74 @@
     <div class="legend"><p><b>Only the content changes</b> vs order-history.html:</p><p><b>Status</b> ▸ "Loading your orders…"</p><p><b>List</b> ▸ 3 skeleton cards on the real card anatomy — drone well (with its status mark) + name over date · From ▸ To inset strip · price + two circular actions. Same 20/28 spacing as the loaded card, so nothing shifts on arrival.</p><p><b>Not rehearsed</b> ▸ the live order's progress rail, ETA chip and green CTA — a skeleton that drew them would promise a live order that may not be there.</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
-    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="title">Activity</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Order history <span class="act">▸ fetching…</span></p>
-      <p role="status">Loading your orders…</p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Activity</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Order history <span class="dr-label__act">▸ fetching…</span></p>
+      <p class="dr-status-line" role="status">Loading your orders…</p>
       <section aria-label="Order history is loading">
-        <ul class="list" aria-hidden="true">
+        <ul class="dr-list" aria-hidden="true">
           <li>
-            <div class="sk-card">
-              <span class="sk-top">
-                <span class="sk-well"></span>
-                <span class="sk-head"><span class="sk-line sk-title" style="width:62%"></span><span class="sk-line sk-date" style="width:40%"></span></span>
+            <div class="dr-card">
+              <span class="dr-order__top">
+                <span class="dr-sk-well"></span>
+                <span class="dr-sk-head"><span class="dr-sk-line dr-sk-title" style="width:62%"></span><span class="dr-sk-line dr-sk-date" style="width:40%"></span></span>
               </span>
-              <span class="sk-route">
-                <span class="sk-stop"><span class="sk-line sk-lbl"></span><span class="sk-line sk-place" style="width:58%"></span></span>
-                <span class="sk-arrow"></span>
-                <span class="sk-stop sk-stop-to"><span class="sk-line sk-lbl"></span><span class="sk-line sk-place" style="width:72%"></span></span>
+              <span class="dr-inset">
+                <span class="dr-inset__stop dr-sk-stop"><span class="dr-sk-line dr-sk-lbl"></span><span class="dr-sk-line dr-sk-place" style="width:58%"></span></span>
+                <span class="dr-sk-dir"></span>
+                <span class="dr-inset__stop dr-sk-stop dr-inset__stop--to"><span class="dr-sk-line dr-sk-lbl"></span><span class="dr-sk-line dr-sk-place" style="width:72%"></span></span>
               </span>
-              <span class="sk-fee">
-                <span class="sk-money"><span class="sk-line sk-price"></span></span>
-                <span class="sk-acts"><span class="sk-btn"></span><span class="sk-btn"></span></span>
+              <span class="dr-order__fee">
+                <span class="dr-sk-money"><span class="dr-sk-line dr-sk-price"></span></span>
+                <span class="dr-order__acts"><span class="dr-sk-btn"></span><span class="dr-sk-btn"></span></span>
               </span>
             </div>
           </li>
-          <li>
-            <div class="sk-card">
-              <span class="sk-top">
-                <span class="sk-well"></span>
-                <span class="sk-head"><span class="sk-line sk-title" style="width:50%"></span><span class="sk-line sk-date" style="width:34%"></span></span>
+          <li class="dr-sk-d1">
+            <div class="dr-card">
+              <span class="dr-order__top">
+                <span class="dr-sk-well"></span>
+                <span class="dr-sk-head"><span class="dr-sk-line dr-sk-title" style="width:50%"></span><span class="dr-sk-line dr-sk-date" style="width:34%"></span></span>
               </span>
-              <span class="sk-route">
-                <span class="sk-stop"><span class="sk-line sk-lbl"></span><span class="sk-line sk-place" style="width:70%"></span></span>
-                <span class="sk-arrow"></span>
-                <span class="sk-stop sk-stop-to"><span class="sk-line sk-lbl"></span><span class="sk-line sk-place" style="width:56%"></span></span>
+              <span class="dr-inset">
+                <span class="dr-inset__stop dr-sk-stop"><span class="dr-sk-line dr-sk-lbl"></span><span class="dr-sk-line dr-sk-place" style="width:70%"></span></span>
+                <span class="dr-sk-dir"></span>
+                <span class="dr-inset__stop dr-sk-stop dr-inset__stop--to"><span class="dr-sk-line dr-sk-lbl"></span><span class="dr-sk-line dr-sk-place" style="width:56%"></span></span>
               </span>
-              <span class="sk-fee">
-                <span class="sk-money"><span class="sk-line sk-price" style="width:70px"></span></span>
-                <span class="sk-acts"><span class="sk-btn"></span><span class="sk-btn"></span></span>
+              <span class="dr-order__fee">
+                <span class="dr-sk-money"><span class="dr-sk-line dr-sk-price" style="width:70px"></span></span>
+                <span class="dr-order__acts"><span class="dr-sk-btn"></span><span class="dr-sk-btn"></span></span>
               </span>
             </div>
           </li>
-          <li>
-            <div class="sk-card">
-              <span class="sk-top">
-                <span class="sk-well"></span>
-                <span class="sk-head"><span class="sk-line sk-title" style="width:56%"></span><span class="sk-line sk-date" style="width:36%"></span></span>
+          <li class="dr-sk-d2">
+            <div class="dr-card">
+              <span class="dr-order__top">
+                <span class="dr-sk-well"></span>
+                <span class="dr-sk-head"><span class="dr-sk-line dr-sk-title" style="width:56%"></span><span class="dr-sk-line dr-sk-date" style="width:36%"></span></span>
               </span>
-              <span class="sk-route">
-                <span class="sk-stop"><span class="sk-line sk-lbl" style="width:56px"></span><span class="sk-line sk-place" style="width:44%"></span></span>
+              <span class="dr-inset">
+                <span class="dr-inset__stop dr-sk-stop"><span class="dr-sk-line dr-sk-lbl" style="width:56px"></span><span class="dr-sk-line dr-sk-place" style="width:44%"></span></span>
               </span>
-              <span class="sk-fee">
-                <span class="sk-money"><span class="sk-line sk-price" style="width:78px"></span></span>
-                <span class="sk-acts"><span class="sk-btn"></span><span class="sk-btn"></span></span>
+              <span class="dr-order__fee">
+                <span class="dr-sk-money"><span class="dr-sk-line dr-sk-price" style="width:78px"></span></span>
+                <span class="dr-order__acts"><span class="dr-sk-btn"></span><span class="dr-sk-btn"></span></span>
               </span>
             </div>
           </li>
         </ul>
       </section>
     </main>
-    <footer class="tabbar">
-      <nav class="tabs" aria-label="Primary">
-        <a class="tab" href="listings.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
-        <a class="tab" href="order-history.html" aria-current="page"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
-        <a class="tab" href="support.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
-        <a class="tab" href="account.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="listings.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+        <a class="dr-tab" href="order-history.html" aria-current="page"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+        <a class="dr-tab" href="support.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+        <a class="dr-tab" href="account.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
       </nav>
-      <div class="home-indicator"><span></span></div>
+      <div class="dr-home"><span></span></div>
     </footer>
   </div>
 

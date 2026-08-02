@@ -89,6 +89,7 @@
   --t-caption-size: 12px;   --t-caption-weight: 600; --t-caption-line: 1.4;
   --t-micro-size:   11px;   --t-micro-weight:   600; --t-micro-line:   1.4;  --t-micro-track: .09em;
   --t-micro-track-tight: .05em;                            /* FROM / TO route labels */
+  --t-act-track: .02em;    /* the zone label's trailing note — measured, not .05 */
   --t-microsm-size: 10.5px; --t-microsm-weight: 400; --t-microsm-line: 1.4;
   --t-base-size:    15px;   --t-base-line:      1.4;        /* the frame's inherited default */
   --weight-regular: 400;
@@ -153,6 +154,13 @@
   --sz-dot:         10px;  /* the filled centre of a checked radio */
   --sk-title-h:     14px;  /* the bar standing in for a card title */
   --sk-date-h:      10px;  /* and for its date */
+  /* The skeleton order card, block for block — every bar sized to the element
+     it waits for, read off order-history-loading by computed style. */
+  --sk-lbl-h:       12px;  --sk-lbl-w: 38px;  --sk-lbl-w-sm: 22px;
+  --sk-place-h:     16px;
+  --sk-price-h:     18px;  --sk-price-w: 84px;
+  --sk-stop-gap:    7px;   /* bars sit a step wider than the 2px the text needs */
+  --sk-head-gap:    8px;
   --sz-brand-w:     60px;  /* the DRON mark — 2.99:1 artwork */
   --sz-brand-h:     20px;
 
@@ -164,7 +172,7 @@
   --pick-indent:  calc(var(--sp-screen) + var(--sz-box) + var(--sp-snug));
   --pill-bleed:   calc((var(--h-control) - var(--h-pill)) / -2);
 
-  --ic-12: 12px; --ic-13: 13px; --ic-14: 14px; --ic-16: 16px;
+  --ic-12: 12px; --ic-13: 13px; --ic-14: 14px; --ic-16: 16px; --ic-17: 17px;
   /* --ic-13 is a declared rung: the chip gave it up on 2026-08-02 when the
      glyph settled at 14 everywhere, and nothing else spends it yet. */
   --ic-20: 20px; --ic-22: 22px; --ic-26: 26px; --ic-32: 32px;
@@ -205,6 +213,15 @@
   --screen-h: 812px;
   --measure-msg: 260px;   /* the message block's body cap */
   --map-aspect: 1.99;     /* the live map's native ratio */
+  --fill-2of4: 25%;       /* the rail's walked span at step 2 of 4 */
+  /* The empty-state banner — order-history-empty, measured. The picture is
+     content and arrives as an inline background-image; everything geometric
+     lives here. 78% / 16px is a placement, not a rule: it centres the drone's
+     INK, which carries ~24px of white margin inside the JPEG. */
+  --banner-h:     150px;
+  --banner-shift: 56px;   /* the block drops toward the thumb zone */
+  --banner-art:   78%;
+  --banner-top:   16px;
   /* Skeleton bar widths. They vary per card so three skeletons do not read as
      one stamped block. */
   --sk-w90: 90%; --sk-w70: 70%; --sk-w50: 50%; --sk-w40: 40%; --sk-w30: 30%;
@@ -241,6 +258,7 @@
 .dr-ic--13{ width: var(--ic-13); height: var(--ic-13); }
 .dr-ic--14{ width: var(--ic-14); height: var(--ic-14); }
 .dr-ic--16{ width: var(--ic-16); height: var(--ic-16); }
+.dr-ic--17{ width: var(--ic-17); height: var(--ic-17); }
 .dr-ic--22{ width: var(--ic-22); height: var(--ic-22); }
 .dr-ic--26{ width: var(--ic-26); height: var(--ic-26); }
 .dr-ic--32{ width: var(--ic-32); height: var(--ic-32); }
@@ -266,7 +284,11 @@
   font-size: var(--t-bodysm-size); font-weight: var(--weight-medium);
 }
 .dr-statusbar__sys{ display: flex; align-items: center; gap: var(--sp-5); }
+.dr-statusbar__sys .dr-ic{ width: var(--ic-17); height: var(--ic-17); }  /* DESIGN.md: 17px glyphs */
 
+/* header.dr-topbar carries the same 0,1,1 weight as the wireframe base's
+   header.topbar, so on a converted page the kit wins the tie by order. */
+header.dr-topbar,
 .dr-topbar{
   height: var(--h-topbar); flex: none;
   display: flex; align-items: center; gap: var(--sp-within-lg);
@@ -328,6 +350,7 @@
 /* HIG tints the selected label with the accent. Raw green as a label is
    1.69:1, so the accent moves into the FILL and the ink darkens with it —
    two signals where the convention gives one. */
+.dr-tab .dr-ic{ width: var(--ic-22); height: var(--ic-22); }
 .dr-tab[aria-current="page"]{ background: var(--green-wash); color: var(--ink); }
 .dr-tab:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 
@@ -370,16 +393,29 @@
   font-family: var(--font-mono);
   font-size: var(--t-micro-size); font-weight: var(--t-micro-weight);
   letter-spacing: var(--t-micro-track); color: var(--slate);
+  text-transform: uppercase;
+  border-left: 0;                      /* the wireframe base draws a 2px left bar */
   border-bottom: var(--hair) solid var(--line);
-  padding-bottom: var(--sp-9);
+  padding: 0 0 var(--sp-9);            /* shorthand: the base's left inset resets */
+  margin-bottom: calc(var(--sp-within) * -1);  /* the label sits 12 above its content, not 16 */
 }
 .dr-label::after{
   content: ""; position: absolute; left: 0; bottom: calc(var(--hair) * -1);
   width: var(--sz-tick); height: var(--sz-tick-h); background: var(--green);
 }
-.dr-label__act{ color: var(--slate); letter-spacing: var(--t-micro-track-tight); }
+/* Written as a descendant on purpose: on a wireframe page the label keeps its
+   .zlabel class for the shell's annotation toggle, and the base sheet's
+   `.zlabel .act` (0,2,0) would out-rank a lone class. */
+.dr-label .dr-label__act{
+  color: var(--slate); font-size: var(--t-micro-size);
+  letter-spacing: var(--t-act-track); text-transform: none;
+}
 /* Loading line — mono, because it names structure that is still arriving. */
 .dr-hint{ font-family: var(--font-mono); font-size: var(--t-micro-size); color: var(--slate); }
+/* The plain-language sibling: order-history-loading's status sentence is 14px
+   SF on slate, not mono — one job, two voices across the loading pages.
+   Recorded as built; unifying them is the designer's call. */
+.dr-status-line{ font-size: var(--t-body-size); color: var(--slate); }  /* leading stays the inherited 1.4 */
 /* Explanatory caption under a block. Same job as .dr-hint in a sentence voice. */
 .dr-note{
   font-size: var(--t-caption-size); font-weight: var(--weight-regular);
@@ -459,6 +495,12 @@
 .dr-card--cta{ padding-bottom: var(--sp-cta); }  /* the last element is a primary */
 .dr-card--row{ flex-direction: row; align-items: center; gap: var(--sp-snug); }
 
+/* The in-card actions row. The button stretches the row and lifts above the
+   whole-card link, so the CTA stays clickable inside a card that is itself
+   one big link. */
+.dr-card__actions{ display: flex; gap: var(--sp-within-lg); }
+.dr-card__actions .dr-btn{ flex: 1; position: relative; z-index: 2; }
+
 /* Whole-card link, with the ring hung on :focus-visible so a pointer click
    does not flash an outline and a focused inner button does not double-ring. */
 .dr-card__link{ position: absolute; inset: 0; z-index: 1; border-radius: var(--r-card); }
@@ -473,7 +515,7 @@
   padding: var(--sp-2) var(--sp-screen);
 }
 .dr-rows__row{
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex; justify-content: space-between;   /* children stretch, as built */
   gap: var(--sp-snug);
   padding: var(--sp-13) 0;
   border-bottom: var(--hair) solid var(--line);
@@ -594,6 +636,7 @@
 .dr-rail::after{ content: ""; position: absolute; top: var(--node-centre); height: var(--sz-track); left: var(--rail-track-start); }
 .dr-rail::before{ width: var(--rail-track-span); background: var(--line); }
 .dr-rail::after{ width: var(--dr-fill, 0); background: var(--green); }
+.dr-rail--at2{ --dr-fill: var(--fill-2of4); }  /* live order: walked step 1 → 2 of 4 */
 .dr-rail__step{
   position: relative; z-index: 1;
   display: flex; flex-direction: column; align-items: center; gap: var(--sp-9);
@@ -663,6 +706,28 @@
 }
 .dr-msg__actions .dr-btn{ width: 100%; }
 
+/* The empty-state banner: the same block with a render instead of a glyph.
+   32 under the button against 16 above the text, because an action wants more
+   clearance from the card edge; the block drops 56 toward the thumb zone. The
+   render is an inline JPEG with no alpha — multiply against the card knocks
+   its white rectangle out. The picture itself arrives as an inline
+   background-image: it is content, not design. */
+.dr-msg--banner{
+  padding: var(--sp-screen) var(--sp-screen) var(--sp-cta);
+  margin-top: var(--banner-shift);
+}
+.dr-msg--banner .dr-msg__body{ font-size: var(--t-body-size); line-height: var(--t-para-line); }
+.dr-msg--banner .dr-msg__actions{ margin-top: var(--sp-within); }  /* 4, not 6 — as built */
+.dr-msg__banner{
+  width: 100%; height: var(--banner-h); flex: none;
+  border: 0; border-radius: var(--r-media); overflow: hidden;
+  background-color: var(--card);
+  background-size: auto var(--banner-art);
+  background-position: center var(--banner-top);
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+}
+
 /* ═══ MEDIA ═══════════════════════════════════════════════════════════════
    A transparent cutout sits IN the layout and is contained — in the product
    with no ground at all. A photograph IS the surface and covers it. */
@@ -682,12 +747,17 @@
   width: auto; height: auto;
   background: var(--media); overflow: hidden; padding: 0;
 }
+.dr-well--map{ padding: 0; }
 .dr-well--photo img{ object-fit: cover; }
 /* The map is a surface in the layout, not a well inside a card — card radius,
    native 1.99 aspect, --media as the pre-load ground. */
 .dr-well--map{
   width: auto; height: auto; aspect-ratio: var(--map-aspect);
-  border-radius: var(--r-card); background: var(--media); overflow: hidden;
+  border-radius: var(--r-card); overflow: hidden;
+  /* the picture is content: an inline background-image on the element (the
+     banner's own pattern), or an <img> child — both render identically */
+  background-color: var(--media);
+  background-size: cover; background-position: center; background-repeat: no-repeat;
 }
 .dr-well--map img{ object-fit: cover; }
 .dr-well--acquiring{
@@ -883,6 +953,10 @@
    pulse" but "does what loads replace this surface, or sit inside it". */
 
 .dr-sk-line{ height: var(--sp-13); border-radius: var(--r-detail); background: var(--btn2); }
+/* DRIFT, recorded not resolved: tracking-loading draws the same bar at --r-pill
+   where order-history-loading draws 4px. DESIGN.md documents both as inside the
+   rule; one value should win, and that is the designer's call. */
+.dr-sk-line--pill{ border-radius: var(--r-pill); }
 .dr-sk-title{ height: var(--sk-title-h); }
 .dr-sk-date{ height: var(--sk-date-h); }
 .dr-sk-w90{ width: var(--sk-w90); } .dr-sk-w70{ width: var(--sk-w70); }
@@ -890,7 +964,7 @@
 .dr-sk-w30{ width: var(--sk-w30); }
 .dr-sk-well{
   width: var(--sz-well-w); height: var(--sz-well-h); flex: none;
-  border-radius: var(--r-media); background: var(--btn2);
+  border-radius: var(--r-media); background: var(--media);  /* measured: the well is --media, not --btn2 */
 }
 .dr-sk-block{
   background: var(--media); border-radius: var(--r-media);
@@ -898,7 +972,23 @@
 }
 .dr-sk-btn{ width: var(--sz-action); height: var(--sz-action); border-radius: var(--r-circle); background: var(--btn2); }
 
-.dr-sk-line, .dr-sk-well, .dr-sk-btn{ animation: dr-pulse var(--dur-pulse) ease-in-out infinite; }
+/* ── The skeleton order card, block for block. Containers are the loaded
+   card's own classes (.dr-card, .dr-order__top, .dr-inset, .dr-order__fee),
+   so the no-reflow contract holds by construction; only the bars are new.
+   dr-sk-dir is the direction chip's stand-in — named apart from dr-sk-arrow,
+   which is the upload glyph's moving arrow on delivery-loading. One name per
+   concept: the old files called BOTH of these .sk-arrow. ── */
+.dr-sk-head{ flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--sk-head-gap); }
+.dr-sk-stop{ gap: var(--sk-stop-gap); }
+.dr-sk-lbl{ height: var(--sk-lbl-h); width: var(--sk-lbl-w); }
+.dr-inset__stop--to .dr-sk-lbl{ width: var(--sk-lbl-w-sm); }
+.dr-sk-place{ height: var(--sk-place-h); }
+.dr-sk-dir{ width: var(--sz-arrow); height: var(--sz-arrow); flex: none;
+  border-radius: var(--r-pill); background: var(--btn2); }
+.dr-sk-money{ flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.dr-sk-price{ height: var(--sk-price-h); width: var(--sk-price-w); border-radius: var(--r-detail); }
+
+.dr-sk-line, .dr-sk-well, .dr-sk-btn, .dr-sk-dir{ animation: dr-pulse var(--dur-pulse) ease-in-out infinite; }
 .dr-sk-d1 *{ animation-delay: -.47s; }
 .dr-sk-d2 *{ animation-delay: -.93s; }
 @keyframes dr-pulse{ 0%,100%{ opacity: 1; } 50%{ opacity: var(--pulse-floor); } }
@@ -923,7 +1013,7 @@
   .dr-card,
   .dr-disclosure > summary .dr-ic{ transition: none; }
   .dr-status--live::after,
-  .dr-sk-line, .dr-sk-well, .dr-sk-btn,
+  .dr-sk-line, .dr-sk-well, .dr-sk-btn, .dr-sk-dir,
   .dr-sk-arrow{ animation: none; }
 }
 

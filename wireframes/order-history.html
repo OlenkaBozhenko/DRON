@@ -41,290 +41,7 @@
   the well reach 96px — the size concept.md §6.3 asks for. See concept.md rev 19.
 -->
 <link rel="stylesheet" href="_wireframe.css">
-<style>
-  /* ── DRON · Studio (concept/concept.html) applied to the phone frame only;
-     the wireframe annotation sidebar keeps its own chrome.
-     New text/bg pairs, contrast checked (WCAG AA):
-       #1A1A1A on #F7F5F2 → 15.99:1 · #1A1A1A on #E4E1DA → 13.33:1
-       #5A5751 on #E4E1DA → 5.51:1  · #1A1A1A on #D6D2C9 → 11.54:1
-       #5A5751 on #D6D2C9 → 4.77:1  · #5A5751 on #ECE9E4 → 5.95:1
-     Focus ring is --ink, not green: #1A1A1A on page 15.99:1 / on card 14.37:1.
-     Raw #9BCF4A fails WCAG 1.4.11 non-text 3:1 at 1.69:1 / 1.52:1, and a darkened
-     accent is still the accent used as a line, which concept.md §4 forbids too.
-     Pairs already documented in concept.html §07: on-green 8.8:1, slate/page 6.7:1,
-     charcoal/tint 14.75:1. ── */
-  body{ background:#F7F5F2; }
-  .wf-frame{
-    --page:#F7F5F2; --card:#ECE9E4; --media:#E4E1DA; --btn2:#D6D2C9;
-    --ink:#1A1A1A; --slate:#5A5751; --line:#D9D5CE;
-    --green:#9BCF4A; --on-green:#1A1A1A; --green-wash:#E7F0D2;
-    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
-    --r-btn:12px; --r-card:16px; --r-media:13px; --r-panel:22px; --r-pill:999px;
-    --sh-sm:0 1px 2px rgba(20,18,15,.05);
-    --sh-card:0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30);
-    --sh-raised:0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34);
-    /* wireframe tokens remapped to the Studio palette */
-    --wf-surface:var(--page); --wf-bg:var(--page); --wf-recessed:var(--media);
-    --wf-fill:var(--btn2); --wf-skeleton:var(--btn2); --wf-muted:var(--slate);
-    --wf-text-2:var(--slate); --wf-text:var(--ink); --wf-ink:var(--ink); --wf-ink-max:#000000;
-    --wf-border:var(--line); --wf-border-2:var(--line);
-    background:var(--page); border:1px solid var(--line); border-radius:var(--r-panel);
-  }
-  .wf-frame svg.ic{ display:block; }
-
-  /* system bars melt into the warm ground */
-  .statusbar{ background:var(--page); color:var(--ink); }
-  .statusbar .sysph{ gap:5px; align-items:center; }
-  header.topbar{ background:var(--page); border-bottom:1px solid var(--line); }
-  /* the screen title is the page heading, not a span: a screen reader needs one
-     entry point per screen (WCAG 1.3.1 / 2.4.6). Renders identically. */
-  .topbar h1.title{ margin:0; font-size:17px; font-weight:600; color:var(--ink);
-    letter-spacing:-.01em; }
-  footer.tabbar{ background:var(--page); border-top:1px solid var(--line); }
-  footer .tabs{ height:60px; padding:6px 8px 4px; gap:4px; }
-  footer .tab{ gap:3px; font-weight:600; color:var(--slate); border-radius:16px; }
-  footer .tab[aria-current="page"]{ background:var(--green-wash); color:var(--ink); }
-  footer .tab svg.ic{ width:22px; height:22px; }
-  footer .tab:focus-visible{ outline:2.5px solid var(--ink); outline-offset:2px; }
-  footer .home-indicator{ height:30px; }
-  footer .home-indicator span{ background:var(--ink); }
-
-  /* zone annotation → concept block-label */
-  .zlabel{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.09em;
-    color:var(--slate); border-left:0; border-bottom:1px solid var(--line);
-    padding:0 0 9px; position:relative; margin-bottom:-4px; }
-  .zlabel::after{ content:""; position:absolute; left:0; bottom:-1px; width:30px; height:2px; background:var(--green); }
-  .zlabel .act{ color:var(--slate); font-size:11px; letter-spacing:.02em; }
-
-  /* cards — warm-grey surface, flat, no border. The shadow is gone by designer
-     call (concept.md rev 29), and the hover lift goes with it: a card that casts
-     no shadow at rest cannot grow one under the pointer, and hover is desktop-only
-     anyway. What marks the card as reachable is its own controls and the keyboard
-     focus ring below.                                                        ── */
-  article.card{ background:var(--card); border:0; border-radius:var(--r-card); }
-  /* Focus ring, keyboard only. :focus-within fires on a mouse click too, so
-     every tap on a card flashed a green outline around it — and the shared
-     _wireframe.css carries its own :focus-within ring, which would otherwise
-     keep doing the same in warm grey. Both are switched off here and the ring is
-     re-hung on :has(> .card-link:focus-visible): :focus-visible does not match a
-     pointer click, so the outline now appears only when the card is reached by
-     Tab, which is the case that needs it (WCAG 2.4.7). Scoping to the card's own
-     link rather than any descendant also stops the card double-ringing when one
-     of its circular actions takes focus — that button draws its own.
-     :has() is baseline in every browser this prototype targets; older ones lose
-     the card ring, not the inner controls'. */
-  article.card:focus-within{ outline:none; }
-  article.card:has(> .card-link:focus-visible){ outline:2.5px solid var(--ink);
-    outline-offset:2px; }
-  .card-link{ border-radius:var(--r-card); }
-
-  /* buttons — the green primary is the live order's single CTA */
-  .btn{ border-radius:var(--r-btn); transition:filter .15s, background .15s, transform .12s; }
-  .btn:focus-visible{ outline:2.5px solid var(--ink); outline-offset:2px; }
-  .btn-primary{ background:var(--green); color:var(--on-green); box-shadow:var(--sh-sm); }
-  .btn-primary:hover{ background:var(--green); filter:brightness(1.03); }
-  .btn-primary:active{ background:var(--green); transform:translateY(1px) scale(.99); }
-  /* padding matches .btn: the green primary is one control, not two (rev 39) */
-  .btn-sm{ height:44px; font-size:15px; border-radius:var(--r-btn); padding:0 16px; }
-  @media (prefers-reduced-motion:reduce){ .btn, article.card{ transition:none; } }
-
-  .oh-card{ overflow:hidden; }
-  /* ── STATUS INDICATOR ─────────────────────────────────────────────────────
-     Replaces the labelled pill ("In progress" / "Delivered"), and rides on the
-     drone well itself — the mark sits on the unit doing the job, the way a
-     presence badge sits on an avatar. Two marks that differ by shape and by
-     behaviour, never by colour alone (WCAG 1.4.1): a dot that pings green while
-     the order is still running, a settled check once it is done. Each keeps its
-     old wording as its accessible name, so a screen reader loses nothing — the
-     words moved off the glass, they were not deleted.
-     Contrast, and the trade in it. The live mark is the brand lime and nothing
-     else — the dark ring that used to draw its boundary read as black and was
-     dropped at the designer's call (2026-08-01). Lime is 1.69:1 on the well,
-     so this mark does not clear WCAG 1.4.11 on its own; it is a solid 20px disc
-     rather than a 10px dot precisely so that size does the work the ring used to.
-     What keeps the screen conformant is that the live state is never carried by
-     this mark alone — the same card is the only one with a progress rail, an ETA
-     chip and the green CTA, and the indicator's accessible name says it outright.
-     The finished mark has no such problem: --ink on --btn2 is 11.54:1. Both discs
-     carry a 2px --media ring so they stay legible wherever they land on the
-     render, over the drone or over bare well.
-     The ping is one green ring leaving the dot and fading, on a 1.8s cycle —
-     well under the 3-flashes-per-second ceiling (WCAG 2.3.1), and off entirely
-     under prefers-reduced-motion. It is the only motion on the screen.
-     Moving the mark off the title row is what paid for the 96px well: the pill
-     was 101px wide, then 20px in the header, and now it costs the text nothing
-     at all — so the drone finally renders at the ~96px the concept asks for. */
-  .oh-ind{ position:absolute; top:6px; right:6px; z-index:1;
-    width:20px; height:20px; border-radius:50%;
-    display:inline-flex; align-items:center; justify-content:center;
-    background:var(--btn2); color:var(--ink); box-shadow:0 0 0 2px var(--card); }
-  .oh-ind svg.ic{ width:12px; height:12px; }
-  .oh-ind.live{ background:var(--green); }
-  .oh-ind.live::after{ content:""; position:absolute; inset:0; border-radius:50%;
-    animation:oh-ping 1.8s cubic-bezier(.22,.61,.36,1) infinite; }
-  @keyframes oh-ping{
-    0%  { box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 90%,transparent); }
-    70% { box-shadow:0 0 0 8px color-mix(in srgb,var(--green) 0%,transparent); }
-    100%{ box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 0%,transparent); }
-  }
-  @media (prefers-reduced-motion:reduce){ .oh-ind.live::after{ animation:none; } }
-
-  /* ── ORDER CARD ───────────────────────────────────────────────────────────
-     All four cards share one anatomy, built on concept.html's plain padded
-     .card (padding:16px; gap:14px): well + title/date stack + status pill ·
-     From▸To strip · fee + actions. The live order adds what only it needs — a
-     progress rail, an ETA chip and the single green CTA; a delivered order has
-     no rail (the walk is over, four ticked nodes said nothing) and carries two
-     secondary circular actions. Every value below is lifted from concept/concept.html.
-     New text/bg pair introduced here — the From▸To inset uses concept's own
-     .stat3 blend, color-mix(page 55%, card) = #F2F0EC:
-       #1A1A1A on #F2F0EC → 15.29:1 · #5A5751 on #F2F0EC → 6.33:1  (both AA)
-     Reused, already documented above: slate on media 5.51:1 (ETA pill),
-     charcoal on green-wash 14.75:1 (§4: anything on a green tint is charcoal). ── */
-  /* ── SPACING SCALE ────────────────────────────────────────────────────────
-     The card used to run 16 padding · 14 between every group · 12 between cards
-     · 13/14 inside the route strip — nine intervals, all between 12 and 16. With
-     no contrast between within-group and between-group space the four groups
-     carried equal weight and read as one block, and because the gap *between*
-     cards (12) was smaller than the gaps *inside* one (14), proximity actually
-     pointed the wrong way: the shadow was doing the grouping that spacing should.
-     Three steps now, on a 4-unit base, so the eye gets the hierarchy for free:
-       4 / 8   within a group   — title to date, date to pill
-       20      between groups   — identity · route · money, and the card's inset
-       28      between cards    — always greater than any interval inside a card
-     ── */
-  /* specificity has to match article.card.stack-card (which sets gap:12px) */
-  .wf-frame main .list{ gap:28px; }
-  article.card.oh-live{ padding:20px; gap:20px; }                          /* concept .card */
-
-  /* header: drone well carrying the status mark, then a plain name-over-date
-     stack. The budget at 375px, after the card's 20px inset: 286px of content,
-     less well(96) + gap(16) = 174px of text column, against a longest name of
-     152 and a longest date of 85 — both clear, neither competing with the other.
-     Three cuts got here. The dates dropped their year (every order is 2026 and
-     the newest reads "Today"), 119px → 85px; the pill became a 20px indicator;
-     and then the indicator moved onto the well, where it costs the text nothing
-     — which is what let the drone reach the size the concept asks for. */
-  .ohl-top{ display:flex; align-items:center; gap:16px; }                  /* concept .card-top */
-  /* the well carries the drone doing this job — concept §6.1, the studio fleet,
-     one unit per service: drone-08 (package delivery, the designer's pick, Figma
-     node 23:59144), drone-02 (its camera pod is the photo/video unit), drone-11
-     (the only fleet unit with a dark composite case instead of the lime box —
-     §6.1 says to use it exactly here, where the payload must not read as another
-     delivery). The well has NO ground: designer call 2026-08-01 (concept.md
-     §6.3, rev 32) — the cutout sits straight on the card, so the box is only a
-     measuring frame now. Transparent PNG contained, no border and no shadow
-     (the render carries its own). The frame is landscape because the subject
-     is: each render is a 1024²
-     canvas holding a ~1.37 subject, so a square well would spend a fifth of its
-     height on nothing. 96 × 72 draws the drone at 88px, which is the size the
-     concept asks for — below roughly 96px §6.3 says the rotors stop resolving,
-     and every earlier revision of this card sat under it because the status
-     badge was eating the header. It is not clipped: the live ping leaves the
-     box, and object-fit:contain already keeps the render inside. */
-  .ohl-ic{ position:relative; width:96px; height:72px; flex:none;
-    border-radius:var(--r-media); color:var(--ink);
-    display:flex; align-items:center; justify-content:center; padding:4px; }  /* concept .dwell, groundless */
-  .ohl-ic img{ width:100%; height:100%; object-fit:contain; display:block; }
-  /* the indicator left this stack for the well, so the name and the date each
-     own the full text column — nothing here competes for width any more */
-  .ohl-head{ flex:1; min-width:0; display:flex; flex-direction:column; gap:4px; }
-  .ohl-title{ font-size:15px; font-weight:600; line-height:1.2; color:var(--ink); }  /* concept .id .k */
-  /* the ellipsis is insurance only — the date owns a 174px row against a widest
-     85px, so it should never actually reach for it */
-  .ohl-date{ min-width:0; font-size:12.5px; line-height:1.2; color:var(--slate);
-    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }         /* concept .id .s */
-
-  /* progress rail — the live order only; a delivered card has nothing left to
-     track. concept .rt values (22px node, 2px track, 10.5px label, 9px label
-     offset), laid out on a 4-column grid: each circle and its label share one
-     column and are both centre-aligned, so the circle is dead-centre above
-     its label and the four steps are evenly spaced by construction rather than
-     by eye. The track is drawn behind the circles from the centre of column 1
-     (12.5%) to the centre of column 4 (87.5%); --fill covers the walked span. */
-  .ohl-rail{ display:grid; grid-template-columns:repeat(4,1fr); position:relative; }
-  .ohl-rail::before,
-  .ohl-rail::after{ content:""; position:absolute; top:10px; height:2px; left:12.5%; }
-  .ohl-rail::before{ width:75%; background:var(--line); }
-  .ohl-rail::after{ width:var(--fill,0); background:var(--green); }
-  .ohl-rail.at-2{ --fill:25%; }   /* live order: walked step 1 → 2 of 4 */
-  .ohl-step{ position:relative; z-index:1; display:flex; flex-direction:column;
-    align-items:center; gap:9px; }
-  .ohl-rail .nd{ width:22px; height:22px; border-radius:50%; display:flex;
-    align-items:center; justify-content:center; border:2px solid var(--line);
-    background:var(--card); color:var(--slate); }
-  .ohl-rail .nd svg.ic{ width:12px; height:12px; }
-  .ohl-rail .nd.done{ background:var(--green); border-color:var(--green); color:var(--on-green); }
-  .ohl-rail .nd.now{ border-color:var(--green); color:var(--ink);
-    box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 20%,transparent); }
-  .ohl-step-lbl{ font-size:10.5px; color:var(--slate); text-align:center; }
-  .ohl-step-lbl.now{ color:var(--ink); font-weight:600; }
-
-  /* From ▸ To — one inset strip on every card: concept .stat3 surface + radius */
-  .ohl-route{ display:flex; align-items:center; gap:12px; border-radius:12px;
-    padding:16px; background:color-mix(in srgb,var(--page) 55%,var(--card)); }
-  .ohl-stop{ flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
-  .ohl-stop-to{ align-items:flex-end; text-align:right; }
-  .ohl-lbl{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.05em;
-    text-transform:uppercase; color:var(--slate); }                        /* = .oh-addr-lbl */
-  .ohl-place{ font-size:14px; color:var(--ink); line-height:1.3; }         /* = .oh-addr */
-  /* neutral, not green: §5 keeps the accent for the primary CTA and status and
-     says it is "not spent inside card UI" — this direction chip is card UI. The
-     chip does not move; only its fill changes. */
-  .ohl-arrow{ width:26px; height:26px; flex:none; border-radius:var(--r-pill);
-    background:var(--media); color:var(--ink);
-    display:flex; align-items:center; justify-content:center; }
-  .ohl-arrow svg.ic{ width:14px; height:14px; }
-
-  /* fee + ETA — concept .foot (.big price, .cap label) and .pill.mut for the chip */
-  .ohl-fee{ display:flex; align-items:flex-end; justify-content:space-between; gap:12px; }
-  /* .ohl-fee-lbl removed 2026-08-02 - the caption above the figure is gone. */
-  /* The fee label was removed at the designer's call, 2026-08-02, so the 4px
-     that separated the figure from it goes with it. The words survive as an
-     .sr-only accessible name: a bare figure has no programmatic relationship
-     without one (WCAG 1.3.1), and the live card's fee and a delivered card's
-     total are different facts. */
-  .ohl-price{ display:block; font-size:20px; font-weight:700; letter-spacing:-.02em;
-    font-variant-numeric:tabular-nums; line-height:1; color:var(--ink); }  /* concept .foot .big */
-  .ohl-eta{ flex:none; display:inline-flex; align-items:center; gap:6px; font-size:12px;
-    font-weight:600; padding:5px 10px; border-radius:var(--r-pill);
-    background:var(--media); color:var(--slate); white-space:nowrap; }     /* concept .pill.mut */
-  .ohl-eta svg.ic{ width:14px; height:14px; }
-
-  /* ── DELIVERED ORDER CARD ─────────────────────────────────────────────────
-     Same anatomy as the live card, three differences (per the reference):
-     the status pill is the secondary/muted variant, the progress rail is gone
-     (the job is over — four ticked nodes only cost 60px of card), and the
-     full-width green CTA is replaced by two secondary circular actions —
-     delete this order, and open its delivery photo / inspection report.
-     The From▸To strip keeps its surface on every card: it was tried flush on
-     delivered orders (2026-08-01) and the designer read the panel as better —
-     the route is a distinct kind of fact from the header and the fee, and the
-     tile is what says so at a glance.                                     ── */
-  article.card.oh-done{ padding:20px; gap:20px; }                          /* concept .card */
-  /* secondary circular actions — concept .sbi / .sbi.grey.
-     z-index clears the full-card .card-link overlay beneath them. */
-  .sbi{ width:44px; height:44px; flex:none; padding:0; border-radius:50%;
-    display:inline-flex; align-items:center; justify-content:center; border:0;
-    cursor:pointer; text-decoration:none; position:relative; z-index:2; }
-  .sbi svg.ic{ width:20px; height:20px; }
-  .sbi.grey{ background:var(--btn2); color:var(--ink); }                   /* concept .sbi.grey */
-  .sbi.grey:hover{ background:var(--media); }
-  .sbi:focus-visible{ outline:2.5px solid var(--ink); outline-offset:2px; }
-  .ohl-acts{ display:flex; align-items:center; gap:8px; flex:none; }
-
-  /* Narrow tier. The phone frame is fluid (max-width:100%), so on a 360px device
-     it renders at 321px, where the header row is 240px. A 68px well leaves the
-     text column 160px against the 152px the longest name needs, so nothing wraps
-     and nothing truncates; the rest of the scale steps down a notch with it. */
-  @media (max-width:389px){
-    article.card.oh-live, article.card.oh-done{ padding:16px; gap:18px; }
-    .wf-frame main .list{ gap:22px; }
-    .ohl-top{ gap:12px; }
-    .ohl-ic{ width:68px; height:52px; }
-    .ohl-route{ padding:14px; }
-  }
-</style>
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -339,125 +56,125 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Card anatomy</b> ▸ header (drone well carrying the status indicator, name over date/time) · route dots (From ▸ To, or single Location) · price + actions</p><p><b>In progress</b> ▸ active order at the top: a green dot pinging on its drone, the only card carrying a progress rail → View details (tracking). A past order shows a settled check instead — shape and behaviour, not colour alone.</p><p><b>CTA</b> ▸ View details if live; a past card reopens setup on tap, and offers delete + open the delivery photo / report</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
-    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><h1 class="title">Activity</h1><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Order history <span class="act">▸ tap to reopen · delete · open the result</span></p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><h1 class="dr-topbar__title">Activity</h1><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Order history <span class="dr-label__act">▸ tap to reopen · delete · open the result</span></p>
       <section aria-label="Past orders">
-        <ul class="list">
+        <ul class="dr-list">
           <li>
-            <article class="card stack-card oh-card oh-live">
-              <a class="card-link" href="tracking.html" aria-label="Package delivery, in progress — view details"></a>
-                <span class="ohl-top">
-                  <span class="ohl-ic">
+            <article class="dr-card">
+              <a class="dr-card__link" href="tracking.html" aria-label="Package delivery, in progress — view details"></a>
+                <span class="dr-order__top">
+                  <span class="dr-well">
                     <img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async">
-                    <span class="oh-ind live" role="img" aria-label="In progress"></span>
+                    <span class="dr-status dr-status--live" role="img" aria-label="In progress"></span>
                   </span>
-                  <span class="ohl-head">
-                    <span class="ohl-title">Package delivery</span>
-                    <span class="ohl-date">Today · 10:03</span>
+                  <span class="dr-order__head">
+                    <span class="dr-order__title">Package delivery</span>
+                    <span class="dr-order__date">Today · 10:03</span>
                   </span>
                 </span>
-                <span class="ohl-rail at-2">
-                  <span class="ohl-step"><span class="nd done" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="ohl-step-lbl">Accepted</span></span>
-                  <span class="ohl-step" aria-current="step"><span class="nd now" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="ohl-step-lbl now">En route</span></span>
-                  <span class="ohl-step"><span class="nd" aria-hidden="true"></span><span class="ohl-step-lbl">On&#8209;site</span></span>
-                  <span class="ohl-step"><span class="nd" aria-hidden="true"></span><span class="ohl-step-lbl">Done</span></span>
+                <span class="dr-rail dr-rail--at2">
+                  <span class="dr-rail__step"><span class="dr-node dr-node--done" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-rail__lbl">Accepted</span></span>
+                  <span class="dr-rail__step" aria-current="step"><span class="dr-node dr-node--now" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-rail__lbl dr-rail__lbl--now">En route</span></span>
+                  <span class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">On&#8209;site</span></span>
+                  <span class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">Done</span></span>
                 </span>
-                <span class="ohl-route">
-                  <span class="ohl-stop"><span class="ohl-lbl">From</span><span class="ohl-place">Podil</span></span>
-                  <span class="ohl-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
-                  <span class="ohl-stop ohl-stop-to"><span class="ohl-lbl">To</span><span class="ohl-place">Osokorky</span></span>
+                <span class="dr-inset">
+                  <span class="dr-inset__stop"><span class="dr-inset__lbl">From</span><span class="dr-inset__place">Podil</span></span>
+                  <span class="dr-inset__dir" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+                  <span class="dr-inset__stop dr-inset__stop--to"><span class="dr-inset__lbl">To</span><span class="dr-inset__place">Osokorky</span></span>
                 </span>
-                <span class="ohl-fee">
-                  <span><span class="sr-only">Delivery fee</span><span class="ohl-price">&#8372;180</span></span>
-                  <span class="ohl-eta"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg>ETA ~6 min</span>
+                <span class="dr-order__fee">
+                  <span><span class="sr-only">Delivery fee</span><span class="dr-number dr-order__price">&#8372;180</span></span>
+                  <span class="dr-chip"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg>ETA ~6 min</span>
                 </span>
-                <span class="actions">
-                  <a class="btn btn-primary btn-sm" href="tracking.html">View details</a>
+                <span class="dr-card__actions">
+                  <a class="dr-btn dr-btn--primary" href="tracking.html">View details</a>
                 </span>
             </article>
           </li>
           <li>
-            <article class="card stack-card oh-card oh-done">
-              <a class="card-link" href="order-setup.html" aria-label="Package delivery, 28 Jun 2026, delivered — reopen"></a>
-                <span class="ohl-top">
-                  <span class="ohl-ic">
+            <article class="dr-card">
+              <a class="dr-card__link" href="order-setup.html" aria-label="Package delivery, 28 Jun 2026, delivered — reopen"></a>
+                <span class="dr-order__top">
+                  <span class="dr-well">
                     <img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async">
-                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                    <span class="dr-status" role="img" aria-label="Delivered"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
                   </span>
-                  <span class="ohl-head">
-                    <span class="ohl-title">Package delivery</span>
-                    <span class="ohl-date">28 Jun · 14:20</span>
+                  <span class="dr-order__head">
+                    <span class="dr-order__title">Package delivery</span>
+                    <span class="dr-order__date">28 Jun · 14:20</span>
                   </span>
                 </span>
-                <span class="ohl-route">
-                  <span class="ohl-stop"><span class="ohl-lbl">From</span><span class="ohl-place">Podil</span></span>
-                  <span class="ohl-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
-                  <span class="ohl-stop ohl-stop-to"><span class="ohl-lbl">To</span><span class="ohl-place">Osokorky</span></span>
+                <span class="dr-inset">
+                  <span class="dr-inset__stop"><span class="dr-inset__lbl">From</span><span class="dr-inset__place">Podil</span></span>
+                  <span class="dr-inset__dir" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+                  <span class="dr-inset__stop dr-inset__stop--to"><span class="dr-inset__lbl">To</span><span class="dr-inset__place">Osokorky</span></span>
                 </span>
-                <span class="ohl-fee">
-                  <span><span class="sr-only">Delivery fee</span><span class="ohl-price">&#8372;180</span></span>
-                  <span class="ohl-acts"><button class="sbi grey" type="button" aria-label="Delete order"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="sbi grey" href="delivery.html" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
+                <span class="dr-order__fee">
+                  <span><span class="sr-only">Delivery fee</span><span class="dr-number dr-order__price">&#8372;180</span></span>
+                  <span class="dr-order__acts"><button class="dr-btn dr-btn--icon" type="button" aria-label="Delete order"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="dr-btn dr-btn--icon" href="delivery.html" aria-label="View details"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
                 </span>
             </article>
           </li>
           <li>
-            <article class="card stack-card oh-card oh-done">
-              <a class="card-link" href="order-setup.html" aria-label="Aerial photo and video, 14 Jun 2026, delivered — reopen"></a>
-                <span class="ohl-top">
-                  <span class="ohl-ic">
+            <article class="dr-card">
+              <a class="dr-card__link" href="order-setup.html" aria-label="Aerial photo and video, 14 Jun 2026, delivered — reopen"></a>
+                <span class="dr-order__top">
+                  <span class="dr-well">
                     <img src="../assets/drones/thumbs/drone-flight-camera.png" alt="" loading="lazy" decoding="async">
-                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                    <span class="dr-status" role="img" aria-label="Delivered"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
                   </span>
-                  <span class="ohl-head">
-                    <span class="ohl-title">Aerial photo &amp; video</span>
-                    <span class="ohl-date">14 Jun · 11:30</span>
+                  <span class="dr-order__head">
+                    <span class="dr-order__title">Aerial photo &amp; video</span>
+                    <span class="dr-order__date">14 Jun · 11:30</span>
                   </span>
                 </span>
-                <span class="ohl-route">
-                  <span class="ohl-stop"><span class="ohl-lbl">Location</span><span class="ohl-place">Trukhaniv Island</span></span>
+                <span class="dr-inset">
+                  <span class="dr-inset__stop"><span class="dr-inset__lbl">Location</span><span class="dr-inset__place">Trukhaniv Island</span></span>
                 </span>
-                <span class="ohl-fee">
-                  <span><span class="sr-only">Total</span><span class="ohl-price">&#8372;800</span></span>
-                  <span class="ohl-acts"><button class="sbi grey" type="button" aria-label="Delete order"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="sbi grey" href="delivery.html" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
+                <span class="dr-order__fee">
+                  <span><span class="sr-only">Total</span><span class="dr-number dr-order__price">&#8372;800</span></span>
+                  <span class="dr-order__acts"><button class="dr-btn dr-btn--icon" type="button" aria-label="Delete order"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="dr-btn dr-btn--icon" href="delivery.html" aria-label="View details"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
                 </span>
             </article>
           </li>
           <li>
-            <article class="card stack-card oh-card oh-done">
-              <a class="card-link" href="order-setup.html" aria-label="Roof inspection, 2 Jun 2026, delivered — reopen"></a>
-                <span class="ohl-top">
-                  <span class="ohl-ic">
+            <article class="dr-card">
+              <a class="dr-card__link" href="order-setup.html" aria-label="Roof inspection, 2 Jun 2026, delivered — reopen"></a>
+                <span class="dr-order__top">
+                  <span class="dr-well">
                     <img src="../assets/drones/thumbs/drone-flight-clean.png" alt="" loading="lazy" decoding="async">
-                    <span class="oh-ind" role="img" aria-label="Delivered"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+                    <span class="dr-status" role="img" aria-label="Delivered"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
                   </span>
-                  <span class="ohl-head">
-                    <span class="ohl-title">Roof inspection</span>
-                    <span class="ohl-date">2 Jun · 09:15</span>
+                  <span class="dr-order__head">
+                    <span class="dr-order__title">Roof inspection</span>
+                    <span class="dr-order__date">2 Jun · 09:15</span>
                   </span>
                 </span>
-                <span class="ohl-route">
-                  <span class="ohl-stop"><span class="ohl-lbl">Location</span><span class="ohl-place">Osokorky, 14</span></span>
+                <span class="dr-inset">
+                  <span class="dr-inset__stop"><span class="dr-inset__lbl">Location</span><span class="dr-inset__place">Osokorky, 14</span></span>
                 </span>
-                <span class="ohl-fee">
-                  <span><span class="sr-only">Total</span><span class="ohl-price">&#8372;650</span></span>
-                  <span class="ohl-acts"><button class="sbi grey" type="button" aria-label="Delete order"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="sbi grey" href="inspection-report.html" aria-label="View details"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
+                <span class="dr-order__fee">
+                  <span><span class="sr-only">Total</span><span class="dr-number dr-order__price">&#8372;650</span></span>
+                  <span class="dr-order__acts"><button class="dr-btn dr-btn--icon" type="button" aria-label="Delete order"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="dr-btn dr-btn--icon" href="inspection-report.html" aria-label="View details"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
                 </span>
             </article>
           </li>
         </ul>
       </section>
     </main>
-    <footer class="tabbar">
-      <nav class="tabs" aria-label="Primary">
-        <a class="tab" href="listings.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
-        <a class="tab" href="order-history.html" aria-current="page"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
-        <a class="tab" href="support.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
-        <a class="tab" href="account.html"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="listings.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+        <a class="dr-tab" href="order-history.html" aria-current="page"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+        <a class="dr-tab" href="support.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+        <a class="dr-tab" href="account.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
       </nav>
-      <div class="home-indicator"><span></span></div>
+      <div class="dr-home"><span></span></div>
     </footer>
   </div>
 
