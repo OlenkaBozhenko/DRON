@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON — shell</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* Page chrome for this document only. Nothing here is part of the kit —
+     the kit is kit.css, and everything below the .dr-screen is packaging. */
+  body{ font-family:var(--font-ui); background:var(--media); color:var(--ink);
+    margin:0; padding:32px; display:flex; flex-wrap:wrap; gap:32px; align-items:flex-start; }
+  .doc{ max-width:640px; font-size:14px; line-height:1.6; }
+  .doc h1{ font-size:22px; font-weight:700; letter-spacing:-.02em; margin:0 0 8px; }
+  .doc h2{ font-size:15px; font-weight:600; margin:28px 0 8px; }
+  .doc p{ margin:0 0 12px; color:var(--slate); }
+  .doc code{ font-family:var(--font-mono); font-size:12.5px; background:var(--card);
+    padding:1px 5px; border-radius:4px; color:var(--ink); }
+  .doc pre{ font-family:var(--font-mono); font-size:12px; line-height:1.7;
+    background:var(--card); color:var(--ink); padding:16px; border-radius:12px;
+    overflow-x:auto; margin:0 0 16px; white-space:pre; }
+  .doc table{ border-collapse:collapse; font-size:13px; margin:0 0 16px; width:100%; }
+  .doc th,.doc td{ text-align:left; padding:7px 10px 7px 0; border-bottom:1px solid var(--line);
+    vertical-align:top; }
+  .doc th{ font-family:var(--font-mono); font-size:11px; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--slate); font-weight:600; }
+  .doc td b{ font-weight:600; }
+  .frames{ display:flex; gap:24px; flex-wrap:wrap; }
+  .cap{ font-family:var(--font-mono); font-size:11px; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--slate); margin-bottom:10px; }
+</style>
+</head>
+<body class="dr">
+
+<div class="doc">
+  <h1>Shell</h1>
+  <p>The frame every screen sits in, as <b>markup</b> — a two-layer header
+     (status bar over nav bar) and a tab bar. A grayscale screen takes its shell
+     from here; a CSS-only kit cannot dress what has no skeleton.</p>
+
+  <h2>Measured, not asserted</h2>
+  <table>
+    <tr><th>Part</th><th>Value</th><th>Where it comes from</th></tr>
+    <tr><td><b>Status bar</b></td><td>44px, <code>--page</code>, 13/600 <code>--ink</code></td>
+        <td>Ten painted pages, computed style</td></tr>
+    <tr><td><b>Nav bar</b></td><td>56px, <code>--page</code>, 1px <code>--line</code> bottom</td>
+        <td>Measured 56 on all ten. <code>DESIGN.md</code> does not state it; <code>ui/inventory.md</code> says 44 — a drift, recorded</td></tr>
+    <tr><td><b>Title</b></td><td>17/600/−.01em <code>--ink</code>, <b>15.99:1</b></td>
+        <td>An <code>&lt;h1&gt;</code>, not a span: one entry point per screen (1.3.1 / 2.4.6)</td></tr>
+    <tr><td><b>Tab bar</b></td><td>60 + 30px, tab 86.3 × 50 at <code>--r-card</code></td>
+        <td>Target clears 44pt on both axes</td></tr>
+    <tr><td><b>Selected tab</b></td><td><code>--green-wash</code> + <code>--ink</code>, <b>14.75:1</b></td>
+        <td>HIG tints the label; raw green as text is 1.69:1, so the accent moves into the fill and the ink darkens with it — two signals where the convention gives one</td></tr>
+    <tr><td><b>Unselected tab</b></td><td>transparent + <code>--slate</code>, <b>6.62:1</b></td><td>—</td></tr>
+    <tr><td><b>Home indicator</b></td><td>30px, bar 134 × 5, <code>--r-hairline</code> 2px</td>
+        <td>Measured 2px. <code>DESIGN.md</code> says <code>--r-pill</code> — a drift, recorded</td></tr>
+  </table>
+
+  <h2>Two headers, one shell</h2>
+  <p><b>Root screen</b> — brand + title, no back. <b>Pushed screen</b> — a back
+     button carrying the title of the screen you return to (<code>‹ Order review</code>),
+     never “Back to…”. Per <code>voice.md</code> and <code>HIG · Navigation bars</code>,
+     a tab-root screen has no back at all.</p>
+
+  <h2>Root screen</h2>
+<pre>&lt;div class="dr dr-screen"&gt;
+
+  &lt;div class="dr-statusbar"&gt;
+    &lt;span&gt;9:41&lt;/span&gt;
+    &lt;span class="dr-statusbar__sys"&gt;&lt;!-- signal · wifi · battery, 17px --&gt;&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;header class="dr-topbar"&gt;
+    &lt;span class="dr-brand" role="img" aria-label="DRON"&gt;&lt;/span&gt;
+    &lt;h1 class="dr-topbar__title"&gt;Activity&lt;/h1&gt;
+    &lt;span class="dr-topbar__spacer"&gt;&lt;/span&gt;
+  &lt;/header&gt;
+
+  &lt;main class="dr-main"&gt;&lt;!-- the screen --&gt;&lt;/main&gt;
+
+  &lt;footer class="dr-tabbar"&gt;
+    &lt;nav class="dr-tabs" aria-label="Primary"&gt;
+      &lt;a class="dr-tab" href="#"&gt;&lt;svg class="dr-ic dr-ic--22" …&gt;&lt;/svg&gt;Order&lt;/a&gt;
+      &lt;a class="dr-tab" href="#" aria-current="page"&gt;…Activity&lt;/a&gt;
+      &lt;a class="dr-tab" href="#"&gt;…Help&lt;/a&gt;
+      &lt;a class="dr-tab" href="#"&gt;…Account&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;div class="dr-home"&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/footer&gt;
+
+&lt;/div&gt;</pre>
+
+  <h2>Pushed screen, action bar instead of tabs</h2>
+<pre>  &lt;header class="dr-topbar"&gt;
+    &lt;a class="dr-back" href="#"&gt;‹ Order review&lt;/a&gt;
+    &lt;h1 class="dr-topbar__title"&gt;On the way&lt;/h1&gt;
+    &lt;span class="dr-topbar__spacer"&gt;&lt;/span&gt;
+  &lt;/header&gt;
+
+  &lt;footer class="dr-actionbar"&gt;
+    &lt;button class="dr-btn dr-btn--secondary dr-btn--block"&gt;Contact operator&lt;/button&gt;
+    &lt;button class="dr-btn dr-btn--primary dr-btn--block"&gt;View details&lt;/button&gt;
+  &lt;/footer&gt;</pre>
+  <p>Secondary sits <b>above</b> primary, so the thumb reaches the primary first.</p>
+</div>
+
+<div class="frames">
+
+  <div>
+    <p class="cap">Root · tab bar</p>
+    <div class="dr dr-screen">
+
+      <div class="dr-statusbar">
+        <span>9:41</span>
+        <span class="dr-statusbar__sys">
+          <svg class="dr-ic" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg>
+          <svg class="dr-ic" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg>
+          <svg class="dr-ic" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg>
+        </span>
+      </div>
+
+      <header class="dr-topbar">
+        <span class="dr-brand" role="img" aria-label="DRON"></span>
+        <h1 class="dr-topbar__title">Activity</h1>
+        <span class="dr-topbar__spacer"></span>
+      </header>
+
+      <main class="dr-main">
+        <p class="dr-label">Order history <span class="dr-label__act">▸ the screen goes here</span></p>
+      </main>
+
+      <footer class="dr-tabbar">
+        <nav class="dr-tabs" aria-label="Primary">
+          <a class="dr-tab" href="#"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+          <a class="dr-tab" href="#" aria-current="page"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+          <a class="dr-tab" href="#"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+          <a class="dr-tab" href="#"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+        </nav>
+        <div class="dr-home"><span></span></div>
+      </footer>
+
+    </div>
+  </div>
+
+  <div>
+    <p class="cap">Pushed · action bar</p>
+    <div class="dr dr-screen">
+
+      <div class="dr-statusbar">
+        <span>9:41</span>
+        <span class="dr-statusbar__sys">
+          <svg class="dr-ic" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg>
+          <svg class="dr-ic" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg>
+          <svg class="dr-ic" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg>
+        </span>
+      </div>
+
+      <header class="dr-topbar">
+        <a class="dr-back" href="#">‹ Order review</a>
+        <h1 class="dr-topbar__title">On the way</h1>
+        <span class="dr-topbar__spacer"></span>
+      </header>
+
+      <main class="dr-main">
+        <p class="dr-label">Live map <span class="dr-label__act">▸ the screen goes here</span></p>
+      </main>
+
+      <footer class="dr-actionbar">
+        <button class="dr-btn dr-btn--secondary dr-btn--block" type="button">Contact operator</button>
+        <button class="dr-btn dr-btn--primary dr-btn--block" type="button">View details</button>
+      </footer>
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
