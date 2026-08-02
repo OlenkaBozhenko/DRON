@@ -12,6 +12,18 @@
   body{ margin:0; background:var(--media); font-family:var(--font-ui); color:var(--ink); }
   .page{ max-width:1180px; margin:0 auto; padding:40px 24px 96px; }
 
+  /* Back to DRON — the same escape the wireframe shell gives every screen.
+     Warm-grey secondary, never green: this is not the page's action. */
+  .dr-backlink{
+    display:inline-flex; align-items:center; gap:8px;
+    min-height:44px; padding:0 16px; margin-bottom:20px;
+    border-radius:12px; background:var(--btn2); color:var(--ink);
+    font-size:15px; font-weight:600; text-decoration:none;
+    transition:background .15s, transform .12s;
+  }
+  .dr-backlink:hover{ background:var(--media); }
+  .dr-backlink:active{ transform:translateY(1px) scale(.99); }
+  .dr-backlink:focus-visible{ outline:2.5px solid var(--ink); outline-offset:2px; }
   .lede{ margin-bottom:40px; }
   .lede h1{ font-size:var(--t-display-size); font-weight:var(--t-display-weight);
     letter-spacing:var(--t-display-track); line-height:var(--t-display-line); margin:0 0 10px; }
@@ -78,6 +90,7 @@
 <div class="page dr">
 
 <div class="lede">
+  <a class="dr-backlink" href="../research.html"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M11 6L5 12l6 6"/></svg>Back to DRON</a>
   <h1>DRON kit</h1>
   <p><b>Extracted, not authored.</b> Every value here was read off the ten painted
      surfaces by computed style in a browser — <code>order-history</code> · <code>-empty</code> ·
@@ -865,11 +878,16 @@
     </table>
   </div>
   <div class="notes">
-    <p><b>Two drifts found and recorded, not silently fixed.</b></p>
-    <p><b>1 · Nav bar height.</b> Measured <b>56px</b> on all ten painted pages.
-       <code>DESIGN.md</code> does not state it; <code>ui/inventory.md</code>'s Nav bar row says 44.
-       56 is what is built, so 56 is what the kit carries.</p>
-    <p><b>2 · Home indicator radius.</b> Measured <b>2px</b>. <code>DESIGN.md</code> says
+    <p><b>Three drifts found and recorded, not silently fixed. Two are settled.</b></p>
+    <p><b>1 · Nav bar height. Settled 2026-08-02.</b> Measured <b>56px</b> on all ten painted
+       pages. <code>DESIGN.md</code> stated no height and <code>ui/inventory.md</code>'s Nav bar row
+       said 44 — both now carry 56, because the frames are the design.</p>
+    <p><b>2 · Chip glyph. Settled 2026-08-02.</b> The build drew <b>13px</b> in a badge and
+       <b>14px</b> in the ETA pill — one component at two values, against the
+       One-Component-One-Value rule. The designer's call is <b>14 everywhere</b>;
+       <code>--ic-13</code> becomes a declared rung that nothing spends.</p>
+    <p><b>3 · Home indicator radius. Still open</b> — the one drift not yet ruled on.
+       Measured <b>2px</b>. <code>DESIGN.md</code> says
        <code>--r-pill</code>. The base sheet sets 2px and no painted block overrides it. 2 is on the
        2 / 4 / 8 floor, which the closed-ramp rule permits for an internal detail — but the document
        and the frame disagree, and that is the designer's call.</p>
