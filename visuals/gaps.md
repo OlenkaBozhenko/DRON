@@ -119,12 +119,28 @@ carry the brand.
 | # | Filename | What it shows | Pages |
 |---|---|---|---|
 | ~~12~~ | ~~`scenes/inspection-cover-roof.jpg`~~ | **Filled 2026-08-02 — with #13's picture, on the designer's instruction.** She supplied Figma node `70:139`, a close-up of two cracked tiles near the ridge, and put it in the cover slot. Saved by what it shows, not by where it sits: `scenes/inspection-roof-cracked-tiles.jpg`. The establishing shot this row asked for — the whole roof from the air — was never supplied and is no longer blocking; the cover now opens on the damage instead of on the building. | `inspection-report` — `media-ph:COVER PHOTO` **(filled)** |
-| 13 | `scenes/inspection-roof-cracked-tiles.jpg` **(file exists, slot still empty)** | **Severity High** — two cracked tiles near the ridge. The file is in the repo, because this is exactly what node `70:139` shows — but it is spent on the cover. Either the same picture repeats here, which makes the report look like it has one photograph, or a second frame of the same damage from another angle fills it. | `inspection-report` — `media-ph:INSPECTION IMAGE` 1/3 |
-| 14 | `scenes/inspection-gutter-blocked.jpg` | **Severity Medium** — a gutter run blocked with leaves, standing water | `inspection-report` — 2/3 |
-| 15 | `scenes/inspection-chimney-flashing.jpg` | **Severity None** — sealed, intact chimney flashing | `inspection-report` — 3/3 |
+| ~~13~~ | ~~`scenes/inspection-roof-cracked-tiles.jpg`~~ | **Filled 2026-08-02.** The designer supplied nodes `72:148` · `72:149` · `72:150` — three frames of the same cracked tiles from three angles — and they take all three strip slots as `inspection-roof-crack-1/2/3.jpg`. So the second frame of the damage this row asked for exists, and two more besides. | `inspection-report` — `media-ph:INSPECTION IMAGE` 1/3 **(filled)** |
+| 14 | ~~`scenes/inspection-gutter-blocked.jpg`~~ **slot filled, subject not** | **Severity Medium** — the finding on the page still reads *Gutter · east run · leaf blockage over ~1.5 m, standing water*, and the frame beside it shows **cracked roof tiles**. The slot is no longer empty, so nothing looks unfinished — which is exactly why it is written down here. | `inspection-report` — 2/3 |
+| 15 | ~~`scenes/inspection-chimney-flashing.jpg`~~ **slot filled, subject not** | **Severity None** — the finding reads *Chimney flashing · sealed and intact*, and the frame shows cracked roof tiles again. Same note as #14. | `inspection-report` — 3/3 |
 | 16 | `scenes/delivered-proof-2.jpg` | A second doorstep — an apartment landing, not a house | `order-history` carries **two** delivered package orders and one proof photo |
 | 17 | `scenes/aerial-trukhaniv-island.jpg` | The aerial deliverable — a riverside plot from ~60 m, late afternoon | the *Aerial photo & video* order in `order-history` (see the flow seam below) |
 | 18 | `scenes/dispute-evidence-aerial-blurry.jpg` | The disputed deliverable: an aerial frame that is genuinely soft, so the client's claim reads as fair | `operator-dispute` — `up-ph:FLIGHT LOG / PHOTO`, filled state |
+
+**The photo set no longer matches the findings, and that is a content question, not a picture one.**
+The report lists three findings — *Roof · north slope* (High), *Gutter · east run* (Medium),
+*Chimney flashing* (None) — and all four supplied photographs, cover included, show the same two
+cracked tiles. Nothing in the set shows a gutter or a flashing. The strip is labelled *Photo set ▸
+evidence frames* rather than one-per-finding, so it is legible as a set about the headline defect;
+but a report that names a blocked gutter and shows no gutter is evidence that does not carry its
+own claim. Two ways out: supply one gutter frame and one flashing frame, or cut the findings list
+to the roof.
+
+**The four frames are not graded alike either.** Held against `README.md` §3 with `check-style.py`:
+the cover reads **+23.1** warm skew at hue **24°**, the three evidence frames read **+3.7 / +3.6 /
++2.8** and are effectively neutral (saturation under 2%). Same roof, same tiles — but the cover
+looks like late afternoon and the evidence looks like overcast noon. None of the four sits inside
+the +4…+18 band. Reported, not corrected: a grade is the designer's call, and §7.2 already notes
+that most of the existing set predates the band.
 
 ### B4 · Map — 1 file
 
