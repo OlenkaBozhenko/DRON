@@ -172,10 +172,15 @@
   .exempt{ color:var(--fg-3); }
 
   .where{ font-size:12.5px; line-height:1.6; color:var(--fg-2); }
+  /* Inline in prose -- a token named mid-sentence is part of the sentence.
+     It was display:block, which broke every one onto its own line and made
+     the whole column unreadable. Where a code line is meant to stand on its
+     own under the text, it says so: .ln. */
   .where code{
     font-family:var(--mono); font-size:11px; color:var(--fg-3);
     display:inline; white-space:nowrap;
   }
+  .where code.ln{ display:block; white-space:normal; }
 
   /* &#9472;&#9472; the specimen plate: always Studio, never the viewer's theme &#9472;&#9472; */
   /* The specimen's type and ink live HERE, not on the table row. Putting
@@ -189,6 +194,15 @@
     gap:12px; min-width:150px;
     font-family:var(--ui); color:#1A1A1A; font-size:15px; line-height:1.4;
   }
+  /* The specimen cell carries white-space:nowrap so its width:1% shrinks to
+     the specimen. That nowrap inherits all the way in, so product copy inside
+     a card never wrapped and simply ran out past the edge -- measured at 34.6px
+     and 50.5px past the plate on the message block and the empty-state banner.
+     Reset it here: inside a specimen, text wraps the way it does in the product,
+     and border-box keeps a dashed well inside the card it is drawn in. */
+  .plate{ white-space:normal; }
+  .plate, .plate *{ box-sizing:border-box; }
+  .plate *{ max-width:100%; }
   .plate.on-card{ background:#ECE9E4; }
   .plate.wide{ width:341px; }
   .plate.tight{ padding:12px; min-width:0; }
@@ -690,7 +704,7 @@
           <div><dt>gap</dt><dd>8px</dd></div>
           <div><dt>rule</dt><dd>1px #D9D5CE top</dd></div>
         </dl></td>
-        <td class="c-where"><p class="where">Most non-tab screens<code>painted only on tracking</code></p></td>
+        <td class="c-where"><p class="where">Most non-tab screens<code class="ln">painted only on tracking</code></p></td>
       </tr>
 
       <tr>
@@ -716,7 +730,7 @@
           <div><dt>rest</dt><dd>none / #5A5751</dd></div>
           <div><dt>ratio</dt><dd>14.75 &#183; 6.62</dd></div>
         </dl></td>
-        <td class="c-where"><p class="where">Tab-root screens<code>HIG tints the label; green is 1.69:1, so the fill carries it</code></p></td>
+        <td class="c-where"><p class="where">Tab-root screens<code class="ln">HIG tints the label; green is 1.69:1, so the fill carries it</code></p></td>
       </tr>
 
       <tr>
@@ -800,7 +814,7 @@
           <div><dt>shadow</dt><dd>--sh-sm</dd></div>
           <div><dt>ratio</dt><dd>9.46:1</dd></div>
         </dl></td>
-        <td class="c-where"><p class="where">Nearly every screen<code>hover brightness 1.03</code></p></td>
+        <td class="c-where"><p class="where">Nearly every screen<code class="ln">hover brightness 1.03</code></p></td>
       </tr>
 
       <tr>
@@ -848,7 +862,7 @@
           <div><dt>base</dt><dd>32px in grayscale</dd></div>
           <div><dt>painted</dt><dd>44px</dd></div>
         </dl></td>
-        <td class="c-where"><p class="where">Cards with an inline action<code>base and painted disagree on height</code></p></td>
+        <td class="c-where"><p class="where">Cards with an inline action<code class="ln">base and painted disagree on height</code></p></td>
       </tr>
 
       <tr>
@@ -960,7 +974,7 @@
           <div><dt>warn</dt><dd><span class="sw" style="background:#F6E7C4"></span>5.65:1</dd></div>
           <div><dt>danger</dt><dd><span class="sw" style="background:#F2D8CF"></span>5.49:1</dd></div>
         </dl></td>
-        <td class="c-where"><p class="where">Every empty and error state<code>role=alert / role=status</code></p></td>
+        <td class="c-where"><p class="where">Every empty and error state<code class="ln">role=alert / role=status</code></p></td>
       </tr>
 
       <tr>
@@ -983,7 +997,7 @@
           <div><dt>ground</dt><dd>none &#183; blend multiply</dd></div>
           <div><dt>offset</dt><dd>margin-top 56</dd></div>
         </dl></td>
-        <td class="c-where"><p class="where">order-history-empty<code>the one non-transparent image in the product</code></p></td>
+        <td class="c-where"><p class="where">order-history-empty<code class="ln">the one non-transparent image in the product</code></p></td>
       </tr>
 
       <tr>
@@ -1027,7 +1041,7 @@
           <div><dt>shadow</dt><dd>none</dd></div>
           <div><dt>step</dt><dd>1.11:1 on page</dd></div>
         </dl></td>
-        <td class="c-where"><p class="where">Listing and history screens<code>28px between, 20px within</code></p></td>
+        <td class="c-where"><p class="where">Listing and history screens<code class="ln">28px between, 20px within</code></p></td>
       </tr>
 
       <tr>
@@ -1052,7 +1066,7 @@
           <div><dt>rating</dt><dd>12.5 / 400 tabular</dd></div>
           <div><dt>chips</dt><dd>wrap below 390</dd></div>
         </dl></td>
-        <td class="c-where"><p class="where">tracking &#215;3 painted<code>account, support, order-confirmed still grayscale</code></p></td>
+        <td class="c-where"><p class="where">tracking &#215;3 painted<code class="ln">account, support, order-confirmed still grayscale</code></p></td>
       </tr>
 
       <tr>
@@ -1142,7 +1156,7 @@
           <div><dt>base</dt><dd>12px in grayscale</dd></div>
           <div><dt>rule</dt><dd>always &gt; any gap inside a card</dd></div>
         </dl></td>
-        <td class="c-where"><p class="where">Every list screen<code>base and painted disagree: 12 vs 28</code></p></td>
+        <td class="c-where"><p class="where">Every list screen<code class="ln">base and painted disagree: 12 vs 28</code></p></td>
       </tr>
 
       <tr>
@@ -1190,7 +1204,7 @@
           <div><dt>aspect</dt><dd>1.99</dd></div>
           <div><dt>shadow</dt><dd>none</dd></div>
         </dl></td>
-        <td class="c-where"><p class="where">tracking &#183; job-brief<code>job-brief still grayscale</code></p></td>
+        <td class="c-where"><p class="where">tracking &#183; job-brief<code class="ln">job-brief still grayscale</code></p></td>
       </tr>
 
     </tbody>
@@ -1234,7 +1248,7 @@
           <div><dt>type</dt><dd>12 / 600 &#183; glyph 13</dd></div>
           <div><dt>ratio</dt><dd>14.75 &#183; 5.51</dd></div>
         </dl></td>
-        <td class="c-where"><p class="where">Operator cards &#183; job cards<code>7 screens still grayscale</code></p></td>
+        <td class="c-where"><p class="where">Operator cards &#183; job cards<code class="ln">7 screens still grayscale</code></p></td>
       </tr>
 
       <tr>
@@ -1420,7 +1434,7 @@
         <td class="c-spec"><span class="nospec">310 slots waiting<br>for their glyph</span></td>
         <td class="c-screens"><span class="scr">37</span><span class="scr-sub">310 slots</span></td>
         <td class="c-where"><p class="where" style="max-width:34ch"><b>Nothing to decide &#8212; the icons go in.</b> The set already exists and is settled: flat outline on a 24-grid, <code>stroke-width 1.7</code> declared once, <code>fill:none</code>, <code>currentColor</code>, and the inventory in concept.md &#167;0.2 maps a glyph to every service, status, trust signal, nav item and action. So this is drawing work against a finished spec, not a design question &#8212; which is also why the count is the honest measure of how much of the prototype is still grayscale.</p></td>
-        <td class="c-where"><p class="where">37 screens<code>310 slots</code></p></td>
+        <td class="c-where"><p class="where">37 screens<code class="ln">310 slots</code></p></td>
       </tr>
 
     </tbody>
@@ -1547,7 +1561,7 @@
           <div><dt>radius</dt><dd>4px &#183; 999px</dd></div>
           <div><dt>pulse</dt><dd>1.4s &#183; 1 &#8594; .5</dd></div>
         </dl></td>
-        <td class="c-where"><p class="where">Every -loading page<code>offset &#8722;.47s / &#8722;.93s per card</code></p></td>
+        <td class="c-where"><p class="where">Every -loading page<code class="ln">offset &#8722;.47s / &#8722;.93s per card</code></p></td>
       </tr>
 
       <tr>
