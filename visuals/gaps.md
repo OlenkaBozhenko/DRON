@@ -87,19 +87,24 @@ the camera. The existing cutout cannot be cropped into one.
 
 | # | Filename | What it shows | Pages | Prompt |
 |---|---|---|---|---|
-| 6 | `scenes/scene-role-client.png` | The role fork, client side: a person in ordinary clothes taking a parcel from a drone | `role-select` — `media-ph:CLIENT` | §5.2 client |
+| ~~6~~ | ~~`scenes/scene-role-client.png`~~ | **Closed 2026-08-02 by the designer's own choice — the payload, not a person.** She supplied Figma node `68:135`; it is saved as `objects/cargo-box.png` (793 x 559, served 256 x 180), keyed and feathered the same way as #7. It opens a new `assets/objects/` register: the library had drones, people, scenes and the map, and no home for a thing. | `role-select` — `media-ph:CLIENT` **(filled)** | — |
 | ~~7~~ | ~~`scenes/scene-role-operator.png`~~ | **Closed 2026-08-02 by the designer's own choice — a drone, not a person.** She supplied Figma node `67:133`; it is saved as `drones/drone-flight-front.png` (744 × 212, served 256 × 73). The white frame ground was keyed out and the motion-blurred rotor tips feathered by their own luminance, so the streaks fade instead of arriving as an opaque white smear on the card. | `role-select` — `media-ph:OPERATOR` **(filled)** | — |
 | 8 | `scenes/scene-drone-rules.png` | What the drone does and doesn't: holding a set line at altitude, clear distance from windows and people | `welcome` — `slide-ph:DRONE` **(interim in place)** | §5.1 + a scene backdrop |
 | 9 | `scenes/scene-report-ready.png` | The outcome arriving: a finished inspection report on a phone in someone's hand | `onboarding-client` — `slide-ph:REPORT` | §5.3 |
 | 10 | `scenes/scene-checklist.png` | An operator on site working the checklist on the controller before take-off | `onboarding-operator` — `slide-ph:STEPS` | §5.2 operator |
 | 11 | `scenes/scene-paid.png` | Earnings landing — the payout moment, without fake UI or currency symbols | `onboarding-operator` — `slide-ph:PAID` | §5.3 |
 
-**The matched pair is off — #7 was answered with a drone.** The two cards no longer show two people
-in the same light; one shows the equipment, the other is still a `CLIENT` label. Whatever fills #6
-now has to sit beside a machine rather than beside a person, and that is a question for the
-designer, not an assumption to make here.
+**Both halves are answered, and the pair is now objects rather than people.** The designer supplied
+the drone for one card and the cargo box for the other. They *are* a matched pair on the terms that
+matter — both are studio cutouts on no ground, both from the same Figma set, both keyed the same way
+— but they show the **equipment**, not the two kinds of person. That is a legible reading of the
+fork: you either send a thing or you fly the thing that carries it.
 
-The original reasoning, kept because it still governs #6 if she wants the pair restored:
+What it costs, stated so it is not discovered later: the screen that asks *which kind of person are
+you* now answers with two machines, and the first human face a client meets moves one screen later.
+`RJ-C1` — confirm the operator is real — is carried by `order-confirmed` and `tracking`, not here.
+
+The original reasoning is kept because it governs the pair if it is ever restored:
 **#6 and #7 are one matched pair** — same lens, same crop, same light — because they sit side by side
 as the two halves of a single choice. That is why `client-receiving.png` and `operator.png` were
 *not* dropped in as an interim: they are different crops of different shoots and would read as a
