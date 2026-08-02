@@ -13,11 +13,14 @@
   .page{ max-width:1180px; margin:0 auto; padding:40px 24px 96px; }
 
   .lede{ margin-bottom:40px; }
-  .lede h1{ font-size:34px; font-weight:700; letter-spacing:-.03em; margin:0 0 10px; }
+  .lede h1{ font-size:var(--t-display-size); font-weight:var(--t-display-weight);
+    letter-spacing:var(--t-display-track); line-height:var(--t-display-line); margin:0 0 10px; }
   .lede p{ font-size:15px; line-height:1.6; color:var(--slate); max-width:62ch; margin:0 0 10px; }
   .lede a{ color:var(--ink); }
   .figs{ display:flex; flex-wrap:wrap; gap:28px; margin-top:22px; }
-  .fig b{ display:block; font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1; }
+  .fig b{ display:block; font-size:var(--t-number-size); font-weight:var(--t-number-weight);
+    letter-spacing:var(--t-number-track); line-height:var(--t-number-line);
+    font-variant-numeric:tabular-nums; }
   .fig span{ display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.09em;
     text-transform:uppercase; color:var(--slate); margin-top:6px; }
 
@@ -52,7 +55,7 @@
     padding:0 12px 8px 0; border-bottom:1px solid var(--line); }
   table.t td{ padding:8px 12px 8px 0; border-bottom:1px solid var(--line); vertical-align:middle; }
   table.t code{ font-family:var(--font-mono); font-size:11px; }
-  .sw{ display:inline-block; width:34px; height:20px; border-radius:4px; vertical-align:-5px;
+  .sw{ display:inline-block; width:34px; height:20px; border-radius:var(--r-detail); vertical-align:-5px;
     margin-right:9px; border:1px solid var(--line); }
   .ratio{ font-variant-numeric:tabular-nums; font-weight:600; }
 
@@ -217,14 +220,14 @@
        detail may use the 2 / 4 / 8 floor.</p></div>
   <div class="spec col">
     <div class="shapes">
-      <div class="shape"><i style="border-radius:4px"></i><span>detail 4</span></div>
-      <div class="shape"><i style="border-radius:10px"></i><span>input 10</span></div>
-      <div class="shape"><i style="border-radius:12px"></i><span>btn 12</span></div>
-      <div class="shape"><i style="border-radius:13px"></i><span>media 13</span></div>
-      <div class="shape"><i style="border-radius:16px"></i><span>card 16</span></div>
-      <div class="shape"><i style="border-radius:22px"></i><span>panel 22</span></div>
-      <div class="shape"><i style="border-radius:999px"></i><span>pill 999</span></div>
-      <div class="shape"><i style="border-radius:50%;width:44px"></i><span>circle 50%</span></div>
+      <div class="shape"><i style="border-radius:var(--r-detail)"></i><span>detail 4</span></div>
+      <div class="shape"><i style="border-radius:var(--r-input)"></i><span>input 10</span></div>
+      <div class="shape"><i style="border-radius:var(--r-btn)"></i><span>btn 12</span></div>
+      <div class="shape"><i style="border-radius:var(--r-media)"></i><span>media 13</span></div>
+      <div class="shape"><i style="border-radius:var(--r-card)"></i><span>card 16</span></div>
+      <div class="shape"><i style="border-radius:var(--r-panel)"></i><span>panel 22</span></div>
+      <div class="shape"><i style="border-radius:var(--r-pill)"></i><span>pill 999</span></div>
+      <div class="shape"><i style="border-radius:var(--r-circle);width:44px"></i><span>circle 50%</span></div>
     </div>
     <table class="t" style="margin-top:20px">
       <tr><th>Space</th><th>Value</th><th>Use</th></tr>
@@ -385,8 +388,8 @@
         <span class="dr-inset__stop dr-inset__stop--to"><span class="dr-inset__lbl">To</span><span class="dr-inset__place">Osokorky</span></span>
       </div>
       <div class="dr-order__fee">
-        <span><span class="dr-order__fee-lbl">Fee</span><span class="dr-number dr-order__price">₴180</span></span>
-        <span class="dr-chip"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9"/><path d="M12 13.5l3.4 2"/><path d="M9.5 3.2h5"/></svg>ETA ~6 min</span>
+        <span><span class="dr-order__fee-lbl">Delivery fee</span><span class="dr-number dr-order__price">₴180</span></span>
+        <span class="dr-chip"><svg class="dr-ic dr-ic--14 dr-ic--eta" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9"/><path d="M12 13.5l3.4 2"/><path d="M9.5 3.2h5"/></svg>ETA ~6 min</span>
       </div>
       <button class="dr-btn dr-btn--primary dr-btn--block" type="button">View details</button>
     </article>
@@ -408,7 +411,7 @@
         <span class="dr-inset__stop dr-inset__stop--to"><span class="dr-inset__lbl">To</span><span class="dr-inset__place">Osokorky</span></span>
       </div>
       <div class="dr-order__fee">
-        <span><span class="dr-order__fee-lbl">Fee</span><span class="dr-number dr-order__price">₴180</span></span>
+        <span><span class="dr-order__fee-lbl">Delivery fee</span><span class="dr-number dr-order__price">₴180</span></span>
         <span class="dr-order__acts">
           <button class="dr-btn dr-btn--icon" type="button" aria-label="Delete order"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button>
         </span>
@@ -601,8 +604,8 @@
       <div class="dr-order__top" style="gap:16px">
         <span class="dr-sk-well"></span>
         <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
-          <span class="dr-sk-line dr-sk-w70" style="height:14px"></span>
-          <span class="dr-sk-line dr-sk-w40" style="height:10px"></span>
+          <span class="dr-sk-line dr-sk-title dr-sk-w70"></span>
+          <span class="dr-sk-line dr-sk-date dr-sk-w40"></span>
         </span>
       </div>
       <span class="dr-sk-line dr-sk-w90"></span>

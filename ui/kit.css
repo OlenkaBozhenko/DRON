@@ -1,0 +1,941 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   DRON — kit.css
+   One flat stylesheet: :root tokens, then component classes. No layers.
+
+   EXTRACTED, NOT AUTHORED. Every value below was read off the ten painted
+   surfaces by computed style in a browser — order-history · -empty · -loading,
+   tracking · -empty · -error · -loading, delivery · -error · -loading — and
+   cross-checked against DESIGN.md, concept/concept.md and ui/inventory.md.
+   A grayscale component keeps the real structure of its own wireframe and takes
+   its look from the language in DESIGN.md; nothing here is imagined.
+
+   THE RULE THIS FILE HOLDS: every design value lives in :root and reaches a
+   class through var(). A class never states a colour, a size, a radius, a
+   weight, a duration or a shadow directly. Structural keywords (flex, block,
+   center), flex-grow integers, 0 and 100% are layout, not design values, and
+   stay inline.
+
+   NOT CARRIED OVER: the wireframe scaffold. No .wf-*, no .device, no phone
+   frame, no annotation sidebar, no state switcher. Those are the prototype's
+   packaging, not the product.
+
+   ───────────────────────────────────────────────────────────────────────────
+   THE NAME DRIFT THIS FILE CLOSES
+
+   One concept had many class names across 84 files. Each row is now one API.
+
+     progress node        .nd · .tl-dot                      → .dr-node
+     card surface         article.card · .oh-card · .sk-card → .dr-card
+     row panel            .kv · .kv-row · .kv-key · .kv-val  → .dr-rows
+     pill                 .badge · .chip · .ohl-eta · .tag ·
+                          .grouptab · .fchip                 → .dr-chip
+     icon-only button     .sbi.grey · .icon-btn · .ic-filter ·
+                          .op-edit · .ic-edit · .pencil      → .dr-btn--icon
+     caption              .hint · .note · .field-hint ·
+                          .check-note                        → .dr-note / .dr-hint
+     mono structure label .zlabel · .ohl-lbl                 → .dr-label
+     media surface        .media-ph · .ohl-ic · .msg-ph ·
+                          .slide-ph · .map-ph · .sk-well     → .dr-well
+     state mark           .msg-ph · .success-mark            → .dr-mark
+
+   TWO DRIFTS FOUND AND RECORDED RATHER THAN SILENTLY FIXED
+
+     · Nav bar height is 56px on all ten painted pages (measured). DESIGN.md
+       does not state it and ui/inventory.md's Nav bar row says 44px. 56 is what
+       is built, so 56 is what this file carries.
+     · The home indicator bar is border-radius:2px (measured). DESIGN.md says
+       --r-pill. The base sheet sets 2px and no painted block overrides it, so
+       2px is what is built. 2 is on the 2/4/8 floor, which the closed-ramp rule
+       permits for an internal detail.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* ── COLOUR ─────────────────────────────────────────────────────────────
+     Four warm surfaces, two inks, one accent, two semantic washes.
+     No #FFFFFF and no #000000 anywhere. Ratios are measured, not asserted. */
+  --page:        #F7F5F2;   /* screen ground and every system bar */
+  --card:        #ECE9E4;   /* 1.11:1 on the page */
+  --media:       #E4E1DA;   /* 1.20:1 on the page — wells, muted chips */
+  --btn2:        #D6D2C9;   /* secondary button, icon action, skeleton bar */
+  --inset:       #F2F0EC;   /* 1.06:1 above the card — a plane inside a card */
+  --ink:         #1A1A1A;   /* 15.99:1 on page · 14.37:1 on card */
+  --slate:       #5A5751;   /* 6.62:1 on page · 5.95:1 on card · 4.77:1 on btn2 */
+  --line:        #D9D5CE;   /* every hairline — 1.21:1 on the card */
+  --green:       #9BCF4A;   /* fill only. As a foreground: 1.69:1 / 1.52:1 */
+  --on-green:    #1A1A1A;   /* 9.46:1 — the only colour allowed on green */
+  --green-wash:  #E7F0D2;   /* the one tint. Charcoal on it is 14.75:1 */
+  --warn:        #E4A11B;   /* declared, drawn nowhere — 1.84:1 on the card */
+  --warn-ink:    #7A5200;   /* 5.65:1 on its wash */
+  --warn-wash:   #F6E7C4;
+  --danger:      #C4462A;   /* declared, drawn nowhere — 4.07:1 */
+  --danger-ink:  #9A3115;   /* 5.49:1 on its wash · 6.14:1 on the card */
+  --danger-wash: #F2D8CF;
+
+  /* ── TYPE ───────────────────────────────────────────────────────────────
+     One UI stack, one mono stack. Ten steps, all in use.
+     Leading is 1.4 by inheritance; a step overrides only where the box asks. */
+  --font-ui:   -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --t-display-size: 22px;   --t-display-weight: 700; --t-display-line: 1.4;  --t-display-track: -.02em;
+  --t-number-size:  20px;   --t-number-weight:  700; --t-number-line:  1;    --t-number-track:  -.02em;
+  --t-title-size:   17px;   --t-title-weight:   600; --t-title-line:   1.4;  --t-title-track:   -.01em;
+  --t-heading-size: 15px;   --t-heading-weight: 600; --t-heading-line: 1.2;
+  --t-lead-size:    15px;   --t-lead-weight:    400; --t-lead-line:    1.55;
+  --t-body-size:    14px;   --t-body-weight:    400; --t-body-line:    1.3;
+  --t-bodysm-size:  13px;   --t-bodysm-weight:  400; --t-bodysm-line:  1.4;
+  --t-para-line:    1.5;                                   /* .msg-body's own leading */
+  --t-meta-size:    12.5px; --t-meta-weight:    400; --t-meta-line:    1.2;
+  --t-caption-size: 12px;   --t-caption-weight: 600; --t-caption-line: 1.4;
+  --t-micro-size:   11px;   --t-micro-weight:   600; --t-micro-line:   1.4;  --t-micro-track: .09em;
+  --t-micro-track-tight: .05em;                            /* FROM / TO route labels */
+  --t-microsm-size: 10.5px; --t-microsm-weight: 400; --t-microsm-line: 1.4;
+  --t-base-size:    15px;   --t-base-line:      1.4;        /* the frame's inherited default */
+  --weight-regular: 400;
+  --weight-medium:  600;
+
+  /* ── RADIUS — a closed ramp of six, plus circles ───────────────────────── */
+  --r-detail: 4px;    /* below the ramp: an internal detail on the 2/4/8 floor */
+  --r-hairline: 2px;  /* the home-indicator bar — same floor */
+  --r-input:  10px;
+  --r-btn:    12px;
+  --r-media:  13px;
+  --r-card:   16px;
+  --r-panel:  22px;
+  --r-pill:   999px;
+  --r-circle: 50%;
+
+  /* ── SPACE — base 4 ─────────────────────────────────────────────────────
+     Between beats within: the gap between two cards (28) is always larger than
+     any gap inside one (<= 20). */
+  --sp-within:    4px;
+  --sp-within-lg: 8px;
+  --sp-snug:      12px;
+  --sp-screen:    16px;
+  --sp-group:     20px;
+  --sp-list:      28px;
+  --sp-cta:       32px;
+  --sp-2:  2px;   --sp-3:  3px;  --sp-5:  5px;  --sp-6:  6px;  --sp-9:  9px;
+  --sp-10: 10px;  --sp-13: 13px; --sp-14: 14px; --sp-18: 18px;
+  --sp-22: 22px;  --sp-24: 24px;
+
+  /* ── SIZE ───────────────────────────────────────────────────────────────
+     Every one measured on a painted surface. */
+  --h-control:   44px;   /* the HIG target — a min-height, never a height */
+  --h-statusbar: 44px;
+  --h-topbar:    56px;   /* measured on all ten pages */
+  --h-tabs:      60px;
+  --h-tab:       50px;
+  --h-home:      30px;
+  --h-groups:    48px;   /* the in-page tab row */
+  --h-pill:      32px;   /* visible height of a chip / in-page tab */
+  --w-home-bar:  134px;
+  --h-home-bar:  5px;
+
+  --sz-node:        22px;  /* one progress node, both axes */
+  --sz-node-glyph:  12px;
+  --sz-node-border: 2px;
+  --sz-track:       2px;   /* the connector between nodes */
+  --sz-status:      20px;  /* live / done disc on the drone well */
+  --sz-status-ring: 2px;
+  --sz-mark:        52px;  /* state mark in a message block */
+  --sz-mark-lg:     64px;  /* milestone mark */
+  --sz-action:      44px;  /* circular icon action */
+  --sz-box:         24px;  /* checkbox / radio */
+  --sz-well-w:      96px;  /* the card well that carries a render */
+  --sz-well-h:      72px;
+  --sz-well-w-sm:   68px;  /* narrow tier */
+  --sz-well-h-sm:   52px;
+  --sz-avatar:      117px; /* the operator panel — the asset's own ratio */
+  --sz-arrow:       26px;  /* the direction chip in a route strip */
+  --sz-tick:        30px;  /* the green tick under a zone label */
+  --sz-tick-h:      2px;
+  --sz-dot:         10px;  /* the filled centre of a checked radio */
+  --sk-title-h:     14px;  /* the bar standing in for a card title */
+  --sk-date-h:      10px;  /* and for its date */
+  --sz-brand-w:     60px;  /* the DRON mark — 2.99:1 artwork */
+  --sz-brand-h:     20px;
+
+  /* Derived, so a change to the source value carries. The node's centre is
+     where a connector must sit; the pick separator starts past the box; the
+     in-page tab's hit area grows to the control height without moving the
+     pill. Deriving beats restating: the arithmetic cannot drift. */
+  --node-centre:  calc((var(--sz-node) - var(--sz-track)) / 2);
+  --pick-indent:  calc(var(--sp-screen) + var(--sz-box) + var(--sp-snug));
+  --pill-bleed:   calc((var(--h-control) - var(--h-pill)) / -2);
+
+  --ic-12: 12px; --ic-13: 13px; --ic-14: 14px; --ic-16: 16px;
+  --ic-20: 20px; --ic-22: 22px; --ic-26: 26px; --ic-32: 32px;
+  --ic-stroke: 1.7;      /* declared once. The rendered line follows the box. */
+  --ic-grid: 0 0 24 24;
+
+  --hair: 1px;           /* every hairline is one pixel */
+  --focus-w: 2.5px;
+  --focus-offset: 2px;
+
+  /* ── ELEVATION ──────────────────────────────────────────────────────────
+     Surfaces are flat. Exactly one shadow is spent, under the green primary.
+     The other three are declared rungs, applied to nothing. */
+  --sh-sm:      0 1px 2px rgba(20,18,15,.05);
+  --sh-card:    0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30);
+  --sh-raised:  0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34);
+  --sh-onphoto: 0 2px 8px rgba(20,18,15,.18);
+  --halo-now:   0 0 0 4px color-mix(in srgb, var(--green) 20%, transparent);
+
+  /* ── MOTION — four loops, every one functional ─────────────────────────── */
+  --dur-fast:   .12s;
+  --dur-base:   .15s;
+  --dur-ping:   1.8s;
+  --dur-pulse:  1.4s;
+  --dur-upload: 1.6s;
+  --ease-out:   cubic-bezier(.22,.61,.36,1);
+  --lift-active: 1px;
+  --scale-active: .99;
+  --bright-hover: 1.03;
+  --pulse-floor: .5;
+  --ping-reach: 8px;    /* how far the live ring travels before it fades */
+  --up-out: -3.2px;     /* the arrow leaving the upload tray */
+  --up-in:   2.6px;     /* and re-entering from below, still invisible */
+  --turn-open: 180deg;  /* closed points down, open points up */
+
+  /* ── LAYOUT ─────────────────────────────────────────────────────────────── */
+  --screen-w: 375px;
+  --screen-h: 812px;
+  --measure-msg: 260px;   /* the message block's body cap */
+  --map-aspect: 1.99;     /* the live map's native ratio */
+  /* Skeleton bar widths. They vary per card so three skeletons do not read as
+     one stamped block. */
+  --sk-w90: 90%; --sk-w70: 70%; --sk-w50: 50%; --sk-w40: 40%; --sk-w30: 30%;
+  --rail-track-start: 12.5%;  /* the centre of column 1 of 4 */
+  --rail-track-span:  75%;    /* to the centre of column 4 */
+}
+
+/* ═══ BASE ════════════════════════════════════════════════════════════════ */
+
+.dr *,
+.dr *::before,
+.dr *::after{ box-sizing: border-box; margin: 0; padding: 0; }
+
+.dr{
+  font-family: var(--font-ui);
+  font-size: var(--t-base-size);
+  line-height: var(--t-base-line);
+  color: var(--ink);
+  background: var(--page);
+  -webkit-font-smoothing: antialiased;
+}
+
+.dr-sr{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* Icons are one system: flat outline on a 24-grid, stroke declared once,
+   currentColor, no fill. No glyph compensates its stroke — the size changes. */
+.dr-ic{
+  display: block; flex: none;
+  width: var(--ic-20); height: var(--ic-20);
+  fill: none; stroke: currentColor; stroke-width: var(--ic-stroke);
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.dr-ic--12{ width: var(--ic-12); height: var(--ic-12); }
+.dr-ic--13{ width: var(--ic-13); height: var(--ic-13); }
+.dr-ic--14{ width: var(--ic-14); height: var(--ic-14); }
+.dr-ic--16{ width: var(--ic-16); height: var(--ic-16); }
+.dr-ic--22{ width: var(--ic-22); height: var(--ic-22); }
+.dr-ic--26{ width: var(--ic-26); height: var(--ic-26); }
+.dr-ic--32{ width: var(--ic-32); height: var(--ic-32); }
+
+/* ═══ SHELL ═══════════════════════════════════════════════════════════════
+   The two-layer header (status bar over nav bar) and the tab bar. Every system
+   bar takes the page ground, so the chrome melts into the page and only a
+   hairline separates it. Markup lives in ui/shell.html. */
+
+.dr-screen{
+  width: var(--screen-w); height: var(--screen-h); flex: none; max-width: 100%;
+  background: var(--page);
+  border: var(--hair) solid var(--line);
+  border-radius: var(--r-panel);
+  overflow: hidden; display: flex; flex-direction: column; position: relative;
+}
+
+.dr-statusbar{
+  height: var(--h-statusbar); flex: none;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--sp-screen);
+  background: var(--page); color: var(--ink);
+  font-size: var(--t-bodysm-size); font-weight: var(--weight-medium);
+}
+.dr-statusbar__sys{ display: flex; align-items: center; gap: var(--sp-5); }
+
+.dr-topbar{
+  height: var(--h-topbar); flex: none;
+  display: flex; align-items: center; gap: var(--sp-within-lg);
+  padding: 0 var(--sp-screen);
+  background: var(--page);
+  border-bottom: var(--hair) solid var(--line);
+}
+.dr-topbar__title{
+  font-size: var(--t-title-size); font-weight: var(--t-title-weight);
+  line-height: var(--t-title-line); letter-spacing: var(--t-title-track);
+  color: var(--ink);
+}
+.dr-topbar__spacer{ flex: 1; }
+/* The DRON mark. Drawn as a mask filled with currentColor rather than an
+   embedded file, so it takes the surface's ink and cannot bring a second
+   colour in. #1A1A1A on the page is 15.99:1 against the 3:1 that 1.4.11 asks
+   of a non-text graphic. Root screens only: a pushed screen carries a back
+   button and its own title, which is what HIG gives that bar. */
+.dr-brand{
+  width: var(--sz-brand-w); height: var(--sz-brand-h); flex: none;
+  background: var(--ink);
+  -webkit-mask: url(../assets/brand/dron-logo.svg) center/contain no-repeat;
+          mask: url(../assets/brand/dron-logo.svg) center/contain no-repeat;
+}
+.dr-back{
+  font-size: var(--t-heading-size); font-weight: var(--weight-medium);
+  color: var(--ink); background: transparent; border: 0; cursor: pointer;
+  text-decoration: none;
+}
+
+.dr-main{
+  flex: 1; overflow-y: auto;
+  padding: var(--sp-screen);
+  display: flex; flex-direction: column; gap: var(--sp-screen);
+}
+.dr-stack{ display: flex; flex-direction: column; gap: var(--sp-snug); }
+.dr-center{ display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--sp-snug); }
+
+.dr-tabbar{
+  flex: none; background: var(--page);
+  border-top: var(--hair) solid var(--line);
+}
+.dr-tabs{
+  height: var(--h-tabs); display: flex;
+  padding: var(--sp-6) var(--sp-within-lg) var(--sp-within);
+  gap: var(--sp-within);
+  list-style: none;
+}
+.dr-tab{
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--sp-3);
+  height: var(--h-tab);
+  border-radius: var(--r-card);
+  text-decoration: none;
+  font-size: var(--t-micro-size); font-weight: var(--weight-medium);
+  color: var(--slate);
+}
+/* HIG tints the selected label with the accent. Raw green as a label is
+   1.69:1, so the accent moves into the FILL and the ink darkens with it —
+   two signals where the convention gives one. */
+.dr-tab[aria-current="page"]{ background: var(--green-wash); color: var(--ink); }
+.dr-tab:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+
+.dr-home{ height: var(--h-home); display: flex; align-items: center; justify-content: center; }
+.dr-home span{
+  width: var(--w-home-bar); height: var(--h-home-bar);
+  border-radius: var(--r-hairline); background: var(--ink);
+}
+
+.dr-actionbar{
+  flex: none; background: var(--page);
+  border-top: var(--hair) solid var(--line);
+  padding: var(--sp-snug) var(--sp-screen) var(--sp-24);
+  display: flex; flex-direction: column; gap: var(--sp-within-lg);
+}
+.dr-actionbar__row{ display: flex; gap: var(--sp-within-lg); }
+.dr-actionbar__row .dr-btn{ flex: 1; }
+
+/* ═══ TYPE ROLES ══════════════════════════════════════════════════════════ */
+
+.dr-display{
+  font-size: var(--t-display-size); font-weight: var(--t-display-weight);
+  line-height: var(--t-display-line); letter-spacing: var(--t-display-track);
+  color: var(--ink);
+}
+.dr-lead{
+  font-size: var(--t-lead-size); font-weight: var(--t-lead-weight);
+  line-height: var(--t-lead-line); color: var(--slate);
+}
+.dr-number{
+  font-size: var(--t-number-size); font-weight: var(--t-number-weight);
+  line-height: var(--t-number-line); letter-spacing: var(--t-number-track);
+  font-variant-numeric: tabular-nums; color: var(--ink);
+}
+/* The mono face labels STRUCTURE, never content. A zone label with the one
+   place the accent is a line — and it is a fill, not a stroke. */
+.dr-label{
+  position: relative;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp-6);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro-size); font-weight: var(--t-micro-weight);
+  letter-spacing: var(--t-micro-track); color: var(--slate);
+  border-bottom: var(--hair) solid var(--line);
+  padding-bottom: var(--sp-9);
+}
+.dr-label::after{
+  content: ""; position: absolute; left: 0; bottom: calc(var(--hair) * -1);
+  width: var(--sz-tick); height: var(--sz-tick-h); background: var(--green);
+}
+.dr-label__act{ color: var(--slate); letter-spacing: var(--t-micro-track-tight); }
+/* Loading line — mono, because it names structure that is still arriving. */
+.dr-hint{ font-family: var(--font-mono); font-size: var(--t-micro-size); color: var(--slate); }
+/* Explanatory caption under a block. Same job as .dr-hint in a sentence voice. */
+.dr-note{
+  font-size: var(--t-caption-size); font-weight: var(--weight-regular);
+  line-height: var(--t-para-line); color: var(--slate); text-align: center;
+}
+
+/* ═══ BUTTONS ═════════════════════════════════════════════════════════════
+   min-height, never height: a button is a flex item in a scrolling column and
+   a fixed height gets shrunk below the 44pt target. */
+
+.dr-btn{
+  min-height: var(--h-control);
+  padding: 0 var(--sp-screen);
+  border-radius: var(--r-btn);
+  font-family: var(--font-ui);
+  font-size: var(--t-heading-size); font-weight: var(--weight-medium);
+  line-height: var(--t-base-line);
+  border: var(--hair) solid transparent;
+  background: transparent; color: var(--ink); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--sp-within-lg); text-decoration: none;
+  transition: filter var(--dur-base), background var(--dur-base), transform var(--dur-fast);
+}
+.dr-btn:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+
+.dr-btn--primary{ background: var(--green); color: var(--on-green); box-shadow: var(--sh-sm); }
+.dr-btn--primary:hover{ filter: brightness(var(--bright-hover)); }
+.dr-btn--primary:active{ transform: translateY(var(--lift-active)) scale(var(--scale-active)); }
+
+.dr-btn--secondary{ background: var(--btn2); color: var(--ink); }
+.dr-btn--secondary:hover{ background: var(--media); }
+.dr-btn--secondary:active{ background: var(--media); transform: translateY(var(--lift-active)) scale(var(--scale-active)); }
+
+/* A borderless text action — skip, cancel, not now. Grayscale in the
+   wireframes; painted here from the language: --slate is the system's
+   secondary ink at 6.62:1 on the page, and the pressed state is the same
+   translate the other two take, because there is no fill to change. */
+.dr-btn--tertiary{ background: transparent; color: var(--slate); }
+.dr-btn--tertiary:hover{ color: var(--ink); }
+.dr-btn--tertiary:active{ color: var(--ink); transform: translateY(var(--lift-active)) scale(var(--scale-active)); }
+
+.dr-btn--block{ width: 100%; }
+
+/* Built, not dimmed. Blanket opacity would take charcoal-on-green to 2.35:1;
+   this pair is the secondary button's own, measured at 4.77:1. */
+.dr-btn:disabled,
+.dr-btn[aria-disabled="true"]{
+  background: var(--btn2); color: var(--slate);
+  box-shadow: none; cursor: not-allowed; filter: none; transform: none;
+}
+
+/* The one icon-only shape standing on a painted screen. z-index clears a
+   whole-card link beneath it. Carries its own aria-label — the icon is the
+   only content. */
+.dr-btn--icon{
+  width: var(--sz-action); height: var(--sz-action); min-height: var(--sz-action);
+  flex: none; padding: 0; border: 0; border-radius: var(--r-circle);
+  background: var(--btn2); color: var(--ink);
+  position: relative; z-index: 2;
+}
+.dr-btn--icon:hover{ background: var(--media); }
+.dr-btn--icon .dr-ic{ width: var(--ic-20); height: var(--ic-20); }
+
+/* ═══ SURFACES ════════════════════════════════════════════════════════════
+   Flat, all of them. Separation is a warm tone step plus a radius. */
+
+.dr-list{ list-style: none; display: flex; flex-direction: column; gap: var(--sp-list); }
+
+.dr-card{
+  position: relative;
+  display: flex; flex-direction: column; align-items: stretch;
+  gap: var(--sp-group); padding: var(--sp-group);
+  background: var(--card); border: 0; border-radius: var(--r-card);
+  box-shadow: none;
+}
+.dr-card--compact{ padding: var(--sp-screen); gap: var(--sp-snug); }
+.dr-card--cta{ padding-bottom: var(--sp-cta); }  /* the last element is a primary */
+.dr-card--row{ flex-direction: row; align-items: center; gap: var(--sp-snug); }
+
+/* Whole-card link, with the ring hung on :focus-visible so a pointer click
+   does not flash an outline and a focused inner button does not double-ring. */
+.dr-card__link{ position: absolute; inset: 0; z-index: 1; border-radius: var(--r-card); }
+.dr-card:focus-within{ outline: none; }
+.dr-card:has(> .dr-card__link:focus-visible){
+  outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset);
+}
+
+/* The system's universal container: a fact that is read, opened, or typed. */
+.dr-rows{
+  background: var(--card); border: 0; border-radius: var(--r-card);
+  padding: var(--sp-2) var(--sp-screen);
+}
+.dr-rows__row{
+  display: flex; justify-content: space-between; align-items: center;
+  gap: var(--sp-snug);
+  padding: var(--sp-13) 0;
+  border-bottom: var(--hair) solid var(--line);
+}
+.dr-rows__row:last-child{ border-bottom: 0; }
+.dr-rows__key{ color: var(--slate); font-size: var(--t-bodysm-size); }
+.dr-rows__val{
+  color: var(--ink); font-size: var(--t-heading-size); font-weight: var(--weight-medium);
+  font-variant-numeric: tabular-nums; text-align: right;
+}
+
+/* A plane inside a card, not a second card on it — 1.06:1 above the card. */
+.dr-inset{
+  display: flex; align-items: center; gap: var(--sp-snug);
+  padding: var(--sp-screen); border-radius: var(--r-btn);
+  background: var(--inset);
+}
+.dr-inset__stop{ flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--sp-2); }
+.dr-inset__stop--to{ align-items: flex-end; text-align: right; }
+.dr-inset__lbl{
+  font-family: var(--font-mono);
+  font-size: var(--t-micro-size); font-weight: var(--t-micro-weight);
+  letter-spacing: var(--t-micro-track-tight); text-transform: uppercase;
+  color: var(--slate);
+}
+.dr-inset__place{ font-size: var(--t-body-size); line-height: var(--t-body-line); color: var(--ink); }
+/* Neutral, never green: the accent is not spent inside card UI. */
+.dr-inset__dir{
+  width: var(--sz-arrow); height: var(--sz-arrow); flex: none;
+  border-radius: var(--r-pill); background: var(--media); color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+}
+.dr-inset__dir .dr-ic{ width: var(--ic-14); height: var(--ic-14); }
+
+/* ═══ CHIPS ═══════════════════════════════════════════════════════════════
+   Same geometry, two jobs. The tint carries a claim; the warm grey carries a
+   supporting fact. A chip is never reduced to a colour — each keeps its words. */
+
+.dr-chip{
+  display: inline-flex; align-items: center; gap: var(--sp-6);
+  padding: var(--sp-5) var(--sp-10);
+  border: 0; border-radius: var(--r-pill);
+  font-size: var(--t-caption-size); font-weight: var(--t-caption-weight);
+  line-height: var(--t-caption-line);
+  white-space: nowrap;
+  background: var(--media); color: var(--slate);      /* fact — 5.51:1 */
+}
+.dr-chip--claim{ background: var(--green-wash); color: var(--ink); }  /* 14.75:1 */
+/* DRIFT, recorded not resolved: the reference draws this glyph at 13px in a
+   badge (.badge) and at 14px in the ETA pill (.ohl-eta) — one component, two
+   values, against the One-Component-One-Value rule. 13 is the default here
+   because it stands on more surfaces; .dr-ic--eta reproduces the 14 the order
+   card actually draws. The designer's call which one the system keeps. */
+.dr-chip .dr-ic{ width: var(--ic-13); height: var(--ic-13); }
+.dr-chip .dr-ic--eta{ width: var(--ic-14); height: var(--ic-14); }
+.dr-chips{ display: flex; flex-wrap: wrap; gap: var(--sp-6); }
+
+/* A row of places with one current — the tab bar's problem, so the tab bar's
+   values. The pill stays 32px visible and the hit area extends to 44 through
+   the ::after, which is what iOS does with its own 32pt controls. */
+.dr-groups{
+  height: var(--h-groups); flex: none;
+  display: flex; align-items: center; gap: var(--sp-within-lg);
+  padding: 0 var(--sp-screen);
+  background: var(--page); border-bottom: var(--hair) solid var(--line);
+  overflow-x: auto;
+}
+.dr-grouptab{
+  position: relative; flex: none;
+  height: var(--h-pill); padding: 0 var(--sp-snug);
+  border: 0; border-radius: var(--r-pill); background: transparent;
+  font-family: var(--font-ui);
+  font-size: var(--t-bodysm-size); font-weight: var(--weight-medium);
+  color: var(--slate); text-decoration: none; cursor: pointer;
+  display: flex; align-items: center;
+}
+.dr-grouptab::after{ content: ""; position: absolute; inset: var(--pill-bleed) 0; }
+.dr-grouptab[aria-selected="true"],
+.dr-grouptab[aria-current="true"]{ background: var(--green-wash); color: var(--ink); }
+.dr-grouptab:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+
+/* ═══ STATUS & PROGRESS ═══════════════════════════════════════════════════
+   Two states never differ by colour alone: a dot pings and a check sits. */
+
+.dr-status{
+  position: absolute; top: var(--sp-6); right: var(--sp-6); z-index: 1;
+  width: var(--sz-status); height: var(--sz-status); border-radius: var(--r-circle);
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--btn2); color: var(--ink);
+  box-shadow: 0 0 0 var(--sz-status-ring) var(--card);
+}
+.dr-status .dr-ic{ width: var(--ic-12); height: var(--ic-12); }
+.dr-status--live{ background: var(--green); }
+.dr-status--live::after{
+  content: ""; position: absolute; inset: 0; border-radius: var(--r-circle);
+  animation: dr-ping var(--dur-ping) var(--ease-out) infinite;
+}
+@keyframes dr-ping{
+  0%  { box-shadow: 0 0 0 0    color-mix(in srgb, var(--green) 90%, transparent); }
+  70% { box-shadow: 0 0 0 var(--ping-reach) color-mix(in srgb, var(--green) 0%, transparent); }
+  100%{ box-shadow: 0 0 0 0    color-mix(in srgb, var(--green)  0%, transparent); }
+}
+
+/* ONE node, two axes. The order card's rail and the tracking timeline draw the
+   same circle — that is the drift this class closes. */
+.dr-node{
+  width: var(--sz-node); height: var(--sz-node); flex: none;
+  border-radius: var(--r-circle);
+  display: flex; align-items: center; justify-content: center;
+  border: var(--sz-node-border) solid var(--line);
+  background: var(--card); color: var(--slate);
+}
+.dr-node .dr-ic{ width: var(--ic-12); height: var(--ic-12); }
+.dr-node--done{ background: var(--green); border-color: var(--green); color: var(--on-green); }
+.dr-node--now{ border-color: var(--green); color: var(--ink); box-shadow: var(--halo-now); }
+
+/* Horizontal rail: four columns, the track drawn behind the circles from the
+   centre of column 1 to the centre of column 4. --dr-fill covers the walk. */
+.dr-rail{ display: grid; grid-template-columns: repeat(4, 1fr); position: relative; }
+.dr-rail::before,
+.dr-rail::after{ content: ""; position: absolute; top: var(--node-centre); height: var(--sz-track); left: var(--rail-track-start); }
+.dr-rail::before{ width: var(--rail-track-span); background: var(--line); }
+.dr-rail::after{ width: var(--dr-fill, 0); background: var(--green); }
+.dr-rail__step{
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: var(--sp-9);
+}
+.dr-rail__lbl{
+  font-size: var(--t-microsm-size); font-weight: var(--t-microsm-weight);
+  line-height: var(--t-microsm-line); color: var(--slate); text-align: center;
+}
+.dr-rail__lbl--now{ color: var(--ink); font-weight: var(--weight-medium); }
+
+/* Vertical track: the same node on a 2px connector. */
+.dr-track{ list-style: none; display: flex; flex-direction: column; }
+.dr-track__item{ position: relative; display: flex; align-items: flex-start; gap: var(--sp-snug); padding-bottom: var(--sp-18); }
+.dr-track__item:last-child{ padding-bottom: 0; }
+.dr-track__item:not(:last-child)::before{
+  content: ""; position: absolute; left: var(--node-centre); top: var(--sz-node);
+  bottom: calc(var(--sp-within) * -1);
+  width: var(--sz-track); background: var(--line);
+}
+.dr-track__item--done:not(:last-child)::before{ background: var(--green); }
+.dr-track__text{ font-size: var(--t-body-size); color: var(--slate); padding-top: var(--sp-2); }
+.dr-track__item--done .dr-track__text,
+.dr-track__item--now  .dr-track__text{ color: var(--ink); font-weight: var(--weight-medium); }
+
+/* ═══ MARKS & MESSAGE BLOCK ═══════════════════════════════════════════════
+   A semantic state is a pale wash carrying its own darkened ink. The raw hue
+   is declared and drawn nowhere — it cannot carry a mark. */
+
+.dr-mark{
+  width: var(--sz-mark); height: var(--sz-mark); flex: none;
+  border: 0; border-radius: var(--r-media);
+  background: var(--media); color: var(--slate);          /* 5.51:1 */
+  display: flex; align-items: center; justify-content: center;
+}
+.dr-mark .dr-ic{ width: var(--ic-26); height: var(--ic-26); }
+.dr-mark--warn{ background: var(--warn-wash); color: var(--warn-ink); }     /* 5.65:1 */
+.dr-mark--danger{ background: var(--danger-wash); color: var(--danger-ink); } /* 5.49:1 */
+/* Delivered and waiting share ONE well: every green paler than the wash lands
+   at 1.03–1.05 against the page. The difference is the glyph and the title. */
+.dr-mark--milestone{
+  width: var(--sz-mark-lg); height: var(--sz-mark-lg);
+  border-radius: var(--r-circle);
+  background: var(--green-wash); color: var(--ink);        /* 14.75:1 */
+}
+.dr-mark--milestone .dr-ic{ width: var(--ic-32); height: var(--ic-32); }
+
+/* One component, three jobs: empty state, error banner, notice. */
+.dr-msg{
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: var(--sp-snug);
+  padding: var(--sp-22) var(--sp-18);
+  background: var(--card); border: 0; border-radius: var(--r-card);
+}
+.dr-msg > *{ max-width: 100%; }
+.dr-msg__title{
+  font-size: var(--t-title-size); font-weight: var(--t-title-weight);
+  line-height: var(--t-title-line); letter-spacing: var(--t-title-track);
+  color: var(--ink);
+}
+.dr-msg__body{
+  font-size: var(--t-bodysm-size); line-height: var(--t-para-line);
+  color: var(--slate); max-width: var(--measure-msg);
+}
+.dr-msg__actions{
+  display: flex; flex-direction: column; gap: var(--sp-10);
+  width: 100%; margin-top: var(--sp-6);
+}
+.dr-msg__actions .dr-btn{ width: 100%; }
+
+/* ═══ MEDIA ═══════════════════════════════════════════════════════════════
+   A transparent cutout sits IN the layout and is contained — in the product
+   with no ground at all. A photograph IS the surface and covers it. */
+
+.dr-well{
+  position: relative;
+  width: var(--sz-well-w); height: var(--sz-well-h); flex: none;
+  border: 0; border-radius: var(--r-media);
+  padding: var(--sp-within);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink);
+}
+.dr-well img{ width: 100%; height: 100%; object-fit: contain; display: block; }
+/* A photograph fills its box edge to edge. Floated inside a well it reads as
+   a sticker, so the two treatments never swap. */
+.dr-well--photo{
+  width: auto; height: auto;
+  background: var(--media); overflow: hidden; padding: 0;
+}
+.dr-well--photo img{ object-fit: cover; }
+/* The map is a surface in the layout, not a well inside a card — card radius,
+   native 1.99 aspect, --media as the pre-load ground. */
+.dr-well--map{
+  width: auto; height: auto; aspect-ratio: var(--map-aspect);
+  border-radius: var(--r-card); background: var(--media); overflow: hidden;
+}
+.dr-well--map img{ object-fit: cover; }
+.dr-well--acquiring{
+  background: var(--media); color: var(--slate);
+  font-family: var(--font-mono); font-size: var(--t-micro-size);
+  letter-spacing: var(--t-micro-track); line-height: var(--t-para-line);
+}
+
+/* ═══ THE ORDER CARD ══════════════════════════════════════════════════════ */
+
+.dr-order__top{ display: flex; align-items: center; gap: var(--sp-screen); }
+.dr-order__head{ flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--sp-within); }
+.dr-order__title{
+  font-size: var(--t-heading-size); font-weight: var(--t-heading-weight);
+  line-height: var(--t-heading-line); color: var(--ink);
+}
+.dr-order__date{
+  min-width: 0;
+  font-size: var(--t-meta-size); line-height: var(--t-meta-line); color: var(--slate);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.dr-order__fee{ display: flex; align-items: flex-end; justify-content: space-between; gap: var(--sp-snug); }
+.dr-order__fee-lbl{ display: block; font-size: var(--t-micro-size); font-weight: var(--weight-regular); color: var(--slate); }
+.dr-order__price{ display: block; margin-top: var(--sp-within); }
+.dr-order__acts{ display: flex; align-items: center; gap: var(--sp-within-lg); flex: none; }
+
+/* ═══ THE OPERATOR CARD ═══════════════════════════════════════════════════
+   The trust surface. The photograph is a full-height panel on the left edge,
+   sized by the asset's own ratio so the operator is shown whole. */
+
+.dr-op{
+  display: flex; align-items: stretch; gap: var(--sp-snug);
+  padding: var(--sp-screen);
+  background: var(--card); border: 0; border-radius: var(--r-card);
+  overflow: hidden;
+}
+.dr-op__photo{
+  align-self: stretch; flex: none;
+  margin: calc(var(--sp-screen) * -1) 0 calc(var(--sp-screen) * -1) calc(var(--sp-screen) * -1);
+  width: var(--sz-avatar); height: auto;
+  border: 0; border-radius: 0; background: none; overflow: hidden;
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.dr-op__photo img{ width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.dr-op__info{ flex: 1; min-width: 0; }
+.dr-op__name{
+  display: block;
+  font-size: var(--t-heading-size); font-weight: var(--t-heading-weight);
+  line-height: var(--t-heading-line); color: var(--ink);
+}
+.dr-op__rating{
+  display: block; margin-top: var(--sp-2);
+  font-size: var(--t-meta-size); color: var(--slate); font-variant-numeric: tabular-nums;
+}
+.dr-op__badges{ margin-top: var(--sp-9); }
+
+/* ═══ FORMS ═══════════════════════════════════════════════════════════════
+   A field has no border. 1.4.11 governs a boundary that is DRAWN, not one that
+   is absent — and the grayscale --line border was the actual failure at 1.21:1.
+   HIG's own form row is label, value, separator, no box. So a field lives in a
+   row panel and IS the row that accepts typing. */
+
+.dr-field{
+  min-height: var(--h-control);
+  display: flex; align-items: center; gap: var(--sp-10);
+  padding: 0 var(--sp-screen);
+  position: relative;
+  border: 0; background: transparent;
+}
+.dr-field + .dr-field::before{
+  content: ""; position: absolute; left: var(--sp-screen); right: 0; top: 0;
+  height: var(--hair); background: var(--line);
+}
+.dr-field__label{ flex: 1; font-size: var(--t-heading-size); color: var(--slate); }   /* 5.95:1 */
+.dr-field__input{
+  flex: 1; min-width: 0;
+  border: 0; background: transparent; outline: none;
+  font-family: var(--font-ui); font-size: var(--t-heading-size); color: var(--ink);   /* 14.37:1 */
+}
+.dr-field__input::placeholder{ color: var(--slate); }
+.dr-field__input:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+.dr-field__value{
+  font-size: var(--t-heading-size); font-weight: var(--weight-medium); color: var(--ink);
+}
+.dr-field__chev{ flex: none; color: var(--slate); display: inline-flex; }
+.dr-field__clear{
+  width: var(--ic-20); height: var(--ic-20); flex: none;
+  border: 0; border-radius: var(--r-circle);
+  background: var(--btn2); color: var(--ink);                                          /* 11.54:1 */
+  display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+}
+.dr-field__err{ font-size: var(--t-caption-size); color: var(--danger-ink); }          /* 6.14:1 */
+
+/* The ONE field that keeps a ground, because it is not in a grouped list.
+   That is the iOS search bar, and it gives --r-input its only home. */
+.dr-search{
+  min-height: var(--h-control);
+  display: flex; align-items: center; gap: var(--sp-within-lg);
+  padding: 0 var(--sp-snug);
+  border: 0; border-radius: var(--r-input);
+  background: var(--media); color: var(--slate);                                       /* 5.51:1 */
+}
+.dr-search .dr-ic{ width: var(--ic-16); height: var(--ic-16); }
+.dr-search input{
+  flex: 1; min-width: 0; border: 0; background: transparent; outline: none;
+  font-family: var(--font-ui); font-size: var(--t-heading-size); color: var(--ink);    /* 13.33:1 */
+}
+.dr-search input::placeholder{ color: var(--slate); }
+
+/* Shape says how many: a circle is one of a mutually exclusive set, a square
+   is an independent on/off. HIG · Radio Buttons / Checkboxes, verbatim.
+   The unchecked outline is --slate at 5.95:1, not --line at 1.21:1 — an empty
+   box is identified by its boundary alone, so 1.4.11 applies at 3:1. */
+.dr-picks{ list-style: none; background: var(--card); border-radius: var(--r-card); overflow: hidden; }
+.dr-pick{
+  position: relative;
+  min-height: var(--h-control);
+  display: flex; align-items: center; gap: var(--sp-snug);
+  padding: 0 var(--sp-screen);
+  font-size: var(--t-heading-size); color: var(--ink); cursor: pointer;
+}
+.dr-pick + .dr-pick::before{
+  content: ""; position: absolute; left: var(--pick-indent); right: 0; top: 0;
+  height: var(--hair); background: var(--line);
+}
+.dr-pick input{ position: absolute; opacity: 0; width: 0; height: 0; }
+.dr-pick__label{ flex: 1; }
+.dr-pick__sub{ display: block; font-size: var(--t-meta-size); line-height: var(--t-meta-line); color: var(--slate); }
+.dr-box{
+  width: var(--sz-box); height: var(--sz-box); flex: none; box-sizing: border-box;
+  border: var(--hair) solid var(--slate); color: transparent;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.dr-box--check{ border-radius: var(--r-detail); }
+.dr-box--radio{ border-radius: var(--r-pill); }
+/* Charcoal, not green: a checked control is card UI, and the screen's one
+   green control is its action. --ink on --card is 14.37:1. */
+.dr-pick input:checked + .dr-box{ background: var(--ink); border-color: var(--ink); color: var(--card); }
+.dr-pick input:focus-visible + .dr-box{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+.dr-box .dr-ic{ width: var(--ic-14); height: var(--ic-14); }
+.dr-box__dot{ width: var(--sz-dot); height: var(--sz-dot); border-radius: var(--r-pill); background: currentColor; }
+
+/* Segmented control — HIG's own structure in DRON's tokens: a recessed track
+   with a light plate raised inside it. iOS lifts its plate with a shadow; this
+   one is lifted by tone, because the system spends exactly one shadow and it is
+   not here. No border and no dividers — the plate carries the state. */
+.dr-segment{
+  display: flex; width: 100%;
+  height: var(--h-control); padding: var(--sp-2);
+  background: var(--media); border: 0; border-radius: var(--r-btn);
+}
+.dr-segment__seg{
+  flex: 1; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  border: 0; background: transparent; cursor: pointer;
+  border-radius: var(--r-input);
+  font-family: var(--font-ui);
+  font-size: var(--t-bodysm-size); font-weight: var(--weight-medium);
+  color: var(--slate);                                        /* 5.51:1 on the track */
+}
+.dr-segment__seg input{ position: absolute; opacity: 0; width: 0; height: 0; }
+.dr-segment__seg:has(input:checked){ background: var(--page); color: var(--ink); }  /* 1.20:1 / 15.99:1 */
+.dr-segment__seg:has(input:focus-visible){ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); }
+
+/* Native <details>. It opens IN FLOW and pushes the page down; nothing in this
+   product floats. The chevron turns 180° on open — the direction is
+   information, the animation is only how it gets there. */
+.dr-disclosure{ background: var(--card); border: 0; border-radius: var(--r-card); overflow: hidden; }
+.dr-disclosure > summary{
+  list-style: none; min-height: var(--h-control);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--sp-screen); cursor: pointer;
+  font-size: var(--t-heading-size); font-weight: var(--weight-medium); color: var(--ink);
+}
+.dr-disclosure > summary::-webkit-details-marker{ display: none; }
+.dr-disclosure > summary .dr-ic{ color: var(--slate); transition: transform var(--dur-fast); }
+.dr-disclosure[open] > summary .dr-ic{ transform: rotate(var(--turn-open)); }
+.dr-disclosure[open] > summary{ border-bottom: var(--hair) solid var(--line); }
+.dr-disclosure__item{
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-within-lg);
+  min-height: var(--h-control); padding: 0 var(--sp-screen);
+  border-top: var(--hair) solid var(--line);
+  text-decoration: none; color: var(--ink); font-size: var(--t-heading-size);
+}
+.dr-disclosure__item:first-of-type{ border-top: 0; }
+
+/* ═══ SKELETONS ═══════════════════════════════════════════════════════════
+   Chrome stays solid, content pulses. The question is never "should this
+   pulse" but "does what loads replace this surface, or sit inside it". */
+
+.dr-sk-line{ height: var(--sp-13); border-radius: var(--r-detail); background: var(--btn2); }
+.dr-sk-title{ height: var(--sk-title-h); }
+.dr-sk-date{ height: var(--sk-date-h); }
+.dr-sk-w90{ width: var(--sk-w90); } .dr-sk-w70{ width: var(--sk-w70); }
+.dr-sk-w50{ width: var(--sk-w50); } .dr-sk-w40{ width: var(--sk-w40); }
+.dr-sk-w30{ width: var(--sk-w30); }
+.dr-sk-well{
+  width: var(--sz-well-w); height: var(--sz-well-h); flex: none;
+  border-radius: var(--r-media); background: var(--btn2);
+}
+.dr-sk-block{
+  background: var(--media); border-radius: var(--r-media);
+  display: flex; align-items: center; justify-content: center; color: var(--slate);
+}
+.dr-sk-btn{ width: var(--sz-action); height: var(--sz-action); border-radius: var(--r-circle); background: var(--btn2); }
+
+.dr-sk-line, .dr-sk-well, .dr-sk-btn{ animation: dr-pulse var(--dur-pulse) ease-in-out infinite; }
+.dr-sk-d1 *{ animation-delay: -.47s; }
+.dr-sk-d2 *{ animation-delay: -.93s; }
+@keyframes dr-pulse{ 0%,100%{ opacity: 1; } 50%{ opacity: var(--pulse-floor); } }
+
+/* The tray holds still and only the arrow leaves it: what the screen waits on
+   is a file going up. It rests VISIBLE at 0% and 100%, so a dropped animation
+   leaves a legible icon. */
+.dr-sk-up .dr-ic{ width: var(--ic-32); height: var(--ic-32); }
+.dr-sk-arrow{ animation: dr-up var(--dur-upload) var(--ease-out) infinite; }
+@keyframes dr-up{
+  0%,10%{ transform: translateY(0);      opacity: 1; }
+  55%   { transform: translateY(var(--up-out)); opacity: 0; }
+  56%   { transform: translateY(var(--up-in));  opacity: 0; }
+  100%  { transform: translateY(0);      opacity: 1; }
+}
+
+/* ═══ REDUCED MOTION ══════════════════════════════════════════════════════
+   Every loop above carries information, so each one stops rather than
+   degrades. The chevron still turns — it just does not travel. */
+@media (prefers-reduced-motion: reduce){
+  .dr-btn,
+  .dr-card,
+  .dr-disclosure > summary .dr-ic{ transition: none; }
+  .dr-status--live::after,
+  .dr-sk-line, .dr-sk-well, .dr-sk-btn,
+  .dr-sk-arrow{ animation: none; }
+}
+
+/* ═══ NARROW TIER ═════════════════════════════════════════════════════════
+   One breakpoint, on the family with a fixed-width media box to protect. The
+   skeleton steps identically, so the loading and loaded lists stay the same
+   height at both tiers. */
+@media (max-width: 389px){
+  :root{
+    --sp-group: var(--sp-screen);
+    --sp-list: 22px;
+    --sz-well-w: var(--sz-well-w-sm);
+    --sz-well-h: var(--sz-well-h-sm);
+  }
+  .dr-card{ gap: var(--sp-18); }
+  .dr-order__top{ gap: var(--sp-snug); }
+  .dr-inset{ padding: var(--sp-14); }
+}
