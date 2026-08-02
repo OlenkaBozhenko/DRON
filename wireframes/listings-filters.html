@@ -211,30 +211,31 @@
       </fieldset>
 
       <!-- ZONE · location -->
-      <p class="zlabel dr-label">Location <span class="dr-label__act">▸ which area to serve</span></p>
-      <section class="dr-picks" aria-label="Location">
-        <h2>Location · Kyiv</h2>
-        <label class="dr-pick">
-          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-          <span class="dr-pick__label">All districts</span>
-          <input type="radio" name="loc" value="all" checked>
-        </label>
-        <label class="dr-pick">
-          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-          <span class="dr-pick__label">Podil</span>
-          <input type="radio" name="loc" value="podil">
-        </label>
-        <label class="dr-pick">
-          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-          <span class="dr-pick__label">Obolon</span>
-          <input type="radio" name="loc" value="obolon">
-        </label>
-        <label class="dr-pick">
-          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-          <span class="dr-pick__label">Pechersk</span>
-          <input type="radio" name="loc" value="pechersk">
-        </label>
-      </section>
+      <p class="zlabel dr-label">Location · Kyiv <span class="dr-label__act">▸ which area to serve</span></p>
+      <fieldset aria-label="Location · Kyiv">
+        <ul class="dr-picks">
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">All districts</span>
+            <input type="radio" name="loc" value="all" checked class="sr-only">
+          </label></li>
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">Podil</span>
+            <input type="radio" name="loc" value="podil" class="sr-only">
+          </label></li>
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">Obolon</span>
+            <input type="radio" name="loc" value="obolon" class="sr-only">
+          </label></li>
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">Pechersk</span>
+            <input type="radio" name="loc" value="pechersk" class="sr-only">
+          </label></li>
+        </ul>
+      </fieldset>
 
     </main>
 
