@@ -5,13 +5,13 @@ Drone-as-a-service platform — clients order drone services, certified operator
 **MVP services:** aerial photo/video · package delivery · building inspection
 **Audience:** 18–50, Ukraine + Europe, mobile-first, trust-driven
 **Brief:** see [`CLAUDE.md`](CLAUDE.md)
-**Visual preview:** [research.html](https://bozhenko55-arch.github.io/DRON/research.html)
+**Visual preview:** [research.html](https://OlenkaBozhenko.github.io/DRON/research.html)
 
 ---
 
 Design repository — research, wireframes, tokens, components, and handoff materials.
 
-**[→ Live research report](https://bozhenko55-arch.github.io/DRON/research.html)**
+**[→ Live research report](https://OlenkaBozhenko.github.io/DRON/research.html)**
 
 ---
 
@@ -35,7 +35,7 @@ Design repository — research, wireframes, tokens, components, and handoff mate
 ## Research
 
 - [`research/research.md`](research/research.md) — competitive analysis, benchmark study, post-persona findings
-- [research.html — live report](https://bozhenko55-arch.github.io/DRON/research.html)
+- [research.html — live report](https://OlenkaBozhenko.github.io/DRON/research.html)
 
 ---
 
@@ -46,7 +46,7 @@ Design repository — research, wireframes, tokens, components, and handoff mate
 | [`research/target-audience.md`](research/target-audience.md) | 4 personas: C-1 (primary client), C-2 (planning client), O-1 (primary operator), O-2 (new operator). Each has context, jobs, pains, trust triggers. Includes post-research updates June 2026 and 10 honest knowledge gaps. |
 | [`research/jtbd.md`](research/jtbd.md) | JTBD hierarchy: 2 main jobs, 8 related jobs, 3 emotional, 1 social, 3 hypotheses. Matrix with importance scores by persona and competitive coverage. Conclusions: 3 core MVP jobs, 2 features to cut, 1 critical missing gap (EJ-2 dispute flow). |
 
-**[→ Live personas & JTBD](https://bozhenko55-arch.github.io/DRON/target-audience.html)**
+**[→ Live personas & JTBD](https://OlenkaBozhenko.github.io/DRON/target-audience.html)**
 
 ---
 
@@ -57,7 +57,7 @@ Design repository — research, wireframes, tokens, components, and handoff mate
 | [`sitemap.md`](sitemap.md) | Product entities (Client & Operator), the screen tree with the job each screen serves, the navigation model (global / contextual / deep + depth to main job), and the traceability matrix (jobs × screens) with orphan verdicts. |
 | [`flows.md`](flows.md) | 11 Mermaid user flows, one per job, for both personas. Each flow shows decisions, states (empty / error / loading) and both ends — success and dead-ends. |
 
-**[→ Live IA: sitemap & flows](https://bozhenko55-arch.github.io/DRON/ia.html)**
+**[→ Live IA: sitemap & flows](https://OlenkaBozhenko.github.io/DRON/ia.html)**
 
 ---
 
