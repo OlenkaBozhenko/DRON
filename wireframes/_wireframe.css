@@ -340,12 +340,15 @@ footer.actionbar .row2{ display:flex; gap:8px; } footer.actionbar .row2 .btn{ fl
    inside the slider, so it started under the top bar and stopped above the
    pager — a 373 x 573 window, not a background.
 
-   The mechanism: the slider is lifted out of main's flow and pinned to the
-   frame. `main` is deliberately left static — that is what makes .wf-frame
-   the containing block, and it is the only way the layer can reach above the
-   top bar and below the action bar. (An ancestor's overflow clips an
-   absolutely positioned descendant only when that ancestor is in its
-   containing-block chain, so main's overflow-y:auto does not cut it.)
+   The mechanism: the slider is lifted out of the flow and pinned to `main`,
+   which is made the containing block for it. That is what stops the action bar
+   covering the artwork — main already ends where the bar begins, so the layer
+   sizes itself to whatever height the bar happens to be, one button or two, on
+   this screen or the next. No number in this block names the bar.
+
+   It was pinned to the frame first, and that put 47% of the picture behind a
+   133px action bar. Since the bars are opaque, a layer that reaches under them
+   shows nothing extra — so nothing is lost by stopping at the content edge.
 
    The picture stays a child of its slide, so swiping still changes it. Three
    slides, three backgrounds, one layer.
@@ -376,26 +379,24 @@ footer.actionbar .row2{ display:flex; gap:8px; } footer.actionbar .row2 .btn{ fl
 .wf-frame:has(.slider.is-bleed) > .topbar,
 .wf-frame:has(.slider.is-bleed) > .actionbar{ position:relative; z-index:1; }
 
-/* main holds only the pager once the slider leaves the flow. Sent to the
-   bottom so the pager stays exactly where it sat before — under the picture,
-   above the action bar — instead of jumping up under the top bar. */
-.wf-frame:has(.slider.is-bleed) > main{ justify-content:flex-end; }
+/* main is the containing block for the layer, and it holds only the pager once
+   the slider leaves the flow. Sent to the bottom so the pager stays exactly
+   where it sat before — under the picture, above the action bar — instead of
+   jumping up under the top bar. */
+.wf-frame:has(.slider.is-bleed) > main{ position:relative; justify-content:flex-end; }
 
-/* The layer runs the full width of the frame and down to its bottom edge —
-   under the action bar, out to both sides. Its height is capped at 35% so no
-   subject can climb into the copy. That cap is measured, not chosen: the copy
-   is centred, so its box ends 455px down a 812px frame, and 35% starts the
-   artwork at 528px. That figure is set by the longest slide, not the average:
-   slide 3 runs to four lines and its copy ends at 480px, and the pager needs
-   its own band between the two.
+/* The layer runs the full width, out to both side edges, and stands on the
+   content floor — the top of the action bar. Its height is capped so no
+   subject can climb into the copy: the copy is centred in the same box, and
+   the longest slide (three of `welcome`, four lines) has to clear the artwork
+   with the pager's band still between them.
 
    The cap only ever binds a portrait subject. The two landscape cutouts are
    width-bound and draw the same size with or without it: handover 750 x 533
    renders 375 x 266, drone-flight 409 x 174 renders 375 x 160. The operator,
-   595 x 702, is the one it catches — full-bleed it filled the frame and put a
+   595 x 702, is the one it catches — uncapped it filled the frame and put a
    dark cap straight under the title at 1.00:1. Capped, all three share one
-   composition: the subject stands on the bottom edge, the copy sits clear
-   above it. */
+   composition: the subject stands on the floor, the copy sits clear above it. */
 .slider.is-bleed .slide-ph{
   position:absolute; left:0; right:0; bottom:0; top:auto; height:35%; z-index:0;
   width:auto; min-height:0; margin:0;
@@ -427,6 +428,7 @@ details.dropdown a{ display:flex; align-items:center; justify-content:space-betw
 details.dropdown a:first-of-type{ border-top:0; }
 details.dropdown a:hover{ background:var(--wf-recessed); }
 details.dropdown a .tag{ color:var(--wf-muted); font-size:13px; font-weight:400; }
+
 
 
 

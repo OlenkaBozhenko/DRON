@@ -92,3 +92,33 @@ the operator's jacket against the 3:1 `WCAG 1.4.11` asks of a state indicator; t
 **`welcome-empty` note.** Its Skip and its primary `Continue` both point at `signin.html`. The
 structure now matches its base file, as §12 requires, but two controls with one destination is a
 question for whoever owns that state.
+
+### Same day — the picture is raised to stand on the action bar
+
+Asked for after the bar grew to 133px and swallowed 47% of the artwork. The layer no longer
+anchors to the frame; `main` is made its containing block, so it stops exactly where the content
+area stops. No number in the rule names the action bar, and the layer re-sizes itself if the bar
+ever gains or loses a button.
+
+Re-measured on the render, all three slides:
+
+| | title `#252525` | lead `#5A5A5A` |
+|---|---|---|
+| slide 1 · handover | 13.94:1 | 6.27:1 |
+| slide 2 · operator | 13.94:1 | 6.27:1 |
+| slide 3 · drone | 13.94:1 | 6.27:1 |
+
+**The pager got worse, and it is still not fixed.** Raising the artwork raised what sits under the
+dots. `WCAG 1.4.11` asks **3:1** of a state indicator:
+
+| | active dot `#111111` | inactive dot `#E2E2E2` |
+|---|---|---|
+| slide 1 | 17.17:1 | **1.18:1** |
+| slide 2 | **1.01:1** | 4.17:1 |
+| slide 3 | **1.00:1** | 3.19:1 |
+
+On slides 2 and 3 the mark that says which slide you are on is invisible. Three ways out, none
+taken without the designer: move the pager off the artwork (tried once, reverted — it changes a
+component that was not in scope); give the dots a ground of their own; or restyle the two dot
+states so both survive any background. The inactive dot's 1.18:1 on slide 1 is the base pair
+`--wf-fill` on `--wf-bg` and fails identically on every page in the set, picture or none.
