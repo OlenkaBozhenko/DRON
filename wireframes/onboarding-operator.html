@@ -19,21 +19,24 @@
     <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
     <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="spacer"></span></header>
     <main>
-      <div class="slider" aria-label="How operating on DRON works">
+      <div class="slider is-bleed" aria-label="How operating on DRON works">
+        <!-- The picture comes last in the markup, not first: it is the bottom of
+             the slide visually, and it is decorative (alt=""), so a screen reader
+             should reach the heading before it rather than step over it. -->
         <section class="slide" id="oo1" aria-label="Slide 1 of 3">
-          <span class="slide-ph"><img src="../assets/scenes/thumbs/operator-at-work.png" alt="" loading="lazy" decoding="async"></span>
           <p class="big-title">Jobs come to you</p>
           <p class="lead">Auto-dispatch sends pre-qualified jobs. Accept or decline in seconds — no bidding.</p>
+          <span class="slide-ph"><img src="../assets/scenes/thumbs/operator-at-work.png" alt="" loading="lazy" decoding="async"></span>
         </section>
         <section class="slide" id="oo2" aria-label="Slide 2 of 3">
-          <span class="slide-ph">STEPS</span>
           <p class="big-title">Follow the checklist</p>
           <p class="lead">Every job has a step-by-step checklist so nothing is missed on site.</p>
+          <span class="slide-ph">STEPS</span>
         </section>
         <section class="slide" id="oo3" aria-label="Slide 3 of 3">
-          <span class="slide-ph">PAID</span>
           <p class="big-title">Get paid automatically</p>
           <p class="lead">Earnings land within 30 min of client confirmation. Withdraw to card or bank.</p>
+          <span class="slide-ph">PAID</span>
         </section>
       </div>
       <nav class="pager" aria-label="Slides">

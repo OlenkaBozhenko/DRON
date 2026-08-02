@@ -400,8 +400,14 @@ footer.actionbar .row2{ display:flex; gap:8px; } footer.actionbar .row2 .btn{ fl
 .slider.is-bleed .slide-ph{
   position:absolute; left:0; right:0; bottom:0; top:auto; height:35%; z-index:0;
   width:auto; min-height:0; margin:0;
-  border:0; background:none; padding:0;
 }
+/* Only a well that has its picture drops its frame. A slide still waiting on
+   one keeps the dashed well and its label, stretched across the same band —
+   so a half-supplied slider reads as "this picture is pending", not as a
+   broken layout, and the composition does not jump as you swipe.
+   Three of the nine slides across welcome + onboarding-* are in that state
+   (`REPORT`, `STEPS`, `PAID`); they close themselves the day the file lands. */
+.slider.is-bleed .slide-ph:has(img){ border:0; background:none; padding:0; }
 /* contain, never cover: these are transparent cutouts, and covering a 375-wide
    portrait would throw away most of a landscape's width. Anchored bottom, so
    the figure meets the edge of the screen rather than floating above it. */
@@ -428,6 +434,7 @@ details.dropdown a{ display:flex; align-items:center; justify-content:space-betw
 details.dropdown a:first-of-type{ border-top:0; }
 details.dropdown a:hover{ background:var(--wf-recessed); }
 details.dropdown a .tag{ color:var(--wf-muted); font-size:13px; font-weight:400; }
+
 
 
 

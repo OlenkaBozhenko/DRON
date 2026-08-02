@@ -122,3 +122,44 @@ taken without the designer: move the pager off the artwork (tried once, reverted
 component that was not in scope); give the dots a ground of their own; or restyle the two dot
 states so both survive any background. The inactive dot's 1.18:1 on slide 1 is the base pair
 `--wf-fill` on `--wf-bg` and fails identically on every page in the set, picture or none.
+
+### Same day — the treatment rolls out to `onboarding-client` and `onboarding-operator`
+
+Asked for after `welcome` was accepted. Both sliders take `.is-bleed`, and in both the picture moves
+below its copy in the markup — it is decorative (`alt=""`) and absolutely positioned, so a screen
+reader should reach the heading first.
+
+**One rule changed to make it possible.** The earlier note said a slider had to wait until every
+slide had its asset, or it would "read as broken". Three of the nine slides are still labels, so
+that rule was holding two finished screens hostage to one missing file. Instead, the frame is now
+dropped by `.slide-ph:has(img)` rather than by `.is-bleed` — a slide without its picture keeps the
+dashed well and its label, stretched across the same band the artwork would occupy. It reads as
+*pending*, the composition does not jump as you swipe, and the slide closes itself the day the file
+lands with no edit to the page.
+
+Copy re-measured on the render, all six new slides, both inks:
+
+| | title `#252525` | lead `#5A5A5A` |
+|---|---|---|
+| `onboarding-client` 1 · 2 · 3 | 13.94:1 | 6.27:1 |
+| `onboarding-operator` 1 · 2 · 3 | 13.94:1 | 6.27:1 |
+
+**The pager fails here the same way it fails on `welcome`**, and for the same reason — it sits on
+the artwork, so its contrast is whatever the picture happens to put under it. `WCAG 1.4.11` asks 3:1:
+
+| | active `#111111` | inactive `#E2E2E2` |
+|---|---|---|
+| `onboarding-client` 1 | **1.00:1** | 4.91:1 |
+| `onboarding-client` 2 | 17.17:1 | **1.18:1** |
+| `onboarding-client` 3 | 16.28:1 | **1.12:1** |
+| `onboarding-operator` 1 | **1.08:1** | **1.02:1** |
+| `onboarding-operator` 2 | 16.28:1 | **1.12:1** |
+| `onboarding-operator` 3 | 16.28:1 | **1.12:1** |
+
+Nine slides now carry it. On three of them the mark saying which slide you are on is invisible; on
+seven the mark saying how many slides there are is. One decision fixes all nine at once, and it is
+the designer's.
+
+**Also standing, and older:** the pending well's label is `--wf-muted` `#909090` on `--wf-recessed`
+`#EEEEEE` — **2.75:1**, under the 4.5:1 `WCAG 1.4.3` asks. That is the placeholder pair used by
+every media well in the set (§8), not something this change introduced.
