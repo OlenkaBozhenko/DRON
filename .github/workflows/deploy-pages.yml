@@ -12,6 +12,7 @@ on:
       - 'concept/**'
       - 'assets/**'
       - 'ui/*.html'
+      - 'ui/*.css'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
@@ -38,9 +39,12 @@ jobs:
           # listing of .git/ and .claude/. One file serves both.
           cp index.html _site/index.html
           # The index links the component kit, so the kit has to ship or the
-          # link 404s on the live site while working locally.
+          # link 404s on the live site while working locally. The stylesheet
+          # ships with it: the painted wireframes load ../ui/kit.css, so an
+          # html-only copy leaves order-history, tracking and delivery
+          # unpainted on the published site while they look right locally.
           mkdir -p _site/ui
-          cp ui/*.html _site/ui/
+          cp ui/*.html ui/*.css _site/ui/
           # Publish the clickable wireframe prototype (HTML pages + shared CSS/JS).
           # The .md sources stay on master and are not published.
           mkdir -p _site/wireframes

@@ -186,6 +186,28 @@
     + '.wf-frame header.topbar .wf-lang button.on{ background:#111111; color:#FFFFFF; }'
     + '.wf-frame header.topbar .wf-lang button:focus-visible{ outline:2px solid rgba(0,0,0,0.15); outline-offset:-2px; }'
 
+    /* Painted pages take the kit instead of the grayscale ramp. Only .dr
+       frames declare the tokens, so the override is scoped to them and the
+       other 74 files keep the inverted-black pill the grayscale set uses for
+       every selected chip and group tab.
+
+       It is a segmented control, so it takes the kit's TAB values, not the
+       primary button's. A solid --green pill would be a second green control
+       on a screen that already spends its one on the CTA, and DESIGN.md caps
+       that at one per screen at ~5% of the frame. --green-wash does not count
+       against that budget: it is 1.085:1 against the page, a hue signal and
+       not a luminance one, which is why the ink darkens with it —
+       --slate 6.62:1 unselected, --ink 14.75:1 selected. Two signals where
+       HIG's tinted-label convention gives one, the same reading the tab bar
+       already took. */
+    + '.wf-frame.dr header.topbar .wf-lang{ border-color:var(--line); border-radius:var(--r-btn); }'
+    + '.wf-frame.dr header.topbar .wf-lang button{ background:transparent; color:var(--slate);'
+    + '  border-right-color:var(--line); }'
+    + '.wf-frame.dr header.topbar .wf-lang button:hover{ background:var(--card); color:var(--ink); }'
+    + '.wf-frame.dr header.topbar .wf-lang button.on{ background:var(--green-wash); color:var(--ink); }'
+    + '.wf-frame.dr header.topbar .wf-lang button:focus-visible{ outline:var(--focus-w) solid var(--ink);'
+    + '  outline-offset:calc(-1 * var(--focus-offset)); }'
+
     /* ── mobile / narrow: collapse the tree into the burger drawer ── */
     + '@media (max-width:899px){'
     + '  .wf-shelled{ padding:52px 12px 24px 12px !important; }'
