@@ -11,6 +11,7 @@
   flows.md node: RELATED · RJ-C4 → "Inspection report" → Rate the order.
 -->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -25,76 +26,76 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Cover</b> ▸ hero shot of the structure</p><p><b>Findings</b> ▸ what was found, by severity</p><p><b>Photo set</b> ▸ evidence frames</p><p><b>Signature</b> ▸ verified by DRON</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><a class="back" href="tracking.html">‹ On the way</a><span class="title">Inspection report</span><span class="spacer"></span></header>
-    <main>
-      <section class="center" aria-label="Report ready" style="padding-top:4px;">
-        <span class="success-mark">DONE</span>
-        <p class="big-title">Report ready</p>
-        <p class="lead">Roof inspection · Osokorky, 14 · completed 15:42.</p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="tracking.html">‹ On the way</a><span class="dr-topbar__title">Inspection report</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <section class="dr-center" aria-label="Report ready" style="padding-top:4px;">
+        <span class="dr-mark dr-mark--milestone"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+        <p class="dr-display">Report ready</p>
+        <p class="dr-lead">Roof inspection · Osokorky, 14 · completed 15:42.</p>
       </section>
 
-      <p class="zlabel">Cover <span class="act">▸ hero shot (RJ-C4)</span></p>
+      <p class="zlabel dr-label">Cover <span class="dr-label__act">▸ hero shot (RJ-C4)</span></p>
       <section aria-label="Cover photo">
-        <span class="media-ph shot" style="width:100%;height:200px;"><img src="../assets/scenes/thumbs/inspection-roof-cracked-tiles.jpg" alt="Cracked roof tiles near the ridge — the subject of this report" loading="lazy" decoding="async"></span>
+        <span class="dr-well dr-well--photo" style="width:100%;height:200px;"><img src="../assets/scenes/thumbs/inspection-roof-cracked-tiles.jpg" alt="Cracked roof tiles near the ridge — the subject of this report" loading="lazy" decoding="async"></span>
       </section>
 
-      <p class="zlabel">Findings <span class="act">▸ what was found · severity</span></p>
+      <p class="zlabel dr-label">Findings <span class="dr-label__act">▸ what was found · severity</span></p>
       <section aria-label="Findings">
-        <ul class="list">
+        <ul class="dr-list">
           <li>
-            <article class="card">
-              <span class="body">
-                <span class="name">Roof · north slope</span>
-                <span class="desc">2 cracked tiles near the ridge — water ingress risk.</span>
-                <span class="meta-row"><span class="badge">Severity · High</span></span>
+            <article class="dr-card dr-card--row dr-listing">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Roof · north slope</span>
+                <span class="dr-listing__desc">2 cracked tiles near the ridge — water ingress risk.</span>
+                <span class="dr-listing__meta"><span class="dr-chip">Severity · High</span></span>
               </span>
             </article>
           </li>
           <li>
-            <article class="card">
-              <span class="body">
-                <span class="name">Gutter · east run</span>
-                <span class="desc">Leaf blockage over ~1.5 m, standing water.</span>
-                <span class="meta-row"><span class="badge">Severity · Medium</span></span>
+            <article class="dr-card dr-card--row dr-listing">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Gutter · east run</span>
+                <span class="dr-listing__desc">Leaf blockage over ~1.5 m, standing water.</span>
+                <span class="dr-listing__meta"><span class="dr-chip">Severity · Medium</span></span>
               </span>
             </article>
           </li>
           <li>
-            <article class="card">
-              <span class="body">
-                <span class="name">Chimney flashing</span>
-                <span class="desc">Sealed and intact — no action needed.</span>
-                <span class="meta-row"><span class="badge">Severity · None</span></span>
+            <article class="dr-card dr-card--row dr-listing">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Chimney flashing</span>
+                <span class="dr-listing__desc">Sealed and intact — no action needed.</span>
+                <span class="dr-listing__meta"><span class="dr-chip">Severity · None</span></span>
               </span>
             </article>
           </li>
         </ul>
       </section>
 
-      <p class="zlabel">Photo set <span class="act">▸ evidence frames</span></p>
+      <p class="zlabel dr-label">Photo set <span class="dr-label__act">▸ evidence frames</span></p>
       <section aria-label="Inspection photos">
-        <div class="stack" style="flex-direction:row;gap:8px;">
-          <span class="media-ph shot" style="flex:1;height:88px;"><img src="../assets/scenes/thumbs/inspection-roof-crack-1.jpg" alt="Evidence 1 of 3 — the cracked tiles from directly above" loading="lazy" decoding="async"></span>
-          <span class="media-ph shot" style="flex:1;height:88px;"><img src="../assets/scenes/thumbs/inspection-roof-crack-2.jpg" alt="Evidence 2 of 3 — the same cracked tiles along the ridge, showing the crack running to the edge" loading="lazy" decoding="async"></span>
-          <span class="media-ph shot" style="flex:1;height:88px;"><img src="../assets/scenes/thumbs/inspection-gutter-blocked.jpg" alt="Evidence 3 of 3 — the east gutter run, blocked with leaf debris and standing water" loading="lazy" decoding="async"></span>
+        <div class="dr-stack" style="flex-direction:row;gap:8px;">
+          <span class="dr-well dr-well--photo" style="flex:1;height:88px;"><img src="../assets/scenes/thumbs/inspection-roof-crack-1.jpg" alt="Evidence 1 of 3 — the cracked tiles from directly above" loading="lazy" decoding="async"></span>
+          <span class="dr-well dr-well--photo" style="flex:1;height:88px;"><img src="../assets/scenes/thumbs/inspection-roof-crack-2.jpg" alt="Evidence 2 of 3 — the same cracked tiles along the ridge, showing the crack running to the edge" loading="lazy" decoding="async"></span>
+          <span class="dr-well dr-well--photo" style="flex:1;height:88px;"><img src="../assets/scenes/thumbs/inspection-gutter-blocked.jpg" alt="Evidence 3 of 3 — the east gutter run, blocked with leaf debris and standing water" loading="lazy" decoding="async"></span>
         </div>
       </section>
 
-      <p class="zlabel">Signature <span class="act">▸ who verified it</span></p>
+      <p class="zlabel dr-label">Signature <span class="dr-label__act">▸ who verified it</span></p>
       <section aria-label="Operator signature">
-        <div class="kv">
-          <div class="kv-row"><span class="kv-key">Operator</span><span class="kv-val">Andriy M.</span></div>
-          <div class="kv-row"><span class="kv-key">Certificate</span><span class="kv-val">UA-DRN-04812</span></div>
-          <div class="kv-row"><span class="kv-key">Signed</span><span class="kv-val">2 Jul, 15:42 · <span class="badge">Verified by DRON</span></span></div>
+        <div class="dr-rows">
+          <div class="dr-rows__row"><span class="dr-rows__key">Operator</span><span class="dr-rows__val">Andriy M.</span></div>
+          <div class="dr-rows__row"><span class="dr-rows__key">Certificate</span><span class="dr-rows__val">UA-DRN-04812</span></div>
+          <div class="dr-rows__row"><span class="dr-rows__key">Signed</span><span class="dr-rows__val">2 Jul, 15:42 · <span class="dr-chip dr-chip--claim">Verified by DRON</span></span></div>
         </div>
       </section>
     </main>
 
-    <footer class="actionbar">
-      <a class="btn btn-primary btn-block" href="rate.html">Rate this order</a>
-      <a class="btn btn-secondary btn-block" href="report-issue.html">Report an issue</a>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="rate.html">Rate this order</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="report-issue.html">Report an issue</a>
     </footer>
   </div>
 

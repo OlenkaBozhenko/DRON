@@ -248,6 +248,9 @@
 }
 
 .dr-sr{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+/* form containers are structure, not surfaces — the UA border goes */
+.dr fieldset{ border: 0; padding: 0; min-width: 0; }
+.dr legend{ padding: 0; }
 
 /* Icons are one system: flat outline on a 24-grid, stroke declared once,
    currentColor, no fill. No glyph compensates its stroke — the size changes. */
@@ -581,8 +584,9 @@ header.dr-topbar,
   display: flex; align-items: center; gap: var(--sp-within-lg);
   padding: 0 var(--sp-screen);
   background: var(--page); border-bottom: var(--hair) solid var(--line);
-  overflow-x: auto;
+  overflow-x: auto; scrollbar-width: none;   /* the row scrolls; the chrome does not show it */
 }
+.dr-groups::-webkit-scrollbar{ display: none; }
 .dr-grouptab{
   position: relative; flex: none;
   height: var(--h-pill); padding: 0 var(--sp-snug);
@@ -795,6 +799,7 @@ header.dr-topbar,
 .dr-counter{ display: flex; align-items: center; justify-content: space-between; gap: var(--sp-within-lg); }
 .dr-counter__count{ font-size: var(--t-bodysm-size); color: var(--slate); }
 .dr-counter__count b{ color: var(--ink); font-weight: var(--weight-medium); }
+.dr-counter .dr-btn--tertiary{ padding: 0; white-space: nowrap; flex: none; }
 
 /* ═══ THE LISTING CARD ═══════════════════════════════════════════════════
    The client service card — approved 2026-08-03. Three elements, as the
@@ -879,7 +884,7 @@ header.dr-topbar,
 
 .dr-field{
   min-height: var(--h-control);
-  display: flex; align-items: center; gap: var(--sp-10);
+  display: flex; align-items: center; gap: var(--sp-10); flex-wrap: wrap;
   padding: 0 var(--sp-screen);
   position: relative;
   border: 0; background: transparent;
@@ -898,6 +903,7 @@ header.dr-topbar,
 .dr-field__input:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 .dr-field__value{
   font-size: var(--t-heading-size); font-weight: var(--weight-medium); color: var(--ink);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;
 }
 .dr-field__chev{ flex: none; color: var(--slate); display: inline-flex; }
 .dr-field__clear{
@@ -909,9 +915,12 @@ header.dr-topbar,
 .dr-field__err{ font-size: var(--t-caption-size); color: var(--danger-ink); }          /* 6.14:1 */
 /* the hint under a field lives inside the same panel, as its own quiet line */
 .dr-field__hint{
+  flex-basis: 100%;
   font-size: var(--t-caption-size); font-weight: var(--weight-regular);
-  color: var(--slate); padding: 0 var(--sp-screen) var(--sp-13);
+  color: var(--slate); padding: 0 0 var(--sp-9);
 }
+/* the input side of a row, when built markup wraps it — anatomy, not layout */
+.dr-field__group{ display: flex; flex: 1; align-items: center; gap: var(--sp-10); min-width: 0; }
 /* the multiline field: the row that grows. Same anatomy, taller floor. */
 .dr-field--area{ min-height: var(--sz-area-min); align-items: stretch;
   padding-top: var(--sp-snug); padding-bottom: var(--sp-snug); }
@@ -947,7 +956,8 @@ header.dr-topbar,
   padding: 0 var(--sp-screen);
   font-size: var(--t-heading-size); color: var(--ink); cursor: pointer;
 }
-.dr-pick + .dr-pick::before{
+.dr-pick + .dr-pick::before,
+.dr-picks li + li .dr-pick::before{
   content: ""; position: absolute; left: var(--pick-indent); right: 0; top: 0;
   height: var(--hair); background: var(--line);
 }

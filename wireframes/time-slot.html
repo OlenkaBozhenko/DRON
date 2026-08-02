@@ -11,6 +11,7 @@
   flows.md node: MJ-1 (C-2 planning branch — pick a slot before review).
 -->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -24,77 +25,77 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Day row</b> ▸ pick a date (chips)</p><p><b>Slots</b> ▸ operator availability per hour</p><p><b>Action</b> ▸ Confirm slot (primary)</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><a class="back" href="order-setup.html">‹ Package delivery</a><span class="title">Pick a time</span><span class="spacer"></span></header>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="order-setup.html">‹ Package delivery</a><span class="dr-topbar__title">Pick a time</span><span class="dr-topbar__spacer"></span></header>
 
-    <nav class="cats" aria-label="Pick a day">
-      <button class="chip">Tue 1</button>
-      <button class="chip" aria-current="true">Wed 2</button>
-      <button class="chip">Thu 3</button>
-      <button class="chip">Fri 4</button>
-      <button class="chip">Sat 5</button>
+    <nav class="dr-groups" aria-label="Pick a day">
+      <button class="dr-grouptab">Tue 1</button>
+      <button class="dr-grouptab" aria-current="true">Wed 2</button>
+      <button class="dr-grouptab">Thu 3</button>
+      <button class="dr-grouptab">Fri 4</button>
+      <button class="dr-grouptab">Sat 5</button>
     </nav>
 
-    <main>
-      <p class="zlabel">Slots · Wed 2 Jul <span class="act">▸ tap a free hour</span></p>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Slots · Wed 2 Jul <span class="dr-label__act">▸ tap a free hour</span></p>
       <section aria-label="Available time slots">
-        <ul class="list">
+        <ul class="dr-list">
           <li>
-            <article class="card">
-              <a class="card-link" href="order-review.html" aria-label="Book 09:00 to 10:00, operator free"></a>
-              <span class="body">
-                <span class="name">09:00 – 10:00</span>
-                <span class="desc">Operator free · Andriy M. nearby</span>
+            <article class="dr-card dr-card--row dr-listing">
+              <a class="dr-card__link" href="order-review.html" aria-label="Book 09:00 to 10:00, operator free"></a>
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">09:00 – 10:00</span>
+                <span class="dr-listing__desc">Operator free · Andriy M. nearby</span>
               </span>
-              <span class="chev" aria-hidden="true">›</span>
+              <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
             </article>
           </li>
           <li>
-            <article class="card">
-              <a class="card-link" href="order-review.html" aria-label="Book 11:00 to 12:00, operator free"></a>
-              <span class="body">
-                <span class="name">11:00 – 12:00</span>
-                <span class="desc">Operator free</span>
+            <article class="dr-card dr-card--row dr-listing">
+              <a class="dr-card__link" href="order-review.html" aria-label="Book 11:00 to 12:00, operator free"></a>
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">11:00 – 12:00</span>
+                <span class="dr-listing__desc">Operator free</span>
               </span>
-              <span class="chev" aria-hidden="true">›</span>
+              <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
             </article>
           </li>
           <li>
-            <article class="card">
-              <a class="card-link" href="order-review.html" aria-label="Book 13:00 to 14:00, operator free"></a>
-              <span class="body">
-                <span class="name">13:00 – 14:00</span>
-                <span class="desc">Operator free</span>
+            <article class="dr-card dr-card--row dr-listing">
+              <a class="dr-card__link" href="order-review.html" aria-label="Book 13:00 to 14:00, operator free"></a>
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">13:00 – 14:00</span>
+                <span class="dr-listing__desc">Operator free</span>
               </span>
-              <span class="chev" aria-hidden="true">›</span>
+              <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
             </article>
           </li>
           <li>
-            <article class="card" aria-disabled="true" style="opacity:.55;">
-              <span class="body">
-                <span class="name">15:00 – 16:00</span>
-                <span class="desc">Fully booked</span>
+            <article class="dr-card dr-card--row dr-listing" aria-disabled="true" style="opacity:.55;">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">15:00 – 16:00</span>
+                <span class="dr-listing__desc">Fully booked</span>
               </span>
             </article>
           </li>
           <li>
-            <article class="card">
-              <a class="card-link" href="order-review.html" aria-label="Book 17:00 to 18:00, operator free"></a>
-              <span class="body">
-                <span class="name">17:00 – 18:00</span>
-                <span class="desc">Operator free · golden-hour light</span>
+            <article class="dr-card dr-card--row dr-listing">
+              <a class="dr-card__link" href="order-review.html" aria-label="Book 17:00 to 18:00, operator free"></a>
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">17:00 – 18:00</span>
+                <span class="dr-listing__desc">Operator free · golden-hour light</span>
               </span>
-              <span class="chev" aria-hidden="true">›</span>
+              <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
             </article>
           </li>
         </ul>
       </section>
     </main>
 
-    <footer class="actionbar">
-      <div class="price-line"><span class="lbl">Selected · Wed 2 Jul, 09:00</span><span class="val">₴800</span></div>
-      <a class="btn btn-primary btn-block" href="order-review.html">Confirm slot</a>
+    <footer class="dr-actionbar">
+      <div class="dr-price"><span class="dr-price__lbl">Selected · Wed 2 Jul, 09:00</span><span class="dr-price__val">₴800</span></div>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="order-review.html">Confirm slot</a>
     </footer>
   </div>
 

@@ -170,6 +170,7 @@
   footer .home-indicator{ height:34px; display:flex; align-items:center; justify-content:center; }
   footer .home-indicator span{ width:134px; height:5px; border-radius:2px; background:var(--wf-skeleton); }
 </style>
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
 
@@ -199,49 +200,48 @@
   </aside>
 
   <!-- ── THE SCREEN · 375 × 812 ── -->
-  <div class="wf-frame">
+  <div class="wf-frame dr dr-screen">
 
     <!-- status bar -->
-    <div class="statusbar">
+    <div class="dr-statusbar">
       <span>9:41</span>
-      <span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span>
+      <span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span>
     </div>
 
     <!-- HEADER · top bar -->
-    <header class="topbar">
-      <span class="brand" role="img" aria-label="DRON"></span>
-      <button class="btn btn-tertiary loc" style="padding:0;">Kyiv · Podil ▾</button>
-      <span class="spacer"></span>
+    <header class="topbar dr-topbar">
+      <span class="dr-brand" role="img" aria-label="DRON"></span>
+      <button class="dr-btn dr-btn--tertiary" style="padding:0;">Kyiv · Podil ▾</button>
+      <span class="dr-topbar__spacer"></span>
     </header>
 
     <!-- NAV · service categories (filter) -->
-    <nav class="cats" aria-label="Service categories">
-      <button class="chip" aria-current="true">All</button>
-      <button class="chip">Delivery</button>
-      <button class="chip">Aerial photo &amp; video</button>
-      <button class="chip">Inspection</button>
+    <nav class="dr-groups" aria-label="Service categories">
+      <button class="dr-grouptab" aria-current="true">All</button>
+      <button class="dr-grouptab">Delivery</button>
+      <button class="dr-grouptab">Aerial photo &amp; video</button>
+      <button class="dr-grouptab">Inspection</button>
     </nav>
 
     <!-- MAIN -->
-    <main>
+    <main class="dr-main">
 
       <!-- ZONE · search & filters -->
-      <p class="zlabel">Search &amp; filters <span class="act">▸ narrow the service list</span></p>
+      <p class="zlabel dr-label">Search &amp; filters <span class="dr-label__act">▸ narrow the service list</span></p>
       <section aria-label="Search and filters">
-        <form class="search-row" role="search" action="#">
-          <span class="field">
-            <span class="sq sq-20" aria-hidden="true"></span>
-            <input type="search" name="q" placeholder="Search services" aria-label="Search services">
+        <form class="dr-search-row" role="search" action="#">
+          <span class="dr-search">
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="search" name="q" placeholder="Search services" aria-label="Search services">
           </span>
-          <a class="icon-btn" href="listings-filters.html" aria-label="Filters · 3 applied">
-            <span class="ic-filter" aria-hidden="true"><i></i><i></i><i></i></span>
+          <a class="dr-btn dr-btn--icon" href="listings-filters.html" aria-label="Filters · 3 applied">
+            <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5h9"/><circle cx="17" cy="7.5" r="2.4"/><path d="M20 16.5h-9"/><circle cx="7" cy="16.5" r="2.4"/></svg>
             <span class="count-badge" aria-hidden="true">3</span>
           </a>
         </form>
       </section>
 
       <!-- ZONE · applied filters (removable) -->
-      <p class="zlabel">Applied filters <span class="act">▸ removable chips · Clear all</span></p>
+      <p class="zlabel dr-label">Applied filters <span class="dr-label__act">▸ removable chips · Clear all</span></p>
       <section class="applied" aria-label="Applied filters">
         <a class="fchip" href="listings.html" aria-label="Remove filter: Price High to Low">
           Price: High → Low <span class="x" aria-hidden="true">&times;</span>
@@ -256,35 +256,35 @@
       </section>
 
       <!-- ZONE · counter -->
-      <p class="zlabel">Counter <span class="act">▸ matches after filtering / re-sort</span></p>
-      <section class="counter" aria-label="Results counter">
-        <output class="count"><b>2 services</b> · Podil · today</output>
-        <button type="button" class="btn btn-tertiary btn-sm">Sort: Price ↓ ▾</button>
+      <p class="zlabel dr-label">Counter <span class="dr-label__act">▸ matches after filtering / re-sort</span></p>
+      <section class="dr-counter" aria-label="Results counter">
+        <output class="dr-counter__count"><b>2 services</b> · Podil · today</output>
+        <button type="button" class="dr-btn dr-btn--tertiary">Sort: Price ↓ ▾</button>
       </section>
 
       <!-- ZONE · service list (cards) — filtered & sorted high→low -->
-      <p class="zlabel">Service list · cards <span class="act">▸ filtered · sorted price high→low</span></p>
+      <p class="zlabel dr-label">Service list · cards <span class="dr-label__act">▸ filtered · sorted price high→low</span></p>
       <section aria-label="Service list">
-        <ul class="list">
+        <ul class="dr-list">
 
           <li>
-            <article class="card">
-              <a class="card-link" href="order-setup.html" aria-label="Aerial photo and video — start an order"></a>
+            <article class="dr-card dr-card--row dr-listing">
+              <a class="dr-card__link" href="order-setup.html" aria-label="Aerial photo and video — start an order"></a>
               <span class="media-ph"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
-              <span class="body">
-                <span class="name">Aerial photo &amp; video</span>
-                <span class="desc">Events, real-estate listings, personal occasions</span>
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Aerial photo &amp; video</span>
+                <span class="dr-listing__desc">Events, real-estate listings, personal occasions</span>
               </span>
             </article>
           </li>
 
           <li>
-            <article class="card">
-              <a class="card-link" href="order-setup.html" aria-label="Inspection — start an order"></a>
+            <article class="dr-card dr-card--row dr-listing">
+              <a class="dr-card__link" href="order-setup.html" aria-label="Inspection — start an order"></a>
               <span class="media-ph"><img src="../assets/drones/thumbs/drone-11.png" alt="" loading="lazy" decoding="async"></span>
-              <span class="body">
-                <span class="name">Inspection</span>
-                <span class="desc">Roofs, facades, hard-to-reach structures</span>
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Inspection</span>
+                <span class="dr-listing__desc">Roofs, facades, hard-to-reach structures</span>
               </span>
             </article>
           </li>
@@ -295,22 +295,22 @@
     </main>
 
     <!-- FOOTER · bottom bar (global nav — sitemap §7.1) -->
-    <footer class="tabbar">
-      <nav class="tabs" aria-label="Primary">
-        <a class="tab" href="listings.html" aria-current="page">
-          <span class="sq sq-24" aria-hidden="true"></span>Order
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="listings.html" aria-current="page">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order
         </a>
-        <a class="tab" href="order-history.html">
-          <span class="sq sq-24" aria-hidden="true"></span>Activity
+        <a class="dr-tab" href="order-history.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity
         </a>
-        <a class="tab" href="support.html">
-          <span class="sq sq-24" aria-hidden="true"></span>Help
+        <a class="dr-tab" href="support.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help
         </a>
-        <a class="tab" href="account.html">
-          <span class="sq sq-24" aria-hidden="true"></span>Account
+        <a class="dr-tab" href="account.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account
         </a>
       </nav>
-      <div class="home-indicator"><span></span></div>
+      <div class="dr-home"><span></span></div>
     </footer>
 
   </div>

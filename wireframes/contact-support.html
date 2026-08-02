@@ -13,6 +13,7 @@
   Deep in the flow → topbar Back → support.html + footer.actionbar.
 -->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -26,34 +27,36 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Agent panel</b> ▸ who's online</p><p><b>Message</b> ▸ write to support</p><p><b>Outcome</b> ▸ resolved · escalate</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><button class="back">‹ Help</button><span class="title">Support</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Agent panel <span class="act">▸ 24/7 human support</span></p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><button class="dr-back">‹ Help</button><span class="dr-topbar__title">Support</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Agent panel <span class="dr-label__act">▸ 24/7 human support</span></p>
       <section aria-label="Support agent">
-        <article class="op-card">
+        <article class="dr-op">
           <span class="op-avatar">DR</span>
-          <span class="op-info">
-            <span class="op-name">DRON Support</span>
-            <span class="op-rating">Online 24/7 &middot; typically replies in ~3 min</span>
-            <span class="badges"><span class="badge">Human agent</span><span class="badge">Order #DR-4821</span></span>
+          <span class="dr-op__info">
+            <span class="dr-op__name">DRON Support</span>
+            <span class="dr-op__rating">Online 24/7 &middot; typically replies in ~3 min</span>
+            <span class="dr-chips dr-op__badges"><span class="dr-chip">Human agent</span><span class="dr-chip">Order #DR-4821</span></span>
           </span>
         </article>
       </section>
 
-      <p class="zlabel">Message <span class="act">▸ write to support</span></p>
-      <form class="stack" aria-label="Message support" action="#">
-        <div class="form-field">
-          <label class="field-label" for="ms">Your message</label>
-          <textarea id="ms" class="control" placeholder="Describe the issue and what you'd like to happen."></textarea>
+      <p class="zlabel dr-label">Message <span class="dr-label__act">▸ write to support</span></p>
+      <form class="dr-stack" aria-label="Message support" action="#">
+        <div class="dr-rows">
+<div class="dr-field dr-field--area">
+          <label class="dr-field__label" for="ms">Your message</label>
+          <textarea class="dr-field__input" id="ms" class="dr-field__group" placeholder="Describe the issue and what you'd like to happen."></textarea>
         </div>
-        <button type="button" class="btn btn-secondary btn-block">Call support</button>
+</div>
+<button type="button" class="dr-btn dr-btn--secondary dr-btn--block">Call support</button>
       </form>
     </main>
-    <footer class="actionbar">
-      <a class="btn btn-primary btn-block" href="listings.html">Mark resolved</a>
-      <a class="btn btn-tertiary" href="contact-support-error.html">Ask a senior agent</a>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="listings.html">Mark resolved</a>
+      <a class="dr-btn dr-btn--tertiary" href="contact-support-error.html">Ask a senior agent</a>
     </footer>
   </div>
 

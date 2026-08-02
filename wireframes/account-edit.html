@@ -13,6 +13,7 @@
   FIDELITY: grayscale only, system font, no colour/icons/shadow — per _conventions.md.
 -->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -26,66 +27,72 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Personal</b> ▸ editable name &amp; phone</p><p><b>Documents</b> ▸ upload drone documents + insurance</p><p><b>Preferences</b> ▸ payment · address · language</p><p><b>Action bar</b> ▸ Cancel · Save changes</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><a class="back" href="account.html">‹ Account</a><span class="title">Edit account</span><span class="spacer"></span></header>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="account.html">‹ Account</a><span class="dr-topbar__title">Edit account</span><span class="dr-topbar__spacer"></span></header>
 
-    <main>
-      <form class="stack" action="#" aria-label="Edit account">
+    <main class="dr-main">
+      <form class="dr-stack" action="#" aria-label="Edit account">
 
         <!-- ZONE · personal -->
-        <p class="zlabel">Personal <span class="act">▸ editable name &amp; phone</span></p>
-        <div class="form-field">
-          <label class="field-label" for="name">Full name</label>
-          <span class="control"><input id="name" name="name" value="Olena B."></span>
+        <p class="zlabel dr-label">Personal <span class="dr-label__act">▸ editable name &amp; phone</span></p>
+        <div class="dr-rows">
+<div class="dr-field">
+          <label class="dr-field__label" for="name">Full name</label>
+          <span class="dr-field__group"><input class="dr-field__input" id="name" name="name" value="Olena B."></span>
         </div>
-        <div class="form-field">
-          <label class="field-label" for="phone">Phone</label>
-          <span class="control"><input id="phone" name="phone" type="tel" value="+380 67 000 4417"></span>
-          <span class="field-hint">Used for order updates and operator contact.</span>
+        <div class="dr-field">
+          <label class="dr-field__label" for="phone">Phone</label>
+          <span class="dr-field__group"><input class="dr-field__input" id="phone" name="phone" type="tel" value="+380 67 000 4417"></span>
+          <span class="dr-field__hint">Used for order updates and operator contact.</span>
         </div>
-
-        <!-- ZONE · documents -->
-        <p class="zlabel">Documents <span class="act">▸ upload drone documents &amp; insurance</span></p>
-        <div class="form-field">
-          <span class="field-label">Drone documents</span>
-          <div class="upload-zone">
-            <span class="up-ph">DRONE REGISTRATION / DOCUMENTS</span>
-            <button type="button" class="btn btn-secondary btn-sm">Add document</button>
+</div>
+<!-- ZONE · documents -->
+        <p class="zlabel dr-label">Documents <span class="dr-label__act">▸ upload drone documents &amp; insurance</span></p>
+        <div class="dr-rows">
+<div class="dr-field">
+          <span class="dr-field__label">Drone documents</span>
+          <div class="dr-upload">
+            <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+            <button type="button" class="dr-btn dr-btn--secondary">Add document</button>
           </div>
-          <span class="field-hint">Registration, serial, or manufacturer papers (PDF / photo).</span>
+</div>
+<span class="dr-field__hint">Registration, serial, or manufacturer papers (PDF / photo).</span>
         </div>
-        <div class="form-field">
-          <span class="field-label">Insurance</span>
-          <div class="upload-zone">
-            <span class="up-ph">INSURANCE DOCUMENT</span>
-            <button type="button" class="btn btn-secondary btn-sm">Add document</button>
+        <div class="dr-rows">
+<div class="dr-field">
+          <span class="dr-field__label">Insurance</span>
+          <div class="dr-upload">
+            <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+            <button type="button" class="dr-btn dr-btn--secondary">Add document</button>
           </div>
-          <span class="field-hint">Valid liability insurance covering the drone.</span>
+</div>
+<span class="dr-field__hint">Valid liability insurance covering the drone.</span>
         </div>
 
         <!-- ZONE · preferences -->
-        <p class="zlabel">Preferences <span class="act">▸ payment · address · language</span></p>
-        <div class="form-field">
-          <span class="field-label">Payment method</span>
-          <span class="control select" role="button" tabindex="0">Visa •••• 4921 <span aria-hidden="true">&#9662;</span></span>
+        <p class="zlabel dr-label">Preferences <span class="dr-label__act">▸ payment · address · language</span></p>
+        <div class="dr-rows">
+<div class="dr-field">
+          <span class="dr-field__label">Payment method</span>
+          <span class="dr-field__group" role="button" tabindex="0">Visa •••• 4921 <span aria-hidden="true">&#9662;</span></span>
         </div>
-        <div class="form-field">
-          <label class="field-label" for="addr">Saved address</label>
-          <span class="control"><input id="addr" name="addr" value="Podil, 21"></span>
+        <div class="dr-field">
+          <label class="dr-field__label" for="addr">Saved address</label>
+          <span class="dr-field__group"><input class="dr-field__input" id="addr" name="addr" value="Podil, 21"></span>
         </div>
-        <div class="form-field">
-          <span class="field-label">Language</span>
-          <span class="control select" role="button" tabindex="0">English <span aria-hidden="true">&#9662;</span></span>
+        <div class="dr-field">
+          <span class="dr-field__label">Language</span>
+          <span class="dr-field__group" role="button" tabindex="0">English <span aria-hidden="true">&#9662;</span></span>
         </div>
-
-      </form>
+</div>
+</form>
     </main>
 
-    <footer class="actionbar">
-      <div class="row2">
-        <a class="btn btn-secondary" href="account.html">Cancel</a>
-        <a class="btn btn-primary" href="account.html">Save changes</a>
+    <footer class="dr-actionbar">
+      <div class="dr-actionbar__row">
+        <a class="dr-btn dr-btn--secondary" href="account.html">Cancel</a>
+        <a class="dr-btn dr-btn--primary" href="account.html">Save changes</a>
       </div>
     </footer>
   </div>

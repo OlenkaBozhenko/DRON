@@ -6,6 +6,7 @@
 <title>DRON wireframe · Switch role · base</title>
 <!-- SCREEN (sitemap §6.0 / _screens.md STEP 8): "Switch role (Client ⇄ Operator)" — SHARED global. JOB: CHANGE PERSONA — re-enter the role fork from Account without losing an in-progress order/job. PERSONA: any (Client or Operator). STATE: base only (no state pages). flows.md CHANGE PERSONA: Account → Switch role → Confirm switch? → yes → Choose your role. Confirm screen: no tab bar, sticky actionbar. -->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -15,28 +16,28 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Explain</b> ▸ what switching does</p><p><b>Safety note</b> ▸ in-progress work isn't lost</p><p><b>Confirm / Cancel</b> ▸ deliberate confirm (actionbar)</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><a class="back" href="account.html">‹ Account</a><span class="title">Switch role</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Switch <span class="act">▸ Client ⇄ Operator</span></p>
-      <section aria-label="Switch role" class="center" style="padding-top:16px;">
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="account.html">‹ Account</a><span class="dr-topbar__title">Switch role</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Switch <span class="dr-label__act">▸ Client ⇄ Operator</span></p>
+      <section aria-label="Switch role" class="dr-center" style="padding-top:16px;">
         <span class="success-mark" aria-hidden="true">SWITCH</span>
-        <h1 class="big-title">Switch to Operator?</h1>
-        <p class="lead">You're in Client mode. Switching shows the Operator app — jobs, earnings and ratings. Your Diia identity stays the same.</p>
+        <h1 class="dr-display">Switch to Operator?</h1>
+        <p class="dr-lead">You're in Client mode. Switching shows the Operator app — jobs, earnings and ratings. Your Diia identity stays the same.</p>
       </section>
 
-      <p class="zlabel">What happens <span class="act">▸ nothing is lost</span></p>
-      <div class="kv" aria-label="What happens when you switch">
-        <div class="kv-row"><span class="kv-key">In-progress order</span><span class="kv-val">Kept — resume from Client</span></div>
-        <div class="kv-row"><span class="kv-key">First time as Operator</span><span class="kv-val">Runs onboarding once</span></div>
-        <div class="kv-row"><span class="kv-key">Switch back</span><span class="kv-val">Any time from Account</span></div>
+      <p class="zlabel dr-label">What happens <span class="dr-label__act">▸ nothing is lost</span></p>
+      <div class="dr-rows" aria-label="What happens when you switch">
+        <div class="dr-rows__row"><span class="dr-rows__key">In-progress order</span><span class="dr-rows__val">Kept — resume from Client</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">First time as Operator</span><span class="dr-rows__val">Runs onboarding once</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Switch back</span><span class="dr-rows__val">Any time from Account</span></div>
       </div>
-      <p class="note">Switching is always reversible from the same Account entry.</p>
+      <p class="dr-note">Switching is always reversible from the same Account entry.</p>
     </main>
-    <footer class="actionbar">
-      <a class="btn btn-primary btn-block" href="role-select.html">Switch to Operator</a>
-      <a class="btn btn-secondary btn-block" href="account.html">Cancel</a>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="role-select.html">Switch to Operator</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="account.html">Cancel</a>
     </footer>
   </div>
 

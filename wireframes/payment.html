@@ -6,6 +6,7 @@
 <title>DRON wireframe · Payment · success (base)</title>
 <!-- SCREEN (sitemap): "Payment". JOB (jtbd): MJ-1 pay step (C-04 — Apple/Google Pay / card). STATE: base. Flow step → order-confirmed. (Wireframe placeholders only — no real card entry.) -->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -20,27 +21,27 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Amount</b> ▸ the locked total</p><p><b>Method</b> ▸ choose how to pay</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><button class="back">‹ Order review</button><span class="title">Payment</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Amount <span class="act">▸ final total</span></p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><button class="dr-back">‹ Order review</button><span class="dr-topbar__title">Payment</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Amount <span class="dr-label__act">▸ final total</span></p>
       <section aria-label="Amount">
         <p class="amount">₴180</p>
         <p class="amount-sub">Package delivery · Podil → Osokorky</p>
       </section>
-      <p class="zlabel">Payment method <span class="act">▸ choose how to pay</span></p>
+      <p class="zlabel dr-label">Payment method <span class="dr-label__act">▸ choose how to pay</span></p>
       <fieldset aria-label="Payment method">
-        <ul class="list">
-          <li><label class="check-item done"><span class="check-box" aria-hidden="true">•</span><span class="check-label">Apple Pay</span><input type="radio" name="pm" checked class="sr-only"></label></li>
-          <li><label class="check-item"><span class="check-box" aria-hidden="true"></span><span class="check-label">Google Pay</span><input type="radio" name="pm" class="sr-only"></label></li>
-          <li><label class="check-item"><span class="check-box" aria-hidden="true"></span><span class="check-label">Visa •••• 4921</span><input type="radio" name="pm" class="sr-only"></label></li>
+        <ul class="dr-picks">
+          <li><label class="dr-pick x-done"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><span class="dr-pick__label">Apple Pay</span><input type="radio" name="pm" checked class="sr-only"></label></li>
+          <li><label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><span class="dr-pick__label">Google Pay</span><input type="radio" name="pm" class="sr-only"></label></li>
+          <li><label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><span class="dr-pick__label">Visa •••• 4921</span><input type="radio" name="pm" class="sr-only"></label></li>
         </ul>
       </fieldset>
     </main>
-    <footer class="actionbar">
-      <div class="price-line"><span class="lbl">Pay with Apple Pay</span><span class="val">₴180</span></div>
-      <a class="btn btn-primary btn-block" href="order-confirmed.html">Pay ₴180</a>
+    <footer class="dr-actionbar">
+      <div class="dr-price"><span class="dr-price__lbl">Pay with Apple Pay</span><span class="dr-price__val">₴180</span></div>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="order-confirmed.html">Pay ₴180</a>
     </footer>
   </div>
 

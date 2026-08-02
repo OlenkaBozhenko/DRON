@@ -11,6 +11,7 @@
   flows.md node: MJ-1 (C-2 planning branch) — availability stock-out on a day.
 -->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -24,36 +25,36 @@
     <div class="legend"><p><b>Only the content changes</b> vs time-slot.html:</p><p><b>Day row</b> ▸ the sold-out day stays selected</p><p><b>Slots</b> ▸ empty block + recovery actions</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><a class="back" href="order-setup.html">‹ Package delivery</a><span class="title">Pick a time</span><span class="spacer"></span></header>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="order-setup.html">‹ Package delivery</a><span class="dr-topbar__title">Pick a time</span><span class="dr-topbar__spacer"></span></header>
 
-    <nav class="cats" aria-label="Pick a day">
-      <button class="chip">Tue 1</button>
-      <button class="chip">Wed 2</button>
-      <button class="chip" aria-current="true">Thu 3</button>
-      <button class="chip">Fri 4</button>
-      <button class="chip">Sat 5</button>
+    <nav class="dr-groups" aria-label="Pick a day">
+      <button class="dr-grouptab">Tue 1</button>
+      <button class="dr-grouptab">Wed 2</button>
+      <button class="dr-grouptab" aria-current="true">Thu 3</button>
+      <button class="dr-grouptab">Fri 4</button>
+      <button class="dr-grouptab">Sat 5</button>
     </nav>
 
-    <main>
-      <p class="zlabel">Slots · Thu 3 Jul <span class="act">▸ none free — recover</span></p>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Slots · Thu 3 Jul <span class="dr-label__act">▸ none free — recover</span></p>
       <section aria-label="Available time slots">
-        <div class="msg-block" role="status">
-          <span class="msg-ph">EMPTY</span>
-          <span class="msg-title">No free slots on Thu 3 Jul</span>
-          <p class="msg-body">Every operator is booked that day. Pick another day — Fri 4 and Sat 5 still have openings.</p>
-          <div class="msg-actions">
-            <a class="btn btn-primary" href="time-slot.html">Pick another day</a>
-            <a class="btn btn-secondary" href="order-setup.html">Back to Order setup</a>
+        <div class="dr-msg" role="status">
+          <span class="dr-mark">EMPTY</span>
+          <span class="dr-msg__title">No free slots on Thu 3 Jul</span>
+          <p class="dr-msg__body">Every operator is booked that day. Pick another day — Fri 4 and Sat 5 still have openings.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="time-slot.html">Pick another day</a>
+            <a class="dr-btn dr-btn--secondary" href="order-setup.html">Back to Order setup</a>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="actionbar">
-      <div class="price-line"><span class="lbl">No slot selected</span><span class="val">₴800</span></div>
-      <a class="btn btn-primary btn-block" href="time-slot.html" aria-disabled="true">Confirm slot</a>
+    <footer class="dr-actionbar">
+      <div class="dr-price"><span class="dr-price__lbl">No slot selected</span><span class="dr-price__val">₴800</span></div>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="time-slot.html" aria-disabled="true">Confirm slot</a>
     </footer>
   </div>
 

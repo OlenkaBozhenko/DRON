@@ -11,6 +11,7 @@
   flows.md node: RELATED · RJ-C4 → "Loading: result not uploaded yet".
 -->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -25,50 +26,50 @@
     <div class="legend"><p><b>Only the content changes</b> vs inspection-report.html:</p><p><b>Status</b> ▸ "Report not uploaded yet…"</p><p><b>Body</b> ▸ cover + findings skeletons</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><a class="back" href="tracking.html">‹ On the way</a><span class="title">Inspection report</span><span class="spacer"></span></header>
-    <main>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="tracking.html">‹ On the way</a><span class="dr-topbar__title">Inspection report</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
       <p role="status">The operator is still uploading the report…</p>
 
-      <p class="zlabel">Cover <span class="act">▸ loading</span></p>
+      <p class="zlabel dr-label">Cover <span class="dr-label__act">▸ loading</span></p>
       <section aria-label="Cover photo is loading">
-        <span class="sk-block" style="display:block;height:200px;"></span>
+        <span class="dr-sk-block" style="display:block;height:200px;"></span>
       </section>
 
-      <p class="zlabel">Findings <span class="act">▸ loading</span></p>
+      <p class="zlabel dr-label">Findings <span class="dr-label__act">▸ loading</span></p>
       <section aria-label="Findings are loading">
-        <ul class="list" aria-hidden="true">
+        <ul class="dr-list" aria-hidden="true">
           <li>
-            <div class="sk-card">
-              <span class="sk-body"><span class="sk-line sk-w40"></span><span class="sk-line sk-w90"></span><span class="sk-line sk-w30"></span></span>
+            <div class="dr-card dr-card--row">
+              <span class="dr-sk-head"><span class="dr-sk-line dr-sk-w40"></span><span class="dr-sk-line dr-sk-w90"></span><span class="dr-sk-line dr-sk-w30"></span></span>
             </div>
           </li>
           <li>
-            <div class="sk-card">
-              <span class="sk-body"><span class="sk-line sk-w50"></span><span class="sk-line sk-w70"></span><span class="sk-line sk-w30"></span></span>
+            <div class="dr-card dr-card--row">
+              <span class="dr-sk-head"><span class="dr-sk-line dr-sk-w50"></span><span class="dr-sk-line dr-sk-w70"></span><span class="dr-sk-line dr-sk-w30"></span></span>
             </div>
           </li>
           <li>
-            <div class="sk-card">
-              <span class="sk-body"><span class="sk-line sk-w40"></span><span class="sk-line sk-w90"></span><span class="sk-line sk-w30"></span></span>
+            <div class="dr-card dr-card--row">
+              <span class="dr-sk-head"><span class="dr-sk-line dr-sk-w40"></span><span class="dr-sk-line dr-sk-w90"></span><span class="dr-sk-line dr-sk-w30"></span></span>
             </div>
           </li>
         </ul>
       </section>
 
-      <p class="zlabel">Photo set <span class="act">▸ loading</span></p>
+      <p class="zlabel dr-label">Photo set <span class="dr-label__act">▸ loading</span></p>
       <section aria-label="Photos are loading">
-        <div class="stack" style="flex-direction:row;gap:8px;" aria-hidden="true">
-          <span class="sk-media" style="flex:1;height:88px;width:auto;"></span>
-          <span class="sk-media" style="flex:1;height:88px;width:auto;"></span>
-          <span class="sk-media" style="flex:1;height:88px;width:auto;"></span>
+        <div class="dr-stack" style="flex-direction:row;gap:8px;" aria-hidden="true">
+          <span class="dr-sk-well" style="flex:1;height:88px;width:auto;"></span>
+          <span class="dr-sk-well" style="flex:1;height:88px;width:auto;"></span>
+          <span class="dr-sk-well" style="flex:1;height:88px;width:auto;"></span>
         </div>
       </section>
     </main>
 
-    <footer class="actionbar">
-      <a class="btn btn-primary btn-block" href="inspection-report.html" aria-disabled="true">Rate this order</a>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="inspection-report.html" aria-disabled="true">Rate this order</a>
     </footer>
   </div>
 

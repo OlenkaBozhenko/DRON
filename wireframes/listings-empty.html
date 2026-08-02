@@ -126,6 +126,7 @@
   footer .home-indicator{ height:34px; display:flex; align-items:center; justify-content:center; }
   footer .home-indicator span{ width:134px; height:5px; border-radius:2px; background:var(--wf-skeleton); }
 </style>
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
 
@@ -153,79 +154,78 @@
   </aside>
 
   <!-- ── THE SCREEN · 375 × 812 ── -->
-  <div class="wf-frame">
+  <div class="wf-frame dr dr-screen">
 
-    <div class="statusbar">
+    <div class="dr-statusbar">
       <span>9:41</span>
-      <span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span>
+      <span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span>
     </div>
 
-    <header class="topbar">
-      <span class="brand" role="img" aria-label="DRON"></span>
-      <button class="btn btn-tertiary loc" style="padding:0;">Kyiv, UA ▾</button>
-      <span class="spacer"></span>
+    <header class="topbar dr-topbar">
+      <span class="dr-brand" role="img" aria-label="DRON"></span>
+      <button class="dr-btn dr-btn--tertiary" style="padding:0;">Kyiv, UA ▾</button>
+      <span class="dr-topbar__spacer"></span>
     </header>
 
-    <nav class="cats" aria-label="Service categories">
-      <button class="chip" aria-current="true">All</button>
-      <button class="chip">Delivery</button>
-      <button class="chip">Aerial photo &amp; video</button>
-      <button class="chip">Inspection</button>
+    <nav class="dr-groups" aria-label="Service categories">
+      <button class="dr-grouptab" aria-current="true">All</button>
+      <button class="dr-grouptab">Delivery</button>
+      <button class="dr-grouptab">Aerial photo &amp; video</button>
+      <button class="dr-grouptab">Inspection</button>
     </nav>
 
-    <main>
+    <main class="dr-main">
 
       <!-- ZONE · search & filters (carries the query that found nothing) -->
-      <p class="zlabel">Search &amp; filters <span class="act">▸ query returned nothing</span></p>
+      <p class="zlabel dr-label">Search &amp; filters <span class="dr-label__act">▸ query returned nothing</span></p>
       <section aria-label="Search and filters">
-        <form class="search-row" role="search" action="#">
-          <span class="field">
-            <span class="sq sq-20" aria-hidden="true"></span>
-            <input type="search" name="q" value="crop spraying" placeholder="Search services" aria-label="Search services">
+        <form class="dr-search-row" role="search" action="#">
+          <span class="dr-search">
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="search" name="q" value="crop spraying" placeholder="Search services" aria-label="Search services">
           </span>
-          <button type="button" class="btn btn-secondary">Filters</button>
+          <button type="button" class="dr-btn dr-btn--secondary">Filters</button>
         </form>
       </section>
 
       <!-- ZONE · counter -->
-      <p class="zlabel">Counter <span class="act">▸ 0 results</span></p>
-      <section class="counter" aria-label="Results counter">
-        <output class="count"><b>0 services</b></output>
-        <button type="button" class="btn btn-tertiary btn-sm" disabled>Sort: Recommended ▾</button>
+      <p class="zlabel dr-label">Counter <span class="dr-label__act">▸ 0 results</span></p>
+      <section class="dr-counter" aria-label="Results counter">
+        <output class="dr-counter__count"><b>0 services</b></output>
+        <button type="button" class="dr-btn dr-btn--tertiary" disabled>Sort: Recommended ▾</button>
       </section>
 
       <!-- ZONE · service list → empty state (exit, not a dead-end) -->
-      <p class="zlabel">Service list <span class="act">▸ empty — loosen filters (exit)</span></p>
+      <p class="zlabel dr-label">Service list <span class="dr-label__act">▸ empty — loosen filters (exit)</span></p>
       <section aria-label="Service list">
-        <div class="msg-block" role="status">
-          <span class="msg-ph">EMPTY</span>
-          <span class="msg-title">No services match your search</span>
-          <p class="msg-body">No services match “crop spraying” with your filters. Clear the filters or search again.</p>
-          <div class="msg-actions">
-            <a class="btn btn-primary" href="listings.html">Clear filters</a>
-            <button type="button" class="btn btn-secondary">Notify me when available</button>
+        <div class="dr-msg" role="status">
+          <span class="dr-mark">EMPTY</span>
+          <span class="dr-msg__title">No services match your search</span>
+          <p class="dr-msg__body">No services match “crop spraying” with your filters. Clear the filters or search again.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="listings.html">Clear filters</a>
+            <button type="button" class="dr-btn dr-btn--secondary">Notify me when available</button>
           </div>
         </div>
       </section>
 
     </main>
 
-    <footer class="tabbar">
-      <nav class="tabs" aria-label="Primary">
-        <a class="tab" href="listings.html" aria-current="page">
-          <span class="sq sq-24" aria-hidden="true"></span>Order
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="listings.html" aria-current="page">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order
         </a>
-        <a class="tab" href="order-history.html">
-          <span class="sq sq-24" aria-hidden="true"></span>Activity
+        <a class="dr-tab" href="order-history.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity
         </a>
-        <a class="tab" href="support.html">
-          <span class="sq sq-24" aria-hidden="true"></span>Help
+        <a class="dr-tab" href="support.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help
         </a>
-        <a class="tab" href="account.html">
-          <span class="sq sq-24" aria-hidden="true"></span>Account
+        <a class="dr-tab" href="account.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account
         </a>
       </nav>
-      <div class="home-indicator"><span></span></div>
+      <div class="dr-home"><span></span></div>
     </footer>
 
   </div>

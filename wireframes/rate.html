@@ -6,6 +6,7 @@
 <title>DRON wireframe · Rate the order · success (base)</title>
 <!-- SCREEN (sitemap): "Rate the order". JOB (jtbd): EJ-3 (operator reputation) + RJ-C1 (feeds future clients' trust). STATE: success (base — terminal; the only state, per _screens.md). Submitting reaches the flow terminal "main job done" and releases operator pay (RJ-O3). EXIT → Submit / Book again. -->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -15,13 +16,13 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Rating</b> ▸ 1–5 stars (4-star example)</p><p><b>Review</b> ▸ optional written feedback</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><button class="back">‹ Delivered</button><span class="title">Rate the order</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Rating <span class="act">▸ tap to score 1–5</span></p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><button class="dr-back">‹ Delivered</button><span class="dr-topbar__title">Rate the order</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Rating <span class="dr-label__act">▸ tap to score 1–5</span></p>
       <section aria-label="Rating">
-        <p class="big-title">Rate this order</p>
+        <p class="dr-display">Rate this order</p>
         <div class="rating" role="group" aria-label="Rating">
           <button class="star" aria-pressed="true">★</button>
           <button class="star" aria-pressed="true">★</button>
@@ -30,14 +31,14 @@
           <button class="star" aria-pressed="false">★</button>
         </div>
       </section>
-      <p class="zlabel">Review <span class="act">▸ optional — a note for the operator</span></p>
+      <p class="zlabel dr-label">Review <span class="dr-label__act">▸ optional — a note for the operator</span></p>
       <section aria-label="Review">
-        <textarea class="control" placeholder="What the operator did well, and anything to improve"></textarea>
+        <textarea class="dr-field__group" placeholder="What the operator did well, and anything to improve"></textarea>
       </section>
     </main>
-    <footer class="actionbar">
-      <a class="btn btn-primary btn-block" href="listings.html">Submit review</a>
-      <a class="btn btn-secondary btn-block" href="order-setup.html">Book again</a>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="listings.html">Submit review</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="order-setup.html">Book again</a>
     </footer>
   </div>
 

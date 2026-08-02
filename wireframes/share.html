@@ -11,6 +11,7 @@
   flows.md node: RELATED · SJ-1 → "Share / refer" → share completed → referral attributed.
 -->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -24,39 +25,41 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Link</b> ▸ personal referral link + copy</p><p><b>Targets</b> ▸ Message · Email · More</p><p><b>Reward</b> ▸ what both sides get</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><a class="back" href="rate.html">‹ Rate the order</a><span class="title">Share DRON</span><span class="spacer"></span></header>
-    <main>
-      <section class="center" aria-label="Invite intro" style="padding-top:4px;">
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="rate.html">‹ Rate the order</a><span class="dr-topbar__title">Share DRON</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <section class="dr-center" aria-label="Invite intro" style="padding-top:4px;">
         <span class="success-mark">SHARE</span>
-        <p class="big-title">Invite a friend</p>
-        <p class="lead">Send your link — you both get ₴100 off the next order.</p>
+        <p class="dr-display">Invite a friend</p>
+        <p class="dr-lead">Send your link — you both get ₴100 off the next order.</p>
       </section>
 
-      <p class="zlabel">Your link <span class="act">▸ copy and send</span></p>
+      <p class="zlabel dr-label">Your link <span class="dr-label__act">▸ copy and send</span></p>
       <form aria-label="Referral link" action="#">
-        <div class="form-field">
-          <label class="field-label" for="reflink">Referral link</label>
-          <span class="control select"><span>dron.app/r/anna-k4</span><span class="hint">COPY</span></span>
+        <div class="dr-rows">
+<div class="dr-field">
+          <label class="dr-field__label" for="reflink">Referral link</label>
+          <span class="dr-field__group"><span class="dr-field__value" style="margin-left:auto">dron.app/r/anna-k4</span><span class="dr-hint">COPY</span></span>
         </div>
-        <button type="button" class="btn btn-secondary btn-block" style="margin-top:8px;">Copy link</button>
+</div>
+<button type="button" class="dr-btn dr-btn--secondary dr-btn--block" style="margin-top:8px;">Copy link</button>
       </form>
 
-      <p class="zlabel">Share to <span class="act">▸ pick a channel</span></p>
+      <p class="zlabel dr-label">Share to <span class="dr-label__act">▸ pick a channel</span></p>
       <section aria-label="Share targets">
-        <div class="row2" style="display:flex;gap:8px;">
-          <button type="button" class="btn btn-secondary" style="flex:1;">Message</button>
-          <button type="button" class="btn btn-secondary" style="flex:1;">Email</button>
-          <button type="button" class="btn btn-secondary" style="flex:1;">More</button>
+        <div class="dr-actionbar__row" style="display:flex;gap:8px;">
+          <button type="button" class="dr-btn dr-btn--secondary" style="flex:1;">Message</button>
+          <button type="button" class="dr-btn dr-btn--secondary" style="flex:1;">Email</button>
+          <button type="button" class="dr-btn dr-btn--secondary" style="flex:1;">More</button>
         </div>
       </section>
 
-      <p class="note">Your friend gets ₴100 off their first DRON order. When they complete it, ₴100 lands in your balance. No limit on invites.</p>
+      <p class="dr-note">Your friend gets ₴100 off their first DRON order. When they complete it, ₴100 lands in your balance. No limit on invites.</p>
     </main>
 
-    <footer class="actionbar">
-      <a class="btn btn-primary btn-block" href="listings.html">Send invite</a>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="listings.html">Send invite</a>
     </footer>
   </div>
 

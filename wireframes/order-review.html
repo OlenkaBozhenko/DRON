@@ -6,19 +6,7 @@
 <title>DRON wireframe · Order review &amp; price · success (base)</title>
 <!-- SCREEN (sitemap): "Order review & price". JOB (jtbd): RJ-C3 — decide without surprise; the locked price before commitment. STATE: base. Flow step → payment. -->
 <link rel="stylesheet" href="_wireframe.css">
-<style>
-  /* Designer call 2026-08-03: on this screen the Total reads bigger than the
-     rows around it — the price is a fact stated before the tap (voice.md P3).
-     The figure takes the money step (20/700, tabular); its label steps up to
-     15/600. Both places carry the same fact, so both take the same size.
-     Everything else on the page stays the wireframe base. */
-  .price-total .kv-key{ font-size:15px; font-weight:600; }
-  .price-total .kv-val{ font-size:20px; font-weight:700;
-    font-variant-numeric:tabular-nums; letter-spacing:-.02em; }
-  footer.actionbar .price-line .lbl{ font-size:15px; font-weight:600; }
-  footer.actionbar .price-line .val{ font-size:20px; font-weight:700;
-    font-variant-numeric:tabular-nums; letter-spacing:-.02em; }
-</style>
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -32,30 +20,30 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Summary</b> ▸ what you're ordering</p><p><b>Price breakdown</b> ▸ locked total (RJ-C3)</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><button class="back">‹ Package delivery</button><span class="title">Order review</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Summary <span class="act">▸ what you're ordering</span></p>
-      <div class="kv" aria-label="Order summary">
-        <div class="kv-row"><span class="kv-key">Service</span><span class="kv-val">Package delivery</span></div>
-        <div class="kv-row"><span class="kv-key">Pickup</span><span class="kv-val">Podil, 21</span></div>
-        <div class="kv-row"><span class="kv-key">Drop-off</span><span class="kv-val">Osokorky, 14</span></div>
-        <div class="kv-row"><span class="kv-key">Parcel</span><span class="kv-val">Small · up to 2 kg</span></div>
-        <div class="kv-row"><span class="kv-key">When</span><span class="kv-val">Now · ~25 min</span></div>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><button class="dr-back">‹ Package delivery</button><span class="dr-topbar__title">Order review</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Summary <span class="dr-label__act">▸ what you're ordering</span></p>
+      <div class="dr-rows" aria-label="Order summary">
+        <div class="dr-rows__row"><span class="dr-rows__key">Service</span><span class="dr-rows__val">Package delivery</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Pickup</span><span class="dr-rows__val">Podil, 21</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Drop-off</span><span class="dr-rows__val">Osokorky, 14</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Parcel</span><span class="dr-rows__val">Small · up to 2 kg</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">When</span><span class="dr-rows__val">Now · ~25 min</span></div>
       </div>
-      <p class="zlabel">Price breakdown <span class="act">▸ locked — no extra fees</span></p>
-      <div class="kv" aria-label="Price breakdown">
-        <div class="kv-row"><span class="kv-key">Base fare</span><span class="kv-val">₴90</span></div>
-        <div class="kv-row"><span class="kv-key">Distance · 7.4 km</span><span class="kv-val">₴70</span></div>
-        <div class="kv-row"><span class="kv-key">Service fee</span><span class="kv-val">₴20</span></div>
-        <div class="kv-row price-total"><span class="kv-key">Total</span><span class="kv-val">₴180</span></div>
+      <p class="zlabel dr-label">Price breakdown <span class="dr-label__act">▸ locked — no extra fees</span></p>
+      <div class="dr-rows" aria-label="Price breakdown">
+        <div class="dr-rows__row"><span class="dr-rows__key">Base fare</span><span class="dr-rows__val">₴90</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Distance · 7.4 km</span><span class="dr-rows__val">₴70</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Service fee</span><span class="dr-rows__val">₴20</span></div>
+        <div class="dr-rows__row dr-rows__row--total"><span class="dr-rows__key">Total</span><span class="dr-rows__val">₴180</span></div>
       </div>
-      <p class="hint">This is the final price. Nothing is added at checkout.</p>
+      <p class="dr-hint">This is the final price. Nothing is added at checkout.</p>
     </main>
-    <footer class="actionbar">
-      <div class="price-line"><span class="lbl">Total</span><span class="val">₴180</span></div>
-      <a class="btn btn-primary btn-block" href="payment.html">Pay ₴180</a>
+    <footer class="dr-actionbar">
+      <div class="dr-price dr-price--total"><span class="dr-price__lbl">Total</span><span class="dr-price__val">₴180</span></div>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="payment.html">Pay ₴180</a>
     </footer>
   </div>
 

@@ -112,6 +112,7 @@
     padding:12px 16px 24px; display:flex; gap:8px; }
   footer.actionbar .btn{ flex:1; }
 </style>
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
 
@@ -141,94 +142,94 @@
   </aside>
 
   <!-- ── THE SCREEN · 375 × 812 ── -->
-  <div class="wf-frame">
+  <div class="wf-frame dr dr-screen">
 
     <!-- status bar -->
-    <div class="statusbar">
+    <div class="dr-statusbar">
       <span>9:41</span>
-      <span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span>
+      <span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span>
     </div>
 
     <!-- HEADER · filter sheet header -->
-    <header class="topbar">
-      <a class="back" href="listings.html" aria-label="Close filters">&times;</a>
-      <span class="title">Filters</span>
-      <span class="spacer"></span>
-      <a class="reset" href="listings.html">Clear all</a>
+    <header class="topbar dr-topbar">
+      <a class="dr-back" href="listings.html" aria-label="Close filters">&times;</a>
+      <span class="dr-topbar__title">Filters</span>
+      <span class="dr-topbar__spacer"></span>
+      <a class="dr-btn dr-btn--tertiary" href="listings.html">Clear all</a>
     </header>
 
     <!-- MAIN -->
-    <main>
+    <main class="dr-main">
 
       <!-- ZONE · price -->
-      <p class="zlabel">Price <span class="act">▸ sort high ↔ low (RJ-C3)</span></p>
-      <section class="fgroup" aria-label="Sort by price">
+      <p class="zlabel dr-label">Price <span class="dr-label__act">▸ sort high ↔ low (RJ-C3)</span></p>
+      <section class="dr-picks" aria-label="Sort by price">
         <h2>Price</h2>
-        <label class="opt">
-          <span class="radio" aria-hidden="true"></span>
-          <span class="txt">Recommended</span><span class="hint">default</span>
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">Recommended</span><span class="dr-hint">default</span>
           <input type="radio" name="price" value="recommended" checked>
         </label>
-        <label class="opt">
-          <span class="radio" aria-hidden="true"></span>
-          <span class="txt">Price: Low → High</span>
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">Price: Low → High</span>
           <input type="radio" name="price" value="asc">
         </label>
-        <label class="opt">
-          <span class="radio" aria-hidden="true"></span>
-          <span class="txt">Price: High → Low</span>
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">Price: High → Low</span>
           <input type="radio" name="price" value="desc">
         </label>
       </section>
 
       <!-- ZONE · time -->
-      <p class="zlabel">Time <span class="act">▸ when the service should happen</span></p>
-      <section class="fgroup" aria-label="Time">
+      <p class="zlabel dr-label">Time <span class="dr-label__act">▸ when the service should happen</span></p>
+      <section class="dr-picks" aria-label="Time">
         <h2>Time</h2>
-        <label class="opt">
-          <span class="radio" aria-hidden="true"></span>
-          <span class="txt">Available now</span>
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">Available now</span>
           <input type="radio" name="time" value="now" checked>
         </label>
-        <label class="opt">
-          <span class="radio" aria-hidden="true"></span>
-          <span class="txt">Today</span>
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">Today</span>
           <input type="radio" name="time" value="today">
         </label>
-        <label class="opt">
-          <span class="radio" aria-hidden="true"></span>
-          <span class="txt">This week</span>
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">This week</span>
           <input type="radio" name="time" value="week">
         </label>
-        <label class="opt">
-          <span class="radio" aria-hidden="true"></span>
-          <span class="txt">Pick a date &amp; time…</span><span class="hint">calendar</span>
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">Pick a date &amp; time…</span><span class="dr-hint">calendar</span>
           <input type="radio" name="time" value="pick">
         </label>
       </section>
 
       <!-- ZONE · location -->
-      <p class="zlabel">Location <span class="act">▸ which area to serve</span></p>
-      <section class="fgroup" aria-label="Location">
+      <p class="zlabel dr-label">Location <span class="dr-label__act">▸ which area to serve</span></p>
+      <section class="dr-picks" aria-label="Location">
         <h2>Location · Kyiv</h2>
-        <label class="opt">
-          <span class="radio" aria-hidden="true"></span>
-          <span class="txt">All districts</span>
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">All districts</span>
           <input type="radio" name="loc" value="all" checked>
         </label>
-        <label class="opt">
-          <span class="radio" aria-hidden="true"></span>
-          <span class="txt">Podil</span>
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">Podil</span>
           <input type="radio" name="loc" value="podil">
         </label>
-        <label class="opt">
-          <span class="radio" aria-hidden="true"></span>
-          <span class="txt">Obolon</span>
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">Obolon</span>
           <input type="radio" name="loc" value="obolon">
         </label>
-        <label class="opt">
-          <span class="radio" aria-hidden="true"></span>
-          <span class="txt">Pechersk</span>
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">Pechersk</span>
           <input type="radio" name="loc" value="pechersk">
         </label>
       </section>
@@ -236,9 +237,9 @@
     </main>
 
     <!-- FOOTER · action bar -->
-    <footer class="actionbar">
-      <a class="btn btn-secondary" href="listings.html">Clear all</a>
-      <a class="btn btn-primary" href="listings-filtered.html">Apply filters</a>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--secondary" href="listings.html">Clear all</a>
+      <a class="dr-btn dr-btn--primary" href="listings-filtered.html">Apply filters</a>
     </footer>
 
   </div>
