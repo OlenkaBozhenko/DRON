@@ -88,12 +88,18 @@ the camera. The existing cutout cannot be cropped into one.
 | # | Filename | What it shows | Pages | Prompt |
 |---|---|---|---|---|
 | 6 | `scenes/scene-role-client.png` | The role fork, client side: a person in ordinary clothes taking a parcel from a drone | `role-select` — `media-ph:CLIENT` | §5.2 client |
-| 7 | `scenes/scene-role-operator.png` | The role fork, operator side: **matched framing and crop to #6** — the two sit side by side as one choice | `role-select` — `media-ph:OPERATOR` | §5.2 operator |
+| ~~7~~ | ~~`scenes/scene-role-operator.png`~~ | **Closed 2026-08-02 by the designer's own choice — a drone, not a person.** She supplied Figma node `67:133`; it is saved as `drones/drone-flight-front.png` (744 × 212, served 256 × 73). The white frame ground was keyed out and the motion-blurred rotor tips feathered by their own luminance, so the streaks fade instead of arriving as an opaque white smear on the card. | `role-select` — `media-ph:OPERATOR` **(filled)** | — |
 | 8 | `scenes/scene-drone-rules.png` | What the drone does and doesn't: holding a set line at altitude, clear distance from windows and people | `welcome` — `slide-ph:DRONE` **(interim in place)** | §5.1 + a scene backdrop |
 | 9 | `scenes/scene-report-ready.png` | The outcome arriving: a finished inspection report on a phone in someone's hand | `onboarding-client` — `slide-ph:REPORT` | §5.3 |
 | 10 | `scenes/scene-checklist.png` | An operator on site working the checklist on the controller before take-off | `onboarding-operator` — `slide-ph:STEPS` | §5.2 operator |
 | 11 | `scenes/scene-paid.png` | Earnings landing — the payout moment, without fake UI or currency symbols | `onboarding-operator` — `slide-ph:PAID` | §5.3 |
 
+**The matched pair is off — #7 was answered with a drone.** The two cards no longer show two people
+in the same light; one shows the equipment, the other is still a `CLIENT` label. Whatever fills #6
+now has to sit beside a machine rather than beside a person, and that is a question for the
+designer, not an assumption to make here.
+
+The original reasoning, kept because it still governs #6 if she wants the pair restored:
 **#6 and #7 are one matched pair** — same lens, same crop, same light — because they sit side by side
 as the two halves of a single choice. That is why `client-receiving.png` and `operator.png` were
 *not* dropped in as an interim: they are different crops of different shoots and would read as a
