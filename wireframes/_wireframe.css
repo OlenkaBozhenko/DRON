@@ -68,7 +68,7 @@ header.topbar{ height:56px; flex:none; display:flex; align-items:center; gap:8px
 .brand{ width:60px; height:20px; flex:none; background:var(--wf-text);
   -webkit-mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat;
   mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat; }
-.avatar{ width:28px; height:28px; border:1px solid var(--wf-border-2); border-radius:999px;
+.avatar{ width:28px; height:28px; border-radius:999px;
   display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; color:var(--wf-text-2); }
 /* A real face replaces the initials. The portrait is a cutout with a
    transparent ground, so the circle keeps a fill of its own — otherwise the
@@ -206,7 +206,7 @@ article.card:focus-within{ outline:2px solid var(--wf-border-2); outline-offset:
 /* operator reveal card (order-confirmed) */
 .op-card{ display:flex; align-items:center; gap:12px; padding:16px; background:var(--wf-surface);
   border:1px solid var(--wf-border); border-radius:8px; }
-.op-avatar{ width:56px; height:56px; flex:none; border:1px solid var(--wf-border-2); border-radius:999px;
+.op-avatar{ width:56px; height:56px; flex:none; border-radius:999px;
   display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:600; color:var(--wf-text-2); background:var(--wf-recessed); }
 .op-info{ flex:1; min-width:0; }
 .op-name{ font-size:17px; font-weight:600; color:var(--wf-text); }
