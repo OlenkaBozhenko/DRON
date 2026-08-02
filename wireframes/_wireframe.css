@@ -362,23 +362,24 @@ footer.actionbar .row2{ display:flex; gap:8px; } footer.actionbar .row2 .btn{ fl
   height:100%; position:relative; justify-content:center; padding:0 20px; gap:12px;
 }
 
-/* The chrome floats on the picture instead of hiding it: the bars drop their
-   ground and their hairline, and rise above the layer. Everything they carry
-   was measured against the artwork below — see the ink note further down. */
+/* The bars keep everything they had — their ground, their hairline, their
+   place in the column. The only reason they are named here at all is paint
+   order: an absolutely positioned slider paints above its static siblings, so
+   without this it would cover them. Nothing else about them changes.
+
+   Recorded because it was got wrong once: the first attempt at this pass also
+   made the status bar, the top bar and the action bar transparent, which moved
+   the CTA and Skip onto the artwork. Nobody asked for that and no guideline
+   supports it — `HIG · Buttons` wants the primary action on a stable ground,
+   and moving it was a change to a component that was not in scope. */
 .wf-frame:has(.slider.is-bleed) > .statusbar,
 .wf-frame:has(.slider.is-bleed) > .topbar,
-.wf-frame:has(.slider.is-bleed) > .actionbar{
-  position:relative; z-index:1; background:transparent; border-color:transparent;
-}
-/* The pager cannot ride on the artwork. Measured over the three pictures it
-   read 1.00:1 / 4.69:1 / 17.17:1 for the active dot — on the operator's jacket
-   the mark that says which slide you are on disappears completely, and
-   `WCAG 1.4.11` asks 3:1 of a state indicator. So it is pinned to the top edge
-   of the picture layer, on the clean page ground, 12px above the artwork.
-   Anchoring it to the same 35% keeps that gap at any frame size. */
-.slider.is-bleed ~ .pager{
-  position:absolute; left:0; right:0; bottom:calc(35% + 12px); z-index:1;
-}
+.wf-frame:has(.slider.is-bleed) > .actionbar{ position:relative; z-index:1; }
+
+/* main holds only the pager once the slider leaves the flow. Sent to the
+   bottom so the pager stays exactly where it sat before — under the picture,
+   above the action bar — instead of jumping up under the top bar. */
+.wf-frame:has(.slider.is-bleed) > main{ justify-content:flex-end; }
 
 /* The layer runs the full width of the frame and down to its bottom edge —
    under the action bar, out to both sides. Its height is capped at 35% so no
@@ -404,11 +405,10 @@ footer.actionbar .row2{ display:flex; gap:8px; } footer.actionbar .row2 .btn{ fl
    portrait would throw away most of a landscape's width. Anchored bottom, so
    the figure meets the edge of the screen rather than floating above it. */
 .slider.is-bleed .slide-ph img{ object-fit:contain; object-position:center bottom; }
+.slider.is-bleed + .pager{ position:relative; z-index:1; margin-top:0; }
 
 .slider.is-bleed .big-title,
 .slider.is-bleed .lead{ position:relative; z-index:1; }
-
-.slider.is-bleed + .pager{ margin-top:0; }
 
 .pager{ display:flex; gap:8px; justify-content:center; margin-top:12px; }
 .pager a{ width:8px; height:8px; border-radius:999px; background:var(--wf-fill); border:1px solid var(--wf-border-2); }
