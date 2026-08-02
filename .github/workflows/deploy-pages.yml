@@ -11,7 +11,7 @@ on:
       - 'wireframes/**'
       - 'concept/**'
       - 'assets/**'
-      - '.github/pages/index.html'
+      - 'ui/*.html'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
@@ -33,7 +33,14 @@ jobs:
         run: |
           mkdir -p _site
           cp ia.html research.html target-audience.html ux-research.html tone-of-voice.html _site/
-          cp .github/pages/index.html _site/index.html
+          # The index lives at the repo root, not in .github/pages, so that a
+          # local `python -m http.server` opens it instead of a directory
+          # listing of .git/ and .claude/. One file serves both.
+          cp index.html _site/index.html
+          # The index links the component kit, so the kit has to ship or the
+          # link 404s on the live site while working locally.
+          mkdir -p _site/ui
+          cp ui/*.html _site/ui/
           # Publish the clickable wireframe prototype (HTML pages + shared CSS/JS).
           # The .md sources stay on master and are not published.
           mkdir -p _site/wireframes
