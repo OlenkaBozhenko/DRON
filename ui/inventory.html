@@ -209,6 +209,42 @@
      than inventing Studio values it has not been given.
      --wf-surface #FFFFFF - --wf-ink #111111 - --wf-text-2 #5A5A5A
      --wf-border rgba(0,0,0,.09) - --wf-border-2 rgba(0,0,0,.15) */
+  /* PAINTED 2026-08-02.
+     Segmented control -- HIG's own structure in DRON's tokens: a recessed
+     --media track at --r-btn 12, and a --page plate inset 2px at --r-input 10
+     (12 - 2 = 10, the ramp's own arithmetic). The plate stands 1.20:1 above
+     the track, the largest tone step the palette holds. iOS lifts its plate
+     with a shadow; this one is lifted by tone, because the system spends
+     exactly one shadow and it is not here. No border, no dividers -- the
+     1.21:1 boundary is removed rather than darkened (rev 43, rev 45).
+     No green: this is card UI, and the accent is not spent inside a card. */
+  .p-segment{
+    display:flex; width:250px; height:44px; padding:2px;
+    background:var(--media); border-radius:var(--r-btn);
+  }
+  .p-seg{
+    flex:1; display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:600; color:var(--slate); border-radius:var(--r-input);
+  }
+  .p-seg.on{ background:var(--page); color:var(--ink); }
+
+  /* In-page tabs -- the tab bar's values unchanged, because it is the tab
+     bar's problem: a row of places, one of them current. Unselected
+     transparent + --slate 6.62:1; selected --green-wash + --ink 14.75:1.
+     Pill stays 32px visible; the hit area is extended to 44 by a transparent
+     ::after, which is what iOS does with its own 32pt controls. */
+  .p-groups{
+    display:flex; gap:8px; align-items:center; width:250px; height:48px;
+    padding:0 16px; background:var(--page); border-bottom:1px solid var(--line);
+  }
+  .p-gtab{
+    height:32px; padding:0 12px; border-radius:var(--r-pill); flex:none;
+    font-size:13px; font-weight:600; color:var(--slate);
+    display:flex; align-items:center; position:relative;
+  }
+  .p-gtab::after{ content:""; position:absolute; inset:-6px 0; }
+  .p-gtab.on{ background:var(--green-wash); color:var(--ink); }
+
   .d-gray{ display:flex; flex-direction:column; gap:9px; align-items:center; }
   .d-gray .cap{
     font-family:var(--mono); font-size:10px; letter-spacing:.06em;
@@ -629,8 +665,8 @@
 
   <div class="figures">
     <div class="fig"><div class="n">53</div><div class="k">in the kit</div></div>
-    <div class="fig"><div class="n">26</div><div class="k">carry values</div></div>
-    <div class="fig"><div class="n">27</div><div class="k">still grayscale</div></div>
+    <div class="fig"><div class="n">29</div><div class="k">carry values</div></div>
+    <div class="fig"><div class="n">24</div><div class="k">still grayscale</div></div>
     <div class="fig"><div class="n">3<span style="font-size:15px;color:var(--fg-3)"> / 40</span></div><div class="k">screens painted</div></div>
     <div class="fig"><div class="n">9</div><div class="k">one-off blocks</div></div>
     <div class="fig"><div class="n">2</div><div class="k">inks</div></div>
@@ -770,12 +806,12 @@
       <tr>
         <td class="c-name">
           <div class="nm">In-page tabs</div><span class="sel">nav.groups &#183; .grouptab</span>
-          <span class="st gray">grayscale</span>
+          <span class="st decided">decided &#183; not built</span>
           <p class="desc">A row of job groups above the operator&#8217;s list &#8212; <em>Incoming</em>, <em>Active</em>.</p>
         </td>
-        <td class="c-spec"><span class="plate tight" style="background:#FFFFFF;border-color:#E5E5E5"><span class="d-gray"><span class="d-groups"><span class="d-gtab on">Incoming &#183; 2</span><span class="d-gtab">Active &#183; 1</span></span><span class="cap">grayscale &#183; as built</span></span></span></td>
+        <td class="c-spec"><span class="plate tight col" style="background:#F7F5F2"><span class="p-groups"><span class="p-gtab on">Incoming &#183; 2</span><span class="p-gtab">Active &#183; 1</span></span><span class="d-fills" style="margin-top:11px"><span class="d-fill"><span style="width:34px;height:20px;border-radius:999px;background:#E7F0D2;display:block"></span><em>selected<br>14.75:1</em></span><span class="d-fill"><span style="width:34px;height:20px;border-radius:999px;background:#F7F5F2;display:block;border:1px solid #D9D5CE;box-sizing:border-box"></span><em>at rest<br>6.62:1</em></span></span></span></td>
         <td class="c-screens"><span class="scr">1</span><span class="scr-sub">0 painted</span></td>
-        <td class="c-where"><p class="where" style="max-width:34ch"><b>Admitted below the 2+ threshold</b>, by name, because a view switcher is a system control whichever screen draws it first. <b>Three things are wrong with it and all three are measured.</b><br><br><b>1 &#183; <code>HIG &#183; 44pt target</code>.</b> It is <b>32px</b> &#8212; 12px short. The row it sits in is 48px, so the space is there; nothing forces the shortfall.<br><br><b>2 &#183; <code>WCAG 4.1.2</code>.</b> It is an <code>&lt;a href="#incoming" aria-current="true"&gt;</code> &#8212; a <b>link</b>, not a tab. <code>aria-current</code> says &#8220;the current item&#8221;, honest for navigation but it exposes no tab set. A view switcher needs <code>role="tablist"</code> / <code>role="tab"</code> with <code>aria-selected</code>, or radios &#8212; which the segmented control beside it already does correctly.<br><br><b>3 &#183; <code>HIG &#183; Tab bars</code>.</b> The tab bar is for <b>top-level sections</b>; filtering a list <em>within</em> a section is a segmented control&#8217;s job. This screen carries the tab bar, these tabs <b>and</b> a segmented control &#8212; three selection mechanisms at once.</p></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Painted 2026-08-02, and it takes the tab bar&#8217;s values unchanged</b> &#8212; because it is the tab bar&#8217;s problem: a row of places, one of them current. <b>One selection pattern in the system, not two.</b><br><br>Row <code>--page</code>, 48px, 1px <code>--line</code> bottom &#8212; a separator inside a surface, not a boundary identifying a control, so 1.4.11 does not reach it. At rest transparent with a <code>--slate</code> label, <b>6.62:1</b>. Selected <code>--green-wash</code> with an <code>--ink</code> label, <b>14.75:1</b>, at <code>--r-pill</code>. The fill step is only <b>1.085:1</b>; the ink going <code>--slate</code> to <code>--ink</code> is the second signal &#8212; <b>two signals where the convention gives one</b>. The wash is not counted against the green budget.<br><br><b>The three faults are fixed, each by a rule the system already has.</b> <b>1</b> &#183; the pill stays <b>32px visible</b> and the hit area extends to <b>44</b> with a transparent <code>::after{inset:-6px 0}</code>, which is what iOS does with its own 32pt controls &#8212; the target conforms without thickening the row. <b>2</b> &#183; the <code>&lt;a aria-current&gt;</code> becomes <code>role="tab"</code> in a <code>role="tablist"</code> with <code>aria-selected</code>; a link cannot expose a tab set. <b>3</b> &#183; this screen still runs the tab bar, these tabs <b>and</b> a segmented control at once. <b>Painting does not fix that</b> &#8212; it is structural, and it belongs to the <code>operator-listings</code> rework.</p></td>
         <td class="c-where"><p class="where">operator-listings</p></td>
       </tr>
 
@@ -1425,12 +1461,12 @@
       <tr>
         <td class="c-name">
           <div class="nm">Segmented control</div><span class="sel">fieldset.segment &#183; .seg</span>
-          <span class="st gray">grayscale</span>
+          <span class="st decided">decided &#183; not built</span>
           <p class="desc">The operator&#8217;s availability &#8212; three equal segments in one track.</p>
         </td>
-        <td class="c-spec"><span class="plate tight" style="background:#FFFFFF;border-color:#E5E5E5"><span class="d-gray"><span class="d-segment"><span class="d-seg on">Available</span><span class="d-seg">Busy</span><span class="d-seg">Offline</span></span><span class="cap">grayscale &#183; as built</span></span></span></td>
+        <td class="c-spec"><span class="plate tight col" style="background:#F7F5F2"><span class="p-segment"><span class="p-seg on">Available</span><span class="p-seg">Busy</span><span class="p-seg">Offline</span></span><span class="d-fills" style="margin-top:11px"><span class="d-fill"><span style="width:34px;height:20px;border-radius:4px;background:#E4E1DA;display:block"></span><em>track<br>--media</em></span><span class="d-fill"><span style="width:34px;height:20px;border-radius:4px;background:#F7F5F2;display:block"></span><em>plate<br>1.20:1</em></span><span class="d-fill"><span style="width:34px;height:20px;border-radius:4px;background:#1A1A1A;display:block"></span><em>label<br>15.99:1</em></span></span></span></td>
         <td class="c-screens"><span class="scr">1</span><span class="scr-sub">0 painted</span></td>
-        <td class="c-where"><p class="where" style="max-width:34ch"><b>Structurally the best-built control in the grayscale set.</b> A real <code>&lt;fieldset&gt;</code> of <code>type="radio"</code>, so <code>WCAG 4.1.2</code> is satisfied with no ARIA patch, and <b>44px exactly</b>, so <code>HIG &#183; 44pt</code> passes on the nose. <code>HIG &#183; Segmented controls</code> asks for mutually exclusive modes, up to about five, equal width, one kind of content &#8212; all four hold.<br><br><b>Two things to settle when it is painted.</b> The boundary is <code>--wf-border-2</code> at <b>1.41:1</b> on white, and <code>--line</code> at <b>1.21:1</b> once painted, against the <b>3:1</b> <code>WCAG 1.4.11</code> asks of a control boundary &#8212; the third component to land on that number, and it takes the same answer: <code>--slate</code> at <b>5.95:1</b>, or no boundary at all and let the fill carry it.<br><br>And the selected segment <b>inverts</b> to a dark fill (<b>18.88:1</b> as built) where iOS raises a <b>light plate inside a filled track</b> &#8212; the opposite. Both are legible and both clear 1.4.11, so this is a look, not a failure.</p></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Structurally the best-built control in the grayscale set.</b> A real <code>&lt;fieldset&gt;</code> of <code>type="radio"</code>, so <code>WCAG 4.1.2</code> needs no ARIA patch, and <b>44px exactly</b>, so <code>HIG &#183; 44pt</code> passes on the nose.<br><br><b>Painted 2026-08-02.</b> Track <code>--media</code> at <code>--r-btn</code> 12, no border &#8212; it reads as a recess at <b>1.20:1</b> below the page. Selected is a <code>--page</code> plate inset 2px at <code>--r-input</code> 10 &#8212; the ramp&#8217;s own arithmetic, <b>12 &#8722; 2 = 10</b> &#8212; standing <b>1.20:1</b> above the track, the largest tone step the palette holds. Label <code>--ink</code> <b>15.99:1</b> selected, <code>--slate</code> <b>5.51:1</b> at rest. <b>No dividers</b>: the plate carries the state.<br><br><b>Both open points close, each by a rule already in the file.</b> The 1.21:1 boundary is not darkened but <b>removed</b> &#8212; rev 43 says a surface is a card and not a frame, and rev 45 answered this same 1.21:1 under the form field the same way. A boundary that is absent cannot fail 1.4.11. And the selected segment <b>raises a light plate instead of inverting</b>, which is what <code>HIG &#183; Segmented controls</code> describes; iOS lifts its plate with a shadow, this one with tone, because the system spends exactly one shadow and it is not here.<br><br><b>No green.</b> This is card UI, and the accent is not spent inside a card &#8212; the screen&#8217;s one green control is its action, not its status picker.</p></td>
         <td class="c-where"><p class="where">operator-listings</p></td>
       </tr>
 
