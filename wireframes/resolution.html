@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Resolution outcome · success (base)</title>
+<!--
+  SCREEN (sitemap / _screens.md): "Resolution outcome" — EJ-2 decision result.
+  PERSONA: Client C-1 (primary).
+  JOB (jtbd): EJ-2 — one bad experience doesn't become a reason to never come back.
+  STATE: base only (no state pages — _screens.md row = "—").
+  FLOW NODE: flows.md EJ-2 "Resolution outcome" (RO) → D5 "Resolution?" refund / free re-do / needs human.
+  Deep in the flow → topbar Back → support.html + footer.actionbar.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Resolution outcome</h1>
+    <p class="sub">Client · EJ-2 · state: <b>base only</b> · file: resolution.html</p>
+    <dl>
+      <dt>Persona</dt><dd>Client C-1 (primary)</dd>
+      <dt>Job</dt><dd>EJ-2 — a fair, clear outcome</dd>
+      <dt>Node</dt><dd>flows.md EJ-2 · "Resolution outcome" → D5 "Resolution?"</dd>
+    </dl>
+    <div class="flow"><b>Outcome of the review.</b><br>flows.md EJ-2 D5 "Resolution?" → <b>refund</b> · <b>free re-do</b> · <b>needs human review</b>. This screen shows a refund; the re-do and human paths are the secondary exits.<br><b>States:</b> none.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Outcome</b> ▸ the decision + amount</p><p><b>Next steps</b> ▸ done · free re-do · escalate</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><button class="dr-back">‹ Help</button><span class="dr-topbar__title">Resolution</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <section class="dr-center" style="padding-top:8px;">
+        <span class="dr-mark dr-mark--milestone"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+        <h2 class="dr-display">Refund issued</h2>
+        <p class="dr-lead">We reviewed your report and refunded this order in full.</p>
+      </section>
+
+      <p class="zlabel dr-label">Outcome <span class="dr-label__act">▸ the decision</span></p>
+      <div class="dr-rows" aria-label="Resolution details">
+        <div class="dr-rows__row"><span class="dr-rows__key">Issue</span><span class="dr-rows__val">Poor quality</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Order #</span><span class="dr-rows__val">DR-4821</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Decision</span><span class="dr-rows__val">Refund issued &#8372;180</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Timeline</span><span class="dr-rows__val">To card in 1&ndash;3 days</span></div>
+      </div>
+      <p class="dr-note">Refunded to Visa &bull;&bull;&bull;&bull; 4921. Or book this order again for free below.</p>
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="listings.html">Done</a>
+      <div class="dr-actionbar__row">
+        <a class="dr-btn dr-btn--secondary" href="order-confirmed.html">Book again — free</a>
+        <a class="dr-btn dr-btn--tertiary" href="contact-support.html">Contact support</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Delivery confirmation · error</title>
+<!-- SCREEN: "Delivery confirmation" — STATE: error (no proof uploaded → job cannot complete). Grounded in flows.md RJ-C4: "Error: no proof — job cannot complete". EXIT: contact support / report an issue. -->
+
+<!--
+  VISUAL LAYER (2026-08-01): Studio design language transferred from concept/concept.html
+  and the painted wireframes/order-history.html + wireframes/tracking.html. Structure and
+  copy unchanged; the "NO PHOTO" placeholder became the danger mark — concept's --danger
+  token as wash + ink, exactly as tracking-error carries "Live tracking lost", with a
+  photo-missing glyph drawn on the same 24-grid at the same 1.7 stroke. The <style> block
+  is byte-identical across all three delivery states. See concept.md rev 25.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="delivery.html">success</a>
+      <a href="delivery-error.html" class="cur" aria-current="page">error</a>
+      <a href="delivery-loading.html">loading</a>
+    </nav>
+    <h1>Delivery confirmation</h1>
+    <p class="sub">Client · MJ-1 · state: <b>error</b> · file: delivery-error.html</p>
+    <div class="flow"><b>Error:</b> the operator uploaded no proof and the confirmation window closed — the job cannot complete (flows.md RJ-C4: "no proof — job cannot complete").<br><b>Exit (not a dead-end):</b> contact support, or report an issue. Don't confirm without proof.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Proof + details</b> → missing-proof alert + support / report</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><h1 class="dr-topbar__title">Delivered</h1><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Proof of delivery <span class="dr-label__act">▸ missing — job can't complete</span></p>
+      <section aria-label="Delivery error">
+        <div class="dr-msg" role="alert">
+          <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15.5V6.5a1.5 1.5 0 0 0-1.5-1.5H9.5"/><path d="M5.4 5.4A1.5 1.5 0 0 0 4 6.9v10.6A1.5 1.5 0 0 0 5.5 19h11.1"/><path d="M4.6 17.4L9 12.6l2.6 2.6"/><path d="M4 4l16 16"/></svg></span>
+          <span class="dr-msg__title">Delivery photo is missing</span>
+          <p class="dr-msg__body">The operator hasn't uploaded a delivery photo and the confirmation window has passed. Without it, the order can't be confirmed or paid. Report an issue and support will resolve it.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary dr-btn--block" href="tracking.html">Back to live tracking</a>
+            <a class="dr-btn dr-btn--secondary" href="account.html">Report an issue</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="listings.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+        <a class="dr-tab" href="order-history.html" aria-current="page"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+        <a class="dr-tab" href="support.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+        <a class="dr-tab" href="account.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

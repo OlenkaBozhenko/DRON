@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Client onboarding · success (base)</title>
+<!-- SCREEN (sitemap §6.0 / Client Getting in): "Client onboarding". JOB (jtbd): EJ-1 — first use feels safe. STATE: base — a 3-slide swipeable explainer (CSS scroll-snap, no JS) with Skip. Pre-app: no bottom tab bar. -->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="onboarding-client.html" class="cur" aria-current="page">success</a>
+      <a href="onboarding-client-empty.html">empty</a>
+    </nav>
+    <h1>Client onboarding</h1>
+    <p class="sub">Shared entry · state: <b>success (base)</b> · file: onboarding-client.html</p>
+    <div class="flow"><b>Job (jtbd):</b> EJ-1 — "someone accountable is coming". A 3-slide explainer, swipeable, skippable.<br><b>Exit:</b> Skip or Get started → <b>Home / start an order</b> (listings).</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Slider</b> ▸ 3 slides: verified · live · proof</p><p><b>Skip</b> ▸ jump straight to ordering</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="spacer"></span></header>
+    <main>
+      <div class="slider is-bleed" aria-label="How DRON works">
+        <!-- The picture comes last in the markup, not first: it is the bottom of
+             the slide visually, and it is decorative (alt=""), so a screen reader
+             should reach the heading before it rather than step over it. -->
+        <section class="slide" id="oc1" aria-label="Slide 1 of 3">
+          <p class="big-title">A verified operator</p>
+          <p class="lead">DRON assigns the nearest certified, insured operator. You don't choose or guess.</p>
+          <span class="slide-ph"><img src="../assets/people/thumbs/operator.png" alt="" loading="lazy" decoding="async"></span>
+        </section>
+        <section class="slide" id="oc2" aria-label="Slide 2 of 3">
+          <p class="big-title">Track it live</p>
+          <p class="lead">See the operator's name, photo and live position the moment you pay.</p>
+          <span class="slide-ph"><img src="../assets/scenes/thumbs/receive.png" alt="" loading="lazy" decoding="async"></span>
+        </section>
+        <section class="slide" id="oc3" aria-label="Slide 3 of 3">
+          <p class="big-title">A photo or report, every time</p>
+          <p class="lead">Get a photo or a report the moment it's done.</p>
+          <span class="slide-ph">REPORT</span>
+        </section>
+      </div>
+      <nav class="pager" aria-label="Slides">
+        <a href="#oc1" class="on" aria-label="Go to slide 1"></a>
+        <a href="#oc2" aria-label="Go to slide 2"></a>
+        <a href="#oc3" aria-label="Go to slide 3"></a>
+      </nav>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-secondary btn-block" href="listings.html">Skip</a>
+      <a class="btn btn-primary btn-block" href="listings.html">Get started</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

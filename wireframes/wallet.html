@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Wallet / earnings · success (base)</title>
+<!-- SCREEN (sitemap): "Wallet / earnings". JOB (jtbd): RJ-O3 · O-05 — earnings move to balance on their own (auto-release ≤ 30 min of client confirmation). STATE: success (base — milestone "you got paid"). Destination → Withdraw. Operator tab bar (Earnings active). -->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="wallet.html" class="cur" aria-current="page">success</a>
+      <a href="wallet-empty.html">empty</a>
+    </nav>
+    <h1>Wallet / earnings</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>success (base — milestone)</b> · file: wallet.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O3 — the payment moves to the balance on its own, within 30 min of the client confirming (flows.md MJ-2: "Order paid: earnings added to balance"). The "you got paid" milestone.<br><b>Exit:</b> Withdraw → <b>Withdraw to card / bank account</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Balance</b> ▸ available to withdraw (the milestone)</p><p><b>Recent</b> ▸ earnings history</p><p><b>Withdraw</b> ▸ cash out to card / bank</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="title">Earnings</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Balance <span class="act">▸ available to withdraw</span></p>
+      <section aria-label="Balance">
+        <p class="amount">₴3,240</p>
+        <p class="amount-sub">Available to withdraw</p>
+      </section>
+      <p class="hint">₴800 paid for 'Aerial photo &amp; video', added to your balance 12 min ago.</p>
+      <a class="btn btn-primary btn-block" href="withdraw.html">Withdraw ₴3,240</a>
+
+      <p class="zlabel">Recent <span class="act">▸ earnings history</span></p>
+      <section aria-label="Recent earnings">
+        <ul class="list">
+          <li>
+            <article class="card">
+              <span class="body">
+                <span class="name">Package delivery</span>
+                <span class="meta-row"><span class="desc">Today, 10:07</span></span>
+              </span>
+              <span class="price">₴180</span>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <span class="body">
+                <span class="name">Aerial photo &amp; video</span>
+                <span class="meta-row"><span class="desc">Today, 08:20</span></span>
+              </span>
+              <span class="price">₴800</span>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <span class="body">
+                <span class="name">Roof inspection</span>
+                <span class="meta-row"><span class="desc">Yesterday</span></span>
+              </span>
+              <span class="price">₴650</span>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="tabbar">
+      <nav class="tabs" aria-label="Primary">
+        <a class="tab" href="operator-listings.html"><span class="sq sq-24" aria-hidden="true"></span>Jobs</a>
+        <a class="tab" href="wallet.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Earnings</a>
+        <a class="tab" href="ratings.html"><span class="sq sq-24" aria-hidden="true"></span>Ratings</a>
+        <a class="tab" href="operator-account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+      </nav>
+      <div class="home-indicator"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Share / refer · empty</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Share / refer" — STATE: empty.
+  PERSONA: Client C-1. JOB: SJ-1 — share in a single action.
+  STATE: empty — the share sheet was opened but nothing was sent. Same shell as share.html; only the content zone changes. Recovery: share again, or maybe later (not a dead-end).
+  flows.md node: RELATED · SJ-1 → "Empty: opened but didn't send" → back to Share.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="share.html">success</a>
+      <a href="share-empty.html" class="cur" aria-current="page">empty</a>
+    </nav>
+    <h1>Share / refer</h1>
+    <p class="sub">Client · SJ-1 · state: <b>empty</b> · file: share-empty.html</p>
+    <div class="flow"><b>Empty — opened but didn't send.</b><br>flows.md SJ-1: "Empty: opened but didn't send" → back to Share (a missed share is a silent advocacy leak, so always re-offer).<br><b>Recovery:</b> Share again (primary); Maybe later (secondary).</div>
+    <div class="legend"><p><b>Only the content changes</b> vs share.html:</p><p><b>Body</b> ▸ nudge to finish the share, no targets row</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="rate.html">‹ Rate the order</a><span class="dr-topbar__title">Share DRON</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Invite <span class="dr-label__act">▸ nothing sent yet</span></p>
+      <section aria-label="Invite not sent">
+        <div class="dr-msg" role="status">
+          <span class="dr-mark">NOT SENT</span>
+          <span class="dr-msg__title">Invite not sent yet</span>
+          <p class="dr-msg__body">Your link is ready — dron.app/r/anna-k4. Pick a channel to send it, and you both get ₴100 off the next order.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="share.html">Share again</a>
+            <a class="dr-btn dr-btn--secondary" href="listings.html">Maybe later</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="share.html">Share again</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Operator onboarding · success (base)</title>
+<!-- SCREEN (sitemap §6.0 / Operator Getting in): "Operator onboarding". JOB (jtbd): MJ-2 activation. STATE: base only — a 3-slide swipeable explainer (CSS scroll-snap, no JS) with Skip. Pre-app: no bottom tab bar. -->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Operator onboarding</h1>
+    <p class="sub">Shared entry · state: <b>base only</b> · file: onboarding-operator.html</p>
+    <div class="flow"><b>Job (jtbd):</b> MJ-2 activation — how DRON works before verification. A 3-slide explainer, swipeable, skippable.<br><b>Exit:</b> Skip or Get started → <b>Operator home + status toggle</b> (operator-listings).<br><b>States:</b> none.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Slider</b> ▸ 3 slides: dispatch · checklist · payout</p><p><b>Skip</b> ▸ jump to the jobs hub</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="spacer"></span></header>
+    <main>
+      <div class="slider is-bleed" aria-label="How operating on DRON works">
+        <!-- The picture comes last in the markup, not first: it is the bottom of
+             the slide visually, and it is decorative (alt=""), so a screen reader
+             should reach the heading before it rather than step over it. -->
+        <section class="slide" id="oo1" aria-label="Slide 1 of 3">
+          <p class="big-title">Jobs come to you</p>
+          <p class="lead">Auto-dispatch sends pre-qualified jobs. Accept or decline in seconds — no bidding.</p>
+          <span class="slide-ph"><img src="../assets/scenes/thumbs/operator-at-work.png" alt="" loading="lazy" decoding="async"></span>
+        </section>
+        <section class="slide" id="oo2" aria-label="Slide 2 of 3">
+          <p class="big-title">Follow the checklist</p>
+          <p class="lead">Every job has a step-by-step checklist so nothing is missed on site.</p>
+          <span class="slide-ph">STEPS</span>
+        </section>
+        <section class="slide" id="oo3" aria-label="Slide 3 of 3">
+          <p class="big-title">Get paid automatically</p>
+          <p class="lead">Earnings land within 30 min of client confirmation. Withdraw to card or bank.</p>
+          <span class="slide-ph">PAID</span>
+        </section>
+      </div>
+      <nav class="pager" aria-label="Slides">
+        <a href="#oo1" class="on" aria-label="Go to slide 1"></a>
+        <a href="#oo2" aria-label="Go to slide 2"></a>
+        <a href="#oo3" aria-label="Go to slide 3"></a>
+      </nav>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-secondary btn-block" href="operator-listings.html">Skip</a>
+      <a class="btn btn-primary btn-block" href="operator-listings.html">Get started</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order setup / details · empty</title>
+<!-- SCREEN: "Order setup / details" — STATE: empty (no operator available now). Grounded in flows.md MJ-1: "Empty: none available — next slot ~40 min" → wait / save (notify) / leave. EXIT: notify / pick a later time. -->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="order-setup.html">success</a>
+      <a href="order-setup-empty.html" class="cur" aria-current="page">empty</a>
+      <a href="order-setup-error.html">error</a>
+    </nav>
+    <h1>Order setup / details</h1>
+    <p class="sub">Client · MJ-1 · state: <b>empty</b> · file: order-setup-empty.html</p>
+    <div class="flow"><b>Empty:</b> no operator free right now (flows.md MJ-1: "none available — next slot ~40 min").<br><b>Exit (not a dead-end):</b> notify me when free, or pick a later time.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Live price</b> → availability notice + recover</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><button class="dr-back">‹ Order</button><span class="dr-topbar__title">Package delivery</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Details form <span class="dr-label__act">▸ entered, but none available</span></p>
+      <div class="dr-rows" aria-label="Order details summary">
+        <div class="dr-rows__row"><span class="dr-rows__key">Pickup</span><span class="dr-rows__val">Podil, 21</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Drop-off</span><span class="dr-rows__val">Osokorky, 14</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Parcel</span><span class="dr-rows__val">Small · up to 2 kg</span></div>
+      </div>
+      <p class="zlabel dr-label">Availability <span class="dr-label__act">▸ empty — recover, not a dead-end</span></p>
+      <section aria-label="No operator available">
+        <div class="dr-msg" role="status">
+          <span class="dr-mark">~40 MIN</span>
+          <span class="dr-msg__title">No operator free right now</span>
+          <p class="dr-msg__body">All nearby operators are on jobs. The next one is likely free in about 40 minutes.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="order-setup.html">Notify me when available</a>
+            <a class="dr-btn dr-btn--secondary" href="order-setup.html">Pick a later time</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="dr-actionbar">
+      <p class="dr-note">We'll hold your details — no need to re-enter them.</p>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

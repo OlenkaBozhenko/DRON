@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order setup / details · success (base)</title>
+<!-- SCREEN (sitemap): "Order setup / details". JOB (jtbd): MJ-1 (enter the job) · RJ-C3 (price upfront, live). STATE: base. Flow step → order-review. Sticky action footer (not tabs). -->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="order-setup.html" class="cur" aria-current="page">success</a>
+      <a href="order-setup-empty.html">empty</a>
+      <a href="order-setup-error.html">error</a>
+    </nav>
+    <h1>Order setup / details</h1>
+    <p class="sub">Client · MJ-1 · state: <b>success (base)</b> · file: order-setup.html</p>
+    <div class="flow"><b>Job (jtbd):</b> MJ-1 — enter the job; RJ-C3 — full price upfront, no "plus fees" (price locked above the button).<br><b>Exit:</b> Continue → <b>Order review &amp; price</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Details form</b> ▸ pickup / drop-off / parcel</p><p><b>Live price</b> ▸ locked total (RJ-C3)</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><button class="dr-back">‹ Order</button><span class="dr-topbar__title">Package delivery</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Details form <span class="dr-label__act">▸ enter pickup, drop-off, parcel</span></p>
+      <form class="dr-stack" aria-label="Order details" action="#">
+        <div class="dr-rows">
+<div class="dr-field">
+          <label class="dr-field__label" for="pk">Pickup address</label>
+          <span class="dr-field__group"><span class="sq sq-20" aria-hidden="true"></span><input class="dr-field__input" id="pk" value="Podil — Naberezhno-Khreshchatytska St, 21"></span>
+        </div>
+        <div class="dr-field">
+          <label class="dr-field__label" for="dp">Drop-off address</label>
+          <span class="dr-field__group"><span class="sq sq-20" aria-hidden="true"></span><input class="dr-field__input" id="dp" value="Osokorky — Dniprovska Naberezhna, 14"></span>
+        </div>
+        <div class="dr-field">
+          <label class="dr-field__label" for="sz">Parcel size</label>
+          <span class="dr-field__group"><span class="dr-field__value" style="margin-left:auto">Small — up to 2 kg</span><span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span></span>
+        </div>
+        <div class="dr-field dr-field--area">
+          <label class="dr-field__label" for="nt">Notes for the operator</label>
+          <textarea class="dr-field__input" id="nt" class="dr-field__group" placeholder="Floor, entrance code, what's inside…"></textarea>
+        </div>
+</div>
+<label class="dr-pick" style="border-radius:6px;"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this address for next time</span></label>
+      </form>
+    </main>
+    <footer class="dr-actionbar">
+      <div class="dr-price"><span class="dr-price__lbl">Total · locked, no extra fees</span><span class="dr-price__val">₴180</span></div>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="order-review.html">Continue to review</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

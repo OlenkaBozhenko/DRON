@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Dispute / client issue · error</title>
+<!-- SCREEN: "Dispute / client issue" (operator, EJ-2) — STATE: error. Same shell as operator-dispute.html; only the main content becomes the hold message. flows.md MJ-2: Resolved in operator's favour? → no → "Error: payment held pending EJ-2 resolution" → back to Dispute (update response) or escalate to human support. Not a dead-end. -->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-dispute.html">base</a>
+      <a href="operator-dispute-error.html" class="cur" aria-current="page">error</a>
+    </nav>
+    <h1>Dispute / client issue</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>error</b> · file: operator-dispute-error.html</p>
+    <div class="flow"><b>Error (flows.md MJ-2):</b> Resolved in operator's favour? → <b>no</b> → <i>"payment held pending EJ-2 resolution"</i>. Recovery (not a dead-end): update the response or escalate to a human.<br>flows.md: Dispute → <span class="cur">payment held pending EJ-2</span> → back to Dispute.</div>
+    <div class="legend"><p><b>Only the content changes</b> vs operator-dispute.html:</p><p><b>Main</b> ▸ hold message + recovery actions</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><a class="back" href="operator-listings.html">‹ Jobs</a><span class="title">Dispute</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Job <span class="act">▸ what's disputed</span></p>
+      <section aria-label="Disputed job">
+        <article class="card">
+          <span class="media-ph"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="body">
+            <span class="name">Job #DR-2841 · Aerial photo</span>
+            <span class="desc">Client: Olena H. · disputed</span>
+            <span class="meta-row"><span class="price">₴800</span><span class="avail">· held</span></span>
+          </span>
+        </article>
+      </section>
+
+      <p class="zlabel">Status <span class="act">▸ payment held pending EJ-2</span></p>
+      <section aria-label="Payment held">
+        <div class="msg-block" role="status">
+          <span class="msg-ph">HELD</span>
+          <span class="msg-title">Payment held</span>
+          <p class="msg-body">₴800 for Job #DR-2841 stays on hold while the dispute is reviewed. Add more evidence to your response, or contact support to resolve it.</p>
+          <div class="msg-actions">
+            <a class="btn btn-primary" href="operator-dispute.html">Update response</a>
+            <a class="btn btn-secondary" href="contact-support.html">Contact support</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-tertiary" href="operator-listings.html">Back to Jobs</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

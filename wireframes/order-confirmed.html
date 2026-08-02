@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order confirmed / operator revealed · success (base)</title>
+<!-- SCREEN (sitemap): "Order confirmed / operator revealed". JOB (jtbd): RJ-C2 (close post-payment void) + RJ-C1 (operator real & qualified). STATE: success (base — milestone). Destination → Client tab bar (Activity). -->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="order-confirmed.html" class="cur" aria-current="page">success</a>
+      <a href="order-confirmed-empty.html">empty</a>
+      <a href="order-confirmed-error.html">error</a>
+      <a href="order-confirmed-loading.html">loading</a>
+    </nav>
+    <h1>Order confirmed / operator revealed</h1>
+    <p class="sub">Client · MJ-1 · state: <b>success (base)</b> · file: order-confirmed.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-C2 — no void after payment; RJ-C1 — a named, verified, insured operator, no tap needed.<br><b>Exit:</b> Track live → <b>Live tracking &amp; ETA</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Confirmation</b> ▸ it worked</p><p><b>Operator</b> ▸ name · rating · Verified · Insured (RJ-C1)</p><p><b>Arrival</b> ▸ ETA + track (RJ-C2)</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Order confirmed</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <section class="dr-center" aria-label="Confirmation" style="padding-top:8px;">
+        <span class="dr-mark dr-mark--milestone"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+        <p class="dr-display">Payment received</p>
+        <p class="dr-lead">Your operator is on the way.</p>
+      </section>
+      <p class="zlabel dr-label">Your operator <span class="dr-label__act">▸ who is coming (RJ-C1)</span></p>
+      <section aria-label="Operator">
+        <article class="dr-op">
+          <span class="dr-op__photo"><img src="../assets/people/thumbs/operator.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="dr-op__info">
+            <span class="dr-op__name">Andriy M.</span>
+            <span class="dr-op__rating">4.9 ★ · 214 jobs</span>
+            <span class="dr-chips dr-op__badges"><span class="dr-chip dr-chip--claim">Verified by DRON</span><span class="dr-chip">Insured</span></span>
+          </span>
+        </article>
+      </section>
+      <p class="zlabel dr-label">Arrival <span class="dr-label__act">▸ where &amp; when (RJ-C2)</span></p>
+      <div class="dr-rows" aria-label="Arrival">
+        <div class="dr-rows__row"><span class="dr-rows__key">ETA</span><span class="dr-rows__val">~8 min</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Status</span><span class="dr-rows__val">En route to pickup</span></div>
+      </div>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="tracking.html">Track live</a>
+    </main>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="listings.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+        <a class="dr-tab" href="order-history.html" aria-current="page"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+        <a class="dr-tab" href="support.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+        <a class="dr-tab" href="account.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

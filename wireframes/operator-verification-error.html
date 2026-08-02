@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Verification / document upload · error</title>
+<!--
+  SCREEN: "Verification / document upload" (flows.md MJ-2 gate).
+  PERSONA: Operator (MJ-2 activation gate).
+  JOB: MJ-2 activation.
+  STATE: error — missing or invalid documents / rejected (reason + resubmit path). Not a dead-end.
+  flows.md node: "Error: missing or invalid documents" / "rejected — reason + resubmit path".
+-->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-verification.html">success</a>
+      <a href="operator-verification-error.html" class="cur" aria-current="page">error</a>
+      <a href="operator-verification-loading.html">loading</a>
+    </nav>
+    <h1>Verification / document upload</h1>
+    <p class="sub">Operator · MJ-2 activation · state: <b>error</b> · file: operator-verification-error.html</p>
+    <div class="flow"><b>Error:</b> documents missing or invalid — rejected with a reason (flows.md "rejected — reason + resubmit path").<br><b>Exit (not a dead-end):</b> re-upload documents, or contact support.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Documents</b> ▸ rejection reason + re-upload / support</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><a class="back" href="operator-signup.html">‹ Sign in</a><span class="title">Verification</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Documents <span class="act">▸ error — reason + resubmit</span></p>
+      <section aria-label="Verification">
+        <div class="msg-block" role="alert">
+          <span class="msg-ph">DOCS</span>
+          <span class="msg-title">Documents were rejected</span>
+          <p class="msg-body">Insurance document is expired. Add a current policy that covers commercial drone operation, then submit again.</p>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="operator-verification.html">Add document again</a>
+      <a class="btn btn-secondary btn-block" href="contact-support.html">Contact support</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

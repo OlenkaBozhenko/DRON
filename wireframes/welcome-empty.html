@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Welcome / first-use explainer · empty</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Welcome / first-use explainer" — STATE: empty.
+  PERSONA: Client C-1. JOB: EJ-1 — first use feels safe.
+  STATE: empty — the one-card 15-second fallback for a skipped / too-long explainer. Same shell as welcome.html; only the main block changes.
+  flows.md node: RELATED · EJ-1 → "Empty: skipped / too long" → "Fallback: one-card 15-second version".
+-->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="welcome.html">success</a>
+      <a href="welcome-empty.html" class="cur" aria-current="page">empty</a>
+    </nav>
+    <h1>Welcome / first-use explainer</h1>
+    <p class="sub">Shared entry · state: <b>empty</b> · file: welcome-empty.html</p>
+    <div class="flow"><b>Empty — explainer skipped or too long.</b><br>flows.md EJ-1: "Empty: skipped / too long" → <b>Fallback: one-card 15-second version</b> (never a dead-end).<br><b>Exit:</b> Continue → <b>Sign in</b>.</div>
+    <div class="legend"><p><b>Only the content changes</b> vs welcome.html:</p><p><b>One card</b> ▸ the 15-second essentials, no slider</p><p><b>Action</b> ▸ Continue (primary)</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">One-card fallback <span class="act">▸ the 15-second version</span></p>
+      <section class="center" aria-label="How DRON works in 15 seconds" style="padding-top:8px;">
+        <span class="success-mark">DRON</span>
+        <p class="big-title">DRON in 15 seconds</p>
+        <p class="lead">Order a drone service — a certified, insured operator does the flying. You see their name, photo and live position the moment you pay, and get a photo or report when it's done. The drone flies a set route and only records what your order needs.</p>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-secondary btn-block" href="signin.html">Skip</a>
+      <a class="btn btn-primary btn-block" href="signin.html">Continue</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

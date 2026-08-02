@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Ratings dashboard · empty</title>
+<!-- SCREEN: "Ratings dashboard" (EJ-3) — STATE: empty (cold-start O-2). Same shell as ratings.html; only the main content becomes the no-ratings block. flows.md EJ-3: Has any ratings yet? → no → "Empty: no ratings yet — cold-start (O-2); auto-dispatch keeps feeding jobs; ratings accrue". Not a dead-end. GLOBAL — Ratings tab. -->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="ratings.html">success</a>
+      <a href="ratings-empty.html" class="cur" aria-current="page">empty</a>
+    </nav>
+    <h1>Ratings dashboard</h1>
+    <p class="sub">Operator · EJ-3 · state: <b>empty</b> · file: ratings-empty.html</p>
+    <div class="flow"><b>Empty (flows.md EJ-3):</b> Has any ratings yet? → <b>no</b> → <i>"no ratings yet — cold-start (O-2)"</i>. Recovery (no cold-start dead-end): <b>auto-dispatch keeps feeding jobs; ratings accrue from the first ones</b>.<br>flows.md: <span class="cur">no ratings yet</span> → platform still dispatches → back to Operator home.</div>
+    <div class="legend"><p><b>Only the content changes</b> vs ratings.html:</p><p><b>Main</b> ▸ empty block + path to first jobs</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="title">Ratings</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Overall <span class="act">▸ no ratings yet</span></p>
+      <section aria-label="Ratings">
+        <div class="msg-block" role="status">
+          <span class="msg-ph">NEW</span>
+          <span class="msg-title">No ratings yet</span>
+          <p class="msg-body">You haven't been rated yet. Ratings build from your first jobs — the platform keeps sending you jobs until they do.</p>
+          <div class="msg-actions">
+            <a class="btn btn-primary" href="operator-listings.html">Find jobs</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="tabbar">
+      <nav class="tabs" aria-label="Primary">
+        <a class="tab" href="operator-listings.html"><span class="sq sq-24" aria-hidden="true"></span>Jobs</a>
+        <a class="tab" href="wallet.html"><span class="sq sq-24" aria-hidden="true"></span>Earnings</a>
+        <a class="tab" href="ratings.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Ratings</a>
+        <a class="tab" href="operator-account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+      </nav>
+      <div class="home-indicator"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

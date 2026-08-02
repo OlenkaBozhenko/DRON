@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Welcome / first-use explainer · success (base)</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Welcome / first-use explainer".
+  PERSONA: Client C-1 (primary — first-time drone user).
+  JOB: EJ-1 — first use feels safe ("someone accountable is coming").
+  STATE: base — a 3-slide explainer (what happens after you order + what the drone does / won't do: noise, safety, privacy).
+  flows.md node: RELATED · EJ-1 → "Welcome / first-use explainer". Pre-sign-in: no global tab bar.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="welcome.html" class="cur" aria-current="page">success</a>
+      <a href="welcome-empty.html">empty</a>
+    </nav>
+    <h1>Welcome / first-use explainer</h1>
+    <p class="sub">Shared entry · state: <b>success (base)</b> · file: welcome.html</p>
+    <div class="flow"><b>Job (jtbd):</b> EJ-1 — a stranger with a drone stops feeling like a risk. A 3-slide explainer: what happens after you order + the drone (noise, safety, privacy).<br><b>flows.md:</b> First-time open → <span class="cur">Welcome / first-use explainer</span> → understood? → Order confirmed.<br><b>Exit:</b> Get started → <b>Sign in</b>; Skip → one-card fallback.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Slider</b> ▸ 3 slides: order → operator → drone facts</p><p><b>Skip</b> ▸ jump to the 15-second version</p><p><b>Action</b> ▸ Get started (primary)</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="spacer"></span></header>
+    <main>
+      <div class="slider is-bleed" aria-label="What to expect from DRON">
+        <!-- The picture comes last in the markup, not first: it is the bottom of
+             the slide visually, and it is decorative (alt=""), so a screen reader
+             should reach the heading before it rather than step over it. -->
+        <section class="slide" id="w1" aria-label="Slide 1 of 3">
+          <p class="big-title">You order, a pro handles it</p>
+          <p class="lead">Pick a service and pay. A certified DRON operator does the flying — you never touch the drone.</p>
+          <span class="slide-ph"><img src="../assets/scenes/thumbs/handover.png" alt="" decoding="async"></span>
+        </section>
+        <section class="slide" id="w2" aria-label="Slide 2 of 3">
+          <p class="big-title">A verified, insured operator</p>
+          <p class="lead">The moment you pay you see their name, photo and live position. Someone accountable is on the way.</p>
+          <span class="slide-ph"><img src="../assets/people/thumbs/wide/operator.png" alt="" loading="lazy" decoding="async"></span>
+        </section>
+        <section class="slide" id="w3" aria-label="Slide 3 of 3">
+          <p class="big-title">What the drone does — and doesn't</p>
+          <p class="lead">It flies a set route, keeps its distance, and only records what your order needs. Brief low noise on take-off and landing; no filming of your neighbours.</p>
+          <span class="slide-ph"><img src="../assets/drones/thumbs/wide/drone-flight-clean.png" alt="" loading="lazy" decoding="async"></span>
+        </section>
+      </div>
+      <nav class="pager" aria-label="Slides">
+        <a href="#w1" class="on" aria-label="Go to slide 1"></a>
+        <a href="#w2" aria-label="Go to slide 2"></a>
+        <a href="#w3" aria-label="Go to slide 3"></a>
+      </nav>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-secondary btn-block" href="welcome-empty.html">Skip</a>
+      <a class="btn btn-primary btn-block" href="signin.html">Get started</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

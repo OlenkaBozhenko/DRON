@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Result upload / close job · success (base)</title>
+<!-- SCREEN (sitemap): "Result upload / close job". JOB (jtbd): RJ-O2 · O-04 — the checklist ends in a result; this upload GATES RJ-O3 payment (proof before pay, H-7). STATE: base. Flow step → Wallet. Sticky action footer (not tabs). -->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="result-upload.html" class="cur" aria-current="page">success</a>
+      <a href="result-upload-error.html">error</a>
+      <a href="result-upload-loading.html">loading</a>
+    </nav>
+    <h1>Result upload / close job</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>success (base)</b> · file: result-upload.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O2 — capture the result (O-04); the upload is the gate on RJ-O3 pay — <b>proof before pay</b> (H-7). flows.md MJ-2: Job checklist → <b>Result upload</b> → Upload succeeded? → Wallet.<br><b>Exit:</b> Submit &amp; close → <b>Wallet / earnings</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Result photo</b> ▸ the proof that gates payment</p><p><b>Notes</b> ▸ handover details</p><p><b>Job</b> ▸ what's being closed</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Checklist</button><span class="title">Close job</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Result photo <span class="act">▸ proof before pay (H-7)</span></p>
+      <section aria-label="Result photo">
+        <div class="upload-zone"><span class="up-ph">DELIVERY PHOTO</span><button type="button" class="btn btn-secondary btn-sm">Add photo</button></div>
+      </section>
+
+      <p class="zlabel">Notes <span class="act">▸ handover details</span></p>
+      <section aria-label="Handover notes">
+        <textarea class="control" placeholder="Handover notes, client name…" aria-label="Handover notes"></textarea>
+      </section>
+
+      <p class="zlabel">Job <span class="act">▸ what's being closed</span></p>
+      <div class="kv" aria-label="Job summary">
+        <div class="kv-row"><span class="kv-key">Service</span><span class="kv-val">Package delivery</span></div>
+        <div class="kv-row"><span class="kv-key">Client</span><span class="kv-val">Olena H.</span></div>
+        <div class="kv-row"><span class="kv-key">Pay</span><span class="kv-val">₴180</span></div>
+      </div>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="wallet.html">Submit &amp; close job</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

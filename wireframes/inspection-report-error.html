@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Inspection report · error</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Inspection report" — STATE: error.
+  PERSONA: Client C-1 (C-2). JOB: RJ-C4 — a documented result.
+  STATE: error — no proof arrived within timeout, so the job cannot complete. Same shell as inspection-report.html; only the content zone changes. Recovery routes to support (EJ-2) with a refresh fallback.
+  flows.md node: RELATED · RJ-C4 → "Error: no proof — job cannot complete" → Support / dispute.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="inspection-report.html">success</a>
+      <a href="inspection-report-error.html" class="cur" aria-current="page">error</a>
+      <a href="inspection-report-loading.html">loading</a>
+    </nav>
+    <h1>Inspection report</h1>
+    <p class="sub">Client · MJ-1 (C-2) · state: <b>error</b> · file: inspection-report-error.html</p>
+    <div class="flow"><b>Error — no proof; the job cannot complete.</b><br>flows.md RJ-C4: proof didn't arrive within timeout → "Error: no proof — job cannot complete" → <b>Support / dispute</b> (EJ-2).<br><b>Recovery:</b> Contact support (primary); Refresh (secondary).</div>
+    <div class="legend"><p><b>Only the content changes</b> vs inspection-report.html:</p><p><b>Body</b> ▸ error message + recovery, no findings</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="tracking.html">‹ On the way</a><span class="dr-topbar__title">Inspection report</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Report <span class="dr-label__act">▸ no proof — cannot complete</span></p>
+      <section aria-label="Report unavailable">
+        <div class="dr-msg" role="alert">
+          <span class="dr-mark">NO REPORT</span>
+          <span class="dr-msg__title">No report received</span>
+          <p class="dr-msg__body">The operator marked the inspection done but no photos or findings arrived in time. Without the report, the job can't be completed or paid. Contact support to resolve it.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="support.html">Contact support</a>
+            <a class="dr-btn dr-btn--secondary" href="inspection-report.html">Try again</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="support.html">Contact support</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

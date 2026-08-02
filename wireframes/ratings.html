@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Ratings dashboard · success (base)</title>
+<!-- SCREEN (sitemap / _screens.md STEP 8): "Ratings dashboard" (EJ-3). PERSONA: Operator O-1. JOB: EJ-3 — see what clients valued: score breakdown + review text, so effort turns into reputation. STATE: base (established O-1). GLOBAL — Ratings tab (sitemap §7.2). flows.md EJ-3: Operator home → Ratings dashboard → Score breakdown + review text shown? → yes → reputation grows. -->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="ratings.html" class="cur" aria-current="page">success</a>
+      <a href="ratings-empty.html">empty</a>
+    </nav>
+    <h1>Ratings dashboard</h1>
+    <p class="sub">Operator · EJ-3 · state: <b>success (base)</b> · file: ratings.html</p>
+    <div class="flow"><b>Job:</b> EJ-3 — turn completed jobs into a reputation worth having; transparency drives loyalty (O-06).<br>flows.md EJ-3: Operator home → <span class="cur">Ratings dashboard</span> → <b>Score breakdown + review text shown?</b> → yes → reputation grows.<br><b>Tab:</b> Ratings (global nav).</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Overall</b> ▸ headline score</p><p><b>Per service</b> ▸ where you're strong / weak</p><p><b>Recent reviews</b> ▸ the 'why' behind the score</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="title">Ratings</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Overall <span class="act">▸ headline score</span></p>
+      <section aria-label="Overall rating">
+        <p class="amount">4.8</p>
+        <p class="amount-sub">· 126 ratings · last 90 days</p>
+      </section>
+
+      <p class="zlabel">Per service <span class="act">▸ score breakdown</span></p>
+      <div class="kv" aria-label="Rating by service">
+        <div class="kv-row"><span class="kv-key">Package delivery</span><span class="kv-val">4.9</span></div>
+        <div class="kv-row"><span class="kv-key">Aerial photo &amp; video</span><span class="kv-val">4.7</span></div>
+        <div class="kv-row"><span class="kv-key">Inspection</span><span class="kv-val">4.8</span></div>
+      </div>
+
+      <p class="zlabel">Recent reviews <span class="act">▸ the 'why'</span></p>
+      <section aria-label="Recent reviews">
+        <ul class="list">
+          <li>
+            <article class="card stack-card">
+              <span class="meta-row"><span class="name">Olena H.</span><span class="avail">· 5.0</span></span>
+              <p class="desc" style="margin:0;">“Fast and careful — package arrived sealed and on time.”</p>
+              <span class="badges"><span class="badge">Package delivery</span><span class="badge">Today</span></span>
+            </article>
+          </li>
+          <li>
+            <article class="card stack-card">
+              <span class="meta-row"><span class="name">Andriy P.</span><span class="avail">· 4.0</span></span>
+              <p class="desc" style="margin:0;">“Good shots overall, a couple came out a bit dark.”</p>
+              <span class="badges"><span class="badge">Aerial photo &amp; video</span><span class="badge">Yesterday</span></span>
+            </article>
+          </li>
+          <li>
+            <article class="card stack-card">
+              <span class="meta-row"><span class="name">Maria D.</span><span class="avail">· 5.0</span></span>
+              <p class="desc" style="margin:0;">“Clear roof footage, spotted the leak we couldn't see.”</p>
+              <span class="badges"><span class="badge">Inspection</span><span class="badge">2 days ago</span></span>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="tabbar">
+      <nav class="tabs" aria-label="Primary">
+        <a class="tab" href="operator-listings.html"><span class="sq sq-24" aria-hidden="true"></span>Jobs</a>
+        <a class="tab" href="wallet.html"><span class="sq sq-24" aria-hidden="true"></span>Earnings</a>
+        <a class="tab" href="ratings.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Ratings</a>
+        <a class="tab" href="operator-account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+      </nav>
+      <div class="home-indicator"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

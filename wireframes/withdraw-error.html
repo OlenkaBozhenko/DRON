@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Withdraw to card / bank account · error</title>
+<!-- SCREEN: "Withdraw to card / bank account" — STATE: error (payout failed / invalid details). Grounded in flows.md MJ-2: "invalid card / bank details" + "payout failed, funds returned to balance". EXIT: retry / switch to bank transfer. -->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="withdraw.html">success</a>
+      <a href="withdraw-error.html" class="cur" aria-current="page">error</a>
+      <a href="withdraw-loading.html">loading</a>
+    </nav>
+    <h1>Withdraw to card / bank account</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>error</b> · file: withdraw-error.html</p>
+    <div class="flow"><b>Error:</b> the transfer to the card failed and the funds returned to balance (flows.md MJ-2: "payout failed, funds returned to balance").<br><b>Exit (not a dead-end):</b> try again, or switch to a bank transfer. The money is safe in the balance.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Amount / method</b> → payout-failed notice + retry / use bank transfer</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Earnings</button><span class="title">Withdraw</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Amount <span class="act">▸ returned to balance</span></p>
+      <section aria-label="Payout error">
+        <div class="msg-block" role="alert">
+          <span class="msg-ph">FAILED</span>
+          <span class="msg-title">Withdrawal didn't go through</span>
+          <p class="msg-body">The transfer to your card failed and the ₴3,240 is back in your balance. Check the card details, or try a bank transfer instead.</p>
+          <div class="msg-actions">
+            <a class="btn btn-primary btn-block" href="withdraw-loading.html">Try again</a>
+            <a class="btn btn-secondary btn-block" href="withdraw.html">Use bank transfer</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <p class="note">Funds returned to your balance — nothing was lost.</p>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

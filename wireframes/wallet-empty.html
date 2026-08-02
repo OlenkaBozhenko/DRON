@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Wallet / earnings · empty</title>
+<!-- SCREEN: "Wallet / earnings" — STATE: empty (balance below minimum payout). Grounded in flows.md MJ-2: "Empty: below minimum — keep earning". EXIT: find jobs → keep earning to reach the payout minimum. Operator tab bar (Earnings active). -->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="wallet.html">success</a>
+      <a href="wallet-empty.html" class="cur" aria-current="page">empty</a>
+    </nav>
+    <h1>Wallet / earnings</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>empty</b> · file: wallet-empty.html</p>
+    <div class="flow"><b>Empty:</b> the balance is below the ₴500 payout minimum (flows.md MJ-2: "below minimum — keep earning").<br><b>Exit (not a dead-end):</b> take one more job to reach the minimum → <b>Find jobs</b>.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Recent / Withdraw</b> → "keep earning" message + find jobs</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="title">Earnings</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Balance <span class="act">▸ below payout minimum</span></p>
+      <section aria-label="Balance">
+        <p class="amount">₴120</p>
+        <p class="amount-sub">Below the ₴500 minimum to withdraw</p>
+      </section>
+      <section aria-label="Keep earning">
+        <div class="msg-block">
+          <span class="msg-ph">EMPTY</span>
+          <span class="msg-title">Below the withdrawal minimum</span>
+          <p class="msg-body">You need ₴500 to withdraw. Take one more job to reach the minimum.</p>
+          <div class="msg-actions">
+            <a class="btn btn-primary btn-block" href="operator-listings.html">Find jobs</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="tabbar">
+      <nav class="tabs" aria-label="Primary">
+        <a class="tab" href="operator-listings.html"><span class="sq sq-24" aria-hidden="true"></span>Jobs</a>
+        <a class="tab" href="wallet.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Earnings</a>
+        <a class="tab" href="ratings.html"><span class="sq sq-24" aria-hidden="true"></span>Ratings</a>
+        <a class="tab" href="operator-account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+      </nav>
+      <div class="home-indicator"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

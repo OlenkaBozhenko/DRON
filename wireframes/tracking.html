@@ -1,0 +1,71 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Live tracking &amp; ETA · success (base)</title>
+<!-- SCREEN (sitemap): "Live tracking & ETA". JOB (jtbd): RJ-C2 (know where the operator is right now, C-05). STATE: success (base). flows.md MJ-1: Order confirmed → Live tracking & ETA → Delivery confirmation. -->
+
+<!--
+  VISUAL LAYER (2026-08-01): Studio design language transferred from concept/concept.html
+  and the painted wireframes/order-history.html — palette, radii, shadows, Phosphor-line
+  icons, the live map render, and the operator trust layer. Structure and copy unchanged;
+  only media/icon placeholders became the real marks they always stood for. The <style>
+  block is byte-identical across all four tracking states, so every repeat of a component
+  carries the same values. New pairs contrast-checked in that block. See concept.md rev 21.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+<link rel="stylesheet" href="../ui/kit.css">
+</head><body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="tracking.html" class="cur" aria-current="page">success</a>
+      <a href="tracking-empty.html">empty</a>
+      <a href="tracking-error.html">error</a>
+      <a href="tracking-loading.html">loading</a>
+    </nav>
+    <h1>Live tracking &amp; ETA</h1>
+    <p class="sub">Client · MJ-1 · state: <b>success (base)</b> · file: tracking.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-C2 — see where the operator is right now (C-05), so the wait isn't a void.<br><b>Exit:</b> On arrival → <b>Delivery confirmation</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Live map</b> ▸ operator position</p><p><b>ETA</b> ▸ time + status</p><p><b>Operator</b> ▸ who is coming · contact</p><p><b>Progress</b> ▸ job milestones</p></div>
+  </aside>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><h1 class="dr-topbar__title">On the way</h1><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Live map <span class="dr-label__act">▸ operator position (RJ-C2 · C-05)</span></p>
+      <section aria-label="Live map">
+        <div class="dr-well dr-well--map" style="background-image:url(../assets/map/live-map.jpg)" role="img" aria-label="Live map · operator position"></div>
+      </section>
+      <p class="zlabel dr-label">ETA <span class="dr-label__act">▸ when they arrive (RJ-C2)</span></p>
+      <div class="dr-rows" aria-label="ETA">
+        <div class="dr-rows__row"><span class="dr-rows__key">ETA</span><span class="dr-rows__val">~6 min</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Status</span><span class="dr-rows__val">En route to drop-off</span></div>
+      </div>
+      <p class="zlabel dr-label">Operator <span class="dr-label__act">▸ who is coming (RJ-C1)</span></p>
+      <section aria-label="Operator">
+        <div class="dr-stack">
+          <article class="dr-op">
+            <span class="dr-op__photo"><img src="../assets/people/thumbs/operator.png" alt="" loading="lazy" decoding="async"></span>
+            <span class="dr-op__info">
+              <span class="dr-op__name">Andriy M.</span>
+              <span class="dr-op__rating">4.9 ★ · 214 jobs</span>
+              <span class="dr-chips dr-op__badges"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON</span><span class="dr-chip"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured</span></span>
+            </span>
+          </article>
+        </div>
+      </section>
+      <p class="zlabel dr-label">Progress <span class="dr-label__act">▸ job milestones (RJ-C2)</span></p>
+      <section aria-label="Progress">
+        <ul class="dr-track">
+          <li class="dr-track__item dr-track__item--done"><span class="dr-node dr-node--done"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-track__text">Accepted</span></li>
+          <li class="dr-track__item dr-track__item--now" aria-current="step"><span class="dr-node dr-node--now"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-track__text">En route</span></li>
+          <li class="dr-track__item"><span class="dr-node"></span><span class="dr-track__text">On&#8209;site</span></li>
+          <li class="dr-track__item"><span class="dr-node"></span><span class="dr-track__text">Done</span></li>
+        </ul>
+      </section>
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="delivery.html">View details</a>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="support.html">Contact operator</a>
+    </footer>
+  </div>
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body></html>

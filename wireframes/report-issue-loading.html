@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Report an issue · loading</title>
+<!--
+  SCREEN: "Report an issue" — STATE: loading (issue under review).
+  PERSONA: Client C-1. JOB: EJ-2 — resolution after a bad experience.
+  FLOW NODE: flows.md EJ-2 "Loading: issue under review" (REV) → "Resolution outcome" (RO).
+  Same shell as report-issue.html; header/footer solid, sk-* skeletons stand in for the pending outcome.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="report-issue.html">success</a>
+      <a href="report-issue-empty.html">empty</a>
+      <a href="report-issue-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Report an issue</h1>
+    <p class="sub">Client · EJ-2 · state: <b>loading</b> · file: report-issue-loading.html</p>
+    <div class="flow"><b>Loading — issue under review.</b><br>flows.md EJ-2: "Loading: issue under review" → <b>Resolution outcome</b>.<br><b>Exit:</b> the decision lands on the resolution screen (refund / free re-do / human).</div>
+    <div class="legend"><p><b>Only the content changes</b> vs report-issue.html:</p><p><b>Form</b> → status line + outcome skeletons</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><button class="dr-back">‹ Help</button><span class="dr-topbar__title">Report an issue</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Review status <span class="dr-label__act">▸ loading — under review</span></p>
+      <p role="status" style="font-size:17px;font-weight:600;color:var(--wf-text);">Issue under review&hellip;</p>
+      <p class="dr-lead">We're checking your report for order #DR-4821. This usually takes a few minutes.</p>
+      <div class="dr-card dr-card--row" aria-hidden="true">
+        <span class="dr-sk-well"></span>
+        <span class="dr-sk-head">
+          <span class="dr-sk-line dr-sk-w70"></span>
+          <span class="dr-sk-line dr-sk-w90"></span>
+          <span class="dr-sk-line dr-sk-w40"></span>
+        </span>
+      </div>
+      <div class="dr-sk-block" aria-hidden="true"></div>
+      <p class="dr-hint">You can leave this screen — we'll notify you when the outcome is ready.</p>
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="resolution.html">View resolution</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Sign in with Diia / BankID · error</title>
+<!-- SCREEN: "Sign in with Diia / BankID" — STATE: error (auth declined/cancelled). EXIT: retry / other method (not a dead-end). -->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="signin.html">success</a>
+      <a href="signin-error.html" class="cur" aria-current="page">error</a>
+      <a href="signin-loading.html">loading</a>
+    </nav>
+    <h1>Sign in with Diia / BankID</h1>
+    <p class="sub">Shared entry · state: <b>error</b> · file: signin-error.html</p>
+    <div class="flow"><b>Error:</b> Diia / BankID declined or cancelled the request.<br><b>Exit (not a dead-end):</b> try again, or switch to the other method.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Sign in</b> ▸ error message + retry / other method</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Sign in <span class="act">▸ error — retry (exit)</span></p>
+      <section aria-label="Sign in">
+        <div class="msg-block" role="alert">
+          <span class="msg-ph">AUTH</span>
+          <span class="msg-title">Sign-in didn't complete</span>
+          <p class="msg-body">Diia declined or cancelled the verification. You can try again, or continue with BankID instead.</p>
+        </div>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="role-select.html">Try again with Diia</a>
+      <a class="btn btn-secondary btn-block" href="role-select.html">Use BankID instead</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

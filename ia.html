@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){var t=localStorage.getItem('dron-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <title>DRON — Information Architecture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080808; --bg-2: #0f0f0f; --bg-3: #161616; --bg-4: #1c1c1c;
+      --border: rgba(255,255,255,0.07); --border-2: rgba(255,255,255,0.12);
+      --text: #d8d8d8; --text-2: #909090; --text-3: #555; --white: #f0f0f0; --accent: #ffffff;
+      --risk-hi: #e05252; --risk-mid: #c4943a; --risk-lo: #4a9e6b;
+      --tag-bg: rgba(255,255,255,0.06); --client: #5b8fde; --operator: #7ecb9e; --hyp: #c4943a;
+    }
+    html[data-theme="light"] {
+      --bg: #f4f4f4; --bg-2: #ffffff; --bg-3: #eeeeee; --bg-4: #e2e2e2;
+      --border: rgba(0,0,0,0.09); --border-2: rgba(0,0,0,0.15);
+      --text: #252525; --text-2: #5a5a5a; --text-3: #909090; --white: #111111; --accent: #000000;
+      --risk-hi: #c43030; --risk-mid: #a86e10; --risk-lo: #267a4a;
+      --tag-bg: rgba(0,0,0,0.05); --client: #3a6ec0; --operator: #27895a; --hyp: #966c18;
+    }
+    html[data-theme="light"] tbody tr:hover { background: rgba(0,0,0,0.03); }
+    html[data-theme="light"] .nav-overlay { background: rgba(0,0,0,0.4); }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* ── SIDEBAR ── */
+    .sidebar { position: fixed; top: 0; left: 0; bottom: 0; width: 240px; z-index: 100; display: flex; flex-direction: column; padding: 24px 16px; background: var(--bg-2); border-right: 1px solid var(--border); overflow-y: auto; }
+    .sidebar-brand { font-size: 15px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); padding: 0 12px; margin-bottom: 4px; }
+    .sidebar-tagline { font-size: 11px; color: var(--text-3); padding: 0 12px; margin-bottom: 24px; }
+    .sidebar-group { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); padding: 0 12px; margin: 18px 0 8px; }
+    .sidebar a { display: block; text-decoration: none; color: var(--text-2); font-size: 13px; padding: 8px 12px; border-radius: 7px; border: none; transition: color 0.15s, background 0.15s; }
+    .sidebar a:hover { color: var(--white); background: var(--bg-4); }
+    .sidebar a.active { color: var(--white); background: var(--bg-3); }
+    .sidebar-spacer { flex: 1; }
+    .nav-section { margin: 1px 0; }
+    .nav-section > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--text); font-size: 13px; padding: 8px 12px; border-radius: 7px; transition: color 0.15s, background 0.15s; }
+    .nav-section > summary::-webkit-details-marker { display: none; }
+    .nav-section > summary:hover { color: var(--white); background: var(--bg-4); }
+    .nav-section[open] > summary { color: var(--white); }
+    .nav-section > summary::after { content: "›"; font-size: 15px; line-height: 1; color: var(--text-3); transition: transform 0.18s ease; }
+    .nav-section[open] > summary::after { transform: rotate(90deg); }
+    .nav-children { display: flex; flex-direction: column; gap: 1px; margin: 2px 0 6px 26px; padding-left: 10px; border-left: 1px solid var(--border); }
+    .nav-children a { font-size: 12.5px; padding: 6px 12px; }
+    .nav-soon { display: flex; align-items: center; justify-content: space-between; font-size: 13px; padding: 8px 12px; border-radius: 7px; color: var(--text-3); cursor: default; }
+    .nav-soon::after { content: "Soon"; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); border: 1px solid var(--border-2); border-radius: 4px; padding: 1px 5px; }
+
+    /* ── LAYOUT ── */
+    body { padding-left: 240px; }
+    main { max-width: 1180px; margin: 0 auto; padding: 0 32px 80px; }
+    section { padding: 56px 0 0; }
+    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+    h2 { font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 6px; letter-spacing: -0.02em; }
+    h3 { font-size: 15px; font-weight: 600; color: var(--white); margin: 36px 0 14px; }
+    .section-desc { color: var(--text-2); font-size: 14px; max-width: 680px; margin-bottom: 28px; line-height: 1.7; }
+    p { color: var(--text); line-height: 1.7; margin-bottom: 12px; }
+    a { color: var(--text-2); border-bottom: 1px solid var(--border-2); text-decoration: none; }
+    a:hover { color: var(--white); }
+    code { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; background: var(--bg-4); border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; color: var(--text-2); }
+
+    /* ── TAGS ── */
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; background: var(--tag-bg); color: var(--text-2); border: 1px solid var(--border); margin: 1px; white-space: nowrap; }
+    .tag-client { background: rgba(91,143,222,0.1); color: var(--client); border-color: rgba(91,143,222,0.25); }
+    .tag-operator { background: rgba(126,203,158,0.1); color: var(--operator); border-color: rgba(126,203,158,0.25); }
+    .tag-job { font-family: 'JetBrains Mono', monospace; background: rgba(255,255,255,0.05); color: var(--text-2); border-color: var(--border-2); }
+    .tag-orphan { background: rgba(224,82,82,0.1); color: var(--risk-hi); border-color: rgba(224,82,82,0.28); }
+
+    /* ── TABS ── */
+    .tabbar { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 8px; position: sticky; top: 0; background: var(--bg); z-index: 10; padding-top: 4px; }
+    .tab-btn { appearance: none; background: none; border: none; cursor: pointer; font-family: inherit; font-size: 13.5px; font-weight: 500; color: var(--text-2); padding: 12px 18px; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.15s, border-color 0.15s; }
+    .tab-btn:hover { color: var(--white); }
+    .tab-btn.active { color: var(--white); border-bottom-color: var(--accent); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── TREE ── */
+    .tree-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .tree-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; }
+    .tree-card.client { border-top: 2px solid var(--client); }
+    .tree-card.operator { border-top: 2px solid var(--operator); }
+    .tree-title { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .tree-group { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); margin: 16px 0 6px; }
+    .tree-group:first-of-type { margin-top: 0; }
+    .tree-screen { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; padding: 6px 0 6px 14px; border-left: 1px solid var(--border); position: relative; }
+    .tree-screen::before { content: ""; position: absolute; left: 0; top: 14px; width: 8px; height: 1px; background: var(--border-2); }
+    .tree-screen .nm { font-size: 12.5px; color: var(--text); }
+    .tree-screen.sub { margin-left: 16px; }
+    .tree-screen.orphan .nm { color: var(--text-3); text-decoration: line-through; }
+    .jobpill { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-3); background: var(--bg-4); border: 1px solid var(--border); border-radius: 3px; padding: 0 5px; }
+    .ptag { font-size: 9.5px; letter-spacing: 0.04em; color: var(--text-3); border: 1px solid var(--border); border-radius: 3px; padding: 0 5px; }
+    .orphan-note { font-size: 10px; color: var(--risk-hi); }
+
+    .legend { display: flex; flex-wrap: wrap; gap: 14px; margin: 14px 0 0; font-size: 11px; color: var(--text-3); }
+    .legend span { display: inline-flex; align-items: center; gap: 5px; }
+    .swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+    .sw-done { background: #10241a; border: 1px solid #4a9e6b; }
+    .sw-dead { background: #241313; border: 1px solid #e05252; }
+    .sw-state { background: #1c1813; border: 1px solid #c4943a; }
+
+    .badge-long { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #fff; background: #c4143c; border-radius: 4px; padding: 2px 7px; vertical-align: middle; margin-left: 8px; }
+
+    /* ── NAV SUMMARY ── */
+    .nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .nav-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+    .nav-card.client { border-top: 2px solid var(--client); }
+    .nav-card.operator { border-top: 2px solid var(--operator); }
+    .nav-card h4 { font-size: 13px; color: var(--white); margin-bottom: 10px; }
+    .nav-item { display: flex; justify-content: space-between; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12.5px; }
+    .nav-item:last-child { border-bottom: none; }
+    .nav-item .lbl { color: var(--white); font-weight: 500; }
+    .nav-item .job { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); text-align: right; }
+    .depth { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 14px; }
+    .depth-card { flex: 1; min-width: 220px; background: var(--bg-3); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+    .depth-num { font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 600; color: var(--risk-lo); }
+    .depth-lbl { font-size: 12px; color: var(--text-2); margin-top: 4px; }
+
+    /* ── TABLES / MATRIX ── */
+    .table-wrap { overflow-x: auto; margin: 0 -4px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead tr { border-bottom: 1px solid var(--border-2); }
+    thead th { padding: 9px 10px; text-align: left; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); white-space: nowrap; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody td { padding: 9px 10px; vertical-align: top; color: var(--text); line-height: 1.5; }
+    .matrix th, .matrix td { text-align: center; }
+    .matrix th:first-child, .matrix td:first-child { text-align: left; white-space: nowrap; }
+    .matrix td.yes { color: var(--risk-lo); font-weight: 600; }
+    .matrix tbody tr:hover { background: rgba(255,255,255,0.025); }
+    .mx-job { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--white); }
+    .mcode { font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+    .codes { font-size: 11.5px; color: var(--text-2); line-height: 1.8; margin-bottom: 16px; }
+    .codes b { color: var(--white); font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+
+    .orphan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+    .orphan-card { background: rgba(224,82,82,0.04); border: 1px solid rgba(224,82,82,0.18); border-radius: 12px; padding: 16px 18px; }
+    .orphan-card h4 { font-size: 12px; color: var(--white); margin-bottom: 10px; }
+    .orphan-row { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+    .orphan-row:last-child { border-bottom: none; }
+    .orphan-row .o-nm { color: var(--text); }
+    .verdict { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; padding: 1px 7px; border-radius: 4px; white-space: nowrap; }
+    .v-delete { background: rgba(224,82,82,0.12); color: var(--risk-hi); }
+    .v-attach { background: rgba(126,203,158,0.12); color: var(--operator); }
+    .v-backlog { background: rgba(196,148,58,0.12); color: var(--hyp); }
+
+    /* ── FLOWS ── */
+    .flow-block { margin-bottom: 28px; }
+    .flow-head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+    .flow-head .ttl { font-size: 14px; font-weight: 600; color: var(--white); }
+    .flow-quote { font-size: 12px; color: var(--text-2); font-style: italic; line-height: 1.5; border-left: 2px solid var(--border-2); padding-left: 10px; margin-bottom: 12px; max-width: 760px; }
+    .mmd { background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px; padding: 18px; overflow-x: auto; }
+    .mmd pre.mermaid { background: transparent; margin: 0; text-align: center; }
+    .mmd svg { max-width: 100%; height: auto; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 32px; max-width: 1180px; margin: 56px auto 0; display: flex; align-items: center; justify-content: space-between; }
+    .footer-brand { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+    .footer-note { font-size: 12px; color: var(--text-3); }
+
+    /* ── MOBILE HEADER ── */
+    .mobile-header { display: none; position: fixed; top: 0; left: 0; right: 0; height: 52px; z-index: 200; background: var(--bg-2); border-bottom: 1px solid var(--border); align-items: center; justify-content: space-between; padding: 0 16px; }
+    .mobile-brand { font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); }
+    .hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; background: none; border: none; cursor: pointer; padding: 8px; border-radius: 8px; transition: background 0.15s; }
+    .hamburger:hover { background: var(--bg-4); }
+    .hamburger-line { display: block; width: 20px; height: 1.5px; background: var(--text); border-radius: 2px; transition: transform 0.22s ease, opacity 0.22s ease; transform-origin: center; }
+    .hamburger.is-open .hamburger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.is-open .hamburger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.is-open .hamburger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-actions { display: flex; align-items: center; gap: 4px; }
+    .theme-toggle { width: 40px; height: 40px; background: none; border: none; cursor: pointer; padding: 8px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--text-2); transition: background 0.15s, color 0.15s; }
+    .theme-toggle:hover { background: var(--bg-4); color: var(--white); }
+    .icon-sun { display: none; }
+    html[data-theme="light"] .icon-sun { display: block; }
+    html[data-theme="light"] .icon-moon { display: none; }
+    .nav-overlay { display: none; position: fixed; inset: 0; z-index: 150; background: rgba(0,0,0,0.55); opacity: 0; transition: opacity 0.25s ease; }
+    .nav-overlay.is-open { opacity: 1; }
+    .sidebar-close { display: none; position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; background: var(--bg-4); border: 1px solid var(--border-2); border-radius: 8px; color: var(--text-2); font-size: 16px; cursor: pointer; align-items: center; justify-content: center; }
+    .sidebar-close:hover { background: var(--bg-3); color: var(--white); }
+
+    @media (max-width: 768px) {
+      .mobile-header { display: flex; }
+      .nav-overlay { display: block; }
+      .sidebar-close { display: flex; }
+      body { padding-left: 0; padding-top: 52px; }
+      .sidebar { width: min(280px, 85vw); z-index: 160; transform: translateX(-100%); transition: transform 0.28s cubic-bezier(0.4,0,0.2,1); border-right: 1px solid var(--border-2); }
+      .sidebar.is-open { transform: translateX(0); }
+      main { padding: 0 18px 60px; }
+      .tabbar { top: 52px; }
+      .tree-cols, .nav-grid, .orphan-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE HEADER ─── -->
+<div class="mobile-header" id="mobileHeader">
+  <span class="mobile-brand">DRON</span>
+  <div class="mobile-actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">
+      <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+    </button>
+  </div>
+</div>
+
+<!-- ─── NAV OVERLAY ─── -->
+<div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
+<!-- ─── SIDEBAR ─── -->
+<aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="closeBtn" aria-label="Close navigation">✕</button>
+  <div class="sidebar-brand">DRON</div>
+  <div class="sidebar-tagline">Drone-as-a-service</div>
+
+  <div class="sidebar-group">Pages</div>
+
+  <details class="nav-section">
+    <summary>Research</summary>
+    <div class="nav-children">
+      <a href="research.html#competitors">Competitors</a>
+      <a href="research.html#benchmark">Benchmark</a>
+      <a href="research.html#patterns">Patterns</a>
+      <a href="research.html#conclusions">Conclusions</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>UX Research</summary>
+    <div class="nav-children">
+      <a href="research.html#personas">User personas</a>
+      <a href="research.html#cjm">CJM</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>Target Audience</summary>
+    <div class="nav-children">
+      <a href="target-audience.html#personas">Personas</a>
+      <a href="target-audience.html#conclusions">Conclusions</a>
+      <a href="target-audience.html#gaps">Knowledge gaps</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>JTBD</summary>
+    <div class="nav-children">
+      <a href="target-audience.html#jobs">Jobs hierarchy</a>
+      <a href="target-audience.html#matrix">Matrix</a>
+    </div>
+  </details>
+
+  <details class="nav-section" open>
+    <summary>Sitemap</summary>
+    <div class="nav-children">
+      <a href="ia.html#screens" class="active">Screens</a>
+      <a href="ia.html#navigation">Navigation</a>
+      <a href="ia.html#traceability">Traceability</a>
+    </div>
+  </details>
+
+  <details class="nav-section" open>
+    <summary>Flows</summary>
+    <div class="nav-children">
+      <a href="ia.html#flows-client">Client flows</a>
+      <a href="ia.html#flows-operator">Operator flows</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>Wireframes</summary>
+    <div class="nav-children">
+      <a href="wireframes/role-select.html">Start · role fork</a>
+      <a href="wireframes/listings.html">Client flow</a>
+      <a href="wireframes/operator-listings.html">Operator flow</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>Concept</summary>
+    <div class="nav-children">
+      <a href="concept/concept.html">Design language · Studio</a>
+      <a href="concept/directions.html">Directions</a>
+      <a href="concept/concept-artifact.html">Concept board</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>Tone of Voice</summary>
+    <div class="nav-children">
+      <a href="tone-of-voice.html#principles">Principles</a>
+      <a href="tone-of-voice.html#vocabulary">Vocabulary</a>
+      <a href="tone-of-voice.html#dont-use">Don&rsquo;t use</a>
+      <a href="tone-of-voice.html#geo">GEO &amp; SEO</a>
+      <a href="tone-of-voice.html#microcopy">Microcopy</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>UI Kit</summary>
+    <div class="nav-children">
+      <a href="ui/kit.html">Kit &middot; components &amp; states</a>
+      <a href="ui/shell.html">Shell &middot; header &amp; tab bar</a>
+      <a href="ui/inventory.html">Inventory &middot; 53 components</a>
+    </div>
+  </details>
+
+  <div class="sidebar-group">Coming soon</div>
+  <span class="nav-soon">Design system</span>
+  <span class="nav-soon">Components</span>
+
+  <div class="sidebar-spacer"></div>
+  <a href="https://github.com/OlenkaBozhenko/DRON" target="_blank" style="border:none;">GitHub ↗</a>
+</aside>
+
+<!-- ─── MAIN ─── -->
+<main>
+
+<div style="padding: 56px 0 28px; border-bottom: 1px solid var(--border);">
+  <div class="section-label">Information Architecture · June 2026</div>
+  <h2 style="font-size: 28px; margin-bottom: 12px;">Sitemap &amp; Flows</h2>
+  <p class="section-desc" style="margin-bottom: 18px;">
+    Built from <code>sitemap.md</code> and <code>flows.md</code>. Two equal personas — Client and Operator —
+    kept separate throughout. Every screen carries the job it serves; every flow shows both ends, success in
+    <span style="color:var(--risk-lo)">green</span> and trouble in <span style="color:var(--risk-hi)">red</span>.
+  </p>
+  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+    <span class="tag tag-client">Client</span>
+    <span class="tag tag-operator">Operator</span>
+    <span class="tag">31 screens</span>
+    <span class="tag">11 flows</span>
+    <span class="tag">Traceability matrix</span>
+  </div>
+</div>
+
+<!-- ─── TABS ─── -->
+<div class="tabbar" role="tablist">
+  <button class="tab-btn active" data-tab="sitemap" role="tab">Sitemap</button>
+  <button class="tab-btn" data-tab="flows" role="tab">Flows</button>
+</div>
+
+<!-- ══════════════════════════════ SITEMAP TAB ══════════════════════════════ -->
+<div class="tab-panel active" id="tab-sitemap">
+
+  <!-- SCREENS -->
+  <section id="screens">
+    <div class="section-label">Section 01</div>
+    <h2>Screens</h2>
+    <p class="section-desc">Two sitemaps, grouped by human logic, not "site sections". Each screen shows the job it serves; primary persona in <b>bold</b>. Orphan screens (no job) are struck through and flagged.</p>
+
+    <div class="tree-cols">
+      <!-- CLIENT -->
+      <div class="tree-card client">
+        <div class="tree-title"><span class="tag tag-client">Client</span> C-1 primary · C-2 secondary</div>
+
+        <div class="tree-group">Getting in</div>
+        <div class="tree-screen"><span class="nm">Welcome / first-use explainer</span><span class="jobpill">EJ-1</span><span class="ptag">C-1 · C-2</span></div>
+        <div class="tree-screen"><span class="nm">Sign in with Diia / BankID</span><span class="jobpill">MJ-1 · C-02</span><span class="ptag">C-1 · C-2</span></div>
+
+        <div class="tree-group">Ordering the job</div>
+        <div class="tree-screen"><span class="nm">Home / start an order</span><span class="jobpill">MJ-1 · RJ-C5</span></div>
+        <div class="tree-screen"><span class="nm">Service catalogue</span><span class="jobpill">MJ-1</span></div>
+        <div class="tree-screen"><span class="nm">Order setup / details</span><span class="jobpill">MJ-1 · RJ-C3</span></div>
+        <div class="tree-screen sub"><span class="nm">Time-slot pick (calendar-first)</span><span class="jobpill">MJ-1</span><span class="ptag">C-2</span></div>
+        <div class="tree-screen"><span class="nm">Order review &amp; price</span><span class="jobpill">RJ-C3</span></div>
+        <div class="tree-screen"><span class="nm">Payment</span><span class="jobpill">MJ-1 · C-04</span></div>
+
+        <div class="tree-group">The wait</div>
+        <div class="tree-screen"><span class="nm">Order confirmed / operator revealed</span><span class="jobpill">RJ-C2 + RJ-C1</span></div>
+        <div class="tree-screen"><span class="nm">Live tracking &amp; ETA</span><span class="jobpill">RJ-C2</span></div>
+
+        <div class="tree-group">The outcome</div>
+        <div class="tree-screen"><span class="nm">Delivery confirmation</span><span class="jobpill">RJ-C4</span></div>
+        <div class="tree-screen"><span class="nm">Inspection report</span><span class="jobpill">RJ-C4</span><span class="ptag">C-2</span></div>
+
+        <div class="tree-group">Coming back</div>
+        <div class="tree-screen"><span class="nm">Order history</span><span class="jobpill">RJ-C5</span></div>
+        <div class="tree-screen"><span class="nm">Rate the order</span><span class="jobpill">EJ-3 + RJ-C1</span></div>
+        <div class="tree-screen"><span class="nm">Share / refer</span><span class="jobpill">SJ-1</span></div>
+
+        <div class="tree-group">When it goes wrong</div>
+        <div class="tree-screen"><span class="nm">Support / dispute</span><span class="jobpill">EJ-2</span></div>
+        <div class="tree-screen"><span class="nm">Report an issue</span><span class="jobpill">EJ-2</span></div>
+        <div class="tree-screen"><span class="nm">Resolution outcome</span><span class="jobpill">EJ-2</span></div>
+        <div class="tree-screen"><span class="nm">Contact human support</span><span class="jobpill">EJ-2</span></div>
+
+        <div class="tree-group">Under question — orphans</div>
+        <div class="tree-screen orphan"><span class="nm">Operator search + filters</span><span class="orphan-note">no job → delete</span></div>
+        <div class="tree-screen orphan"><span class="nm">Operator selection</span><span class="orphan-note">HJ-3 → delete</span></div>
+        <div class="tree-screen orphan"><span class="nm">Favourite operator</span><span class="orphan-note">HJ-3 → backlog</span></div>
+        <div class="tree-screen orphan"><span class="nm">Client ↔ operator chat</span><span class="orphan-note">anti-pattern → delete</span></div>
+        <div class="tree-screen orphan"><span class="nm">Education hub</span><span class="orphan-note">HJ-2 → backlog</span></div>
+        <div class="tree-screen orphan"><span class="nm">Operator portfolio view</span><span class="orphan-note">[?] → attach / backlog</span></div>
+      </div>
+
+      <!-- OPERATOR -->
+      <div class="tree-card operator">
+        <div class="tree-title"><span class="tag tag-operator">Operator</span> O-1 primary · O-2 secondary</div>
+
+        <div class="tree-group">Getting in — join &amp; verify</div>
+        <div class="tree-screen"><span class="nm">Operator landing / fee terms</span><span class="jobpill">MJ-2 · OE-12</span></div>
+        <div class="tree-screen"><span class="nm">Sign up / identity</span><span class="jobpill">MJ-2</span></div>
+        <div class="tree-screen"><span class="nm">Verification / document upload</span><span class="jobpill">MJ-2 · Drop-off #3</span></div>
+        <div class="tree-screen"><span class="nm">Profile setup</span><span class="jobpill">RJ-C1 · EJ-3</span></div>
+
+        <div class="tree-group">Ready to work</div>
+        <div class="tree-screen"><span class="nm">Operator home + status toggle</span><span class="jobpill">O-02 · MJ-2</span></div>
+
+        <div class="tree-group">Taking a job</div>
+        <div class="tree-screen"><span class="nm">Incoming job offer / accept-decline</span><span class="jobpill">RJ-O1 · O-01</span></div>
+        <div class="tree-screen"><span class="nm">Job brief / detail</span><span class="jobpill">RJ-O1 · MJ-2</span></div>
+
+        <div class="tree-group">Doing the job</div>
+        <div class="tree-screen"><span class="nm">Job checklist (in progress)</span><span class="jobpill">RJ-O2 · O-03</span></div>
+        <div class="tree-screen"><span class="nm">Result upload / close job</span><span class="jobpill">RJ-O2 · O-04</span></div>
+        <div class="tree-screen"><span class="nm">Dispute / client issue</span><span class="jobpill">EJ-2 op-side</span></div>
+
+        <div class="tree-group">Getting paid &amp; standing</div>
+        <div class="tree-screen"><span class="nm">Wallet / earnings</span><span class="jobpill">RJ-O3 · O-05</span></div>
+        <div class="tree-screen"><span class="nm">Withdraw to card / bank account</span><span class="jobpill">RJ-O3</span></div>
+        <div class="tree-screen"><span class="nm">Ratings dashboard</span><span class="jobpill">EJ-3 · O-06</span></div>
+
+        <div class="tree-group">Under question — orphans</div>
+        <div class="tree-screen orphan"><span class="nm">Operator listing / advert</span><span class="orphan-note">not a marketplace → delete</span></div>
+        <div class="tree-screen orphan"><span class="nm">SRM map view (O-07)</span><span class="orphan-note">RJ-O1 covered → backlog</span></div>
+        <div class="tree-screen orphan"><span class="nm">DRON credential as identity</span><span class="orphan-note">HJ-1 → attach / backlog</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NAVIGATION -->
+  <section id="navigation">
+    <div class="section-label">Section 02</div>
+    <h2>Navigation</h2>
+    <p class="section-desc">Three job-clusters per persona plus an account utility. Each global entry is justified by the job behind it, not by convention.</p>
+
+    <div class="nav-grid">
+      <div class="nav-card client">
+        <h4>Client — global</h4>
+        <div class="nav-item"><span class="lbl">Order (Home)</span><span class="job">MJ-1 · RJ-C5</span></div>
+        <div class="nav-item"><span class="lbl">Activity</span><span class="job">RJ-C2 · RJ-C4 · RJ-C5</span></div>
+        <div class="nav-item"><span class="lbl">Help</span><span class="job">EJ-2</span></div>
+        <div class="nav-item"><span class="lbl">Account <span class="tag" style="font-size:9px">utility</span></span><span class="job">C-02</span></div>
+      </div>
+      <div class="nav-card operator">
+        <h4>Operator — global</h4>
+        <div class="nav-item"><span class="lbl">Jobs (Home)</span><span class="job">MJ-2 · RJ-O1</span></div>
+        <div class="nav-item"><span class="lbl">Earnings</span><span class="job">RJ-O3</span></div>
+        <div class="nav-item"><span class="lbl">Ratings</span><span class="job">EJ-3</span></div>
+        <div class="nav-item"><span class="lbl">Account <span class="tag" style="font-size:9px">utility</span></span><span class="job">OE-2 · OE-11</span></div>
+      </div>
+    </div>
+
+    <h3>Depth to the main job</h3>
+    <div class="depth">
+      <div class="depth-card">
+        <div class="depth-num">3 taps</div>
+        <div class="depth-lbl"><b style="color:var(--white)">Client (C-1)</b> — Home → Order setup + price → Pay → handed off. Returning via <i>Book again</i>: 2 taps. <span class="badge-long">long way</span> flows render the 5-screen logical path.</div>
+      </div>
+      <div class="depth-card">
+        <div class="depth-num">1 tap</div>
+        <div class="depth-lbl"><b style="color:var(--white)">Operator (O-1)</b> — lock-screen <i>Accept</i> takes the order; payment is depth-0 (auto-released within 30 min).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRACEABILITY -->
+  <section id="traceability">
+    <div class="section-label">Section 03</div>
+    <h2>Traceability</h2>
+    <p class="section-desc">Rows = confirmed jobs (main + related + emotional + social). Columns = committed screens. <span class="matrix"><span class="yes">✓</span></span> = the screen participates in closing that job. Every row and every column has at least one ✓ — no orphan rows or columns in the committed set.</p>
+
+    <div class="codes">
+      <b>Client</b> — WEL Welcome · SGN Sign in · HOM Home · CAT Catalogue · SET Order setup · SLT Time-slot · PRC Review &amp; price · PAY Payment · CNF Confirmed/operator · TRK Tracking · DLV Delivery · RPT Inspection report · HIS History · RAT Rate · SHR Share · SUP Support · RIS Report issue · ROU Resolution · HSP Human support
+      <br><b>Operator</b> — FEE Fee terms · OSG Sign up · VER Verification · PRO Profile · OHM Home+status · OFF Job offer · BRF Job brief · CHK Checklist · RES Result upload · WAL Wallet · WDR Withdraw · RTG Ratings · DSP Dispute
+    </div>
+
+    <h3>Matrix A — Jobs × Client screens</h3>
+    <div class="table-wrap">
+      <table class="matrix">
+        <thead><tr><th>Job</th><th>WEL</th><th>SGN</th><th>HOM</th><th>CAT</th><th>SET</th><th>SLT</th><th>PRC</th><th>PAY</th><th>CNF</th><th>TRK</th><th>DLV</th><th>RPT</th><th>HIS</th><th>RAT</th><th>SHR</th><th>SUP</th><th>RIS</th><th>ROU</th><th>HSP</th></tr></thead>
+        <tbody>
+          <tr><td class="mx-job">MJ-1</td><td></td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">MJ-2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-C1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-C2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-C3</td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td></td><td class="yes">✓</td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-C4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-C5</td><td></td><td></td><td class="yes">✓</td><td></td><td class="yes">✓</td><td></td><td></td><td class="yes">✓</td><td class="yes">✓</td><td></td><td></td><td></td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-O1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-O2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-O3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td></td><td></td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">EJ-1</td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">EJ-2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td class="mx-job">EJ-3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">SJ-1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Matrix B — Jobs × Operator screens</h3>
+    <div class="table-wrap">
+      <table class="matrix">
+        <thead><tr><th>Job</th><th>FEE</th><th>OSG</th><th>VER</th><th>PRO</th><th>OHM</th><th>OFF</th><th>BRF</th><th>CHK</th><th>RES</th><th>WAL</th><th>WDR</th><th>RTG</th><th>DSP</th></tr></thead>
+        <tbody>
+          <tr><td class="mx-job">MJ-1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">MJ-2</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-C1</td><td></td><td></td><td class="yes">✓</td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-C2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-C3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-C4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-C5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-O1</td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-O2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td class="yes">✓</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">RJ-O3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td></td><td class="yes">✓</td></tr>
+          <tr><td class="mx-job">EJ-1</td><td></td><td></td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="mx-job">EJ-2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="yes">✓</td></tr>
+          <tr><td class="mx-job">EJ-3</td><td></td><td></td><td></td><td class="yes">✓</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="yes">✓</td><td></td></tr>
+          <tr><td class="mx-job">SJ-1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Orphans — highlighted</h3>
+    <p class="section-desc" style="margin-bottom:14px;">Screens that exist in <code>sitemap.md</code> but earn zero ✓ against any confirmed job. No orphan jobs remain.</p>
+    <div class="orphan-grid">
+      <div class="orphan-card">
+        <h4><span class="tag tag-client">Client</span> orphan screens</h4>
+        <div class="orphan-row"><span class="o-nm">Operator search + filters</span><span class="verdict v-delete">Delete</span></div>
+        <div class="orphan-row"><span class="o-nm">Operator selection</span><span class="verdict v-delete">Delete</span></div>
+        <div class="orphan-row"><span class="o-nm">Client ↔ operator chat</span><span class="verdict v-delete">Delete</span></div>
+        <div class="orphan-row"><span class="o-nm">Favourite operator</span><span class="verdict v-backlog">Backlog</span></div>
+        <div class="orphan-row"><span class="o-nm">Education hub</span><span class="verdict v-backlog">Backlog</span></div>
+        <div class="orphan-row"><span class="o-nm">Operator portfolio view</span><span class="verdict v-attach">Attach</span></div>
+      </div>
+      <div class="orphan-card">
+        <h4><span class="tag tag-operator">Operator</span> orphan screens</h4>
+        <div class="orphan-row"><span class="o-nm">Operator listing / advert</span><span class="verdict v-delete">Delete</span></div>
+        <div class="orphan-row"><span class="o-nm">SRM map view (O-07)</span><span class="verdict v-backlog">Backlog</span></div>
+        <div class="orphan-row"><span class="o-nm">DRON credential as identity</span><span class="verdict v-attach">Attach</span></div>
+        <div class="orphan-row" style="border-top:1px solid var(--border-2); margin-top:6px; padding-top:10px;"><span class="o-nm" style="color:var(--risk-lo)">Orphan jobs</span><span class="verdict v-attach">none</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════ FLOWS TAB ══════════════════════════════ -->
+<div class="tab-panel" id="tab-flows">
+
+  <section id="flows-client" style="padding-top:40px;">
+    <div class="section-label">Flows · Client</div>
+    <h2>Client flows</h2>
+    <p class="section-desc">
+      <span class="legend" style="margin:0;">
+        <span><span class="swatch sw-done"></span> happy / success</span>
+        <span><span class="swatch sw-dead"></span> troubled / dead-end</span>
+        <span><span class="swatch sw-state"></span> state (loading / empty / error)</span>
+      </span>
+    </p>
+
+    <div class="flow-block">
+      <div class="flow-head"><span class="ttl">MJ-1 — Order a service quickly and reliably</span><span class="tag tag-client">main job</span><span class="badge-long">long way</span></div>
+      <div class="flow-quote">Hand the job to a certified professional without managing anything — get the outcome without thinking about the drone or the operator.</div>
+      <div class="mmd" data-key="mj1"></div>
+    </div>
+
+    <div class="flow-block">
+      <div class="flow-head"><span class="ttl">RJ-C1 — Confirm the person is real and qualified</span></div>
+      <div class="mmd" data-key="rjc1"></div>
+    </div>
+
+    <div class="flow-block">
+      <div class="flow-head"><span class="ttl">RJ-C2 — Eliminate the unknown between payment and arrival</span></div>
+      <div class="mmd" data-key="rjc2"></div>
+    </div>
+
+    <div class="flow-block">
+      <div class="flow-head"><span class="ttl">RJ-C5 — Repeat without starting over</span><span class="badge-long">long way</span></div>
+      <div class="mmd" data-key="rjc5"></div>
+    </div>
+
+    <div class="flow-block">
+      <div class="flow-head"><span class="ttl">EJ-2 — Resolution after a bad experience</span><span class="tag">scoped Jun 2026</span></div>
+      <div class="mmd" data-key="ej2"></div>
+    </div>
+
+    <div class="flow-block">
+      <div class="flow-head"><span class="ttl">EJ-1 — First use feels safe</span></div>
+      <div class="mmd" data-key="ej1"></div>
+    </div>
+
+    <div class="flow-block">
+      <div class="flow-head"><span class="ttl">RJ-C4 — Receive proof that the job was done</span></div>
+      <div class="mmd" data-key="rjc4"></div>
+    </div>
+
+    <div class="flow-block">
+      <div class="flow-head"><span class="ttl">SJ-1 — Be the one who introduced something new</span></div>
+      <div class="mmd" data-key="sj1"></div>
+    </div>
+  </section>
+
+  <section id="flows-operator">
+    <div class="section-label">Flows · Operator</div>
+    <h2>Operator flows</h2>
+
+    <div class="flow-block">
+      <div class="flow-head"><span class="ttl">MJ-2 + RJ-O3 — Take, fulfil, get paid, withdraw</span><span class="tag tag-operator">main job</span></div>
+      <div class="flow-quote">Pre-qualified jobs reach me and payment moves on its own — I spend my time flying, not selling or chasing money. Withdraw is the last step.</div>
+      <div class="mmd" data-key="opmain"></div>
+    </div>
+
+    <div class="flow-block">
+      <div class="flow-head"><span class="ttl">MJ-2 (activation) — Join and get verified</span></div>
+      <div class="mmd" data-key="mj2act"></div>
+    </div>
+
+    <div class="flow-block">
+      <div class="flow-head"><span class="ttl">EJ-3 — Build a reputation worth having</span></div>
+      <div class="mmd" data-key="ej3"></div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer>
+  <span class="footer-brand">DRON</span>
+  <span class="footer-note">Information Architecture · June 2026 · sitemap.md + flows.md</span>
+</footer>
+
+<script>
+  // ── Theme toggle ──
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('dron-theme', next);
+    onThemeChange();
+  });
+
+  // ── Nav drawer ──
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('navOverlay');
+  const hamburger = document.getElementById('hamburger');
+  const closeBtn = document.getElementById('closeBtn');
+  function openNav(){ sidebar.classList.add('is-open'); overlay.classList.add('is-open'); hamburger.classList.add('is-open'); hamburger.setAttribute('aria-expanded','true'); overlay.removeAttribute('aria-hidden'); }
+  function closeNav(){ sidebar.classList.remove('is-open'); overlay.classList.remove('is-open'); hamburger.classList.remove('is-open'); hamburger.setAttribute('aria-expanded','false'); overlay.setAttribute('aria-hidden','true'); }
+  hamburger.addEventListener('click', () => sidebar.classList.contains('is-open') ? closeNav() : openNav());
+  overlay.addEventListener('click', closeNav);
+  closeBtn.addEventListener('click', closeNav);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+  // ── Mermaid diagram sources (copied verbatim from flows.md) ──
+  const DIAGRAMS = {
+mj1: `flowchart TD
+  A(["Open app"]) --> D0{"Signed in?"}
+  D0 -->|no| B["Sign in with Diia / BankID"]
+  D0 -->|yes| C["Home / start an order"]
+  B --> C
+  C --> E["Service catalogue"]
+  E --> DR{"Service available in your region?"}
+  DR -->|no| NR(["Empty: not in your region yet"]):::state
+  NR --> NRok(["Saved: notify me when DRON launches here"]):::done
+  DR -->|yes| F["Order setup / details"]
+  F --> DZ{"Address within service zone?"}
+  DZ -->|no| OZ(["Error: address outside service zone"]):::state
+  OZ --> F
+  DZ -->|yes| D1{"Operator available now?"}
+  D1 -->|no| G(["Empty: none available — next slot ~40 min"]):::state
+  G --> D2{"Wait, save for later, or leave?"}
+  D2 -->|wait| F
+  D2 -->|"save for later"| NA1(["Saved: notify me when an operator is free"]):::done
+  D2 -->|leave| H(["Dead-end: leaves without ordering"]):::dead
+  D1 -->|yes| I["Order review & price"]
+  I --> J["Payment"]
+  J --> D3{"Payment authorized?"}
+  D3 -->|no| K(["Error: payment failed"]):::state
+  K --> D4{"Retry, change method, or leave?"}
+  D4 -->|retry| J
+  D4 -->|"another method"| J
+  D4 -->|leave| L(["Dead-end: checkout abandoned"]):::dead
+  D3 -->|yes| M(["Loading: finding nearest certified operator"]):::state
+  M --> D5{"Operator confirmed?"}
+  D5 -->|no| N(["Error: no operator confirmed — auto-refund issued"]):::state
+  N --> D6{"Try again, get notified, or leave?"}
+  D6 -->|"try again"| C
+  D6 -->|notify| NA2(["Saved: notify me when an operator is free"]):::done
+  D6 -->|leave| O(["Dead-end: refunded, churn risk"]):::dead
+  D5 -->|yes| P["Order confirmed / operator revealed"]
+  P --> Q["Live tracking & ETA"]
+  Q --> R["Delivery confirmation"]
+  R --> D7{"Result as expected?"}
+  D7 -->|no| S["Support / dispute"]
+  D7 -->|yes| T["Rate the order"]
+  T --> U(["Success: service delivered, main job done"]):::done
+  S --> V(["Continues into EJ-2 resolution flow"]):::state
+  classDef state fill:#1c1813,stroke:#c4943a,color:#e8d9b8;
+  classDef dead fill:#241313,stroke:#e05252,color:#f0d6d6;
+  classDef done fill:#10241a,stroke:#4a9e6b,color:#d6f0e0;`,
+
+rjc1: `flowchart TD
+  J["Payment"] --> M(["Loading: finding operator"]):::state
+  M --> P["Order confirmed / operator revealed"]
+  P --> LC(["Loading: operator credentials"]):::state
+  LC --> D1{"Verified + Insured + rating shown?"}
+  D1 -->|no| E1(["Error: trust signals not loaded"]):::state
+  E1 --> D1b{"Reload succeeded?"}
+  D1b -->|yes| D1
+  D1b -->|no| RE(["Fallback: DRON-verified, insured-fleet reassurance + Support"]):::state
+  RE --> GH["Support / dispute"]
+  D1 -->|yes| D2{"Has reviews / job history?"}
+  D2 -->|no| E2(["Empty: 0 reviews — newly certified operator"]):::state
+  E2 --> RV(["Reassure: DRON-verified, insured, platform-backed"]):::state
+  RV --> D3{"Trust anyway?"}
+  D3 -->|yes| OK(["Success: client commits with confidence"]):::done
+  D3 -->|no| C1{"Re-dispatch, cancel, or get help?"}
+  D2 -->|yes| D4{"Profile inspires trust?"}
+  D4 -->|yes| OK
+  D4 -->|no| C1
+  C1 -->|"re-dispatch"| RD(["Loading: assigning a different operator"]):::state
+  RD --> P
+  C1 -->|help| GH
+  C1 -->|cancel| X2(["Dead-end: order cancelled, refund, churn risk"]):::dead
+  GH --> X3(["Continues into EJ-2 resolution flow"]):::state
+  classDef state fill:#1c1813,stroke:#c4943a,color:#e8d9b8;
+  classDef dead fill:#241313,stroke:#e05252,color:#f0d6d6;
+  classDef done fill:#10241a,stroke:#4a9e6b,color:#d6f0e0;`,
+
+rjc2: `flowchart TD
+  P["Order confirmed / operator revealed"] --> D1{"Operator identity shown (name, photo, ETA)?"}
+  D1 -->|no| E1(["Error: generic 'order received', no operator — the void"]):::state
+  E1 --> D1b{"Refresh shows the operator?"}
+  D1b -->|yes| D1c
+  D1b -->|no| GH["Support / dispute"]
+  D1 -->|yes| D1c{"Operator able to fly (airspace / weather OK)?"}
+  D1c -->|no| AB(["Error: operator stood down — airspace / weather"]):::state
+  AB --> RDx(["Loading: re-dispatching, or refund / reschedule"]):::state
+  RDx --> P
+  D1c -->|yes| T["Live tracking & ETA"]
+  T --> D2{"Live position updating?"}
+  D2 -->|no| L1(["Loading: waiting for GPS signal"]):::state
+  L1 --> D3{"Recovered within timeout?"}
+  D3 -->|no| E2(["Error: tracking lost"]):::state
+  E2 --> GH
+  D3 -->|yes| T
+  D2 -->|yes| D4{"Operator on time?"}
+  D4 -->|no| E3(["Empty/late: ETA slipping, push 'running late'"]):::state
+  E3 --> D5{"Client keeps waiting?"}
+  D5 -->|no| GH
+  D5 -->|yes| AR["Delivery confirmation"]
+  D4 -->|yes| AR
+  AR --> OK(["Success: void closed, arrival confirmed"]):::done
+  GH --> X2(["Continues into EJ-2 resolution flow"]):::state
+  classDef state fill:#1c1813,stroke:#c4943a,color:#e8d9b8;
+  classDef dead fill:#241313,stroke:#e05252,color:#f0d6d6;
+  classDef done fill:#10241a,stroke:#4a9e6b,color:#d6f0e0;`,
+
+rjc5: `flowchart TD
+  C["Home / start an order"] --> LH(["Loading: fetching order history"]):::state
+  LH --> D1{"Has a previous order?"}
+  D1 -->|no| E1(["Empty: no history — full first-time flow"]):::state
+  E1 --> CAT["Service catalogue"]
+  CAT --> PF["Order setup / details"]
+  D1 -->|yes| D2{"'Book again' shortcut visible?"}
+  D2 -->|no| HIS["Order history"]
+  HIS --> D3{"Found the past order?"}
+  D3 -->|no| E2(["Empty: history hard to find"]):::state
+  E2 --> SR{"Search or surface 'Book again'?"}
+  SR -->|yes| PF
+  SR -->|no| X1(["Dead-end: leaves for Kabanchik — Drop-off #4"]):::dead
+  D3 -->|yes| D2b{"Service + price still valid?"}
+  D2 -->|yes| D2b
+  D2b -->|no| E4(["Error: previous service or price changed — review"]):::state
+  E4 --> PF
+  D2b -->|yes| PF
+  PF --> D4{"Operator available now?"}
+  D4 -->|no| E3(["Empty: none available now"]):::state
+  E3 --> D5{"Wait, save for later, or leave?"}
+  D5 -->|wait| PF
+  D5 -->|"save for later"| NA(["Saved: notify me when an operator is free"]):::done
+  D5 -->|leave| X2(["Dead-end: re-book abandoned"]):::dead
+  D4 -->|yes| PAY["Payment"]
+  PAY --> CFM["Order confirmed / operator revealed"]
+  CFM --> OK(["Success: re-booked in 2 taps"]):::done
+  classDef state fill:#1c1813,stroke:#c4943a,color:#e8d9b8;
+  classDef dead fill:#241313,stroke:#e05252,color:#f0d6d6;
+  classDef done fill:#10241a,stroke:#4a9e6b,color:#d6f0e0;`,
+
+ej2: `flowchart TD
+  IN(["Entry: no-show, late, tracking lost, result not as expected, or trust concern"]) --> SD["Support / dispute"]
+  SD --> D1{"What went wrong?"}
+  D1 -->|"didn't arrive / no-show"| D2{"Order still active?"}
+  D2 -->|yes| RDSP(["Loading: re-dispatching a new operator"]):::state
+  RDSP --> D3{"New operator found?"}
+  D3 -->|yes| CFM["Order confirmed / operator revealed"]
+  CFM --> OK1(["Success: job re-dispatched, client back on track"]):::done
+  D3 -->|no| REF1(["Success: auto-refund issued, no-questions (Glovo model)"]):::done
+  D2 -->|no| REF1
+  D1 -->|"result not as expected"| RI["Report an issue"]
+  RI --> D4{"Evidence attached (photo / note)?"}
+  D4 -->|no| EMP(["Empty: no evidence — weaker claim, manual review only"]):::state
+  EMP --> HS["Contact human support"]
+  D4 -->|yes| REV(["Loading: issue under review"]):::state
+  REV --> RO["Resolution outcome"]
+  RO --> D5{"Resolution?"}
+  D5 -->|refund| REF2(["Success: refund issued"]):::done
+  D5 -->|"free re-do"| REDO["Order confirmed / operator revealed"]
+  REDO --> OK2(["Success: free re-do scheduled"]):::done
+  D5 -->|"needs human review"| HS
+  D1 -->|"safety / trust concern"| HS
+  HS --> D6{"Resolved with agent?"}
+  D6 -->|yes| OK3(["Success: resolved via support"]):::done
+  D6 -->|no| ESC(["Error: unresolved — escalation queue"]):::state
+  ESC --> D7{"Policy defined: SLA, refund cap, liability?"}
+  D7 -->|yes| OK4(["Success: resolved per policy"]):::done
+  D7 -->|"no, to define"| GAP(["Dead-end: policy inputs missing — SLA, refund cap, liability"]):::dead
+  classDef state fill:#1c1813,stroke:#c4943a,color:#e8d9b8;
+  classDef dead fill:#241313,stroke:#e05252,color:#f0d6d6;
+  classDef done fill:#10241a,stroke:#4a9e6b,color:#d6f0e0;`,
+
+ej1: `flowchart TD
+  A(["First-time open"]) --> WEL["Welcome / first-use explainer"]
+  WEL --> D1{"Explainer understood (drone: noise, safety, privacy)?"}
+  D1 -->|no| E1(["Empty: skipped / too long"]):::state
+  E1 --> SHORT(["Fallback: one-card 15-second version"]):::state
+  SHORT --> CNF
+  D1 -->|yes| CNF["Order confirmed / operator revealed"]
+  CNF --> D2{"Named, verified, insured operator shown?"}
+  D2 -->|no| E2(["Error: no human shown — anxiety persists"]):::state
+  E2 --> GH["Support / dispute"]
+  D2 -->|yes| OK(["Success: handing control feels safe"]):::done
+  GH --> X1(["Continues into EJ-2 resolution flow"]):::state
+  classDef state fill:#1c1813,stroke:#c4943a,color:#e8d9b8;
+  classDef dead fill:#241313,stroke:#e05252,color:#f0d6d6;
+  classDef done fill:#10241a,stroke:#4a9e6b,color:#d6f0e0;`,
+
+rjc4: `flowchart TD
+  CLOSE(["Operator closed the job"]) --> D1{"Service type?"}
+  D1 -->|delivery| DLV["Delivery confirmation"]
+  D1 -->|"photo / inspection"| RPT["Inspection report"]
+  DLV --> D2{"Proof present (photo / confirmation)?"}
+  RPT --> D2
+  D2 -->|no| L1(["Loading: result not uploaded yet"]):::state
+  L1 --> D3{"Arrived within timeout?"}
+  D3 -->|no| E1(["Error: no proof — job cannot complete"]):::state
+  E1 --> GH["Support / dispute"]
+  D3 -->|yes| D2
+  D2 -->|yes| RATE["Rate the order"]
+  RATE --> OK(["Success: documented result in hand; client confirm releases operator pay (RJ-O3)"]):::done
+  GH --> X1(["Continues into EJ-2 resolution flow"]):::state
+  classDef state fill:#1c1813,stroke:#c4943a,color:#e8d9b8;
+  classDef dead fill:#241313,stroke:#e05252,color:#f0d6d6;
+  classDef done fill:#10241a,stroke:#4a9e6b,color:#d6f0e0;`,
+
+sj1: `flowchart TD
+  G0(["After a good order"]) --> RATE["Rate the order"]
+  RATE --> D1{"Prompt to share shown?"}
+  D1 -->|no| E1(["Empty: no share entry — advocacy lost"]):::state
+  E1 --> X1(["Dead-end: word-of-mouth not captured"]):::dead
+  D1 -->|yes| SHR["Share / refer"]
+  SHR --> D2{"Share completed?"}
+  D2 -->|no| E2(["Empty: opened, didn't send"]):::state
+  E2 --> SHR
+  D2 -->|yes| OK(["Success: friend introduced, referral attributed"]):::done
+  classDef state fill:#1c1813,stroke:#c4943a,color:#e8d9b8;
+  classDef dead fill:#241313,stroke:#e05252,color:#f0d6d6;
+  classDef done fill:#10241a,stroke:#4a9e6b,color:#d6f0e0;`,
+
+opmain: `flowchart TD
+  H["Operator home + status toggle"] --> D0{"Status = Available?"}
+  D0 -->|no| Z(["Idle: no offers while Offline / Busy"]):::state
+  Z --> H
+  D0 -->|yes| OF["Incoming job offer / accept-decline"]
+  OF --> D1{"Accept within 10s?"}
+  D1 -->|no| E0(["Empty: offer expired, reassigned"]):::state
+  E0 --> H
+  D1 -->|yes| BR["Job brief / detail"]
+  BR --> D2{"Details sufficient to proceed?"}
+  D2 -->|no| DEC(["Declined: job lost — back to offers"]):::state
+  DEC --> H
+  D2 -->|yes| AB0{"Able to fly (airspace / weather OK)?"}
+  AB0 -->|no| ABRT(["Error: stand down — airspace / weather; re-dispatched, client refunded"]):::state
+  ABRT --> H
+  AB0 -->|yes| CL["Job checklist (in progress)"]
+  CL --> D3{"All steps + result captured?"}
+  D3 -->|no| E1(["Error: required step skipped — cannot close"]):::state
+  E1 --> CL
+  D3 -->|yes| RU["Result upload / close job"]
+  RU --> D4{"Upload succeeded?"}
+  D4 -->|no| L1(["Error: slow or failed upload"]):::state
+  L1 --> D5{"Retry or queue offline?"}
+  D5 -->|retry| RU
+  D5 -->|"queue offline"| OQ(["Loading: saved offline — uploads when online; payment held until proof"]):::state
+  OQ --> RU
+  D4 -->|yes| D6{"Client response?"}
+  D6 -->|awaiting| WAIT(["Loading: awaiting confirmation (up to 2h)"]):::state
+  WAIT --> D6
+  D6 -->|disputes| DISP["Dispute / client issue"]
+  DISP --> DH{"Resolved in operator's favour?"}
+  DH -->|yes| PAID
+  DH -->|no| HOLD(["Error: payment held pending EJ-2 resolution"]):::state
+  HOLD --> DISP
+  D6 -->|"confirms / 2h auto"| PAID(["Order paid: earnings added to balance (within 30 min)"]):::done
+  PAID --> W["Wallet / earnings"]
+  W --> D7{"Take another order first?"}
+  D7 -->|yes| H
+  D7 -->|no| D8{"Balance above minimum payout?"}
+  D8 -->|no| EMIN(["Empty: below minimum — keep earning"]):::state
+  EMIN --> H
+  D8 -->|yes| WD["Withdraw to card / bank account"]
+  WD --> D9{"Payout method linked?"}
+  D9 -->|no| LINK(["Loading: link and verify card / bank account"]):::state
+  LINK --> D10{"Method valid?"}
+  D10 -->|no| E2(["Error: invalid card / bank details"]):::state
+  E2 --> WD
+  D10 -->|yes| D11{"Payout type?"}
+  D9 -->|yes| D11
+  D11 -->|"card (instant)"| TRC(["Loading: instant transfer to card"]):::state
+  D11 -->|"bank (1-3 days)"| TRB(["Loading: bank transfer, 1-3 business days"]):::state
+  TRC --> D12{"Transfer succeeded?"}
+  TRB --> D12
+  D12 -->|no| E3(["Error: payout failed, funds returned to balance"]):::state
+  E3 --> W
+  D12 -->|yes| DONE(["Success: money on card / bank account — flow complete"]):::done
+  classDef state fill:#1c1813,stroke:#c4943a,color:#e8d9b8;
+  classDef dead fill:#241313,stroke:#e05252,color:#f0d6d6;
+  classDef done fill:#10241a,stroke:#4a9e6b,color:#d6f0e0;`,
+
+mj2act: `flowchart TD
+  L["Operator landing / fee terms"] --> D0{"Commission acceptable?"}
+  D0 -->|no| X0(["Dead-end: bounces — 'another platform that takes 30%?'"]):::dead
+  D0 -->|yes| SU["Sign up / identity"]
+  SU --> VU["Verification / document upload"]
+  VU --> D1{"Docs complete (licence + insurance)?"}
+  D1 -->|no| E1(["Error: missing or invalid documents"]):::state
+  E1 --> VU
+  D1 -->|yes| PEND(["Loading: under review — ETA 2-3 business days"]):::state
+  PEND --> D2{"Verification ETA shown?"}
+  D2 -->|no| NOETA(["Fix: always show ETA + push on status change"]):::state
+  NOETA --> D3
+  D2 -->|yes| D3{"Approved?"}
+  D3 -->|no| E2(["Error: rejected — reason + resubmit path"]):::state
+  E2 --> D4{"Resubmit?"}
+  D4 -->|yes| VU
+  D4 -->|no| X2(["Dead-end: not onboarded"]):::dead
+  D3 -->|yes| PS["Profile setup"]
+  PS --> HOME["Operator home + status toggle"]
+  HOME --> OK(["Success: live, can receive jobs"]):::done
+  classDef state fill:#1c1813,stroke:#c4943a,color:#e8d9b8;
+  classDef dead fill:#241313,stroke:#e05252,color:#f0d6d6;
+  classDef done fill:#10241a,stroke:#4a9e6b,color:#d6f0e0;`,
+
+ej3: `flowchart TD
+  H["Operator home + status toggle"] --> R["Ratings dashboard"]
+  R --> D1{"Has any ratings yet?"}
+  D1 -->|no| E1(["Empty: no ratings yet — cold-start (O-2)"]):::state
+  E1 --> CS(["Path: platform still auto-dispatches jobs; ratings build from the first ones"]):::state
+  CS --> H
+  D1 -->|yes| D2{"Score breakdown + review text shown?"}
+  D2 -->|no| E2(["Error: a single number, no 'why'"]):::state
+  E2 --> RB(["Path: expand to per-service breakdown + review text"]):::state
+  RB --> D3
+  D2 -->|yes| D3{"Rating healthy?"}
+  D3 -->|yes| OK(["Success: reputation grows, loyalty"]):::done
+  D3 -->|no| IMP(["Path: see weak service type, improve next jobs"]):::state
+  IMP --> H
+  classDef state fill:#1c1813,stroke:#c4943a,color:#e8d9b8;
+  classDef dead fill:#241313,stroke:#e05252,color:#f0d6d6;
+  classDef done fill:#10241a,stroke:#4a9e6b,color:#d6f0e0;`
+  };
+
+  // ── Mermaid render ──
+  function mmTheme(){ return document.documentElement.getAttribute('data-theme') === 'light' ? 'neutral' : 'dark'; }
+  let flowsThemeRendered = null;
+  function renderFlows(){
+    if (typeof mermaid === 'undefined') return;
+    const theme = mmTheme();
+    mermaid.initialize({ startOnLoad: false, theme, securityLevel: 'loose', flowchart: { useMaxWidth: true, htmlLabels: true } });
+    document.querySelectorAll('.mmd').forEach(el => {
+      el.innerHTML = '';
+      const pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = DIAGRAMS[el.dataset.key] || '';
+      el.appendChild(pre);
+    });
+    mermaid.run({ querySelector: '.mermaid' });
+    flowsThemeRendered = theme;
+  }
+  function ensureFlows(){ if (flowsThemeRendered !== mmTheme()) renderFlows(); }
+  function onThemeChange(){ if (document.getElementById('tab-flows').classList.contains('active')) ensureFlows(); else flowsThemeRendered = null; }
+
+  // ── Tabs ──
+  const SITEMAP_HASHES = ['screens','navigation','traceability','entities'];
+  function showTab(name, scrollId){
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+    document.getElementById('tab-sitemap').classList.toggle('active', name === 'sitemap');
+    document.getElementById('tab-flows').classList.toggle('active', name === 'flows');
+    if (name === 'flows') ensureFlows();
+    if (scrollId){ const el = document.getElementById(scrollId); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  }
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => showTab(btn.dataset.tab)));
+
+  function routeHash(){
+    const h = location.hash.replace('#','');
+    if (!h) return;
+    const tab = SITEMAP_HASHES.includes(h) ? 'sitemap' : 'flows';
+    showTab(tab, h);
+  }
+  window.addEventListener('hashchange', routeHash);
+
+  // sidebar links: close drawer + route
+  sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+
+  // ── Init ──
+  routeHash();
+  if (!location.hash) { /* default sitemap tab already active */ }
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Verification / document upload · loading</title>
+<!--
+  SCREEN: "Verification / document upload" (flows.md MJ-2 gate).
+  PERSONA: Operator (MJ-2 activation gate).
+  JOB: MJ-2 activation.
+  STATE: loading — submitted, under manual review (ETA 2–3 business days). Notify on approval.
+  flows.md node: "Verification / document upload" — review-pending branch.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-verification.html">success</a>
+      <a href="operator-verification-error.html">error</a>
+      <a href="operator-verification-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Verification / document upload</h1>
+    <p class="sub">Operator · MJ-2 activation · state: <b>loading</b> · file: operator-verification-loading.html</p>
+    <div class="flow"><b>Loading:</b> documents submitted — under manual review, ETA 2–3 business days.<br><b>Exit:</b> Continue (approved) → <b>Profile setup</b>; Back to home while you wait.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Documents</b> ▸ review-pending status + skeletons</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><a class="back" href="operator-signup.html">‹ Sign in</a><span class="title">Verification</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Documents <span class="act">▸ loading — under review</span></p>
+      <section class="center" aria-label="Under review" style="padding:32px 20px;">
+        <span class="success-mark">DOCS</span>
+        <p class="big-title">Documents submitted</p>
+        <p role="status">Under review — ETA 2–3 business days</p>
+        <div class="stack" style="width:100%; margin-top:8px;">
+          <span class="sk-line sk-w90"></span>
+          <span class="sk-line sk-w70"></span>
+          <span class="sk-line sk-w50"></span>
+        </div>
+        <p class="note">We'll notify you when it's approved.</p>
+      </section>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="operator-profile-setup.html">Continue (approved)</a>
+      <a class="btn btn-tertiary" href="operator-listings.html">Back to Jobs</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

@@ -1,0 +1,1012 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON — kit</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* ── Showcase chrome. NOTHING here is part of the kit. Every specimen below
+     is drawn with kit.css classes only; this block styles the page around
+     them — the grid, the captions, the ratio tables. ── */
+  body{ margin:0; background:var(--media); font-family:var(--font-ui); color:var(--ink); }
+  .page{ max-width:1180px; margin:0 auto; padding:40px 24px 96px; }
+
+  /* Back to DRON — the same escape the wireframe shell gives every screen.
+     Warm-grey secondary, never green: this is not the page's action. */
+  .dr-backlink{
+    display:inline-flex; align-items:center; gap:8px;
+    min-height:44px; padding:0 16px; margin-bottom:20px;
+    border-radius:12px; background:var(--btn2); color:var(--ink);
+    font-size:15px; font-weight:600; text-decoration:none;
+    transition:background .15s, transform .12s;
+  }
+  .dr-backlink:hover{ background:var(--media); }
+  .dr-backlink:active{ transform:translateY(1px) scale(.99); }
+  .dr-backlink:focus-visible{ outline:2.5px solid var(--ink); outline-offset:2px; }
+  .lede{ margin-bottom:40px; }
+  .lede h1{ font-size:var(--t-display-size); font-weight:var(--t-display-weight);
+    letter-spacing:var(--t-display-track); line-height:var(--t-display-line); margin:0 0 10px; }
+  .lede p{ font-size:15px; line-height:1.6; color:var(--slate); max-width:62ch; margin:0 0 10px; }
+  .lede a{ color:var(--ink); }
+  .figs{ display:flex; flex-wrap:wrap; gap:28px; margin-top:22px; }
+  .fig b{ display:block; font-size:var(--t-number-size); font-weight:var(--t-number-weight);
+    letter-spacing:var(--t-number-track); line-height:var(--t-number-line);
+    font-variant-numeric:tabular-nums; }
+  .fig span{ display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--slate); margin-top:6px; }
+
+  h2.sec{ font-size:12px; font-family:var(--font-mono); font-weight:600; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--slate); margin:56px 0 4px;
+    padding-bottom:9px; border-bottom:1px solid var(--line); position:relative; }
+  h2.sec::after{ content:""; position:absolute; left:0; bottom:-1px; width:30px; height:2px; background:var(--green); }
+  h2.sec:first-of-type{ margin-top:0; }
+
+  .row{ display:grid; grid-template-columns:200px minmax(0,1fr) minmax(0,300px);
+    gap:28px; padding:26px 0; border-bottom:1px solid var(--line); align-items:start; }
+  .row > .nm b{ display:block; font-size:15px; font-weight:600; }
+  .row > .nm code{ display:block; font-family:var(--font-mono); font-size:11px;
+    color:var(--slate); margin-top:5px; line-height:1.6; word-break:break-all; }
+  .row > .nm p{ font-size:12.5px; line-height:1.5; color:var(--slate); margin:9px 0 0; }
+  .spec{ display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start; }
+  .spec.col{ flex-direction:column; align-items:stretch; }
+  .plate{ background:var(--page); border:1px solid var(--line); border-radius:16px;
+    padding:18px; display:inline-flex; flex-direction:column; gap:10px; align-items:flex-start; }
+  .plate.oncard{ background:var(--card); }
+  .plate.wide{ width:341px; max-width:100%; }
+  .plate .st{ font-family:var(--font-mono); font-size:10px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--slate); }
+  .notes{ font-size:12.5px; line-height:1.6; color:var(--slate); }
+  .notes b{ color:var(--ink); font-weight:600; }
+  .notes code{ font-family:var(--font-mono); font-size:11px; color:var(--ink); }
+  .notes p + p{ margin-top:9px; }
+
+  table.t{ width:100%; border-collapse:collapse; font-size:12.5px; }
+  table.t th{ font-family:var(--font-mono); font-size:10px; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--slate); font-weight:600; text-align:left;
+    padding:0 12px 8px 0; border-bottom:1px solid var(--line); }
+  table.t td{ padding:8px 12px 8px 0; border-bottom:1px solid var(--line); vertical-align:middle; }
+  table.t code{ font-family:var(--font-mono); font-size:11px; }
+  .sw{ display:inline-block; width:34px; height:20px; border-radius:var(--r-detail); vertical-align:-5px;
+    margin-right:9px; border:1px solid var(--line); }
+  .ratio{ font-variant-numeric:tabular-nums; font-weight:600; }
+
+  .scale li{ display:flex; align-items:baseline; gap:18px; padding:9px 0;
+    border-bottom:1px solid var(--line); list-style:none; }
+  .scale .tk{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--slate); width:86px; flex:none; }
+  .scale .vv{ font-family:var(--font-mono); font-size:10.5px; color:var(--slate);
+    width:150px; flex:none; font-variant-numeric:tabular-nums; }
+
+  .shapes{ display:flex; flex-wrap:wrap; gap:16px; }
+  .shape{ text-align:center; }
+  .shape i{ display:block; width:64px; height:44px; background:var(--card); border:1px solid var(--line); }
+  .shape span{ display:block; font-family:var(--font-mono); font-size:10px; color:var(--slate); margin-top:6px; }
+
+  @media (max-width:940px){ .row{ grid-template-columns:1fr; gap:16px; } }
+</style>
+</head>
+<body>
+<div class="page dr">
+
+<div class="lede">
+  <a class="dr-backlink" href="../research.html"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M11 6L5 12l6 6"/></svg>Back to DRON</a>
+  <h1>DRON kit</h1>
+  <p><b>Extracted, not authored.</b> Every value here was read off the ten painted
+     surfaces by computed style in a browser — <code>order-history</code> · <code>-empty</code> ·
+     <code>-loading</code>, <code>tracking</code> · <code>-empty</code> · <code>-error</code> ·
+     <code>-loading</code>, <code>delivery</code> · <code>-error</code> · <code>-loading</code> —
+     then cross-checked against <code>DESIGN.md</code>, <code>concept.md</code> and
+     <code>ui/inventory.md</code>. Copy is from <code>microcopy.md</code>: real product strings,
+     never lorem.</p>
+  <p>A component that is still grayscale in the wireframes keeps <b>the real structure of its own
+     wireframe</b> and takes its look from the language in <code>DESIGN.md</code> — no shape and no
+     value is invented. The wireframe scaffold does not come along: no <code>.wf-*</code>, no
+     <code>.device</code>, no annotation sidebar.</p>
+  <p>One flat stylesheet, <a href="kit.css">kit.css</a> — <code>:root</code> tokens, then component
+     classes. Every design value reaches a class through <code>var()</code>; a class states none
+     directly. The shell lives as markup in <a href="shell.html">shell.html</a>.</p>
+  <div class="figs">
+    <div class="fig"><b>17</b><span>colours</span></div>
+    <div class="fig"><b>10</b><span>type steps</span></div>
+    <div class="fig"><b>7</b><span>radii + circle</span></div>
+    <div class="fig"><b>1</b><span>shadow spent</span></div>
+    <div class="fig"><b>4</b><span>motion loops</span></div>
+    <div class="fig"><b>4.77</b><span>contrast floor</span></div>
+  </div>
+</div>
+
+<!-- ═══ FOUNDATIONS ═══════════════════════════════════════════════════════ -->
+<h2 class="sec">Colour</h2>
+<div class="row">
+  <div class="nm"><b>Surfaces</b><code>--page · --card · --media · --btn2 · --inset</code>
+    <p>Four painted surfaces plus one derived plane. Every step is warm; there is no white and no
+       black anywhere in the palette.</p></div>
+  <div class="spec col">
+    <table class="t">
+      <tr><th>Token</th><th>Hex</th><th>Step</th><th>Where</th></tr>
+      <tr><td><span class="sw" style="background:#F7F5F2"></span><code>--page</code></td><td><code>#F7F5F2</code></td><td>—</td><td>screen ground, every system bar</td></tr>
+      <tr><td><span class="sw" style="background:#ECE9E4"></span><code>--card</code></td><td><code>#ECE9E4</code></td><td class="ratio">1.11:1</td><td>every card surface</td></tr>
+      <tr><td><span class="sw" style="background:#E4E1DA"></span><code>--media</code></td><td><code>#E4E1DA</code></td><td class="ratio">1.20:1</td><td>wells, muted chips, segment track</td></tr>
+      <tr><td><span class="sw" style="background:#D6D2C9"></span><code>--btn2</code></td><td><code>#D6D2C9</code></td><td class="ratio">1.39:1</td><td>secondary button, icon action, skeletons</td></tr>
+      <tr><td><span class="sw" style="background:#F2F0EC"></span><code>--inset</code></td><td><code>#F2F0EC</code></td><td class="ratio">1.06:1</td><td>a plane inside a card, not a card on it</td></tr>
+      <tr><td><span class="sw" style="background:#D9D5CE"></span><code>--line</code></td><td><code>#D9D5CE</code></td><td class="ratio">1.21:1</td><td>every hairline</td></tr>
+    </table>
+  </div>
+  <div class="notes">
+    <p><b>The Tone-Step Rule.</b> Separation between two surfaces is a warm tone step plus a radius,
+       and the step is measured before it is used. A surface boundary is a decorative edge — not text
+       (1.4.3), not a control or state indicator (1.4.11) — so no contrast minimum binds it.</p>
+    <p><b>The No-White-No-Black Rule.</b> Even the shadows are warm: every one is
+       <code>rgba(20,18,15,…)</code>.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Ink and accent</b><code>--ink · --slate · --green · --on-green · --green-wash</code>
+    <p>Two inks and one accent. Green is a fill or a tint — never a text colour and never an icon
+       stroke.</p></div>
+  <div class="spec col">
+    <table class="t">
+      <tr><th>Pair</th><th>Ratio</th><th>Where</th></tr>
+      <tr><td><span class="sw" style="background:#F7F5F2"></span><code>--ink</code> on <code>--page</code></td><td class="ratio">15.99:1</td><td>nav-bar title, focus ring</td></tr>
+      <tr><td><span class="sw" style="background:#F2F0EC"></span><code>--ink</code> on <code>--inset</code></td><td class="ratio">15.29:1</td><td>route place names</td></tr>
+      <tr><td><span class="sw" style="background:#E7F0D2"></span><code>--ink</code> on <code>--green-wash</code></td><td class="ratio">14.75:1</td><td>selected tab, verified badge, milestone</td></tr>
+      <tr><td><span class="sw" style="background:#ECE9E4"></span><code>--ink</code> on <code>--card</code></td><td class="ratio">14.37:1</td><td>card titles, values, checked box</td></tr>
+      <tr><td><span class="sw" style="background:#E4E1DA"></span><code>--ink</code> on <code>--media</code></td><td class="ratio">13.33:1</td><td>glyph in a well</td></tr>
+      <tr><td><span class="sw" style="background:#D6D2C9"></span><code>--ink</code> on <code>--btn2</code></td><td class="ratio">11.54:1</td><td>secondary button, icon action</td></tr>
+      <tr><td><span class="sw" style="background:#9BCF4A"></span><code>--on-green</code> on <code>--green</code></td><td class="ratio">9.46:1</td><td>primary label, walked node glyph</td></tr>
+      <tr><td><span class="sw" style="background:#F7F5F2"></span><code>--slate</code> on <code>--page</code></td><td class="ratio">6.62:1</td><td>lead copy, unselected tab</td></tr>
+      <tr><td><span class="sw" style="background:#ECE9E4"></span><code>--slate</code> on <code>--card</code></td><td class="ratio">5.95:1</td><td>keys, dates, unchecked outline</td></tr>
+      <tr><td><span class="sw" style="background:#E4E1DA"></span><code>--slate</code> on <code>--media</code></td><td class="ratio">5.51:1</td><td>muted chip, segment at rest</td></tr>
+      <tr><td><span class="sw" style="background:#D6D2C9"></span><code>--slate</code> on <code>--btn2</code></td><td class="ratio">4.77:1</td><td>disabled label — the system's floor</td></tr>
+    </table>
+  </div>
+  <div class="notes">
+    <p><b>The Fill-Only Rule.</b> Green is a fill, a tint or a ring. As a foreground it is 1.69:1 on
+       the page and 1.52:1 on the card, so it is never text and never a stroke. Anything sitting on
+       green is <code>--ink</code>.</p>
+    <p><b>The Two-Ink Rule.</b> A string is <code>--ink</code> or <code>--slate</code>. There is no
+       third text colour and no colour-coded text of any kind.</p>
+    <p>Zero text-contrast failures across all ten painted surfaces; the lowest measured pair is
+       <b>4.77:1</b> against AA's 4.5:1.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Semantic</b><code>--warn-wash / --warn-ink · --danger-wash / --danger-ink</code>
+    <p>A state is a pale wash carrying its own darkened ink. The saturated hue is declared for
+       reference and drawn nowhere.</p></div>
+  <div class="spec">
+    <div class="plate"><span class="dr-mark" aria-hidden="true"><svg class="dr-ic dr-ic--26" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9"/><path d="M12 13.5l3.4 2"/><path d="M9.5 3.2h5"/></svg></span><span class="st">neutral · 5.51:1</span></div>
+    <div class="plate"><span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic dr-ic--26" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg></span><span class="st">warn · 5.65:1</span></div>
+    <div class="plate"><span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic dr-ic--26" viewBox="0 0 24 24"><g opacity=".55"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g></svg></span><span class="st">danger · 5.49:1</span></div>
+    <div class="plate"><span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><span class="st">milestone · 14.75:1</span></div>
+  </div>
+  <div class="notes">
+    <p><b>The Wash-Carries-Ink Rule.</b> Raw <code>--warn</code> on the card is 1.84:1 and raw
+       <code>--danger</code> reaches only 4.07:1 — neither can carry a mark, so neither is drawn.</p>
+    <p>The lost-signal glyph sits at <code>opacity .55</code>, where the fade <i>is</i> the semantic.
+       It is <code>aria-hidden</code> and the meaning is carried by the visible title. <b>Raise to
+       .70 (3.20:1) if that glyph ever becomes load-bearing.</b></p>
+    <p>Delivered and waiting share <b>one</b> milestone well: every green paler than the wash lands
+       at 1.03–1.05 against the page. The difference is the glyph and the screen title, not colour.</p>
+  </div>
+</div>
+
+<!-- ═══ TYPE ══════════════════════════════════════════════════════════════ -->
+<h2 class="sec">Type</h2>
+<div class="row">
+  <div class="nm"><b>Ten steps</b><code>--t-display … --t-microsm</code>
+    <p>One UI stack, one mono stack. Every step is in use on a shipped surface.</p></div>
+  <div class="spec col">
+    <ul class="scale">
+      <li><span class="tk">display</span><span class="vv">22 / 700 / 1.4 / −.02em</span><span style="font-size:22px;font-weight:700;letter-spacing:-.02em">Delivered</span></li>
+      <li><span class="tk">number</span><span class="vv">20 / 700 / 1.0 / tabular</span><span style="font-size:20px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums">₴180</span></li>
+      <li><span class="tk">title</span><span class="vv">17 / 600 / 1.4 / −.01em</span><span style="font-size:17px;font-weight:600;letter-spacing:-.01em">Live tracking lost</span></li>
+      <li><span class="tk">heading</span><span class="vv">15 / 600 / 1.2</span><span style="font-size:15px;font-weight:600">Package delivery</span></li>
+      <li><span class="tk">lead</span><span class="vv">15 / 400 / 1.55</span><span style="font-size:15px;color:var(--slate)">Your parcel arrived at 10:07.</span></li>
+      <li><span class="tk">body</span><span class="vv">14 / 400 / 1.3</span><span style="font-size:14px">Osokorky</span></li>
+      <li><span class="tk">body-sm</span><span class="vv">13 / 400 / 1.4</span><span style="font-size:13px;color:var(--slate)">Delivered to</span></li>
+      <li><span class="tk">meta</span><span class="vv">12.5 / 400 / 1.2</span><span style="font-size:12.5px;color:var(--slate);font-variant-numeric:tabular-nums">4.9 ★ · 214 jobs</span></li>
+      <li><span class="tk">caption</span><span class="vv">12 / 600 / 1.4</span><span style="font-size:12px;font-weight:600">Verified by DRON</span></li>
+      <li><span class="tk">micro</span><span class="vv">11 / 600 / 1.4 / .09em</span><span style="font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.09em;color:var(--slate)">ORDER HISTORY</span></li>
+      <li><span class="tk">micro-sm</span><span class="vv">10.5 / 400 / 1.4</span><span style="font-size:10.5px;color:var(--slate)">En route</span></li>
+    </ul>
+  </div>
+  <div class="notes">
+    <p><b>The Ten-Sizes Rule.</b> On a product surface these ten are the whole scale. A size that is
+       none of them is a size nobody chose.</p>
+    <p><b>The Tabular Rule.</b> Any figure a user compares or verifies — money, time, ETA, rating —
+       carries <code>tabular-nums</code>.</p>
+    <p><b>The Mono-Is-Structure Rule.</b> The mono face labels structure, never content: zone
+       annotations, <code>FROM</code> / <code>TO</code>, loading hints. No product string is mono.</p>
+    <p>Leading is <b>1.4 by inheritance</b>; a step overrides it only where its box demands.</p>
+  </div>
+</div>
+
+<!-- ═══ SHAPE & SPACE ═════════════════════════════════════════════════════ -->
+<h2 class="sec">Shape · space · elevation</h2>
+<div class="row">
+  <div class="nm"><b>A closed ramp of six</b><code>--r-detail … --r-pill</code>
+    <p>Six radii and a circle for anything the eye reads as an object. Below that, an internal
+       detail may use the 2 / 4 / 8 floor.</p></div>
+  <div class="spec col">
+    <div class="shapes">
+      <div class="shape"><i style="border-radius:var(--r-detail)"></i><span>detail 4</span></div>
+      <div class="shape"><i style="border-radius:var(--r-input)"></i><span>input 10</span></div>
+      <div class="shape"><i style="border-radius:var(--r-btn)"></i><span>btn 12</span></div>
+      <div class="shape"><i style="border-radius:var(--r-media)"></i><span>media 13</span></div>
+      <div class="shape"><i style="border-radius:var(--r-card)"></i><span>card 16</span></div>
+      <div class="shape"><i style="border-radius:var(--r-panel)"></i><span>panel 22</span></div>
+      <div class="shape"><i style="border-radius:var(--r-pill)"></i><span>pill 999</span></div>
+      <div class="shape"><i style="border-radius:var(--r-circle);width:44px"></i><span>circle 50%</span></div>
+    </div>
+    <table class="t" style="margin-top:20px">
+      <tr><th>Space</th><th>Value</th><th>Use</th></tr>
+      <tr><td><code>--sp-within</code></td><td>4</td><td>within a group — title to date</td></tr>
+      <tr><td><code>--sp-within-lg</code></td><td>8</td><td>between sibling icon actions</td></tr>
+      <tr><td><code>--sp-snug</code></td><td>12</td><td>card-top gap, stack gap</td></tr>
+      <tr><td><code>--sp-screen</code></td><td>16</td><td>screen padding and gap; compact inset</td></tr>
+      <tr><td><code>--sp-group</code></td><td>20</td><td>between groups in a list card; its own inset</td></tr>
+      <tr><td><code>--sp-list</code></td><td>28</td><td>between cards</td></tr>
+      <tr><td><code>--sp-cta</code></td><td>32</td><td>bottom inset where the last element is a primary</td></tr>
+    </table>
+  </div>
+  <div class="notes">
+    <p><b>The Between-Beats-Within Rule.</b> The gap between two cards (28) is always larger than any
+       gap inside one (≤ 20), so proximity groups in the right direction without a border or a
+       shadow.</p>
+    <p><b>The One-Shadow Rule.</b> Exactly one shadow is spent, <code>--sh-sm</code>, under the green
+       primary. <code>--sh-card</code>, <code>--sh-raised</code> and <code>--sh-onphoto</code> are
+       declared rungs applied to nothing. A card flat at rest cannot grow one on hover.</p>
+    <p><b>The Closed-Ramp Rule.</b> A shape outside the six is a shape nobody chose.</p>
+  </div>
+</div>
+
+<!-- ═══ SHELL ═════════════════════════════════════════════════════════════ -->
+<h2 class="sec">Shell</h2>
+<div class="row">
+  <div class="nm"><b>Two-layer header · tab bar</b><code>.dr-screen · .dr-statusbar · .dr-topbar · .dr-tabbar · .dr-tab · .dr-home</code>
+    <p>Markup, not just CSS — a grayscale screen takes its shell from
+       <a href="shell.html">shell.html</a>. Every system bar takes the page ground, so the chrome
+       melts into the page and only a hairline separates it.</p></div>
+  <div class="spec">
+    <div class="dr dr-screen" style="height:420px">
+      <div class="dr-statusbar">
+        <span>9:41</span>
+        <span class="dr-statusbar__sys">
+          <svg class="dr-ic" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg>
+          <svg class="dr-ic" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg>
+          <svg class="dr-ic" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg>
+        </span>
+      </div>
+      <header class="dr-topbar">
+        <span class="dr-brand" role="img" aria-label="DRON"></span>
+        <h1 class="dr-topbar__title">Activity</h1>
+        <span class="dr-topbar__spacer"></span>
+      </header>
+      <main class="dr-main">
+        <p class="dr-label">Order history <span class="dr-label__act">▸ tap to reopen setup</span></p>
+        <p class="dr-lead">The screen goes here.</p>
+      </main>
+      <footer class="dr-tabbar">
+        <nav class="dr-tabs" aria-label="Primary">
+          <a class="dr-tab" href="#"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+          <a class="dr-tab" href="#" aria-current="page"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+          <a class="dr-tab" href="#"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+          <a class="dr-tab" href="#"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+        </nav>
+        <div class="dr-home"><span></span></div>
+      </footer>
+    </div>
+    <div class="dr dr-screen" style="height:420px">
+      <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys">
+        <svg class="dr-ic" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg>
+        <svg class="dr-ic" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg>
+        <svg class="dr-ic" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg>
+      </span></div>
+      <header class="dr-topbar">
+        <a class="dr-back" href="#">‹ Order review</a>
+        <h1 class="dr-topbar__title">On the way</h1>
+        <span class="dr-topbar__spacer"></span>
+      </header>
+      <main class="dr-main">
+        <p class="dr-label">Live map <span class="dr-label__act">▸ operator position</span></p>
+        <div class="dr-well dr-well--map"><img src="../assets/map/live-map.jpg" alt="Live map, operator position"></div>
+      </main>
+      <footer class="dr-actionbar">
+        <button class="dr-btn dr-btn--secondary dr-btn--block" type="button">Contact operator</button>
+        <button class="dr-btn dr-btn--primary dr-btn--block" type="button">View details</button>
+      </footer>
+    </div>
+  </div>
+  <div class="notes">
+    <p>Status bar <b>44</b> · nav bar <b>56</b> · tabs <b>60</b> + home <b>30</b>. Tab target
+       86.3 × 50 — clears 44pt on both axes.</p>
+    <p><b>Selected tab</b> is <code>--green-wash</code> + <code>--ink</code>, <b>14.75:1</b>. HIG
+       tints the label with the accent; raw green as text is 1.69:1, so the accent moves into the
+       <b>fill</b> and the ink darkens with it — two signals where the convention gives one. Icons
+       stay outline in both states: a deliberate departure from the iOS filled-symbol convention,
+       recorded rather than filed as a defect.</p>
+    <p><b>Two headers.</b> Root screens carry the brand and no back; a pushed screen carries a back
+       naming the screen you return to (<code>‹ Order review</code>), never “Back to…”.</p>
+    <p>Secondary sits <b>above</b> primary in the action bar, so the thumb reaches the primary
+       first.</p>
+  </div>
+</div>
+
+<!-- ═══ ACTIONS ═══════════════════════════════════════════════════════════ -->
+<h2 class="sec">Actions</h2>
+<div class="row">
+  <div class="nm"><b>Button</b><code>.dr-btn · --primary · --secondary · --tertiary · --block · --icon</code>
+    <p>One green control per screen. Everything else that can be tapped is warm grey — green is
+       never spent inside card UI.</p></div>
+  <div class="spec col">
+    <div class="plate wide" style="gap:12px">
+      <button class="dr-btn dr-btn--primary dr-btn--block" type="button">Rate this order</button>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button">Contact operator</button>
+      <button class="dr-btn dr-btn--tertiary dr-btn--block" type="button">Keep waiting</button>
+      <button class="dr-btn dr-btn--primary dr-btn--block" type="button" disabled>View delivery photo</button>
+      <span class="st">primary 9.46 · secondary 11.54 · tertiary 6.62 · disabled 4.77</span>
+    </div>
+    <div class="plate" style="flex-direction:row;align-items:center;gap:12px">
+      <button class="dr-btn dr-btn--icon" type="button" aria-label="Delete order"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button>
+      <button class="dr-btn dr-btn--icon" type="button" aria-label="View delivery photo"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg></button>
+      <span class="st">icon 44 × 44 · 11.54:1</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b><code>min-height</code>, never <code>height</code>.</b> A button is a flex item in a
+       scrolling column; a fixed height gets shrunk below the 44pt target — measured at 22.6px on
+       one page before the floor was added.</p>
+    <p><b>The Built-Not-Dimmed Rule.</b> Disabled is <code>--btn2</code> + <code>--slate</code> at
+       <b>4.77:1</b>, the secondary button's own pair. Blanket opacity would take charcoal-on-green
+       to 2.35:1 — a ratio nobody measured.</p>
+    <p><b>Tertiary was grayscale</b> and is painted here from the language: <code>--slate</code> is
+       the system's secondary ink at 6.62:1, and the pressed state is the same
+       <code>translateY</code> the other two take — there is no fill to change.</p>
+    <p>Hover <code>brightness(1.03)</code>; active <code>translateY(1px) scale(.99)</code>. Focus is
+       <code>2.5px --ink</code>, <b>15.99:1</b>, never green.</p>
+  </div>
+</div>
+
+<!-- ═══ SURFACES ══════════════════════════════════════════════════════════ -->
+<h2 class="sec">Surfaces</h2>
+<div class="row">
+  <div class="nm"><b>Order card</b><code>.dr-card · .dr-order__* · .dr-status · .dr-rail · .dr-inset</code>
+    <p>The most measured component in the product: well + name-over-date, a progress rail, the
+       From ▸ To strip, fee and actions.</p></div>
+  <div class="spec col">
+    <article class="dr-card" style="width:341px;max-width:100%">
+      <div class="dr-order__top">
+        <span class="dr-well">
+          <img src="../assets/drones/thumbs/drone-08.png" alt="">
+          <span class="dr-status dr-status--live" role="img" aria-label="In progress"></span>
+        </span>
+        <span class="dr-order__head">
+          <span class="dr-order__title">Package delivery</span>
+          <span class="dr-order__date">Today · 10:03</span>
+        </span>
+      </div>
+      <div class="dr-rail" style="--dr-fill:25%">
+        <div class="dr-rail__step"><span class="dr-node dr-node--done"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-rail__lbl">Accepted</span></div>
+        <div class="dr-rail__step"><span class="dr-node dr-node--now"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-rail__lbl dr-rail__lbl--now">En route</span></div>
+        <div class="dr-rail__step"><span class="dr-node"></span><span class="dr-rail__lbl">On-site</span></div>
+        <div class="dr-rail__step"><span class="dr-node"></span><span class="dr-rail__lbl">Done</span></div>
+      </div>
+      <div class="dr-inset">
+        <span class="dr-inset__stop"><span class="dr-inset__lbl">From</span><span class="dr-inset__place">Podil</span></span>
+        <span class="dr-inset__dir" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+        <span class="dr-inset__stop dr-inset__stop--to"><span class="dr-inset__lbl">To</span><span class="dr-inset__place">Osokorky</span></span>
+      </div>
+      <div class="dr-order__fee">
+        <span><span class="dr-sr">Delivery fee</span><span class="dr-number dr-order__price">₴180</span></span>
+        <span class="dr-chip"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9"/><path d="M12 13.5l3.4 2"/><path d="M9.5 3.2h5"/></svg>ETA ~6 min</span>
+      </div>
+      <button class="dr-btn dr-btn--primary dr-btn--block" type="button">View details</button>
+    </article>
+
+    <article class="dr-card" style="width:341px;max-width:100%">
+      <div class="dr-order__top">
+        <span class="dr-well">
+          <img src="../assets/drones/thumbs/drone-08.png" alt="">
+          <span class="dr-status" role="img" aria-label="Delivered"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+        </span>
+        <span class="dr-order__head">
+          <span class="dr-order__title">Package delivery</span>
+          <span class="dr-order__date">28 Jun · 14:20</span>
+        </span>
+      </div>
+      <div class="dr-inset">
+        <span class="dr-inset__stop"><span class="dr-inset__lbl">From</span><span class="dr-inset__place">Podil</span></span>
+        <span class="dr-inset__dir" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+        <span class="dr-inset__stop dr-inset__stop--to"><span class="dr-inset__lbl">To</span><span class="dr-inset__place">Osokorky</span></span>
+      </div>
+      <div class="dr-order__fee">
+        <span><span class="dr-sr">Delivery fee</span><span class="dr-number dr-order__price">₴180</span></span>
+        <span class="dr-order__acts">
+          <button class="dr-btn dr-btn--icon" type="button" aria-label="Delete order"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button>
+        </span>
+      </div>
+    </article>
+  </div>
+  <div class="notes">
+    <p><b>Live and delivered differ by structure, not decoration.</b> A delivered order has no rail —
+       four ticked nodes said nothing and cost 60px — and its green CTA becomes circular secondary
+       actions.</p>
+    <p><b>The status indicator rides the well</b>, the way a presence badge sits on an avatar. Live is
+       a solid green disc that pings; done is <code>--btn2</code> with an <code>--ink</code> check at
+       11.54:1. <b>Two signals, never colour alone</b> — shape and behaviour — and each keeps its
+       wording as its accessible name.</p>
+    <p>Live green is 1.52:1 on the well and does not clear 1.4.11 alone. What keeps the screen
+       conformant is that the state is never carried by the mark alone: the same card is the only one
+       with a rail, an ETA chip and the green CTA, and the mark says “In progress” outright.</p>
+    <p>The well is <b>96 × 72 with no ground</b> — a cutout sits straight on the card. Below ~96px
+       the rotors stop resolving.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Row panel</b><code>.dr-rows · __row · __key · __val</code>
+    <p>The system's universal container for a fact — read, opened, or typed into. One component
+       across the tracking ETA panel and the delivery details panel.</p></div>
+  <div class="spec">
+    <div class="dr-rows" style="width:341px;max-width:100%">
+      <div class="dr-rows__row"><span class="dr-rows__key">Delivered to</span><span class="dr-rows__val">Osokorky, 14</span></div>
+      <div class="dr-rows__row"><span class="dr-rows__key">Time</span><span class="dr-rows__val">10:07</span></div>
+      <div class="dr-rows__row"><span class="dr-rows__key">Operator</span><span class="dr-rows__val">Andriy M.</span></div>
+    </div>
+  </div>
+  <div class="notes">
+    <p>Key <code>--slate</code> 13/400 at <b>5.95:1</b>; value <code>--ink</code> 15/600
+       <code>tabular-nums</code>, right-aligned, at <b>14.37:1</b>.</p>
+    <p><b>The One-Component-One-Value Rule.</b> The same component drawn on two screens carries the
+       same numbers.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Operator card</b><code>.dr-op · __photo · __name · __rating · __badges</code>
+    <p>The trust surface. It answers the highest drop-off in the CJM — confirm the operator is real
+       and qualified — so it belongs exactly where the claim is made.</p></div>
+  <div class="spec">
+    <div class="dr-op" style="width:341px;max-width:100%">
+      <span class="dr-op__photo"><img src="../assets/people/thumbs/operator.png" alt=""></span>
+      <span class="dr-op__info">
+        <span class="dr-op__name">Andriy M.</span>
+        <span class="dr-op__rating">4.9 ★ · 214 jobs</span>
+        <span class="dr-chips dr-op__badges">
+          <span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON</span>
+          <span class="dr-chip"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured</span>
+        </span>
+      </span>
+    </div>
+  </div>
+  <div class="notes">
+    <p>The photograph is a <b>full-height panel on the left edge at 117 × 138.1</b> — the asset's own
+       595 × 702 ratio at the height the card resolves to, so the operator is shown whole, uncropped
+       and undistorted. Negative margins push it back out over the card's own inset;
+       <code>overflow:hidden</code> cuts its two outer corners to <code>--r-card</code>.</p>
+    <p><b>Claim vs fact.</b> The green tint carries a claim being made (<i>Verified by DRON</i>,
+       14.75:1); the warm grey carries a supporting fact (<i>Insured</i>, 5.51:1). A chip is never
+       reduced to a colour — each keeps its wording.</p>
+  </div>
+</div>
+
+<!-- ═══ PROGRESS ══════════════════════════════════════════════════════════ -->
+<div class="row">
+  <div class="nm"><b>Listing card</b>
+    <code>.dr-card--row · .dr-listing__name · __desc · .dr-well</code>
+    <p><b>Approved 2026-08-03.</b> Three elements, as the hand-edited wireframe settled it: the
+       drone doing the job, the name, one line of description. The whole card is the tap target —
+       no price row and no chevron, because the frame has neither.</p></div>
+  <div class="spec col">
+    <article class="dr dr-card dr-card--row dr-listing" style="width:341px;max-width:100%">
+      <a class="dr-card__link" href="#" aria-label="Package delivery — start an order"></a>
+      <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt=""></span>
+      <span class="dr-listing__body">
+        <span class="dr-listing__name">Package delivery</span>
+        <span class="dr-listing__desc">Parcels, documents, small goods — across the city</span>
+      </span>
+    </article>
+    <article class="dr dr-card dr-card--row dr-listing" style="width:341px;max-width:100%">
+      <a class="dr-card__link" href="#" aria-label="Aerial photo and video — start an order"></a>
+      <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt=""></span>
+      <span class="dr-listing__body">
+        <span class="dr-listing__name">Aerial photo &amp; video</span>
+        <span class="dr-listing__desc">Events, real-estate listings, personal occasions</span>
+      </span>
+    </article>
+  </div>
+  <div class="notes">
+    <p>Name <code>--ink</code> 15/600, <b>14.37:1</b> · description <code>--slate</code> 13/400,
+       <b>5.95:1</b> · well <b>96 × 72</b>, cutout straight on the card, no ground.</p>
+    <p>Card inset 20, gap 12 — the list card's own numbers. The whole-card link keeps the
+       keyboard-only ring.</p>
+    <p><b>One correction against the proposal:</b> it offered a price row and a chevron; the
+       hand-edited frame has neither, and the frame wins.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Choice card</b>
+    <code>.dr-choice · __title · __desc · __chev</code>
+    <p><b>Approved 2026-08-03</b>, built to the values already decided: navigation, not a picker
+       — both instances are links that leave the screen.</p></div>
+  <div class="spec col">
+    <a class="dr dr-choice" href="#" style="width:341px;max-width:100%">
+      <span class="dr-well"><img src="../assets/objects/thumbs/cargo-box.png" alt=""></span>
+      <span class="dr-choice__body">
+        <span class="dr-choice__title">I need a service done</span>
+        <span class="dr-choice__desc">Order delivery, aerial photo/video or inspection — a verified operator handles it.</span>
+      </span>
+      <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+    </a>
+    <a class="dr dr-choice" href="#" style="width:341px;max-width:100%">
+      <span class="dr-well"><img src="../assets/drones/thumbs/drone-flight-front.png" alt=""></span>
+      <span class="dr-choice__body">
+        <span class="dr-choice__title">I provide services</span>
+        <span class="dr-choice__desc">You&rsquo;re a certified drone operator — take jobs and get paid.</span>
+      </span>
+      <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+    </a>
+  </div>
+  <div class="notes">
+    <p><code>--card</code> at <code>--r-card</code> 16 · title 17/600 <b>14.37:1</b> · description
+       13/400 <b>5.95:1</b> · chevron <code>--slate</code> on the 24-grid · the row clears 44pt by
+       construction · focus ring is keyboard-only, <code>2.5px --ink</code>.</p>
+    <p>No hover treatment: a card flat at rest stays flat, and the surface is the affordance.</p>
+  </div>
+</div>
+
+<h2 class="sec">Progress</h2>
+<div class="row">
+  <div class="nm"><b>One node, two axes</b><code>.dr-node · --done · --now · .dr-rail · .dr-track</code>
+    <p>The order card's rail and the tracking timeline drew the same 22px circle under two class
+       names — <code>.nd</code> and <code>.tl-dot</code>. That is the drift this closes.</p></div>
+  <div class="spec">
+    <div class="plate">
+      <ul class="dr-track" style="width:220px">
+        <li class="dr-track__item dr-track__item--done"><span class="dr-node dr-node--done"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-track__text">Accepted</span></li>
+        <li class="dr-track__item dr-track__item--now"><span class="dr-node dr-node--now"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-track__text">En route</span></li>
+        <li class="dr-track__item"><span class="dr-node"></span><span class="dr-track__text">On-site</span></li>
+        <li class="dr-track__item"><span class="dr-node"></span><span class="dr-track__text">Done</span></li>
+      </ul>
+      <span class="st">vertical · tracking</span>
+    </div>
+    <div class="plate">
+      <div class="dr-rail" style="width:260px;--dr-fill:25%">
+        <div class="dr-rail__step"><span class="dr-node dr-node--done"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-rail__lbl">Accepted</span></div>
+        <div class="dr-rail__step"><span class="dr-node dr-node--now"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-rail__lbl dr-rail__lbl--now">En route</span></div>
+        <div class="dr-rail__step"><span class="dr-node"></span><span class="dr-rail__lbl">On-site</span></div>
+        <div class="dr-rail__step"><span class="dr-node"></span><span class="dr-rail__lbl">Done</span></div>
+      </div>
+      <span class="st">horizontal · order card</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p>22px circle, 2px border, 12px glyph. <b>pending</b> <code>--line</code> / <code>--card</code>
+       · <b>done</b> <code>--green</code> fill with an <code>--on-green</code> check, 9.46:1 ·
+       <b>now</b> <code>--green</code> border, <code>--ink</code> dot and a 4px
+       <code>color-mix(green 20%)</code> halo.</p>
+    <p>Milestones are the canonical four everywhere: <b>Accepted · En route · On-site · Done</b>.</p>
+    <p>The rail is a 4-column grid, each node centred over its own label, with the track drawn behind
+       the circles from the centre of column 1 to the centre of column 4 —
+       <code>--dr-fill</code> covers the walked span.</p>
+  </div>
+</div>
+
+<!-- ═══ STATES ════════════════════════════════════════════════════════════ -->
+<div class="row">
+  <div class="nm"><b>Pager</b>
+    <code>.dr-pager · .on</code>
+    <p><b>Settled 2026-08-03 by the designer:</b> the active dot is green; the resting dots are
+       plain discs with no outline.</p></div>
+  <div class="spec">
+    <div class="plate">
+      <nav class="dr dr-pager" aria-label="Slides" style="margin-top:0">
+        <a href="#" class="on" aria-label="Go to slide 1"></a>
+        <a href="#" aria-label="Go to slide 2"></a>
+        <a href="#" aria-label="Go to slide 3"></a>
+      </nav>
+      <span class="st">8px discs · active --green · rest --btn2</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>The named number:</b> <code>--green</code> on the page is <b>1.69:1</b> against
+       <code>WCAG 1.4.11</code>&rsquo;s 3:1. Accepted on the live-disc precedent — the dot is never
+       the sole carrier: the slide itself shows position, and each dot keeps its accessible name
+       (<code>aria-label="Go to slide 1"</code>).</p>
+    <p>iOS dims its resting dots; here they are <code>--btn2</code> discs — built, not dimmed.</p>
+  </div>
+</div>
+
+<h2 class="sec">States</h2>
+<div class="row">
+  <div class="nm"><b>Message block</b><code>.dr-msg · __title · __body · __actions · .dr-mark</code>
+    <p>One component doing three jobs — empty state, error banner, notice. Every string here is from
+       <code>microcopy.md</code>.</p></div>
+  <div class="spec col">
+    <div class="dr-msg" style="width:341px;max-width:100%" role="status">
+      <span class="dr-mark" aria-hidden="true"><svg class="dr-ic dr-ic--26" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg></span>
+      <span class="dr-msg__title">No orders yet</span>
+      <span class="dr-msg__body">Your orders appear here, ready to re-book in a tap.</span>
+      <span class="dr-msg__actions"><button class="dr-btn dr-btn--primary" type="button">Browse services</button></span>
+    </div>
+
+    <div class="dr-msg" style="width:341px;max-width:100%" role="alert">
+      <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic dr-ic--26" viewBox="0 0 24 24"><g opacity=".55"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g></svg></span>
+      <span class="dr-msg__title">Live tracking lost</span>
+      <span class="dr-msg__body">We’ve lost the live signal from the operator’s device. Your order is still active.</span>
+      <span class="dr-msg__actions">
+        <button class="dr-btn dr-btn--primary" type="button">Try again</button>
+        <button class="dr-btn dr-btn--secondary" type="button">Contact support</button>
+      </span>
+    </div>
+
+    <div class="dr-msg" style="width:341px;max-width:100%" role="status">
+      <span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic dr-ic--26" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg></span>
+      <span class="dr-msg__title">Running a few minutes late</span>
+      <span class="dr-msg__body">Traffic near the drop-off is slowing your operator. They’re still on the way.</span>
+      <span class="dr-msg__actions">
+        <button class="dr-btn dr-btn--primary" type="button">Keep waiting</button>
+        <button class="dr-btn dr-btn--secondary" type="button">Contact support</button>
+      </span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><code>role="alert"</code> on an error, <code>role="status"</code> on an empty state.</p>
+    <p><b>State tone, from <code>voice.md</code>.</b> Empty → why it is empty plus one way out. Error
+       → what happened and what to do, no apology and no joke. Loading → name what is loading.
+       Success → the fact and the next step, no celebration. <b>No dead ends</b>: every error and
+       empty screen carries a visible exit.</p>
+    <p>Padding <code>22px 18px</code>, gap 12, body capped at 260px, actions full-width and stacked
+       with gap 10.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Outcome</b><code>.dr-mark--milestone · .dr-display · .dr-lead · .dr-center</code>
+    <p>The success screen. Delivered and waiting share one well; the difference is the glyph and the
+       title, never the colour.</p></div>
+  <div class="spec">
+    <div class="plate wide">
+      <div class="dr-center" style="width:100%">
+        <span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+        <span class="dr-display">Delivered</span>
+        <span class="dr-lead">Your parcel arrived at 10:07.</span>
+      </div>
+      <span class="st">success</span>
+    </div>
+    <div class="plate wide">
+      <div class="dr-center" style="width:100%">
+        <span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.3 2"/></svg></span>
+        <span class="dr-display">Delivered</span>
+        <span class="dr-lead">Your operator is uploading the delivery photo now.</span>
+        <span class="dr-note">This usually takes under a minute.</span>
+      </div>
+      <span class="st">waiting — same well, different glyph</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>The Shape-And-Behaviour Rule.</b> Two states never differ by colour alone. A dot pings and a
+       check sits; a clock is not a check; each keeps a text accessible name.</p>
+    <p>A paler green step for “waiting” was drawn and measured first, and does not exist: every mix
+       below <code>--green-wash</code> lands at 1.03–1.05 against the page — a disc nobody can see,
+       beside a state nobody can tell apart.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Loading</b><code>.dr-sk-line · .dr-sk-well · .dr-sk-block · .dr-sk-arrow · .dr-hint</code>
+    <p>Chrome stays solid, content pulses.</p></div>
+  <div class="spec col">
+    <div class="dr-card" style="width:341px;max-width:100%">
+      <div class="dr-order__top" style="gap:16px">
+        <span class="dr-sk-well"></span>
+        <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+          <span class="dr-sk-line dr-sk-title dr-sk-w70"></span>
+          <span class="dr-sk-line dr-sk-date dr-sk-w40"></span>
+        </span>
+      </div>
+      <span class="dr-sk-line dr-sk-w90"></span>
+      <span class="dr-sk-line dr-sk-w50"></span>
+    </div>
+    <div class="plate wide">
+      <div class="dr-sk-block dr-sk-up" style="width:100%;height:180px">
+        <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><g class="dr-sk-arrow"><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></g></svg>
+      </div>
+      <span class="dr-hint">Waiting for the delivery photo…</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>The Skeleton-Measures-The-Load Rule.</b> A loading block is the size of the thing it waits
+       for: the order-history skeleton card is <b>263.0px</b> against the delivered card's
+       <b>263.6px</b>; the delivery photo skeleton is <b>341 × 180</b> against a photo of 341 × 180.
+       A skeleton is a claim about the loaded screen, so it expires when that screen changes
+       treatment.</p>
+    <p>The rule gives opposite answers by design. The question is never “should this pulse” but
+       <b>“does what loads replace this surface, or sit inside it”</b>.</p>
+    <p><b>Only the arrow leaves the tray</b>, because what the screen waits on is a file going up. It
+       rests <b>visible</b> at 0% and 100%, so a dropped animation leaves a legible icon. 1.6s is the
+       cadence of an upload, not of a spinner.</p>
+  </div>
+</div>
+
+<!-- ═══ MEDIA ═════════════════════════════════════════════════════════════ -->
+<h2 class="sec">Media</h2>
+<div class="row">
+  <div class="nm"><b>Well</b><code>.dr-well · --photo · --map · --acquiring</code>
+    <p>Real renders and photographs, never illustration and never a gradient.</p></div>
+  <div class="spec">
+    <div class="plate oncard"><span class="dr-well"><img src="../assets/drones/thumbs/drone-08.png" alt=""></span><span class="st">cutout · contain · no ground</span></div>
+    <div class="plate"><span class="dr-well dr-well--photo" style="width:200px;height:106px"><img src="../assets/scenes/thumbs/delivered-at-door.jpg" alt="Your parcel at the door"></span><span class="st">photograph · cover</span></div>
+    <div class="plate"><span class="dr-well dr-well--map" style="width:200px"><img src="../assets/map/live-map.jpg" alt="Live map, operator position"></span><span class="st">map · r-card · 1.99</span></div>
+    <div class="plate"><span class="dr-well dr-well--map dr-well--acquiring" style="width:200px;display:flex;align-items:center;justify-content:center">ACQUIRING GPS…</span><span class="st">no signal yet</span></div>
+  </div>
+  <div class="notes">
+    <p><b>Two treatments, one rule.</b> A transparent cutout sits <i>in</i> the layout and is
+       <code>contain</code>-ed — in the product with no ground at all, straight on the card. A
+       photograph <i>is</i> the surface: <code>cover</code>, edge to edge, no padding. A photo
+       floated inside a well reads as a sticker, so the two never swap.</p>
+    <p><b>Never upscale.</b> Every box is a downscale, and the page serves a <code>thumbs/</code>
+       copy at roughly 2× the CSS box while the master stays in the repo.</p>
+    <p><b>Alt text names the outcome, not the equipment</b> — “Your parcel on its way”, not
+       “quadcopter with lime cargo box”. Decorative renders take <code>alt=""</code>.</p>
+    <p>Do not recolour or gradient-map: the lime already <i>is</i> the accent. No added drop shadow —
+       each render carries its own lighting.</p>
+  </div>
+</div>
+
+<!-- ═══ FORMS ═════════════════════════════════════════════════════════════ -->
+<h2 class="sec">Forms</h2>
+<div class="row">
+  <div class="nm"><b>Field · select · search</b><code>.dr-field · .dr-search</code>
+    <p><b>Grayscale in the wireframes.</b> Structure taken from the wireframe, look from the
+       language — nothing invented.</p></div>
+  <div class="spec">
+    <div class="plate">
+      <div class="dr-rows" style="width:250px;padding:0">
+        <label class="dr-field"><input class="dr-field__input" type="text" placeholder="Drop-off address"></label>
+        <label class="dr-field"><input class="dr-field__input" type="text" value="Osokorky, 14"><span class="dr-field__clear" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" stroke-width="2"><path d="M7 7l10 10M17 7L7 17"/></svg></span></label>
+        <div class="dr-field"><span class="dr-field__label">Service</span><span class="dr-field__value">Delivery</span><span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span></div>
+        <div class="dr-field"><span class="dr-field__label">When</span><span class="dr-field__value">Now</span><span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span></div>
+      </div>
+      <span class="st">field &amp; select · no border</span>
+    </div>
+    <div class="plate">
+      <div class="dr-search" style="width:250px">
+        <svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+        <input type="search" placeholder="Search services">
+      </div>
+      <span class="st">the one field with a ground</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>A field has no border.</b> <code>WCAG 1.4.11</code> governs a boundary that is <i>drawn</i>,
+       not one that is absent — so the failure was the grayscale <code>1px --line</code> at
+       <b>1.21:1</b>, which does not survive painting. HIG got there first: the native form row is
+       label, value, separator, no box.</p>
+    <p>So <b>a field lives in a row panel and <i>is</i> the row that accepts typing</b>. Value
+       <code>--ink</code> <b>14.37:1</b> · label and placeholder <code>--slate</code> <b>5.95:1</b> ·
+       focus <code>2.5px --ink</code> <b>14.37:1</b> · error <code>--danger-ink</code> <b>6.14:1</b>,
+       carried by words or a glyph, never by a boundary alone.</p>
+    <p><b>The search field is the one exception</b> and keeps a ground — it is not in a grouped list.
+       A filled rounded rect on the page, <code>--media</code> at <code>--r-input</code> 10px, which
+       is the iOS search bar. That finally gives <code>--r-input</code> its only home.</p>
+    <p>Every row measures exactly <b>44.0px</b>, so HIG's target is met by the panel's existing
+       rhythm with no change.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Checkbox · radio</b><code>.dr-pick · .dr-box--check · .dr-box--radio</code>
+    <p><b>Shape says how many.</b> A square is an independent on/off; a circle is one of a mutually
+       exclusive set.</p></div>
+  <div class="spec">
+    <div class="plate">
+      <ul class="dr-picks" style="width:250px">
+        <li><label class="dr-pick"><input type="checkbox" checked><span class="dr-box dr-box--check"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="dr-pick__label">Delivery</span></label></li>
+        <li><label class="dr-pick"><input type="checkbox" checked><span class="dr-box dr-box--check"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="dr-pick__label">Aerial photo &amp; video</span></label></li>
+        <li><label class="dr-pick"><input type="checkbox"><span class="dr-box dr-box--check"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="dr-pick__label">Inspection</span></label></li>
+      </ul>
+      <span class="st">checkbox · several at a time</span>
+    </div>
+    <div class="plate">
+      <ul class="dr-picks" style="width:250px">
+        <li><label class="dr-pick"><input type="radio" name="payout" checked><span class="dr-box dr-box--radio"><i class="dr-box__dot"></i></span><span class="dr-pick__label">Instant to card •••• 3318<span class="dr-pick__sub">Arrives in under a minute</span></span></label></li>
+        <li><label class="dr-pick"><input type="radio" name="payout"><span class="dr-box dr-box--radio"><i class="dr-box__dot"></i></span><span class="dr-pick__label">Bank transfer<span class="dr-pick__sub">1–3 business days</span></span></label></li>
+      </ul>
+      <span class="st">radio · exactly one</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><code>HIG · Radio Buttons / Checkboxes</code> says exactly this. iOS diverges — it has no radio
+       control and marks one-of-many with a trailing checkmark — but DRON is mobile <b>web</b> in a
+       browser with a WCAG 2.1 AA desktop, so the platform convention is what a user reads.</p>
+    <p><b>The unchecked outline is <code>--slate</code>, not <code>--line</code>.</b> An empty box is
+       identified by its boundary alone, so <code>1.4.11</code> applies at <b>3:1</b>:
+       <code>--line</code> is 1.21:1 and fails; <code>--slate</code> is <b>5.95:1</b> and passes.</p>
+    <p><b>Checked is green — settled 2026-08-03 by the designer.</b> A green fill behind a
+       charcoal glyph, <b>9.46:1</b> — the icon system's own rule, and the exact pair the walked
+       node paints. On the green budget it counts as a status mark, like the node — not as the
+       screen's one green control, so the Pay button keeps that role.</p>
+    <p>The whole row is the 44pt target; the box does not have to be.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Segmented control</b><code>.dr-segment · __seg</code>
+    <p>Mutually exclusive modes in one track. A real <code>&lt;fieldset&gt;</code> of radios, so
+       <code>4.1.2</code> needs no ARIA patch.</p></div>
+  <div class="spec">
+    <div class="plate">
+      <fieldset class="dr-segment" style="width:250px">
+        <legend class="dr-sr">Availability</legend>
+        <label class="dr-segment__seg"><input type="radio" name="avail" checked>Available</label>
+        <label class="dr-segment__seg"><input type="radio" name="avail">Busy</label>
+        <label class="dr-segment__seg"><input type="radio" name="avail">Offline</label>
+      </fieldset>
+      <span class="st">track --media · plate --page · 1.20:1</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>HIG's own structure in DRON's tokens.</b> Track <code>--media</code> at <code>--r-btn</code>
+       12, reading <b>1.20:1</b> below the page; selected a <code>--page</code> plate inset 2px at
+       <code>--r-input</code> 10, standing <b>1.20:1</b> above the track — the largest tone step the
+       palette holds, and the ramp's own arithmetic, <b>12 − 2 = 10</b>.</p>
+    <p>Label <code>--ink</code> <b>15.99:1</b> selected, <code>--slate</code> <b>5.51:1</b> at rest.
+       Height <b>44px exactly</b>.</p>
+    <p><b>No border and no dividers.</b> The 1.21:1 boundary is removed rather than darkened — a
+       surface is a card and not a frame, and a boundary that is absent cannot fail 1.4.11. The plate
+       carries the state.</p>
+    <p>iOS lifts its plate with a shadow; this one is lifted by <b>tone</b>, because the system spends
+       exactly one shadow and it is not here.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>In-page tabs · filter chip</b><code>.dr-groups · .dr-grouptab · .dr-chip</code>
+    <p>A row of places with one current — the tab bar's problem, so the tab bar's values.</p></div>
+  <div class="spec col">
+    <div class="plate" style="padding:0;width:341px;max-width:100%;overflow:hidden">
+      <nav class="dr-groups" role="tablist" aria-label="Job groups" style="width:100%">
+        <button class="dr-grouptab" role="tab" aria-selected="true" type="button">Incoming · 2</button>
+        <button class="dr-grouptab" role="tab" aria-selected="false" type="button">Active · 1</button>
+      </nav>
+    </div>
+    <div class="plate" style="padding:0;width:341px;max-width:100%;overflow:hidden">
+      <nav class="dr-groups" aria-label="Categories" style="width:100%">
+        <button class="dr-grouptab" aria-current="true" type="button">All</button>
+        <button class="dr-grouptab" type="button">Delivery</button>
+        <button class="dr-grouptab" type="button">Aerial photo &amp; video</button>
+        <button class="dr-grouptab" type="button">Inspection</button>
+      </nav>
+    </div>
+  </div>
+  <div class="notes">
+    <p>At rest transparent with a <code>--slate</code> label, <b>6.62:1</b>. Selected
+       <code>--green-wash</code> with an <code>--ink</code> label, <b>14.75:1</b>, at
+       <code>--r-pill</code>. The fill step is only <b>1.085:1</b>; the ink going
+       <code>--slate</code> → <code>--ink</code> is the second signal.</p>
+    <p><b>The 44pt fault is fixed without thickening the row.</b> The pill stays <b>32px visible</b>
+       and the hit area extends to <b>44</b> with a transparent <code>::after</code> — the same thing
+       iOS does with its own 32pt controls.</p>
+    <p><b>4.1.2 fixed too:</b> the wireframe's <code>&lt;a href="#" aria-current&gt;</code> is a link,
+       not a tab, and exposes no tab set. Here it is <code>role="tab"</code> in a
+       <code>role="tablist"</code> with <code>aria-selected</code>.</p>
+    <p><b>Left open, deliberately.</b> <code>operator-listings</code> runs the tab bar, these tabs
+       <i>and</i> a segmented control at once, where <code>HIG · Tab bars</code> assigns those roles
+       differently. Painting does not fix a structural call; it belongs to that screen's rework.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Upload zone</b>
+    <code>.dr-upload</code>
+    <p><b>Approved 2026-08-03.</b> The dashed boundary does not survive painting — rev 43 made a
+       surface a card, not a frame, and rev 45 answered the same 1.21:1 by removing the line.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch">
+      <div class="dr dr-upload">
+        <svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+        <button class="dr-btn dr-btn--secondary" type="button">Add photo</button>
+      </div>
+      <span class="st">--media well · glyph 5.51:1 · at rest, no motion</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p>A <code>--media</code> well at <code>--r-media</code> 13, min-height 140. The glyph is the
+       delivery tray at rest — the same 32px mark <code>delivery-loading</code> animates; here the
+       arrow simply sits in the tray.</p>
+    <p>The action is an ordinary secondary button (<b>11.54:1</b>), labelled with the
+       <code>voice.md</code> verb: <b>Add…</b> — never &ldquo;Upload&rdquo;.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Disclosure</b><code>.dr-disclosure · __item</code>
+    <p>A native <code>&lt;details&gt;</code>. It opens <b>in flow</b> and pushes the page down.</p></div>
+  <div class="spec">
+    <div class="plate" style="padding:0;width:280px;overflow:visible;border:0;background:none">
+      <details class="dr-disclosure" style="width:280px">
+        <summary>Client<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></summary>
+        <a class="dr-disclosure__item" href="#">Client<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-disclosure__item" href="#">Operator</a>
+      </details>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>Nothing in this product floats.</b> Counted across all 40 screens: no modal, sheet, popover,
+       dialog, scrim or backdrop, and not one <code>position:fixed</code>. That is why the flat rule
+       has never had to answer for an overlay and why <code>--sh-onphoto</code> is spent nowhere.</p>
+    <p><b>The selected row carries a checkmark</b>, not the word “current” —
+       <code>--ink</code> on <code>--card</code>, <b>14.37:1</b>. This is the disclosure's rule; a
+       <i>form</i> asking a question takes the circle instead.</p>
+    <p><b>The chevron turns 180° on open.</b> It joins the button's <code>transform .12s</code> rather
+       than becoming a fifth motion loop. Under reduced motion the glyph still turns — it just does
+       not travel: the direction is information, the animation is only how it gets there.</p>
+  </div>
+</div>
+
+<!-- ═══ MOTION ════════════════════════════════════════════════════════════ -->
+<h2 class="sec">Motion</h2>
+<div class="row">
+  <div class="nm"><b>Four loops, every one functional</b><code>--dur-* · --ease-out</code>
+    <p>None is decoration. All are <code>animation: none</code> under
+       <code>prefers-reduced-motion: reduce</code>.</p></div>
+  <div class="spec col">
+    <table class="t">
+      <tr><th>Name</th><th>Duration</th><th>Easing</th><th>What moves</th></tr>
+      <tr><td>button</td><td>.15s / .12s</td><td>default</td><td><code>filter</code>, <code>background</code>, <code>transform</code>; active <code>translateY(1px) scale(.99)</code>. Also carries the disclosure chevron's turn.</td></tr>
+      <tr><td><code>dr-ping</code></td><td>1.8s</td><td><code>--ease-out</code></td><td>one ring leaving a live status disc and fading — far under the 3-flashes-per-second ceiling (2.3.1)</td></tr>
+      <tr><td><code>dr-pulse</code></td><td>1.4s</td><td>ease-in-out</td><td>skeleton opacity 1 → .5, offset −.47s / −.93s per card so three skeletons do not blink as one</td></tr>
+      <tr><td><code>dr-up</code></td><td>1.6s</td><td><code>--ease-out</code></td><td>the arrow leaves the upload tray; the tray holds still. Rests <b>visible</b> at 0% and 100%</td></tr>
+    </table>
+  </div>
+  <div class="notes">
+    <p>Loops carry information; the button row is a transition that answers a touch. A chevron turning
+       on open is that second kind, which is why it did not become a fifth loop.</p>
+  </div>
+</div>
+
+<!-- ═══ THE API ═══════════════════════════════════════════════════════════ -->
+<h2 class="sec">One API</h2>
+<div class="row">
+  <div class="nm"><b>The drift this kit closes</b>
+    <p>One concept had many class names across 84 files. Each row is now one name.</p></div>
+  <div class="spec col">
+    <table class="t">
+      <tr><th>Concept</th><th>Was</th><th>Now</th></tr>
+      <tr><td>progress node</td><td><code>.nd</code> · <code>.tl-dot</code></td><td><code>.dr-node</code></td></tr>
+      <tr><td>card surface</td><td><code>article.card</code> · <code>.oh-card</code> · <code>.sk-card</code></td><td><code>.dr-card</code></td></tr>
+      <tr><td>row panel</td><td><code>.kv</code> · <code>.kv-row</code> · <code>.kv-key</code> · <code>.kv-val</code></td><td><code>.dr-rows</code></td></tr>
+      <tr><td>pill</td><td><code>.badge</code> · <code>.chip</code> · <code>.ohl-eta</code> · <code>.tag</code> · <code>.grouptab</code> · <code>.fchip</code></td><td><code>.dr-chip</code> · <code>.dr-grouptab</code></td></tr>
+      <tr><td>icon-only button</td><td><code>.sbi.grey</code> · <code>.icon-btn</code> · <code>.ic-filter</code> · <code>.op-edit</code> · <code>.ic-edit</code> · <code>.pencil</code></td><td><code>.dr-btn--icon</code></td></tr>
+      <tr><td>caption</td><td><code>.hint</code> · <code>.note</code> · <code>.field-hint</code> · <code>.check-note</code></td><td><code>.dr-hint</code> · <code>.dr-note</code></td></tr>
+      <tr><td>mono structure label</td><td><code>.zlabel</code> · <code>.ohl-lbl</code></td><td><code>.dr-label</code></td></tr>
+      <tr><td>media surface</td><td><code>.media-ph</code> · <code>.ohl-ic</code> · <code>.msg-ph</code> · <code>.slide-ph</code> · <code>.map-ph</code> · <code>.sk-well</code></td><td><code>.dr-well</code> · <code>.dr-mark</code></td></tr>
+      <tr><td>state mark</td><td><code>.msg-ph</code> · <code>.success-mark</code></td><td><code>.dr-mark</code></td></tr>
+    </table>
+  </div>
+  <div class="notes">
+    <p><b>Three drifts found and recorded, not silently fixed. Two are settled.</b></p>
+    <p><b>1 · Nav bar height. Settled 2026-08-02.</b> Measured <b>56px</b> on all ten painted
+       pages. <code>DESIGN.md</code> stated no height and <code>ui/inventory.md</code>'s Nav bar row
+       said 44 — both now carry 56, because the frames are the design.</p>
+    <p><b>2 · Chip glyph. Settled 2026-08-02.</b> The build drew <b>13px</b> in a badge and
+       <b>14px</b> in the ETA pill — one component at two values, against the
+       One-Component-One-Value rule. The designer's call is <b>14 everywhere</b>;
+       <code>--ic-13</code> becomes a declared rung that nothing spends.</p>
+    <p><b>3 · Home indicator radius. Still open</b> — the one drift not yet ruled on.
+       Measured <b>2px</b>. <code>DESIGN.md</code> says
+       <code>--r-pill</code>. The base sheet sets 2px and no painted block overrides it. 2 is on the
+       2 / 4 / 8 floor, which the closed-ramp rule permits for an internal detail — but the document
+       and the frame disagree, and that is the designer's call.</p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

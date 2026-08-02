@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order history · loading</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Order history" — STATE: loading.
+  PERSONA: Client C-1. JOB: RJ-C5 — repeat without starting over.
+  STATE: loading — fetching order history. Same shell as order-history.html; skeleton cards stand in for the list. Header/footer stay solid. Activity tab current.
+  flows.md node: RELATED · RJ-C5 → "Loading: fetching order history".
+  VISUAL LAYER (2026-07-23): Studio design language from concept/concept.html applied to the
+  screen frame — palette, type, form, Phosphor-line icons; skeletons pulse to convey state
+  (with a reduced-motion fallback). Structure and copy unchanged.
+  SKELETON REVISION (2026-08-01, designer feedback): the skeleton was still rehearsing an
+  old card — media band on top, three loose lines, a button slab — while order-history.html
+  had moved to a 96×72 drone well beside a name-over-date stack, an inset From▸To strip and
+  a fee row with two circular actions. Each block now sits where the real card puts it, on
+  the same spacing scale, so the swap from skeleton to content does not move the list. See
+  concept.md rev 24.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="order-history.html">success</a>
+      <a href="order-history-empty.html">empty</a>
+      <a href="order-history-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Order history</h1>
+    <p class="sub">Client · Activity tab · state: <b>loading</b> · file: order-history-loading.html</p>
+    <div class="flow"><b>Loading — fetching order history.</b><br>flows.md RJ-C5: "Loading: fetching order history". Skeleton cards; transient, not a dead-end.</div>
+    <div class="legend"><p><b>Only the content changes</b> vs order-history.html:</p><p><b>Status</b> ▸ "Loading your orders…"</p><p><b>List</b> ▸ 3 skeleton cards on the real card anatomy — drone well (with its status mark) + name over date · From ▸ To inset strip · price + two circular actions. Same 20/28 spacing as the loaded card, so nothing shifts on arrival.</p><p><b>Not rehearsed</b> ▸ the live order's progress rail, ETA chip and green CTA — a skeleton that drew them would promise a live order that may not be there.</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Activity</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Order history <span class="dr-label__act">▸ fetching…</span></p>
+      <p class="dr-status-line" role="status">Loading your orders…</p>
+      <section aria-label="Order history is loading">
+        <ul class="dr-list" aria-hidden="true">
+          <li>
+            <div class="dr-card">
+              <span class="dr-order__top">
+                <span class="dr-sk-well"></span>
+                <span class="dr-sk-head"><span class="dr-sk-line dr-sk-title" style="width:62%"></span><span class="dr-sk-line dr-sk-date" style="width:40%"></span></span>
+              </span>
+              <span class="dr-inset">
+                <span class="dr-inset__stop dr-sk-stop"><span class="dr-sk-line dr-sk-lbl"></span><span class="dr-sk-line dr-sk-place" style="width:58%"></span></span>
+                <span class="dr-sk-dir"></span>
+                <span class="dr-inset__stop dr-sk-stop dr-inset__stop--to"><span class="dr-sk-line dr-sk-lbl"></span><span class="dr-sk-line dr-sk-place" style="width:72%"></span></span>
+              </span>
+              <span class="dr-order__fee">
+                <span class="dr-sk-money"><span class="dr-sk-line dr-sk-price"></span></span>
+                <span class="dr-order__acts"><span class="dr-sk-btn"></span><span class="dr-sk-btn"></span></span>
+              </span>
+            </div>
+          </li>
+          <li class="dr-sk-d1">
+            <div class="dr-card">
+              <span class="dr-order__top">
+                <span class="dr-sk-well"></span>
+                <span class="dr-sk-head"><span class="dr-sk-line dr-sk-title" style="width:50%"></span><span class="dr-sk-line dr-sk-date" style="width:34%"></span></span>
+              </span>
+              <span class="dr-inset">
+                <span class="dr-inset__stop dr-sk-stop"><span class="dr-sk-line dr-sk-lbl"></span><span class="dr-sk-line dr-sk-place" style="width:70%"></span></span>
+                <span class="dr-sk-dir"></span>
+                <span class="dr-inset__stop dr-sk-stop dr-inset__stop--to"><span class="dr-sk-line dr-sk-lbl"></span><span class="dr-sk-line dr-sk-place" style="width:56%"></span></span>
+              </span>
+              <span class="dr-order__fee">
+                <span class="dr-sk-money"><span class="dr-sk-line dr-sk-price" style="width:70px"></span></span>
+                <span class="dr-order__acts"><span class="dr-sk-btn"></span><span class="dr-sk-btn"></span></span>
+              </span>
+            </div>
+          </li>
+          <li class="dr-sk-d2">
+            <div class="dr-card">
+              <span class="dr-order__top">
+                <span class="dr-sk-well"></span>
+                <span class="dr-sk-head"><span class="dr-sk-line dr-sk-title" style="width:56%"></span><span class="dr-sk-line dr-sk-date" style="width:36%"></span></span>
+              </span>
+              <span class="dr-inset">
+                <span class="dr-inset__stop dr-sk-stop"><span class="dr-sk-line dr-sk-lbl" style="width:56px"></span><span class="dr-sk-line dr-sk-place" style="width:44%"></span></span>
+              </span>
+              <span class="dr-order__fee">
+                <span class="dr-sk-money"><span class="dr-sk-line dr-sk-price" style="width:78px"></span></span>
+                <span class="dr-order__acts"><span class="dr-sk-btn"></span><span class="dr-sk-btn"></span></span>
+              </span>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="listings.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+        <a class="dr-tab" href="order-history.html" aria-current="page"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+        <a class="dr-tab" href="support.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+        <a class="dr-tab" href="account.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Job checklist (in progress) · success (base)</title>
+<!-- SCREEN: "Job checklist (in progress)" — STATE: success (base). JOB (jtbd): RJ-O2 · O-03 — a structured checklist so no required step is missed (large touch targets, gloves / sunlight). Flow: MJ-2 "Job checklist" → All steps + result captured? EXIT: Complete & upload result → Result upload. -->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="job-checklist.html" class="cur" aria-current="page">success</a>
+      <a href="job-checklist-error.html">error</a>
+    </nav>
+    <h1>Job checklist (in progress)</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>success (base)</b> · file: job-checklist.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O2 · O-03 — a structured checklist so no required step is missed.<br><b>Exit:</b> Complete &amp; upload result → <b>Result upload</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Checklist</b> ▸ done + remaining steps</p><p><b>Progress</b> ▸ 3 / 5 in the header</p></div>
+  </aside>
+
+  <div class="wf-frame">
+    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+    <header class="topbar"><button class="back">‹ Job brief</button><span class="title">Checklist</span><span class="who">3 / 5</span><span class="spacer"></span></header>
+    <main>
+      <p class="zlabel">Pre-flight &amp; job steps <span class="act">▸ check every required step (RJ-O2)</span></p>
+      <ul class="checklist">
+        <li class="check-item done"><span class="check-box" aria-hidden="true">✓</span><span class="check-label">Pre-flight safety check</span></li>
+        <li class="check-item done"><span class="check-box" aria-hidden="true">✓</span><span class="check-label">Battery ≥ 80%</span></li>
+        <li class="check-item done"><span class="check-box" aria-hidden="true">✓</span><span class="check-label">Parcel secured</span></li>
+        <li class="check-item"><span class="check-box" aria-hidden="true"></span><span class="check-label">Capture delivery photo</span></li>
+        <li class="check-item"><span class="check-box" aria-hidden="true"></span><span class="check-label">Confirm handover with the client</span></li>
+      </ul>
+    </main>
+    <footer class="actionbar">
+      <a class="btn btn-primary btn-block" href="result-upload.html">Complete &amp; add delivery photo</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>

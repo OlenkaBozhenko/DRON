@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Inspection report · success (base)</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Inspection report" (base = success milestone).
+  PERSONA: Client C-1 (C-2 inspection outcome). JOB: RJ-C4 — a clear, documented result I can act on.
+  STATE: success (base) — cover photo, findings list, photo set, operator signature. Client confirm here releases operator pay (RJ-O3). Deep: back → tracking, sticky action footer.
+  flows.md node: RELATED · RJ-C4 → "Inspection report" → Rate the order.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=fbdc76ef">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="inspection-report.html" class="cur" aria-current="page">success</a>
+      <a href="inspection-report-error.html">error</a>
+      <a href="inspection-report-loading.html">loading</a>
+    </nav>
+    <h1>Inspection report</h1>
+    <p class="sub">Client · MJ-1 (C-2) · state: <b>success (base)</b> · file: inspection-report.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-C4 — documented proof of the inspection: findings + photos I can trust and act on. Confirming here releases the operator's pay (RJ-O3).<br><b>Exit:</b> Rate the order → <b>Rate</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Cover</b> ▸ hero shot of the structure</p><p><b>Findings</b> ▸ what was found, by severity</p><p><b>Photo set</b> ▸ evidence frames</p><p><b>Signature</b> ▸ verified by DRON</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="tracking.html">‹ On the way</a><span class="dr-topbar__title">Inspection report</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <section class="dr-center" aria-label="Report ready" style="padding-top:4px;">
+        <span class="dr-mark dr-mark--milestone"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+        <p class="dr-display">Report ready</p>
+        <p class="dr-lead">Roof inspection · Osokorky, 14 · completed 15:42.</p>
+      </section>
+
+      <p class="zlabel dr-label">Cover <span class="dr-label__act">▸ hero shot (RJ-C4)</span></p>
+      <section aria-label="Cover photo">
+        <span class="dr-well dr-well--photo" style="width:100%;height:200px;"><img src="../assets/scenes/thumbs/inspection-roof-cracked-tiles.jpg" alt="Cracked roof tiles near the ridge — the subject of this report" loading="lazy" decoding="async"></span>
+      </section>
+
+      <p class="zlabel dr-label">Findings <span class="dr-label__act">▸ what was found · severity</span></p>
+      <section aria-label="Findings">
+        <ul class="dr-list">
+          <li>
+            <article class="dr-card dr-card--row dr-listing">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Roof · north slope</span>
+                <span class="dr-listing__desc">2 cracked tiles near the ridge — water ingress risk.</span>
+                <span class="dr-listing__meta"><span class="dr-chip">Severity · High</span></span>
+              </span>
+            </article>
+          </li>
+          <li>
+            <article class="dr-card dr-card--row dr-listing">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Gutter · east run</span>
+                <span class="dr-listing__desc">Leaf blockage over ~1.5 m, standing water.</span>
+                <span class="dr-listing__meta"><span class="dr-chip">Severity · Medium</span></span>
+              </span>
+            </article>
+          </li>
+          <li>
+            <article class="dr-card dr-card--row dr-listing">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Chimney flashing</span>
+                <span class="dr-listing__desc">Sealed and intact — no action needed.</span>
+                <span class="dr-listing__meta"><span class="dr-chip">Severity · None</span></span>
+              </span>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <p class="zlabel dr-label">Photo set <span class="dr-label__act">▸ evidence frames</span></p>
+      <section aria-label="Inspection photos">
+        <div class="dr-stack" style="flex-direction:row;gap:8px;">
+          <span class="dr-well dr-well--photo" style="flex:1;height:88px;"><img src="../assets/scenes/thumbs/inspection-roof-crack-1.jpg" alt="Evidence 1 of 3 — the cracked tiles from directly above" loading="lazy" decoding="async"></span>
+          <span class="dr-well dr-well--photo" style="flex:1;height:88px;"><img src="../assets/scenes/thumbs/inspection-roof-crack-2.jpg" alt="Evidence 2 of 3 — the same cracked tiles along the ridge, showing the crack running to the edge" loading="lazy" decoding="async"></span>
+          <span class="dr-well dr-well--photo" style="flex:1;height:88px;"><img src="../assets/scenes/thumbs/inspection-gutter-blocked.jpg" alt="Evidence 3 of 3 — the east gutter run, blocked with leaf debris and standing water" loading="lazy" decoding="async"></span>
+        </div>
+      </section>
+
+      <p class="zlabel dr-label">Signature <span class="dr-label__act">▸ who verified it</span></p>
+      <section aria-label="Operator signature">
+        <div class="dr-rows">
+          <div class="dr-rows__row"><span class="dr-rows__key">Operator</span><span class="dr-rows__val">Andriy M.</span></div>
+          <div class="dr-rows__row"><span class="dr-rows__key">Certificate</span><span class="dr-rows__val">UA-DRN-04812</span></div>
+          <div class="dr-rows__row"><span class="dr-rows__key">Signed</span><span class="dr-rows__val">2 Jul, 15:42 · <span class="dr-chip dr-chip--claim">Verified by DRON</span></span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="rate.html">Rate this order</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="report-issue.html">Report an issue</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fbdc76ef"></script>
+</body>
+</html>
