@@ -118,8 +118,8 @@ carry the brand.
 
 | # | Filename | What it shows | Pages |
 |---|---|---|---|
-| 12 | `scenes/inspection-cover-roof.jpg` | Cover frame — the whole roof from the air, the subject of the report | `inspection-report` — `media-ph:COVER PHOTO` |
-| 13 | `scenes/inspection-roof-cracked-tiles.jpg` | **Severity High** — two cracked tiles near the ridge | `inspection-report` — `media-ph:INSPECTION IMAGE` 1/3 |
+| ~~12~~ | ~~`scenes/inspection-cover-roof.jpg`~~ | **Filled 2026-08-02 — with #13's picture, on the designer's instruction.** She supplied Figma node `70:139`, a close-up of two cracked tiles near the ridge, and put it in the cover slot. Saved by what it shows, not by where it sits: `scenes/inspection-roof-cracked-tiles.jpg`. The establishing shot this row asked for — the whole roof from the air — was never supplied and is no longer blocking; the cover now opens on the damage instead of on the building. | `inspection-report` — `media-ph:COVER PHOTO` **(filled)** |
+| 13 | `scenes/inspection-roof-cracked-tiles.jpg` **(file exists, slot still empty)** | **Severity High** — two cracked tiles near the ridge. The file is in the repo, because this is exactly what node `70:139` shows — but it is spent on the cover. Either the same picture repeats here, which makes the report look like it has one photograph, or a second frame of the same damage from another angle fills it. | `inspection-report` — `media-ph:INSPECTION IMAGE` 1/3 |
 | 14 | `scenes/inspection-gutter-blocked.jpg` | **Severity Medium** — a gutter run blocked with leaves, standing water | `inspection-report` — 2/3 |
 | 15 | `scenes/inspection-chimney-flashing.jpg` | **Severity None** — sealed, intact chimney flashing | `inspection-report` — 3/3 |
 | 16 | `scenes/delivered-proof-2.jpg` | A second doorstep — an apartment landing, not a house | `order-history` carries **two** delivered package orders and one proof photo |
