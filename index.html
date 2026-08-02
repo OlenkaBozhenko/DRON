@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>DRON — Project index</title>
+  <!--
+    The index of the whole project, served from the repo root.
+
+    It lives here rather than in .github/pages/ so that a plain
+    `python -m http.server` at the root opens it instead of a directory
+    listing of .git/ and .claude/. The deploy workflow copies this same file
+    to _site/index.html, so the local root and the published site are one
+    page, not two that drift.
+
+    Every link is relative and resolves identically in both places. The
+    workflow publishes exactly what is listed here: the five documents, the
+    wireframes, the concept pages and ui/.
+  -->
+  <style>
+    /* Deliberately single-theme. This is the project's index, not a product
+       surface — it stands apart from the warm #F7F5F2 pages it points at, and
+       committing to one dark world is the choice rather than an omission. */
+    :root {
+      color-scheme: dark;
+      --page: #0b0e14;
+      --card: #11161f;
+      --line: #1f2633;
+      --ink: #e6e9ef;
+      /* Was #6b7280, which measured 3.75:1 on the card and 4.00:1 on the page
+         — both under the 4.5:1 WCAG 1.4.3 asks of body text. Lifted 15% along
+         its own blue-grey axis to 4.76:1 and 5.07:1, so the cast is kept and
+         the criterion is met. */
+      --muted: #7B8393;
+      --focus: #3b82f6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+      background: var(--page);
+      color: var(--ink);
+    }
+    main { width: min(620px, 90vw); padding: 48px 0; }
+    .brand { font-size: 13px; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+    h1 { font-size: 28px; font-weight: 600; margin: 0 0 8px; text-wrap: balance; }
+    .sub { color: var(--muted); font-size: 15px; margin: 0 0 32px; }
+    h2 {
+      font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--muted); margin: 32px 0 12px;
+    }
+    h2:first-of-type { margin-top: 0; }
+    ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    a {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 20px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 16px;
+      transition: border-color .15s, transform .15s;
+    }
+    a span { color: var(--muted); font-size: 13px; text-align: right; flex: none; }
+    a:hover { border-color: var(--focus); transform: translateY(-1px); }
+    a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      a { transition: none; }
+      a:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="brand">DRON</p>
+    <h1>Project index</h1>
+    <p class="sub">Drone-as-a-service. Research, structure, the clickable prototype, and the visual language.</p>
+
+    <h2>Research</h2>
+    <ul>
+      <li><a href="research.html">Research report <span>research.html</span></a></li>
+      <li><a href="target-audience.html">Personas &amp; jobs to be done <span>target-audience.html</span></a></li>
+      <li><a href="ux-research.html">UX research <span>ux-research.html</span></a></li>
+    </ul>
+
+    <h2>Structure</h2>
+    <ul>
+      <li><a href="ia.html">Information architecture — sitemap &amp; flows <span>ia.html</span></a></li>
+      <li><a href="tone-of-voice.html">Tone of voice <span>tone-of-voice.html</span></a></li>
+    </ul>
+
+    <h2>Prototype</h2>
+    <ul>
+      <li><a href="wireframes/welcome.html">Wireframes — 84 screens, walkable <span>wireframes/welcome.html</span></a></li>
+      <li><a href="wireframes/">All wireframe files <span>wireframes/</span></a></li>
+    </ul>
+
+    <h2>Design</h2>
+    <ul>
+      <li><a href="concept/concept.html">Concept — the visual language <span>concept/concept.html</span></a></li>
+      <li><a href="concept/directions.html">Directions — the three tunings <span>concept/directions.html</span></a></li>
+      <li><a href="ui/inventory.html">UI inventory — the component kit <span>ui/inventory.html</span></a></li>
+    </ul>
+  </main>
+</body>
+</html>
