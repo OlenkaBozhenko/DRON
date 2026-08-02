@@ -174,7 +174,7 @@
   .where{ font-size:12.5px; line-height:1.6; color:var(--fg-2); }
   .where code{
     font-family:var(--mono); font-size:11px; color:var(--fg-3);
-    display:block;
+    display:inline; white-space:nowrap;
   }
 
   /* &#9472;&#9472; the specimen plate: always Studio, never the viewer's theme &#9472;&#9472; */
@@ -496,6 +496,44 @@
   }
   .d-search .t{ flex:1; font-size:15px; line-height:21px; color:var(--slate); }
 
+  /* checkbox and radio: shape says how many (designer, 2026-08-02; HIG says
+     the same). Square = independent on/off, several at a time. Circle = one
+     of a mutually exclusive set. The unchecked outline is --slate 5.95:1,
+     not --line 1.21:1 -- an empty box is identified by its boundary alone,
+     so WCAG 1.4.11 applies at 3:1. The checked fill is still open, so both
+     candidates are drawn under each specimen with their ratios. */
+  .d-pick{ background:var(--card); border-radius:var(--r-card); overflow:hidden; width:250px; }
+  .d-prow{
+    min-height:44px; display:flex; align-items:center; gap:12px;
+    padding:0 16px; position:relative;
+  }
+  .d-prow + .d-prow::before{
+    content:""; position:absolute; left:52px; right:0; top:0; height:1px; background:var(--line);
+  }
+  .d-box{
+    width:24px; height:24px; flex:none; box-sizing:border-box;
+    border:1px solid var(--slate); color:transparent;
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  .d-box.sq{ border-radius:4px; }
+  .d-box.ci{ border-radius:999px; }
+  .d-box.on{ border-color:transparent; }
+  .d-box.on.green{ background:var(--green); color:var(--on-green); }
+  .d-box.on.ink{ background:var(--ink); color:var(--card); }
+  .d-dot{ width:10px; height:10px; border-radius:999px; background:currentColor; }
+  .d-plabel{ flex:1; font-size:15px; line-height:21px; color:var(--ink); }
+  .d-psub{ display:block; font-size:12.5px; line-height:17px; color:var(--slate); }
+  .d-fills{ display:flex; gap:16px; margin-top:12px; padding:0 2px; justify-content:center; }
+  .d-fill{ display:flex; flex-direction:column; align-items:center; gap:5px; }
+  .d-fill em{
+    font-style:normal; font-size:10.5px; line-height:1.3; color:var(--slate);
+    font-variant-numeric:tabular-nums; text-align:center;
+  }
+  /* the select: the form row with a value on the right and a chevron after
+     it. Closed points down; rev 44 turns it 180 on open. */
+  .d-fsel{ font-size:15px; line-height:21px; font-weight:600; color:var(--ink); }
+  .d-chev{ flex:none; color:var(--slate); display:inline-flex; }
+
   footer{ margin-top:72px; padding-top:24px; border-top:1px solid var(--rule); }
   footer h3{
     font-family:var(--mono); font-size:11px; font-weight:600;
@@ -542,9 +580,9 @@
   </div>
 
   <div class="figures">
-    <div class="fig"><div class="n">49</div><div class="k">in the kit</div></div>
+    <div class="fig"><div class="n">50</div><div class="k">in the kit</div></div>
     <div class="fig"><div class="n">26</div><div class="k">carry values</div></div>
-    <div class="fig"><div class="n">23</div><div class="k">still grayscale</div></div>
+    <div class="fig"><div class="n">24</div><div class="k">still grayscale</div></div>
     <div class="fig"><div class="n">3<span style="font-size:15px;color:var(--fg-3)"> / 40</span></div><div class="k">screens painted</div></div>
     <div class="fig"><div class="n">9</div><div class="k">one-off blocks</div></div>
     <div class="fig"><div class="n">2</div><div class="k">inks</div></div>
@@ -1231,15 +1269,21 @@
 
 <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; FORMS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section id="forms">
-  <h2>Forms <span class="count">9</span></h2>
+  <h2>Forms <span class="count">10</span></h2>
   <p class="sec-note">
-    <b>The largest gap in the system, and the one whose ground rule is now settled.</b> Nothing a person types into, checks, picks or uploads has
-    been painted &#8212; not one field on any of the three painted screens. <b>The ground rule is settled &#8212; a field
-    has no border and lives in a row panel</b> (2026-08-02) &#8212; so the rows below now carry a
-    decided treatment rather than an open question, and <code>--r-input 10px</code> has finally
-    landed on the one field that keeps a ground, the search bar. What is still owed on each is the
-    part the decision did not cover: the disabled state, and for the pickers, what the surface does
-    behind a checkmark.</p>
+    <b>The largest gap in the system, and the one whose ground rules are now settled.</b> Nothing a person types into, checks, picks or uploads has
+    been painted &#8212; not one field on any of the three painted screens. <b>Two rules landed on
+    2026-08-02 and the rows below follow them.</b> First: <b>a field has no border</b> and lives in a
+    row panel, which is where <code>--r-input 10px</code> finally landed &#8212; on the one field that
+    keeps a ground, the search bar. Second: <b>shape says how many</b> &#8212; a <b>circle</b> is one of
+    a mutually exclusive set, a <b>square</b> is an independent on/off. That is
+    <code>HIG &#183; Radio Buttons / Checkboxes</code> verbatim, and it is also the fix for the one real
+    defect the count turned up: <code>payment</code> and <code>withdraw</code> carry
+    <code>type="radio"</code> inside a <b>square</b> box, so the same shape means &#8220;one of these&#8221;
+    there and &#8220;several of these&#8221; on <code>operator-profile-setup</code> &#8212;
+    <code>WCAG 3.2.4 Consistent Identification</code>. <b>The wireframes are not being changed for
+    it</b>; the rule is recorded and applied when those screens are painted. What is still owed on
+    each row is the disabled state, and on the pickers the checked fill.</p>
   <p class="sec-note" style="margin-top:10px">
     <b>Nothing in the product floats.</b> Counted across all 40 screens: no modal, sheet, popover,
     dialog, scrim or backdrop, and not one <code>position:fixed</code>. Every surface sits in the
@@ -1276,9 +1320,9 @@
           <span class="st decided">decided &#183; not built</span>
           <p class="desc">The typed box itself, and its dropdown sibling.</p>
         </td>
-        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
+        <td class="c-spec"><span class="plate tight" style="background:#F7F5F2"><span class="d-form"><span class="d-frow"><span class="d-fph">Service</span><span class="d-fsel">Delivery</span><span class="d-chev"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span></span><span class="d-frow"><span class="d-fph">Weight</span><span class="d-fsel">Under 2&nbsp;kg</span><span class="d-chev"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span></span><span class="d-frow"><span class="d-fph">When</span><span class="d-fsel">Now</span><span class="d-chev"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span></span></span></span></td>
         <td class="c-screens"><span class="scr">10</span><span class="scr-sub">0 painted</span></td>
-        <td class="c-where"><p class="where" style="max-width:34ch"><b>Settled 2026-08-02:</b> same call &#8212; no border, no ground of its own. The 44px row height stays. The select keeps its chevron, which rotates on open.</p></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Settled 2026-08-02:</b> same call as the field &#8212; no border, no ground of its own. The 44px row height stays.<br><br><b>A select is the form row with a value on the right and a chevron after it.</b> The difference is the chevron, not the container, so it needs no component of its own. Label <code>--slate</code> <b>5.95:1</b> &#183; value <code>--ink</code> 15/600 <b>14.37:1</b> &#183; chevron 16px <code>--slate</code> <b>5.95:1</b>, closed pointing down and turning 180&#176; on open (rev 44). The row is the tap target at a measured <b>44.0px</b>, not the chevron.</p></td>
         <td class="c-where"><p class="where">Ten screens across both personas</p></td>
       </tr>
 
@@ -1296,25 +1340,37 @@
 
       <tr>
         <td class="c-name">
-          <div class="nm">Checkbox &#183; checklist</div><span class="sel">.check-item &#183; .check-box</span>
-          <span class="st gray">grayscale</span>
-          <p class="desc">The operator&#8217;s pre-flight checklist, and consent rows in payment and withdraw.</p>
+          <div class="nm">Checkbox</div><span class="sel">.check-item &#183; .check-box &#183; .checklist</span>
+          <span class="st decided">shape settled &#183; fill open</span>
+          <p class="desc">Independent on/off &#8212; several can be on at once. The operator&#8217;s services, the pre-flight checklist, &#8220;save this address&#8221;.</p>
         </td>
-        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
-        <td class="c-screens"><span class="scr">5</span><span class="scr-sub">0 painted</span></td>
-        <td class="c-where"><p class="where" style="max-width:34ch"><b>The one form control the system has already solved</b> &#8212; a ticked box is a green fill behind a charcoal check, exactly the walked progress node at 9.46:1. Only the radius and the target need setting.</p></td>
-        <td class="c-where"><p class="where">job-checklist &#183; payment &#183; withdraw &#183; profile-setup</p></td>
+        <td class="c-spec"><span class="plate tight col" style="background:#F7F5F2"><span class="d-pick"><span class="d-prow"><span class="d-box sq on green"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="d-plabel">Delivery</span></span><span class="d-prow"><span class="d-box sq on green"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="d-plabel">Aerial photo &amp; video</span></span><span class="d-prow"><span class="d-box sq "></span><span class="d-plabel">Inspection</span></span></span><span class="d-fills"><span class="d-fill"><span class="d-box sq on green"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><em>--green<br>9.46:1</em></span><span class="d-fill"><span class="d-box sq on ink"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><em>--ink<br>14.37:1</em></span><span class="d-fill"><span class="d-box sq "></span><em>outline<br>5.95:1</em></span></span></span></td>
+        <td class="c-screens"><span class="scr">3</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>A square</b>, because the options are independent of each other. 24px at <code>--r-detail</code> 4; the whole row is the 44pt target at a measured 52px, so the box does not have to be.<br><br><b>The unchecked outline is <code>--slate</code>, not <code>--line</code>.</b> An empty box is identified by its boundary alone, so <code>WCAG 1.4.11</code> applies at <b>3:1</b>: <code>--line</code> is <b>1.21:1</b> and fails, <code>--slate</code> is <b>5.95:1</b> and passes. Same 1.21:1 the form field turned up &#8212; there the border was removable, here the box <em>is</em> the control.<br><br><b>Also open, and not a colour question:</b> <code>job-checklist</code>, <code>operator-profile-setup</code> and <code>order-setup</code> draw the box as a static <code>&lt;span aria-hidden&gt;</code> with <b>no <code>&lt;input&gt;</code> at all</b> &#8212; no role, no state, <code>WCAG 4.1.2</code>. Defensible on the checklist, which is a progress readout; not on the other two.</p></td>
+        <td class="c-where"><p class="where">job-checklist &#183; operator-profile-setup &#183; order-setup</p></td>
       </tr>
 
       <tr>
         <td class="c-name">
-          <div class="nm">Choice card &#183; radio</div><span class="sel">.choice-card &#183; .choice-list</span>
+          <div class="nm">Radio</div><span class="sel">.check-item[type=radio] &#183; .radio &#183; .opt</span>
+          <span class="st decided">shape settled &#183; fill open</span>
+          <p class="desc">One of a mutually exclusive set &#8212; payment method, payout method, sort order.</p>
+        </td>
+        <td class="c-spec"><span class="plate tight col" style="background:#F7F5F2"><span class="d-pick"><span class="d-prow"><span class="d-box ci on green"><i class="d-dot"></i></span><span class="d-plabel">Instant to card &#8226;&#8226;&#8226;&#8226; 3318<span class="d-psub">Arrives in under a minute</span></span></span><span class="d-prow"><span class="d-box ci "></span><span class="d-plabel">Bank transfer<span class="d-psub">1&#8211;3 business days</span></span></span></span><span class="d-fills"><span class="d-fill"><span class="d-box ci on green"><i class="d-dot"></i></span><em>--green<br>9.46:1</em></span><span class="d-fill"><span class="d-box ci on ink"><i class="d-dot"></i></span><em>--ink<br>14.37:1</em></span><span class="d-fill"><span class="d-box ci "></span><em>outline<br>5.95:1</em></span></span></span></td>
+        <td class="c-screens"><span class="scr">3</span><span class="scr-sub">0 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Settled 2026-08-02 by the designer: shape says how many.</b> A circle is one of a set; a square is several. <code>HIG &#183; Radio Buttons / Checkboxes</code> says exactly this. iOS diverges &#8212; it has no radio control and marks one-of-many with a trailing checkmark &#8212; but DRON is mobile <b>web</b> in a browser with a WCAG 2.1&nbsp;AA desktop, so the platform convention is what a user reads. <b>This supersedes rev 43&#8217;s &#8220;a checkmark governs every one-of-many list&#8221;</b>: the checkmark keeps the disclosure row, which is a menu; the circle takes every form question.<br><br><b>The defect it names.</b> <code>payment</code> and <code>withdraw</code> hold <code>type="radio"</code> inside a <b>square</b> box and separate the two only by a 4px bullet against a 4px check &#8212; one shape carrying two functions, <code>WCAG 3.2.4 Consistent Identification</code>. The correct circle already exists on <code>listings-filters</code>; it has to be applied, not invented. <b>The wireframes are not being changed for it.</b></p></td>
+        <td class="c-where"><p class="where">payment &#183; withdraw &#183; listings-filters</p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Choice card</div><span class="sel">.choice-card &#183; .choice-list</span>
           <span class="st gray">grayscale</span>
-          <p class="desc">One-of-many as full-width cards with a title and a description, not a dot.</p>
+          <p class="desc">A full-width card with a title and a description that opens another screen.</p>
         </td>
         <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
         <td class="c-screens"><span class="scr">2</span><span class="scr-sub">0 painted</span></td>
-        <td class="c-where"><p class="where" style="max-width:34ch"><b>Half-settled 2026-08-02:</b> the selected card carries a <b>checkmark</b>, per HIG and the same call made on the disclosure row &#8212; charcoal on the card at 14.37:1, the glyph the walked node already draws. What is still open is whether the card itself changes at all behind the check; a green tint across a whole card would spend the screen&#8217;s accent budget on a picker.</p></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Corrected 2026-08-02: this is navigation, not a picker.</b> Both instances are <code>&lt;a href&gt;</code> that leave the screen &#8212; <code>role-select</code> to the two onboarding paths, <code>support</code> to three resolution routes. <b>There is no selected state to design</b>, which is why the earlier open question about the card changing behind a check was asked of the wrong component and is closed rather than answered.<br><br>What it needs is a card&#8217;s own set: <code>--card</code>, <code>--r-card</code> 16, a 44pt row, a chevron, and a focus ring that is keyboard-only.</p></td>
         <td class="c-where"><p class="where">role-select &#183; support</p></td>
       </tr>
 
@@ -1351,7 +1407,7 @@
         </td>
         <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
         <td class="c-screens"><span class="scr">2</span><span class="scr-sub">0 painted</span></td>
-        <td class="c-where"><p class="where" style="max-width:34ch"><b>Settled 2026-08-02 &#8212; nothing left open, and the first call collapses it into another component.</b><br><br><b>1 &#183; Card, not frame.</b> <em>Settled.</em> A wireframe where everything sits in frames cannot be compared with UI, so the border does not survive. On <code>--card</code> with <code>--line</code> rules between its rows it <b>becomes the row panel that opens</b> &#8212; same fill, same 16px radius, same 13px row. One component, not two.<br><br><b>2 &#183; The chevron.</b> <em>Settled: it rotates 180&#176; on open</em> &#8212; closed points down, open points up, and there is no third position for it to take. It joins the button&#8217;s <code>transform .12s</code> rather than becoming a fifth motion loop, because it answers a touch instead of carrying continuous information. Under reduced motion the glyph still turns, it just does not travel: the direction is information, the animation is only how it gets there. Replacing the typed character with the real 24-grid glyph is the first step either way.<br><br><b>3 &#183; Selected row.</b> <em>Settled: a checkmark, per HIG</em> &#8212; not the word &#8220;current&#8221;. Charcoal check on the card at <b>14.37:1</b>, the same glyph the walked node already draws. Applies to every one-of-many list, not just this one.</p></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Settled 2026-08-02 &#8212; nothing left open, and the first call collapses it into another component.</b><br><br><b>1 &#183; Card, not frame.</b> <em>Settled.</em> A wireframe where everything sits in frames cannot be compared with UI, so the border does not survive. On <code>--card</code> with <code>--line</code> rules between its rows it <b>becomes the row panel that opens</b> &#8212; same fill, same 16px radius, same 13px row. One component, not two.<br><br><b>2 &#183; The chevron.</b> <em>Settled: it rotates 180&#176; on open</em> &#8212; closed points down, open points up, and there is no third position for it to take. It joins the button&#8217;s <code>transform .12s</code> rather than becoming a fifth motion loop, because it answers a touch instead of carrying continuous information. Under reduced motion the glyph still turns, it just does not travel: the direction is information, the animation is only how it gets there. Replacing the typed character with the real 24-grid glyph is the first step either way.<br><br><b>3 &#183; Selected row.</b> <em>Settled: a checkmark, per HIG</em> &#8212; not the word &#8220;current&#8221;. Charcoal check on the card at <b>14.37:1</b>, the same glyph the walked node already draws. <b>Narrowed 2026-08-02:</b> this covers the disclosure row, which is a <em>menu of routes</em>. Where a <em>form</em> asks a question, the circle takes over &#8212; see Radio above.</p></td>
         <td class="c-where"><p class="where">account &#183; operator-account</p></td>
       </tr>
 
@@ -1572,7 +1628,7 @@
     
     <div class="oo">
       <span class="sc">listings-filters</span>
-      <span class="bits"><em>The filter sheet</em> &#8212; <code>.fgroup</code>, <code>.opt</code>, <code>.radio</code>, <code>.txt</code>, <code>.reset</code>. This is the only true radio control in the product; the choice-card in the kit above is a different pattern with the same job.</span>
+      <span class="bits"><em>The filter sheet</em> &#8212; <code>.fgroup</code>, <code>.txt</code>, <code>.reset</code>. <b><code>.radio</code> and <code>.opt</code> left this list 2026-08-02</b>: counted as a control rather than as a class name, the radio stands on three screens and is a kit component now. This screen is the only one that draws it correctly.</span>
     </div>
     <div class="oo">
       <span class="sc">listings-filtered</span>

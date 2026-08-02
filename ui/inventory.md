@@ -34,10 +34,14 @@ because a specimen would have to invent them. Those rows say what has to be deci
 |---|---|
 | Screens | **40** (from 84 files) |
 | Painted | **3** — order-history, tracking, delivery |
-| In the kit (2+ screens) | **49** |
+| In the kit (2+ screens) | **50** |
 | — carrying Studio values | **26** |
-| — still grayscale | **23** |
+| — still grayscale | **24** |
 | One-off (1 screen) | **9 blocks** (operator-listings excluded, see above) |
+
+**Changed 2026-08-02:** 49 → 50. The checkbox and the radio were one row and are now two, because
+they are two controls with two shapes and two meanings. The radio also moved **out of §3 One-off** —
+counted as a control rather than as the class name `.radio`, it stands on three screens.
 
 ---
 
@@ -112,12 +116,20 @@ supporting fact. A chip is never reduced to a colour — each keeps its wording.
 | **Filter chip** | `.chip`, `.cats` | 3 · 0 | grayscale | A scrolling row of category filters. Selected currently inverts to solid ink. **Selected cannot invert to solid green** — the label would be 1.52:1. The tab bar has already answered this: green tint behind charcoal plus an ink change, so selection is not colour alone. |
 | **Tag** | `.tag` | 2 · 0 | grayscale | A small non-interactive label. **Its main use just went away** — the `current` tag on the mode switcher is replaced by a checkmark (decided 2026-08-02). Check what is left before giving it values. |
 
-### 1.5 Forms — 9
+### 1.5 Forms — 10
 
 **The largest gap in the system.** Nothing a person types into, checks, picks or uploads has been
 painted — not one field on any of the three painted screens. `--r-input: 10px` is declared in the
 token block and drawn nowhere; this is what it was reserved for. Every row needs a focus, error and
 disabled treatment, each with a measured pair, before it can leave grayscale.
+
+**One rule now governs the whole group: shape says how many.** A **circle** is one of a set, a
+**square** is an independent on/off — set by the designer 2026-08-02, and it is `HIG · Radio Buttons
+/ Checkboxes` verbatim. It is also the fix for the one real defect the count turned up: `payment` and
+`withdraw` carry `type="radio"` inside a square box, so the same shape means "one of these" there and
+"several of these" on `operator-profile-setup` — `WCAG 3.2.4 Consistent Identification`. **The
+wireframes are not being changed for it**; the rule is recorded here and applied when those screens
+are painted.
 
 **Nothing in the product floats.** Counted across all 40 screens: no modal, sheet, popover, dialog,
 scrim or backdrop, and not one `position:fixed`. Every surface sits in the flow, which is why the
@@ -130,12 +142,13 @@ is appropriate and the exception is what it was named for.
 | **Form field** | `.form-field`, `.field-label`, `.field-hint` | 8 · 0 | **decided · not built** | **No border** (decided 2026-08-02, HIG's own form pattern). A field lives inside a row panel and *is* the row that accepts typing — label, value, separator, no box. Value `--ink` on `--card` **14.37:1**; label and placeholder `--slate` **5.95:1**. Focus is the painted ring, `2.5px --ink` — **14.37:1** on a card. Error text `--danger-ink` **6.14:1**, carried by words or a glyph, never by a boundary alone. **What does not survive painting:** the grayscale `border:1px solid var(--line)` at **1.21:1** — a boundary that identifies a control and sits under 3:1 is the actual 1.4.11 failure.  Row height 47–47.8px, so HIG's 44pt target is met by the row panel's existing rhythm with no change. **Drawn in the artifact** as a decided specimen, read across from Apple's own grouped form (Figma `1:301`):
 
 **Anatomy.** Grouped card `--card` at `--r-card` 16 · row `min-height:44` with `0 16px` padding · separator `--line` inset 16px from the left, drawn on every row but the first · placeholder `--slate` 15/400 · value `--ink` 15/600 · caret 2 × 19px `--ink` — **not green**, which cannot be a line at 1.52:1 where Apple uses its blue tint · clear button a 20px `--btn2` disc with an `--ink` glyph, **11.54:1**. Measured: every row lands at exactly **44.0px**. |
-| **Input · select** | `.control`, `.select` | 10 · 0 | grayscale · **settled** | Same call: no border, no ground of its own. The 44px row height stays (HIG's target). The select keeps its chevron, which rotates on open per rev 44. |
+| **Input · select** | `.control`, `.select` | 10 · 0 | **decided · not built** | Same call: no border, no ground of its own. The 44px row height stays (HIG's target). The select keeps its chevron, which rotates on open per rev 44. **Drawn in the artifact** beside the form field, because a select is that row with a value on the right and a chevron after it — the difference is the chevron, not the container. Chevron 16px `--slate` — **5.95:1**; value `--ink` 15/600 right-aligned before it; the row is the tap target at 44.0px, not the chevron. |
 | **Search row** | `.search-row`, `.field` | 2 · 0 | grayscale · **settled** | The one field that keeps a ground, because it is not in a grouped list — a filled rounded rect on the page, `--media` at **`--r-input` 10px**, no border. That is the iOS search bar (Apple's Figma `1:424`), and it finally gives `--r-input` its only home: declared since §4 and drawn nowhere until now.
 
 **Anatomy.** `--media` fill · `--r-input` 10 · `min-height:44` (measured 44.0) · padding `0 12px` · gap 8 · 16px magnifier and placeholder both `--slate`, **5.51:1** · value `--ink` **13.33:1**. |
-| **Checkbox · checklist** | `.check-item`, `.check-box`, `.checklist` | 5 · 0 | grayscale | **The one form control the system has already solved** — a ticked box is a green fill behind a charcoal check, exactly the walked progress node at **9.46:1**. Only the radius and the target need setting. |
-| **Choice card · radio** | `.choice-card`, `.choice-list`, `.choice-title`, `.choice-desc` | 2 · 0 | grayscale | **Half-settled 2026-08-02:** the selected card carries a **checkmark**, per HIG and the same call made on the disclosure row — charcoal on the card at **14.37:1**. Still open: whether the card itself changes behind the check. A green tint across a whole card would spend the screen's accent budget on a picker. |
+| **Checkbox** | `.check-item`, `.check-box`, `.checklist` | 3 · 0 | grayscale · **shape settled** | **A square** — the control for options that are independent of each other, several of which can be on at once. 24px at `--r-detail` 4; unchecked outline **1px `--slate`** — **5.95:1**, because the grayscale `--line` outline is **1.21:1** and a drawn boundary that identifies a control has to clear 3:1 (`WCAG 1.4.11`); checked carries a charcoal check on a fill. The whole row is the 44pt target — measured 52px — so the box does not have to be. **Two gaps stay open:** the checked fill (see §4), and the fact that `job-checklist`, `operator-profile-setup` and `order-setup` draw the box as a static `<span aria-hidden>` with **no `<input>` at all** — no role and no state for `WCAG 4.1.2`. On `job-checklist` that is defensible, it is a progress readout rather than a control; on the other two it is not. |
+| **Radio** | `.check-item` + `type="radio"`, `.radio`, `.opt` | 3 · 0 | grayscale · **shape settled** | **A circle** — the control for a set of mutually exclusive options, exactly one of which is on. Same 24px box, `--r-pill`, same **5.95:1** unchecked outline; checked carries a filled dot, `inset:4px`. **Settled 2026-08-02 by the designer: shape carries the difference, not a glyph inside it** — circle means one, square means several. The correct circle already exists on `listings-filters`; `payment` and `withdraw` hold `type="radio"` in a **square** box and separate the two only by a 4px bullet against a 4px check. That is `WCAG 3.2.4 Consistent Identification`: one shape cannot mean two functions. **`HIG · Radio Buttons / Checkboxes` says the same thing** — radio for a mutually exclusive set, checkbox for independent on/off. iOS diverges by having no radio control at all and marking one-of-many with a trailing checkmark; DRON is mobile **web** in a browser with a WCAG 2.1 AA desktop, so the platform convention is the one that reads. |
+| **Choice card** | `.choice-card`, `.choice-list`, `.choice-title`, `.choice-desc` | 2 · 0 | grayscale | **Corrected 2026-08-02: this is navigation, not a picker.** Both instances are `<a href>` that leave the screen — `role-select` to the two onboarding paths, `support` to three resolution routes. There is no selected state to design, which is why the earlier open question about "the card behind the check" was asked of the wrong component and is closed rather than answered. What it needs is a card's own set: `--card`, `--r-card` 16, a 44pt row, a chevron, and a keyboard-visible focus ring. |
 | **Disclosure row** | `details.dropdown` | 2 · 0 | grayscale | A native `<details>` — **it opens in flow and pushes the page down; it does not float.** **Decided 2026-08-02: card, not frame** — so on `--card` with `--line` rules between its rows it *becomes the row panel that opens*, one component rather than two. **Decided: the selected row carries a checkmark**, not the word "current". **Decided: the chevron rotates 180° on open** — closed points down, open points up. Nothing left open on this component. |
 | **Stepper** | `.counter`, `.count` | 3 · 0 | grayscale | Both controls are 44pt targets and the figure is tabular. The circular icon action is the shape to borrow, already measured at **11.54:1**. |
 | **Upload zone** | `.upload-zone`, `.up-ph` | 6 · 0 | grayscale | The upload glyph and its motion already exist on `delivery-loading` at 32px and **5.51:1**; this is the same mark at rest, in a dashed well. |
@@ -201,7 +214,7 @@ single screen by its class names.
 |---|---|
 | **order-history** | **The live and delivered order card, whole.** Its drone frame, the status indicator riding on it, the four-node horizontal rail, the From ▸ To inset strip, the fee row and the circular card actions — 28 classes, every one prefixed `ohl-` or `oh-`. The most measured component in the product and the least portable. **Promote first** if a second list screen is ever painted. |
 | **tracking** | **The vertical milestone timeline** — `.timeline`, `.tl-item`, `.tl-dot`, `.tl-text` — plus the map's acquiring state and the late-notice wash. The node inside it is byte-identical to the order card's, which is the argument for promoting one shared node rather than two. |
-| **listings-filters** | **The filter sheet** — `.fgroup`, `.opt`, `.radio`, `.txt`, `.reset`. The only true radio control in the product; the choice card in the kit is a different pattern with the same job. |
+| **listings-filters** | **The filter sheet** — `.fgroup`, `.txt`, `.reset`. **`.radio` and `.opt` left this list 2026-08-02**: the radio is a kit component now, standing on three screens once counted as a control rather than as a class name, and this screen is the only one that draws it correctly. |
 | **listings-filtered** | **The applied-filter row** — `.fchip`, `.count-badge`, `.applied`, `.clear-all`, `.x`. A dismissible chip is close enough to the kit's filter chip that the two should probably be one component before either is painted. |
 | **rate** | **The five-star rating input** — `.rating`, `.star`. Distinct from the rating *value* on the operator card, which is in the kit and painted. A filled star cannot be green: the accent is not an icon. |
 | **delivery** | **The upload mark and its motion** — `.sk-up`, `.sk-arrow`, `.waiting`. Painted, measured, used once. The upload zone in the kit is where it wants to go next. |
@@ -215,8 +228,13 @@ single screen by its class names.
 
 | # | Question | Why it is open |
 |---|---|---|
-| 1 | **Does the selected choice card change behind the check?** | The checkmark is settled. Whether the card surface also changes is not — and a green tint across a whole card would spend the screen's accent budget on a picker. |
+| 1 | **What fills a checked box or a selected radio?** | Two pairs, both conforming. **Green `--green` + `--on-green` = 9.46:1** repeats the walked node `.tl-dot.done`, which is already painted exactly that way. **Charcoal `--ink` + `--card` = 14.37:1** is what the grayscale build already holds. `WCAG 1.4.11` needs 3:1 and both clear it by a wide margin, so this is not a contrast question. It is a budget question: `concept.md` allows **one green control per screen**, and on `payment` that is already the "Pay" button — a green radio beside it would be the second. |
 | 2 | **Does the total get a type step above `number`?** | The scale is closed at ten steps, so adding one is a real decision, not a tweak. |
+| 3 | **Is a lone on/off row a checkbox or a switch?** | `order-setup`'s "Save this address for next time" is the only independent toggle in the product. `HIG · Toggles` puts a **switch** in a form row for an immediate on/off setting and keeps the checkbox for a list of choices. One row, so it is a small call — but it decides whether the kit carries a switch at all. |
+
+**Closed 2026-08-02, not answered:** *"Does the selected choice card change behind the check?"* — the
+choice card turned out to be navigation. Both instances are links that leave the screen, so there is
+no selected state for a surface to change behind. The question was asked of the wrong component.
 
 ---
 
@@ -236,6 +254,9 @@ single screen by its class names.
 | 2026-08-02 | **The circular action is the form of an icon-only button** — it is the one standing on a painted screen. The square filter on `listings` and the square pencil on `account` are drafts on screens that are neither painted nor hand-edited; what happens to them is decided when those screens are drawn. | `ui/inventory.md` |
 | 2026-08-02 | **The client listing card and the operator job card stay two components.** Different jobs, different densities, no forcing one into the other. What *is* worth consolidating is the route — see Open questions. | `ui/inventory.md` |
 | 2026-08-02 | **A field has no border** — HIG's own form pattern, confirmed against Apple's own Figma: node `1:301` is the grouped form (no boxes; placeholder, caret, clear button and separator do the identifying) and node `1:424` is the search field (a filled plate). Apple does not choose between the two styles — it uses a row in a form and a plate in search, which is the split this system had already landed on. It lives in a row panel and *is* the row that accepts typing. Value `--ink` on `--card` **14.37:1**, label and placeholder `--slate` **5.95:1**, focus `2.5px --ink` **14.37:1**, error `--danger-ink` **6.14:1**. 1.4.11 governs a boundary that is drawn, not one that is absent — so the failure was the grayscale `--line` border at **1.21:1**, which does not survive painting. The search field is the one exception and keeps a `--media` ground at `--r-input` 10px, which is the iOS search bar. | `concept.md` rev 45 |
+| 2026-08-02 | **Shape says how many: a radio is a circle, a checkbox is a square.** Circle = one of a mutually exclusive set; square = an independent on/off, several at a time. `HIG · Radio Buttons / Checkboxes` states exactly this. iOS diverges — it has no radio control and marks one-of-many with a trailing checkmark — but DRON is mobile **web** in a browser with a WCAG 2.1 AA desktop, so the platform convention is what a user reads. **This supersedes rev 43's blanket "a selected row carries a checkmark, governs every one-of-many list":** the checkmark stays for the disclosure row, which is a menu, and gives way to the circle wherever a form asks a question. The defect it names: `payment` and `withdraw` hold `type="radio"` in a **square** box and separate the two only by a 4px bullet against a 4px check, so one shape carries two functions — `WCAG 3.2.4`. **The wireframes are not being changed for it** — recorded here, applied when those screens are painted. | `ui/inventory.md` |
+| 2026-08-02 | **An unchecked control's outline is `--slate` `#5A5751`, not `--line`.** The grayscale `1px --line` is **1.21:1** on the card and `WCAG 1.4.11` needs **3:1** for a boundary that identifies a control; `--slate` is **5.95:1**. This is the same 1.21:1 that rev 45 found under the form field — there the answer was to remove the border, because HIG's form row has none; here the box *is* the control and cannot be removed, so it is darkened instead. | `ui/inventory.md` |
+| 2026-08-02 | **The choice card is navigation, not a picker** — both instances are `<a href>` leaving the screen. It has no selected state, so it needs a card's set (`--card`, `--r-card` 16, 44pt row, chevron, focus ring) and not a selection treatment. | `ui/inventory.md` |
 | 2026-08-02 | **The chevron rotates 180° on open** — closed points down, open points up. It joins the button's `transform .12s` rather than becoming a fifth motion loop, because it answers a touch instead of carrying continuous information. Under `prefers-reduced-motion` the glyph still turns, it just does not travel: the direction is information, the animation is only how it gets there. | `concept.md` rev 44 |
 
 ---
