@@ -64,6 +64,13 @@
   --green:       #9BCF4A;   /* fill only. As a foreground: 1.69:1 / 1.52:1 */
   --on-green:    #1A1A1A;   /* 9.46:1 — the only colour allowed on green */
   --green-wash:  #E7F0D2;   /* the one tint. Charcoal on it is 14.75:1 */
+  --green-ink:   #4F6B22;   /* the green that may SPEAK (2026-08-12): signal green taken
+                               down to the text-safe rung — 5.58:1 on the page, 5.01:1 on
+                               the card. Where green must stand alone as a word or a lone
+                               glyph, it is this one; --green itself never is. Completes
+                               the palette's own pair family: warn/warn-ink, danger/
+                               danger-ink, green/green-ink. First home: the disclosure's
+                               current-row checkmark. */
   --warn:        #E4A11B;   /* the filled rating star (2026-08-03) — 1.84:1 on the card, so
                                state is never colour alone: fill + aria-pressed carry it */
   --warn-ink:    #7A5200;   /* 5.65:1 on its wash */
@@ -1113,12 +1120,15 @@ header.dr-topbar,
   text-decoration: none; color: var(--ink); font-size: var(--t-heading-size);
 }
 .dr-disclosure__item:first-of-type{ border-top: 0; }
-/* Settled 2026-08-12 by the designer: only the CURRENT row carries the mark,
-   and the mark is the done node — a green disc behind a charcoal glyph
-   (9.46:1) — never a green glyph, which is 1.52:1 on the card and would be
-   the state's only indicator (1.4.11 wants 3:1). The other rows answer with
-   hover alone: the secondary button's own step. The ring sits inside —
+/* Settled 2026-08-12 by the designer, in two steps: only the CURRENT row
+   carries the mark, and the mark is a BARE green checkmark — no disc, no
+   fill — because this is neither a checkbox nor a radio: it is iOS's own
+   current-item-in-a-list mark. A lone glyph is the state's only indicator,
+   so 1.4.11 applies at 3:1 and signal green (1.52:1 on the card) cannot
+   stand — the mark speaks in --green-ink, 5.01:1. The other rows answer
+   with hover alone: the secondary button's own step. The ring sits inside —
    the card clips at its radius. */
+.dr-disclosure__item[aria-current="true"] .dr-ic{ color: var(--green-ink); }
 .dr-disclosure__item:hover{ background: var(--media); }
 .dr-disclosure__item:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); }
 

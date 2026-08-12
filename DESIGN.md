@@ -266,6 +266,10 @@ it cannot carry a mark: `--warn` on the card is 1.84:1 and `--danger` reaches on
 - **`--warn-wash` / `--warn-ink`** (`#F6E7C4` / `#7A5200`) — ETA slipping. `tracking-empty`.
 - **`--danger-wash` / `--danger-ink`** (`#F2D8CF` / `#9A3115`) — signal lost, upload missing.
   `tracking-error`, `delivery-error`.
+- **`--green-ink`** (`#4F6B22`) — the green that may stand alone, added 2026-08-12 (rev 48):
+  signal green taken down to the text-safe rung, for the rare place green must be a lone glyph
+  or a word. First home: the current-row checkmark in `account`'s mode disclosure. `--green`
+  itself stays fill-only.
 
 ### Measured contrast
 
@@ -286,8 +290,10 @@ Every pair carried on a product surface, verified in the browser.
 | `--slate` | `--card` | 5.95:1 | keys, dates, ratings, body |
 | `--warn-ink` | `--card` | 5.72:1 | — |
 | `--warn-ink` | `--warn-wash` | 5.65:1 | late-notice mark |
+| `--green-ink` | `--page` | 5.58:1 | — |
 | `--slate` | `--media` | 5.51:1 | muted chips, upload glyph |
 | `--danger-ink` | `--danger-wash` | 5.49:1 | tracking-lost, photo-missing marks |
+| `--green-ink` | `--card` | 5.01:1 | current-row checkmark (mode disclosure) |
 | `--slate` | `--btn2` | 4.77:1 | disabled label |
 
 **Non-text, below 3:1, each accepted for a stated reason:**
