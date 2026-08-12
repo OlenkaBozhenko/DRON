@@ -1041,6 +1041,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | rate | — | ‹ Delivered | Button |  |
 | rate | — | Rate the order | Heading |  |
 | rate | Rating | Rate this order | Body |  |
+| rate | Review | Your review | Field label |  |
 | rate | Review | What the operator did well, and anything to improve | Field placeholder |  |
 | rate | Review | Submit review | Button |  |
 | rate | Review | Book again | Button |  |

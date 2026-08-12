@@ -895,6 +895,12 @@ header.dr-topbar,
   position: relative;
   border: 0; background: transparent;
 }
+/* A field is a FULL-BLEED row — it carries the 16 itself, and its separator
+   indents from the panel edge the way an iOS grouped list does. So a panel of
+   fields gives up its own horizontal padding: measured 2026-08-12 on rate /
+   contact-support / report-issue, the double inset put typed text at 32px
+   where every other line on the card stands at 16. */
+.dr-rows:has(> .dr-field){ padding-left: 0; padding-right: 0; }
 .dr-field + .dr-field::before{
   content: ""; position: absolute; left: var(--sp-screen); right: 0; top: 0;
   height: var(--hair); background: var(--line);
@@ -935,7 +941,8 @@ header.dr-topbar,
 .dr-field--area .dr-field__label{ flex: 0 0 100%; }
 .dr-field--area .dr-field__group{ flex-basis: 100%; }
 .dr-field--area .dr-field__input{ resize: none; width: 100%; flex-basis: 100%;
-  min-height: calc(var(--sz-area-min) - var(--sp-24)); }
+  min-height: calc(var(--sz-area-min) - var(--sp-24));
+  line-height: var(--t-para-line); }  /* typed lines keep the body rhythm, not UA "normal" */
 /* the centred document card: label, upload zone and hint stack on the axis —
    designer's call 2026-08-12 (account-edit document cards) */
 .dr-rows--center{ text-align: center; }
@@ -1153,7 +1160,12 @@ header.dr-topbar,
   display: inline-flex; align-items: center; justify-content: center;
   font-size: var(--t-caption-size); line-height: 1;
 }
+/* A layer over the icon button, never a flex sibling — the icon stays
+   centred. −2px on a 44px circle centres the 18px pill on the circle's
+   edge at 45°, the iOS badge point. Anchors on .dr-btn--icon's own
+   position:relative. */
 .dr-count-badge{
+  position: absolute; top: -2px; right: -2px;
   min-width: var(--sz-fchip-x); height: var(--sz-fchip-x); padding: 0 var(--sp-2);
   border-radius: var(--r-pill); background: var(--green); color: var(--on-green);
   display: inline-flex; align-items: center; justify-content: center;
