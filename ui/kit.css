@@ -965,7 +965,14 @@ header.dr-topbar,
    the designer's call 2026-08-03, and HIG's own multiline pattern */
 .dr-field--area .dr-field__label{ flex: 0 0 100%; }
 .dr-field--area .dr-field__group{ flex-basis: 100%; }
+/* The row pattern identifies a field by its label-value anatomy; an empty
+   area has neither, and on order-setup it read as body copy (designer,
+   2026-08-12). So the area takes the ground the kit grants a field outside
+   that anatomy — the search bar's --media at --r-input. Slate placeholder
+   5.51:1, typed ink 13.33:1: the search bar's own recorded pairs. */
 .dr-field--area .dr-field__input{ resize: none; width: 100%; flex-basis: 100%;
+  background: var(--media); border-radius: var(--r-input);
+  padding: var(--sp-snug);
   min-height: calc(var(--sz-area-min) - var(--sp-24));
   line-height: var(--t-para-line); }  /* typed lines keep the body rhythm, not UA "normal" */
 /* the rate screen's review takes half the screen — the designer's call
@@ -985,8 +992,9 @@ header.dr-topbar,
 .dr-rows--center .dr-field{ justify-content: center; }
 .dr-rows--center .dr-field__label{ flex: 0 0 100%; }
 
-/* The ONE field that keeps a ground, because it is not in a grouped list.
-   That is the iOS search bar, and it gives --r-input its only home. */
+/* A field keeps a ground only outside the grouped label-value anatomy:
+   the search bar (in no list at all) and, since 2026-08-12, the empty
+   multiline area (no value to identify it). Both wear --media at --r-input. */
 .dr-search{
   min-height: var(--h-control);
   display: flex; align-items: center; gap: var(--sp-within-lg);
