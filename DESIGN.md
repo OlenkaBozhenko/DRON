@@ -226,7 +226,9 @@ and applied to nothing — they are recorded rungs, not live values (`var(--warn
 
 - **`--green` Signal Green** (`#9BCF4A`) — the single accent. Fill only: the primary button, the
   walked progress node, the live status disc. Charcoal sits on it at **9.46:1**. As a foreground
-  it is 1.69:1 on the page and 1.52:1 on the card, so it is never text and never a stroke.
+  it is 1.69:1 on the page and 1.52:1 on the card, so it is never text and never a stroke —
+  with **one recorded exception**: the mode picker's current-row checkmark, the designer's
+  decision 2026-08-12 (rev 50), carried in the below-3:1 table with its stated reason.
 - **`--on-green`** (`#1A1A1A`) — the only colour permitted on a green fill. Never white: white on
   `#9BCF4A` is 1.84:1.
 - **`--green-wash`** (`#E7F0D2`) — the one green tint. Carries the selected tab, the verified
@@ -267,9 +269,9 @@ it cannot carry a mark: `--warn` on the card is 1.84:1 and `--danger` reaches on
 - **`--danger-wash` / `--danger-ink`** (`#F2D8CF` / `#9A3115`) — signal lost, upload missing.
   `tracking-error`, `delivery-error`.
 - **`--green-ink`** (`#4F6B22`) — the green that may stand alone, added 2026-08-12 (rev 48):
-  signal green taken down to the text-safe rung, for the rare place green must be a lone glyph
-  or a word. First home: the current-row checkmark in `account`'s mode disclosure; second
-  (rev 49): the `Clear all` text button on `listings-filtered`. `--green` itself stays fill-only.
+  signal green taken down to the text-safe rung, for the rare place green must be a word.
+  Home (rev 49): the `Clear all` text button on `listings-filtered`. The mode-disclosure
+  checkmark wore it for a day and returned to `--green` by the designer's call (rev 50).
 
 ### Measured contrast
 
@@ -293,7 +295,7 @@ Every pair carried on a product surface, verified in the browser.
 | `--green-ink` | `--page` | 5.58:1 | `Clear all` text button (`listings-filtered`) |
 | `--slate` | `--media` | 5.51:1 | muted chips, upload glyph |
 | `--danger-ink` | `--danger-wash` | 5.49:1 | tracking-lost, photo-missing marks |
-| `--green-ink` | `--card` | 5.01:1 | current-row checkmark (mode disclosure) |
+| `--green-ink` | `--card` | 5.01:1 | text button, card ground (declared) |
 | `--slate` | `--btn2` | 4.77:1 | disabled label |
 
 **Non-text, below 3:1, each accepted for a stated reason:**
@@ -301,6 +303,7 @@ Every pair carried on a product surface, verified in the browser.
 | Pair | Ratio | Why it stands |
 |---|---|---|
 | `--green` live status disc on `--card` | 1.52:1 | Never the sole carrier: the same card is the only one with a progress rail, an ETA chip and the green CTA, and the disc's accessible name says "In progress". |
+| `--green` current-row checkmark on `--card` | 1.52:1 | The designer's decision 2026-08-12 (rev 50), the number named at the choice. Colour is not the carrier: the mark's *presence* is — one row holds a checkmark, the others none — and `aria-current="true"` speaks the state. The same acceptance the live disc above and the pager's active dot carry. |
 | `--line` hairline on `--card` | 1.21:1 | A decorative surface edge — not text (1.4.3), not a control or state indicator (1.4.11). |
 | `--media` on `--page` | 1.20:1 | Same. |
 | `--card` on `--page` | 1.11:1 | Same. |

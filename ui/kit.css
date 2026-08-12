@@ -69,9 +69,10 @@
                                the card. Where green must stand alone as a word or a lone
                                glyph, it is this one; --green itself never is. Completes
                                the palette's own pair family: warn/warn-ink, danger/
-                               danger-ink, green/green-ink. First homes: the disclosure's
-                               current-row checkmark; the text button
-                               (.dr-btn--text, rev 49). */
+                               danger-ink, green/green-ink. Home: the text button
+                               (.dr-btn--text, rev 49). The disclosure checkmark
+                               tried it and returned to --green by the designer's
+                               call (rev 50). */
   --warn:        #E4A11B;   /* the filled rating star (2026-08-03) — 1.84:1 on the card, so
                                state is never colour alone: fill + aria-pressed carry it */
   --warn-ink:    #7A5200;   /* 5.65:1 on its wash */
@@ -1130,15 +1131,16 @@ header.dr-topbar,
   text-decoration: none; color: var(--ink); font-size: var(--t-heading-size);
 }
 .dr-disclosure__item:first-of-type{ border-top: 0; }
-/* Settled 2026-08-12 by the designer, in two steps: only the CURRENT row
-   carries the mark, and the mark is a BARE green checkmark — no disc, no
-   fill — because this is neither a checkbox nor a radio: it is iOS's own
-   current-item-in-a-list mark. A lone glyph is the state's only indicator,
-   so 1.4.11 applies at 3:1 and signal green (1.52:1 on the card) cannot
-   stand — the mark speaks in --green-ink, 5.01:1. The other rows answer
-   with hover alone: the secondary button's own step. The ring sits inside —
-   the card clips at its radius. */
-.dr-disclosure__item[aria-current="true"] .dr-ic{ color: var(--green-ink); }
+/* Settled 2026-08-12 by the designer, in three steps: only the CURRENT row
+   carries the mark; the mark is a BARE checkmark — no disc, no fill,
+   because this is neither a checkbox nor a radio but iOS's own
+   current-item-in-a-list mark; and it is SIGNAL GREEN — her call with the
+   number named: 1.52:1 on the card against 1.4.11's 3:1, accepted as the
+   live disc and the pager dot are accepted, because colour is not the
+   carrier — the mark's presence is (one row has a checkmark, the others
+   none) and aria-current="true" says it to AT. Recorded in DESIGN.md's
+   below-3:1 table, rev 50. The other rows answer with hover alone. */
+.dr-disclosure__item[aria-current="true"] .dr-ic{ color: var(--green); }
 .dr-disclosure__item:hover{ background: var(--media); }
 .dr-disclosure__item:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); }
 
