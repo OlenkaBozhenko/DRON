@@ -495,6 +495,11 @@ header.dr-topbar,
    Flat, all of them. Separation is a warm tone step plus a radius. */
 
 .dr-list{ list-style: none; display: flex; flex-direction: column; gap: var(--sp-list); }
+/* The grouped-options rung. 28 is the between-items step where the list is
+   the screen; when the list is one group among sections 16 apart, siblings
+   must sit closer than strangers — 12: above the 4px rhythm inside a card,
+   under the 16 between sections. */
+.dr-list--snug{ gap: var(--sp-snug); }
 
 .dr-card{
   position: relative;
@@ -846,7 +851,9 @@ header.dr-topbar,
   color: var(--ink);
 }
 .dr-choice__desc{
-  display: block; margin-top: var(--sp-2);
+  /* 4, not the listing's 2 — under a 17px title the 2px rung reads crushed
+     against the 16 inset; --sp-within is the scale's step for this size. */
+  display: block; margin-top: var(--sp-within);
   font-size: var(--t-bodysm-size); line-height: var(--t-bodysm-line);
   color: var(--slate);
 }
