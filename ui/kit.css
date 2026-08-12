@@ -950,6 +950,17 @@ header.dr-topbar,
 .dr-field--area .dr-field__input{ resize: none; width: 100%; flex-basis: 100%;
   min-height: calc(var(--sz-area-min) - var(--sp-24));
   line-height: var(--t-para-line); }  /* typed lines keep the body rhythm, not UA "normal" */
+/* the rate screen's review takes half the screen — the designer's call
+   2026-08-12. The height rides on the textarea, not the row: a floor on the
+   wrapped row would be dealt out across the label's flex line too, so the
+   input carries it — half of --screen-h less the label line (15px × 1.4 = 21),
+   the row gap (10) and the row's two 12px paddings. The row lands at 406px,
+   a floor and never a height, per the kit's own min-height rule. */
+.dr-field--half .dr-field__input{
+  min-height: calc(var(--screen-h)/2
+    - var(--t-heading-size)*var(--t-base-line)
+    - var(--sp-10) - 2*var(--sp-snug));
+}
 /* the centred document card: label, upload zone and hint stack on the axis —
    designer's call 2026-08-12 (account-edit document cards) */
 .dr-rows--center{ text-align: center; }
@@ -1137,7 +1148,7 @@ header.dr-topbar,
    aria-pressed, and the whole button is the 44pt target. The star is the one
    glyph in the system that fills instead of stroking — a rating is a quantity,
    not an icon. */
-.dr-rating{ display: flex; gap: var(--sp-within-lg); }
+.dr-rating{ display: flex; gap: var(--sp-within-lg); justify-content: center; }  /* on the axis — designer's call 2026-08-12 */
 .dr-star{
   width: var(--h-control); min-height: var(--h-control); flex: none;
   border: 0; background: transparent; padding: 0; cursor: pointer;
