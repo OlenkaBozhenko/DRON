@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PREVIEW · The text button — for the designer's confirmation</title>
+<!-- TEMPORARY PREVIEW. Not a product page, not a wireframe. Deleted after the
+     designer approves or rejects the component. Nothing here is in kit.css yet. -->
+<link rel="stylesheet" href="ui/kit.css">
+<style>
+  body{ margin:0; padding:32px 24px 64px; background:var(--page); color:var(--ink);
+        font-family:var(--font-ui); max-width:760px; margin-inline:auto; }
+  h1{ font-size:20px; margin:0 0 6px; }
+  h2{ font-size:15px; margin:40px 0 4px; }
+  p.note{ font-size:13px; color:var(--slate); margin:0 0 14px; max-width:60ch; }
+  .ground{ display:flex; flex-wrap:wrap; gap:12px; align-items:center;
+           padding:18px; border-radius:var(--r-card); margin:10px 0; }
+  .ground--page{ background:var(--page); outline:1px dashed var(--line); }
+  .ground--card{ background:var(--card); }
+  .tag{ font-family:var(--font-mono); font-size:11px; color:var(--slate); flex-basis:100%; }
+  .num{ font-family:var(--font-mono); font-size:11px; }
+  .pass{ color:#4F6B22; } .fail{ color:var(--danger-ink); }
+  .statecap{ display:block; text-align:center; font-family:var(--font-mono); font-size:10.5px;
+             color:var(--slate); margin-top:4px; }
+  .cell{ display:flex; flex-direction:column; }
+
+  /* ── THE CANDIDATE — exactly what would enter kit.css if approved ────────
+     One new token: --green-ink #4F6B22 — Signal Green taken down to the
+     text-safe rung. It completes the palette's existing pair family:
+     --warn/--warn-ink, --danger/--danger-ink … --green/--green-ink. */
+  :root{ --green-ink: #4F6B22; }
+  .dr-btn--text{ background: transparent; color: var(--green-ink); }
+  .dr-btn--text:hover{ color: var(--ink); }             /* the tertiary's own grammar: rest colour -> ink */
+  .dr-btn--text:active{ color: var(--ink);
+    transform: translateY(var(--lift-active)) scale(var(--scale-active)); }
+  /* disabled + focus ring: inherited from .dr-btn — nothing new needed */
+
+  /* preview-only: frozen state simulations */
+  .sim-hover{ color: var(--ink); }
+  .sim-active{ color: var(--ink); transform: translateY(1px) scale(.99); }
+  .sim-focus{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+  .raw-green{ background:transparent; color:#9BCF4A; }
+</style>
+</head>
+<body>
+  <h1>The text button — preview for confirmation</h1>
+  <p class="note">Requested on <b>listings-filtered · Clear all</b>: a text button in the primary green.
+     Nothing below is in the kit yet — this page is the proposal.</p>
+
+  <h2>1 · The literal ask — Signal Green #9BCF4A as text</h2>
+  <p class="note">Measured: <span class="num fail">1.69:1 on the page · 1.52:1 on the card</span> —
+     WCAG 1.4.3 needs <b>4.5:1</b>. This is the pair the fill-only rule exists to prevent;
+     shown here so the comparison is honest, not to be chosen.</p>
+  <div class="ground ground--page"><span class="tag">on --page</span>
+    <a class="dr-btn raw-green" href="#">Clear all</a></div>
+  <div class="ground ground--card"><span class="tag">on --card</span>
+    <a class="dr-btn raw-green" href="#">Clear all</a></div>
+
+  <h2>2 · The proposal — <code>.dr-btn--text</code> in <code>--green-ink #4F6B22</code></h2>
+  <p class="note">The same green taken down until text passes: <span class="num pass">5.58:1 on the page ·
+     5.01:1 on the card</span> (AA needs 4.5:1). One new token, and it completes a family the palette
+     already keeps: <span class="num">--warn/--warn-ink · --danger/--danger-ink · --green/--green-ink</span>.
+     States follow the tertiary's own grammar — rest colour, hover/press darken to ink, press adds the
+     kit's 1px dip; disabled and the focus ring are the universal ones, inherited, zero new CSS.</p>
+  <div class="ground ground--page"><span class="tag">on --page · all states</span>
+    <span class="cell"><a class="dr-btn dr-btn--text" href="#">Clear all</a><span class="statecap">rest 5.58:1</span></span>
+    <span class="cell"><a class="dr-btn dr-btn--text sim-hover" href="#">Clear all</a><span class="statecap">hover → ink</span></span>
+    <span class="cell"><a class="dr-btn dr-btn--text sim-active" href="#">Clear all</a><span class="statecap">pressed</span></span>
+    <span class="cell"><button class="dr-btn dr-btn--text" disabled>Clear all</button><span class="statecap">disabled 4.77:1</span></span>
+    <span class="cell"><a class="dr-btn dr-btn--text sim-focus" href="#">Clear all</a><span class="statecap">focus ring</span></span>
+  </div>
+  <div class="ground ground--card"><span class="tag">on --card</span>
+    <span class="cell"><a class="dr-btn dr-btn--text" href="#">Clear all</a><span class="statecap">rest 5.01:1</span></span>
+    <span class="cell"><a class="dr-btn dr-btn--text sim-hover" href="#">Clear all</a><span class="statecap">hover → ink</span></span>
+  </div>
+
+  <h2>3 · In place — the applied-filters row</h2>
+  <p class="note">Left: as it stands now (solid primary). Right: the proposed text button.</p>
+  <div class="ground ground--page"><span class="tag">current — solid primary (9.46:1, 81% of the screen's green)</span>
+    <a class="dr-fchip" href="#">Podil <span class="dr-fchip__x" aria-hidden="true">&times;</span></a>
+    <a class="dr-fchip" href="#">Today <span class="dr-fchip__x" aria-hidden="true">&times;</span></a>
+    <a class="dr-fchip" href="#">High → Low <span class="dr-fchip__x" aria-hidden="true">&times;</span></a>
+    <a class="dr-btn dr-btn--primary" href="#">Clear all</a>
+  </div>
+  <div class="ground ground--page"><span class="tag">proposed — text button, --green-ink</span>
+    <a class="dr-fchip" href="#">Podil <span class="dr-fchip__x" aria-hidden="true">&times;</span></a>
+    <a class="dr-fchip" href="#">Today <span class="dr-fchip__x" aria-hidden="true">&times;</span></a>
+    <a class="dr-fchip" href="#">High → Low <span class="dr-fchip__x" aria-hidden="true">&times;</span></a>
+    <a class="dr-btn dr-btn--text" href="#">Clear all</a>
+  </div>
+
+  <p class="note" style="margin-top:36px">If approved, what lands: the token and <code>.dr-btn--text</code>
+     with its states into <code>kit.css</code>, a showcase row into <code>kit.html</code>, the pair and its
+     ratios into <code>DESIGN.md</code>'s palette table, the decision into <code>ui/inventory.md</code> —
+     then <code>listings-filtered</code> swaps to it. If rejected, this file is deleted and nothing changes.</p>
+</body>
+</html>
