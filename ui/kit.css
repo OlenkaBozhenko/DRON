@@ -936,6 +936,11 @@ header.dr-topbar,
 .dr-field--area .dr-field__group{ flex-basis: 100%; }
 .dr-field--area .dr-field__input{ resize: none; width: 100%; flex-basis: 100%;
   min-height: calc(var(--sz-area-min) - var(--sp-24)); }
+/* the centred document card: label, upload zone and hint stack on the axis —
+   designer's call 2026-08-12 (account-edit document cards) */
+.dr-rows--center{ text-align: center; }
+.dr-rows--center .dr-field{ justify-content: center; }
+.dr-rows--center .dr-field__label{ flex: 0 0 100%; }
 
 /* The ONE field that keeps a ground, because it is not in a grouped list.
    That is the iOS search bar, and it gives --r-input its only home. */
