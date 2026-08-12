@@ -6,6 +6,14 @@
 <title>DRON wireframe · Switch role · base</title>
 <!-- SCREEN (sitemap §6.0 / _screens.md STEP 8): "Switch role (Client ⇄ Operator)" — SHARED global. JOB: CHANGE PERSONA — re-enter the role fork from Account without losing an in-progress order/job. PERSONA: any (Client or Operator). STATE: base only (no state pages). flows.md CHANGE PERSONA: Account → Switch role → Confirm switch? → yes → Choose your role. Confirm screen: no tab bar, sticky actionbar. -->
 <link rel="stylesheet" href="_wireframe.css">
+<style>
+  /* The confirm mark carries the client's own photo — the same face as the
+     Account profile card. Same treatment as .avatar/.op-avatar in the base
+     sheet: cover-fit in a circle that keeps a fill of its own. */
+  .success-mark:has(img){ background:var(--wf-recessed); overflow:hidden; padding:0;
+    font-size:0; line-height:0; color:transparent; }
+  .success-mark img{ width:100%; height:100%; display:block; object-fit:cover; border-radius:999px; }
+</style>
 <link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
