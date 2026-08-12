@@ -942,13 +942,14 @@
     <p><b>Nothing in this product floats.</b> Counted across all 40 screens: no modal, sheet, popover,
        dialog, scrim or backdrop, and not one <code>position:fixed</code>. That is why the flat rule
        has never had to answer for an overlay and why <code>--sh-onphoto</code> is spent nowhere.</p>
-    <p><b>Only the current row carries the mark, and the mark is a bare green checkmark</b> —
-       settled 2026-08-12 by the designer, who also named what it is <i>not</i>: not a checkbox,
-       not a radio — it is iOS's own current-item-in-a-list mark, so it takes no disc and no fill.
-       A lone glyph is the state's only indicator, so 1.4.11 applies at 3:1: signal green fails
-       (<b>1.52:1</b>) and the mark speaks in <code>--green-ink</code> — <b>5.01:1</b> on the card.
-       The other rows answer with hover alone (<code>--media</code>). A <i>form</i> asking a
-       question takes the circle instead.</p>
+    <p><b>Only the current row carries the mark, and the mark is a bare Signal-Green checkmark</b> —
+       settled 2026-08-12 by the designer in three calls: no disc and no fill (this is neither a
+       checkbox nor a radio — it is iOS's current-item-in-a-list mark), and the brand hex itself,
+       chosen with the number named: <b>1.52:1</b> on the card against 1.4.11's 3:1. It stands the
+       way the live disc and the pager dot stand — colour is not the carrier: the mark's
+       <i>presence</i> is, and <code>aria-current</code> speaks the state. Recorded in
+       <code>DESIGN.md</code>'s below-3:1 table. The other rows answer with hover alone
+       (<code>--media</code>). A <i>form</i> asking a question takes the circle instead.</p>
     <p><b>The chevron turns 180° on open.</b> It joins the button's <code>transform .12s</code> rather
        than becoming a fifth motion loop. Under reduced motion the glyph still turns — it just does
        not travel: the direction is information, the animation is only how it gets there.</p>
