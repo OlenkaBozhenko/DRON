@@ -125,7 +125,9 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | order-setup | order-setup-error.html | Details form / Drop-off field | state message | Outside the service zone. DRON covers Kyiv city for delivery — try an address within the city. | Outside the service zone. DRON delivers within Kyiv city — enter an address in the city. |
 | payment | payment-loading.html | Authorizing payment | state message | Authorizing… | Authorizing your payment… |
 | rate | rate.html | Rating | heading | How was it? | Rate this order |
+| rate | rate.html | Rating | heading | Rate this order | How would you rate this order? |
 | rate | rate.html | Review | placeholder | What went well? Anything to improve? | What the operator did well, and anything to improve |
+| rate | rate.html | Review | field label | Your review | Share your review of this order |
 | ratings | ratings-empty.html | Overall (no ratings yet) | state message | You haven't been rated yet. Ratings build from your first jobs — the platform keeps auto-dispatching work to you until they do. | You haven't been rated yet. Ratings build from your first jobs — the platform keeps sending you jobs until they do. |
 | ratings | ratings-empty.html | Overall (no ratings yet) | button | See available jobs | Find jobs |
 | report-issue | report-issue.html | Topbar | button | ‹ Back | ‹ Back to Help |
@@ -1040,8 +1042,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | payment | Payment method | Pay ₴180 | Button |  |
 | rate | — | ‹ Delivered | Button |  |
 | rate | — | Rate the order | Heading |  |
-| rate | Rating | Rate this order | Body |  |
-| rate | Review | Your review | Field label |  |
+| rate | Rating | How would you rate this order? | Body |  |
+| rate | Review | Share your review of this order | Field label |  |
 | rate | Review | What the operator did well, and anything to improve | Field placeholder |  |
 | rate | Review | Submit review | Button |  |
 | rate | Review | Book again | Button |  |
