@@ -1088,6 +1088,14 @@ header.dr-topbar,
   text-decoration: none; color: var(--ink); font-size: var(--t-heading-size);
 }
 .dr-disclosure__item:first-of-type{ border-top: 0; }
+/* Settled 2026-08-12 by the designer: only the CURRENT row carries the mark,
+   and the mark is the done node — a green disc behind a charcoal glyph
+   (9.46:1) — never a green glyph, which is 1.52:1 on the card and would be
+   the state's only indicator (1.4.11 wants 3:1). The other rows answer with
+   hover alone: the secondary button's own step. The ring sits inside —
+   the card clips at its radius. */
+.dr-disclosure__item:hover{ background: var(--media); }
+.dr-disclosure__item:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); }
 
 /* ═══ THE UPLOAD ZONE ═════════════════════════════════════════════════════
    Approved 2026-08-03: the dashed boundary does not survive painting — rev 43
