@@ -268,8 +268,8 @@ it cannot carry a mark: `--warn` on the card is 1.84:1 and `--danger` reaches on
   `tracking-error`, `delivery-error`.
 - **`--green-ink`** (`#4F6B22`) — the green that may stand alone, added 2026-08-12 (rev 48):
   signal green taken down to the text-safe rung, for the rare place green must be a lone glyph
-  or a word. First home: the current-row checkmark in `account`'s mode disclosure. `--green`
-  itself stays fill-only.
+  or a word. First home: the current-row checkmark in `account`'s mode disclosure; second
+  (rev 49): the `Clear all` text button on `listings-filtered`. `--green` itself stays fill-only.
 
 ### Measured contrast
 
@@ -290,7 +290,7 @@ Every pair carried on a product surface, verified in the browser.
 | `--slate` | `--card` | 5.95:1 | keys, dates, ratings, body |
 | `--warn-ink` | `--card` | 5.72:1 | — |
 | `--warn-ink` | `--warn-wash` | 5.65:1 | late-notice mark |
-| `--green-ink` | `--page` | 5.58:1 | — |
+| `--green-ink` | `--page` | 5.58:1 | `Clear all` text button (`listings-filtered`) |
 | `--slate` | `--media` | 5.51:1 | muted chips, upload glyph |
 | `--danger-ink` | `--danger-wash` | 5.49:1 | tracking-lost, photo-missing marks |
 | `--green-ink` | `--card` | 5.01:1 | current-row checkmark (mode disclosure) |
@@ -511,6 +511,10 @@ gives it the corner. It never restates the parent's radius.
 - **Primary:** `--green` fill, `--on-green` label (9.46:1), `--sh-sm`. Hover
   `filter: brightness(1.03)`; active `translateY(1px) scale(.99)`.
 - **Secondary:** `--btn2` fill, `--ink` label (11.54:1), no shadow. Hover → `--media`.
+- **Text:** transparent, `--green-ink` label — **5.58:1** on the page, **5.01:1** on the card;
+  hover and press darken to `--ink` with the kit's 1px dip, the tertiary's own grammar. Added
+  2026-08-12 (rev 49) for `listings-filtered`'s Clear all; the slate tertiary stays the
+  skip/cancel voice.
 - **Block:** `width:100%`. The default in an action bar and at the foot of a card.
 - **Disabled:** `--btn2` fill with a `--slate` label — **4.77:1**, the secondary button's own pair.
   It is built, not dimmed: blanket opacity would take charcoal-on-green to 2.35:1. No
@@ -737,8 +741,9 @@ drop the 26 KB base64 blob out of the HTML.
 
 - **Don't** set text or an icon stroke in `--green` — 1.69:1 on the page, 1.52:1 on the card.
 - **Don't** put white on green: 1.84:1.
-- **Don't** introduce a darkened green as an ink. `--green-ink #3F5B18` was deleted for exactly
-  this reason: a darkened accent is still the accent used as text.
+- **Don't** mint new darkened greens. Where green must speak — a lone glyph, a word — it is
+  `--green-ink #4F6B22` (rev 48) and nothing else; `--green` itself is never text. One ink rung
+  exists, not a family: the ad-hoc `#3F5B18` that predated the rung was deleted for this.
 - **Don't** add a shadow to a card, a panel, a well, a map or a photograph. One shadow exists and
   it is under the primary button.
 - **Don't** spend green inside card UI — the direction chip, the route strip and card actions are

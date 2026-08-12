@@ -69,8 +69,9 @@
                                the card. Where green must stand alone as a word or a lone
                                glyph, it is this one; --green itself never is. Completes
                                the palette's own pair family: warn/warn-ink, danger/
-                               danger-ink, green/green-ink. First home: the disclosure's
-                               current-row checkmark. */
+                               danger-ink, green/green-ink. First homes: the disclosure's
+                               current-row checkmark; the text button
+                               (.dr-btn--text, rev 49). */
   --warn:        #E4A11B;   /* the filled rating star (2026-08-03) — 1.84:1 on the card, so
                                state is never colour alone: fill + aria-pressed carry it */
   --warn-ink:    #7A5200;   /* 5.65:1 on its wash */
@@ -475,6 +476,15 @@ header.dr-topbar,
 .dr-btn--tertiary{ background: transparent; color: var(--slate); }
 .dr-btn--tertiary:hover{ color: var(--ink); }
 .dr-btn--tertiary:active{ color: var(--ink); transform: translateY(var(--lift-active)) scale(var(--scale-active)); }
+
+/* The green text action (2026-08-12, rev 49) — the tertiary's grammar in the
+   accent's own ink: rest --green-ink 5.58:1 on the page, 5.01:1 on the card;
+   hover and press darken to --ink and take the same 1px dip, because the two
+   text actions differ in ink and in nothing else. --green itself is never
+   text — this rung is the one green that may speak. */
+.dr-btn--text{ background: transparent; color: var(--green-ink); }
+.dr-btn--text:hover{ color: var(--ink); }
+.dr-btn--text:active{ color: var(--ink); transform: translateY(var(--lift-active)) scale(var(--scale-active)); }
 
 .dr-btn--block{ width: 100%; }
 
