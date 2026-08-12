@@ -88,6 +88,7 @@
   --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
 
   --t-display-size: 22px;   --t-display-weight: 700; --t-display-line: 1.4;  --t-display-track: -.02em;
+  --t-display-measure: 18ch;  /* the display line's measure where it must wrap — rate's question */
   --t-number-size:  20px;   --t-number-weight:  700; --t-number-line:  1;    --t-number-track:  -.02em;
   --t-title-size:   17px;   --t-title-weight:   600; --t-title-line:   1.4;  --t-title-track:   -.01em;
   --t-heading-size: 15px;   --t-heading-weight: 600; --t-heading-line: 1.2;
@@ -347,8 +348,12 @@ header.dr-topbar,
 }
 .dr-stack{ display: flex; flex-direction: column; gap: var(--sp-snug); }
 .dr-center{ display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--sp-snug); }
-/* zones read by proximity: 24 between zones against 12 within one — the
-   rate screen's call, designer 2026-08-12. */
+/* within a zone the stack can close to 8 — paired with --zones' 24 the
+   proximity step reads 3:1. Spent on rate beside the two-line heading,
+   whose second line repaid the frame's slack. 2026-08-13. */
+.dr-center--tight{ gap: var(--sp-within-lg); }
+/* zones read by proximity: 24 between zones against the 12 (or --tight 8)
+   within one — the rate screen's call, designer 2026-08-12. */
 .dr-main--zones{ gap: var(--sp-24); }
 
 .dr-tabbar{
@@ -400,6 +405,10 @@ header.dr-topbar,
   line-height: var(--t-display-line); letter-spacing: var(--t-display-track);
   color: var(--ink);
 }
+/* the long question wraps as two balanced lines instead of one edge-to-edge
+   line — rate's heading, the designer's call 2026-08-13. A measure, not a
+   <br>: the UA string re-balances itself. */
+.dr-display--balance{ max-width: var(--t-display-measure); text-wrap: balance; }
 .dr-lead{
   font-size: var(--t-lead-size); font-weight: var(--t-lead-weight);
   line-height: var(--t-lead-line); color: var(--slate);
@@ -1210,6 +1219,16 @@ header.dr-topbar,
   border-radius: var(--r-pill); background: var(--green); color: var(--on-green);
   display: inline-flex; align-items: center; justify-content: center;
   font-size: var(--t-caption-size); line-height: 1;
+}
+/* The leading All chip — the exit to the full list, not an applied filter,
+   so it sits on the secondary button's ground (--btn2, ink 11.54:1) instead
+   of the applied wash, carries no ✕, and squares its padding. Its floor is
+   the sibling chip's content box (the 18px ✕ plus the 5s), so the row stands
+   level. Took the Clear all text button's job — designer's call 2026-08-13. */
+.dr-fchip--all{
+  padding: var(--sp-5) var(--sp-snug);
+  background: var(--btn2);
+  min-height: calc(var(--sz-fchip-x) + 2 * var(--sp-5));
 }
 /* A layer over the icon button, never a flex sibling — the icon stays
    centred. −2px on a 44px circle centres the 18px pill on the circle's
