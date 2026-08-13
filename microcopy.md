@@ -128,6 +128,7 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | rate | rate.html | Rating | heading | Rate this order | How would you rate this order? |
 | rate | rate.html | Review | placeholder | What went well? Anything to improve? | What the operator did well, and anything to improve |
 | rate | rate.html | Review | field label | Your review | Share your review of this order |
+| rate | rate.html | Review | field label | Share your review of this order | Your review — screen-reader only (designer, 2026-08-13: the compose card is one surface; the visible line comes off and the placeholder is the one sentence of help text) |
 | ratings | ratings-empty.html | Overall (no ratings yet) | state message | You haven't been rated yet. Ratings build from your first jobs — the platform keeps auto-dispatching work to you until they do. | You haven't been rated yet. Ratings build from your first jobs — the platform keeps sending you jobs until they do. |
 | ratings | ratings-empty.html | Overall (no ratings yet) | button | See available jobs | Find jobs |
 | report-issue | report-issue.html | Topbar | button | ‹ Back | ‹ Back to Help |
