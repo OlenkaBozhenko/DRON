@@ -65,10 +65,14 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   - **Success —** hands off to the catalogue; no "it worked" screen.
 - **Filter sub-views (added July 2026, build decision):** because *Service catalogue* is merged into Home,
   browsing needs to be narrowable. Two named sub-views (not data states):
-  - **`listings-filters`** — the filter panel open: **Price** (Recommended / Low→High / High→Low), **Time**
-    (Available now / Today / This week / Pick a date), **Location** (district). *Apply* → filtered; *Close / Clear all* → Home.
-  - **`listings-filtered`** — filters applied: the removable applied-filter chips + *Clear all*, the re-sorted /
-    filtered result list, and the Filters button showing its active count. No dead-end — every chip and *Clear all* exit to the full list.
+  - **`listings-filters`** — the filter panel open: **Time** (Available now / Today / This week / Pick a date),
+    **Location** (district). *Apply* → filtered; *Close / Clear all* → Home. *(The **Price** dimension —
+    Recommended / Low→High / High→Low — was a sort by another name; **sorting was removed across the product,
+    designer's call 2026-08-13**: the counter's Sort button went from all five listings states with it. The
+    operator side had its sort removed earlier for the same model — see `_critique.md` fix 4.)*
+  - **`listings-filtered`** — filters applied: the leading *All* chip + the removable applied-filter chips, the
+    filtered result list, and the Filters button showing its active count. No dead-end — every chip exits to the full list,
+    *All* first among them (it replaced the *Clear all* text button, designer's call 2026-08-13).
   - Grounded in the merged-catalogue model (`sitemap.md §7.3`) and the existing `listings-empty` *"loosen filters"* recovery.
 
 ### 4. Service catalogue
