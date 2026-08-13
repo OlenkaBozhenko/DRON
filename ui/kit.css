@@ -1317,7 +1317,12 @@ header.dr-topbar,
    A label against a figure. The default is quiet — 13 slate over 17/600 ink.
    The Total reads bigger by the designer's ruling of 2026-08-03: label
    15/600, figure at the scale's own money step, 20/700 tabular — no eleventh
-   size. The same ruling reaches the row-panel variant below. */
+   size. The same ruling reaches the row-panel variant below.
+   Narrowed 2026-08-13, designer's call: the action-bar Total line is removed
+   throughout (order-review, its loading state, order-setup) — the fact lives
+   in the breakdown's last row and on the CTA's own verb. `.dr-price--total`
+   is declared and spent nowhere; `.dr-price` keeps its non-total spends
+   (payment's method line, time-slot's selection line). */
 .dr-price{ display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-snug); }
 .dr-price__lbl{ font-size: var(--t-bodysm-size); color: var(--slate); }
 .dr-price__val{

@@ -963,7 +963,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-review-loading | Summary | Drop-off | State message |  |
 | order-review-loading | Summary | Osokorky, 14 | State message |  |
 | order-review-loading | Price breakdown | Calculating the final price… | State message |  |
-| order-review-loading | Price breakdown | Total | Field label |  |
 | order-review-loading | Price breakdown | Continue | Button |  |
 | order-review | — | ‹ Package delivery | Button |  |
 | order-review | — | Order review | Heading |  |
@@ -982,7 +981,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-review | Price breakdown | Service fee | Body |  |
 | order-review | Price breakdown | Total | Body |  |
 | order-review | Price breakdown | This is the final price. Nothing is added at checkout. | Body |  |
-| order-review | Price breakdown | Total | Field label |  |
 | order-review | Price breakdown | Pay ₴180 | Button |  |
 | order-setup-empty | — | ‹ Order | Button |  |
 | order-setup-empty | — | Package delivery | Heading |  |
@@ -1021,7 +1019,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-setup | Details form | Notes for the operator | Field label |  |
 | order-setup | Details form | Floor, entrance code, what's inside… | Field placeholder |  |
 | order-setup | Details form | Save this address for next time | Field label |  |
-| order-setup | Details form | Total · locked, no extra fees | Field label |  |
 | order-setup | Details form | Continue to review | Button |  |
 | payment-error | — | ‹ Order review | Button |  |
 | payment-error | — | Payment | Heading |  |
