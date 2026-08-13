@@ -836,7 +836,8 @@ header.dr-topbar,
 .dr-order__price{ display: block; }
 .dr-order__acts{ display: flex; align-items: center; gap: var(--sp-within-lg); flex: none; }
 
-/* The results counter — a fact on the left, the sort action on the right. */
+/* The results counter — a fact, set flush left. (Its sort action was removed
+   across the product at the designer's call, 2026-08-13.) */
 .dr-counter{ display: flex; align-items: center; justify-content: space-between; gap: var(--sp-within-lg); }
 .dr-counter__count{ font-size: var(--t-bodysm-size); color: var(--slate); }
 .dr-counter__count b{ color: var(--ink); font-weight: var(--weight-medium); }
@@ -997,6 +998,19 @@ header.dr-topbar,
   min-height: calc(var(--screen-h)/2
     - var(--t-heading-size)*var(--t-base-line)
     - var(--sp-10) - 2*var(--sp-snug));
+}
+/* the rate compose card is one surface — the designer's call 2026-08-13: the
+   built row read as a box inside a box (card + the area's --media ground). The
+   row's card IS the area now: the input gives up its own ground, the label goes
+   sr-only ("Your review") and the placeholder is the one sentence of help text.
+   Slate hint 5.95:1, typed ink 14.37:1 — the row panel's own recorded pairs.
+   Spent on rate alone; the grounded area (2026-08-12) still governs
+   order-setup, report-issue and contact-support, whose areas sit among rows. */
+.dr-field--bare .dr-field__input{ background: transparent; border-radius: 0; padding: 0; }
+/* the sr-only label leaves the flex flow, so the half-screen floor takes back
+   the label line and the row gap it no longer spends: 406 = 12 + 382 + 12 */
+.dr-field--half.dr-field--bare .dr-field__input{
+  min-height: calc(var(--screen-h)/2 - 2*var(--sp-snug));
 }
 /* the centred document card: label, upload zone and hint stack on the axis —
    designer's call 2026-08-12 (account-edit document cards) */
@@ -1222,14 +1236,14 @@ header.dr-topbar,
 }
 /* The leading All chip — the exit to the full list, not an applied filter,
    so it sits on the secondary button's ground (--btn2, ink 11.54:1) instead
-   of the applied wash, carries no ✕, and squares its padding. Its floor is
-   the sibling chip's content box (the 18px ✕ plus the 5s), so the row stands
-   level. Took the Clear all text button's job — designer's call 2026-08-13. */
-.dr-fchip--all{
-  padding: var(--sp-5) var(--sp-snug);
-  background: var(--btn2);
-  min-height: calc(var(--sz-fchip-x) + 2 * var(--sp-5));
-}
+   of the applied wash. It carries the sibling's ✕ — the clear-them-all wears
+   the same mark; designer's call 2026-08-13, reversing the same day's "no ✕".
+   The pill's edge on --btn2 is 1.22:1 (1.56:1 on the wash) and on neither
+   ground is the edge the carrier — the 9.46:1 cross is. With the 18px pill
+   back in the content box, the min-height floor and the padding override
+   are gone: the modifier is the ground swap alone. Took the Clear all text
+   button's job — designer's call 2026-08-13. */
+.dr-fchip--all{ background: var(--btn2); }
 /* A layer over the icon button, never a flex sibling — the icon stays
    centred. −2px on a 44px circle centres the 18px pill on the circle's
    edge at 45°, the iOS badge point. Anchors on .dr-btn--icon's own
