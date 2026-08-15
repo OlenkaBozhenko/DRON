@@ -134,11 +134,20 @@
 
       <!-- The way out of a one-row list, so the screen is not a dead end: the level
            above is where a different set of cities comes from. voice.md — name the
-           way out, do not apologise for the state. -->
+           way out, do not apologise for the state. The sentence stays here because it
+           explains the LIST; the control it names lives in the bar below. -->
       <p class="dr-note">Kyiv City holds one city. To serve elsewhere, change the region.</p>
-      <a class="dr-btn dr-btn--secondary dr-btn--block" href="listings-filter-region.html">Change region</a>
 
     </main>
+
+    <!-- FOOTER · action bar. The screen's one action sits on the bottom edge, where every
+         other screen with an action keeps it, instead of floating at whatever height the
+         list happens to end (designer, 2026-08-16, rev 114). Secondary, not primary: the
+         real action here is picking a row, and green is not spent on an escape.
+         _conventions.md §11 — a button in the action bar is filled, never a ghost. -->
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="listings-filter-region.html">Change region</a>
+    </footer>
 
   </div>
 
