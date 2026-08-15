@@ -55,12 +55,18 @@
       </section>
 
       <p class="zlabel dr-label">Mode <span class="dr-label__act">▸ switch Client ⇄ Operator</span></p>
+      <!-- The mode picker joins the project-wide rule (2026-08-16): two options,
+           under the six, so the list rises as a drawer instead of unfolding in
+           flow. Its options are the one kind that stays an <a> — they are ROUTES,
+           not values, so they navigate and nothing is written back into the row. -->
       <section aria-label="User mode">
-        <details class="dr-disclosure">
-          <summary>Client mode<span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span></summary>
-          <a class="dr-disclosure__item" href="listings.html" aria-current="true">Client — order services<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
-          <a class="dr-disclosure__item" href="switch-role.html">Operator — take jobs</a>
-        </details>
+        <div class="dr-rows">
+          <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-mode">
+            <span class="dr-field__label">Mode</span>
+            <span class="dr-field__value">Client</span>
+            <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+          </button>
+        </div>
       </section>
 
       <p class="zlabel dr-label">Account <span class="dr-label__act">▸ identity &amp; preferences</span></p>
