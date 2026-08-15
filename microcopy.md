@@ -132,6 +132,7 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | rate | rate.html | Review | field label | Your review | Share your review of this order |
 | rate | rate.html | Review | field label | Share your review of this order | Your review — screen-reader only (designer, 2026-08-13: the compose card is one surface; the visible line comes off and the placeholder is the one sentence of help text) |
 | contact-support | contact-support.html | Message | field label | Your message | Your message — screen-reader only (designer, 2026-08-15: *remove “your message text”*; the visible line comes off and the placeholder carries the naming, the pattern `rate` took on 2026-08-13) |
+| order-setup | order-setup.html | Details form · Notes | field label | Notes for the operator | Notes for the operator — screen-reader only (designer, 2026-08-16: *забери цей текст*; the visible line comes off, the name stays on the control. Third compose card to take the `rate` pattern — and the first where the placeholder does **not** carry the naming, since *Floor, entrance code, what's inside…* is examples only. Open: whether the placeholder should name the field) |
 | ratings | ratings-empty.html | Overall (no ratings yet) | state message | You haven't been rated yet. Ratings build from your first jobs — the platform keeps auto-dispatching work to you until they do. | You haven't been rated yet. Ratings build from your first jobs — the platform keeps sending you jobs until they do. |
 | ratings | ratings-empty.html | Overall (no ratings yet) | button | See available jobs | Find jobs |
 | report-issue | report-issue.html | Topbar | button | ‹ Back | ‹ Back to Help |
@@ -1177,7 +1178,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-setup | Details form | Osokorky — Dniprovska Naberezhna, 14 | Field value | DATA |
 | order-setup | Details form | Parcel size | Field label |  |
 | order-setup | Details form | Small — up to 2 kg | Body | DATA |
-| order-setup | Details form | Notes for the operator | Field label |  |
+| order-setup | Details form | Notes for the operator | Field label | SR-ONLY — spoken, not drawn; visually the field shows the placeholder alone (designer, 2026-08-16) |
 | order-setup | Details form | Floor, entrance code, what's inside… | Field placeholder |  |
 | order-setup | Details form | Save this address for next time | Field label |  |
 | order-setup | Details form | Continue to review | Button |  |
