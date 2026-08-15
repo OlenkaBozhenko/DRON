@@ -33,6 +33,12 @@
   intervals all between 12 and 16, with the gap between cards smaller than the gaps
   inside one. Replaced with a three-step scale — 4/8 within a group, 20 between groups
   and as the card inset, 28 between cards — plus a narrow tier under 390px.
+  HEADER ORDER (2026-08-15, designer feedback): the card's header row reverses —
+  name over date/time leads at the left, the drone well with its status mark closes
+  at the right. Swapped in the DOM rather than with row-reverse, so the reading
+  order still follows the visual one (WCAG 1.3.2), and the screen reader now hears
+  the service before its state. order-history-loading flips with it, holding the
+  no-reflow contract at the same half-pixel. See concept.md rev 63.
   INDICATOR (2026-08-01, designer feedback — /impeccable): the "In progress" and
   "Delivered" pills become a status mark riding on the drone well — a green dot that
   pings for a live order, a settled check for a finished one, each keeping its old
