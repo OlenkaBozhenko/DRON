@@ -241,7 +241,7 @@ Buttons: **`min-height: 44px`** — never a fixed `height` — radius `6`, horiz
 ### Client (MJ-1)
 | Screen | Base file | State pages |
 |---|---|---|
-| Home / start an order **+ Service catalogue** (merged per `sitemap.md §7.3`) | `listings.html` | `listings-filters.html` (filter panel open — Price / Time / Location), `listings-filtered.html` (filters applied — removable chips + Clear all), `listings-empty.html` (no results / loosen filters), `listings-error.html` (load failure), `listings-loading.html` |
+| Home / start an order **+ Service catalogue** (merged per `sitemap.md §7.3`) | `listings.html` | `listings-filters.html` (filter panel open — Price / Time / Location), `listings-filtered.html` (filters applied — the All chip + removable chips), `listings-empty.html` (no results / loosen filters), `listings-error.html` (load failure), `listings-loading.html` |
 | Order setup / details | `order-setup.html` | `order-setup-empty.html`, `order-setup-error.html` |
 | Order review & price | `order-review.html` | `order-review-loading.html` |
 | Payment | `payment.html` | `payment-error.html`, `payment-loading.html` |

@@ -97,7 +97,7 @@ flowchart TD
   CO0 --> C
   C --> FLT{"Narrow the list?"}
   FLT -->|"tap Filters"| FP["Home — filters open (Price / Time / Location)"]
-  FP -->|apply| FD["Home — filters applied (removable chips + Clear all)"]
+  FP -->|apply| FD["Home — filters applied (All + removable chips)"]
   FP -->|"close / clear"| C
   FD -->|"clear all / remove chip"| C
   FD --> E
