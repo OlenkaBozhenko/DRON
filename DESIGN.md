@@ -560,6 +560,12 @@ gives it the corner. It never restates the parent's radius.
   the leading `All` chip, so the variant is currently spent nowhere. The slate tertiary stays
   the skip/cancel voice.
 - **Block:** `width:100%`. The default in an action bar and at the foot of a card.
+- **In the action bar, every button is filled** (designer, 2026-08-16, rev 112). Two or three actions
+  in a `.dr-actionbar` are `--primary` + `--secondary`, and a second `--secondary` for a third — never
+  `--tertiary`. A borderless text action on the bottom edge reads as a caption under the button, not as
+  a second control; the fill is what says *tappable* on a 44px target. `--tertiary` and `--text` stay
+  outside the action bar: the top-bar action (`listings-filters` · *Clear all*, `--tertiary` at 6.62:1)
+  and links inside a card.
 - **Disabled:** `--btn2` fill with a `--slate` label — **4.77:1**, the secondary button's own pair.
   It is built, not dimmed: blanket opacity would take charcoal-on-green to 2.35:1. No
   `--disabled-*` token is declared on these ten pages; the pair arrives through the token remap,
@@ -681,6 +687,24 @@ a Tab cannot reach the form under it; focus lands on the current option with its
 inside the drawer only; and it closes three ways — **Esc**, the **scrim**, and a **`Cancel`** button
 (`HIG · Action sheets` asks for the cancel by name) — each returning focus to the row that opened
 it. A drawer takes Cancel, not the `×` a full modal sheet screen takes.
+
+**Where it is spent, project-wide (rev 111).** Every dropdown-shaped control in the product now
+follows this rule — **six controls, seven pages**: payment (4) and language (2) on `account-edit`,
+**Parcel size** (3) on `order-setup` and `order-setup-error`, **Issue type** (3) on `report-issue`,
+**Mode** (2) on `account`, and `operator-account`'s Mode. **No list in the product reaches seven**,
+so every one of them is a drawer; the ≥ 7 half is spent only on the filter's place pick
+(`listings-filter-region` · `-city` · `-district`), where the rows are `<a href>` and no script is
+involved at all. `operator-account` is the one exception and it is deliberate — the page is
+grayscale, and `_conventions.md` §3 defers colour, icons and shadow on an unpainted wireframe.
+
+**The behaviour lives in `ui/kit.js`**, the kit's only script, linked by the five pages that carry a
+drawer and by nothing else. The kit is CSS with that one named exception: a surface that opens,
+traps focus, `inert`s the screen behind it and returns focus cannot be a stylesheet, and written
+five times it is five chances to drift. **An option is a `<button>` when it is a value and an `<a>`
+when it is a route** — the mode picker's options leave the screen, so they navigate and nothing is
+written back into the row. The row's new value is read from **`.dr-picker__label`**, never from the
+option's `textContent`: an option may carry artwork, and a wordmark drawn with SVG `<text>` lands in
+`textContent` — the naive read makes the row say *"VISAVisa •••• 4921"*.
 
 ### Text areas, and the focus rule they changed
 

@@ -288,7 +288,7 @@ Two axes, both mandatory. Differences are shown in **grayscale only** (fill, bor
 | **Tertiary / ghost** | transparent | none | `--wf-text-2` | low-emphasis (Skip, Cancel, text links) |
 | **Destructive** | `--wf-surface` | `1px --wf-border-2` | `--wf-text` + label carries the meaning (e.g. "Cancel order") | rare, wireframe shows it by label, not red |
 
-**In the action bar, every button is filled** (designer, 2026-08-16, rev 110). A `footer.actionbar`
+**In the action bar, every button is filled** (designer, 2026-08-16, rev 112). A `footer.actionbar`
 carrying **two or three** actions draws them as **primary + secondary** — and a second secondary for a
 third — **never a ghost**. A borderless text action in the bottom bar reads as a caption under the
 button rather than as a second control: the box is what says *tappable*, and on a 44px target the box
@@ -537,6 +537,16 @@ A page is done when **all** hold:
 - [ ] The state exists in the screen's `_screens.md` row (no invented states).
 
 ## 13. Shared shell (`_wf-shell.js`)
+
+**Two shared scripts, and they are not the same kind of thing.** `_wf-shell.js` is **prototype chrome** — the
+screen map, the viewport switcher, the toolbar — and every one of the 84 pages links it. `../ui/kit.js`
+(added 2026-08-16, rev 111) is **product**: it carries the picker drawer's behaviour and nothing else, and
+only the pages that hold a drawer link it — `account-edit`, `order-setup`, `order-setup-error`,
+`report-issue`, `account`. The kit is CSS with that one named exception, because a floating surface that
+opens, traps focus, makes the screen behind it `inert` and hands the focus back cannot be a stylesheet; and
+written once it cannot drift between five pages. Its markup contract is documented at the top of the file.
+A page that does **not** hold a drawer must not link it. The one page-level script left in the prototype is
+`listings-filters`'s range readout, which is that page's alone.
 
 Every page links one shared shell script (`<script src="_wf-shell.js"></script>`). It injects, identically on
 every page (grayscale, §4):

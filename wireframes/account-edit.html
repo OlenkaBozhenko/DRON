@@ -132,96 +132,13 @@
   </div>
 
   <!--
-    The drawer's script. A floating surface cannot be built out of CSS alone the
-    way the in-flow <details> could, so this one really does the opening — and
-    it therefore carries the whole of the modal contract, not just the pick:
-
-      · the scrim and the drawer come out of [hidden] together;
-      · everything behind goes `inert`, so a tap or a Tab cannot reach the form
-        under an open modal (this is what aria-modal PROMISES, and inert is what
-        keeps the promise);
-      · focus moves to the current option, and is trapped between the first and
-        last control in the drawer — WCAG 2.1.2 is answered by Esc, by Cancel
-        and by the scrim, three ways out;
-      · on close the focus goes back to the row that opened it, which by then
-        says the new value.
-
-    The pick itself: the value moves up to the row, aria-current moves with it,
-    the drawer closes. Scoped to this page — nothing else loads it.
+    The picker drawer's behaviour lives in ui/kit.js, not here. It was inline
+    on this page while this was the only picker in the product; the sweep of
+    2026-08-16 put a drawer on order-setup, order-setup-error, report-issue and
+    account too, and a modal contract written five times is five chances to
+    drift. The markup contract it expects is documented at the top of that file.
   -->
-  <script>
-  (function () {
-    var frame  = document.querySelector('.wf-frame'),
-        scrim  = frame && frame.querySelector('[data-scrim]'),
-        rows   = frame ? frame.querySelectorAll('.dr-field--action') : [],
-        behind = frame ? [].slice.call(frame.children).filter(function (el) {
-          return !el.classList.contains('dr-sheet') && el !== scrim;
-        }) : [],
-        openRow = null;
-
-    if (!scrim || !rows.length) return;
-
-    function sheetOf(row) { return document.getElementById(row.getAttribute('aria-controls')); }
-
-    function open(row) {
-      var sheet = sheetOf(row);
-      openRow = row;
-      row.setAttribute('aria-expanded', 'true');
-      scrim.hidden = false;
-      sheet.hidden = false;
-      behind.forEach(function (el) { el.inert = true; });
-      var current = sheet.querySelector('.dr-picker__item[aria-current="true"]')
-                 || sheet.querySelector('.dr-picker__item');
-      current.focus();
-    }
-
-    function close() {
-      if (!openRow) return;
-      var row = openRow, sheet = sheetOf(row);
-      openRow = null;
-      behind.forEach(function (el) { el.inert = false; });
-      sheet.hidden = true;
-      scrim.hidden = true;
-      row.setAttribute('aria-expanded', 'false');
-      row.focus();
-    }
-
-    rows.forEach(function (row) {
-      row.addEventListener('click', function () { open(row); });
-
-      var sheet = sheetOf(row),
-          items = sheet.querySelectorAll('.dr-picker__item'),
-          value = row.querySelector('.dr-field__value');
-
-      items.forEach(function (item) {
-        item.addEventListener('click', function () {
-          items.forEach(function (other) { other.removeAttribute('aria-current'); });
-          item.setAttribute('aria-current', 'true');
-          // the LABEL, not the row: a payment row now also holds brand artwork,
-          // and a wordmark drawn with <text> lands in textContent. The label
-          // span is the one node that holds the value and nothing else.
-          value.textContent = (item.querySelector('.dr-picker__label') || item).textContent.trim();
-          close();
-        });
-      });
-
-      sheet.querySelector('[data-close]').addEventListener('click', close);
-    });
-
-    scrim.addEventListener('click', close);
-
-    document.addEventListener('keydown', function (e) {
-      if (!openRow) return;
-      if (e.key === 'Escape') { close(); return; }
-      if (e.key !== 'Tab') return;
-      // the trap: the drawer is the whole tab order while it is up
-      var stops = sheetOf(openRow).querySelectorAll('button'),
-          first = stops[0], last = stops[stops.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    });
-  }());
-  </script>
+  <script src="../ui/kit.js"></script>
 
   <script src="_wf-shell.js"></script>
 </body>

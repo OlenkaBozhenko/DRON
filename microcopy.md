@@ -536,9 +536,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account | Profile | Olena B. | Body | DATA |
 | account | Profile | Verified with Diia | Body |  |
 | account | Profile | Client | Body |  |
-| account | Mode | Client mode | Body |  |
+| account | Mode | Mode | Field label | rev 111 — the picker became a settings row, so the row gains a label and the drawer takes `Mode` as its title |
+| account | Mode | Client | Field value | rev 111 — replaces `Client mode`, which said the noun twice once the row was labelled |
 | account | Mode | Client — order services | Body |  |
-| account | Mode | current | Body |  |
 | account | Mode | Operator — take jobs | Body |  |
 | account | Mode | switch | Body |  |
 | account | Account | Payment method | Body |  |
@@ -1232,7 +1232,10 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-setup-error | Details form | Outside the service zone. | State message |  |
 | order-setup-error | Details form | DRON delivers within Kyiv city — enter an address in the city. | State message |  |
 | order-setup-error | Details form | Parcel size | Field label |  |
-| order-setup-error | Details form | Small — up to 2 kg | State message | DATA |
+| order-setup-error | Details form | Small — up to 2 kg | State message | DATA · the row's value and the current option |
+| order-setup-error | Details form | Medium — up to 5 kg | Body | picker option, new 2026-08-16 (rev 111) |
+| order-setup-error | Details form | Large — up to 10 kg | Body | picker option, new 2026-08-16 (rev 111) |
+| order-setup-error | Details form | Cancel | Button | the drawer's dismissal (rev 111) |
 | order-setup-error | Details form | Edit drop-off address | Button |  |
 | order-setup-error | Details form | Coverage: Kyiv (UA). More cities are rolling out. | Body |  |
 | order-setup | — | ‹ Order | Button |  |
@@ -1242,7 +1245,10 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-setup | Details form | Drop-off address: | Field label | colon added 2026-08-03 |
 | order-setup | Details form | Osokorky — Dniprovska Naberezhna, 14 | Field value | DATA |
 | order-setup | Details form | Parcel size | Field label |  |
-| order-setup | Details form | Small — up to 2 kg | Body | DATA |
+| order-setup | Details form | Small — up to 2 kg | Body | DATA · the row's value and the current option |
+| order-setup | Details form | Medium — up to 5 kg | Body | picker option, **new 2026-08-16 (rev 111)** — the product had only ever written the smallest size, because the picker that would have shown its siblings did not open |
+| order-setup | Details form | Large — up to 10 kg | Body | picker option, **new 2026-08-16 (rev 111)** — same |
+| order-setup | Details form | Cancel | Button | the drawer's dismissal (rev 111) — `HIG · Action sheets` asks for the cancel by name |
 | order-setup | Details form | Notes for the operator | Field label | SR-ONLY — spoken, not drawn; visually the field shows the placeholder alone (designer, 2026-08-16) |
 | order-setup | Details form | Floor, entrance code, what's inside… | Field placeholder |  |
 | order-setup | Details form | Save this address for next time | Field label |  |
@@ -1318,7 +1324,10 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | report-issue | — | Report an issue | Heading |  |
 | report-issue | Report form | Issue type | Field label |  |
 | report-issue | Report form | Poor quality — not as expected | Body |  |
-| report-issue | Report form | Also: Damaged item · Wrong location | Body |  |
+| report-issue | Report form | Damaged item | Body | picker option (rev 111) — was a name inside the `Also:` hint, now an option in the drawer |
+| report-issue | Report form | Wrong location | Body | picker option (rev 111) — same |
+| report-issue | Report form | Cancel | Button | the drawer's dismissal (rev 111) |
+| ~~report-issue~~ | ~~Report form~~ | ~~Also: Damaged item · Wrong location~~ | ~~Body~~ | **RETIRED 2026-08-16 (rev 111).** It existed because the picker did not open — the only place the other two types could be shown. A caption that lists a control's own options is a caption for a control that does not work |
 | report-issue | Report form | What happened? | Field label |  |
 | report-issue | Report form | Describe the issue — e.g. the roof photos were blurry and missed the north side. | Field placeholder |  |
 | report-issue | Report form | ADD PHOTO / NOTE | Body | WF-PH |
