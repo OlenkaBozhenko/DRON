@@ -52,8 +52,24 @@
     <footer class="dr-actionbar">
       <a class="dr-btn dr-btn--primary dr-btn--block" href="order-review.html">Continue to review</a>
     </footer>
+
+    <!-- THE PARCEL-SIZE DRAWER. Three options, under the six, so the list rises
+         from the bottom edge rather than pushing a screen. -->
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <section class="dr-sheet dr-sheet--picker" id="sheet-size" role="dialog" aria-modal="true" aria-labelledby="sheet-size-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-size-title">Parcel size</p>
+      <div class="dr-picker__list">
+        <button class="dr-picker__item" type="button" aria-current="true"><span class="dr-picker__label">Small — up to 2 kg</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+        <button class="dr-picker__item" type="button"><span class="dr-picker__label">Medium — up to 5 kg</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+        <button class="dr-picker__item" type="button"><span class="dr-picker__label">Large — up to 10 kg</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+      </div>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+    </section>
   </div>
 
+  <script src="../ui/kit.js"></script>
   <script src="_wf-shell.js"></script>
 </body>
 </html>
