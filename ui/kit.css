@@ -1017,6 +1017,11 @@ header.dr-topbar,
 .dr-rows--center{ text-align: center; }
 .dr-rows--center .dr-field{ justify-content: center; }
 .dr-rows--center .dr-field__label{ flex: 0 0 100%; }
+/* The zone spans the card. Shrink-to-fit was invisible while both zones held
+   the same string — "Add document" sized them both to ~185 — and rev 57 gave
+   each its own object, which measured the pair ragged at 214 against 156 on a
+   332px card. A target is not sized by the length of its label. */
+.dr-rows--center .dr-upload{ flex-basis: 100%; }
 
 /* A field keeps a ground only outside the grouped label-value anatomy:
    the search bar (in no list at all) and, since 2026-08-12, the empty
@@ -1185,7 +1190,16 @@ header.dr-topbar,
    the well is decoration, so the base zone carries no fill — glyph (slate on
    card, 5.95:1) plus the secondary button. Only where the zone is itself the
    control (role="button") does the --media fill stay: an interactive target
-   keeps its visible boundary, the glyph at 5.51:1 on the well. */
+   keeps its visible boundary, the glyph at 5.51:1 on the well.
+
+   Rev 57, 2026-08-15 — the designer's "write just with text" on account-edit:
+   both document zones take the role, so the nested secondary button goes and
+   the words become the zone's own line. Two gaps the role change exposed are
+   closed here and land on report-issue too: a tabindex="0" control had NO
+   focus ring (WCAG 2.4.7, failing since 2026-08-03) and no hover. The well
+   is 1.08:1 on the card and is not the identifier — the glyph, the verb and
+   the ring are; it stays because an upload zone, unlike a text area, has no
+   label-value anatomy to fall back on. */
 .dr-upload{
   min-height: var(--sz-upload-min);
   border: 0; border-radius: var(--r-media);
@@ -1193,8 +1207,16 @@ header.dr-topbar,
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: var(--sp-snug); padding: var(--sp-24); text-align: center;
 }
-.dr-upload[role="button"]{ background: var(--media); }
+.dr-upload[role="button"]{ background: var(--media); cursor: pointer; }
+.dr-upload[role="button"]:hover{ background: var(--btn2); }                          /* one rung, as .dr-btn--secondary steps the other way */
+.dr-upload[role="button"]:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 .dr-upload .dr-ic{ width: var(--ic-32); height: var(--ic-32); }
+/* The action the button used to carry, in the button's own type step and
+   weight so only the pill leaves: --ink on the well, 13.33:1. */
+.dr-upload__action{
+  font-size: var(--t-heading-size); font-weight: var(--weight-medium);
+  line-height: var(--t-base-line); color: var(--ink);
+}
 
 /* ═══ THE RATING ══════════════════════════════════════════════════════════
    Settled 2026-08-03 by the designer: a filled star is yellow — the palette's
