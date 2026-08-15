@@ -372,6 +372,25 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **Voice check.** The heading is a plain noun naming what the group holds — no verb, no adjective, no cliché (`voice.md` P1, P2). "Documents" covers the insurance card too, since an insurance certificate is a document; the designer was shown that reading and chose the shared heading anyway, so it is her call and is recorded as one, not as a defect.
 - **Drift found, recorded, not corrected:** the master table still carries two `WF-PH` rows for this zone — `DRONE REGISTRATION / DOCUMENTS` and `INSURANCE DOCUMENT` — which are the grayscale wireframe's placeholder labels. Neither string is in the painted build; the painted zone has carried a glyph since 2026-08-03. They are left in place for the designer's word rather than deleted.
 
+**Sync — 2026-08-16 (the toast sweep — two new strings, and the list of places that deliberately get none)**
+- The designer, on the `listings-empty` toast she had just approved: *«пройдись по проекту де ще потрібні такі увідомлення тости і добав їх. Текст має бути різний відповідати функції»*. **So the whole product was walked control by control, not sampled** — every `<button>` and every `.dr-btn` inside a `.wf-frame`, 84 files, 234 controls. The answer is smaller than the question sounds, and the reason is the finding.
+- **The rule the sweep applied, now written into `voice.md` as the Toast element rule:** a toast belongs to an action that finishes **on the screen you are standing on** and leaves **no other trace**. Two tests, and most controls fail the second, not the first.
+- **Two new strings, and they are different because the functions are different:**
+  - `share` · **Copy link** → **`Link copied.`** One sentence, because there is no second fact: the link is on the clipboard and nothing follows. This is the purest case in the product — the sheet cannot show that a copy happened, so without the toast the tap has no answer at all.
+  - `order-setup-empty` · **Notify me when available** → **`Saved. We'll tell you when an operator is free.`** Two sentences, on the `listings-empty` pattern: the fact, then the promise that the user does not have to come back and check.
+- **Why the second one does not repeat the first one's sentence, which is the designer's instruction taken literally.** `listings-empty` says *Request received. We'll tell you when it's available.* — that button is about a **region DRON has not launched in**, and *available* means the service. This one is about **an operator being busy right now**, and the thing being waited for is a person, not a launch. Same act, different object, so the second clause changes and the first one changes with it: **`Saved`** is `flows.md`'s own word at this node (`"save for later" → Saved: notify me when an operator is free`), where the other node reads *Saved: notify me when DRON launches here* and rev 90 chose *Request received* over it on P1 grounds. Using both words, each where its flow node uses it, is the honest reading of *«текст має бути різний»*.
+- **`order-setup-empty`'s button stops navigating, and `flows.md` is the reason, not taste.** It was `<a href="order-setup.html">` — tap *Notify me when available* and the app drops you into a working order form, which answers a request with a non-sequitur. The flow node is **terminal** (`:::done`), exactly like `listings-empty`'s. The toast is what a terminal node looks like on a screen. The `href` is left in place on rev 89's precedent (`Mark resolved` carries one and does not navigate) rather than swept, and that inconsistency is flagged below, not hidden.
+- **Where a toast was considered and deliberately refused — this is the more useful half of the sweep:**
+  | Screen · control | Why no toast |
+  |---|---|
+  | `operator-verification` **Add document** ×2 · `operator-profile-setup` **Add photo** · `result-upload` **Add photo** · `operator-dispute` **Add evidence** | The file lands in its own upload well. The result is on screen; a toast would restate it and teach the pattern that every tap owes a message. |
+  | `contact-support` **Call support** | Hands off to the phone app. The dialer is the confirmation, and nothing has happened yet at the moment of the tap. |
+  | `listings*` **Kyiv, UA ▾** · **Filters** · the four service tabs · `time-slot*` day chips · `rate` stars | Open a picker or move a selection. Visible either way. |
+  | `operator-listings` availability segment | The line above it already reads **You are Available · receiving jobs near Podil**, and it stays readable. A permanent statement beats a 4-second one. |
+  | every `-error` screen | An error must stay re-readable; a toast leaves. Now stated in `voice.md`. |
+- **`order-history` · Delete order (×3) — reported, not built, because it is not a toast question.** Three icon buttons, `aria-label="Delete order"`, no confirm and no undo anywhere in the flow. `voice.md`'s **Dangerous action** rule asks for the consequence **before** the tap (`Decline this job? … won't come back to you.` + `Decline` / `Keep job`), and a toast after the fact is not that. Two ways to close it — a confirm sheet before, or a toast **with an Undo**, which the component does not have — and both are the designer's call. The rule now says so out loud.
+- **Everything else that wants a toast wants one the mechanism cannot give.** Five real cases — `account-edit` **Save changes**, `rate` **Submit review**, `job-offer` **Decline**, `result-upload-error` **Queue offline**, `contact-support` **Mark resolved** — all finish by **changing screen**, and the toast would have to ride the navigation and appear on the screen the user lands on. Today `data-toast` fires only where you stay. That is rev 89's own open question, still open, still hers.
+
 **Sync — 2026-08-15 (the second toast)**
 - **Notify me when available** on `listings-empty` now answers: **Request received. We'll tell you when it's available.** — the designer's *«при натисканні кнопки покажи toast… що реквест отримано, як тільки з'явиться ми повідомимо»*, which is the sentence she dictated, cut to a toast's length.
 - **Two sentences because the state needs both:** the fact (*it is recorded*) and what happens next (*we come to you — you do not have to come back and check*). That is the success rule read literally, and it is the whole reason the button exists: it converts a dead end into a promise. No celebration, no exclamation, no *successfully*.
@@ -461,7 +480,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account | Mode | current | Body |  |
 | account | Mode | Operator — take jobs | Body |  |
 | account | Mode | switch | Body |  |
-| account | Mode | Switching changes what the app shows. Your Diia identity stays the same. | Body |  |
 | account | Account | Payment method | Body |  |
 | account | Account | Visa •••• 4921 | Body | DATA |
 | account | Account | Saved address | Body |  |
@@ -1102,6 +1120,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-setup-empty | Availability | No operator free right now | State message |  |
 | order-setup-empty | Availability | All nearby operators are on jobs. The next one is likely free in about 40 minutes. | State message |  |
 | order-setup-empty | Availability | Notify me when available | Button |  |
+| order-setup-empty | Availability | Saved. We'll tell you when an operator is free. | Toast | raised by `Notify me when available`; `flows.md`'s own word at this terminal node |
 | order-setup-empty | Availability | Pick a later time | Button |  |
 | order-setup-empty | Availability | We'll hold your details — no need to re-enter them. | Body |  |
 | order-setup-error | — | ‹ Order | Button |  |
@@ -1277,6 +1296,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | share | Your link | dron.app/r/anna-k4 | Body | DATA |
 | share | Your link | COPY | Body | WF-PH |
 | share | Your link | Copy link | Button |  |
+| share | Your link | Link copied. | Toast | raised by `Copy link`; the first toast to float above a sheet |
 | share | Share to | Message | Button |  |
 | share | Share to | Email | Button |  |
 | share | Share to | More | Button |  |
