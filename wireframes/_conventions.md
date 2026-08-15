@@ -297,6 +297,30 @@ button rather than as a second control: the box is what says *tappable*, and on 
 is the only thing the target has to show for itself. Tertiary keeps its job **outside** the action
 bar — the top-bar text action (`listings-filters` · *Clear all*) and links inside a card.
 
+**What else the bar may carry** (designer, 2026-08-16, rev 115). The action bar is not buttons-only, but
+what joins them is closed and counted, not open:
+
+| May sit in the bar | Where it exists | Why |
+|---|---|---|
+| Buttons | every `footer.dr-actionbar` | §11 above |
+| A caption line (`.dr-note`) | `order-setup-error` | states a fact about the action, not about `main` |
+| A price summary (`.dr-price`) | `time-slot`, `time-slot-empty` | the number the button commits to |
+| **A control that rides the same commit** | `order-setup` · *Save this address for next time* | it takes effect **when the button is pressed**, so it is read where it is committed |
+
+**A rider control is a departure from `HIG · Toolbars`, taken deliberately** — that guideline gives the
+bottom bar to *actions on the current view*, and `HIG · Toggles` would put an on/off row in the list with
+the fields. It is allowed here on one test only: **the control changes nothing until the bar's button is
+pressed.** A setting that acts the moment it is flipped belongs in `main`, in the row-set, every time.
+Two things are then owed in the markup and are not optional, because the control has left its `<form>`:
+
+- **`form="<form id>"` on the input** — otherwise it is a control of no form (`WCAG 1.3.1`, `4.1.2`).
+  Check it by reading `form.elements` on the built page, not by looking at the frame.
+- **Placed before the button in the DOM** — reading order must still equal visual order (`WCAG 2.4.3`).
+
+Prose does **not** follow a control down here: a note that explains something in `main` stays in `main`
+(rev 114). And the row's own left edge sits on the button's — box at the bar's `16px` inset, so the bar
+reads as one column.
+
 **Interaction states (each variant must render all):**
 
 | State | Wireframe treatment |
