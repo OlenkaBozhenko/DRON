@@ -53,7 +53,7 @@
     <h1>Order history</h1>
     <p class="sub">Client · Activity tab · state: <b>success (base)</b> · file: order-history.html</p>
     <div class="flow"><b>Job (jtbd):</b> RJ-C5 — get the same service again in one tap, so the second time is easier than the first.<br><b>flows.md:</b> Home → (fetch history) → <span class="cur">Order history</span> → Book again → Order setup.<br><b>Exit:</b> tap a past card (the whole card is the "Book again" target) → <b>Order setup</b>.</div>
-    <div class="legend"><p><b>Zones:</b></p><p><b>Card anatomy</b> ▸ header (drone well carrying the status indicator, name over date/time) · route dots (From ▸ To, or single Location) · price + actions</p><p><b>In progress</b> ▸ active order at the top: a green dot pinging on its drone, the only card carrying a progress rail → View details (tracking). A past order shows a settled check instead — shape and behaviour, not colour alone.</p><p><b>CTA</b> ▸ View details if live; a past card reopens setup on tap, and offers delete + open the delivery photo / report</p></div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Card anatomy</b> ▸ header (name over date/time at the left, drone well carrying the status indicator at the right) · route dots (From ▸ To, or single Location) · price + actions</p><p><b>In progress</b> ▸ active order at the top: a green dot pinging on its drone, the only card carrying a progress rail → View details (tracking). A past order shows a settled check instead — shape and behaviour, not colour alone.</p><p><b>CTA</b> ▸ View details if live; a past card reopens setup on tap, and offers delete + open the delivery photo / report</p></div>
   </aside>
 
   <div class="wf-frame dr dr-screen">
@@ -67,13 +67,13 @@
             <article class="dr-card">
               <a class="dr-card__link" href="tracking.html" aria-label="Package delivery, in progress — view details"></a>
                 <span class="dr-order__top">
-                  <span class="dr-well">
-                    <img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async">
-                    <span class="dr-status dr-status--live" role="img" aria-label="In progress"></span>
-                  </span>
                   <span class="dr-order__head">
                     <span class="dr-order__title">Package delivery</span>
                     <span class="dr-order__date">Today · 10:03</span>
+                  </span>
+                  <span class="dr-well">
+                    <img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async">
+                    <span class="dr-status dr-status--live" role="img" aria-label="In progress"></span>
                   </span>
                 </span>
                 <span class="dr-rail dr-rail--at2">
@@ -100,13 +100,13 @@
             <article class="dr-card">
               <a class="dr-card__link" href="order-setup.html" aria-label="Package delivery, 28 Jun 2026, delivered — reopen"></a>
                 <span class="dr-order__top">
-                  <span class="dr-well">
-                    <img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async">
-                    <span class="dr-status" role="img" aria-label="Delivered"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-                  </span>
                   <span class="dr-order__head">
                     <span class="dr-order__title">Package delivery</span>
                     <span class="dr-order__date">28 Jun · 14:20</span>
+                  </span>
+                  <span class="dr-well">
+                    <img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async">
+                    <span class="dr-status" role="img" aria-label="Delivered"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
                   </span>
                 </span>
                 <span class="dr-inset">
@@ -124,13 +124,13 @@
             <article class="dr-card">
               <a class="dr-card__link" href="order-setup.html" aria-label="Aerial photo and video, 14 Jun 2026, delivered — reopen"></a>
                 <span class="dr-order__top">
-                  <span class="dr-well">
-                    <img src="../assets/drones/thumbs/drone-flight-camera.png" alt="" loading="lazy" decoding="async">
-                    <span class="dr-status" role="img" aria-label="Delivered"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-                  </span>
                   <span class="dr-order__head">
                     <span class="dr-order__title">Aerial photo &amp; video</span>
                     <span class="dr-order__date">14 Jun · 11:30</span>
+                  </span>
+                  <span class="dr-well">
+                    <img src="../assets/drones/thumbs/drone-flight-camera.png" alt="" loading="lazy" decoding="async">
+                    <span class="dr-status" role="img" aria-label="Delivered"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
                   </span>
                 </span>
                 <span class="dr-inset">
@@ -146,13 +146,13 @@
             <article class="dr-card">
               <a class="dr-card__link" href="order-setup.html" aria-label="Roof inspection, 2 Jun 2026, delivered — reopen"></a>
                 <span class="dr-order__top">
-                  <span class="dr-well">
-                    <img src="../assets/drones/thumbs/drone-flight-clean.png" alt="" loading="lazy" decoding="async">
-                    <span class="dr-status" role="img" aria-label="Delivered"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-                  </span>
                   <span class="dr-order__head">
                     <span class="dr-order__title">Roof inspection</span>
                     <span class="dr-order__date">2 Jun · 09:15</span>
+                  </span>
+                  <span class="dr-well">
+                    <img src="../assets/drones/thumbs/drone-flight-clean.png" alt="" loading="lazy" decoding="async">
+                    <span class="dr-status" role="img" aria-label="Delivered"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
                   </span>
                 </span>
                 <span class="dr-inset">
