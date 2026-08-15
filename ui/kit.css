@@ -1219,9 +1219,14 @@ header.dr-topbar,
    intrinsic 69px already stood above the 56px floor this kit declares. Both
    the row's 80 and the input's 56 are floors nothing has ever reached; they
    are left as declared and reported, not quietly re-cut.
-   Spent on contact-support alone, the way --half is spent on rate alone;
-   order-setup's notes and report-issue's description keep the two lines
-   until she says otherwise. */
+   Rev 105 spent it on contact-support alone; REV 107 (2026-08-16) carries it
+   to the other two compose areas on her word — «зроби так само 6 рядків» —
+   order-setup's notes and report-issue's description. Three of the four
+   painted areas are six lines now; rate keeps --half, which is taller still
+   (382). The rows differ only because the labels do: 183 where the label is
+   sr-only (contact-support, order-setup), 214 where it is drawn
+   (report-issue). Neither screen scrolls: 210.6 / 87.8px of slack under the
+   form on a 375 × 812 frame. */
 .dr-field--area6 .dr-field__input{
   min-height: calc(6 * var(--t-heading-size) * var(--t-para-line) + 2 * var(--sp-snug));
 }

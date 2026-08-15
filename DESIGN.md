@@ -662,9 +662,15 @@ product measured **69 / 93** and not 56 / 80. The floors are left as declared an
 recorded rather than re-cut. Where a screen needs a different height the modifier carries it, and
 both modifiers are written in tokens so the count survives a change of type scale:
 **`.dr-field--half`** is `rate`'s half-screen review (**382 / 406**), and **`.dr-field--area6`**
-(rev 105) is `contact-support`'s six typed lines — `6 × --t-heading-size × --t-para-line + 2 ×
---sp-snug` = **159px**, row **183px**, verified by typing six lines with no scroll and seven with.
-`order-setup` and `report-issue` keep the two-line default.
+(rev 105, carried to the rest of the compose set in rev 107) is six typed lines —
+`6 × --t-heading-size × --t-para-line + 2 × --sp-snug` = **159px**, verified on each page by typing
+six lines with no scroll and seven with. It is spent on **three of the four painted areas** —
+`contact-support`'s message, `order-setup`'s notes, `report-issue`'s description — and the input
+measures **159 × 341.4** on all three. **The row is not the same number, because the label is not:**
+**183** where the label is `sr-only` (`contact-support`, `order-setup`), **214** where it is drawn
+(`report-issue`, +21 label line +10 gap). No screen scrolls to pay for it — measured slack between
+the last block and `main`'s bottom inset is **165.3 / 210.6 / 87.8px** on the 375 × 812 frame. Only
+`rate` sits outside, on `--half`, which is taller still.
 
 **A text field shows no focus ring.** `WCAG 2.4.7`'s Understanding names the text cursor in a text
 field as a visible focus indicator, so on a field with a caret the caret carries the criterion and
