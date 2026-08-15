@@ -561,6 +561,19 @@ gives it the corner. It never restates the parent's radius.
   those at `--btn2` and `--slate`.
 - **Focus:** `2.5px solid var(--ink)`, `outline-offset:2px`.
 
+### Toast
+
+Added 2026-08-15 (rev 89). A transient confirmation, raised by any control carrying `data-toast`.
+**The product's first inverted surface and its first floating one**, both stated rather than slipped
+in: `--page` on `--ink` is **15.99:1**, the palette's strongest pair and the nav bar's own two values
+the other way round, so no colour is cut for it. Pill radius, 12/20 padding, body type at medium.
+It floats, so it spends **`--sh-raised`** — a rung declared since the concept and applied to nothing
+until now; the flat-surface rule governs cards sitting *in* the page, and a toast does not sit in the
+page. `role="status"` announces it without taking focus (`WCAG 4.1.3`). It clears whatever bottom
+chrome the screen has — the shell measures the action bar or tab bar rather than assuming, because a
+toast that covers the button that raised it is worse than no toast. Dismisses itself after 4s and on
+click; nothing depends on reading it in time (`WCAG 2.2.1`), since it states the action just taken.
+
 ### Circular icon action
 
 44 × 44, `50%`, `--btn2` fill, `--ink` glyph at 20px, hover → `--media`, `z-index:2` so it clears

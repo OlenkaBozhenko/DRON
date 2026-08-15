@@ -1582,6 +1582,36 @@ header.dr-topbar,
   letter-spacing: var(--t-number-track);
 }
 
+/* ═══ THE TOAST ══════════════════════════════════════════════════════════════════
+   Added 2026-08-15 (rev 89) on the designer's word. The product's first
+   INVERTED surface and its first floating one, so both are stated rather
+   than slipped in: --page on --ink is 15.99:1, the palette's strongest pair
+   and the same two values the nav bar already uses the other way round; no
+   new colour is cut. It floats, so it takes --sh-raised — a rung declared
+   since the concept and spent nowhere until now; the flat-surface rule is
+   about CARDS sitting in the page, and a toast does not sit in the page.
+   role="status" is on the element, so it is announced without taking focus
+   (WCAG 4.1.3). It dismisses on its own and on click; nothing depends on
+   reading it in time, because the fact it states is the action the user
+   just took (WCAG 2.2.1 — no time limit on anything the user still needs). */
+.dr-toast{
+  position: absolute; left: var(--sp-screen); right: var(--sp-screen);
+  bottom: var(--sp-group);   /* floor; the shell raises it above whatever footer the screen has */
+  z-index: 5; margin: 0 auto; width: max-content; max-width: calc(100% - var(--sp-24) * 2);
+  padding: var(--sp-snug) var(--sp-group);
+  border-radius: var(--r-pill); background: var(--ink); color: var(--page);   /* 15.99:1 */
+  font-size: var(--t-body-size); font-weight: var(--weight-medium);
+  line-height: var(--t-base-line); text-align: center;
+  box-shadow: var(--sh-raised); cursor: pointer;
+  opacity: 0; transform: translateY(var(--sp-within-lg));
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+  pointer-events: none;
+}
+.dr-toast.is-on{ opacity: 1; transform: none; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce){
+  .dr-toast{ transition: none; transform: none; }
+}
+
 /* ═══ SKELETONS ═══════════════════════════════════════════════════════════
    Chrome stays solid, content pulses. The question is never "should this
    pulse" but "does what loads replace this surface, or sit inside it". */

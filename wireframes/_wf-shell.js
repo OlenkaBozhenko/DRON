@@ -467,6 +467,40 @@
       })(backEls[bi]);
     }
 
+    /* toasts — any control with data-toast raises one (rev 89). The message
+       lives on the element so the page stays declarative and the behaviour
+       stays here, the way the nav and the language switch already do.
+       role="status" announces it without moving focus (WCAG 4.1.3); it
+       dismisses itself and on click, and it does not navigate, because a
+       toast the user never sees is not a toast. */
+    var toastEls = document.querySelectorAll(".wf-frame [data-toast]");
+    for (var ti=0; ti<toastEls.length; ti++){
+      (function(el){
+        el.addEventListener("click", function(e){
+          e.preventDefault();
+          var frame = el.closest(".wf-frame"); if (!frame) return;
+          var t = frame.querySelector(".dr-toast");
+          if (!t){
+            t = document.createElement("div");
+            t.className = "dr-toast";
+            t.setAttribute("role", "status");
+            frame.appendChild(t);
+          }
+          if (t._hide) clearTimeout(t._hide);
+          t.textContent = el.getAttribute("data-toast");
+          /* sit clear of whichever bottom chrome this screen has — an action
+             bar is taller than a tab bar, and a toast that covers the button
+             that raised it is worse than no toast. Measured, not assumed. */
+          var foot = frame.querySelector(".dr-actionbar, .dr-tabbar");
+          t.style.bottom = ((foot ? foot.getBoundingClientRect().height : 0) + 20) + "px";
+          void t.offsetWidth;
+          t.classList.add("is-on");
+          t._hide = setTimeout(function(){ t.classList.remove("is-on"); }, 4000);
+          t.onclick = function(){ clearTimeout(t._hide); t.classList.remove("is-on"); };
+        });
+      })(toastEls[ti]);
+    }
+
     /* keep the current node in view within the tree */
     var active = tree.querySelector("a.current") || tree.querySelector("a.in-current");
     if (active && active.scrollIntoView) active.scrollIntoView({ block: "center" });
