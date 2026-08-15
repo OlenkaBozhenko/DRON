@@ -308,10 +308,37 @@ project rule — one bar, one name — wins here, deliberately, the way `concept
 selected tab already departs from the filled-symbol convention. Sighted users lose the destination
 name; assistive-tech users keep it.
 
-**And it re-opens one thing cheaply.** Centring the title was rejected under rev 92 because the back
-label collided with it on 4 of 19 pairs, two of them by ~1px and 0.19px. With the label gone the
-chevron occupies 34px of the bar, so no pair can collide — centring is now free. Not done; the
-designer has not asked for it.
+**And it re-opened one thing cheaply — taken in rev 94.** Centring the title was rejected under rev 92
+because the back label collided with it on 4 of 19 pairs, two of them by ~1px and 0.19px. With the label
+gone the chevron occupies 34px of the bar, so no pair can collide. The designer asked for it the same
+day, and `HIG · Navigation bars` wanted it all along.
+
+### rev 94 — the title is centred, and the language switch leaves the mobile bar
+
+**Centred.** The title used to flow after the back label, drifting **−82.7px to +30.4px** off centre with
+that label's length. Measured after: **68 titles, all 0.00px off centre, 0 collisions, 0 clipped** — and
+re-run in the desktop preview, where the language switch is still in the bar: **68 checked, 0 problems.**
+
+Done with `position:absolute; left:50%` rather than a three-column grid, because four bars carry a third
+child (`job-checklist` ×2 the operator name, `listings-filters` its *Clear all*) and a grid would need
+re-declaring per shape. `pointer-events:none` keeps a long title from swallowing a click meant for the
+control under it; `max-width` + ellipsis keeps it off both edges. One page needed a fix to comply:
+`payment-loading` carried an inline `padding-left:16px` on its title that fought the centring.
+
+*A note on measuring this.* The first collision sweep reported 40-odd overlaps, all against
+`.dr-topbar__spacer`. They were not real: the spacer is an empty `flex:1` filler, and taking the title
+out of flow let it expand across the whole bar. The check excludes zero-content spacers.
+
+**Language switch — desktop only.** Designer, 2026-08-16: *"мови з навігаційного бару забери, але в
+адаптивному варіанті для десктопа мови залиш, бо я потім для десктопа навігацію зміню."* The mobile bar
+now carries the back control and one name, nothing else. It is keyed off `html[data-wf-viewport]`, which
+the viewport switcher sets, rather than off the frame width — the switch is injected after the switcher
+runs, so a width test or a JS toggle would depend on init order. Verified in all three previews:
+**mobile hidden, tablet hidden, desktop visible at 72px**, the title at 0.00px off centre in each, and
+the choice surviving a reload.
+
+This is prototype chrome, not product UI, so nothing in `voice.md` or `microcopy.md` moves — the row
+stays in `_conventions.md` §1.7, now recorded as desktop-scoped.
 
 ### Also fixed in rev 91: ten back controls did not navigate at all
 

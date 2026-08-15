@@ -57,7 +57,8 @@ body{
 
 /* header / top bar */
 header.topbar{ height:56px; flex:none; display:flex; align-items:center; gap:8px;
-  padding:0 16px; background:var(--wf-surface); border-bottom:1px solid var(--wf-border); }
+  padding:0 16px; background:var(--wf-surface); border-bottom:1px solid var(--wf-border);
+  position:relative; }   /* the title centres against this box (rev 94) */
 .brand-ph{ width:44px; height:24px; border:1px dashed var(--wf-border-2); border-radius:4px;
   display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.08em; color:var(--wf-muted); }
 /* The DRON mark (_conventions.md §8). Drawn as a mask rather than an image
@@ -83,7 +84,15 @@ header.topbar{ height:56px; flex:none; display:flex; align-items:center; gap:8px
 .who{ font-size:15px; font-weight:600; color:var(--wf-text); }
 .loc{ font-size:15px; font-weight:600; color:var(--wf-text); }
 .topbar .spacer{ flex:1; }
-.topbar .title{ font-size:17px; font-weight:600; color:var(--wf-text); }
+/* HIG · Navigation bars centres the title. It used to flow after the back label and
+   drift with its length; rev 93 removed the label, so nothing can collide with it —
+   the chevron's box is 34px of the bar. Absolute, not a 3-column grid: two grayscale
+   bars carry a third child (job-checklist's operator name). pointer-events:none so a
+   long title never swallows a click meant for the control under it. */
+.topbar .title{ position:absolute; left:50%; transform:translateX(-50%);
+  max-width:calc(100% - 120px); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  pointer-events:none;
+  font-size:17px; font-weight:600; color:var(--wf-text); }
 /* nav-bar back — see _conventions.md §11.1. Always an <a href>, never a bare <button>:
    _wf-shell.js only calls history.back() when history.length > 1, so a page opened
    directly needs the href to have anywhere to go.

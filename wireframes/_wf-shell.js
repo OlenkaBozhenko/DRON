@@ -218,8 +218,17 @@
        full 44pt control would crowd it; the target comes back through a
        transparent ::after, the way iOS treats its own 32pt controls and the
        way ui/inventory.md already settled the in-page tabs. */
-    + '.wf-frame header.topbar .wf-lang{ display:inline-flex; flex:none; margin-left:auto;'
+    /* Desktop only, from 2026-08-16 (rev 94). The designer took the language
+       switch out of the mobile nav bar: the bar carries the back control and
+       one name, and a second control on the right is the desktop question, not
+       the phone's. It stays in the desktop preview because desktop navigation
+       is being redrawn and the control has to be visible while that happens.
+       Keyed off the viewport switcher's data attribute rather than the frame
+       width, so it does not depend on when the switcher runs relative to this
+       injection. */
+    + '.wf-frame header.topbar .wf-lang{ display:none; flex:none; margin-left:auto;'
     + '  height:32px; border:0; border-radius:var(--r-btn,6px); overflow:hidden; }'
+    + 'html[data-wf-viewport="desktop"] .wf-frame header.topbar .wf-lang{ display:inline-flex; }'
     + '.wf-frame header.topbar .wf-lang button{ position:relative; display:flex;'
     + '  align-items:center; justify-content:center; min-width:36px; padding:0 8px;'
     + '  border:0; cursor:pointer; font:inherit; font-size:12px; font-weight:600;'
@@ -351,6 +360,10 @@
       if (frame){ frame.style.width = w+"px"; frame.style.height = h+"px"; }
       if (dim) dim.textContent = w+" × "+h;
       for (var i=0;i<btns.length;i++) btns[i].classList.toggle("on", btns[i].getAttribute("data-size")===key);
+      /* the language switch reads this (rev 94): in the bar on desktop, gone on
+         mobile and tablet. An attribute, not a JS toggle, so it holds no matter
+         which of the two injections runs first. */
+      document.documentElement.setAttribute("data-wf-viewport", key);
       try { localStorage.setItem("wf-viewport", key); } catch(e){}
     }
     for (var i=0;i<btns.length;i++){

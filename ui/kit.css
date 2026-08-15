@@ -354,8 +354,24 @@ header.dr-topbar,
   padding: 0 var(--sp-screen);
   background: var(--page);
   border-bottom: var(--hair) solid var(--line);
+  position: relative;   /* the title centres against this box (rev 94) */
 }
+/* HIG · Navigation bars puts the title in the centre of the bar. It used to
+   flow after the back label, so it drifted -82.7px to +30.4px off centre
+   depending on how long that label happened to be. rev 92 rejected centring
+   because the label collided with it on 4 of 19 real pairs, two of them by
+   ~1px; rev 93 removed the label, so the collision cannot happen — the
+   chevron's box is 34px of the bar and nothing else sits on the left.
+
+   Centred by absolute position, not by a 3-column grid: four bars carry a
+   third child (job-checklist's operator name, listings-filters' "Clear all")
+   and a grid would have to be re-declared per shape. pointer-events:none so a
+   long title never swallows a click meant for the control beneath it. */
 .dr-topbar__title{
+  position: absolute; left: 50%; transform: translateX(-50%);
+  max-width: calc(100% - 2 * (44px + var(--sp-screen)));
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  pointer-events: none;
   font-size: var(--t-title-size); font-weight: var(--t-title-weight);
   line-height: var(--t-title-line); letter-spacing: var(--t-title-track);
   color: var(--ink);
@@ -1107,7 +1123,24 @@ header.dr-topbar,
    fields gives up its own horizontal padding: measured 2026-08-12 on rate /
    contact-support / report-issue, the double inset put typed text at 32px
    where every other line on the card stands at 16. */
-.dr-rows:has(> .dr-field){ padding-left: 0; padding-right: 0; }
+/* THE INPUT GROUP IS A PLAIN LIST, NOT A CARD — the designer's call 2026-08-16
+   (rev 95): "мені не подобається обводка в полях вводу… зроби як у HIG".
+   The input never had a border; what read as one was THIS panel. iOS ships two
+   form styles and both are HIG — the grouped inset list (a card) and the plain
+   list (rows on the page, separated by a line). She chose the plain list, so
+   the card and the radius come off and the hairline stays.
+   Scoped by :has(> .dr-field), so READ-ONLY .dr-rows__row panels keep their
+   card — verified before the change that no page mixes the two: 7 pages carry
+   input groups, 13 carry read-only panels, 0 carry both.
+   The field gives up its own 16 with the panel, or the text would stand at 32
+   from the frame (the main's 16 plus the field's own); and the separator drops
+   its indent, because there is no panel edge left for it to indent from. */
+.dr-rows:has(> .dr-field){
+  padding-left: 0; padding-right: 0;
+  background: none; border-radius: 0;
+}
+.dr-rows:has(> .dr-field) > .dr-field{ padding-left: 0; padding-right: 0; }
+.dr-rows:has(> .dr-field) > .dr-field + .dr-field::before{ left: 0; }
 .dr-field + .dr-field::before{
   content: ""; position: absolute; left: var(--sp-screen); right: 0; top: 0;
   height: var(--hair); background: var(--line);

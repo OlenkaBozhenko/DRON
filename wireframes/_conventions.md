@@ -15,7 +15,7 @@ Wireframes prove **structure, hierarchy, and zones** — not looks. If a decisio
 4. **One page per state.** Success/normal = the base file; `-empty` / `-error` / `-loading` are separate files with the **same structure, different content** (§10, §11).
 5. **8px grid.** Every spacing value is a multiple of 8 (4 allowed as the half-step). Radii are multiples of 2 (§6).
 6. **Mobile frame 375 × 812.** Every page is built inside it (§6).
-7. **No icons, no shadows, no colour, no final font** — deferred (§3, §8). **Three carve-outs, each decided by the designer.** Two are still grayscale: **real imagery** where a frame needs a picture to be judged, and the **DRON logo** in the reserved brand slot (§8). The third is not — the **language switch** carries the kit's colours on every screen, painted or not (2026-08-02): green for the chosen language, warm grey for the other. It is one control injected into all 84 files, and it should not change colour depending on whether the screen behind it has been painted yet. Values and measurements live in `ui/kit.css` `.dr-lang`; `ui/inventory.md` carries the row.
+7. **No icons, no shadows, no colour, no final font** — deferred (§3, §8). **Four carve-outs, each decided by the designer.** Two are still grayscale: **real imagery** where a frame needs a picture to be judged, and the **DRON logo** in the reserved brand slot (§8). The third is not — the **language switch** carries the kit's colours on every screen, painted or not (2026-08-02): green for the chosen language, warm grey for the other. It is one control injected into all 84 files, and it should not change colour depending on whether the screen behind it has been painted yet. Values and measurements live in `ui/kit.css` `.dr-lang`; `ui/inventory.md` carries the row. **Since 2026-08-16 (rev 94) it appears in the topbar only in the *desktop* preview** — the designer took it out of the mobile bar, which now carries the back control and one name; it stays on desktop because desktop navigation is being redrawn and the control has to stay visible while that happens. Keyed off `html[data-wf-viewport]`, which the viewport switcher sets. The fourth carve-out is the **back chevron** (§11.1): a real 24-grid icon on both layers, because an icon-only control cannot fall back to §8's text label.
 
 ---
 
@@ -273,6 +273,18 @@ only where a visible label exists. `Back to …` stays forbidden as *visible* co
 
 A **tab root has no back control** of its own. A **modal sheet** is not a pushed screen: it gets a close
 control (`×`, `aria-label="Close …"`), not a chevron — `listings-filters.html`.
+
+**The title is centred in the bar** (`HIG · Navigation bars`, rev 94). It used to flow after the back
+label and drift **−82.7px to +30.4px** off centre with that label's length. Centring was rejected at rev
+92 because the label collided with the title on 4 of 19 real pairs — two of them by ~1px — but rev 93
+removed the label, so nothing can collide: the chevron's box is 34px of the bar. Measured after:
+**68 titles, all at 0.00px off centre, 0 collisions, 0 clipped.**
+
+> Centred by `position:absolute; left:50%` rather than a three-column grid, because four bars carry a
+> third child — `job-checklist`'s operator name, `listings-filters`' *Clear all* — and a grid would have
+> to be re-declared per shape. `pointer-events:none` so a long title never swallows a click meant for the
+> control beneath it, and `max-width` + ellipsis so it can never reach either edge. `payment-loading`
+> had an inline `padding-left:16px` on its title that fought the centring; it was removed.
 
 **The glyph is a real icon, on both layers.** `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
 stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>` —
