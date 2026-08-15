@@ -198,7 +198,9 @@
      in-page tab's hit area grows to the control height without moving the
      pill. Deriving beats restating: the arithmetic cannot drift. */
   --node-centre:  calc((var(--sz-node) - var(--sz-track)) / 2);
-  --pick-indent:  calc(var(--sp-screen) + var(--sz-box) + var(--sp-snug));
+  /* rev 91: the row lost its own 16 to the card, so the indent drops that term
+     and is box + gap alone — 36px. Derived, so it followed the change itself. */
+  --pick-indent:  calc(var(--sz-box) + var(--sp-snug));
   --pill-bleed:   calc((var(--h-control) - var(--h-pill)) / -2);
 
   --ic-12: 12px; --ic-13: 13px; --ic-14: 14px; --ic-16: 16px; --ic-17: 17px;
@@ -1140,13 +1142,33 @@ header.dr-topbar,
    is an independent on/off. HIG · Radio Buttons / Checkboxes, verbatim.
    The unchecked outline is --slate at 5.95:1, not --line at 1.21:1 — an empty
    box is identified by its boundary alone, so 1.4.11 applies at 3:1. */
+/* rev 91 — the designer's call on the built `listings-filters`: «зроби padding
+   більші у картках і однакові з усіх сторін». The inset moves OFF the row and
+   ONTO the card, so one declared value carries all four sides: 8/0 + the row's
+   own 0/16 becomes a flat --sp-screen 16 on the card and nothing on the row.
+   The row therefore stops being full-bleed, and the cost is stated rather than
+   buried: the separator now ends 16px short of the card's trailing edge, where
+   `HIG · Lists and tables` runs it to that edge. She was shown both readings
+   and chose the literal one — one number in the box over the iOS anatomy.
+   Nothing else moves — and that is literal: the label still starts 52px from
+   the card's edge either way (16 + 24 + 12 on the row, 16 + 24 + 12 on the
+   card), so no text shifts sideways — measured, the separator still starts at
+   52 from the card's edge before and after. What shrinks is the hit area,
+   326 → 294 × 44 (measured on the 375 frame, whose scroll area carries a 15px
+   desktop scrollbar; 341 → 309 with an overlay one); `WCAG 2.5.8`'s 24 × 24
+   floor is cleared ×12.25 and ×1.83, and the 44 that `HIG · 44pt target` asks
+   for is untouched.
+   What 16 does NOT buy, measured not asserted: the optical inset to the radio
+   is 16 at the sides and 26 top and bottom, because a 24px box centred in a
+   44px row keeps 10px of its own. Equalising THAT would mean a 6px card, which
+   is smaller than what rev 88 just gave her — so the row's slack stays. */
 .dr-picks{ list-style: none; background: var(--card); border-radius: var(--r-card); overflow: hidden;
-  padding: var(--sp-within-lg) 0; }   /* rev 88: the list breathes in its card; rows stay full-bleed */
+  padding: var(--sp-screen); }
 .dr-pick{
   position: relative;
   min-height: var(--h-control);
   display: flex; align-items: center; gap: var(--sp-snug);
-  padding: 0 var(--sp-screen);
+  padding: 0;
   font-size: var(--t-heading-size); color: var(--ink); cursor: pointer;
 }
 .dr-pick + .dr-pick::before,
@@ -1202,7 +1224,11 @@ header.dr-topbar,
 .dr-range{
   position: relative;
   display: flex; flex-direction: column; gap: var(--sp-9);
-  padding: var(--sp-snug) var(--sp-screen) var(--sp-14);
+  /* rev 91: the card's own 16 now supplies both sides and the bottom, so the
+     band keeps only the 12 that separates it from the hairline above it.
+     Its old 16/14 would have doubled to 32 at the sides and 30 at the foot —
+     the one place where "equal on all sides" would have visibly failed. */
+  padding: var(--sp-snug) 0 0;
 }
 .dr-picks li + li .dr-range::before{
   content: ""; position: absolute; left: var(--pick-indent); right: 0; top: 0;

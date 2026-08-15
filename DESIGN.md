@@ -584,8 +584,21 @@ a full-card link overlay. Carries `aria-label` — the icon is the only content.
 - **Surface:** `--card`, `--r-card` 16px, no border, no shadow.
 - **Inset:** since 2026-08-15 (rev 88) the vertical inset is one rung above the horizontal on every
   card ground — **24 / 20** on a list card, **20 / 16** on operator and message cards, **8 / 16** on a
-  row panel, and **8 / 0** on the two full-bleed lists (`.dr-picks`, `.dr-disclosure`), whose rows keep
-  their own 16. 32px still at the bottom where the last element is a primary button.
+  row panel, and **8 / 0** on `.dr-disclosure`, the remaining full-bleed list, whose rows keep their
+  own 16. 32px still at the bottom where the last element is a primary button.
+- **`.dr-picks` is the one card with a single inset on all four sides — `16`** (rev 91). The 16 moved
+  off the row and onto the card, so the row carries no padding of its own. Nothing shifts sideways:
+  the label still begins 52px from the card's edge (`16 + --sz-box 24 + --sp-snug 12`), and
+  `--pick-indent` is derived from the two remaining terms so the separator's leading edge follows.
+  **The cost, recorded not corrected:** the separator now stops 16px short of the trailing edge,
+  where `HIG · Lists and tables` runs it to that edge, and the row's hit area narrows 326 → 294px
+  (× 44 tall — `WCAG 2.5.8` cleared ×12.25 and ×1.83). The designer was shown both readings on
+  2026-08-15 and chose the literal one.
+- **Measured on `listings-filters`, before → after (all three cards identical):** card padding
+  `8px 0` → `16px`; row padding `0 16px` → `0`; card-edge to the first radio 16 / 18 → 16 / 26
+  (left / top — the 8px difference is the row's own slack, not the card's); card-edge to the row box
+  8 → 16 top and bottom; separator 52 from the leading edge in both, 0 → 16 short of the trailing
+  edge; the Price card's foot below the `₴0 / ₴1,000+` labels 22 → 16.
 - **Internal rhythm:** 20px between groups, 4/8 within a group.
 - **Whole-card link:** an absolutely-positioned `.card-link` covering the card, with inner controls
   lifted above it.
