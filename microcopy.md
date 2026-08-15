@@ -491,6 +491,12 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **Consequence for the kit:** the grayscale rule `footer.actionbar .price-line` (`_wireframe.css:439–441`) is now **declared and spent nowhere** — left in place, not deleted, because `wireframes/` is not edited beyond what was asked. The painted `.dr-price` keeps its one spend, `time-slot`.
 - **`time-slot` is unchanged and stays that way** for the reason logged above: its line is the only price on the screen.
 
+**Sync — 2026-08-16 (`report-issue`'s Evidence label comes off)**
+- **One string retired on the designer's word**, given on the built screen: *«видали "evidence"»*. The row **`report-issue · Report form · Evidence · Field label`** leaves the master table. It is the fourth in-card field label to retire this way, after `account-edit`'s `Drone documents` and `Insurance` (2026-08-15) and `payment`'s method line (this morning).
+- **It was a label in name only.** Measured in the browser, `<label for="ev">` pointed at an id that exists nowhere on the page — so a screen reader never heard it attached to the upload zone, and the zone's accessible name came, as it still does, from `aria-label="Add a photo or note"`. Nothing an AT user had is being taken away; a sighted reader loses one line of restatement above a well that already says what it takes.
+- **`WCAG 3.3.2` is carried by the other half of the criterion — *labels **or** instructions*.** The zone keeps **"A photo makes your claim stronger. Order #DR-4821."**, which names the object to attach, and the 32px tray glyph above it. What is genuinely given up is the **verb**: unlike `account-edit`'s zones, this one has no `Add…` line inside it, so `voice.md`'s **Add…** is now spoken (`aria-label`) but not printed. **Reported to the designer, not fixed** — if the verb returns it belongs inside the zone as `.dr-upload__action` (`Add a photo`), not as the row label that just came off.
+- **Not swept:** `operator-dispute` still carries its own grayscale `Evidence` field label. A different screen and a different persona, and `wireframes/` is not swept without her word.
+
 ---
 
 ## Master table — every string
@@ -1276,7 +1282,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | report-issue | Report form | Also: Damaged item · Wrong location | Body |  |
 | report-issue | Report form | What happened? | Field label |  |
 | report-issue | Report form | Describe the issue — e.g. the roof photos were blurry and missed the north side. | Field placeholder |  |
-| report-issue | Report form | Evidence | Field label |  |
 | report-issue | Report form | ADD PHOTO / NOTE | Body | WF-PH |
 | report-issue | Report form | A photo makes your claim stronger. Order #DR-4821. | Body |  |
 | report-issue | Report form | Submit report | Button |  |

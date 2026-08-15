@@ -605,6 +605,25 @@ Measured: typed `--ink` **14.37:1 → 15.99:1** moving off the card onto the pag
 stand at the frame's own 16; placeholder stays `--slate` at **5.95:1**, the designer's call when shown
 that `WCAG 1.4.3` floors a placeholder at 4.5:1 and the lightest passing warm grey is 4.52:1.
 
+**One row takes no separator, and it is keyed to the control.** `.dr-field:has(> .dr-upload)::before`
+is `content:none` — set 2026-08-16 (rev 109) on the designer's word, matching the **one** field in the
+product whose control is an upload zone (`report-issue`'s Evidence; account-edit's two are
+`.dr-upload--card` and stand outside any field). The line it drops measured 1px `--line` on `--page` =
+**1.34:1**, under `WCAG 1.4.11`'s 3:1 and living there only because a list separator is decoration and
+not the carrier of structure. What separates the rows instead is drawn: the description's well ends at
+**473.19** and the upload's well starts at **485.19** — two `--media` shapes at **1.20:1** on the page,
+`--r-input` 10 above and `--r-media` 13 below, **12px** apart. `WCAG 1.3.1` is untouched (the grouping
+is DOM), and `HIG · Lists and tables` is departed from with its reason recorded: neither row is a plain
+list row. The picker row above keeps its separator, being a bare row with no shape of its own.
+
+**The Evidence zone lost its row label with it** — `Evidence` retires, the field goes **171 → 140px**,
+and `flex-basis:100%` is declared on `.dr-field > .dr-upload` so the zone is not sized by its hint once
+the label stops forcing the wrap (rev 57's lesson). Target unchanged at **341 × 140** (`HIG · 44pt` ✓,
+`WCAG 2.5.8` ✓). The accessible name is unmoved — `aria-label="Add a photo or note"` — and `WCAG 3.3.2`
+is carried by the instruction the zone already showed, *"A photo makes your claim stronger."*, plus the
+32px tray glyph at **5.51:1**. **The consequence, recorded not corrected:** this zone carries no verb
+line of its own, so the well and the glyph are the whole of what identifies it to the eye.
+
 ### The picker row — a form row whose value is chosen, not typed
 
 **The rule is a count.** ≤ **6** options → the list rises as a **drawer** from the bottom edge;

@@ -1156,7 +1156,7 @@ header.dr-topbar,
   content: ""; position: absolute; left: var(--sp-screen); right: 0; top: 0;
   height: var(--hair); background: var(--line);
 }
-/* THE UPLOAD FIELD TAKES NO SEPARATOR — the designer's call 2026-08-16 (rev 108)
+/* THE UPLOAD FIELD TAKES NO SEPARATOR — the designer's call 2026-08-16 (rev 109)
    on the built `report-issue`: «видали лінію девайдер і так зрозуміло що там поле
    вводу а нижче загрузка». A separator exists to say where one row stops and the
    next begins, and between these two rows nothing needs saying: the text area IS
@@ -1370,6 +1370,17 @@ header.dr-topbar,
 .dr-picker__list{
   background: var(--card); border-radius: var(--r-card); overflow: hidden;
 }
+/* ON A PUSHED SCREEN THE LIST MUST NOT SHRINK — found by measuring the first page
+   the >= 7 half of the rule ever got, 2026-08-16 (rev 107), and it was invisible
+   to the eye. .dr-main is a flex column of a fixed height, so a child's default
+   flex-shrink:1 let the region list squeeze from its natural 1100 to 618.4; with
+   overflow:hidden above, 11 of the 25 regions were CLIPPED, and because the list
+   had shrunk to fit, main.scrollHeight equalled clientHeight and nothing could be
+   scrolled to them. Eleven options unreachable by any input — the same flex-shrink
+   trap _conventions.md records for listings-loading, arriving from the other side.
+   Scoped to a list that IS the screen: the drawer's copy lives in .dr-sheet and is
+   deliberately left alone. */
+.dr-main > .dr-picker__list{ flex: none; }
 /* the button reset, and nothing else — the row's values come from
    .dr-disclosure__item, which this shares */
 .dr-picker__item{
