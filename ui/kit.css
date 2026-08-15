@@ -102,6 +102,7 @@
 
   --t-display-size: 22px;   --t-display-weight: 700; --t-display-line: 1.4;  --t-display-track: -.02em;
   --t-display-measure: 18ch;  /* the display line's measure where it must wrap — rate's question */
+  --t-note-measure: 30ch;     /* the upload card's subtitle — two lines for both cards (28–32 is the window) */
   --t-number-size:  20px;   --t-number-weight:  700; --t-number-line:  1;    --t-number-track:  -.02em;
   --t-title-size:   17px;   --t-title-weight:   600; --t-title-line:   1.4;  --t-title-track:   -.01em;
   --t-heading-size: 15px;   --t-heading-weight: 600; --t-heading-line: 1.2;
@@ -1353,8 +1354,17 @@ header.dr-topbar,
    card's 278 measure the drone-documents sentence broke as "…(PDF" / "/
    photo).", splitting a parenthetical across lines. Same device .dr-display
    --balance gave rate's question on 2026-08-13 — the UA re-balances the
-   string, no <br> and no fixed width. */
-.dr-upload--card .dr-note{ text-wrap: balance; }
+   string, no <br> and no fixed width.
+   The measure joined it 2026-08-15, the designer's call: the subtitle takes two
+   lines. Balance alone could not do it — the insurance sentence is 242.3px
+   against a 326.2px card, so it fitted on one line and there was nothing to
+   balance. The window was measured on the build, not guessed: at 34ch and wider
+   insurance stays one line; at 26ch and narrower drone-documents falls to three;
+   28–32ch gives both exactly two. 30ch is the middle of that window, so either
+   card is two steps from breaking, and both notes settle at the same 226.8px —
+   two cards of one component reading as one. Still a measure and never a <br>:
+   the UA string re-balances itself. */
+.dr-upload--card .dr-note{ max-width: var(--t-note-measure); text-wrap: balance; }
 .dr-upload[role="button"]:hover{ background: var(--btn2); }                          /* one rung, as .dr-btn--secondary steps the other way */
 .dr-upload[role="button"]:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 .dr-upload .dr-ic{ width: var(--ic-32); height: var(--ic-32); }
