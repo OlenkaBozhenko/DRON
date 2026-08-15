@@ -978,14 +978,16 @@ header.dr-topbar,
    the designer's call 2026-08-03, and HIG's own multiline pattern */
 .dr-field--area .dr-field__label{ flex: 0 0 100%; }
 .dr-field--area .dr-field__group{ flex-basis: 100%; }
-/* The row pattern identifies a field by its label-value anatomy; an empty
-   area has neither, and on order-setup it read as body copy (designer,
-   2026-08-12). So the area takes the ground the kit grants a field outside
-   that anatomy — the search bar's --media at --r-input. Slate placeholder
-   5.51:1, typed ink 13.33:1: the search bar's own recorded pairs. */
+/* No area carries a ground — the designer's call 2026-08-15, which takes rate's
+   "one card, one surface" (2026-08-13) to the whole set and retires the
+   grounded area of 2026-08-12. The row's card IS the area everywhere: the input
+   keeps no fill, no radius and no inset of its own, so typed text stands at the
+   card's own 16 beside the label, not at the 28 a nested box put it at. Slate
+   placeholder 5.95:1, typed ink 14.37:1 — the row panel's own recorded pairs.
+   The ground and the radius come off by the base rule and the reset; only the
+   reach and the rhythm are set here. --media at --r-input goes back to being
+   the search bar's alone, which is where 2026-08-02 put it. */
 .dr-field--area .dr-field__input{ resize: none; width: 100%; flex-basis: 100%;
-  background: var(--media); border-radius: var(--r-input);
-  padding: var(--sp-snug);
   min-height: calc(var(--sz-area-min) - var(--sp-24));
   line-height: var(--t-para-line); }  /* typed lines keep the body rhythm, not UA "normal" */
 /* the rate screen's review takes half the screen — the designer's call
@@ -999,17 +1001,13 @@ header.dr-topbar,
     - var(--t-heading-size)*var(--t-base-line)
     - var(--sp-10) - 2*var(--sp-snug));
 }
-/* the rate compose card is one surface — the designer's call 2026-08-13: the
-   built row read as a box inside a box (card + the area's --media ground). The
-   row's card IS the area now: the input gives up its own ground, the label goes
-   sr-only ("Your review") and the placeholder is the one sentence of help text.
-   Slate hint 5.95:1, typed ink 14.37:1 — the row panel's own recorded pairs.
-   Spent on rate alone; the grounded area (2026-08-12) still governs
-   order-setup, report-issue and contact-support, whose areas sit among rows. */
-.dr-field--bare .dr-field__input{ background: transparent; border-radius: 0; padding: 0; }
-/* the sr-only label leaves the flex flow, so the half-screen floor takes back
-   the label line and the row gap it no longer spends: 406 = 12 + 382 + 12 */
-.dr-field--half.dr-field--bare .dr-field__input{
+/* An sr-only label leaves the flex flow, so the half-screen floor takes back
+   the label line and the row gap it no longer spends: 406 = 12 + 382 + 12.
+   Keyed to the label the rule is actually about — rate is the one compose card
+   whose name is spoken but not drawn (2026-08-13), and .dr-field--bare, which
+   used to say this by proxy, retired on 2026-08-15 when every area went bare
+   and the modifier stopped naming a difference. */
+.dr-field--half:has(> .sr-only) .dr-field__input{
   min-height: calc(var(--screen-h)/2 - 2*var(--sp-snug));
 }
 /* the centred document card: label, upload zone and hint stack on the axis —
