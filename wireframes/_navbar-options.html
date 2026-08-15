@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON · nav bar — five options for the designer</title>
+<link rel="stylesheet" href="../ui/kit.css">
+<style>
+  body{ margin:0; background:#E8E5E0; color:#1A1A1A; padding:32px;
+        font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,sans-serif; }
+  h1{ font-size:22px; font-weight:600; letter-spacing:-.01em; margin:0 0 6px; }
+  .lede{ font-size:14px; color:#5A5751; max-width:66ch; margin:0 0 28px; line-height:1.5; }
+  .lede b{ color:#1A1A1A; }
+  .grid{ display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start; }
+  .opt{ width:405px; background:#F7F5F2; border:1px solid #D9D5CE; border-radius:16px; overflow:hidden; }
+  .opt > h2{ font-size:15px; font-weight:600; margin:0; padding:14px 16px 0; }
+  .opt > .why{ font-size:12.5px; color:#5A5751; padding:4px 16px 14px; margin:0; line-height:1.45; }
+  .bar-host{ width:373px; margin:0 auto 16px; border:1px solid #D9D5CE; border-radius:12px; overflow:hidden; }
+  .bar-host + .bar-host{ margin-top:-4px; }
+  .num{ font-size:11px; color:#5A5751; padding:0 16px 14px; margin:0; line-height:1.5;
+        font-variant-numeric:tabular-nums; }
+  .num b{ color:#1A1A1A; font-weight:600; }
+  .tag{ display:inline-block; font-size:10.5px; font-weight:600; letter-spacing:.06em;
+        text-transform:uppercase; color:#5A5751; padding:0 16px 8px; }
+
+  /* ── the bar itself: the real tokens from ui/kit.css ───────────────── */
+  .nb{ height:56px; display:flex; align-items:center; gap:8px; padding:0 16px;
+       background:#F7F5F2; border-bottom:1px solid #D9D5CE; position:relative; }
+  .nb .bk{ font-size:15px; font-weight:600; color:#1A1A1A; text-decoration:none;
+           padding:11.5px 0; margin:-11.5px 0; white-space:nowrap; z-index:1; }
+  .nb .ti{ font-size:17px; font-weight:600; letter-spacing:-.01em; color:#1A1A1A; white-space:nowrap; }
+  .nb .sp{ flex:1; }
+
+  /* A — as built: flows after the back, same colour, same weight */
+  /* B — centre the title only */
+  .b .ti,.c .ti,.d .ti,.e .ti{ position:absolute; left:50%; transform:translateX(-50%); }
+  /* C — centre + back drops to regular weight */
+  .c .bk{ font-weight:400; }
+  /* D — centre + regular + slate */
+  .d .bk{ font-weight:400; color:#5A5751; }
+  /* E — centre + regular + green-ink (the tint reading) */
+  .e .bk{ font-weight:400; color:#4F6B22; }
+</style>
+</head>
+<body>
+
+<h1>The nav bar reads as two names</h1>
+<p class="lede">Measured on ten painted screens: the back label and the title are the <b>same colour</b>
+(<code>#1A1A1A</code>) at the <b>same weight</b> (600), 2px apart in size. And the title is <b>never centred</b> —
+it flows after the back label, so it drifts from <b>−82.7px</b> to <b>+30.4px</b> off centre depending on how
+long that label is. Nothing marks one as a control and the other as the name of this screen, so they read as
+two names of equal rank. Each option below is the real <code>ui/kit.css</code> tokens at production size,
+shown on the longest and the shortest pair in the set.</p>
+
+<div class="grid">
+
+  <div class="opt">
+    <h2>A — as built</h2>
+    <p class="why">Nothing changes. Title flows after the back label; both #1A1A1A at 600.</p>
+    <div class="bar-host"><div class="nb a"><a class="bk" href="#">‹ Order</a><span class="ti">Package delivery</span><span class="sp"></span></div></div>
+    <div class="bar-host"><div class="nb a"><a class="bk" href="#">‹ Help</a><span class="ti">Support</span><span class="sp"></span></div></div>
+    <span class="tag">Against the guideline</span>
+    <p class="num"><b>HIG · Navigation bars</b> — title centred: <b>fails</b>, −37px and −82.7px.<br>
+    Rank separators in use: <b>1 of 3</b> (size only).<br>
+    <b>WCAG 1.4.3</b> — 15.99:1, passes. This is hierarchy, not contrast.</p>
+  </div>
+
+  <div class="opt">
+    <h2>B — centre the title, nothing else</h2>
+    <p class="why">The title takes the true centre of the bar and stops moving with the back label's length.</p>
+    <div class="bar-host"><div class="nb b"><a class="bk" href="#">‹ Order</a><span class="ti">Package delivery</span><span class="sp"></span></div></div>
+    <div class="bar-host"><div class="nb b"><a class="bk" href="#">‹ Help</a><span class="ti">Support</span><span class="sp"></span></div></div>
+    <span class="tag">Position only</span>
+    <p class="num"><b>HIG</b> — title centred: <b>passes</b>, 0px off on every screen.<br>
+    Rank separators: <b>2 of 3</b> (size, position). Colour and weight still identical.<br>
+    <b>WCAG 1.4.3</b> — 15.99:1, passes.</p>
+  </div>
+
+  <div class="opt">
+    <h2>C — centre + back at regular weight</h2>
+    <p class="why">The back label drops from 600 to 400. The title keeps 600 and is the only bold word in the bar.</p>
+    <div class="bar-host"><div class="nb c"><a class="bk" href="#">‹ Order</a><span class="ti">Package delivery</span><span class="sp"></span></div></div>
+    <div class="bar-host"><div class="nb c"><a class="bk" href="#">‹ Help</a><span class="ti">Support</span><span class="sp"></span></div></div>
+    <span class="tag">No new colour</span>
+    <p class="num"><b>HIG</b> — centred <b>passes</b>; back at regular weight matches the iOS control.<br>
+    Rank separators: <b>3 of 3</b> minus colour (size, weight, position).<br>
+    <b>WCAG 1.4.3</b> — 15.99:1, passes. No token added.</p>
+  </div>
+
+  <div class="opt">
+    <h2>D — centre + regular + <code>--slate</code></h2>
+    <p class="why">The back label also steps back in colour, to the palette's secondary ink. Neutral — spends no accent.</p>
+    <div class="bar-host"><div class="nb d"><a class="bk" href="#">‹ Order</a><span class="ti">Package delivery</span><span class="sp"></span></div></div>
+    <div class="bar-host"><div class="nb d"><a class="bk" href="#">‹ Help</a><span class="ti">Support</span><span class="sp"></span></div></div>
+    <span class="tag">All four separators</span>
+    <p class="num"><b>HIG</b> — centred <b>passes</b>; control clearly subordinate to the title.<br>
+    Rank separators: <b>4 of 4</b> (size, weight, colour, position).<br>
+    <b>WCAG 1.4.3</b> — <code>#5A5751</code> on <code>#F7F5F2</code> = <b>6.62:1</b>, passes 4.5:1 by 2.12.</p>
+  </div>
+
+  <div class="opt">
+    <h2>E — centre + regular + <code>--green-ink</code></h2>
+    <p class="why">iOS marks the back control with the <b>tint colour</b>. Signal green cannot speak (1.52:1),
+    but the palette already cut the rung that can — and its stated home is the text button, which is what a
+    back control is.</p>
+    <div class="bar-host"><div class="nb e"><a class="bk" href="#">‹ Order</a><span class="ti">Package delivery</span><span class="sp"></span></div></div>
+    <div class="bar-host"><div class="nb e"><a class="bk" href="#">‹ Help</a><span class="ti">Support</span><span class="sp"></span></div></div>
+    <span class="tag">The literal HIG reading</span>
+    <p class="num"><b>HIG</b> — centred <b>passes</b>; this is the tint pattern, as close as the palette allows.<br>
+    Rank separators: <b>4 of 4</b>, and the colour also says "tappable".<br>
+    <b>WCAG 1.4.3</b> — <code>#4F6B22</code> on <code>#F7F5F2</code> = <b>5.58:1</b>, passes 4.5:1 by 1.08.<br>
+    <b>Cost:</b> green leaves the fill. <code>concept.md</code> §<i>one accent, fill only</i> allows
+    <code>--green-ink</code> as a word, but rev 50 already pulled it back off the disclosure checkmark once.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
