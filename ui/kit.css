@@ -1124,7 +1124,7 @@ header.dr-topbar,
    contact-support / report-issue, the double inset put typed text at 32px
    where every other line on the card stands at 16. */
 /* THE INPUT GROUP IS A PLAIN LIST, NOT A CARD — the designer's call 2026-08-16
-   (rev 95): "мені не подобається обводка в полях вводу… зроби як у HIG".
+   (rev 98): "мені не подобається обводка в полях вводу… зроби як у HIG".
    The input never had a border; what read as one was THIS panel. iOS ships two
    form styles and both are HIG — the grouped inset list (a card) and the plain
    list (rows on the page, separated by a line). She chose the plain list, so

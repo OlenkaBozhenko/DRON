@@ -118,6 +118,10 @@ components:
     backgroundColor: "{colors.card}"
     rounded: "{rounded.card}"
     padding: "8px 16px"
+  row-panel-input:
+    backgroundColor: "transparent"
+    rounded: "0"
+    padding: "8px 0"
   inset-strip:
     backgroundColor: "{colors.inset}"
     rounded: "{rounded.btn}"
@@ -586,6 +590,20 @@ modifier floats it clear of the sheet's **top** edge — `bottom: calc(100% + va
 raised it, and its text present and **not ignored** in the accessibility tree inside the dialog named
 *Share DRON*. Off a sheet nothing changes — `order-setup-empty` **325.40 × 63.20** and `listings-empty`
 **325.40 × 63.20** both sit **20px** above their action bar / tab bar, as before.
+
+### Form rows — two panels, not one
+
+iOS ships two form styles and the product now uses both, keyed by what the panel holds.
+**A read-only group keeps its card** (`--card`, `--r-card` 16, `8px 16px`) — HIG's *grouped inset
+list*: `tracking`'s ETA/Status, `account`'s preferences, `order-review`'s breakdown, 13 pages.
+**An input group is a plain list** — no card, no radius, the hairline separator kept and un-indented,
+the field giving up its own 16 so typed text stands at the screen's own margin. Set 2026-08-16
+(rev 98) on the designer's word; scoped by `:has(> .dr-field)`, 7 pages. **The input itself has never
+had a border** — what read as one was the panel.
+
+Measured: typed `--ink` **14.37:1 → 15.99:1** moving off the card onto the page; label and separator
+stand at the frame's own 16; placeholder stays `--slate` at **5.95:1**, the designer's call when shown
+that `WCAG 1.4.3` floors a placeholder at 4.5:1 and the lightest passing warm grey is 4.52:1.
 
 ### Selection controls (checkbox &amp; radio)
 
