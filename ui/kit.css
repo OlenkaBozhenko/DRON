@@ -1156,10 +1156,18 @@ header.dr-topbar,
    the arrow keys work with no script (WCAG 2.1.1), and role / min / max / now
    are exposed without an ARIA patch (4.1.2) — a div-built slider has to
    re-implement both and usually re-implements neither.
-   CHARCOAL, NOT GREEN. A checked radio may be green because concept.md counts
-   it a status mark; a slider cannot take that exemption — it is a control, and
-   this screen's one green control is already spent on Apply filters. --ink on
-   --card is 14.37:1 where 1.4.11 asks 3:1 of whatever identifies a control.
+   GREEN BULLETS, CHARCOAL RING — the designer's call 2026-08-15 (rev 70),
+   overruling rev 66's "charcoal, not green" on this component. Green is the
+   FILL and the charcoal ring stays, which is the only reading that holds: as a
+   ring, --green on --card is 1.52:1 and fails 1.4.11's 3:1, and a green stroke
+   breaks the fill-only rule besides. As a fill behind a --ink ring the boundary
+   still carries at 14.37:1 (1.4.11 ✓), and where a thumb rides the --ink filled
+   span the green reads against it at 9.46:1. Same recipe as the checked radio
+   and the walked progress node: a green shape behind / inside charcoal.
+   What this costs, recorded not hidden: the screen now carries TWO green
+   controls, Apply filters and the band, against concept.md §5's "one green
+   control per screen". The area cost is ~0.3% of the frame; the budget was
+   already over at 5.69% before this pass. See concept.md rev 70.
    The rail is --btn2, 1.31:1 on the card, and it is NOT the identifier: the
    two thumbs are, and the filled span between them says the same value a
    second way, so the band never rests on colour alone (1.4.1). Thumbs are
@@ -1197,13 +1205,13 @@ header.dr-topbar,
 .dr-range__input::-webkit-slider-thumb{
   -webkit-appearance: none; appearance: none;
   width: var(--sz-box); height: var(--sz-box); border-radius: var(--r-pill);
-  background: var(--card); border: var(--sz-thumb-ring) solid var(--ink);
+  background: var(--green); border: var(--sz-thumb-ring) solid var(--ink);
   cursor: grab; pointer-events: auto;
 }
 .dr-range__input::-moz-range-thumb{
   width: var(--sz-box); height: var(--sz-box); box-sizing: border-box;
   border-radius: var(--r-pill);
-  background: var(--card); border: var(--sz-thumb-ring) solid var(--ink);
+  background: var(--green); border: var(--sz-thumb-ring) solid var(--ink);
   cursor: grab; pointer-events: auto;
 }
 .dr-range__input:focus{ outline: none; }
