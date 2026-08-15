@@ -122,6 +122,9 @@
 
   /* ── RADIUS — a closed ramp of six, plus circles ───────────────────────── */
   --r-detail: 4px;    /* below the ramp: an internal detail on the 2/4/8 floor */
+  --r-detail-lg: 8px; /* the same floor's next step. Cut 2026-08-15 (rev 92) for the
+                         checkbox, which the designer chose to soften; --r-detail stays
+                         4 because the skeleton bars spend it and they did not move. */
   --r-hairline: 2px;  /* the home-indicator bar — same floor */
   --r-input:  10px;
   --r-btn:    12px;
@@ -1184,7 +1187,7 @@ header.dr-topbar,
   border: var(--hair) solid var(--slate); color: transparent;
   display: inline-flex; align-items: center; justify-content: center;
 }
-.dr-box--check{ border-radius: var(--r-detail); }
+.dr-box--check{ border-radius: var(--r-detail-lg); }   /* 4 -> 8, her call, rev 92 */
 .dr-box--radio{ border-radius: var(--r-pill); }
 /* Settled 2026-08-03 by the designer: checked is a GREEN fill behind a
    charcoal glyph — the icon system's own rule ("active / done is a green

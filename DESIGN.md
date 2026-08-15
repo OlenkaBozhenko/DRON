@@ -533,7 +533,9 @@ card's own `overflow:hidden` cuts its two outer corners to `--r-card`.
 
 **The Closed-Ramp Rule.** Six radii and a circle for anything the eye reads as an object — a
 surface, a control, a well, a chip. Below that, an internal detail may take any radius on the
-2 / 4 / 8 scale.
+2 / 4 / 8 scale. Two of those three are cut as rungs and both are spent: **`--r-detail` 4** on the
+skeleton bars, and **`--r-detail-lg` 8** on the checkbox, added 2026-08-15 (rev 92) when the designer
+chose to soften it. The six-radius ramp above them does not move.
 
 **The Cut-By-The-Parent Rule.** A full-bleed child is square and the parent's `overflow:hidden`
 gives it the corner. It never restates the parent's radius.

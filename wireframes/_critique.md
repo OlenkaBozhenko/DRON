@@ -248,10 +248,10 @@ clears the width: narrowest is `‹ Help` at **45.63**.
 control and was not touched here. It needs its own decision: a wider hit area, or a real close
 control of its own with the 44 × 44 that `HIG · 44pt minimum target` asks for.
 
-### Open, not fixed: the label does not name the screen it returns to
+### ~~Open, not fixed:~~ RESOLVED (rev 91) — the label does not name the screen it returns to
 
 `voice.md` and `HIG · Navigation bars` ask the back control to carry the title of the screen you
-return to. Nine of the 24 do not:
+return to. Nine of the 24 did not:
 
 - **`‹ Help` × 6** (`contact-support`, `-error`, `report-issue`, `-empty`, `-loading`, `resolution`)
   returns to `support.html`, whose title is **"Help & support"**.
@@ -262,3 +262,51 @@ The remaining five match exactly. Width is not the obstacle: `‹ Help & support
 and with the title and the language switcher that is **280.46 of 341.4** — **60.94px** free.
 `WCAG 2.4.4 Link Purpose` passes either way, so this is a HIG and voice question, not an
 accessibility one.
+
+**Resolved 2026-08-15 (designer, Variant A) — see `microcopy.md` D8.** The two findings had one cause:
+the rule named a *source* for the string ("the title") that some screens do not have. The rule now
+resolves the name in three steps — nav-bar title, else **tab label** (a tab root shows a brand mark
+instead of a title, so the tab label *is* its name), else bare `‹ Back`. Under it:
+
+- **`‹ Order` × 3 was already right** and is now covered rather than excepted: `listings` is the Order
+  tab root, and `Order` is its name in `sitemap.md` §7.3 and `CLAUDE.md` § IA.
+- **`‹ Help` × 6 was right and the *title* was wrong.** The screen had **two** names — `Help` in the
+  tab bar, the global nav and all six back buttons, `Help & support` in its own bar. The bar was the
+  single outlier, so `support.html`'s title became **`Help`**. Widening the six back labels to
+  `‹ Help & support` (the option this entry had measured room for) was rejected: it would have moved
+  six strings to match one, and left the tab bar disagreeing with the title on the same screen.
+
+Re-audited after the change: **44 back controls, 43 name their destination exactly, 1 is the documented
+`‹ Back` fallback** (`operator-fee-terms` → the title-less onboarding slider), 0 failures.
+`listings-filters`' `×` is a modal close and stays out of the rule.
+
+### Also fixed in rev 91: ten back controls did not navigate at all
+
+`job-brief` ×2, `job-checklist` ×2, `result-upload` ×3 and `withdraw` ×3 shipped as
+`<button class="back">` with no `href`. `_wf-shell.js` wires every `.back` to `history.back()` **only
+when `history.length > 1`**, and unlike the other 34 these had no link to fall back on. Measured on the
+pre-fix file: clicking `‹ Earnings` on a directly-opened `withdraw.html` left the prototype for
+`about:blank` instead of reaching `wallet.html`. All ten are now `<a class="back" href>`.
+
+Verified after the fix on **both** paths the control can take, because one test cannot cover them — a
+harness context starts on `about:blank`, which counts as history and makes the shell intercept, so a
+single click test silently measures only the `history.back()` path and reports success while the `href`
+is never exercised:
+
+- **`href` fallback** (deep-link, no history) — JavaScript disabled so the shell cannot intercept:
+  **44 / 44** reached the screen their label names.
+- **`history.back()`** — walked in from the destination first: **44 / 44** returned to it.
+
+**Two size observations, both pre-existing and neither introduced here.** `listings-filters`' `×` close
+measures **10.08 × 44** — the width finding this file already has open above, still needing its own
+decision. And `order-review` / `-loading` show their back control at **137.83 × 65**: the label wraps to
+two lines. That is the shell's **EN/UA switcher**, which is prototype chrome and not part of the screen —
+removing it gives **138.89 × 44** on the same page. It affects only the two longest labels and no
+product surface, so it is recorded, not fixed.
+
+**Target size, same pass.** `.back` had `padding: 0`, so it rendered at two different heights depending
+on its tag — `a.back` **21px**, `button.back` **40px** (a `<button>` does not inherit `body`'s
+`line-height: 1.4`). Both fail `HIG · 44pt minimum target`. `.back` now carries the same
+`padding: 11.5px 0; margin: -11.5px 0` rev 87 gave `.dr-back`: all 44 measure **44.00**, label unmoved.
+`text-decoration: none` was added with it — `_wireframe.css` has no bare-`a` reset, so the ten operator
+back links had been rendering underlined while the `<button>` ones were not.

@@ -198,6 +198,51 @@ After the full pass, every term pinned by the `voice.md` **Vocabulary** is now a
 
 **D1 resolved — decision: iOS HIG (Variant A).** Per Apple's Human Interface Guidelines (the client-mobile standard in `CLAUDE.md`), each nav-bar back button now shows the **title of the screen it returns to**, prefixed with `‹` — e.g. `‹ Order review` (on Payment), `‹ Sign in` (on Verification), `‹ Jobs` (on Dispute), `‹ Help` (on Support/Report an issue) — never `Back to …`. Bare `‹ Back` is kept only where the previous screen has no title (`operator-fee-terms`, whose previous is the title-less onboarding slider). The Help **tab root** (`support.html`) had its back button **removed** (tab roots are reached by switching tabs, not by a back). The in-content recovery buttons in empty/error blocks (e.g. `Back to Jobs`) are a different element — content CTAs, not the nav-bar back — and keep their descriptive wording. **D2 resolved** (`Add document again`). D3–D7 left as noted.
 
+**D8 resolved — one screen, one name (designer, 2026-08-15; Variant A).** D1 fixed the *shape* of the back
+button but not the *source* of the string, so a screen could be called two different things depending on where
+it was named. The rule is now closed in `voice.md` § *Nav-bar back button*: the destination's name is **(1)** its
+nav-bar title, **(2)** its **tab label** when it is a tab root (a tab root carries a brand mark instead of a
+title, so the tab label *is* the name), **(3)** bare `‹ Back` only when it has neither. The back string is that
+name character for character.
+
+*Audit — all 44 nav-bar back controls in `wireframes/`, label checked against the destination's name:*
+
+| Destination | Its name | Source | Back label | Controls | Verdict |
+|---|---|---|---|---|---|
+| `listings` | **Order** | tab label (no title) | `‹ Order` | 3 | pass |
+| `operator-listings` | **Jobs** | tab label (no title) | `‹ Jobs` | 4 | pass |
+| `support` | **Help** | tab label = title | `‹ Help` | 6 | **fixed** — title was `Help & support` |
+| `account` | **Account** | title = tab label | `‹ Account` | 2 | pass |
+| `wallet` | **Earnings** | title = tab label | `‹ Earnings` | 3 | pass |
+| `order-setup` | **Package delivery** | title | `‹ Package delivery` | 4 | pass |
+| `order-review` | **Order review** | title | `‹ Order review` | 2 | pass |
+| `tracking` | **On the way** | title | `‹ On the way` | 3 | pass |
+| `delivery` | **Delivered** | title | `‹ Delivered` | 1 | pass |
+| `rate` | **Rate the order** | title | `‹ Rate the order` | 2 | pass |
+| `job-brief` | **Job brief** | title | `‹ Job brief` | 2 | pass |
+| `job-checklist` | **Checklist** | title | `‹ Checklist` | 3 | pass |
+| `operator-signup` | **Sign in** | title | `‹ Sign in` | 3 | pass |
+| `operator-fee-terms` | **Operator terms** | title | `‹ Operator terms` | 3 | pass |
+| `operator-verification` | **Verification** | title | `‹ Verification` | 1 | pass |
+| `onboarding-operator` | *(none)* | — | `‹ Back` | 1 | pass — rule (3) |
+| `listings-filters` → `listings` | — | — | `×` *(modal close)* | 1 | out of scope |
+
+**One name failed: the Help screen had two.** `support.html`'s nav-bar title read `Help & support` while its
+tab label, `sitemap.md` §7.3 global nav, `CLAUDE.md` § Information Architecture and all six back buttons
+pointing at it read `Help`. The title is the outlier, so **`support.html`'s title becomes `Help`** — one word,
+everywhere. (Row *support · Help & support · Heading* in the master table below is corrected to `Help`.)
+`contact-support.html` keeps its own separate title `Support`; it is a different screen and nothing navigates
+back to it.
+
+`listings-filters` is a **modal sheet**, not a pushed screen: HIG gives a sheet a close control, not a back
+chevron, so its `×` (`aria-label="Close filters"`) is correct and outside this rule.
+
+*Navigation made real (same pass).* Ten back controls were `<button class="back">` with no destination —
+`job-brief` ×2, `job-checklist` ×2, `result-upload` ×3, `withdraw` ×3. `_wf-shell.js` wires every `.back` to
+`history.back()`, but only when `history.length > 1`; opened directly, those ten did nothing, and unlike the
+other 34 they had no `href` to fall back to. All ten are now `<a class="back" href="…">` pointing at the screen
+their label names, which is the fallback the shell's own comment assumes.
+
 ---
 
 ## How to read the Flag column
@@ -1253,7 +1298,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | signin | Sign in | Continue with Diia | Button |  |
 | signin | Sign in | Continue with BankID | Button |  |
 | signin | Sign in | By continuing you agree to the Terms & Privacy Policy. | Body |  |
-| support | — | Help & support | Heading |  |
+| support | — | Help | Heading |  | *(was `Help & support` — corrected by D8: one screen, one name)* |
 | support | — | What happened? | Heading |  |
 | support | — | Pick the issue with your order and we'll route it to the right fix. | Body |  |
 | support | Triage list | My order didn't arrive / no-show | Body |  |

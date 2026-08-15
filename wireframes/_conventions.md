@@ -257,6 +257,42 @@ Buttons: **`min-height: 44px`** — never a fixed `height` — radius `6`, horiz
 > `min-height: 32px`, or the base 44 wins. Any page-level `<style>` that re-declares `.btn` must copy
 > the `min-height` form; seven pages carried a stale fixed-height copy that shadowed the shared rule.
 
+### 11.1 — The nav-bar back control
+
+Copy is set by `voice.md` § *Nav-bar back button* and the D8 audit in `microcopy.md`. Two things are
+this file's business — where the name comes from, and the fact that it has to actually navigate.
+
+**The name.** `‹ {destination name}`, and a screen has exactly **one** name everywhere. Resolve it in
+order: **(1)** the destination's nav-bar title (`.dr-topbar__title` / `.title`); **(2)** its **tab label**,
+when the destination is a tab root — a tab root shows a brand mark instead of a title, so the tab label
+*is* the name (`listings` → `Order`, `operator-listings` → `Jobs`); **(3)** bare `‹ Back`, only when it has
+neither, i.e. the title-less onboarding sliders. Never `Back to …` — the chevron already says it. If a tab
+root ever gains a nav-bar title, that title and its tab label must be the same word, or the screen has two
+names again — which is exactly the defect D8 closed on `support.html`.
+
+A **tab root has no back control** of its own. A **modal sheet** is not a pushed screen: it gets a close
+control (`×`, `aria-label="Close …"`), not a chevron — `listings-filters.html`.
+
+**It must navigate.** Always `<a class="back" href="{destination}.html">`, never a bare `<button>`.
+`_wf-shell.js` intercepts every `.back` / `.dr-back` click and calls `history.back()`, but only when
+`history.length > 1`; on a page opened directly — which is how the screen-map tree is walked — a `<button>`
+has nowhere to go and the click does nothing. The `href` is the destination the label names, and it is the
+fallback the shell's own comment relies on. Ten controls shipped as `<button>` and were converted on
+2026-08-15 (rev 91).
+
+**Target.** `.back` and `.dr-back` carry `padding: 11.5px 0; margin: -11.5px 0` — a 21px line box plus 23px
+of padding is **44px**, the HIG minimum, bought without moving the label off the baseline.
+
+> **Why both properties, and why it was two different sizes.** With bare `padding: 0` the grayscale `.back`
+> rendered at **two** heights depending on its tag, because a `<button>` does not inherit `body`'s
+> `line-height: 1.4` and falls back to the UA's `normal`: measured 2026-08-15, `a.back` on `operator-signup`
+> was **21px** and `button.back` on `withdraw` was **40px**. Neither reached 44, and the two forms of the
+> same control did not match each other. Now every one of the 44 measures **44.00**.
+
+`.back` also needs `text-decoration: none`. It is an `<a>` on every screen now, and `_wireframe.css` has no
+bare-`a` reset, so without it the control renders underlined — as the ten operator back links did before this
+pass, while the `<button>` ones did not.
+
 ---
 
 ## 12. File naming & the screen → file map
