@@ -188,32 +188,36 @@
         </ul>
       </fieldset>
 
-      <!-- ZONE · location -->
-      <p class="zlabel dr-label">Location · Kyiv <span class="dr-label__act">▸ which area to serve</span></p>
-      <fieldset aria-label="Location · Kyiv">
-        <ul class="dr-picks">
-          <li><label class="dr-pick">
-            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-            <span class="dr-pick__label">All districts</span>
-            <input type="radio" name="loc" value="all" checked class="sr-only">
-          </label></li>
-          <li><label class="dr-pick">
-            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-            <span class="dr-pick__label">Podil</span>
-            <input type="radio" name="loc" value="podil" class="sr-only">
-          </label></li>
-          <li><label class="dr-pick">
-            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-            <span class="dr-pick__label">Obolon</span>
-            <input type="radio" name="loc" value="obolon" class="sr-only">
-          </label></li>
-          <li><label class="dr-pick">
-            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-            <span class="dr-pick__label">Pechersk</span>
-            <input type="radio" name="loc" value="pechersk" class="sr-only">
-          </label></li>
-        </ul>
-      </fieldset>
+      <!-- ZONE · location
+           Three dependent levels, in the country's own order (designer's call
+           2026-08-16): Region → City → District of the city. It was a flat
+           radio list of three Kyiv neighbourhoods until then, and the city
+           itself could only be changed from the top bar, which is a filter
+           living outside the filter.
+           Each row PUSHES A SCREEN rather than opening a drawer — the count
+           rule in _conventions.md is ≥ 7 → a screen, and the lists are 25 and
+           11. The rows are <a> and not <button aria-haspopup>: a link goes
+           somewhere, a button acts here. The accessible name is the label plus
+           the value ("Region, Kyiv City"), so WCAG 4.1.2 is answered by the
+           element. -->
+      <p class="zlabel dr-label">Location <span class="dr-label__act">▸ region ▸ city ▸ district of the city</span></p>
+      <div class="dr-rows" role="group" aria-label="Location">
+        <a class="dr-field dr-field--action" href="listings-filter-region.html">
+          <span class="dr-field__label">Region</span>
+          <span class="dr-field__value">Kyiv City</span>
+          <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+        <a class="dr-field dr-field--action" href="listings-filter-city.html">
+          <span class="dr-field__label">City</span>
+          <span class="dr-field__value">Kyiv</span>
+          <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+        <a class="dr-field dr-field--action" href="listings-filter-district.html">
+          <span class="dr-field__label">District</span>
+          <span class="dr-field__value">All districts</span>
+          <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+        </a>
+      </div>
 
       <!-- ZONE · price -->
       <p class="zlabel dr-label">Price <span class="dr-label__act">▸ what you expect to pay</span></p>
