@@ -5,29 +5,41 @@
 <pre id="out">pending</pre>
 <script>
 function px(n){ return Math.round(n*100)/100; }
+function snap(d, tag, out){
+  var bar = d.querySelector('.dr-actionbar');
+  var main = d.querySelector('.dr-main');
+  out.push('--- ' + tag + ' ---');
+  out.push('main box ' + px(main.getBoundingClientRect().height) +
+    ' | content ' + main.scrollHeight +
+    ' | ' + (main.scrollHeight > main.clientHeight ? 'SCROLLS by ' + (main.scrollHeight - main.clientHeight) : 'fits'));
+  out.push('actionbar ' + px(bar.getBoundingClientRect().height));
+  var btns = bar.querySelectorAll('.dr-btn');
+  for (var i=0;i<btns.length;i++){
+    var r = btns[i].getBoundingClientRect();
+    out.push('  bar btn "' + btns[i].textContent.trim() + '" ' + px(r.width) + ' x ' + px(r.height));
+  }
+  var inForm = d.querySelectorAll('form[aria-label="Message support"] .dr-btn');
+  for (var i=0;i<inForm.length;i++){
+    var r = inForm[i].getBoundingClientRect();
+    out.push('  form btn "' + inForm[i].textContent.trim() + '" ' + px(r.width) + ' x ' + px(r.height));
+  }
+  var ta = d.querySelector('#ms');
+  out.push('  textarea ' + px(ta.getBoundingClientRect().width) + ' x ' + px(ta.getBoundingClientRect().height));
+}
 window.addEventListener('load', function(){
   setTimeout(function(){
     var d = document.getElementById('f').contentDocument;
     var out = [];
-    var bar = d.querySelector('.dr-actionbar');
-    var main = d.querySelector('.dr-main');
-    var frame = d.querySelector('.wf-frame');
-    var btns = bar ? bar.querySelectorAll('.dr-btn') : [];
-    out.push('frame: ' + px(frame.getBoundingClientRect().width) + ' x ' + px(frame.getBoundingClientRect().height));
-    out.push('main box: ' + px(main.getBoundingClientRect().height) + '  scrollHeight ' + main.scrollHeight + '  overflow ' + (main.scrollHeight > main.clientHeight ? 'SCROLLS' : 'fits'));
-    out.push('actionbar: ' + px(bar.getBoundingClientRect().height));
-    for (var i=0;i<btns.length;i++){
-      var b = btns[i], r = b.getBoundingClientRect(), cs = getComputedStyle(b);
-      out.push('  btn['+i+'] "'+b.textContent.trim()+'" ' + px(r.width) + ' x ' + px(r.height) +
-        ' | bg ' + cs.backgroundColor + ' | ink ' + cs.color + ' | radius ' + cs.borderRadius);
-    }
-    for (var i=1;i<btns.length;i++){
-      out.push('  gap ['+(i-1)+'→'+i+'] ' + px(btns[i].getBoundingClientRect().top - btns[i-1].getBoundingClientRect().bottom));
-    }
-    var ta = d.querySelector('#ms');
-    out.push('textarea: ' + px(ta.getBoundingClientRect().width) + ' x ' + px(ta.getBoundingClientRect().height));
-    var form = d.querySelector('form[aria-label="Message support"]');
-    out.push('form children: ' + form.children.length + ' -> ' + [].map.call(form.children, function(c){return c.className;}).join(' | '));
+    var frame = d.querySelector('.wf-frame').getBoundingClientRect();
+    out.push('frame ' + px(frame.width) + ' x ' + px(frame.height));
+    snap(d, 'AFTER (built: button in the action bar)', out);
+
+    // rebuild the previous arrangement in memory only — no file is touched
+    var call = null, bar = d.querySelector('.dr-actionbar');
+    bar.querySelectorAll('.dr-btn').forEach(function(b){ if (b.textContent.trim() === 'Call support') call = b; });
+    d.querySelector('form[aria-label="Message support"]').appendChild(call);
+    snap(d, 'BEFORE (button inside the form)', out);
+
     document.getElementById('out').textContent = out.join('\n');
   }, 600);
 });
