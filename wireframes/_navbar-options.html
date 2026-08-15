@@ -37,7 +37,9 @@
   .rec{ color:var(--green-ink); }
 
   .bars{ padding:0 16px; }
-  .bar-host{ width:373px; border:1px solid var(--line); border-radius:10px; overflow:hidden; margin-bottom:8px; }
+  /* 375 with a 1px border = a 373px bar inside, the real frame width.
+     Get this wrong by 2px and a fourth label starts clipping in option F. */
+  .bar-host{ width:375px; border:1px solid var(--line); border-radius:10px; overflow:hidden; margin-bottom:8px; }
 
   /* ── the real ui/kit.css tokens ─────────────────────────────── */
   .nb{ height:56px; display:flex; align-items:center; gap:8px; padding:0 16px;
