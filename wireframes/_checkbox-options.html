@@ -65,28 +65,15 @@ than the glyph sitting inside it.</p>
   </div>
 </div>
 
-<!-- 1 -->
-<div class="opt w15">
-  <h2>1 · 1.5px</h2>
-  <p>Half a step. Noticeably firmer than today, still lighter than the glyph inside it.</p>
-  <div class="demo">
-    <div><p class="cap">rest &amp; checked</p><div class="stack">
-      <label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this address</span><input type="checkbox" class="sr-only"></label>
-      <label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><span class="dr-pick__label">Available now</span><input type="radio" name="r1" class="sr-only"></label>
-    </div></div>
-    <div class="big"><p class="cap">2.4×</p><div class="stack">
-      <label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><input type="checkbox" class="sr-only"></label>
-      <label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><input type="radio" name="r1b" class="sr-only" checked></label>
-    </div></div>
-  </div>
-</div>
-
 <!-- 2 -->
 <div class="opt w17">
   <h2>2 · 1.7px — the icon system's own stroke</h2>
   <p>The box stops being a different kind of line and joins the icon set: <b>stroke-width 1.7</b> is
     declared once for every glyph in the product, and this makes the edge that exact weight. No new
-    number enters the system — it already has this one.</p>
+    number enters the system — it already has this one. <b>Measured caveat:</b> at this frame's
+    own rendering (DPR 2) a 1.5px and a 1.7px edge land on the same three device pixels and look
+    identical — they separate only on a 3× screen. So 1.5 is not offered as a separate choice; the
+    case for 1.7 is that it is the system's own number, not that it looks different from 1.5.</p>
   <div class="demo">
     <div><p class="cap">rest &amp; checked</p><div class="stack">
       <label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this address</span><input type="checkbox" class="sr-only"></label>

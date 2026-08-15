@@ -576,6 +576,21 @@ chrome the screen has — the shell measures the action bar or tab bar rather th
 toast that covers the button that raised it is worse than no toast. Dismisses itself after 4s and on
 click; nothing depends on reading it in time (`WCAG 2.2.1`), since it states the action just taken.
 
+### Selection controls (checkbox &amp; radio)
+
+24 × 24, `box-sizing:border-box`, inside a 44pt row that is the whole tap target.
+**Edge: `--box-edge` 1.7px solid `--ink`** — set 2026-08-15 (rev 93) on the designer's word that the
+outline had to be thicker. It is not a new number: **1.7 is the stroke every glyph in the product is
+drawn at**, so the box now carries the same line as the check inside it, where before it carried a
+1px hairline and was the one shape on screen with a thinner line than its own glyph. Measured:
+**15.99:1** on the page, **14.37:1** on the card. Corner `--r-detail-lg` 8 on the checkbox (rev 92),
+`--r-pill` on the radio. Checked is a `--green` fill behind an `--on-green` glyph, **9.46:1**.
+`--hair` stays 1px — it is every separator and the frame, and none of those moved.
+
+**Recorded, not corrected:** the checked state paints a green edge on its green fill, **1.52:1**,
+carried by the charcoal glyph inside at 9.46:1. Rev 70 settled the price band the other way — a green
+fill inside a charcoal ring — so whether the edge should stay charcoal when checked is open.
+
 ### Circular icon action
 
 44 × 44, `50%`, `--btn2` fill, `--ink` glyph at 20px, hover → `--media`, `z-index:2` so it clears
