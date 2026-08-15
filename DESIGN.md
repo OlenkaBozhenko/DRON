@@ -635,11 +635,52 @@ a full-card link overlay. Carries `aria-label` — the icon is the only content.
   inner button does not double-ring the card.
 - **No hover lift.** Hover is desktop-only and the card is flat at rest.
 
-### Row panel (`.kv`)
+### Row panel (`.kv` · `.dr-rows`)
 
-`--card`, `--r-card`, padding `2px 16px`. Each row `13px 0` with a `--line` bottom hairline. Key
-`--slate` 13/400; value `--ink` 15/600 tabular, right-aligned. One component, two screens — the
-tracking ETA panel and the delivery details panel are the same two rules.
+`--card`, `--r-card`, padding `8px 16px` (**2 until rev 88** — this line said 2 and the frames said
+8; the frame wins). Each row `13px 0` with a `--line` bottom hairline. Key `--slate` 13/400
+**5.95:1**; value `--ink` 15/600 tabular **14.37:1**.
+
+**Two columns on a fixed axis, both reading from the left** — the designer's call 2026-08-16, taken
+from the editable card (`.dr-field`) in `account-edit`. The label column is `--sz-rowkey` **140px**,
+sized on the widest key in the system (*First time as Operator*, **133.34**), so no label wraps; the
+value takes the rest, **159px** on a 341 card, and every value on every screen starts at **x = 166**.
+Gap `--sp-10`, not `--sp-snug`.
+
+Before: `justify-content: space-between` with `text-align: right`, so the value's **left** edge landed
+wherever its string happened to end — measured across the 13 wireframes that carry it, **46 rows at
+24 different x**, from 131.75 (`switch-role`) to 294.78 (`order-review`'s ₴90).
+
+**One exception — `.dr-rows--money`.** A card whose values are *figures*, not facts, keeps the
+trailing column: tabular numerals only line up on the last digit if the column is right-aligned, and
+left they line up on the ₴ with ₴180 running 24px past ₴90. Key `flex: 1`, value `flex: none`. Spent
+on `order-review`'s price breakdown and its loading state, nowhere else — `resolution`'s *Refund
+issued ₴180* is a sentence and stays with the facts.
+
+**`.dr-rows__row--stack` — the row whose value is a badge.** A `.dr-chip` is `nowrap` by construction
+and measures **164.08**, wider than the 159 column, so on `inspection-report`'s *Signed* row it stood
+**10.92** from the card's edge and ate **5.08** of the 16px inset every other line on that card keeps.
+Truncating a badge is not an option and shrinking the label would break the axis for one row, so the
+row does what HIG does when a value will not sit beside its label: label on its own line, value at the
+card's full width — `.dr-field--area`'s shape. Measured after: key **16**, value **16 × 309**, chip
+clear by **56.59**, row **73.8 → 81.0**. Spent on one row in the product.
+
+**Skeleton rows keep `space-between`** (`.dr-rows__row:has(> .dr-sk-line)`). The bars are proportional
+stand-ins — w40 / w50 / w30 of the row — not text on an axis; pinning them to the 140 column would
+blow each bar out to fill its track. `order-review-loading` and `tracking-loading` render byte-identical.
+
+**Conformance.** HIG ships **both** — a trailing value in a grouped list row (`HIG · Lists and
+tables`), a leading value in a form row (`HIG · Text fields`) — so neither alignment is *the*
+conforming one and this is a taste call, not a compliance fix. WCAG is untouched: `1.4.3` keeps its
+pairs, `1.3.1` keeps its DOM order, `1.4.8` governs justified text and not trailing.
+
+**What the axis costs, measured:** the value column is 159, and four strings are wider, so rows on two
+lines go **3 → 5**. The two new ones are `switch-role`'s *Any time from Account* (172.45) and
+`tracking-empty`'s *~15 min (running late)* (168.97). No frame changed height (812 on all 13); no page
+scrolls sideways.
+
+One component, **13 wireframes** plus `ui/kit.html` — the tracking ETA panel and the delivery details
+panel are the same two rules.
 
 ### Inset strip (`.ohl-route`)
 
