@@ -1825,7 +1825,11 @@ header.dr-topbar,
    throughout (order-review, its loading state, order-setup) — the fact lives
    in the breakdown's last row and on the CTA's own verb. `.dr-price--total`
    is declared and spent nowhere; `.dr-price` keeps its non-total spends
-   (payment's method line, time-slot's selection line). */
+   (payment's method line, time-slot's selection line).
+   Narrowed again 2026-08-16, designer's call: payment's method line comes off
+   too — `Pay with Apple Pay · ₴180` restated the checked radio above it and
+   the CTA's own `Pay ₴180`. `.dr-price` is down to one painted spend,
+   time-slot's selection line (base + empty). */
 .dr-price{ display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-snug); }
 .dr-price__lbl{ font-size: var(--t-bodysm-size); color: var(--slate); }
 .dr-price__val{

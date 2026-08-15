@@ -477,6 +477,13 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **No string moves, and the retirement above stands.** The designer's word the same evening: *«постав годинник»*. Only the picture changed — the struck magnifier gives way to the clock `tracking-empty` already owns (`concept.md` rev 80). `~40 MIN` stays retired from the master table, the title, body and both actions are untouched, and the mark is still `aria-hidden` inside the `role="status"` block, so nothing in this file's inventory moves.
 - **The words and the picture now agree, which they did not for two minutes.** The body says *"The next one is likely free in about 40 minutes"* — a **wait**, not a failed search — and the clock says the same thing the retired `~40 MIN` said, without spending a value on a 52px badge.
 
+**Sync — 2026-08-16 (`payment`'s action-bar method line comes off)**
+- **One string retired on the designer's word**, given on the built screen: *«прибери цю фразу і суму напроти з бот бара — у нас є сума на кнопці»* ("take this phrase and the figure opposite it off the bottom bar — we have the amount on the button"). The row **`payment · Payment method · Pay with Apple Pay · Field label`** leaves the master table. Its figure half, `₴180`, never had a row of its own — it was `DATA`, the same fact the CTA carries.
+- **Nothing said only there.** The **method** is stated by the selected radio in the list above (`Apple Pay`, checked, the first of three), the **amount** by the screen's own figure — `₴180` under the *Amount* zone label — and again by the CTA, **`Pay ₴180`**. So the screen still names *how* and *how much* before the commitment, which is what `voice.md` **P3** asks (*state the price as a fact, before the tap*); what goes is the third statement of both, six words above the button that said them.
+- **Measured, not asserted** (430 × 932 frame, the line toggled live on the current kit): the action bar loses the `.dr-price` row (**23.8px**) and its **8px** column gap — **112.8 → 81px** — and `.dr-main` takes back exactly that, **597.2 → 629**. The CTA does not move or resize (**44px**). Content occupies 336.6px of the column either way, and `scrollHeight == clientHeight` before (597 = 597) and after (629 = 629): nothing scrolled before, nothing scrolls now, and no sibling state mirrors this bar (`payment-error` and `payment-loading` carry buttons only).
+- **This closes the first of the two cases rev 53 left open** (2026-08-13, *the action-bar Total line comes off*): that sweep took three Total lines and deliberately left `payment`'s method line and `time-slot`'s selection line for her word. Hers is now given for `payment`.
+- **The sweep she asked for, and what it found in the other 55 action-bar files.** One exact twin: **`withdraw`** (operator, grayscale) reads `To Visa •••• 3318 · ₴3,240` above **`Withdraw ₴3,240`** — a destination line restating the account chosen above it and the figure printed on its own button. **Left as built and reported**, because `wireframes/` is not swept without her word. **`time-slot` / `-empty` are not the same case:** their bar line (`Selected · Wed 2 Jul, 09:00 · ₴800` / `No slot selected`) is the **only** place either screen states a price, and the CTA is `Confirm slot` with no figure — taking it would leave the screen with no price at all, which P3 forbids. No third repeat exists anywhere in the product.
+
 ---
 
 ## Master table — every string
@@ -1202,7 +1209,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | payment | Payment method | Apple Pay | Field label |  |
 | payment | Payment method | Google Pay | Field label |  |
 | payment | Payment method | Visa •••• 4921 | Field label |  |
-| payment | Payment method | Pay with Apple Pay | Field label |  |
 | payment | Payment method | Pay ₴180 | Button |  |
 | rate | — | ‹ Delivered | Button |  |
 | rate | — | Rate the order | Heading |  |
