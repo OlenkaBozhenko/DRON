@@ -331,6 +331,11 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **Recorded, because it is a real loss and not a neutral one:** the sentence was the only place the product *promised* nothing would be added — the breakdown proves today's arithmetic, it does not undertake anything about the payment screen. CJM Drop-off #2 is *"any 'plus fees' or surprise on the payment screen = abandonment"*, so the undertaking is now carried by `payment.html` charging **₴180** and not a hryvnia more, which is a build guarantee rather than a written one.
 - **Consequence for `voice.md`, needing the designer's word:** P3 lists exactly two worked examples, and **both are now unbuilt** — `Total · locked, no extra fees — ₴180` came off the action bar on 2026-08-13 (`concept.md` rev 53) and this is the other. The principle is unchanged and still met, but its two illustrations point at strings that exist nowhere in the product. Left as-is rather than rewritten: whether P3 keeps them as aspirational examples or takes its examples from the built screen (the breakdown rows and `Pay ₴180`) is hers, and `voice.md` is not edited on my initiative.
 
+**Sync — 2026-08-15 (`listings-empty`'s mark becomes a puzzle piece)**
+- One **WF-PH placeholder retired**, not a product string: `listings-empty`'s **EMPTY** mark is now the puzzle-piece icon (`concept.md` rev 61), so its master-table row is gone. This is the second of the two marks the designer has converted — `listings-error`'s **ERROR** became the alert triangle on 2026-08-13 (rev 54) — and the pair of listings states now carry glyphs where they carried words.
+- **No copy moves, and none is lost.** The icon is `aria-hidden`; the block's `role="status"` text is the carrier and is untouched — title **"No services match your search"**, body **"No services match "crop spraying" with your filters. Clear the filters or search again."**, actions **Clear filters** / **Notify me when available**. `voice.md`'s empty-state rule — *why it's empty + one way out* — is answered by those, not by the mark, so retiring the word costs the state nothing.
+- **Five text placeholders are still standing**, for whenever she wants them: `time-slot-empty` **EMPTY**, `report-issue-empty` **NO FILE**, `share-empty` **NOT SENT**, `contact-support-error` **QUEUE**, `inspection-report-error` **NO REPORT**. `order-setup-empty`'s **~40 MIN** is deliberately not in that list — it is a value the mark is displaying, not a stand-in for a picture.
+
 ---
 
 ## Master table — every string
@@ -544,7 +549,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-empty | Search & filters | Search services | Field placeholder |  |
 | listings-empty | Search & filters | crop spraying | Field value | USER |
 | listings-empty | Search & filters | Filters | Button |  |
-| listings-empty | Service list | EMPTY | State message | WF-PH |
 | listings-empty | Service list | No services match your search | State message |  |
 | listings-empty | Service list | No services match “crop spraying” with your filters. Clear the filters or search again. | State message |  |
 | listings-empty | Service list | Clear filters | Button |  |
