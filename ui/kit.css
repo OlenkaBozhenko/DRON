@@ -80,6 +80,19 @@
   --danger:      #C4462A;   /* declared, drawn nowhere — 4.07:1 */
   --danger-ink:  #9A3115;   /* 5.49:1 on its wash · 6.14:1 on the card */
   --danger-wash: #F2D8CF;
+  --trust-ink:   #2A5C7D;   /* a credential the platform has CONFIRMED, not merely stated
+                               (2026-08-15, rev 58 — the designer's blue Insured badge).
+                               5.65:1 on its wash — the family's own rung, the exact figure
+                               --warn-ink stands at — and 5.93:1 on the card. The system's
+                               first cool colour and the THIRD semantic wash, beside warn and
+                               danger; not a second accent, --green is still the one accent
+                               and still fill-only. No solid --trust is cut: nothing draws
+                               one, and --danger has sat declared-and-undrawn since rev 25 as
+                               the standing reason not to. */
+  --trust-wash:  #D8E6F2;   /* 1.05:1 on the card, in the wash family's own band (green 1.03,
+                               warn 1.01, danger 1.12). Named: 1.03:1 against the --media chip
+                               beside it — hue, not luminance, separates them, which is why
+                               the checkmark carries the state and 1.4.1 is satisfied. */
 
   /* ── TYPE ───────────────────────────────────────────────────────────────
      One UI stack, one mono stack. Ten steps, all in use.
@@ -449,6 +462,25 @@ header.dr-topbar,
    SF on slate, not mono — one job, two voices across the loading pages.
    Recorded as built; unifying them is the designer's call. */
 .dr-status-line{ font-size: var(--t-body-size); color: var(--slate); }  /* leading stays the inherited 1.4 */
+/* The product's own group name, standing above a card or a pair of them.
+   Added 2026-08-15 on the designer's call for account-edit's Documents zone:
+   viewed with the shell's annotations off — which is how she reads the page —
+   the two upload cards stood under no name at all, because .dr-label is the
+   WIREFRAME's structure annotation and goes with the toggle. This is content,
+   so it stays.
+   HIG · inset grouped lists sets a quiet secondary header above the group in
+   sentence case; this takes the kit's own 13/600 at --slate on the page —
+   6.62:1, the pair the tab label already records (WCAG 1.4.3 ✓ at >= 4.5:1).
+   Sentence case in the SF face keeps it clear of .dr-label's mono uppercase,
+   which labels structure and never content. The 12 above lands the group
+   boundary on the kit's own 24 zone rhythm, .dr-stack spending 12 between
+   siblings; as a heading element it carries the grouping for WCAG 1.3.1. */
+.dr-sect{
+  font-size: var(--t-bodysm-size); font-weight: var(--weight-medium);
+  line-height: var(--t-bodysm-line); color: var(--slate);   /* 6.62:1 on the page */
+  margin-top: var(--sp-snug);
+}
+.dr-sect:first-child{ margin-top: 0; }
 /* Explanatory caption under a block. Same job as .dr-hint in a sentence voice. */
 .dr-note{
   font-size: var(--t-caption-size); font-weight: var(--weight-regular);
@@ -600,8 +632,11 @@ header.dr-topbar,
 .dr-inset__dir .dr-ic{ width: var(--ic-14); height: var(--ic-14); }
 
 /* ═══ CHIPS ═══════════════════════════════════════════════════════════════
-   Same geometry, two jobs. The tint carries a claim; the warm grey carries a
-   supporting fact. A chip is never reduced to a colour — each keeps its words. */
+   Same geometry, three jobs (rev 58 — it was two until the Insured badge).
+   The green tint carries a CLAIM; the blue tint carries a CONFIRMED fact; the
+   warm grey carries a plain supporting fact. A chip is never reduced to a
+   colour — each keeps its words, and the blue one keeps its checkmark too,
+   because blue and grey are 1.03:1 apart and hue alone cannot carry a state. */
 
 .dr-chip{
   display: inline-flex; align-items: center; gap: var(--sp-6);
@@ -613,6 +648,12 @@ header.dr-topbar,
   background: var(--media); color: var(--slate);      /* fact — 5.51:1 */
 }
 .dr-chip--claim{ background: var(--green-wash); color: var(--ink); }  /* 14.75:1 */
+/* The confirmed credential (2026-08-15, rev 58): the designer's blue Insured
+   badge. The trailing checkmark strokes in currentColor like every glyph here,
+   so label and mark share the one measured pair — 5.65:1, and 1.4.11's 3:1 for
+   the mark is cleared by the same number. The fill-only rule is --green's, not
+   this ink's; --danger-ink already strokes the alert triangle (rev 54). */
+.dr-chip--trust{ background: var(--trust-wash); color: var(--trust-ink); }  /* 5.65:1 */
 /* SETTLED 2026-08-02 by the designer: 14px, everywhere. The build drew 13px in
    a badge (.badge) and 14px in the ETA pill (.ohl-eta) — one component with two
    values, against the One-Component-One-Value rule. One value now. */
@@ -1013,7 +1054,13 @@ header.dr-topbar,
   min-height: calc(var(--screen-h)/2 - 2*var(--sp-snug));
 }
 /* the centred document card: label, upload zone and hint stack on the axis —
-   designer's call 2026-08-12 (account-edit document cards) */
+   designer's call 2026-08-12 (account-edit document cards).
+   ON THE BENCH since rev 60 (2026-08-15): those two cards became the upload
+   zone itself, which centres on its own, so this modifier is declared and
+   applied to nothing. Kept, not retired — unlike .dr-field--bare, which named
+   a difference that ceased to exist, this one still names a real shape (a row
+   panel composed on the axis) and only lost its one user. It waits with
+   .dr-btn--text, .dr-price--total, .dr-counter and --sh-onphoto. */
 .dr-rows--center{ text-align: center; }
 .dr-rows--center .dr-field{ justify-content: center; }
 .dr-rows--center .dr-field__label{ flex: 0 0 100%; }
@@ -1208,11 +1255,36 @@ header.dr-topbar,
   gap: var(--sp-snug); padding: var(--sp-24); text-align: center;
 }
 .dr-upload[role="button"]{ background: var(--media); cursor: pointer; }
+/* Rev 60, 2026-08-15 — the zone that IS the card. The designer on the built
+   account-edit: remove the additional background in the upload field, and
+   leave it as text — title "Add drone documents", subtitle "Registration,
+   serial…". The nested --media well was the card-inside-a-card that rev 56
+   took out of every text area, arriving here: one surface, so the zone takes
+   the CARD's ground and radius and the well goes. Measured, that well was
+   1.08:1 on the card — affordance, never the identifier; what identifies the
+   control is the 32px glyph, the title's verb and the focus ring, and the
+   whole card is the target now instead of a 294x140 box inside a 326 one.
+   Both pairs improve by moving onto the card: title --ink 13.33:1 → 14.37:1,
+   subtitle --slate 5.51:1 → 5.95:1 (WCAG 1.4.3 ✓ both). Hover is left to the
+   base rule at --btn2, which out-ranks this on the pseudo-class — ink 11.54:1
+   and slate 4.77:1 there, both AA. Written with [role="button"] only because
+   the ground above is set at that specificity and this must out-rank it.
+   NOT SWEPT: report-issue's Evidence zone sits inside a row panel as one
+   field among several and keeps its well — it carries no title line, so the
+   well is still doing work there. The designer's word, held open. */
+.dr-upload--card[role="button"]{ background: var(--card); border-radius: var(--r-card); }
+/* The subtitle balances its lines instead of filling then orphaning: at the
+   card's 278 measure the drone-documents sentence broke as "…(PDF" / "/
+   photo).", splitting a parenthetical across lines. Same device .dr-display
+   --balance gave rate's question on 2026-08-13 — the UA re-balances the
+   string, no <br> and no fixed width. */
+.dr-upload--card .dr-note{ text-wrap: balance; }
 .dr-upload[role="button"]:hover{ background: var(--btn2); }                          /* one rung, as .dr-btn--secondary steps the other way */
 .dr-upload[role="button"]:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 .dr-upload .dr-ic{ width: var(--ic-32); height: var(--ic-32); }
 /* The action the button used to carry, in the button's own type step and
-   weight so only the pill leaves: --ink on the well, 13.33:1. */
+   weight so only the pill leaves. Was --ink on the well at 13.33:1; since
+   rev 58 took the well out it stands on the card at 14.37:1. */
 .dr-upload__action{
   font-size: var(--t-heading-size); font-weight: var(--weight-medium);
   line-height: var(--t-base-line); color: var(--ink);

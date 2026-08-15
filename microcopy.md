@@ -313,6 +313,24 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **`voice.md` A3 re-checked and holds.** Her note reads *"uploade sertificated drone document"*; A3 bars ~~Upload~~ in favour of **Add + object**, which is the resolution her own 2026-08-13 wording (*"Upload documents about drone"*) already took. The word **certified** is not added — the drone papers are registration / serial / manufacturer documents, and the hint already names them; *certified* would claim an attestation the flow does not ask for (P2: show the proof, not the adjective). **Open for her word** if she wants the object renamed.
 - **Accessible name unchanged in substance, better in mechanism:** the name now comes from the visible line itself (name-from-contents), so `WCAG 2.5.3 Label in Name` is satisfied by construction rather than by a matching `aria-label`; the hint is wired to the control with `aria-describedby` instead of floating unassociated beside it.
 
+**Sync — 2026-08-15 (one Documents heading over both cards)**
+- The zone gains its **first real product heading**: a single **`Documents`** standing above both upload cards. The designer's call, given in two parts — *"зроби окремо заголовок над зонами загрузки: Documents"*, then, asked which of the two readings she meant, *"зроби один заголовок Documents для обох карток"*. It is one heading for the pair, not one per card.
+- **Two strings retire:** the in-card field labels **`Drone documents`** and **`Insurance`**. Their job passes to the two lines the cards already carry — the title `Add drone documents` / `Add insurance` names the object, and the heading names the group. Nothing the user could read is lost; one line of restatement per card is.
+- **No other string moves.** Both titles and both hints stand exactly as written. What changes is the role the hint plays: it was a caption floating under the zone, and it is now the card's **subtitle**, inside the control and wired to it with `aria-describedby`.
+- **Voice check.** The heading is a plain noun naming what the group holds — no verb, no adjective, no cliché (`voice.md` P1, P2). "Documents" covers the insurance card too, since an insurance certificate is a document; the designer was shown that reading and chose the shared heading anyway, so it is her call and is recorded as one, not as a defect.
+- **Drift found, recorded, not corrected:** the master table still carries two `WF-PH` rows for this zone — `DRONE REGISTRATION / DOCUMENTS` and `INSURANCE DOCUMENT` — which are the grayscale wireframe's placeholder labels. Neither string is in the painted build; the painted zone has carried a glyph since 2026-08-03. They are left in place for the designer's word rather than deleted.
+
+**Sync — 2026-08-15 (the reassurance sentence comes off `order-confirmed-empty`)**
+- One string retired on the designer's word on the built page — *remove this sentence*: **"Every operator is licence-checked and insured by DRON before their first job — reviews build from here."** Its master-table row is gone.
+- **The empty state still answers `voice.md`'s two questions**, which is why this is not a dead-end: *why it's empty* is said by **"New operator · no reviews yet"** on the operator card, and *one way out* by the two actions, **Track anyway** and **Ask for another operator**. `flows.md`'s RJ-C1 node — *"Empty: 0 reviews" → platform-backed reassurance → trust decision* — is also still satisfied: the reassurance moves from a sentence to the two badges, **Verified by DRON** and **Insured**, which is where P2 wants it — *show the proof, not the adjective*. The sentence was the adjective, restating in prose exactly what the two chips already assert.
+- **No new string.** The same day's badge change (blue ground, confirming checkmark — `concept.md` rev 58) draws a mark, not a word: the chip keeps **Insured** verbatim, and the checkmark is `aria-hidden` because the word is the carrier — the kit's own chip rule, *a chip is never reduced to a colour; each keeps its words*. **Open for her word:** if *confirmed* should be **said** and not only drawn, the string becomes **Insurance confirmed**, and that is a change made here first.
+
+**Sync — 2026-08-15 (the price reassurance comes off `order-review`)**
+- One string retired on the designer's word on the built page — *remove this text*: **"This is the final price. Nothing is added at checkout."** Its master-table row is gone. The same move the `order-confirmed-empty` sentence made above, one principle over: that one was P2's adjective, this one is **P3's**.
+- **P3 still holds on the screen, and by arithmetic rather than by promise.** The rule is *the full price appears before any commitment, locked, with no «from», «quote», «negotiable» or «plus fees»* — and what remains says it in numbers: the breakdown itemises **Base fare ₴90 · Distance · 7.4 km ₴70 · Service fee ₴20** and totals **₴180**, the sum closes with nothing unaccounted, and the action bar repeats the figure as **Pay ₴180**. The sentence was prose restating a sum the reader can already check; the fee that a *"plus fees"* warning would be about is itself a named line. Nothing on the screen says *from*, *quote* or *estimate*.
+- **Recorded, because it is a real loss and not a neutral one:** the sentence was the only place the product *promised* nothing would be added — the breakdown proves today's arithmetic, it does not undertake anything about the payment screen. CJM Drop-off #2 is *"any 'plus fees' or surprise on the payment screen = abandonment"*, so the undertaking is now carried by `payment.html` charging **₴180** and not a hryvnia more, which is a build guarantee rather than a written one.
+- **Consequence for `voice.md`, needing the designer's word:** P3 lists exactly two worked examples, and **both are now unbuilt** — `Total · locked, no extra fees — ₴180` came off the action bar on 2026-08-13 (`concept.md` rev 53) and this is the other. The principle is unchanged and still met, but its two illustrations point at strings that exist nowhere in the product. Left as-is rather than rewritten: whether P3 keeps them as aspirational examples or takes its examples from the built screen (the breakdown rows and `Pay ₴180`) is hers, and `voice.md` is not edited on my initiative.
+
 ---
 
 ## Master table — every string
@@ -327,14 +345,13 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account-edit | Personal | Olena B. | Field value | DATA |
 | account-edit | Personal | Phone | Field label |  |
 | account-edit | Personal | Used for order updates and operator contact. | Body |  |
-| account-edit | Documents | Drone documents | Field label |  |
-| account-edit | Documents | DRONE REGISTRATION / DOCUMENTS | Body | WF-PH |
-| account-edit | Documents | Add drone documents | Button |  |
-| account-edit | Documents | Registration, serial, or manufacturer papers (PDF / photo). | Body |  |
-| account-edit | Documents | Insurance | Field label |  |
-| account-edit | Documents | INSURANCE DOCUMENT | Body | WF-PH |
-| account-edit | Documents | Add insurance | Button |  |
-| account-edit | Documents | Valid liability insurance covering the drone. | Body |  |
+| account-edit | Documents | Documents | Section heading | one heading over both cards (designer, 2026-08-15); the in-card labels `Drone documents` and `Insurance` retired with it |
+| account-edit | Documents | DRONE REGISTRATION / DOCUMENTS | Body | WF-PH · not in the painted build — see the 2026-08-15 sync |
+| account-edit | Documents | Add drone documents | Button | the card's title |
+| account-edit | Documents | Registration, serial, or manufacturer papers (PDF / photo). | Body | the card's subtitle |
+| account-edit | Documents | INSURANCE DOCUMENT | Body | WF-PH · not in the painted build — see the 2026-08-15 sync |
+| account-edit | Documents | Add insurance | Button | the card's title |
+| account-edit | Documents | Valid liability insurance covering the drone. | Body | the card's subtitle |
 | account-edit | Preferences | Payment method | Field label |  |
 | account-edit | Preferences | Visa •••• 4921 | Body | DATA |
 | account-edit | Preferences | Saved address | Field label |  |
@@ -851,7 +868,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-confirmed-empty | Your operator | New operator · no reviews yet | State message |  |
 | order-confirmed-empty | Your operator | Verified by DRON | State message |  |
 | order-confirmed-empty | Your operator | Insured | State message |  |
-| order-confirmed-empty | Your operator | Every operator is licence-checked and insured by DRON before their first job — reviews build from here. | State message |  |
 | order-confirmed-empty | Your operator | Track anyway | Button |  |
 | order-confirmed-empty | Your operator | Ask for another operator | Button |  |
 | order-confirmed-empty | Your operator | Order | Button |  |
@@ -970,7 +986,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-review | Price breakdown | Distance · 7.4 km | Body | DATA |
 | order-review | Price breakdown | Service fee | Body |  |
 | order-review | Price breakdown | Total | Body |  |
-| order-review | Price breakdown | This is the final price. Nothing is added at checkout. | Body |  |
 | order-review | Price breakdown | Pay ₴180 | Button |  |
 | order-setup-empty | — | ‹ Order | Button |  |
 | order-setup-empty | — | Package delivery | Heading |  |
