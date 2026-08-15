@@ -327,6 +327,10 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **Voice check.** The heading is a plain noun naming what the group holds — no verb, no adjective, no cliché (`voice.md` P1, P2). "Documents" covers the insurance card too, since an insurance certificate is a document; the designer was shown that reading and chose the shared heading anyway, so it is her call and is recorded as one, not as a defect.
 - **Drift found, recorded, not corrected:** the master table still carries two `WF-PH` rows for this zone — `DRONE REGISTRATION / DOCUMENTS` and `INSURANCE DOCUMENT` — which are the grayscale wireframe's placeholder labels. Neither string is in the painted build; the painted zone has carried a glyph since 2026-08-03. They are left in place for the designer's word rather than deleted.
 
+**Sync — 2026-08-15 (no screen says its own name twice)**
+- The designer's call on navigation: *«не повинно залишитись ніде два заголовка»* — no two headings left anywhere. **Swept across all 84 wireframes and states; exactly one screen was doing it.** `delivery` carried **Delivered** in the nav bar *and* **Delivered** again as the display line under the success mark. The display line is retired; the bar keeps the name, which is what `HIG · Navigation bars` gives it and what she asked the bar to do (*«текст показує на якій сторінці я знаходжусь»*).
+- **Nothing is lost, and the screen says more than it did.** The line beneath it, *Your parcel arrived at 10:07.*, is the same fact stated with the time in it — P1's own preference for the outcome over the label. The sibling states keep their display lines because theirs never duplicated the bar: `delivery-error` says *Delivery photo is missing*, `delivery-loading` says *Waiting for the delivery photo…*
+
 **Sync — 2026-08-15 (`contact-support-error`'s QUEUE becomes the paper plane)**
 - One placeholder retired on the designer's word — *постав іконку Paper Plane*: the **QUEUE** `WF-PH` row leaves the master table, and the mark now carries a glyph instead of a word. The standing placeholder count drops **five → four**.
 - **No product string moves.** The block keeps *Sent to a senior agent* and its body verbatim; the mark takes `aria-hidden="true"`, which it did not have while it held a word, so the `role="alert"` text beside it is the only thing announced (`WCAG 1.1.1`, `4.1.2`).
@@ -454,7 +458,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | delivery-loading | Proof of delivery | Account | Button |  |
 | delivery | — | Delivered | Heading |  |
 | delivery | — | DONE | Body | WF-PH |
-| delivery | — | Delivered | Body |  |
 | delivery | — | Your parcel arrived at 10:07. | Body | DATA |
 | delivery | Proof of delivery | DELIVERY PHOTO | Body | WF-PH |
 | delivery | Details | Delivered to | Body |  |

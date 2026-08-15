@@ -448,8 +448,16 @@
     /* back controls — make them work in the walkable prototype.
        Many screens use <button class="back"> with no href (inert on click);
        wire every .back to real history. When there is no history (a page opened
-       directly / deep-linked), an <a class="back" href> still follows its href. */
-    var backEls = document.querySelectorAll(".wf-frame .back");
+       directly / deep-linked), an <a class="back" href> still follows its href.
+
+       .dr-back added 2026-08-15 (rev 84). The painted layer renamed the class
+       and this selector was never widened, so 24 screens shipped a Back button
+       that matched nothing here and did nothing on click — verified in the
+       browser, 0 matches and the URL unchanged. history.back() is also the
+       HIG-correct behaviour: the back control returns to the previous screen in
+       the navigation stack, i.e. wherever the user actually came from, which a
+       hardcoded href cannot do on a screen with more than one way in. */
+    var backEls = document.querySelectorAll(".wf-frame .back, .wf-frame .dr-back");
     for (var bi=0; bi<backEls.length; bi++){
       (function(el){
         if (el.tagName === "BUTTON") el.type = "button";
