@@ -19,6 +19,8 @@ colors:
   danger: "#C4462A"
   danger-ink: "#9A3115"
   danger-wash: "#F2D8CF"
+  trust-ink: "#2A5C7D"
+  trust-wash: "#D8E6F2"
 typography:
   display:
     fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, sans-serif"
@@ -692,10 +694,22 @@ what loads replace this surface, or sit inside it"**.
 | `oh-ping` | 1.8s | `cubic-bezier(.22,.61,.36,1)` | a ring leaving a live status disc |
 | `skPulse` | 1.4s | `ease-in-out` | skeleton opacity 1 → .5 |
 | `skUp` | 1.6s | `cubic-bezier(.22,.61,.36,1)` | the arrow leaving an upload tray |
+| `dr-spin` | 1.1s | `linear` | a 270° arc turning inside the milestone mark |
 
 `skUp` moves the arrow only — the tray holds still, because what the screen waits on is a file
 going *up*. It rests **visible** at 0% and 100%, so a dropped animation leaves a legible icon.
-Every loop above is `animation: none` under `prefers-reduced-motion: reduce`.
+
+`dr-spin` is the only loop that describes no object — just system work, so it keeps its own
+cadence. The other three sit at 1.8 / 1.4 / 1.6s because each traces something physical; an
+activity indicator slower than ~1.2s reads as stalled (`HIG · Progress indicators`). 1.1s also
+keeps it off the 1.4s skeleton pulse it shares `payment-loading` with — the two re-align only
+every **15.4s**, so they never breathe as one. Easing is `linear`, alone in this table: an eased
+spin stutters once per revolution. At 0.91 Hz it clears `WCAG 2.3.1`'s 3 Hz ceiling by 3.3×.
+
+Every loop above is `animation: none` under `prefers-reduced-motion: reduce`. `dr-spin` is the
+weak case of that contract — a frozen spinner is the picture of a hung app — which is why the arc
+is 270° and not a closed ring: at rest it reads as work *incomplete*, and the `role="status"`
+sentence beside it carries the state.
 
 ### Named rules
 

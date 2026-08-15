@@ -216,12 +216,17 @@
   --sh-onphoto: 0 2px 8px rgba(20,18,15,.18);
   --halo-now:   0 0 0 4px color-mix(in srgb, var(--green) 20%, transparent);
 
-  /* ── MOTION — four loops, every one functional ─────────────────────────── */
+  /* ── MOTION — five loops, every one functional ─────────────────────────── */
   --dur-fast:   .12s;
   --dur-base:   .15s;
   --dur-ping:   1.8s;
   --dur-pulse:  1.4s;
   --dur-upload: 1.6s;
+  /* The only loop that traces no object — just system work — so it keeps its
+     own cadence. Slower than ~1.2s an activity indicator reads as stalled, and
+     1.1 against the 1.4 pulse re-aligns only every 15.4s, so the two never
+     breathe as one. */
+  --dur-spin:   1.1s;
   --ease-out:   cubic-bezier(.22,.61,.36,1);
   --lift-active: 1px;
   --scale-active: .99;
@@ -1475,10 +1480,20 @@ header.dr-topbar,
 .dr-sk-place{ height: var(--sk-place-h); }
 .dr-sk-dir{ width: var(--sz-arrow); height: var(--sz-arrow); flex: none;
   border-radius: var(--r-pill); background: var(--btn2); }
+/* The route strip's single stand-in (2026-08-15, rev 64 — the designer's "only
+   one rectangle"). It replaces the two stop columns and the direction chip, and
+   holds their exact height so the card does not move: 12 + 7 + 16 = 35, declared
+   as the sum rather than as 35 so it follows those three if they ever change.
+   The panel itself stays solid — the From/To text sits INSIDE it, so by this
+   block's own test the strip is chrome and the bar is the content.
+   .dr-sk-stop / -lbl / -place / -dir are left declared, now spent nowhere. */
+.dr-sk-route{ flex: 1; min-width: 0;
+  height: calc(var(--sk-lbl-h) + var(--sk-stop-gap) + var(--sk-place-h));
+  border-radius: var(--r-detail); background: var(--btn2); }
 .dr-sk-money{ flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .dr-sk-price{ height: var(--sk-price-h); width: var(--sk-price-w); border-radius: var(--r-detail); }
 
-.dr-sk-line, .dr-sk-well, .dr-sk-btn, .dr-sk-dir{ animation: dr-pulse var(--dur-pulse) ease-in-out infinite; }
+.dr-sk-line, .dr-sk-well, .dr-sk-btn, .dr-sk-dir, .dr-sk-route{ animation: dr-pulse var(--dur-pulse) ease-in-out infinite; }
 .dr-sk-d1 *{ animation-delay: -.47s; }
 .dr-sk-d2 *{ animation-delay: -.93s; }
 @keyframes dr-pulse{ 0%,100%{ opacity: 1; } 50%{ opacity: var(--pulse-floor); } }
@@ -1495,6 +1510,16 @@ header.dr-topbar,
   100%  { transform: translateY(0);      opacity: 1; }
 }
 
+/* The activity indicator: the system is working, and no layout is coming that a
+   skeleton could rehearse (HIG · Progress indicators). The arc is 270deg of the
+   waiting clock's own r=8.5 circle — the 90deg gap is what makes the turn
+   visible, since a closed ring rotating shows nothing. Linear alone in this
+   file: an eased spin stutters once per revolution, and there is no object here
+   whose acceleration would earn it. At rest under reduce it is an INCOMPLETE
+   ring, which reads as work unfinished rather than work stopped. */
+.dr-spin{ animation: dr-spin var(--dur-spin) linear infinite; transform-origin: 50% 50%; }
+@keyframes dr-spin{ to{ transform: rotate(360deg); } }
+
 /* ═══ REDUCED MOTION ══════════════════════════════════════════════════════
    Every loop above carries information, so each one stops rather than
    degrades. The chevron still turns — it just does not travel. */
@@ -1503,8 +1528,8 @@ header.dr-topbar,
   .dr-card,
   .dr-disclosure > summary .dr-ic{ transition: none; }
   .dr-status--live::after,
-  .dr-sk-line, .dr-sk-well, .dr-sk-btn, .dr-sk-dir,
-  .dr-sk-arrow{ animation: none; }
+  .dr-sk-line, .dr-sk-well, .dr-sk-btn, .dr-sk-dir, .dr-sk-route,
+  .dr-sk-arrow, .dr-spin{ animation: none; }
 }
 
 /* ═══ NARROW TIER ═════════════════════════════════════════════════════════
