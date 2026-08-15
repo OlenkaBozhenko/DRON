@@ -644,7 +644,14 @@ header.dr-topbar,
    The green tint carries a CLAIM; the blue tint carries a CONFIRMED fact; the
    warm grey carries a plain supporting fact. A chip is never reduced to a
    colour — each keeps its words, and the blue one keeps its checkmark too,
-   because blue and grey are 1.03:1 apart and hue alone cannot carry a state. */
+   because blue and grey are 1.03:1 apart and hue alone cannot carry a state.
+
+   WHERE the chip sits decides which job it is doing (rev 69, the designer's
+   "make this badge green in the filters specifically"). On an operator card
+   Insured asserts a confirmed fact about that operator, so it is blue. In the
+   filter sheet nothing is being confirmed about anyone — the chip marks a
+   CRITERION the client is choosing by, which is the claim rung, so there it is
+   green. Same word, same geometry, two jobs, and the word is what carries it. */
 
 .dr-chip{
   display: inline-flex; align-items: center; gap: var(--sp-6);
@@ -667,6 +674,13 @@ header.dr-topbar,
    values, against the One-Component-One-Value rule. One value now. */
 .dr-chip .dr-ic{ width: var(--ic-14); height: var(--ic-14); }
 .dr-chips{ display: flex; flex-wrap: wrap; gap: var(--sp-6); }
+/* Stacked trust badges (2026-08-15, the designer's call on order-confirmed):
+   the pair reads down, not across — Insured under Verified by DRON. This is a
+   modifier and NOT a change to .dr-op__badges, because account and
+   contact-support hang non-trust chips on that same hook (Client · phone,
+   Human agent · order no.) and keep their row. align-items holds each pill to
+   its own content width; without it the column stretches both to the card. */
+.dr-chips--stack{ flex-direction: column; align-items: flex-start; }
 
 /* A row of places with one current — the tab bar's problem, so the tab bar's
    values. The pill stays 32px visible and the hit area extends to 44 through
