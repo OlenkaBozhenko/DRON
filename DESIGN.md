@@ -605,6 +605,21 @@ Measured: typed `--ink` **14.37:1 → 15.99:1** moving off the card onto the pag
 stand at the frame's own 16; placeholder stays `--slate` at **5.95:1**, the designer's call when shown
 that `WCAG 1.4.3` floors a placeholder at 4.5:1 and the lightest passing warm grey is 4.52:1.
 
+### Text areas, and the focus rule they changed
+
+A multiline area carries its own ground again as of 2026-08-16 (rev 100): **`--media` at
+`--r-input` 10, 12px inset**, typed `--ink` **13.33:1**, placeholder `--slate` **5.51:1**. This
+restores what rev 56 removed, and the reason it is not a reversal is that rev 56's objection was a
+painted box nested *inside a card* — rev 98 took the card away, so the well now sits straight on the
+page with nothing behind it. Four screens: `rate`, `contact-support`, `order-setup`, `report-issue`.
+`rate`'s composition is unmoved at **382 / 406**, since `box-sizing:border-box` spends the padding inward.
+
+**A text field shows no focus ring.** `WCAG 2.4.7`'s Understanding names the text cursor in a text
+field as a visible focus indicator, so on a field with a caret the caret carries the criterion and
+the outline is redundant. `caret-color` is therefore **declared** rather than inherited — `--ink`,
+**13.33:1** on the area's ground. **This does not generalise:** the rule is keyed to
+`.dr-field__input`, and every control without a caret keeps its 2.5px ring, having nothing else.
+
 ### Selection controls (checkbox &amp; radio)
 
 24 × 24, `box-sizing:border-box`, inside a 44pt row that is the whole tap target.

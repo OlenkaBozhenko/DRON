@@ -1152,7 +1152,16 @@ header.dr-topbar,
   font-family: var(--font-ui); font-size: var(--t-heading-size); color: var(--ink);   /* 14.37:1 */
 }
 .dr-field__input::placeholder{ color: var(--slate); }
-.dr-field__input:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+/* NO RING ON A TEXT FIELD — the designer's call 2026-08-16 (rev 100): "не хочу
+   щоб ти stroke добавляв коли я вводю текст, лише індикатор вводу і текст".
+   This is allowed, and only here: WCAG 2.4.7 Understanding names the text
+   cursor in a text field as a visible focus indicator, so the caret carries
+   the criterion where the ring used to. --ink at 15.99:1 on the page and
+   13.33:1 on the area's ground, declared rather than inherited so the one
+   thing now doing the job is not left to a default. It does NOT generalise:
+   every control without a caret keeps its ring, because it has nothing else. */
+.dr-field__input{ caret-color: var(--ink); }
+.dr-field__input:focus-visible{ outline: none; }
 .dr-field__value{
   font-size: var(--t-heading-size); font-weight: var(--weight-medium); color: var(--ink);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;
@@ -1189,8 +1198,15 @@ header.dr-topbar,
    The ground and the radius come off by the base rule and the reset; only the
    reach and the rhythm are set here. --media at --r-input goes back to being
    the search bar's alone, which is where 2026-08-02 put it. */
+/* THE AREA GETS ITS GROUND BACK — the designer's call 2026-08-16 (rev 100):
+   "поверни бекграунд для текстового поля". This restores what rev 56 took off
+   and rev 98's plain list left bare, and it is a different question from the
+   one rev 56 answered: that pass removed a painted box nested INSIDE a card,
+   and there is no card now — the ground sits straight on the page. Typed --ink
+   13.33:1, placeholder --slate 5.51:1, both on --media. */
 .dr-field--area .dr-field__input{ resize: none; width: 100%; flex-basis: 100%;
   min-height: calc(var(--sz-area-min) - var(--sp-24));
+  background: var(--media); border-radius: var(--r-input); padding: var(--sp-snug);
   line-height: var(--t-para-line); }  /* typed lines keep the body rhythm, not UA "normal" */
 /* the rate screen's review takes half the screen — the designer's call
    2026-08-12. The height rides on the textarea, not the row: a floor on the
