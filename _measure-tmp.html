@@ -1,0 +1,39 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>measure</title></head>
+<body>
+<iframe id="f" src="/wireframes/report-issue-empty.html" style="width:375px;height:812px;border:0"></iframe>
+<pre id="out">pending</pre>
+<script>
+function lum(c){const [r,g,b]=c.match(/\d+(\.\d+)?/g).slice(0,3).map(Number).map(v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)});return 0.2126*r+0.7152*g+0.0722*b}
+function ratio(a,b){const l1=lum(a),l2=lum(b);const hi=Math.max(l1,l2),lo=Math.min(l1,l2);return ((hi+0.05)/(lo+0.05)).toFixed(3)}
+window.addEventListener('load',()=>{setTimeout(()=>{
+  const d=document.getElementById('f').contentDocument;
+  const w=document.getElementById('f').contentWindow;
+  const mark=d.querySelector('.dr-mark');
+  const svg=mark.querySelector('svg');
+  const msg=d.querySelector('.dr-msg');
+  const main=d.querySelector('.dr-main');
+  const frame=d.querySelector('.wf-frame');
+  const cm=w.getComputedStyle(mark), cs=w.getComputedStyle(svg), cmsg=w.getComputedStyle(msg);
+  const rm=mark.getBoundingClientRect(), rs=svg.getBoundingClientRect();
+  const o={
+    markBox:[+rm.width.toFixed(2),+rm.height.toFixed(2)],
+    markRadius:cm.borderRadius, markBg:cm.backgroundColor, markInk:cm.color,
+    svgBox:[+rs.width.toFixed(2),+rs.height.toFixed(2)],
+    strokeAttr:svg.getAttribute('stroke-width'),
+    renderedStroke:+(parseFloat(svg.getAttribute('stroke-width'))*rs.width/24).toFixed(3),
+    msgBg:cmsg.backgroundColor,
+    ratio_ink_on_markBg: ratio(cm.color,cm.backgroundColor),
+    ratio_markBg_on_cardBg: ratio(cm.backgroundColor,cmsg.backgroundColor),
+    ariaHidden: mark.getAttribute('aria-hidden'),
+    markText: JSON.stringify(mark.textContent),
+    statusRole: msg.getAttribute('role'),
+    statusText: msg.innerText.replace(/\s+/g,' ').slice(0,120),
+    mainScroll:[main.scrollHeight,main.clientHeight],
+    frameH: frame.getBoundingClientRect().height,
+    overflowX: d.documentElement.scrollWidth - d.documentElement.clientWidth
+  };
+  document.getElementById('out').textContent=JSON.stringify(o,null,1);
+},700)});
+</script>
+</body></html>
