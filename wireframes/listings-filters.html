@@ -261,6 +261,59 @@
 
   </div>
 
+  <!--
+    The one page-level script in the prototype. The range is native, so dragging,
+    the arrow keys and the exposed value all work without it; this only keeps the
+    readout, the filled span and aria-valuetext saying what the thumbs say, which
+    no CSS can do. Scoped to this page — nothing else loads it.
+  -->
+  <script>
+  (function () {
+    var box = document.querySelector('[data-range]');
+    if (!box) return;
+    var lo = box.querySelector('[data-lo]'),
+        hi = box.querySelector('[data-hi]'),
+        out = box.querySelector('[data-out]'),
+        fill = box.querySelector('[data-fill]'),
+        presets = document.querySelectorAll('input[name="price"]'),
+        MAX = +lo.max;
+
+    function money(v) {
+      return '₴' + (+v).toLocaleString('en-US') + (+v === MAX ? '+' : '');
+    }
+    function paint() {
+      var a = +lo.value, b = +hi.value;
+      fill.style.left = (a / MAX * 100) + '%';
+      fill.style.right = (100 - b / MAX * 100) + '%';
+      out.textContent = money(a) + ' – ' + money(b);
+      lo.setAttribute('aria-valuetext', money(a));
+      hi.setAttribute('aria-valuetext', money(b));
+    }
+    // the thumbs may meet but never cross — each stops at the other
+    lo.addEventListener('input', function () {
+      if (+lo.value > +hi.value) lo.value = hi.value;
+      clearPresets(); paint();
+    });
+    hi.addEventListener('input', function () {
+      if (+hi.value < +lo.value) hi.value = lo.value;
+      clearPresets(); paint();
+    });
+    function clearPresets() {
+      Array.prototype.forEach.call(presets, function (r) { r.checked = false; });
+    }
+    // a band is a shortcut to a range: picking one moves the thumbs
+    Array.prototype.forEach.call(presets, function (r) {
+      r.addEventListener('change', function () {
+        if (!r.checked) return;
+        var b = r.getAttribute('data-band').split(',');
+        lo.value = b[0]; hi.value = b[1];
+        paint();
+      });
+    });
+    paint();
+  })();
+  </script>
+
   <!-- shared wireframe shell: left nav tree + viewport switcher (same on every page) -->
   <script src="_wf-shell.js"></script>
 </body>
