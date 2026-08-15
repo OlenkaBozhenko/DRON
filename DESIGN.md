@@ -81,7 +81,8 @@ spacing:
   snug: "12px"
   screen: "16px"
   group: "20px"
-  list: "28px"
+  list: "28px"          # .dr-list — the list is the screen
+  list-snug: "12px"     # .dr-list--snug — the list is one zone among several
   cta-clearance: "32px"
 components:
   button-primary:
@@ -270,8 +271,10 @@ it cannot carry a mark: `--warn` on the card is 1.84:1 and `--danger` reaches on
   `tracking-error`, `delivery-error`.
 - **`--green-ink`** (`#4F6B22`) — the green that may stand alone, added 2026-08-12 (rev 48):
   signal green taken down to the text-safe rung, for the rare place green must be a word.
-  Home (rev 49): the `Clear all` text button on `listings-filtered`. The mode-disclosure
-  checkmark wore it for a day and returned to `--green` by the designer's call (rev 50).
+  Home (rev 49): the `Clear all` text button on `listings-filtered` — until rev 51 replaced
+  that control with the leading `All` chip, so the rung now stands declared with no spend.
+  The mode-disclosure checkmark wore it for a day and returned to `--green` by the
+  designer's call (rev 50).
 
 ### Measured contrast
 
@@ -292,7 +295,7 @@ Every pair carried on a product surface, verified in the browser.
 | `--slate` | `--card` | 5.95:1 | keys, dates, ratings, body |
 | `--warn-ink` | `--card` | 5.72:1 | — |
 | `--warn-ink` | `--warn-wash` | 5.65:1 | late-notice mark |
-| `--green-ink` | `--page` | 5.58:1 | `Clear all` text button (`listings-filtered`) |
+| `--green-ink` | `--page` | 5.58:1 | text button (declared — rev 51 took its one spend) |
 | `--slate` | `--media` | 5.51:1 | muted chips, upload glyph |
 | `--danger-ink` | `--danger-wash` | 5.49:1 | tracking-lost, photo-missing marks |
 | `--green-ink` | `--card` | 5.01:1 | text button, card ground (declared) |
@@ -402,11 +405,21 @@ action bar instead.
 |---|---|
 | 4 | within a group — title to date |
 | 8 | between sibling icon actions |
-| 12 | card-top gap, message-block gap, `.stack` gap |
+| 12 | card-top gap, message-block gap, `.stack` gap; between cards **where the list is one zone among several** (`.dr-list--snug`) |
 | 16 | screen padding and gap; compact card inset; inset-strip padding |
 | 20 | between groups inside a list card, and that card's own inset |
-| 28 | between cards — always greater than any interval inside one |
+| 28 | between cards **where the list is the screen** — greater than any interval inside one |
 | 32 | bottom inset of a card whose last element is a primary button |
+
+**Two list rungs, chosen by what surrounds the list.** `.dr-list` is 28 and `.dr-list--snug` is 12,
+and the choice is not taste — it is proximity read one level up. `main` separates whole zones by
+**16**, so a list left at 28 puts *siblings further apart than strangers*: the two service cards on
+`listings-filtered` sat 28 apart while the applied-filter row and the list itself sat 16 apart, and
+the list stopped reading as one thing. Where the list **is** the screen — nothing above or below it
+to compete — 28 is right, and it still clears the 20 inside a card. Where the list is **one zone
+among several**, 12 is right: above the 4px rhythm inside a card, under the 16 between zones, so
+the group clusters and the zones still separate. 28 in that position is the defect; 12 in the first
+position would leave the list undifferentiated from its own card interiors.
 
 `.kv` rows take `13px 0`; the action bar takes `12px 16px 24px`; the tab bar `6px 8px 4px`. The
 message block is `22px 18px` on `tracking` and `delivery`, and `16px 16px 32px` on
@@ -416,8 +429,10 @@ message block is `22px 18px` on `tracking` and `delivery`, and `16px 16px 32px` 
 details and message cards. Unifying them is deferred: the operator card's trust-chip row cannot
 pay the extra 4px.
 
-**Responsive.** One breakpoint, `max-width: 389px`, on `order-history` only — the family with a
-fixed-width media box to protect. Card inset 20 → 16, group gap 20 → 18, list gap 28 → 22,
+**Responsive.** One breakpoint, `max-width: 389px`, tuned for `order-history` — the family with a
+fixed-width media box to protect — but declared on `:root`, so it reaches every page that uses the
+stepped tokens. Card inset 20 → 16, group gap 20 → 18, list gap 28 → 22 (`--sp-list` only:
+`--sp-snug` does not step, so a `.dr-list--snug` list holds 12 at both tiers),
 card-top gap 16 → 12, drone box 96 × 72 → 68 × 52, route padding 16 → 14. The skeleton page steps
 identically, so the loading and loaded lists stay the same height at both tiers.
 
@@ -431,8 +446,13 @@ against a photo of 341 × 180.
 
 ### Named rules
 
-**The Between-Beats-Within Rule.** The gap between two cards (28) is always larger than any gap
-inside one (≤20), so proximity groups in the right direction without a border or a shadow.
+**The Between-Beats-Within Rule.** Proximity groups in the right direction without a border or a
+shadow — but the rule holds **per level**, not as one number. Where the list *is* the screen, the
+gap between two cards (28) is larger than any gap inside one (≤20). Where the list is one zone
+among several, the level above it takes over: `main` separates zones by 16, so the cards must close
+to 12 or they read as further apart than the zones themselves. 12 is still above the 4px rhythm
+inside a card, and the card's interior stays bounded by its drawn edge — `--card` on `--page` at
+1.11:1 plus the 16px radius — not by whitespace it has to win.
 
 **The Skeleton-Measures-The-Load Rule.** A loading block is the size of the thing it waits for. A
 skeleton is a claim about the loaded screen, so it expires when that screen changes treatment.
@@ -516,8 +536,9 @@ gives it the corner. It never restates the parent's radius.
 - **Secondary:** `--btn2` fill, `--ink` label (11.54:1), no shadow. Hover → `--media`.
 - **Text:** transparent, `--green-ink` label — **5.58:1** on the page, **5.01:1** on the card;
   hover and press darken to `--ink` with the kit's 1px dip, the tertiary's own grammar. Added
-  2026-08-12 (rev 49) for `listings-filtered`'s Clear all; the slate tertiary stays the
-  skip/cancel voice.
+  2026-08-12 (rev 49) for `listings-filtered`'s Clear all; rev 51 replaced that control with
+  the leading `All` chip, so the variant is currently spent nowhere. The slate tertiary stays
+  the skip/cancel voice.
 - **Block:** `width:100%`. The default in an action bar and at the foot of a card.
 - **Disabled:** `--btn2` fill with a `--slate` label — **4.77:1**, the secondary button's own pair.
   It is built, not dimmed: blanket opacity would take charcoal-on-green to 2.35:1. No

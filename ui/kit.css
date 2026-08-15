@@ -525,10 +525,12 @@ header.dr-topbar,
    Flat, all of them. Separation is a warm tone step plus a radius. */
 
 .dr-list{ list-style: none; display: flex; flex-direction: column; gap: var(--sp-list); }
-/* The grouped-options rung. 28 is the between-items step where the list is
-   the screen; when the list is one group among sections 16 apart, siblings
-   must sit closer than strangers — 12: above the 4px rhythm inside a card,
-   under the 16 between sections. */
+/* The grouped-list rung, and the default's condition. 28 is the between-items
+   step where the list IS the screen (order-history, time-slot); when the list
+   is one zone among sections 16 apart, siblings must sit closer than strangers
+   — 12: above the 4px rhythm inside a card, under the 16 between sections.
+   Swept across the product 2026-08-15: listings ×3, inspection-report ×2 and
+   support carry --snug; the three single-zone lists keep 28. */
 .dr-list--snug{ gap: var(--sp-snug); }
 
 .dr-card{
