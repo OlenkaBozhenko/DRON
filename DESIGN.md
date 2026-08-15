@@ -323,6 +323,9 @@ Every pair carried on a product surface, verified in the browser.
 | `--card` on `--page` | 1.11:1 | Same. |
 | `--green-wash` on `--page` | 1.085:1 | Same; the selected state also moves the ink `--slate` → `--ink`. |
 | `--danger-ink` at `opacity .55` on `--danger-wash` | 2.43:1 | The lost-signal glyph, where the fade *is* the semantic. It sits in an `aria-hidden` well and the meaning is carried by the visible title. **Switch to `.70` (3.20:1) if the glyph is ever made load-bearing.** |
+| `--green` walked rail node on `--page` | 1.69:1 | The progress rail's done step, entered 2026-08-15 (rev 65) when the rail landed on `tracking`. Colour is not the carrier and does not need to clear 3:1: the walked node is a **filled disc with a checkmark**, the current one a **ring with a halo**, the pending ones **empty circles**, the current label steps `--slate` 6.62:1 → `--ink` 15.99:1, and `aria-current="step"` speaks it. Same reading the live disc and the pager dot above already hold. |
+| `--card` pending rail node on `--page` | 1.11:1 | Same rail, same reading — the unwalked step is identified by holding *no* mark, not by its fill. |
+| `--line` rail track on `--page` | 1.34:1 | The 2px connector behind the nodes. A decorative join, not a state indicator; the walked span is redrawn in `--green` over it and the milestone shapes carry the state. |
 
 ### Named rules
 
