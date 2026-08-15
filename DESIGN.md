@@ -605,13 +605,16 @@ Measured: typed `--ink` **14.37:1 → 15.99:1** moving off the card onto the pag
 stand at the frame's own 16; placeholder stays `--slate` at **5.95:1**, the designer's call when shown
 that `WCAG 1.4.3` floors a placeholder at 4.5:1 and the lightest passing warm grey is 4.52:1.
 
-### The picker row — a form row that opens
+### The picker row — a form row whose value is chosen, not typed
 
-A row whose value is chosen, not typed, is `.dr-picker`: a native `<details>` whose `<summary>`
-**is** the `.dr-field`. It opens **in flow** and pushes the rows below it down — the mechanism
-`.dr-disclosure` has carried since 2026-08-02, so no picker floats and the 40-screen count of
-modals, sheets, popovers and `position:fixed` is unchanged. Set 2026-08-16 (rev 101) on the
-designer's word, on `account-edit`; it replaced a `<span role="button">` that opened nothing and a
+**The rule is a count.** ≤ **6** options → the list rises as a **drawer** from the bottom edge;
+≥ **7** → the tap **pushes a new screen** in from the right, with a back to the row. Set 2026-08-16
+(rev 102) on the designer's word; `HIG · Action sheets` and `HIG · Lists and tables` draw the same
+line. Payment is 4 and language is 2, so the ≥ 7 half is a written rule with no page yet.
+
+**The row** is `.dr-field--action`: a real `<button>`, `aria-haspopup="dialog"` + `aria-expanded`,
+carrying `chevron.forward` — one mark for both halves, because both say the same true thing, that
+the list arrives from elsewhere. It replaced a `<span role="button">` that opened nothing and a
 text-glyph **▾** that was not in the icon system.
 
 **The trailing chevron is pinned by the shrink order, not by a number:** label `flex 0 0 auto`,
@@ -619,15 +622,28 @@ value `flex 0 1 auto` with `min-width:0` and the ellipsis, chevron `flex:none`, 
 **`flex-wrap: nowrap`**. The `nowrap` is load-bearing — measured, a 66-character value took the wrap
 instead of the ellipsis and the row went **44 → 78** with the chevron **325px** in from the edge.
 Measured after: both rows **44 × 341**, chevron right edge flush with the row's, gap to edge **0**,
-on a 14-character value and a 56-character one alike; no horizontal overflow (`scrollWidth` =
-`clientWidth` = **373**).
+on a 14-character value and a 56-character one alike; no horizontal overflow.
 
-Menu `--card` at `--r-card` **16**, **1.11:1** on the page, `8px` clear below it. Options are
-`.dr-picker__item` — the same block as `.dr-disclosure__item`, plus a `<button>` reset — **44** tall,
-`--ink` **14.37:1**, hover `--media`, ring **2.5px `--ink`** drawn inside. Row value `--ink`
-**15.99:1**; label and chevron `--slate` **6.62:1**. Every option holds the current-item checkmark
-and only one shows it (`visibility`, never absence, so no row moves): `--ink` **14.37:1**, with
-`aria-current="true"` beside it. The chevron turns **180°** on open, on the button's own `.12s`.
+**The drawer** is `.dr-sheet` — `--page` ground, `--r-panel` **22** on the top corners only,
+`--sh-raised`, measured **373 wide** with its bottom flush to the frame — plus `.dr-sheet--picker`,
+which is only the rise: `translateY(100%) → 0` over **`--dur-sheet` .32s** `--ease-out`, the scrim
+fading with it, both `animation: none` under reduced motion. `--dur-sheet` is the one new token:
+`--dur-base` .15s is the button's own tick and snaps on a surface that crosses 400px. Scrim
+`--scrim` (warm ink at 40%), measured **373 × 810** — it covers the nav bar and the action bar, not
+just the scroll area.
+
+**Options** are `.dr-picker__item` in a `--card` list at `--r-card` **16**, **1.11:1** on the
+sheet — the same block as `.dr-disclosure__item` plus a `<button>` reset — **44 × 341**, `--ink`
+**14.37:1**, hover `--media`, ring **2.5px `--ink`** drawn inside. Row value `--ink` **15.99:1**;
+label and chevron `--slate` **6.62:1**. Every option holds the current-item checkmark and only one
+shows it (`visibility`, never absence, so no row moves): `--ink` **14.37:1**, with
+`aria-current="true"` beside it.
+
+**The modal contract is kept, not claimed.** Everything behind the drawer takes `inert`, so a tap or
+a Tab cannot reach the form under it; focus lands on the current option with its ring; Tab cycles
+inside the drawer only; and it closes three ways — **Esc**, the **scrim**, and a **`Cancel`** button
+(`HIG · Action sheets` asks for the cancel by name) — each returning focus to the row that opened
+it. A drawer takes Cancel, not the `×` a full modal sheet screen takes.
 
 ### Text areas, and the focus rule they changed
 
@@ -637,6 +653,18 @@ restores what rev 56 removed, and the reason it is not a reversal is that rev 56
 painted box nested *inside a card* — rev 98 took the card away, so the well now sits straight on the
 page with nothing behind it. Four screens: `rate`, `contact-support`, `order-setup`, `report-issue`.
 `rate`'s composition is unmoved at **382 / 406**, since `box-sizing:border-box` spends the padding inward.
+
+**How tall an area is, and where that height actually comes from.** The kit declares two floors —
+the row's `--sz-area-min` **80px** and the input's **56px** (`80 − 24`) — and until 2026-08-16
+neither had ever governed anything: a `<textarea>` defaults to **`rows="2"`**, whose intrinsic
+**69px** (2 × 22.5 line box + 2 × 12 inset) already stood above both, which is why every area in the
+product measured **69 / 93** and not 56 / 80. The floors are left as declared and the fact is
+recorded rather than re-cut. Where a screen needs a different height the modifier carries it, and
+both modifiers are written in tokens so the count survives a change of type scale:
+**`.dr-field--half`** is `rate`'s half-screen review (**382 / 406**), and **`.dr-field--area6`**
+(rev 105) is `contact-support`'s six typed lines — `6 × --t-heading-size × --t-para-line + 2 ×
+--sp-snug` = **159px**, row **183px**, verified by typing six lines with no scroll and seven with.
+`order-setup` and `report-issue` keep the two-line default.
 
 **A text field shows no focus ring.** `WCAG 2.4.7`'s Understanding names the text cursor in a text
 field as a visible focus indicator, so on a field with a caret the caret carries the criterion and

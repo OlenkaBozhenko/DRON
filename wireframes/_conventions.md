@@ -325,6 +325,19 @@ only where a visible label exists. `Back to …` stays forbidden as *visible* co
 A **tab root has no back control** of its own. A **modal sheet** is not a pushed screen: it gets a close
 control (`×`, `aria-label="Close …"`), not a chevron — `listings-filters.html`.
 
+A **drawer** is not a modal sheet screen either. A sheet that fills the frame and carries a nav bar takes
+the `×`; a drawer that rises from the bottom edge over the screen you are still on carries a **grabber and
+a `Cancel` button** — `HIG · Action sheets`, which asks for the cancel by name. Set 2026-08-16 (rev 102)
+with the picker rule below, built on `account-edit`.
+
+**A picker row's list appears in one of two places, and the rule is a count:** **≤ 6 options → a drawer**
+from the bottom edge; **≥ 7 → a new screen** pushed in from the right, with a back to the row. The
+designer's call 2026-08-16; `HIG · Action sheets` and `HIG · Lists and tables` draw the same line — a short
+mutually-exclusive set belongs in a sheet, a long one needs a screen that can scroll and search. The row
+itself carries `chevron.forward` in both halves, never a down arrow: the list is not here, it arrives. No
+list in the product is long enough yet (payment is 4, language is 2), so the ≥ 7 half is a written rule
+with no page — **a new screen for it still needs its `flows.md` node and its `sitemap.md` row first.**
+
 **The title is centred in the bar** (`HIG · Navigation bars`, rev 94). It used to flow after the back
 label and drift **−82.7px to +30.4px** off centre with that label's length. Centring was rejected at rev
 92 because the label collided with the title on 4 of 19 real pairs — two of them by ~1px — but rev 93

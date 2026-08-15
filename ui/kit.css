@@ -246,6 +246,7 @@
      1.1 against the 1.4 pulse re-aligns only every 15.4s, so the two never
      breathe as one. */
   --dur-spin:   1.1s;
+  --dur-sheet:  .32s;    /* a drawer crossing the bottom edge — rev 101 */
   --ease-out:   cubic-bezier(.22,.61,.36,1);
   --lift-active: 1px;
   --scale-active: .99;
@@ -1135,18 +1136,12 @@ header.dr-topbar,
    The field gives up its own 16 with the panel, or the text would stand at 32
    from the frame (the main's 16 plus the field's own); and the separator drops
    its indent, because there is no panel edge left for it to indent from. */
-/* .dr-picker rides in the same list — its row IS a .dr-field, one level down
-   inside the <details>, so every rule that names a row has to name it too. */
-.dr-rows:has(> .dr-field, > .dr-picker){
+.dr-rows:has(> .dr-field){
   padding-left: 0; padding-right: 0;
   background: none; border-radius: 0;
 }
-.dr-rows:has(> .dr-field, > .dr-picker) > .dr-field,
-.dr-rows:has(> .dr-field, > .dr-picker) > .dr-picker > .dr-field{ padding-left: 0; padding-right: 0; }
-.dr-rows:has(> .dr-field, > .dr-picker) > .dr-field + .dr-field::before,
-.dr-rows:has(> .dr-field, > .dr-picker) > .dr-picker + .dr-field::before,
-.dr-rows:has(> .dr-field, > .dr-picker) > .dr-field + .dr-picker > .dr-field::before,
-.dr-rows:has(> .dr-field, > .dr-picker) > .dr-picker + .dr-picker > .dr-field::before{ left: 0; }
+.dr-rows:has(> .dr-field) > .dr-field{ padding-left: 0; padding-right: 0; }
+.dr-rows:has(> .dr-field) > .dr-field + .dr-field::before{ left: 0; }
 .dr-field + .dr-field::before{
   content: ""; position: absolute; left: var(--sp-screen); right: 0; top: 0;
   height: var(--hair); background: var(--line);
@@ -1214,6 +1209,22 @@ header.dr-topbar,
   min-height: calc(var(--sz-area-min) - var(--sp-24));
   background: var(--media); border-radius: var(--r-input); padding: var(--sp-snug);
   line-height: var(--t-para-line); }  /* typed lines keep the body rhythm, not UA "normal" */
+/* SIX TYPED LINES — the designer's call 2026-08-16 (rev 105) on the built
+   contact-support: "зроби висоту поля вводу більшою щоб 6 стрічок влізло
+   написати". The floor is written as six line boxes plus the input's own two
+   insets, not as a px figure, so it stays six lines if --t-heading-size or
+   --t-para-line ever move: 6 × 15 × 1.5 + 2 × 12 = 159px, row 183px.
+   Measured before the change: the area rendered 69px = two lines, and NOT
+   because of --sz-area-min — a <textarea> defaults to rows="2", whose
+   intrinsic 69px already stood above the 56px floor this kit declares. Both
+   the row's 80 and the input's 56 are floors nothing has ever reached; they
+   are left as declared and reported, not quietly re-cut.
+   Spent on contact-support alone, the way --half is spent on rate alone;
+   order-setup's notes and report-issue's description keep the two lines
+   until she says otherwise. */
+.dr-field--area6 .dr-field__input{
+  min-height: calc(6 * var(--t-heading-size) * var(--t-para-line) + 2 * var(--sp-snug));
+}
 /* the rate screen's review takes half the screen — the designer's call
    2026-08-12. The height rides on the textarea, not the row: a floor on the
    wrapped row would be dealt out across the label's flex line too, so the
@@ -1251,64 +1262,73 @@ header.dr-topbar,
    332px card. A target is not sized by the length of its label. */
 .dr-rows--center .dr-upload{ flex-basis: 100%; }
 
-/* ── THE PICKER ROW ───────────────────────────────────────────────────────
+/* ── THE PICKER ROW, AND WHERE ITS LIST APPEARS ───────────────────────────
    The designer's call 2026-08-16 (rev 101), on the built `account-edit`:
    «зроби щоб відкривались dropdowns і іконка стрілка вниз в правому крайньому
-   кутку незалежно від того який довжиною текст».
+   кутку незалежно від того який довжиною текст і іконку зміни на іншу»,
+   settled the same day after she was shown the four ways iOS opens a list:
+   «для мобільного зроби 3 варіант, причому для [довгих] списків тап виводить
+   новий екран що вїжджає справа, а для коротких виїжджає як дровер знизу»,
+   with the boundary confirmed at SIX.
 
-   Three faults, all in the markup and none in the design. The row was a
-   `<span role="button">` that opened NOTHING — a control that announces a
-   menu and has none is `WCAG 4.1.2` at its plainest. Its mark was the text
-   glyph ▾ (U+25BE), a character in the running font, not the flat 24-grid
-   outline every other arrow in this kit is drawn on. And the value and the
-   mark sat inline after the label, so the arrow travelled with the length of
-   the string instead of standing at the row's trailing edge.
+   Three faults in what it replaces, all in the markup and none in the design.
+   The row was a `<span role="button">` that opened NOTHING — a control that
+   announces a menu and has none is `WCAG 4.1.2` at its plainest. Its mark was
+   the text glyph ▾ (U+25BE), a character in the running font, not the flat
+   24-grid outline every other arrow in this kit is drawn on. And the value and
+   the mark sat inline after the label, so the arrow travelled with the length
+   of the string instead of standing at the row's trailing edge.
 
-   IT OPENS THE WAY THIS PRODUCT ALREADY OPENS THINGS — .dr-disclosure's
-   native `<details>`, IN FLOW, pushing the page down. Nothing floats here and
-   a picker is not the exception that starts it: `HIG · Disclosure controls`
-   describes exactly this shape, and account's mode picker has shipped it
-   since 2026-08-12. So the options reuse that component's own row —
-   .dr-picker__item is declared in the same block as .dr-disclosure__item, one
-   set of values for one shape — and only the button reset is added here,
-   because these options are `<button>`s (a value, not a route) where the mode
-   picker's are `<a href>`.
+   THE RULE, AND IT IS A COUNT, NOT A FEELING:
+     ≤ 6 options → the list rises as a DRAWER from the bottom edge (.dr-sheet,
+                   the surface `share` has carried since rev 43's "a floating
+                   surface belongs in a modal, popover, drawer or dropdown
+                   menu, and there it is appropriate").
+     ≥ 7 options → the tap PUSHES A NEW SCREEN in from the right, HIG's own
+                   Settings row, with the list and a back to this screen.
+   `HIG · Action sheets` and `HIG · Lists and tables` draw the same line: a
+   short mutually-exclusive set belongs in a sheet, a long one needs a screen
+   that can scroll and search. Nothing in the product is long enough yet —
+   payment is 4, language is 2 — so the second half of the rule is declared and
+   spent nowhere, the way --sh-onphoto and .dr-btn--text wait.
+
+   THE GLYPH IS `chevron.forward` — one mark for both halves, because both say
+   the same true thing: the list is not here, it arrives. It does not turn,
+   having nothing to turn into.
 
    THE ARROW IS PINNED BY THE SHRINK ORDER, NOT BY A NUMBER. The label does
    not shrink (0 0 auto), the value takes all of the slack and ellipsizes
    (0 1 auto, min-width 0 — already in .dr-field__value), the chevron never
    shrinks (.dr-field__chev is flex:none). So «Visa •••• 4921» and a string
    three times its length leave the chevron in the same column: the row's
-   trailing edge. margin-left:auto on the value carries the gap between.
+   trailing edge. margin-left:auto on the value carries the gap between. */
 
-   44 by construction (--h-control); the summary takes Enter and Space with
-   no script, the options are real buttons; the ring is drawn INSIDE
-   (`WCAG 2.4.11`, 2.5px --ink) because a full-bleed row has no room outside
-   itself. Nothing here needs JS to open — the page's script only makes the
-   pick land. */
-.dr-picker{ display: block; }
-/* nowrap is load-bearing, and it was measured: .dr-field wraps by default for
+/* THE ROW IS A REAL <button>, not a span wearing a role — Enter, Space, the
+   tab order and the accessible name all come free, and `WCAG 4.1.2` is
+   answered by the element rather than by attributes. .dr-field already zeroes
+   the border and the ground; this adds the reset a <button> still needs.
+   nowrap is load-bearing and it was measured: .dr-field wraps by default for
    the multiline area's own label line, and on a 375 frame a 66-character value
    took the wrap instead of the ellipsis — the row grew 44 → 78 and the chevron
-   fell to the second line, 325px in from the edge. The picker row has no
-   second line to give, so it takes none. */
-.dr-picker > .dr-field{ cursor: pointer; list-style: none; flex-wrap: nowrap; }
-.dr-picker > .dr-field::-webkit-details-marker{ display: none; }
-.dr-picker > .dr-field > .dr-field__label{ flex: 0 0 auto; }
-.dr-picker > .dr-field > .dr-field__value{ flex: 0 1 auto; margin-left: auto; }
-.dr-picker > .dr-field:focus-visible{
+   fell to the second line, 325px in from the edge. This row has no second line
+   to give, so it takes none. */
+.dr-field--action{
+  width: 100%; cursor: pointer; flex-wrap: nowrap;
+  font-family: var(--font-ui); text-align: left;
+}
+.dr-field--action > .dr-field__label{ flex: 0 0 auto; }
+.dr-field--action > .dr-field__value{ flex: 0 1 auto; margin-left: auto; }
+/* the ring is drawn INSIDE — a full-bleed row has no room outside itself */
+.dr-field--action:focus-visible{
   outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1);
 }
-/* the turn is the direction, the animation is only how it gets there —
-   the same sentence .dr-disclosure's chevron has carried since 2026-08-02 */
-.dr-picker > .dr-field .dr-ic{ transition: transform var(--dur-fast); }
-.dr-picker[open] > .dr-field .dr-ic{ transform: rotate(var(--turn-open)); }
-/* the opened menu is a card that appeared under the row — the plain list has
-   no ground of its own, so the surface that arrives is what marks it as one
-   thing. --card on --page, the system's real 1.11:1 step. */
+
+/* THE DRAWER. .dr-sheet carries the surface, the radius, the grip and the
+   shadow already; only the rise and the option list are new. --card at
+   --r-card on the sheet's --page ground, the system's real 1.11:1 step, so the
+   menu reads as one object and not as loose lines. */
 .dr-picker__list{
   background: var(--card); border-radius: var(--r-card); overflow: hidden;
-  margin: 0 0 var(--sp-within-lg);
 }
 /* the button reset, and nothing else — the row's values come from
    .dr-disclosure__item, which this shares */
@@ -1323,14 +1343,24 @@ header.dr-topbar,
    rev 86 settled for the mode picker. */
 .dr-picker__item .dr-ic{ visibility: hidden; }
 .dr-picker__item[aria-current="true"] .dr-ic{ visibility: visible; }
-/* the separator, restated for a list that mixes plain rows and pickers: a
-   picker's row is one level down, so the adjacency has to reach through it */
-.dr-picker + .dr-field::before,
-.dr-field + .dr-picker > .dr-field::before,
-.dr-picker + .dr-picker > .dr-field::before{
-  content: ""; position: absolute; left: var(--sp-screen); right: 0; top: 0;
-  height: var(--hair); background: var(--line);
-}
+/* A SHEET THAT COMES AND GOES needs [hidden] said out loud: .dr-sheet sets
+   display:flex and .dr-scrim display is block, and either one beats the UA's
+   [hidden]{display:none} on specificity. Left implicit, the drawer would sit
+   on the screen at rest. */
+.dr-sheet[hidden], .dr-scrim[hidden]{ display: none; }
+/* It rises from the bottom edge, which is the one thing a drawer must do.
+   --dur-sheet is a new rung and the only new token here: --dur-base .15s is
+   the button's own tick and reads as a snap on a surface that crosses 400px,
+   iOS presents its sheets at about a third of a second. The scrim fades with
+   it rather than cutting in. Under reduced motion both arrive with no travel
+   — the sheet's PRESENCE is the information, the rise is only how it gets
+   there, the same sentence the disclosure chevron has carried since
+   2026-08-02. */
+@keyframes dr-sheet-rise{ from{ transform: translateY(100%); } to{ transform: translateY(0); } }
+@keyframes dr-scrim-in{ from{ opacity: 0; } to{ opacity: 1; } }
+.dr-sheet--picker{ animation: dr-sheet-rise var(--dur-sheet) var(--ease-out); }
+.dr-sheet--picker ~ .dr-scrim,
+.dr-scrim--picker{ animation: dr-scrim-in var(--dur-sheet) var(--ease-out); }
 
 /* A field keeps a ground only outside the grouped label-value anatomy:
    the search bar (in no list at all) and, since 2026-08-12, the empty
@@ -1984,7 +2014,8 @@ header.dr-topbar,
   .dr-disclosure > summary .dr-ic{ transition: none; }
   .dr-status--live::after,
   .dr-sk-line, .dr-sk-well, .dr-sk-btn, .dr-sk-dir, .dr-sk-route,
-  .dr-sk-arrow, .dr-spin{ animation: none; }
+  .dr-sk-arrow, .dr-spin,
+  .dr-sheet--picker, .dr-scrim--picker{ animation: none; }
 }
 
 /* ═══ NARROW TIER ═════════════════════════════════════════════════════════
