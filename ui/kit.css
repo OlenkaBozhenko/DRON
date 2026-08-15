@@ -1176,7 +1176,33 @@ header.dr-topbar,
    the flex row it would shrink to its hint's measure, so the basis is declared. */
 .dr-field:has(> .dr-upload)::before{ content: none; }
 .dr-field > .dr-upload{ flex-basis: 100%; }
-.dr-field__label{ flex: 1; font-size: var(--t-heading-size); color: var(--slate); }   /* 5.95:1 */
+/* THE VALUE AXIS REACHES THE FIELD ROW — the designer's call 2026-08-16 (rev
+   114) on the built account-edit, pointing at the Preferences card: «зроби
+   вирівнювання тексті з Podil&English по лівому краю». That card stood on three
+   left edges at once, on a 341 row: the two picker values trailing at 207.9 and
+   ≈259 — they move with their string, not with the row — and the typed value on
+   the 1:1 split at 175.5. A spread of ~84px on one card, and no column to read
+   down.
+   ONE AXIS ONLY HOLDS IF THE COLUMN IS FIXED. These rows have different trailing
+   anatomy (chevron / none), so any flexible split lands them on different x —
+   label flex:1 against a row with a chevron leaves 152.5, against one without it
+   165.5. So the label takes --sz-rowkey 140, the column the fact row was moved
+   to earlier the same day, and every value in the product — read, typed or
+   chosen — now starts 150 from its row's left edge.
+   Measured before the change: the widest field label is `Payment method` 135.64,
+   then `Drop-off address` 134.47 — both inside the 140 that the fact row's own
+   widest key (133.34) sized, and neither wraps. Tracks: typed 165.5 → 191 (the
+   long addresses on order-setup gain 25.5), chosen 226 → 165.
+   Conformance, checked before the change: HIG ships BOTH — a trailing value in a
+   grouped list row and a leading value in a form row — so neither alignment is
+   the conforming one, and this is rev-`--sz-rowkey`'s taste call made a second
+   time, now for the whole family. WCAG is untouched: 1.4.3 keeps its pairs (key
+   --slate 5.95:1, value --ink 14.37:1), 1.3.1 keeps its DOM order, 1.4.8 governs
+   justified text and not an axis, and the row keeps its 44 floor. */
+.dr-field__label{
+  flex: 0 0 var(--sz-rowkey); min-width: 0;
+  font-size: var(--t-heading-size); color: var(--slate);   /* 5.95:1 */
+}
 .dr-field__input{
   flex: 1; min-width: 0;
   border: 0; background: transparent; outline: none;
@@ -1331,12 +1357,14 @@ header.dr-topbar,
    the same true thing: the list is not here, it arrives. It does not turn,
    having nothing to turn into.
 
-   THE ARROW IS PINNED BY THE SHRINK ORDER, NOT BY A NUMBER. The label does
-   not shrink (0 0 auto), the value takes all of the slack and ellipsizes
-   (0 1 auto, min-width 0 — already in .dr-field__value), the chevron never
-   shrinks (.dr-field__chev is flex:none). So «Visa •••• 4921» and a string
-   three times its length leave the chevron in the same column: the row's
-   trailing edge. margin-left:auto on the value carries the gap between. */
+   THE ARROW IS PINNED BY THE SHRINK ORDER, NOT BY A NUMBER. The label holds
+   its column (0 0 --sz-rowkey, rev 114 — it was 0 0 auto while the value was
+   trailing), the value takes all of the slack and ellipsizes (min-width 0 —
+   already in .dr-field__value), the chevron never shrinks (.dr-field__chev is
+   flex:none). So «Visa •••• 4921» and a string three times its length leave the
+   chevron in the same column: the row's trailing edge. What changed at rev 114
+   is which end of the track the value is read from — the slack used to sit
+   between the label and the value (margin-left:auto) and now sits after it. */
 
 /* THE ROW IS A REAL <button>, not a span wearing a role — Enter, Space, the
    tab order and the accessible name all come free, and `WCAG 4.1.2` is
@@ -1356,8 +1384,11 @@ header.dr-topbar,
   width: 100%; cursor: pointer; flex-wrap: nowrap;
   font-family: var(--font-ui); text-align: left; text-decoration: none;
 }
-.dr-field--action > .dr-field__label{ flex: 0 0 auto; }
-.dr-field--action > .dr-field__value{ flex: 0 1 auto; margin-left: auto; }
+/* The label override retired at rev 114: the picker row stands on the same 140
+   column as every other field row, so there is nothing left here for it to say.
+   The value fills what the label and the chevron leave and reads from its own
+   left edge — 165 on a 341 row — keeping the ellipsis it already declares. */
+.dr-field--action > .dr-field__value{ flex: 1; }
 /* the ring is drawn INSIDE — a full-bleed row has no room outside itself */
 .dr-field--action:focus-visible{
   outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1);

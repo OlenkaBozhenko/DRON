@@ -612,6 +612,16 @@ Measured: typed `--ink` **14.37:1 → 15.99:1** moving off the card onto the pag
 stand at the frame's own 16; placeholder stays `--slate` at **5.95:1**, the designer's call when shown
 that `WCAG 1.4.3` floors a placeholder at 4.5:1 and the lightest passing warm grey is 4.52:1.
 
+**The label column is `--sz-rowkey` 140 — the same axis as the read-only row** (rev 114, 2026-08-16,
+on the designer's word). It was `flex:1`, a 1:1 split, which held only where every row in a group had
+the same anatomy: on `account-edit` the two picker rows carry a chevron and the input row does not, so
+`flex:1` left **152.5** on one and **165.5** on the other and the card read down three different left
+edges. Fixed, every value in the product — read, typed or chosen — starts **150** from its row's left
+edge (**166** from the frame where the group keeps its card). Typed track **165.5 → 191**. The widest
+field label is *Payment method* **135.64**, then *Drop-off address* **134.47**, both inside 140, so no
+label wraps and every row holds **44** (`HIG · 44pt` ✓, `WCAG 2.5.8` ✓). `.dr-field--area` is
+unaffected — its label has taken the full width since 2026-08-03.
+
 **One row takes no separator, and it is keyed to the control.** `.dr-field:has(> .dr-upload)::before`
 is `content:none` — set 2026-08-16 (rev 109) on the designer's word, matching the **one** field in the
 product whose control is an upload zone (`report-issue`'s Evidence; account-edit's two are
@@ -643,12 +653,21 @@ carrying `chevron.forward` — one mark for both halves, because both say the sa
 the list arrives from elsewhere. It replaced a `<span role="button">` that opened nothing and a
 text-glyph **▾** that was not in the icon system.
 
-**The trailing chevron is pinned by the shrink order, not by a number:** label `flex 0 0 auto`,
-value `flex 0 1 auto` with `min-width:0` and the ellipsis, chevron `flex:none`, row
+**The trailing chevron is pinned by the shrink order, not by a number:** label `flex 0 0
+var(--sz-rowkey)`, value `flex 1` with `min-width:0` and the ellipsis, chevron `flex:none`, row
 **`flex-wrap: nowrap`**. The `nowrap` is load-bearing — measured, a 66-character value took the wrap
 instead of the ellipsis and the row went **44 → 78** with the chevron **325px** in from the edge.
 Measured after: both rows **44 × 341**, chevron right edge flush with the row's, gap to edge **0**,
 on a 14-character value and a 56-character one alike; no horizontal overflow.
+
+**The value reads from its left edge, not from the chevron** — rev 114, 2026-08-16. It was `label
+flex 0 0 auto` + `value flex 0 1 auto` with `margin-left:auto`, which put the value's *left* edge
+wherever its string ended: on `account-edit`'s card *Visa •••• 4921* stood at **192.84** and
+*English* at **244.86** beside a typed value at **168**. The label now takes the same `--sz-rowkey`
+**140** column as every other row, so the picker value starts at **150** like the typed one and the
+read-only one, and the slack sits after the value instead of before it. **The cost, recorded:**
+`report-issue`'s *Poor quality — not as expected* measures **231.95** against a **165** track and
+now takes the ellipsis; it fit its old track by 7px.
 
 **The drawer** is `.dr-sheet` — `--page` ground, `--r-panel` **22** on the top corners only,
 `--sh-raised`, measured **373 wide** with its bottom flush to the frame — plus `.dr-sheet--picker`,
@@ -799,6 +818,11 @@ from the editable card (`.dr-field`) in `account-edit`. The label column is `--s
 sized on the widest key in the system (*First time as Operator*, **133.34**), so no label wraps; the
 value takes the rest, **159px** on a 341 card, and every value on every screen starts at **x = 166**.
 Gap `--sp-10`, not `--sp-snug`.
+
+**The field row joined this column at rev 114** (2026-08-16), which is where the axis was copied from
+in the first place: the reference card was still mixing a 1:1 split with two trailing picker values.
+One column now serves read, typed and chosen alike — `--sz-rowkey` is the product's single value axis,
+and *Payment method* **135.64** is its new widest key, still **4.36px** inside it.
 
 Before: `justify-content: space-between` with `text-align: right`, so the value's **left** edge landed
 wherever its string happened to end — measured across the 13 wireframes that carry it, **46 rows at
