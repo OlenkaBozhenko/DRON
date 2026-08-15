@@ -215,6 +215,42 @@
         </ul>
       </fieldset>
 
+      <!-- ZONE · price -->
+      <p class="zlabel dr-label">Price <span class="dr-label__act">▸ what you expect to pay</span></p>
+      <fieldset aria-label="Price">
+        <ul class="dr-picks">
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">Low</span>
+            <input type="radio" name="price" value="low" data-band="0,200" class="sr-only">
+          </label></li>
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">Medium</span>
+            <input type="radio" name="price" value="medium" data-band="200,500" class="sr-only">
+          </label></li>
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">High</span>
+            <span class="dr-chip dr-chip--trust">Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+            <input type="radio" name="price" value="high" data-band="500,1000" class="sr-only">
+          </label></li>
+          <li>
+            <div class="dr-range" data-range>
+              <output class="dr-range__out" for="pmin pmax" data-out>₴0 – ₴1,000+</output>
+              <div class="dr-range__rail">
+                <span class="dr-range__fill" data-fill></span>
+                <input class="dr-range__input" type="range" id="pmin" min="0" max="1000" step="50" value="0"
+                       aria-label="Lowest price" aria-valuetext="₴0" data-lo>
+                <input class="dr-range__input" type="range" id="pmax" min="0" max="1000" step="50" value="1000"
+                       aria-label="Highest price" aria-valuetext="₴1,000+" data-hi>
+              </div>
+              <p class="dr-range__ends"><span>₴0</span><span>₴1,000+</span></p>
+            </div>
+          </li>
+        </ul>
+      </fieldset>
+
     </main>
 
     <!-- FOOTER · action bar -->
