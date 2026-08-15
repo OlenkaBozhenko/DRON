@@ -174,7 +174,13 @@ Every screen's real states come from its row in `_screens.md`. Rules:
 - **Base file = the normal / populated state.** For the five milestone "it worked" screens (Order confirmed, Delivery confirmation, Rate, Wallet, Withdraw) the base **is** the success screen. There is no separate `-success` file.
 - Each additional real state (`✓` in `_screens.md`) is its **own page**: `-empty`, `-error`, `-loading`.
 - **Same DOM structure across states** — only the content of the affected zone changes. Do not restructure the page per state.
-  - **`-loading`** → the real layout with `--wf-skeleton` bars in place of not-yet-loaded content (skeleton, not a spinner-only screen). Keep header/nav solid.
+  - **`-loading`** → the real layout with `--wf-skeleton` bars in place of not-yet-loaded content (skeleton, never a spinner *instead of* the layout). Keep header/nav solid.
+    - **One exception — a system action with no layout to rehearse.** Where the wait is not *content is
+      arriving* but *the system is working* (authorising a payment, verifying an identity), a skeleton is
+      a claim about a screen that never renders. There the screen carries an **activity indicator** beside
+      the text that names the wait — `.dr-mark--milestone` + `.dr-spin`, the control `HIG · Progress
+      indicators` prescribes when the wait is short and progress is unknowable — and skeleton bars stay
+      only where they still rehearse something. Built on `payment-loading` 2026-08-15 (`concept.md` rev 65).
   - **`-empty`** → a real empty-state block: one line explaining the situation + the primary recovery action (e.g. catalogue `-empty` = *"Not in your region yet"* + *"Notify me when DRON launches here"*).
   - **`-error`** → a real error message + the recovery path from the flow (retry / change method / support), never a dead-end unless the flow marks one.
 - A state that is `—` in `_screens.md` gets **no page**. Do not invent states.
