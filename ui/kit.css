@@ -1605,9 +1605,13 @@ header.dr-topbar,
    one rectangle"). It replaces the two stop columns and the direction chip, and
    holds their exact height so the card does not move: 12 + 7 + 16 = 35, declared
    as the sum rather than as 35 so it follows those three if they ever change.
-   The panel itself stays solid — the From/To text sits INSIDE it, so by this
-   block's own test the strip is chrome and the bar is the content.
+   rev 73 takes the panel out from behind it (the designer, on the same strip:
+   "only one rectangle"). Once the From/To text is gone the plane contains
+   nothing, and a bar inside a filled box is two fills for one placeholder —
+   the only container the skeleton paints. --sk drops the fill and KEEPS the
+   16px padding, so the strip is still 67px and the card still does not move.
    .dr-sk-stop / -lbl / -place / -dir are left declared, now spent nowhere. */
+.dr-inset--sk{ background: none; }
 .dr-sk-route{ flex: 1; min-width: 0;
   height: calc(var(--sk-lbl-h) + var(--sk-stop-gap) + var(--sk-place-h));
   border-radius: var(--r-detail); background: var(--btn2); }
