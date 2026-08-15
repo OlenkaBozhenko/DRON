@@ -197,7 +197,10 @@
         item.addEventListener('click', function () {
           items.forEach(function (other) { other.removeAttribute('aria-current'); });
           item.setAttribute('aria-current', 'true');
-          value.textContent = item.textContent.trim();
+          // the LABEL, not the row: a payment row now also holds brand artwork,
+          // and a wordmark drawn with <text> lands in textContent. The label
+          // span is the one node that holds the value and nothing else.
+          value.textContent = (item.querySelector('.dr-picker__label') || item).textContent.trim();
           close();
         });
       });
