@@ -28,7 +28,7 @@
       { name: "Switch role · global",                  file: "switch-role.html",        states: [] }
     ]},
     { title: "Client · MJ-1", screens: [
-      { name: "Home / start an order",                 file: "listings.html",           states: [["filters","listings-filters.html"],["filtered","listings-filtered.html"],["empty","listings-empty.html"],["error","listings-error.html"],["loading","listings-loading.html"]] },
+      { name: "Home / start an order",                 file: "listings.html",           states: [["filters","listings-filters.html"],["region","listings-filter-region.html"],["city","listings-filter-city.html"],["district","listings-filter-district.html"],["filtered","listings-filtered.html"],["empty","listings-empty.html"],["error","listings-error.html"],["loading","listings-loading.html"]] },
       { name: "Order setup / details",                 file: "order-setup.html",        states: [["empty","order-setup-empty.html"],["error","order-setup-error.html"]] },
       { name: "Order review & price",                  file: "order-review.html",       states: [["loading","order-review-loading.html"]] },
       { name: "Payment",                               file: "payment.html",            states: [["error","payment-error.html"],["loading","payment-loading.html"]] },

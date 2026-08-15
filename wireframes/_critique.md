@@ -256,7 +256,8 @@ return to. Nine of the 24 did not:
 - **`‹ Help` × 6** (`contact-support`, `-error`, `report-issue`, `-empty`, `-loading`, `resolution`)
   returns to `support.html`, whose title is **"Help & support"**.
 - **`‹ Order` × 3** (`order-setup`, `-empty`, `-error`) returns to `listings.html`, which carries
-  **no screen title at all** — its bar holds the mark and "Kyiv, UA ▾". "Order" is the tab's label.
+  **no screen title at all** — its bar holds the mark alone. ("Kyiv, UA ▾" stood beside it until
+  2026-08-16, when the city moved into the filter's place pick.) "Order" is the tab's label.
 
 The remaining five match exactly. Width is not the obstacle: `‹ Help & support` measures **124.18**,
 and with the title and the language switcher that is **280.46 of 341.4** — **60.94px** free.

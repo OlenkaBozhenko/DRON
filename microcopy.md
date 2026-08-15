@@ -420,7 +420,7 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
   |---|---|
   | `operator-verification` **Add document** ×2 · `operator-profile-setup` **Add photo** · `result-upload` **Add photo** · `operator-dispute` **Add evidence** | The file lands in its own upload well. The result is on screen; a toast would restate it and teach the pattern that every tap owes a message. |
   | `contact-support` **Call support** | Hands off to the phone app. The dialer is the confirmation, and nothing has happened yet at the moment of the tap. |
-  | `listings*` **Kyiv, UA ▾** · **Filters** · the four service tabs · `time-slot*` day chips · `rate` stars | Open a picker or move a selection. Visible either way. |
+  | `listings*` **Filters** · the four service tabs · `time-slot*` day chips · `rate` stars | Open a picker or move a selection. Visible either way. |
   | `operator-listings` availability segment | The line above it already reads **You are Available · receiving jobs near Podil**, and it stays readable. A permanent statement beats a 4-second one. |
   | every `-error` screen | An error must stay re-readable; a toast leaves. Now stated in `voice.md`. |
 - **`order-history` · Delete order (×3) — reported, not built, because it is not a toast question.** Three icon buttons, `aria-label="Delete order"`, no confirm and no undo anywhere in the flow. `voice.md`'s **Dangerous action** rule asks for the consequence **before** the tap (`Decline this job? … won't come back to you.` + `Decline` / `Keep job`), and a toast after the fact is not that. Two ways to close it — a confirm sheet before, or a toast **with an Undo**, which the component does not have — and both are the designer's call. The rule now says so out loud.
@@ -705,7 +705,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | job-offer | Decide fast | Expires in 8s | Body |  |
 | job-offer | Decide fast | Accept | Button |  |
 | job-offer | Decide fast | Decline | Button |  |
-| listings-empty | — | Kyiv, UA ▾ | Button |  |
 | listings-empty | — | All | Button |  |
 | listings-empty | — | Delivery | Button |  |
 | listings-empty | — | Aerial photo & video | Button |  |
@@ -722,7 +721,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-empty | Service list | Activity | Button |  |
 | listings-empty | Service list | Help | Button |  |
 | listings-empty | Service list | Account | Button |  |
-| listings-error | — | Kyiv, UA ▾ | Button |  |
 | listings-error | — | All | Button |  |
 | listings-error | — | Delivery | Button |  |
 | listings-error | — | Aerial photo & video | Button |  |
@@ -737,14 +735,59 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-error | Service list | Activity | Button |  |
 | listings-error | Service list | Help | Button |  |
 | listings-error | Service list | Account | Button |  |
-| listings-filtered | — | Kyiv · Podil ▾ | Button |  |
+| listings-filter-city | — | City · Kyiv City | Heading |  |
+| listings-filter-city | — | Back to Filters | Button | invisible label on the chevron — microcopy.md D9 |
+| listings-filter-city | City | Kyiv | Body | DATA |
+| listings-filter-city | City | Kyiv City holds one city. To serve elsewhere, change the region. | State message | the way out of the shortest case — voice.md P5, plain and not apologetic |
+| listings-filter-city | City | Change region | Button |  |
+| listings-filter-district | — | District · Kyiv | Heading |  |
+| listings-filter-district | — | Back to Filters | Button | invisible label on the chevron — microcopy.md D9 |
+| listings-filter-district | District | All districts | Body | the default and the way to widen again |
+| listings-filter-district | District | Darnytskyi | Body | DATA |
+| listings-filter-district | District | Desnianskyi | Body | DATA |
+| listings-filter-district | District | Dniprovskyi | Body | DATA |
+| listings-filter-district | District | Holosiivskyi | Body | DATA |
+| listings-filter-district | District | Obolonskyi | Body | DATA |
+| listings-filter-district | District | Pecherskyi | Body | DATA |
+| listings-filter-district | District | Podilskyi | Body | DATA |
+| listings-filter-district | District | Shevchenkivskyi | Body | DATA |
+| listings-filter-district | District | Solomianskyi | Body | DATA |
+| listings-filter-district | District | Sviatoshynskyi | Body | DATA |
+| listings-filter-region | — | Region | Heading |  |
+| listings-filter-region | — | Back to Filters | Button | invisible label on the chevron — microcopy.md D9 |
+| listings-filter-region | Search | Search regions | Field placeholder | the list is 1100px in a 640px area, so it scrolls and takes a search |
+| listings-filter-region | Region | Cherkasy Oblast | Body | DATA |
+| listings-filter-region | Region | Chernihiv Oblast | Body | DATA |
+| listings-filter-region | Region | Chernivtsi Oblast | Body | DATA |
+| listings-filter-region | Region | Dnipropetrovsk Oblast | Body | DATA |
+| listings-filter-region | Region | Donetsk Oblast | Body | DATA |
+| listings-filter-region | Region | Ivano-Frankivsk Oblast | Body | DATA |
+| listings-filter-region | Region | Kharkiv Oblast | Body | DATA |
+| listings-filter-region | Region | Kherson Oblast | Body | DATA |
+| listings-filter-region | Region | Khmelnytskyi Oblast | Body | DATA |
+| listings-filter-region | Region | Kirovohrad Oblast | Body | DATA |
+| listings-filter-region | Region | Kyiv City | Body | DATA |
+| listings-filter-region | Region | Kyiv Oblast | Body | DATA |
+| listings-filter-region | Region | Luhansk Oblast | Body | DATA |
+| listings-filter-region | Region | Lviv Oblast | Body | DATA |
+| listings-filter-region | Region | Mykolaiv Oblast | Body | DATA |
+| listings-filter-region | Region | Odesa Oblast | Body | DATA |
+| listings-filter-region | Region | Poltava Oblast | Body | DATA |
+| listings-filter-region | Region | Rivne Oblast | Body | DATA |
+| listings-filter-region | Region | Sumy Oblast | Body | DATA |
+| listings-filter-region | Region | Ternopil Oblast | Body | DATA |
+| listings-filter-region | Region | Vinnytsia Oblast | Body | DATA |
+| listings-filter-region | Region | Volyn Oblast | Body | DATA |
+| listings-filter-region | Region | Zakarpattia Oblast | Body | DATA |
+| listings-filter-region | Region | Zaporizhzhia Oblast | Body | DATA |
+| listings-filter-region | Region | Zhytomyr Oblast | Body | DATA |
 | listings-filtered | — | All | Button |  |
 | listings-filtered | — | Delivery | Button |  |
 | listings-filtered | — | Aerial photo & video | Button |  |
 | listings-filtered | — | Inspection | Button |  |
 | listings-filtered | Search & filters | Search services | Field placeholder |  |
 | listings-filtered | Applied filters | Today | Body |  |
-| listings-filtered | Applied filters | Podil | Body |  |
+| listings-filtered | Applied filters | Podilskyi | Body |  |
 | listings-filtered | Applied filters | All | Body | the leading chip — took the exit-to-full-list job from the Clear all text button at the designer's call, 2026-08-13 |
 | listings-filtered | Service list · cards | AERIAL | Body | WF-PH |
 | listings-filtered | Service list · cards | Aerial photo & video | Heading |  |
@@ -768,15 +811,13 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filters | Time | Pick a date & time… | Body |  |
 | listings-filters | Time | calendar | Body |  |
 | listings-filters | Time | pick | Field value | DATA |
-| listings-filters | Location | Location · Kyiv | Heading |  |
-| listings-filters | Location | All districts | Body |  |
-| listings-filters | Location | all | Field value | DATA |
-| listings-filters | Location | Podil | Body |  |
-| listings-filters | Location | podil | Field value | DATA |
-| listings-filters | Location | Obolon | Body |  |
-| listings-filters | Location | obolon | Field value | DATA |
-| listings-filters | Location | Pechersk | Body |  |
-| listings-filters | Location | pechersk | Field value | DATA |
+| listings-filters | Location | Location | Heading |  |
+| listings-filters | Location | Region | Field label |  |
+| listings-filters | Location | Kyiv City | Field value | DATA |
+| listings-filters | Location | City | Field label |  |
+| listings-filters | Location | Kyiv | Field value | DATA |
+| listings-filters | Location | District | Field label |  |
+| listings-filters | Location | All districts | Field value | DATA |
 | listings-filters | Price | Price | Heading |  |
 | listings-filters | Price | Low | Body |  |
 | listings-filters | Price | low | Field value | DATA |
@@ -793,7 +834,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filters | Price | ₴0 – ₴1,000+ | Body | DATA |
 | listings-filters | Location | Clear all | Button |  |
 | listings-filters | Location | Apply filters | Button |  |
-| listings-loading | — | Kyiv, UA ▾ | Button |  |
 | listings-loading | — | All | Button |  |
 | listings-loading | — | Delivery | Button |  |
 | listings-loading | — | Aerial photo & video | Button |  |
@@ -805,7 +845,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-loading | Service list | Activity | Button |  |
 | listings-loading | Service list | Help | Button |  |
 | listings-loading | Service list | Account | Button |  |
-| listings | — | Kyiv, UA ▾ | Button |  |
 | listings | — | All | Button |  |
 | listings | — | Delivery | Button |  |
 | listings | — | Aerial photo & video | Button |  |

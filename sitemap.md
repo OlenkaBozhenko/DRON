@@ -203,6 +203,7 @@ CLIENT
 │
 ├─ Ordering the job — Service → Order → Price → Pay
 │   ├─ Home / start an order .................. (MJ-1 · RJ-C5 entry)  [ C-1 · C-2 ]
+│   │     └─ Place pick (Region ▸ City ▸ District) (MJ-1 narrow)      [ C-1 · C-2 ]
 │   ├─ Service catalogue ..................... (MJ-1)                [ C-1 · C-2 ]
 │   ├─ Order setup / details ................. (MJ-1 · RJ-C3 price)  [ C-1 · C-2 ]
 │   │     └─ Time-slot pick (calendar-first) .. (MJ-1 planning mode)  [ C-2 ]
@@ -228,6 +229,15 @@ CLIENT
     ├─ Resolution outcome .................... (EJ-2)               [ C-1 · C-2 ]
     └─ Contact human support ................. (EJ-2)               [ C-1 · C-2 ]
 ```
+
+**Place pick (added 2026-08-16, designer's call).** *Where the job happens* is chosen inside the
+**filter**, not in the top bar, and it is chosen in the country's own order: **Region → City →
+District of the city**. Three dependent levels, each its own screen because each list is longer than
+the six that `_conventions.md` allows a drawer. Choosing a region resets the city and the district;
+choosing a city resets the district. The screens are **sub-views of the filter panel**, the same
+standing as `listings-filters` / `listings-filtered`, so they take no column in `§8 Matrix A` — their
+job is `MJ-1`, counted under **HOM**. They add **no depth to the main job**: `§7.3`'s 3-tap count is
+measured on the ordering path, and narrowing the list is an optional branch off it.
 
 **Under question / orphaned — Client**
 

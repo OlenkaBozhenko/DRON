@@ -66,7 +66,8 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
 - **Filter sub-views (added July 2026, build decision):** because *Service catalogue* is merged into Home,
   browsing needs to be narrowable. Two named sub-views (not data states):
   - **`listings-filters`** — the filter panel open: **Time** (Available now / Today / This week / Pick a date),
-    **Location** (district), **Price** (Low / Medium / High + a draggable range). *Apply* → filtered;
+    **Location** (three picker rows — Region ▸ City ▸ District, each opening its own screen; it was a flat
+    district radio list until 2026-08-16), **Price** (Low / Medium / High + a draggable range). *Apply* → filtered;
     *Close / Clear all* → Home. *(The **Price** dimension was here once before as
     Recommended / Low→High / High→Low — **a sort by another name**, and it went when **sorting was removed
     across the product, designer's call 2026-08-13**: the counter's Sort button left all five listings states
@@ -78,6 +79,17 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   - **`listings-filtered`** — filters applied: the leading *All* chip + the removable applied-filter chips, the
     filtered result list, and the Filters button showing its active count. No dead-end — every chip exits to the full list,
     *All* first among them (it replaced the *Clear all* text button, designer's call 2026-08-13).
+  - **`listings-filter-region` · `listings-filter-city` · `listings-filter-district`** *(added 2026-08-16,
+    designer's call)* — the **place pick**, three dependent levels of one filter dimension: **Region → City
+    → District of the city**. The designer, on the built `listings` top bar: *«помісти вибір міста у фільтр
+    де юзер обирає регіон, спочатку він має обрати місто область потім вже район міста»*, and the depth
+    settled at **three** when she was shown the two-step and three-step rows side by side. Each level is its
+    own **pushed screen**, not a drawer, because `_conventions.md`'s picker rule is a count and every list
+    here clears it — 25 regions, 11 districts. This is the **first page the `≥ 7` half of that rule has
+    ever had**; it was written 2026-08-16 (rev 102) and stood empty until now. Back (`‹`) returns to
+    `listings-filters` with the pick made; picking a region resets the city and the district, picking a
+    city resets the district. **Not data states** — three named sub-views, like `listings-filters` itself,
+    so they take no row in the state matrix and no column in `sitemap.md §8`.
   - Grounded in the merged-catalogue model (`sitemap.md §7.3`) and the existing `listings-empty` *"loosen filters"* recovery.
 
 ### 4. Service catalogue

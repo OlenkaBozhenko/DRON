@@ -1137,7 +1137,7 @@ header.dr-topbar,
    from the frame (the main's 16 plus the field's own); and the separator drops
    its indent, because there is no panel edge left for it to indent from.
 
-   NARROWED 2026-08-16 (rev 107), when the filter's place pick asked for a group
+   NARROWED 2026-08-16 (rev 110), when the filter's place pick asked for a group
    of rows that are only TAPPED, never typed into. Her rev 98 sentence was about
    input fields — "обводка в ПОЛЯХ ВВОДУ" — and iOS agrees with the distinction
    it draws: Settings is a stack of grouped inset CARDS whose rows push a screen,
@@ -1351,7 +1351,7 @@ header.dr-topbar,
    <a> and the element is right for the same reason: a link goes somewhere, a
    button does something here. Both shapes share every value below; the anchor
    only needs its underline off, which a <button> never had. Set with the place
-   pick, 2026-08-16 (rev 107). */
+   pick, 2026-08-16 (rev 110). */
 .dr-field--action{
   width: 100%; cursor: pointer; flex-wrap: nowrap;
   font-family: var(--font-ui); text-align: left; text-decoration: none;
@@ -1371,7 +1371,7 @@ header.dr-topbar,
   background: var(--card); border-radius: var(--r-card); overflow: hidden;
 }
 /* ON A PUSHED SCREEN THE LIST MUST NOT SHRINK — found by measuring the first page
-   the >= 7 half of the rule ever got, 2026-08-16 (rev 107), and it was invisible
+   the >= 7 half of the rule ever got, 2026-08-16 (rev 110), and it was invisible
    to the eye. .dr-main is a flex column of a fixed height, so a child's default
    flex-shrink:1 let the region list squeeze from its natural 1100 to 618.4; with
    overflow:hidden above, 11 of the 25 regions were CLIPPED, and because the list

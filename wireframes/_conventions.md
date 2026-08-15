@@ -239,7 +239,7 @@ A shared `_wireframe.css` should hold the tokens (§4), grid (§6), typography (
     - **A slide still waiting on its picture keeps its labelled well**, stretched across the same band (`.slide-ph:has(img)` is what drops the frame, not `.is-bleed` itself). Three of the nine are in that state — `onboarding-client:REPORT`, `onboarding-operator:STEPS · PAID` — and they close themselves the day the file lands, with no edit to the page. This replaces the earlier rule that a slider had to wait until every slide had its asset: a dashed well in the right place reads as *pending*, and it was holding two finished screens hostage to one missing file.
 - **Icon** → a `24 × 24` (or `20`) bordered square, or just a text label (`‹ Back`, `Menu`, `Filter`). No icon fonts, no SVG glyphs.
 - **Brand / logo** → the **DRON mark**, in the reserved brand slot only. The mark is `assets/brand/dron-logo.svg` — a single-path quadcopter silhouette from Figma (`YlGWlsWWjKSCxhONMzGG2F`, node `56:52`), trimmed to its ink (`viewBox 0 85 257 86`, aspect **2.99 : 1**). It is drawn as a CSS mask filled with `currentColor`, so it stays grayscale like everything else and never introduces a second colour. Rendered **60 × 20** — a growth from the 44 × 24 dashed placeholder it replaces, because 3:1 artwork inside 44px would stand only 14.7px tall. `#252525` on `#FFFFFF` measures **15.33 : 1**. Elsewhere a wordmark is still plain text `DRON` at body weight. No lockup, no tagline, no second mark.
-  - **The slot follows the back control, not the title (widened 2026-08-02).** A top bar holds the mark **when it has no `‹ Back`** — 40 of the 84 pages. Two shapes: on the 16 entry and listing screens the mark stands alone (`welcome`, `signin`, `role-select`, `onboarding-*`, `listings*`, `operator-listings*`); on the 24 **tab-root** screens it leads the bar and the screen's own title follows it 8px later (`account`, `operator-account`, `delivery*`, `job-offer*`, `order-confirmed*`, `order-history*`, `payment-loading`, `ratings*`, `support`, `tracking*`, `wallet*`).
+  - **The slot follows the back control, not the title (widened 2026-08-02).** A top bar holds the mark **when it has no `‹ Back`** — 40 of the 84 pages. Two shapes: on the 16 entry and listing screens the mark stands alone (`welcome`, `signin`, `role-select`, `onboarding-*`, `listings*`, `operator-listings*`) — **true of the build as well as of the rule since 2026-08-16**, when the `Kyiv, UA ▾` button left those five bars for the filter's place pick; it had been an undocumented second control in a bar this line already described as holding the mark by itself; on the 24 **tab-root** screens it leads the bar and the screen's own title follows it 8px later (`account`, `operator-account`, `delivery*`, `job-offer*`, `order-confirmed*`, `order-history*`, `payment-loading`, `ratings*`, `support`, `tracking*`, `wallet*`).
   - **The 44 pages that carry a `‹ Back` do not get it.** `HIG · Navigation bars` gives that bar to the back control and the title; a mark wedged between them makes the leading edge argue with itself. This is the earlier rule narrowed, not dropped — it was "no logo where there is a title", it is now "no logo where there is a back".
   - **Measured before it was written.** At the 375px mobile preset the 24 tab-root bars all clear with room: the tightest is `Order confirmed` (title **127px**), leaving **148px** free after the 60px mark and its 8px gap. Zero of 24 overflow. On a tab root the title's `padding-left:16px` is dropped when the mark arrives — that inset stood in for the optical lead-in a back control would give, and the mark now gives it; the title then sits 8px after the mark, the same gap `.who` keeps from `.avatar` on the `operator-listings` bar.
 - **Avatar** → a bordered circle (`radius: 999` allowed only for avatars) with initials as text.
@@ -288,6 +288,13 @@ Two axes, both mandatory. Differences are shown in **grayscale only** (fill, bor
 | **Tertiary / ghost** | transparent | none | `--wf-text-2` | low-emphasis (Skip, Cancel, text links) |
 | **Destructive** | `--wf-surface` | `1px --wf-border-2` | `--wf-text` + label carries the meaning (e.g. "Cancel order") | rare, wireframe shows it by label, not red |
 
+**In the action bar, every button is filled** (designer, 2026-08-16, rev 110). A `footer.actionbar`
+carrying **two or three** actions draws them as **primary + secondary** — and a second secondary for a
+third — **never a ghost**. A borderless text action in the bottom bar reads as a caption under the
+button rather than as a second control: the box is what says *tappable*, and on a 44px target the box
+is the only thing the target has to show for itself. Tertiary keeps its job **outside** the action
+bar — the top-bar text action (`listings-filters` · *Clear all*) and links inside a card.
+
 **Interaction states (each variant must render all):**
 
 | State | Wireframe treatment |
@@ -334,9 +341,32 @@ with the picker rule below, built on `account-edit`.
 from the bottom edge; **≥ 7 → a new screen** pushed in from the right, with a back to the row. The
 designer's call 2026-08-16; `HIG · Action sheets` and `HIG · Lists and tables` draw the same line — a short
 mutually-exclusive set belongs in a sheet, a long one needs a screen that can scroll and search. The row
-itself carries `chevron.forward` in both halves, never a down arrow: the list is not here, it arrives. No
-list in the product is long enough yet (payment is 4, language is 2), so the ≥ 7 half is a written rule
-with no page — **a new screen for it still needs its `flows.md` node and its `sitemap.md` row first.**
+itself carries `chevron.forward` in both halves, never a down arrow: the list is not here, it arrives.
+
+**The `≥ 7` half got its first pages on 2026-08-16** — `listings-filter-region` (25 rows),
+`listings-filter-city`, `listings-filter-district` (11 rows), the filter's place pick. Its `flows.md`
+nodes and its `sitemap.md` row went in **before** the HTML, which is what that half of the rule had been
+waiting on. Two things the first build settled, both recorded as decisions rather than left to the next
+person to rediscover:
+
+- **A dependent list takes one form for all its values, and that form is the one its longest case needs.**
+  The count rule was written for a list whose length is fixed by the product — payment is 4, language is
+  2, and they are 4 and 2 on every screen forever. A *dependent* list's length is **data**: the City level
+  holds one row under `Kyiv City` and forty under `Lvivska`. Switching the same row between a drawer and a
+  screen with the parent's value would make one control behave two ways, which `HIG · Consistency` is
+  against and which no user could predict. So all three levels are screens. **This is a departure from the
+  literal count and it is deliberate** — the rule's intent is that a list you must scan gets a surface that
+  can hold it, and the intent is kept.
+- **Search appears when the list overflows the frame, and that is a measurement, not a feeling.** At the
+  375 preset the main area is ~640px and a row is `--h-control` 44. Region is 25 rows = **1100px** → it
+  scrolls, so it takes the search field `HIG · Lists and tables` asks for. District is 11 rows = **484px**
+  and City is shorter still → both fit whole, and a search field over a list you can already see entire is
+  a control with no work to do.
+
+**Choosing a parent resets its children**, and the reset is visible on the rows you return to — city and
+district fall back to their *All …* value when the region changes. `WCAG 3.2.2 On Input` is satisfied by
+construction: the pick takes you back to the filter you came from, which is where you were going anyway;
+nothing moves you somewhere you did not ask for.
 
 **The title is centred in the bar** (`HIG · Navigation bars`, rev 94). It used to flow after the back
 label and drift **−82.7px to +30.4px** off centre with that label's length. Centring was rejected at rev
@@ -443,7 +473,7 @@ chrome so the toast cannot cover the control that raised it, and — where the r
 ### Client (MJ-1)
 | Screen | Base file | State pages |
 |---|---|---|
-| Home / start an order **+ Service catalogue** (merged per `sitemap.md §7.3`) | `listings.html` | `listings-filters.html` (filter panel open — Price / Time / Location), `listings-filtered.html` (filters applied — the All chip + removable chips), `listings-empty.html` (no results / loosen filters), `listings-error.html` (load failure), `listings-loading.html` |
+| Home / start an order **+ Service catalogue** (merged per `sitemap.md §7.3`) | `listings.html` | `listings-filters.html` (filter panel open — Time / Location / Price), `listings-filter-region.html` · `listings-filter-city.html` · `listings-filter-district.html` (the place pick, pushed from the Location rows), `listings-filtered.html` (filters applied — the All chip + removable chips), `listings-empty.html` (no results / loosen filters), `listings-error.html` (load failure), `listings-loading.html` |
 | Order setup / details | `order-setup.html` | `order-setup-empty.html`, `order-setup-error.html` |
 | Order review & price | `order-review.html` | `order-review-loading.html` |
 | Payment | `payment.html` | `payment-error.html`, `payment-loading.html` |

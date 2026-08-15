@@ -96,7 +96,16 @@ flowchart TD
   RFD -->|Client| CO0["Client onboarding"]
   CO0 --> C
   C --> FLT{"Narrow the list?"}
-  FLT -->|"tap Filters"| FP["Home — filters open (Price / Time / Location)"]
+  FLT -->|"tap Filters"| FP["Home — filters open (Time / Location / Price)"]
+  FP -->|"tap Region"| PR["Place pick — Region"]
+  PR -->|"pick (city + district reset)"| FP
+  PR -->|back| FP
+  FP -->|"tap City"| PC["Place pick — City in the region"]
+  PC -->|"pick (district resets)"| FP
+  PC -->|back| FP
+  FP -->|"tap District"| PD["Place pick — District in the city"]
+  PD -->|pick| FP
+  PD -->|back| FP
   FP -->|apply| FD["Home — filters applied (All + removable chips)"]
   FP -->|"close / clear"| C
   FD -->|"clear all / remove chip"| C
