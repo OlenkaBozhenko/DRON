@@ -18,8 +18,10 @@
   .lede{ color:var(--slate); max-width:74ch; margin-bottom:8px; }
   .lede b, .sub b{ color:var(--ink); }
   .sub{ color:var(--slate); max-width:74ch; margin-bottom:20px; }
-  code{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.92em;
-        background:var(--card); padding:1px 4px; border-radius:4px; }
+  /* no second family: the page stays on the SF stack DESIGN.md declares.
+     A code span is marked by its ground and tracking, not by a mono font. */
+  code{ font-size:.92em; letter-spacing:.01em; background:var(--card);
+        padding:1px 5px; border-radius:4px; }
 
   .grid{ display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start; }
   .opt{ width:405px; background:var(--page); border:1px solid var(--line); border-radius:16px;
