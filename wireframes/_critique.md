@@ -280,6 +280,39 @@ Re-audited after the change: **44 back controls, 43 name their destination exact
 `‹ Back` fallback** (`operator-fee-terms` → the title-less onboarding slider), 0 failures.
 `listings-filters`' `×` is a modal close and stays out of the rule.
 
+### Superseded by rev 93 — the back control lost its label entirely
+
+Revs 91 and 92 both answered *which* name the back control carries. The designer's reading, 2026-08-16,
+is that it should carry **none**: *"має бути іконка і назва"*. A labelled back button puts a second
+screen name in the bar, and measured on the build the two are the same colour (`#1A1A1A`) at the same
+weight (600), 2px apart in size — the only one of the four rank separators in use. So they read as two
+titles rather than a control and the name of this screen. `microcopy.md` **D9** carries the decision;
+the audit table below is kept because it is the record of how the labels stood when they were removed.
+
+All **43** labelled controls are now `<a>` with the chevron icon and no text (the 44th is
+`listings-filters`' modal close, untouched). The destination is not deleted — it moves to
+`aria-label="Back to {destination}"`, which `WCAG 4.1.2 Name, Role, Value` requires on an icon-only
+control and which, being invisible, cannot engage `WCAG 2.5.3 Label in Name`. Measured after:
+**44 of 44 at exactly 44 × 44**, every one carrying an accessible name, **0 with visible text**.
+Navigation re-verified on both paths — `href` fallback **44/44**, `history.back()` **44/44**.
+
+**This closes the `listings-filters` × finding above by accident, and properly.** That control was
+**10.08 × 44** — 23% of the required width. It shares the `.dr-back` class, and the rule is no longer
+padding around a text label but a **44 × 44 box with a 22px icon centred**, so the close control now
+measures **44 × 44** too. Its glyph is still the text `&times;` rather than an icon from the system;
+that is the one piece left, and it is a question for the designer, not a defect to fix silently.
+
+**A conforming departure, recorded not corrected.** `HIG · Navigation bars` permits the bare chevron
+but **prefers** the labelled form, because the label is what tells a sighted user where back goes. The
+project rule — one bar, one name — wins here, deliberately, the way `concept.md` §5's outline-only
+selected tab already departs from the filled-symbol convention. Sighted users lose the destination
+name; assistive-tech users keep it.
+
+**And it re-opens one thing cheaply.** Centring the title was rejected under rev 92 because the back
+label collided with it on 4 of 19 pairs, two of them by ~1px and 0.19px. With the label gone the
+chevron occupies 34px of the bar, so no pair can collide — centring is now free. Not done; the
+designer has not asked for it.
+
 ### Also fixed in rev 91: ten back controls did not navigate at all
 
 `job-brief` ×2, `job-checklist` ×2, `result-upload` ×3 and `withdraw` ×3 shipped as

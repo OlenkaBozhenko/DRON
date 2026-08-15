@@ -259,19 +259,32 @@ Buttons: **`min-height: 44px`** — never a fixed `height` — radius `6`, horiz
 
 ### 11.1 — The nav-bar back control
 
-Copy is set by `voice.md` § *Nav-bar back button* and the D8 audit in `microcopy.md`. Two things are
-this file's business — where the name comes from, and the fact that it has to actually navigate.
+Copy is set by `voice.md` § *Nav-bar back button* and decision **D9** in `microcopy.md`.
 
-**The name.** `‹ {destination name}`, and a screen has exactly **one** name everywhere. Resolve it in
-order: **(1)** the destination's nav-bar title (`.dr-topbar__title` / `.title`); **(2)** its **tab label**,
-when the destination is a tab root — a tab root shows a brand mark instead of a title, so the tab label
-*is* the name (`listings` → `Order`, `operator-listings` → `Jobs`); **(3)** bare `‹ Back`, only when it has
-neither, i.e. the title-less onboarding sliders. Never `Back to …` — the chevron already says it. If a tab
-root ever gains a nav-bar title, that title and its tab label must be the same word, or the screen has two
-names again — which is exactly the defect D8 closed on `support.html`.
+**No words. The control is the chevron icon alone** (designer, 2026-08-16, rev 93). The nav bar carries
+**one name** — the title of the screen you are on. A labelled back button put a second screen name in the
+bar, and the two read as two titles; D9 has the measurements. This replaces the D1/D8 rule that resolved
+*which* name the control carried: there is no longer a name to resolve.
+
+**It still has to be named for assistive tech.** `aria-label="Back to {destination}"` on every one.
+`WCAG 4.1.2 Name, Role, Value` — an icon-only control with no accessible name is a failure. The label is
+invisible, so it neither competes with the title nor engages `WCAG 2.5.3 Label in Name`, which applies
+only where a visible label exists. `Back to …` stays forbidden as *visible* copy.
 
 A **tab root has no back control** of its own. A **modal sheet** is not a pushed screen: it gets a close
 control (`×`, `aria-label="Close …"`), not a chevron — `listings-filters.html`.
+
+**The glyph is a real icon, on both layers.** `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>` —
+the project's one icon system (§8 of `DESIGN.md`: flat outline, 24-grid, `1.7`, `currentColor`, no fill).
+
+> **A fourth carve-out to §8's no-icons rule, and why it is unavoidable.** §8 says an icon in the
+> grayscale layer is a bordered square or a text label such as `‹ Back`. Both escapes close here: the
+> label is exactly what D9 removes, and a bordered placeholder square in the nav bar would read as a
+> control that does something else. The previous `‹` was a **text character**, not an icon — the one
+> glyph in the product that stood outside the icon system. So the 20 grayscale back controls take the
+> real chevron alongside the 24 painted ones. Recorded as a decision, not slipped in: revert it by
+> putting the text `‹` back, and the 44pt target below is what pays for it.
 
 **It must navigate.** Always `<a class="back" href="{destination}.html">`, never a bare `<button>`.
 `_wf-shell.js` intercepts every `.back` / `.dr-back` click and calls `history.back()`, but only when
@@ -280,14 +293,19 @@ has nowhere to go and the click does nothing. The `href` is the destination the 
 fallback the shell's own comment relies on. Ten controls shipped as `<button>` and were converted on
 2026-08-15 (rev 91).
 
-**Target.** `.back` and `.dr-back` carry `padding: 11.5px 0; margin: -11.5px 0` — a 21px line box plus 23px
-of padding is **44px**, the HIG minimum, bought without moving the label off the baseline.
+**Target — the part D9 makes load-bearing.** Losing the label loses the width that used to come with it.
+`‹ Order` was 54.19px wide; a bare glyph is about **10px**, the same trap `listings-filters`' `×` is
+already flagged for. So the control is now sized as a target, not as text: a **44 × 44** box with the
+22px icon centred in it (`--ic-22`, the rung the tab bar already uses — no new size cut), pulled back by `margin-left: -10px` so the icon's own edge still lands on the
+16px screen gutter and the bar's optical left edge does not move.
 
-> **Why both properties, and why it was two different sizes.** With bare `padding: 0` the grayscale `.back`
-> rendered at **two** heights depending on its tag, because a `<button>` does not inherit `body`'s
-> `line-height: 1.4` and falls back to the UA's `normal`: measured 2026-08-15, `a.back` on `operator-signup`
-> was **21px** and `button.back` on `withdraw` was **40px**. Neither reached 44, and the two forms of the
-> same control did not match each other. Now every one of the 44 measures **44.00**.
+> **The old rule, kept for the record.** Until rev 92 the target came from the text: `padding: 11.5px 0;
+> margin: -11.5px 0` gave a 21px line box plus 23px = 44px tall, but only ever as wide as the label. And
+> before rev 91 even that was missing — with bare `padding: 0` the grayscale `.back` rendered at **two**
+> heights depending on its tag, because a `<button>` does not inherit `body`'s `line-height: 1.4`:
+> measured 2026-08-15, `a.back` on `operator-signup` was **21px**, `button.back` on `withdraw` was
+> **40px**. Neither reached 44. A padding-on-text target dies the moment the text does, which is why the
+> icon-only control is sized directly.
 
 `.back` also needs `text-decoration: none`. It is an `<a>` on every screen now, and `_wireframe.css` has no
 bare-`a` reset, so without it the control renders underlined — as the ten operator back links did before this

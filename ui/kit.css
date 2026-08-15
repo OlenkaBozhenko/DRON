@@ -181,6 +181,10 @@
   --sz-tick-h:      2px;
   --sz-dot:         10px;  /* the filled centre of a checked radio */
   --sz-rail:        4px;   /* the range rail — the progress track's own weight */
+  --sz-rowkey:     140px;  /* the fact row's label column — sized on the widest
+                              key in the system, "First time as Operator" at
+                              133.34, so no label wraps and every value on every
+                              screen starts at the same x (2026-08-16) */
   /* --sz-thumb-ring retired 2026-08-15 with the ring it named (rev 66 → 72).
      Not benched like --sh-onphoto or .dr-btn--text: those are rungs of a scale
      waiting for a home, this was a one-off with exactly one spend and none left. */
@@ -373,18 +377,30 @@ header.dr-topbar,
    inherits neither font-family nor line-height (UA: font: 400 13.333px Arial),
    which had 14 of them rendering in Arial beside 10 in SF.
 
-   The hit area is bought with padding, not size: the text box is 45.63 × 21 at
-   15/21, and HIG · 44pt minimum target asks 44 × 44. 11.5px of padding takes
-   the border box to 44; the negative margin keeps the margin box at 21, so
-   .dr-topbar's align-items:center centres what it centred before and the label
-   does not move a pixel. Every text label clears the width — ‹ Help, the
-   narrowest, is 45.63. 2026-08-15. */
+   It carries NO TEXT — the chevron icon alone (designer, 2026-08-16, rev 93;
+   microcopy.md D9). A labelled back button put a second screen name in the bar
+   beside the title, at the same colour and the same weight, so the two read as
+   two titles rather than a control and a name. The bar now holds one name: the
+   title of the screen you are on. The destination is not lost, it moves to
+   aria-label="Back to …" — WCAG 4.1.2 requires an accessible name on an
+   icon-only control, and being invisible it cannot engage WCAG 2.5.3.
+
+   Sizing is now the target itself, not padding around text. Until rev 92 the
+   44 came from 11.5px of padding on a 21px line box — which is 44 tall but only
+   ever as wide as the label, and dies with it: a bare glyph is ~10px, the trap
+   listings-filters' × is already flagged for. So: a 44 × 44 box with the 22px
+   icon centred (--ic-22, the tab bar's rung — no new size cut). margin-left:-10px puts the icon's own edge back on the 16px
+   gutter, so the bar's optical left edge does not move when the label goes. */
 .dr-back{
-  font-size: var(--t-heading-size); font-weight: var(--weight-medium);
+  flex: none;
+  width: 44px; height: 44px; margin-left: -10px;
+  display: inline-flex; align-items: center; justify-content: center;
   color: var(--ink); background: transparent; border: 0; cursor: pointer;
-  text-decoration: none;
-  padding: 11.5px 0; margin: -11.5px 0;
+  text-decoration: none; -webkit-tap-highlight-color: transparent;
 }
+.dr-back .dr-ic{ width: var(--ic-22); height: var(--ic-22); }  /* the tab bar's rung; no new size cut */
+.dr-back:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: 0;
+  border-radius: var(--r-btn); }
 
 .dr-main{
   flex: 1; overflow-y: auto;
@@ -633,16 +649,21 @@ header.dr-topbar,
    wherever its string happened to end: measured over the 13 pages that carry
    this row, 46 rows stood at 24 different x, from 131.75 (switch-role) to
    294.78 (order-review's ₴90) on a 341 card. The editable row next door has
-   always split its card 1:1 with a 10 gap (`.dr-field`), so the fact row takes
-   the same split and the same gap — hence --sp-10 here, not --sp-snug — and
-   both anatomies now stand their value at 175.5.
+   always split its card 1:1 with a 10 gap (`.dr-field`), and the fact row now
+   stands its value on a fixed axis the same way.
+   The split is NOT 1:1, and that is the designer's call on the measurement: a
+   1:1 split leaves the value 149.5, and four strings are wider than that — it
+   put six rows that had been one line onto two, `En route to drop-off` missing
+   by 0.48px on the three tracking pages and orphaning "off". So the LABEL
+   column is fixed at --sz-rowkey 140 (the widest key in the system measures
+   133.34) and the value takes the rest, 159 on a 341 card, standing at 166.
+   Two-line rows: 9 → 5, and the five that remain are strings no column of this
+   width can hold (200.48 and 268.41 among them), which already wrapped before.
    Conformance, checked before the change: HIG ships BOTH — a trailing value in
    a grouped list row and a leading value in a form row — so neither alignment
    is the conforming one and this is a taste call, made once, for both. WCAG is
    untouched: 1.4.3 keeps its pairs (key --slate 5.95:1, value --ink 14.37:1),
-   1.3.1 keeps its DOM order, and 1.4.8 governs justified text, not trailing.
-   Tabular figures stay tabular — they now align on the ₴ instead of the last
-   digit, which is the one place this costs something. */
+   1.3.1 keeps its DOM order, and 1.4.8 governs justified text, not trailing. */
 .dr-rows__row{
   display: flex;                                   /* children stretch, as built */
   gap: var(--sp-10);
@@ -650,12 +671,43 @@ header.dr-topbar,
   border-bottom: var(--hair) solid var(--line);
 }
 .dr-rows__row:last-child{ border-bottom: 0; }
-.dr-rows__key{ flex: 1; min-width: 0; color: var(--slate); font-size: var(--t-bodysm-size); }
+.dr-rows__key{
+  flex: 0 0 var(--sz-rowkey); min-width: 0;
+  color: var(--slate); font-size: var(--t-bodysm-size);
+}
 .dr-rows__val{
   flex: 1; min-width: 0;
   color: var(--ink); font-size: var(--t-heading-size); font-weight: var(--weight-medium);
   font-variant-numeric: tabular-nums;
 }
+/* The one exception the designer kept, 2026-08-16, in the same call that moved
+   every other value left: a card whose values are FIGURES, not facts. Tabular
+   numerals only line up on the last digit if the column is trailing — left, the
+   ₴ lines up and ₴180 runs 24px past ₴90, so the breakdown stops reading as a
+   column that adds up. Spent on order-review's price breakdown alone; it is the
+   product's only stack of money rows, and `resolution`'s "Refund issued ₴180"
+   is a sentence and stays with the facts. */
+.dr-rows--money .dr-rows__key{ flex: 1; }
+.dr-rows--money .dr-rows__val{ flex: none; text-align: right; }
+/* The row that STACKS, because its value is a badge and a badge cannot shrink.
+   `.dr-chip` is nowrap by construction and measures 164.08 — wider than the 159
+   column the axis leaves — so on inspection-report's `Signed` row it pushed to
+   10.92 from the card's edge, eating 5.08 of the 16px inset every other line on
+   that card stands at (the same double-inset fault 2026-08-12 fixed for the
+   field row). Truncating a badge is not an option and shrinking the label would
+   break the axis for one row, so the row does what HIG does when a value will
+   not sit beside its label: it puts the label on its own line and gives the
+   value the card's full width — `.dr-field--area`'s shape, already in this kit.
+   Spent on one row in the product. */
+.dr-rows__row--stack{ flex-wrap: wrap; }
+.dr-rows__row--stack > *{ flex-basis: 100%; }
+/* A skeleton row keeps the trailing split it was built with. Its bars are
+   proportional stand-ins — w40 / w50 / w30 of the ROW — not text on an axis, so
+   pinning them to the 140 column would either blow each bar out to fill its
+   track or shrink it against it, and either way the loading state would stop
+   looking like the thing it stands in for. order-review-loading and
+   tracking-loading render unchanged. Recorded as a decision, not a defect. */
+.dr-rows__row:has(> .dr-sk-line){ justify-content: space-between; }
 
 /* A plane inside a card, not a second card on it — 1.06:1 above the card. */
 .dr-inset{

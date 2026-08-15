@@ -86,11 +86,20 @@ header.topbar{ height:56px; flex:none; display:flex; align-items:center; gap:8px
 .topbar .title{ font-size:17px; font-weight:600; color:var(--wf-text); }
 /* nav-bar back — see _conventions.md §11.1. Always an <a href>, never a bare <button>:
    _wf-shell.js only calls history.back() when history.length > 1, so a page opened
-   directly needs the href to have anywhere to go. text-decoration is reset because
-   this file has no bare-a rule and these are links. padding+negative margin buys the
-   44px HIG target (21px line box + 23px) without moving the label. */
-.back{ font-size:15px; font-weight:600; color:var(--wf-text); background:transparent; border:0; cursor:pointer;
-  text-decoration:none; padding:11.5px 0; margin:-11.5px 0; }
+   directly needs the href to have anywhere to go.
+
+   No text: the chevron icon alone (rev 93, microcopy.md D9). The bar carries one
+   name — the title of the screen you are on. The destination lives on in
+   aria-label="Back to …", which WCAG 4.1.2 requires on an icon-only control.
+
+   Sized as a target, not as padding around text: the label used to supply the
+   width, and a bare glyph is ~10px. 44 × 44 with the icon centred; margin-left
+   returns the icon's edge to the 16px gutter so the bar's left edge holds. */
+.back{ flex:none; width:44px; height:44px; margin-left:-10px;
+  display:inline-flex; align-items:center; justify-content:center;
+  color:var(--wf-text); background:transparent; border:0; cursor:pointer; text-decoration:none; }
+.back svg{ width:22px; height:22px; display:block; }
+.back:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:0; border-radius:6px; }
 
 /* nav — category chips / group tabs */
 nav.cats{ height:48px; flex:none; display:flex; align-items:center; gap:8px;

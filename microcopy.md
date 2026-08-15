@@ -243,6 +243,40 @@ chevron, so its `×` (`aria-label="Close filters"`) is correct and outside this 
 other 34 they had no `href` to fall back to. All ten are now `<a class="back" href="…">` pointing at the screen
 their label names, which is the fallback the shell's own comment assumes.
 
+**D9 resolved — the back control loses its label (designer, 2026-08-16). Supersedes D1 and D8.**
+D1 gave the back button the destination's title; D8 made that name consistent. Both answered *which*
+name the control carries. The designer's finding is that it should carry **none**: *"має бути іконка і
+назва"* — an icon and a name, one of each. A labelled back button puts a **second screen name** in the
+bar, and measured on the build the two are the same colour (`#1A1A1A`) at the same weight (600), 2px
+apart in size — so they read as two titles of equal rank, not as a control and the name of this screen.
+
+**The rule.** The nav bar holds **one name** — the title of the screen you are on — and the back control
+is the **chevron icon alone**. All 44 controls lose their text.
+
+| | Before (D8) | After (D9) |
+|---|---|---|
+| Painted layer, 24 controls | `‹ Order` | chevron icon, `aria-label="Back to Order"` |
+| Grayscale layer, 20 controls | `‹ Operator terms` | chevron icon, `aria-label="Back to Operator terms"` |
+| Tab roots | no back control | unchanged |
+| `listings-filters` | `×` modal close | unchanged — a sheet closes, it does not go back |
+
+**The destination name is not deleted, it moves.** It lives on as the control's `aria-label`, so a screen
+reader still announces where back goes. `Back to …` is forbidden as a *visible* label (the chevron
+already says "back") but is the clearest form for an invisible accessible name, and `WCAG 2.5.3 Label in
+Name` does not apply where there is no visible label. `WCAG 4.1.2 Name, Role, Value` **requires** this:
+an icon-only control with no accessible name is a failure.
+
+**What this costs, recorded rather than argued away.** `HIG · Navigation bars` permits the bare chevron
+but **prefers** the labelled form, because the label is what tells a sighted user where back goes. This
+is therefore a **conforming departure, taken deliberately** — the project rule that the bar carries one
+name wins over Apple's preference, the way `concept.md` §5's outline-only selected tab already departs
+from the filled-symbol convention. Sighted users lose the destination name; assistive-tech users keep it.
+
+**Retired with D9:** the three-step name resolution in D8 (title → tab label → bare `Back`) no longer
+governs the back control, because the control has no text to resolve. It still governs how a screen is
+named **elsewhere** — and the one fix D8 shipped stands: `support.html`'s title stays **`Help`**, matching
+its tab label, `sitemap.md` §7.3 and `CLAUDE.md` § IA. A screen still has exactly one name.
+
 ---
 
 ## How to read the Flag column
