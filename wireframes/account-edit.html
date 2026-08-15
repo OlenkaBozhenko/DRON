@@ -63,34 +63,20 @@
         <!-- ZONE · preferences -->
         <p class="zlabel dr-label">Preferences <span class="dr-label__act">▸ payment · address · language</span></p>
         <div class="dr-rows">
-<details class="dr-picker">
-          <summary class="dr-field">
-            <span class="dr-field__label">Payment method</span>
-            <span class="dr-field__value">Visa •••• 4921</span>
-            <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span>
-          </summary>
-          <div class="dr-picker__list" role="group" aria-label="Payment method">
-            <button class="dr-picker__item" type="button" aria-current="true">Visa •••• 4921<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
-            <button class="dr-picker__item" type="button">Mastercard •••• 8830<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
-            <button class="dr-picker__item" type="button">Apple Pay<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
-            <button class="dr-picker__item" type="button">Google Pay<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
-          </div>
-        </details>
+<button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-payment">
+          <span class="dr-field__label">Payment method</span>
+          <span class="dr-field__value">Visa •••• 4921</span>
+          <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+        </button>
         <div class="dr-field">
           <label class="dr-field__label" for="addr">Saved address</label>
           <span class="dr-field__group"><input class="dr-field__input" id="addr" name="addr" value="Podil, 21"></span>
         </div>
-        <details class="dr-picker">
-          <summary class="dr-field">
-            <span class="dr-field__label">Language</span>
-            <span class="dr-field__value">English</span>
-            <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span>
-          </summary>
-          <div class="dr-picker__list" role="group" aria-label="Language">
-            <button class="dr-picker__item" type="button" aria-current="true">English<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
-            <button class="dr-picker__item" type="button">Ukrainian<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
-          </div>
-        </details>
+        <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-language">
+          <span class="dr-field__label">Language</span>
+          <span class="dr-field__value">English</span>
+          <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+        </button>
 </div>
 </form>
     </main>
