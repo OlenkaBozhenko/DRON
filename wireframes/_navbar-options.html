@@ -70,10 +70,13 @@ shown on the longest and the shortest pair in the set.</p>
     <p class="why">The title takes the true centre of the bar and stops moving with the back label's length.</p>
     <div class="bar-host"><div class="nb b"><a class="bk" href="#">‹ Order</a><span class="ti">Package delivery</span><span class="sp"></span></div></div>
     <div class="bar-host"><div class="nb b"><a class="bk" href="#">‹ Help</a><span class="ti">Support</span><span class="sp"></span></div></div>
-    <span class="tag">Position only</span>
+    <span class="tag">Position only — and it does not fit</span>
     <p class="num"><b>HIG</b> — title centred: <b>passes</b>, 0px off on every screen.<br>
     Rank separators: <b>2 of 3</b> (size, position). Colour and weight still identical.<br>
-    <b>WCAG 1.4.3</b> — 15.99:1, passes.</p>
+    <b>WCAG 1.4.3</b> — 15.99:1, passes.<br>
+    <b>Fit: fails.</b> All 19 real pairs tested at 373px. At weight 600 the back label is wide enough that
+    <b>2 collide</b> — <code>‹ Package delivery</code> + <code>Order review</code> actually <b>overlaps by
+    1.4px</b>, and <code>+ Pick a time</code> leaves 6.1px against the bar's 8px gap.</p>
   </div>
 
   <div class="opt">
