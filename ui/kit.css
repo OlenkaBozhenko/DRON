@@ -176,6 +176,8 @@
   --sz-tick:        30px;  /* the green tick under a zone label */
   --sz-tick-h:      2px;
   --sz-dot:         10px;  /* the filled centre of a checked radio */
+  --sz-rail:        4px;   /* the range rail — the progress track's own weight */
+  --sz-thumb-ring:  2px;   /* the range thumb's ring, the status disc's 2px */
   --sk-title-h:     14px;  /* the bar standing in for a card title */
   --sk-date-h:      10px;  /* and for its date */
   /* The skeleton order card, block for block — every bar sized to the element
@@ -1132,6 +1134,75 @@ header.dr-topbar,
 .dr-pick:has(input:focus-visible) .dr-box{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 .dr-box .dr-ic{ width: var(--ic-14); height: var(--ic-14); }
 .dr-box__dot{ width: var(--sz-dot); height: var(--sz-dot); border-radius: var(--r-pill); background: currentColor; }
+
+/* Range — a band the user drags, added 2026-08-15 on the designer's call for
+   "a horizontal line with bullets you can drag, and the price changes there".
+   TWO NATIVE <input type="range"> stacked on one rail, and native on purpose:
+   the arrow keys work with no script (WCAG 2.1.1), and role / min / max / now
+   are exposed without an ARIA patch (4.1.2) — a div-built slider has to
+   re-implement both and usually re-implements neither.
+   CHARCOAL, NOT GREEN. A checked radio may be green because concept.md counts
+   it a status mark; a slider cannot take that exemption — it is a control, and
+   this screen's one green control is already spent on Apply filters. --ink on
+   --card is 14.37:1 where 1.4.11 asks 3:1 of whatever identifies a control.
+   The rail is --btn2, 1.31:1 on the card, and it is NOT the identifier: the
+   two thumbs are, and the filled span between them says the same value a
+   second way, so the band never rests on colour alone (1.4.1). Thumbs are
+   --sz-box 24, the AA floor of 2.5.8, standing in a 44px row so HIG's 44pt
+   target is met by the rail's own height. */
+.dr-range{
+  position: relative;
+  display: flex; flex-direction: column; gap: var(--sp-9);
+  padding: var(--sp-snug) var(--sp-screen) var(--sp-14);
+}
+.dr-picks li + li .dr-range::before{
+  content: ""; position: absolute; left: var(--pick-indent); right: 0; top: 0;
+  height: var(--hair); background: var(--line);
+}
+.dr-range__out{
+  font-size: var(--t-heading-size); font-weight: var(--weight-medium);
+  color: var(--ink); font-variant-numeric: tabular-nums;      /* 14.37:1 */
+}
+.dr-range__rail{ position: relative; height: var(--h-control); display: flex; align-items: center; }
+.dr-range__rail::before{
+  content: ""; position: absolute; left: 0; right: 0;
+  height: var(--sz-rail); border-radius: var(--r-pill); background: var(--btn2);
+}
+.dr-range__fill{
+  position: absolute; height: var(--sz-rail);
+  border-radius: var(--r-pill); background: var(--ink);
+}
+/* the input is a transparent 44px lane over the rail; only its thumb takes the
+   pointer, or the upper lane would swallow every grab meant for the lower one */
+.dr-range__input{
+  position: absolute; left: 0; width: 100%; margin: 0;
+  height: var(--h-control); background: transparent;
+  -webkit-appearance: none; appearance: none; pointer-events: none;
+}
+.dr-range__input::-webkit-slider-thumb{
+  -webkit-appearance: none; appearance: none;
+  width: var(--sz-box); height: var(--sz-box); border-radius: var(--r-pill);
+  background: var(--card); border: var(--sz-thumb-ring) solid var(--ink);
+  cursor: grab; pointer-events: auto;
+}
+.dr-range__input::-moz-range-thumb{
+  width: var(--sz-box); height: var(--sz-box); box-sizing: border-box;
+  border-radius: var(--r-pill);
+  background: var(--card); border: var(--sz-thumb-ring) solid var(--ink);
+  cursor: grab; pointer-events: auto;
+}
+.dr-range__input:focus{ outline: none; }
+.dr-range__input:focus-visible::-webkit-slider-thumb{
+  outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset);
+}
+.dr-range__input:focus-visible::-moz-range-thumb{
+  outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset);
+}
+.dr-range__ends{
+  display: flex; justify-content: space-between;
+  font-size: var(--t-meta-size); color: var(--slate);          /* 5.95:1 */
+  font-variant-numeric: tabular-nums;
+}
 
 /* Segmented control — HIG's own structure in DRON's tokens: a recessed track
    with a light plate raised inside it. iOS lifts its plate with a shadow; this

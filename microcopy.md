@@ -612,6 +612,20 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filters | Location | obolon | Field value | DATA |
 | listings-filters | Location | Pechersk | Body |  |
 | listings-filters | Location | pechersk | Field value | DATA |
+| listings-filters | Price | Price | Heading |  |
+| listings-filters | Price | Low | Body |  |
+| listings-filters | Price | low | Field value | DATA |
+| listings-filters | Price | Medium | Body |  |
+| listings-filters | Price | medium | Field value | DATA |
+| listings-filters | Price | High | Body |  |
+| listings-filters | Price | high | Field value | DATA |
+| listings-filters | Price | Insured | Body |  |
+| listings-filters | Price | Price range | Field label |  |
+| listings-filters | Price | Lowest price | Field label |  |
+| listings-filters | Price | Highest price | Field label |  |
+| listings-filters | Price | ₴0 | Body | DATA |
+| listings-filters | Price | ₴1,000+ | Body | DATA |
+| listings-filters | Price | ₴0 – ₴1,000+ | Body | DATA |
 | listings-filters | Location | Clear all | Button |  |
 | listings-filters | Location | Apply filters | Button |  |
 | listings-loading | — | Kyiv, UA ▾ | Button |  |
