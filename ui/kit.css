@@ -1354,7 +1354,7 @@ header.dr-topbar,
    this selector was not carried with it. Same reading, same criterion: WCAG
    2.4.7 Understanding names the text cursor in a text field as a visible focus
    indicator, so the caret carries it, declared rather than inherited.
-   --ink on --media is 13.33:1, the ground's own recorded pair (rev 101). */
+   --ink on --media is 13.33:1, the ground's own recorded pair (rev 103). */
 .dr-search input{ caret-color: var(--ink); }
 .dr-search input::placeholder{ color: var(--slate); }
 

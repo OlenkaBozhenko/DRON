@@ -145,16 +145,84 @@ main{ flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column
 .counter .count{ font-size:13px; color:var(--wf-text-2); }
 .counter .count b{ color:var(--wf-text); font-weight:600; }
 
-/* forms — labelled fields */
+/* forms — labelled fields
+   THE FIELD IS THE ROW THAT ACCEPTS TYPING, not a box drawn around one — the
+   anatomy the painted kit has carried since rev 98/100, brought across to the
+   grayscale layer on the designer's call 2026-08-16 (rev 103), pointing at the
+   built `order-setup`: «мені подобається як тут відпрацьовують інпути і
+   текстові поля — тепер зроби по всьому проекту по усіх wireframes і стейтах
+   так». HIG ships two form styles and BOTH conform: the grouped inset list
+   (Settings — a card, rows, separators) and the plain list (Notes — rows on
+   the page, a hairline between, a caret, a grey placeholder). She chose the
+   plain list on 2026-08-16, so no field on either layer wears a box.
+   THE BORDER THAT CAME OFF, measured before it went: `--wf-border-2` over the
+   control's own white fill composites to #D9D9D9 — 1.42:1 against that fill
+   and 1.29:1 against the #F4F4F4 page. A drawn boundary is what identifies a
+   control, so `WCAG 1.4.11` asks 3:1 and this failed by 2.1×. Nothing replaces
+   it: the label, the typed ink and the hairline carry the row, exactly as on
+   the painted side, and 1.4.11 governs a boundary that is DRAWN, not one that
+   is absent.
+   SCOPED BY :has(> .control), because .form-field is this layer's generic
+   labelled block — it also wraps a checklist (operator-profile-setup) and an
+   upload zone (operator-dispute), and those keep the stacked 13/600 label. */
 .form-field{ display:flex; flex-direction:column; gap:6px; }
-.field-label{ font-size:13px; font-weight:600; color:var(--wf-text); }
-.control{ height:44px; display:flex; align-items:center; gap:8px; padding:0 12px;
-  background:var(--wf-surface); border:1px solid var(--wf-border-2); border-radius:6px; font-size:15px; color:var(--wf-text); }
-.control input,.control select{ flex:1; border:0; background:transparent; font:inherit; color:var(--wf-text); outline:none; }
-.control input::placeholder{ color:var(--wf-muted); }
+.field-label{ font-size:13px; font-weight:600; color:var(--wf-text); }   /* 13.94:1 */
+
+/* the typing row: label left, value right, one line, no box */
+.form-field:has(> .control){
+  position:relative;
+  min-height:44px; flex-direction:row; align-items:center; flex-wrap:wrap; gap:10px;
+  border:0; background:transparent;
+}
+/* the label drops to the row's own voice — 15/400 slate, the .dr-field__label
+   step, not the 13/600 heading a stacked block needs to sit above itself */
+.form-field:has(> .control) > .field-label{
+  flex:1; font-size:15px; font-weight:400; color:var(--wf-text-2);       /* 6.27:1 on --wf-bg */
+}
+/* THE INPUT GROUP IS A PLAIN LIST — `.dr-rows:has(> .dr-field)` brought over.
+   Adjacent typing rows sit flush and take a hairline between them; the card
+   and the radius are already absent, because this layer never gave them one.
+   A LONE field gets no line, the way `.dr-field + .dr-field` draws only
+   between two — so only operator-profile-setup carries this wrapper. */
+.field-rows{ display:flex; flex-direction:column; }
+.field-rows > .form-field{ position:relative; }
+.field-rows > .form-field + .form-field::before{
+  content:""; position:absolute; left:0; right:0; top:0;
+  height:1px; background:var(--wf-border);   /* 1.22:1 — the painted hairline's own 1.21 */
+}
+/* the input side of a row, when built markup wraps it — anatomy, not layout */
+.control:not(textarea){
+  flex:1; min-width:0; display:flex; align-items:center; gap:10px;
+  height:auto; padding:0; border:0; background:transparent;
+  font-size:15px; color:var(--wf-text);
+}
+.control input,.control select{ flex:1; min-width:0; border:0; background:transparent;
+  font:inherit; color:var(--wf-text); outline:none; }                    /* 13.94:1 */
+/* NO RING ON A TEXT FIELD, AND A DECLARED CARET — rev 100's reading, carried
+   across unchanged: `WCAG 2.4.7` Understanding names the text cursor in a text
+   field as a visible focus indicator, so the caret carries the criterion where
+   the ring used to, declared rather than left to a browser default. It does
+   NOT generalise — every control without a caret keeps its ring, because it
+   has nothing else to fall back on. */
+.control input,.control select,textarea.control{ caret-color:var(--wf-text); }
+/* The placeholder was `--wf-muted` #909090 at 3.19:1 on white — a live `WCAG
+   1.4.3` failure older than this pass and fixed with it, since the ground was
+   moving anyway. `--wf-text-2` reads 6.27:1 on the page, 5.95:1 on the area. */
+.control input::placeholder,textarea.control::placeholder{ color:var(--wf-text-2); }
 .control.select{ justify-content:space-between; cursor:pointer; }
-textarea.control{ height:auto; min-height:80px; padding:12px; align-items:stretch; resize:none; font:inherit; width:100%; }
-.field-hint{ font-size:12px; color:var(--wf-muted); }
+/* the multiline field: the row that grows. The label takes its own line and
+   the area runs the full width — HIG's own multiline pattern and the shape
+   `.dr-field--area` holds on the painted side. THE GROUND STAYS: rev 100 gave
+   it back there, and `--wf-recessed` is the token whose declared role in
+   _conventions.md §4.1 is already "input field fill". Typed 13.22:1,
+   placeholder 5.95:1 on it. */
+.form-field:has(> textarea.control){ align-items:stretch; padding:12px 0; }
+.form-field:has(> textarea.control) > .field-label{ flex:0 0 100%; }
+textarea.control{ height:auto; min-height:80px; padding:12px; align-items:stretch;
+  resize:none; font:inherit; width:100%; flex-basis:100%; outline:none;
+  border:0; background:var(--wf-recessed); border-radius:6px;
+  font-size:15px; color:var(--wf-text); line-height:1.4; }
+.field-hint{ flex-basis:100%; font-size:12px; color:var(--wf-text-2); }  /* 6.27:1, was 3.19:1 */
 
 /* key-value & price rows */
 .kv{ background:var(--wf-surface); border:1px solid var(--wf-border); border-radius:8px; padding:4px 16px; }

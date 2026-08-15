@@ -54,11 +54,21 @@ A wireframe answers: *what blocks are on this screen, in what order, at what wei
 | `--wf-recessed` | Recessed zone, input field fill, section band | `#EEEEEE` | `--bg-3` (light) |
 | `--wf-fill` | Filled block, placeholder box, skeleton base | `#E2E2E2` | `--bg-4` (light) |
 | `--wf-skeleton` | Skeleton bar / disabled fill | `#D8D8D8` | `--text` (dark theme, reused as gray) |
-| `--wf-muted` | Muted text, icon-placeholder label, captions | `#909090` | `--text-3` (light) / `--text-2`↔ |
-| `--wf-text-2` | Secondary text | `#5A5A5A` | `--text-2` (light) |
+| `--wf-muted` | Muted text, icon-placeholder label, captions — **never a form placeholder** (see below) | `#909090` | `--text-3` (light) / `--text-2`↔ |
+| `--wf-text-2` | Secondary text; **field label, form placeholder, field hint** (§7.1) | `#5A5A5A` | `--text-2` (light) |
 | `--wf-text` | Primary body ink | `#252525` | `--text` (light) |
 | `--wf-ink` | Max-contrast headings, primary button fill | `#111111` | `--white` (light, inverted) |
 | `--wf-ink-max` | Pure ink (rare: on-fill max contrast) | `#000000` | `--accent` (light) |
+
+> **`--wf-muted` is not a text-contrast token at body size.** `#909090` measures **3.19 : 1** on
+> `--wf-surface` and **2.90 : 1** on `--wf-bg` — under `WCAG 1.4.3`'s **4.5 : 1**. It held every form
+> placeholder until 2026-08-16 (rev 103), which moved them to `--wf-text-2` (**6.27 : 1**). It is
+> still correct where it is not body text — the uppercase placeholder-box label (§8) and the zone
+> annotation, which are not part of the screen. Anything a user reads as content takes `--wf-text-2`
+> or darker. **Still open, reported not swept:** `.note` is `12px --wf-muted` on `--wf-bg` at
+> **2.90 : 1** — real body text (*"Review takes 2–3 business days."*, `operator-verification`), the
+> same criterion, untouched because it is not a field and `wireframes/` is not swept without the
+> designer's word.
 
 ### 4.2 — Borders (from the same tokens)
 
@@ -151,6 +161,47 @@ Applied 2026-08-15 to the 14 pages still holding a `<button>`: `contact-support(
 `order-review(-loading)` → `order-setup`, `order-setup(-empty/-error)` → `listings`,
 `payment(-error)` → `order-review`, `rate` → `delivery`, `report-issue(-empty/-loading)` and
 `resolution` → `support`. All 24 back controls now match.
+
+### 7.1 — The field (the row that accepts typing)
+
+**A field has no border. It is a row in a plain list, not a box** (designer, 2026-08-16, rev 103 —
+pointing at the built `order-setup`: *«мені подобається як тут відпрацьовують інпути і текстові поля
+— тепер зроби по всьому проекту по усіх wireframes і стейтах так»*). This is the painted kit's
+rev 98/100 anatomy brought across to the grayscale layer, so both layers hold one shape.
+
+`HIG · Text fields` ships **two** form styles and **both conform** — the grouped inset list
+(Settings: a card, rows, separators) and the plain list (Notes: rows on the page, a hairline
+between, a caret, a grey placeholder). **The plain list is the project's choice**, made on the
+painted layer on 2026-08-16 and extended here.
+
+| Part | Class | Value | Measured |
+|---|---|---|---|
+| The row | `.form-field:has(> .control)` | `min-height:44px`, flex row, gap `10`, no border, no ground | `44px` — `HIG · 44pt target` ✓ |
+| Label | `.field-label` inside that row | `15 / 400`, `--wf-text-2` | **6.27 : 1** on `--wf-bg` — `WCAG 1.4.3` ✓ |
+| Typed ink | `.control input` | `15 / 400`, `--wf-text` | **13.94 : 1** ✓ |
+| Placeholder | `::placeholder` | `--wf-text-2` | **6.27 : 1** ✓ (was `--wf-muted`, **3.19 : 1** ✗) |
+| Focus | — | `outline:none`, `caret-color:--wf-text` declared | caret **13.94 : 1** — `WCAG 2.4.7` ✓ |
+| Group | `.field-rows` | adjacent rows flush, `1px` `--wf-border` between | **1.22 : 1** hairline (decorative, not a boundary) |
+| Multiline | `.form-field:has(> textarea.control)` | label on its own line, area full width, `--wf-recessed` ground at `r6`, `12` inset | typed **13.21 : 1**, placeholder **5.95 : 1** ✓ |
+
+**Why no border, stated as a number.** The `.control` box that came off drew
+`1px solid --wf-border-2`, which composites to `#D9D9D9` — **1.42 : 1** against its own white fill
+and **1.29 : 1** against the `#F4F4F4` page. A drawn boundary is what identifies a control, so
+`WCAG 1.4.11` asks **3 : 1**; it failed by **2.1×**. Nothing replaces it, and that is not a
+regression: 1.4.11 governs a boundary that is **drawn**, not one that is **absent**. The label, the
+typed ink and the hairline carry the row.
+
+**Scope.** `.form-field` is this layer's generic *labelled block* — it also wraps a checklist
+(`operator-profile-setup`) and an upload zone (`operator-dispute`), and those keep the stacked
+`13 / 600` label. The anatomy is therefore keyed by `:has(> .control)`, never by `.form-field`
+alone. `.field-rows` is added **only** where two typing rows are adjacent; a lone field takes no
+separator, the way `.dr-field + .dr-field` draws only between two. Four pages carry typing on this
+layer: `operator-verification`, `operator-profile-setup`, `operator-dispute`, `result-upload`.
+
+**On the bench, declared and applied to nothing:** `.field` (the grayscale search bar) and
+`.control.select` still carry the old bordered shape. They are kept, not retired — both name a real
+component that has no page yet — but **neither may be used as built**; a screen that needs one takes
+the anatomy above first.
 
 **Reference skeleton** (structure only — not a screen):
 
