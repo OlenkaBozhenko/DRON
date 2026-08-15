@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Filters — City</title>
+<!--
+  SCREEN: "Home / start an order" — SUB-VIEW: the filter's place pick, level 2 of 3 (City).
+  PERSONA: Client C-1. JOB: MJ-1 — narrow the service list to where the job happens.
+  Designer's call 2026-08-16: Region -> City -> District of the city.
+
+  THE ONE THING TO READ BEFORE JUDGING THIS PAGE: it is showing the SHORTEST case in the
+  product. The region above it is `Kyiv City`, a city of special status that contains exactly
+  one city — so this list is one row. Under `Lviv Oblast` the same screen holds forty.
+  A DEPENDENT list's length is DATA, not design: it changes with the parent. _conventions.md's
+  count rule (<= 6 -> drawer, >= 7 -> screen) was written for lists whose length the product
+  fixes forever — payment is 4, language is 2. Switching this row between a drawer and a screen
+  according to which region happens to be set would make one control behave two ways, which
+  HIG · Consistency is against and which nobody could predict. So all three levels are screens.
+  Recorded in _conventions.md as a deliberate departure, not filed as a defect.
+
+  EXIT: pick a row -> back to Filters with the city set (district resets with it);
+  the chevron back -> Filters unchanged.
+  FIDELITY: painted (Studio) via ../ui/kit.css, like the rest of the listings family.
+-->
+<style>
+  /* ── tokens for the ANNOTATION COLUMN only (from _conventions.md §4) ── */
+  :root{
+    --wf-surface:#FFFFFF; --wf-bg:#F4F4F4; --wf-recessed:#EEEEEE; --wf-fill:#E2E2E2;
+    --wf-skeleton:#D8D8D8; --wf-muted:#909090; --wf-text-2:#5A5A5A; --wf-text:#252525;
+    --wf-ink:#111111; --wf-ink-max:#000000;
+    --wf-border:rgba(0,0,0,0.09); --wf-border-2:rgba(0,0,0,0.15);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{ -webkit-font-smoothing:antialiased; }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,sans-serif;
+    background:var(--wf-recessed); color:var(--wf-text);
+    font-size:15px; line-height:1.4;
+    display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start; padding:24px;
+  }
+
+  /* ── wireframe annotation (NOT part of the screen) ── */
+  .meta{ width:320px; font-size:13px; color:var(--wf-text-2); }
+  .meta h1{ font-size:17px; font-weight:600; color:var(--wf-text); margin-bottom:4px; }
+  .meta .sub{ color:var(--wf-muted); margin-bottom:16px; }
+  .meta .flow{ border:1px dashed var(--wf-border-2); border-radius:6px; padding:12px; margin-bottom:16px; line-height:1.6; }
+  .meta .flow b{ color:var(--wf-text); font-weight:600; }
+  .meta .flow .cur{ background:var(--wf-ink); color:var(--wf-surface); padding:1px 6px; border-radius:4px; font-weight:600; }
+  .meta .legend{ border-top:1px solid var(--wf-border); padding-top:12px; }
+  .meta .legend p{ margin-bottom:6px; }
+  .meta .legend b{ color:var(--wf-text); font-weight:600; }
+
+  .state-switch{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+  .state-switch a{ font-size:12px; padding:5px 10px; border:1px solid var(--wf-border-2); border-radius:6px;
+    text-decoration:none; color:var(--wf-text-2); background:var(--wf-surface); }
+  .state-switch a:hover{ background:var(--wf-recessed); color:var(--wf-text); }
+  .state-switch a.cur{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+
+  /* ── phone frame 375 × 812 (_conventions §6) ── */
+  .wf-frame{
+    width:375px; height:812px; flex:none;
+    background:var(--wf-bg); border:1px solid var(--wf-border-2); border-radius:8px;
+    overflow:hidden; display:flex; flex-direction:column; position:relative;
+  }
+
+  /* zone annotation label */
+  .zlabel{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--wf-muted);
+    display:flex; flex-wrap:wrap; gap:6px; align-items:baseline; border-left:2px solid var(--wf-border-2);
+    padding-left:8px; margin-bottom:-8px; }
+  .zlabel .act{ color:var(--wf-text-2); text-transform:none; letter-spacing:0; font-size:12px; }
+</style>
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+
+  <!-- ── WIREFRAME ANNOTATION (not the screen) ── -->
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="listings.html">success</a>
+      <a href="listings-filters.html">filters</a>
+      <a href="listings-filter-region.html">region</a>
+      <a href="listings-filter-city.html" class="cur" aria-current="page">city</a>
+      <a href="listings-filter-district.html">district</a>
+      <a href="listings-filtered.html">filtered</a>
+      <a href="listings-empty.html">empty</a>
+      <a href="listings-error.html">error</a>
+      <a href="listings-loading.html">loading</a>
+    </nav>
+    <h1>Filters — City</h1>
+    <p class="sub">Place pick · level <b>2 of 3</b> · file: listings-filter-city.html</p>
+    <div class="flow">
+      <b>Sub-flow of MJ-1 — where the job happens.</b><br>
+      Home → Filters → Region → <span class="cur">City</span> → District → <b>Apply</b>.<br>
+      <b>The title names the parent</b> — <i>City · Kyiv City</i> — so the row you tapped and the
+      screen you landed on say the same thing (<code>WCAG 3.3.2</code>).
+      <b>Picking a city resets the district.</b>
+    </div>
+    <div class="legend">
+      <p><b>Zones &amp; main action</b> (labelled in the screen):</p>
+      <p><b>City list</b> ▸ the cities of the chosen region</p>
+      <p><b>One row here, forty elsewhere</b> ▸ <i>Kyiv City</i> contains one city; under an oblast
+        this same screen is long. The length is data, so the level keeps one shape — see the note
+        at the top of this file.</p>
+      <p><b>Back (‹)</b> ▸ Filters, unchanged</p>
+    </div>
+  </aside>
+
+  <!-- ── THE SCREEN · 375 × 812 ── -->
+  <div class="wf-frame dr dr-screen">
+
+    <!-- status bar -->
+    <div class="dr-statusbar">
+      <span>9:41</span>
+      <span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span>
+    </div>
+
+    <!-- HEADER · a pushed screen: chevron back + its own centred title (_conventions.md) -->
+    <header class="dr-topbar">
+      <a class="dr-back" href="listings-filters.html" aria-label="Back to Filters"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <span class="dr-topbar__title">City · Kyiv City</span>
+      <span class="dr-topbar__spacer"></span>
+    </header>
+
+    <!-- MAIN -->
+    <main class="dr-main">
+
+      <!-- ZONE · city list -->
+      <p class="zlabel dr-label">City <span class="dr-label__act">▸ in Kyiv City · 1</span></p>
+      <div class="dr-picker__list" role="group" aria-label="City in Kyiv City">
+        <a class="dr-picker__item" href="listings-filters.html" aria-current="true">Kyiv<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+      </div>
+
+      <!-- The way out of a one-row list, so the screen is not a dead end: the level
+           above is where a different set of cities comes from. voice.md — name the
+           way out, do not apologise for the state. -->
+      <p class="dr-note">Kyiv City holds one city. To serve elsewhere, change the region.</p>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="listings-filter-region.html">Change region</a>
+
+    </main>
+
+  </div>
+
+  <!-- shared wireframe shell: left nav tree + viewport switcher (same on every page) -->
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
