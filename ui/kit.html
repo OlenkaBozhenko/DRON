@@ -961,32 +961,41 @@
 </div>
 
 <div class="row">
-  <div class="nm"><b>Picker row</b><code>.dr-picker · __list · __item</code>
-    <p>The disclosure's mechanism inside a form row: the <code>&lt;summary&gt;</code>
-       <b>is</b> the <code>.dr-field</code>. Opens in flow, like everything here.</p></div>
+  <div class="nm"><b>Picker row</b><code>.dr-field--action · .dr-picker__list · __item</code>
+    <p>A form row whose value is <b>chosen, not typed</b>. Where the list appears is a
+       <b>count</b>: <b>≤ 6 → a drawer</b> from the bottom edge, <b>≥ 7 → a new screen</b>
+       pushed in from the right.</p></div>
   <div class="spec">
     <div class="plate" style="padding:0;width:300px;overflow:visible;border:0;background:none">
       <div class="dr-rows">
-        <details class="dr-picker" open>
-          <summary class="dr-field">
-            <span class="dr-field__label">Payment method</span>
-            <span class="dr-field__value">Visa •••• 4921</span>
-            <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span>
-          </summary>
-          <div class="dr-picker__list" role="group" aria-label="Payment method">
-            <button class="dr-picker__item" type="button" aria-current="true">Visa •••• 4921<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
-            <button class="dr-picker__item" type="button">Apple Pay<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
-          </div>
-        </details>
-        <div class="dr-field">
+        <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false">
+          <span class="dr-field__label">Payment method</span>
+          <span class="dr-field__value">Visa •••• 4921</span>
+          <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+        </button>
+        <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false">
           <span class="dr-field__label">Language</span>
           <span class="dr-field__value">English</span>
-          <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span>
+          <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+        </button>
+      </div>
+      <div style="margin-top:16px;background:var(--page);border-radius:22px 22px 0 0;box-shadow:var(--sh-raised);padding:12px 16px 24px;display:flex;flex-direction:column;gap:12px">
+        <span class="dr-sheet__grip" aria-hidden="true"></span>
+        <p class="dr-sheet__title">Payment method</p>
+        <div class="dr-picker__list">
+          <button class="dr-picker__item" type="button" aria-current="true">Visa •••• 4921<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+          <button class="dr-picker__item" type="button">Apple Pay<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
         </div>
+        <button class="dr-btn dr-btn--secondary dr-btn--block" type="button">Cancel</button>
       </div>
     </div>
   </div>
   <div class="notes">
+    <p><b>The glyph is <code>chevron.forward</code> in both halves</b> — never a down arrow. Both
+       halves say the same true thing: the list is not here, it arrives. It does not turn, having
+       nothing to turn into. <code>HIG · Action sheets</code> and <code>HIG · Lists and tables</code>
+       draw the ≤ 6 / ≥ 7 line; nothing in the product is long enough yet (payment 4, language 2), so
+       the second half is declared and spent nowhere, with <code>--sh-onphoto</code>.</p>
     <p><b>The arrow is pinned by the shrink order, not by a number.</b> Label <code>0 0 auto</code>,
        value <code>0 1 auto</code> with <code>min-width:0</code> and the ellipsis, chevron
        <code>flex:none</code>, row <code>flex-wrap: nowrap</code>. That last one is load-bearing and
@@ -997,13 +1006,20 @@
     <p><b>It replaced a control that opened nothing.</b> On the built <code>account-edit</code> the
        row was a <code>&lt;span role="button"&gt;</code> announcing a menu it did not have
        (<code>WCAG 4.1.2</code>), marked with the text glyph <b>▾</b> — a character in the running
-       font, not the 24-grid outline every other arrow here is drawn on.</p>
-    <p><b>Nothing here needs JS to open.</b> <code>&lt;details&gt;</code> takes Enter and Space by
-       itself; the options are real <code>&lt;button&gt;</code>s. The page's script only makes the
-       pick land — value up to the row, mark across, menu closed, focus back. Ring
-       <code>2.5px --ink</code> drawn inside on both (<code>WCAG 2.4.7</code>); every option carries
-       the mark and only the current one shows it, held by <code>visibility</code>, so no row moves
-       when the pick changes.</p>
+       font, not the 24-grid outline every other arrow here is drawn on. It is a real
+       <code>&lt;button&gt;</code> now, so Enter, Space, the tab order and the accessible name come
+       from the element.</p>
+    <p><b>The drawer is <code>.dr-sheet</code>,</b> the surface <code>share</code> already carries;
+       <code>.dr-sheet--picker</code> adds only the rise — <code>translateY(100%) → 0</code> over
+       <code>--dur-sheet</code> <b>.32s</b>, scrim fading with it, both <code>animation:none</code>
+       under reduced motion. Measured open: sheet <b>373</b> wide, bottom flush with the frame,
+       scrim <b>373 × 810</b> — over the nav bar and the action bar, not just the scroll area.</p>
+    <p><b>The modal contract is kept, not claimed.</b> Everything behind goes <code>inert</code> —
+       verified: <code>#addr</code> cannot take focus while the drawer is up. Focus lands on the
+       current option with its ring, Tab cycles inside the drawer only, and it closes <b>three
+       ways</b> — Esc, the scrim, and <b>Cancel</b> (<code>HIG · Action sheets</code> asks for the
+       cancel by name; the <code>×</code> belongs to a full modal sheet screen, not to a drawer) —
+       each returning focus to the row, which by then says the new value.</p>
   </div>
 </div>
 
