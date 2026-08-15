@@ -38,7 +38,10 @@
           <span class="dr-msg__title">No operator free right now</span>
           <p class="dr-msg__body">All nearby operators are on jobs. The next one is likely free in about 40 minutes.</p>
           <div class="dr-msg__actions">
-            <a class="dr-btn dr-btn--primary" href="order-setup.html">Notify me when available</a>
+            <!-- flows.md's node here is terminal (`"save for later" → Saved: notify me when an
+                 operator is free`), so the tap confirms and stays; the href is kept as the
+                 no-JS fallback, on rev 89's `Mark resolved` precedent. -->
+            <a class="dr-btn dr-btn--primary" href="order-setup.html" data-toast="Saved. We&#39;ll tell you when an operator is free.">Notify me when available</a>
             <a class="dr-btn dr-btn--secondary" href="order-setup.html">Pick a later time</a>
           </div>
         </div>
