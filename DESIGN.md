@@ -639,6 +639,24 @@ label and chevron `--slate` **6.62:1**. Every option holds the current-item chec
 shows it (`visibility`, never absence, so no row moves): `--ink` **14.37:1**, with
 `aria-current="true"` beside it.
 
+**Payment options carry a brand mark, and it is the one place the palette opens.** `.dr-paymark` is a
+fixed **40 × 20** box on the leading edge of the option, mark anchored left, with `.dr-picker__label`
+taking the slack so the checkmark stays on the trailing edge — measured on the build, every mark box
+at **x = 16** and **every label at x = 64**, the row still **44px**. It is deliberately **not** a
+`.dr-ic`: the icon system governs the glyphs this project draws, and Visa Brand Center, Mastercard
+Brand Center, `HIG · Apple Pay Marks and Buttons` and Google Pay's kit each require their supplied
+artwork in full colour or an approved one-colour variant. The designer's call 2026-08-16 (rev 108)
+is **full brand colour**, a recorded departure from the one-accent rule: `#1434CB` · `#EB001B`
+`#F79E1B` `#FF5F00` · `#000` · `#4285F4` `#EA4335` `#FBBC05` `#34A853` `#5F6368`, written **inline on
+the artwork, never as tokens**, and no other surface may pull them. Green is not spent here at all.
+Measured on `--card` anyway: Apple **17.34:1**, Visa **7.28:1**, `#5F6368` **5.00:1**, `#EB001B`
+**3.81:1**, `#EA4335` **3.24:1**, `#4285F4` **2.94:1**, `#FF5F00` / `#34A853` **2.52:1**, `#F79E1B`
+**1.76:1**, `#FBBC05` **1.41:1** — four under 3:1, all passing because `WCAG 1.4.3` and `1.4.11`
+exempt logotypes and because the brand **name** sits beside every mark in `--ink` **14.37:1** with the
+artwork `aria-hidden` (`1.1.1`, `1.4.1`). The three wordmarks are set in `--font-ui` and are an
+**approximation** — `.dr-paymark text` is the only rule in the kit that sets type inside an SVG, and
+real artwork replaces all four at handoff.
+
 **The modal contract is kept, not claimed.** Everything behind the drawer takes `inert`, so a tap or
 a Tab cannot reach the form under it; focus lands on the current option with its ring; Tab cycles
 inside the drawer only; and it closes three ways — **Esc**, the **scrim**, and a **`Cancel`** button

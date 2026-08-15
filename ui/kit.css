@@ -1135,17 +1135,47 @@ header.dr-topbar,
    input groups, 13 carry read-only panels, 0 carry both.
    The field gives up its own 16 with the panel, or the text would stand at 32
    from the frame (the main's 16 plus the field's own); and the separator drops
-   its indent, because there is no panel edge left for it to indent from. */
-.dr-rows:has(> .dr-field){
-  padding-left: 0; padding-right: 0;
-  background: none; border-radius: 0;
-}
-.dr-rows:has(> .dr-field) > .dr-field{ padding-left: 0; padding-right: 0; }
-.dr-rows:has(> .dr-field) > .dr-field + .dr-field::before{ left: 0; }
+   its indent, because there is no panel edge left for it to indent from.
+
+   NARROWED 2026-08-16 (rev 107), when the filter's place pick asked for a group
+   of rows that are only TAPPED, never typed into. Her rev 98 sentence was about
+   input fields — "обводка в ПОЛЯХ ВВОДУ" — and iOS agrees with the distinction
+   it draws: Settings is a stack of grouped inset CARDS whose rows push a screen,
+   while a compose form is a plain list. So the strip is now scoped to a group
+   that contains at least one row that is not an action row; a group of pure
+   .dr-field--action keeps its card, its radius and the field's own 16, and its
+   separator keeps the indent it has a panel edge to indent from.
+   Verified before the change: .dr-field--action lives on ONE page, account-edit,
+   whose Preferences group holds an <input> row between its two action rows — so
+   that group still matches and renders byte-identical. */
+.dr-rows:has(> .dr-field){ padding-left: 0; padding-right: 0; }
+.dr-rows:has(> .dr-field:not(.dr-field--action)){ background: none; border-radius: 0; }
+.dr-rows:has(> .dr-field:not(.dr-field--action)) > .dr-field{ padding-left: 0; padding-right: 0; }
+.dr-rows:has(> .dr-field:not(.dr-field--action)) > .dr-field + .dr-field::before{ left: 0; }
 .dr-field + .dr-field::before{
   content: ""; position: absolute; left: var(--sp-screen); right: 0; top: 0;
   height: var(--hair); background: var(--line);
 }
+/* THE UPLOAD FIELD TAKES NO SEPARATOR — the designer's call 2026-08-16 (rev 108)
+   on the built `report-issue`: «видали лінію девайдер і так зрозуміло що там поле
+   вводу а нижче загрузка». A separator exists to say where one row stops and the
+   next begins, and between these two rows nothing needs saying: the text area IS
+   a filled `--media` well and the upload zone IS another, so the boundary is two
+   shapes and the 12px between them, not a line. The hairline it removes measured
+   1.34:1 on `--page` — below `WCAG 1.4.11`'s 3:1 and permitted there only because
+   a list separator is decoration, never the carrier of structure; the grouping
+   stays programmatic in the DOM, so `1.3.1` is untouched by construction.
+   Keyed to the CONTROL, not to the page: a field whose control is an upload zone
+   is a field with its own drawn edge. It matches one field in the product —
+   `report-issue`'s Evidence zone, the only `.dr-upload` that lives inside a
+   `.dr-field` (account-edit's two take `.dr-upload--card` and stand on their own).
+   The picker row above it keeps its separator: `Issue type` is a bare row with no
+   shape of its own, which is exactly the case the line is for.
+   THE ZONE IS NOT SIZED BY ITS STRING — rev 57's lesson, arriving here because
+   the label that used to force the wrap has gone: with the zone the only item in
+   the flex row it would shrink to its hint's measure, so the basis is declared. */
+.dr-field:has(> .dr-upload)::before{ content: none; }
+.dr-field > .dr-upload{ flex-basis: 100%; }
 .dr-field__label{ flex: 1; font-size: var(--t-heading-size); color: var(--slate); }   /* 5.95:1 */
 .dr-field__input{
   flex: 1; min-width: 0;
@@ -1317,9 +1347,14 @@ header.dr-topbar,
    took the wrap instead of the ellipsis — the row grew 44 → 78 and the chevron
    fell to the second line, 325px in from the edge. This row has no second line
    to give, so it takes none. */
+/* ...unless the list is a SCREEN and not a drawer, in which case the row is an
+   <a> and the element is right for the same reason: a link goes somewhere, a
+   button does something here. Both shapes share every value below; the anchor
+   only needs its underline off, which a <button> never had. Set with the place
+   pick, 2026-08-16 (rev 107). */
 .dr-field--action{
   width: 100%; cursor: pointer; flex-wrap: nowrap;
-  font-family: var(--font-ui); text-align: left;
+  font-family: var(--font-ui); text-align: left; text-decoration: none;
 }
 .dr-field--action > .dr-field__label{ flex: 0 0 auto; }
 .dr-field--action > .dr-field__value{ flex: 0 1 auto; margin-left: auto; }
@@ -1348,6 +1383,47 @@ header.dr-topbar,
    rev 86 settled for the mode picker. */
 .dr-picker__item .dr-ic{ visibility: hidden; }
 .dr-picker__item[aria-current="true"] .dr-ic{ visibility: visible; }
+
+/* THE PAYMENT MARK — third-party brand artwork, and deliberately NOT a .dr-ic.
+   §5's icon system (flat outline, 24-grid, stroke 1.7, currentColor, no fill)
+   describes the glyphs THIS project draws. A Visa wordmark or the Mastercard
+   symbol is not ours to redraw, and every one of the four brand centres says
+   the same thing: use the supplied artwork, in full colour or an approved
+   one-colour variant. So the two rules cannot both be kept literally, and the
+   designer's call 2026-08-16 (rev 108) is FULL BRAND COLOUR — four colour
+   families outside the palette landing on this one list.
+
+   Recorded as a departure from §0's one-accent rule, not as a new palette:
+   the colours are written inline on the artwork, never declared as tokens,
+   and no DRON surface may pull them. Signal Green is untouched — the list
+   holds no green control, so the ≤5% budget is not spent here at all.
+
+   `WCAG 1.4.3` and `1.4.11` both EXEMPT logotypes, so these marks carry no
+   ratio obligation. Measured anyway on --card (concept.md rev 108): Visa
+   #1434CB 7.28:1 · Apple #000 17.34:1 · Google wordmark #5F6368 5.00:1 ·
+   Mastercard #EB001B 3.81:1 / #FF5F00 2.52:1 / #F79E1B 1.76:1 · Google
+   #EA4335 3.24:1 / #4285F4 2.94:1 / #34A853 2.52:1 / #FBBC05 1.41:1. Four of
+   those would fail 3:1 if the shape were ours. They pass by exemption and, to
+   the point, by redundancy: the brand NAME is written beside the mark in --ink
+   at 14.37:1, so nothing is carried by colour alone (`WCAG 1.4.1`), and the
+   artwork is aria-hidden because the label already says it (`WCAG 1.1.1`).
+
+   The box is fixed at 40 × 20 for all four so the labels align on one edge,
+   and each mark is anchored left inside its own box so the marks align too.
+   The row's 44px min-height is untouched (`HIG · 44pt target`). */
+.dr-paymark{ flex: 0 0 auto; width: 40px; height: 20px; display: block; }
+/* the two lockups that carry a word — Apple Pay, Google Pay — and the Visa
+   wordmark are set in the product's own UI face rather than each brand's
+   proprietary one. This is an APPROXIMATION and is written down as such:
+   at handoff the real artwork replaces all four, downloaded from Visa Brand
+   Center, Mastercard Brand Center, Apple's Marks and Buttons and Google Pay's
+   brand kit. Nothing else in the kit sets type inside an SVG. */
+.dr-paymark text{ font-family: var(--font-ui); }
+/* the label takes the slack: space-between across three children would centre
+   it, which would leave the mark and the text apart. With the label growing,
+   the mark holds the left edge and the check the right. */
+.dr-picker__label{ flex: 1 1 auto; min-width: 0; }
+
 /* A SHEET THAT COMES AND GOES needs [hidden] said out loud: .dr-sheet sets
    display:flex and .dr-scrim display is block, and either one beats the UA's
    [hidden]{display:none} on specificity. Left implicit, the drawer would sit
