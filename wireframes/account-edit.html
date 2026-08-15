@@ -103,6 +103,51 @@
     </footer>
   </div>
 
+  <!--
+    The picker's script. It does NOT open anything — <details> opens itself, with
+    the keyboard, with no JS at all; that is the whole reason the row is a
+    <details> and not a <span role="button">. This only makes the pick LAND:
+    the chosen value moves up to the row, the mark moves with it, the menu
+    closes and the focus goes back to the row that now says the new value.
+    Two pickers never stand open at once — a menu of mutually exclusive values
+    is exclusive of the other menu too. Esc closes, per HIG's own dismissal.
+    Scoped to this page — nothing else loads it.
+  -->
+  <script>
+  (function () {
+    var pickers = document.querySelectorAll('.dr-picker');
+    if (!pickers.length) return;
+
+    pickers.forEach(function (picker) {
+      var row   = picker.querySelector('summary'),
+          value = picker.querySelector('.dr-field__value'),
+          items = picker.querySelectorAll('.dr-picker__item');
+
+      // one open menu at a time
+      picker.addEventListener('toggle', function () {
+        if (!picker.open) return;
+        pickers.forEach(function (other) { if (other !== picker) other.open = false; });
+      });
+
+      items.forEach(function (item) {
+        item.addEventListener('click', function () {
+          items.forEach(function (other) { other.removeAttribute('aria-current'); });
+          item.setAttribute('aria-current', 'true');
+          value.textContent = item.textContent.trim();
+          picker.open = false;
+          row.focus();
+        });
+      });
+
+      picker.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape' || !picker.open) return;
+        picker.open = false;
+        row.focus();
+      });
+    });
+  }());
+  </script>
+
   <script src="_wf-shell.js"></script>
 </body>
 </html>
