@@ -1353,13 +1353,13 @@ header.dr-topbar,
 /* Settled 2026-08-12 by the designer, in three steps: only the CURRENT row
    carries the mark; the mark is a BARE checkmark — no disc, no fill,
    because this is neither a checkbox nor a radio but iOS's own
-   current-item-in-a-list mark; and it is SIGNAL GREEN — her call with the
-   number named: 1.52:1 on the card against 1.4.11's 3:1, accepted as the
-   live disc and the pager dot are accepted, because colour is not the
-   carrier — the mark's presence is (one row has a checkmark, the others
-   none) and aria-current="true" says it to AT. Recorded in DESIGN.md's
-   below-3:1 table, rev 50. The other rows answer with hover alone. */
-.dr-disclosure__item[aria-current="true"] .dr-ic{ color: var(--green); }
+   current-item-in-a-list mark. It was SIGNAL GREEN from rev 50 until
+   2026-08-15, accepted below 1.4.11's 3:1 at 1.52:1 on the reading that
+   colour was not the carrier. The designer's call (rev 86) makes it --ink:
+   14.37:1 on the card, so the mark clears the criterion outright and the
+   acceptance is retired rather than argued. The carrier does not change --
+   the mark's presence, plus aria-current="true" for AT. The other rows answer with hover alone. */
+.dr-disclosure__item[aria-current="true"] .dr-ic{ color: var(--ink); }   /* 14.37:1 — rev 86 */
 .dr-disclosure__item:hover{ background: var(--media); }
 .dr-disclosure__item:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); }
 

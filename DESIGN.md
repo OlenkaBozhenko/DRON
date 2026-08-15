@@ -230,8 +230,9 @@ and applied to nothing — they are recorded rungs, not live values (`var(--warn
 - **`--green` Signal Green** (`#9BCF4A`) — the single accent. Fill only: the primary button, the
   walked progress node, the live status disc. Charcoal sits on it at **9.46:1**. As a foreground
   it is 1.69:1 on the page and 1.52:1 on the card, so it is never text and never a stroke —
-  with **one recorded exception**: the mode picker's current-row checkmark, the designer's
-  decision 2026-08-12 (rev 50), carried in the below-3:1 table with its stated reason.
+  and, since 2026-08-15 (rev 86), with **no exception at all**: the mode picker's
+  current-row checkmark wore green from rev 50 and is now `--ink` at **14.37:1**, so the
+  rule stands unqualified and that row has left the below-3:1 table.
 - **`--on-green`** (`#1A1A1A`) — the only colour permitted on a green fill. Never white: white on
   `#9BCF4A` is 1.84:1.
 - **`--green-wash`** (`#E7F0D2`) — the one green tint. Carries the selected tab, the verified
@@ -317,7 +318,6 @@ Every pair carried on a product surface, verified in the browser.
 | Pair | Ratio | Why it stands |
 |---|---|---|
 | `--green` live status disc on `--card` | 1.52:1 | Never the sole carrier: the same card is the only one with a progress rail, an ETA chip and the green CTA, and the disc's accessible name says "In progress". |
-| `--green` current-row checkmark on `--card` | 1.52:1 | The designer's decision 2026-08-12 (rev 50), the number named at the choice. Colour is not the carrier: the mark's *presence* is — one row holds a checkmark, the others none — and `aria-current="true"` speaks the state. The same acceptance the live disc above and the pager's active dot carry. |
 | `--line` hairline on `--card` | 1.21:1 | A decorative surface edge — not text (1.4.3), not a control or state indicator (1.4.11). |
 | `--media` on `--page` | 1.20:1 | Same. |
 | `--card` on `--page` | 1.11:1 | Same. |
