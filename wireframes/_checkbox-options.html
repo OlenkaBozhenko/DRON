@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON · checkbox — options to choose from</title>
+<!--
+  PROPOSAL PAGE, not a screen. Built 2026-08-15 on the designer's word:
+  "чекбокс не гарний — дай декілька варіантів я оберу".
+  Five options for .dr-box--check, each clickable, each in rest and checked.
+  Nothing here is in the kit except option A, which is what is built today.
+  Delete this file once she has chosen. Precedent: preview-text-button.html (rev 49).
+-->
+<link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
+<style>
+  body{ background:var(--page); font-family:var(--font-ui); color:var(--ink); padding:28px; margin:0; }
+  h1{ font-size:22px; font-weight:700; letter-spacing:-.02em; margin:0 0 4px; }
+  .sub{ color:var(--slate); font-size:14px; margin:0 0 28px; max-width:64ch; line-height:1.5; }
+  .opt{ background:var(--card); border-radius:var(--r-card); padding:20px; margin-bottom:16px; max-width:560px; }
+  .opt h2{ font-size:15px; font-weight:600; margin:0 0 2px; }
+  .opt p{ font-size:13px; color:var(--slate); margin:0 0 14px; line-height:1.5; }
+  .opt p b{ color:var(--ink); font-weight:600; }
+  .demo{ display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap; }
+  .demo > div{ background:var(--page); border-radius:var(--r-btn); padding:12px 14px; }
+  .cap{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.09em;
+        text-transform:uppercase; color:var(--slate); margin-bottom:8px; }
+  .big{ zoom:2; }
+
+  /* ── B · rounder corner ───────────────────────────────── */
+  .b-box{ border-radius:8px; }
+
+  /* ── C · filled rest, still bordered ──────────────────── */
+  .c-box{ border-radius:8px; background:var(--btn2); }
+  .dr-pick:has(input:checked) .c-box{ background:var(--green); }
+
+  /* ── D · circle ───────────────────────────────────────── */
+  .d-box{ border-radius:var(--r-pill); }
+
+  /* ── E · switch (HIG's control for a setting) ─────────── */
+  .e-switch{ width:51px; height:31px; flex:none; box-sizing:border-box;
+    border-radius:var(--r-pill); background:var(--btn2);
+    border:var(--hair) solid var(--slate);
+    display:inline-flex; align-items:center; padding:2px;
+    transition:background var(--dur-base); }
+  .e-knob{ width:25px; height:25px; border-radius:var(--r-pill);
+    background:var(--page); border:var(--hair) solid var(--slate);
+    transition:transform var(--dur-base) var(--ease-out); }
+  .dr-pick:has(input:checked) .e-switch{ background:var(--green); border-color:var(--ink); }
+  .dr-pick:has(input:checked) .e-knob{ transform:translateX(20px); border-color:var(--ink); }
+  .dr-pick:has(input:focus-visible) .e-switch{ outline:var(--focus-w) solid var(--ink); outline-offset:var(--focus-offset); }
+  @media (prefers-reduced-motion: reduce){ .e-knob, .e-switch{ transition:none; } }
+</style>
+</head>
+<body>
+
+<h1>Checkbox — five options</h1>
+<p class="sub">Every box below is live: click it to see its checked state. The row is the tap target
+in all five, 44pt, as it is on the real screen. Option A is what is built today.</p>
+
+<!-- A -->
+<div class="opt">
+  <h2>A · as built today</h2>
+  <p>24px square, 4px corner, 1px <b>--slate</b> hairline. Checked is a <b>--green</b> fill behind a
+    charcoal check — the icon system's own "active is a green shape behind a charcoal glyph".</p>
+  <div class="demo">
+    <div><p class="cap">rest &amp; checked</p>
+      <label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this address</span><input type="checkbox" class="sr-only"></label></div>
+    <div class="big"><p class="cap">2×</p>
+      <label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><input type="checkbox" class="sr-only" checked></label></div>
+  </div>
+</div>
+
+<!-- B -->
+<div class="opt">
+  <h2>B · same box, softer corner</h2>
+  <p>The only change is the corner: <b>4 → 8px</b>. Still on the 2/4/8 floor the closed-ramp rule
+    allows for an internal detail, so the radius ramp does not move.</p>
+  <div class="demo">
+    <div><p class="cap">rest &amp; checked</p>
+      <label class="dr-pick"><span class="dr-box dr-box--check b-box" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this address</span><input type="checkbox" class="sr-only"></label></div>
+    <div class="big"><p class="cap">2×</p>
+      <label class="dr-pick"><span class="dr-box dr-box--check b-box" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><input type="checkbox" class="sr-only" checked></label></div>
+  </div>
+</div>
+
+<!-- C -->
+<div class="opt">
+  <h2>C · filled at rest, no empty hole</h2>
+  <p>Rest is a <b>--btn2</b> fill inside the same hairline, so the box reads as a control before it
+    is touched instead of as an empty outline. 8px corner. Checked is unchanged.</p>
+  <div class="demo">
+    <div><p class="cap">rest &amp; checked</p>
+      <label class="dr-pick"><span class="dr-box dr-box--check c-box" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this address</span><input type="checkbox" class="sr-only"></label></div>
+    <div class="big"><p class="cap">2×</p>
+      <label class="dr-pick"><span class="dr-box dr-box--check c-box" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><input type="checkbox" class="sr-only" checked></label></div>
+  </div>
+</div>
+
+<!-- D -->
+<div class="opt">
+  <h2>D · round</h2>
+  <p>The same box taken to a circle. Softest of the five — but the kit already uses a circle for the
+    <b>radio</b>, so round-means-one-of-many stops being true. A real cost, not a detail.</p>
+  <div class="demo">
+    <div><p class="cap">rest &amp; checked</p>
+      <label class="dr-pick"><span class="dr-box dr-box--check d-box" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this address</span><input type="checkbox" class="sr-only"></label></div>
+    <div class="big"><p class="cap">2×</p>
+      <label class="dr-pick"><span class="dr-box dr-box--check d-box" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><input type="checkbox" class="sr-only" checked></label></div>
+  </div>
+</div>
+
+<!-- E -->
+<div class="opt">
+  <h2>E · a switch — what HIG would actually put here</h2>
+  <p>iOS has no checkbox. For a <b>setting that persists</b> — and "save this address for next time"
+    is exactly that — HIG's control is a switch, 51 × 31 with a 25px knob. Green is the fill, the
+    ring stays charcoal, the same recipe the price band took at rev 70.</p>
+  <div class="demo">
+    <div><p class="cap">rest &amp; checked</p>
+      <label class="dr-pick"><span class="e-switch" aria-hidden="true"><span class="e-knob"></span></span><span class="dr-pick__label">Save this address</span><input type="checkbox" class="sr-only"></label></div>
+    <div class="big"><p class="cap">2×</p>
+      <label class="dr-pick"><span class="e-switch" aria-hidden="true"><span class="e-knob"></span></span><input type="checkbox" class="sr-only" checked></label></div>
+  </div>
+</div>
+
+<script src="_wf-shell.js"></script>
+</body>
+</html>
