@@ -269,6 +269,13 @@ it cannot carry a mark: `--warn` on the card is 1.84:1 and `--danger` reaches on
 - **`--warn-wash` / `--warn-ink`** (`#F6E7C4` / `#7A5200`) — ETA slipping. `tracking-empty`.
 - **`--danger-wash` / `--danger-ink`** (`#F2D8CF` / `#9A3115`) — signal lost, upload missing.
   `tracking-error`, `delivery-error`.
+- **`--trust-wash` / `--trust-ink`** (`#D8E6F2` / `#2A5C7D`) — a credential the platform has
+  **confirmed**, as against one merely stated. Added 2026-08-15 (rev 58) on the designer's call
+  for a blue Insured badge with a confirming checkmark. **The system's first cool colour**, and
+  the third semantic wash beside `warn` and `danger` — not a second accent: Signal Green is
+  still the one accent and still fill-only. The ink lands on the family's own rung, **5.65:1**
+  on its wash, the same figure `--warn-ink` stands at. No solid `--trust` is declared, because
+  nothing draws one. Home: `.dr-chip--trust` on `order-confirmed` and `order-confirmed-empty`.
 - **`--green-ink`** (`#4F6B22`) — the green that may stand alone, added 2026-08-12 (rev 48):
   signal green taken down to the text-safe rung, for the rare place green must be a word.
   Home (rev 49): the `Clear all` text button on `listings-filtered` — until rev 51 replaced
@@ -295,6 +302,8 @@ Every pair carried on a product surface, verified in the browser.
 | `--slate` | `--card` | 5.95:1 | keys, dates, ratings, body |
 | `--warn-ink` | `--card` | 5.72:1 | — |
 | `--warn-ink` | `--warn-wash` | 5.65:1 | late-notice mark |
+| `--trust-ink` | `--trust-wash` | 5.65:1 | Insured badge — label and its checkmark |
+| `--trust-ink` | `--card` | 5.93:1 | — |
 | `--green-ink` | `--page` | 5.58:1 | text button (declared — rev 51 took its one spend) |
 | `--slate` | `--media` | 5.51:1 | muted chips, upload glyph |
 | `--danger-ink` | `--danger-wash` | 5.49:1 | tracking-lost, photo-missing marks |

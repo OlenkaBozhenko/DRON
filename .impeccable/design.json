@@ -5,58 +5,235 @@
   "extensions": {
     "note": "Extracted from the ten painted product surfaces and verified by computed style in a browser. No tonal ramps are recorded: the project declares no tonal scale, and synthesising one would put colours in this file that no surface uses.",
     "colorMeta": {
-      "green":       { "role": "primary",  "displayName": "Signal Green",     "canonical": "#9BCF4A", "usage": "fill only — primary button, walked progress node, live status disc. 1.69:1 on page and 1.52:1 on card, so never text and never an icon stroke." },
-      "on-green":    { "role": "primary",  "displayName": "On Green",         "canonical": "#1A1A1A", "usage": "the only colour permitted on a green fill — 9.46:1. Never white (1.84:1)." },
-      "green-wash":  { "role": "primary",  "displayName": "Green Wash",       "canonical": "#E7F0D2", "usage": "the one green tint — selected tab, verified badge, milestone marks. Charcoal on it 14.75:1; 1.085:1 against the page, so it is a hue signal, not a luminance one." },
-      "page":        { "role": "neutral",  "displayName": "Page",             "canonical": "#F7F5F2", "usage": "screen ground and every system bar, so chrome melts into the page." },
-      "card":        { "role": "neutral",  "displayName": "Card",             "canonical": "#ECE9E4", "usage": "every card surface. 1.11:1 step on the page." },
-      "media":       { "role": "neutral",  "displayName": "Media",            "canonical": "#E4E1DA", "usage": "media wells, muted chips, skeleton ground. 1.20:1 step on the page." },
-      "btn2":        { "role": "neutral",  "displayName": "Secondary Button",  "canonical": "#D6D2C9", "usage": "secondary button, circular icon actions, skeleton bars, settled status disc." },
-      "inset":       { "role": "neutral",  "displayName": "Inset",            "canonical": "#F2F0EC", "usage": "derived color-mix(page 55%, card) — the From/To strip. 1.06:1 above the card." },
-      "ink":         { "role": "neutral",  "displayName": "Deep Charcoal",    "canonical": "#1A1A1A", "usage": "titles, values, button labels, every icon glyph, the focus ring." },
-      "slate":       { "role": "neutral",  "displayName": "Slate",            "canonical": "#5A5751", "usage": "labels, dates, keys, body copy, unselected tabs, pending milestones." },
-      "line":        { "role": "neutral",  "displayName": "Hairline",         "canonical": "#D9D5CE", "usage": "bar borders, row rules, the pending progress track. 1.21:1 on the card." },
-      "warn":        { "role": "tertiary", "displayName": "Warn (unspent)",   "canonical": "#E4A11B", "usage": "declared, drawn nowhere — 1.84:1 on the card, so it cannot carry a mark." },
-      "warn-ink":    { "role": "tertiary", "displayName": "Warn Ink",         "canonical": "#7A5200", "usage": "5.65:1 on its wash — the ETA-slipping mark." },
-      "warn-wash":   { "role": "tertiary", "displayName": "Warn Wash",        "canonical": "#F6E7C4", "usage": "the well behind the late-notice glyph." },
-      "danger":      { "role": "tertiary", "displayName": "Danger (unspent)", "canonical": "#C4462A", "usage": "declared, drawn nowhere — reaches only 4.07:1 on the card." },
-      "danger-ink":  { "role": "tertiary", "displayName": "Danger Ink",       "canonical": "#9A3115", "usage": "5.49:1 on its wash — signal lost, upload missing." },
-      "danger-wash": { "role": "tertiary", "displayName": "Danger Wash",      "canonical": "#F2D8CF", "usage": "the well behind the error glyph." }
+      "green": {
+        "role": "primary",
+        "displayName": "Signal Green",
+        "canonical": "#9BCF4A",
+        "usage": "fill only — primary button, walked progress node, live status disc. 1.69:1 on page and 1.52:1 on card, so never text and never an icon stroke."
+      },
+      "on-green": {
+        "role": "primary",
+        "displayName": "On Green",
+        "canonical": "#1A1A1A",
+        "usage": "the only colour permitted on a green fill — 9.46:1. Never white (1.84:1)."
+      },
+      "green-wash": {
+        "role": "primary",
+        "displayName": "Green Wash",
+        "canonical": "#E7F0D2",
+        "usage": "the one green tint — selected tab, verified badge, milestone marks. Charcoal on it 14.75:1; 1.085:1 against the page, so it is a hue signal, not a luminance one."
+      },
+      "page": {
+        "role": "neutral",
+        "displayName": "Page",
+        "canonical": "#F7F5F2",
+        "usage": "screen ground and every system bar, so chrome melts into the page."
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Card",
+        "canonical": "#ECE9E4",
+        "usage": "every card surface. 1.11:1 step on the page."
+      },
+      "media": {
+        "role": "neutral",
+        "displayName": "Media",
+        "canonical": "#E4E1DA",
+        "usage": "media wells, muted chips, skeleton ground. 1.20:1 step on the page."
+      },
+      "btn2": {
+        "role": "neutral",
+        "displayName": "Secondary Button",
+        "canonical": "#D6D2C9",
+        "usage": "secondary button, circular icon actions, skeleton bars, settled status disc."
+      },
+      "inset": {
+        "role": "neutral",
+        "displayName": "Inset",
+        "canonical": "#F2F0EC",
+        "usage": "derived color-mix(page 55%, card) — the From/To strip. 1.06:1 above the card."
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Deep Charcoal",
+        "canonical": "#1A1A1A",
+        "usage": "titles, values, button labels, every icon glyph, the focus ring."
+      },
+      "slate": {
+        "role": "neutral",
+        "displayName": "Slate",
+        "canonical": "#5A5751",
+        "usage": "labels, dates, keys, body copy, unselected tabs, pending milestones."
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#D9D5CE",
+        "usage": "bar borders, row rules, the pending progress track. 1.21:1 on the card."
+      },
+      "warn": {
+        "role": "tertiary",
+        "displayName": "Warn (unspent)",
+        "canonical": "#E4A11B",
+        "usage": "declared, drawn nowhere — 1.84:1 on the card, so it cannot carry a mark."
+      },
+      "warn-ink": {
+        "role": "tertiary",
+        "displayName": "Warn Ink",
+        "canonical": "#7A5200",
+        "usage": "5.65:1 on its wash — the ETA-slipping mark."
+      },
+      "warn-wash": {
+        "role": "tertiary",
+        "displayName": "Warn Wash",
+        "canonical": "#F6E7C4",
+        "usage": "the well behind the late-notice glyph."
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Danger (unspent)",
+        "canonical": "#C4462A",
+        "usage": "declared, drawn nowhere — reaches only 4.07:1 on the card."
+      },
+      "danger-ink": {
+        "role": "tertiary",
+        "displayName": "Danger Ink",
+        "canonical": "#9A3115",
+        "usage": "5.49:1 on its wash — signal lost, upload missing."
+      },
+      "danger-wash": {
+        "role": "tertiary",
+        "displayName": "Danger Wash",
+        "canonical": "#F2D8CF",
+        "usage": "the well behind the error glyph."
+      },
+      "trust-ink": {
+        "role": "tertiary",
+        "displayName": "Trust Ink",
+        "canonical": "#2A5C7D",
+        "usage": "the ink of a credential the platform has CONFIRMED — the Insured badge label and its checkmark. 5.65:1 on its own wash, the family rung --warn-ink already stands at; 5.93:1 on the card. Added 2026-08-15 (rev 58). It speaks and it strokes, which the fill-only rule permits because that rule is --green s."
+      },
+      "trust-wash": {
+        "role": "tertiary",
+        "displayName": "Trust Wash",
+        "canonical": "#D8E6F2",
+        "usage": "the ground of the confirmed-credential chip. The system s first cool colour and the third semantic wash beside warn and danger — not a second accent. 1.05:1 on the card, and 1.03:1 against the --media chip beside it, which is why the checkmark and not the hue carries the state (WCAG 1.4.1)."
+      }
     },
     "typographyMeta": {
-      "display":  { "displayName": "Display",  "purpose": "The outcome screen's own title — Delivered." },
-      "number":   { "displayName": "Number",   "purpose": "Money and hero figures, tabular." },
-      "title":    { "displayName": "Title",    "purpose": "Nav-bar screen title and alert title." },
-      "heading":  { "displayName": "Heading",  "purpose": "Card title, operator name, button label." },
-      "body":     { "displayName": "Body",     "purpose": "Place names and milestone text." },
-      "body-sm":  { "displayName": "Body S",   "purpose": "Row keys and alert copy." },
-      "meta":     { "displayName": "Meta",     "purpose": "Dates, ratings, list metadata." },
-      "caption":  { "displayName": "Caption",  "purpose": "Chips and badges." },
-      "micro":    { "displayName": "Micro",    "purpose": "Mono zone labels, route labels, loading hints." },
-      "micro-sm": { "displayName": "Micro S",  "purpose": "Milestone labels under a progress rail." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "The outcome screen's own title — Delivered."
+      },
+      "number": {
+        "displayName": "Number",
+        "purpose": "Money and hero figures, tabular."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Nav-bar screen title and alert title."
+      },
+      "heading": {
+        "displayName": "Heading",
+        "purpose": "Card title, operator name, button label."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Place names and milestone text."
+      },
+      "body-sm": {
+        "displayName": "Body S",
+        "purpose": "Row keys and alert copy."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Dates, ratings, list metadata."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Chips and badges."
+      },
+      "micro": {
+        "displayName": "Micro",
+        "purpose": "Mono zone labels, route labels, loading hints."
+      },
+      "micro-sm": {
+        "displayName": "Micro S",
+        "purpose": "Milestone labels under a progress rail."
+      }
     },
     "fontStacks": {
       "ui": "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, sans-serif",
       "mono": "ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace"
     },
     "shadows": [
-      { "name": "sh-sm",     "value": "0 1px 2px rgba(20,18,15,.05)", "purpose": "The only shadow spent in the system — under the green primary." },
-      { "name": "sh-card",   "value": "0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30)", "purpose": "Declared on all ten pages, applied to nothing. A recorded rung." },
-      { "name": "sh-raised", "value": "0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34)", "purpose": "Declared, applied to nothing." },
-      { "name": "ring-cutout", "value": "0 0 0 2px var(--card)", "purpose": "Geometry, not depth — the cutout ring around a status disc." },
-      { "name": "ring-now",    "value": "0 0 0 4px color-mix(in srgb, var(--green) 20%, transparent)", "purpose": "Geometry, not depth — the halo on the current milestone node." }
+      {
+        "name": "sh-sm",
+        "value": "0 1px 2px rgba(20,18,15,.05)",
+        "purpose": "The only shadow spent in the system — under the green primary."
+      },
+      {
+        "name": "sh-card",
+        "value": "0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30)",
+        "purpose": "Declared on all ten pages, applied to nothing. A recorded rung."
+      },
+      {
+        "name": "sh-raised",
+        "value": "0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34)",
+        "purpose": "Declared, applied to nothing."
+      },
+      {
+        "name": "ring-cutout",
+        "value": "0 0 0 2px var(--card)",
+        "purpose": "Geometry, not depth — the cutout ring around a status disc."
+      },
+      {
+        "name": "ring-now",
+        "value": "0 0 0 4px color-mix(in srgb, var(--green) 20%, transparent)",
+        "purpose": "Geometry, not depth — the halo on the current milestone node."
+      }
     ],
     "motion": [
-      { "name": "btn",      "value": "filter .15s, background .15s, transform .12s", "purpose": "Button state change; active adds translateY(1px) scale(.99)." },
-      { "name": "oh-ping",  "value": "1.8s cubic-bezier(.22,.61,.36,1) infinite",    "purpose": "One ring leaving a live status disc and fading. Far under 3 flashes/second." },
-      { "name": "skPulse",  "value": "1.4s ease-in-out infinite",                    "purpose": "Skeleton opacity 1 → .5, offset -.47s / -.93s per card." },
-      { "name": "skUp",     "value": "1.6s cubic-bezier(.22,.61,.36,1) infinite",    "purpose": "The arrow leaves the upload tray; the tray holds still. Rests visible at 0% and 100%." },
-      { "name": "reduced",  "value": "@media (prefers-reduced-motion: reduce) { animation: none }", "purpose": "Every loop above is switched off." }
+      {
+        "name": "btn",
+        "value": "filter .15s, background .15s, transform .12s",
+        "purpose": "Button state change; active adds translateY(1px) scale(.99)."
+      },
+      {
+        "name": "oh-ping",
+        "value": "1.8s cubic-bezier(.22,.61,.36,1) infinite",
+        "purpose": "One ring leaving a live status disc and fading. Far under 3 flashes/second."
+      },
+      {
+        "name": "skPulse",
+        "value": "1.4s ease-in-out infinite",
+        "purpose": "Skeleton opacity 1 → .5, offset -.47s / -.93s per card."
+      },
+      {
+        "name": "skUp",
+        "value": "1.6s cubic-bezier(.22,.61,.36,1) infinite",
+        "purpose": "The arrow leaves the upload tray; the tray holds still. Rests visible at 0% and 100%."
+      },
+      {
+        "name": "reduced",
+        "value": "@media (prefers-reduced-motion: reduce) { animation: none }",
+        "purpose": "Every loop above is switched off."
+      }
     ],
     "breakpoints": [
-      { "name": "narrow", "value": "389px", "purpose": "order-history only: card inset 20→16, group 20→18, list 28→22, drone box 96x72→68x52." }
+      {
+        "name": "narrow",
+        "value": "389px",
+        "purpose": "order-history only: card inset 20→16, group 20→18, list 28→22, drone box 96x72→68x52."
+      }
     ],
-    "frame": { "width": "375px", "height": "812px", "radius": "22px", "border": "1px solid #D9D5CE", "contentColumn": "341px" }
+    "frame": {
+      "width": "375px",
+      "height": "812px",
+      "radius": "22px",
+      "border": "1px solid #D9D5CE",
+      "contentColumn": "341px"
+    }
   },
   "components": [
     {
@@ -163,22 +340,86 @@
       "Zero text-contrast failures; lowest pair 4.77:1"
     ],
     "rules": [
-      { "name": "The Fill-Only Rule", "body": "Green is a fill, a tint, or a ring. It is never a text colour, never an icon stroke, and never a border on its own. Anything sitting on green or on the green tint is --ink.", "section": "colors" },
-      { "name": "The Two-Ink Rule", "body": "A string is --ink or --slate. There is no third text colour on a product surface, and no colour-coded text of any kind.", "section": "colors" },
-      { "name": "The Wash-Carries-Ink Rule", "body": "A semantic state is a pale wash with its own darkened ink on top. The saturated hue is declared for reference and drawn nowhere.", "section": "colors" },
-      { "name": "The No-White-No-Black Rule", "body": "The palette has no #FFFFFF and no #000000. Even the shadows are warm — every one is rgba(20, 18, 15, ...).", "section": "colors" },
-      { "name": "The Ten-Sizes Rule", "body": "On a product surface the ten sizes are the whole scale. A size that is none of them is a size nobody chose.", "section": "typography" },
-      { "name": "The Tabular Rule", "body": "Any figure a user compares or verifies — money, time, ETA, rating — carries font-variant-numeric: tabular-nums.", "section": "typography" },
-      { "name": "The Mono-Is-Structure Rule", "body": "The mono face labels structure, never content: zone annotations, FROM / TO / LOCATION, loading hints. No product string is set in mono.", "section": "typography" },
-      { "name": "The Between-Beats-Within Rule", "body": "Proximity groups in the right direction without a border or a shadow, but the rule holds per level, not as one number. Where the list IS the screen, the gap between two cards (28) is larger than any gap inside one (<=20). Where the list is one zone among several, the level above it takes over: main separates zones by 16, so the cards must close to 12 (.dr-list--snug) or they read as further apart than the zones themselves. 12 is still above the 4px rhythm inside a card, and the card's interior stays bounded by its drawn edge (--card on --page at 1.11:1 plus the 16px radius), not by whitespace it has to win.", "section": "layout" },
-      { "name": "The Skeleton-Measures-The-Load Rule", "body": "A loading block is the size of the thing it waits for. A skeleton is a claim about the loaded screen, so it expires when that screen changes treatment.", "section": "layout" },
-      { "name": "The One-Shadow Rule", "body": "Exactly one shadow is spent, and it is under the primary button. A card that casts no shadow at rest cannot grow one on hover.", "section": "elevation" },
-      { "name": "The Tone-Step Rule", "body": "Separation between two surfaces is a warm tone step plus a radius, and the step is measured before it is used. A surface boundary is a decorative edge — not text (1.4.3), not a control or state indicator (1.4.11) — so no contrast minimum applies to it.", "section": "elevation" },
-      { "name": "The Closed-Ramp Rule", "body": "Six radii and a circle for anything the eye reads as an object — a surface, a control, a well, a chip. Below that, an internal detail may take any radius on the 2 / 4 / 8 scale.", "section": "shapes" },
-      { "name": "The Cut-By-The-Parent Rule", "body": "A full-bleed child is square and the parent's overflow:hidden gives it the corner. It never restates the parent's radius.", "section": "shapes" },
-      { "name": "The One-Component-One-Value Rule", "body": "The same component drawn on two screens carries the same numbers. The tracking ETA panel and the delivery details panel are one component; the order card's node and the tracking timeline's node are one node.", "section": "components" },
-      { "name": "The Built-Not-Dimmed Rule", "body": "A disabled or inactive control is built from its own colour pair. Blanket opacity is never the mechanism — it produces a ratio nobody measured.", "section": "components" },
-      { "name": "The Shape-And-Behaviour Rule", "body": "Two states never differ by colour alone. A dot pings and a check sits; a clock is not a check; each keeps a text accessible name.", "section": "components" }
+      {
+        "name": "The Fill-Only Rule",
+        "body": "Green is a fill, a tint, or a ring. It is never a text colour, never an icon stroke, and never a border on its own. Anything sitting on green or on the green tint is --ink.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Ink Rule",
+        "body": "A string is --ink or --slate. There is no third text colour on a product surface, and no colour-coded text of any kind.",
+        "section": "colors"
+      },
+      {
+        "name": "The Wash-Carries-Ink Rule",
+        "body": "A semantic state is a pale wash with its own darkened ink on top. The saturated hue is declared for reference and drawn nowhere.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-White-No-Black Rule",
+        "body": "The palette has no #FFFFFF and no #000000. Even the shadows are warm — every one is rgba(20, 18, 15, ...).",
+        "section": "colors"
+      },
+      {
+        "name": "The Ten-Sizes Rule",
+        "body": "On a product surface the ten sizes are the whole scale. A size that is none of them is a size nobody chose.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Any figure a user compares or verifies — money, time, ETA, rating — carries font-variant-numeric: tabular-nums.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono-Is-Structure Rule",
+        "body": "The mono face labels structure, never content: zone annotations, FROM / TO / LOCATION, loading hints. No product string is set in mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The Between-Beats-Within Rule",
+        "body": "Proximity groups in the right direction without a border or a shadow, but the rule holds per level, not as one number. Where the list IS the screen, the gap between two cards (28) is larger than any gap inside one (<=20). Where the list is one zone among several, the level above it takes over: main separates zones by 16, so the cards must close to 12 (.dr-list--snug) or they read as further apart than the zones themselves. 12 is still above the 4px rhythm inside a card, and the card's interior stays bounded by its drawn edge (--card on --page at 1.11:1 plus the 16px radius), not by whitespace it has to win.",
+        "section": "layout"
+      },
+      {
+        "name": "The Skeleton-Measures-The-Load Rule",
+        "body": "A loading block is the size of the thing it waits for. A skeleton is a claim about the loaded screen, so it expires when that screen changes treatment.",
+        "section": "layout"
+      },
+      {
+        "name": "The One-Shadow Rule",
+        "body": "Exactly one shadow is spent, and it is under the primary button. A card that casts no shadow at rest cannot grow one on hover.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Tone-Step Rule",
+        "body": "Separation between two surfaces is a warm tone step plus a radius, and the step is measured before it is used. A surface boundary is a decorative edge — not text (1.4.3), not a control or state indicator (1.4.11) — so no contrast minimum applies to it.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Closed-Ramp Rule",
+        "body": "Six radii and a circle for anything the eye reads as an object — a surface, a control, a well, a chip. Below that, an internal detail may take any radius on the 2 / 4 / 8 scale.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Cut-By-The-Parent Rule",
+        "body": "A full-bleed child is square and the parent's overflow:hidden gives it the corner. It never restates the parent's radius.",
+        "section": "shapes"
+      },
+      {
+        "name": "The One-Component-One-Value Rule",
+        "body": "The same component drawn on two screens carries the same numbers. The tracking ETA panel and the delivery details panel are one component; the order card's node and the tracking timeline's node are one node.",
+        "section": "components"
+      },
+      {
+        "name": "The Built-Not-Dimmed Rule",
+        "body": "A disabled or inactive control is built from its own colour pair. Blanket opacity is never the mechanism — it produces a ratio nobody measured.",
+        "section": "components"
+      },
+      {
+        "name": "The Shape-And-Behaviour Rule",
+        "body": "Two states never differ by colour alone. A dot pings and a check sits; a clock is not a check; each keeps a text accessible name.",
+        "section": "components"
+      }
     ],
     "dos": [
       "Do spend green as a fill and put --ink on it — 9.46:1 on the fill, 14.75:1 on the tint.",
