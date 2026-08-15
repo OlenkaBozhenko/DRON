@@ -1215,32 +1215,37 @@ header.dr-topbar,
   height: var(--h-control); background: transparent;
   -webkit-appearance: none; appearance: none; pointer-events: none;
 }
-/* The ring comes off, 2026-08-15, the designer's word — «видали в булітах чорну
-   обводку» — and this is a RECORDED DEPARTURE, not a value that passes. The bare
-   disc is --green on --card at 1.52:1 where WCAG 1.4.11 asks 3:1 of what
-   identifies a control: half the ratio. Rev 70 measured this exact figure and
-   kept the charcoal ring because of it; she has now overruled that, having been
-   shown the number and two conforming alternatives (a --green-ink rim at 5.01:1,
-   or the solid charcoal disc at 14.37:1). It stands on the precedent rev 50 set
-   for the mode checkmark — an accepted below-3:1 mark — with the difference
-   named rather than glossed: a checkmark carries presence, a thumb carries a
-   POSITION, so more rests on it. What does not move is the mitigation the
-   component already had: each thumb sits on the end of the --ink filled span at
-   14.37:1, so the band's edges stay legible even where the disc does not read,
-   and the readout states both numbers in words above it.
-   The disc also loses the ring's 2px: WebKit drew 24 + 2 + 2 = 28 (its thumb is
-   not border-box), Gecko drew 24 outer with a 20 inner. Both now stand at a flat
-   24 — still exactly WCAG 2.5.8's AA floor, still in the 44px lane for HIG. */
+/* A solid --ink disc, 2026-08-15, the designer's word — «зроби кружечки
+   чорними». Fourth setting of one component in a day, and the first that needs
+   no departure recorded: rev 66 built a --card disc inside a 2px --ink ring,
+   rev 70 filled it green, rev 71 took the ring off and ACCEPTED --green on
+   --card at 1.52:1 against WCAG 1.4.11's 3:1, rev 75 makes the disc itself
+   black. --ink on --card is 14.37:1 — the floor cleared by ×4.79 — so rev 71's
+   accepted below-3:1 mark comes OFF the ledger rather than being argued down.
+   "Black" is --ink #1A1A1A: the palette holds no #000000 by its own rule, so
+   this is the only black there is to give her.
+   Green leaves the band entirely, which mends what rev 70 broke: §5's ONE green
+   control per screen holds again, `Apply filters` being the only one on the
+   frame. The frame's green returns to rev 66's measured 5.69%.
+   The one figure that gets worse, stated rather than buried: where the disc
+   overlaps the --ink filled span it is 1:1 — the same colour, joined. The
+   handle is read by its silhouette against --card (14.37:1) and against the
+   --btn2 rail (11.53:1), not by a break in the span; 20 of the disc's 24px
+   stand proud of the 4px rail, so the shape is what carries it. Under focus
+   the --ink ring sits 2px off an --ink disc: the visible indicator is the
+   --card gap between them, 14.37:1 to both sides (WCAG 2.4.7 ✓).
+   Geometry unchanged from rev 71: a flat 24px, exactly WCAG 2.5.8's AA floor,
+   in the 44px lane HIG asks for. */
 .dr-range__input::-webkit-slider-thumb{
   -webkit-appearance: none; appearance: none;
   width: var(--sz-box); height: var(--sz-box); border-radius: var(--r-pill);
-  background: var(--green); border: 0;
+  background: var(--ink); border: 0;
   cursor: grab; pointer-events: auto;
 }
 .dr-range__input::-moz-range-thumb{
   width: var(--sz-box); height: var(--sz-box); box-sizing: border-box;
   border-radius: var(--r-pill);
-  background: var(--green); border: 0;
+  background: var(--ink); border: 0;
   cursor: grab; pointer-events: auto;
 }
 .dr-range__input:focus{ outline: none; }
