@@ -49,6 +49,8 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | account | account-edit.html | Header / topbar | button | ‹ Back | ‹ Back to Account |
 | account | account-edit.html | Documents (Drone documents) | button | Upload document | Add document |
 | account | account-edit.html | Documents (Insurance) | button | Upload document | Add document |
+| account | account-edit.html | Documents (Drone documents) | button | Add document | Add drone documents (designer, 2026-08-13: the upload action becomes a text action and the link names its object; her "Upload documents about drone" lands as A3's own **Add + object** — `voice.md` bars ~~Upload~~) |
+| account | account-edit.html | Documents (Insurance) | button | Add document | Add insurance (same call — the one attach verb, the concrete object) |
 | contact-support | contact-support.html | Topbar | button | ‹ Back | ‹ Back to Help |
 | contact-support | contact-support.html | Message | placeholder | Tell the agent what's still wrong and what you'd like to happen. | Describe the issue and what you'd like to happen. |
 | contact-support | contact-support.html | Outcome (actionbar) | button | Escalate — still unresolved | Still unresolved |
@@ -301,6 +303,10 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - A new operator screen **`operator-account.html`** (the Operator Account tab, fixing a nav leak) appeared during this pass — audited (V7/V8) and included in the master table.
 - Sample-date DATA drift in `order-history` refreshed by the regeneration.
 
+**Sync — 2026-08-13 (counter zone removed)**
+- The **Counter zone left the five client listing pages** (`listings`, `-filtered`, `-empty`, `-error`, `-loading`) on the designer's word on the built error page: *"remove this and sorting — I have filters instead."* The `Sort:` control and the sheet's Price dimension fell in the same day's sorting-removal pass (logged in `_screens.md`); this call takes the row itself — the count was the list restating its own length. Its 8 remaining rows leave the master table: the counts (`3 services` / `available now · Kyiv` / `2 services` / `· Podil · today` / `0 services`), the two state messages (`Couldn't load`, `Loading services…`), and `listings-error`'s `ERROR` placeholder — that mark is now the alert-triangle icon (`dr-mark--danger`, `aria-hidden`), carrying no string.
+- **Consequence to note:** `listings-loading` loses *"Loading services…"* — the one product string (and its `role="status"` live region) that named what was loading (Microcopy › loading; `WCAG 4.1.3`). The skeletons remain; whether the loading state should name itself somewhere else is the designer's call.
+
 ---
 
 ## Master table — every string
@@ -317,11 +323,11 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account-edit | Personal | Used for order updates and operator contact. | Body |  |
 | account-edit | Documents | Drone documents | Field label |  |
 | account-edit | Documents | DRONE REGISTRATION / DOCUMENTS | Body | WF-PH |
-| account-edit | Documents | Add document | Button |  |
+| account-edit | Documents | Add drone documents | Button |  |
 | account-edit | Documents | Registration, serial, or manufacturer papers (PDF / photo). | Body |  |
 | account-edit | Documents | Insurance | Field label |  |
 | account-edit | Documents | INSURANCE DOCUMENT | Body | WF-PH |
-| account-edit | Documents | Add document | Button |  |
+| account-edit | Documents | Add insurance | Button |  |
 | account-edit | Documents | Valid liability insurance covering the drone. | Body |  |
 | account-edit | Preferences | Payment method | Field label |  |
 | account-edit | Preferences | Visa •••• 4921 | Body | DATA |
@@ -515,8 +521,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-empty | Search & filters | Search services | Field placeholder |  |
 | listings-empty | Search & filters | crop spraying | Field value | USER |
 | listings-empty | Search & filters | Filters | Button |  |
-| listings-empty | Counter | 0 services | State message |  |
-| listings-empty | Counter | Sort: Recommended ▾ | Button |  |
 | listings-empty | Service list | EMPTY | State message | WF-PH |
 | listings-empty | Service list | No services match your search | State message |  |
 | listings-empty | Service list | No services match “crop spraying” with your filters. Clear the filters or search again. | State message |  |
@@ -533,9 +537,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-error | — | Inspection | Button |  |
 | listings-error | Search & filters | Search services | Field placeholder |  |
 | listings-error | Search & filters | Filters | Button |  |
-| listings-error | Counter | Couldn't load | State message |  |
-| listings-error | Counter | Sort: Recommended ▾ | Button |  |
-| listings-error | Service list | ERROR | State message | WF-PH |
 | listings-error | Service list | Couldn't load services | State message |  |
 | listings-error | Service list | No internet connection. Check it and try again. | State message |  |
 | listings-error | Service list | Try again | Button |  |
@@ -550,13 +551,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filtered | — | Aerial photo & video | Button |  |
 | listings-filtered | — | Inspection | Button |  |
 | listings-filtered | Search & filters | Search services | Field placeholder |  |
-| listings-filtered | Applied filters | High → Low | Body | DATA · the "Price:" prefix came off at the designer's call, 2026-08-03 |
 | listings-filtered | Applied filters | Today | Body |  |
 | listings-filtered | Applied filters | Podil | Body |  |
-| listings-filtered | Applied filters | Clear all | Body |  |
-| listings-filtered | Counter | 2 services | Body |  |
-| listings-filtered | Counter | · Podil · today | Body |  |
-| listings-filtered | Counter | Sort: Price ↓ ▾ | Button |  |
+| listings-filtered | Applied filters | All | Body | the leading chip — took the exit-to-full-list job from the Clear all text button at the designer's call, 2026-08-13 |
 | listings-filtered | Service list · cards | AERIAL | Body | WF-PH |
 | listings-filtered | Service list · cards | Aerial photo & video | Heading |  |
 | listings-filtered | Service list · cards | Events, real-estate listings, personal occasions | Body |  |
@@ -569,14 +566,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filtered | Service list · cards | Account | Button |  |
 | listings-filters | — | Filters | Heading |  |
 | listings-filters | — | Clear all | Body |  |
-| listings-filters | Price | Price | Heading |  |
-| listings-filters | Price | Recommended | Body |  |
-| listings-filters | Price | default | Body |  |
-| listings-filters | Price | recommended | Field value | DATA |
-| listings-filters | Price | Price: Low → High | Body | DATA |
-| listings-filters | Price | asc | Field value | DATA |
-| listings-filters | Price | Price: High → Low | Body | DATA |
-| listings-filters | Price | desc | Field value | DATA |
 | listings-filters | Time | Time | Heading |  |
 | listings-filters | Time | Available now | Body |  |
 | listings-filters | Time | now | Field value | DATA |
@@ -605,8 +594,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-loading | — | Inspection | Button |  |
 | listings-loading | Search & filters | Search services | Field placeholder |  |
 | listings-loading | Search & filters | Filters | Button |  |
-| listings-loading | Counter | Loading services… | State message |  |
-| listings-loading | Counter | Sort: Recommended ▾ | Button |  |
 | listings-loading | Service list | Browse services | Button |  |
 | listings-loading | Service list | Order | Button |  |
 | listings-loading | Service list | Activity | Button |  |
@@ -618,9 +605,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings | — | Aerial photo & video | Button |  |
 | listings | — | Inspection | Button |  |
 | listings | Search & filters | Search services | Field placeholder |  |
-| listings | Counter | 3 services | Body |  |
-| listings | Counter | available now · Kyiv | Body |  |
-| listings | Counter | Sort: Recommended ▾ | Button |  |
 | listings | Service list · cards | DELIVERY | Body | WF-PH |
 | listings | Service list · cards | Package delivery | Heading |  |
 | listings | Service list · cards | Parcels, documents, small goods — across the city | Body |  |
@@ -1041,7 +1025,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | rate | — | ‹ Delivered | Button |  |
 | rate | — | Rate the order | Heading |  |
 | rate | Rating | How would you rate this order? | Body |  |
-| rate | Review | Share your review of this order | Field label |  |
+| rate | Review | Your review | Field label | SR-ONLY — visually the card shows one sentence: the placeholder (designer, 2026-08-13) |
 | rate | Review | What the operator did well, and anything to improve | Field placeholder |  |
 | rate | Review | Submit review | Button |  |
 | rate | Review | Book again | Button |  |
