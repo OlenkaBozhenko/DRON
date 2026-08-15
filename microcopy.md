@@ -561,7 +561,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | contact-support | Agent panel | Order #DR-4821 | Body |  |
 | contact-support | Message | Your message | Field label | SR-ONLY — visually the field shows one sentence: the placeholder (designer, 2026-08-15) |
 | contact-support | Message | Describe the issue and what you'd like to happen. | Field placeholder |  |
-| contact-support | Message | Call support | Button |  |
+| contact-support | Outcome (actionbar) | Call support | Button | Moved out of the Message zone into the footer action bar, 2026-08-16 (rev 106) — string unchanged |
 | contact-support | Message | Mark resolved | Button |  |
 | contact-support | Outcome | Issue marked resolved. | Toast |  |
 | contact-support | Message | Ask a senior agent | Button |  |
