@@ -1,0 +1,35 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>tmp measure</title></head>
+<body>
+<iframe id="f" src="/wireframes/contact-support.html" style="width:1400px;height:1000px;border:0"></iframe>
+<pre id="out">pending</pre>
+<script>
+function px(n){ return Math.round(n*100)/100; }
+window.addEventListener('load', function(){
+  setTimeout(function(){
+    var d = document.getElementById('f').contentDocument;
+    var out = [];
+    var bar = d.querySelector('.dr-actionbar');
+    var main = d.querySelector('.dr-main');
+    var frame = d.querySelector('.wf-frame');
+    var btns = bar ? bar.querySelectorAll('.dr-btn') : [];
+    out.push('frame: ' + px(frame.getBoundingClientRect().width) + ' x ' + px(frame.getBoundingClientRect().height));
+    out.push('main box: ' + px(main.getBoundingClientRect().height) + '  scrollHeight ' + main.scrollHeight + '  overflow ' + (main.scrollHeight > main.clientHeight ? 'SCROLLS' : 'fits'));
+    out.push('actionbar: ' + px(bar.getBoundingClientRect().height));
+    for (var i=0;i<btns.length;i++){
+      var b = btns[i], r = b.getBoundingClientRect(), cs = getComputedStyle(b);
+      out.push('  btn['+i+'] "'+b.textContent.trim()+'" ' + px(r.width) + ' x ' + px(r.height) +
+        ' | bg ' + cs.backgroundColor + ' | ink ' + cs.color + ' | radius ' + cs.borderRadius);
+    }
+    for (var i=1;i<btns.length;i++){
+      out.push('  gap ['+(i-1)+'→'+i+'] ' + px(btns[i].getBoundingClientRect().top - btns[i-1].getBoundingClientRect().bottom));
+    }
+    var ta = d.querySelector('#ms');
+    out.push('textarea: ' + px(ta.getBoundingClientRect().width) + ' x ' + px(ta.getBoundingClientRect().height));
+    var form = d.querySelector('form[aria-label="Message support"]');
+    out.push('form children: ' + form.children.length + ' -> ' + [].map.call(form.children, function(c){return c.className;}).join(' | '));
+    document.getElementById('out').textContent = out.join('\n');
+  }, 600);
+});
+</script>
+</body></html>
