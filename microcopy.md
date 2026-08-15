@@ -327,6 +327,12 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **Voice check.** The heading is a plain noun naming what the group holds — no verb, no adjective, no cliché (`voice.md` P1, P2). "Documents" covers the insurance card too, since an insurance certificate is a document; the designer was shown that reading and chose the shared heading anyway, so it is her call and is recorded as one, not as a defect.
 - **Drift found, recorded, not corrected:** the master table still carries two `WF-PH` rows for this zone — `DRONE REGISTRATION / DOCUMENTS` and `INSURANCE DOCUMENT` — which are the grayscale wireframe's placeholder labels. Neither string is in the painted build; the painted zone has carried a glyph since 2026-08-03. They are left in place for the designer's word rather than deleted.
 
+**Sync — 2026-08-15 (the second toast)**
+- **Notify me when available** on `listings-empty` now answers: **Request received. We'll tell you when it's available.** — the designer's *«при натисканні кнопки покажи toast… що реквест отримано, як тільки з'явиться ми повідомимо»*, which is the sentence she dictated, cut to a toast's length.
+- **Two sentences because the state needs both:** the fact (*it is recorded*) and what happens next (*we come to you — you do not have to come back and check*). That is the success rule read literally, and it is the whole reason the button exists: it converts a dead end into a promise. No celebration, no exclamation, no *successfully*.
+- **"We" is already this product's voice** — `contact-support-error` says *We couldn't resolve this in chat*, `tracking-error` says *We've lost the live signal*. The platform speaks as **we** when it is the actor, and the user is **you** throughout.
+- **Wording checked against `flows.md`, and they differ on purpose.** The flow's terminal node reads *“Saved: notify me when DRON launches here”*, and `Saved` is the outcome word there. The toast says **Request received** instead, because *saved* describes the system's filing and *received* describes the exchange the user just had — P1's own preference for the outcome over the mechanism. **Open:** whether `flows.md`'s node should be reworded to match is hers; the two are consistent in meaning and differ only in which end of the act they name.
+
 **Sync — 2026-08-15 (the first toast)**
 - One new string, and the product's **first toast**: **Issue marked resolved.** — the designer's *«по кліку на кнопку покажи тост»* on `contact-support`'s **Mark resolved**.
 - **Written to the success rule, not to a celebration.** `voice.md` asks a success state for *the fact and the next step, no celebration*: this states the fact and stops. It uses the vocabulary's own word for the thing — **issue** — not "case", "ticket" or "complaint", and it does not contain *successfully*, which the Never list bars. One sentence, one full stop, no exclamation.
@@ -587,6 +593,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-empty | Service list | No services match “crop spraying” with your filters. Clear the filters or search again. | State message |  |
 | listings-empty | Service list | Clear filters | Button |  |
 | listings-empty | Service list | Notify me when available | Button |  |
+| listings-empty | Service list | Request received. We'll tell you when it's available. | Toast |  |
 | listings-empty | Service list | Order | Button |  |
 | listings-empty | Service list | Activity | Button |  |
 | listings-empty | Service list | Help | Button |  |
