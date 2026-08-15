@@ -605,6 +605,30 @@ Measured: typed `--ink` **14.37:1 → 15.99:1** moving off the card onto the pag
 stand at the frame's own 16; placeholder stays `--slate` at **5.95:1**, the designer's call when shown
 that `WCAG 1.4.3` floors a placeholder at 4.5:1 and the lightest passing warm grey is 4.52:1.
 
+### The picker row — a form row that opens
+
+A row whose value is chosen, not typed, is `.dr-picker`: a native `<details>` whose `<summary>`
+**is** the `.dr-field`. It opens **in flow** and pushes the rows below it down — the mechanism
+`.dr-disclosure` has carried since 2026-08-02, so no picker floats and the 40-screen count of
+modals, sheets, popovers and `position:fixed` is unchanged. Set 2026-08-16 (rev 101) on the
+designer's word, on `account-edit`; it replaced a `<span role="button">` that opened nothing and a
+text-glyph **▾** that was not in the icon system.
+
+**The trailing chevron is pinned by the shrink order, not by a number:** label `flex 0 0 auto`,
+value `flex 0 1 auto` with `min-width:0` and the ellipsis, chevron `flex:none`, row
+**`flex-wrap: nowrap`**. The `nowrap` is load-bearing — measured, a 66-character value took the wrap
+instead of the ellipsis and the row went **44 → 78** with the chevron **325px** in from the edge.
+Measured after: both rows **44 × 341**, chevron right edge flush with the row's, gap to edge **0**,
+on a 14-character value and a 56-character one alike; no horizontal overflow (`scrollWidth` =
+`clientWidth` = **373**).
+
+Menu `--card` at `--r-card` **16**, **1.11:1** on the page, `8px` clear below it. Options are
+`.dr-picker__item` — the same block as `.dr-disclosure__item`, plus a `<button>` reset — **44** tall,
+`--ink` **14.37:1**, hover `--media`, ring **2.5px `--ink`** drawn inside. Row value `--ink`
+**15.99:1**; label and chevron `--slate` **6.62:1**. Every option holds the current-item checkmark
+and only one shows it (`visibility`, never absence, so no row moves): `--ink` **14.37:1**, with
+`aria-current="true"` beside it. The chevron turns **180°** on open, on the button's own `.12s`.
+
 ### Text areas, and the focus rule they changed
 
 A multiline area carries its own ground again as of 2026-08-16 (rev 100): **`--media` at

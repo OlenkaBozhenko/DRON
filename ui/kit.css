@@ -1135,12 +1135,18 @@ header.dr-topbar,
    The field gives up its own 16 with the panel, or the text would stand at 32
    from the frame (the main's 16 plus the field's own); and the separator drops
    its indent, because there is no panel edge left for it to indent from. */
-.dr-rows:has(> .dr-field){
+/* .dr-picker rides in the same list — its row IS a .dr-field, one level down
+   inside the <details>, so every rule that names a row has to name it too. */
+.dr-rows:has(> .dr-field, > .dr-picker){
   padding-left: 0; padding-right: 0;
   background: none; border-radius: 0;
 }
-.dr-rows:has(> .dr-field) > .dr-field{ padding-left: 0; padding-right: 0; }
-.dr-rows:has(> .dr-field) > .dr-field + .dr-field::before{ left: 0; }
+.dr-rows:has(> .dr-field, > .dr-picker) > .dr-field,
+.dr-rows:has(> .dr-field, > .dr-picker) > .dr-picker > .dr-field{ padding-left: 0; padding-right: 0; }
+.dr-rows:has(> .dr-field, > .dr-picker) > .dr-field + .dr-field::before,
+.dr-rows:has(> .dr-field, > .dr-picker) > .dr-picker + .dr-field::before,
+.dr-rows:has(> .dr-field, > .dr-picker) > .dr-field + .dr-picker > .dr-field::before,
+.dr-rows:has(> .dr-field, > .dr-picker) > .dr-picker + .dr-picker > .dr-field::before{ left: 0; }
 .dr-field + .dr-field::before{
   content: ""; position: absolute; left: var(--sp-screen); right: 0; top: 0;
   height: var(--hair); background: var(--line);
@@ -1245,6 +1251,87 @@ header.dr-topbar,
    332px card. A target is not sized by the length of its label. */
 .dr-rows--center .dr-upload{ flex-basis: 100%; }
 
+/* ── THE PICKER ROW ───────────────────────────────────────────────────────
+   The designer's call 2026-08-16 (rev 101), on the built `account-edit`:
+   «зроби щоб відкривались dropdowns і іконка стрілка вниз в правому крайньому
+   кутку незалежно від того який довжиною текст».
+
+   Three faults, all in the markup and none in the design. The row was a
+   `<span role="button">` that opened NOTHING — a control that announces a
+   menu and has none is `WCAG 4.1.2` at its plainest. Its mark was the text
+   glyph ▾ (U+25BE), a character in the running font, not the flat 24-grid
+   outline every other arrow in this kit is drawn on. And the value and the
+   mark sat inline after the label, so the arrow travelled with the length of
+   the string instead of standing at the row's trailing edge.
+
+   IT OPENS THE WAY THIS PRODUCT ALREADY OPENS THINGS — .dr-disclosure's
+   native `<details>`, IN FLOW, pushing the page down. Nothing floats here and
+   a picker is not the exception that starts it: `HIG · Disclosure controls`
+   describes exactly this shape, and account's mode picker has shipped it
+   since 2026-08-12. So the options reuse that component's own row —
+   .dr-picker__item is declared in the same block as .dr-disclosure__item, one
+   set of values for one shape — and only the button reset is added here,
+   because these options are `<button>`s (a value, not a route) where the mode
+   picker's are `<a href>`.
+
+   THE ARROW IS PINNED BY THE SHRINK ORDER, NOT BY A NUMBER. The label does
+   not shrink (0 0 auto), the value takes all of the slack and ellipsizes
+   (0 1 auto, min-width 0 — already in .dr-field__value), the chevron never
+   shrinks (.dr-field__chev is flex:none). So «Visa •••• 4921» and a string
+   three times its length leave the chevron in the same column: the row's
+   trailing edge. margin-left:auto on the value carries the gap between.
+
+   44 by construction (--h-control); the summary takes Enter and Space with
+   no script, the options are real buttons; the ring is drawn INSIDE
+   (`WCAG 2.4.11`, 2.5px --ink) because a full-bleed row has no room outside
+   itself. Nothing here needs JS to open — the page's script only makes the
+   pick land. */
+.dr-picker{ display: block; }
+/* nowrap is load-bearing, and it was measured: .dr-field wraps by default for
+   the multiline area's own label line, and on a 375 frame a 66-character value
+   took the wrap instead of the ellipsis — the row grew 44 → 78 and the chevron
+   fell to the second line, 325px in from the edge. The picker row has no
+   second line to give, so it takes none. */
+.dr-picker > .dr-field{ cursor: pointer; list-style: none; flex-wrap: nowrap; }
+.dr-picker > .dr-field::-webkit-details-marker{ display: none; }
+.dr-picker > .dr-field > .dr-field__label{ flex: 0 0 auto; }
+.dr-picker > .dr-field > .dr-field__value{ flex: 0 1 auto; margin-left: auto; }
+.dr-picker > .dr-field:focus-visible{
+  outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1);
+}
+/* the turn is the direction, the animation is only how it gets there —
+   the same sentence .dr-disclosure's chevron has carried since 2026-08-02 */
+.dr-picker > .dr-field .dr-ic{ transition: transform var(--dur-fast); }
+.dr-picker[open] > .dr-field .dr-ic{ transform: rotate(var(--turn-open)); }
+/* the opened menu is a card that appeared under the row — the plain list has
+   no ground of its own, so the surface that arrives is what marks it as one
+   thing. --card on --page, the system's real 1.11:1 step. */
+.dr-picker__list{
+  background: var(--card); border-radius: var(--r-card); overflow: hidden;
+  margin: 0 0 var(--sp-within-lg);
+}
+/* the button reset, and nothing else — the row's values come from
+   .dr-disclosure__item, which this shares */
+.dr-picker__item{
+  width: 100%; border: 0; background: none; cursor: pointer;
+  font-family: var(--font-ui); font-weight: var(--weight-regular); text-align: left;
+}
+/* EVERY option holds the mark and only the current one shows it: hidden by
+   visibility, never by absence, so no row moves when the pick changes. The
+   mark's presence is the carrier — with aria-current="true" beside it for AT
+   (`WCAG 1.4.1`, `4.1.2`) — and it is --ink at 14.37:1 on the card, the value
+   rev 86 settled for the mode picker. */
+.dr-picker__item .dr-ic{ visibility: hidden; }
+.dr-picker__item[aria-current="true"] .dr-ic{ visibility: visible; }
+/* the separator, restated for a list that mixes plain rows and pickers: a
+   picker's row is one level down, so the adjacency has to reach through it */
+.dr-picker + .dr-field::before,
+.dr-field + .dr-picker > .dr-field::before,
+.dr-picker + .dr-picker > .dr-field::before{
+  content: ""; position: absolute; left: var(--sp-screen); right: 0; top: 0;
+  height: var(--hair); background: var(--line);
+}
+
 /* A field keeps a ground only outside the grouped label-value anatomy:
    the search bar (in no list at all) and, since 2026-08-12, the empty
    multiline area (no value to identify it). Both wear --media at --r-input. */
@@ -1262,6 +1349,13 @@ header.dr-topbar,
   flex: 1; min-width: 0; border: 0; background: transparent; outline: none;
   font-family: var(--font-ui); font-size: var(--t-heading-size); color: var(--ink);    /* 13.33:1 */
 }
+/* The search bar was the one text field left killing its outline without
+   declaring what replaces it — rev 100 set the rule on .dr-field__input and
+   this selector was not carried with it. Same reading, same criterion: WCAG
+   2.4.7 Understanding names the text cursor in a text field as a visible focus
+   indicator, so the caret carries it, declared rather than inherited.
+   --ink on --media is 13.33:1, the ground's own recorded pair (rev 101). */
+.dr-search input{ caret-color: var(--ink); }
 .dr-search input::placeholder{ color: var(--slate); }
 
 /* Shape says how many: a circle is one of a mutually exclusive set, a square
@@ -1509,13 +1603,17 @@ header.dr-topbar,
 .dr-disclosure > summary .dr-ic{ color: var(--slate); transition: transform var(--dur-fast); }
 .dr-disclosure[open] > summary .dr-ic{ transform: rotate(var(--turn-open)); }
 .dr-disclosure[open] > summary{ border-bottom: var(--hair) solid var(--line); }
-.dr-disclosure__item{
+/* one block, two names: .dr-picker__item is this same row wearing a <button>
+   (see THE PICKER ROW). A shape gets one set of values. */
+.dr-disclosure__item,
+.dr-picker__item{
   display: flex; align-items: center; justify-content: space-between; gap: var(--sp-within-lg);
   min-height: var(--h-control); padding: 0 var(--sp-screen);
   border-top: var(--hair) solid var(--line);
   text-decoration: none; color: var(--ink); font-size: var(--t-heading-size);
 }
-.dr-disclosure__item:first-of-type{ border-top: 0; }
+.dr-disclosure__item:first-of-type,
+.dr-picker__item:first-of-type{ border-top: 0; }
 /* Settled 2026-08-12 by the designer, in three steps: only the CURRENT row
    carries the mark; the mark is a BARE checkmark — no disc, no fill,
    because this is neither a checkbox nor a radio but iOS's own
@@ -1525,9 +1623,12 @@ header.dr-topbar,
    14.37:1 on the card, so the mark clears the criterion outright and the
    acceptance is retired rather than argued. The carrier does not change --
    the mark's presence, plus aria-current="true" for AT. The other rows answer with hover alone. */
-.dr-disclosure__item[aria-current="true"] .dr-ic{ color: var(--ink); }   /* 14.37:1 — rev 86 */
-.dr-disclosure__item:hover{ background: var(--media); }
-.dr-disclosure__item:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); }
+.dr-disclosure__item[aria-current="true"] .dr-ic,
+.dr-picker__item[aria-current="true"] .dr-ic{ color: var(--ink); }   /* 14.37:1 — rev 86 */
+.dr-disclosure__item:hover,
+.dr-picker__item:hover{ background: var(--media); }
+.dr-disclosure__item:focus-visible,
+.dr-picker__item:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); }
 
 /* ═══ THE UPLOAD ZONE ═════════════════════════════════════════════════════
    Approved 2026-08-03: the dashed boundary does not survive painting — rev 43

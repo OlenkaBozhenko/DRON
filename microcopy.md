@@ -497,12 +497,16 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account-edit | Documents | INSURANCE DOCUMENT | Body | WF-PH · not in the painted build — see the 2026-08-15 sync |
 | account-edit | Documents | Add insurance | Button | the card's title |
 | account-edit | Documents | Valid liability insurance covering the drone. | Body | the card's subtitle |
-| account-edit | Preferences | Payment method | Field label |  |
-| account-edit | Preferences | Visa •••• 4921 | Body | DATA |
+| account-edit | Preferences | Payment method | Field label | also the picker menu's `aria-label` (rev 101) |
+| account-edit | Preferences | Visa •••• 4921 | Body | DATA · the row's value and the current option |
+| account-edit | Preferences | Mastercard •••• 8830 | Body | DATA · picker option, new 2026-08-16 (rev 101) |
+| account-edit | Preferences | Apple Pay | Body | picker option, new 2026-08-16 (rev 101) — the `CLAUDE.md` payment set, named as the platform names itself |
+| account-edit | Preferences | Google Pay | Body | picker option, new 2026-08-16 (rev 101) — same |
 | account-edit | Preferences | Saved address | Field label |  |
 | account-edit | Preferences | Podil, 21 | Field value | DATA |
-| account-edit | Preferences | Language | Field label |  |
-| account-edit | Preferences | English | Body |  |
+| account-edit | Preferences | Language | Field label | also the picker menu's `aria-label` (rev 101) |
+| account-edit | Preferences | English | Body | the row's value and the current option |
+| account-edit | Preferences | Ukrainian | Body | picker option, new 2026-08-16 (rev 101) — the language is named **in the interface language**, not in its own («Українська»), because `CLAUDE.md` holds every file to English and the switcher elsewhere is EN/UA |
 | account-edit | Preferences | Cancel | Button |  |
 | account-edit | Preferences | Save changes | Button |  |
 | account | — | Account | Heading |  |
