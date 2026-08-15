@@ -562,7 +562,8 @@ gives it the corner. It never restates the parent's radius.
 - **Block:** `width:100%`. The default in an action bar and at the foot of a card.
 - **In the action bar, every button is filled** (designer, 2026-08-16, rev 112). Two or three actions
   in a `.dr-actionbar` are `--primary` + `--secondary`, and a second `--secondary` for a third — never
-  `--tertiary`. A borderless text action on the bottom edge reads as a caption under the button, not as
+  `--tertiary`. **One action is `--primary`**: the only button on the bottom edge is the main action by
+  definition, even when it is only a way out. A borderless text action on the bottom edge reads as a caption under the button, not as
   a second control; the fill is what says *tappable* on a 44px target. `--tertiary` and `--text` stay
   outside the action bar: the top-bar action (`listings-filters` · *Clear all*, `--tertiary` at 6.62:1)
   and links inside a card.

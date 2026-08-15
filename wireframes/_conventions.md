@@ -290,7 +290,9 @@ Two axes, both mandatory. Differences are shown in **grayscale only** (fill, bor
 
 **In the action bar, every button is filled** (designer, 2026-08-16, rev 112). A `footer.actionbar`
 carrying **two or three** actions draws them as **primary + secondary** — and a second secondary for a
-third — **never a ghost**. A borderless text action in the bottom bar reads as a caption under the
+third — **never a ghost**. **A bar carrying one action draws it primary**, decided in the same pass:
+the only button on the bottom edge is the main action by definition, even when it is only a way out
+(`operator-dispute-error` · *Back to Jobs*). A borderless text action in the bottom bar reads as a caption under the
 button rather than as a second control: the box is what says *tappable*, and on a 44px target the box
 is the only thing the target has to show for itself. Tertiary keeps its job **outside** the action
 bar — the top-bar text action (`listings-filters` · *Clear all*) and links inside a card.
@@ -363,6 +365,16 @@ person to rediscover:
   scrolls, so it takes the search field `HIG · Lists and tables` asks for. District is 11 rows = **484px**
   and City is shorter still → both fit whole, and a search field over a list you can already see entire is
   a control with no work to do.
+
+**Where a level's list is one row, its way out is a control on the bottom edge — not a line in the
+flow** (designer, 2026-08-16, rev 114). `listings-filter-city` under `Kyiv City` holds a single row, so
+the screen needs a route to a different set of cities or it is a dead end (§ *no dead-ends*). That route
+was an inline button under the note, ending wherever the list happened to end — at **y 281** on a **812**
+frame, three quarters of the screen above the thumb. It now sits in a `footer.dr-actionbar`, which is
+where every other screen in the product keeps its action. §11 already governs what it looks like there:
+a button on the bottom edge is **filled**, and secondary is the right fill, because the screen's real
+action is picking a row and green is not spent on an escape. **The note stays in `main`** — it explains
+the list's length, and the bar carries the control and nothing else.
 
 **Choosing a parent resets its children**, and the reset is visible on the rows you return to — city and
 district fall back to their *All …* value when the region changes. `WCAG 3.2.2 On Input` is satisfied by
