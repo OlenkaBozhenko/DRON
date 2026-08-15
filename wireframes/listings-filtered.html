@@ -210,7 +210,10 @@
     <!-- HEADER · top bar -->
     <header class="topbar dr-topbar">
       <span class="dr-brand" role="img" aria-label="DRON"></span>
-      <button class="dr-btn dr-btn--tertiary" style="padding:0;">Kyiv · Podil ▾</button>
+      <!-- The city picker that stood here moved into the filter on 2026-08-16, the
+           designer's call: place is chosen as Region > City > District inside
+           listings-filters, not from the nav bar. _conventions.md already said the
+           mark stands alone on a listing screen; the bar now matches the rule. -->
       <span class="dr-topbar__spacer"></span>
     </header>
 
@@ -248,8 +251,11 @@
         <a class="dr-fchip" href="listings.html" aria-label="Remove filter: Today">
           Today <span class="dr-fchip__x" aria-hidden="true">&times;</span>
         </a>
-        <a class="dr-fchip" href="listings.html" aria-label="Remove filter: Podil">
-          Podil <span class="dr-fchip__x" aria-hidden="true">&times;</span>
+        <!-- The location chip is where the applied place now shows, the top bar having
+             given the city up on 2026-08-16. The name follows the level: Podil was a
+             neighbourhood, Podilskyi is the district the filter actually selects. -->
+        <a class="dr-fchip" href="listings.html" aria-label="Remove filter: Podilskyi">
+          Podilskyi <span class="dr-fchip__x" aria-hidden="true">&times;</span>
         </a>
       </section>
 
