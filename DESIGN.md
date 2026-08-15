@@ -108,16 +108,16 @@ components:
     backgroundColor: "{colors.card}"
     textColor: "{colors.ink}"
     rounded: "{rounded.card}"
-    padding: "20px"
+    padding: "24px 20px"
   card-compact:
     backgroundColor: "{colors.card}"
     textColor: "{colors.ink}"
     rounded: "{rounded.card}"
-    padding: "16px"
+    padding: "20px 16px"
   row-panel:
     backgroundColor: "{colors.card}"
     rounded: "{rounded.card}"
-    padding: "2px 16px"
+    padding: "8px 16px"
   inset-strip:
     backgroundColor: "{colors.inset}"
     rounded: "{rounded.btn}"
@@ -569,8 +569,10 @@ a full-card link overlay. Carries `aria-label` — the icon is the only content.
 ### Cards
 
 - **Surface:** `--card`, `--r-card` 16px, no border, no shadow.
-- **Inset:** 20px on a list card, 16px on operator / details / message cards, 32px at the bottom
-  where the last element is a primary button.
+- **Inset:** since 2026-08-15 (rev 88) the vertical inset is one rung above the horizontal on every
+  card ground — **24 / 20** on a list card, **20 / 16** on operator and message cards, **8 / 16** on a
+  row panel, and **8 / 0** on the two full-bleed lists (`.dr-picks`, `.dr-disclosure`), whose rows keep
+  their own 16. 32px still at the bottom where the last element is a primary button.
 - **Internal rhythm:** 20px between groups, 4/8 within a group.
 - **Whole-card link:** an absolutely-positioned `.card-link` covering the card, with inner controls
   lifted above it.

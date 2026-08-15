@@ -578,11 +578,11 @@ header.dr-topbar,
 .dr-card{
   position: relative;
   display: flex; flex-direction: column; align-items: stretch;
-  gap: var(--sp-group); padding: var(--sp-group);
+  gap: var(--sp-group); padding: var(--sp-24) var(--sp-group);   /* rev 88: +4 top and bottom, her "trochy" — 24/20, both existing rungs */
   background: var(--card); border: 0; border-radius: var(--r-card);
   box-shadow: none;
 }
-.dr-card--compact{ padding: var(--sp-screen); gap: var(--sp-snug); }
+.dr-card--compact{ padding: var(--sp-group) var(--sp-screen); gap: var(--sp-snug); }  /* rev 88: 20/16 */
 .dr-card--cta{ padding-bottom: var(--sp-cta); }  /* the last element is a primary */
 .dr-card--row{ flex-direction: row; align-items: center; gap: var(--sp-snug); }
 
@@ -603,7 +603,7 @@ header.dr-topbar,
 /* The system's universal container: a fact that is read, opened, or typed. */
 .dr-rows{
   background: var(--card); border: 0; border-radius: var(--r-card);
-  padding: var(--sp-2) var(--sp-screen);
+  padding: var(--sp-within-lg) var(--sp-screen);   /* rev 88: 2 -> 8 top and bottom */
 }
 .dr-rows__row{
   display: flex; justify-content: space-between;   /* children stretch, as built */
@@ -974,7 +974,7 @@ header.dr-topbar,
 
 .dr-op{
   display: flex; align-items: stretch; gap: var(--sp-snug);
-  padding: var(--sp-screen);
+  padding: var(--sp-group) var(--sp-screen);   /* rev 88: +4 top and bottom */
   background: var(--card); border: 0; border-radius: var(--r-card);
   overflow: hidden;
 }
@@ -1128,7 +1128,8 @@ header.dr-topbar,
    is an independent on/off. HIG · Radio Buttons / Checkboxes, verbatim.
    The unchecked outline is --slate at 5.95:1, not --line at 1.21:1 — an empty
    box is identified by its boundary alone, so 1.4.11 applies at 3:1. */
-.dr-picks{ list-style: none; background: var(--card); border-radius: var(--r-card); overflow: hidden; }
+.dr-picks{ list-style: none; background: var(--card); border-radius: var(--r-card); overflow: hidden;
+  padding: var(--sp-within-lg) 0; }   /* rev 88: the list breathes in its card; rows stay full-bleed */
 .dr-pick{
   position: relative;
   min-height: var(--h-control);
@@ -1332,7 +1333,8 @@ header.dr-topbar,
 /* Native <details>. It opens IN FLOW and pushes the page down; nothing in this
    product floats. The chevron turns 180° on open — the direction is
    information, the animation is only how it gets there. */
-.dr-disclosure{ background: var(--card); border: 0; border-radius: var(--r-card); overflow: hidden; }
+.dr-disclosure{ background: var(--card); border: 0; border-radius: var(--r-card); overflow: hidden;
+  padding: var(--sp-within-lg) 0; }   /* rev 88 */
 .dr-disclosure > summary{
   list-style: none; min-height: var(--h-control);
   display: flex; align-items: center; justify-content: space-between;
