@@ -484,6 +484,13 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **This closes the first of the two cases rev 53 left open** (2026-08-13, *the action-bar Total line comes off*): that sweep took three Total lines and deliberately left `payment`'s method line and `time-slot`'s selection line for her word. Hers is now given for `payment`.
 - **The sweep she asked for, and what it found in the other 55 action-bar files.** One exact twin: **`withdraw`** (operator, grayscale) reads `To Visa •••• 3318 · ₴3,240` above **`Withdraw ₴3,240`** — a destination line restating the account chosen above it and the figure printed on its own button. **Left as built and reported**, because `wireframes/` is not swept without her word. **`time-slot` / `-empty` are not the same case:** their bar line (`Selected · Wed 2 Jul, 09:00 · ₴800` / `No slot selected`) is the **only** place either screen states a price, and the CTA is `Confirm slot` with no figure — taking it would leave the screen with no price at all, which P3 forbids. No third repeat exists anywhere in the product.
 
+**Sync — 2026-08-16 (`withdraw` follows: the destination line comes off too)**
+- **Her answer to the question above, given the same hour: take the whole line off**, the same edit as `payment`. The row **`withdraw · Withdrawal method · To Visa •••• 3318 · Field label`** leaves the master table; its figure `₴3,240` was `DATA` and had no row.
+- **Both halves are still stated, and by better carriers.** The **destination** is the checked radio in the list above — *Instant to card •••• 3318*, with its own note *Arrives in under a minute* — and the **amount** is the screen's `.amount` figure (**₴3,240**, subtitle *Full balance*) and the CTA, **`Withdraw ₴3,240`**. So the operator still reads *where* and *how much* before the tap; what goes is the third telling of both.
+- **Measured at 430 × 932, the line toggled live: the grayscale bar behaves exactly as the painted one did** — bar **112.8 → 81**, `main` **597.2 → 629**, CTA unmoved at **44px**, `scrollHeight == clientHeight` before (597 = 597) and after (629 = 629), frame 812 either way. `withdraw-error` and `withdraw-loading` never drew the line, so no state has to match it.
+- **Consequence for the kit:** the grayscale rule `footer.actionbar .price-line` (`_wireframe.css:439–441`) is now **declared and spent nowhere** — left in place, not deleted, because `wireframes/` is not edited beyond what was asked. The painted `.dr-price` keeps its one spend, `time-slot`.
+- **`time-slot` is unchanged and stays that way** for the reason logged above: its line is the only price on the screen.
+
 ---
 
 ## Master table — every string
@@ -1555,5 +1562,4 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | withdraw | Withdrawal method | Arrives in under a minute | Body |  |
 | withdraw | Withdrawal method | Bank transfer | Field label |  |
 | withdraw | Withdrawal method | 1–3 business days | Body |  |
-| withdraw | Withdrawal method | To Visa •••• 3318 | Field label |  |
 | withdraw | Withdrawal method | Withdraw ₴3,240 | Button |  |
