@@ -97,7 +97,10 @@ flowchart TD
   CO0 --> C
   C --> FLT{"Narrow the list?"}
   FLT -->|"tap Filters"| FP["Home — filters open (Time / Location / Price)"]
-  FP -->|"tap Region"| PR["Place pick — Region"]
+  FP -->|"tap Country"| PN["Place pick — Country"]
+  PN -->|"pick (region + city + district reset)"| FP
+  PN -->|back| FP
+  FP -->|"tap Region"| PR["Place pick — Region in the country"]
   PR -->|"pick (city + district reset)"| FP
   PR -->|back| FP
   FP -->|"tap City"| PC["Place pick — City in the region"]

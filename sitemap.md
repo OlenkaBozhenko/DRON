@@ -231,10 +231,14 @@ CLIENT
 ```
 
 **Place pick (added 2026-08-16, designer's call).** *Where the job happens* is chosen inside the
-**filter**, not in the top bar, and it is chosen in the country's own order: **Region → City →
-District of the city**. Three dependent levels, each its own screen because each list is longer than
-the six that `_conventions.md` allows a drawer. Choosing a region resets the city and the district;
-choosing a city resets the district. The screens are **sub-views of the filter panel**, the same
+**filter**, not in the top bar, and it is chosen broadest-first: **Country → Region → City →
+District of the city**. Four dependent levels, each its own screen because each list is longer than
+the six that `_conventions.md` allows a drawer — and because a dependent list takes the form its
+longest case needs, so all four match. Choosing a country resets the region, the city and the
+district; choosing a region resets the city and the district; choosing a city resets the district.
+**Country was the fourth level, added the same day on the designer's word** — `§3 Geography` is
+Ukraine *and European countries*, so the country was a fact the filter stated nowhere and could not
+be changed. The screens are **sub-views of the filter panel**, the same
 standing as `listings-filters` / `listings-filtered`, so they take no column in `§8 Matrix A` — their
 job is `MJ-1`, counted under **HOM**. They add **no depth to the main job**: `§7.3`'s 3-tap count is
 measured on the ordering path, and narrowing the list is an optional branch off it.

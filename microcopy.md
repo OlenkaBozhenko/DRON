@@ -735,6 +735,16 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-error | Service list | Activity | Button |  |
 | listings-error | Service list | Help | Button |  |
 | listings-error | Service list | Account | Button |  |
+| listings-filter-country | — | Country | Heading |  |
+| listings-filter-country | — | Back to Filters | Button | invisible label on the chevron — microcopy.md D9 |
+| listings-filter-country | Country | Czechia | Body | DATA |
+| listings-filter-country | Country | Germany | Body | DATA |
+| listings-filter-country | Country | Hungary | Body | DATA |
+| listings-filter-country | Country | Moldova | Body | DATA |
+| listings-filter-country | Country | Poland | Body | DATA |
+| listings-filter-country | Country | Romania | Body | DATA |
+| listings-filter-country | Country | Slovakia | Body | DATA |
+| listings-filter-country | Country | Ukraine | Body | DATA · the current pick, sitting in its alphabetical place like Kyiv City does on listings-filter-region |
 | listings-filter-city | — | City · Kyiv City | Heading |  |
 | listings-filter-city | — | Back to Filters | Button | invisible label on the chevron — microcopy.md D9 |
 | listings-filter-city | City | Kyiv | Body | DATA |
@@ -812,6 +822,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filters | Time | calendar | Body |  |
 | listings-filters | Time | pick | Field value | DATA |
 | listings-filters | Location | Location | Heading |  |
+| listings-filters | Location | Country | Field label | added 2026-08-16 on the designer's word — the geography is Ukraine AND European countries, and the filter stated the country nowhere |
+| listings-filters | Location | Ukraine | Field value | DATA |
 | listings-filters | Location | Region | Field label |  |
 | listings-filters | Location | Kyiv City | Field value | DATA |
 | listings-filters | Location | City | Field label |  |

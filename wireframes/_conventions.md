@@ -343,8 +343,9 @@ designer's call 2026-08-16; `HIG · Action sheets` and `HIG · Lists and tables`
 mutually-exclusive set belongs in a sheet, a long one needs a screen that can scroll and search. The row
 itself carries `chevron.forward` in both halves, never a down arrow: the list is not here, it arrives.
 
-**The `≥ 7` half got its first pages on 2026-08-16** — `listings-filter-region` (25 rows),
-`listings-filter-city`, `listings-filter-district` (11 rows), the filter's place pick. Its `flows.md`
+**The `≥ 7` half got its first pages on 2026-08-16** — `listings-filter-country` (8 rows),
+`listings-filter-region` (25 rows), `listings-filter-city`, `listings-filter-district` (11 rows), the
+filter's place pick. Its `flows.md`
 nodes and its `sitemap.md` row went in **before** the HTML, which is what that half of the rule had been
 waiting on. Two things the first build settled, both recorded as decisions rather than left to the next
 person to rediscover:
@@ -473,7 +474,7 @@ chrome so the toast cannot cover the control that raised it, and — where the r
 ### Client (MJ-1)
 | Screen | Base file | State pages |
 |---|---|---|
-| Home / start an order **+ Service catalogue** (merged per `sitemap.md §7.3`) | `listings.html` | `listings-filters.html` (filter panel open — Time / Location / Price), `listings-filter-region.html` · `listings-filter-city.html` · `listings-filter-district.html` (the place pick, pushed from the Location rows), `listings-filtered.html` (filters applied — the All chip + removable chips), `listings-empty.html` (no results / loosen filters), `listings-error.html` (load failure), `listings-loading.html` |
+| Home / start an order **+ Service catalogue** (merged per `sitemap.md §7.3`) | `listings.html` | `listings-filters.html` (filter panel open — Time / Location / Price), `listings-filter-country.html` · `listings-filter-region.html` · `listings-filter-city.html` · `listings-filter-district.html` (the place pick, four dependent levels pushed from the Location rows), `listings-filtered.html` (filters applied — the All chip + removable chips), `listings-empty.html` (no results / loosen filters), `listings-error.html` (load failure), `listings-loading.html` |
 | Order setup / details | `order-setup.html` | `order-setup-empty.html`, `order-setup-error.html` |
 | Order review & price | `order-review.html` | `order-review-loading.html` |
 | Payment | `payment.html` | `payment-error.html`, `payment-loading.html` |
