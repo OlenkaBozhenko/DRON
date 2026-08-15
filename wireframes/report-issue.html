@@ -35,11 +35,16 @@
       <p class="zlabel dr-label">Report form <span class="dr-label__act">▸ what went wrong · attach evidence</span></p>
       <form class="dr-stack" aria-label="Report an issue" action="#">
         <div class="dr-rows">
-<div class="dr-field">
-          <label class="dr-field__label" for="it">Issue type</label>
-          <span class="dr-field__group"><span class="dr-field__value" style="margin-left:auto">Poor quality — not as expected</span><span aria-hidden="true">&#9662;</span></span>
-          <span class="dr-field__hint">Also: Damaged item · Wrong location</span>
-        </div>
+<!-- The hint "Also: Damaged item · Wrong location" came off with this change
+             (2026-08-16): it existed because the picker did not open, so the other
+             two types had nowhere else to be shown. They are in the drawer now, and
+             a line that lists a control's own options beside it is a caption for a
+             control that does not work. -->
+        <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-issue">
+          <span class="dr-field__label">Issue type</span>
+          <span class="dr-field__value">Poor quality — not as expected</span>
+          <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+        </button>
         <div class="dr-field dr-field--area dr-field--area6">
           <label class="dr-field__label" for="ds">What happened?</label>
           <textarea class="dr-field__input" id="ds" placeholder="Describe the issue — e.g. the roof photos were blurry and missed the north side."></textarea>
