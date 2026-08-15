@@ -46,10 +46,18 @@
           <textarea class="dr-field__input" id="nt" placeholder="Floor, entrance code, what's inside…"></textarea>
         </div>
 </div>
-<label class="dr-pick" style="border-radius:6px;"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this address for next time</span><input type="checkbox" name="save-address" class="sr-only"></label>
       </form>
     </main>
+    <!-- THE SAVE-ADDRESS ROW SITS ON THE BOTTOM EDGE, above the Continue button —
+         the designer's call 2026-08-16 (concept.md rev 115), reading the row as
+         torn off where it stood: 12px under the input group and 226.6px of empty
+         page beneath it. It is the first control in any action bar in the product
+         that is not a button, so the two costs are paid in the markup rather than
+         left implicit: the input carries form="order-details", which keeps it a
+         control OF the form it left (WCAG 1.3.1 / 4.1.2), and it is placed BEFORE
+         the button so DOM order still equals reading order (WCAG 2.4.3). -->
     <footer class="dr-actionbar">
+      <label class="dr-pick" style="border-radius:6px;"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this address for next time</span><input type="checkbox" name="save-address" form="order-details" class="sr-only"></label>
       <a class="dr-btn dr-btn--primary dr-btn--block" href="order-review.html">Continue to review</a>
     </footer>
 
