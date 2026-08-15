@@ -174,11 +174,17 @@ use treatment C.</p>
     <span class="tag">HIG-complete, at a cost</span>
     <p class="num"><b>HIG</b> — centred: <b>passes</b>, <b>0.00px</b> off on all 19 pairs. 0 overlaps,
       minimum gap exactly the 8px token.<br>
-      <b>Names cut: 3 of 19.</b> <code>&lsaquo; Package delivery</code> shows 108.5px of 130 next to
-      <i>Order review</i>, and 116.8 of 130 next to <i>Pick a time</i>; <code>&lsaquo; Rate the order</code>
-      shows 110.8 of 112 next to <i>Share DRON</i>.<br>
-      <span class="no">Tension:</span> the rule you set says one screen, one name — and this cuts the name on
-      three screens.</p>
+      <b>Names cut: 4 of 19</b> — measured from the laid-out text, not from rounded
+      <code>scrollWidth</code>, which hides sub-pixel cuts:<br>
+      &nbsp;&nbsp;<code>&lsaquo; Package delivery</code> + <i>Order review</i> — over by <b>21.98px</b><br>
+      &nbsp;&nbsp;<code>&lsaquo; Package delivery</code> + <i>Pick a time</i> — over by <b>13.70px</b><br>
+      &nbsp;&nbsp;<code>&lsaquo; Rate the order</code> + <i>Share DRON</i> — over by <b>1.19px</b><br>
+      &nbsp;&nbsp;<code>&lsaquo; On the way</code> + <i>Inspection report</i> — over by <b>0.19px</b><br>
+      <span class="no">And it is fragile.</span> The last two lose a whole word to about <b>a fifth of a
+      pixel</b>. Which screens keep their name would then depend on sub-pixel text metrics — rename one screen,
+      or ship on a device that rounds differently, and a different set of labels truncates.<br>
+      <span class="no">Tension:</span> the rule you set says one screen, one name — this cuts the name on four
+      of them.</p>
   </div>
 
   <div class="opt">
