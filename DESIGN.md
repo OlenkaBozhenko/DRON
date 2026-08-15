@@ -576,6 +576,17 @@ chrome the screen has — the shell measures the action bar or tab bar rather th
 toast that covers the button that raised it is worse than no toast. Dismisses itself after 4s and on
 click; nothing depends on reading it in time (`WCAG 2.2.1`), since it states the action just taken.
 
+**Over a sheet — `.dr-toast--over-sheet`** (2026-08-16, rev 96). A sheet owns the bottom edge, so a
+toast measured up from the frame's floor lands *under* it; and a sheet is `aria-modal="true"`, so a
+toast appended beside it is hidden from assistive technology entirely. Where the raising control sits
+inside a `[role="dialog"]`, the shell therefore parents the toast **inside that dialog** and the
+modifier floats it clear of the sheet's **top** edge — `bottom: calc(100% + var(--sp-snug))`, with
+`left/right: 0` because the sheet already carries the screen gutter. Measured on `share`: toast
+**125.55 × 43.60**, exactly **12px** above the sheet, no overlap with the `Copy link` button that
+raised it, and its text present and **not ignored** in the accessibility tree inside the dialog named
+*Share DRON*. Off a sheet nothing changes — `order-setup-empty` **325.40 × 63.20** and `listings-empty`
+**325.40 × 63.20** both sit **20px** above their action bar / tab bar, as before.
+
 ### Selection controls (checkbox &amp; radio)
 
 24 × 24, `box-sizing:border-box`, inside a 44pt row that is the whole tap target.

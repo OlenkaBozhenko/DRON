@@ -293,6 +293,35 @@ of padding is **44px**, the HIG minimum, bought without moving the label off the
 bare-`a` reset, so without it the control renders underlined — as the ten operator back links did before this
 pass, while the `<button>` ones did not.
 
+### 11.2 — The toast (`data-toast`)
+
+Copy is set by `voice.md` § *Toast*. Two things are this file's business — **when a control may carry one**,
+and **which layer it lives in**.
+
+**When.** Add `data-toast="…"` only to a control whose action **finishes on this screen** and leaves **no
+other trace**. Both tests, not either: a tap that changes screen loses its toast (the mechanism fires on the
+page you stay on), and a tap whose result is already visible — a file landing in its upload well, a segment
+moving, a list redrawing — does not need one. Swept across all 84 files on 2026-08-16; four controls in the
+product qualify, and the refusals are listed with their reasons in `microcopy.md`.
+
+**Never on an error screen.** An error must stay re-readable and a toast leaves after 4s. Recovery copy is
+in the block, per §10.
+
+**Never as the confirmation of a destructive action.** `voice.md` asks for the consequence *before* the tap.
+`order-history`'s three `Delete order` buttons have neither a confirm nor an undo; that is an open item, not
+something a toast closes.
+
+**Which layer.** The toast is a **painted-layer component** — it is declared in `ui/kit.css` and it animates.
+§3 defers **motion** and **shadow** in the grayscale wireframe, so a grayscale page gets no toast: the
+operator screens, which are still unpainted, take theirs when they are painted. A `data-toast` on a page that
+does not link `../ui/kit.css` renders an unstyled `<div>`, so the attribute and the stylesheet travel together.
+
+**Behaviour lives in the shell, never on the page** (§13). The message is the only thing the page declares.
+`_wf-shell.js` builds the element on demand, gives it `role="status"`, measures the screen's real bottom
+chrome so the toast cannot cover the control that raised it, and — where the raising control sits inside a
+`[role="dialog"]` — appends the toast **inside** that dialog and floats it above the sheet's top edge, because
+`aria-modal="true"` hides everything outside the dialog from assistive technology.
+
 ---
 
 ## 12. File naming & the screen → file map

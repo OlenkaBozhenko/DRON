@@ -627,17 +627,34 @@ header.dr-topbar,
   background: var(--card); border: 0; border-radius: var(--r-card);
   padding: var(--sp-within-lg) var(--sp-screen);   /* rev 88: 2 -> 8 top and bottom */
 }
+/* Two columns on one axis, both reading from the left — the designer's call
+   2026-08-16, pointing at account-edit's Preferences card. The read-only row
+   was `space-between` with a trailing value, so the value's LEFT edge landed
+   wherever its string happened to end: measured over the 13 pages that carry
+   this row, 46 rows stood at 24 different x, from 131.75 (switch-role) to
+   294.78 (order-review's ₴90) on a 341 card. The editable row next door has
+   always split its card 1:1 with a 10 gap (`.dr-field`), so the fact row takes
+   the same split and the same gap — hence --sp-10 here, not --sp-snug — and
+   both anatomies now stand their value at 175.5.
+   Conformance, checked before the change: HIG ships BOTH — a trailing value in
+   a grouped list row and a leading value in a form row — so neither alignment
+   is the conforming one and this is a taste call, made once, for both. WCAG is
+   untouched: 1.4.3 keeps its pairs (key --slate 5.95:1, value --ink 14.37:1),
+   1.3.1 keeps its DOM order, and 1.4.8 governs justified text, not trailing.
+   Tabular figures stay tabular — they now align on the ₴ instead of the last
+   digit, which is the one place this costs something. */
 .dr-rows__row{
-  display: flex; justify-content: space-between;   /* children stretch, as built */
-  gap: var(--sp-snug);
+  display: flex;                                   /* children stretch, as built */
+  gap: var(--sp-10);
   padding: var(--sp-13) 0;
   border-bottom: var(--hair) solid var(--line);
 }
 .dr-rows__row:last-child{ border-bottom: 0; }
-.dr-rows__key{ color: var(--slate); font-size: var(--t-bodysm-size); }
+.dr-rows__key{ flex: 1; min-width: 0; color: var(--slate); font-size: var(--t-bodysm-size); }
 .dr-rows__val{
+  flex: 1; min-width: 0;
   color: var(--ink); font-size: var(--t-heading-size); font-weight: var(--weight-medium);
-  font-variant-numeric: tabular-nums; text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 /* A plane inside a card, not a second card on it — 1.06:1 above the card. */
@@ -1654,6 +1671,19 @@ header.dr-topbar,
   pointer-events: none;
 }
 .dr-toast.is-on{ opacity: 1; transform: none; pointer-events: auto; }
+/* Raised by a control that lives inside a sheet (2026-08-16, rev 96). Two
+   things change and both are forced, not stylistic. The sheet is
+   aria-modal="true", so anything appended outside it is hidden from
+   assistive technology — the toast is therefore appended INSIDE the dialog,
+   which makes the sheet its containing block. And a toast measured up from
+   the frame's floor would land under a surface that owns the whole bottom
+   edge, so it floats clear of the sheet's TOP edge instead: bottom:100% is
+   that edge, plus the same 12px gap the kit uses between stacked surfaces.
+   left/right go to 0 because the sheet already carries the screen gutter. */
+.dr-toast--over-sheet{
+  left: 0; right: 0; bottom: calc(100% + var(--sp-snug));
+  max-width: 100%;
+}
 @media (prefers-reduced-motion: reduce){
   .dr-toast{ transition: none; transform: none; }
 }

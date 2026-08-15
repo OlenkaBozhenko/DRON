@@ -479,20 +479,34 @@
         el.addEventListener("click", function(e){
           e.preventDefault();
           var frame = el.closest(".wf-frame"); if (!frame) return;
-          var t = frame.querySelector(".dr-toast");
+          /* Where the toast is PARENTED is an accessibility decision, not a
+             layout one (rev 96). A sheet is aria-modal="true", so everything
+             outside it is hidden from assistive technology — a toast appended
+             to the frame while a sheet is open would be announced to nobody.
+             So when the control that raised it lives in a dialog, the toast
+             is built inside that dialog and floats above its top edge. */
+          var sheet = el.closest('[role="dialog"]');
+          var host  = sheet || frame;
+          var t = host.querySelector(":scope > .dr-toast");
           if (!t){
             t = document.createElement("div");
-            t.className = "dr-toast";
             t.setAttribute("role", "status");
-            frame.appendChild(t);
+            host.appendChild(t);
           }
+          t.className = sheet ? "dr-toast dr-toast--over-sheet" : "dr-toast";
           if (t._hide) clearTimeout(t._hide);
           t.textContent = el.getAttribute("data-toast");
           /* sit clear of whichever bottom chrome this screen has — an action
              bar is taller than a tab bar, and a toast that covers the button
-             that raised it is worse than no toast. Measured, not assumed. */
-          var foot = frame.querySelector(".dr-actionbar, .dr-tabbar");
-          t.style.bottom = ((foot ? foot.getBoundingClientRect().height : 0) + 20) + "px";
+             that raised it is worse than no toast. Measured, not assumed.
+             In a sheet there is nothing to measure: the sheet owns the bottom
+             edge, and the CSS puts the toast above it. */
+          if (sheet){
+            t.style.bottom = "";
+          } else {
+            var foot = frame.querySelector(".dr-actionbar, .dr-tabbar");
+            t.style.bottom = ((foot ? foot.getBoundingClientRect().height : 0) + 20) + "px";
+          }
           void t.offsetWidth;
           t.classList.add("is-on");
           t._hide = setTimeout(function(){ t.classList.remove("is-on"); }, 4000);
