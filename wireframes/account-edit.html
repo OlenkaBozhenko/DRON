@@ -87,6 +87,36 @@
         <a class="dr-btn dr-btn--primary" href="account.html">Save changes</a>
       </div>
     </footer>
+
+    <!--
+      THE DRAWERS. Four options and two options — both under the six the
+      designer set on 2026-08-16, so both lists rise from the bottom edge
+      rather than pushing a screen. The scrim is shared: only one drawer is
+      ever open, because only one row was tapped.
+    -->
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <section class="dr-sheet dr-sheet--picker" id="sheet-payment" role="dialog" aria-modal="true" aria-labelledby="sheet-payment-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-payment-title">Payment method</p>
+      <div class="dr-picker__list">
+        <button class="dr-picker__item" type="button" aria-current="true">Visa •••• 4921<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+        <button class="dr-picker__item" type="button">Mastercard •••• 8830<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+        <button class="dr-picker__item" type="button">Apple Pay<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+        <button class="dr-picker__item" type="button">Google Pay<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+      </div>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+    </section>
+
+    <section class="dr-sheet dr-sheet--picker" id="sheet-language" role="dialog" aria-modal="true" aria-labelledby="sheet-language-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-language-title">Language</p>
+      <div class="dr-picker__list">
+        <button class="dr-picker__item" type="button" aria-current="true">English<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+        <button class="dr-picker__item" type="button">Ukrainian<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+      </div>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+    </section>
   </div>
 
   <!--
