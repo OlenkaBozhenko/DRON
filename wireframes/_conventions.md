@@ -115,6 +115,34 @@ Use landmarks and real elements. A wireframe that is all `<div>` fails review.
 | Lists (catalogue, history, offers) | `<ul>/<li>` |
 | Status / live text (ETA, "loading…") | `<output>` or `<p role="status">` |
 
+**The back control is navigation, so it is `<a href>` — never a bare `<button>` (2026-08-15).**
+This is the row above applied to the one control that kept escaping it. `_wf-shell.js` wires every
+`.back` / `.dr-back` to `history.back()`, which is the `HIG · Navigation bars` behaviour — the back
+control returns to wherever the user actually came from, and a screen with several ways in (
+`contact-support` has six) cannot express that with a fixed link. But the shell calls
+`preventDefault()` **only when `history.length > 1`**, so on a page opened first in a tab a
+`<button>` with no `href` does nothing at all: a nav bar with a dead exit, against §1's no-dead-ends
+rule. An `<a href>` gets both — history when there is history, the link as the floor.
+
+- The `href` names the screen's **canonical previous screen** (the one the label already says), not
+  every entry point. It is the fallback, not the route.
+- The label stays the **title of the screen you return to** (`voice.md`, `HIG · Navigation bars`).
+- **The swap also put those 14 back onto San Francisco — it is not visually neutral, and the
+  difference is the point.** Measured in the browser at the 375 preset, same class, same text:
+  the `<button>` rendered **Arial · line-height `normal` · 41.67 × 17.6**, the `<a>` renders
+  **`-apple-system` · 21px · 45.63 × 21**. Cause: a `<button>` does not inherit `font-family` or
+  `line-height` from its ancestors — the UA sheet sets `font: 400 13.333px Arial` — and `.dr-back`
+  overrides only `font-size` and `font-weight`. So the product bar had been carrying **two
+  typefaces**: 14 back controls in Arial, the 10 anchor ones in SF, against §5's one-family rule.
+  The label grows 3.96px, the box 3.4px, and nothing else moves — `.dr-back` carries
+  `text-decoration:none` and sets no `display`, `padding` or `height`, and `.dr-topbar` targets no
+  element name. All 24 now render identically.
+
+Applied 2026-08-15 to the 14 pages still holding a `<button>`: `contact-support(-error)`,
+`order-review(-loading)` → `order-setup`, `order-setup(-empty/-error)` → `listings`,
+`payment(-error)` → `order-review`, `rate` → `delivery`, `report-issue(-empty/-loading)` and
+`resolution` → `support`. All 24 back controls now match.
+
 **Reference skeleton** (structure only — not a screen):
 
 ```html
