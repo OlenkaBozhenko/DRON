@@ -204,3 +204,61 @@ face is the load-bearing trust signal in `RJ-C1` and the initials `IK` carry non
 the initials in the 28px top-bar circle on both listing screens and in the 56px card circle on
 `operator-account`. The circle keeps a `--wf-recessed` fill of its own: the portrait is a cutout, so
 without one the top bar shows through beside the shoulders and the head floats.
+
+---
+
+## 2026-08-15 — the back control: a dead exit, a second typeface, and a half-size target
+
+Opened by the designer on `contact-support`, closed as rev 86. Three findings on one 45×21 box.
+
+### The exit was dead when the page was opened first in a tab
+
+Rev 84 wired `.dr-back` to `history.back()` — the `HIG · Navigation bars` behaviour, since the back
+control returns to wherever the user actually came from, and `contact-support` has **six** ways in.
+But the shell calls `preventDefault()` only when `history.length > 1`. **14 of the 24** back
+controls were `<button>` with no `href`, so on a deep link they did nothing at all: a nav bar with a
+dead exit, against §1's no-dead-ends rule. The other 10 were already `<a href>` and survived it.
+
+All 14 are now `<a class="dr-back" href="…">` naming the canonical previous screen. History still
+wins inside the walk; the link is only the floor. The role is accurate too — the control loads
+another document, so `WCAG 4.1.2 Name, Role, Value` wants `role=link`, and §7 had already said
+*"`<a>` for navigation"*.
+
+### The 14 buttons had been rendering in Arial
+
+Not a consequence of the swap — a fault it uncovered. Measured with the same class and the same
+text at the 375 preset: `<button class="dr-back">` renders **Arial · line-height `normal` · 41.67 ×
+17.6**; `<a class="dr-back">` renders **`-apple-system` · 21px · 45.63 × 21**. A `<button>`
+inherits neither `font-family` nor `line-height` — the UA sheet sets `font: 400 13.333px Arial` —
+and `.dr-back` overrides only `font-size` and `font-weight`. So the product's top bar had been
+carrying **two typefaces**, 14 back controls in Arial against 10 in SF, contradicting §5's
+*one family, no pairing*. All 24 now render identically.
+
+### The target was 48% of the HIG minimum
+
+**45.63 × 21** against `HIG · 44pt minimum target`. Width passed; height was **21 of 44**. Fixed in
+`ui/kit.css` with `padding: 11.5px 0; margin: -11.5px 0` — border box **45.63 × 44**, margin box
+still 21, so the bar centres what it centred before and the label does not move. Every text label
+clears the width: narrowest is `‹ Help` at **45.63**.
+
+### Open, not fixed: the filters close control is 10px wide
+
+`listings-filters` uses `.dr-back` for a **close** control whose label is a bare `&times;` —
+**10.07 × 44** after the padding fix, still **23%** of the required 44 width. It is not a back
+control and was not touched here. It needs its own decision: a wider hit area, or a real close
+control of its own with the 44 × 44 that `HIG · 44pt minimum target` asks for.
+
+### Open, not fixed: the label does not name the screen it returns to
+
+`voice.md` and `HIG · Navigation bars` ask the back control to carry the title of the screen you
+return to. Nine of the 24 do not:
+
+- **`‹ Help` × 6** (`contact-support`, `-error`, `report-issue`, `-empty`, `-loading`, `resolution`)
+  returns to `support.html`, whose title is **"Help & support"**.
+- **`‹ Order` × 3** (`order-setup`, `-empty`, `-error`) returns to `listings.html`, which carries
+  **no screen title at all** — its bar holds the mark and "Kyiv, UA ▾". "Order" is the tab's label.
+
+The remaining five match exactly. Width is not the obstacle: `‹ Help & support` measures **124.18**,
+and with the title and the language switcher that is **280.46 of 341.4** — **60.94px** free.
+`WCAG 2.4.4 Link Purpose` passes either way, so this is a HIG and voice question, not an
+accessibility one.

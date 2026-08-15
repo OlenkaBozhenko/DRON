@@ -138,6 +138,15 @@ rule. An `<a href>` gets both — history when there is history, the link as the
   `text-decoration:none` and sets no `display`, `padding` or `height`, and `.dr-topbar` targets no
   element name. All 24 now render identically.
 
+- **The hit area is exactly 44 × 44, bought with padding (designer's call, 2026-08-15).** The
+  control's text box measures **45.63 × 21** at 15/21 — the width clears `HIG · 44pt minimum
+  target`, the height was **21 of 44, 48% of the minimum**, on all 24 screens. `.dr-back` now
+  carries `padding: 11.5px 0; margin: -11.5px 0`: the border box becomes **45.63 × 44** while the
+  margin box stays 21, so `.dr-topbar`'s `align-items:center` centres exactly what it centred
+  before — the label does not move by a pixel and the 56px bar does not grow. Chosen over
+  stretching to the bar's full 56: the target is the minimum, not the bar. Every text label clears
+  the width, the narrowest being `‹ Help` at **45.63**.
+
 Applied 2026-08-15 to the 14 pages still holding a `<button>`: `contact-support(-error)`,
 `order-review(-loading)` → `order-setup`, `order-setup(-empty/-error)` → `listings`,
 `payment(-error)` → `order-review`, `rate` → `delivery`, `report-issue(-empty/-loading)` and

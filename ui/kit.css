@@ -358,10 +358,22 @@ header.dr-topbar,
   -webkit-mask: url(../assets/brand/dron-logo.svg) center/contain no-repeat;
           mask: url(../assets/brand/dron-logo.svg) center/contain no-repeat;
 }
+/* The back control. It is an <a href> on all 24 screens, never a bare <button>:
+   it loads another document, so WCAG 4.1.2 wants role=link, and a <button>
+   inherits neither font-family nor line-height (UA: font: 400 13.333px Arial),
+   which had 14 of them rendering in Arial beside 10 in SF.
+
+   The hit area is bought with padding, not size: the text box is 45.63 × 21 at
+   15/21, and HIG · 44pt minimum target asks 44 × 44. 11.5px of padding takes
+   the border box to 44; the negative margin keeps the margin box at 21, so
+   .dr-topbar's align-items:center centres what it centred before and the label
+   does not move a pixel. Every text label clears the width — ‹ Help, the
+   narrowest, is 45.63. 2026-08-15. */
 .dr-back{
   font-size: var(--t-heading-size); font-weight: var(--weight-medium);
   color: var(--ink); background: transparent; border: 0; cursor: pointer;
   text-decoration: none;
+  padding: 11.5px 0; margin: -11.5px 0;
 }
 
 .dr-main{
