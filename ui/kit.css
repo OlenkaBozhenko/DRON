@@ -178,7 +178,9 @@
   --sz-tick-h:      2px;
   --sz-dot:         10px;  /* the filled centre of a checked radio */
   --sz-rail:        4px;   /* the range rail — the progress track's own weight */
-  --sz-thumb-ring:  2px;   /* the range thumb's ring, the status disc's 2px */
+  /* --sz-thumb-ring retired 2026-08-15 with the ring it named (rev 66 → 72).
+     Not benched like --sh-onphoto or .dr-btn--text: those are rungs of a scale
+     waiting for a home, this was a one-off with exactly one spend and none left. */
   --sk-title-h:     14px;  /* the bar standing in for a card title */
   --sk-date-h:      10px;  /* and for its date */
   /* The skeleton order card, block for block — every bar sized to the element
@@ -1202,16 +1204,32 @@ header.dr-topbar,
   height: var(--h-control); background: transparent;
   -webkit-appearance: none; appearance: none; pointer-events: none;
 }
+/* The ring comes off, 2026-08-15, the designer's word — «видали в булітах чорну
+   обводку» — and this is a RECORDED DEPARTURE, not a value that passes. The bare
+   disc is --green on --card at 1.52:1 where WCAG 1.4.11 asks 3:1 of what
+   identifies a control: half the ratio. Rev 70 measured this exact figure and
+   kept the charcoal ring because of it; she has now overruled that, having been
+   shown the number and two conforming alternatives (a --green-ink rim at 5.01:1,
+   or the solid charcoal disc at 14.37:1). It stands on the precedent rev 50 set
+   for the mode checkmark — an accepted below-3:1 mark — with the difference
+   named rather than glossed: a checkmark carries presence, a thumb carries a
+   POSITION, so more rests on it. What does not move is the mitigation the
+   component already had: each thumb sits on the end of the --ink filled span at
+   14.37:1, so the band's edges stay legible even where the disc does not read,
+   and the readout states both numbers in words above it.
+   The disc also loses the ring's 2px: WebKit drew 24 + 2 + 2 = 28 (its thumb is
+   not border-box), Gecko drew 24 outer with a 20 inner. Both now stand at a flat
+   24 — still exactly WCAG 2.5.8's AA floor, still in the 44px lane for HIG. */
 .dr-range__input::-webkit-slider-thumb{
   -webkit-appearance: none; appearance: none;
   width: var(--sz-box); height: var(--sz-box); border-radius: var(--r-pill);
-  background: var(--green); border: var(--sz-thumb-ring) solid var(--ink);
+  background: var(--green); border: 0;
   cursor: grab; pointer-events: auto;
 }
 .dr-range__input::-moz-range-thumb{
   width: var(--sz-box); height: var(--sz-box); box-sizing: border-box;
   border-radius: var(--r-pill);
-  background: var(--green); border: var(--sz-thumb-ring) solid var(--ink);
+  background: var(--green); border: 0;
   cursor: grab; pointer-events: auto;
 }
 .dr-range__input:focus{ outline: none; }
