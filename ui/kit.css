@@ -752,6 +752,17 @@ header.dr-topbar,
 .dr-rail::before{ width: var(--rail-track-span); background: var(--line); }
 .dr-rail::after{ width: var(--dr-fill, 0); background: var(--green); }
 .dr-rail--at2{ --dr-fill: var(--fill-2of4); }  /* live order: walked step 1 → 2 of 4 */
+/* The rail that is a ZONE of its own rather than a row inside a card — the
+   designer's call 2026-08-15 on the built tracking: bigger gaps from the
+   progress bar to the picture above and the card below. Every zone on that
+   screen sat at .dr-main's 16, but the rail is the one zone with no ground:
+   the map well and the ETA rows card both carry a surface, so 16 read as
+   crowding a bare row between two solid ones. 8 top and bottom lands the two
+   gaps on 24 — the kit's own zone rhythm, what .dr-main--zones spends and
+   where .dr-sect puts a group boundary — so no new value enters the scale.
+   A modifier, because order-history's rail sits INSIDE a card between the
+   header and the route inset, where the card's own rhythm governs. */
+.dr-rail--zone{ margin-block: var(--sp-within-lg); }
 .dr-rail__step{
   position: relative; z-index: 1;
   display: flex; flex-direction: column; align-items: center; gap: var(--sp-9);
