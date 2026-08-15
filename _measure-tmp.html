@@ -1,39 +1,19 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><title>measure</title></head>
+<html><head><meta charset="utf-8"><title>glyph proof</title>
+<style>
+ body{margin:0;background:#F7F5F2;font:14px -apple-system,system-ui,sans-serif;color:#5A5751}
+ .row{display:flex;gap:28px;align-items:flex-end;padding:28px}
+ .well{background:#E4E1DA;border-radius:13px;display:flex;align-items:center;justify-content:center;color:#5A5751}
+ .w52{width:52px;height:52px}.w130{width:130px;height:130px;border-radius:32px}
+ .w52 svg{width:26px;height:26px}.w130 svg{width:65px;height:65px}
+ .warn{background:#F6E7C4;color:#7A5200}
+ .cap{font-size:11px;text-align:center;margin-top:8px}
+</style></head>
 <body>
-<iframe id="f" src="/wireframes/report-issue-empty.html" style="width:375px;height:812px;border:0"></iframe>
-<pre id="out">pending</pre>
-<script>
-function lum(c){const [r,g,b]=c.match(/\d+(\.\d+)?/g).slice(0,3).map(Number).map(v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)});return 0.2126*r+0.7152*g+0.0722*b}
-function ratio(a,b){const l1=lum(a),l2=lum(b);const hi=Math.max(l1,l2),lo=Math.min(l1,l2);return ((hi+0.05)/(lo+0.05)).toFixed(3)}
-window.addEventListener('load',()=>{setTimeout(()=>{
-  const d=document.getElementById('f').contentDocument;
-  const w=document.getElementById('f').contentWindow;
-  const mark=d.querySelector('.dr-mark');
-  const svg=mark.querySelector('svg');
-  const msg=d.querySelector('.dr-msg');
-  const main=d.querySelector('.dr-main');
-  const frame=d.querySelector('.wf-frame');
-  const cm=w.getComputedStyle(mark), cs=w.getComputedStyle(svg), cmsg=w.getComputedStyle(msg);
-  const rm=mark.getBoundingClientRect(), rs=svg.getBoundingClientRect();
-  const o={
-    markBox:[+rm.width.toFixed(2),+rm.height.toFixed(2)],
-    markRadius:cm.borderRadius, markBg:cm.backgroundColor, markInk:cm.color,
-    svgBox:[+rs.width.toFixed(2),+rs.height.toFixed(2)],
-    strokeAttr:svg.getAttribute('stroke-width'),
-    renderedStroke:+(parseFloat(svg.getAttribute('stroke-width'))*rs.width/24).toFixed(3),
-    msgBg:cmsg.backgroundColor,
-    ratio_ink_on_markBg: ratio(cm.color,cm.backgroundColor),
-    ratio_markBg_on_cardBg: ratio(cm.backgroundColor,cmsg.backgroundColor),
-    ariaHidden: mark.getAttribute('aria-hidden'),
-    markText: JSON.stringify(mark.textContent),
-    statusRole: msg.getAttribute('role'),
-    statusText: msg.innerText.replace(/\s+/g,' ').slice(0,120),
-    mainScroll:[main.scrollHeight,main.clientHeight],
-    frameH: frame.getBoundingClientRect().height,
-    overflowX: d.documentElement.scrollWidth - d.documentElement.clientWidth
-  };
-  document.getElementById('out').textContent=JSON.stringify(o,null,1);
-},700)});
-</script>
+<div class="row">
+ <div><div class="well w52"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.8L2.6 20h18.8z"/><path d="M12 10v4.2"/><circle cx="12" cy="17.4" r=".9" fill="currentColor" stroke="none"/></svg></div><div class="cap">neutral 26px</div></div>
+ <div><div class="well w130"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.8L2.6 20h18.8z"/><path d="M12 10v4.2"/><circle cx="12" cy="17.4" r=".9" fill="currentColor" stroke="none"/></svg></div><div class="cap">neutral 2.5x</div></div>
+ <div><div class="well w52 warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.8L2.6 20h18.8z"/><path d="M12 10v4.2"/><circle cx="12" cy="17.4" r=".9" fill="currentColor" stroke="none"/></svg></div><div class="cap">warn 26px</div></div>
+ <div><div class="well w130 warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.8L2.6 20h18.8z"/><path d="M12 10v4.2"/><circle cx="12" cy="17.4" r=".9" fill="currentColor" stroke="none"/></svg></div><div class="cap">warn 2.5x</div></div>
+</div>
 </body></html>
