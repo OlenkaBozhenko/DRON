@@ -131,6 +131,7 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | rate | rate.html | Review | placeholder | What went well? Anything to improve? | What the operator did well, and anything to improve |
 | rate | rate.html | Review | field label | Your review | Share your review of this order |
 | rate | rate.html | Review | field label | Share your review of this order | Your review — screen-reader only (designer, 2026-08-13: the compose card is one surface; the visible line comes off and the placeholder is the one sentence of help text) |
+| contact-support | contact-support.html | Message | field label | Your message | Your message — screen-reader only (designer, 2026-08-15: *remove “your message text”*; the visible line comes off and the placeholder carries the naming, the pattern `rate` took on 2026-08-13) |
 | ratings | ratings-empty.html | Overall (no ratings yet) | state message | You haven't been rated yet. Ratings build from your first jobs — the platform keeps auto-dispatching work to you until they do. | You haven't been rated yet. Ratings build from your first jobs — the platform keeps sending you jobs until they do. |
 | ratings | ratings-empty.html | Overall (no ratings yet) | button | See available jobs | Find jobs |
 | report-issue | report-issue.html | Topbar | button | ‹ Back | ‹ Back to Help |
@@ -349,6 +350,10 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **The screen reader gains rather than loses.** The block is `role="status"`; the mark's text used to be announced first, so the region opened with **"~40 MIN"** before the title. The icon is `aria-hidden="true"` like every glyph in this kit, so the announcement now opens on **"No operator free right now"** and reaches the same 40 minutes through the body (`WCAG 4.1.3` ✓, `1.1.1` ✓ — the picture carries nothing the text does not say).
 - **Five text placeholders are still standing** (`time-slot-empty` **EMPTY**, `report-issue-empty` **NO FILE**, `share-empty` **NOT SENT**, `contact-support-error` **QUEUE**, `inspection-report-error` **NO REPORT**) — unchanged by this pass, which converted the one mark that was never on that list.
 
+**Sync — 2026-08-15 (`order-setup-empty`'s mark becomes a clock)**
+- **No string moves, and the retirement above stands.** The designer's word the same evening: *«постав годинник»*. Only the picture changed — the struck magnifier gives way to the clock `tracking-empty` already owns (`concept.md` rev 80). `~40 MIN` stays retired from the master table, the title, body and both actions are untouched, and the mark is still `aria-hidden` inside the `role="status"` block, so nothing in this file's inventory moves.
+- **The words and the picture now agree, which they did not for two minutes.** The body says *"The next one is likely free in about 40 minutes"* — a **wait**, not a failed search — and the clock says the same thing the retired `~40 MIN` said, without spending a value on a 52px badge.
+
 ---
 
 ## Master table — every string
@@ -413,7 +418,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | contact-support | Agent panel | Online 24/7 · typically replies in ~3 min | Body | DATA |
 | contact-support | Agent panel | Human agent | Body |  |
 | contact-support | Agent panel | Order #DR-4821 | Body |  |
-| contact-support | Message | Your message | Field label |  |
+| contact-support | Message | Your message | Field label | SR-ONLY — visually the field shows one sentence: the placeholder (designer, 2026-08-15) |
 | contact-support | Message | Describe the issue and what you'd like to happen. | Field placeholder |  |
 | contact-support | Message | Call support | Button |  |
 | contact-support | Message | Mark resolved | Button |  |
