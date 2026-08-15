@@ -957,6 +957,53 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="nm"><b>Picker row</b><code>.dr-picker · __list · __item</code>
+    <p>The disclosure's mechanism inside a form row: the <code>&lt;summary&gt;</code>
+       <b>is</b> the <code>.dr-field</code>. Opens in flow, like everything here.</p></div>
+  <div class="spec">
+    <div class="plate" style="padding:0;width:300px;overflow:visible;border:0;background:none">
+      <div class="dr-rows">
+        <details class="dr-picker" open>
+          <summary class="dr-field">
+            <span class="dr-field__label">Payment method</span>
+            <span class="dr-field__value">Visa •••• 4921</span>
+            <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span>
+          </summary>
+          <div class="dr-picker__list" role="group" aria-label="Payment method">
+            <button class="dr-picker__item" type="button" aria-current="true">Visa •••• 4921<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+            <button class="dr-picker__item" type="button">Apple Pay<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+          </div>
+        </details>
+        <div class="dr-field">
+          <span class="dr-field__label">Language</span>
+          <span class="dr-field__value">English</span>
+          <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>The arrow is pinned by the shrink order, not by a number.</b> Label <code>0 0 auto</code>,
+       value <code>0 1 auto</code> with <code>min-width:0</code> and the ellipsis, chevron
+       <code>flex:none</code>, row <code>flex-wrap: nowrap</code>. That last one is load-bearing and
+       was measured: without it a 66-character value took the <i>wrap</i> instead of the ellipsis and
+       the row went <b>44 → 78</b> with the chevron <b>325px</b> in from the edge. After: both rows
+       <b>44 × 341</b>, the chevron flush with the row's trailing edge on a 14-character value and a
+       56-character one alike.</p>
+    <p><b>It replaced a control that opened nothing.</b> On the built <code>account-edit</code> the
+       row was a <code>&lt;span role="button"&gt;</code> announcing a menu it did not have
+       (<code>WCAG 4.1.2</code>), marked with the text glyph <b>▾</b> — a character in the running
+       font, not the 24-grid outline every other arrow here is drawn on.</p>
+    <p><b>Nothing here needs JS to open.</b> <code>&lt;details&gt;</code> takes Enter and Space by
+       itself; the options are real <code>&lt;button&gt;</code>s. The page's script only makes the
+       pick land — value up to the row, mark across, menu closed, focus back. Ring
+       <code>2.5px --ink</code> drawn inside on both (<code>WCAG 2.4.7</code>); every option carries
+       the mark and only the current one shows it, held by <code>visibility</code>, so no row moves
+       when the pick changes.</p>
+  </div>
+</div>
+
 <!-- ═══ MOTION ════════════════════════════════════════════════════════════ -->
 <h2 class="sec">Motion</h2>
 <div class="row">
