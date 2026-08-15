@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON · input fields — options to choose from</title>
+<!--
+  PROPOSAL PAGE, not a screen. Built 2026-08-16 on the designer's word:
+  "мені не подобається обводка в полях вводу… зроби так як робить HIG —
+   там наче в інпутах немає обводки, просто індикатор і вспомагательний
+   текст ледь сірим".
+  First finding: the input already has NO border (her own snapshot reads
+  border: 0px none). What reads as обводка is the ROW PANEL — the --card
+  fill the group sits in. So the question is whether the panel stays.
+  Delete this file once she has chosen. Precedent: preview-text-button.html.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
+<style>
+  body{ background:var(--page); font-family:var(--font-ui); color:var(--ink); padding:28px; margin:0; }
+  h1{ font-size:22px; font-weight:700; letter-spacing:-.02em; margin:0 0 4px; }
+  .sub{ color:var(--slate); font-size:14px; margin:0 0 10px; max-width:70ch; line-height:1.55; }
+  .sub b{ color:var(--ink); font-weight:600; }
+  .opt{ background:var(--card); border-radius:var(--r-card); padding:20px; margin:0 0 16px; max-width:620px; }
+  .opt h2{ font-size:15px; font-weight:600; margin:0 0 2px; }
+  .opt p{ font-size:13px; color:var(--slate); margin:0 0 14px; line-height:1.55; }
+  .opt p b{ color:var(--ink); font-weight:600; }
+  .stage{ background:var(--page); border-radius:var(--r-btn); padding:16px; }
+  .cap{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.09em;
+        text-transform:uppercase; color:var(--slate); margin:0 0 8px; }
+
+  /* B · no panel, separators kept */
+  .noPanel .dr-rows{ background:none; border-radius:0; padding-left:0; padding-right:0; }
+  .noPanel .dr-field{ padding-left:0; padding-right:0; }
+  .noPanel .dr-field + .dr-field::before{ left:0; }
+
+  /* C · no panel, no separators */
+  .bare .dr-rows{ background:none; border-radius:0; padding-left:0; padding-right:0; }
+  .bare .dr-field{ padding-left:0; padding-right:0; }
+  .bare .dr-field + .dr-field::before{ display:none; }
+
+  /* placeholder shades, for the second question */
+  .ph45 .dr-field__input::placeholder{ color:#6C6963; }
+  .ph32 .dr-field__input::placeholder{ color:#86827A; }
+  .fail{ color:var(--danger-ink); font-weight:600; }
+</style>
+</head>
+<body>
+
+<h1>Input fields — what should go, and what cannot</h1>
+<p class="sub"><b>First, the finding that changes the question.</b> The input already has
+<b>no border</b> — your own snapshot reads <code>border: 0px none</code>, and there is no rule in the
+kit that draws one. What reads as обводка is the <b>row panel</b>: the warm card the group of fields
+sits inside. So the real question is whether that panel stays, and the three options below answer it.</p>
+<p class="sub"><b>Both of these are HIG.</b> iOS has two form styles: the <b>grouped inset list</b>
+(Settings — a card, rows, separators, value on the right), which is what is built; and the
+<b>plain field</b> (Notes, a search bar — no box, just the caret and a grey placeholder), which is
+what you described. Neither is more correct than the other; they are for different screens.</p>
+
+<!-- A -->
+<div class="opt">
+  <h2>A · as built — the grouped panel</h2>
+  <p>HIG's grouped inset list. The card says "these rows are one group", the hairline separates them,
+    and the field itself draws nothing.</p>
+  <div class="stage"><p class="cap">rest · typed · placeholder</p>
+    <div class="dr-rows">
+      <div class="dr-field"><label class="dr-field__label" for="a1">Full name</label>
+        <span class="dr-field__group"><input class="dr-field__input" id="a1" value="Olena B."></span></div>
+      <div class="dr-field"><label class="dr-field__label" for="a2">Phone</label>
+        <span class="dr-field__group"><input class="dr-field__input" id="a2" type="tel" placeholder="Add a phone number"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- B -->
+<div class="opt noPanel">
+  <h2>B · no panel, separators kept</h2>
+  <p>The card comes off; the hairline stays. This is HIG's <b>plain</b> list — rows on the page itself,
+    still told apart by a line. Typed text goes to <b>15.99:1</b> on the page, up from 14.37:1 on the card.</p>
+  <div class="stage"><p class="cap">rest · typed · placeholder</p>
+    <div class="dr-rows">
+      <div class="dr-field"><label class="dr-field__label" for="b1">Full name</label>
+        <span class="dr-field__group"><input class="dr-field__input" id="b1" value="Olena B."></span></div>
+      <div class="dr-field"><label class="dr-field__label" for="b2">Phone</label>
+        <span class="dr-field__group"><input class="dr-field__input" id="b2" type="tel" placeholder="Add a phone number"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- C -->
+<div class="opt bare">
+  <h2>C · nothing but the text — closest to what you described</h2>
+  <p>No card, no separator. Just the label, the value, the caret when you type, and the grey
+    placeholder. <b>The cost:</b> with neither a line nor a panel, two fields in a row have nothing
+    between them — which is why HIG's own plain list keeps the separator.</p>
+  <div class="stage"><p class="cap">rest · typed · placeholder</p>
+    <div class="dr-rows">
+      <div class="dr-field"><label class="dr-field__label" for="c1">Full name</label>
+        <span class="dr-field__group"><input class="dr-field__input" id="c1" value="Olena B."></span></div>
+      <div class="dr-field"><label class="dr-field__label" for="c2">Phone</label>
+        <span class="dr-field__group"><input class="dr-field__input" id="c2" type="tel" placeholder="Add a phone number"></span></div>
+    </div>
+  </div>
+</div>
+
+<h1 style="margin-top:34px">And the grey placeholder — how light can it go</h1>
+<p class="sub">A placeholder is text, so <b>WCAG 1.4.3</b> asks it for <b>4.5:1</b> like any other
+string. That puts a hard floor under "ледь сірим", and the floor is closer than it looks: today's
+placeholder is already only <b>one small step</b> above it.</p>
+
+<div class="opt">
+  <h2>Today — <code>--slate</code>, 5.95:1 on the card</h2>
+  <div class="stage">
+    <div class="dr-rows"><div class="dr-field"><label class="dr-field__label" for="p1">Phone</label>
+      <span class="dr-field__group"><input class="dr-field__input" id="p1" placeholder="Add a phone number"></span></div></div>
+  </div>
+</div>
+
+<div class="opt ph45">
+  <h2>The lightest that still passes — <code>#6C6963</code>, 4.52:1</h2>
+  <p>This is the end of the road, not a middle option: one shade lighter and the placeholder fails AA.
+    Whether it even reads as lighter than today is worth judging with your own eyes.</p>
+  <div class="stage">
+    <div class="dr-rows"><div class="dr-field"><label class="dr-field__label" for="p2">Phone</label>
+      <span class="dr-field__group"><input class="dr-field__input" id="p2" placeholder="Add a phone number"></span></div></div>
+  </div>
+</div>
+
+<div class="opt ph32">
+  <h2><span class="fail">Fails</span> — <code>#86827A</code>, 3.16:1</h2>
+  <p>Shown only so the difference is visible. This is roughly the "ледь сірим" of most design mockups,
+    and it is <b>below AA</b> — it would be the first text-contrast failure in the product, which has
+    zero today.</p>
+  <div class="stage">
+    <div class="dr-rows"><div class="dr-field"><label class="dr-field__label" for="p3">Phone</label>
+      <span class="dr-field__group"><input class="dr-field__input" id="p3" placeholder="Add a phone number"></span></div></div>
+  </div>
+</div>
+
+<script src="_wf-shell.js"></script>
+</body>
+</html>
