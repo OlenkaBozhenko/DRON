@@ -314,6 +314,12 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **`voice.md` A3 re-checked and holds.** Her note reads *"uploade sertificated drone document"*; A3 bars ~~Upload~~ in favour of **Add + object**, which is the resolution her own 2026-08-13 wording (*"Upload documents about drone"*) already took. The word **certified** is not added — the drone papers are registration / serial / manufacturer documents, and the hint already names them; *certified* would claim an attestation the flow does not ask for (P2: show the proof, not the adjective). **Open for her word** if she wants the object renamed.
 - **Accessible name unchanged in substance, better in mechanism:** the name now comes from the visible line itself (name-from-contents), so `WCAG 2.5.3 Label in Name` is satisfied by construction rather than by a matching `aria-label`; the hint is wired to the control with `aria-describedby` instead of floating unassociated beside it.
 
+**Sync — 2026-08-15 (`order-confirmed-empty`'s badge shortens to fit one row)**
+- **One string changes on one screen:** `Verified by DRON` → **`Verified`**, on `order-confirmed-empty` only. The designer asked for the two badges on a single row *«якщо достатньо місця»* — if there is enough room — so the condition was measured rather than assumed: that card's round 56px avatar leaves the text column **241px**, and one row carrying both pills **with** the shield icons needs **275.86**. It does not fit. Offered three ways out with the numbers, she chose the shorter label: **218.98** needed against 241, **22px** of slack, row **59.59 → 26.80** and card **138.09 → 105.30**.
+- **What the shortening costs, said plainly:** *by DRON* is who did the verifying, and that is the trust claim itself (`RJ-C1`). On this card the loss is smallest — the badge sits on an operator card inside the DRON app, beside *Insured*, under the DRON mark in the nav bar — but it is a loss, and it is hers, taken with the cost stated.
+- **Deliberately not swept:** the other five screens keep `Verified by DRON`. `order-confirmed`'s own success state cannot fit one row at any label length — its full-bleed operator photo leaves only **196px** — so shortening there would cost the words and buy nothing. The product therefore carries two strings for one concept, which is a `voice.md` drift recorded here rather than hidden; unifying it in either direction is one line of work whenever she wants it.
+- **The fit has a floor:** the row needs a frame **≥ ~353px**. At the design width of 375 there are 22px to spare, but any narrowing below that — or a longer word in either pill — wraps it back to two lines, and nothing breaks when it does.
+
 **Sync — 2026-08-15 (one Documents heading over both cards)**
 - The zone gains its **first real product heading**: a single **`Documents`** standing above both upload cards. The designer's call, given in two parts — *"зроби окремо заголовок над зонами загрузки: Documents"*, then, asked which of the two readings she meant, *"зроби один заголовок Documents для обох карток"*. It is one heading for the pair, not one per card.
 - **Two strings retire:** the in-card field labels **`Drone documents`** and **`Insurance`**. Their job passes to the two lines the cards already carry — the title `Add drone documents` / `Add insurance` names the object, and the heading names the group. Nothing the user could read is lost; one line of restatement per card is.
@@ -901,7 +907,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-confirmed-empty | Your operator | KO | State message | DATA |
 | order-confirmed-empty | Your operator | Kateryna O. | State message | DATA |
 | order-confirmed-empty | Your operator | New operator · no reviews yet | State message |  |
-| order-confirmed-empty | Your operator | Verified by DRON | State message |  |
+| order-confirmed-empty | Your operator | Verified | State message | shortened from `Verified by DRON` on this card alone (designer, 2026-08-15) so the pair fits one row beside the round avatar — see the sync note below |
 | order-confirmed-empty | Your operator | Insured | State message |  |
 | order-confirmed-empty | Your operator | Track anyway | Button |  |
 | order-confirmed-empty | Your operator | Ask for another operator | Button |  |
