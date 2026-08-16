@@ -329,6 +329,63 @@
 
   </div>
 
+  <!--
+    THE CATEGORY FILTER. This page's one script, and it sits here for the reason
+    listings-filters' two do: the behaviour is not in `ui/kit.js` — that file is
+    the picker drawer and says so at the top — and one page carries it until a
+    second page needs it.
+
+    WHAT THE MARKUP ALREADY GIVES, AND THIS DOES NOT RE-IMPLEMENT. The chips are
+    real <button>s, so Enter, Space, the tab order, the 44pt hit area (the
+    ::after bleed on .dr-grouptab) and the accessible name all come from the
+    element and from kit.css — `WCAG 2.1.1` and `4.1.2` are answered before a
+    line of this runs. What is added is two attributes moving.
+
+    `hidden`, NOT A CLASS. A card that is filtered out leaves the layout AND the
+    accessibility tree together, so the screen reader counts what the eye counts
+    (`WCAG 1.3.1`) and the hidden card's link is not a focus stop pointing at a
+    service the screen no longer offers (`WCAG 2.4.3`). The <li> carries it, so
+    the row and its link go as one.
+
+    NOTHING IS ANNOUNCED, AND THAT IS A DECISION, NOT AN OMISSION. The counter
+    row left all five listing states on the designer's word — *"remove this and
+    sorting — I have filters instead"* (microcopy.md) — so a live region here
+    would put `3 services` back on the page through the side door. Nothing fails
+    at AA for it: `WCAG 4.1.3 Status Messages` governs a status message a page
+    presents, and this page presents none; the change of state is spoken by the
+    chip the user just pressed, which is where the focus is. Whether the filter
+    should say "1 service" out loud is the designer's call, like the loading
+    state's own lost line (microcopy.md, 2026-08-16).
+  -->
+  <script>
+  (function () {
+    'use strict';
+
+    var row = document.querySelector('[data-groups]');
+    if (!row) return;
+
+    var tabs  = row.querySelectorAll('.dr-grouptab'),
+        cards = document.querySelectorAll('.dr-list [data-cat]');
+    if (!tabs.length || !cards.length) return;
+
+    function pick(cat) {
+      tabs.forEach(function (tab) {
+        if (tab.getAttribute('data-cat') === cat) tab.setAttribute('aria-current', 'true');
+        else tab.removeAttribute('aria-current');
+      });
+      /* "all" is a category like the others, so there is one code path and no
+         "clear" branch that could fall out of step with the three real ones */
+      cards.forEach(function (card) {
+        card.hidden = cat !== 'all' && card.getAttribute('data-cat') !== cat;
+      });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { pick(tab.getAttribute('data-cat')); });
+    });
+  }());
+  </script>
+
   <!-- shared wireframe shell: left nav tree + viewport switcher (same on every page) -->
   <script src="_wf-shell.js"></script>
 </body>
