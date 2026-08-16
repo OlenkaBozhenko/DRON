@@ -627,7 +627,7 @@ chrome so the toast cannot cover the control that raised it, and — where the r
 | Support / dispute (`EJ-2` entry) | `support.html` | — |
 | Report an issue (`EJ-2`) | `report-issue.html` | `report-issue-empty.html`, `report-issue-loading.html` |
 | Resolution outcome (`EJ-2`) | `resolution.html` | — |
-| Contact human support (`EJ-2`) | `contact-support.html` | `contact-support-error.html` |
+| Contact human support (`EJ-2`) *(the **Call support** control in the action bar opens the voice channel to the same agent, 2026-08-16)* | `contact-support.html` | `contact-support-error.html`, `call-support.html` (sub-view — base only, the connected call; the **second** instance of the product's one dark surface, `.dr-call`, and everything it shares with `call.html` is byte-identical. Three things differ, each because of **who is on the line**: the name is *DRON Support*, both **Minimise** and **End call** return to `contact-support.html` rather than to `tracking`, and the top-right pair comes off — *add support* is meaningless when support is the call, and the typed channel to this agent is the screen behind it) |
 | Operator landing / fee terms (`OE-12`) | `operator-fee-terms.html` | — |
 | Sign up / identity (`MJ-2`) | `operator-signup.html` | `operator-signup-error.html`, `operator-signup-loading.html` |
 | Verification / document upload (`MJ-2` gate) | `operator-verification.html` | `operator-verification-error.html`, `operator-verification-loading.html` |

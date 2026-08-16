@@ -651,7 +651,7 @@ avatar is the *base*: the initials fallback, which `account.html` already ships 
 | C6 | **Support / dispute** | `EJ-2` (entry) | *EJ-2*: entry hub → "What went wrong?" triage | base only (a triage router; loadings live on the target screens) | `support.html` |
 | C7 | **Report an issue** | `EJ-2` | *EJ-2*: "result not as expected" → evidence? → review | **Empty** ✓ (no evidence — weaker claim, manual review) · **Loading** ✓ (issue under review) | `report-issue.html`, `report-issue-empty.html`, `report-issue-loading.html` |
 | C8 | **Resolution outcome** | `EJ-2` | *EJ-2*: review → Resolution? (refund / free re-do / human) | base only (shows the outcome; branches are links, not states) | `resolution.html` |
-| C9 | **Contact human support** | `EJ-2` | *EJ-2*: safety/trust or unresolved → agent | **Error** ✓ (unresolved with agent → escalation queue) | `contact-support.html`, `contact-support-error.html` |
+| C9 | **Contact human support** | `EJ-2` | *EJ-2*: safety/trust or unresolved → agent | **Error** ✓ (unresolved with agent → escalation queue) · **sub-view** `call-support` — the voice channel to the same agent (base only: the connected call; **Minimise** and **End call** both return here) | `contact-support.html`, `contact-support-error.html`, `call-support.html` |
 
 **`order-details` is three files, one per service — not three states.** Added 2026-08-16 on the designer's
 word: «у мене є три різні сторінки have already made orders де є доставка, огляд криші та фото — так от вони
@@ -725,6 +725,44 @@ Recorded as a decision, not filed as a defect.
 this is the first of the three records that scrolls. Zero horizontal overflow; the action bar is a
 fixed footer, so `Book again` and `Delete order` never leave the screen. Every target **44 × 44** or
 wider; green unchanged at **15,124px² · 4.97%** with `Book again` still the only green control.
+
+**`call-support.html` is a sub-view of C9, not a new sitemap screen.** Added 2026-08-16 on the
+designer's word: «зроби таку сторінку `call.html` яка буде відкриватись при кліку на кнопку "Call
+support"». `sitemap.md §6.1` still lists **one** *Contact human support* screen; this file is a
+sub-view of it, listed in the `Files` column above rather than given a row of its own — the same
+shape as `account-photo` under S2 and `chat` / `call` under §9.
+
+- **What it closes is a control that named an act and performed none.** `Call support` was
+  `<button type="button">` with no target, no handler and no `data-toast` — a dead 44px button in the
+  action bar since rev 106. Both `microcopy.md` and `concept.md` rev 106 describe it as *"hands off
+  to the phone app"*, and that description stopped being true at **rev 141/144**, when the
+  masked-number reading took every `tel:` and every stated phone number out of the product. The
+  button now does what `Call operator` does: it opens DRON's own call screen.
+- **Why a second file and not `call.html`.** Three things would have been wrong on the shared one.
+  The name — `voice.md`'s vocabulary rule never crosses **operator** and **support**, and `call.html`
+  says *Andriy M.* The exits — `call.html`'s **Minimise** and **End call** both return to `tracking`,
+  which would drop a client mid-issue onto the map of an order that may not even be the one they are
+  disputing. And the top-right pair, below. One surface, two instances.
+- **Everything the two calls share is byte-identical**: `.dr-call` on `--night`, the 22/700 name over
+  the tabular duration in `--btn2`, the 176px portrait disc, the `--night-raised` pill holding four
+  44px discs on 14px gaps, `End call` as the one saturated fill. Three things differ, each forced by
+  **who is on the line**: the name, both exits, and the side actions.
+- **The two side actions come off, and that is the flag on `call.html` being answered rather than
+  copied.** *Add support to the call* is meaningless when support **is** the call; *Chat with the
+  operator* is the wrong object here, and the typed channel to **this** agent is the message form on
+  the screen behind — where **Minimise** already goes, so a second control for it would be one act
+  with two names. What is left is one control on the left, and `.dr-call__side--empty` holds the
+  matching 44px on the right so the name stays optically centred (`.dr-call__top`'s three columns
+  need the outer two equal; there is no nav bar here to hang an absolute title on).
+- **`Video` is inherited, not re-decided.** §9c flags it as a control with no `sitemap.md` job,
+  present because the designer's reference draws it. Keeping the bar identical across both instances
+  keeps one component; the flag travels with it and comes off both screens in one line, together.
+- **The `HIG · Modality` departure travels too** — no nav bar, no back control, no DRON mark, because
+  a call is presented modally rather than pushed. `_conventions.md §12b`'s checklist assumes a
+  navigational screen; recorded as a departure, not filed as a defect.
+- **States: base only** — the connected call. `calling` (loading) and `no answer` (error) are traced
+  and not built, exactly as at §9c, and the error's way out is the message form behind it, so it is
+  not a dead-end.
 
 ### Operator — Step 8
 

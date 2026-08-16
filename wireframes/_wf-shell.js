@@ -55,7 +55,7 @@
       { name: "Support / dispute",                     file: "support.html",            states: [] },
       { name: "Report an issue",                       file: "report-issue.html",       states: [["empty","report-issue-empty.html"],["loading","report-issue-loading.html"]] },
       { name: "Resolution outcome",                    file: "resolution.html",         states: [] },
-      { name: "Contact human support",                 file: "contact-support.html",    states: [["error","contact-support-error.html"]] }
+      { name: "Contact human support",                 file: "contact-support.html",    states: [["call support","call-support.html"],["error","contact-support-error.html"]] }
     ]},
     { title: "Operator · step 8 (activation · standing)", screens: [
       { name: "Operator landing / fee terms",          file: "operator-fee-terms.html", states: [] },

@@ -2531,6 +2531,15 @@ header.dr-topbar,
   font-variant-numeric: tabular-nums;
 }
 .dr-call__side{ display: flex; flex-direction: column; gap: var(--sp-snug); flex: none; }
+/* THE RIGHT-HAND 44 WITH NOTHING IN IT (2026-08-16, call-support). That screen
+   has one top control and not three: "add support to the call" is meaningless
+   when support IS the party on the line, and the operator's thread is the wrong
+   object. The centring above is STRUCTURAL — three columns with the outer two
+   the same width, because there is no nav bar here to hang an absolute title on
+   — so the column stays and only its content goes; --sz-action is the disc it
+   stands in for, to the pixel. A spacer and not a control: no fill, no border,
+   nothing focusable, and nothing in the accessibility tree. */
+.dr-call__side--empty{ width: var(--sz-action); }
 
 /* THE STAGE — everything between the top row and the bar, with the portrait
    disc centred in it. flex:1 so the disc holds the middle of the frame at any

@@ -397,6 +397,8 @@ flowchart TD
   %% C — safety / trust concern
   D1 -->|"safety / trust concern"| HS
   %% Human escalation (Airbnb 24/7 model)
+  HS --> CS["Call support"]
+  CS --> HS
   HS --> D6{"Resolved with agent?"}
   D6 -->|yes| OK3(["Success: resolved via support"]):::done
   D6 -->|no| ESC(["Error: unresolved — escalation queue"]):::state
@@ -414,6 +416,17 @@ flowchart TD
 - *Evidence attached?* — strength of a quality claim.
 - *Resolution?* — refund / free re-do / human review.
 - *Resolved with agent? / Policy defined?* — escalation outcome (Airbnb 24/7).
+- *Call support* (added 2026-08-16, designer's call — *«зроби таку сторінку `call.html` яка буде
+  відкриватись при кліку на кнопку "Call support"»*) — the action bar's second control opens
+  **Call support** (`wireframes/call-support.html`), the voice channel to the agent already named on
+  the screen. It is **drawn from `HS` and returns to `HS`** on purpose, the same shape as the call
+  branch on tracking: a second channel to the same person, never a step in the resolution. Both ways
+  out land back on the message form — *Minimise*, which leaves the call running, and *End call*,
+  which does not — so `D6` is still reached from one place and the escalation ladder is unchanged.
+  **What it replaces is nothing:** the button had no target at all, and the `tel:` reading the old
+  microcopy describes left the product at rev 141 with the masked number. Two states of this node are
+  traced and not built — *calling* (loading) and *no answer* (error, whose way out is the message form
+  behind it); see `_screens.md` C9.
 
 **States & dead-ends**
 - `Loading` — re-dispatching a new operator; issue under review.

@@ -1190,6 +1190,14 @@ The call screen, built to the designer's reference (Figma `YlGWlsWWjKSCxhONMzGG2
 CallKit are all dark whatever the app's theme is, because a call is a full-screen takeover that has
 to recede. `#F7F5F2` stays the product's ground on every other screen.
 
+**One surface, two files since 2026-08-16** — `call` (the operator, from tracking) and `call-support`
+(the agent, from `contact-support`). *One dark surface* is still literally true: not one page but one
+**kind** of page, and a second instance of it does not widen the departure. No token, ratio, radius
+or measurement below changes between them; what differs is the name, the two exits and the presence
+of the top-right pair, each decided by **who is on the line** rather than by taste. The empty
+44px column that keeps the name centred on the second file is `.dr-call__side--empty` — a width and
+nothing else.
+
 | Token | Value | Role | Measured |
 |---|---|---|---|
 | `--night` | `#1A1A1A` | the call ground | the same value as `--ink`, declared again under the name of the role it plays — the palette's own habit, `--on-green` being a third name for it |
@@ -1211,7 +1219,7 @@ to recede. `#F7F5F2` stays the product's ground on every other screen.
 
 ### Destructive fill (`.dr-btn--danger-solid`)
 
-`End call` on `call`, and the **first spend of `--danger` as a surface** — the token was declared at
+`End call` on `call` and on `call-support`, and the **first spend of `--danger` as a surface** — the token was declared at
 rev 25 and drawn nowhere since, with the reason written beside it: nothing had asked for a red
 surface. A hang-up button is that thing, and `HIG · Buttons` asks a destructive action to look
 destructive.

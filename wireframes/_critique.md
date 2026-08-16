@@ -595,3 +595,43 @@ delivery — except that delivery never reaches a slot list at all, so here the 
 meaning than it does elsewhere. Renaming it to `time-slot-aerial.html` would touch the shell tree,
 `_screens.md` and `_conventions.md`; it is the designer's call and is not assumed. The shell tree
 labels it *· aerial* in the meantime.
+
+---
+
+## 2026-08-16 — a control that named an act and performed none (`contact-support` · **Call support**)
+
+**Found by the designer, not by an audit**, which is the useful part: *«зроби таку сторінку `call.html`
+яка буде відкриватись при кліку на кнопку "Call support"»*. The button was
+`<button type="button" class="dr-btn dr-btn--secondary dr-btn--block">Call support</button>` — **no
+`href`, no handler, no `data-toast`**. Tapping it did nothing at all, and had done nothing since rev
+106 moved it into the action bar.
+
+**Why three audits walked past it.** The prototype's own paperwork explained the silence. `microcopy.md`
+and `concept.md` rev 106 both said the control *"hands off to the phone app"*, and the rev 96 toast
+sweep refused it a toast **for that reason** — *"the dialer is the confirmation, and nothing has
+happened yet at the moment of the tap."* A control that is documented as leaving the app reads as
+finished. It was true of an earlier build; the `tel:` left the product at **rev 141** with the masked
+number, and rev 144 recorded that no frame states a phone number any more. The description outlived
+the behaviour it described by two revisions.
+
+**The lesson is narrower than "check for dead buttons", and the count is why.** Sweeping every
+`<button>` inside a `.wf-frame` that has no `href`, `type="submit"`, `aria-controls`, `data-toast`,
+`aria-pressed` or `kit.js` hook (`[data-close]`, `.dr-picker__item`) returns **66** controls, of which
+**65** are not defects: 40 `.dr-grouptab` service tabs and day chips whose selected state is written
+into the markup, the 3 share channels, 2 calendar arrows, 3 job-options discs, `chat`'s Send,
+`order-details-aerial`'s Play and Download, `account-photo`'s Remove, and `order-history`'s three
+**Delete order** buttons — the one item on that list already logged as open, at `microcopy.md`'s toast
+sweep, for a different reason (no confirm, no undo). A prototype is allowed inert controls.
+
+**What made this one a defect was not the missing handler but the documentation that explained it
+away.** The checkable rule, then: *when a behaviour is removed, grep the docs for the behaviour, not
+only the code.* `tel:` left the build at rev 141 and left two prose descriptions standing, and those
+descriptions are what three later passes read instead of the markup.
+
+**Fixed** by building the screen the label promises (`call-support.html`, `_screens.md` C9) and by
+correcting both notes in place rather than deleting them. The toast verdict survives its own reason:
+the control navigates now, so it sits in the sweep's *changes screen* row.
+
+**Checked and deliberately not changed:** `contact-support-error` has no *Call support* control, and
+should not — at the escalation queue the case has left the agent, so there is no one on the other end
+to call. Its two exits (`Back to Activity`, `Contact support`) are unchanged.
