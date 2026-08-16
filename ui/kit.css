@@ -635,6 +635,37 @@ header.dr-topbar,
 .dr-btn--danger:hover{ color: var(--ink); }
 .dr-btn--danger:active{ color: var(--ink); transform: translateY(var(--lift-active)) scale(var(--scale-active)); }
 
+/* THE DESTRUCTIVE ACTION AS A SURFACE (2026-08-16) — `End call` on `call`, and
+   the first thing in the product to ask for a red FILL. --danger #C4462A has
+   been declared and drawn nowhere since rev 25, with the standing reason
+   written beside it: "nothing in the product has asked for a red surface."
+   A hang-up button is that thing, and it is the universal shape — `HIG ·
+   Buttons` asks a destructive action to look destructive, and no user has to
+   learn what a red End call does.
+
+   MEASURED, AND THE NUMBER IS THIN ENOUGH TO SAY OUT LOUD: --page on --danger
+   is **4.53:1**, which clears `WCAG 1.4.3`'s 4.5:1 for the 15/600 label by
+   0.03. It is a pass and it is the thinnest text pair in the system — every
+   other recorded pair sits at 4.77 or above. The palette has no lighter ink
+   than --page (no #FFFFFF, by rule), so 4.53 is the ceiling for this fill;
+   --ink on --danger is 3.53:1 and fails outright, which is why the label is
+   never charcoal here the way it always is on green.
+   THE ALTERNATIVE WAS BUILT AND MEASURED BESIDE IT: --danger-ink #9A3115 as
+   the fill gives --page at **6.83:1**, comfortable — at the cost of spending an
+   INK token as a surface, against the palette's own naming (ink = foreground,
+   wash = ground, solid = fill). Both conform; the designer has the number.
+
+   `WCAG 1.4.11` on the button's own edge against the page: 4.53:1 against a
+   3:1 floor. Focus stays the --ink ring on --page, 15.99:1 (`2.4.11`).
+
+   IT SHIPS FLAT, and that is the kit's existing reading rather than a new one:
+   --sh-sm is spent under the GREEN primary, and .dr-btn--pay already
+   established that a filled button in another colour takes no shadow. This
+   screen therefore carries no shadow at all, because it carries no green. */
+.dr-btn--danger-solid{ background: var(--danger); color: var(--page); }        /* 4.53:1 */
+.dr-btn--danger-solid:hover{ filter: brightness(var(--bright-hover)); }
+.dr-btn--danger-solid:active{ transform: translateY(var(--lift-active)) scale(var(--scale-active)); }
+
 .dr-btn--block{ width: 100%; }
 
 /* Built, not dimmed. Blanket opacity would take charcoal-on-green to 2.35:1;
@@ -2385,6 +2416,20 @@ header.dr-topbar,
 .dr-channel .dr-ic{ width: var(--ic-22); height: var(--ic-22); }
 .dr-channel:hover{ background: var(--media); }
 .dr-channel:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+/* THE SAME SHAPE AS A TOGGLE (2026-08-16) — Mute and Speaker on `call`. The
+   share sheet's channels are one-shot actions; a call control is on or off, so
+   it takes aria-pressed and the pressed look has to exist or the control is not
+   a toggle at all (`WCAG 1.4.1`, `4.1.2`). INVERTED, WHICH IS BOTH iOS's OWN
+   ANSWER AND THE KIT'S: an active call control fills where a resting one is
+   translucent, and --page on --ink is 15.99:1 — the toast's recorded pair, the
+   palette's strongest, and no new colour. State is never carried by the fill
+   alone: aria-pressed rides with it, and the label under the glyph does not
+   change, so the control keeps one name (`2.5.3`).
+   DECLARED HERE, DRAWN ON NO BUILT FRAME: `call` is the base state, where
+   nothing is muted and the speaker is off. It is the pressed half of a control
+   that exists, not a rung waiting for a home like --sh-onphoto. */
+.dr-channel[aria-pressed="true"]{ background: var(--ink); color: var(--page); }   /* 15.99:1 */
+.dr-channel[aria-pressed="true"]:hover{ background: var(--ink); filter: brightness(var(--bright-hover)); }
 
 /* ═══ THE PAGER ═══════════════════════════════════════════════════════════
    Settled 2026-08-03 by the designer: the active dot is green, the resting

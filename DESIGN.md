@@ -1183,6 +1183,36 @@ mark, a title and actions, and shares with this one only the word *message*.
   **289.4 × 44**, `--ink` on `--media` **13.33:1**, no focus ring: the caret carries `WCAG 2.4.7`)
   and the 44px Send disc.
 
+### Destructive fill (`.dr-btn--danger-solid`)
+
+`End call` on `call`, and the **first spend of `--danger` as a surface** — the token was declared at
+rev 25 and drawn nowhere since, with the reason written beside it: nothing had asked for a red
+surface. A hang-up button is that thing, and `HIG · Buttons` asks a destructive action to look
+destructive.
+
+- **`--page` on `--danger` = 4.53:1.** A `WCAG 1.4.3` pass for the 15/600 label **by 0.03**, and the
+  thinnest text pair in the system — every other recorded pair is 4.77 or above. Said as a number,
+  not as "fine".
+- **There is no lighter ink to reach for.** The palette bars `#FFFFFF`, so `--page` is the ceiling;
+  `--ink` on `--danger` is **3.53:1** and fails, which is why the label is never charcoal here the
+  way it always is on green.
+- **The alternative, measured beside it:** `--danger-ink` `#9A3115` as the fill gives `--page` at
+  **6.83:1** — comfortable, at the cost of spending an *ink* token as a surface against the
+  palette's own naming (ink = foreground, wash = ground, solid = fill). Both conform.
+- **`WCAG 1.4.11`** on the button's own edge against the page: the same **4.53:1** against a 3:1
+  floor. Focus stays the `--ink` ring on `--page`, **15.99:1**.
+- **Flat**, by the kit's existing reading: `--sh-sm` belongs to the green primary and `.dr-btn--pay`
+  already settled that a filled button in another colour takes none. `call` therefore carries no
+  shadow and no green at all.
+
+### Call control (`.dr-channel[aria-pressed]`)
+
+The share sheet's channel button wearing a state — Mute and Speaker on `call`. One new rule: the
+**pressed** look, `--page` on `--ink` at **15.99:1** (the toast's pair, no new colour), because a
+toggle whose on-state is invisible is not a toggle (`WCAG 1.4.1`, `4.1.2`). The label never flips to
+*Unmute* — one control, one name, state on `aria-pressed` (`2.5.3`). Laid out by `.dr-actionbar__row`
+with `.dr-channel`'s own `flex:1`; measured **166.7 × 66.4** each, 1.5× the 44 floor.
+
 ### Circular action as a screen's primary (`.dr-btn--primary.dr-btn--icon`)
 
 The two modifiers worn at once, no new value. A rule exists only for **order** — `--icon` is declared

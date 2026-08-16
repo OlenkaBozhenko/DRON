@@ -295,7 +295,7 @@ how.**
 
 | Way out | Row label | Target | Why it is that shape |
 |---|---|---|---|
-| the phone | **Call operator** | `tel:` — the masked line | The OS dialer, so no screen. `voice.md` **A2** already permits a phone-only action to say *Call*. |
+| the phone | **Call operator** | `call.html` | **The second new screen** — built 2026-08-16 on the designer's word, *«зроби фрейм який відкриє дзвінок»*. It shipped for one build as a `tel:` handoff to a masked line, on the reading that the OS dialer answers a call; she asked for the call to be DRON's own screen, which is what a masked in-app call actually is — the number was never the client's to see, so neither is the dialer. `voice.md` **A2** permits the phone-only action to say *Call*, and the row label does not move. **The invented masked number leaves with the `tel:`** — nothing on any frame states a phone number now. |
 | the thread | **Chat with the operator** | `chat.html` | The new screen. Her own word, fixed as `voice.md` **A12**: *chat* here is a **verb taking its object**, which is what the Button rule asks for — not the bare noun that names a room. `A9`'s *Send message* stays on the composer's own button, one message at a time. |
 | the platform | **Contact support** | `support.html` | `voice.md` **A2**'s fixed string, unchanged — where the button used to land for everyone. |
 
@@ -326,6 +326,39 @@ navigates on two others is the same drift arriving through behaviour instead of 
   locked (`RJ-C3`) and the operator was auto-assigned. It is the Bolt in-ride message, not the
   Kabanchik thread. The deletion verdict stands for what it deleted; `sitemap.md §4` is annotated rather
   than reversed.
+
+### 9c. Call the operator  *(sub-view of 9 · base only)*
+- **Job:** `RJ-C2` — the fastest channel to the person on a live job, for the thing that cannot wait
+  for a typed message (a locked gate, a wrong entrance, a drone already overhead); `RJ-C1` keeps the
+  operator a reachable human.
+- **Place in flow:** *not on the MJ-1 spine.* `Live tracking & ETA` → **Contact operator** drawer →
+  *Call operator* → here; **End call** returns to tracking. Nothing downstream depends on it.
+- **States:** **base only** — the connected call. Built as one file, `call.html`.
+- **It is DRON's own screen, not the OS dialer.** Built 2026-08-16 on the designer's word —
+  *«зроби фрейм який відкриє дзвінок»* — replacing the `tel:` handoff rev 141 shipped. Her call is
+  also the more coherent one: the number is masked (`ux-research/user-stories-cjm.md` logs the
+  direct-channel risk in red), so it was never the client's to see, and handing them a dialer showing
+  a number DRON invented is the one thing the masking exists to prevent. **The invented number leaves
+  with the `tel:`** — no frame in the product states a phone number now.
+- **No round avatar, and that is `visuals/gaps.md` rather than taste.** B1 #4 records that the
+  product's one human cutout, `operator.png`, is shot three-quarters *from behind*, so a circular
+  crop gives the back of a head — the same reason `order-confirmed`'s `avatar:AM` slot was left
+  unplaced. So the screen carries the **`.dr-op` card byte-identical to the one on tracking**: the
+  same picture in the same rectangular treatment, the same name, rating and *Verified by DRON* /
+  *Insured* chips. It costs the iOS hero portrait and it buys `RJ-C1` standing on the call screen
+  instead of only behind it. When `people/person-operator-andriy.png` arrives (gaps.md B1), this is
+  the second screen that would take it.
+- **No green, and the screen's one loud surface is red.** `End call` is `.dr-btn--danger-solid`, the
+  first spend of `--danger` as a fill since it was declared at rev 25 with the standing note that
+  nothing had asked for a red surface. Measured `--page` on `--danger` **4.53:1** — a `WCAG 1.4.3`
+  pass by 0.03, and the thinnest text pair in the system; the alternative, `--danger-ink` as the fill
+  at **6.83:1**, is measured beside it and is the designer's to take. It ships **flat**: `--sh-sm` is
+  spent under the green primary, and `.dr-btn--pay` already settled that a filled button in another
+  colour takes no shadow.
+- **Two states are traceable and deliberately not built:** **calling** (loading — the seconds before
+  the operator picks up) and **no answer** (error — with *Chat with the operator* / *Contact support*
+  as the way out, so it is not a dead-end). The designer asked for *a* frame, singular; these are
+  recorded here so their absence is a decision rather than an oversight, and they are one word away.
 
 ### 10. Delivery confirmation
 - **Job:** `RJ-C4` — *"see a clear, documented result... evidence I can use, share, or act on"*.
@@ -446,8 +479,11 @@ Rows = main-path screens (in flow order). Columns = the four states. **✓** = r
 | 8 | Order confirmed / operator revealed | ✓ | ✓ | ✓ | ✓ |
 | 9 | Live tracking & ETA | ✓ | ✓ | ✓ | — |
 | 9b | Chat with the operator *(sub-view of 9)* | — | — | — | — |
+| 9c | Call the operator *(sub-view of 9)* | — | — † | — † | — |
 | 10 | Delivery confirmation | — | ✓ | ✓ | ✓ |
 | 11 | Rate the order | — | — | — | ✓ |
+
+† **9c — two states are traced but not built** (`§9c`): *calling* (loading) and *no answer* (error). The designer asked for one frame; recorded so the gap is a decision, not an oversight.
 
 ### Operator (MJ-2 + RJ-O3)
 

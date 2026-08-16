@@ -33,7 +33,7 @@
       { name: "Order review & price",                  file: "order-review.html",       states: [["loading","order-review-loading.html"]] },
       { name: "Payment",                               file: "payment.html",            states: [["error","payment-error.html"],["loading","payment-loading.html"]] },
       { name: "Order confirmed / operator revealed",   file: "order-confirmed.html", success: true, states: [["empty","order-confirmed-empty.html"],["error","order-confirmed-error.html"],["loading","order-confirmed-loading.html"]] },
-      { name: "Live tracking & ETA",                   file: "tracking.html",           states: [["chat with operator","chat.html"],["empty","tracking-empty.html"],["error","tracking-error.html"],["loading","tracking-loading.html"]] },
+      { name: "Live tracking & ETA",                   file: "tracking.html",           states: [["call the operator","call.html"],["chat with operator","chat.html"],["empty","tracking-empty.html"],["error","tracking-error.html"],["loading","tracking-loading.html"]] },
       { name: "Delivery confirmation",                 file: "delivery.html",       success: true, states: [["error","delivery-error.html"],["loading","delivery-loading.html"]] },
       { name: "Rate the order",                        file: "rate.html",           success: true, states: [] }
     ]},

@@ -243,7 +243,7 @@ flowchart TD
   RDx --> P
   D1c -->|yes| T["Live tracking & ETA"]
   T --> DC{"Contact the operator?"}
-  DC -->|call| CALL(["Phone — masked DRON line, OS dialer"]):::state
+  DC -->|call| CALL["Call the operator"]
   DC -->|chat| CH["Chat with the operator"]
   DC -->|support| GH
   DC -->|no, keep watching| D2
@@ -274,8 +274,8 @@ flowchart TD
 - *Live position updating? / Recovered within timeout?* — tracking health.
 - *Operator on time? / Keeps waiting?* — delay tolerance (`N-9` unknown).
 - *Contact operator* (added 2026-08-16, designer's call) — the standing action on the tracking screen
-  is no longer a link to the Help hub but a **drawer that asks how**: `Call operator` (a masked DRON
-  line, answered by the OS dialer — no screen), `Chat with the operator` (`wireframes/chat.html`, `voice.md` **A12**), `Contact support` (the Help hub, where the button used to send everyone).
+  is no longer a link to the Help hub but a **drawer that asks how**: `Call operator` (**Call the operator**,
+  `wireframes/call.html`), `Chat with the operator` (`wireframes/chat.html`, `voice.md` **A12**), `Contact support` (the Help hub, where the button used to send everyone).
   Both operator branches return to tracking; only the third leaves into `EJ-2`. Her words: *«by
   clicking on "Contact operator" open drawer with opportunity to select call, chat, support and add
   wireframes with a chat with operator»*.
@@ -283,6 +283,14 @@ flowchart TD
   negotiation thread; this one opens only on a paid job with an operator already dispatched, and there
   is nothing in it to negotiate — the price is locked at `RJ-C3` and the operator was not chosen. The
   branch is drawn from `T` and returns to `T` on purpose: it is a detour on the wait, never a step.
+- *Call is DRON's own screen, not the OS dialer* (2026-08-16, designer's call — *«зроби фрейм який
+  відкриє дзвінок»*). The branch shipped for one build as a `tel:` handoff to a masked line; it is now
+  **Call the operator** (`wireframes/call.html`), and **End call** returns to tracking. Her call is
+  also the consistent one: the number is masked — `ux-research/user-stories-cjm.md` logs the
+  direct-channel risk in red — so it was never the client's to see, and a dialer showing a number
+  DRON invented is the one thing masking exists to prevent. No frame states a phone number now.
+  **Two states of this node are traced and not built** — *calling* (loading) and *no answer* (error,
+  whose way out is Chat or Contact support, so it is not a dead-end); see `_screens.md §9c`.
 
 **States & dead-ends**
 - `Error` — the void → refresh → Support (no dead-end).
