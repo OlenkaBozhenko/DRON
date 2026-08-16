@@ -112,11 +112,14 @@
                picture inset in a padded card is the sticker that rule forbids. -->
           <div class="dr-well dr-well--photo" style="height:180px;">
             <img src="../assets/scenes/thumbs/aerial-rafting-boulders.jpg" alt="A grey raft with a crew in red helmets and life jackets running a rapid between dark boulders, white water breaking around it, shot from above." loading="lazy" decoding="async">
-            <!-- THE 44px CIRCULAR ACTION THE KIT ALREADY HAS, WEARING ONE MODIFIER. HIG · 44pt
-                 exactly (44 x 44, glyph 20 — the scale's own pair for this box), and the ring is
-                 how a control keeps WCAG 1.4.11 over a picture whose pixels are not ours: --ink
-                 on --btn2 is 11.54:1 and that edge is INSIDE the control, so it holds against
-                 every photograph. Reasoning and the measured frame are in kit.css. -->
+            <!-- THE 44px CIRCULAR ACTION THE KIT ALREADY HAS, AND NOTHING ADDED TO IT.
+                 HIG · 44pt exactly (44 x 44, glyph 20 — the scale's own pair for this box).
+                 NO OUTLINE, her word on the built frame: "забери stroke з цієї кнопки у мене
+                 така кнопка без обводок". It was built with a 2px --ink ring for WCAG 1.4.11
+                 and the ring came off; what carries 1.4.11 now is the glyph, --ink on --btn2
+                 at 11.54:1, the same reading .dr-avatar-edit__badge and .dr-upload already
+                 use. Measured on this frame: the disc's edge against the picture runs 6.46:1
+                 mean, 74% of it at or above 3:1. All of it is in kit.css. -->
             <button class="dr-btn dr-btn--icon dr-btn--onphoto" type="button" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></button>
           </div>
           <!-- THE TWO FACTS A THUMB NEEDS BEFORE IT TAPS DOWNLOAD — how long, and what it
