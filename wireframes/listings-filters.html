@@ -640,8 +640,12 @@
       close();
     }
     /* Cancel takes nothing back with it — the option that was checked before
-       the drawer rose is checked again. */
+       the drawer rose is checked again, AND the picker's own state goes back
+       with it. Without the undo, cancelling a newly-tapped day left the drawer
+       holding one date while the row still said the other, and the next open
+       showed the date the user had just refused. */
     function cancel() {
+      if (undo) { sel = undo.d; hhEl.value = undo.hh; mmEl.value = undo.mm; }
       if (lastChecked && lastChecked !== pick) { lastChecked.checked = true; }
       else if (!lastChecked) { pick.checked = false; }
       if (lastChecked !== pick) label.textContent = LABEL_REST;
