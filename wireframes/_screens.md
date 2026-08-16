@@ -397,9 +397,9 @@ are exactly the two she named — **the heading** and **the deliverable in the w
 
 | File | Heading (nav bar) | Summary rows | Deliverable zone | Frame |
 |---|---|---|---|---|
-| `order-details.html` | Package delivery | From · To · Parcel · Delivered · Operator | **Delivery photo** | `scenes/delivered-at-door.jpg` |
-| `order-details-inspection.html` | Roof inspection | Location · Structure · Delivered · Operator | **Inspection report** | `scenes/inspection-roof-cracked-tiles.jpg` |
-| `order-details-aerial.html` | Aerial photo &amp; video | Location · Shoot · Delivered · Operator | **Photo &amp; video set** | `scenes/aerial-rafting-run.jpg` |
+| `order-details.html` | Package delivery | From · To · Parcel · Delivered · Operator · **Paid** | **Delivery photo** | `scenes/delivered-at-door.jpg` |
+| `order-details-inspection.html` | Roof inspection | Location · Structure · Delivered · Operator · **Paid** | **Inspection report** | `scenes/inspection-roof-cracked-tiles.jpg` |
+| `order-details-aerial.html` | Aerial photo &amp; video | Location · Shoot · Delivered · Operator · **Paid** | **Photo &amp; video set** | `scenes/aerial-rafting-run.jpg` |
 
 The three zone names are not invented for this screen — `voice.md` **O5** already fixes one name per
 deliverable: *delivery photo* · *inspection report* · *photo/video set*. Structure, zone order, action bar
@@ -407,6 +407,23 @@ deliverable: *delivery photo* · *inspection report* · *photo/video set*. Struc
 per-order strings and the one `<img>` differ, which is what makes them one screen with three instances rather
 than three screens. Still **base only**, for the reason the row above gives, and still no traceability column
 moves in `sitemap.md §6.1`.
+
+**`Paid` is the summary card's last row, not a zone of its own** — 2026-08-16, the designer on the built
+aerial record: «помісти інфу Paid 800 у картку з самері і так само на ще 2 аналогічних фреймах». The screen
+had **three zones** and the middle one of the two card zones held **one row**: rev 132 took the breakdown off
+(`Base fare` / `Distance` / `Service fee`), and what was left was a card whose label said nothing the row
+below it did not already say. `Paid` now closes the summary, so the record reads **what · where · when · who ·
+how much** in one panel and the deliverable is the only thing between the summary and the action bar. The
+zone list per file drops from four to three: **Summary** ▸ *what was done · where · what it cost* ·
+**deliverable** ▸ *what the operator sent back* · **Action bar**.
+
+The row takes the card's own style — **13 slate key / 15 medium value**, identical to the four facts above
+it — and not the **20/700 tabular** money step it carried as a total. Her call, put with the standards first
+and both readings conforming (`HIG · inset grouped lists` ships either a uniform row or an emphasised total
+row; `WCAG 1.4.3` unchanged at key **5.95:1** / value **14.37:1** on `--card`, `1.3.1` keeps the key/value
+pairing either way). The reasoning that decided it: with the breakdown gone there is no column for a total to
+total, so the sum is a fact of the record like the other four. `.dr-rows__row--total` is therefore spent on
+`order-review` alone, which is where a total still has rows to add up.
 
 ### Operator — Step 8
 
