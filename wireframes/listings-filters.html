@@ -657,7 +657,7 @@
       if (e.key === 'Escape') { e.preventDefault(); cancel(); return; }
       if (e.key !== 'Tab') return;
       /* the trap: while the drawer is up it IS the tab order */
-      var stops = [].slice.call(sheet.querySelectorAll('button, a[href], input'))
+      var stops = [].slice.call(sheet.querySelectorAll('button, a[href], input, select'))
                     .filter(function (el) { return !el.disabled && el.tabIndex !== -1; });
       if (!stops.length) return;
       var first = stops[0], last = stops[stops.length - 1];
