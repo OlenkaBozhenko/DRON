@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order setup / details · inspection · success (base)</title>
+<!-- SCREEN (sitemap): "Order setup / details". JOB (jtbd): MJ-1 (enter the job). STATE: base.
+     NEW 2026-08-16 — the third of three setup files, one per service; see order-setup-aerial.html
+     for the finding that produced all three and _screens.md §5 for the decision. Built in the same
+     pass as the aerial one because the same defect ran through it: the Inspection card and the
+     inspection record's "Book again" both landed on a form asking for parcel weight.
+     CALENDAR-FIRST, like aerial and unlike delivery (sitemap.md CE-2) — an inspection is booked
+     for an hour, so this screen hands off to time-slot, not to review.
+     STRUCTURE IS A CHECKBOX GROUP, NOT A PICKER — read off the built record, whose Structure row
+     says "Roof · gutters · chimney": three things, not one, so the control that produces it takes
+     more than one. It is the group listings-filters already ships (fieldset.dr-zone > ul.dr-picks
+     > label.dr-pick), not a new control. Everything else is order-setup.html's, unchanged. -->
+<link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Order setup / details — Inspection</h1>
+    <p class="sub">Client · MJ-1 · state: <b>success (base)</b> · file: order-setup-inspection.html</p>
+    <div class="flow"><b>One of three setup files</b> (2026-08-16) — the same screen, one instance per service: <a href="order-setup.html">order-setup</a> (delivery), <a href="order-setup-aerial.html">order-setup-aerial</a>, and this one. The nav title names the service and the form asks what that service needs; everything else is identical.<br><b>Job (jtbd):</b> MJ-1 — enter the job; <b>C-2</b> is this service's persona, and their deliverable is the inspection report (<code>voice.md</code> O5, unchanged — a report is one file, so there is nothing to choose).<br><b>States:</b> none of its own — both state pages stay on the delivery file (<code>_screens.md</code> §5).<br><b>Exit:</b> Pick a time → <b>Time-slot pick</b> → Order review &amp; price.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Details form</b> ▸ where · what is being inspected</p><p><b>Action bar</b> ▸ save this address · Pick a time</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="listings.html" aria-label="Back to Order"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Inspection</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Details form <span class="dr-label__act">▸ enter location, what to inspect</span></p>
+      <form class="dr-stack" id="order-details" aria-label="Order details" action="#">
+<!-- ONE PLACE, like the aerial shoot and unlike a delivery: a building does not travel.
+     THE ADDRESS IS THE RECORD'S OWN, WRITTEN OUT — the inspection record's card shortens it to
+     "Osokorky, 14" because a summary row has one line; a form field that the client is about to
+     correct shows the whole address, exactly as the delivery form's two fields do. Same place,
+     two renderings, and the fuller one belongs where it can be edited. -->
+        <div class="dr-rows">
+          <div class="dr-field">
+            <label class="dr-field__label" for="lc">Location:</label>
+            <span class="dr-field__group"><input class="dr-field__input" id="lc" value="Osokorky — Dniprovska Naberezhna, 14"></span>
+          </div>
+        </div>
+
+<!-- STRUCTURE IS THIS SERVICE'S PARCEL SIZE — the thing the order was about, the same slot the
+     delivery record fills with Parcel and the aerial one with Shoot.
+     IT TAKES MORE THAN ONE ANSWER, AND THAT IS READ OFF THE BUILT RECORD, not assumed: its
+     Structure row reads "Roof · gutters · chimney". One roof inspection covers several parts of
+     one building, so the control is a checkbox group and the row is its selections joined — the
+     same middot this product already uses to join two facts in one row.
+     THE FOUR OPTIONS ARE THE ONES THE PRODUCT HAS ALREADY NAMED, and no fifth is invented: the
+     listings card offers "Roofs, facades, hard-to-reach structures" and the record adds gutters
+     and chimney. Roof · Gutters · Chimney are ticked, which is precisely the record this screen
+     books again.
+     WCAG 1.3.1 / 3.3.2: a fieldset with a programmatic name, one visible label per box; the group
+     is the same one listings-filters ships, so no new control enters the form vocabulary. -->
+        <fieldset class="dr-zone" aria-labelledby="struct-title" aria-describedby="struct-sub">
+          <p class="dr-zone__title" id="struct-title">Structure</p>
+          <p class="dr-zone__sub" id="struct-sub">What the operator should inspect — pick as many as apply</p>
+
+          <ul class="dr-picks">
+            <li><label class="dr-pick">
+              <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+              <span class="dr-pick__label">Roof</span>
+              <input type="checkbox" name="structure" value="roof" checked class="sr-only">
+            </label></li>
+            <li><label class="dr-pick">
+              <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+              <span class="dr-pick__label">Facade</span>
+              <input type="checkbox" name="structure" value="facade" class="sr-only">
+            </label></li>
+            <li><label class="dr-pick">
+              <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+              <span class="dr-pick__label">Gutters</span>
+              <input type="checkbox" name="structure" value="gutters" checked class="sr-only">
+            </label></li>
+            <li><label class="dr-pick">
+              <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+              <span class="dr-pick__label">Chimney</span>
+              <input type="checkbox" name="structure" value="chimney" checked class="sr-only">
+            </label></li>
+          </ul>
+        </fieldset>
+
+        <div class="dr-rows">
+          <div class="dr-field dr-field--area dr-field--area6">
+            <label class="sr-only" for="nt">Notes for the operator</label>
+            <textarea class="dr-field__input" id="nt" placeholder="Height, access to the roof, what you want checked…"></textarea>
+          </div>
+        </div>
+      </form>
+    </main>
+    <!-- THE SAVE-ADDRESS ROW SITS ON THE BOTTOM EDGE, above the primary — order-setup's own
+         arrangement (concept.md rev 115), carried here unchanged: form="order-details" keeps it a
+         control OF the form it left (WCAG 1.3.1 / 4.1.2), and it stands BEFORE the button so DOM
+         order still equals reading order (WCAG 2.4.3). THE BUTTON NAMES ITS DESTINATION — and the
+         destination is the slot list, because an inspection is calendar-first (sitemap.md CE-2). -->
+    <footer class="dr-actionbar">
+      <label class="dr-pick" style="border-radius:6px;"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this address for next time</span><input type="checkbox" name="save-address" form="order-details" class="sr-only"></label>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="time-slot.html">Pick a time</a>
+    </footer>
+  </div>
+
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
