@@ -418,6 +418,231 @@
   })();
   </script>
 
+  <!--
+    THE DATE PICKER. The second page-level script, and it is here for the same
+    reason the range's is: this component is not in ui/kit.js yet, and one page
+    carries it. It keeps kit.js's modal contract verbatim — inert behind, focus
+    trapped, three ways out — so that when it is promoted nothing changes but
+    the file it lives in.
+
+    THE GRID IS WAI-ARIA APG's Date Picker Dialog, with ONE documented variant:
+    SELECTION FOLLOWS FOCUS. APG's grid moves focus with the arrows and takes
+    the value on Enter; here an arrow both moves and picks, so what is focused
+    is always what is chosen. APG allows the variant for grids explicitly, and
+    the alternative is worse in this exact control: arrow to a date, press Done,
+    and a strict-APG grid hands back the date you left behind.
+
+    THE MONTH IS THE REAL ONE. `new Date()` seeds it, so the picker opens on the
+    month the user is actually in and no date before today can be taken — this
+    filter asks when the service SHOULD HAPPEN. The rest of the prototype's
+    dates are content and stay fixed; this is a live control, and a date picker
+    that cannot page a month is not one.
+  -->
+  <script>
+  (function () {
+    var frame = document.querySelector('.wf-frame'),
+        sheet = document.getElementById('datepick');
+    if (!frame || !sheet) return;
+
+    var scrim  = frame.querySelector('[data-scrim]'),
+        pick   = document.getElementById('time-pick'),
+        row    = frame.querySelector('[data-datepick-row]'),
+        label  = frame.querySelector('[data-datepick-label]'),
+        monthEl= sheet.querySelector('[data-month]'),
+        body   = sheet.querySelector('[data-days]'),
+        timeEl = sheet.querySelector('[data-time]'),
+        prevBt = sheet.querySelector('[data-prev]'),
+        nextBt = sheet.querySelector('[data-next]'),
+        doneBt = sheet.querySelector('[data-done]'),
+        exitBt = sheet.querySelector('[data-close]'),
+        radios = frame.querySelectorAll('input[name="time"]');
+
+    /* everything the drawer switches off while it is up — the frame's own
+       children, minus the drawer layer itself */
+    var behind = [].slice.call(frame.children).filter(function (el) {
+      return !el.classList.contains('dr-sheet') && el !== scrim;
+    });
+
+    var LABEL_REST = label.textContent,       /* "Pick a date & time…" */
+        today = startOfDay(new Date()),
+        sel   = new Date(today),              /* the chosen day */
+        view  = { y: sel.getFullYear(), m: sel.getMonth() },
+        lastChecked = frame.querySelector('input[name="time"]:checked'),
+        isOpen = false;
+
+    function startOfDay(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+    function same(a, b) { return a.getTime() === b.getTime(); }
+    /* the product's own date format — time-slot.html's "Wed 2 Jul, 09:00" */
+    function pretty(d) {
+      return d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+    }
+
+    /* ── the grid ──────────────────────────────────────────────────────── */
+    function render() {
+      var first = new Date(view.y, view.m, 1),
+          /* getDay() is Sunday-0; Monday-first shifts it by one */
+          lead  = (first.getDay() + 6) % 7,
+          start = new Date(view.y, view.m, 1 - lead);
+
+      monthEl.textContent = first.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+      /* no month before the current one — every day in it is unavailable */
+      prevBt.disabled = (view.y === today.getFullYear() && view.m === today.getMonth());
+
+      body.textContent = '';
+      for (var w = 0; w < 6; w++) {                       /* six rows, always */
+        var tr = document.createElement('tr');
+        tr.setAttribute('role', 'row');
+        for (var i = 0; i < 7; i++) {
+          var d  = new Date(start.getFullYear(), start.getMonth(), start.getDate() + w * 7 + i),
+              td = document.createElement('td');
+          td.setAttribute('role', 'gridcell');
+          /* days outside the month are drawn as ground, not as dead targets */
+          if (d.getMonth() === view.m) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'dr-cal__day' + (same(d, today) ? ' dr-cal__day--today' : '');
+            b.textContent = d.getDate();
+            b.dataset.date = d.getTime();
+            b.disabled = d < today;
+            /* the accessible name says the whole date, and says "today" —
+               so neither the fill nor the dot is the sole carrier (WCAG 1.4.1) */
+            b.setAttribute('aria-label', pretty(d) + ' ' + d.getFullYear() + (same(d, today) ? ', today' : ''));
+            /* one roving tab stop: the chosen day, or the first takeable one */
+            b.tabIndex = same(d, sel) ? 0 : -1;
+            if (same(d, sel)) td.setAttribute('aria-selected', 'true');
+            td.appendChild(b);
+          }
+          tr.appendChild(td);
+        }
+        body.appendChild(tr);
+      }
+      if (!body.querySelector('.dr-cal__day[tabindex="0"]')) {
+        var firstFree = body.querySelector('.dr-cal__day:not(:disabled)');
+        if (firstFree) firstFree.tabIndex = 0;
+      }
+    }
+
+    function choose(d, focus) {
+      if (d < today) return;
+      sel = startOfDay(d);
+      view = { y: sel.getFullYear(), m: sel.getMonth() };
+      render();
+      if (focus) {
+        var b = body.querySelector('.dr-cal__day[tabindex="0"]');
+        if (b) b.focus();
+      }
+    }
+
+    body.addEventListener('click', function (e) {
+      var b = e.target.closest('.dr-cal__day');
+      if (b && !b.disabled) choose(new Date(+b.dataset.date), false);
+    });
+
+    /* APG's date-grid keys, with selection following focus */
+    body.addEventListener('keydown', function (e) {
+      var b = e.target.closest('.dr-cal__day');
+      if (!b) return;
+      var d = new Date(+b.dataset.date), step = null;
+      switch (e.key) {
+        case 'ArrowLeft':  step = -1;  break;
+        case 'ArrowRight': step = 1;   break;
+        case 'ArrowUp':    step = -7;  break;
+        case 'ArrowDown':  step = 7;   break;
+        case 'Home':       step = -((d.getDay() + 6) % 7);       break;
+        case 'End':        step = 6 - ((d.getDay() + 6) % 7);    break;
+        case 'PageUp':     e.preventDefault(); choose(new Date(d.getFullYear(), d.getMonth() - 1, d.getDate()), true); return;
+        case 'PageDown':   e.preventDefault(); choose(new Date(d.getFullYear(), d.getMonth() + 1, d.getDate()), true); return;
+        case 'Enter':
+        case ' ':          e.preventDefault(); commit(); return;
+        default: return;
+      }
+      e.preventDefault();
+      choose(new Date(d.getFullYear(), d.getMonth(), d.getDate() + step), true);
+    });
+
+    prevBt.addEventListener('click', function () {
+      view.m--; if (view.m < 0) { view.m = 11; view.y--; }
+      render();
+    });
+    nextBt.addEventListener('click', function () {
+      view.m++; if (view.m > 11) { view.m = 0; view.y++; }
+      render();
+    });
+
+    /* ── the modal contract (ui/kit.js, verbatim) ──────────────────────── */
+    function open() {
+      if (isOpen) return;
+      isOpen = true;
+      pick.setAttribute('aria-expanded', 'true');
+      scrim.hidden = false;
+      sheet.hidden = false;
+      /* aria-modal is a promise made to assistive tech; inert is what keeps it
+         for the pointer and the tab key too */
+      behind.forEach(function (el) { el.inert = true; });
+      view = { y: sel.getFullYear(), m: sel.getMonth() };
+      render();
+      var b = body.querySelector('.dr-cal__day[tabindex="0"]');
+      if (b) b.focus();
+    }
+
+    function close() {
+      if (!isOpen) return;
+      isOpen = false;
+      behind.forEach(function (el) { el.inert = false; });
+      sheet.hidden = true;
+      scrim.hidden = true;
+      pick.setAttribute('aria-expanded', 'false');
+      pick.focus();
+    }
+
+    /* Done takes the pick: the option becomes the date, which is what iOS does
+       with a set date row, and what kit.js does when an option is chosen. */
+    function commit() {
+      label.textContent = pretty(sel) + ', ' + (timeEl.value || '00:00');
+      pick.checked = true;
+      lastChecked = pick;
+      close();
+    }
+    /* Cancel takes nothing back with it — the option that was checked before
+       the drawer rose is checked again. */
+    function cancel() {
+      if (lastChecked && lastChecked !== pick) { lastChecked.checked = true; }
+      else if (!lastChecked) { pick.checked = false; }
+      if (lastChecked !== pick) label.textContent = LABEL_REST;
+      close();
+    }
+
+    doneBt.addEventListener('click', commit);
+    exitBt.addEventListener('click', cancel);
+    scrim.addEventListener('click', cancel);
+
+    Array.prototype.forEach.call(radios, function (r) {
+      r.addEventListener('change', function () {
+        if (r === pick) { if (r.checked) open(); }
+        else { lastChecked = r; label.textContent = LABEL_REST; }
+      });
+    });
+    /* re-opening an option that is ALREADY taken fires no change event, so the
+       row's own click carries it — deferred by a tick so the radio has settled */
+    row.addEventListener('click', function () { setTimeout(open, 0); });
+
+    document.addEventListener('keydown', function (e) {
+      if (!isOpen) return;
+      if (e.key === 'Escape') { e.preventDefault(); cancel(); return; }
+      if (e.key !== 'Tab') return;
+      /* the trap: while the drawer is up it IS the tab order */
+      var stops = [].slice.call(sheet.querySelectorAll('button, a[href], input'))
+                    .filter(function (el) { return !el.disabled && el.tabIndex !== -1; });
+      if (!stops.length) return;
+      var first = stops[0], last = stops[stops.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    render();
+  }());
+  </script>
+
   <!-- shared wireframe shell: left nav tree + viewport switcher (same on every page) -->
   <script src="_wf-shell.js"></script>
 </body>
