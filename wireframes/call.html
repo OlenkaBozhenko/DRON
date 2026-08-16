@@ -8,19 +8,31 @@
   SCREEN (_screens.md §9c): "Call the operator" — a sub-view of "Live tracking & ETA", not a node on
   the MJ-1 spine. PERSONA: Client C-1. JOB: RJ-C2 (the fastest channel to the person on a live job)
   + RJ-C1 (the operator stays a reachable human). STATE: base only — the connected call.
-  FLOW: tracking → "Contact operator" drawer → Call operator → here; End call → tracking.
+  FLOW: tracking → "Contact operator" drawer → Call operator → here; End call / Minimise → tracking.
 
-  ADDED 2026-08-16 on the designer's word: «зроби фрейм який відкриє дзвінок». rev 141 shipped this
-  row as a `tel:` handoff to a masked line, on the reading that the OS dialer answers a call. Her
-  call is the coherent one: the number is MASKED — user-stories-cjm.md logs the direct-channel risk
-  in red — so it was never the client's to see, and handing them a dialer showing a number DRON
-  invented is the one thing the masking exists to prevent. The invented number leaves with the tel:.
-  No frame in the product states a phone number now.
+  ADDED 2026-08-16 on the designer's word: «зроби фрейм який відкриє дзвінок». It shipped first as a
+  light Studio screen; she then pointed at her own reference — Figma `YlGWlsWWjKSCxhONMzGG2F` node
+  `99:26` — «зроби цей екран як тут», and then «лиш без емоджі і меню 3 dots». So the emoji reaction
+  and the "…" overflow are the two things from that frame that are deliberately not here.
 
-  BASE ONLY, AND TWO STATES ARE TRACED AND NOT BUILT: `calling` (loading — the seconds before the
-  operator picks up) and `no answer` (error — with Chat / Contact support as the way out, so it is
-  not a dead-end). She asked for A frame, singular; both are recorded in _screens.md §9c so the gap
-  is a decision rather than an oversight.
+  IT IS THE PRODUCT'S ONE DARK SCREEN, AND THAT IS THE PLATFORM RATHER THAN A SECOND THEME.
+  WhatsApp, Telegram, Messenger, FaceTime and iOS's own CallKit are all dark whatever the app's theme
+  is, because a call is a full-screen takeover that has to recede. #F7F5F2 stays the product's ground
+  on every other screen. Recorded in concept.md rev 144 as a departure with its reason.
+
+  THREE THINGS FROM THE REFERENCE WERE NOT COPIED, each because a project rule already answers it:
+  the doodle wallpaper (WhatsApp's own decoration — §0's imagery rule is "real, never decoration");
+  the filled iOS glyphs (§5's icons are flat outline, 24-grid, 1.7, declared once); and the magenta
+  portrait disc (outside the palette — and what it holds is a PLACEHOLDER either way, because
+  "Samuel" has no photo, the same reason Andriy has none here: visuals/gaps.md B1 #4).
+
+  NO NAV BAR — `HIG · Modality`. A call is presented modally rather than pushed onto a stack, so the
+  ways out are the two the reference draws: Minimise (back to the map, the call carries on) and End
+  call. It is the product's only screen with neither a back control nor the DRON mark, which
+  _conventions.md §12b's checklist does not provide for; recorded as a departure, not a defect.
+
+  BASE ONLY, AND TWO STATES ARE TRACED AND NOT BUILT: `calling` (loading) and `no answer` (error,
+  whose way out is Chat or Contact support, so it is not a dead-end). See _screens.md §9c.
 -->
 <link rel="stylesheet" href="_wireframe.css">
 <link rel="stylesheet" href="../ui/kit.css">
@@ -34,85 +46,81 @@
       <dt>Job</dt><dd>RJ-C2 — the fastest channel on a live job; RJ-C1 — the operator is reachable</dd>
       <dt>Node</dt><dd>Not on the spine — tracking → Contact operator drawer → Call operator</dd>
     </dl>
-    <div class="flow"><b>A masked in-app call, not the OS dialer.</b><br>The call is routed by DRON and the client never sees the operator's number — which is why the call is DRON's own screen.<br><b>Exit:</b> End call → <b>On the way</b> (tracking).<br><b>States:</b> none built; <i>calling</i> and <i>no answer</i> traced in <code>_screens.md §9c</code>.</div>
-    <div class="legend"><p><b>Zones:</b></p><p><b>Who</b> ▸ the operator on the line</p><p><b>Call</b> ▸ connected · how long</p><p><b>Controls</b> ▸ mute · speaker · end</p></div>
+    <div class="flow"><b>A masked in-app call, not the OS dialer.</b><br>The call is routed by DRON and the client never sees the operator's number — which is why the call is DRON's own screen.<br><b>Built to</b> the designer's reference, Figma <code>99:26</code>, without the emoji reaction and the “…” overflow.<br><b>Exits:</b> Minimise → <b>On the way</b> (call carries on) · End call → <b>On the way</b>.<br><b>States:</b> none built; <i>calling</i> and <i>no answer</i> traced in <code>_screens.md §9c</code>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Call</b> ▸ who · how long · minimise · side actions</p><p><b>Stage</b> ▸ the operator</p><p><b>Controls</b> ▸ video · speaker · mic · end</p></div>
   </aside>
 
-  <div class="wf-frame dr dr-screen">
+  <div class="wf-frame dr dr-screen dr-call">
     <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
 
-    <!--
-      NO NAV BAR, AND THAT IS `HIG · Modality` RATHER THAN AN OMISSION. A call is presented modally:
-      it is not a place in the navigation stack, so it carries no back chevron and no title, and the
-      one way out is the action that ends the thing you came for — `End call`. The guideline's own
-      requirement of a modal view is that it provide a way to dismiss it, and that is met.
-      IT IS THEREFORE THE PRODUCT'S ONE SCREEN WITH NEITHER A BACK CONTROL NOR THE DRON MARK, which
-      _conventions.md §12b's checklist does not provide for — the checklist assumes a navigational
-      screen. Recorded as a departure with its reason, not filed as a defect.
-      THE COST, SAID PLAINLY: you cannot watch the map while you talk. Every consumer app solves this
-      with a minimise control and a call banner on the screen behind — two more shapes than one frame
-      was asked for, so it is written down here and not built.
-    -->
-    <main class="dr-main" style="justify-content:center">
-      <p class="zlabel dr-label">Who <span class="dr-label__act">▸ the operator on the line (RJ-C1)</span></p>
-      <!--
-        THE SAME OPERATOR CARD AS tracking, BYTE-IDENTICAL — and it is here instead of an iOS-style
-        round portrait because `visuals/gaps.md` B1 #4 says the portrait does not exist: the product's
-        one human cutout, operator.png, is shot three-quarters FROM BEHIND, so a circular crop gives
-        the back of a head. That is the same finding that left order-confirmed's avatar:AM slot
-        unplaced. What the card costs is the hero portrait; what it buys is RJ-C1 — Verified by DRON
-        and Insured — standing ON the call screen rather than only behind it.
-        When people/person-operator-andriy.png arrives, this is the second screen that would take it.
-      -->
-      <section aria-label="Who">
-        <div class="dr-stack">
-          <article class="dr-op">
-            <span class="dr-op__photo"><img src="../assets/people/thumbs/operator.png" alt="" loading="lazy" decoding="async"></span>
-            <span class="dr-op__info">
-              <span class="dr-op__name">Andriy M.</span>
-              <span class="dr-op__rating">4.9 ★ · 214 jobs</span>
-              <span class="dr-chips dr-op__badges"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--trust"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
-            </span>
-          </article>
-        </div>
-      </section>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Call <span class="dr-label__act">▸ who · how long · the ways out (RJ-C2)</span></p>
 
-      <p class="zlabel dr-label">Call <span class="dr-label__act">▸ connected · how long (RJ-C2)</span></p>
       <!--
-        THE RUNNING CLOCK IS THE STATEMENT THAT THE CALL IS UP, so no second line says "Connected" —
-        voice.md's own rule, state the fact and cut what decorates it. It takes .dr-number, the 20/700
-        TABULAR step, because a duration that reflows its own width every second is the exact thing
-        tabular figures exist to stop. A bare number is ambiguous to a screen reader, so the sr span
-        names it and <time datetime> carries the machine-readable value (`WCAG 1.3.1`).
-        THE NOTE REPEATS THE DRAWER'S MASKING FACT WHERE IT MATTERS MOST — the client is on the line
-        with a stranger, which is the moment "your number is not shared" is worth reading. voice.md
-        P2: the fact, not the adjective.
+        THE TOP ROW, THREE COLUMNS, THE OUTER TWO THE SAME 44 WIDE so the name sits optically centred
+        without the absolute positioning the nav bar uses — there is no nav bar here to hang it on.
+        MINIMISE ANSWERS THE COST THE LIGHT BUILD RECORDED. That frame's only exit was End call, and
+        the note said plainly that you could not watch the map while you talked; her reference draws
+        the control that fixes it. It returns to tracking and the call carries on. THE OTHER HALF —
+        a call banner on the tracking screen, so the running call is visible once you are back on the
+        map — is NOT built: it is a second screen's change and she asked for this one.
+        THE TWO SIDE ACTIONS are the reference's stacked pair, given DRON jobs: the bubble opens the
+        thread with the same operator (chat.html, a real screen), and the person+ brings a support
+        agent into the case (contact-support.html). THE SECOND IS AN INTERPRETATION AND IS FLAGGED AS
+        ONE: "add someone to the call" has no job in sitemap.md, and the nearest thing DRON does have
+        is EJ-2's reach-a-human. If it is not that, it should come off rather than be invented into
+        something.
       -->
-      <section class="dr-center" aria-label="Call">
-        <p class="dr-number"><span class="dr-sr">Call duration </span><time datetime="PT2M14S">02:14</time></p>
-        <p class="dr-note">The call goes through DRON. Your number is not shared with the operator.</p>
-      </section>
+      <div class="dr-call__top">
+        <a class="dr-btn dr-btn--icon dr-btn--night" href="tracking.html" aria-label="Minimise the call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 3.5l6 6"/><path d="M4.5 9.5h5v-5"/><path d="M20.5 20.5l-6-6"/><path d="M19.5 14.5h-5v5"/></svg></a>
+        <span class="dr-call__who">
+          <span class="dr-call__name">Andriy M.</span>
+          <span class="dr-call__time"><span class="dr-sr">Call duration </span><time datetime="PT2M14S">02:14</time></span>
+        </span>
+        <span class="dr-call__side">
+          <a class="dr-btn dr-btn--icon dr-btn--night" href="contact-support.html" aria-label="Add support to the call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="8" r="3.4"/><path d="M3.5 20c0-3.4 2.9-5.8 6.5-5.8 1.1 0 2.1.2 3 .6"/><path d="M18 14.6v5.8"/><path d="M15.1 17.5h5.8"/></svg></a>
+          <a class="dr-btn dr-btn--icon dr-btn--night" href="chat.html" aria-label="Chat with the operator"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.7c0 3.9-3.8 7.1-8.5 7.1-1 0-2-.15-2.9-.42L4.2 20.3l1.5-3.3a6.8 6.8 0 0 1-2.2-5.3c0-3.9 3.8-7.1 8.5-7.1s8.5 3.2 8.5 7.1z"/></svg></a>
+        </span>
+      </div>
+
+      <!--
+        THE STAGE. A PLACEHOLDER FIGURE, NOT A PORTRAIT, and that is visuals/gaps.md B1 #4 rather than
+        taste: the product's one human cutout, operator.png, is shot three-quarters FROM BEHIND, so a
+        circular crop gives the back of a head — the same finding that left order-confirmed's
+        avatar:AM slot unplaced. The reference is showing a placeholder too, for the same reason.
+        When people/person-operator-andriy.png arrives it drops straight into this disc as an <img>
+        and nothing else on the screen moves.
+        aria-hidden because the name it stands for is stated 200px above it (`WCAG 1.1.1`).
+      -->
+      <div class="dr-call__stage">
+        <span class="dr-call__avatar" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.4" r="4"/><path d="M4.4 20.6c0-4.2 3.4-7 7.6-7s7.6 2.8 7.6 7"/></svg></span>
+      </div>
     </main>
 
     <!--
-      MUTE AND SPEAKER ARE .dr-channel, THE SHARE SHEET'S SHAPE, WEARING aria-pressed — icon over
-      label, --ink on --btn2 at 11.54:1, 44 floor, flex:1 each, laid out by .dr-actionbar__row which
-      already declares display:flex and the 8px gap. One new kit rule between them: the PRESSED look,
-      inverted to --page on --ink at 15.99:1, because a toggle whose on-state is invisible is not a
-      toggle (`WCAG 1.4.1`, `4.1.2`). Both rest here: the base call is not muted and not on speaker.
-      END CALL IS THE FIRST RED SURFACE IN THE PRODUCT. --danger has been declared and drawn nowhere
-      since rev 25 with the note that nothing had asked for one; a hang-up button is that thing, and
-      it is the shape no user has to learn. Measured --page on --danger 4.53:1 — a WCAG 1.4.3 pass by
-      0.03 and the thinnest pair in the system; --danger-ink as the fill measures 6.83:1 and is the
-      designer's to take. Flat, like .dr-btn--pay: --sh-sm belongs to the green primary, and this
-      screen has no green at all.
+      THE CONTROL BAR. A pill of circular actions floating on the ground, and the one surface in the
+      product that sits over another without a shadow — separation is the 1.28:1 tone step, which is
+      how every card on the light side separates too.
+      VIDEO · SPEAKER · MIC are toggles: aria-pressed carries the state, the inverted fill shows it,
+      and no label flips to "Unmute" — one control, one name (`WCAG 2.5.3`). All three rest here,
+      because the base file is the normal state; the reference draws its mic already muted, which is
+      the pressed half of this same control.
+      VIDEO IS THE OTHER CONTROL WITH NO DRON JOB BEHIND IT — a video call with the operator is in
+      the reference and not in sitemap.md. Built to match her frame and flagged, the same way the
+      person+ above is; it comes off in one line if it is not wanted.
+      END CALL is the only saturated fill on the screen and the only thing here that must not be
+      mistaken. --page glyph on --danger 4.53:1, past 1.4.11's 3:1 for a mark; the disc against the
+      bar is 2.75:1 and the GLYPH is what identifies it, the reading this kit already ships three
+      times over.
     -->
     <footer class="dr-actionbar">
-      <div class="dr-actionbar__row">
-        <button class="dr-channel" type="button" aria-pressed="false"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9.2" y="3.4" width="5.6" height="11" rx="2.8"/><path d="M5.5 11.4a6.5 6.5 0 0 0 13 0"/><path d="M12 17.9v2.7"/></svg>Mute</button>
-        <button class="dr-channel" type="button" aria-pressed="false"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.4h3.3L12 5.4v13.2l-4.7-4H4z"/><path d="M16.1 9.6a3.6 3.6 0 0 1 0 4.8"/><path d="M18.7 7a7.2 7.2 0 0 1 0 10"/></svg>Speaker</button>
+      <div class="dr-call__bar">
+        <button class="dr-btn dr-btn--icon dr-btn--night" type="button" aria-pressed="false" aria-label="Video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6.6" width="12.4" height="10.8" rx="2.4"/><path d="M15.4 10.6l5.1-2.9v8.6l-5.1-2.9z"/></svg></button>
+        <button class="dr-btn dr-btn--icon dr-btn--night" type="button" aria-pressed="false" aria-label="Speaker"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.4h3.3L12 5.4v13.2l-4.7-4H4z"/><path d="M16.1 9.6a3.6 3.6 0 0 1 0 4.8"/><path d="M18.7 7a7.2 7.2 0 0 1 0 10"/></svg></button>
+        <button class="dr-btn dr-btn--icon dr-btn--night" type="button" aria-pressed="false" aria-label="Mute"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9.2" y="3.4" width="5.6" height="11" rx="2.8"/><path d="M5.5 11.4a6.5 6.5 0 0 0 13 0"/><path d="M12 17.9v2.7"/></svg></button>
+        <a class="dr-btn dr-btn--icon dr-btn--danger-solid" href="tracking.html" aria-label="End call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 14.3a12 12 0 0 1 17.2 0"/><path d="M3.4 14.3l1.7 1.7a1.5 1.5 0 0 0 2.1 0l1.1-1.1a1.5 1.5 0 0 0 0-2.1l-.7-.7"/><path d="M20.6 14.3l-1.7 1.7a1.5 1.5 0 0 1-2.1 0l-1.1-1.1a1.5 1.5 0 0 1 0-2.1l.7-.7"/></svg></a>
       </div>
-      <a class="dr-btn dr-btn--danger-solid dr-btn--block" href="tracking.html"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 14.3a12 12 0 0 1 17.2 0"/><path d="M3.4 14.3l1.7 1.7a1.5 1.5 0 0 0 2.1 0l1.1-1.1a1.5 1.5 0 0 0 0-2.1l-.7-.7"/><path d="M20.6 14.3l-1.7 1.7a1.5 1.5 0 0 1-2.1 0l-1.1-1.1a1.5 1.5 0 0 1 0-2.1l.7-.7"/></svg>End call</a>
+      <div class="dr-home"><span></span></div>
     </footer>
   </div>
 
