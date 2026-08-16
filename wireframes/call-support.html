@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Call support · base</title>
+<!--
+  SCREEN (_screens.md C9): "Call support" — a sub-view of "Contact human support", not a node on the
+  EJ-2 spine. PERSONA: Client C-1. JOB: EJ-2 — reach a real person, any time (the Airbnb 24/7 model),
+  by the channel that does not wait for a typed answer. STATE: base only — the connected call.
+  FLOW: contact-support → "Call support" → here; Minimise / End call → contact-support.
+
+  ADDED 2026-08-16 on the designer's word: «зроби таку сторінку call.html яка буде відкриватись при
+  кліку на кнопку "Call support"». WHAT IT CLOSES IS A CONTROL THAT NAMED AN ACT AND PERFORMED NONE:
+  the button was `<button type="button">` with no target, no handler and no toast, and both
+  microcopy.md and concept.md rev 106 described it as handing off to the phone app — a description
+  that stopped being true at rev 141/144, when the masked-number reading took every `tel:` and every
+  stated phone number out of the product.
+
+  IT IS THE SECOND INSTANCE OF `.dr-call`, NOT A SECOND CALL SCREEN. Everything it shares with
+  call.html is byte-identical — the --night ground, the 22/700 name over the tabular duration, the
+  176px portrait disc, the --night-raised pill holding four 44px discs on 14px gaps, End call as the
+  one saturated fill. THREE THINGS DIFFER, EACH FORCED BY WHO IS ON THE LINE:
+   · THE NAME. `voice.md`'s vocabulary rule never crosses operator and support. This call is to DRON
+     Support — the same string the agent card on the screen behind it carries.
+   · BOTH EXITS return to contact-support.html. call.html returns to tracking, which would drop a
+     client mid-issue onto the map of an order that may not even be the one in dispute.
+   · THE TOP-RIGHT PAIR COMES OFF, which is call.html's own flag answered rather than copied: "add
+     support to the call" is meaningless when support IS the call, and "chat with the operator" names
+     the wrong person. The typed channel to THIS agent is the message form behind the screen, where
+     Minimise already lands, so a second control for it would be one act under two names.
+
+  NO NAV BAR — `HIG · Modality`, inherited from call.html: a call is presented modally rather than
+  pushed onto a stack, so the ways out are Minimise (back to the form, the call carries on) and End
+  call. Neither back control nor DRON mark, which `_conventions.md §12b`'s checklist does not provide
+  for because it assumes a navigational screen. Recorded as a departure, not filed as a defect.
+
+  BASE ONLY, AND TWO STATES ARE TRACED AND NOT BUILT: `calling` (loading) and `no answer` (error,
+  whose way out is the message form behind it, so it is not a dead-end). See _screens.md C9.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Call support</h1>
+    <p class="sub">Client · EJ-2 (sub-view of Contact human support) · state: <b>base only</b> · file: call-support.html</p>
+    <dl>
+      <dt>Persona</dt><dd>Client C-1 (primary)</dd>
+      <dt>Job</dt><dd>EJ-2 — a real person, any time; the channel that does not wait for a typed answer</dd>
+      <dt>Node</dt><dd>Not on the spine — contact-support → Call support → here</dd>
+    </dl>
+    <div class="flow"><b>A masked in-app call, not the OS dialer</b> — the same reading as <b>Call the operator</b>: no frame in the product states a phone number.<br><b>The second instance of the one dark surface</b>, not a second call screen: what differs is the name, both exits, and the top-right pair, each because of <i>who is on the line</i>.<br><b>Exits:</b> Minimise → <b>Contact human support</b> (call carries on) · End call → <b>Contact human support</b>.<br><b>States:</b> none built; <i>calling</i> and <i>no answer</i> traced in <code>_screens.md C9</code>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Call</b> ▸ who · how long · minimise</p><p><b>Stage</b> ▸ the agent</p><p><b>Controls</b> ▸ video · speaker · mic · end</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen dr-call">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+
+    <main class="dr-main">
+      <p class="zlabel dr-label">Call <span class="dr-label__act">▸ who · how long · the way back (EJ-2)</span></p>
+
+      <!--
+        THE TOP ROW, THREE COLUMNS, THE OUTER TWO THE SAME 44 WIDE so the name sits optically centred
+        without the absolute positioning the nav bar uses — there is no nav bar here to hang it on.
+        MINIMISE returns to the message form and the call carries on; End call does not. The RIGHT
+        COLUMN IS EMPTY AND STILL 44 WIDE (.dr-call__side--empty) — a spacer, not a control: no fill,
+        no border, nothing focusable, nothing in the accessibility tree. What is not here is stated
+        in the head comment: neither side action from call.html survives the change of party.
+        THE NAME IS THE SAME STRING THE AGENT CARD BEHIND THIS SCREEN CARRIES. You called the party
+        you were already writing to, and the name does not change on the way. The agent is not named
+        anywhere in EJ-2, and inventing a first name here would make the call answerable by a stranger.
+      -->
+      <div class="dr-call__top">
+        <a class="dr-btn dr-btn--icon dr-btn--night" href="contact-support.html" aria-label="Minimise the call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 3.5l6 6"/><path d="M4.5 9.5h5v-5"/><path d="M20.5 20.5l-6-6"/><path d="M19.5 14.5h-5v5"/></svg></a>
+        <span class="dr-call__who">
+          <span class="dr-call__name">DRON Support</span>
+          <span class="dr-call__time"><span class="dr-sr">Call duration </span><time datetime="PT1M7S">01:07</time></span>
+        </span>
+        <span class="dr-call__side dr-call__side--empty" aria-hidden="true"></span>
+      </div>
+
+      <!--
+        THE STAGE. A PLACEHOLDER FIGURE, and here it is the truthful mark rather than a stand-in for a
+        photograph that is coming: the person who answers an EJ-2 call is a human agent (contact-support
+        says so on its own card — "Human agent", "Online 24/7"), and which one it is, is not knowable
+        before the call connects. So this disc stays the kit's outline person for good, where call.html's
+        is waiting on people/person-operator-andriy.png (visuals/gaps.md B1 #4).
+        THE DRON MARK WAS THE OTHER CANDIDATE AND LOST ON A NUMBER: .dr-brand is painted with --ink,
+        which is the same #1A1A1A as --night, so the mark would be 1:1 against this ground and would
+        need its own inverted rule — a second way to draw the brand, for one disc. The figure is
+        --page on --night-raised at 12.48:1 and needs nothing.
+        aria-hidden because the name it stands for is stated 200px above it (`WCAG 1.1.1`).
+      -->
+      <div class="dr-call__stage">
+        <span class="dr-call__avatar" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.4" r="4"/><path d="M4.4 20.6c0-4.2 3.4-7 7.6-7s7.6 2.8 7.6 7"/></svg></span>
+      </div>
+    </main>
+
+    <!--
+      THE CONTROL BAR, IDENTICAL TO call.html's — one component, two instances, so the pill, the four
+      44px discs, the 14px gaps and the tokens are the same values in both files.
+      VIDEO · SPEAKER · MIC are toggles: aria-pressed carries the state, the inverted fill shows it,
+      and no label flips to "Unmute" — one control, one name (`WCAG 2.5.3`). All three rest here,
+      because the base file is the normal state.
+      VIDEO IS INHERITED WITH ITS FLAG rather than re-decided here: _screens.md §9c already records
+      that a video call has no job in sitemap.md. It stays so the two calls remain one component, and
+      it comes off both screens in one line, together.
+      END CALL is the only saturated fill on the screen and the only thing here that must not be
+      mistaken. --page glyph on --danger 4.53:1, past 1.4.11's 3:1 for a mark; the disc against the
+      bar is 2.75:1 and the GLYPH is what identifies it. It returns to the message form, where
+      "Mark resolved" and "Ask a senior agent" are still waiting — the escalation ladder survives the
+      call, which is why neither exit goes anywhere else.
+    -->
+    <footer class="dr-actionbar">
+      <div class="dr-call__bar">
+        <button class="dr-btn dr-btn--icon dr-btn--night" type="button" aria-pressed="false" aria-label="Video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6.6" width="12.4" height="10.8" rx="2.4"/><path d="M15.4 10.6l5.1-2.9v8.6l-5.1-2.9z"/></svg></button>
+        <button class="dr-btn dr-btn--icon dr-btn--night" type="button" aria-pressed="false" aria-label="Speaker"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.4h3.3L12 5.4v13.2l-4.7-4H4z"/><path d="M16.1 9.6a3.6 3.6 0 0 1 0 4.8"/><path d="M18.7 7a7.2 7.2 0 0 1 0 10"/></svg></button>
+        <button class="dr-btn dr-btn--icon dr-btn--night" type="button" aria-pressed="false" aria-label="Mute"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9.2" y="3.4" width="5.6" height="11" rx="2.8"/><path d="M5.5 11.4a6.5 6.5 0 0 0 13 0"/><path d="M12 17.9v2.7"/></svg></button>
+        <a class="dr-btn dr-btn--icon dr-btn--danger-solid" href="contact-support.html" aria-label="End call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 14.3a12 12 0 0 1 17.2 0"/><path d="M3.4 14.3l1.7 1.7a1.5 1.5 0 0 0 2.1 0l1.1-1.1a1.5 1.5 0 0 0 0-2.1l-.7-.7"/><path d="M20.6 14.3l-1.7 1.7a1.5 1.5 0 0 1-2.1 0l-1.1-1.1a1.5 1.5 0 0 1 0-2.1l.7-.7"/></svg></a>
+      </div>
+      <div class="dr-home"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
