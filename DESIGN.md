@@ -570,6 +570,19 @@ gives it the corner. It never restates the parent's radius.
   **fill** rung, and no surface has asked to be red. Like `--tertiary` and `--text`, it stays out of
   the action bar: the two filled buttons on the bottom edge are *Save photo* and *Cancel*, and Remove
   is a body action in its own zone.
+- **Pay:** `#000` fill, mark-as-label, no shadow — the one rung whose colour the product does not
+  choose. `HIG · Apple Pay Marks and Buttons` and Google Pay's brand guidelines each permit exactly
+  three fills on a button that *initiates* their payment — **black**, **white**, **white with
+  outline** — and forbid the rest; a host may set the height and the radius and nothing else. Added
+  2026-08-16 (rev 134) on the designer's word, closing the breach rev 129 had recorded. `#000` is
+  written **on the variant, not in the palette** — the rev 108 rule for brand values — so DRON gains
+  no black surface. Measured: the marks' white **21:1**, Google's four-colour G **5.89** / **6.87** /
+  **12.30** / **5.35:1**, all four clear of 3:1 where three of them are not on `--card`; the button's
+  edge against `--page` **19.30:1** (`WCAG 1.4.11` floor 3:1); the focus ring stays `--ink` on
+  `--page` at **15.99:1**. Height **44** clears `HIG · 44pt`, Apple's 30pt floor and Google Pay's
+  40dp floor. Hover lifts to `--ink` rather than `filter: brightness`, which multiplies black by
+  nothing; press takes the kit's usual 1px dip, and on a touch-first product that is the state that
+  reads. Spent on `order-review`'s pay drawer and nowhere else.
 - **Block:** `width:100%`. The default in an action bar and at the foot of a card.
 - **One action per row in the action bar** (designer, 2026-08-16, rev 120). Every button in a
   `.dr-actionbar` is `--block`, one per line, `gap:8` — **341px** at the 375 frame. The bar never
@@ -740,6 +753,15 @@ artwork `aria-hidden` (`1.1.1`, `1.4.1`). The three wordmarks are set in `--font
 **approximation** — `.dr-paymark text` is the only rule in the kit that sets type inside an SVG, and
 real artwork replaces all four at handoff.
 
+**The box has a second rung, for the case where the mark *is* the label.** `.dr-paymark--pay`
+(rev 134) is the same artwork at **46 × 23** — the row's 40 × 20 scaled by exactly **15/13** — so the
+word lands on the button label's own step, **15/600**, which is what every `.dr-btn` in the product
+sets its label at. Nothing inside the lockup is redrawn: both marks were built symmetric in the
+40 × 20 box and stay symmetric in this one. It is spent on the pay drawer's two express buttons and
+nowhere else, and it is *more* of an approximation than the row's, not less — Apple and Google size
+their lockups from the button's height, not from a host's type scale, and their supplied buttons
+replace both outright at handoff.
+
 **The modal contract is kept, not claimed.** Everything behind the drawer takes `inert`, so a tap or
 a Tab cannot reach the form under it; focus lands on the current option with its ring; Tab cycles
 inside the drawer only; and it closes three ways — **Esc**, the **scrim**, and a **`Cancel`** button
@@ -777,13 +799,15 @@ rule decides it the same way it decides a picker's: three ways to pay is ≤ 6, 
   carrying both attributes with its own page script, and two handlers on one control is a fight.
   `.dr-btn[aria-controls]` matched **0** elements before this pass. Focus falls back to the sheet's
   first control where there is no `.dr-picker__item` to land on (`WCAG 2.4.3`).
-- **One rule, no new variant.** `.dr-paylist` is a column at **8** — the action bar's own rhythm —
-  against the sheet's **12** out to `Cancel`. A pay option is a plain `.dr-btn--primary.dr-btn--block`
-  whose label is the brand mark, so it takes no class of its own. Marks are centred in their 40 × 20
-  box, where the picker row's copies anchor left.
+- **Two rules and one variant.** `.dr-paylist` is a column at **8** — the action bar's own rhythm —
+  against the sheet's **12** out to `Cancel`. The card option is a plain
+  `.dr-btn--primary.dr-btn--block`; the two express options wear `.dr-btn--pay` (below), because the
+  brands do not let a host choose their button's fill.
 - **Measured open, 375 frame.** Sheet **373 × 292.8** at `--r-panel` 22 with `--sh-raised`; three
-  options **341 × 44** at `--r-btn` 12 with `--sh-sm`; `Cancel` **341 × 44** on `--btn2` **11.54:1**.
-  Marks `#000` **11.42:1** on the green; DRON's own card glyph and words `--on-green` **9.46:1**.
+  options **341 × 44** at `--r-btn` 12; `Cancel` **341 × 44** on `--btn2` **11.54:1**. `Pay with
+  card` carries the frame's one `--sh-sm` and DRON's own glyph and words at `--on-green` **9.46:1**;
+  the two express buttons are flat `#000` with their marks at **21:1** (white) and **5.35–12.30:1**
+  (Google's four-colour G).
 - **The modal contract, verified rather than claimed.** A real pointer open shows **no** focus ring
   and a keyboard open does; five tabs cycle the sheet's four stops and never escape; three ways
   close it — Esc, scrim, `Cancel` — each clearing `aria-expanded` and returning focus to the CTA;
@@ -792,18 +816,22 @@ rule decides it the same way it decides a picker's: three ways to pay is ≤ 6, 
   screen and its error / loading states on the main path; Apple Pay and Google Pay skip it — the
   method is already chosen — and land on **`payment-loading`**, which is where an express charge is.
 
-**Two departures, both the designer's and both recorded rather than corrected.**
+**The two departures rev 129 recorded were both closed at rev 134, on the designer's word** —
+*«apple pay & google pay чорним кольором»*. They are left written here because a rejected shape that
+is not on the record gets re-proposed as a new idea later.
 
 1. **`HIG · Apple Pay Marks and Buttons`** and **Google Pay's brand guidelines** require a button
    that *initiates* their payment to be one of three supplied styles — **black**, **white**,
-   **white with outline** — and forbid a custom fill. These three initiate, and they are `--green`.
-   The reference she sent is Apple-conformant precisely because its button is black. Contrast is not
-   what fails: `#000` on `--green` is **11.42:1**. What fails is the brand licence, and a real
-   integration would be rejected at review. **The conforming variant is a two-line change** — Apple
-   and Google black, `Pay with card` green — and it also fixes (2).
-2. **`concept.md`'s one-green rule** (exactly one green control, ≤ ~5% of the frame) is exceeded
-   **3×**: three block buttons are **45,012px² = 14.78%** of the 375 × 812 frame, **19.71%** counting
-   the CTA dimmed behind the scrim, and no single one of them is the primary.
+   **white with outline** — and forbid a custom fill. rev 129 built all three options `--green`.
+   Contrast was never what failed: `#000` on `--green` measured **11.42:1**. The brand licence
+   failed, and a real integration would have been rejected at review. **Closed:** the two express
+   options are `#000`, the fill her own reference already showed.
+2. **`concept.md`'s one-green rule** (exactly one green control, ≤ ~5% of the frame) was exceeded
+   **3×**: three block buttons were **45,012px² = 14.78%** of the 375 × 812 frame, **19.71%**
+   counting the CTA dimmed behind the scrim, and none of them was the primary. **Closed by the same
+   change:** `Pay with card` is now the drawer's only green control at **15,004px² = 4.93%** —
+   inside the 4.43–5.09 band the painted set holds — **9.85%** counting the CTA behind the scrim.
+   Shadows inside the sheet fell from **three** `--sh-sm` to **one**, under that button.
 
 ### Text areas, and the focus rule they changed
 

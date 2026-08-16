@@ -17,6 +17,7 @@ Everything below is **measured off the assets already in the repo**, not asserte
 | The fleet — 12 studio drones | `19:59139` «Drons images» | studio / catalogue | `assets/drones/drone-01…12.png` + `_source-sheet.png` |
 | In flight & people | `38:122` «images 2» | editorial / in use | `assets/drones/drone-flight-*.png`, `assets/people/`, `assets/scenes/` |
 | The delivery photo | `47:4` | photograph | `assets/scenes/delivered-at-door.jpg` |
+| The aerial deliverable | `96:14`, file `YlGWlsWWjKSCxhONMzGG2F` | photograph | `assets/scenes/aerial-rafting-run.jpg` |
 | The live map | — | flat map illustration | `assets/map/live-map.jpg` |
 
 Node `19:59139` is already sliced into the repo; `_source-sheet.png` (3072 × 2048) is kept beside
@@ -80,9 +81,17 @@ Whole library, `python visuals/check-style.py`:
 | `scenes/handover · receive` | `#474A4D` · `#444749` | **−6.5** · **−5.4** | 208° · 202° | 72° 86% 45% · 70° 93% 42% |
 | `scenes/operator-at-work.png` | `#3F4448` | **−8.8** | 203° | `#C0D028` 66° 68% 49% ⚠ |
 | **`scenes/delivered-at-door.jpg`** | `#8D887D` | **+16.4** | **40.1°** | none — correct |
+| `scenes/aerial-rafting-run.jpg` | `#686C62` | **+5.9** | 82.5° ⚠ | none — correct |
 | `map/live-map.jpg` | `#DBDBD9` | +2.8 | 48.8° | `#90B800` 73° 100% 36% |
 
-**Payload lime in band: 16 of the 18 files that carry one. Warm skew in band: 1 of 23.**
+**Payload lime in band: 17 of the 19 files that carry one. Warm skew in band: 4 of 34.**
+
+*Re-measured 2026-08-16 when `scenes/aerial-rafting-run.jpg` was added. The line above used to read
+**16 of 18** and **1 of 23**, and that was already stale before this file: the library had grown to 33
+without the count being re-run. The four now in band are `people/person-client-olena.png`,
+`people/person-operator-ivan.png`, `scenes/delivered-at-door.jpg` and the new aerial frame — so the two
+people added since are the reason the number moved, not this one alone. The table above lists groups;
+`python visuals/check-style.py` is the authority for any single file.*
 
 ### 3.1 The lime
 

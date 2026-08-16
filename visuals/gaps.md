@@ -123,7 +123,7 @@ carry the brand.
 | ~~14~~ | ~~`scenes/inspection-gutter-blocked.jpg`~~ | **Closed 2026-08-02.** The designer supplied node `71:141` — the run seen from directly above, choked with wet leaf debris and standing water, exactly what this row asked for. It replaced the third roof frame, so the strip now shows the roof twice and the gutter once. `inspection-roof-crack-3.jpg` stays in the repo, unused and available. | `inspection-report` — 3/3 **(filled)** |
 | 15 | ~~`scenes/inspection-chimney-flashing.jpg`~~ **slot filled, subject not** | **Severity None** — the finding reads *Chimney flashing · sealed and intact*, and the frame shows cracked roof tiles again. Same note as #14. | `inspection-report` — 3/3 |
 | 16 | `scenes/delivered-proof-2.jpg` | A second doorstep — an apartment landing, not a house | `order-history` carries **two** delivered package orders and one proof photo |
-| 17 | `scenes/aerial-trukhaniv-island.jpg` | The aerial deliverable — a riverside plot from ~60 m, late afternoon | the *Aerial photo & video* order in `order-history` (see the flow seam below). **Now the one thing holding that card back, 2026-08-16:** its two neighbours show what came back and it still shows an airframe. |
+| ~~17~~ | ~~`scenes/aerial-trukhaniv-island.jpg`~~ → `scenes/aerial-rafting-run.jpg` | **Filled 2026-08-16 — with a different subject than this row asked for, and the row is corrected to the picture rather than the other way round.** The designer supplied Figma node `96:14` (file `YlGWlsWWjKSCxhONMzGG2F`), 949 × 638: six people in helmets and life vests riding a raft over a drop in white water, shot from above. Not the riverside plot at 60 m this row imagined — an **event** shoot, which is the first use the `listings` card names (*Events, real-estate listings, personal occasions*). Saved by what it shows, the way #12 and #13 were: `aerial-rafting-run.jpg`, master 949 × 638 + `thumbs/` at 652 × 438. Measured against `README.md` §3: **warm skew +5.9, in the +4…+18 band**; **ground hue 82.5°, outside the 30–45° band** — the saturated pixels are gorge moss and foliage, so the picture reads green rather than warm. Recorded, not corrected (§7.2) — it is her frame, and the neutrals are in band. **Where it landed:** `order-details-aerial`, the new record file, **not** the `order-history` card — the cards keep their drones by her call of the same day (*«верни назад дрони, а коли я відкриваю картку щоб подивитись деталі»*), which is the whole reason those record files exist. **What this row got wrong, kept visible:** ~~its two neighbours show what came back and it still shows an airframe~~ — the reading that survived the same-day reversal is the opposite one, and the card was never the slot. |
 | 18 | `scenes/dispute-evidence-aerial-blurry.jpg` | The disputed deliverable: an aerial frame that is genuinely soft, so the client's claim reads as fair | `operator-dispute` — `up-ph:FLIGHT LOG / PHOTO`, filled state |
 
 **The photo set half-matches the findings now.** The gutter arrived and the strip reads roof · roof ·
@@ -179,10 +179,13 @@ transparent PNG is `README.md` §7.4.
 Not imagery bugs — recorded here because they surfaced during the pass and they change what a
 picture should show.
 
-1. **The aerial order has no outcome screen.** In `order-history`, the *Aerial photo & video* card's
-   "View details" points at `delivery.html`, which shows a parcel on a doorstep. An aerial order's
-   deliverable is an aerial photograph. Either that link should go to a photo-set screen, or #16
-   above has nowhere to live.
+1. ~~**The aerial order has no outcome screen.**~~ **Closed 2026-08-16.** In `order-history`, the
+   *Aerial photo & video* card's "View details" pointed at `delivery.html`, which shows a parcel on a
+   doorstep. It now points at `order-details-aerial.html`, the record file built the same day, whose
+   *Photo & video set* zone carries #17 — the only screen in the prototype that shows an aerial
+   deliverable. The second branch this row offered (a separate photo-set screen) was **not** taken:
+   no `flows.md` node produces one, and `_conventions.md` forbids inventing a screen to hold an
+   asset.
 2. **`order-history` shows two delivered package orders and one proof photo exists.** Hence #15.
 3. **The client wears the operator's uniform** in `people/client-receiving.png` and the right-hand
    figure of `scenes/handover.png`, so the person receiving the parcel reads as a second employee.

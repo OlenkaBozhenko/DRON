@@ -50,7 +50,7 @@
       { name: "Welcome / first-use explainer",         file: "welcome.html",            states: [["empty","welcome-empty.html"]] },
       { name: "Time-slot pick (calendar-first)",       file: "time-slot.html",          states: [["empty","time-slot-empty.html"]] },
       { name: "Inspection report",                     file: "inspection-report.html", success: true, states: [["error","inspection-report-error.html"],["loading","inspection-report-loading.html"]] },
-      { name: "Order history",                         file: "order-history.html",      states: [["details","order-details.html"],["empty","order-history-empty.html"],["loading","order-history-loading.html"]] },
+      { name: "Order history",                         file: "order-history.html",      states: [["details · delivery","order-details.html"],["details · inspection","order-details-inspection.html"],["details · aerial","order-details-aerial.html"],["empty","order-history-empty.html"],["loading","order-history-loading.html"]] },
       { name: "Share / refer",                         file: "share.html",              states: [["empty","share-empty.html"]] },
       { name: "Support / dispute",                     file: "support.html",            states: [] },
       { name: "Report an issue",                       file: "report-issue.html",       states: [["empty","report-issue-empty.html"],["loading","report-issue-loading.html"]] },

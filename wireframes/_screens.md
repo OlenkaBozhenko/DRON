@@ -381,12 +381,32 @@ avatar is the *base*: the initials fallback, which `account.html` already ships 
 | C1 | **Welcome / first-use explainer** | `EJ-1` | *EJ-1*: first-time open → Welcome → understood? | **Empty** ✓ (skipped / too long → one-card 15-sec fallback) | `welcome.html`, `welcome-empty.html` |
 | C2 | **Time-slot pick (calendar-first)** | `MJ-1` planning (`C-2`) | *MJ-1* setup → schedule a slot (aerial / inspection) → review | **Empty** ✓ (no slots free that day → pick another day) | `time-slot.html`, `time-slot-empty.html` |
 | C3 | **Inspection report** *(base = success)* | `RJ-C4` (`C-2` outcome) | *RJ-C4*: service type = photo/inspection → report | **Error** ✓ (no proof — job cannot complete) · **Loading** ✓ (report not uploaded yet) | `inspection-report.html`, `inspection-report-error.html`, `inspection-report-loading.html` |
-| C4 | **Order history** | `RJ-C5` | *RJ-C5*: Home → history → past order → Book again | **Empty** ✓ (no history / hard to find) · **Loading** ✓ (fetching order history) · **sub-view** `order-details` (base only — a finished order is a record, so it has no empty, no error and no loading of its own; the list already carried those) | `order-history.html`, `order-details.html`, `order-history-empty.html`, `order-history-loading.html` |
+| C4 | **Order history** | `RJ-C5` | *RJ-C5*: Home → history → past order → Book again | **Empty** ✓ (no history / hard to find) · **Loading** ✓ (fetching order history) · **sub-view** `order-details` — **one file per service, three of them** (base only: a finished order is a record, so it has no empty, no error and no loading of its own; the list already carried those) | `order-history.html`, `order-details.html`, `order-details-inspection.html`, `order-details-aerial.html`, `order-history-empty.html`, `order-history-loading.html` |
 | C5 | **Share / refer** | `SJ-1` | *SJ-1*: after a good order → Rate → Share | **Empty** ✓ (opened, didn't send → back to share) | `share.html`, `share-empty.html` |
 | C6 | **Support / dispute** | `EJ-2` (entry) | *EJ-2*: entry hub → "What went wrong?" triage | base only (a triage router; loadings live on the target screens) | `support.html` |
 | C7 | **Report an issue** | `EJ-2` | *EJ-2*: "result not as expected" → evidence? → review | **Empty** ✓ (no evidence — weaker claim, manual review) · **Loading** ✓ (issue under review) | `report-issue.html`, `report-issue-empty.html`, `report-issue-loading.html` |
 | C8 | **Resolution outcome** | `EJ-2` | *EJ-2*: review → Resolution? (refund / free re-do / human) | base only (shows the outcome; branches are links, not states) | `resolution.html` |
 | C9 | **Contact human support** | `EJ-2` | *EJ-2*: safety/trust or unresolved → agent | **Error** ✓ (unresolved with agent → escalation queue) | `contact-support.html`, `contact-support-error.html` |
+
+**`order-details` is three files, one per service — not three states.** Added 2026-08-16 on the designer's
+word: «у мене є три різні сторінки have already made orders де є доставка, огляд криші та фото — так от вони
+мають мати різні назви відповідно і різні фотки». `order-history` lists three finished orders and all three
+cards opened the **same** record, so a client who tapped the roof inspection was shown a parcel on a doorstep
+under the heading *Package delivery*. The record is per-order data, and the two things that differ per service
+are exactly the two she named — **the heading** and **the deliverable in the well**:
+
+| File | Heading (nav bar) | Summary rows | Deliverable zone | Frame |
+|---|---|---|---|---|
+| `order-details.html` | Package delivery | From · To · Parcel · Delivered · Operator | **Delivery photo** | `scenes/delivered-at-door.jpg` |
+| `order-details-inspection.html` | Roof inspection | Location · Structure · Delivered · Operator | **Inspection report** | `scenes/inspection-roof-cracked-tiles.jpg` |
+| `order-details-aerial.html` | Aerial photo &amp; video | Location · Shoot · Delivered · Operator | **Photo &amp; video set** | `scenes/aerial-rafting-run.jpg` |
+
+The three zone names are not invented for this screen — `voice.md` **O5** already fixes one name per
+deliverable: *delivery photo* · *inspection report* · *photo/video set*. Structure, zone order, action bar
+(`Book again` / `Delete order`) and the single `Paid` line are byte-identical across the three; only the
+per-order strings and the one `<img>` differ, which is what makes them one screen with three instances rather
+than three screens. Still **base only**, for the reason the row above gives, and still no traceability column
+moves in `sitemap.md §6.1`.
 
 ### Operator — Step 8
 

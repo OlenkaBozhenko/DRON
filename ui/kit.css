@@ -2188,10 +2188,57 @@ header.dr-topbar,
 }
 /* THE PAY DRAWER'S LIST (2026-08-16, rev 129) — three ways to pay, stacked.
    8 inside the group against the sheet's own 12 out to Cancel, which is the
-   action bar's exact rhythm: siblings closer than strangers. Nothing else is
-   declared here — a pay option is a plain `.dr-btn--block`, and its label is
-   the brand mark, so the button needs no variant of its own. */
+   action bar's exact rhythm: siblings closer than strangers. The list itself
+   declares nothing else; rev 134 gave the two express options their own fill
+   below, because the brands require it. */
 .dr-paylist{ display: flex; flex-direction: column; gap: var(--sp-within-lg); }
+
+/* THE EXPRESS-WALLET BUTTON (2026-08-16, rev 134) — the only control in the
+   product whose surface is not DRON's to choose. `HIG · Apple Pay Marks and
+   Buttons` and Google Pay's brand guidelines each ship exactly three permitted
+   fills — BLACK, WHITE, WHITE-WITH-OUTLINE — and forbid any other on a button
+   that INITIATES their payment. rev 129 built these two as `.dr-btn--primary`
+   and recorded the breach in the log rather than hiding it; the designer closed
+   it on 2026-08-16 («apple pay & google pay чорним кольором»), taking the black
+   variant her own Figma reference already showed.
+
+   Closing it closes §0's count rule at the same time: the drawer now holds ONE
+   green control, `Pay with card`, at 15,023px² = 4.93% of the 375 × 812 frame —
+   inside the 4.43–5.09 band the painted set already holds — where three green
+   blocks were 14.78%. And the frame is back to ONE shadow: --sh-sm sits under
+   the single green button, not under three. Apple's button ships flat, so this
+   one takes none.
+
+   #000 IS WRITTEN HERE AND IS NOT A TOKEN — the rev 108 rule for brand values,
+   scoped to the artwork that owes them, never pulled by a DRON surface. The
+   palette gains no black.
+
+   MEASURED ON #000: the marks' white 21:1; Google's four-colour G 5.89 (blue)
+   6.87 (green) 12.30 (yellow) 5.35:1 (red) — all four clear 3:1 here, where on
+   --card three of them did not. The button's edge against the sheet's --page
+   ground is 19.28:1 (`WCAG 1.4.11` floor 3:1) and the focus ring stays --ink on
+   --page at 15.99:1 (`WCAG 2.4.11`). Logotypes are exempt from 1.4.3 / 1.4.11
+   either way. Height holds --h-control 44 — clear of `HIG · 44pt`, of Apple's
+   30pt floor and of Google Pay's 40dp floor; radius stays --r-btn 12, which
+   both brands permit.
+
+   Hover lifts to --ink because filter:brightness multiplies black by nothing —
+   a small step, and said plainly as one. Press takes the same dip every other
+   button takes, and on a touch-first product that is the state that reads. */
+.dr-btn--pay{ background: #000; color: #FFF; }
+.dr-btn--pay:hover{ background: var(--ink); }
+.dr-btn--pay:active{ background: var(--ink); transform: translateY(var(--lift-active)) scale(var(--scale-active)); }
+
+/* the lockup on a pay BUTTON, where the mark IS the label instead of standing
+   beside one. The picker row's 40 × 20 box is scaled by exactly 15/13 — 46 × 23
+   — so the word lands on the button label's own step, 15/600, which is what
+   every other `.dr-btn` sets its label at; the designer's «шрифт по стилю як на
+   усіх кнопках а не такий маленький». Nothing inside the artwork is redrawn:
+   the 40 × 20 marks were built symmetric in their box and stay symmetric here.
+   STILL AN APPROXIMATION, and this rung more so than the row's — at handoff
+   Apple's and Google's supplied buttons replace both outright, and their
+   lockups are sized by the button's height, not by our type scale. */
+.dr-paymark--pay{ width: 46px; height: 23px; }
 
 /* a share channel: an icon over its label, on the secondary pair */
 .dr-sheet__channels{ display: flex; gap: var(--sp-within-lg); }

@@ -371,3 +371,50 @@ on its tag — `a.back` **21px**, `button.back` **40px** (a `<button>` does not 
 `padding: 11.5px 0; margin: -11.5px 0` rev 87 gave `.dr-back`: all 44 measure **44.00**, label unmoved.
 `text-decoration: none` was added with it — `_wireframe.css` has no bare-`a` reset, so the ten operator
 back links had been rendering underlined while the `<button>` ones were not.
+
+---
+
+## 2026-08-16 — the aerial record's location and its photograph do not describe the same place
+
+### Open, not fixed: `order-details-aerial` says *Trukhaniv Island* over a whitewater gorge
+
+**What is built.** The 14 Jun *Aerial photo & video* order carries `Location · Trukhaniv Island` in its
+summary and `scenes/aerial-rafting-run.jpg` in its deliverable well — six people in helmets and life
+vests riding a raft over a drop in white water, between wet rock walls.
+
+**Why the two disagree.** Trukhaniv is a flat sand island in the Dnipro inside Kyiv. It has no rapids,
+no gorge and no drop. The two strings came from different places and neither is wrong on its own: the
+location is what the `order-history` card has said since the screen was built, and the photograph is
+the frame the designer supplied on 2026-08-16 (Figma `YlGWlsWWjKSCxhONMzGG2F` node `96:14`) to close
+`visuals/gaps.md` **B3 #17**, which had been open because the repo held no aerial deliverable at all.
+
+**Why it matters here more than elsewhere.** `voice.md` **P2** is *show the proof, not the adjective*,
+and this zone exists to answer `RJ-C4` — the client checking what came back. A deliverable that
+contradicts the order it belongs to is worse than no deliverable: it is the one place in the product
+where a picture is evidence rather than decoration (`concept.md` §6, *imagery is real, never
+decoration*).
+
+**What was done about it in the build.** Nothing was silently reconciled. The location string is kept
+exactly as the designer wrote it, and the `alt` describes **the frame and only the frame** — *"Six
+people in helmets and life vests riding a raft over a drop in white water, shot from above."* It does
+not repeat *Trukhaniv Island*, because an alt that echoed the label would state as fact something the
+image contradicts, which is the failure `WCAG 1.1.1` exists to prevent. So the mismatch is visible to a
+sighted reader and to a screen-reader user alike, rather than hidden from one of them.
+
+**The options, each with its consequence:**
+
+1. **Change the location to the picture** — e.g. *Migiya, Southern Bug*, Ukraine's actual whitewater
+   run. Two strings move (`order-history`'s card and this record); the order becomes coherent and the
+   photograph becomes evidence. `microcopy.md` rows for both files would be updated with it.
+2. **Change the picture to the location** — a flat-water or riverside aerial over Trukhaniv. Reopens
+   `visuals/gaps.md` **B3 #17**, which this frame just closed, and needs a new asset.
+3. **Keep both as built** — the record reads as it does now. Costs `P2` on the one screen whose whole
+   job is proof, and costs it silently on every later reading of the frames.
+
+**Option 3, on her word — asked before the copy was written, not after.** The three options above were
+put to the designer on 2026-08-16 with the frame and the label shown side by side, and she chose to keep
+*Trukhaniv Island*. So this is a decision, not an oversight, and it is not re-proposed later as a new
+idea. What it costs is stated once, here: `voice.md` **P2** on the one screen whose whole job is proof.
+What it does not cost is `WCAG 1.1.1` — the alt was written to the frame precisely so that her call
+lands on the copy and not on the accessible name.
+

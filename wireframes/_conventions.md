@@ -597,7 +597,7 @@ chrome so the toast cannot cover the control that raised it, and — where the r
 | Welcome / first-use explainer (`EJ-1`) | `welcome.html` | `welcome-empty.html` |
 | Time-slot pick — calendar-first (`C-2`) | `time-slot.html` | `time-slot-empty.html` |
 | Inspection report *(base = success)* (`RJ-C4`, `C-2`) | `inspection-report.html` | `inspection-report-error.html`, `inspection-report-loading.html` |
-| Order history (`RJ-C5`) | `order-history.html` | `order-details.html` (a **finished** order, read-only — what was done, the operator's proof photo, what it cost; **Book again** / **Delete order** in the action bar), `order-history-empty.html`, `order-history-loading.html` |
+| Order history (`RJ-C5`) | `order-history.html` | `order-details.html` · `order-details-inspection.html` · `order-details-aerial.html` — a **finished** order, read-only (what was done, the deliverable the operator sent back, what it cost; **Book again** / **Delete order** in the action bar). **One file per service, 2026-08-16**: the heading names the service and the well carries that service's deliverable — *Delivery photo* / *Inspection report* / *Photo & video set*, `voice.md` **O5**. Everything else is identical across the three. Also `order-history-empty.html`, `order-history-loading.html` |
 | Share / refer (`SJ-1`) | `share.html` | `share-empty.html` |
 | Support / dispute (`EJ-2` entry) | `support.html` | — |
 | Report an issue (`EJ-2`) | `report-issue.html` | `report-issue-empty.html`, `report-issue-loading.html` |
