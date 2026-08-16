@@ -47,6 +47,16 @@
     </footer>
   </div>
 
+  <!--
+    ui/kit.js arrives here 2026-08-16 for the onscreen keyboard, on the designer's «коли юзер
+    вводить текст показуй дровер з клавіатурою відповідно до HIG». No markup for it lives on this
+    page on purpose: the system draws the keyboard over an app, it is not part of the app's DOM,
+    so the script builds it and every field on every screen gets the same picture. What the page
+    does own is the choice she made — the action bar leaves while the keys are up, because
+    `Submit review` and `Book again` would otherwise sit entirely behind drawn content while still
+    in the tab order (`WCAG 2.4.11`), and the keyboard's own `Done` is the way back.
+  -->
+  <script src="../ui/kit.js"></script>
   <script src="_wf-shell.js"></script>
 </body>
 </html>
