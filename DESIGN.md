@@ -803,13 +803,24 @@ rule decides it the same way it decides a picker's: three ways to pay is ≤ 6, 
   against the sheet's **12** out to `Cancel`. The card option is a plain
   `.dr-btn--primary.dr-btn--block`; the two express options wear `.dr-btn--pay` (below), because the
   brands do not let a host choose their button's fill.
-- **The sheet carries a message under its title** (rev 136, the designer's word). `HIG · Action
-  sheets` allows a title **and** an optional message; it is `.dr-note` — 12/400 `--slate` centred,
-  the class `share`'s sheet already uses — tied to the dialog with `aria-describedby` so it is
-  announced with the sheet's name (`WCAG 4.1.2`). `--slate` on `--page` **6.62:1**. It adds **30px**
-  (18 + the sheet's own 12 gap) and no class, token or rule.
-- **Measured open, 375 frame.** Sheet **373 × 322.8** at `--r-panel` 22 with `--sh-raised` (292.8
-  before rev 136's message line); three
+- **The sheet carries the price under its title, and since rev 138 that is the price card itself.**
+  `HIG · Action sheets` allows a title **and** content beneath it. rev 136 spent the slot on a
+  *message* — `.dr-note`, 12/400 `--slate` centred, **6.62:1** on `--page`, **+30px**; rev 138
+  replaced that one sentence with the screen's own `.dr-rows--money`, four rows, on the designer's
+  word (*«зроби самері гарним у 4 стрічки»*). Keys `--slate` on `--card` **5.95:1**, figures `--ink`
+  **14.37:1**, `Total` on the money step 20/700 tabular; card **341 × 214**, rows **48/48/48/54**,
+  `--r-card` 16 on the sheet's `--page` ground — the 1.11:1 step `.dr-picker__list` already stands on
+  inside a drawer. **No class, token or rule is added:** it is the component from the screen behind,
+  which the drawer covers whole (card y **462.78–676.78**, sheet edge **292.2**). The id
+  `sheet-pay-desc` moves onto the rows container, so `aria-describedby` still announces the sheet
+  with its figures (`WCAG 4.1.2`); the card takes **no** `aria-label` — one would win the description
+  computation and replace those figures with the words *Price breakdown*. It adds **196px** (214 + the
+  sheet's 12 gap, less the 18 the line took and its own gap).
+- **Measured open, 375 frame.** Sheet **373 × 518.8** at `--r-panel` 22 with `--sh-raised` — 292.8
+  before rev 136's message line, 322.8 before rev 138's card; **63.89%** of the frame against 39.75%,
+  which is past the ~50% an iOS medium detent sits at and is recorded as a cost, not an oversight.
+  The lighter shape measured beside it and not taken: four `.dr-price` lines on the sheet's ground,
+  the last on `.dr-price--total`, **435.2 = 53.59%**. Three
   options **341 × 44** at `--r-btn` 12; `Cancel` **341 × 44** on `--btn2` **11.54:1**. `Pay with
   card` carries the frame's one `--sh-sm` and DRON's own glyph and words at `--on-green` **9.46:1**;
   the two express buttons are flat `#000` with their marks at **21:1** (white) and **5.35–12.30:1**
@@ -1030,8 +1041,9 @@ wherever its string happened to end — measured across the 13 wireframes that c
 **One exception — `.dr-rows--money`.** A card whose values are *figures*, not facts, keeps the
 trailing column: tabular numerals only line up on the last digit if the column is right-aligned, and
 left they line up on the ₴ with ₴180 running 24px past ₴90. Key `flex: 1`, value `flex: none`. Spent
-on `order-review`'s price breakdown and its loading state, nowhere else — `resolution`'s *Refund
-issued ₴180* is a sentence and stays with the facts.
+on `order-review`'s price breakdown, its loading state and — since rev 138 — the same four rows
+inside that screen's pay drawer, nowhere else. `resolution`'s *Refund issued ₴180* is a sentence and
+stays with the facts.
 
 **`.dr-rows__row--stack` — the row whose value is a badge.** A `.dr-chip` is `nowrap` by construction
 and measures **164.08**, wider than the 159 column, so on `inspection-report`'s *Signed* row it stood
