@@ -622,7 +622,7 @@ it. States below are each traced to a flow node. `—` = not produced.
 | # | Screen (`sitemap.md`) | Job | Flow position (`flows.md`) | States (real) | Files |
 |---|---|---|---|:---|---|
 | S1 | **Switch role (Client ⇄ Operator)** | `§7.4` global utility | *CHANGE PERSONA*: Account → confirm? → re-enter fork | base only (a confirm/decision screen; decline → back, confirm → fork) | `switch-role.html` |
-| S2 | **Account / profile** | `§7.4` identity &amp; preferences utility + MJ-2 credentials | Account tab (every tab bar) → Edit → save | base + **edit** sub-view (edit personal details, upload drone documents / insurance, save; no dead-end — Save / Cancel → Account) + **photo** sub-view (change the profile photo — take a photo, choose from library, remove; no dead-end — Save photo / Cancel / back → Account) | `account.html`, `account-edit.html`, `account-photo.html` |
+| S2 | **Account / profile** | `§7.4` identity &amp; preferences utility + MJ-2 credentials | Account tab (every tab bar) → Edit → save | base + **edit** sub-view (edit personal details, upload drone documents / insurance, save; no dead-end — Save / Cancel → Account) + **photo** sub-view (change the profile photo — take a photo, choose a picture, delete; **a modal from 2026-08-16 (rev 146)**: no dead-end — Cancel / Save → Account, and no back chevron, because a view that commits with Save is dismissed by its named Cancel) | `account.html`, `account-edit.html`, `account-photo.html` |
 
 **`account-edit`'s form is three titled cards from 2026-08-16** — **Personal details** ▸ *What the operator
 needs to reach you* (name · phone · saved address), **Payment & language** ▸ *How you pay and the language you
@@ -638,6 +638,14 @@ is the destination of the pencil beside the name. `sitemap.md §7.4` still lists
 files are states of it, and both are listed in the `Files` column above rather than given a row of their own.
 It carries **base only** — no `flows.md` node produces an empty, error or loading state for it (an empty
 avatar is the *base*: the initials fallback, which `account.html` already ships as `OB`).
+
+**It became a modal on 2026-08-16 (rev 146), on the designer's reference** (Figma `100:30`): *«залиш
+зображення аватарки посередині а кнопки … зроби у ботом барі»*. The photo now stands alone in the content
+area and the three ways to change it — **Take a photo · Choose a picture · Delete** — sit on the bottom edge
+as an action bar, in the shape her frame draws as an iOS action sheet. **The state matrix does not move:**
+still base only, still one file. **What moves is the exit** — `HIG · Modality` puts *Cancel* and *Save* in the
+navigation bar of a view that commits, so the back chevron came off and the bar's own Cancel went with it;
+the screen still has no dead-end, with two named ways out instead of three.
 
 ### Client — Step 8
 

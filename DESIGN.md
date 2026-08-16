@@ -303,7 +303,7 @@ Every pair carried on a product surface, verified in the browser.
 | `--ink` | `--media` | 13.33:1 | glyphs in a well |
 | `--ink` | `--btn2` | 11.54:1 | secondary button, settled status check |
 | `--ink` | `--green` | 9.46:1 | primary button label, walked node glyph |
-| `--danger-ink` | `--page` | 6.83:1 | destructive text action (`account-photo` · Remove photo) |
+| `--danger-ink` | `--page` | 6.83:1 | destructive text action — **on the bench since rev 146**: its one user, `account-photo` · *Remove photo*, became the grey `Delete` in the action bar |
 | `--slate` | `--page` | 6.62:1 | lead copy, unselected tabs |
 | `--slate` | `--inset` | 6.33:1 | From / To labels |
 | `--danger-ink` | `--card` | 6.14:1 | field error text; the destructive action if it ever stands on a card |
@@ -312,7 +312,7 @@ Every pair carried on a product surface, verified in the browser.
 | `--warn-ink` | `--warn-wash` | 5.65:1 | late-notice mark |
 | `--trust-ink` | `--trust-wash` | 5.65:1 | Insured badge — label and its checkmark |
 | `--trust-ink` | `--card` | 5.93:1 | — |
-| `--green-ink` | `--page` | 5.58:1 | text button (declared — rev 51 took its one spend) |
+| `--green-ink` | `--page` | 5.58:1 | text button — spent again from rev 146 on `account-photo` · *Save*, the modal's commit in the navigation bar (rev 51 had taken its one earlier spend) |
 | `--slate` | `--media` | 5.51:1 | muted chips, upload glyph |
 | `--danger-ink` | `--danger-wash` | 5.49:1 | tracking-lost, photo-missing marks |
 | `--green-ink` | `--card` | 5.01:1 | text button, card ground (declared) |
@@ -558,18 +558,23 @@ gives it the corner. It never restates the parent's radius.
 - **Text:** transparent, `--green-ink` label — **5.58:1** on the page, **5.01:1** on the card;
   hover and press darken to `--ink` with the kit's 1px dip, the tertiary's own grammar. Added
   2026-08-12 (rev 49) for `listings-filtered`'s Clear all; rev 51 replaced that control with
-  the leading `All` chip, so the variant is currently spent nowhere. The slate tertiary stays
-  the skip/cancel voice.
+  the leading `All` chip, and the variant then sat unspent until **rev 146 gave it `account-photo`'s
+  *Save*** — the right-hand commit in a modal's navigation bar, which is where `HIG · Modality` puts
+  the prominent action and the only place the system has for a green that is not a fill. The slate
+  tertiary stays the skip/cancel voice and takes that screen's *Cancel*, so the two bar words differ
+  in ink as well as in position.
 - **Danger:** transparent, `--danger-ink` label — **6.83:1** on the page, **6.14:1** on the card;
   hover and press darken to `--ink` with the same 1px dip, so the three text rungs differ in ink and
   in nothing else. Added 2026-08-16 (rev 128) for `account-photo`'s *Remove photo*, and it is
   `--danger-ink`'s **first spend as a control** — the family had been declared since rev 25 and drawn
   only as `.dr-field__err` text and the `.dr-mark--danger` alert. `HIG · Action sheets` asks a
   destructive choice to read as destructive; `WCAG 1.4.1` is untouched because the verb is in the
-  label, not in the colour. `--danger` (`#C4462A`, 4.07:1) stays declared and undrawn — it is a
-  **fill** rung, and no surface has asked to be red. Like `--tertiary` and `--text`, it stays out of
-  the action bar: the two filled buttons on the bottom edge are *Save photo* and *Cancel*, and Remove
-  is a body action in its own zone.
+  label, not in the colour. `--danger` (`#C4462A`, 4.07:1) is a **fill** rung and was spent once, on
+  `call`'s hang-up disc. **The text rung is back on the bench from rev 146:** its one user moved to
+  the action bar as *Delete*, and a bar takes filled buttons only (rev 112), so the destructive choice
+  there is `--secondary` grey at **11.54:1** — the same answer rev 131 gave `Delete order`. The verb
+  carries the warning in both places, which is why the colour could leave without `WCAG 1.4.1`
+  noticing. The rung stays declared for the first destructive action that stands **inside** `main`.
 - **Pay:** `#000` fill, mark-as-label, no shadow — the one rung whose colour the product does not
   choose. `HIG · Apple Pay Marks and Buttons` and Google Pay's brand guidelines each permit exactly
   three fills on a button that *initiates* their payment — **black**, **white**, **white with

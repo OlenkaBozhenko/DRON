@@ -312,6 +312,19 @@ button rather than as a second control: the box is what says *tappable*, and on 
 is the only thing the target has to show for itself. Tertiary keeps its job **outside** the action
 bar — the top-bar text action (`listings-filters` · *Clear all*) and links inside a card.
 
+**Two primaries in one bar — the departure, on `account-photo`** (designer, 2026-08-16, rev 146:
+*«дві зерені delete сіра»*). The rule above says *primary + secondary*, one main action per bar; this
+screen draws **Take a photo** and **Choose a picture** as two `.dr-btn--primary` and **Delete** as the
+secondary. **The ghost half of rev 112 is kept** — every button in the bar is filled, and the
+`.dr-btn--danger` this screen used to carry in `main` is exactly the shape that rule removes. **What
+departs is the count, and it costs the green budget:** solid green measures **30,008px² = 9.85%** of
+the 375 × 812 frame against `concept.md` §0's *one green control, ≤ ~5%* and the 4.43–5.09% band every
+other painted page holds, and the frame carries **two** `--sh-sm` shadows where §0 spends exactly one.
+Contrast is untouched — charcoal on green **9.46:1**, charcoal on `--btn2` **11.54:1** — and `HIG · 44pt`
+is met at **341 × 44** three times, so nothing here fails a standard; what is spent is the product's own
+scarcity. Recorded as her call with the number, not as conformance. **One green returns the screen to
+the band** whenever she wants it: `Choose a picture` to `--secondary` puts it at 15,004px² · 4.93%.
+
 **One action per row — the bottom bar never splits** (designer, 2026-08-16, rev 120:
 *«кнопки одна під одною. пройдись по проекту і подивись щоб кругом у нижньому барі кнопрки були
 одна під одною»*). Every button in a `footer.actionbar` / `footer.dr-actionbar` is **full width**
@@ -334,7 +347,7 @@ what joins them is closed and counted, not open:
 | May sit in the bar | Where it exists | Why |
 |---|---|---|
 | Buttons | every `footer.dr-actionbar` | §11 above |
-| A caption line (`.dr-note`) | `order-setup-error` | states a fact about the action, not about `main` |
+| A caption line (`.dr-note`) | `order-setup-error`, `account-photo` (rev 146) | states a fact about the action, not about `main`. On `account-photo` it is the message slot `HIG · Action sheets` puts above a set of choices, and it is tied to all three by `aria-describedby` |
 | A price summary (`.dr-price`) | `time-slot`, `time-slot-empty` | the number the button commits to |
 | **A control that rides the same commit** | `order-setup` · *Save this address for next time* | it takes effect **when the button is pressed**, so it is read where it is committed |
 
@@ -388,6 +401,14 @@ only where a visible label exists. `Back to …` stays forbidden as *visible* co
 
 A **tab root has no back control** of its own. A **modal sheet** is not a pushed screen: it gets a close
 control (`×`, `aria-label="Close …"`), not a chevron — `listings-filters.html`.
+
+**A modal that COMMITS takes the two named words instead of either shape** (designer, 2026-08-16, rev 146,
+on her Figma `100:30`): **Cancel** on the left, **Save** on the right, no chevron and no `×`. `HIG · Modality`
+draws exactly this bar for a view that edits something and has to be committed or abandoned, and the pair is
+the whole reason the chevron cannot stay — a screen cannot both *go back* and *be dismissed without saving*,
+and offering both puts two exits with two different meanings a thumb's width apart. One screen: `account-photo`.
+The `×` reading is not replaced — `listings-filters` applies as you tap and has nothing to commit, so it is
+dismissed, not cancelled.
 
 A **drawer** is not a modal sheet screen either. A sheet that fills the frame and carries a nav bar takes
 the `×`; a drawer that rises from the bottom edge over the screen you are still on carries a **grabber and
@@ -591,7 +612,7 @@ chrome so the toast cannot cover the control that raised it, and — where the r
 | Client onboarding | `onboarding-client.html` | `onboarding-client-empty.html` |
 | Operator onboarding | `onboarding-operator.html` | — |
 | Switch role (global) *(step 8)* | `switch-role.html` | — |
-| Account / profile | `account.html` | `account-edit.html` (edit settings — personal details, drone-document / insurance upload, save), `account-photo.html` (change the profile photo — take a photo / choose from library / remove, save) |
+| Account / profile | `account.html` | `account-edit.html` (edit settings — personal details, drone-document / insurance upload, save), `account-photo.html` (change the profile photo — a **modal** from rev 146: Cancel · Save in the navigation bar, the three sources and Delete on the bottom edge, no back chevron) |
 
 ### Client (MJ-1)
 | Screen | Base file | State pages |

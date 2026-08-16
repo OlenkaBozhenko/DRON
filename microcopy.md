@@ -576,6 +576,14 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **One consistency cost, stated with its boundary.** Six drawers keep their `.dr-sheet__title` — `Mode` · `Parcel size` · `Issue type` · `Language` · `Payment method` · `Pick a date & time` — and every one titles a **list of options that says nothing on its own**. This drawer's content is a statement of price. The rule is written into `wireframes/_conventions.md` rather than left as a page that quietly differs.
 - **Measured:** sheet **518.8 → 483.0**, **63.89% → 59.48%** of the frame.
 
+**Sync — 2026-08-16 (`account-photo` becomes a modal, and four strings change with the shape)**
+- **The designer, on the built screen, with her Figma `100:30` beside it:** *«залиш зображення аватарки посередині а кнопки "Take a photo", Choose a picture, Delete і Сancel зроби у ботом барі по типу цього … лиш кнопки по стилю мої з кіта»*. Her reference is an iOS action sheet over an *Edit Profile* screen — **Cancel** top-left, **Save** top-right — and she chose that reading over the two alternatives when the three were priced against `HIG · Modality`.
+- **Two strings are hers verbatim and are logged as her words, not as an improvement:** `Choose from library` → **`Choose a picture`**, `Remove photo` → **`Delete`**. The second one closes a real split — *Remove* stood in exactly one place in the product while *Delete order* stood in two — so `voice.md` gains **A13**, one destruction verb everywhere.
+- **`Save photo` → `Save`, and the object is not lost, it moves.** In the action bar the button stood alone and had to name what it saved; in a navigation bar the centred title reads *Profile photo* on the same line. `account-edit`'s `Save changes` is deliberately **not** swept with it — that one is still a lone button on a bottom edge.
+- **Two sentences carry the copy that the deleted zones were holding**, rather than being dropped with them: `Your initials show instead.` joins the photo card's own sentence, and `You can retake it before saving.` becomes *Nothing changes until you save.* — which now covers `Delete` as well as the two sources, and is the reason a destructive button here still needs no confirmation alert.
+- **The back chevron's string retires** (`‹ Account` / *Back to Account*). A modal is dismissed by its named Cancel; carrying both would put two exits with two different words on one bar (`WCAG 2.4.6`, and `HIG · Modality` outright).
+- **Nothing else on the screen changed wording:** `Profile photo`, `Take a photo`, `JPG or PNG, up to 5 MB.` and `Your operator sees this photo when they arrive.` are the strings rev 128 wrote.
+
 ---
 
 ## Master table — every string
@@ -635,17 +643,14 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account | Account | Activity | Button |  |
 | account | Account | Help | Button |  |
 | account | Account | Account | Button |  |
-| account-photo | — | ‹ Account | Button | the chevron alone; `Back to Account` is its accessible name (rev 93 took the visible label off every bar) |
+| account-photo | — | Cancel | Button | the modal's dismissal, new 2026-08-16 (rev 146) — `HIG · Modality` gives a view that commits with Save a **named** Cancel, and the back chevron leaves with it: a screen cannot both push and be dismissed. It never stands beside a second Cancel; the one that used to sit in the action bar is gone |
 | account-photo | — | Profile photo | Heading | new screen 2026-08-16 |
-| account-photo | Photo | Your operator sees this photo when they arrive. | Body | P1 — names the outcome (being recognised on arrival), not the file. One sentence, no adjective |
-| account-photo | Add photo | Take a photo | Button | `HIG · Action sheets` ships this source by name. A3 fixes the *attach* verb as **Add** + object and bars ~~Upload~~ / ~~Attach~~; what this names is the **source**, and the zone label carries the Add |
-| account-photo | Add photo | You can retake it before saving. | Body | P3 — the fact before the tap: the shutter is not the commit |
-| account-photo | Add photo | Choose from library | Button | the second `HIG · Action sheets` source, same reading as above |
-| account-photo | Add photo | JPG or PNG, up to 5 MB. | Body | P3 — the constraint stated before the tap instead of as an error after it |
-| account-photo | Remove | Remove photo | Button | destructive. The verb carries the meaning, so `WCAG 1.4.1` holds with the `--danger-ink` colour taken away |
-| account-photo | Remove | Your initials show instead. | Body | P5 — plain and accountable: the consequence is printed, which is why the action needs no confirmation alert (nothing is lost that a re-upload does not restore) |
-| account-photo | Action bar | Save photo | Button | names its object, as `Save changes` does on `account-edit` |
-| account-photo | Action bar | Cancel | Button | `HIG · Alerts / Action sheets` — last in a vertical stack |
+| account-photo | — | Save | Button | the modal's commit, new 2026-08-16 (rev 146). **Bare, where the action bar's string was `Save photo`** — in a navigation bar the title stands 100px away saying *Profile photo*, so the object is on screen and `HIG · Modality` asks the bar's own word; `account-edit`'s `Save changes` is untouched, its object having nothing else to lean on |
+| account-photo | Photo | Your operator sees this photo when they arrive. Without one, they see your initials. | Body | P1 — names the outcome (being recognised on arrival), not the file. **The second sentence is `Delete`'s consequence, printed before the tap** (P3): it was `Your initials show instead.` under the Remove zone that rev 146 dissolved into the bar, and it says the same thing in the same voice as the sentence above it |
+| account-photo | Action bar | JPG or PNG, up to 5 MB. Nothing changes until you save. | Body | P3 — two facts before the tap: the file rule, and that **no button in this bar commits on its own**. The second sentence carries what `You can retake it before saving.` said under the removed upload card, and now covers `Delete` as well as the two sources — which is what makes the destructive action recoverable without a confirmation alert. `HIG · Action sheets` allows a message above the choices; it is tied to all three by `aria-describedby` |
+| account-photo | Action bar | Take a photo | Button | `HIG · Action sheets` ships this source by name. A3 fixes the *attach* verb as **Add** + object and bars ~~Upload~~ / ~~Attach~~; what this names is the **source** |
+| account-photo | Action bar | Choose a picture | Button | the second `HIG · Action sheets` source. **The designer's own word 2026-08-16 (rev 146)**, from her Figma `100:30` — it was `Choose from library`, which named the iOS app rather than the thing the user wants |
+| account-photo | Action bar | Delete | Button | destructive, and **the designer's own word (rev 146)** — it was `Remove photo`. `voice.md` **A13** now fixes **Delete** as the product's one destruction verb, and this was the only string standing outside it. Bare, because the bar's own title says *Profile photo*. The verb carries the meaning with the colour gone (`WCAG 1.4.1`), the same reading rev 131 wrote for `Delete order` |
 | contact-support-error | — | ‹ Help | Button |  |
 | contact-support-error | — | Support | Heading |  |
 | contact-support-error | Escalation | Sent to a senior agent | State message |  |
