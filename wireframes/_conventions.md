@@ -394,6 +394,17 @@ the `×`; a drawer that rises from the bottom edge over the screen you are still
 a `Cancel` button** — `HIG · Action sheets`, which asks for the cancel by name. Set 2026-08-16 (rev 102)
 with the picker rule below, built on `account-edit`.
 
+**A drawer's title is optional, and exactly one drawer goes without it.** `HIG · Action sheets` provides
+for a title **and** a message and requires neither; what it requires is the named cancel, above. Six
+drawers carry a `.dr-sheet__title` because their content is a list of options that says nothing on its
+own — `Mode`, `Parcel size`, `Issue type`, `Language`, `Payment method`, `Pick a date & time`. The
+**pay drawer** on `order-review` dropped its `Pay ₴180` at rev 139 on the designer's word, because since
+rev 138 its content *is* the sentence: the card under the grabber states `Total ₴180` at 20/700, the
+largest figure on the surface, and the 17/600 line above it repeated that number three lines up.
+**A titleless drawer still needs a name:** `aria-labelledby` has nothing to point at, so the dialog
+carries `aria-label` instead — a dialog with no accessible name fails `WCAG 4.1.2`, and dropping the
+visible line is a design decision, not a licence to drop the name.
+
 **A picker row's list appears in one of two places, and the rule is a count:** **≤ 6 options → a drawer**
 from the bottom edge; **≥ 7 → a new screen** pushed in from the right, with a back to the row. The
 designer's call 2026-08-16; `HIG · Action sheets` and `HIG · Lists and tables` draw the same line — a short

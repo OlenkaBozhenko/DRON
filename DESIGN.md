@@ -803,7 +803,18 @@ rule decides it the same way it decides a picker's: three ways to pay is ≤ 6, 
   against the sheet's **12** out to `Cancel`. The card option is a plain
   `.dr-btn--primary.dr-btn--block`; the two express options wear `.dr-btn--pay` (below), because the
   brands do not let a host choose their button's fill.
-- **The sheet carries the price under its title, and since rev 138 that is the price card itself.**
+- **The sheet's content is the price card, and since rev 139 it is the whole sheet — the title is gone.**
+  `HIG · Action sheets` requires the named cancel and the grabber, **not** a title, so a drawer may go
+  without one; this is the only one that does. The designer's word on the built sheet (*«delete it»*),
+  and the redundancy was rev 138's own doing: the card states `Total ₴180` at 20/700, the largest figure
+  on the surface, so the 17/600 `Pay ₴180` above it said the same number twice, three lines apart. **The
+  accessible name stayed:** `aria-labelledby` had nothing left to point at and an unnamed `role="dialog"`
+  fails `WCAG 4.1.2`, so the section carries **`aria-label="Pay ₴180"`** and still announces as *Pay ₴180,
+  dialog* before its four figures. `2.5.3 Label in Name` no longer applies — no visible label is left to
+  disagree with the name. The six option-list drawers (`Mode`, `Parcel size`, `Issue type`, `Language`,
+  `Payment method`, `Pick a date & time`) keep their titles, because a list of options says nothing on
+  its own; the boundary is written into `wireframes/_conventions.md`.
+- **What that content is, and how the slot got it** (rev 136 → rev 138).
   `HIG · Action sheets` allows a title **and** content beneath it. rev 136 spent the slot on a
   *message* — `.dr-note`, 12/400 `--slate` centred, **6.62:1** on `--page`, **+30px**; rev 138
   replaced that one sentence with the screen's own `.dr-rows--money`, four rows, on the designer's
@@ -811,16 +822,19 @@ rule decides it the same way it decides a picker's: three ways to pay is ≤ 6, 
   **14.37:1**, `Total` on the money step 20/700 tabular; card **341 × 214**, rows **48/48/48/54**,
   `--r-card` 16 on the sheet's `--page` ground — the 1.11:1 step `.dr-picker__list` already stands on
   inside a drawer. **No class, token or rule is added:** it is the component from the screen behind,
-  which the drawer covers whole (card y **462.78–676.78**, sheet edge **292.2**). The id
+  which the drawer covers whole (card y **462.78–676.78**, sheet edge **328**). The id
   `sheet-pay-desc` moves onto the rows container, so `aria-describedby` still announces the sheet
   with its figures (`WCAG 4.1.2`); the card takes **no** `aria-label` — one would win the description
   computation and replace those figures with the words *Price breakdown*. It adds **196px** (214 + the
   sheet's 12 gap, less the 18 the line took and its own gap).
-- **Measured open, 375 frame.** Sheet **373 × 518.8** at `--r-panel` 22 with `--sh-raised` — 292.8
-  before rev 136's message line, 322.8 before rev 138's card; **63.89%** of the frame against 39.75%,
-  which is past the ~50% an iOS medium detent sits at and is recorded as a cost, not an oversight.
-  The lighter shape measured beside it and not taken: four `.dr-price` lines on the sheet's ground,
-  the last on `.dr-price--total`, **435.2 = 53.59%**. Three
+- **Measured open, 375 frame.** Sheet **373 × 483.0** at `--r-panel` 22 with `--sh-raised` — 292.8
+  before rev 136's message line, 322.8 before rev 138's card, **518.8** before rev 139 took the title
+  off; **59.48%** of the frame. rev 138's card cost 196 (214 + the sheet's 12 gap, less the message
+  line's 18 and its own); rev 139 gave back 35.8 (the 23.8 title and its gap). At 63.89% the drawer
+  was past the ~50% an iOS medium detent sits at, and that was recorded as a cost rather than left to
+  be noticed — the title coming off is what settled it. The lighter shape measured at rev 138 and not
+  taken: four `.dr-price` lines on the sheet's ground, the last on `.dr-price--total`, **435.2** with
+  the title still in place. Grabber to card **12**. Three
   options **341 × 44** at `--r-btn` 12; `Cancel` **341 × 44** on `--btn2` **11.54:1**. `Pay with
   card` carries the frame's one `--sh-sm` and DRON's own glyph and words at `--on-green` **9.46:1**;
   the two express buttons are flat `#000` with their marks at **21:1** (white) and **5.35–12.30:1**
