@@ -379,8 +379,8 @@ back links had been rendering underlined while the `<button>` ones were not.
 ### Open, not fixed: `order-details-aerial` says *Trukhaniv Island* over a whitewater gorge
 
 **What is built.** The 14 Jun *Aerial photo & video* order carries `Location · Trukhaniv Island` in its
-summary and `scenes/aerial-rafting-run.jpg` in its deliverable well — six people in helmets and life
-vests riding a raft over a drop in white water, between wet rock walls.
+summary and `scenes/aerial-rafting-run.jpg` in its deliverable well — a raft of paddlers in helmets and
+yellow life vests dropping through white water between wet rock walls.
 
 **Why the two disagree.** Trukhaniv is a flat sand island in the Dnipro inside Kyiv. It has no rapids,
 no gorge and no drop. The two strings came from different places and neither is wrong on its own: the
