@@ -202,6 +202,17 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   checkouts, but the kit has no two-up row: `.dr-field--half` is the **rate** screen's half-*screen*-height
   textarea, not a half-width field. Building the pair would mean adding a component, which is the designer's
   call and not a side effect of this change. Recorded here so the shape is a decision, not an oversight.
+- **The rows take `.dr-rows--card`, and it was measured before it was added.** Built without it the group hit
+  rev 98's plain-list strip — the fields lose their own 16 while `.dr-zone > .dr-rows` still bleeds the group
+  out by −16 — so on the 375 frame every label stood at **x 17 against a title at 33**, 16px left of the card
+  it lives in, and all three separators ran **0 → 0**, edge to edge instead of starting at the card's inset
+  (`HIG · Lists and tables`, the inset grouped list). Both alignments are WCAG-clean; this is HIG and the
+  project's one-axis rule (`ui/inventory.md` rev 114), not contrast and not a target. Same modifier and same
+  reason as `account-edit`'s Personal card (rev 124) — the product's other titled card of typed rows.
+  **Measured after, 375 × 812:** card **341 × 273.98**, labels **33** on the title's own axis, values **183**
+  (= 166 in the frame, rev 114's figure for a group that keeps its card), separators **16 → trailing edge**,
+  every row **44** (`HIG · 44pt` ✓), no horizontal overflow. Value track **159**; the 4-4-4-4 number measures
+  **157**, so it fits by **2px** — a 19-digit Maestro number would clip, and is recorded, not designed around.
 - **`Save this card for next time`** sits on the bottom edge above `Pay ₴180`, the same component and the
   same sentence shape as `order-setup`'s `Save this address for next time` — checkbox `.dr-box--check` in
   the action bar, `form="card-form"` so it stays a control of the form it left (`WCAG 1.3.1 / 4.1.2`), placed
