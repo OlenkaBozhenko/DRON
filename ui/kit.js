@@ -132,3 +132,151 @@
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
 }());
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE ONSCREEN KEYBOARD — the kit's second behaviour, and the first that is
+   not the product's own. The designer, 2026-08-16, on `rate`'s review field:
+   «коли юзер вводить текст показуй дровер з клавіатурою відповідно до HIG».
+
+   IT IS DRAWN BY THE SCRIPT AND NOT BY THE PAGE, deliberately. In a real
+   product the keyboard is not in the app's DOM at all — the system puts it
+   over the app. A page that had to carry 30-odd keys in its markup would be
+   claiming the app owns them, and 40 pages of that is 40 chances to drift.
+   So no page markup changes: any field, on any screen, gets the same picture.
+
+   WHAT IS REAL AND WHAT IS A PICTURE. The plane is `aria-hidden`, has no tab
+   stop and no pointer target — `WCAG 2.5.8` and `4.1.2` never engage, which
+   is correct, because the system keyboard is not in the app's accessibility
+   tree either. The accessory bar's `Done` is a real <button>: `HIG · Onscreen
+   keyboards` notes a MULTILINE field's Return inserts a newline and cannot
+   dismiss, so the app owes the user a dismissal it can see.
+
+   WHAT HAPPENS TO THE BOTTOM BAR — the designer's call, put to her with the
+   measurement: with the keyboard up, `Submit review` and `Book again` sit
+   entirely behind drawn author content while still holding their place in the
+   tab order, and `WCAG 2.4.11 Focus Not Obscured (Minimum)` fails the moment
+   focus reaches one. `[hidden]` takes them out of the tree; `Done` brings them
+   back. A field that lives INSIDE the bar is the exception — a chat composer
+   is the field being typed into, so its bar rides above the keys instead.
+
+   Escape dismisses as well, which costs nothing and is what a desktop reader
+   of this prototype will try first.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var frame = document.querySelector('.wf-frame');
+  if (!frame) return;
+
+  var ROWS = [
+    ['q','w','e','r','t','y','u','i','o','p'],
+    ['a','s','d','f','g','h','j','k','l'],
+    ['⇧','z','x','c','v','b','n','m','⌫'],
+    ['123','☺','space','return']
+  ];
+
+  var kb = null, bar = null, main = null, field = null, barRides = false;
+
+  function build() {
+    var el = document.createElement('div');
+    el.className = 'dr-kb';
+    el.hidden = true;
+
+    var acc = document.createElement('div');
+    acc.className = 'dr-kb__bar';
+    var done = document.createElement('button');
+    done.type = 'button';
+    done.className = 'dr-kb__done';
+    done.textContent = 'Done';
+    acc.appendChild(done);
+
+    var plane = document.createElement('div');
+    plane.className = 'dr-kb__plane';
+    plane.setAttribute('aria-hidden', 'true');
+
+    var quick = document.createElement('div');
+    quick.className = 'dr-kb__quick';
+    quick.appendChild(document.createElement('span'));
+    quick.appendChild(document.createElement('span'));
+    quick.appendChild(document.createElement('span'));
+    plane.appendChild(quick);
+
+    var rows = document.createElement('div');
+    rows.className = 'dr-kb__rows';
+    ROWS.forEach(function (keys, i) {
+      var row = document.createElement('div');
+      row.className = 'dr-kb__row' + (i === 1 ? ' dr-kb__row--mid' : '');
+      keys.forEach(function (k) {
+        var key = document.createElement('span');
+        key.className = 'dr-kb__key'
+          + (k === 'space' ? ' dr-kb__key--space' : '')
+          + (k === 'return' ? ' dr-kb__key--return' : '')
+          + (k === '123' || k === '☺' || k === '⇧' || k === '⌫' ? ' dr-kb__key--mod' : '');
+        key.textContent = k === 'space' ? '' : k;
+        row.appendChild(key);
+      });
+      rows.appendChild(row);
+    });
+    plane.appendChild(rows);
+
+    el.appendChild(acc);
+    el.appendChild(plane);
+    frame.appendChild(el);
+
+    done.addEventListener('click', function () { dismiss(true); });
+    return el;
+  }
+
+  function isField(el) {
+    return !!el && (el.tagName === 'TEXTAREA'
+      || (el.tagName === 'INPUT' && /^(text|email|tel|search|url|number|password)$/.test(el.type)));
+  }
+
+  function show(el) {
+    if (!kb) kb = build();
+    field = el;
+    bar = frame.querySelector('.dr-actionbar');
+    main = frame.querySelector('.dr-main');
+    barRides = !!(bar && bar.contains(el));
+    if (bar && !barRides) bar.hidden = true;
+    if (bar && barRides) bar.style.marginBottom = 'var(--h-kb)';
+    kb.hidden = false;
+    /* THE CONTENT AREA TAKES THE KEYBOARD'S FRAME, which is the whole of what
+       `HIG · Onscreen keyboards` asks an app to do: it does not draw over the
+       content, the content gets smaller. Without this the field is simply
+       overlaid — measured 180.2 of it behind the keys on `rate`.
+       WHAT IT BUYS, AND WHAT IT DOES NOT: the scrollport becomes 100.8 → 476.2
+       = 375.4 against a 382 field, so the field misses standing whole by 6.6.
+       The zone above it scrolls off and the last 6.6 scrolls inside the port;
+       nothing is hidden and nothing is unreachable. Reported rather than
+       fixed by shrinking the field, which is the designer's call to make. */
+    if (main) main.style.marginBottom = 'calc(var(--h-kb) + var(--h-control))';
+    if (el.scrollIntoView) el.scrollIntoView({ block: 'nearest' });
+  }
+
+  function dismiss(blur) {
+    if (!kb || kb.hidden) return;
+    kb.hidden = true;
+    if (bar) { bar.hidden = false; bar.style.marginBottom = ''; }
+    if (main) { main.style.marginBottom = ''; main = null; }
+    if (blur && field) field.blur();
+    field = null; bar = null; barRides = false;
+  }
+
+  frame.addEventListener('focusin', function (e) {
+    if (isField(e.target)) show(e.target);
+    else if (kb && !kb.hidden && !kb.contains(e.target)) dismiss(false);
+  });
+
+  frame.addEventListener('focusout', function (e) {
+    /* leaving for anywhere that is neither another field nor the accessory bar */
+    setTimeout(function () {
+      var a = document.activeElement;
+      if (!isField(a) && (!kb || !kb.contains(a))) dismiss(false);
+    }, 0);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && kb && !kb.hidden) dismiss(true);
+  });
+})();
