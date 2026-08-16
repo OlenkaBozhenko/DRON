@@ -53,6 +53,23 @@
   "Aerial photo & video" card has a result but the repo has no picture of it:
   visuals/gaps.md B3 #17 (scenes/aerial-trukhaniv-island.jpg) is still open. That one is
   a gap, not a decision.
+  ALL FOUR WELLS NOW HOLD DRONES AND THE PARAGRAPH ABOVE IS SETTLED (2026-08-16). B3 #17
+  arrived — the designer supplied Figma 96:14, cut in as scenes/aerial-rafting-run.jpg —
+  and it did NOT go in the aerial card's well, because the reversal above already decided
+  where a result belongs: "верни назад дрони, а коли я відкриваю картку щоб подивитись
+  деталі". So the second reason evaporates without changing this screen; the picture went
+  to the record the card opens.
+  THREE FINISHED CARDS, THREE RECORDS (2026-08-16, designer): "у мене є три різні сторінки
+  have already made orders де є доставка, огляд криші та фото — так от вони мають мати
+  різні назви відповідно і різні фотки". All three used to open order-details.html, so the
+  roof inspection and the aerial shoot both opened a screen headed "Package delivery" over
+  a parcel on a doormat. Each card now opens its own record: order-details.html,
+  order-details-inspection.html, order-details-aerial.html.
+  AND THE AERIAL "VIEW DETAILS" ICON STOPS LYING. It pointed at delivery.html — a parcel on
+  a doorstep for a photo shoot, logged as flow seam 1 in visuals/gaps.md. It now points at
+  order-details-aerial.html, the only screen in the prototype that shows an aerial
+  deliverable, and its accessible name says which set it opens. No photo-set screen was
+  invented to hold the asset: no flows.md node produces one.
   SPACING (2026-08-01, designer feedback — /impeccable layout): the card ran nine
   intervals all between 12 and 16, with the gap between cards smaller than the gaps
   inside one. Replaced with a three-step scale — 4/8 within a group, 20 between groups
@@ -168,7 +185,7 @@
                 </span>
                 <span class="dr-order__fee">
                   <span><span class="sr-only">Total</span><span class="dr-number dr-order__price">&#8372;800</span></span>
-                  <span class="dr-order__acts"><button class="dr-btn dr-btn--icon" type="button" aria-label="Delete order"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="dr-btn dr-btn--icon" href="delivery.html" aria-label="View details"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
+                  <span class="dr-order__acts"><button class="dr-btn dr-btn--icon" type="button" aria-label="Delete order"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="dr-btn dr-btn--icon" href="order-details-aerial.html" aria-label="View the photo and video set"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
                 </span>
             </article>
           </li>
