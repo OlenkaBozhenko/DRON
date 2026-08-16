@@ -189,6 +189,42 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   - **Error —** only on the re-book path (`RJ-C5`: *"previous service or price changed"*), which is out of this main-path scope.
   - **Loading ✓** — the final price must resolve / lock before it can be shown (`RJ-C3` "locked price" rule). Real pre-render state.
   - **Success —** no "it worked" screen; hands off to Payment.
+- **One file per service, three of them — 2026-08-16**, the pass after the setup screens split. The
+  designer, on the rewired flow: *«order-review для них буде різним в частині summary яке має
+  відображати відмінності в частині деталей що вже змінені»*. Correct, and it reached past the
+  summary — the built screen also priced the order by `Distance · 7.4 km`, named *Package delivery*
+  in its back button and said `Pay ₴180` twice:
+
+  | File | Summary rows | Price rows | Back | Total |
+  |---|---|---|---|---|
+  | `order-review.html` | Service · Pickup · Drop-off · Parcel · When | Base fare · **Distance · 7.4 km** · Service fee | Package delivery | ₴180 |
+  | `order-review-aerial.html` | Service · Location · **Shoot** · **What you get** · When | **Shoot · 30 min** · **Photo &amp; video** · Service fee | Pick a time | ₴800 |
+  | `order-review-inspection.html` | Service · Location · **Structure** · When | **Inspection · 3 parts** · **Inspection report** · Service fee | Pick a time | ₴650 |
+
+  **The deliverable is priced on its own line** — the designer's call, taken over a delivery-shaped
+  *base fare + variable + fee*. `voice.md` **P3**: she had just made *What you get* a client choice,
+  and a choice that moves the price must show its price before the tap rather than hide it in a base
+  fare. Applied to inspection too, so the two calendar-first services do not disagree about what a
+  breakdown is; there the line is the report, which is what `target-audience.md` says C-2 is buying.
+  **Every breakdown reconciles exactly** — 500 + 280 + 20 = 800, 480 + 150 + 20 = 650 — because a
+  breakdown that does not add up is the "plus fees" surprise `RJ-C3` exists to prevent. Neither total
+  is invented: both are what the matching record was paid, and `time-slot`'s action bar was already
+  showing `₴800`.
+  **Shoot and Duration share one summary row** (*Event · 30 min*), as on the finished record: the
+  form takes them as two pickers because nine combinations do not belong in one sheet, and the
+  summary joins two facts with the middot the product already uses. Review and record read
+  identically, which is what makes *Book again* a promise the next screen keeps.
+  **`When` is a booked hour, not an ETA**, on both calendar-first files — they are reached through
+  `time-slot`, so the row states the slot chosen there rather than *Now · ~25 min*.
+  **Back names `Pick a time`**, not the setup form: on these two services the slot list is the
+  previous screen (`HIG · Navigation Bars`).
+- **Still open after this pass, and reported rather than half-done:** the **payment chain below
+  review** is the delivery build throughout — `payment` (₴180 twice), `payment-error`,
+  `payment-loading`, `order-confirmed` (*En route to pickup*), `tracking`, `delivery`, `rate`. All
+  three review files' drawers hand off into it. Also `order-review-loading`, whose skeleton is the
+  price but whose resolved summary above it is delivery's. Splitting these is a separate decision,
+  not an oversight of this one.
+
 - **Pay opens a drawer, not a screen, from 2026-08-16** (designer: *«по кліку на pay має відкриватись дровер а
   не сторінка … кнопки з іконкою чорного кольору apple pay та google pay або можливість обрати картку … лиш усі
   кнопки залиті праймері»*, against a Figma reference — file `YlGWlsWWjKSCxhONMzGG2F`, node `95:10`, an eSIM

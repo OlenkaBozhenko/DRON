@@ -509,3 +509,48 @@ never offered. Fixed as `voice.md` **A12**, so the destination has one name on e
 **A9** keeps the composer's `Send message`: that button commits one message, the row opens the
 conversation. The label does not wrap — 22 characters in a 309.4 column — and no measurement on the
 sheet moved. Recorded in `concept.md` rev 142.
+
+---
+
+## 2026-08-16 — the order review priced every service like a delivery
+
+### Fixed: summary, breakdown, back control and CTA were all delivery-shaped
+
+**Found by the designer**, immediately after the setup screens split three ways: *«order-review для
+них буде різним в частині summary яке має відображати відмінності в частині деталей що вже
+змінені»*. She named the summary; the screen was wrong in four places.
+
+**What was built.** One `order-review.html`, and every part of it assumed a parcel:
+
+| Part | As built | Why it fails on a shoot or an inspection |
+|---|---|---|
+| Summary | Service · **Pickup** · **Drop-off** · **Parcel** · When | neither service has a pickup, a drop-off or a parcel |
+| Price | Base fare · **Distance · 7.4 km** · Service fee | a shoot is paid for by the hour it occupies, not the kilometres to it |
+| Back | *Back to Package delivery* → `order-setup.html` | the calendar-first path is setup → **time-slot** → review, so the previous screen is *Pick a time* (`HIG · Navigation Bars`) |
+| CTA + drawer | **Pay ₴180**, twice | the aerial record was paid ₴800, the inspection ₴650 |
+
+**What the guideline prescribes.** `voice.md` **P3** and `jtbd.md` **RJ-C3** — the full cost upfront,
+locked, no "plus fees". The practical test is that the rows reconcile: delivery's do, 90 + 70 + 20 =
+180. `HIG · Navigation Bars` covers the back control. `WCAG 1.3.1` is unaffected — the key/value
+pairing was never the problem.
+
+**Fixed:** `order-review-aerial.html` and `order-review-inspection.html`, on the same
+one-file-per-service shape as the setup screens and the order records. Both reconcile exactly —
+500 + 280 + 20 = 800 and 480 + 150 + 20 = 650 — and neither total is invented: each is what the
+matching record was paid, and `time-slot`'s action bar had been showing `₴800` since it was built.
+**The deliverable takes its own price line**, the designer's call over a delivery-shaped *base fare +
+variable + fee*: she had just made *What you get* a client choice, and `voice.md` **P3** says a choice
+that moves the price shows its price before the tap.
+
+**A second thing the same gap had hidden.** `time-slot`'s four slot cards and its *Confirm slot*
+button all pointed at `order-review.html` — the delivery build — so the one screen that only
+calendar-first services can reach handed every one of them a parcel summary. All five exits rewired.
+
+### Open, not fixed: the payment chain below review is still the delivery build
+
+Every review file's drawer hands off into `payment` (`₴180`, twice), `payment-error`,
+`payment-loading`, then `order-confirmed` (*En route to pickup*), `tracking`, `delivery` and `rate` —
+all written for a parcel. `order-review-loading` is in the same position: its skeleton is the price,
+but the resolved summary above it is delivery's. Splitting that chain is roughly fifteen files per
+service and is the designer's call, not an assumption to make inside a review fix. Recorded here so
+the gap is visible rather than discovered later.
