@@ -62,6 +62,20 @@
         <div class="dr-rows__row"><span class="dr-rows__key">Shoot</span><span class="dr-rows__val">Event · 30 min</span></div>
         <div class="dr-rows__row"><span class="dr-rows__key">Delivered</span><span class="dr-rows__val">14 Jun · 11:30</span></div>
         <div class="dr-rows__row"><span class="dr-rows__key">Operator</span><span class="dr-rows__val">Andriy M.</span></div>
+        <!-- PAID IS THE SUMMARY'S LAST ROW, NOT A ZONE OF ITS OWN — the designer on this very
+             frame, 2026-08-16 (rev 136): "помісти інфу Paid 800 у картку з самері і так само на
+             ще 2 аналогічних фреймах". rev 132 took the breakdown off, which left the Payment
+             zone as a card holding ONE row under a label that said nothing the row did not; the
+             record now reads what · where · when · who · how much in one panel, and the
+             deliverable is the only thing between the summary and the action bar.
+             AND IT TAKES THE CARD'S OWN ROW STYLE, NOT THE MONEY STEP — her call, asked with the
+             standards first and both readings conforming (HIG · inset grouped lists ships either
+             a uniform row or an emphasised total row; WCAG 1.4.3 unchanged at key 5.95:1 / value
+             14.37:1 on --card, 1.3.1 keeps the key/value pairing either way). So no
+             `.dr-rows__row--total`: with no breakdown there is no column for a total to total,
+             and the sum is a fact of the record like the four above it. That modifier is now
+             spent on order-review alone, where a total still has rows to add up. -->
+        <div class="dr-rows__row"><span class="dr-rows__key">Paid</span><span class="dr-rows__val">&#8372;800</span></div>
       </div>
 
       <!-- THE ZONE IS NAMED FOR ITS SERVICE — voice.md O5, which fixes one name per deliverable:
