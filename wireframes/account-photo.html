@@ -33,8 +33,8 @@
     </nav>
     <h1>Account — profile photo</h1>
     <p class="sub">Account utility · sub-view: <b>photo</b> · file: account-photo.html</p>
-    <div class="flow"><b>Job (jtbd):</b> change the profile photo — the picture the operator matches against on arrival (sitemap §7.4 identity utility; feeds <b>RJ-C1</b>'s two-way recognition).<br><b>Entry:</b> the pencil badge on the avatar, <b>Account</b>.<br><b>Exit:</b> Save photo, Cancel, or the nav-bar back → <b>Account</b>. No dead-end.<br><b>States:</b> none — an empty avatar is the base (the initials fallback), and no <code>flows.md</code> node produces an error or loading state here.</div>
-    <div class="legend"><p><b>Zones:</b></p><p><b>Photo</b> ▸ the picture as it stands, at 120</p><p><b>Add photo</b> ▸ two sources — camera · library</p><p><b>Remove</b> ▸ destructive, back to initials</p><p><b>Action bar</b> ▸ Save photo · Cancel (stacked)</p></div>
+    <div class="flow"><b>Job (jtbd):</b> change the profile photo — the picture the operator matches against on arrival (sitemap §7.4 identity utility; feeds <b>RJ-C1</b>'s two-way recognition).<br><b>Entry:</b> the pencil badge on the avatar, <b>Account</b>.<br><b>Exit:</b> Cancel or Save → <b>Account</b>. No dead-end, and no back chevron — a modal is dismissed by its named Cancel (<code>HIG · Modality</code>).<br><b>States:</b> none — an empty avatar is the base (the initials fallback), and no <code>flows.md</code> node produces an error or loading state here.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Nav bar</b> ▸ Cancel · Profile photo · Save</p><p><b>Photo</b> ▸ the picture as it stands, at 120</p><p><b>Action bar</b> ▸ Take a photo · Choose a picture · Delete, over the file rule</p></div>
   </aside>
 
   <div class="wf-frame dr dr-screen">
