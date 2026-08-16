@@ -240,48 +240,6 @@
         </ul>
       </fieldset>
 
-      <!-- ZONE · location
-           Four dependent levels, broadest first (designer's call 2026-08-16):
-           Country → Region → City → District of the city. It was a flat
-           radio list of three Kyiv neighbourhoods until then, and the city
-           itself could only be changed from the top bar, which is a filter
-           living outside the filter.
-           COUNTRY was added last, on her word on this built panel («добав ще
-           Cauntry»). CLAUDE.md's geography is Ukraine AND European countries,
-           so until now the panel carried the country as a hidden constant:
-           stated nowhere, changeable nowhere, and assumed by all three levels
-           under it. Picking a country resets the region, the city and the
-           district — nothing below it can outlive the country it belonged to.
-           Each row PUSHES A SCREEN rather than opening a drawer — the count
-           rule in _conventions.md is ≥ 7 → a screen, and the lists are 8, 25
-           and 11. The rows are <a> and not <button aria-haspopup>: a link goes
-           somewhere, a button acts here. The accessible name is the label plus
-           the value ("Region, Kyiv City"), so WCAG 4.1.2 is answered by the
-           element. -->
-      <p class="zlabel dr-label">Location <span class="dr-label__act">▸ country ▸ region ▸ city ▸ district of the city</span></p>
-      <div class="dr-rows" role="group" aria-label="Location">
-        <a class="dr-field dr-field--action" href="listings-filter-country.html">
-          <span class="dr-field__label">Country</span>
-          <span class="dr-field__value">Ukraine</span>
-          <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
-        </a>
-        <a class="dr-field dr-field--action" href="listings-filter-region.html">
-          <span class="dr-field__label">Region</span>
-          <span class="dr-field__value">Kyiv City</span>
-          <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
-        </a>
-        <a class="dr-field dr-field--action" href="listings-filter-city.html">
-          <span class="dr-field__label">City</span>
-          <span class="dr-field__value">Kyiv</span>
-          <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
-        </a>
-        <a class="dr-field dr-field--action" href="listings-filter-district.html">
-          <span class="dr-field__label">District</span>
-          <span class="dr-field__value">All districts</span>
-          <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
-        </a>
-      </div>
-
       <!-- ZONE · price -->
       <p class="zlabel dr-label">Price <span class="dr-label__act">▸ what you expect to pay</span></p>
       <fieldset aria-label="Price">
