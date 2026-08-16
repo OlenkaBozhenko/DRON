@@ -892,6 +892,27 @@ fill inside a charcoal ring — so whether the edge should stay charcoal when ch
 44 × 44, `50%`, `--btn2` fill, `--ink` glyph at 20px, hover → `--media`, `z-index:2` so it clears
 a full-card link overlay. Carries `aria-label` — the icon is the only content.
 
+### Circular icon action, on a photograph (`.dr-btn--onphoto`)
+
+The same 44 × 44 action with **one added property — a 2px `--ink` ring** (`--w-badge-ring`, the width
+the avatar badge already uses against a picture). Added 2026-08-16 (rev 137) for the play mark on a
+video poster. Fill and glyph do not change: `--btn2` disc, `--ink` glyph, **11.54:1**.
+
+- **Why a ring and not a different fill.** A photograph has no single luminance. Measured under the
+  disc on `aerial-rafting-run.jpg`, the frame runs **L 0.0001 → 0.9550**, so *any* flat disc colour
+  meets a pixel it matches — `--btn2` **1.00:1** at worst, `--page` **1.00:1** at worst, against
+  `WCAG 1.4.11`'s 3:1.
+- **What the ring guarantees.** `--ink` on `--btn2` is **11.54:1** and that edge is *inside* the
+  control, so it holds against every photograph ever loaded. The outer edge is a bonus — **3.54:1**
+  mean on this frame, 1.00:1 at worst — and the disc still reads as a disc where it vanishes.
+- **The general floor.** Read as a silhouette, the **better of the two edges is never below 3.40:1
+  for any pixel value**: the two colours are 11.54:1 apart and the crossover sits at **L 0.1549**.
+  Proven for all images, not measured on one.
+- **A border, never a shadow.** `--sh-onphoto` stays declared and unspent — a shadow gives no ratio,
+  and this is a ratio problem. The one product shadow is still `--sh-sm` under the green primary.
+- **Centring:** `left/top 50%` with `translate(-50%,-50%)`, repeated on `:active` so the press dip
+  composes with the centring instead of replacing it.
+
 ### Avatar edit (`.dr-avatar-edit`)
 
 The pencil badge on a profile photo, added 2026-08-16 (rev 128) on the designer's word. **The link
@@ -1108,6 +1129,10 @@ capped at 260px → actions, gap 10, full-width buttons. Carries `role="alert"` 
 - **Photograph:** `object-fit: cover`, edge to edge inside `--r-media`, no padding — a photograph
   *is* the surface. Never inset on a `--media` ground; a floated photo reads as a sticker.
 - **Map:** `--r-card`, `center/cover`, native 1.99 aspect, `--media` as the pre-load ground.
+- **Video poster:** a photograph, by the rule above, with the 44px action centred on it
+  (`.dr-btn--onphoto`). Built at **309 × 180 — 1.72:1**, the video's own shape, inside a
+  `--card--compact` at 20/16. The card closes with `.dr-listing__foot`: name, facts, and the one
+  thing you can do with the file on a single 44px line. One user: `order-details-aerial`.
 
 ### Navigation
 

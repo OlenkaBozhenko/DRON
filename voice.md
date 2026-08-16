@@ -121,6 +121,7 @@ Every divergence flagged in `microcopy.md` (Step 01), resolved. **One word per c
 | A8 | ask to be told when a slot frees | **Notify me when available** | ~~Notify me when one is free~~ | Same request, one phrasing — the shorter. |
 | A9 | commit text/files | to the platform: **Submit** (report / review / response) · to a person: **Send** (Send invite, Send message) | crossing them | You *submit* to DRON; you *send* to a human. A real distinction, kept — not a synonym. |
 | A10 | go back to a section | **Back to {Section}** using its nav label (**Back to Activity / Back to Jobs**) | ~~Back to orders~~, mixed nouns | The button names the place by the same word that place is called in the nav (sitemap §7.1) — see O3. |
+| A11 | keep the deliverable on your own phone | **Download** (+ the object where the button stands alone: **Download video**) | ~~Save~~, ~~Export~~, ~~Get~~, ~~Save to Photos~~ | The designer's own word, on the aerial record: *«можливістю скачати відео»* — `скачати` is what a Ukrainian client says, and *download* is the Bolt/Glovo-register English for it. **Deliberately not `A3 Add`**: *Add* is the client putting a file **into** DRON (`Add photo`, `Add evidence`), this is DRON handing one **back**, and one word must not run both ways. **Deliberately not `O6 Withdraw`**, which is reserved for money leaving a balance. UK: **Завантажити** — never ~~скачати~~ in the interface, though it is the word the user says. |
 
 ### Form of address — fixed, every screen
 

@@ -657,6 +657,41 @@ header.dr-topbar,
 .dr-btn--icon:hover{ background: var(--media); }
 .dr-btn--icon .dr-ic{ width: var(--ic-20); height: var(--ic-20); }
 
+/* THE SAME ACTION STANDING ON A PHOTOGRAPH (2026-08-16, rev 137) — the play
+   mark on a video poster. One modifier, one added property: the cut-out ring
+   .dr-avatar-edit__badge already wears against the avatar, "a border, never a
+   shadow", so the flat-surface rule holds and --sh-sm under the green primary
+   is still the only shadow in the product.
+
+   WHY A RING AND NOT A DIFFERENT FILL. A photograph has no single luminance.
+   Measured under the 44px disc on aerial-rafting-run.jpg, the frame runs
+   L 0.0001 to 0.9550 — white water beside wet black rock — so ANY flat disc
+   colour meets a pixel it matches: --btn2 worst 1.00:1, --page worst 1.00:1
+   against 1.4.11's 3:1. The ring removes the question instead of answering it
+   per-image: --ink on --btn2 is 11.54:1, the pair this button already wears,
+   and that edge is INSIDE the control, so it holds against every photograph
+   ever loaded. The outer edge is then a bonus — 3.54:1 mean on this frame,
+   1.00:1 at its worst — and the disc is still a disc where it vanishes.
+   The general floor, if the ring is read as the thing that must be seen: the
+   better of the two edges is never below 3.40:1 for ANY pixel value, because
+   the two colours are 11.54:1 apart and the crossover sits at L 0.1549.
+   Proven for all images, not measured on one.
+
+   rev 12 REMOVED THE BORDER FROM CIRCULAR BUTTONS and this does not restore
+   it: the border came off where warm tone could separate, "kept only where
+   genuinely needed". On a photograph tone cannot separate — that is the
+   need rev 12 named. --sh-onphoto stays on the bench: a shadow gives no
+   ratio, and this is a ratio problem. */
+.dr-btn--onphoto{ border: var(--w-badge-ring) solid var(--ink); }
+/* Centred on the well it stands in. The transform is repeated on :active so
+   the press dip composes with the centring instead of replacing it. */
+.dr-well > .dr-btn--onphoto{
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+}
+.dr-well > .dr-btn--onphoto:active{
+  transform: translate(-50%, -50%) scale(var(--scale-active));
+}
+
 /* ═══ SURFACES ════════════════════════════════════════════════════════════
    Flat, all of them. Separation is a warm tone step plus a radius. */
 
@@ -1095,6 +1130,14 @@ header.dr-topbar,
   color: var(--slate);                                            /* 5.95:1 */
 }
 .dr-listing__meta{ display: flex; align-items: baseline; gap: var(--sp-within-lg); margin-top: var(--sp-6); }
+/* THE SAME LISTING WITH ITS PICTURE OVER THE BODY INSTEAD OF BESIDE IT
+   (2026-08-16, rev 137) — a file in a deliverable set: a preview big enough to
+   recognise, then the name, the facts and the one thing you can do with it on
+   a single line. The card drops .dr-card--row and stays a column; this is the
+   line at the bottom of it. Nothing else changes — __body still takes the
+   slack and ellipsizes, __name and __desc keep their steps and their measured
+   pairs (14.37:1 / 5.95:1 on --card). One user: order-details-aerial. */
+.dr-listing__foot{ display: flex; align-items: center; gap: var(--sp-snug); }
 
 /* ═══ THE CHOICE CARD ═════════════════════════════════════════════════════
    Navigation, not a picker — both instances are links that leave the screen.
