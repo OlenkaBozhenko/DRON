@@ -164,6 +164,12 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
 ### 7. Payment
 - **Job:** `MJ-1` — the pay step of the core flow (`C-04`, Apple / Google Pay / card).
 - **Place in flow:** MJ-1 node `Payment`, after review, before auto-dispatch. System Pay sheet (`§7.3`).
+- **Two zones: the locked amount, then a titled card of methods** — **Payment method** ▸ *How you pay for this
+  order*, over Apple Pay / Google Pay / the saved card. **The title and subtitle arrived 2026-08-16** on the
+  designer's call to give every card that takes entered data the same two lines
+  (*«якщо в проекті ще є аналогічні картки добав до них так само заголовок і підзаголовок»*); the amount block
+  above it takes none, being a figure and not a card. The subtitle says **for this order** because
+  `account-edit`'s card is the saved default and this one is the choice being made now.
 - **States:**
   - **Empty —** not applicable to a payment sheet.
   - **Error ✓** — *"payment failed"* → retry / change method / leave (`Payment authorized? → no → Error`).
@@ -342,6 +348,13 @@ it. States below are each traced to a flow node. `—` = not produced.
 |---|---|---|---|:---|---|
 | S1 | **Switch role (Client ⇄ Operator)** | `§7.4` global utility | *CHANGE PERSONA*: Account → confirm? → re-enter fork | base only (a confirm/decision screen; decline → back, confirm → fork) | `switch-role.html` |
 | S2 | **Account / profile** | `§7.4` identity &amp; preferences utility + MJ-2 credentials | Account tab (every tab bar) → Edit → save | base + **edit** sub-view (edit personal details, upload drone documents / insurance, save; no dead-end — Save / Cancel → Account) + **photo** sub-view (change the profile photo — take a photo, choose from library, remove; no dead-end — Save photo / Cancel / back → Account) | `account.html`, `account-edit.html`, `account-photo.html` |
+
+**`account-edit`'s form is three titled cards from 2026-08-16** — **Personal details** ▸ *What the operator
+needs to reach you* (name · phone · saved address), **Payment & language** ▸ *How you pay and the language you
+see*, and the two upload cards, which have carried their own title and subtitle since they were built. The
+same designer's call as `payment` and the filter panel. **The heading that stood *above* the upload pair is
+not restored by it** — that came off on her word at rev 120, and what these two cards get is a title *inside*
+the card, which is a different thing.
 
 **`account-photo.html` is a sub-view, not a new sitemap screen.** Added 2026-08-16 on the designer's word —
 «добав іконку едіт карандаш на аватарку і добав ще один wireframe де можна загрузити аватарку». It is the

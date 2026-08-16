@@ -836,8 +836,13 @@ a full-card link overlay. Carries `aria-label` — the icon is the only content.
 
 ### Titled zone card (`.dr-zone`)
 
-Added 2026-08-16 (rev 125), the designer's call on the built `listings-filters`: the three filter
-zones are now three cards of one kind, each opening with its own name.
+Added 2026-08-16 (rev 125) on the built `listings-filters`, and spread on the designer's next call
+(rev 127) to **every card in the product that holds data the user enters, sorted into categories** —
+`listings-filters` (Location · Date & time · Price), `account-edit` (Personal details · Payment &
+language) and `payment` (Payment method). **Where it deliberately does not go:** an entry group that
+is a plain list and not a card (`order-setup`, `report-issue`, `contact-support`, `rate` — rev 98's
+call), a navigation group (`account`), an upload card that already carries its own title, and the
+order and operator cards, which display rather than collect.
 
 - **Surface:** `--card`, `--r-card` 16, a **16** inset on all four sides — `.dr .dr-range`'s card
   with the range taken out. **The selector needs both classes:** the base `.dr fieldset{ padding: 0 }`
@@ -851,7 +856,14 @@ zones are now three cards of one kind, each opening with its own name.
   own 16 and its separator runs from that inset to the **card's** trailing edge.
 - **Measured on `listings-filters`, 375 × 812:** both new cards **341 × 273.99**; rows **341 × 44**
   with labels at **305** and separators **305 → 630**; options **309 × 44** with labels at **341**
-  and separators **341 → 614** — every one of those numbers unchanged by the pass.
+  and separators **341 → 614** — every one of those numbers unchanged by the pass. On `account-edit`
+  rows **326 × 44** with the separator **90 → 400**; on `payment` options **309 × 44** with labels at
+  **126**. Same result on all three: the card arrives, the list does not move.
+- **What it costs is height and nothing else:** **+66** per card for the two lines and the 20 gap,
+  **+16** more wherever the list had `.dr-rows`' 8/0 inset instead of the card's 16. Annotations off:
+  `listings-filters` **719 → 867** in a 577 window (the Price zone goes below the fold),
+  `account-edit` **642 → 806** (all five rows stay above it), `payment` **629 → 629** (nothing
+  scrolled before and nothing scrolls now). Green **0px²** on every page that carries it.
 - **The name is the drawn line.** `aria-labelledby` → the title, `aria-describedby` → the subtitle,
   and no `aria-label` on the group. A `<legend>` is not the answer: rendered, it sits in the
   fieldset's block-start border region, outside the padding box, and takes the 16 inset with it.

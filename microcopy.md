@@ -527,6 +527,15 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **Each card's name is now the line the eye reads.** `aria-labelledby` → the title and `aria-describedby` → the subtitle, on the Location group and on the Time fieldset — so `aria-label="Location"` / `aria-label="Time"`, two strings that could drift from the drawn page without anything showing it, are gone from the markup (`WCAG 1.3.1`, `2.5.3`, `4.1.2`). It is the third and fourth time this panel spends the patch rev 119 chose over a `<legend>`.
 - **One row in this table was wrong and is corrected against the frame, not the other way round.** `Price range` was recorded as a **`<legend>`**; the built page has a `<p>` named by `aria-labelledby`, because a rendered legend sits in the fieldset's block-start border region — outside the padding box — and took the card's whole 16px inset with it. `kit.css` has said so since rev 119; the master table had not caught up.
 
+**Sync — 2026-08-16 (`account-edit` and `payment` take the same titled card, and the sweep that decided where it stops)**
+- **The designer's call, straight after the filter panel:** *«якщо в проекті ще є аналогічні картки добав до них так само заголовок і підзаголовок але не у картках замовлень та оператора а там де є необхідність вводити дані які посортовані по категоріях»*. So the question is not *which screens have cards* but **which cards hold data the user enters, sorted into categories** — and the answer was swept, measured in the browser, before a line was written.
+- **What the sweep found, and it is a short list on purpose.** Every group on every painted screen was read by computed style, and a group counts only if its background is `--card`: **`account-edit` · Personal** (three typed rows) and **· Preferences** (two picker rows), and **`payment` · Payment method** (three options). That is all of it. **`order-setup`, `report-issue`, `contact-support` and `rate` have no such card** — their entry groups compute `rgba(0,0,0,0)`, because rev 98 made every input group a **plain list** on the designer's own word (*«мені не подобається обводка в полях вводу… зроби як у HIG»*). Titling them would mean giving them cards first, which reverses a product-wide call rather than applying this one. **Not done, and not decided here.**
+- **Six strings are new**, three pairs on one shape. `Personal details` ▸ *What the operator needs to reach you*; `Payment & language` ▸ *How you pay and the language you see*; `Payment method` ▸ *How you pay for this order*.
+- **The two payment cards are deliberately not the same sentence.** `account-edit`'s is the **saved default** and `payment`'s is **this order's** choice; the words *for this order* are the only thing on either screen that says which is which, so they earn their place (P3 — the fact, before the tap).
+- **A title says what the card holds, not what drawer it lives in.** `Payment & language` over `Preferences`, `Personal details` over `Personal` — `voice.md` **P2** asks for the proof rather than the category word, and both `.zlabel`s stay as they are, being the wireframe's annotation and not product copy.
+- **The `Documents` pair is untouched, and that is the point.** Its two upload cards already carry their own title and subtitle, and the heading that stood **above** the pair came off on her word at rev 120 (*«видали назву»*). Nothing here puts it back: what is added is a title **inside** a card, which is the shape she has kept every time it was built. `account-photo`'s two upload cards are titled the same way and needed nothing.
+- **The operator's own two candidates are named rather than skipped quietly.** `withdraw` (Amount ▸ Withdrawal method) and `result-upload` (Result photo ▸ Notes) are exactly the shape she described — data entered by category — but they are still **grayscale**, with no `ui/kit.css` and no card component to put a title in. They come with the operator side when it is painted.
+
 ---
 
 ## Master table — every string
@@ -537,9 +546,13 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 |---|---|---|---|---|
 | account-edit | — | ‹ Account | Button |  |
 | account-edit | — | Edit account | Heading |  |
+| account-edit | Personal | Personal details | Heading | the card's title, new 2026-08-16 (rev 127) — the group's accessible name by `aria-labelledby`, and the group had **no** programmatic name before this pass. Two words where the `.zlabel` has one: *Personal* alone is a category, *Personal details* is what the card holds |
+| account-edit | Personal | What the operator needs to reach you | Body | the card's subtitle, new 2026-08-16 (rev 127) — `aria-describedby` on the group. It says what the three rows are **for** rather than listing them again: the name, the phone and the saved address are exactly what an operator uses to find and call you (P1 — the outcome, not the equipment) |
 | account-edit | Personal | Full name | Field label |  |
 | account-edit | Personal | Olena B. | Field value | DATA |
 | account-edit | Personal | Phone | Field label |  |
+| account-edit | Preferences | Payment & language | Heading | the card's title, new 2026-08-16 (rev 127) — it names the two things in the card, where the `.zlabel`'s *Preferences* names only the drawer they sit in (P2 — the proof, not the category word) |
+| account-edit | Preferences | How you pay and the language you see | Body | the card's subtitle, new 2026-08-16 (rev 127) — `aria-describedby` on the group. It is the **saved default**, which is why `payment`'s card next to it reads *for this order*: two cards, two scopes, and the copy is what tells them apart |
 | account-edit | Preferences | Payment method | Field label | also the drawer's title (rev 102) |
 | account-edit | Preferences | Visa •••• 4921 | Body | DATA · the row's value and the current option |
 | account-edit | Preferences | Mastercard •••• 8830 | Body | DATA · picker option, new 2026-08-16 (rev 101) |
@@ -561,6 +574,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account-edit | Payment drawer | Cancel | Button | the drawer's dismissal, new 2026-08-16 (rev 102) — `HIG · Action sheets` asks for the cancel by name. It never stands beside the form's own Cancel: the scrim covers the action bar while the drawer is up |
 | account-edit | Language drawer | Cancel | Button | same |
 | account | — | Account | Heading |  |
+| account | Profile | Change profile photo | Button | the pencil badge on the avatar, new 2026-08-16 — an **accessible name only**, the badge being icon-only (`WCAG 4.1.2`). Deliberately *not* `Edit profile photo`: the sibling pencil beside the name is already `Edit profile`, and two adjacent icon controls announcing one word apart is the ambiguity `WCAG 2.4.6` names. Different verb, different object → `Change` + *profile photo* against `Edit` + *profile* |
 | account | Profile | OB | Body | DATA |
 | account | Profile | Olena B. | Body | DATA |
 | account | Profile | Verified with Diia | Body |  |
@@ -581,6 +595,17 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account | Account | Activity | Button |  |
 | account | Account | Help | Button |  |
 | account | Account | Account | Button |  |
+| account-photo | — | ‹ Account | Button | the chevron alone; `Back to Account` is its accessible name (rev 93 took the visible label off every bar) |
+| account-photo | — | Profile photo | Heading | new screen 2026-08-16 |
+| account-photo | Photo | Your operator sees this photo when they arrive. | Body | P1 — names the outcome (being recognised on arrival), not the file. One sentence, no adjective |
+| account-photo | Add photo | Take a photo | Button | `HIG · Action sheets` ships this source by name. A3 fixes the *attach* verb as **Add** + object and bars ~~Upload~~ / ~~Attach~~; what this names is the **source**, and the zone label carries the Add |
+| account-photo | Add photo | You can retake it before saving. | Body | P3 — the fact before the tap: the shutter is not the commit |
+| account-photo | Add photo | Choose from library | Button | the second `HIG · Action sheets` source, same reading as above |
+| account-photo | Add photo | JPG or PNG, up to 5 MB. | Body | P3 — the constraint stated before the tap instead of as an error after it |
+| account-photo | Remove | Remove photo | Button | destructive. The verb carries the meaning, so `WCAG 1.4.1` holds with the `--danger-ink` colour taken away |
+| account-photo | Remove | Your initials show instead. | Body | P5 — plain and accountable: the consequence is printed, which is why the action needs no confirmation alert (nothing is lost that a re-upload does not restore) |
+| account-photo | Action bar | Save photo | Button | names its object, as `Save changes` does on `account-edit` |
+| account-photo | Action bar | Cancel | Button | `HIG · Alerts / Action sheets` — last in a vertical stack |
 | contact-support-error | — | ‹ Help | Button |  |
 | contact-support-error | — | Support | Heading |  |
 | contact-support-error | Escalation | Sent to a senior agent | State message |  |
@@ -1318,6 +1343,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | payment | — | ‹ Order review | Button |  |
 | payment | — | Payment | Heading |  |
 | payment | Amount | Package delivery · Podil → Osokorky | Body | DATA |
+| payment | Payment method | Payment method | Heading | the card's title, new 2026-08-16 (rev 127) — the group's accessible name by `aria-labelledby`, replacing `aria-label="Payment method"`. The same string already labels the row on `account-edit` and titles its drawer (rev 102), so the concept keeps one word across the product |
+| payment | Payment method | How you pay for this order | Body | the card's subtitle, new 2026-08-16 (rev 127) — `aria-describedby` on the fieldset. **For this order** is doing real work: `account-edit`'s card is the saved default and this one is the choice being made now |
 | payment | Payment method | Apple Pay | Field label |  |
 | payment | Payment method | Google Pay | Field label |  |
 | payment | Payment method | Visa •••• 4921 | Field label |  |
