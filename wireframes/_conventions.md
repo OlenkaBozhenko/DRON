@@ -601,7 +601,7 @@ chrome so the toast cannot cover the control that raised it, and — where the r
 | Order review & price | `order-review.html` | `order-review-loading.html` |
 | Payment *(base = card entry; the method is chosen in the Pay drawer on `order-review`)* | `payment.html` | `payment-error.html`, `payment-loading.html` |
 | Order confirmed / operator revealed *(base = success)* | `order-confirmed.html` | `order-confirmed-empty.html`, `order-confirmed-error.html`, `order-confirmed-loading.html` |
-| Live tracking & ETA | `tracking.html` | `tracking-empty.html`, `tracking-error.html`, `tracking-loading.html` |
+| Live tracking & ETA *(the **Contact operator** CTA opens a drawer — Call operator · Send message · Contact support — on all three states that carry it; `tracking-loading` has no operator card and no button)* | `tracking.html` | `chat.html` (sub-view — the message thread the drawer's *Send message* opens; base only), `tracking-empty.html`, `tracking-error.html`, `tracking-loading.html` |
 | Delivery confirmation *(base = success)* | `delivery.html` | `delivery-error.html`, `delivery-loading.html` |
 | Rate the order *(base = success)* | `rate.html` | — |
 

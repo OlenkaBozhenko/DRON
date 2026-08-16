@@ -657,6 +657,31 @@ header.dr-topbar,
 .dr-btn--icon:hover{ background: var(--media); }
 .dr-btn--icon .dr-ic{ width: var(--ic-20); height: var(--ic-20); }
 
+/* THE CIRCULAR ACTION THAT IS THE SCREEN'S PRIMARY (2026-08-16) — the message
+   composer's Send. No new class and no new value: it is .dr-btn--primary and
+   .dr-btn--icon worn at once, and the only reason a rule is needed is ORDER —
+   --icon is declared 54 lines below --primary, so its --btn2 fill would win the
+   tie and a green Send would come out grey. Same specificity (0-2-0), placed
+   after, so the compound is what the cascade lands on. Every value still comes
+   from the two modifiers: --green disc, --on-green glyph at 9.46:1, --sh-sm,
+   and the hover/press of the primary rather than of the grey disc.
+
+   IT DOES NOT BREAK §0's COUNT — it IS the count. chat is the one screen this
+   compound stands on and it is the one green control there: 44 × 44 = 1,936px²,
+   0.64% of the 375 × 812 frame, against the ~5% ceiling and the 4.43–5.09 band
+   the painted set holds. The frame's one shadow sits under it, as everywhere.
+
+   `WCAG 1.4.11` is carried by the glyph, not by the disc, which is the reading
+   the kit already ships twice (.dr-btn--onphoto, .dr-avatar-edit__badge) and
+   which every green block button in the product already stands on: --green
+   against --page is 1.69:1, and what identifies the control is the mark inside
+   it at 9.46:1. The name is on the element (`WCAG 4.1.2`) — the icon is the
+   only content. */
+.dr-btn--primary.dr-btn--icon{
+  background: var(--green); color: var(--on-green); box-shadow: var(--sh-sm);
+}
+.dr-btn--primary.dr-btn--icon:hover{ background: var(--green); filter: brightness(var(--bright-hover)); }
+
 /* THE SAME ACTION STANDING ON A PHOTOGRAPH (2026-08-16, rev 137) — the play
    mark on a video poster. The modifier is POSITION ONLY: rev 12 took the
    border off every circular button and the designer held that line here too,
@@ -1044,6 +1069,58 @@ header.dr-topbar,
   background-position: center var(--banner-top);
   background-repeat: no-repeat;
   background-blend-mode: multiply;
+}
+
+/* ═══ THE MESSAGE BUBBLE ══════════════════════════════════════════════════
+   Added 2026-08-16 for `chat` — the client's thread with the operator running
+   the job, opened from tracking's Contact operator drawer. Deliberately NOT a
+   variant of .dr-msg above: that block is a CENTRED state notice with a mark,
+   a title and actions, and shares with this one only the word "message".
+
+   WHAT SEPARATES THE TWO SIDES IS THE EDGE, NOT THE COLOUR, and that is stated
+   because the numbers make it unavoidable. --card 1.11:1 and --btn2 1.39:1 on
+   the page are 1.25:1 apart from each other: side-by-side these two grounds are
+   one tone to any eye, and the warm ramp has no larger step left that is not
+   --ink. So WHO SAID IT is carried by which edge the bubble is anchored to
+   (`WCAG 1.4.1` — never colour alone), and the tone step is only what stops the
+   thread reading as loose paragraphs on the page. A screen reader gets it from
+   the row's own name, not from either.
+
+   MEASURED PAIRS, all four already recorded elsewhere in this file: text --ink
+   on --card 14.37:1 and on --btn2 11.54:1; the timestamp --slate on --card
+   5.95:1 and on --btn2 4.77:1 — the second is the exact pair the disabled
+   button stands on, and both clear `WCAG 1.4.3`'s 4.5:1 for text this size.
+
+   NO GREEN, AND THAT IS §0 RATHER THAN TASTE. An outgoing bubble is the obvious
+   place a messaging UI spends its accent, and the concept forbids it twice
+   over: green is never spent inside card UI, and a thread is a repeating
+   surface, so ~5% of the frame would be gone by the fourth message. The screen
+   spends its one green on the composer's Send.
+
+   --r-card 16, the surface rung, from the closed ramp; 10 / 12 of padding, the
+   toast's rhythm one step in, for a box whose height is its own line count. */
+/* THE THREAD HANGS FROM THE BOTTOM EDGE. One declaration, and it is the one
+   thing that makes a message list a thread: it fills upward, so the newest
+   message sits against the composer whatever the history is and the slack in a
+   short conversation opens above it instead of below it. Applied to the block
+   that holds the day mark and the list together, so the two do not separate. */
+.dr-thread{ margin-top: auto; }
+.dr-bubble{
+  align-self: flex-start;
+  max-width: var(--measure-msg);
+  padding: var(--sp-10) var(--sp-snug);
+  border-radius: var(--r-card);
+  font-size: var(--t-body-size); line-height: var(--t-para-line);
+}
+.dr-bubble--in{ background: var(--card); color: var(--ink); }      /* 14.37:1 */
+.dr-bubble--out{ align-self: flex-end; background: var(--btn2); color: var(--ink); }   /* 11.54:1 */
+/* The time sits inside the bubble on its own line, trailing — the iOS anatomy.
+   It is a <time> element, so the machine-readable value rides along with the
+   short label a thumb reads (`WCAG 1.3.1`). */
+.dr-bubble__time{
+  display: block; margin-top: var(--sp-within);
+  font-size: var(--t-meta-size); font-weight: var(--t-meta-weight);
+  line-height: var(--t-meta-line); color: var(--slate); text-align: right;
 }
 
 /* ═══ MEDIA ═══════════════════════════════════════════════════════════════

@@ -242,6 +242,13 @@ flowchart TD
   AB --> RDx(["Loading: re-dispatching, or refund / reschedule"]):::state
   RDx --> P
   D1c -->|yes| T["Live tracking & ETA"]
+  T --> DC{"Contact the operator?"}
+  DC -->|call| CALL(["Phone — masked DRON line, OS dialer"]):::state
+  DC -->|message| CH["Chat with the operator"]
+  DC -->|support| GH
+  DC -->|no, keep watching| D2
+  CALL --> T
+  CH --> T
   T --> D2{"Live position updating?"}
   D2 -->|no| L1(["Loading: waiting for GPS signal"]):::state
   L1 --> D3{"Recovered within timeout?"}
@@ -266,6 +273,17 @@ flowchart TD
 - *Operator able to fly (airspace / weather)?* — wartime airspace / weather abort → re-dispatch or refund (`research.md` Finding 1/4).
 - *Live position updating? / Recovered within timeout?* — tracking health.
 - *Operator on time? / Keeps waiting?* — delay tolerance (`N-9` unknown).
+- *Contact operator* (added 2026-08-16, designer's call) — the standing action on the tracking screen
+  is no longer a link to the Help hub but a **drawer that asks how**: `Call operator` (a masked DRON
+  line, answered by the OS dialer — no screen), `Send message` (**Chat with the operator**,
+  `wireframes/chat.html`), `Contact support` (the Help hub, where the button used to send everyone).
+  Both operator branches return to tracking; only the third leaves into `EJ-2`. Her words: *«by
+  clicking on "Contact operator" open drawer with opportunity to select call, chat, support and add
+  wireframes with a chat with operator»*.
+  **This does not re-open `sitemap.md §4`'s deleted chat.** That verdict deletes the pre-booking
+  negotiation thread; this one opens only on a paid job with an operator already dispatched, and there
+  is nothing in it to negotiate — the price is locked at `RJ-C3` and the operator was not chosen. The
+  branch is drawn from `T` and returns to `T` on purpose: it is a detour on the wait, never a step.
 
 **States & dead-ends**
 - `Error` — the void → refresh → Support (no dead-end).

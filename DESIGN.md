@@ -919,22 +919,24 @@ a full-card link overlay. Carries `aria-label` — the icon is the only content.
 
 ### Circular icon action, on a photograph (`.dr-btn--onphoto`)
 
-The same 44 × 44 action with **one added property — a 2px `--ink` ring** (`--w-badge-ring`, the width
-the avatar badge already uses against a picture). Added 2026-08-16 (rev 137) for the play mark on a
-video poster. Fill and glyph do not change: `--btn2` disc, `--ink` glyph, **11.54:1**.
+The same 44 × 44 action, unchanged in every value — `--btn2` disc, `--ink` glyph, **11.54:1** — and
+the modifier is **position only**. Added 2026-08-16 for the play mark on a video cover.
 
-- **Why a ring and not a different fill.** A photograph has no single luminance. Measured under the
-  disc on `aerial-rafting-run.jpg`, the frame runs **L 0.0001 → 0.9550**, so *any* flat disc colour
-  meets a pixel it matches — `--btn2` **1.00:1** at worst, `--page` **1.00:1** at worst, against
-  `WCAG 1.4.11`'s 3:1.
-- **What the ring guarantees.** `--ink` on `--btn2` is **11.54:1** and that edge is *inside* the
-  control, so it holds against every photograph ever loaded. The outer edge is a bonus — **3.54:1**
-  mean on this frame, 1.00:1 at worst — and the disc still reads as a disc where it vanishes.
-- **The general floor.** Read as a silhouette, the **better of the two edges is never below 3.40:1
-  for any pixel value**: the two colours are 11.54:1 apart and the crossover sits at **L 0.1549**.
-  Proven for all images, not measured on one.
-- **A border, never a shadow.** `--sh-onphoto` stays declared and unspent — a shadow gives no ratio,
-  and this is a ratio problem. The one product shadow is still `--sh-sm` under the green primary.
+- **No outline.** rev 12 took the border off every circular button and the designer held that line
+  here too, on the built frame: *«забери stroke з цієї кнопки у мене така кнопка без обводок»*. A 2px
+  `--ink` ring was built first and removed on her word.
+- **What carries `WCAG 1.4.11` is the glyph, not the disc.** A photograph has no single luminance:
+  under the disc on `aerial-rafting-boulders.jpg` the frame runs **L 0.0022 → 0.9486**, so no flat
+  disc colour holds 3:1 everywhere — `--btn2` and `--page` each meet a pixel they match, **1.00:1** at
+  worst. The disc's edge against that frame measures **6.46:1 mean**, 13.12:1 at best, with **74%** of
+  the circumference at or above 3:1. The identifier is the mark inside — the reading this document
+  already records twice: `.dr-avatar-edit__badge`'s disc is **1.25:1** on its card and `.dr-upload`'s
+  well is **1.08:1**, and in both the glyph is what says *control*.
+- **The ring that was removed, priced.** It would have put an 11.54:1 edge *inside* the control and
+  floored the silhouette at **3.40:1** for any pixel value (crossover **L 0.1549**). Kept here so the
+  trade is legible; not to be re-proposed.
+- **No shadow either.** `--sh-onphoto` stays declared and unspent — a shadow gives no ratio. The one
+  product shadow is still `--sh-sm` under the green primary.
 - **Centring:** `left/top 50%` with `translate(-50%,-50%)`, repeated on `:active` so the press dip
   composes with the centring instead of replacing it.
 
@@ -990,6 +992,13 @@ a 2× frame upscales it 1.875× — §Imagery asks for ~2× the CSS box, i.e. 24
   8 → 16 top and bottom; separator 52 from the leading edge in both, 0 → 16 short of the trailing
   edge; the Price card's foot below the `₴0 / ₴1,000+` labels 22 → 16.
 - **Internal rhythm:** 20px between groups, 4/8 within a group.
+- **The one card with no inset at all — `.dr-card--cover`** (2026-08-16, rev 140): padding `0`, gap
+  `0`, `overflow:hidden`, its picture flush to three edges and clipped by the card's own 16 radius
+  (the media's 13 switched off — two radii on one corner is a shape nobody chose). The padding moves
+  onto the line below it, `12 / 16`: vertical against horizontal because that line already carries a
+  44px control, so its height is set by the target and the 12 is air, not measure. It is not an
+  exception to the inset rule but the imagery rule winning where the two meet — a photograph *is* the
+  surface. One user: the video card on `order-details-aerial`.
 - **Whole-card link:** an absolutely-positioned `.card-link` covering the card, with inner controls
   lifted above it.
 - **Focus, keyboard only:** the inherited `:focus-within` ring is switched off and re-hung on
@@ -1148,6 +1157,60 @@ by colour, and there is no paler green step to give waiting its own (every mix b
 capped at 260px → actions, gap 10, full-width buttons. Carries `role="alert"` on an error and
 `role="status"` on an empty state.
 
+### Message bubble and thread (`.dr-bubble`, `.dr-thread`)
+
+The conversation surface on `chat` — the client's thread with the operator running the job.
+Deliberately **not** a variant of the message block above: that one is a centred state notice with a
+mark, a title and actions, and shares with this one only the word *message*.
+
+- **Bubble:** `--r-card` 16, padding **10 / 12**, body 14/1.5, capped at `--measure-msg` **260px**.
+  Incoming `--card` with `--ink` at **14.37:1**; outgoing `--btn2` with `--ink` at **11.54:1**.
+- **Timestamp:** a `<time>` on its own line inside the bubble, trailing — meta 12.5/400 `--slate`,
+  **5.95:1** on `--card` and **4.77:1** on `--btn2`. Both clear `WCAG 1.4.3`'s 4.5:1.
+- **What separates the two sides is the edge, not the colour.** `--card` and `--btn2` are **1.25:1**
+  apart from each other — side by side they are one tone to any eye, and the warm ramp holds no
+  larger step that is not `--ink`. *Who said it* is therefore carried by which edge the bubble is
+  anchored to, which satisfies `WCAG 1.4.1` (never colour alone); each row also names its speaker in
+  a visually hidden span, because nothing announces an alignment. The tone step's only job is to stop
+  the thread reading as loose paragraphs on the page.
+- **No green in a bubble.** The outgoing side is where a messaging UI normally spends its accent and
+  this system cannot: green is never spent inside card UI, and a thread repeats — by the fourth
+  message the ~5% budget would be gone. The screen spends its one green on the composer's Send.
+- **`.dr-thread` is one declaration, `margin-top:auto`,** and it is the whole of what makes a message
+  list a thread: it fills upward, so the newest message sits against the composer whatever the
+  history is, and a short conversation's slack opens above it instead of below it.
+- **Composer:** no new parts — `.dr-actionbar` holding `.dr-search-row` with `.dr-search` (field
+  **289.4 × 44**, `--ink` on `--media` **13.33:1**, no focus ring: the caret carries `WCAG 2.4.7`)
+  and the 44px Send disc.
+
+### Circular action as a screen's primary (`.dr-btn--primary.dr-btn--icon`)
+
+The two modifiers worn at once, no new value. A rule exists only for **order** — `--icon` is declared
+below `--primary`, so its `--btn2` fill would otherwise win the tie. **44 × 44**, `--green` disc,
+`--on-green` glyph **9.46:1**, `--sh-sm`. On `chat` it is the screen's one green control at
+**1,936px² · 0.64%** of the frame and its one shadow. `WCAG 1.4.11` is carried by the glyph, not the
+disc — `--green` on `--page` is 1.69:1 — the same reading `.dr-btn--onphoto` and
+`.dr-avatar-edit__badge` stand on, and the one every green block button in the product stands on.
+Icon-only, so the accessible name is on the element.
+
+### Action sheet (`.dr-sheet--picker` as a set of routes)
+
+The drawer's second job. Where a picker sheet sets a **value**, this one offers **ways out** — the
+`Contact operator` drawer on the three `tracking` states: *Call operator* · *Send message* ·
+*Contact support*. Same parts, no new class, token or rule: sheet, `.dr-picker__list`,
+`.dr-picker__item`, a `.dr-note` line and the named `Cancel` that `HIG · Action sheets` requires.
+
+- **Text rows, no icons.** An Apple action sheet lists its choices as words, and the picker row hides
+  every `.dr-ic` that is not the current-item checkmark — an icon would cost a rule to un-hide
+  something the guideline does not ask for.
+- **No row carries `aria-current`.** Three actions, not one value with a pick. All three are
+  `<a href>`, so `ui/kit.js` adds the modal contract and writes nothing back.
+- **Measured at the 375 frame:** sheet **373.4 × 324.8**, **40.0%** — under the ~50% an iOS medium
+  detent sits at. Rows **341.4 × 44**, list **341 × 132** on `--card` over the sheet's `--page`
+  (1.11:1), note `--slate` **6.62:1**, `Cancel` on `--btn2` **11.54:1**.
+- **The sheet holds zero green,** verified by computed style: the frame's green stays the CTA behind
+  the scrim, **15,022px² · 4.93%**, exactly what it was before the drawer existed.
+
 ### Media
 
 - **Cutout (transparent PNG):** `object-fit: contain`, **no ground** — in the product the cutout
@@ -1155,10 +1218,14 @@ capped at 260px → actions, gap 10, full-width buttons. Carries `role="alert"` 
 - **Photograph:** `object-fit: cover`, edge to edge inside `--r-media`, no padding — a photograph
   *is* the surface. Never inset on a `--media` ground; a floated photo reads as a sticker.
 - **Map:** `--r-card`, `center/cover`, native 1.99 aspect, `--media` as the pre-load ground.
-- **Video poster:** a photograph, by the rule above, with the 44px action centred on it
-  (`.dr-btn--onphoto`). Built at **309 × 180 — 1.72:1**, the video's own shape, inside a
-  `--card--compact` at 20/16. The card closes with `.dr-listing__foot`: name, facts, and the one
-  thing you can do with the file on a single 44px line. One user: `order-details-aerial`.
+- **Video cover:** a photograph, by the rule above, running to the **three edges of its card**
+  (`.dr-card--cover`) with the 44px action centred on it (`.dr-btn--onphoto`) and the file's line
+  below — name, facts, and one circular action. Built **341 × 180** cover over a **68px** line,
+  card **341 × 248**, on `order-details-aerial`, to the structure the designer drew (Figma `97:18`).
+  **A cover is never inset:** a picture floating inside a padded card is the sticker the imagery rule
+  forbids, so the card gives up its padding and clips with its own 16 radius while the media's 13 is
+  switched off. **Two files in one zone are told apart by what they show** — the video's cover is a
+  different frame from the photo card's, not the same one re-used (`concept.md` rev 140).
 
 ### Navigation
 

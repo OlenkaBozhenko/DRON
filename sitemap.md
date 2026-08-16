@@ -109,7 +109,25 @@ Verdicts executed June 2026 (per the `§8` coverage matrix): **Delete / Attach /
 | **Operator search + filters** | No client job requires browsing operators. Auto-dispatch assigns one (MJ-1). `jtbd.md` lists operator-choice flows as **removal candidates**. | **Delete** |
 | **Operator selection** ("choose your operator") | Backed only by `HJ-3` (hypothesis) which *conflicts* with auto-dispatch; `jtbd.md` flags it for removal — it would also re-introduce the paradox of choice for users with no criteria to judge pilots. | **Delete** |
 | **Favourite / request-specific operator** `[?]` | `HJ-3` hypothesis. CJM Stage 4 nudge ("your favourite operator is available") implies it, but it is unvalidated and conflicts with auto-dispatch. | **Backlog** — gate on `HJ-3` |
-| **Client ↔ operator chat / messaging** | No job requires it. Async negotiation is the Rover anti-pattern explicitly rejected in `ux-research/research.md` (M-1 "will not work"). Deliberately excluded, not forgotten. | **Delete** |
+| **Client ↔ operator chat / messaging** | No job requires it. Async negotiation is the Rover anti-pattern explicitly rejected in `ux-research/research.md` (M-1 "will not work"). Deliberately excluded, not forgotten. | **Delete** — *and it stays deleted; see the split below* |
+
+**The deletion is scoped, and 2026-08-16 drew the line explicitly.** What this row deletes is
+**chat-to-negotiate**: an open thread that exists *before* a booking, where a client and a set of
+operators bargain over scope and price. That is the marketplace shape (Rover, Kabanchik), it collapses
+the Bolt/Glovo mental model C-1 arrives with, and it is not coming back.
+
+What was **added** on the designer's word the same day is a different object with a different lifetime:
+an **in-job message thread** (`wireframes/chat.html`), open only while a paid job is running, between a
+client and the **one** operator already auto-dispatched to them. There is nothing in it to negotiate —
+the price is locked before payment (`RJ-C3`) and the operator was not chosen (`MJ-1` auto-dispatch); it
+carries gate codes, entrances and "6 minutes out". It serves `RJ-C2` (close the void) and `RJ-C1` (the
+operator stays a reachable person), which is what makes it a job-backed object rather than a
+hypothesis. It is reached from the **Contact operator** drawer on *Live tracking & ETA* — never from
+the catalogue, never from a listing, never before payment — which is the structural guarantee that it
+cannot become the thing this row deletes.
+
+**It is a sub-view, not a new §6.1 screen.** No traceability column moves; `_screens.md §9b` carries it
+under *Live tracking & ETA*, the way `order-details` sits under *Order history*.
 | **Expanded service-education hub** `[?]` | Beyond the minimal `EJ-1` explainer (CE-9), broader education is `HJ-2` — could be critical or noise; no data. | **Backlog** — gate on `HJ-2` |
 | **Operator portfolio view** `[?]` | Serves `RJ-C1` only for C-2 on a `[?]` entity; `RJ-C1` is already closed by *Order confirmed* + *Verification* + *Profile setup* + *Rate*. | **Attach** to *Order confirmed / Profile* if C-2 validated; else **backlog** |
 
@@ -500,7 +518,7 @@ against any confirmed job. Each gets a verdict.
 | Client | **Operator search + filters** | No client job — auto-dispatch removes browsing (`MJ-1`) | **Delete** — conflicts with the core architecture |
 | Client | **Operator selection** ("choose operator") | Backed only by `HJ-3` (hypothesis); undermines `RJ-C1` | **Delete** — removal candidate in `jtbd.md` |
 | Client | **Favourite / request-specific operator** | `HJ-3` `[?]`, conflicts with auto-dispatch | **Backlog** — revisit only if `HJ-3` is validated |
-| Client | **Client ↔ operator chat** | No job; the rejected Rover async-negotiation anti-pattern | **Delete** — deliberately excluded |
+| Client | **Client ↔ operator chat** | No job; the rejected Rover async-negotiation anti-pattern | **Delete** — deliberately excluded. *Scoped 2026-08-16 (see §4): the deleted object is the pre-booking negotiation thread. The **in-job** thread on a live order — `RJ-C2` + `RJ-C1` — is built as `chat.html`, a sub-view of Live tracking & ETA, and is not this row* |
 | Client | **Education hub** (beyond the explainer) | `HJ-2` `[?]`; the committed slice already lives in *Welcome / explainer* (`EJ-1`) | **Backlog** — expand only if `HJ-2` is validated |
 | Client | **Operator portfolio view** | Serves `RJ-C1` only for C-2, on a `[?]` entity; `RJ-C1` is already closed by *Order confirmed* + *Verification* + *Profile setup* + *Rate* | **Attach** — fold into *Order confirmed / Profile* if C-2 is validated; otherwise **backlog** |
 | Operator | **Operator listing / advert** | Not a marketplace; jobs are dispatched (`MJ-2`) | **Delete** — Kabanchik concept, not a DRON object |

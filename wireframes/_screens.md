@@ -282,6 +282,50 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   - **Error ✓** — *"tracking lost"* (GPS not recovered within timeout).
   - **Loading ✓** — *"waiting for GPS signal"*.
   - **Success —** tracking has no "it worked" screen; the success is arrival itself, shown on Delivery confirmation.
+- **Sub-view ✓** — `chat.html`, the message thread with the operator (base only). Reached from the
+  **Contact operator** drawer, not from the flow spine; see below.
+
+**"Contact operator" opens a drawer, and one of its ways out is a new screen** — 2026-08-16, the
+designer on the built `tracking`: *"by clicking on 'Contact operator' open drawer with opportunity to
+select call, chat, support and add wireframes with a chat with operator."* The button was a plain
+`<a href="support.html">`, so a client who wanted to reach **the operator** was handed **the Help hub**
+— the one target the recovery sweep in `_critique.md` #2 repointed it to when it pointed at the profile,
+and still not the person the label names. The control now asks the question its label asks: **who, and
+how.**
+
+| Way out | Row label | Target | Why it is that shape |
+|---|---|---|---|
+| the phone | **Call operator** | `tel:` — the masked line | The OS dialer, so no screen. `voice.md` **A2** already permits a phone-only action to say *Call*. |
+| the thread | **Send message** | `chat.html` | The new screen. `voice.md` **A9**: to a person you **Send** — *Send message* is that entry verbatim. |
+| the platform | **Contact support** | `support.html` | `voice.md` **A2**'s fixed string, unchanged — where the button used to land for everyone. |
+
+**Three options is a drawer, not a screen** — the `≤ 6 → drawer` / `≥ 7 → push` rule (`ui/kit.js`), and
+`HIG · Action sheets` says the same. It is the product's **eighth** drawer and the **second** raised by
+an action-bar CTA rather than by a field row, after `order-review`'s Pay drawer (rev 129), so `kit.js`
+needs no widening: `.dr-btn[aria-controls]` already matches.
+
+**All three tracking states take it, not just the base.** `concept.md` rev 26 fixed the rule for this
+exact control — *"the same control at the same weight in every state"* — after `tracking-error` and
+`tracking-empty` had drifted to the grey secondary. A control that opens a drawer on one state and
+navigates on two others is the same drift arriving through behaviour instead of through colour.
+`tracking-loading` has no operator card and no such button, so it is untouched.
+
+### 9b. Chat with the operator  *(sub-view of 9 · base only)*
+- **Job:** `RJ-C2` — the void between payment and arrival, closed by a channel to the person named on
+  the screen above; `RJ-C1` keeps the operator a real, reachable human rather than a photograph.
+- **Place in flow:** *not on the MJ-1 spine.* `Live tracking & ETA` → **Contact operator** drawer →
+  *Send message* → here; back returns to tracking. Nothing downstream depends on it.
+- **States:** **base only.** No `flows.md` node produces an empty, error or loading thread — the thread
+  is opened from a live job that already has an operator, so it is never empty; a failed send is a
+  per-message state, not a screen. Built as one file, `chat.html`.
+- **Scope, and the sitemap verdict it does *not* overturn:** `sitemap.md §4` deletes *Client ↔ operator
+  chat / messaging* as the Rover **async-negotiation** anti-pattern — bargaining over a job **before**
+  booking, which `ux-research/research.md` (Finding M-1) says *"will not work"* for a Bolt/Glovo
+  audience. This is the other thing: a channel that exists **only while a paid job is running**, between
+  a client and the one operator already dispatched to them, with nothing to negotiate — the price is
+  locked (`RJ-C3`) and the operator was auto-assigned. It is the Bolt in-ride message, not the
+  Kabanchik thread. The deletion verdict stands for what it deleted; `sitemap.md §4` is annotated rather
+  than reversed.
 
 ### 10. Delivery confirmation
 - **Job:** `RJ-C4` — *"see a clear, documented result... evidence I can use, share, or act on"*.
@@ -401,6 +445,7 @@ Rows = main-path screens (in flow order). Columns = the four states. **✓** = r
 | 7 | Payment | — | ✓ | ✓ | — |
 | 8 | Order confirmed / operator revealed | ✓ | ✓ | ✓ | ✓ |
 | 9 | Live tracking & ETA | ✓ | ✓ | ✓ | — |
+| 9b | Chat with the operator *(sub-view of 9)* | — | — | — | — |
 | 10 | Delivery confirmation | — | ✓ | ✓ | ✓ |
 | 11 | Rate the order | — | — | — | ✓ |
 

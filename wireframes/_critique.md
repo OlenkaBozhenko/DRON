@@ -472,3 +472,31 @@ for one of the two entrances and stated as unsatisfiable for the other.
 
 ---
 
+## Finding #2 fully closed — 2026-08-16 (`tracking` · `tracking-empty` · `tracking-error`)
+
+Finding **#2** above repointed six recovery links away from `account.html`, and for the three
+**Contact operator** buttons it moved them to `support.html` — the Help hub. That fixed the broken
+recovery and left the real defect standing: **a control naming the *operator* loaded a screen about
+*support*.** A client whose parcel is 6 minutes away and who needs to say "the gate code is 4471" was
+handed a triage list.
+
+The designer named it on the built screen the same day: *«by clicking on "Contact operator" open
+drawer with opportunity to select call, chat, support and add wireframes with a chat with operator»*.
+
+**What was fixed.** The button became a `<button aria-haspopup="dialog">` raising a drawer that asks
+*how* — **Call operator** (`tel:`, a masked DRON line, answered by the OS dialer) · **Send message**
+(`chat.html`, new) · **Contact support** (`support.html`, where it used to send everyone). Applied to
+**all three** tracking files that carry the button, on `concept.md` rev 26's standing rule for this
+exact control — *the same control at the same weight in every state*; `tracking-loading` has no
+operator card and is untouched.
+
+**Recorded, not filed as a defect.** `sitemap.md §4` deletes *Client ↔ operator chat*, and that
+verdict is not reversed: it deletes the **pre-booking negotiation** thread (the Rover / Kabanchik
+anti-pattern), while what was built opens only on a **paid job with an operator already dispatched**,
+where the price is locked and the operator was not chosen. The annotation is in `sitemap.md §4` and
+`§8`, the screen in `_screens.md §9b`.
+
+**Still open, and the designer's to settle:** she said *chat*; the visible row says **Send message**,
+which is `voice.md` **A9**'s own words and the Button rule's *"never a bare noun"*. The file is
+`chat.html` because *chat* is the object's name in the sitemap — a file name is not a product string.
+One string on three files if she wants her word on the screen.
