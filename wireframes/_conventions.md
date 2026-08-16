@@ -390,6 +390,28 @@ person to rediscover:
   and City is shorter still → both fit whole, and a search field over a list you can already see entire is
   a control with no work to do.
 
+**A DATE IS NOT A LIST, so the count rule does not govern it.** Added 2026-08-16 (rev 118) on the
+designer's call for `listings-filters`' *Pick a date & time…* row: *«при кліку відкрий дата пікер як у
+IOS»*. Counting a date would give 365 options and send it to a pushed screen, which is the wrong answer —
+`HIG · Pickers` gives a date its own control and asks for it *in a popover or a sheet when space is
+limited*. **So a date takes a calendar drawer** (`.dr-cal` in `ui/kit.css`), which is the shape Apple's own
+Calendar and Reminders open, and iOS's other two date styles are ruled out by measurement, not taste: a
+**wheel** row is 34pt and fails `HIG · 44pt target` by 10 (Apple's own drum is exempt because the column
+scrolls rather than being tapped; a web build inherits the fail, not the exemption), and **unfolding in
+place** takes this panel's scroll height from 741 to ~1,050 against a 566 window. The grid is seven columns
+of **46.71** inside the sheet's 343, with a fixed **44 × 44** day circle centred in each — `HIG · 44pt` ✓.
+**Six week rows always,** so the sheet does not change height between a 5-row month and a 6-row one.
+
+**The control that opens a picker may be an option rather than a row, and then the ellipsis is load-bearing.**
+The date opener is the *radio* in the Time group, not a `.dr-field--action`: the option has to stay mutually
+exclusive with *Available now / Today / This week*, so it keeps the group and the arrow keys. Selecting it
+opens a dialog, which is a change of context — `WCAG 3.2.2 On Input` allows that **only if the user was told
+beforehand**, and the trailing **`…`** is exactly Apple's convention for *more input is needed before this
+completes* (`HIG · Menus`, `HIG · Buttons`). `aria-haspopup="dialog"` says it to assistive tech and
+`aria-expanded` tracks it. **Done writes the value into the option's own label** — the row stops reading
+*Pick a date & time…* and reads **`Sat 22 Aug, 17:30`**, the product's own date format (`time-slot`'s
+`Wed 2 Jul, 09:00`); **Cancel puts back the option that was checked before the drawer rose.**
+
 **Where a level's list is one row, its way out is a control on the bottom edge — not a line in the
 flow** (designer, 2026-08-16, rev 114). `listings-filter-city` under `Kyiv City` holds a single row, so
 the screen needs a route to a different set of cities or it is a dead end (§ *no dead-ends*). That route
@@ -582,8 +604,14 @@ only the pages that hold a drawer link it — `account-edit`, `order-setup`, `or
 `report-issue`, `account`. The kit is CSS with that one named exception, because a floating surface that
 opens, traps focus, makes the screen behind it `inert` and hands the focus back cannot be a stylesheet; and
 written once it cannot drift between five pages. Its markup contract is documented at the top of the file.
-A page that does **not** hold a drawer must not link it. The one page-level script left in the prototype is
-`listings-filters`'s range readout, which is that page's alone.
+A page that does **not** hold a drawer must not link it. The page-level scripts left in the prototype are
+**both on `listings-filters`** and both are that page's alone: the **range readout**, and the **date picker**
+(added 2026-08-16, rev 118). The date picker is not in `kit.js` for a stated reason, not an oversight —
+`kit.js` answers only to `.dr-field--action[aria-controls]` rows and this opener is a radio in a group, and
+one page carries the component. **It keeps `kit.js`'s modal contract verbatim** (scrim + `.dr-sheet--picker`,
+`aria-modal`, `inert` behind, focus trapped, three ways out, focus handed back), so when a second screen asks
+for a calendar the script moves into `kit.js` and nothing changes but the file it lives in. That promotion is
+the same one `.dr-range` is still waiting for.
 
 Every page links one shared shell script (`<script src="_wf-shell.js"></script>`). It injects, identically on
 every page (grayscale, §4):

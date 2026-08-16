@@ -70,6 +70,12 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     2026-08-16), **Time** (Available now / Today / This week / Pick a date &amp; time), **Price** (Low / Medium /
     High + a draggable range). **Location leads the panel from 2026-08-16**, the designer's call on the built page
     (*«помісти картку самою першою на сторінці»*); it had stood second, under Time, since the panel was built.
+    **The Time zone's fourth option opens a date picker** — *Pick a date & time…* raises a **calendar
+    drawer** (`.dr-cal`, added 2026-08-16 on the designer's call *«при кліку відкрий дата пікер як у IOS»*):
+    month grid with `‹ ›` paging, no date before today, a 24-hour time below it, *Cancel* / *Done*. **Done
+    writes the value into the option itself** — the row then reads `Sat 22 Aug, 17:30` — and **Cancel puts
+    back whichever option was checked before the drawer rose.** Not a state and not a sub-view: it is a
+    control on this page, so it takes no row in the matrix.
     *Apply* → filtered;
     *Close / Clear all* → Home. *(The **Price** dimension was here once before as
     Recommended / Low→High / High→Low — **a sort by another name**, and it went when **sorting was removed

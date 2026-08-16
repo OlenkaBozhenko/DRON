@@ -836,6 +836,18 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filters | Time | Pick a date & time… | Body |  |
 | listings-filters | Time | calendar | Body |  |
 | listings-filters | Time | pick | Field value | DATA |
+| listings-filters | Date picker | Pick a date & time | Heading | the drawer's title — the option's own label keeps the `…`, the drawer's does not: the ellipsis promises more input, and inside the drawer the input has arrived |
+| listings-filters | Date picker | Previous month | Icon label |  |
+| listings-filters | Date picker | Next month | Icon label |  |
+| listings-filters | Date picker | August 2026 | Field value | DATA — month + year, locale-formatted, `aria-live="polite"` |
+| listings-filters | Date picker | Mo Tu We Th Fr Sa Su | Field label | DATA — weekday initials, Monday first; each `<th>` carries the full name as its accessible name |
+| listings-filters | Date picker | Sat 22 Aug 2026, today | Field value | DATA — a day cell's accessible name; the `, today` suffix is what keeps today off colour alone |
+| listings-filters | Date picker | Time | Field label |  |
+| listings-filters | Date picker | Hour | Field label | accessible name only |
+| listings-filters | Date picker | Minute | Field label | accessible name only |
+| listings-filters | Date picker | Cancel | Body | `HIG · Action sheets` asks for the cancel by name; a drawer never takes the `×` |
+| listings-filters | Date picker | Done | Body |  |
+| listings-filters | Time | Sat 22 Aug, 17:30 | Field value | DATA — what the option reads once a date is taken, replacing *Pick a date & time…*; the product's own format, `time-slot`'s `Wed 2 Jul, 09:00` |
 | listings-filters | Price | Price | Heading |  |
 | listings-filters | Price | Low | Body |  |
 | listings-filters | Price | low | Field value | DATA |

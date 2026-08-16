@@ -273,6 +273,11 @@
   --banner-top:   16px;
   --sz-upload-min: 140px;  /* the upload tray's floor, from the wireframe */
   --sz-pager-dot:  8px;
+  --sz-today-dot:  4px;    /* the mark under today's numeral in the date picker.
+                              Not --sz-dot (10, the checked radio's centre) and not
+                              --sz-pager-dot (8): both are the whole carrier of their
+                              state, and this one sits UNDER a numeral inside a 44
+                              circle, where 8 would read as a second glyph. */
   --sz-area-min:  80px;    /* the multiline field's floor, from the wireframe */
   --sz-star:      32px;
   --sz-fchip-x:   18px;
@@ -2127,6 +2132,170 @@ header.dr-topbar,
    ring, which reads as work unfinished rather than work stopped. */
 .dr-spin{ animation: dr-spin var(--dur-spin) linear infinite; transform-origin: 50% 50%; }
 @keyframes dr-spin{ to{ transform: rotate(360deg); } }
+
+/* ═══ THE DATE PICKER ═════════════════════════════════════════════════════
+   The designer's call 2026-08-16 (rev 118) on the built `listings-filters`,
+   on the row reading *Pick a date & time…*: «при кліку відкрий дата пікер як
+   у IOS». **iOS ships three and they are not interchangeable**, so the choice
+   was put to her with the measurements first, and she took the CALENDAR GRID
+   IN A DRAWER — `UIDatePickerStyle.compact`'s expansion, the shape Apple's own
+   Calendar and Reminders open, and `HIG · Pickers` puts it *"in a popover or a
+   sheet when space is limited"*, which a 375 frame is.
+
+   WHY NOT THE OTHER TWO, in a number each.
+   · **Wheels** (`.wheels`, the drum) — an iOS wheel row is **34pt**. It clears
+     `WCAG 2.5.8`'s 24×24 minimum and **fails `HIG · 44pt target` by 10**.
+     Apple's own drum is exempt because the column is scrolled rather than
+     tapped; a web build inherits the fail and not the exemption.
+   · **Unfolding in place** (`.inline`) — no modal layer, but the panel's
+     scroll height goes 741 → ~1,050 against a 566 window, and the Price zone
+     it pushes down is the one already 175px below the fold.
+
+   THE GRID CLEARS 44 AND THAT IS ARITHMETIC, NOT HOPE. The sheet is the frame
+   less its own 16 either side — **343**; `.dr-cal` keeps `.dr-rows`' 8/0 inset,
+   so seven columns divide **327** into **46.71** each, and the day circle is a
+   fixed **44 × 44** centred in it (`HIG · 44pt target` ✓, +2.71 of slack per
+   column). Six week rows always: a month grid that changes height makes the
+   sheet jump between August and September, so the last row is drawn empty when
+   the month does not reach it.
+
+   THREE STATES, THREE CARRIERS — none of them colour alone (`WCAG 1.4.1`).
+   · **Selected** — `--green` fill under an `--on-green` numeral, **9.46:1**,
+     the pair the checked radio and the walked node already paint. On the green
+     budget it is a status mark, not the screen's one green control: a 44 circle
+     is **0.50%** of a 375 × 812 frame.
+   · **Today** — the numeral stays `--ink` (14.37:1 on the card) and takes a
+     **4px `--sz-today-dot`** beneath it, `currentColor`, so it inverts to
+     `--on-green` at 9.46:1 the moment today is also the selection. iOS marks
+     today in the accent colour as TEXT, which `concept.md` §0 forbids —
+     `--green` as a word is 1.52:1 on the card — so the accent becomes a shape.
+     A recorded departure, kept conforming, not a defect.
+   · **Unavailable** (a date already past — this filter asks when the service
+     *should happen*) — `--slate` on `--card`, **5.95:1**, the built pair, and
+     the element carries `disabled`. Never a blanket opacity: §0's own rule.
+
+   THE GRID IS A `role="grid"`, the WAI-ARIA APG Date Picker Dialog pattern —
+   one roving `tabindex`, arrows by day and week, `Home`/`End` across the week,
+   `PageUp`/`PageDown` by month, `Enter`/`Space` to take it (`WCAG 2.1.1`,
+   `4.1.2`). The month name is `aria-live="polite"`, so paging is spoken.
+
+   THE TIME IS NATIVE and deliberately so — **two `<select>`s, hour and minute**.
+   iOS renders a `<select>` as its own **wheel drum**, so this IS the iOS time
+   picker; it arrives with the arrow keys, an exposed value and an accessible
+   name for free, the same reason `.dr-range` is two native sliders rather than
+   a div. It sits in the card's own `.dr-field` anatomy, so it reads as the row
+   the sketch promised; what it does not carry is the sketch's chevron, because
+   a chevron says *a screen arrives* and none does.
+
+   `<input type="time">` WAS BUILT FIRST AND MEASURED OUT. Its face is drawn by
+   the UA in the **viewer's** locale, not the document's: on a 12-hour machine it
+   read **`02:00 PM`** against a product that writes `09:00 – 10:00` on
+   `time-slot` and `28 Jun · 14:20` on the order card. `lang` on the document and
+   on the element both leave it 12-hour — tested, not assumed. Two selects carry
+   their own option text, so 24-hour holds on every machine. */
+.dr-cal{
+  background: var(--card); border-radius: var(--r-card);
+  padding: var(--sp-within-lg) 0;          /* .dr-rows' own inset — 8/0 */
+  display: flex; flex-direction: column;
+}
+/* ‹ August 2026 › — the month holds the middle and the two arrows never shrink,
+   so the name is centred whatever its length ("September" is 9 chars, "May" 3). */
+.dr-cal__bar{
+  display: flex; align-items: center; min-height: var(--h-control);
+  padding: 0 var(--sp-within-lg);
+}
+.dr-cal__month{
+  flex: 1; min-width: 0; text-align: center;
+  font-size: var(--t-heading-size); font-weight: var(--t-heading-weight);
+  color: var(--ink);                                                     /* 14.37:1 */
+}
+.dr-cal__nav{
+  width: var(--h-control); height: var(--h-control); flex: none;
+  padding: 0; border: 0; border-radius: var(--r-circle);
+  background: transparent; color: var(--ink); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.dr-cal__nav:hover{ background: var(--media); }
+/* the ring is drawn INSIDE — the arrows stand at the card's own edge */
+.dr-cal__nav:focus-visible{
+  outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1);
+}
+.dr-cal__nav .dr-ic{ width: var(--ic-20); height: var(--ic-20); }
+.dr-cal__nav:disabled{ color: var(--slate); cursor: not-allowed; }       /* 5.95:1 */
+
+/* table-layout:fixed is load-bearing: it is what makes all seven columns
+   46.71 regardless of whether a cell holds "1" or "31". */
+.dr-cal__grid{
+  width: calc(100% - var(--sp-within-lg) * 2);
+  margin: 0 var(--sp-within-lg);
+  border-collapse: collapse; table-layout: fixed;
+}
+.dr-cal__grid th{
+  font-size: var(--t-caption-size); font-weight: var(--t-caption-weight);
+  color: var(--slate);                                                   /* 5.95:1 */
+  padding-bottom: var(--sp-within);
+}
+.dr-cal__grid td{ padding: 0; text-align: center; }
+.dr-cal__day{
+  width: var(--h-control); height: var(--h-control);                     /* 44 × 44 */
+  margin: 0 auto; padding: 0; border: 0; border-radius: var(--r-circle);
+  background: transparent; color: var(--ink); cursor: pointer;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-ui); font-size: var(--t-heading-size);
+}
+.dr-cal__day:hover{ background: var(--media); }
+.dr-cal__day:focus-visible{
+  outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1);
+}
+.dr-cal__grid td[aria-selected="true"] .dr-cal__day{
+  background: var(--green); color: var(--on-green);                      /* 9.46:1 */
+}
+.dr-cal__day:disabled{ color: var(--slate); cursor: not-allowed; }       /* 5.95:1 */
+.dr-cal__day:disabled:hover{ background: transparent; }
+/* today's mark. currentColor, so it is charcoal on the card and charcoal on
+   the green fill — one declaration, both pairs measured. */
+.dr-cal__day--today::after{
+  content: ""; position: absolute; bottom: var(--sp-6); left: 50%;
+  width: var(--sz-today-dot); height: var(--sz-today-dot);
+  margin-left: calc(var(--sz-today-dot) / -2);
+  border-radius: var(--r-pill); background: currentColor;
+}
+/* the time row sits in the same card, full-bleed, on .dr-field's own 16 —
+   and takes the grouped-list separator .dr-rows draws between two fields. */
+.dr-cal__time{ position: relative; margin-top: var(--sp-within-lg); }
+.dr-cal__time::before{
+  content: ""; position: absolute; left: var(--sp-screen); right: 0; top: 0;
+  height: var(--hair); background: var(--line);
+}
+/* THE PAIR TAKES A GROUND — the third field in the system to do so, after the
+   search bar and the empty multiline area, and for the reason those two have:
+   there is no value beside it to identify it as a control, so the ground is what
+   says it can be tapped. --media at --r-input, --ink on it 13.33:1, the ground's
+   own recorded pair. It is also, exactly, what iOS's compact time control is. */
+.dr-cal__clock{
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  padding: var(--sp-within) var(--sp-10);
+  border-radius: var(--r-input); background: var(--media);
+}
+.dr-cal__unit{
+  appearance: none; -webkit-appearance: none;
+  border: 0; padding: 0; background: transparent; cursor: pointer;
+  font-family: var(--font-ui); font-size: var(--t-heading-size);
+  font-weight: var(--weight-medium); color: var(--ink);                  /* 13.33:1 */
+  text-align: center;
+}
+.dr-cal__unit:focus-visible{
+  outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset);
+  border-radius: var(--r-detail);
+}
+.dr-cal__colon{ color: var(--ink); }
+
+/* Cancel beside the confirm, both filling the width. `HIG · Action sheets`
+   asks for the cancel BY NAME — the × belongs to a full modal sheet screen,
+   not to a drawer, the same reading rev 101 wrote for the picker. */
+.dr-sheet__actions{ display: flex; gap: var(--sp-within-lg); }
+.dr-sheet__actions .dr-btn{ flex: 1; }
 
 /* ═══ REDUCED MOTION ══════════════════════════════════════════════════════
    Every loop above carries information, so each one stops rather than
