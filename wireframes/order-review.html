@@ -94,26 +94,45 @@
     <section class="dr-sheet dr-sheet--picker" id="sheet-pay" role="dialog" aria-modal="true" aria-labelledby="sheet-pay-title" aria-describedby="sheet-pay-desc" hidden>
       <span class="dr-sheet__grip" aria-hidden="true"></span>
       <p class="dr-sheet__title" id="sheet-pay-title">Pay ₴180</p>
-      <!-- THE SHEET'S MESSAGE (rev 136) — the designer on the drawer as built:
-           «добав сюди якокось опису трохи тотал пеймент etc». `HIG · Action sheets`
-           gives a sheet a title AND an optional message beneath it, so the slot is
-           the guideline's own; `aria-describedby` on the dialog is what makes it
-           announced with the sheet's name rather than left loose (`WCAG 4.1.2`).
-           SHE WAS SHOWN THREE, EACH MEASURED, AND TOOK THE ITEMISED ONE: what the
-           total covers · the total itemised · the whole breakdown repeated inside
-           the drawer (which takes the sheet to 518.2 = 63.82% of the frame).
-           NO NEW CLASS — `.dr-note` is the 12/400 `--slate` centred line `share`
-           already carries inside a sheet; on `--page` it measures 6.62:1 against
-           `WCAG 1.4.3`'s 4.5:1 floor. Sheet 292.8 → 322.8, 36.06% → 39.75%.
-           IT IS NOT A REPEAT OF WHAT IS ON SCREEN — measured, after a first
-           reading against a cached stylesheet said otherwise. The money card sits
-           at y 395–592.4 and the sheet's top edge is 488.4, so the drawer covers
-           `Service fee ₴20` and `Total ₴180` outright and cuts `Distance · 7.4 km
-           ₴70` at 488.4: `Base fare ₴90` is the only row left whole behind the
-           scrim. While the sheet is up, this line and the title are the only place
-           the total exists. Which is why it is not the sentence retired here on
-           2026-08-15 — that was a promise about the price, this is the price. -->
-      <p class="dr-note" id="sheet-pay-desc">Total ₴180 — base fare ₴90, distance ₴70, service fee ₴20</p>
+      <!-- THE SHEET'S MESSAGE SLOT (rev 136), AND WHAT IT HOLDS SINCE REV 138.
+           `HIG · Action sheets` gives a sheet a title AND content beneath it, so the
+           slot is the guideline's own; `aria-describedby` on the dialog is what makes
+           it announced with the sheet's name rather than left loose (`WCAG 4.1.2`).
+           REV 136 SPENT IT ON A SENTENCE — «добав сюди якокось опису трохи тотал
+           пеймент etc» — one `.dr-note` line: *Total ₴180 — base fare ₴90, distance
+           ₴70, service fee ₴20*. IT STOOD FOR ONE DAY: «зроби самері гарним у 4
+           стрічки», so the prose comes out and the screen's own price card goes in,
+           four rows, byte-identical to the card behind the scrim. NO NEW CLASS,
+           TOKEN, RULE OR STRING — `.dr-rows--money` takes a third spend.
+           IT IS THE THIRD OF THE THREE SHAPES REV 136 MEASURED AND SHE PASSED ON
+           THEN — priced at 518.2 then, 518.8 now. Written this way round on purpose:
+           a rejected shape returning, not a new idea arriving.
+           TWO CONFORMING SHAPES WERE BUILT AND MEASURED BEFORE ANYTHING WAS WRITTEN,
+           so it went to her as a taste call with the numbers first. (a) this card —
+           keys `--slate` on `--card` 5.95:1, figures `--ink` 14.37:1, drawer 63.89%;
+           (b) four `.dr-price` lines on the sheet's own ground, last on
+           `.dr-price--total` — 6.62:1 / 15.99:1, drawer 53.59%. `WCAG 1.4.3`'s floor
+           is 4.5:1 and neither fails. She took (a), so `.dr-price--total` stays
+           declared and unspent, the way `--sh-onphoto` and `.dr-btn--text` wait.
+           THE ID MOVES WITH THE CONTENT, AND THE CARD TAKES NO `aria-label`. The
+           same card carries `aria-label="Price breakdown"` on the screen above; here
+           a label would win the description computation and speak those two words in
+           place of the four figures the dialog is meant to be described by.
+           IT IS NOT A REPEAT OF WHAT IS ON SCREEN — re-measured on this build rather
+           than inherited from rev 136, whose y 395–592.4 / edge 488.4 is stale. The
+           money card behind now stands at y 462.78–676.78 and this drawer's top edge
+           lands at 292.2, so every row it repeats is under the scrim. While the sheet
+           is up, this card and the title are the only place the price exists.
+           MEASURED, 375 × 812: sheet 322.8 → 518.8, 39.75% → 63.89% of the frame,
+           card 341 × 214, rows 48/48/48/54. That is past the ~50% an iOS medium
+           detent sits at — recorded as a cost, not left to be noticed. Green
+           unmoved at 15,004px² · 4.93%, one shadow, modal contract untouched. -->
+      <div class="dr-rows dr-rows--money" id="sheet-pay-desc">
+        <div class="dr-rows__row"><span class="dr-rows__key">Base fare</span><span class="dr-rows__val">₴90</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Distance · 7.4 km</span><span class="dr-rows__val">₴70</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Service fee</span><span class="dr-rows__val">₴20</span></div>
+        <div class="dr-rows__row dr-rows__row--total"><span class="dr-rows__key">Total</span><span class="dr-rows__val">₴180</span></div>
+      </div>
       <div class="dr-paylist">
         <!-- BLACK BY THE BRANDS' OWN RULE, not by taste (rev 134). `HIG · Apple Pay
              Marks and Buttons` and Google Pay's brand guidelines permit three fills on
