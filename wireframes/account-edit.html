@@ -42,6 +42,13 @@
           by control: three typed inputs in the first group, two drawer-openers
           in the second. The row that was an input wedged between two chevrons
           is gone.
+
+          Side effect, recorded because it is visible: `ui/kit.css:1167` draws a
+          .dr-rows bare when it holds a typed input and keeps its --media card
+          when it holds only .dr-field--action rows. The address was that input,
+          so it was suppressing the card on Payment / Language. The group now
+          draws the card at radius 16, which is what `account`'s Mode group and
+          `listings-filters`' location group have always drawn.
         -->
         <p class="zlabel dr-label">Personal <span class="dr-label__act">▸ editable name · phone · address</span></p>
         <div class="dr-rows">
