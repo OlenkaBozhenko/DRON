@@ -76,13 +76,18 @@
       </div>
     </main>
     <!-- THE TWO ACTIONS SHE NAMED, IN THE BOTTOM BAR. Book again is the one green control
-         on this screen; Delete order takes .dr-btn--danger, the rung rev 128 spent on
-         "Remove photo" — HIG · Action sheets asks a destructive choice to read as
-         destructive, and WCAG 1.4.1 is held because the verb carries it with the colour
-         taken away. -->
+         on this screen.
+         DELETE ORDER IS GREY, NOT RED — the designer's call, 2026-08-16: "зроби кнопку
+         секондарі сірою". It was built as .dr-btn--danger, the rung rev 128 spent on
+         "Remove photo", because HIG · Alerts asks a destructive choice to read as
+         destructive. Her reading wins on this screen and it costs no criterion: WCAG 1.4.1
+         is not merely held but strengthened — the verb "Delete" is now the ONLY carrier of
+         the meaning, so nothing depends on seeing a colour. What is given up is HIG's
+         warning at a glance, and that is stated rather than smoothed: the red is what made
+         a thumb pause. Recorded, not re-proposed — see concept.md rev 131. -->
     <footer class="dr-actionbar">
       <a class="dr-btn dr-btn--primary dr-btn--block" href="order-setup.html">Book again</a>
-      <a class="dr-btn dr-btn--danger dr-btn--block" href="order-history.html">Delete order</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="order-history.html">Delete order</a>
     </footer>
   </div>
 
