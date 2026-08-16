@@ -560,6 +560,13 @@ gives it the corner. It never restates the parent's radius.
   the leading `All` chip, so the variant is currently spent nowhere. The slate tertiary stays
   the skip/cancel voice.
 - **Block:** `width:100%`. The default in an action bar and at the foot of a card.
+- **One action per row in the action bar** (designer, 2026-08-16, rev 120). Every button in a
+  `.dr-actionbar` is `--block`, one per line, `gap:8` — **341px** at the 375 frame. The bar never
+  splits two buttons across a row; `.dr-actionbar__row` (`ui/kit.css:481–482`) survives in the kit
+  and is applied to **nothing**. Measured across `wireframes/`: 27 of 27 multi-button bars stack, no
+  label wraps. The split row was what wrapped them — *Зберегти зміни* took two lines in a 154.5px
+  half at the 375 frame, and *Save changes* took two in a 127px half at 320pt. The tab bar is a
+  different component and stays horizontal (`HIG · Tab bars`).
 - **In the action bar, every button is filled** (designer, 2026-08-16, rev 112). Two or three actions
   in a `.dr-actionbar` are `--primary` + `--secondary`, and a second `--secondary` for a third — never
   `--tertiary`. **One action is `--primary`**: the only button on the bottom edge is the main action by

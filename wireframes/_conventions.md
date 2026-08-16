@@ -297,6 +297,22 @@ button rather than as a second control: the box is what says *tappable*, and on 
 is the only thing the target has to show for itself. Tertiary keeps its job **outside** the action
 bar — the top-bar text action (`listings-filters` · *Clear all*) and links inside a card.
 
+**One action per row — the bottom bar never splits** (designer, 2026-08-16, rev 120:
+*«кнопки одна під одною. пройдись по проекту і подивись щоб кругом у нижньому барі кнопрки були
+одна під одною»*). Every button in a `footer.actionbar` / `footer.dr-actionbar` is **full width**
+(`btn-block` / `dr-btn--block`), one per line, 8px apart. **There is no two-across case left** — not
+even for the equal pair rev 119 had kept it for. Verified across `wireframes/`: **27 of 27**
+multi-button bars stack, every button **341px** at the 375 frame, **no label wraps on any of them**.
+The split row is what broke labels: at the 375 frame *Зберегти зміни* rendered on **two lines** in a
+154.5px half, and at a 320pt phone even English *Save changes* wrapped in a 127px half — the stack
+gives 341 / 262 and one line in both languages. The two classes that drew the split row,
+`.dr-actionbar__row` (`ui/kit.css:481–482`) and `.row2` (`_wireframe.css:443`), are **left in place
+and applied to nothing** — nothing is deleted here without the designer's word.
+
+**The tab bar is not the action bar and stays horizontal.** `footer.tabbar` / `footer.dr-tabbar` (27
+pages) is navigation, and `HIG · Tab bars` gives it a row of equal destinations across the bottom
+edge. The one-per-row rule reaches buttons that *do* something, never tabs that go somewhere.
+
 **What else the bar may carry** (designer, 2026-08-16, rev 115). The action bar is not buttons-only, but
 what joins them is closed and counted, not open:
 
