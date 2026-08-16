@@ -127,6 +127,19 @@
     </footer>
   </div>
 
+  <!--
+    ui/kit.js arrives here 2026-08-16 (rev 151) for the onscreen keyboard, on the designer's
+    «застосуй цей функціонал (появлення розкладки клавіатури) для мобільної версії кругом де є
+    імпути і поля вводу та текстові поля» — the sweep of the behaviour rev 149 built on `rate`.
+    No markup for it lives on this page on purpose: the system draws the keyboard over an app and
+    is not part of the app's DOM, so the script builds it and every field on every screen gets the
+    same picture.
+    Five card fields, and one thing is reported rather than quietly drawn: `cc-num`, `cc-exp` and
+    `cc-csc` declare `inputmode="numeric"`, so `HIG · Onscreen keyboards` asks for the number pad,
+    and the kit draws one plane — the letter layout. The name fields are correct as drawn. Building
+    a second plane is the designer's call, so the mismatch is written here and put to her.
+  -->
+  <script src="../ui/kit.js"></script>
   <script src="_wf-shell.js"></script>
 </body>
 </html>

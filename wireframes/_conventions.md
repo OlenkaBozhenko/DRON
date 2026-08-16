@@ -696,7 +696,21 @@ served by its own page script. `.dr-btn` matches nothing that existed — verifi
 `.dr-btn` with `aria-controls` across `wireframes/` before this pass. The kit is CSS with that one named exception, because a floating surface that
 opens, traps focus, makes the screen behind it `inert` and hands the focus back cannot be a stylesheet; and
 written once it cannot drift between five pages. Its markup contract is documented at the top of the file.
-A page that does **not** hold a drawer must not link it. The page-level scripts left in the prototype are
+**`kit.js` CARRIES A SECOND BEHAVIOUR FROM 2026-08-16 (rev 149), AND IT CHANGES WHICH PAGES LINK IT
+(rev 151).** The onscreen keyboard is the other thing a stylesheet cannot be: it rises when a text field
+takes focus, takes the bottom bar out of the layout and the tab order while it is up, and gives it back on
+`Done`. **It needs no page markup at all** — the system draws a keyboard over an app rather than inside it,
+so the script builds all 32 keys and no page carries them. The rule is therefore: **a page links `../ui/kit.js`
+if it holds a drawer *or* a text-entry field** — `<textarea>`, or `<input>` of type `text · email · tel ·
+search · url · number · password`. A radio, a checkbox and a `<select>` raise no keyboard and do not count.
+**31 pages link it today**, 18 of them for a field and 37 fields between them. **Three rules the sweep
+settled, each measured on the build:** (1) a **tab root** hides its `.dr-tabbar` exactly as `rate` hides its
+action bar — four links behind 335pt of drawn keyboard are the same `WCAG 2.4.11 Focus Not Obscured` failure
+two buttons were; (2) a field that lives **inside** the bar (`chat`'s composer) rides above the keys by the
+whole **335**, not by `--h-kb`'s 291, and its `main` does not also pay that height — the correction is
+recorded in `kit.js`; (3) the keys rise **only in the mobile viewport**, because 291 is quoted from a
+375 × 812 iPhone frame and the shell's tablet and desktop presets are different devices.
+A page that holds **neither** a drawer nor a field must not link it. The page-level scripts left in the prototype are
 **both on `listings-filters`** and both are that page's alone: the **range readout**, and the **date picker**
 (added 2026-08-16, rev 118). The date picker is not in `kit.js` for a stated reason, not an oversight —
 `kit.js` answers only to `.dr-field--action[aria-controls]` rows and this opener is a radio in a group, and

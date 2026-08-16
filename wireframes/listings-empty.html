@@ -231,6 +231,18 @@
   </div>
 
   <!-- shared wireframe shell: left nav tree + viewport switcher (same on every page) -->
+  <!--
+    ui/kit.js arrives here 2026-08-16 (rev 151) for the onscreen keyboard, on the designer's
+    «застосуй цей функціонал (появлення розкладки клавіатури) для мобільної версії кругом де є
+    імпути і поля вводу та текстові поля» — the sweep of the behaviour rev 149 built on `rate`.
+    No markup for it lives on this page on purpose: the system draws the keyboard over an app and
+    is not part of the app's DOM, so the script builds it and every field on every screen gets the
+    same picture.
+    The field is the search input at the top of `main`. This screen is a tab root, so what leaves is
+    the `.dr-tabbar` — four links behind 335pt of drawn keyboard are the same `WCAG 2.4.11` failure
+    two buttons were on `rate`, and rev 151 extends her call to them.
+  -->
+  <script src="../ui/kit.js"></script>
   <script src="_wf-shell.js"></script>
 </body>
 </html>

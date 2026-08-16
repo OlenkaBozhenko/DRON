@@ -159,6 +159,16 @@
    back. A field that lives INSIDE the bar is the exception — a chat composer
    is the field being typed into, so its bar rides above the keys instead.
 
+   THE TAB BAR LEAVES ON THE SAME RULE, ADDED 2026-08-16 (rev 151) WITH THE
+   SWEEP. It is not a second decision: the search field on the six `listings`
+   screens sits over a `.dr-tabbar`, and four tab links behind 335pt of drawn
+   keyboard fail `WCAG 2.4.11` exactly the way two buttons did. On iOS the
+   system keyboard covers the tab bar and the app does not redraw it, so the
+   picture is unchanged either way — what `[hidden]` buys is the tab order,
+   and `Done` gives the bar back. `.dr-tabbar` declares no `display` of its
+   own, so the UA's `[hidden]` rule lands without a kit.css counterpart —
+   `.dr-actionbar` needed one only because it declares `display:flex`.
+
    Escape dismisses as well, which costs nothing and is what a desktop reader
    of this prototype will try first.
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -175,7 +185,7 @@
     ['123','☺','space','return']
   ];
 
-  var kb = null, bar = null, main = null, field = null, barRides = false;
+  var kb = null, bar = null, tabs = null, main = null, field = null, barRides = false;
 
   function build() {
     var el = document.createElement('div');
@@ -236,10 +246,18 @@
     if (!kb) kb = build();
     field = el;
     bar = frame.querySelector('.dr-actionbar');
+    tabs = frame.querySelector('.dr-tabbar');
     main = frame.querySelector('.dr-main');
     barRides = !!(bar && bar.contains(el));
     if (bar && !barRides) bar.hidden = true;
-    if (bar && barRides) bar.style.marginBottom = 'var(--h-kb)';
+    /* A RIDING BAR CLEARS THE WHOLE KEYBOARD, NOT THE PLANE — corrected 2026-08-16 (rev 151)
+       when the sweep first put a field inside a bar. `--h-kb` is the 291 of keys; the drawn
+       keyboard is 335, the accessory bar's 44 on top of it, so a 291 ride left `chat`'s
+       composer 73 behind the keys and `WCAG 2.4.11` failed on the one field the exception
+       exists to protect — measured 0 of 18 visible before, 18 of 18 after. */
+    if (bar && barRides) bar.style.marginBottom = 'calc(var(--h-kb) + var(--h-control))';
+    /* the tab bar never rides: no tab root puts a field inside it */
+    if (tabs) tabs.hidden = true;
     kb.hidden = false;
     /* THE CONTENT AREA TAKES THE KEYBOARD'S FRAME, which is the whole of what
        `HIG · Onscreen keyboards` asks an app to do: it does not draw over the
@@ -249,8 +267,11 @@
        = 375.4 against a 382 field, so the field misses standing whole by 6.6.
        The zone above it scrolls off and the last 6.6 scrolls inside the port;
        nothing is hidden and nothing is unreachable. Reported rather than
-       fixed by shrinking the field, which is the designer's call to make. */
-    if (main) main.style.marginBottom = 'calc(var(--h-kb) + var(--h-control))';
+       fixed by shrinking the field, which is the designer's call to make.
+       AND IT ONLY TAKES IT WHEN NOTHING ELSE HAS (rev 151): a riding bar already spends the
+       keyboard's height inside the same column, so adding it to `main` as well spent it twice
+       — `chat`'s conversation measured a 32px port against 629. */
+    if (main && !barRides) main.style.marginBottom = 'calc(var(--h-kb) + var(--h-control))';
     if (el.scrollIntoView) el.scrollIntoView({ block: 'nearest' });
   }
 
@@ -258,13 +279,29 @@
     if (!kb || kb.hidden) return;
     kb.hidden = true;
     if (bar) { bar.hidden = false; bar.style.marginBottom = ''; }
+    if (tabs) { tabs.hidden = false; tabs = null; }
     if (main) { main.style.marginBottom = ''; main = null; }
     if (blur && field) field.blur();
     field = null; bar = null; barRides = false;
   }
 
+  /* MOBILE ONLY, AND THE REASON IS THE NUMBER — her sweep is «для мобільної версії», and the
+     kit could not honour a wider one even if asked: `--h-kb` 291 is quoted from an iPhone's
+     375 × 812 portrait frame. The shell's tablet preset is an iPad at 768 × 1024, whose
+     keyboard is a different measurement, and a desktop at 1280 × 800 has a hardware one. So
+     the keys rise only while the viewport switcher says `mobile` — and its default, with no
+     attribute set at all, is mobile. Changing the switcher with the keys up puts them away. */
+  function onMobile() {
+    var k = document.documentElement.getAttribute('data-wf-viewport');
+    return !k || k === 'mobile';
+  }
+
+  new MutationObserver(function () {
+    if (!onMobile()) dismiss(false);
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-wf-viewport'] });
+
   frame.addEventListener('focusin', function (e) {
-    if (isField(e.target)) show(e.target);
+    if (isField(e.target) && onMobile()) show(e.target);
     else if (kb && !kb.hidden && !kb.contains(e.target)) dismiss(false);
   });
 

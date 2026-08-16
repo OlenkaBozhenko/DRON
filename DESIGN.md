@@ -483,6 +483,16 @@ the ramp's 10 a 45px key reads as a pill; on the 2/4/8 floor's 4 it reads square
 system keyboard is not in an app's accessibility tree either. Colour is the product's own: plane
 `--btn2`, keys `--page`, modifiers `--card`, labels `--ink`. No new colour token.
 
+**It is a product-wide behaviour, not a screen's (rev 151).** Every text-entry field on every mobile
+screen raises it — `<textarea>` and `<input>` of type `text · email · tel · search · url · number ·
+password`; a radio, a checkbox or a `<select>` raises no keyboard and is untouched. **31 pages link
+`ui/kit.js`, 18 for a field, 37 fields between them.** What leaves the layout and the tab order while
+the keys are up is whichever bottom bar the screen has: `.dr-actionbar` on a form screen, `.dr-tabbar`
+on a tab root — four tab links behind 335 of drawn keyboard are the same `WCAG 2.4.11` failure two
+buttons were. The exception is a field **inside** the bar: `chat`'s composer rides above the keys by
+the full **335**, and its content area does not pay that height twice. And the keys are **mobile only** —
+291 is an iPhone's number, so the shell's 768 × 1024 and 1280 × 800 presets raise nothing.
+
 **Touch targets.** 44px minimum, met by `min-height` rather than `height` — a button is a flex
 item in a scrolling column, and a fixed height gets shrunk below the target. Circular icon actions
 are 44 × 44; tab targets measure 86.3 × 50.

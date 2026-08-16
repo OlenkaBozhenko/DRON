@@ -100,6 +100,18 @@
     </footer>
   </div>
 
+  <!--
+    ui/kit.js arrives here 2026-08-16 (rev 151) for the onscreen keyboard, on the designer's
+    «застосуй цей функціонал (появлення розкладки клавіатури) для мобільної версії кругом де є
+    імпути і поля вводу та текстові поля» — the sweep of the behaviour rev 149 built on `rate`.
+    No markup for it lives on this page on purpose: the system draws the keyboard over an app and
+    is not part of the app's DOM, so the script builds it and every field on every screen gets the
+    same picture.
+    THIS PAGE IS THE EXCEPTION THE KIT NAMES: the field is the composer and it lives INSIDE
+    `.dr-actionbar`, so the bar rides above the keys instead of leaving — hiding it would hide the
+    field being typed into.
+  -->
+  <script src="../ui/kit.js"></script>
   <script src="_wf-shell.js"></script>
 </body>
 </html>
