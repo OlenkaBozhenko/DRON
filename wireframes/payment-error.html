@@ -36,7 +36,12 @@
     </main>
     <footer class="dr-actionbar">
       <a class="dr-btn dr-btn--primary dr-btn--block" href="order-confirmed.html">Try again</a>
-      <a class="dr-btn dr-btn--secondary dr-btn--block" href="payment.html">Change method</a>
+      <!-- `Change method` POINTS AT THE DRAWER, NOT AT THIS SCREEN'S BASE — moved
+           2026-08-16, a consequence of `payment.html` becoming the card form. It used
+           to open `payment.html` because that was the method list; the method list is
+           now the Pay drawer on `order-review`, so that is where changing the method
+           happens. The string is unchanged. -->
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="order-review.html">Change method</a>
     </footer>
   </div>
 
