@@ -234,10 +234,26 @@
             <span class="dr-pick__label">This week</span>
             <input type="radio" name="time" value="week" class="sr-only">
           </label></li>
-          <li><label class="dr-pick">
+          <!-- THE ONE OPTION THAT ASKS A QUESTION BACK. Taking it opens the date
+               picker (rev 118, her call: «при кліку відкрий дата пікер як у IOS»).
+               THE ELLIPSIS IS THE ADVISORY, and it is doing real work here.
+               `WCAG 3.2.2 On Input` allows a change of context on selecting a
+               control only if the user was told beforehand — and a trailing
+               ellipsis is precisely Apple's own convention for "this needs more
+               input before it completes" (`HIG · Menus`, `HIG · Buttons`). The
+               label was already written that way; `aria-haspopup="dialog"` says
+               the same thing to assistive tech, and `aria-expanded` tracks it.
+               THE RADIO IS THE CONTROL, not a <button> beside it: the option has
+               to stay mutually exclusive with the three above it, so it keeps the
+               group, the arrow keys and the accessible name (`WCAG 4.1.2`).
+               The `calendar` hint is UNTOUCHED — it is a standing icon placeholder
+               (_conventions.md §7), and swapping a word for a drawn glyph is a
+               trade that has only ever been made on the designer's word. -->
+          <li><label class="dr-pick" data-datepick-row>
             <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-            <span class="dr-pick__label">Pick a date &amp; time…</span><span class="dr-hint">calendar</span>
-            <input type="radio" name="time" value="pick" class="sr-only">
+            <span class="dr-pick__label" data-datepick-label>Pick a date &amp; time…</span><span class="dr-hint">calendar</span>
+            <input type="radio" name="time" value="pick" class="sr-only" id="time-pick"
+                   aria-haspopup="dialog" aria-expanded="false" aria-controls="datepick">
           </label></li>
         </ul>
       </fieldset>
