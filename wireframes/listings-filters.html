@@ -477,6 +477,8 @@
         sel   = new Date(today),              /* the chosen day */
         view  = { y: sel.getFullYear(), m: sel.getMonth() },
         lastChecked = frame.querySelector('input[name="time"]:checked'),
+        /* what the drawer would put back — taken on open, spent by Cancel */
+        undo = null,
         isOpen = false;
 
     /* 24 hours and the quarter-hour — the option text is ours, so the clock is
