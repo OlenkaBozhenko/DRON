@@ -418,3 +418,57 @@ idea. What it costs is stated once, here: `voice.md` **P2** on the one screen wh
 What it does not cost is `WCAG 1.1.1` — the alt was written to the frame precisely so that her call
 lands on the copy and not on the accessible name.
 
+
+---
+
+## 2026-08-16 — one order-setup screen was serving three services
+
+### Fixed: six links sent a shoot or an inspection into the delivery form
+
+**Found by the designer**, pressing *Book again* on `order-details-aerial`: *«коли я натискаю кнопку
+book again то має відкритись не delivery package wireframe but wireframe where I can order aerial photo
+& video. Бачу це пропустили в wireframes»*. She was right, and it was wider than the one button.
+
+**What was built.** `order-setup.html` existed once and was painted as a single service — nav title
+*Package delivery*, fields *Pickup address · Drop-off address · Parcel size (up to 2 / 5 / 10 kg)*. It
+was never a service-neutral form. Six links pointed non-delivery services at it:
+
+| File | Line | Control |
+|---|---|---|
+| `listings.html` | 286, 297 | the *Aerial photo & video* and *Inspection* cards |
+| `listings-filtered.html` | 273, 284 | the same two cards |
+| `order-details-aerial.html` | 152 | **Book again** — the one she pressed |
+| `order-details-inspection.html` | 96 | **Book again** |
+
+**What the guideline prescribes.** `WCAG 2.4.4 Link Purpose (In Context)`, **level A**: the purpose of
+each link must be determinable from the link text together with its context. *Book again* inside a
+record of an aerial shoot reads as "book the shoot again". `WCAG 3.2.3 Consistent Navigation`, level AA,
+is the second reading: three cards with three names resolving to one service's form.
+
+**Whether it passes.** It did not — six failures at level A, the lowest bar the project holds. Not a
+matter of taste and not deferrable to the concept layer.
+
+**The second thing the same gap had hidden.** `time-slot.html` and `time-slot-empty.html` were built
+and reachable from **no screen in the order flow**. `sitemap.md` **CE-2** gives every service a *flow
+mode — auto-dispatch vs calendar-first*; the two calendar-first services are exactly the two that had
+no setup screen, so the slot list had no entrance. Its own back button read *Back to Package delivery*
+— naming the one service that never reaches it.
+
+**Fixed, on the designer's call:** one setup file per service, the shape she had set for the order
+record two entries earlier. `order-setup-aerial.html` (Location · Shoot · Duration · **What you get**)
+and `order-setup-inspection.html` (Location · **Structure**), both handing off to `time-slot`; delivery
+keeps `order-setup.html` and its straight run to review. All six links rewired, `time-slot`'s back
+button corrected to the aerial setup. Recorded in `_screens.md` §5, `_conventions.md` §12,
+`microcopy.md`, and `voice.md` **O5** — which had to be amended, because *What you get* means the
+aerial deliverable is now chosen by the client and so has three names, not one.
+
+### Open, not fixed: `time-slot`'s back button can only name one of the two services that reach it
+
+Aerial and inspection both arrive at the slot list, and a static file carries one destination. The back
+button now names the aerial setup, which is the path the prototype walks. In the product this title is
+whichever setup the client actually came from — a runtime fact the wireframe cannot hold. Recorded
+rather than smoothed over, in the same spirit as the entry above: `HIG · Navigation Bars` is satisfied
+for one of the two entrances and stated as unsatisfiable for the other.
+
+---
+

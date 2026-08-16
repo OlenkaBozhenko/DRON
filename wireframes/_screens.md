@@ -151,6 +151,35 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   - **Error ✓** — *"address outside service zone"* (`Address within service zone? → no → Error → back to setup`).
   - **Loading —** price shows as a live field, not a loading screen, on the main path.
   - **Success —** hands off to review/payment.
+- **One file per service, three of them — 2026-08-16.** The screen was built once and painted as
+  *Package delivery* (Pickup · Drop-off · Parcel size), while all three service cards and all three
+  *Book again* buttons pointed at it — **6 links** sending a non-delivery service into a delivery form
+  (`listings` ×2, `listings-filtered` ×2, `order-details-aerial`, `order-details-inspection`). That is
+  `WCAG 2.4.4 Link Purpose (In Context)` at **level A**: *Book again* on an aerial record read as
+  "book the shoot again" and resolved to a form asking parcel weight. Found by the designer on
+  `order-details-aerial`, closed on her call — the same *one file per service* shape she had set two
+  entries earlier for the order record:
+
+  | File | Nav title | The thing ordered | Exit |
+  |---|---|---|---|
+  | `order-setup.html` | Package delivery | Pickup · Drop-off · **Parcel size** | → `order-review` (auto-dispatch) |
+  | `order-setup-aerial.html` | Aerial photo &amp; video | Location · **Shoot** · **Duration** · **What you get** | → `time-slot` (calendar-first) |
+  | `order-setup-inspection.html` | Inspection | Location · **Structure** | → `time-slot` (calendar-first) |
+
+  **Why two of them end at a time slot and one does not:** `sitemap.md` CE-2 gives each service a *flow
+  mode — auto-dispatch vs calendar-first*. Delivery is dispatched now; a shoot and an inspection are
+  booked for an hour. This is also what finally gives `time-slot.html` / `time-slot-empty.html` an
+  entrance — both were built and, until this pass, **reachable from no screen in the order flow**.
+
+  **`What you get` is aerial's alone, and it is new (designer's call, 2026-08-16).** The client picks
+  *Photo* / *Video* / *Photo &amp; video*, so the aerial deliverable is chosen rather than fixed — see
+  `voice.md` **O5**, amended in the same pass. A delivery photo and an inspection report are single
+  files and have nothing to choose.
+- **States are not repeated per service.** `order-setup-empty.html` / `order-setup-error.html` stay on
+  the delivery file. Both are service-independent by their own flow nodes — *"none available now"* is a
+  fleet fact and *"address outside service zone"* is a coverage fact, neither of which changes wording
+  or shape with the service. Repeating them would add four pages that differ only in a nav title.
+  Recorded as a decision, **not** an omission.
 
 ### 6. Order review & price
 - **Job:** `RJ-C3` — *"decide without being surprised at checkout"* (the locked price before commitment).
@@ -449,7 +478,7 @@ are exactly the two she named — **the heading** and **the deliverable in the w
 |---|---|---|---|---|
 | `order-details.html` | Package delivery | From · To · Parcel · Delivered · Operator · **Paid** | **Delivery photo** | `scenes/delivered-at-door.jpg` |
 | `order-details-inspection.html` | Roof inspection | Location · Structure · Delivered · Operator · **Paid** | **Inspection report** | `scenes/inspection-roof-cracked-tiles.jpg` |
-| `order-details-aerial.html` | Aerial photo &amp; video | Location · Shoot · Delivered · Operator · **Paid** | **Photo &amp; video set** — **two cards**: the photograph, then the video | `scenes/aerial-rafting-run.jpg` + `scenes/aerial-rafting-boulders.jpg` |
+| `order-details-aerial.html` | Aerial photo &amp; video | Location · Shoot · Delivered · Operator · **Paid** | **Photo &amp; video set** — **two cards**: the photograph, then the video. *The zone is named for **what that order asked for**, from 2026-08-16: with `order-setup-aerial` letting the client pick Photo / Video / Photo &amp; video (`voice.md` **O5**), a photo-only order is headed **Photo set** and holds one card, a video-only order **Video**. **This record is a Photo &amp; video order**, so the built frame is correct as it stands and is not touched.* | `scenes/aerial-rafting-run.jpg` + `scenes/aerial-rafting-boulders.jpg` |
 
 The three zone names are not invented for this screen — `voice.md` **O5** already fixes one name per
 deliverable: *delivery photo* · *inspection report* · *photo/video set*. Structure, zone order, action bar
