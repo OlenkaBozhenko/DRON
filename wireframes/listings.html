@@ -231,12 +231,17 @@
       <span class="dr-topbar__spacer"></span>
     </header>
 
-    <!-- NAV · service categories (filter) -->
-    <nav class="dr-groups" aria-label="Service categories">
-      <button class="dr-grouptab" aria-current="true">All</button>
-      <button class="dr-grouptab">Delivery</button>
-      <button class="dr-grouptab">Aerial photo &amp; video</button>
-      <button class="dr-grouptab">Inspection</button>
+    <!-- NAV · service categories (filter)
+         Live from 2026-08-16, the designer's call: the row was drawn but inert,
+         and now filters the list under it. The state carrier is `aria-current` —
+         the convention kit.css already paints (--green-wash behind --ink, 14.75:1)
+         and kit.js's picker already moves, so the filter invents no third way of
+         saying "this one". Buttons and not links: nothing leaves the screen. -->
+    <nav class="dr-groups" aria-label="Service categories" data-groups>
+      <button class="dr-grouptab" type="button" data-cat="all" aria-current="true">All</button>
+      <button class="dr-grouptab" type="button" data-cat="delivery">Delivery</button>
+      <button class="dr-grouptab" type="button" data-cat="aerial">Aerial photo &amp; video</button>
+      <button class="dr-grouptab" type="button" data-cat="inspection">Inspection</button>
     </nav>
 
     <!-- MAIN -->
