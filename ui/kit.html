@@ -833,6 +833,54 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="nm"><b>Photo pile</b><code>.dr-stack__shot · --w-stack-shot · --stack-aspect · --sp-stack-lap · --sp-stack-in · --w-shot-edge · --tilt-1/2/3</code>
+    <p>Several photographs from one order, shown the way a phone shows several photographs — a
+       loose pile, not a grid. <b>One screen carries it</b> (<code>delivery-aerial</code>), so it
+       is a one-off on the watch-list rather than a kit row; it is here because it introduces six
+       tokens and a rule about tilt.</p></div>
+  <div class="spec">
+    <div class="plate" style="width:260px">
+      <div class="dr" style="width:220px;background:var(--page);border-radius:var(--r-card);padding:4px">
+        <div class="dr-stack">
+          <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-crew.jpg" alt="Photo 1 of 3 — the crew head-on in white water, helmets up and both blades in the air." loading="lazy" decoding="async"></span>
+          <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-drop.jpg" alt="Photo 2 of 3 — the raft airborne off the waterfall, the whole crew's arms raised." loading="lazy" decoding="async"></span>
+          <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-overhead.jpg" alt="Photo 3 of 3 — the raft from directly overhead, running the rapid between wet rock and green water." loading="lazy" decoding="async"></span>
+        </div>
+      </div>
+      <span class="st">3deg · −3.5deg · 2deg · alternating</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>The alternating sense is the whole trick.</b> One shared angle reads as a skewed grid;
+       opposed angles read as a pile somebody set down. The later frame sits on top, so the pile
+       reads front-to-back downward.</p>
+    <p><b>The edge is a border, never a shadow.</b> The reference's ground is black and its frames
+       separate themselves; on <code>--page</code> two overlapping photographs run into one another.
+       This kit spends no shadow on a picture, so the pile takes the pattern
+       <code>--w-badge-ring</code> already uses on a photograph — one rung up at <b>3px</b>, because
+       an edge read at an angle thins optically.</p>
+    <p><b>Measured on the build</b> (375 frame, annotations off): frame unrotated
+       <b>206.7 × 137.8</b> — 62% of the 333.4 column at 3 / 2 — rotated boxes
+       <b>213.6 × 148.4 · 214.7 × 150.2 · 211.4 × 144.9</b>, overlap <b>38.7 of 137.8 = 28.1%</b>,
+       block <b>341.4 × 352.1</b>, bleed 16.8 / 17.3 inside the frame, horizontal overflow <b>0</b>,
+       radius <code>--r-media</code> 13. <i>The plate above is narrower than the phone column, so its
+       pixels are not the build's; the proportions are, being percentages.</i></p>
+    <p><b>The photographs are not re-cropped:</b> the three masters are 1514 × 1009 · 1488 × 992 ·
+       1516 × 1011, all 1.500, so 3 / 2 is the shoot's own ratio. Thumbs are 432 × 288, 2.09× the
+       CSS box.</p>
+    <p><b>WCAG 1.1.1</b> — every frame keeps its own descriptive <code>alt</code>, numbered
+       “n of 3”, because a partly covered photograph still carries meaning.
+       <b>WCAG 2.3.3</b> — the tilt is static, no transition and no animation, so reduced motion has
+       nothing to switch off. No text is rotated; only the pictures are. <b>No green anywhere near
+       it</b> — the pile is photographs and page ground.</p>
+    <p><b>One departure, measured and left as built.</b> The reference covers 35% and the kit's own
+       comment claimed 34%; the build shows <b>28.1%</b>. The missing 8px is <code>.dr-stack</code>'s
+       <code>gap</code>, inherited by building the pile on the kit's vertical stack. Recorded rather
+       than corrected — <code>gap: 0</code> lands 33.9%, <code>--sp-stack-lap: -16.4%</code> lands 35%.</p>
+  </div>
+</div>
+
 <!-- ═══ FORMS ═════════════════════════════════════════════════════════════ -->
 <h2 class="sec">Forms</h2>
 <div class="row">
