@@ -591,6 +591,14 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **`WCAG 1.1.1` is unaffected, and that is checked rather than assumed.** The check-mark is `aria-hidden="true"` and always was — it never carried the message. The information it draws is carried by the `h1`, which is unchanged, so no non-text content is left without a text equivalent.
 - **One consequence is left open, not silently fixed.** `<section class="dr-center" aria-label="Confirmation">` now holds only `aria-hidden` content, so it is a **named `region` landmark with nothing inside it to read** — a screen-reader user who jumps to *Confirmation* from the landmarks list arrives at an empty stop. Not a listed failure (`WCAG 1.3.1` and `2.4.1` are both satisfied by the rest of the page), but a dead landmark. Three readings, all conforming, put to the designer rather than chosen for her: keep it as built · drop the `aria-label` so the block stops being a landmark · give the mark `role="img" aria-label="Done"` so the region names what it shows.
 
+**Sync — 2026-08-16 (`delivery`'s Confirmation zone comes off whole, and the record states the outcome)**
+- **One string retired on the designer's word**, given on the built page — *delete this*, pointing at the `.dr-center` section entire: **"Your parcel arrived at 10:07."** Its master-table row is gone. The fifth sentence to come off a built screen this way, and the second on a delivery confirmation in one day.
+- **This is not the wordless case.** On `delivery-aerial` the zone had no text at all and the mark went for having no title beside it; here the sentence existed, and what was wrong with it is that it said twice what the screen already says: the nav-bar `<h1>` reads **`Delivered`**, and the `Details` rows carry the fact in words — **`Delivered to · Osokorky, 14`** and **`Time · 10:07`**. `Delivered` had already left this zone on 2026-08-15 (rev 84) for duplicating that same `h1`; the line under it followed today.
+- **Nothing arrives to replace it, and no landmark is stranded.** The whole `<section aria-label="Confirmation">` goes with the sentence, so the empty-named-region question the aerial sync left open never arises on this page — there is no region left to name.
+- **`WCAG 1.1.1` is unaffected, and it was checked rather than assumed.** The mark was `aria-hidden="true"` and carried no accessible name; nothing it drew was information the text did not already hold. **`WCAG 1.4.1`** holds too — the state is named in text by the bar and by the rows, so green was never left carrying it alone.
+- **The sibling states are untouched**, having never duplicated their bar: `delivery-error` says *Delivery photo is missing*, `delivery-loading` says *Waiting for the delivery photo…*
+- **Two places still quote the retired line and are reported, not swept:** `voice.md` **P1** and its Success-state row use `Delivered. Your parcel arrived at 10:07.` as the worked example of naming the outcome, and `ui/kit.html` draws it as the `.dr-lead` type sample. Both are illustrations of a rule rather than claims about a screen, and replacing a principle's example is the designer's call.
+
 ---
 
 ## Master table — every string
@@ -730,7 +738,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | delivery-loading | Proof of delivery | Account | Button |  |
 | delivery | — | Delivered | Heading |  |
 | delivery | — | DONE | Body | WF-PH |
-| delivery | — | Your parcel arrived at 10:07. | Body | DATA |
 | delivery | Proof of delivery | DELIVERY PHOTO | Body | WF-PH |
 | delivery | Details | Delivered to | Body |  |
 | delivery | Details | Osokorky, 14 | Body |  |
