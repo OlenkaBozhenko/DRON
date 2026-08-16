@@ -74,7 +74,12 @@
            breakdown belongs to order-review, where the price is a fact stated BEFORE the tap
            (voice.md P3). This screen is a record of money that already moved, and
            microcopy.md has only ever listed one string in this zone — Paid. -->
-      <div class="dr-rows dr-rows--money" aria-label="What it cost">
+      <!-- AND WITH THE COLUMN GONE, THE MONEY COLUMN GOES TOO — her call the same day.
+           `.dr-rows--money` exists for one reason (rev 97): tabular numerals line up on the
+           last digit only if the column is right-aligned. One row is not a column, so the
+           figure reads from the product's single value axis like every other value on this
+           screen. It keeps the money type step, 20/700 tabular. -->
+      <div class="dr-rows" aria-label="What it cost">
         <div class="dr-rows__row dr-rows__row--total"><span class="dr-rows__key">Paid</span><span class="dr-rows__val">&#8372;180</span></div>
       </div>
     </main>
