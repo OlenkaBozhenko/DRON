@@ -34,8 +34,16 @@
     <main class="dr-main">
       <form class="dr-stack" action="#" aria-label="Edit account">
 
-        <!-- ZONE · personal -->
-        <p class="zlabel dr-label">Personal <span class="dr-label__act">▸ editable name &amp; phone</span></p>
+        <!--
+          ZONE · personal — the saved address joins name and phone on the
+          designer's word, 2026-08-16: «стрічку з збереженою адресою перенеси
+          у верх під телефон під нею буде метод оплати та мова». It sits
+          directly under Phone with no label between, which also sorts the form
+          by control: three typed inputs in the first group, two drawer-openers
+          in the second. The row that was an input wedged between two chevrons
+          is gone.
+        -->
+        <p class="zlabel dr-label">Personal <span class="dr-label__act">▸ editable name · phone · address</span></p>
         <div class="dr-rows">
 <div class="dr-field">
           <label class="dr-field__label" for="name">Full name</label>
@@ -45,19 +53,19 @@
           <label class="dr-field__label" for="phone">Phone</label>
           <span class="dr-field__group"><input class="dr-field__input" id="phone" name="phone" type="tel" value="+380 67 000 4417"></span>
         </div>
+        <div class="dr-field">
+          <label class="dr-field__label" for="addr">Saved address</label>
+          <span class="dr-field__group"><input class="dr-field__input" id="addr" name="addr" value="Podil, 21"></span>
+        </div>
 </div>
 <!-- ZONE · preferences -->
-        <p class="zlabel dr-label">Preferences <span class="dr-label__act">▸ payment · address · language</span></p>
+        <p class="zlabel dr-label">Preferences <span class="dr-label__act">▸ payment · language</span></p>
         <div class="dr-rows">
 <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-payment">
           <span class="dr-field__label">Payment method</span>
           <span class="dr-field__value">Visa •••• 4921</span>
           <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
         </button>
-        <div class="dr-field">
-          <label class="dr-field__label" for="addr">Saved address</label>
-          <span class="dr-field__group"><input class="dr-field__input" id="addr" name="addr" value="Podil, 21"></span>
-        </div>
         <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-language">
           <span class="dr-field__label">Language</span>
           <span class="dr-field__value">English</span>
