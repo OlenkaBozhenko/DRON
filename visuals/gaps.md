@@ -164,7 +164,7 @@ the client's question (*where is my order*), not the operator's (*where do I go,
 |---|---:|---|
 | `.msg-ph` — state mark | 23 | **52 × 52, `--r-media`, a 26px outline glyph** on a wash: neutral `--media`/`--slate`, `--warn-wash`/`--warn-ink`, `--danger-wash`/`--danger-ink`. Already built as SVG on `tracking-*` and `delivery-*`. |
 | `.success-mark` — milestone | 13 | **64px circle, `--green-wash` + `--ink`, 32px glyph.** Delivered draws a circle-check, waiting draws a clock in the same well. |
-| `.up-ph` — upload tray | 8 | The **empty** state of an upload control: a tray glyph and a button. `delivery-loading` already animates one (`skUp`). A *filled* tray would show a user's own thumbnail — the stand-ins for that are #17 above. |
+| `.up-ph` — upload tray | 8 → **7** | The **empty** state of an upload control: a tray glyph and a button. `delivery-loading` already animates one (`skUp`). A *filled* tray would show a user's own thumbnail — the stand-ins for that are #17 above. **One of the eight is now filled** — `result-upload`, 2026-08-16, see the note at the foot of this file. The other seven stay empty: two are documents (`operator-verification`), one is a profile photo (`operator-profile-setup`), one waits on a picture that does not exist (`operator-dispute`, B3 #18). |
 | `.map-ph:ACQUIRING GPS…` | 1 | Deliberately **not** the city: the loading state shows the bare well because there is no signal yet. |
 
 **One exception, already filled.** `order-history-empty` uses `.msg-ph` as a 150px banner carrying a
@@ -192,3 +192,29 @@ picture should show.
    `delivered-proof-1.jpg` and `operator.png` → `person-operator-andriy.png` would match the
    convention in `README.md` §6, but seven wireframes reference the current paths. Not done — ask
    first.
+
+---
+
+## 2026-08-16 — the delivery photo reaches the tray that gates payment
+
+**The designer's instruction:** *a user should be able to see the result-proof image — the delivered
+package, or the inspected roof — on the wireframes that show the finished job; the pictures are
+already in the repo, use the same ones.* Asked which screens, she chose **the finished-job screens**
+over an example-of-the-outcome on the order form.
+
+**Placed — one slot.** `result-upload.html`, the operator's close-the-job screen, held
+`up-ph:DELIVERY PHOTO` — a dashed tray naming the picture that gates `RJ-O3` payment. It now carries
+`scenes/thumbs/delivered-at-door.jpg`, the same file the client sees one step later on
+`delivery.html`, because it is the same order: package delivery, client Olena H., ₴180. The rule that
+governs it is `_conventions.md` §8 (`.upload-zone:has(.up-shot)`); the button under it changes from
+`Add photo` to `Replace photo`, logged in `microcopy.md`.
+
+**Not placed, and why — stated so it is not read as covered.**
+
+| Screen | What it would take | Status |
+|---|---|---|
+| `operator-dispute` · `-error` | `scenes/dispute-evidence-aerial-blurry.jpg` — **B3 #18**, an aerial frame that is genuinely soft. The job in dispute is *Aerial photo*, and the repo holds no aerial deliverable at all. Substituting a roof or a doorstep would make the client's claim unreadable. | **blocked on the file** |
+| `order-history` — past cards | The two settled cards could take `delivered-at-door` and `inspection-roof-cracked-tiles` today. The other two cannot: the live card has no result yet, and the *Aerial photo & video* card needs **B3 #17**, which does not exist. The list would then read drone · photo · drone · photo. | **her call — the mixed set is the cost** |
+| `result-upload-loading` | The 120px `.sk-block` stands in for a photo the operator already holds on the phone — it is being sent, not fetched. A skeleton is the wrong mark for known content. | **reported, not changed** |
+| `result-upload-error` | `msg-ph:UPLOAD` is a 52px state glyph (§C), not a picture well. Showing the photo that failed to send would be a new element on the screen, not a filled placeholder. | **reported, not changed** |
+| `report-issue` | The client's evidence tray. The claim reads *the roof photos were blurry*; the unused `inspection-roof-crack-3.jpg` is sharp, so it would contradict the sentence beside it. | **blocked on the file** |

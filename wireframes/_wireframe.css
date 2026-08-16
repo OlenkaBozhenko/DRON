@@ -341,6 +341,23 @@ article.card:focus-within{ outline:2px solid var(--wf-border-2); outline-offset:
 .upload-zone{ border:1px dashed var(--wf-border-2); border-radius:8px; background:var(--wf-recessed);
   min-height:140px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:24px; text-align:center; }
 .upload-zone .up-ph{ font-size:11px; letter-spacing:.06em; color:var(--wf-muted); }
+/* A tray that has its picture stops being a tray — the same move the media
+   wells make above: the dashed frame and the label ground come off, because
+   the label was standing in for the photograph that is now there. The
+   control does not leave with the label — an attached photo has to be
+   replaceable. A photograph covers; only a transparent cutout is contained.
+
+   The band is 180px, not the empty tray's 140px, and that is measured rather
+   than chosen. `delivered-at-door.jpg` is 652 x 522 into a 341px box, so
+   `cover` draws it 341 x 273 and crops the middle: at 180 that cuts 47px top
+   and bottom and the parcel survives; at 140 it cuts 67px and takes the
+   parcel — the proof the screen exists for — off the bottom edge. 180 is
+   also exactly the well delivery.html draws, so the operator is looking at
+   the frame the client will be shown. Filling the tray grows the page 40px,
+   which is what an attachment does. */
+.upload-zone:has(.up-shot){ border:0; background:none; padding:0; min-height:0; gap:12px; }
+.up-shot{ display:block; width:100%; height:180px; border-radius:8px; overflow:hidden; background:var(--wf-recessed); }
+.up-shot img{ width:100%; height:100%; object-fit:cover; display:block; }
 
 /* map placeholder (tracking) */
 .map-ph{ border:1px dashed var(--wf-border-2); border-radius:8px; background:var(--wf-recessed);
