@@ -486,6 +486,16 @@ header.dr-topbar,
   display: flex; flex-direction: column; gap: var(--sp-snug);
 }
 .dr-stack{ display: flex; flex-direction: column; gap: var(--sp-within-lg); }
+/* The stack that is not inside a zone but IS the zone column. account-edit
+   wraps its whole main in one <form>, so the form — not .dr-main — spends the
+   gap between Personal, Preferences and Documents; measured 8 the moment
+   .dr-stack closed, which put four labelled zones at the within-zone step and
+   the mono label 4 above its content. This hands the zone gap back, so that
+   page separates its groups by the same 12 as every other screen (HIG · Layout:
+   the boundary between groups must read larger than the space inside one).
+   One page carries it. A form that stacks fields inside a single zone keeps
+   plain .dr-stack and its 8. Her call, 2026-08-16. */
+.dr-stack--zones{ gap: var(--sp-snug); }
 .dr-center{ display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--sp-snug); }
 /* within a zone the stack can close to 8 — paired with --zones' 24 the
    proximity step reads 3:1. Spent on rate beside the two-line heading,
@@ -811,11 +821,16 @@ header.dr-topbar,
 .dr-list{ list-style: none; display: flex; flex-direction: column; gap: var(--sp-list); }
 /* The grouped-list rung, and the default's condition. 28 is the between-items
    step where the list IS the screen (order-history, time-slot); when the list
-   is one zone among sections 16 apart, siblings must sit closer than strangers
-   — 12: above the 4px rhythm inside a card, under the 16 between sections.
-   Swept across the product 2026-08-15: listings ×3, inspection-report ×2 and
-   support carry --snug; the three single-zone lists keep 28. */
-.dr-list--snug{ gap: var(--sp-snug); }
+   is one zone among sections, siblings must sit closer than strangers.
+   Swept across the product 2026-08-15: listings ×3, inspection-report ×2,
+   support and chat carry --snug; the three single-zone lists keep 28.
+   The rung was 12 under a 16 zone gap. When the zone gap closed to 12 on
+   2026-08-16 the rung was measured level with it — 12 within against 12
+   between, 1:1, spacing no longer grouping anything — so it followed .dr-stack
+   to 8 the same day, on her word. It is the same ratio it was built to hold,
+   one rung down: siblings 8, strangers 12, 1.5:1. Neither 8 nor 12 steps at
+   the narrow tier, so the list holds 8 at both. */
+.dr-list--snug{ gap: var(--sp-within-lg); }
 
 .dr-card{
   position: relative;
