@@ -93,11 +93,19 @@
 </form>
     </main>
 
+    <!--
+      THE ACTION BAR STACKS, like every other one in the product. The
+      designer, 2026-08-16: «кнопки одна під одною. пройдись по проекту і
+      подивись щоб кругом у нижньому барі кнопрки були одна під одною». This
+      page was the last holder of `.dr-actionbar__row`; the class and its CSS
+      stay in `ui/kit.css` but are now applied to nothing. Primary on top,
+      Cancel underneath — `HIG · Alerts / Action sheets` puts Cancel last in a
+      vertical stack, and 11 of the product's 12 multi-button bars already
+      lead with the primary.
+    -->
     <footer class="dr-actionbar">
-      <div class="dr-actionbar__row">
-        <a class="dr-btn dr-btn--secondary" href="account.html">Cancel</a>
-        <a class="dr-btn dr-btn--primary" href="account.html">Save changes</a>
-      </div>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="account.html">Save changes</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="account.html">Cancel</a>
     </footer>
 
     <!--
