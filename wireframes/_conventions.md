@@ -15,7 +15,7 @@ Wireframes prove **structure, hierarchy, and zones** — not looks. If a decisio
 4. **One page per state.** Success/normal = the base file; `-empty` / `-error` / `-loading` are separate files with the **same structure, different content** (§10, §11).
 5. **8px grid.** Every spacing value is a multiple of 8 (4 allowed as the half-step). Radii are multiples of 2 (§6).
 6. **Mobile frame 375 × 812.** Every page is built inside it (§6).
-7. **No icons, no shadows, no colour, no final font** — deferred (§3, §8). **Four carve-outs, each decided by the designer.** Two are still grayscale: **real imagery** where a frame needs a picture to be judged, and the **DRON logo** in the reserved brand slot (§8). The third is not — the **language switch** carries the kit's colours on every screen, painted or not (2026-08-02): green for the chosen language, warm grey for the other. It is one control injected into all 84 files, and it should not change colour depending on whether the screen behind it has been painted yet. Values and measurements live in `ui/kit.css` `.dr-lang`; `ui/inventory.md` carries the row. **Since 2026-08-16 (rev 94) it appears in the topbar only in the *desktop* preview** — the designer took it out of the mobile bar, which now carries the back control and one name; it stays on desktop because desktop navigation is being redrawn and the control has to stay visible while that happens. Keyed off `html[data-wf-viewport]`, which the viewport switcher sets. The fourth carve-out is the **back chevron** (§11.1): a real 24-grid icon on both layers, because an icon-only control cannot fall back to §8's text label.
+7. **No icons, no shadows, no colour, no final font** — deferred (§3, §8). **Three carve-outs, each decided by the designer, and all three are grayscale:** **real imagery** where a frame needs a picture to be judged; the **DRON logo** in the reserved brand slot (§8); and the **back chevron** (§11.1), a real 24-grid icon on both layers, because an icon-only control cannot fall back to §8's text label. **A fourth is retired, and it was the only one that was not grayscale.** The **language switch** carried the kit's colours on every screen, painted or not (2026-08-02) — green for the chosen language, warm grey for the other — because one control injected into all 84 files should not change appearance depending on whether the screen behind it had been painted yet. The designer took it out of the mobile bar on **2026-08-16 (rev 94)**, leaving it in the desktop preview while desktop navigation was redrawn, and out of the topbar **entirely** later the same day — **rev 117**, on `listings`: *«видали звідси місто та мову»*. **Language is now set where `HIG · Settings` puts it**, not in a navigation bar: the *Language* field on `account-edit.html`, which opens the `#sheet-language` picker (English / Ukrainian). `ui/kit.css` `.dr-lang` stays declared and is applied to nothing — a held rung, the way `--sh-onphoto` is held — and `ui/inventory.md` carries the row. With the switch gone, **no colour enters a wireframe before its screen is painted.**
 
 ---
 
@@ -510,7 +510,7 @@ chrome so the toast cannot cover the control that raised it, and — where the r
 ### Client (MJ-1)
 | Screen | Base file | State pages |
 |---|---|---|
-| Home / start an order **+ Service catalogue** (merged per `sitemap.md §7.3`) | `listings.html` | `listings-filters.html` (filter panel open — Time / Location / Price), `listings-filter-country.html` · `listings-filter-region.html` · `listings-filter-city.html` · `listings-filter-district.html` (the place pick, four dependent levels pushed from the Location rows), `listings-filtered.html` (filters applied — the All chip + removable chips), `listings-empty.html` (no results / loosen filters), `listings-error.html` (load failure), `listings-loading.html` |
+| Home / start an order **+ Service catalogue** (merged per `sitemap.md §7.3`) | `listings.html` | `listings-filters.html` (filter panel open — Location / Time / Price), `listings-filter-country.html` · `listings-filter-region.html` · `listings-filter-city.html` · `listings-filter-district.html` (the place pick, four dependent levels pushed from the Location rows), `listings-filtered.html` (filters applied — the All chip + removable chips), `listings-empty.html` (no results / loosen filters), `listings-error.html` (load failure), `listings-loading.html` |
 | Order setup / details | `order-setup.html` | `order-setup-empty.html`, `order-setup-error.html` |
 | Order review & price | `order-review.html` | `order-review-loading.html` |
 | Payment | `payment.html` | `payment-error.html`, `payment-loading.html` |
@@ -601,9 +601,11 @@ every page (grayscale, §4):
   the filled state; choice persists via `localStorage` (`wf-hide-anno`, default = shown);
 - the **Tone of voice** icon button is a **placeholder** for the forthcoming voice page (`voice.md` → a rendered
   page); kept inert for now so the prototype never dead-ends on a 404;
-- a **language switcher** (`EN` / `UA`) injected into the top-right of each screen's `header.topbar` (opposite
-  the logo). **English is primary/default; Ukrainian is secondary.** The choice persists via `localStorage`.
-  The switcher proves the control's presence and placement only — page copy stays English per §9.
+- a **language switcher** (`EN` / `UA`) was injected into the top-right of each screen's `header.topbar`
+  (opposite the logo) from 2026-08-02. **Removed 2026-08-16 (rev 117)** on the designer's word. The bar now
+  carries the back control and one name and nothing else, on **every** viewport — mobile lost it at rev 94,
+  desktop at rev 117. Language is not prototype chrome: it is a stored preference, set on `account-edit.html`
+  (§1.7). Nothing in the shell injects a control into a screen's own topbar any more.
 
 The shell is prototype chrome, **not** page content — it is the one exception to "HTML is display-only" and lives
 in JS by design. Edit the shell in `_wf-shell.js` alone; do not hand-add nav, the switcher, or the back button to

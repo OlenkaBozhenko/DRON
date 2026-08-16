@@ -817,6 +817,15 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filtered | Service list · cards | Account | Button |  |
 | listings-filters | — | Filters | Heading |  |
 | listings-filters | — | Clear all | Body |  |
+| listings-filters | Location | Location | Heading | first zone on the panel from 2026-08-16, the designer's call — it stood second, under Time, until then |
+| listings-filters | Location | Country | Field label | added 2026-08-16 on the designer's word — the geography is Ukraine AND European countries, and the filter stated the country nowhere |
+| listings-filters | Location | Ukraine | Field value | DATA |
+| listings-filters | Location | Region | Field label |  |
+| listings-filters | Location | Kyiv City | Field value | DATA |
+| listings-filters | Location | City | Field label |  |
+| listings-filters | Location | Kyiv | Field value | DATA |
+| listings-filters | Location | District | Field label |  |
+| listings-filters | Location | All districts | Field value | DATA |
 | listings-filters | Time | Time | Heading |  |
 | listings-filters | Time | Available now | Body |  |
 | listings-filters | Time | now | Field value | DATA |
@@ -827,15 +836,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filters | Time | Pick a date & time… | Body |  |
 | listings-filters | Time | calendar | Body |  |
 | listings-filters | Time | pick | Field value | DATA |
-| listings-filters | Location | Location | Heading |  |
-| listings-filters | Location | Country | Field label | added 2026-08-16 on the designer's word — the geography is Ukraine AND European countries, and the filter stated the country nowhere |
-| listings-filters | Location | Ukraine | Field value | DATA |
-| listings-filters | Location | Region | Field label |  |
-| listings-filters | Location | Kyiv City | Field value | DATA |
-| listings-filters | Location | City | Field label |  |
-| listings-filters | Location | Kyiv | Field value | DATA |
-| listings-filters | Location | District | Field label |  |
-| listings-filters | Location | All districts | Field value | DATA |
 | listings-filters | Price | Price | Heading |  |
 | listings-filters | Price | Low | Body |  |
 | listings-filters | Price | low | Field value | DATA |

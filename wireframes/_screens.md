@@ -65,9 +65,12 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   - **Success —** hands off to the catalogue; no "it worked" screen.
 - **Filter sub-views (added July 2026, build decision):** because *Service catalogue* is merged into Home,
   browsing needs to be narrowable. Two named sub-views (not data states):
-  - **`listings-filters`** — the filter panel open: **Time** (Available now / Today / This week / Pick a date),
-    **Location** (four picker rows — Country ▸ Region ▸ City ▸ District, each opening its own screen; it was a flat
-    district radio list until 2026-08-16), **Price** (Low / Medium / High + a draggable range). *Apply* → filtered;
+  - **`listings-filters`** — the filter panel open, **in this order**: **Location** (four picker rows —
+    Country ▸ Region ▸ City ▸ District, each opening its own screen; it was a flat district radio list until
+    2026-08-16), **Time** (Available now / Today / This week / Pick a date &amp; time), **Price** (Low / Medium /
+    High + a draggable range). **Location leads the panel from 2026-08-16**, the designer's call on the built page
+    (*«помісти картку самою першою на сторінці»*); it had stood second, under Time, since the panel was built.
+    *Apply* → filtered;
     *Close / Clear all* → Home. *(The **Price** dimension was here once before as
     Recommended / Low→High / High→Low — **a sort by another name**, and it went when **sorting was removed
     across the product, designer's call 2026-08-13**: the counter's Sort button left all five listings states
