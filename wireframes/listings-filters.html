@@ -241,9 +241,32 @@
         </div>
       </div>
 
-      <!-- ZONE · time -->
+      <!-- ZONE · time — A TITLED CARD from 2026-08-16 (rev 124), the same call
+           and the same shape as Location above it.
+           THE TITLE IS «Date & time», NOT «Time», and the divergence from the
+           .zlabel is deliberate the way Price ▸ «Price range» is: the zone sets
+           a DAY and a time within it — Available now / Today / This week, and a
+           calendar drawer for the rest — and «Time» alone reads as a time of
+           day. It is also the wording already in the product, on the option and
+           on the drawer's own title. Her word for this filter was «available
+           date». One word is the alternative and it is hers.
+           THE CARD MOVES FROM THE <ul> TO THE <fieldset>, which is what the
+           fieldset was already for — it held the group and drew nothing. The
+           list keeps its own geometry to the pixel: the rows were inset 16 by
+           .dr-picks and are now inset 16 by the card, and the separator's
+           --pick-indent is measured from the row, not from the card.
+           NAMED BY THE DRAWN LINE, like Price and like Location: the fieldset's
+           aria-label="Time" is replaced by aria-labelledby → the title, so the
+           group's name is text the eye reads and not a string that can drift
+           from it (WCAG 1.3.1, 2.5.3, 4.1.2). A <legend> is still not the
+           answer — rev 119 measured it out: a rendered legend sits in the
+           fieldset's block-start BORDER region, outside the padding box, and
+           takes the card's 16px inset with it. -->
       <p class="zlabel dr-label">Time <span class="dr-label__act">▸ when the service should happen</span></p>
-      <fieldset aria-label="Time">
+      <fieldset class="dr-zone" aria-labelledby="time-title" aria-describedby="time-sub">
+        <p class="dr-zone__title" id="time-title">Date &amp; time</p>
+        <p class="dr-zone__sub" id="time-sub">When you need the service</p>
+
         <ul class="dr-picks">
           <li><label class="dr-pick">
             <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
