@@ -59,7 +59,37 @@
           are `HIG · Text fields`, and this is the one screen in the product that
           is Settings rather than a compose form.
         -->
+        <!--
+          AND IT TAKES A TITLE AND A SUBTITLE, 2026-08-16 (rev 126), the
+          designer's call after the filter panel got the same: «якщо в проекті
+          ще є аналогічні картки добав до них так само заголовок і підзаголовок
+          … там де є необхідність вводити дані які посортовані по категоріях».
+          THIS SCREEN IS THE ONLY OTHER PLACE IN THE PRODUCT THAT MATCHES IT —
+          swept before it was built: the entry groups on `order-setup`,
+          `report-issue`, `contact-support` and `rate` are PLAIN LISTS, not
+          cards, by rev 98's product-wide call, so there is no analogous card
+          on them to title; `payment` has one card and one category; the
+          `account` groups are navigation, not data entry. Two cards here, two
+          categories of data to enter, and until now neither was named in the
+          product at all — `.zlabel` is the WIREFRAME's annotation and goes
+          with the shell's toggle.
+          THE DOCUMENTS PAIR IS DELIBERATELY NOT TOUCHED. Each upload card
+          already carries its own title and subtitle (`Add drone documents` /
+          `Add insurance`), and the heading that stood ABOVE the pair came off
+          on her word at rev 120 («видали назву»). That call is not reversed
+          here: what is added is a title INSIDE a card, which is the shape she
+          has kept every time it was built.
+          THE GROUP IS NAMED BY THE DRAWN LINE — `role="group"` with
+          aria-labelledby → the title and aria-describedby → the subtitle. The
+          group had NO programmatic name before this pass, so a title drawn
+          over it without one would state a grouping to the eye that assistive
+          tech could not read (`WCAG 1.3.1`); the role and the two pointers are
+          what keep the two layers saying the same thing (`4.1.2`).
+        -->
         <p class="zlabel dr-label">Personal <span class="dr-label__act">▸ editable name · phone · address</span></p>
+        <div class="dr-zone" role="group" aria-labelledby="acc-personal-title" aria-describedby="acc-personal-sub">
+        <p class="dr-zone__title" id="acc-personal-title">Personal details</p>
+        <p class="dr-zone__sub" id="acc-personal-sub">What the operator needs to reach you</p>
         <div class="dr-rows dr-rows--card">
 <div class="dr-field">
           <label class="dr-field__label" for="name">Full name</label>
