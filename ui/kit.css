@@ -658,31 +658,27 @@ header.dr-topbar,
 .dr-btn--icon .dr-ic{ width: var(--ic-20); height: var(--ic-20); }
 
 /* THE SAME ACTION STANDING ON A PHOTOGRAPH (2026-08-16, rev 137) — the play
-   mark on a video poster. One modifier, one added property: the cut-out ring
-   .dr-avatar-edit__badge already wears against the avatar, "a border, never a
-   shadow", so the flat-surface rule holds and --sh-sm under the green primary
-   is still the only shadow in the product.
+   mark on a video poster. The modifier is POSITION ONLY: rev 12 took the
+   border off every circular button and the designer held that line here too,
+   on the built frame — «забери stroke з цієї кнопки у мене така кнопка без
+   обводок». So there is no ring, no shadow, no second fill: the disc that
+   stands on a picture is the same disc that stands on a card.
 
-   WHY A RING AND NOT A DIFFERENT FILL. A photograph has no single luminance.
-   Measured under the 44px disc on aerial-rafting-run.jpg, the frame runs
-   L 0.0001 to 0.9550 — white water beside wet black rock — so ANY flat disc
-   colour meets a pixel it matches: --btn2 worst 1.00:1, --page worst 1.00:1
-   against 1.4.11's 3:1. The ring removes the question instead of answering it
-   per-image: --ink on --btn2 is 11.54:1, the pair this button already wears,
-   and that edge is INSIDE the control, so it holds against every photograph
-   ever loaded. The outer edge is then a bonus — 3.54:1 mean on this frame,
-   1.00:1 at its worst — and the disc is still a disc where it vanishes.
-   The general floor, if the ring is read as the thing that must be seen: the
-   better of the two edges is never below 3.40:1 for ANY pixel value, because
-   the two colours are 11.54:1 apart and the crossover sits at L 0.1549.
-   Proven for all images, not measured on one.
-
-   rev 12 REMOVED THE BORDER FROM CIRCULAR BUTTONS and this does not restore
-   it: the border came off where warm tone could separate, "kept only where
-   genuinely needed". On a photograph tone cannot separate — that is the
-   need rev 12 named. --sh-onphoto stays on the bench: a shadow gives no
-   ratio, and this is a ratio problem. */
-.dr-btn--onphoto{ border: var(--w-badge-ring) solid var(--ink); }
+   THE MEASUREMENT THAT WENT WITH THE DECISION, KEPT BECAUSE IT IS TRUE EITHER
+   WAY. A photograph has no single luminance: under the 44px disc on
+   aerial-rafting-boulders.jpg the frame runs L 0.0022 to 0.9486, so no flat
+   disc colour can hold 1.4.11's 3:1 everywhere — --btn2 and --page both meet
+   a pixel they match, 1.00:1 at worst. Measured on the edge this button
+   actually sits on: --btn2 against the frame is 6.46:1 mean, 13.12:1 at best,
+   1.00:1 at worst, with 74% of the circumference at or above 3:1.
+   WHAT CARRIES 1.4.11 IS THE GLYPH, NOT THE DISC — the reading the kit already
+   uses twice: .dr-avatar-edit__badge's disc is 1.25:1 on its card and
+   .dr-upload's well is 1.08:1, and in both the mark inside is the identifier.
+   Here that mark is --ink on --btn2, 11.54:1, wherever the picture goes.
+   A 2px --ink ring was built first and removed on her word; it would have put
+   an 11.54:1 edge inside the control and floored the silhouette at 3.40:1 for
+   any pixel value. Recorded so the trade is visible, not re-proposed.
+   --sh-onphoto stays on the bench either way: a shadow gives no ratio. */
 /* Centred on the well it stands in. The transform is repeated on :active so
    the press dip composes with the centring instead of replacing it. */
 .dr-well > .dr-btn--onphoto{
@@ -714,6 +710,20 @@ header.dr-topbar,
 .dr-card--compact{ padding: var(--sp-group) var(--sp-screen); gap: var(--sp-snug); }  /* rev 88: 20/16 */
 .dr-card--cta{ padding-bottom: var(--sp-cta); }  /* the last element is a primary */
 .dr-card--row{ flex-direction: row; align-items: center; gap: var(--sp-snug); }
+/* THE CARD WHOSE PICTURE IS ITS TOP EDGE (2026-08-16, rev 140) — the designer's
+   own reference for the video card (Figma 97:18): the preview runs to the card's
+   three edges and the card's ground shows only behind the line under it.
+   IT IS THE IMAGERY RULE, NOT A NEW TASTE. "A photograph IS the surface and
+   covers it. Floated inside a well it reads as a sticker" — a picture inset in a
+   padded card is that sticker, with 16px of warm grey framing it on three sides.
+   So the card gives up its padding, clips with its own 16 radius (the media's 13
+   is switched off: two radii on one corner is a shape nobody chose), and the
+   padding moves onto the line below, which is the only thing left that needs it.
+   Vertical 12 against horizontal 16: the row already carries a 44px control, so
+   its own height is set by the target and the 12 is air, not measure. */
+.dr-card--cover{ padding: 0; gap: 0; overflow: hidden; }
+.dr-card--cover > .dr-well{ width: 100%; border-radius: 0; }
+.dr-card--cover > .dr-listing__foot{ padding: var(--sp-snug) var(--sp-screen); }
 
 /* The in-card actions row. The button stretches the row and lifts above the
    whole-card link, so the CTA stays clickable inside a card that is itself
@@ -1130,12 +1140,14 @@ header.dr-topbar,
   color: var(--slate);                                            /* 5.95:1 */
 }
 .dr-listing__meta{ display: flex; align-items: baseline; gap: var(--sp-within-lg); margin-top: var(--sp-6); }
-/* .dr-listing__foot was cut and retired the same day (2026-08-16, rev 137).
-   It held the name, the facts and the action on one line UNDER a poster inside
-   the card. The designer took the reading where the zone shows one picture and
-   it is the video's poster, so the card has no poster in it and the line IS the
-   card — which .dr-card--row already is. Retired, not benched: unlike
-   .dr-well--shot it named no shape the plain row cannot make. */
+/* THE LINE UNDER A COVER: name and facts on the left, the file's one action on
+   the right. Cut at rev 137, retired the same day when the shape lost its
+   picture, and cut again at rev 140 when the designer's own reference put the
+   picture back on top (Figma 97:18) — recorded here so the churn is visible
+   rather than tidy. It exists because .dr-card--row cannot serve: that modifier
+   turns the CARD into a row, and this card is a column whose second child is
+   one. Same __body inside it, still taking the slack and ellipsizing. */
+.dr-listing__foot{ display: flex; align-items: center; gap: var(--sp-snug); }
 
 /* ═══ THE CHOICE CARD ═════════════════════════════════════════════════════
    Navigation, not a picker — both instances are links that leave the screen.

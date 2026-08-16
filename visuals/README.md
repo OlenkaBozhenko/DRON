@@ -18,6 +18,7 @@ Everything below is **measured off the assets already in the repo**, not asserte
 | In flight & people | `38:122` «images 2» | editorial / in use | `assets/drones/drone-flight-*.png`, `assets/people/`, `assets/scenes/` |
 | The delivery photo | `47:4` | photograph | `assets/scenes/delivered-at-door.jpg` |
 | The aerial deliverable | `96:14`, file `YlGWlsWWjKSCxhONMzGG2F` | photograph | `assets/scenes/aerial-rafting-run.jpg` |
+| The aerial video's cover | `97:22`, same file | photograph | `assets/scenes/aerial-rafting-boulders.jpg` |
 | The live map | — | flat map illustration | `assets/map/live-map.jpg` |
 
 Node `19:59139` is already sliced into the repo; `_source-sheet.png` (3072 × 2048) is kept beside
@@ -82,9 +83,17 @@ Whole library, `python visuals/check-style.py`:
 | `scenes/operator-at-work.png` | `#3F4448` | **−8.8** | 203° | `#C0D028` 66° 68% 49% ⚠ |
 | **`scenes/delivered-at-door.jpg`** | `#8D887D` | **+16.4** | **40.1°** | none — correct |
 | `scenes/aerial-rafting-run.jpg` | `#686C62` | **+5.9** | 82.5° ⚠ | none — correct |
+| `scenes/aerial-rafting-boulders.jpg` | `#757D7F` | **−10.1** | 191.3° | none — correct |
 | `map/live-map.jpg` | `#DBDBD9` | +2.8 | 48.8° | `#90B800` 73° 100% 36% |
 
-**Payload lime in band: 17 of the 19 files that carry one. Warm skew in band: 4 of 34.**
+**Payload lime in band: 17 of the 19 files that carry one. Warm skew in band: 4 of 35.**
+
+*Re-run 2026-08-16 with `scenes/aerial-rafting-boulders.jpg`, the video card's cover: the library is
+**35** files and the warm-skew count is unchanged at four, because the new frame is **−10.1** — the
+coolest scene photograph in the set, white water and wet grey rock at ground hue **191.3°** against
+the 30–45° target. It is user content (`B3`), so §7.2 applies: a real client's footage is not graded
+to the page, and the two aerial frames sitting one above the other now differ in temperature as well
+as in subject — `#686C62` at +5.9 over `#757D7F` at −10.1. Recorded, not corrected.*
 
 *Re-measured 2026-08-16 when `scenes/aerial-rafting-run.jpg` was added. The line above used to read
 **16 of 18** and **1 of 23**, and that was already stale before this file: the library had grown to 33

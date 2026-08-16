@@ -449,7 +449,7 @@ are exactly the two she named — **the heading** and **the deliverable in the w
 |---|---|---|---|---|
 | `order-details.html` | Package delivery | From · To · Parcel · Delivered · Operator · **Paid** | **Delivery photo** | `scenes/delivered-at-door.jpg` |
 | `order-details-inspection.html` | Roof inspection | Location · Structure · Delivered · Operator · **Paid** | **Inspection report** | `scenes/inspection-roof-cracked-tiles.jpg` |
-| `order-details-aerial.html` | Aerial photo &amp; video | Location · Shoot · Delivered · Operator · **Paid** | **Photo &amp; video set** — the photograph **and** a video card | `scenes/aerial-rafting-run.jpg` |
+| `order-details-aerial.html` | Aerial photo &amp; video | Location · Shoot · Delivered · Operator · **Paid** | **Photo &amp; video set** — **two cards**: the photograph, then the video | `scenes/aerial-rafting-run.jpg` + `scenes/aerial-rafting-boulders.jpg` |
 
 The three zone names are not invented for this screen — `voice.md` **O5** already fixes one name per
 deliverable: *delivery photo* · *inspection report* · *photo/video set*. Structure, zone order, action bar
@@ -475,28 +475,41 @@ pairing either way). The reasoning that decided it: with the breakdown gone ther
 total, so the sum is a fact of the record like the other four. `.dr-rows__row--total` is therefore spent on
 `order-review` alone, which is where a total still has rows to add up.
 
-**The aerial record's deliverable zone carries the video too, and the one picture is its poster** —
-2026-08-16 (rev 137), the designer on this frame: «добав сюди картку з відео прев'ю та можливістю
-скачати відео». The zone was named *Photo & video set* from the day it was built and showed a
-photograph only, so the screen had been promising a video it never carried. The photograph now wears
-a **play mark**, and under it sits a card: **Video · 0:38 · 46 MB** and **Download**. **The other two
-records do not change** — a delivery photo and an inspection report are single files, and `voice.md`
-**O5** names each of the three deliverables separately for exactly that reason. This is the first
-place the three instances differ in **structure** rather than in strings and one `<img>`; they are
-still one screen, because the thing that differs is the deliverable, which is the per-service data
-the split was made for.
+**The aerial record's deliverable zone holds two cards, one per file** — 2026-08-16 (rev 140), the
+designer against the single card the first build made: «має бути дві картки одна просто зображення …
+друга картка відео». The zone has been named *Photo & video set* (`voice.md` **O5**) since the day it
+was built and held one photograph, so it was naming a deliverable it did not carry. It now carries
+both: **the photograph on its own**, then **the video** — a preview across the card's top edge, the
+name and the facts under it, and the file's one action at the end of that line. **The other two
+records do not change**: a delivery photo and an inspection report are single files. This is the
+first place the three instances differ in **structure** rather than in strings and one `<img>`; they
+are still one screen, because what differs is the deliverable, which is the per-service data the
+split was made for.
 
-**One picture, not two — her call, made against a built frame.** The card was first built with its
-own 309 × 180 poster, and that poster could only be the same photograph: the repo holds one aerial
-frame (`visuals/gaps.md` B3 #17). Truthful — a poster *is* a frame of its video — but it showed the
-same picture twice and cost 194px of scroll. Three readings were measured and put to her, every one
-of them conforming; she took the one where the mark goes on the picture that was already there. The
-alternative shapes are recorded in the rev 137 log so they are not proposed again.
+**The structure is hers, from a card she pointed at** (Figma `97:18`) — cover, title, meta line,
+circular action — and so is the second picture (`97:22`, now `scenes/aerial-rafting-boulders.jpg`,
+`visuals/gaps.md` B3 #19). It is a **different** run from the photo card's frame, which is what lets
+the two files be told apart by what they show instead of by a badge. rev 137's readings, where one
+picture served as both photo and poster, existed only because the repo had one aerial frame; they are
+recorded in `concept.md` and are not to be re-proposed.
 
-**The record still fits its frame, by two pixels less than it did.** `main` measures `scrollHeight`
-**579** against `clientHeight` **577** — content ends at 716 against an inner bottom of 714, where
-rev 136 left 94px of slack. Zero horizontal overflow, and the action bar is a fixed footer, so
-`Book again` and `Delete order` never leave the screen.
+**The cover runs to the card's three edges**, and that is the imagery rule rather than a new taste: a
+photograph *is* the surface and covers it, so a picture inset in a padded card is the sticker the
+rule forbids. The card gives up its padding, clips with its own 16 radius, and the padding moves onto
+the line below — the only thing left that needs it.
+
+**The play mark carries no outline** — her word on the built frame, «забери stroke з цієї кнопки у
+мене така кнопка без обводок». It was built with a 2px `--ink` ring for `WCAG 1.4.11` and the ring
+came off; what carries the criterion now is the glyph, `--ink` on `--btn2` at **11.54:1**, the reading
+`.dr-avatar-edit__badge` and `.dr-upload` already use. Measured on this cover, the disc's edge against
+the picture runs **6.46:1 mean**, 74% of the circumference at or above 3:1, 1.00:1 at its worst.
+Recorded as a decision, not filed as a defect.
+
+**Measured on the build.** Zone **341 × 440**: photograph **341 × 180**, video card **341 × 248**
+(cover 180 + line 68). `main` **scrollHeight 743 against clientHeight 577** — **166px** of scroll, and
+this is the first of the three records that scrolls. Zero horizontal overflow; the action bar is a
+fixed footer, so `Book again` and `Delete order` never leave the screen. Every target **44 × 44** or
+wider; green unchanged at **15,124px² · 4.97%** with `Book again` still the only green control.
 
 ### Operator — Step 8
 
