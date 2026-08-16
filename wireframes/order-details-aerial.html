@@ -89,54 +89,55 @@
            THE SECTION CARRIES THE ZONE NAME, THE IMG CARRIES WHAT IS IN IT (WCAG 1.1.1). -->
       <p class="zlabel dr-label">Photo &amp; video set <span class="dr-label__act">▸ what the operator sent back (RJ-C4)</span></p>
       <section class="dr-stack" aria-label="Photo &amp; video set">
-        <div class="dr-well dr-well--photo" style="width:100%;height:180px;"><img src="../assets/scenes/thumbs/aerial-rafting-run.jpg" alt="A raft of paddlers in helmets and yellow life vests dropping through white water between wet rock walls, shot from above." loading="lazy" decoding="async"></div>
-
-        <!-- THE VIDEO, WHICH THE ZONE HAS BEEN PROMISING SINCE IT WAS NAMED — the designer
-             on this frame, 2026-08-16 (rev 137): "добав сюди картку з відео прев1ю та
-             можливістю скачати відео". The label above reads "Photo & video set" and the
-             zone held one photograph, so the screen named a deliverable it did not carry.
+        <!-- THE VIDEO THE ZONE HAS BEEN PROMISING SINCE IT WAS NAMED — the designer on this
+             frame, 2026-08-16 (rev 137): "добав сюди картку з відео прев1ю та можливістю
+             скачати відео". The label above reads "Photo & video set" and the zone held one
+             photograph, so the screen named a deliverable it did not carry.
+             ONE PICTURE, AND IT IS THE POSTER — her call the same day, asked with the
+             standards first and every option conforming. The card was built with its own
+             309 x 180 poster and that poster could only be THIS frame, the repo holding one
+             aerial picture (visuals/gaps.md B3 #17); the same photograph twice was truthful
+             (a poster IS a frame of its video) and cost 194px of scroll. So the mark moved
+             onto the picture that was already here and the card kept the facts and the
+             action. Nothing repeats, and the record still fits the frame.
              ONLY THIS RECORD GAINS IT. A delivery photo and an inspection report are single
              files; voice.md O5 names the three deliverables separately for exactly that
              reason. This is the first place the three instances differ in STRUCTURE rather
              than in strings and one <img> — and they are still one screen, because what
              differs is the deliverable, which is the per-service data the split was made for.
-             THE POSTER IS THE PHOTOGRAPH ABOVE IT. The repo holds one aerial frame
-             (visuals/gaps.md B3 #17), and a poster IS a frame of its video, so the repeat is
-             truthful rather than convenient. It is put to the designer, not hidden: nothing
-             fails a guideline either way, so it is taste, and it goes away the moment a
-             second frame from that run arrives. -->
-        <article class="dr-card dr-card--compact dr-listing">
-          <!-- ALT IS NULL, DELIBERATELY (WCAG 1.1.1 / H67). The identical frame is described
-               in full 12px above this one; a second copy of that sentence would announce one
-               picture twice. What is NEW here is that it is a video, and that is carried by
-               the control's name and by the line under it, both of them text. If a different
-               frame is ever supplied, this alt stops being decorative and must be written. -->
-          <span class="dr-well dr-well--photo" style="width:100%;height:180px;">
-            <img src="../assets/scenes/thumbs/aerial-rafting-run.jpg" alt="" loading="lazy" decoding="async">
-            <!-- THE 44px CIRCULAR ACTION THE KIT ALREADY HAS, WEARING ONE MODIFIER. HIG · 44pt
-                 exactly (44 x 44, glyph 20 — the scale's own pair for this box), and the ring is
-                 how a control keeps WCAG 1.4.11 over a picture whose pixels are not ours: --ink
-                 on --btn2 is 11.54:1 and that edge is INSIDE the control, so it holds against
-                 every photograph. Reasoning and the measured frame are in kit.css. -->
-            <button class="dr-btn dr-btn--icon dr-btn--onphoto" type="button" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></button>
+             THE ALT IS UNCHANGED AND STILL DESCRIBES THE FRAME (WCAG 1.1.1). The picture did
+             not become a different picture by gaining a control; that the frame also plays is
+             said by the control's own name, which is text. -->
+        <div class="dr-well dr-well--photo" style="width:100%;height:180px;">
+          <img src="../assets/scenes/thumbs/aerial-rafting-run.jpg" alt="A raft of paddlers in helmets and yellow life vests dropping through white water between wet rock walls, shot from above." loading="lazy" decoding="async">
+          <!-- THE 44px CIRCULAR ACTION THE KIT ALREADY HAS, WEARING ONE MODIFIER. HIG · 44pt
+               exactly (44 x 44, glyph 20 — the scale's own pair for this box), and the ring is
+               how a control keeps WCAG 1.4.11 over a picture whose pixels are not ours: --ink
+               on --btn2 is 11.54:1 and that edge is INSIDE the control, so it holds against
+               every photograph. Reasoning and the measured frame are in kit.css. -->
+          <button class="dr-btn dr-btn--icon dr-btn--onphoto" type="button" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></button>
+        </div>
+
+        <!-- THE TWO FACTS A THUMB NEEDS BEFORE IT TAPS DOWNLOAD — how long, and what it
+             costs in data. voice.md P3's discipline (the fact before the tap) applied to a
+             download instead of a price. 0:38 against the summary's "Event · 30 min" is not
+             a contradiction: one is the session booked, the other the set that came back.
+             THE CARD IS THE KIT'S ROW LISTING WITH NOTHING ADDED — .dr-card--row + __body,
+             the shape inspection-report's findings already carry; what stands beside the body
+             is the action instead of a severity chip, and the picture it describes is the
+             surface above it rather than a well inside it. -->
+        <article class="dr-card dr-card--compact dr-card--row dr-listing">
+          <span class="dr-listing__body">
+            <span class="dr-listing__name">Video</span>
+            <span class="dr-listing__desc">0:38 &#183; 46 MB</span>
           </span>
-          <!-- THE TWO FACTS A THUMB NEEDS BEFORE IT TAPS DOWNLOAD — how long, and what it
-               costs in data. voice.md P3's discipline (the fact before the tap) applied to a
-               download instead of a price. 0:38 against the summary's "Event · 30 min" is not
-               a contradiction: one is the session booked, the other the set that came back. -->
-          <div class="dr-listing__foot">
-            <span class="dr-listing__body">
-              <span class="dr-listing__name">Video</span>
-              <span class="dr-listing__desc">0:38 &#183; 46 MB</span>
-            </span>
-            <!-- DOWNLOAD IS HER WORD ("скачати"), fixed once in voice.md as A11. Not Add (A3
-                 is the client putting a file INTO DRON) and not Withdraw (O6 is money leaving
-                 a balance). Visible label is one word; the accessible name carries the object,
-                 and contains the visible label — WCAG 2.5.3 Label in Name.
-                 GREY, NOT GREEN: Book again in the bar below is this screen's one green
-                 control, and concept.md allows exactly one. -->
-            <button class="dr-btn dr-btn--secondary" type="button" aria-label="Download video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.8v10.4"/><path d="M7.6 9.8 12 14.2 16.4 9.8"/><path d="M5 19.2h14"/></svg>Download</button>
-          </div>
+          <!-- DOWNLOAD IS HER WORD ("скачати"), fixed once in voice.md as A11. Not Add (A3
+               is the client putting a file INTO DRON) and not Withdraw (O6 is money leaving
+               a balance). Visible label is one word; the accessible name carries the object,
+               and contains the visible label — WCAG 2.5.3 Label in Name.
+               GREY, NOT GREEN: Book again in the bar below is this screen's one green
+               control, and concept.md allows exactly one. -->
+          <button class="dr-btn dr-btn--secondary" type="button" aria-label="Download video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.8v10.4"/><path d="M7.6 9.8 12 14.2 16.4 9.8"/><path d="M5 19.2h14"/></svg>Download</button>
         </article>
       </section>
     </main>
