@@ -1130,14 +1130,12 @@ header.dr-topbar,
   color: var(--slate);                                            /* 5.95:1 */
 }
 .dr-listing__meta{ display: flex; align-items: baseline; gap: var(--sp-within-lg); margin-top: var(--sp-6); }
-/* THE SAME LISTING WITH ITS PICTURE OVER THE BODY INSTEAD OF BESIDE IT
-   (2026-08-16, rev 137) — a file in a deliverable set: a preview big enough to
-   recognise, then the name, the facts and the one thing you can do with it on
-   a single line. The card drops .dr-card--row and stays a column; this is the
-   line at the bottom of it. Nothing else changes — __body still takes the
-   slack and ellipsizes, __name and __desc keep their steps and their measured
-   pairs (14.37:1 / 5.95:1 on --card). One user: order-details-aerial. */
-.dr-listing__foot{ display: flex; align-items: center; gap: var(--sp-snug); }
+/* .dr-listing__foot was cut and retired the same day (2026-08-16, rev 137).
+   It held the name, the facts and the action on one line UNDER a poster inside
+   the card. The designer took the reading where the zone shows one picture and
+   it is the video's poster, so the card has no poster in it and the line IS the
+   card — which .dr-card--row already is. Retired, not benched: unlike
+   .dr-well--shot it named no shape the plain row cannot make. */
 
 /* ═══ THE CHOICE CARD ═════════════════════════════════════════════════════
    Navigation, not a picker — both instances are links that leave the screen.

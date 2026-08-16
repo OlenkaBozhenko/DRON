@@ -475,26 +475,28 @@ pairing either way). The reasoning that decided it: with the breakdown gone ther
 total, so the sum is a fact of the record like the other four. `.dr-rows__row--total` is therefore spent on
 `order-review` alone, which is where a total still has rows to add up.
 
-**The aerial record's deliverable zone holds two items, and it is the only one of the three that does** —
-2026-08-16 (rev 137), the designer on this frame: «добав сюди картку з відео прев'ю та можливістю скачати
-відео». The zone was named *Photo & video set* from the day it was built and showed a photograph only, so the
-screen had been promising a video it never carried. Under the picture there is now a card: the poster with a
-**play mark** on it, the line **Video · 0:38 · 46 MB**, and **Download**. **The other two records do not
-change** — a delivery photo and an inspection report are single files, and `voice.md` **O5** names each of the
-three deliverables separately for exactly that reason. This is the first place the three instances differ in
-**structure** rather than in strings and one `<img>`; they are still one screen, because the thing that differs
-is the deliverable, which is the per-service data the split was made for.
+**The aerial record's deliverable zone carries the video too, and the one picture is its poster** —
+2026-08-16 (rev 137), the designer on this frame: «добав сюди картку з відео прев'ю та можливістю
+скачати відео». The zone was named *Photo & video set* from the day it was built and showed a
+photograph only, so the screen had been promising a video it never carried. The photograph now wears
+a **play mark**, and under it sits a card: **Video · 0:38 · 46 MB** and **Download**. **The other two
+records do not change** — a delivery photo and an inspection report are single files, and `voice.md`
+**O5** names each of the three deliverables separately for exactly that reason. This is the first
+place the three instances differ in **structure** rather than in strings and one `<img>`; they are
+still one screen, because the thing that differs is the deliverable, which is the per-service data
+the split was made for.
 
-**The poster is the same photograph the zone already shows**, since the repo holds one aerial frame
-(`visuals/gaps.md` B3 #17). Truthful — a poster *is* a frame of its video — and the duplicate is on the
-screen until a second frame from that run arrives. It is put to the designer rather than hidden; no guideline
-is broken either way, so it is taste, and the alternative shape (a 96 × 72 row instead of a full-width poster)
-is drawn and measured in the rev 137 log.
+**One picture, not two — her call, made against a built frame.** The card was first built with its
+own 309 × 180 poster, and that poster could only be the same photograph: the repo holds one aerial
+frame (`visuals/gaps.md` B3 #17). Truthful — a poster *is* a frame of its video — but it showed the
+same picture twice and cost 194px of scroll. Three readings were measured and put to her, every one
+of them conforming; she took the one where the mark goes on the picture that was already there. The
+alternative shapes are recorded in the rev 137 log so they are not proposed again.
 
-**This is the first record that scrolls.** The three were built to fit 375 × 812 exactly and rev 136 left the
-aerial one with 94px of slack; the video card costs more than that. A scrolling detail screen is `HIG ·
-Scroll views`' normal case and no state changes — the action bar is a fixed footer, so `Book again` and
-`Delete order` stay on screen at every scroll position.
+**The record still fits its frame, by two pixels less than it did.** `main` measures `scrollHeight`
+**579** against `clientHeight` **577** — content ends at 716 against an inner bottom of 714, where
+rev 136 left 94px of slack. Zero horizontal overflow, and the action bar is a fixed footer, so
+`Book again` and `Delete order` never leave the screen.
 
 ### Operator — Step 8
 
