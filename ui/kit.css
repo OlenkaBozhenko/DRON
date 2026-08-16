@@ -89,6 +89,26 @@
                                and still fill-only. No solid --trust is cut: nothing draws
                                one, and --danger has sat declared-and-undrawn since rev 25 as
                                the standing reason not to. */
+  /* ── THE NIGHT PAIR (2026-08-16) — the product's ONE dark surface ─────────
+     The call screen, from the designer's reference (Figma `YlGWlsWWjKSCxhONMzGG2F`
+     node `99:26`). It is not a second theme and it is not a dark mode: it is the
+     one surface the PLATFORM owns rather than the product. WhatsApp, Telegram,
+     Messenger, FaceTime and iOS's own CallKit are all dark whatever the app's
+     theme is, because a call is a full-screen takeover that has to recede — so
+     `#F7F5F2` stays the product's ground on every screen but this one.
+     ONE NEW VALUE, NOT TWO. --night IS --ink, declared again under the name of
+     the role it plays here, which is the palette's own habit — --on-green is the
+     same #1A1A1A wearing a third name. Only --night-raised is a colour the
+     system did not have.
+     MEASURED ON IT, and every figure is a pair the kit already records inverted:
+     --page on --night 15.99:1 (the toast's own pair) · --btn2 on --night 11.54:1,
+     the dimmer light ink for the duration · --night-raised on --night 1.28:1, the
+     tone step, which sits between --card-on-page 1.11 and --btn2-on-card 1.25 ·
+     --page on --night-raised 12.48:1. --slate is BARRED here and the number is
+     why: 2.42:1 on --night, a real 1.4.3 failure, so the secondary ink on this
+     surface is --btn2 and never the one the light screens use. */
+  --night:        #1A1A1A;  /* the call ground — the same value as --ink, named for the role */
+  --night-raised: #2E2E2E;  /* one step above it: the control bar, the avatar disc */
   --trust-wash:  #D8E6F2;   /* 1.05:1 on the card, in the wash family's own band (green 1.03,
                                warn 1.01, danger 1.12). Named: 1.03:1 against the --media chip
                                beside it — hue, not luminance, separates them, which is why
@@ -299,6 +319,11 @@
   --sz-area-min:  80px;    /* the multiline field's floor, from the wireframe */
   --sz-star:      32px;
   --sz-fchip-x:   18px;
+  --sz-avatar-call: 176px; /* the call screen's portrait disc. Read off the designer's
+                              reference at 48.1% of its frame width and landed on the
+                              8-grid at 46.9% of 375 — not --sz-avatar-xl 120, which is a
+                              profile photo inside a scrolling page, where this one IS the
+                              screen's middle. */
   --sz-grip-w:    36px;    /* the sheet's grabber */
   --sz-grip-h:    5px;
   --scrim: color-mix(in srgb, var(--ink) 40%, transparent);  /* warm, never black */
@@ -643,13 +668,20 @@ header.dr-topbar,
    Buttons` asks a destructive action to look destructive, and no user has to
    learn what a red End call does.
 
-   MEASURED, AND THE NUMBER IS THIN ENOUGH TO SAY OUT LOUD: --page on --danger
-   is **4.53:1**, which clears `WCAG 1.4.3`'s 4.5:1 for the 15/600 label by
-   0.03. It is a pass and it is the thinnest text pair in the system — every
-   other recorded pair sits at 4.77 or above. The palette has no lighter ink
-   than --page (no #FFFFFF, by rule), so 4.53 is the ceiling for this fill;
-   --ink on --danger is 3.53:1 and fails outright, which is why the label is
-   never charcoal here the way it always is on green.
+   IT IS AN ICON-ONLY DISC AS BUILT, SO 1.4.3 DOES NOT APPLY AT ALL. It shipped
+   for one build as a labelled block button and became a 44px red disc on the
+   designer's reference (Figma `99:26`) — which improves the conformance story
+   rather than costing it, because with no visible text there is no text pair to
+   defend. What remains is `WCAG 1.4.11` on the GLYPH: --page on --danger,
+   4.53:1 against a 3:1 floor. See .dr-btn--danger-solid.dr-btn--icon below for
+   the disc's own edge against the bar.
+   THE LABELLED READING IS KEPT BECAUSE IT IS STILL LIVE if the label returns:
+   --page on --danger clears `1.4.3`'s 4.5:1 by 0.03 and would be the thinnest
+   text pair in the system — every other recorded pair sits at 4.77 or above.
+   The palette has no lighter ink than --page (no #FFFFFF, by rule), so 4.53 is
+   the ceiling for this fill; --ink on --danger is 3.53:1 and fails outright,
+   which is why the label would never be charcoal here the way it always is on
+   green.
    THE ALTERNATIVE WAS BUILT AND MEASURED BESIDE IT: --danger-ink #9A3115 as
    the fill gives --page at **6.83:1**, comfortable — at the cost of spending an
    INK token as a surface, against the palette's own naming (ink = foreground,
@@ -2425,11 +2457,142 @@ header.dr-topbar,
    palette's strongest, and no new colour. State is never carried by the fill
    alone: aria-pressed rides with it, and the label under the glyph does not
    change, so the control keeps one name (`2.5.3`).
-   DECLARED HERE, DRAWN ON NO BUILT FRAME: `call` is the base state, where
-   nothing is muted and the speaker is off. It is the pressed half of a control
-   that exists, not a rung waiting for a home like --sh-onphoto. */
+   UNSPENT SINCE THE SAME DAY, AND KEPT RATHER THAN CUT. It was built for the
+   light call screen; the designer's reference (Figma `99:26`) replaced that
+   screen's labelled icon-over-caption controls with bare discs on a dark bar,
+   so `call` now wears .dr-btn--night[aria-pressed] instead and nothing draws
+   this. It stays declared the way --sh-onphoto and .dr-btn--text do: a shape
+   that was measured and lost, written down so it is not re-proposed as new,
+   and ready for the first share-sheet channel that turns out to be a toggle. */
 .dr-channel[aria-pressed="true"]{ background: var(--ink); color: var(--page); }   /* 15.99:1 */
 .dr-channel[aria-pressed="true"]:hover{ background: var(--ink); filter: brightness(var(--bright-hover)); }
+
+/* ═══ THE CALL SURFACE ════════════════════════════════════════════════════
+   Built 2026-08-16 to the designer's reference — Figma `YlGWlsWWjKSCxhONMzGG2F`
+   node `99:26`, a flattened image she dropped on the canvas, the same way node
+   `95:10` gave the pay drawer its shape and `97:18` gave the video card its own.
+   Her instruction, on the light frame that shipped first: «зроби цей екран як
+   тут», then «лиш без емоджі і меню 3 dots».
+
+   WHAT WAS TAKEN FROM THE REFERENCE: the dark ground, the minimise control top
+   left, the name over the duration centred, the stacked pair of round actions
+   top right, the portrait disc in the middle, and the floating pill of circular
+   controls with a red end button at its right.
+
+   WHAT WAS NOT, AND WHY — each is a rule this project already holds:
+   · THE DOODLE WALLPAPER. It is WhatsApp's own decorative pattern, and §0's
+     imagery rule is "real, never decoration". The ground here is flat --night.
+     If this surface is ever to carry a texture it has to be DRON's, not
+     borrowed, and it would be a `visuals/` asset rather than a CSS trick.
+   · THE FILLED GLYPHS. The reference draws iOS-style solid marks; §5's icon
+     system is flat outline on a 24-grid at 1.7, declared once, currentColor, no
+     fill. One screen does not get its own icon language.
+   · THE MAGENTA PORTRAIT DISC. That plum and its pink figure are outside the
+     palette entirely. The disc is --night-raised and the figure is the kit's own
+     outline person — which is also what the reference is showing: a PLACEHOLDER,
+     because "Samuel" has no photo either.
+
+   NO GREEN AT ALL on this surface, and that is the count rule holding rather
+   than bending: --green is 1.69:1 on the light page and would be a different
+   colour again on --night, so the accent simply does not come here. The only
+   saturated fill is --danger under End call, which is the one thing on the
+   screen that must not be mistaken. */
+.dr-call{ background: var(--night); color: var(--page); }                       /* 15.99:1 */
+.dr-call .dr-statusbar{ background: var(--night); color: var(--page); }
+.dr-call .dr-main{ gap: var(--sp-group); }
+/* the wireframe's structure annotation has to survive the inversion — --slate
+   is 2.42:1 here and unreadable, so on this one surface it takes --btn2 */
+.dr-call .dr-label{ color: var(--btn2); }                                       /* 11.54:1 */
+.dr-call .dr-home span{ background: var(--page); }
+/* the action bar keeps its rhythm and gives up its light ground and its rule —
+   there is nothing for a hairline to separate when both sides are --night. The
+   bottom inset goes to 0 because this is the one action bar with a home
+   indicator under it rather than instead of one. */
+.dr-call .dr-actionbar{ background: var(--night); border-top: 0; padding-bottom: 0; }
+
+/* THE TOP ROW. Three columns and the outer two are the same 44 wide, so the
+   name sits optically centred without being absolutely positioned the way the
+   nav bar's title is — there is no nav bar here to hang it on. */
+.dr-call__top{ display: flex; align-items: flex-start; gap: var(--sp-snug); }
+.dr-call__who{ flex: 1; min-width: 0; text-align: center; }
+.dr-call__name{
+  display: block;
+  font-size: var(--t-display-size); font-weight: var(--t-display-weight);
+  line-height: var(--t-display-line); letter-spacing: var(--t-display-track);
+  color: var(--page);                                                           /* 15.99:1 */
+}
+/* THE DURATION IS THE DIMMER INK AND IT IS TABULAR. --btn2 rather than --slate,
+   which fails outright on this ground; tabular because a clock that reflows its
+   own width every second is exactly what those figures exist to stop. */
+.dr-call__time{
+  display: block; margin-top: var(--sp-2);
+  font-size: var(--t-lead-size); font-weight: var(--weight-regular);
+  line-height: var(--t-title-line); color: var(--btn2);                         /* 11.54:1 */
+  font-variant-numeric: tabular-nums;
+}
+.dr-call__side{ display: flex; flex-direction: column; gap: var(--sp-snug); flex: none; }
+
+/* THE STAGE — everything between the top row and the bar, with the portrait
+   disc centred in it. flex:1 so the disc holds the middle of the frame at any
+   height instead of being pushed by whatever is above it. */
+.dr-call__stage{ flex: 1; display: flex; align-items: center; justify-content: center; }
+.dr-call__avatar{
+  width: var(--sz-avatar-call); height: var(--sz-avatar-call); flex: none;
+  border-radius: var(--r-circle); overflow: hidden;
+  background: var(--night-raised);                                              /* 1.28:1 on the ground */
+  display: flex; align-items: center; justify-content: center;
+  color: var(--page);                                                           /* the placeholder figure — 12.48:1 */
+}
+.dr-call__avatar img{ width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.dr-call__avatar .dr-ic{ width: 50%; height: 50%; }
+
+/* THE CONTROL BAR. A pill of circular actions, and the one place in the product
+   where a surface floats over another without a shadow — separation is the
+   1.28:1 tone step, the same way every card on the light side separates by tone
+   and radius alone.
+   IT HUGS ITS CONTROLS RATHER THAN THE SCREEN, and both numbers are read off the
+   reference rather than chosen: its five discs measure 35px in a 295-wide frame,
+   which is 44 at 375 — the kit's own --sz-action, arrived at from her drawing
+   independently — on 46px centres, a 14px gap. --sp-14 was already a declared
+   rung. So the pill is 8 + 4×44 + 3×14 + 8 = 234 wide, centred, against the
+   reference's 294 for five; drop one disc and one gap from that and it is 235.5.
+   A full-width bar with the air spread between four controls was built first and
+   measured 341.4 with 29.9px gaps — nearly double the reference's rhythm. */
+.dr-call__bar{
+  align-self: center;
+  display: flex; align-items: center; gap: var(--sp-14);
+  padding: var(--sp-within-lg);
+  border-radius: var(--r-pill); background: var(--night-raised);
+}
+
+/* THE CIRCULAR CONTROL ON THE DARK BAR — .dr-btn--icon inverted. A rule is
+   needed only for ORDER, the same reason .dr-btn--primary.dr-btn--icon needed
+   one: --icon is declared first and its --btn2 fill would win the tie.
+   The disc is --night against the bar's --night-raised, 1.28:1 — well under
+   1.4.11's 3:1, and what carries the criterion is the GLYPH at 15.99:1, the
+   reading this kit already ships three times (.dr-btn--onphoto,
+   .dr-avatar-edit__badge, .dr-upload). A control identified by its mark. */
+.dr-btn--night{ background: var(--night); color: var(--page); }                 /* glyph 15.99:1 */
+.dr-btn--night:hover{ background: var(--night-raised); filter: brightness(var(--bright-hover)); }
+.dr-btn--night:focus-visible{ outline: var(--focus-w) solid var(--page); outline-offset: var(--focus-offset); }
+/* pressed = the light half of the pair, the same inversion .dr-channel takes on
+   the light side, and the same 15.99:1 read the other way round. State never
+   rides on fill alone — aria-pressed goes with it (`WCAG 1.4.1`, `4.1.2`) — and
+   the label does not flip to *Unmute*: one control, one name (`2.5.3`). */
+.dr-btn--night[aria-pressed="true"]{ background: var(--page); color: var(--night); }   /* 15.99:1 */
+.dr-btn--night[aria-pressed="true"]:hover{ background: var(--page); filter: brightness(.97); }
+
+/* END CALL AS A DISC (2026-08-16) — .dr-btn--danger-solid and .dr-btn--icon worn
+   at once, and again the rule exists only because --icon is declared later.
+   --page glyph on --danger is 4.53:1, comfortably past 1.4.11's 3:1 for a
+   graphical mark; the disc against the bar's --night-raised is 2.75:1, which is
+   under it, and the glyph is what identifies the control — the same reading the
+   line above records. The name is on the element, the icon being the only
+   content (`WCAG 4.1.2`). Flat, like every other filled button that is not the
+   green primary. */
+.dr-btn--danger-solid.dr-btn--icon{ background: var(--danger); color: var(--page); }
+.dr-btn--danger-solid.dr-btn--icon:hover{ background: var(--danger); filter: brightness(var(--bright-hover)); }
+.dr-btn--danger-solid:focus-visible{ outline: var(--focus-w) solid var(--page); outline-offset: var(--focus-offset); }
 
 /* ═══ THE PAGER ═══════════════════════════════════════════════════════════
    Settled 2026-08-03 by the designer: the active dot is green, the resting

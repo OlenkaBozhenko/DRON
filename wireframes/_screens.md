@@ -398,29 +398,68 @@ navigates on two others is the same drift arriving through behaviour instead of 
   for a typed message (a locked gate, a wrong entrance, a drone already overhead); `RJ-C1` keeps the
   operator a reachable human.
 - **Place in flow:** *not on the MJ-1 spine.* `Live tracking & ETA` → **Contact operator** drawer →
-  *Call operator* → here; **End call** returns to tracking. Nothing downstream depends on it.
+  *Call operator* → here; **Minimise** and **End call** both return to tracking. Nothing downstream
+  depends on it.
 - **States:** **base only** — the connected call. Built as one file, `call.html`.
 - **It is DRON's own screen, not the OS dialer.** Built 2026-08-16 on the designer's word —
   *«зроби фрейм який відкриє дзвінок»* — replacing the `tel:` handoff rev 141 shipped. Her call is
   also the more coherent one: the number is masked (`ux-research/user-stories-cjm.md` logs the
   direct-channel risk in red), so it was never the client's to see, and handing them a dialer showing
-  a number DRON invented is the one thing the masking exists to prevent. **The invented number leaves
+  a number DRON invented is the one thing the masking exists to prevent. **The invented number left
   with the `tel:`** — no frame in the product states a phone number now.
-- **No round avatar, and that is `visuals/gaps.md` rather than taste.** B1 #4 records that the
-  product's one human cutout, `operator.png`, is shot three-quarters *from behind*, so a circular
-  crop gives the back of a head — the same reason `order-confirmed`'s `avatar:AM` slot was left
-  unplaced. So the screen carries the **`.dr-op` card byte-identical to the one on tracking**: the
-  same picture in the same rectangular treatment, the same name, rating and *Verified by DRON* /
-  *Insured* chips. It costs the iOS hero portrait and it buys `RJ-C1` standing on the call screen
-  instead of only behind it. When `people/person-operator-andriy.png` arrives (gaps.md B1), this is
-  the second screen that would take it.
-- **No green, and the screen's one loud surface is red.** `End call` is `.dr-btn--danger-solid`, the
-  first spend of `--danger` as a fill since it was declared at rev 25 with the standing note that
-  nothing had asked for a red surface. Measured `--page` on `--danger` **4.53:1** — a `WCAG 1.4.3`
-  pass by 0.03, and the thinnest text pair in the system; the alternative, `--danger-ink` as the fill
-  at **6.83:1**, is measured beside it and is the designer's to take. It ships **flat**: `--sh-sm` is
-  spent under the green primary, and `.dr-btn--pay` already settled that a filled button in another
-  colour takes no shadow.
+- **Built to her own reference, and it is the product's one dark screen.** She pointed at Figma
+  `YlGWlsWWjKSCxhONMzGG2F` node `99:26` — *«зроби цей екран як тут»* — then *«лиш без емоджі і меню
+  3 dots»*, so the emoji reaction and the "…" overflow are the two things from that frame
+  deliberately absent. **The dark ground is the platform rather than a second theme:** WhatsApp,
+  Telegram, Messenger, FaceTime and iOS's own CallKit are all dark whatever the app's theme is,
+  because a call is a full-screen takeover that has to recede. `#F7F5F2` stays the product's ground
+  on every other screen. Two tokens carry it — `--night` (the same `#1A1A1A` as `--ink`, named for
+  the role, the way `--on-green` is) and `--night-raised` `#2E2E2E`, **the one new colour value.**
+- **Three things from the reference were not copied**, each because a project rule already answers
+  it: the **doodle wallpaper** (WhatsApp's own decoration — §0's imagery rule is *real, never
+  decoration*; the ground is flat `--night`, and if this surface ever carries a texture it has to be
+  DRON's); the **filled iOS glyphs** (§5's icons are flat outline on a 24-grid at 1.7, declared once
+  — one screen does not get its own icon language); and the **magenta portrait disc** (outside the
+  palette entirely).
+- **The portrait is a placeholder, and so is the reference's.** `visuals/gaps.md` B1 #4 records that
+  the product's one human cutout, `operator.png`, is shot three-quarters *from behind*, so a circular
+  crop gives the back of a head — the same finding that left `order-confirmed`'s `avatar:AM` slot
+  unplaced. The disc is `--night-raised` holding the kit's own outline person glyph, which is exactly
+  what the reference shows for *Samuel*, who has no photo either. When
+  `people/person-operator-andriy.png` arrives it drops into this disc as a picture and nothing else
+  on the screen moves.
+- **No nav bar — `HIG · Modality`.** A call is presented modally rather than pushed onto a stack, so
+  the ways out are the two the reference draws: **Minimise** (back to the map, the call carries on)
+  and **End call**. It is the product's only screen with neither a back control nor the DRON mark,
+  which `_conventions.md §12b`'s checklist does not provide for because the checklist assumes a
+  navigational screen. Recorded as a departure, not filed as a defect.
+- **Minimise answers the cost the first build recorded, and only half of it.** That frame's one exit
+  was *End call*, and its note said plainly that you could not watch the map while you talked; her
+  reference draws the control that fixes it. **The other half is not built** — a call banner on
+  `tracking`, so a running call is visible once you are back on the map, is a second screen's change.
+- **Two controls have no job behind them in `sitemap.md`**, and both are in her frame rather than
+  invented here: **Video** (a video call with the operator) and the **person+** top right, built as
+  *Add support to the call* → `contact-support.html`, which is the nearest thing DRON does have
+  (`EJ-2`, reach a human). Flagged rather than smoothed over: if the second is not that, it should
+  come off rather than be invented into something. The bubble beside it opens `chat.html`, a real
+  screen, and needs no interpretation.
+- **No green at all, and the one saturated fill is red.** `--green` is 1.69:1 on the light page and
+  would be a different colour again on `--night`, so the accent simply does not come here — the count
+  rule holding rather than bending. `End call` is `.dr-btn--danger-solid.dr-btn--icon`, the first
+  spend of `--danger` as a fill since it was declared at rev 25. **Icon-only, so `WCAG 1.4.3` does
+  not apply at all** — the thin 4.53:1 text pair the light build carried is gone with the label; what
+  remains is `1.4.11` on the glyph, `--page` on `--danger` at **4.53:1** against a 3:1 floor. The
+  frame carries **no shadow**, verified by computed style.
+- **Measured, 375 × 812.** Bar **234 × 60**, centred, four **44 × 44** discs on **14px** gaps — all
+  three numbers read off the reference rather than chosen: its five discs measure 35px in a 295-wide
+  frame, which is 44 at 375, on 46px centres. Portrait disc **176** (`--sz-avatar-call`, the
+  reference's 48.1% of frame width landed on the 8-grid at 46.9%), centred between the top row and
+  the bar at **184 / 192** — the reference balances it the same way. Zero scroll, zero horizontal
+  overflow, every target 44 or wider. Pairs: `--page` on `--night` **15.99:1**, `--btn2` on `--night`
+  **11.54:1** (the duration), `--night-raised` on `--night` **1.28:1** (the tone step, between the
+  light side's 1.11 and 1.25), `--page` on `--night-raised` **12.48:1**. **`--slate` is barred on
+  this surface at 2.42:1** — a real `1.4.3` failure — which is why the secondary ink here is `--btn2`
+  and never the one the light screens use.
 - **Two states are traceable and deliberately not built:** **calling** (loading — the seconds before
   the operator picks up) and **no answer** (error — with *Chat with the operator* / *Contact support*
   as the way out, so it is not a dead-end). The designer asked for *a* frame, singular; these are

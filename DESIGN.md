@@ -1183,6 +1183,32 @@ mark, a title and actions, and shares with this one only the word *message*.
   **289.4 × 44**, `--ink` on `--media` **13.33:1**, no focus ring: the caret carries `WCAG 2.4.7`)
   and the 44px Send disc.
 
+### The night pair — the one dark surface (`.dr-call`)
+
+The call screen, built to the designer's reference (Figma `YlGWlsWWjKSCxhONMzGG2F` node `99:26`).
+**Not a second theme and not a dark mode:** WhatsApp, Telegram, Messenger, FaceTime and iOS's own
+CallKit are all dark whatever the app's theme is, because a call is a full-screen takeover that has
+to recede. `#F7F5F2` stays the product's ground on every other screen.
+
+| Token | Value | Role | Measured |
+|---|---|---|---|
+| `--night` | `#1A1A1A` | the call ground | the same value as `--ink`, declared again under the name of the role it plays — the palette's own habit, `--on-green` being a third name for it |
+| `--night-raised` | `#2E2E2E` | the control bar, the portrait disc | **the one new colour value.** `1.28:1` on `--night` — the tone step, between the light side's `--card`-on-page **1.11** and `--btn2`-on-card **1.25** |
+
+- **Inks:** `--page` on `--night` **15.99:1** (the toast's own pair, inverted); `--btn2` on `--night`
+  **11.54:1**, the dimmer light ink the duration takes; `--page` on `--night-raised` **12.48:1**.
+- **`--slate` is barred on this surface** and the number is why: **2.42:1** on `--night`, a real
+  `WCAG 1.4.3` failure. The secondary ink here is `--btn2` and never the one the light screens use.
+- **No green at all.** `--green` is 1.69:1 on the light page and would be a different colour again
+  on `--night`, so the accent does not come here — the count rule holding rather than bending.
+- **Not copied from the reference**, each answered by a rule already held: the doodle wallpaper
+  (§0's imagery rule is *real, never decoration*), the filled iOS glyphs (§5's outline system,
+  declared once), the magenta portrait disc (outside the palette).
+- **Geometry, read off the reference rather than chosen:** its five bar discs measure 35px in a
+  295-wide frame — **44 at 375**, the kit's own `--sz-action` — on 46px centres, a **14px** gap
+  (`--sp-14`). With four controls the pill is **234 × 60**, centred. Portrait disc **176**
+  (`--sz-avatar-call`), the reference's 48.1% of frame width landed on the 8-grid at 46.9%.
+
 ### Destructive fill (`.dr-btn--danger-solid`)
 
 `End call` on `call`, and the **first spend of `--danger` as a surface** — the token was declared at
@@ -1190,28 +1216,32 @@ rev 25 and drawn nowhere since, with the reason written beside it: nothing had a
 surface. A hang-up button is that thing, and `HIG · Buttons` asks a destructive action to look
 destructive.
 
-- **`--page` on `--danger` = 4.53:1.** A `WCAG 1.4.3` pass for the 15/600 label **by 0.03**, and the
-  thinnest text pair in the system — every other recorded pair is 4.77 or above. Said as a number,
-  not as "fine".
-- **There is no lighter ink to reach for.** The palette bars `#FFFFFF`, so `--page` is the ceiling;
-  `--ink` on `--danger` is **3.53:1** and fails, which is why the label is never charcoal here the
-  way it always is on green.
-- **The alternative, measured beside it:** `--danger-ink` `#9A3115` as the fill gives `--page` at
-  **6.83:1** — comfortable, at the cost of spending an *ink* token as a surface against the
-  palette's own naming (ink = foreground, wash = ground, solid = fill). Both conform.
-- **`WCAG 1.4.11`** on the button's own edge against the page: the same **4.53:1** against a 3:1
-  floor. Focus stays the `--ink` ring on `--page`, **15.99:1**.
+- **It is a 44px disc, so `WCAG 1.4.3` does not apply.** The control shipped for one build as a
+  labelled block button and became an icon on the designer's reference — which *improves* the
+  conformance story: with no visible text there is no text pair to defend. What remains is
+  **`1.4.11` on the glyph**, `--page` on `--danger` at **4.53:1** against a 3:1 floor. The disc
+  against the bar's `--night-raised` is **2.75:1**, under that floor, and the glyph is what
+  identifies the control — the reading this document already records for `.dr-btn--onphoto`,
+  `.dr-avatar-edit__badge` and `.dr-upload`.
+- **The labelled reading, kept because it is still live** if the label ever returns: `--page` on
+  `--danger` **4.53:1** clears 4.5 **by 0.03** and would be the thinnest text pair in the system;
+  `--ink` on `--danger` is **3.53:1** and fails, and the palette bars `#FFFFFF`, so 4.53 is the
+  ceiling for this fill. The alternative measured beside it was `--danger-ink` `#9A3115` as the
+  fill, **6.83:1**, at the cost of spending an *ink* token as a surface.
 - **Flat**, by the kit's existing reading: `--sh-sm` belongs to the green primary and `.dr-btn--pay`
   already settled that a filled button in another colour takes none. `call` therefore carries no
-  shadow and no green at all.
+  shadow and no green at all, verified by computed style.
 
-### Call control (`.dr-channel[aria-pressed]`)
+### Call control (`.dr-btn--night[aria-pressed]`)
 
-The share sheet's channel button wearing a state — Mute and Speaker on `call`. One new rule: the
-**pressed** look, `--page` on `--ink` at **15.99:1** (the toast's pair, no new colour), because a
-toggle whose on-state is invisible is not a toggle (`WCAG 1.4.1`, `4.1.2`). The label never flips to
-*Unmute* — one control, one name, state on `aria-pressed` (`2.5.3`). Laid out by `.dr-actionbar__row`
-with `.dr-channel`'s own `flex:1`; measured **166.7 × 66.4** each, 1.5× the 44 floor.
+Video, Speaker and Mute on `call` — the circular icon button inverted for the dark surface.
+`--night` disc, `--page` glyph, **15.99:1**; **pressed** takes the light half of the same pair. The
+disc against the bar is **1.28:1**, under `1.4.11`'s 3:1, and the glyph carries it — the kit's
+standing reading. A toggle whose on-state is invisible is not a toggle, so `aria-pressed` rides with
+the fill (`WCAG 1.4.1`, `4.1.2`), and no label flips to *Unmute* — one control, one name (`2.5.3`).
+All three rest on the built frame; the reference draws its mic already muted, which is the pressed
+half. *(`.dr-channel[aria-pressed]`, the labelled icon-over-caption control cut for the light build, is
+now unspent — kept declared the way `--sh-onphoto` is, and recorded so it is not re-proposed.)*
 
 ### Circular action as a screen's primary (`.dr-btn--primary.dr-btn--icon`)
 

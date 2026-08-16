@@ -285,7 +285,9 @@ flowchart TD
   branch is drawn from `T` and returns to `T` on purpose: it is a detour on the wait, never a step.
 - *Call is DRON's own screen, not the OS dialer* (2026-08-16, designer's call — *«зроби фрейм який
   відкриє дзвінок»*). The branch shipped for one build as a `tel:` handoff to a masked line; it is now
-  **Call the operator** (`wireframes/call.html`), and **End call** returns to tracking. Her call is
+  **Call the operator** (`wireframes/call.html`), built to her Figma reference `99:26` — the product's
+  one dark screen, the platform's own convention for a call UI — with **two** ways back to tracking:
+  *Minimise*, which leaves the call running, and *End call*, which does not. Her call is
   also the consistent one: the number is masked — `ux-research/user-stories-cjm.md` logs the
   direct-channel risk in red — so it was never the client's to see, and a dialer showing a number
   DRON invented is the one thing masking exists to prevent. No frame states a phone number now.
