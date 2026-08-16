@@ -291,8 +291,9 @@
            now print those words: WCAG 2.5.3 Label in Name asks the accessible
            name to contain the visible one, and "Lowest price" did not. -->
       <p class="zlabel dr-label">Price <span class="dr-label__act">▸ what you expect to pay</span></p>
-      <fieldset class="dr-range" data-range aria-describedby="price-sub">
-        <legend class="dr-range__title">Price range</legend>
+      <fieldset class="dr-range" data-range
+                aria-labelledby="price-title" aria-describedby="price-sub">
+        <p class="dr-range__title" id="price-title">Price range</p>
         <p class="dr-range__sub" id="price-sub">Service price, all fees included</p>
 
         <div class="dr-range__band">
