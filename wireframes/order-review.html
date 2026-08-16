@@ -91,9 +91,27 @@
     -->
     <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
 
-    <section class="dr-sheet dr-sheet--picker" id="sheet-pay" role="dialog" aria-modal="true" aria-labelledby="sheet-pay-title" hidden>
+    <section class="dr-sheet dr-sheet--picker" id="sheet-pay" role="dialog" aria-modal="true" aria-labelledby="sheet-pay-title" aria-describedby="sheet-pay-desc" hidden>
       <span class="dr-sheet__grip" aria-hidden="true"></span>
       <p class="dr-sheet__title" id="sheet-pay-title">Pay ₴180</p>
+      <!-- THE SHEET'S MESSAGE (rev 136) — the designer on the drawer as built:
+           «добав сюди якокось опису трохи тотал пеймент etc». `HIG · Action sheets`
+           gives a sheet a title AND an optional message beneath it, so the slot is
+           the guideline's own; `aria-describedby` on the dialog is what makes it
+           announced with the sheet's name rather than left loose (`WCAG 4.1.2`).
+           SHE WAS SHOWN THREE, EACH MEASURED, AND TOOK THE ITEMISED ONE: what the
+           total covers · the total itemised · the whole breakdown repeated inside
+           the drawer (which takes the sheet to 502.2 = 61.85% of the frame).
+           NO NEW CLASS — `.dr-note` is the 12/400 `--slate` centred line `share`
+           already carries inside a sheet; on `--page` it measures 6.62:1 against
+           `WCAG 1.4.3`'s 4.5:1 floor. Sheet 292.8 → 322.8, 36.06% → 39.75%.
+           WHAT IT REPEATS, said rather than hidden: the same three figures sit on
+           the screen behind, y 118–316, above the sheet's 489.2 top edge and only
+           dimmed by the scrim — so this line restates them at the moment of the
+           tap rather than telling the reader something new. That is the shape
+           `microcopy.md` retired from this screen on 2026-08-15 as prose; here it
+           is her call, taken on the measurement, and recorded as a decision. -->
+      <p class="dr-note" id="sheet-pay-desc">Total ₴180 — base fare ₴90, distance ₴70, service fee ₴20</p>
       <div class="dr-paylist">
         <!-- BLACK BY THE BRANDS' OWN RULE, not by taste (rev 134). `HIG · Apple Pay
              Marks and Buttons` and Google Pay's brand guidelines permit three fills on
