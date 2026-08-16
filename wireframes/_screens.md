@@ -63,6 +63,18 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   - **Error ✓** *(added July 2026, build decision)* — the data-driven service list can fail to load (network) → retry / support (`listings-error.html`); consistent with `flows.md`'s error-recovery pattern (*"Retry, … or leave"*; errors route to Support).
   - **Loading ✓** — fetching order history / personalisation to surface "Book again" (`flows.md` RJ-C5: *"Loading: fetching order history"*).
   - **Success —** hands off to the catalogue; no "it worked" screen.
+- **The category row is live from 2026-08-16 (designer's call:** *«зроби клікабельні чіпси ну і відповідно
+  картки під ними по категоріях»***).** The four chips over the list — *All · Delivery · Aerial photo & video ·
+  Inspection* — were drawn but inert; on `listings.html` they now filter the cards under them, in place. **Not a
+  state and not a sub-view**, so it takes no row in the matrix: it is a control on this page, the same reading
+  the date drawer already gets above. `aria-current` moves between the chips and the rows that do not match
+  take `hidden`, so a filtered-out service leaves the layout and the tab order together. **The catalogue is
+  CE-2's three service types and a service belongs to exactly one**, so each of the three named chips resolves
+  to a single card and *All* to three — the row narrows the list it names rather than opening a longer one.
+  Whether the catalogue should hold more than one service per category is the designer's call and is not
+  assumed here. **The four sibling states (`-filtered`, `-empty`, `-error`, `-loading`) carry the same chip row
+  and it is still inert on all four** — reported, not carried over: each is a separate page and the change was
+  asked for on the base.
 - **Filter sub-views (added July 2026, build decision):** because *Service catalogue* is merged into Home,
   browsing needs to be narrowable. Two named sub-views (not data states):
   - **`listings-filters`** — the filter panel open, **three titled cards of one kind, in this order**:
@@ -329,7 +341,15 @@ it. States below are each traced to a flow node. `—` = not produced.
 | # | Screen (`sitemap.md`) | Job | Flow position (`flows.md`) | States (real) | Files |
 |---|---|---|---|:---|---|
 | S1 | **Switch role (Client ⇄ Operator)** | `§7.4` global utility | *CHANGE PERSONA*: Account → confirm? → re-enter fork | base only (a confirm/decision screen; decline → back, confirm → fork) | `switch-role.html` |
-| S2 | **Account / profile** | `§7.4` identity &amp; preferences utility + MJ-2 credentials | Account tab (every tab bar) → Edit → save | base + **edit** sub-view (edit personal details, upload drone documents / insurance, save; no dead-end — Save / Cancel → Account) | `account.html`, `account-edit.html` |
+| S2 | **Account / profile** | `§7.4` identity &amp; preferences utility + MJ-2 credentials | Account tab (every tab bar) → Edit → save | base + **edit** sub-view (edit personal details, upload drone documents / insurance, save; no dead-end — Save / Cancel → Account) + **photo** sub-view (change the profile photo — take a photo, choose from library, remove; no dead-end — Save photo / Cancel / back → Account) | `account.html`, `account-edit.html`, `account-photo.html` |
+
+**`account-photo.html` is a sub-view, not a new sitemap screen.** Added 2026-08-16 on the designer's word —
+«добав іконку едіт карандаш на аватарку і добав ще один wireframe де можна загрузити аватарку». It is the
+destination of the pencil badge now sitting on the avatar in `account.html`, the same way `account-edit.html`
+is the destination of the pencil beside the name. `sitemap.md §7.4` still lists **one** Account screen; both
+files are states of it, and both are listed in the `Files` column above rather than given a row of their own.
+It carries **base only** — no `flows.md` node produces an empty, error or loading state for it (an empty
+avatar is the *base*: the initials fallback, which `account.html` already ships as `OB`).
 
 ### Client — Step 8
 
