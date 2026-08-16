@@ -91,9 +91,27 @@
     -->
     <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
 
-    <section class="dr-sheet dr-sheet--picker" id="sheet-pay" role="dialog" aria-modal="true" aria-labelledby="sheet-pay-title" aria-describedby="sheet-pay-desc" hidden>
+    <!--
+      THE TITLE COMES OFF (rev 139) — the designer on the built drawer, pointing
+      at `Pay ₴180`: «delete it». THE PRODUCT'S ONE TITLELESS SHEET, and that is
+      the point rather than a slip: the other six drawers title themselves
+      because their content is a list of options that says nothing on its own
+      (`Mode`, `Parcel size`, `Issue type`, `Language`, `Payment method`, `Pick a
+      date & time`). This one's content IS the sentence — since rev 138 the card
+      states `Total ₴180` at 20/700, the largest figure on the surface — so the
+      17/600 line above it said the same number twice, three lines apart.
+      `HIG · Action sheets` makes the title OPTIONAL («you can provide a title»)
+      and requires only the named Cancel, which is untouched, so this is a
+      permitted shape and not a departure to log.
+      THE ACCESSIBLE NAME IS KEPT, IT IS THE VISIBLE LINE THAT GOES. `aria-
+      labelledby` had nothing left to point at, and a dialog with no name is a
+      real `WCAG 4.1.2` failure — so the sheet carries `aria-label="Pay ₴180"`
+      and still announces as *Pay ₴180, dialog*, then its description, the four
+      figures. `2.5.3 Label in Name` stops applying the moment no visible label
+      disagrees with the name.
+    -->
+    <section class="dr-sheet dr-sheet--picker" id="sheet-pay" role="dialog" aria-modal="true" aria-label="Pay ₴180" aria-describedby="sheet-pay-desc" hidden>
       <span class="dr-sheet__grip" aria-hidden="true"></span>
-      <p class="dr-sheet__title" id="sheet-pay-title">Pay ₴180</p>
       <!-- THE SHEET'S MESSAGE SLOT (rev 136), AND WHAT IT HOLDS SINCE REV 138.
            `HIG · Action sheets` gives a sheet a title AND content beneath it, so the
            slot is the guideline's own; `aria-describedby` on the dialog is what makes
