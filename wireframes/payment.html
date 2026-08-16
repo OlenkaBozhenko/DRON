@@ -90,9 +90,21 @@
               <label class="dr-field__label" for="cc-csc">CVV</label>
               <span class="dr-field__group"><input class="dr-field__input" id="cc-csc" name="cc-csc" type="password" inputmode="numeric" autocomplete="cc-csc" value="123"></span>
             </div>
+            <!-- THE NAME IS TWO ROWS, NOT ONE — the designer's call 2026-08-16:
+                 «імя прізвище». Both shapes were put to her with the standards
+                 first and NEITHER FAILS: `WCAG 1.3.5` names them both —
+                 `cc-name` for a single field, `cc-given-name` + `cc-family-name`
+                 for the split — and `HIG · Text fields` asks for the fewest
+                 fields, the name being printed on the card as one line. A taste
+                 call with nothing failing either way, and she took the split.
+                 `Cardholder` retires with it. -->
             <div class="dr-field">
-              <label class="dr-field__label" for="cc-name">Cardholder</label>
-              <span class="dr-field__group"><input class="dr-field__input" id="cc-name" name="cc-name" type="text" autocomplete="cc-name" value="OLENA BOZHENKO"></span>
+              <label class="dr-field__label" for="cc-given">First name</label>
+              <span class="dr-field__group"><input class="dr-field__input" id="cc-given" name="cc-given-name" type="text" autocomplete="cc-given-name" value="OLENA"></span>
+            </div>
+            <div class="dr-field">
+              <label class="dr-field__label" for="cc-family">Last name</label>
+              <span class="dr-field__group"><input class="dr-field__input" id="cc-family" name="cc-family-name" type="text" autocomplete="cc-family-name" value="BOZHENKO"></span>
             </div>
           </div>
         </fieldset>
