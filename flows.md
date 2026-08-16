@@ -296,7 +296,8 @@ flowchart TD
   E2 --> SR{"Search or surface 'Book again'?"}
   SR -->|yes| PF
   SR -->|no| X1(["Dead-end: leaves for Kabanchik — Drop-off #4"]):::dead
-  D3 -->|yes| D2b{"Service + price still valid?"}
+  D3 -->|yes| PD["Past order details"]
+  PD --> D2b{"Service + price still valid?"}
   D2 -->|yes| D2b
   D2b -->|no| E4(["Error: previous service or price changed — review"]):::state
   E4 --> PF
@@ -319,6 +320,7 @@ flowchart TD
 - *Has a previous order?* — returning vs first-time.
 - *'Book again' shortcut visible?* — the one-tap path (`C-07`).
 - *Found the past order? / Search?* — buried history now offers search, not instant churn.
+- *Past order details* (added 2026-08-16, designer's call) — tapping a finished order opens the **record**, not a fresh setup form: what was done, the operator's proof photo, what it cost, and **Book again** / **Delete order** in the action bar. Her reason: *«коли я відкриваю замовлення що вже було виконане… поля вводу лишати у мене немає вже, і вагу я теж вибрати вже не можу»* — the old target let a client edit an order that is over. **It costs the history branch one screen and costs the 2-tap target nothing:** the badge above already calls this branch the no-shortcut fallback, and `sitemap.md §7.3`'s 2 taps are counted from a *Book again* shortcut, not from here.
 - *Service + price still valid?* — stale re-book caught before payment.
 - *Available? / Wait, save, or leave?* — stock-out offers a saved-lead recovery.
 

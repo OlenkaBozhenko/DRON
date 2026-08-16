@@ -121,6 +121,7 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | order-confirmed | order-confirmed-error.html | Refund | state message | No certified operator could take the job just now. A full refund to your card is already on its way. | No certified operator could take your order just now. A full refund to your card is already on its way. |
 | order-confirmed | order-confirmed-loading.html | Matching | state message | Matching you with the nearest certified, insured pilot near Podil. | Matching you with the nearest certified, insured operator near Podil. |
 | order-history | order-history-empty.html | Past orders (empty state) | state message | Your past orders show up here, ready to re-book in one tap. Start with your first drone service. | Your orders appear here, ready to re-book in a tap. |
+| order-history | order-history.html | Past order card (accessible name, ×3) | link | Package delivery, 28 Jun 2026, delivered — **reopen** | …, delivered — **open order** (2026-08-16: the card stopped opening an editable setup form and started opening the order's record, so the verb had to stop promising an edit) |
 | order-review | order-review.html | Topbar | heading | Review | Order review |
 | order-review | order-review-loading.html | Topbar | heading | Review | Order review |
 | order-setup | order-setup-empty.html | Availability / No operator available | button | Notify me when one is free | Notify me when available |
@@ -1226,6 +1227,13 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-history-loading | Order history | Activity | Button |  |
 | order-history-loading | Order history | Help | Button |  |
 | order-history-loading | Order history | Account | Button |  |
+| order-details | — | ‹ Activity | Button | new screen 2026-08-16. The chevron alone; `Back to Activity` is its accessible name (rev 93 took the visible label off every bar) |
+| order-details | — | Package delivery | Heading | the bar names the **service**, not the screen: a client arriving from the list already knows they tapped a record, and the one thing they came to check is which order it was |
+| order-details | Summary | From · To · Parcel · Delivered · Operator | Field labels | past tense on the one row that has a tense — **Delivered**, not *Delivery*. `order-review` says *When · Now ~25 min* because it is a promise; this is a fact that already happened |
+| order-details | Summary | Podil, 21 · Osokorky, 14 | Values | the short form `order-review` already uses for the same two stops |
+| order-details | Payment | Paid | Field label | **Paid**, not *Total*. `voice.md` fixes *paid* as money that has landed; `order-review`'s `Total` is what you are about to be charged, and the two screens must not use one word for both |
+| order-details | Action bar | Book again | Button | the vocabulary's own re-order verb (A3), the same string `resolution` carries as `Book again — free` |
+| order-details | Action bar | Delete order | Button | destructive, `.dr-btn--danger`. Names its object the way `Remove photo` does, and the verb carries the meaning with the colour taken away (`WCAG 1.4.1`). Matches the trash control's accessible name on the card it came from, so one action has one name in both places |
 | order-history | — | Activity | Heading |  |
 | order-history | Order history | Package delivery | Body |  |
 | order-history | Order history | In progress | Label | status indicator — accessible name, not visible text |
