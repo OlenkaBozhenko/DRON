@@ -834,6 +834,28 @@ a full-card link overlay. Carries `aria-label` — the icon is the only content.
   inner button does not double-ring the card.
 - **No hover lift.** Hover is desktop-only and the card is flat at rest.
 
+### Titled zone card (`.dr-zone`)
+
+Added 2026-08-16 (rev 125), the designer's call on the built `listings-filters`: the three filter
+zones are now three cards of one kind, each opening with its own name.
+
+- **Surface:** `--card`, `--r-card` 16, a **16** inset on all four sides — `.dr .dr-range`'s card
+  with the range taken out. **The selector needs both classes:** the base `.dr fieldset{ padding: 0 }`
+  is 0-1-1 and out-specifies a bare component class, and a zone may *be* a fieldset.
+- **Title** 17/600 `--ink` — **14.37:1**. **Subtitle** 13/400 `--slate` — **5.95:1**, `4` under the
+  title. **20** from the subtitle to whatever the card holds. One declaration serves
+  `.dr-zone__title` / `.dr-range__title` and their two subtitles, so a repeat cannot drift.
+- **The card boundary moves; the list inside does not.** The list gives up the ground, the radius
+  and its own inset to the card. `.dr-picks` needs nothing else — its rows were inset 16 by the list
+  and are inset 16 by the card. `.dr-rows` bleeds **−16** either side, because its rows carry their
+  own 16 and its separator runs from that inset to the **card's** trailing edge.
+- **Measured on `listings-filters`, 375 × 812:** both new cards **341 × 273.99**; rows **341 × 44**
+  with labels at **305** and separators **305 → 630**; options **309 × 44** with labels at **341**
+  and separators **341 → 614** — every one of those numbers unchanged by the pass.
+- **The name is the drawn line.** `aria-labelledby` → the title, `aria-describedby` → the subtitle,
+  and no `aria-label` on the group. A `<legend>` is not the answer: rendered, it sits in the
+  fieldset's block-start border region, outside the padding box, and takes the 16 inset with it.
+
 ### Row panel (`.kv` · `.dr-rows`)
 
 `--card`, `--r-card`, padding `8px 16px` (**2 until rev 88** — this line said 2 and the frames said

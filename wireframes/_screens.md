@@ -65,11 +65,19 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   - **Success —** hands off to the catalogue; no "it worked" screen.
 - **Filter sub-views (added July 2026, build decision):** because *Service catalogue* is merged into Home,
   browsing needs to be narrowable. Two named sub-views (not data states):
-  - **`listings-filters`** — the filter panel open, **in this order**: **Location** (four picker rows —
-    Country ▸ Region ▸ City ▸ District, each opening its own screen; it was a flat district radio list until
-    2026-08-16), **Time** (Available now / Today / This week / Pick a date &amp; time), **Price** (a titled range
+  - **`listings-filters`** — the filter panel open, **three titled cards of one kind, in this order**:
+    **Location** (*Where you need the service* — four picker rows, Country ▸ Region ▸ City ▸ District, each
+    opening its own screen; it was a flat district radio list until
+    2026-08-16), **Date &amp; time** (*When you need the service* — Available now / Today / This week / Pick a
+    date &amp; time), **Price** (a titled range
     card: *Price range* over a bar chart of how services are priced, two draggable bullets on the rail, and the
-    chosen ends printed below as **Minimum** / **Maximum**). **The Price zone lost its three preset bands on
+    chosen ends printed below as **Minimum** / **Maximum**). **The first two zones were given their title and
+    subtitle on 2026-08-16** (*«добав заголовок і підзаголовок у два фільта вище Location & available date»*),
+    the day after the Price zone got its own: until then the only word standing over either was the mono
+    `.zlabel`, which is the **wireframe's** structure annotation and vanishes with the shell's annotation
+    toggle, so with annotations off the panel showed two unnamed cards under one named one. The card title is
+    **Date &amp; time** where the annotation still reads **Time** — the zone sets a day *and* a time within it,
+    and it is the wording the option and the drawer already use. **The Price zone lost its three preset bands on
     2026-08-16** — *Low / Medium / High*, and the *Insured* chip that rode on *High* — on the designer's call
     against a Figma reference (*«зроби такий вю»*, node `94:6`): the reference has no preset rows, and she was
     asked which way to take it before it was built. The band is the whole control now, and the figures it states

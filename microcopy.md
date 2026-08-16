@@ -519,6 +519,14 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **Two strings are new.** The card's title **`Price range`** is a `<legend>`, so the drawn line is also the group's name and no `aria-label` is spent on it. The subtitle **`Service price, all fees included`** is her *ціна послуги* plus the reference's own *з усіма зборами* clause; it is written that way to keep it off the product's `Service fee ₴20` line — *price*, not *fee* — and it is true by build, the `order-setup` breakdown totalling **₴90 + ₴70 + ₴20 = ₴180** with nothing unaccounted (P3). **If four words are three too many, `Service price` alone is one edit** — hers to say.
 - **The histogram gets a text alternative rather than being hidden.** `role="img"` with **`How services are priced: most cost ₴200 – ₴350`** — it states what the drawn bars show, so `WCAG 1.1.1` is met by a sentence and not by `aria-hidden`. It describes the **distribution**, never the selection: the chosen band is spoken by the two thumbs and printed in the two value fields.
 
+**Sync — 2026-08-16 (`listings-filters` · the other two zones become titled cards, and three strings arrive)**
+- **The designer's call on the built panel**, the day after the Price zone got its title: *«добав заголовок і підзаголовок у два фільта вище Location & available date»*. rev 123 titled one of three zones; **Location** and the time zone carried no name in the product at all — the only word standing over either was `.zlabel`, which is the **wireframe's** structure annotation and disappears with the shell's annotation toggle, **which is how she reads the page**. So with annotations off the panel read as two unnamed cards under one named one.
+- **Three strings are new, and two of them are one sentence shape.** `Location` ▸ **`Where you need the service`**; `Date & time` ▸ **`When you need the service`**. Where / When, same words after them, so the two zones read as a pair rather than as two separate writings. Both answer **P1** — the outcome, never the drone — and **P4**: *service* is the product's own word, on the Home tiles, on `order-setup` and in `Service price, all fees included` one card below.
+- **`Date & time` is a two-word title over a one-word `.zlabel`, deliberately, and the same way `Price` ▸ `Price range` already is.** The zone sets a **day** and a time within it — *Available now · Today · This week · Pick a date & time…* — and *Time* alone reads as a time of day. It is also the wording the product already writes, on the option's own label and on the drawer's title, so nothing new is invented for it. **Her own word for this filter was *available date*.** If she wants the title to be the `.zlabel`'s single `Time` instead, it is one string in one file.
+- **No string is retired and nothing moves.** `Time` stays in the table as the `.zlabel` it now only is; every field label, value and option on the panel is untouched.
+- **Each card's name is now the line the eye reads.** `aria-labelledby` → the title and `aria-describedby` → the subtitle, on the Location group and on the Time fieldset — so `aria-label="Location"` / `aria-label="Time"`, two strings that could drift from the drawn page without anything showing it, are gone from the markup (`WCAG 1.3.1`, `2.5.3`, `4.1.2`). It is the third and fourth time this panel spends the patch rev 119 chose over a `<legend>`.
+- **One row in this table was wrong and is corrected against the frame, not the other way round.** `Price range` was recorded as a **`<legend>`**; the built page has a `<p>` named by `aria-labelledby`, because a rendered legend sits in the fieldset's block-start border region — outside the padding box — and took the card's whole 16px inset with it. `kit.css` has said so since rev 119; the master table had not caught up.
+
 ---
 
 ## Master table — every string
@@ -832,7 +840,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filtered | Service list · cards | Account | Button |  |
 | listings-filters | — | Filters | Heading |  |
 | listings-filters | — | Clear all | Body |  |
-| listings-filters | Location | Location | Heading | first zone on the panel from 2026-08-16, the designer's call — it stood second, under Time, until then |
+| listings-filters | Location | Location | Heading | first zone on the panel from 2026-08-16, the designer's call — it stood second, under Time, until then. From rev 125 the same word is the **card's own title** as well as the `.zlabel` above it: the label is the wireframe's structure annotation and goes with the shell's toggle, the title is content and stays |
+| listings-filters | Location | Where you need the service | Body | the card's subtitle, new 2026-08-16 (rev 125) — `aria-describedby` on the group, whose name is now the drawn title (`WCAG 1.3.1`, `4.1.2`). Pairs with the Date & time card's *When you need the service*; P1 — it names the outcome, not the drone, and P4 — *service* is the word the product uses on every screen |
 | listings-filters | Location | Country | Field label | added 2026-08-16 on the designer's word — the geography is Ukraine AND European countries, and the filter stated the country nowhere |
 | listings-filters | Location | Ukraine | Field value | DATA |
 | listings-filters | Location | Region | Field label |  |
@@ -841,7 +850,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filters | Location | Kyiv | Field value | DATA |
 | listings-filters | Location | District | Field label |  |
 | listings-filters | Location | All districts | Field value | DATA |
-| listings-filters | Time | Time | Heading |  |
+| listings-filters | Time | Time | Heading | the `.zlabel` only, from rev 125 — the wireframe's structure annotation, which the shell's toggle hides. The card's own title is *Date & time* below |
+| listings-filters | Time | Date & time | Heading | the card's title, new 2026-08-16 (rev 125) — the group's accessible name by `aria-labelledby`, so the drawn line **is** the name. Two words and not the `.zlabel`'s one: the zone sets a **day** and a time within it, *Time* alone reads as a time of day, and the product already writes it this way on the option (*Pick a date & time…*) and on the drawer's title. Her word for the filter was *available date* |
+| listings-filters | Time | When you need the service | Body | the card's subtitle, new 2026-08-16 (rev 125) — `aria-describedby` on the fieldset. The Location card's *Where…* and this *When…* are one sentence shape, so the two zones read as one pair |
 | listings-filters | Time | Available now | Body |  |
 | listings-filters | Time | now | Field value | DATA |
 | listings-filters | Time | Today | Body |  |
@@ -864,7 +875,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filters | Date picker | Done | Body |  |
 | listings-filters | Time | Sat 22 Aug, 17:30 | Field value | DATA — what the option reads once a date is taken, replacing *Pick a date & time…*; the product's own format, `time-slot`'s `Wed 2 Jul, 09:00` |
 | listings-filters | Price | Price | Heading |  |
-| listings-filters | Price | Price range | Heading | the card's own title, a `<legend>` — so the visible line **is** the group's accessible name, with no ARIA |
+| listings-filters | Price | Price range | Heading | the card's own title. **Corrected 2026-08-16 (rev 125): this row said `<legend>`, and the built frame says `<p>` named by `aria-labelledby`.** The legend was built first and measured out — rendered, it sits in the fieldset's block-start border region, outside the padding box, and took the card's whole 16px inset with it — which rev 119's own note in `kit.css` records. The frame is the source; the row is corrected to it, not the other way round. The visible line is still the group's accessible name |
 | listings-filters | Price | Service price, all fees included | Body | the subtitle; `aria-describedby` on the group. P3 — the number is the whole price, which the `order-setup` breakdown proves line by line |
 | listings-filters | Price | How services are priced: most cost ₴200 – ₴350 | Icon label | DATA — the histogram's text alternative (`role="img"`), `WCAG 1.1.1`; it describes the drawn distribution, not the chosen band |
 | listings-filters | Price | Minimum price | Field label | accessible name of the lower thumb — it contains the visible word *Minimum* (`WCAG 2.5.3`) |
