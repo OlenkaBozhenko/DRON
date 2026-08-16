@@ -191,6 +191,20 @@ and **1.29 : 1** against the `#F4F4F4` page. A drawn boundary is what identifies
 regression: 1.4.11 governs a boundary that is **drawn**, not one that is **absent**. The label, the
 typed ink and the hairline carry the row.
 
+**A field that collects the user's own data names its purpose in the markup.** `WCAG 1.3.5 Identify
+Input Purpose` is **Level AA**, so it is in scope for every client and operator surface here: where a
+row asks for something *about the person filling it in*, the input carries the criterion's own
+`autocomplete` token — `name` · `tel` · `email` · `street-address` · `cc-number` · `cc-exp` ·
+`cc-csc` · `cc-name`. The same attribute is what makes iOS offer autofill and *Scan Credit Card* over
+the keyboard (`HIG · Text fields`), so one attribute pays both standards.
+
+**Where it stands, counted 2026-08-16, not asserted.** `payment.html`'s four card rows are the only
+inputs in the project that carry it. The other seven pages with typing rows carry **none** —
+`account-edit` (Full name · Phone · Saved address), `order-setup` + `order-setup-error` (pick-up ·
+drop-off), `contact-support`, `rate`, `report-issue`. Of those, the ones asking for the person's own
+name, phone and address **fail 1.3.5**; a free-text note or review is not covered by the criterion and
+passes as built. **Open, and the designer's to close** — recorded here rather than fixed in passing.
+
 **Scope.** `.form-field` is this layer's generic *labelled block* — it also wraps a checklist
 (`operator-profile-setup`) and an upload zone (`operator-dispute`), and those keep the stacked
 `13 / 600` label. The anatomy is therefore keyed by `:has(> .control)`, never by `.form-field`
@@ -574,7 +588,7 @@ chrome so the toast cannot cover the control that raised it, and — where the r
 | Home / start an order **+ Service catalogue** (merged per `sitemap.md §7.3`) | `listings.html` | `listings-filters.html` (filter panel open — Location / Time / Price), `listings-filter-country.html` · `listings-filter-region.html` · `listings-filter-city.html` · `listings-filter-district.html` (the place pick, four dependent levels pushed from the Location rows), `listings-filtered.html` (filters applied — the All chip + removable chips), `listings-empty.html` (no results / loosen filters), `listings-error.html` (load failure), `listings-loading.html` |
 | Order setup / details | `order-setup.html` | `order-setup-empty.html`, `order-setup-error.html` |
 | Order review & price | `order-review.html` | `order-review-loading.html` |
-| Payment | `payment.html` | `payment-error.html`, `payment-loading.html` |
+| Payment *(base = card entry; the method is chosen in the Pay drawer on `order-review`)* | `payment.html` | `payment-error.html`, `payment-loading.html` |
 | Order confirmed / operator revealed *(base = success)* | `order-confirmed.html` | `order-confirmed-empty.html`, `order-confirmed-error.html`, `order-confirmed-loading.html` |
 | Live tracking & ETA | `tracking.html` | `tracking-empty.html`, `tracking-error.html`, `tracking-loading.html` |
 | Delivery confirmation *(base = success)* | `delivery.html` | `delivery-error.html`, `delivery-loading.html` |

@@ -547,6 +547,17 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **The figures are `DATA`.** They track the order, the way `Small · up to 2 kg` and `Now · ~25 min` do; the string that is fixed is the shape — *Total ₴X — base fare ₴Y, distance ₴Z, service fee ₴W*.
 - **Not swept.** `order-review-loading` has no drawer (its bottom edge is `Continue`), and `payment.html` states the amount in its own `Amount` zone; neither gains this line.
 
+**Sync — 2026-08-16 (`payment` stops asking the method and starts taking the card)**
+- **The designer, reading the built drawer:** *«по кліку на кнопку "Pay with card" відкриваються поля вводу номера картки дати csv та ім'я власника та сторінка яку ти відкриваєш вже не релевантна»*. The drawer answered *how you pay*; the screen behind it asked the same question again, over three radios, and never took a card number at all — the file's own header said so: *"Wireframe placeholders only — no real card entry."*
+- **Five strings retire, and none of them for taste.** `Payment method` (heading) · `How you pay for this order` (subtitle) · `Apple Pay` · `Google Pay` · `Visa •••• 4921` (three field labels). They were correct copy for a method list; there is no method list left on the screen. **`Payment method` survives elsewhere untouched** — on `account-edit`'s row and its drawer — so the concept still holds one word across the product, it simply stops being asked twice in one flow.
+- **Six arrive.** Four field labels — `Card number` · `Expiry` · `CVV` · `Cardholder` — the checkbox `Save this card for next time`, and a new card title / subtitle pair, `Card` ▸ *Visa or Mastercard, charged once for this order*.
+- **The subtitle is three facts, not a sentence about the product.** *Visa or Mastercard* — which cards work, stated **before** the sixteen digits rather than after them (**P3**, the price/fact before the tap). *Charged once* — the recurring-charge fear answered on the screen that takes the money, against CJM Drop-off #2 (*any surprise on the payment screen = abandonment*). *For this order* — the same scoping that already separated this card from `account-edit`'s saved default, and it keeps doing that work now that the two cards hold different things.
+- **`Save this card for next time` is not a new sentence.** It is `order-setup`'s `Save this address for next time` with one noun changed — the product's other save-for-later checkbox, same component, same place on the bottom edge, same shape of promise. One pattern, said twice the same way.
+- **`CVV` is the designer's word** (*«csv»*, read as CVV). Mastercard prints **CVC** and Apple's own forms say **Security Code**; the project takes one label per concept and this is it. Recorded rather than silently normalised, so the alternative is a decision she can reverse and not a thing that went missing.
+- **The nav title changes with the content:** `Payment` → `Card details`. `HIG · Navigation bars` asks the title to name the current screen, and the screen now asks for a card. `payment-error` and `payment-loading` **keep `Payment`** on purpose — they serve the Apple Pay and Google Pay paths too, where *Card details* would be false.
+- **One link moves, and it is a consequence, not an addition.** `payment-error`'s `Change method` pointed at `payment.html`, which was the method list; it now points at `order-review.html`, where the method drawer actually is. The string is unchanged.
+- **Left standing, and flagged rather than rewritten:** `payment-error`'s body still reads *"Apple Pay couldn't complete the charge…"* and `payment-loading`'s still reads *"Confirming your payment with Apple Pay."* Both were written when Apple Pay was the checked default; the card path now reaches the same two screens and would be told the wrong method. **Open — the designer's word, one string each.**
+
 ---
 
 ## Master table — every string
@@ -1386,14 +1397,16 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | payment-loading | — | Confirming your payment with Apple Pay. Don't close the app. | State message |  |
 | payment-loading | — | Continue | Button |  |
 | payment | — | ‹ Order review | Button |  |
-| payment | — | Payment | Heading |  |
+| payment | — | Card details | Heading | was `Payment` until 2026-08-16 — `HIG · Navigation bars` asks the title to name the current screen, and after the drawer took the method this screen asks only for the card. `payment-error` / `payment-loading` keep `Payment`, serving all three methods |
 | payment | Amount | Package delivery · Podil → Osokorky | Body | DATA |
-| payment | Payment method | Payment method | Heading | the card's title, new 2026-08-16 (rev 127) — the group's accessible name by `aria-labelledby`, replacing `aria-label="Payment method"`. The same string already labels the row on `account-edit` and titles its drawer (rev 102), so the concept keeps one word across the product |
-| payment | Payment method | How you pay for this order | Body | the card's subtitle, new 2026-08-16 (rev 127) — `aria-describedby` on the fieldset. **For this order** is doing real work: `account-edit`'s card is the saved default and this one is the choice being made now |
-| payment | Payment method | Apple Pay | Field label |  |
-| payment | Payment method | Google Pay | Field label |  |
-| payment | Payment method | Visa •••• 4921 | Field label |  |
-| payment | Payment method | Pay ₴180 | Button |  |
+| payment | Card | Card | Heading | the card's title, 2026-08-16 — the group's accessible name by `aria-labelledby`. Was `Payment method` (rev 127), which retired with the method list it named; the string itself lives on unchanged on `account-edit` |
+| payment | Card | Visa or Mastercard, charged once for this order | Body | the card's subtitle, 2026-08-16 — `aria-describedby` on the fieldset. Three facts: **Visa or Mastercard** before the sixteen digits, not after (P3); **charged once** against CJM Drop-off #2; **for this order**, the scoping that keeps this card and `account-edit`'s saved default apart |
+| payment | Card | Card number | Field label |  |
+| payment | Card | Expiry | Field label |  |
+| payment | Card | CVV | Field label | the designer's word (*«csv»*, read as CVV). Mastercard prints **CVC**, Apple's own forms say **Security Code** — one label per concept, and this is the one chosen |
+| payment | Card | Cardholder | Field label |  |
+| payment | Card | Save this card for next time | Field label | 2026-08-16 — `order-setup`'s `Save this address for next time` with one noun changed: the product's other save-for-later checkbox, same component, same place on the bottom edge |
+| payment | Card | Pay ₴180 | Button |  |
 | rate | — | ‹ Delivered | Button |  |
 | rate | — | Rate the order | Heading |  |
 | rate | Rating | How would you rate this order? | Body |  |

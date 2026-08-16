@@ -168,18 +168,47 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   category chips and the date drawer already get. Three options, so it is a **drawer** by the ≤ 6 rule
   (`_conventions.md` §the picker rule; `HIG · Action sheets`).
   **It does not delete a node, it forks one.** *Pay with card* still pushes **Payment**, which keeps that
-  screen and its error / loading states on the main path; **Apple Pay** and **Google Pay** skip the method
-  screen — the method is already chosen — and land on **`payment-loading`** (*"Authorizing your payment…"*),
-  which is where an express charge actually is. Nothing is orphaned: `payment.html` keeps its own three
-  methods for the card path and for anyone who opens it directly.
+  screen and its error / loading states on the main path; **Apple Pay** and **Google Pay** skip it — the
+  method is already chosen — and land on **`payment-loading`** (*"Authorizing your payment…"*),
+  which is where an express charge actually is.
+  **What the pushed screen holds changed on 2026-08-16**, the designer reading the built drawer:
+  *«по кліку на кнопку "Pay with card" відкриваються поля вводу номера картки дати csv та ім'я власника
+  та сторінка яку ти відкриваєш вже не релевантна»*. Until then `payment.html` carried its own three
+  methods, so the drawer asked *which method* and the screen asked it a second time. It now takes the
+  **card**, which is the only thing left to ask once the drawer has answered the method — see §7 below.
 - **Job:** `MJ-1` — the pay step of the core flow (`C-04`, Apple / Google Pay / card).
 - **Place in flow:** MJ-1 node `Payment`, after review, before auto-dispatch. System Pay sheet (`§7.3`).
-- **Two zones: the locked amount, then a titled card of methods** — **Payment method** ▸ *How you pay for this
-  order*, over Apple Pay / Google Pay / the saved card. **The title and subtitle arrived 2026-08-16** on the
-  designer's call to give every card that takes entered data the same two lines
-  (*«якщо в проекті ще є аналогічні картки добав до них так само заголовок і підзаголовок»*); the amount block
-  above it takes none, being a figure and not a card. The subtitle says **for this order** because
-  `account-edit`'s card is the saved default and this one is the choice being made now.
+- **Two zones: the locked amount, then a titled card of card fields** — **Card** ▸ *Visa or Mastercard,
+  charged once for this order*, over four typed rows: **Card number · Expiry · CVV · Cardholder**.
+  **The title and subtitle arrived 2026-08-16** on the designer's call to give every card that takes entered
+  data the same two lines (*«якщо в проекті ще є аналогічні картки добав до них так само заголовок і
+  підзаголовок»*); the amount block above it takes none, being a figure and not a card. The subtitle says
+  **for this order** because `account-edit`'s card is the saved default and this one is the charge being
+  made now, and it names **Visa or Mastercard** because which cards work is a fact the client needs before
+  typing sixteen digits, not after (`voice.md` P3).
+  **The method list came off the same day** and with it the three radios (Apple Pay / Google Pay / Visa ••••
+  4921): the drawer on `order-review` had already answered *how you pay*, so repeating it here asked a
+  settled question and delayed the only unsettled one.
+- **The card is entered, not chosen — so `WCAG 1.3.5 Identify Input Purpose` (AA) governs this screen.**
+  Each of the four inputs carries the criterion's own token — `cc-number` · `cc-exp` · `cc-csc` · `cc-name` —
+  and the same attribute is what makes iOS offer *Scan Credit Card* over the keyboard (`HIG · Text fields`),
+  so one attribute pays both. `3.3.2` is carried by the drawn `.dr-field__label` on every row (no
+  placeholder-only field), `HIG · 44pt` by `.dr-field`'s `min-height: --h-control` = 44px, and `2.4.7` by the
+  caret rather than a ring — the rev 100 rule for text fields, inherited, not re-decided.
+  **The security code is masked** (`type="password"`), the one field on the screen whose value should not
+  stand readable over a shoulder; label **CVV** is the designer's word (*«csv»*), where Mastercard prints CVC
+  and Apple's own forms say *Security Code*.
+- **Four stacked rows, not two-up.** *Expiry* and *CVV* are half-length values and sit side by side in most
+  checkouts, but the kit has no two-up row: `.dr-field--half` is the **rate** screen's half-*screen*-height
+  textarea, not a half-width field. Building the pair would mean adding a component, which is the designer's
+  call and not a side effect of this change. Recorded here so the shape is a decision, not an oversight.
+- **`Save this card for next time`** sits on the bottom edge above `Pay ₴180`, the same component and the
+  same sentence shape as `order-setup`'s `Save this address for next time` — checkbox `.dr-box--check` in
+  the action bar, `form="card-form"` so it stays a control of the form it left (`WCAG 1.3.1 / 4.1.2`), placed
+  **before** the button so DOM order equals reading order (`WCAG 2.4.3`). It is also what gives
+  `account-edit`'s saved **Visa •••• 4921** an origin in the flow: without it, no screen in the product ever
+  saves a card. Chosen 2026-08-16 over a form with no switch (the saved card would have no source) and over
+  a saved-card row above the form (which would put a chooser back on a screen that just lost one).
 - **States:**
   - **Empty —** not applicable to a payment sheet.
   - **Error ✓** — *"payment failed"* → retry / change method / leave (`Payment authorized? → no → Error`).
