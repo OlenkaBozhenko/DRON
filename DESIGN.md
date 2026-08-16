@@ -1110,11 +1110,12 @@ painted pages, with what it is doing there:
 
 | Asset | Surface | Native | Served | Box | Treatment |
 |---|---|---|---|---|---|
-| `drones/thumbs/drone-08.png` | `order-history` — the two package-delivery cards | 1024² | 256² | 96 × 72 frame, drawn 64 × 64 | cutout, `contain`, no ground |
+| `drones/thumbs/drone-08.png` | `order-history` — the **live** package-delivery card | 1024² | 256² | 96 × 72 frame, drawn 64 × 64 | cutout, `contain`, no ground |
 | `drones/thumbs/drone-flight-camera.png` | `order-history` — aerial photo & video | 392 × 291 | 256² | same | same |
-| `drones/thumbs/drone-flight-clean.png` | `order-history` — roof inspection | 409 × 174 | 256² | same | same |
+| `drones/thumbs/drone-flight-clean.png` | **drawn nowhere since 2026-08-16** — it held `order-history`'s roof-inspection card until the result took the well. Kept: the `wide/` cut of it is `welcome`'s third slide | 409 × 174 | 256² | — | — |
 | `people/thumbs/operator.png` | `tracking` · `-empty` · `-error` — operator card | 595 × 702 | 300 × 354 | 117 × 138.1 | cutout, `cover`, full-bleed left panel, no ground |
-| `scenes/thumbs/delivered-at-door.jpg` | `delivery` — proof of delivery | 1100 × 880 | 652 × 522 | 341 × 180 | photograph, `cover`, edge to edge |
+| `scenes/thumbs/delivered-at-door.jpg` | `delivery` — proof of delivery · `order-history` — the 28 Jun delivered card | 1100 × 880 | 652 × 522 | 341 × 180 · **96 × 72** | photograph, `cover`, edge to edge |
+| `scenes/thumbs/inspection-roof-cracked-tiles.jpg` | `inspection-report` — cover · `order-history` — the 2 Jun delivered card | — | 652 × 489 | 341 × 180 · **96 × 72** | photograph, `cover`, edge to edge |
 | `map/live-map.jpg` | `tracking` · `-empty` · `-error` — live map | 1100 × 552 | — | 326 × 164 | photograph, `center/cover`, native 1.99 |
 | inline base64 JPEG | `order-history-empty` — banner | — | — | 150px tall | `background-size: auto 78%`, `center 16px` |
 
@@ -1123,6 +1124,16 @@ service: a lime cargo box for delivery, a gimbal camera for aerial work, an empt
 inspection. In the fleet set every unit carries the same lime box, so a mixed list would read as
 three deliveries — which is why the two service cards take in-flight cutouts and the two delivery
 cards take a fleet render. The screen mixes registers deliberately, and pays a register seam for it.
+
+**A finished card shows the result, not the machine (2026-08-16).** The rule above holds for a card
+whose order is still running; the moment an order is *done*, the well carries what came back. The
+designer's reason is recall, not decoration: a client who has had the same roof inspected three times
+sees three identical airframes and cannot tell the orders apart, where three photographs are three
+different roofs. So `order-history`'s 28 Jun and 2 Jun cards take `delivered-at-door` and
+`inspection-roof-cracked-tiles` — the inspection card taking the exact frame that opens that order's
+report, so the card and the report agree. The live card keeps its drone, because *what is flying* is
+the true answer while it flies. The aerial card keeps its drone only because the repo has no picture
+of an aerial deliverable (`visuals/gaps.md` B3 #17); that one is a gap, not a rule.
 
 **Why the operator photograph is load-bearing.** It answers the highest-drop-off job in the CJM —
 confirm the operator is real and qualified — so it belongs exactly where the trust claim is made,

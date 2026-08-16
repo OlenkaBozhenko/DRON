@@ -1022,6 +1022,15 @@ header.dr-topbar,
 }
 .dr-well--map{ padding: 0; }
 .dr-well--photo img{ object-fit: cover; }
+/* The third case: a photograph inside a card well that keeps the well's box.
+   --photo is a surface and sizes itself; --shot is still the 96 x 72 well the
+   card lays out, and only the treatment changes — no inset, the picture
+   covers, --media is the ground it loads onto, and --r-media clips it.
+   Spent on order-history's delivered cards (2026-08-16, designer's call): a
+   past order is recognised by what came back, not by which airframe flew it.
+   A card with no result yet keeps its cutout. */
+.dr-well--shot{ padding: 0; overflow: hidden; background: var(--media); }
+.dr-well--shot img{ object-fit: cover; }
 /* The map is a surface in the layout, not a well inside a card — card radius,
    native 1.99 aspect, --media as the pre-load ground. */
 .dr-well--map{
