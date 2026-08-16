@@ -803,7 +803,13 @@ rule decides it the same way it decides a picker's: three ways to pay is ≤ 6, 
   against the sheet's **12** out to `Cancel`. The card option is a plain
   `.dr-btn--primary.dr-btn--block`; the two express options wear `.dr-btn--pay` (below), because the
   brands do not let a host choose their button's fill.
-- **Measured open, 375 frame.** Sheet **373 × 292.8** at `--r-panel` 22 with `--sh-raised`; three
+- **The sheet carries a message under its title** (rev 136, the designer's word). `HIG · Action
+  sheets` allows a title **and** an optional message; it is `.dr-note` — 12/400 `--slate` centred,
+  the class `share`'s sheet already uses — tied to the dialog with `aria-describedby` so it is
+  announced with the sheet's name (`WCAG 4.1.2`). `--slate` on `--page` **6.62:1**. It adds **30px**
+  (18 + the sheet's own 12 gap) and no class, token or rule.
+- **Measured open, 375 frame.** Sheet **373 × 322.8** at `--r-panel` 22 with `--sh-raised` (292.8
+  before rev 136's message line); three
   options **341 × 44** at `--r-btn` 12; `Cancel` **341 × 44** on `--btn2` **11.54:1**. `Pay with
   card` carries the frame's one `--sh-sm` and DRON's own glyph and words at `--on-green` **9.46:1**;
   the two express buttons are flat `#000` with their marks at **21:1** (white) and **5.35–12.30:1**
