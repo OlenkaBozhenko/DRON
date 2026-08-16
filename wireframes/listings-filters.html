@@ -498,9 +498,16 @@
 
     function startOfDay(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
     function same(a, b) { return a.getTime() === b.getTime(); }
-    /* the product's own date format — time-slot.html's "Wed 2 Jul, 09:00" */
+    /* The product's own date format — time-slot.html's "Wed 2 Jul, 09:00" and
+       the order card's "28 Jun · 14:20". Built from arrays and NOT from
+       toLocaleDateString('en-GB', {month:'short'}), which returns "Sept" for
+       September on current ICU — four letters where every other month gives
+       three, and where every date already written in this product gives three.
+       The month BAR still uses the locale, because "September 2026" is right. */
+    var DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+        MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     function pretty(d) {
-      return d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+      return DOW[d.getDay()] + ' ' + d.getDate() + ' ' + MON[d.getMonth()];
     }
 
     /* ── the grid ──────────────────────────────────────────────────────── */
