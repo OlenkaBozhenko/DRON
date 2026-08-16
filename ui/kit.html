@@ -337,6 +337,75 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="nm"><b>Onscreen keyboard</b><code>.dr-kb · __bar · __done · __plane · __quick · __rows · __row · __key</code>
+    <p>The frame's <b>third piece of system chrome</b>, beside the status bar and the home
+       indicator. It depicts what iOS draws over an app; it is not a control the product owns, so
+       the plane is <code>aria-hidden</code> with no tab stop and no pointer target on any key.
+       Built by <code>ui/kit.js</code> — no page carries markup for it.</p></div>
+  <div class="spec">
+    <div class="dr" style="position:relative;width:260px;height:300px;background:var(--page);border-radius:var(--r-panel);overflow:hidden;border:1px solid var(--line)">
+      <div class="dr-kb" style="animation:none">
+        <div class="dr-kb__bar"><button type="button" class="dr-kb__done">Done</button></div>
+        <div class="dr-kb__plane" style="height:190px" aria-hidden="true">
+          <div class="dr-kb__quick" style="height:30px"><span></span><span></span><span></span></div>
+          <div class="dr-kb__rows">
+            <div class="dr-kb__row"><span class="dr-kb__key">q</span><span class="dr-kb__key">w</span><span class="dr-kb__key">e</span><span class="dr-kb__key">r</span><span class="dr-kb__key">t</span><span class="dr-kb__key">y</span><span class="dr-kb__key">u</span><span class="dr-kb__key">i</span><span class="dr-kb__key">o</span><span class="dr-kb__key">p</span></div>
+            <div class="dr-kb__row dr-kb__row--mid"><span class="dr-kb__key">a</span><span class="dr-kb__key">s</span><span class="dr-kb__key">d</span><span class="dr-kb__key">f</span><span class="dr-kb__key">g</span><span class="dr-kb__key">h</span><span class="dr-kb__key">j</span><span class="dr-kb__key">k</span><span class="dr-kb__key">l</span></div>
+            <div class="dr-kb__row"><span class="dr-kb__key dr-kb__key--mod">⇧</span><span class="dr-kb__key">z</span><span class="dr-kb__key">x</span><span class="dr-kb__key">c</span><span class="dr-kb__key">v</span><span class="dr-kb__key">b</span><span class="dr-kb__key">n</span><span class="dr-kb__key">m</span><span class="dr-kb__key dr-kb__key--mod">⌫</span></div>
+            <div class="dr-kb__row"><span class="dr-kb__key dr-kb__key--mod">123</span><span class="dr-kb__key dr-kb__key--space"></span><span class="dr-kb__key dr-kb__key--return">return</span></div>
+          </div>
+        </div>
+      </div>
+      <span class="st" style="position:absolute;top:8px;left:8px">letters · scaled to fit the plate</span>
+    </div>
+    <div class="dr" style="position:relative;width:200px;height:300px;background:var(--page);border-radius:var(--r-panel);overflow:hidden;border:1px solid var(--line)">
+      <div class="dr-kb" style="animation:none">
+        <div class="dr-kb__bar"><button type="button" class="dr-kb__done">Done</button></div>
+        <div class="dr-kb__plane" style="height:190px" aria-hidden="true">
+          <div class="dr-kb__quick" style="height:30px"><span></span><span></span><span></span></div>
+          <div class="dr-kb__rows">
+            <div class="dr-kb__row"><span class="dr-kb__key">1</span><span class="dr-kb__key">2</span><span class="dr-kb__key">3</span></div>
+            <div class="dr-kb__row"><span class="dr-kb__key">4</span><span class="dr-kb__key">5</span><span class="dr-kb__key">6</span></div>
+            <div class="dr-kb__row"><span class="dr-kb__key">7</span><span class="dr-kb__key">8</span><span class="dr-kb__key">9</span></div>
+            <div class="dr-kb__row"><span class="dr-kb__key dr-kb__key--blank"></span><span class="dr-kb__key">0</span><span class="dr-kb__key dr-kb__key--blank">⌫</span></div>
+          </div>
+        </div>
+      </div>
+      <span class="st" style="position:absolute;top:8px;left:8px">the field picks the plane</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>291 + 44 = 335.</b> HIG publishes no keyboard height and asks an app to read the
+       keyboard's <i>frame</i>; <b>291</b> is what iOS measures in portrait on a 375 × 812 frame
+       (216 keys + 45 QuickType + 30 home-indicator inset), and the accessory bar's <b>44</b> is
+       the 44pt floor. Only the 216 is quoted — four rows divide it evenly at <b>45</b> with a
+       <b>12</b> gutter. <i>The plates above are scaled down to fit the page; the numbers are the
+       build's, not the plate's.</i></p>
+    <p><b>Only <code>Done</code> is real.</b> A multiline field's Return inserts a newline and
+       cannot dismiss, which is why the pattern is an accessory bar rather than a Return key.</p>
+    <p><b>The action bar leaves while the keys are up</b> — <code>[hidden]</code>, not dimmed.
+       Buttons drawn behind the plane while still in the tab order are a
+       <b>WCAG 2.4.11 Focus Not Obscured</b> failure the moment focus reaches one; a tab root
+       sheds its tab bar for the same reason. The exception is a composer living <i>inside</i> the
+       bar, where the bar rides above the keys instead — hiding it would hide the field being
+       typed into.</p>
+    <p><b>The field picks the plane.</b> <code>inputmode</code> of <code>numeric · decimal · tel</code>
+       or <code>type</code> of <code>number · tel</code> draws the pad; everything else draws QWERTY.
+       Ten fields take the pad. The plane keeps its 291 either way — a keyboard's frame does not
+       change with the layout inside it, so nothing downstream moves.</p>
+    <p><b>Colour is the product's own</b>, no new token: plane <code>--btn2</code>, keys
+       <code>--page</code> (<b>15.32:1</b>), modifiers <code>--card</code>, labels <code>--ink</code>.
+       A grey iOS plane on a warm page would be a third temperature nobody chose.</p>
+    <p><b><code>--r-key</code> 5 is off the closed radius ramp</b> (10 · 12 · 13 · 16 · 22 · 999)
+       and is recorded as a quotation, not a defect — Apple's geometry, like the home indicator's
+       2px bar. On a 42px key the ramp's 10 reads as a pill and the 2/4/8 floor's 4 reads square.</p>
+    <p><b>Mobile only.</b> 291 is quoted from a phone in portrait; the tablet preset is an iPad and
+       the desktop has a hardware keyboard, so the plane rises only while the viewport switcher says
+       <code>mobile</code>, and switching away dismisses it.</p>
+  </div>
+</div>
+
 <!-- ═══ ACTIONS ═══════════════════════════════════════════════════════════ -->
 <h2 class="sec">Actions</h2>
 <div class="row">
