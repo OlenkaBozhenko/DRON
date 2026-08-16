@@ -1617,11 +1617,21 @@ header.dr-topbar,
    was built — the reference carries no presets. So .dr-range stops being one
    <li> inside .dr-picks and becomes the card itself: a titled fieldset holding
    a chart, the rail, and the two ends printed as fields.
-   THE TITLE IS A <legend>, WHICH IS WHY THIS COMPONENT IS NOT A FLEX COLUMN.
-   The drawn line is the group's accessible name with no ARIA spent on it — the
-   same "native on purpose" reading that made the slider two real inputs — and a
-   rendered legend is not a flex item, so the stack is block plus margins here
-   and gap everywhere else in the kit. A named exception, not a drift.
+   THE TITLE IS A <p> NAMED BY aria-labelledby, AND A <legend> WAS BUILT FIRST
+   AND MEASURED OUT. Native was tried on the same reasoning that made the slider
+   two real inputs — a legend needs no ARIA at all — but a rendered legend is
+   placed in the fieldset's block-start BORDER region, outside the padding box:
+   measured in Chrome, the title sat flush at 0,0 of a card with 16px of padding
+   and the whole stack under it lost its inset with it. The other two zones on
+   this panel are already `<fieldset aria-label="Time">` / `"Price"`, so pointing
+   at the drawn line instead is the same patch this page spends twice over,
+   spent better: the group's name is now text the eye reads, not a duplicate
+   string in an attribute (WCAG 2.5.3, 4.1.2).
+   THE CARD IS SELECTED AS `.dr .dr-range` AND THAT IS NOT DECORATION: the base
+   sheet's `.dr fieldset{ padding: 0 }` is 0-1-1 and out-specifies a bare class,
+   so a component that is itself a fieldset has to answer at 0-2-0 or it silently
+   renders with no inset at all. Measured before the fix: card padding 0, bars
+   and value fields flush to the card edge.
    THE CHART IS SUPPLEMENTARY AND IS SAID SO IN THE MARKUP. Bars are a picture
    of how services are priced; the band the user chose is carried by the two
    thumbs, by the filled span, and printed in words in the two value fields —
@@ -1632,13 +1642,12 @@ header.dr-topbar,
    (kit.css said 1.31:1 for --btn2 on --card in the note below; recomputed this
    pass it is 1.25:1, which is what concept.md rev 66 recorded. Reported, and
    the old figure left standing rather than quietly restamped.) */
-.dr-range{
+.dr .dr-range{
   display: block;
   background: var(--card); border-radius: var(--r-card);
   padding: var(--sp-screen);
 }
 .dr-range__title{
-  display: block; width: 100%;
   font-size: var(--t-title-size); font-weight: var(--t-title-weight);
   line-height: var(--t-title-line); letter-spacing: var(--t-title-track);
   color: var(--ink);                                          /* 14.37:1 */

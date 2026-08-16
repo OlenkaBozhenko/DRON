@@ -67,8 +67,13 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   browsing needs to be narrowable. Two named sub-views (not data states):
   - **`listings-filters`** — the filter panel open, **in this order**: **Location** (four picker rows —
     Country ▸ Region ▸ City ▸ District, each opening its own screen; it was a flat district radio list until
-    2026-08-16), **Time** (Available now / Today / This week / Pick a date &amp; time), **Price** (Low / Medium /
-    High + a draggable range). **Location leads the panel from 2026-08-16**, the designer's call on the built page
+    2026-08-16), **Time** (Available now / Today / This week / Pick a date &amp; time), **Price** (a titled range
+    card: *Price range* over a bar chart of how services are priced, two draggable bullets on the rail, and the
+    chosen ends printed below as **Minimum** / **Maximum**). **The Price zone lost its three preset bands on
+    2026-08-16** — *Low / Medium / High*, and the *Insured* chip that rode on *High* — on the designer's call
+    against a Figma reference (*«зроби такий вю»*, node `94:6`): the reference has no preset rows, and she was
+    asked which way to take it before it was built. The band is the whole control now, and the figures it states
+    are the only price words in the zone. **Location leads the panel from 2026-08-16**, the designer's call on the built page
     (*«помісти картку самою першою на сторінці»*); it had stood second, under Time, since the panel was built.
     **The Time zone's fourth option opens a date picker** — *Pick a date & time…* raises a **calendar
     drawer** (`.dr-cal`, added 2026-08-16 on the designer's call *«при кліку відкрий дата пікер як у IOS»*):
