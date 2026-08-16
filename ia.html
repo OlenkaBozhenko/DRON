@@ -747,6 +747,13 @@ rjc2: `flowchart TD
   AB --> RDx(["Loading: re-dispatching, or refund / reschedule"]):::state
   RDx --> P
   D1c -->|yes| T["Live tracking & ETA"]
+  T --> DC{"Contact the operator?"}
+  DC -->|call| CALL(["Phone — masked DRON line, OS dialer"]):::state
+  DC -->|message| CH["Chat with the operator"]
+  DC -->|support| GH
+  DC -->|no, keep watching| D2
+  CALL --> T
+  CH --> T
   T --> D2{"Live position updating?"}
   D2 -->|no| L1(["Loading: waiting for GPS signal"]):::state
   L1 --> D3{"Recovered within timeout?"}
