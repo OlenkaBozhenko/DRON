@@ -400,7 +400,20 @@ Calendar and Reminders open, and iOS's other two date styles are ruled out by me
 scrolls rather than being tapped; a web build inherits the fail, not the exemption), and **unfolding in
 place** takes this panel's scroll height from 741 to ~1,050 against a 566 window. The grid is seven columns
 of **46.71** inside the sheet's 343, with a fixed **44 × 44** day circle centred in each — `HIG · 44pt` ✓.
-**Six week rows always,** so the sheet does not change height between a 5-row month and a 6-row one.
+**Six week rows always,** so the sheet does not change height between a 5-row month and a 6-row one —
+**and the height is set on the row, not left to the cells in it** (rev 120, 2026-08-16). The script has
+always written six `<tr>`, but a row whose seven cells all fall outside the month holds no button, and an
+empty cell is **0** high: the drawer measured **497.59** in September and **541.59** in August and November,
+a **44** jump on the month arrow. `.dr-cal__grid tbody tr{ height: var(--h-control) }` — in table layout
+`height` is a minimum, so the 44 day circle still sets the row wherever one is drawn. Measured across six
+months: **593.59 constant**.
+
+**The drawer's two actions stack, confirm first** (designer, 2026-08-16, rev 120: *«кнопки одна під одною»*
+— the same call rev 119 took on `resolution`). `Done` **341 × 44** over `Cancel` **341 × 44** with the 8
+gap, and **`Done` is first in the markup**, not flipped in CSS: `HIG · Action sheets` puts the cancel at the
+bottom of a stacked group, and a CSS flip would leave the reading and tab order in the other order from the
+drawn one (`WCAG 1.3.2`, `2.4.3`). `.dr-sheet__actions` is `flex-direction: column` with no `flex:1` — the
+items stretch to the width and keep `.dr-btn`'s own `min-height: 44` (`HIG · 44pt target` ✓).
 
 **The control that opens a picker may be an option rather than a row, and then the ellipsis is load-bearing.**
 The date opener is the *radio* in the Time group, not a `.dr-field--action`: the option has to stay mutually

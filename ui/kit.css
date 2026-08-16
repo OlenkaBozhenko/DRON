@@ -181,6 +181,11 @@
   --sz-tick-h:      2px;
   --sz-dot:         10px;  /* the filled centre of a checked radio */
   --sz-rail:        4px;   /* the range rail — the progress track's own weight */
+  --sz-hist:        48px;  /* the price chart: floor to tallest bar (2026-08-16, rev 119).
+                              Not --sz-mark 52 and not --h-groups 48 wearing another hat —
+                              both name a box that is tapped or read; this is the height of
+                              a picture standing on the rail, and the rail's 44px lane is
+                              what it is measured against. */
   --sz-rowkey:     140px;  /* the fact row's label column — sized on the widest
                               key in the system, "First time as Operator" at
                               133.34, so no label wraps and every value on every
@@ -209,6 +214,11 @@
      and is box + gap alone — 36px. Derived, so it followed the change itself. */
   --pick-indent:  calc(var(--sz-box) + var(--sp-snug));
   --pill-bleed:   calc((var(--h-control) - var(--h-pill)) / -2);
+  /* rev 119: the chart stands ON the rail, so the 44px slider lane is pulled up
+     until the rail's top edge meets the bars' baseline — half the rail less half
+     the lane, −20px. Derived, so moving --sz-rail or --h-control can never leave
+     the picture floating above the line it belongs to. */
+  --hist-seat:    calc(var(--sz-rail) / 2 - var(--h-control) / 2);
 
   --ic-12: 12px; --ic-13: 13px; --ic-14: 14px; --ic-16: 16px; --ic-17: 17px;
   /* --ic-13 is a declared rung: the chip gave it up on 2026-08-02 when the
@@ -1599,15 +1609,87 @@ header.dr-topbar,
    second way, so the band never rests on colour alone (1.4.1). Thumbs are
    --sz-box 24, the AA floor of 2.5.8, standing in a 44px row so HIG's 44pt
    target is met by the rail's own height. */
+/* THE BAND BECOMES THE WHOLE ZONE — 2026-08-16 (rev 119), the designer's call
+   against a Figma reference (node 94:6): «зроби такий вю — заголовок Діапазон
+   цін, підзаголовок ціна послуги, і підпис внизу мінімум та максимум, такий
+   барчарт з булітами». The three preset rows (Low / Medium / High, and the
+   Insured chip that rode on High) came off with her word, asked for before it
+   was built — the reference carries no presets. So .dr-range stops being one
+   <li> inside .dr-picks and becomes the card itself: a titled fieldset holding
+   a chart, the rail, and the two ends printed as fields.
+   THE TITLE IS A <legend>, WHICH IS WHY THIS COMPONENT IS NOT A FLEX COLUMN.
+   The drawn line is the group's accessible name with no ARIA spent on it — the
+   same "native on purpose" reading that made the slider two real inputs — and a
+   rendered legend is not a flex item, so the stack is block plus margins here
+   and gap everywhere else in the kit. A named exception, not a drift.
+   THE CHART IS SUPPLEMENTARY AND IS SAID SO IN THE MARKUP. Bars are a picture
+   of how services are priced; the band the user chose is carried by the two
+   thumbs, by the filled span, and printed in words in the two value fields —
+   so nothing here rests on colour (1.4.1 ✓), and the chart answers 1.1.1 with a
+   role="img" sentence rather than with aria-hidden. In-band --ink on --card
+   14.37:1, out --btn2 1.25:1: the same pair the filled span and the rail
+   already are, so the chart introduces no colour the component did not have.
+   (kit.css said 1.31:1 for --btn2 on --card in the note below; recomputed this
+   pass it is 1.25:1, which is what concept.md rev 66 recorded. Reported, and
+   the old figure left standing rather than quietly restamped.) */
 .dr-range{
-  position: relative;
-  display: flex; flex-direction: column; gap: var(--sp-9);
-  /* rev 91: the card's own 16 now supplies both sides and the bottom, so the
-     band keeps only the 12 that separates it from the hairline above it.
-     Its old 16/14 would have doubled to 32 at the sides and 30 at the foot —
-     the one place where "equal on all sides" would have visibly failed. */
-  padding: var(--sp-snug) 0 0;
+  display: block;
+  background: var(--card); border-radius: var(--r-card);
+  padding: var(--sp-screen);
 }
+.dr-range__title{
+  display: block; width: 100%;
+  font-size: var(--t-title-size); font-weight: var(--t-title-weight);
+  line-height: var(--t-title-line); letter-spacing: var(--t-title-track);
+  color: var(--ink);                                          /* 14.37:1 */
+}
+.dr-range__sub{
+  margin-top: var(--sp-within);
+  font-size: var(--t-bodysm-size); line-height: var(--t-bodysm-line);
+  color: var(--slate);                                        /* 5.95:1 */
+}
+.dr-range__band{ margin-top: var(--sp-group); }
+/* the picture reaches down to the rail, and the lane reaches back up through it:
+   a chart is not a grab, so every pointer meant for a thumb passes straight by */
+.dr-range__hist{
+  display: flex; align-items: flex-end; gap: var(--sp-2);
+  height: var(--sz-hist); pointer-events: none;
+}
+.dr-range__bar{
+  flex: 1 1 0; min-width: 0;
+  border-radius: var(--r-hairline) var(--r-hairline) 0 0;
+  background: var(--btn2);                                    /* 1.25:1 — the rail's own tone */
+}
+.dr-range__bar--in{ background: var(--ink); }                 /* 14.37:1 — the filled span's */
+.dr-range__fields{
+  margin-top: var(--sp-group);
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-snug);
+}
+.dr-range__field{ display: flex; flex-direction: column; align-items: center; gap: var(--sp-6); }
+.dr-range__cap{
+  font-size: var(--t-meta-size); line-height: var(--t-meta-line);
+  color: var(--slate);                                        /* 5.95:1 */
+}
+/* The value keeps a ground for the reason the date picker's two <select>s do
+   (rev 118): there is no label beside it to say it is a control's readout. The
+   FOURTH field in the system to hold one, after the search bar, the empty
+   multiline area and the clock. --media at --r-input, --ink on it 13.33:1.
+   The reference draws these as full pills; --r-input is what the ramp gives a
+   field, and --r-pill in this system belongs to chips. Reported, one line to
+   change if she wants the reference's shape. */
+.dr-range__val{
+  width: 100%; min-height: var(--h-control);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--media); border-radius: var(--r-input);
+  font-size: var(--t-heading-size); font-weight: var(--weight-medium);
+  color: var(--ink); font-variant-numeric: tabular-nums;      /* 13.33:1 */
+}
+/* ON THE BENCH since rev 119, declared and spent nowhere — kept, not deleted.
+   .dr-range__out was the one-line readout «₴0 – ₴1,000+» and .dr-range__ends the
+   pair of end captions under the rail; both were replaced by .dr-range__cap +
+   .dr-range__val, which say the same two numbers where the reference puts them.
+   The ::before hairline belonged to the band's old life as an <li> in .dr-picks
+   and matches nothing now. */
 .dr-picks li + li .dr-range::before{
   content: ""; position: absolute; left: var(--pick-indent); right: 0; top: 0;
   height: var(--hair); background: var(--line);
@@ -1616,7 +1698,8 @@ header.dr-topbar,
   font-size: var(--t-heading-size); font-weight: var(--weight-medium);
   color: var(--ink); font-variant-numeric: tabular-nums;      /* 14.37:1 */
 }
-.dr-range__rail{ position: relative; height: var(--h-control); display: flex; align-items: center; }
+.dr-range__rail{ position: relative; height: var(--h-control); display: flex; align-items: center;
+  margin-top: var(--hist-seat); }
 .dr-range__rail::before{
   content: ""; position: absolute; left: 0; right: 0;
   height: var(--sz-rail); border-radius: var(--r-pill); background: var(--btn2);
@@ -2236,6 +2319,13 @@ header.dr-topbar,
   padding-bottom: var(--sp-within);
 }
 .dr-cal__grid td{ padding: 0; text-align: center; }
+/* SIX ROWS THAT ARE SIX ROWS HIGH. The script has always written six <tr>, but a
+   row whose seven cells all fall outside the month holds no button, and an empty
+   cell is 0 high — so September drew five rows of 44 and November drew six, and
+   the sheet jumped 44 on the month arrow (measured 497.59 ↔ 541.59). The height
+   is set on the ROW rather than left to the tallest cell in it; in table layout
+   `height` is a minimum, so the 44 day circle still sets it wherever one is drawn. */
+.dr-cal__grid tbody tr{ height: var(--h-control); }
 .dr-cal__day{
   width: var(--h-control); height: var(--h-control);                     /* 44 × 44 */
   margin: 0 auto; padding: 0; border: 0; border-radius: var(--r-circle);
@@ -2291,11 +2381,15 @@ header.dr-topbar,
 }
 .dr-cal__colon{ color: var(--ink); }
 
-/* Cancel beside the confirm, both filling the width. `HIG · Action sheets`
-   asks for the cancel BY NAME — the × belongs to a full modal sheet screen,
-   not to a drawer, the same reading rev 101 wrote for the picker. */
-.dr-sheet__actions{ display: flex; gap: var(--sp-within-lg); }
-.dr-sheet__actions .dr-btn{ flex: 1; }
+/* Cancel UNDER the confirm, each one the full width (designer, 2026-08-16).
+   `HIG · Action sheets` asks for the cancel BY NAME — the × belongs to a full
+   modal sheet screen, not to a drawer, the same reading rev 101 wrote for the
+   picker — and it puts that cancel at the BOTTOM of a stacked group, which is
+   why the confirm is written first in the markup and not flipped in CSS: the
+   reading order and the tab order stay the drawn order (`WCAG 1.3.2`, `2.4.3`).
+   No `flex:1` in a column — the items stretch to the width and keep the 44 the
+   `.dr-btn` min-height gives them (`HIG · 44pt target`). */
+.dr-sheet__actions{ display: flex; flex-direction: column; gap: var(--sp-within-lg); }
 
 /* ═══ REDUCED MOTION ══════════════════════════════════════════════════════
    Every loop above carries information, so each one stops rather than
