@@ -546,18 +546,52 @@ that moves the price shows its price before the tap.
 button all pointed at `order-review.html` — the delivery build — so the one screen that only
 calendar-first services can reach handed every one of them a parcel summary. All five exits rewired.
 
-### Open, not fixed: the payment chain below review is still the delivery build
+### Closed in the same pass — the whole chain below review, on the designer's call
 
-Every review file's drawer hands off into a chain written for a parcel. **Measured rather than
-estimated** — scanning the chain for `parcel`, `pickup`, `drop-off`, `₴180`, `Package delivery` and
-`En route` finds **seven** files carrying them: `payment` (`₴180`, *Package delivery*),
-`order-confirmed` (*En route to pickup*), `tracking` with its `-empty` and `-error`, `delivery`
-(*parcel*), and `order-review-loading`, whose skeleton is the price but whose resolved summary above
-it is delivery's.
+**Which files needed it was measured, not estimated.** Scanning the chain for `parcel`, `pickup`,
+`drop-off`, `₴180`, `Package delivery` and `En route` found **seven** carrying them, and only seven.
+An earlier note in this file put the job at "roughly fifteen per service"; that was an estimate and
+it was wrong by more than half — corrected here rather than left standing.
 
-**The rest is already service-neutral and needs nothing:** `payment-error`, `payment-loading`, the
-three `order-confirmed` states, `tracking-loading`, `delivery-error`, `delivery-loading`, `rate`. So
-the split is about **thirteen new files, not thirty** — and inspection's deliverable screen exists
-already as `inspection-report.html`, leaving only aerial without a "what came back" screen. That is
-the designer's call, not an assumption to make inside a review fix. Recorded here so the gap is
-visible rather than discovered later.
+| Screen | Was bound by | Now |
+|---|---|---|
+| Payment | `₴180`, *Package delivery* | `payment-aerial` ₴800 · `payment-inspection` ₴650 |
+| Order confirmed | *En route to pickup* | `-aerial` · `-inspection` — **When / Booked** |
+| Tracking + `-empty` + `-error` | *En route to drop-off* | `tracking-aerial*` (*to the shoot*) · `tracking-inspection*` (*to the site*) |
+| Delivery confirmation | *parcel* | `delivery-aerial`; inspection keeps `inspection-report` |
+| Order review · loading | *Pickup* · *Drop-off* | `order-review-loading-aerial` · `-inspection` |
+
+**Left alone because they are already service-neutral:** `payment-error`, `payment-loading`, the
+three `order-confirmed` states, `tracking-loading`, `delivery-error`, `delivery-loading`, `rate`.
+
+**The one real design change in the split, not a string swap.** `order-confirmed` said *Your operator
+is on the way* over an order booked for Wednesday. `RJ-C2` — close the void after payment — is
+answered by stating **when**, so the two calendar-first files say *Your shoot / inspection is booked
+for Wed 2 Jul, 09:00* and their rows read **When** and **Booked**. `RJ-C1` is untouched: the operator
+card, rating and both badges stay, because who is coming matters the same whether they come in eight
+minutes or on Wednesday. *Track live* remains the exit — a prototype compresses time, as the delivery
+flow already does by not making anyone wait 25 minutes — and the screen states honestly when the day
+is.
+
+### Two files beyond the thirteen, and said so rather than folded in
+
+`time-slot` was one file serving both calendar-first services, so its five exits could name only one
+review. With it pointing at aerial, **six of the thirteen new files were unreachable by walking the
+prototype** — openable only from the shell tree. `time-slot-inspection.html` and
+`time-slot-inspection-empty.html` close that, and `order-setup-inspection` now hands off to its own
+slot list.
+
+**All three chains were then walked link by link, not read:** delivery, aerial and inspection each
+run catalogue → setup → (slot) → review → payment → confirmed → tracking → deliverable → rate with
+**zero broken steps**. Every generated file was produced by asserted substitution from its delivery
+original, so structure, classes and row counts are identical by construction rather than by
+inspection; all 15 parse with no unclosed tags, and a comment-stripped scan finds **no live
+delivery-bound string** left in any of them.
+
+### Open, not fixed: `time-slot.html` is the aerial instance under an unsuffixed name
+
+The unsuffixed file is the default instance, as `order-setup.html` and `order-review.html` are for
+delivery — except that delivery never reaches a slot list at all, so here the bare name carries less
+meaning than it does elsewhere. Renaming it to `time-slot-aerial.html` would touch the shell tree,
+`_screens.md` and `_conventions.md`; it is the designer's call and is not assumed. The shell tree
+labels it *· aerial* in the meantime.

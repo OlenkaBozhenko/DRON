@@ -30,11 +30,11 @@
     { title: "Client · MJ-1", screens: [
       { name: "Home / start an order",                 file: "listings.html",           states: [["filters","listings-filters.html"],["country","listings-filter-country.html"],["region","listings-filter-region.html"],["city","listings-filter-city.html"],["district","listings-filter-district.html"],["filtered","listings-filtered.html"],["empty","listings-empty.html"],["error","listings-error.html"],["loading","listings-loading.html"]] },
       { name: "Order setup / details",                 file: "order-setup.html",        states: [["aerial","order-setup-aerial.html"],["inspection","order-setup-inspection.html"],["empty","order-setup-empty.html"],["error","order-setup-error.html"]] },
-      { name: "Order review & price",                  file: "order-review.html",       states: [["aerial","order-review-aerial.html"],["inspection","order-review-inspection.html"],["loading","order-review-loading.html"]] },
-      { name: "Payment",                               file: "payment.html",            states: [["error","payment-error.html"],["loading","payment-loading.html"]] },
-      { name: "Order confirmed / operator revealed",   file: "order-confirmed.html", success: true, states: [["empty","order-confirmed-empty.html"],["error","order-confirmed-error.html"],["loading","order-confirmed-loading.html"]] },
-      { name: "Live tracking & ETA",                   file: "tracking.html",           states: [["call the operator","call.html"],["chat with operator","chat.html"],["empty","tracking-empty.html"],["error","tracking-error.html"],["loading","tracking-loading.html"]] },
-      { name: "Delivery confirmation",                 file: "delivery.html",       success: true, states: [["error","delivery-error.html"],["loading","delivery-loading.html"]] },
+      { name: "Order review & price",                  file: "order-review.html",       states: [["aerial","order-review-aerial.html"],["inspection","order-review-inspection.html"],["loading","order-review-loading.html"],["loading · aerial","order-review-loading-aerial.html"],["loading · inspection","order-review-loading-inspection.html"]] },
+      { name: "Payment",                               file: "payment.html",            states: [["aerial","payment-aerial.html"],["inspection","payment-inspection.html"],["error","payment-error.html"],["loading","payment-loading.html"]] },
+      { name: "Order confirmed / operator revealed",   file: "order-confirmed.html", success: true, states: [["aerial","order-confirmed-aerial.html"],["inspection","order-confirmed-inspection.html"],["empty","order-confirmed-empty.html"],["error","order-confirmed-error.html"],["loading","order-confirmed-loading.html"]] },
+      { name: "Live tracking & ETA",                   file: "tracking.html",           states: [["call the operator","call.html"],["chat with operator","chat.html"],["empty","tracking-empty.html"],["error","tracking-error.html"],["loading","tracking-loading.html"],["aerial","tracking-aerial.html"],["aerial · empty","tracking-aerial-empty.html"],["aerial · error","tracking-aerial-error.html"],["inspection","tracking-inspection.html"],["inspection · empty","tracking-inspection-empty.html"],["inspection · error","tracking-inspection-error.html"]] },
+      { name: "Delivery confirmation",                 file: "delivery.html",       success: true, states: [["aerial · photo & video set","delivery-aerial.html"],["error","delivery-error.html"],["loading","delivery-loading.html"]] },
       { name: "Rate the order",                        file: "rate.html",           success: true, states: [] }
     ]},
     { title: "Operator · MJ-2 + RJ-O3", screens: [
@@ -48,7 +48,7 @@
     ]},
     { title: "Client · step 8 (EJ-1/2 · C-2 · repeat)", screens: [
       { name: "Welcome / first-use explainer",         file: "welcome.html",            states: [["empty","welcome-empty.html"]] },
-      { name: "Time-slot pick (calendar-first)",       file: "time-slot.html",          states: [["empty","time-slot-empty.html"]] },
+      { name: "Time-slot pick (calendar-first) · aerial", file: "time-slot.html",  states: [["empty","time-slot-empty.html"],["inspection","time-slot-inspection.html"],["inspection · empty","time-slot-inspection-empty.html"]] },
       { name: "Inspection report",                     file: "inspection-report.html", success: true, states: [["error","inspection-report-error.html"],["loading","inspection-report-loading.html"]] },
       { name: "Order history",                         file: "order-history.html",      states: [["details · delivery","order-details.html"],["details · inspection","order-details-inspection.html"],["details · aerial","order-details-aerial.html"],["empty","order-history-empty.html"],["loading","order-history-loading.html"]] },
       { name: "Share / refer",                         file: "share.html",              states: [["empty","share-empty.html"]] },

@@ -218,25 +218,42 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   `time-slot`, so the row states the slot chosen there rather than *Now · ~25 min*.
   **Back names `Pick a time`**, not the setup form: on these two services the slot list is the
   previous screen (`HIG · Navigation Bars`).
-- **Still open after this pass, and reported rather than half-done.** All three review files' drawers
-  hand off into a chain written for a parcel. **Measured, not estimated** — a scan for the
-  delivery-bound strings (`parcel`, `pickup`, `drop-off`, `₴180`, `Package delivery`, `En route`)
-  finds **seven files** carrying them, and only seven:
+- **The chain below review was split in the same pass, on the designer's call — 2026-08-16.** Which
+  files needed it was **measured, not estimated**: a scan for the delivery-bound strings (`parcel`,
+  `pickup`, `drop-off`, `₴180`, `Package delivery`, `En route`) found **seven** carrying them, and
+  only seven. The rest of the chain — `payment-error`, `payment-loading`, the three
+  `order-confirmed` states, `tracking-loading`, `delivery-error`, `delivery-loading`, `rate` — is
+  already service-neutral and was left alone.
 
-  | File | What binds it to delivery |
-  |---|---|
-  | `payment.html` | `₴180`, *Package delivery* |
-  | `order-confirmed.html` | *En route to pickup* |
-  | `tracking.html` · `tracking-empty` · `tracking-error` | *drop-off*, *En route* |
-  | `delivery.html` | *parcel* |
-  | `order-review-loading.html` | *Pickup* · *Drop-off* · *Package delivery* under the price skeleton |
+  | Screen | Was bound by | Now |
+  |---|---|---|
+  | Payment | `₴180`, *Package delivery* | `payment-aerial` ₴800 · `payment-inspection` ₴650 |
+  | Order confirmed | *En route to pickup* | `order-confirmed-aerial` · `-inspection` — **When / Booked**, not an ETA |
+  | Live tracking + `-empty` + `-error` | *En route to drop-off* | `tracking-aerial*` (*to the shoot*) · `tracking-inspection*` (*to the site*) |
+  | Delivery confirmation | *parcel* | `delivery-aerial` — the aerial *Photo &amp; video set*; inspection keeps `inspection-report` |
+  | Order review · loading | *Pickup* · *Drop-off* under the skeleton | `order-review-loading-aerial` · `-inspection` |
 
-  **The rest of the chain is already service-neutral** and needs nothing: `payment-error`,
-  `payment-loading`, the three `order-confirmed` states, `tracking-loading`, `delivery-error`,
-  `delivery-loading`, `rate`. So the split is roughly **thirteen new files, not thirty** — and
-  inspection's deliverable screen already exists as `inspection-report.html`, so only aerial needs a
-  "what came back" screen of its own. Splitting them is a separate decision, not an oversight of
-  this one.
+  **What is deliberately unchanged in the split files:** the operator card, rating and both trust
+  badges on `order-confirmed` and every `tracking` state — `RJ-C1` does not weaken because the
+  operator arrives on Wednesday rather than in eight minutes. The four-node rail (*Accepted · En
+  route · On-site · Done*) already fitted all three services. The `cc-*` autocomplete tokens
+  (`WCAG 1.3.5`), the drawn labels (`3.3.2`), the 44pt rows and the Contact-operator drawer with its
+  masking note are carried byte for byte.
+  **`order-confirmed` states the booking rather than asserting motion.** *Your operator is on the
+  way* is false for a service booked for Wednesday; the two calendar-first files say *Your shoot /
+  inspection is booked for Wed 2 Jul, 09:00* and their rows read **When** and **Booked**. *Track
+  live* stays the exit — a prototype compresses time, as the delivery flow already does by not
+  making anyone wait 25 minutes — and the screen tells the truth about when that is.
+- **The slot list had to split too — two files beyond the thirteen, and stated rather than folded
+  in.** `time-slot` was one file serving both calendar-first services, so its five exits could name
+  only one review: with it pointing at aerial, **six of the thirteen new files were unreachable by
+  walking the prototype** and could only be opened from the shell tree. `time-slot-inspection.html`
+  and `time-slot-inspection-empty.html` close that. **All three chains now walk end to end** —
+  verified by following the links, not by reading them.
+  `time-slot.html` remains the **aerial** instance. The unsuffixed file is the default instance, as
+  `order-setup.html` and `order-review.html` are for delivery — except that delivery never reaches a
+  slot list at all, so the name is doing less work than usual. Renaming it to `time-slot-aerial.html`
+  is the designer's call and is not assumed.
 
 - **Pay opens a drawer, not a screen, from 2026-08-16** (designer: *«по кліку на pay має відкриватись дровер а
   не сторінка … кнопки з іконкою чорного кольору apple pay та google pay або можливість обрати картку … лиш усі
