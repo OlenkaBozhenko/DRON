@@ -403,10 +403,14 @@
   </div>
 
   <!--
-    The one page-level script in the prototype. The range is native, so dragging,
-    the arrow keys and the exposed value all work without it; this only keeps the
-    readout, the filled span and aria-valuetext saying what the thumbs say, which
-    no CSS can do. Scoped to this page — nothing else loads it.
+    The first of this page's two scripts. The range is native, so dragging, the
+    arrow keys and the exposed value all work without it, and the chart is drawn
+    in the markup rather than generated — with JS off the zone still shows its
+    picture, its rail and both figures. What this adds is only what no CSS can:
+    the two printed values, the filled span, aria-valuetext, and which bars fall
+    inside the chosen band. Scoped to this page — nothing else loads it.
+    The preset handler went with the preset rows (rev 119) — there is nothing
+    left to clear, so the band is now the only thing that moves the thumbs.
   -->
   <script>
   (function () {
@@ -414,42 +418,39 @@
     if (!box) return;
     var lo = box.querySelector('[data-lo]'),
         hi = box.querySelector('[data-hi]'),
-        out = box.querySelector('[data-out]'),
+        loOut = box.querySelector('[data-lo-out]'),
+        hiOut = box.querySelector('[data-hi-out]'),
         fill = box.querySelector('[data-fill]'),
-        presets = document.querySelectorAll('input[name="price"]'),
+        bars = box.querySelectorAll('[data-bar]'),
         MAX = +lo.max;
 
     function money(v) {
       return '₴' + (+v).toLocaleString('en-US') + (+v === MAX ? '+' : '');
     }
     function paint() {
-      var a = +lo.value, b = +hi.value;
+      var a = +lo.value, b = +hi.value, n = bars.length;
       fill.style.left = (a / MAX * 100) + '%';
       fill.style.right = (100 - b / MAX * 100) + '%';
-      out.textContent = money(a) + ' – ' + money(b);
+      loOut.textContent = money(a);
+      hiOut.textContent = money(b);
       lo.setAttribute('aria-valuetext', money(a));
       hi.setAttribute('aria-valuetext', money(b));
+      /* a bar stands for a slice of the axis; it is in the band when the middle
+         of its slice is — so the shading changes on the same 50₴ step the
+         thumbs move by, and never half a bar out */
+      Array.prototype.forEach.call(bars, function (bar, i) {
+        var mid = (i + 0.5) / n * MAX;
+        bar.classList.toggle('dr-range__bar--in', mid >= a && mid <= b);
+      });
     }
     // the thumbs may meet but never cross — each stops at the other
     lo.addEventListener('input', function () {
       if (+lo.value > +hi.value) lo.value = hi.value;
-      clearPresets(); paint();
+      paint();
     });
     hi.addEventListener('input', function () {
       if (+hi.value < +lo.value) hi.value = lo.value;
-      clearPresets(); paint();
-    });
-    function clearPresets() {
-      Array.prototype.forEach.call(presets, function (r) { r.checked = false; });
-    }
-    // a band is a shortcut to a range: picking one moves the thumbs
-    Array.prototype.forEach.call(presets, function (r) {
-      r.addEventListener('change', function () {
-        if (!r.checked) return;
-        var b = r.getAttribute('data-band').split(',');
-        lo.value = b[0]; hi.value = b[1];
-        paint();
-      });
+      paint();
     });
     paint();
   })();
