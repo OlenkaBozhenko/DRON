@@ -471,6 +471,18 @@ holds 12 at both tiers),
 card-top gap 16 → 12, drone box 96 × 72 → 68 × 52, route padding 16 → 14. The skeleton page steps
 identically, so the loading and loaded lists stay the same height at both tiers.
 
+**The onscreen keyboard is system chrome, and it quotes two numbers the product does not own.**
+`--h-kb` **291** is what iOS measures in portrait on a 375 × 812 frame (216 keys + 45 QuickType +
+30 home-indicator inset); HIG publishes no height and asks an app to read the keyboard's frame.
+The accessory bar above it is **44**, the HIG target floor, so the pair stands at **335** and the
+content area shrinks to the **375.4** left above it. `--r-key` **5** is **off the closed radius
+ramp** (10 · 12 · 13 · 16 · 22 · 999) and is recorded as a departure, not a defect: the keyboard
+depicts Apple's geometry the way the status bar and the home-indicator's 2px bar already do. On
+the ramp's 10 a 45px key reads as a pill; on the 2/4/8 floor's 4 it reads square. The plane is
+`aria-hidden` with no tab stop and no pointer target, so `2.5.8` and `4.1.2` never engage — the
+system keyboard is not in an app's accessibility tree either. Colour is the product's own: plane
+`--btn2`, keys `--page`, modifiers `--card`, labels `--ink`. No new colour token.
+
 **Touch targets.** 44px minimum, met by `min-height` rather than `height` — a button is a flex
 item in a scrolling column, and a fixed height gets shrunk below the target. Circular icon actions
 are 44 × 44; tab targets measure 86.3 × 50.
