@@ -306,6 +306,63 @@
       <a class="dr-btn dr-btn--primary" href="listings-filtered.html">Apply filters</a>
     </footer>
 
+    <!-- ── THE DATE PICKER DRAWER ────────────────────────────────────────────
+         Markup to ui/kit.js's own contract (scrim + .dr-sheet--picker, one
+         scrim per page, aria-modal + inert behind it), even though the
+         behaviour is written below rather than there: kit.js answers only to
+         `.dr-field--action[aria-controls]` rows, and this opener is a radio in
+         a group. When a second screen needs a calendar, the script moves into
+         kit.js and this page links it — the same promotion .dr-range is still
+         waiting for.
+         SIX WEEK ROWS, ALWAYS. A grid that changes height makes the sheet jump
+         between a 5-row month and a 6-row one; the last row is drawn empty
+         instead. MONDAY FIRST — CLAUDE.md's geography is Ukraine and Europe,
+         and iOS takes the first weekday from the locale, which is Monday for
+         uk-UA and for every European locale the product ships in. -->
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+    <section class="dr-sheet dr-sheet--picker" id="datepick" role="dialog"
+             aria-modal="true" aria-labelledby="datepick-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="datepick-title">Pick a date &amp; time</p>
+
+      <div class="dr-cal">
+        <div class="dr-cal__bar">
+          <button class="dr-cal__nav" type="button" data-prev aria-label="Previous month"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <span class="dr-cal__month" data-month aria-live="polite"></span>
+          <button class="dr-cal__nav" type="button" data-next aria-label="Next month"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+
+        <!-- The weekday initials are two letters, which fit the 46.71 column and
+             stay unambiguous where a single letter gives two T's and two S's.
+             aria-label carries the full name, so the column header is spoken as
+             "Monday" and not as "Mo" (WCAG 1.3.1). -->
+        <table class="dr-cal__grid" role="grid" aria-labelledby="datepick-title">
+          <thead>
+            <tr>
+              <th scope="col" aria-label="Monday">Mo</th>
+              <th scope="col" aria-label="Tuesday">Tu</th>
+              <th scope="col" aria-label="Wednesday">We</th>
+              <th scope="col" aria-label="Thursday">Th</th>
+              <th scope="col" aria-label="Friday">Fr</th>
+              <th scope="col" aria-label="Saturday">Sa</th>
+              <th scope="col" aria-label="Sunday">Su</th>
+            </tr>
+          </thead>
+          <tbody data-days></tbody>
+        </table>
+
+        <label class="dr-field dr-cal__time">
+          <span class="dr-field__label">Time</span>
+          <input class="dr-field__input" type="time" value="14:00" step="900" data-time>
+        </label>
+      </div>
+
+      <div class="dr-sheet__actions">
+        <button class="dr-btn dr-btn--secondary" type="button" data-close>Cancel</button>
+        <button class="dr-btn dr-btn--primary" type="button" data-done>Done</button>
+      </div>
+    </section>
+
   </div>
 
   <!--
