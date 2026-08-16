@@ -1233,7 +1233,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-details | Summary | Podil, 21 · Osokorky, 14 | Values | the short form `order-review` already uses for the same two stops |
 | order-details | Payment | Paid | Field label | **Paid**, not *Total*. `voice.md` fixes *paid* as money that has landed; `order-review`'s `Total` is what you are about to be charged, and the two screens must not use one word for both |
 | order-details | Action bar | Book again | Button | the vocabulary's own re-order verb (A3), the same string `resolution` carries as `Book again — free` |
-| order-details | Action bar | Delete order | Button | destructive, `.dr-btn--danger`. Names its object the way `Remove photo` does, and the verb carries the meaning with the colour taken away (`WCAG 1.4.1`). Matches the trash control's accessible name on the card it came from, so one action has one name in both places |
+| order-details | Action bar | Delete order | Button | destructive, but **grey `.dr-btn--secondary`** on the designer's call (2026-08-16, *«зроби кнопку секондарі сірою»*) — built red as `.dr-btn--danger` and changed the same day. **The string now carries the whole warning**, which is why it stays a plain imperative naming its object: with the colour gone, `Delete` is the only thing a reader has. Matches the trash control's accessible name on the card it came from, so one action has one name in both places |
 | order-history | — | Activity | Heading |  |
 | order-history | Order history | Package delivery | Body |  |
 | order-history | Order history | In progress | Label | status indicator — accessible name, not visible text |
