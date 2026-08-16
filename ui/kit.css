@@ -467,19 +467,36 @@ header.dr-topbar,
 .dr-back:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: 0;
   border-radius: var(--r-btn); }
 
+/* The zone gap closed 16 -> 12 on 2026-08-16, the designer's «зроби менші
+   відступи між картками», written against contact-support: with the shell's
+   annotations off — the way she reads a page — that screen is two cards and
+   ONE gap, measured 16.00 (card bottom 282.1 -> card top 298.1), and it read
+   loose. The pair moved together, because a zone gap is only ever read against
+   what a zone spends inside itself: 16/12 was the kit's weakest proximity step
+   at 1.33:1, and dropping the zone alone to 12 would have flattened it to 1:1,
+   the exact "siblings as far apart as strangers" defect DESIGN.md names as the
+   reason .dr-list--snug exists. 12 over .dr-stack's 8 reads 1.5:1 — a stronger
+   step than the one it replaces, on two rungs the scale already carries.
+   HIG · Layout groups by proximity and prescribes the direction, not a number;
+   no WCAG criterion is engaged — 1.3.1 is carried programmatically (section /
+   form / label), and both cards clear 2.5.8's 24×24 on size alone. */
 .dr-main{
   flex: 1; overflow-y: auto;
   padding: var(--sp-screen);
-  display: flex; flex-direction: column; gap: var(--sp-screen);
+  display: flex; flex-direction: column; gap: var(--sp-snug);
 }
-.dr-stack{ display: flex; flex-direction: column; gap: var(--sp-snug); }
+.dr-stack{ display: flex; flex-direction: column; gap: var(--sp-within-lg); }
 .dr-center{ display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--sp-snug); }
 /* within a zone the stack can close to 8 — paired with --zones' 24 the
    proximity step reads 3:1. Spent on rate beside the two-line heading,
-   whose second line repaid the frame's slack. 2026-08-13. */
+   whose second line repaid the frame's slack. 2026-08-13.
+   Since 2026-08-16 .dr-stack spends the same 8; this modifier is what the
+   centred column keeps, .dr-center holding 12. */
 .dr-center--tight{ gap: var(--sp-within-lg); }
-/* zones read by proximity: 24 between zones against the 12 (or --tight 8)
-   within one — the rate screen's call, designer 2026-08-12. */
+/* zones read by proximity: 24 between zones against the 8 within one — the
+   rate screen's call, designer 2026-08-12. Read 24/12 = 2:1 until the zone gap
+   closed on 2026-08-16; the modifier did not move, so the step it spends is
+   now 3:1, and it stays the one screen that pays 24 for a zone boundary. */
 .dr-main--zones{ gap: var(--sp-24); }
 
 .dr-tabbar{
@@ -556,7 +573,13 @@ header.dr-topbar,
   border-left: 0;                      /* the wireframe base draws a 2px left bar */
   border-bottom: var(--hair) solid var(--line);
   padding: 0 0 var(--sp-9);            /* shorthand: the base's left inset resets */
-  margin-bottom: calc(var(--sp-within) * -1);  /* the label sits 12 above its content, not 16 */
+  /* The label pulls 4 out of the gap it stands in, so it reads as belonging to
+     what follows rather than floating between two zones. Measured 12 against
+     the old 16 zone gap; since 2026-08-16 it measures 8 against 12 — the same
+     4px debt, the same direction. On account-edit, whose zone column is a
+     .dr-stack, the label lands 4 above its content: the annotation layer
+     follows whatever gap its parent spends, and that page's parent spends 8. */
+  margin-bottom: calc(var(--sp-within) * -1);
 }
 .dr-label::after{
   content: ""; position: absolute; left: 0; bottom: calc(var(--hair) * -1);
@@ -585,9 +608,15 @@ header.dr-topbar,
    sentence case; this takes the kit's own 13/600 at --slate on the page —
    6.62:1, the pair the tab label already records (WCAG 1.4.3 ✓ at >= 4.5:1).
    Sentence case in the SF face keeps it clear of .dr-label's mono uppercase,
-   which labels structure and never content. The 12 above lands the group
-   boundary on the kit's own 24 zone rhythm, .dr-stack spending 12 between
-   siblings; as a heading element it carries the grouping for WCAG 1.3.1. */
+   which labels structure and never content. As a heading element it carries
+   the grouping for WCAG 1.3.1.
+   The 12 above was written to land the group boundary on 24, .dr-stack then
+   spending 12 between siblings. Since the 2026-08-16 gap change the stack
+   spends 8, so the boundary this margin builds measures 20 — still clear of
+   the 8 within, one rung under the 24 it was aimed at. Left as built and
+   recorded rather than re-cut, because the class is declared and applied on
+   NO page in the prototype: 0 of 80 carry .dr-sect, account-edit included.
+   Whether it lands or gets spent is open, and hers. */
 .dr-sect{
   font-size: var(--t-bodysm-size); font-weight: var(--weight-medium);
   line-height: var(--t-bodysm-line); color: var(--slate);   /* 6.62:1 on the page */
