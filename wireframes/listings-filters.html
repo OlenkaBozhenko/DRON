@@ -614,6 +614,7 @@
       /* aria-modal is a promise made to assistive tech; inert is what keeps it
          for the pointer and the tab key too */
       behind.forEach(function (el) { el.inert = true; });
+      undo = { d: new Date(sel), hh: hhEl.value, mm: mmEl.value };
       view = { y: sel.getFullYear(), m: sel.getMonth() };
       render();
       var b = body.querySelector('.dr-cal__day[tabindex="0"]');
