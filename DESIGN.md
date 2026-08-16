@@ -493,6 +493,16 @@ buttons were. The exception is a field **inside** the bar: `chat`'s composer rid
 the full **335**, and its content area does not pay that height twice. And the keys are **mobile only** —
 291 is an iPhone's number, so the shell's 768 × 1024 and 1280 × 800 presets raise nothing.
 
+**Two planes, and the field picks (rev 152).** `HIG · Onscreen keyboards` asks the keyboard to
+match the field, and the markup already says which: `inputmode="numeric | decimal | tel"` or
+`type="number | tel"` draws the **number pad** — three columns, and a bottom row of an empty cell,
+`0` and a face-less delete, as iOS draws it — and everything else draws QWERTY. **Ten fields take
+it:** `cc-num`, `cc-exp` and `cc-csc` on each of the three `payment` pages, and `account-edit`'s
+`type="tel"` phone — the one the sweep found outside payment. The plane is the same **291** in both: a keyboard's frame is what an app reads, and the frame
+does not change with the layout inside it, so nothing measured downstream moves. Pad keys measure
+**118.3 × 45** against the letter row's **31.3 × 45**. One simplification, recorded: iOS's telephone
+pad carries letters under the digits and a `+*#` key; ours draws the plain pad for both.
+
 **Touch targets.** 44px minimum, met by `min-height` rather than `height` — a button is a flex
 item in a scrolling column, and a fixed height gets shrunk below the target. Circular icon actions
 are 44 × 44; tab targets measure 86.3 × 50.

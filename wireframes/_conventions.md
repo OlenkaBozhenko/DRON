@@ -709,7 +709,10 @@ action bar — four links behind 335pt of drawn keyboard are the same `WCAG 2.4.
 two buttons were; (2) a field that lives **inside** the bar (`chat`'s composer) rides above the keys by the
 whole **335**, not by `--h-kb`'s 291, and its `main` does not also pay that height — the correction is
 recorded in `kit.js`; (3) the keys rise **only in the mobile viewport**, because 291 is quoted from a
-375 × 812 iPhone frame and the shell's tablet and desktop presets are different devices.
+375 × 812 iPhone frame and the shell's tablet and desktop presets are different devices. **And from rev 152 the field picks the plane:** `inputmode="numeric | decimal | tel"` or
+`type="number | tel"` draws the number pad, everything else QWERTY — `HIG · Onscreen keyboards` asks the
+keyboard to match the field, and 10 fields ask for digits (`payment` ×3 fields on 3 pages, `account-edit`'s
+phone). Neither the plane's 291 nor the keyboard's 335 changes with the layout drawn inside it.
 A page that holds **neither** a drawer nor a field must not link it. The page-level scripts left in the prototype are
 **both on `listings-filters`** and both are that page's alone: the **range readout**, and the **date picker**
 (added 2026-08-16, rev 118). The date picker is not in `kit.js` for a stated reason, not an oversight —

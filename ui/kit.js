@@ -185,7 +185,45 @@
     ['123','☺','space','return']
   ];
 
-  var kb = null, bar = null, tabs = null, main = null, field = null, barRides = false;
+  /* THE NUMBER PAD, 2026-08-16 (rev 152). `HIG · Onscreen keyboards`: the keyboard matches
+     the field, and the field already says which — `payment`'s card number, expiry and CVC
+     carry `inputmode="numeric"`, so drawing them QWERTY stated the wrong device. iOS's own
+     pad: three columns, and a bottom row of an empty cell, `0` and a delete with no key
+     face. Same plane, same 291 — a keyboard's frame is what an app reads and the frame does
+     not change with the layout inside it, so nothing measured downstream moves. */
+  var NUM = [['1','2','3'], ['4','5','6'], ['7','8','9'], ['', '0', '⌫']];
+
+  var kb = null, bar = null, tabs = null, main = null, field = null, barRides = false, layout = null;
+
+  function planeFor(el) {
+    var im = (el.getAttribute('inputmode') || '').toLowerCase();
+    if (im === 'numeric' || im === 'decimal' || im === 'tel') return 'digits';
+    if (el.tagName === 'INPUT' && (el.type === 'number' || el.type === 'tel')) return 'digits';
+    return 'letters';
+  }
+
+  /* the rows are redrawn only when the field asks for a layout the plane is not showing */
+  function draw(kind) {
+    if (layout === kind) return;
+    layout = kind;
+    var rows = kb.querySelector('.dr-kb__rows');
+    rows.textContent = '';
+    (kind === 'digits' ? NUM : ROWS).forEach(function (keys, i) {
+      var row = document.createElement('div');
+      row.className = 'dr-kb__row' + (kind === 'letters' && i === 1 ? ' dr-kb__row--mid' : '');
+      keys.forEach(function (k) {
+        var key = document.createElement('span');
+        key.className = 'dr-kb__key'
+          + (k === 'space' ? ' dr-kb__key--space' : '')
+          + (k === 'return' ? ' dr-kb__key--return' : '')
+          + (kind === 'letters' && (k === '123' || k === '☺' || k === '⇧' || k === '⌫') ? ' dr-kb__key--mod' : '')
+          + (kind === 'digits' && (k === '' || k === '⌫') ? ' dr-kb__key--blank' : '');
+        key.textContent = k === 'space' ? '' : k;
+        row.appendChild(key);
+      });
+      rows.appendChild(row);
+    });
+  }
 
   function build() {
     var el = document.createElement('div');
@@ -211,22 +249,9 @@
     quick.appendChild(document.createElement('span'));
     plane.appendChild(quick);
 
+    /* the rows are filled by draw(), which the focused field chooses */
     var rows = document.createElement('div');
     rows.className = 'dr-kb__rows';
-    ROWS.forEach(function (keys, i) {
-      var row = document.createElement('div');
-      row.className = 'dr-kb__row' + (i === 1 ? ' dr-kb__row--mid' : '');
-      keys.forEach(function (k) {
-        var key = document.createElement('span');
-        key.className = 'dr-kb__key'
-          + (k === 'space' ? ' dr-kb__key--space' : '')
-          + (k === 'return' ? ' dr-kb__key--return' : '')
-          + (k === '123' || k === '☺' || k === '⇧' || k === '⌫' ? ' dr-kb__key--mod' : '');
-        key.textContent = k === 'space' ? '' : k;
-        row.appendChild(key);
-      });
-      rows.appendChild(row);
-    });
     plane.appendChild(rows);
 
     el.appendChild(acc);
@@ -244,6 +269,7 @@
 
   function show(el) {
     if (!kb) kb = build();
+    draw(planeFor(el));
     field = el;
     bar = frame.querySelector('.dr-actionbar');
     tabs = frame.querySelector('.dr-tabbar');
