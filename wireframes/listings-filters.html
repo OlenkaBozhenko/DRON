@@ -351,10 +351,18 @@
           <tbody data-days></tbody>
         </table>
 
-        <label class="dr-field dr-cal__time">
+        <!-- Not a <label>: it heads TWO controls, and one label cannot name two.
+             Each select carries its own accessible name instead (WCAG 4.1.2),
+             and "Time" is the visual key on the same 140 column every field row
+             in the product stands on. -->
+        <div class="dr-field dr-cal__time">
           <span class="dr-field__label">Time</span>
-          <input class="dr-field__input" type="time" value="14:00" step="900" data-time>
-        </label>
+          <span class="dr-cal__clock">
+            <select class="dr-cal__unit" data-hh aria-label="Hour"></select>
+            <span class="dr-cal__colon" aria-hidden="true">:</span>
+            <select class="dr-cal__unit" data-mm aria-label="Minute"></select>
+          </span>
+        </div>
       </div>
 
       <div class="dr-sheet__actions">
