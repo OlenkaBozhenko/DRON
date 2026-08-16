@@ -72,58 +72,41 @@
       <p class="zlabel dr-label">Photo <span class="dr-label__act">▸ what your operator sees</span></p>
       <div class="dr-card">
         <span class="dr-avatar-lg"><img src="../assets/people/thumbs/person-client-olena.png" alt="Your profile photo" loading="lazy" decoding="async"></span>
-        <p class="dr-note">Your operator sees this photo when they arrive.</p>
-      </div>
-
-      <!--
-        ZONE · add photo — two sources, and `HIG · Action sheets` names them both:
-        Take Photo, Choose from Library. They are `.dr-upload--card`, the exact
-        component account-edit gives the drone documents and the insurance, so the
-        whole card is the target (326 × 140 floor, far past the 44pt minimum), the
-        32px glyph and the verb identify the control, and the focus ring is the
-        keyboard's own (`WCAG 2.4.7`).
-
-        `voice.md` A3 fixes the attach verb as **Add** + object and bars ~~Upload~~
-        / ~~Attach~~; neither string uses a barred word. A3 governs the attach, and
-        what these two name is the SOURCE — the zone label carries the Add.
-      -->
-      <p class="zlabel dr-label">Add photo <span class="dr-label__act">▸ camera or library</span></p>
-      <div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="take-title" aria-describedby="take-hint">
-        <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2.6"/><path d="M9 7l1.6-2.6h2.8L15 7"/><circle cx="12" cy="13.4" r="3.4"/></svg>
-        <span class="dr-upload__action" id="take-title">Take a photo</span>
-        <span class="dr-note" id="take-hint">You can retake it before saving.</span>
-      </div>
-      <div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="library-title" aria-describedby="library-hint">
-        <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2.4"/><path d="M3.5 15.6l4.4-4.1 4 3.6 3.2-2.8 5.4 4.6"/><circle cx="9" cy="9.4" r="1.5"/></svg>
-        <span class="dr-upload__action" id="library-title">Choose from library</span>
-        <span class="dr-note" id="library-hint">JPG or PNG, up to 5 MB.</span>
-      </div>
-
-      <!--
-        ZONE · remove — `HIG · Action sheets` asks a destructive choice to read as
-        destructive and to sit apart from the constructive ones, so it is last and
-        it is the only thing in the product wearing --danger-ink as a CONTROL:
-        6.83:1 on the page, `WCAG 1.4.3` ✓. Colour is not the carrier — the verb
-        is in the label, so `WCAG 1.4.1` is untouched — and the note states the
-        consequence before the tap rather than after it (`voice.md` P3), which is
-        also why this needs no confirmation alert: nothing is lost that a re-upload
-        does not restore.
-      -->
-      <p class="zlabel dr-label">Remove <span class="dr-label__act">▸ back to your initials</span></p>
-      <div class="dr-stack">
-        <button class="dr-btn dr-btn--danger dr-btn--block" type="button">Remove photo</button>
-        <p class="dr-note">Your initials show instead.</p>
+        <p class="dr-note">Your operator sees this photo when they arrive. Without one, they see your initials.</p>
       </div>
     </main>
 
     <!--
-      THE ACTION BAR STACKS, primary on top and Cancel underneath — the shape
-      every multi-button bar in the product took on 2026-08-16, and the order
-      `HIG · Alerts / Action sheets` puts a vertical Cancel in.
+      THE THREE WAYS TO CHANGE THE PICTURE, ON THE BOTTOM EDGE — the designer's
+      own frame (Figma `100:30`), where they are an iOS action sheet: two sources
+      and the destructive choice, grouped away from the picture they act on.
+      `HIG · Action sheets` names both sources and asks the destructive one to
+      stand last; the message above them is the slot that guideline gives a sheet,
+      built as `.dr-note` — the caption line `_conventions.md` §11 already allows
+      in a bar — and tied to all three by aria-describedby so it is announced with
+      each button rather than sitting loose (`WCAG 1.3.1`, `4.1.2`).
+
+      THE FILLS ARE HER CALL, 2026-08-16: «дві зерені delete сіра». Take a photo
+      and Choose a picture are both `.dr-btn--primary`; Delete is the secondary
+      rung, which is the same answer rev 131 gave `Delete order` on order-details
+      («зроби кнопку секондарі сірою»), so the product's two destructive controls
+      now read alike. Every button is FILLED, which is rev 112's rule for a bar
+      («вони мають бути filled як праймері і секондарі») — the .dr-btn--danger
+      ghost this screen used to carry is exactly the shape that rule removed.
+      TWO PRIMARIES IN ONE BAR IS A DEPARTURE from that same rule's second half
+      and from §0's one-green-control budget; it is recorded with its measurement
+      in concept.md rev 146, not treated as conforming.
+
+      Charcoal on green is 9.46:1 and charcoal on --btn2 11.54:1 (`WCAG 1.4.3` ✓,
+      floor 4.5:1); with the colour gone from Delete the VERB carries the warning,
+      so `1.4.1` cannot fail here. Nothing in this bar commits on its own — the
+      message says so — which is why a destructive action needs no alert behind it.
     -->
     <footer class="dr-actionbar">
-      <a class="dr-btn dr-btn--primary dr-btn--block" href="account.html">Save photo</a>
-      <a class="dr-btn dr-btn--secondary dr-btn--block" href="account.html">Cancel</a>
+      <p class="dr-note" id="photo-rules">JPG or PNG, up to 5 MB. Nothing changes until you save.</p>
+      <button class="dr-btn dr-btn--primary dr-btn--block" type="button" aria-describedby="photo-rules">Take a photo</button>
+      <button class="dr-btn dr-btn--primary dr-btn--block" type="button" aria-describedby="photo-rules">Choose a picture</button>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" aria-describedby="photo-rules">Delete</button>
     </footer>
   </div>
 
