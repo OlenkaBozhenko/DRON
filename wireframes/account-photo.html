@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Account — profile photo</title>
+<!--
+  SCREEN: "Account" — STATE: photo (sub-view of account.html, sibling of account-edit.html).
+  JOB: identity utility (sitemap §7.4) — change the picture the operator sees when they arrive.
+  Added 2026-08-16 on the designer's word: «добав ще один wireframe де можна загрузити
+  аватарку зроби його по HIG вимогам». Reached from the pencil badge now sitting on the
+  avatar in account.html; the pencil beside the name still goes to account-edit.html.
+  Exit (no dead-end): Save photo / Cancel / nav-bar back → Account.
+  Grounded in account-edit.html (the upload zones, the stacked action bar, the back chevron).
+  FIDELITY: painted — the Studio layer, ../ui/kit.css, as every client screen carries.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="account.html">success</a>
+      <a href="account-edit.html">edit</a>
+      <a href="account-photo.html" class="cur" aria-current="page">photo</a>
+    </nav>
+    <h1>Account — profile photo</h1>
+    <p class="sub">Account utility · sub-view: <b>photo</b> · file: account-photo.html</p>
+    <div class="flow"><b>Job (jtbd):</b> change the profile photo — the picture the operator matches against on arrival (sitemap §7.4 identity utility; feeds <b>RJ-C1</b>'s two-way recognition).<br><b>Entry:</b> the pencil badge on the avatar, <b>Account</b>.<br><b>Exit:</b> Save photo, Cancel, or the nav-bar back → <b>Account</b>. No dead-end.<br><b>States:</b> none — an empty avatar is the base (the initials fallback), and no <code>flows.md</code> node produces an error or loading state here.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Photo</b> ▸ the picture as it stands, at 120</p><p><b>Add photo</b> ▸ two sources — camera · library</p><p><b>Remove</b> ▸ destructive, back to initials</p><p><b>Action bar</b> ▸ Save photo · Cancel (stacked)</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <!--
+      The chevron alone, and the name in the aria-label — `_wireframe.css` §rev 93
+      took the visible back LABEL off every bar in the product so nothing can
+      collide with the centred title (`HIG · Navigation bars`). account-edit's bar
+      is copied here byte for byte so the two siblings of Account read as one.
+    -->
+    <header class="topbar dr-topbar"><a class="dr-back" href="account.html" aria-label="Back to Account"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Profile photo</span><span class="dr-topbar__spacer"></span></header>
+
+    <main class="dr-main">
+
+      <!--
+        ZONE · photo — the subject of the screen, so it is shown as a subject:
+        120 (--sz-avatar-xl), centred on the card, with the one sentence that
+        says why the picture matters. `HIG · Modality` wants an editing view to
+        show what is being edited before it shows the ways to edit it.
+        The <img> takes real alt text here, not the empty alt it carries on
+        account.html: there the name is written beside it and the picture is
+        decoration (`WCAG 1.1.1`); here the picture IS the content.
+      -->
+      <p class="zlabel dr-label">Photo <span class="dr-label__act">▸ what your operator sees</span></p>
+      <div class="dr-card">
+        <span class="dr-avatar-lg"><img src="../assets/people/thumbs/person-client-olena.png" alt="Your profile photo" loading="lazy" decoding="async"></span>
+        <p class="dr-note">Your operator sees this photo when they arrive.</p>
+      </div>
+
+      <!--
+        ZONE · add photo — two sources, and `HIG · Action sheets` names them both:
+        Take Photo, Choose from Library. They are `.dr-upload--card`, the exact
+        component account-edit gives the drone documents and the insurance, so the
+        whole card is the target (326 × 140 floor, far past the 44pt minimum), the
+        32px glyph and the verb identify the control, and the focus ring is the
+        keyboard's own (`WCAG 2.4.7`).
+
+        `voice.md` A3 fixes the attach verb as **Add** + object and bars ~~Upload~~
+        / ~~Attach~~; neither string uses a barred word. A3 governs the attach, and
+        what these two name is the SOURCE — the zone label carries the Add.
+      -->
+      <p class="zlabel dr-label">Add photo <span class="dr-label__act">▸ camera or library</span></p>
+      <div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="take-title" aria-describedby="take-hint">
+        <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2.6"/><path d="M9 7l1.6-2.6h2.8L15 7"/><circle cx="12" cy="13.4" r="3.4"/></svg>
+        <span class="dr-upload__action" id="take-title">Take a photo</span>
+        <span class="dr-note" id="take-hint">You can retake it before saving.</span>
+      </div>
+      <div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="library-title" aria-describedby="library-hint">
+        <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2.4"/><path d="M3.5 15.6l4.4-4.1 4 3.6 3.2-2.8 5.4 4.6"/><circle cx="9" cy="9.4" r="1.5"/></svg>
+        <span class="dr-upload__action" id="library-title">Choose from library</span>
+        <span class="dr-note" id="library-hint">JPG or PNG, up to 5 MB.</span>
+      </div>
+
+      <!--
+        ZONE · remove — `HIG · Action sheets` asks a destructive choice to read as
+        destructive and to sit apart from the constructive ones, so it is last and
+        it is the only thing in the product wearing --danger-ink as a CONTROL:
+        6.83:1 on the page, `WCAG 1.4.3` ✓. Colour is not the carrier — the verb
+        is in the label, so `WCAG 1.4.1` is untouched — and the note states the
+        consequence before the tap rather than after it (`voice.md` P3), which is
+        also why this needs no confirmation alert: nothing is lost that a re-upload
+        does not restore.
+      -->
+      <p class="zlabel dr-label">Remove <span class="dr-label__act">▸ back to your initials</span></p>
+      <div class="dr-stack">
+        <button class="dr-btn dr-btn--danger dr-btn--block" type="button">Remove photo</button>
+        <p class="dr-note">Your initials show instead.</p>
+      </div>
+    </main>
+
+    <!--
+      THE ACTION BAR STACKS, primary on top and Cancel underneath — the shape
+      every multi-button bar in the product took on 2026-08-16, and the order
+      `HIG · Alerts / Action sheets` puts a vertical Cancel in.
+    -->
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="account.html">Save photo</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="account.html">Cancel</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
