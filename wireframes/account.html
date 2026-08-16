@@ -42,7 +42,25 @@
       <p class="zlabel dr-label">Profile <span class="dr-label__act">▸ Diia-verified identity</span></p>
       <section aria-label="Profile">
         <article class="dr-op">
-          <span class="op-avatar"><img src="../assets/people/thumbs/person-client-olena.png" alt="" loading="lazy" decoding="async"></span>
+          <!--
+            THE PHOTO IS A CONTROL NOW — the designer, 2026-08-16: «добав іконку
+            едіт карандаш на аватарку». The <a> wraps the picture AND the badge,
+            so the target is the whole 56 × 56 circle and not the 20px disc:
+            `HIG · 44pt target` cleared at 127%, `WCAG 2.5.8` at 2.3×. The badge
+            is aria-hidden and the link carries the name.
+
+            TWO PENCILS ON ONE CARD, AND THEY SAY DIFFERENT THINGS. This one
+            goes to the photo (`account-photo`); the one on the right goes to the
+            details (`account-edit`). Their accessible names are kept apart on
+            purpose — "Change profile photo" against "Edit profile" — so a
+            screen reader announcing them back to back gives two objects, not
+            one word twice (`WCAG 2.4.6`, `HIG · Buttons`: a control's name says
+            what it does).
+          -->
+          <a class="dr-avatar-edit" href="account-photo.html" aria-label="Change profile photo">
+            <span class="op-avatar"><img src="../assets/people/thumbs/person-client-olena.png" alt="" loading="lazy" decoding="async"></span>
+            <span class="dr-avatar-edit__badge" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg></span>
+          </a>
           <span class="dr-op__info">
             <span class="dr-op__name">Olena B.</span>
             <span class="dr-op__rating">Verified with Diia</span>
