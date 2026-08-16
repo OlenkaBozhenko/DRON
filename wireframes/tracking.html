@@ -62,10 +62,55 @@
         </div>
       </section>
     </main>
+    <!--
+      CONTACT OPERATOR OPENS A DRAWER, NOT A SCREEN — the designer, 2026-08-16: «by clicking on
+      "Contact operator" open drawer with opportunity to select call, chat, support and add
+      wireframes with a chat with operator». So the CTA stops being an <a href> and becomes a real
+      <button> that owns a dialog. It is the second action-bar CTA in the product to do that, after
+      order-review's Pay (rev 129), so ui/kit.js needs no widening: .dr-btn[aria-controls] already
+      matches. The page links kit.js for the first time.
+      WHAT THE OLD LINK DID WRONG, said plainly: it pointed at support.html — the Help hub — under a
+      label naming the OPERATOR. _critique.md #2 already repointed it once (it used to open the
+      profile); this closes the same defect properly by asking who and how.
+    -->
     <footer class="dr-actionbar">
       <a class="dr-btn dr-btn--secondary dr-btn--block" href="delivery.html">View details</a>
-      <a class="dr-btn dr-btn--primary dr-btn--block" href="support.html">Contact operator</a>
+      <button class="dr-btn dr-btn--primary dr-btn--block" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-contact">Contact operator</button>
     </footer>
+
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <!--
+      THREE OPTIONS IS A DRAWER. The project's own rule (ui/kit.js) — ≤ 6 options rise from the
+      bottom edge, ≥ 7 push a screen — and `HIG · Action sheets` draws the same line. TEXT ROWS AND
+      NO ICONS, deliberately: an Apple action sheet lists its choices as words, and the kit's picker
+      row hides every .dr-ic that is not the current-item checkmark, so an icon here would have cost
+      a new rule to un-hide something the guideline does not ask for.
+      NOTHING CARRIES aria-current — these are three actions, not one value with a pick. The rows are
+      <a href>, so kit.js leaves them alone: it adds the modal contract and Cancel, and writes
+      nothing back.
+      EACH LABEL IS voice.md's OWN WORD. `Call operator` — A2 permits a phone-only action to say
+      *Call*; the href is `tel:`, so the OS dialer answers it and there is no screen to build.
+      `Send message` — A9, "to a person: Send" — opens chat.html. `Contact support` — A2's fixed
+      string, unchanged, which is where this button used to send everyone.
+      CANCEL BY NAME, not an ×: `HIG · Action sheets` asks for it, and the × belongs to a full modal
+      screen (the same reading rev 101 wrote for the picker).
+    -->
+    <section class="dr-sheet dr-sheet--picker" id="sheet-contact" role="dialog" aria-modal="true" aria-labelledby="sheet-contact-title" aria-describedby="sheet-contact-desc" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-contact-title">Contact operator</p>
+      <div class="dr-picker__list">
+        <a class="dr-picker__item" href="tel:+380440000180"><span class="dr-picker__label">Call operator</span></a>
+        <a class="dr-picker__item" href="chat.html"><span class="dr-picker__label">Send message</span></a>
+        <a class="dr-picker__item" href="support.html"><span class="dr-picker__label">Contact support</span></a>
+      </div>
+      <!-- The masking fact stated BEFORE the tap, which is voice.md P3's discipline applied to
+           privacy instead of to price, and it answers the CJM's "direct channel bypasses the
+           platform" risk by showing the client why the platform is in the middle. -->
+      <p class="dr-note" id="sheet-contact-desc">Calls and messages go through DRON. Your number is not shared with the operator.</p>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+    </section>
   </div>
+  <script src="../ui/kit.js"></script>
   <script src="_wf-shell.js"></script>
 </body></html>
