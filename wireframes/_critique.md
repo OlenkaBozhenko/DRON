@@ -548,9 +548,16 @@ calendar-first services can reach handed every one of them a parcel summary. All
 
 ### Open, not fixed: the payment chain below review is still the delivery build
 
-Every review file's drawer hands off into `payment` (`₴180`, twice), `payment-error`,
-`payment-loading`, then `order-confirmed` (*En route to pickup*), `tracking`, `delivery` and `rate` —
-all written for a parcel. `order-review-loading` is in the same position: its skeleton is the price,
-but the resolved summary above it is delivery's. Splitting that chain is roughly fifteen files per
-service and is the designer's call, not an assumption to make inside a review fix. Recorded here so
-the gap is visible rather than discovered later.
+Every review file's drawer hands off into a chain written for a parcel. **Measured rather than
+estimated** — scanning the chain for `parcel`, `pickup`, `drop-off`, `₴180`, `Package delivery` and
+`En route` finds **seven** files carrying them: `payment` (`₴180`, *Package delivery*),
+`order-confirmed` (*En route to pickup*), `tracking` with its `-empty` and `-error`, `delivery`
+(*parcel*), and `order-review-loading`, whose skeleton is the price but whose resolved summary above
+it is delivery's.
+
+**The rest is already service-neutral and needs nothing:** `payment-error`, `payment-loading`, the
+three `order-confirmed` states, `tracking-loading`, `delivery-error`, `delivery-loading`, `rate`. So
+the split is about **thirteen new files, not thirty** — and inspection's deliverable screen exists
+already as `inspection-report.html`, leaving only aerial without a "what came back" screen. That is
+the designer's call, not an assumption to make inside a review fix. Recorded here so the gap is
+visible rather than discovered later.

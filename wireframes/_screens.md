@@ -218,12 +218,25 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   `time-slot`, so the row states the slot chosen there rather than *Now · ~25 min*.
   **Back names `Pick a time`**, not the setup form: on these two services the slot list is the
   previous screen (`HIG · Navigation Bars`).
-- **Still open after this pass, and reported rather than half-done:** the **payment chain below
-  review** is the delivery build throughout — `payment` (₴180 twice), `payment-error`,
-  `payment-loading`, `order-confirmed` (*En route to pickup*), `tracking`, `delivery`, `rate`. All
-  three review files' drawers hand off into it. Also `order-review-loading`, whose skeleton is the
-  price but whose resolved summary above it is delivery's. Splitting these is a separate decision,
-  not an oversight of this one.
+- **Still open after this pass, and reported rather than half-done.** All three review files' drawers
+  hand off into a chain written for a parcel. **Measured, not estimated** — a scan for the
+  delivery-bound strings (`parcel`, `pickup`, `drop-off`, `₴180`, `Package delivery`, `En route`)
+  finds **seven files** carrying them, and only seven:
+
+  | File | What binds it to delivery |
+  |---|---|
+  | `payment.html` | `₴180`, *Package delivery* |
+  | `order-confirmed.html` | *En route to pickup* |
+  | `tracking.html` · `tracking-empty` · `tracking-error` | *drop-off*, *En route* |
+  | `delivery.html` | *parcel* |
+  | `order-review-loading.html` | *Pickup* · *Drop-off* · *Package delivery* under the price skeleton |
+
+  **The rest of the chain is already service-neutral** and needs nothing: `payment-error`,
+  `payment-loading`, the three `order-confirmed` states, `tracking-loading`, `delivery-error`,
+  `delivery-loading`, `rate`. So the split is roughly **thirteen new files, not thirty** — and
+  inspection's deliverable screen already exists as `inspection-report.html`, so only aerial needs a
+  "what came back" screen of its own. Splitting them is a separate decision, not an oversight of
+  this one.
 
 - **Pay opens a drawer, not a screen, from 2026-08-16** (designer: *«по кліку на pay має відкриватись дровер а
   не сторінка … кнопки з іконкою чорного кольору apple pay та google pay або можливість обрати картку … лиш усі
