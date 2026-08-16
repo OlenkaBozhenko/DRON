@@ -55,9 +55,8 @@
 
     <!--
       THE PAY DRAWER. Modelled on the designer's reference — Figma
-      `YlGWlsWWjKSCxhONMzGG2F`, node `95:10`: an Apple Pay button over a
-      *Pay with card* action — with her one change on top: «лиш усі кнопки
-      залиті праймері». All three are `.dr-btn--primary`.
+      `YlGWlsWWjKSCxhONMzGG2F`, node `95:10`: a BLACK Apple Pay button over a
+      *Pay with card* action.
 
       THE OPTIONS ARE ROUTES, SO THEY ARE <a href> and kit.js leaves them alone:
       nothing is written back into the CTA, the same split the mode picker on
@@ -70,20 +69,25 @@
       THE MARK IS THE LABEL on the first two, which is Apple's and Google's own
       pattern and the reference's, so each carries its own `aria-label` — the
       three read as one set: *Pay with Apple Pay* · *Pay with Google Pay* ·
-      *Pay with card* (`WCAG 4.1.2`, `2.5.3`). The marks are `#000` — her
-      «іконкою чорного кольору» — which is 11.42:1 on the green fill; DRON's own
-      card glyph and words stay `--on-green` #1A1A1A at 9.46:1, the one ink the
-      system allows on green.
+      *Pay with card* (`WCAG 4.1.2`, `2.5.3`).
 
-      TWO GUIDELINE DEPARTURES ARE RECORDED HERE RATHER THAN SMOOTHED OVER, and
-      both are the designer's call of 2026-08-16, reported to her in full:
+      THE TWO GUIDELINE DEPARTURES REV 129 RECORDED HERE ARE BOTH CLOSED AT
+      REV 134, on the designer's word — «apple pay & google pay чорним кольором
+      і шрифт по стилю як на усіх кнопках а не такий маленький … pay by card
+      така як є». They stay written down because a shape that was tried and
+      rejected should not come back later as a new idea.
       (1) `Apple Pay · Marks and Buttons` and `Google Pay · Brand guidelines`
       both require a button that INITIATES their payment to be one of three
       supplied styles — black, white, white-with-outline — and forbid a custom
-      fill. These three initiate, and they are green. (2) `concept.md`'s
-      one-green rule (≤ ~5% of the frame, exactly one green control) is exceeded
-      3×: three block buttons are 45,012px², 14.78% of the 375 × 812 frame.
-      Both are one-line reversals if she wants them; see the change log.
+      fill. Rev 129 built all three green; contrast was never what failed
+      (#000 on green measured 11.42:1), the brand licence was. CLOSED: the two
+      express options are `.dr-btn--pay`, #000, marks in white and in Google's
+      four colours, the word at 15/600 like every other button label.
+      (2) `concept.md`'s one-green rule (≤ ~5% of the frame, exactly one green
+      control) was exceeded 3×: three block buttons at 45,012px², 14.78% of the
+      375 × 812 frame. CLOSED by the same change — `Pay with card` is the only
+      green control at 15,004px², 4.93%, and it also carries the frame's only
+      shadow, the sheet's --sh-sm count having gone from three to one.
     -->
     <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
 
@@ -91,7 +95,7 @@
       <span class="dr-sheet__grip" aria-hidden="true"></span>
       <p class="dr-sheet__title" id="sheet-pay-title">Pay ₴180</p>
       <div class="dr-paylist">
-        <!-- BLACK BY THE BRANDS' OWN RULE, not by taste (rev 133). `HIG · Apple Pay
+        <!-- BLACK BY THE BRANDS' OWN RULE, not by taste (rev 134). `HIG · Apple Pay
              Marks and Buttons` and Google Pay's brand guidelines permit three fills on
              a button that initiates their payment — black, white, white-with-outline —
              and forbid the rest; rev 129 built these green and logged the breach. Black
