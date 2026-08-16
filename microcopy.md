@@ -503,6 +503,22 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **The screen reader gains rather than loses.** The mark carried no `aria-hidden` while it held `NO FILE`, so the region opened by reading out two words written for a wireframe, not for a person. The glyph takes `aria-hidden="true"` like every sibling, and the announcement now opens on **"No evidence attached"** (`WCAG 1.1.1` ✓, `4.1.2` ✓).
 - **The word and the picture say the same thing, which is the test.** `NO FILE` named the missing object; the triangle names the consequence the body spells out — *a weaker claim, manual review only, takes longer*. Both are true of this state, and the copy is written around the consequence, not around the file.
 
+**Sync — 2026-08-16 (`account-edit`'s Documents heading comes off, and the upload cards go last)**
+- **One string retired on the designer's word**, given on the built screen: *«видали назву»*. The row **`account-edit · Documents · Documents · Section heading`** leaves the master table. It is the **fifth** in-card / above-card label to retire this way, after `account-edit`'s own `Drone documents` and `Insurance` (2026-08-15), `payment`'s method line and `report-issue`'s `Evidence` (both this morning) — and the first of them that had been **added** on her word, at rev 60, twenty-four hours earlier.
+- **It answers rev 60's open question the other way.** That entry closed by reporting a consequence and refusing to fix it: *"the group closes on 12 … because `Personal` and `Preferences` have no heading of their own to open with — whether they get one is her call."* Her call is that **none of them does.** The form is now three unnamed groups at one rhythm rather than one named group among two unnamed ones, which is the consistency the open question was about — reached by taking the heading away rather than by giving two more.
+- **Nothing an assistive reader had is taken away, and that is by construction rather than by luck.** Each upload zone keeps `aria-labelledby` → its own title (**Add drone documents** / **Add insurance**) and `aria-describedby` → its own subtitle, so both controls are still named and described exactly as they read (`WCAG 2.5.3` ✓, `4.1.2` ✓). What is genuinely given up is the **group** name: the pair no longer announces under a shared heading, and after the move the word *Documents* survives on this screen only as `.zlabel`, the wireframe's annotation, which vanishes with the shell's toggle — which is how she reads the page. So the product has no name for the pair at all, and that is the loss, stated rather than smoothed over. If it should be named again, it comes back as a heading above the pair in its new place at the foot of the form, and it is decided here first.
+- **`WCAG 1.3.1` is not broken by the removal, because the visual and programmatic layers still agree.** The criterion asks that structure conveyed visually be available programmatically; with the heading gone, **no grouping is conveyed visually either** — the two cards sit in the same 12px rhythm as everything above them. `2.4.6 Headings and Labels` governs headings that exist and does not require one, and the five field labels are untouched. **The one criterion that preferred the heading is `2.4.10 Section Headings`, and it is AAA** — the project's target is AA (`CLAUDE.md`), so this is a preference forgone, not a conformance lost. Reported, not fixed.
+- **The second call — *«перемісти картки з загрузкою на низ фрейма»* — moves no string, and it moves three of them above the fold.** Measured at 375 × 800 with annotations off: the two 161px zones used to stand third and fourth in the form and pushed the Preferences card to **673–821** against a fold at **770.8**, so **Language** and part of **Saved address** were only reachable by scrolling. With the cards last, all five rows — `Full name`, `Phone`, `Payment method`, `Saved address`, `Language` — are above the fold, and what falls below it is the second upload card. The strings a returning client actually edits are now the ones they can see.
+
+**Sync — 2026-08-16 (`listings-filters` · the Price zone becomes a titled range card, and four strings retire with the rows that carried them)**
+- **The designer's call on the built panel**, with a Figma reference (`YlGWlsWWjKSCxhONMzGG2F`, node `94:6`): *«зроби такий вю … заголовок Діапазон цін, підзаголовок ціна послуги, і підпис внизу мінімум та максимум, такий барчарт з булітами»*. Put to her before it was built, because the reference has no preset rows: **replace them, or keep them above the chart** — she took **replace**, so the three bands go and the card is exactly the reference.
+- **Four rows leave the master table**: `Low`, `Medium`, `High` (Body) and `Insured` (Body), with their `low` / `medium` / `high` field values. **Two more are rewritten rather than retired**: `Lowest price` → **`Minimum price`** and `Highest price` → **`Maximum price`**, and the single readout `₴0 – ₴1,000+` splits into two field values, `₴0` and `₴1,000+`.
+- **The rewrite is a `WCAG 2.5.3 Label in Name` fix, not a preference.** The thumbs now sit under printed captions reading **Minimum** and **Maximum**; an accessible name of *Lowest price* would not contain the visible word, and *Minimum price* does. Nothing else about the controls changed.
+- **`voice.md` P2 is answered where rev 66 said it would have to be.** That entry recorded a departure taken on her word — *Low / Medium / High* are three adjectives with no checkable figure, on a screen whose cards carry no price at all — and noted the range's readout as the honest half of the zone. **The adjectives are now gone and only the figures remain**, so the departure closes on the designer's own instruction rather than being argued down.
+- **`Insured` goes with the band it rode on, and that is a loss worth naming.** rev 66 flagged the chip as readable *the cheaper two are not*, since `.dr-chip--trust` sits on **every** operator card in the built product; retiring it removes that reading. What it also removes is the only trust mark in the filter sheet — `RJ-C1` is the highest single drop-off in the CJM — and the sheet is not where a credential is confirmed. **Nothing is deleted from the repo**: the chip is a live component on `order-confirmed` / `-empty`, and it can return to any row on her word.
+- **Two strings are new.** The card's title **`Price range`** is a `<legend>`, so the drawn line is also the group's name and no `aria-label` is spent on it. The subtitle **`Service price, all fees included`** is her *ціна послуги* plus the reference's own *з усіма зборами* clause; it is written that way to keep it off the product's `Service fee ₴20` line — *price*, not *fee* — and it is true by build, the `order-setup` breakdown totalling **₴90 + ₴70 + ₴20 = ₴180** with nothing unaccounted (P3). **If four words are three too many, `Service price` alone is one edit** — hers to say.
+- **The histogram gets a text alternative rather than being hidden.** `role="img"` with **`How services are priced: most cost ₴200 – ₴350`** — it states what the drawn bars show, so `WCAG 1.1.1` is met by a sentence and not by `aria-hidden`. It describes the **distribution**, never the selection: the chosen band is spoken by the two thumbs and printed in the two value fields.
+
 ---
 
 ## Master table — every string
@@ -516,13 +532,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account-edit | Personal | Full name | Field label |  |
 | account-edit | Personal | Olena B. | Field value | DATA |
 | account-edit | Personal | Phone | Field label |  |
-| account-edit | Documents | Documents | Section heading | one heading over both cards (designer, 2026-08-15); the in-card labels `Drone documents` and `Insurance` retired with it |
-| account-edit | Documents | DRONE REGISTRATION / DOCUMENTS | Body | WF-PH · not in the painted build — see the 2026-08-15 sync |
-| account-edit | Documents | Add drone documents | Button | the card's title |
-| account-edit | Documents | Registration, serial, or manufacturer papers (PDF / photo). | Body | the card's subtitle |
-| account-edit | Documents | INSURANCE DOCUMENT | Body | WF-PH · not in the painted build — see the 2026-08-15 sync |
-| account-edit | Documents | Add insurance | Button | the card's title |
-| account-edit | Documents | Valid liability insurance covering the drone. | Body | the card's subtitle |
 | account-edit | Preferences | Payment method | Field label | also the drawer's title (rev 102) |
 | account-edit | Preferences | Visa •••• 4921 | Body | DATA · the row's value and the current option |
 | account-edit | Preferences | Mastercard •••• 8830 | Body | DATA · picker option, new 2026-08-16 (rev 101) |
@@ -533,6 +542,12 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account-edit | Preferences | Language | Field label | also the drawer's title (rev 102) |
 | account-edit | Preferences | English | Body | the row's value and the current option |
 | account-edit | Preferences | Ukrainian | Body | picker option, new 2026-08-16 (rev 101) — the language is named **in the interface language**, not in its own («Українська»), because `CLAUDE.md` holds every file to English and the switcher elsewhere is EN/UA |
+| account-edit | Documents | DRONE REGISTRATION / DOCUMENTS | Body | WF-PH · not in the painted build — see the 2026-08-15 sync |
+| account-edit | Documents | Add drone documents | Button | the card's title |
+| account-edit | Documents | Registration, serial, or manufacturer papers (PDF / photo). | Body | the card's subtitle |
+| account-edit | Documents | INSURANCE DOCUMENT | Body | WF-PH · not in the painted build — see the 2026-08-15 sync |
+| account-edit | Documents | Add insurance | Button | the card's title |
+| account-edit | Documents | Valid liability insurance covering the drone. | Body | the card's subtitle |
 | account-edit | Preferences | Cancel | Button |  |
 | account-edit | Preferences | Save changes | Button |  |
 | account-edit | Payment drawer | Cancel | Button | the drawer's dismissal, new 2026-08-16 (rev 102) — `HIG · Action sheets` asks for the cancel by name. It never stands beside the form's own Cancel: the scrim covers the action bar while the drawer is up |
@@ -849,19 +864,15 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filters | Date picker | Done | Body |  |
 | listings-filters | Time | Sat 22 Aug, 17:30 | Field value | DATA — what the option reads once a date is taken, replacing *Pick a date & time…*; the product's own format, `time-slot`'s `Wed 2 Jul, 09:00` |
 | listings-filters | Price | Price | Heading |  |
-| listings-filters | Price | Low | Body |  |
-| listings-filters | Price | low | Field value | DATA |
-| listings-filters | Price | Medium | Body |  |
-| listings-filters | Price | medium | Field value | DATA |
-| listings-filters | Price | High | Body |  |
-| listings-filters | Price | high | Field value | DATA |
-| listings-filters | Price | Insured | Body |  |
-| listings-filters | Price | Price range | Field label |  |
-| listings-filters | Price | Lowest price | Field label |  |
-| listings-filters | Price | Highest price | Field label |  |
-| listings-filters | Price | ₴0 | Body | DATA |
-| listings-filters | Price | ₴1,000+ | Body | DATA |
-| listings-filters | Price | ₴0 – ₴1,000+ | Body | DATA |
+| listings-filters | Price | Price range | Heading | the card's own title, a `<legend>` — so the visible line **is** the group's accessible name, with no ARIA |
+| listings-filters | Price | Service price, all fees included | Body | the subtitle; `aria-describedby` on the group. P3 — the number is the whole price, which the `order-setup` breakdown proves line by line |
+| listings-filters | Price | How services are priced: most cost ₴200 – ₴350 | Icon label | DATA — the histogram's text alternative (`role="img"`), `WCAG 1.1.1`; it describes the drawn distribution, not the chosen band |
+| listings-filters | Price | Minimum price | Field label | accessible name of the lower thumb — it contains the visible word *Minimum* (`WCAG 2.5.3`) |
+| listings-filters | Price | Maximum price | Field label | accessible name of the upper thumb |
+| listings-filters | Price | Minimum | Field label |  |
+| listings-filters | Price | Maximum | Field label |  |
+| listings-filters | Price | ₴0 | Field value | DATA |
+| listings-filters | Price | ₴1,000+ | Field value | DATA |
 | listings-filters | Location | Clear all | Button |  |
 | listings-filters | Location | Apply filters | Button |  |
 | listings-loading | — | All | Button |  |
