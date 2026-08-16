@@ -865,7 +865,7 @@
 
 <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; ACTIONS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section id="actions">
-  <h2>Actions <span class="count">11</span></h2>
+  <h2>Actions <span class="count">12</span></h2>
   <p class="sec-note">
     One green control per screen. Everything else that can be tapped is warm grey &#8212; green is
     not spent inside card UI. Height is a <code>min-height</code>, never fixed: a button is a flex
@@ -1034,6 +1034,29 @@
           <div><dt>ring</dt><dd><span class="sw" style="background:#ECE9E4"></span>2px #ECE9E4</dd></div>
         </dl></td>
         <td class="c-where"><p class="where">account &#183; Profile<code class="ln">disc 1.25:1 &#8212; affordance, not identifier</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Pay drawer</div><span class="sel">.dr-paylist &#183; .dr-sheet--picker &#183; ui/kit.js</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The designer&#8217;s call 2026-08-16 &#8212; <code>Pay</code> opens a drawer, not a screen, and all three ways to pay are filled primary. <b>The action bar is a new kind of opener:</b> <code>kit.js</code> answered only to picker rows and was widened by one shape, <code>.dr-btn[aria-controls]</code>. One new CSS rule, no new button variant &#8212; the brand mark is the label.</p>
+        </td>
+        <td class="c-spec"><span class="plate col" style="gap:8px;width:341px">
+          <span style="min-height:44px;border-radius:12px;background:#9BCF4A;box-shadow:0 1px 2px rgba(20,18,15,.05);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 40 20" width="40" height="20" aria-hidden="true"><svg x="2.75" y="4.5" width="8.95" height="11" viewBox="0 0 814 1000" preserveAspectRatio="xMidYMid meet"><path fill="#000" d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57-155.5-127C46.7 790.7 0 663 0 541.8c0-194.4 126.4-297.5 250.8-297.5 66.1 0 121.2 43.4 162.7 43.4 39.5 0 101.1-46 176.3-46 28.5 0 130.9 2.6 198.3 99.2z"/></svg><text x="14.25" y="14.6" textLength="23" lengthAdjust="spacingAndGlyphs" font-size="13" font-weight="500" fill="#000">Pay</text></svg></span>
+          <span style="min-height:44px;border-radius:12px;background:#9BCF4A;box-shadow:0 1px 2px rgba(20,18,15,.05);display:flex;align-items:center;justify-content:center;gap:8px;color:#1A1A1A;font-size:15px;font-weight:500"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.4"/><path d="M3 10.4h18"/><path d="M6.5 14.4h3.5"/></svg>Pay with card</span>
+          <span style="min-height:44px;border-radius:12px;background:#D6D2C9;display:flex;align-items:center;justify-content:center;color:#1A1A1A;font-size:15px;font-weight:500">Cancel</span>
+        </span></td>
+        <td class="c-screens"><span class="scr">1</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>sheet</dt><dd>373 &#215; 292.8 &#183; r22</dd></div>
+          <div><dt>option</dt><dd>341 &#215; 44 &#183; r12</dd></div>
+          <div><dt>gaps</dt><dd>8 within &#183; 12 to Cancel</dd></div>
+          <div><dt>mark</dt><dd><span class="sw" style="background:#000000"></span>#000 &#183; 11.42:1</dd></div>
+          <div><dt>words</dt><dd><span class="sw" style="background:#1A1A1A"></span>9.46:1</dd></div>
+          <div><dt>green</dt><dd>14.78% of frame</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">order-review &#183; Pay &#8377;180<code class="ln">2 departures: Apple/Google button styles &#183; the one-green rule, 3&#215;</code></p></td>
       </tr>
 
       <tr>

@@ -160,8 +160,18 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   - **Error —** only on the re-book path (`RJ-C5`: *"previous service or price changed"*), which is out of this main-path scope.
   - **Loading ✓** — the final price must resolve / lock before it can be shown (`RJ-C3` "locked price" rule). Real pre-render state.
   - **Success —** no "it worked" screen; hands off to Payment.
-
-### 7. Payment
+- **Pay opens a drawer, not a screen, from 2026-08-16** (designer: *«по кліку на pay має відкриватись дровер а
+  не сторінка … кнопки з іконкою чорного кольору apple pay та google pay або можливість обрати картку … лиш усі
+  кнопки залиті праймері»*, against a Figma reference — file `YlGWlsWWjKSCxhONMzGG2F`, node `95:10`, an eSIM
+  checkout whose bottom edge is a black Apple Pay button over a *Pay with card* text action). **Not a state and
+  not a sub-view, so it takes no row in the matrix** — a control on this page, the same reading `listings`'
+  category chips and the date drawer already get. Three options, so it is a **drawer** by the ≤ 6 rule
+  (`_conventions.md` §the picker rule; `HIG · Action sheets`).
+  **It does not delete a node, it forks one.** *Pay with card* still pushes **Payment**, which keeps that
+  screen and its error / loading states on the main path; **Apple Pay** and **Google Pay** skip the method
+  screen — the method is already chosen — and land on **`payment-loading`** (*"Authorizing your payment…"*),
+  which is where an express charge actually is. Nothing is orphaned: `payment.html` keeps its own three
+  methods for the card path and for anyone who opens it directly.
 - **Job:** `MJ-1` — the pay step of the core flow (`C-04`, Apple / Google Pay / card).
 - **Place in flow:** MJ-1 node `Payment`, after review, before auto-dispatch. System Pay sheet (`§7.3`).
 - **Two zones: the locked amount, then a titled card of methods** — **Payment method** ▸ *How you pay for this

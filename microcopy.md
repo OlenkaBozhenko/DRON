@@ -1295,6 +1295,12 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-review | Price breakdown | Service fee | Body |  |
 | order-review | Price breakdown | Total | Body |  |
 | order-review | Price breakdown | Pay ₴180 | Button |  |
+| order-review | Action bar | Pay ₴180 | Button | rev 129 — the string is unchanged, the element is not: it was an `<a href>` to Payment and is now a `<button>` that opens the pay drawer. `HIG · Buttons` asks a label that ends in `…` when a control needs more input before it completes; this one does **not** take the ellipsis, because the drawer it opens is the completion, not a detour — the amount is already final and the next tap pays |
+| order-review | Pay drawer | Pay ₴180 | Heading | rev 129 — the drawer's own title, the same fact restated as the sheet's name (`aria-labelledby`). P3: the price is on the surface that takes the money, not one screen away |
+| order-review | Pay drawer | Pay with Apple Pay | Button | rev 129 — an **accessible name only**: the button's visible content is the Apple Pay mark, which is how Apple ships it. Parallel to its two siblings so the set reads as one (`WCAG 4.1.2`, `2.5.3`) |
+| order-review | Pay drawer | Pay with Google Pay | Button | rev 129 — accessible name only, same reading |
+| order-review | Pay drawer | Pay with card | Button | rev 129 — the one option DRON words itself, so here the label is printed and not spoken. Taken from the designer's reference (Figma `95:10`, *Pay with card*); it pushes **Payment**, where the card is chosen |
+| order-review | Pay drawer | Cancel | Button | `HIG · Action sheets` asks for the cancel by name; `_conventions.md` gives every bottom-edge drawer a grabber and a named Cancel |
 | order-setup-empty | — | ‹ Order | Button |  |
 | order-setup-empty | — | Package delivery | Heading |  |
 | order-setup-empty | Details form | Pickup | State message |  |

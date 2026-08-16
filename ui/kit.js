@@ -38,8 +38,15 @@
   var frame = document.querySelector('.wf-frame');
   if (!frame) return;
 
+  /* TWO SHAPES MAY OPEN A DRAWER, and the second arrived 2026-08-16 (rev 129):
+     the action bar's own CTA. The designer on `order-review`: «по кліку на pay
+     має відкриватись дровер а не сторінка». `.dr-btn[aria-controls]` is added
+     and NOT the obvious `[aria-haspopup="dialog"][aria-controls]` — that would
+     also catch `listings-filters`' date opener, which is a .sr-only RADIO with
+     both attributes and its own page script, and two handlers on one control is
+     a fight. `.dr-btn` matched nothing before this pass (swept: 0). */
   var scrim = frame.querySelector('[data-scrim]'),
-      rows  = frame.querySelectorAll('.dr-field--action[aria-controls]');
+      rows  = frame.querySelectorAll('.dr-field--action[aria-controls], .dr-btn[aria-controls]');
   if (!scrim || !rows.length) return;
 
   /* everything the drawer must switch off while it is up: the frame's own
@@ -64,8 +71,12 @@
     /* aria-modal is a promise made to assistive tech; inert is what keeps it
        for the pointer and the tab key too */
     behind.forEach(function (el) { el.inert = true; });
+    /* focus lands inside the drawer (`WCAG 2.4.3`): the current option if the
+       drawer holds a list of values, otherwise its first control — the pay
+       drawer's options are buttons, not .dr-picker__item rows. */
     var current = sheet.querySelector('.dr-picker__item[aria-current="true"]')
-               || sheet.querySelector('.dr-picker__item');
+               || sheet.querySelector('.dr-picker__item')
+               || sheet.querySelector('button, a[href]');
     if (current) current.focus();
   }
 

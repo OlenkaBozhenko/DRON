@@ -386,6 +386,15 @@ designer's call 2026-08-16; `HIG · Action sheets` and `HIG · Lists and tables`
 mutually-exclusive set belongs in a sheet, a long one needs a screen that can scroll and search. The row
 itself carries `chevron.forward` in both halves, never a down arrow: the list is not here, it arrives.
 
+**A drawer is not only a picker's home — an ACTION BAR may open one too, from 2026-08-16 (rev 129).** The
+designer on `order-review`: *«по кліку на pay має відкриватись дровер а не сторінка»*. The count rule is
+unchanged and decides it the same way — three ways to pay is ≤ 6, so the list rises rather than pushing a
+screen — and the drawer keeps the grabber and the named `Cancel`. What changes is only *what* may carry
+`aria-controls`: a `.dr-btn` as well as a `.dr-field--action`. **The difference the two openers keep:** a
+picker row's options are **values**, so kit.js writes the pick back into the row and closes; an action bar's
+options are **routes**, so they are `<a href>` and kit.js leaves them alone — the same split the mode picker
+on `account` already runs on.
+
 **The `≥ 7` half got its first pages on 2026-08-16** — `listings-filter-country` (8 rows),
 `listings-filter-region` (25 rows), `listings-filter-city`, `listings-filter-district` (11 rows), the
 filter's place pick. Its `flows.md`
@@ -631,7 +640,14 @@ A page is done when **all** hold:
 screen map, the viewport switcher, the toolbar — and every one of the 84 pages links it. `../ui/kit.js`
 (added 2026-08-16, rev 111) is **product**: it carries the picker drawer's behaviour and nothing else, and
 only the pages that hold a drawer link it — `account-edit`, `order-setup`, `order-setup-error`,
-`report-issue`, `account`. The kit is CSS with that one named exception, because a floating surface that
+`report-issue`, `account`, `listings`, `listings-filters`, and from 2026-08-16 (rev 129) `order-review`.
+**Rev 129 widened what it answers to, and only by one shape:** the selector was
+`.dr-field--action[aria-controls]` and is now `.dr-field--action[aria-controls], .dr-btn[aria-controls]`,
+because `order-review`'s opener is the action bar's **Pay ₴180**, not a settings row. It was *not* widened to
+the bare `[aria-haspopup="dialog"][aria-controls]`, which would have been the obvious move and would have
+broken `listings-filters`: that page's date opener is a `.sr-only` **radio** carrying those two attributes and
+served by its own page script. `.dr-btn` matches nothing that existed — verified by sweep, `0` occurrences of
+`.dr-btn` with `aria-controls` across `wireframes/` before this pass. The kit is CSS with that one named exception, because a floating surface that
 opens, traps focus, makes the screen behind it `inert` and hands the focus back cannot be a stylesheet; and
 written once it cannot drift between five pages. Its markup contract is documented at the top of the file.
 A page that does **not** hold a drawer must not link it. The page-level scripts left in the prototype are

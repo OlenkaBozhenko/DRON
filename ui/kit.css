@@ -2186,6 +2186,13 @@ header.dr-topbar,
   font-size: var(--t-title-size); font-weight: var(--t-title-weight);
   letter-spacing: var(--t-title-track); color: var(--ink); text-align: center;
 }
+/* THE PAY DRAWER'S LIST (2026-08-16, rev 129) — three ways to pay, stacked.
+   8 inside the group against the sheet's own 12 out to Cancel, which is the
+   action bar's exact rhythm: siblings closer than strangers. Nothing else is
+   declared here — a pay option is a plain `.dr-btn--block`, and its label is
+   the brand mark, so the button needs no variant of its own. */
+.dr-paylist{ display: flex; flex-direction: column; gap: var(--sp-within-lg); }
+
 /* a share channel: an icon over its label, on the secondary pair */
 .dr-sheet__channels{ display: flex; gap: var(--sp-within-lg); }
 .dr-channel{

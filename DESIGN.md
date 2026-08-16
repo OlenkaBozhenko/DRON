@@ -764,6 +764,47 @@ written back into the row. The row's new value is read from **`.dr-picker__label
 option's `textContent`: an option may carry artwork, and a wordmark drawn with SVG `<text>` lands in
 `textContent` — the naive read makes the row say *"VISAVisa •••• 4921"*.
 
+### The pay drawer (`.dr-paylist`)
+
+Added 2026-08-16 (rev 129) on the designer's word — *«по кліку на pay має відкриватись дровер а не
+сторінка»* — against her reference, Figma `YlGWlsWWjKSCxhONMzGG2F` node `95:10`: a black Apple Pay
+button over a *Pay with card* text action. **An action bar may now open a drawer**, and the count
+rule decides it the same way it decides a picker's: three ways to pay is ≤ 6, so the list rises.
+
+- **The opener widened by exactly one shape.** `ui/kit.js` answered to
+  `.dr-field--action[aria-controls]` and now also to `.dr-btn[aria-controls]`. **Not** to the bare
+  `[aria-haspopup="dialog"][aria-controls]`: `listings-filters`' date opener is a `.sr-only` radio
+  carrying both attributes with its own page script, and two handlers on one control is a fight.
+  `.dr-btn[aria-controls]` matched **0** elements before this pass. Focus falls back to the sheet's
+  first control where there is no `.dr-picker__item` to land on (`WCAG 2.4.3`).
+- **One rule, no new variant.** `.dr-paylist` is a column at **8** — the action bar's own rhythm —
+  against the sheet's **12** out to `Cancel`. A pay option is a plain `.dr-btn--primary.dr-btn--block`
+  whose label is the brand mark, so it takes no class of its own. Marks are centred in their 40 × 20
+  box, where the picker row's copies anchor left.
+- **Measured open, 375 frame.** Sheet **373 × 292.8** at `--r-panel` 22 with `--sh-raised`; three
+  options **341 × 44** at `--r-btn` 12 with `--sh-sm`; `Cancel` **341 × 44** on `--btn2` **11.54:1**.
+  Marks `#000` **11.42:1** on the green; DRON's own card glyph and words `--on-green` **9.46:1**.
+- **The modal contract, verified rather than claimed.** A real pointer open shows **no** focus ring
+  and a keyboard open does; five tabs cycle the sheet's four stops and never escape; three ways
+  close it — Esc, scrim, `Cancel` — each clearing `aria-expanded` and returning focus to the CTA;
+  `.dr-main`, `.dr-topbar` and `.dr-actionbar` are all `inert` while it is up.
+- **It forks a flow node, it does not delete one.** *Pay with card* pushes **Payment**, keeping that
+  screen and its error / loading states on the main path; Apple Pay and Google Pay skip it — the
+  method is already chosen — and land on **`payment-loading`**, which is where an express charge is.
+
+**Two departures, both the designer's and both recorded rather than corrected.**
+
+1. **`HIG · Apple Pay Marks and Buttons`** and **Google Pay's brand guidelines** require a button
+   that *initiates* their payment to be one of three supplied styles — **black**, **white**,
+   **white with outline** — and forbid a custom fill. These three initiate, and they are `--green`.
+   The reference she sent is Apple-conformant precisely because its button is black. Contrast is not
+   what fails: `#000` on `--green` is **11.42:1**. What fails is the brand licence, and a real
+   integration would be rejected at review. **The conforming variant is a two-line change** — Apple
+   and Google black, `Pay with card` green — and it also fixes (2).
+2. **`concept.md`'s one-green rule** (exactly one green control, ≤ ~5% of the frame) is exceeded
+   **3×**: three block buttons are **45,012px² = 14.78%** of the 375 × 812 frame, **19.71%** counting
+   the CTA dimmed behind the scrim, and no single one of them is the primary.
+
 ### Text areas, and the focus rule they changed
 
 A multiline area carries its own ground again as of 2026-08-16 (rev 100): **`--media` at
