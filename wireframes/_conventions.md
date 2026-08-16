@@ -195,10 +195,10 @@ typed ink and the hairline carry the row.
 Input Purpose` is **Level AA**, so it is in scope for every client and operator surface here: where a
 row asks for something *about the person filling it in*, the input carries the criterion's own
 `autocomplete` token — `name` · `tel` · `email` · `street-address` · `cc-number` · `cc-exp` ·
-`cc-csc` · `cc-name`. The same attribute is what makes iOS offer autofill and *Scan Credit Card* over
-the keyboard (`HIG · Text fields`), so one attribute pays both standards.
+`cc-csc` · `cc-given-name` · `cc-family-name`. The same attribute is what makes iOS offer autofill and
+*Scan Credit Card* over the keyboard (`HIG · Text fields`), so one attribute pays both standards.
 
-**Where it stands, counted 2026-08-16, not asserted.** `payment.html`'s four card rows are the only
+**Where it stands, counted 2026-08-16, not asserted.** `payment.html`'s five card rows are the only
 inputs in the project that carry it. The other seven pages with typing rows carry **none** —
 `account-edit` (Full name · Phone · Saved address), `order-setup` + `order-setup-error` (pick-up ·
 drop-off), `contact-support`, `rate`, `report-issue`. Of those, the ones asking for the person's own

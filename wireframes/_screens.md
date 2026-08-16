@@ -179,7 +179,7 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
 - **Job:** `MJ-1` — the pay step of the core flow (`C-04`, Apple / Google Pay / card).
 - **Place in flow:** MJ-1 node `Payment`, after review, before auto-dispatch. System Pay sheet (`§7.3`).
 - **Two zones: the locked amount, then a titled card of card fields** — **Card** ▸ *Visa or Mastercard,
-  charged once for this order*, over four typed rows: **Card number · Expiry · CVV · Cardholder**.
+  charged once for this order*, over five typed rows: **Card number · Expiry · CVV · First name · Last name**.
   **The title and subtitle arrived 2026-08-16** on the designer's call to give every card that takes entered
   data the same two lines (*«якщо в проекті ще є аналогічні картки добав до них так само заголовок і
   підзаголовок»*); the amount block above it takes none, being a figure and not a card. The subtitle says
@@ -190,7 +190,8 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   4921): the drawer on `order-review` had already answered *how you pay*, so repeating it here asked a
   settled question and delayed the only unsettled one.
 - **The card is entered, not chosen — so `WCAG 1.3.5 Identify Input Purpose` (AA) governs this screen.**
-  Each of the four inputs carries the criterion's own token — `cc-number` · `cc-exp` · `cc-csc` · `cc-name` —
+  Each of the five inputs carries the criterion's own token — `cc-number` · `cc-exp` · `cc-csc` ·
+  `cc-given-name` · `cc-family-name` —
   and the same attribute is what makes iOS offer *Scan Credit Card* over the keyboard (`HIG · Text fields`),
   so one attribute pays both. `3.3.2` is carried by the drawn `.dr-field__label` on every row (no
   placeholder-only field), `HIG · 44pt` by `.dr-field`'s `min-height: --h-control` = 44px, and `2.4.7` by the
@@ -198,7 +199,13 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   **The security code is masked** (`type="password"`), the one field on the screen whose value should not
   stand readable over a shoulder; label **CVV** is the designer's word (*«csv»*), where Mastercard prints CVC
   and Apple's own forms say *Security Code*.
-- **Four stacked rows, not two-up.** *Expiry* and *CVV* are half-length values and sit side by side in most
+- **The name is two rows, not one — the designer's call, 2026-08-16:** *«імя прізвище»*. She was shown both
+  with the standards first: `WCAG 1.3.5` names **both** shapes and both conform — `cc-name` for a single
+  field, `cc-given-name` + `cc-family-name` for the split — and `HIG · Text fields` asks for the fewest
+  fields, the name being printed on the card as one line. So it was a taste call with nothing failing either
+  way, and she took the split. **Cardholder** retires with it; the two labels are **First name** · **Last
+  name**, the same pair `account-edit` would take if its `Full name` were ever split.
+- **Five stacked rows, not two-up.** *Expiry* and *CVV* are half-length values and sit side by side in most
   checkouts, but the kit has no two-up row: `.dr-field--half` is the **rate** screen's half-*screen*-height
   textarea, not a half-width field. Building the pair would mean adding a component, which is the designer's
   call and not a side effect of this change. Recorded here so the shape is a decision, not an oversight.
@@ -209,10 +216,13 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   (`HIG · Lists and tables`, the inset grouped list). Both alignments are WCAG-clean; this is HIG and the
   project's one-axis rule (`ui/inventory.md` rev 114), not contrast and not a target. Same modifier and same
   reason as `account-edit`'s Personal card (rev 124) — the product's other titled card of typed rows.
-  **Measured after, 375 × 812:** card **341 × 273.98**, labels **33** on the title's own axis, values **183**
-  (= 166 in the frame, rev 114's figure for a group that keeps its card), separators **16 → trailing edge**,
-  every row **44** (`HIG · 44pt` ✓), no horizontal overflow. Value track **159**; the 4-4-4-4 number measures
-  **157**, so it fits by **2px** — a 19-digit Maestro number would clip, and is recorded, not designed around.
+  (The before-figures are the four-row build; the split into `First name` / `Last name` came after.)
+  **Measured after, 375 × 812, on the five-row card:** card **341 × 317.98**, labels **33** on the title's own
+  axis, values **183** (= 166 in the frame, rev 114's figure for a group that keeps its card), all four
+  separators **16 → trailing edge**, every row **44** (`HIG · 44pt` ✓), no horizontal overflow. The card ends
+  at **591.54** against the action bar at **691** — **99.5** of clearance, so the fifth row costs nothing.
+  Value track **159**; the 4-4-4-4 number measures **157**, so it fits by **2px** — a 19-digit Maestro number
+  would clip, and is recorded, not designed around.
 - **`Save this card for next time`** sits on the bottom edge above `Pay ₴180`, the same component and the
   same sentence shape as `order-setup`'s `Save this address for next time` — checkbox `.dr-box--check` in
   the action bar, `form="card-form"` so it stays a control of the form it left (`WCAG 1.3.1 / 4.1.2`), placed
@@ -439,7 +449,7 @@ are exactly the two she named — **the heading** and **the deliverable in the w
 |---|---|---|---|---|
 | `order-details.html` | Package delivery | From · To · Parcel · Delivered · Operator · **Paid** | **Delivery photo** | `scenes/delivered-at-door.jpg` |
 | `order-details-inspection.html` | Roof inspection | Location · Structure · Delivered · Operator · **Paid** | **Inspection report** | `scenes/inspection-roof-cracked-tiles.jpg` |
-| `order-details-aerial.html` | Aerial photo &amp; video | Location · Shoot · Delivered · Operator · **Paid** | **Photo &amp; video set** | `scenes/aerial-rafting-run.jpg` |
+| `order-details-aerial.html` | Aerial photo &amp; video | Location · Shoot · Delivered · Operator · **Paid** | **Photo &amp; video set** — the photograph **and** a video card | `scenes/aerial-rafting-run.jpg` |
 
 The three zone names are not invented for this screen — `voice.md` **O5** already fixes one name per
 deliverable: *delivery photo* · *inspection report* · *photo/video set*. Structure, zone order, action bar
@@ -464,6 +474,27 @@ row; `WCAG 1.4.3` unchanged at key **5.95:1** / value **14.37:1** on `--card`, `
 pairing either way). The reasoning that decided it: with the breakdown gone there is no column for a total to
 total, so the sum is a fact of the record like the other four. `.dr-rows__row--total` is therefore spent on
 `order-review` alone, which is where a total still has rows to add up.
+
+**The aerial record's deliverable zone holds two items, and it is the only one of the three that does** —
+2026-08-16 (rev 137), the designer on this frame: «добав сюди картку з відео прев'ю та можливістю скачати
+відео». The zone was named *Photo & video set* from the day it was built and showed a photograph only, so the
+screen had been promising a video it never carried. Under the picture there is now a card: the poster with a
+**play mark** on it, the line **Video · 0:38 · 46 MB**, and **Download**. **The other two records do not
+change** — a delivery photo and an inspection report are single files, and `voice.md` **O5** names each of the
+three deliverables separately for exactly that reason. This is the first place the three instances differ in
+**structure** rather than in strings and one `<img>`; they are still one screen, because the thing that differs
+is the deliverable, which is the per-service data the split was made for.
+
+**The poster is the same photograph the zone already shows**, since the repo holds one aerial frame
+(`visuals/gaps.md` B3 #17). Truthful — a poster *is* a frame of its video — and the duplicate is on the
+screen until a second frame from that run arrives. It is put to the designer rather than hidden; no guideline
+is broken either way, so it is taste, and the alternative shape (a 96 × 72 row instead of a full-width poster)
+is drawn and measured in the rev 137 log.
+
+**This is the first record that scrolls.** The three were built to fit 375 × 812 exactly and rev 136 left the
+aerial one with 94px of slack; the video card costs more than that. A scrolling detail screen is `HIG ·
+Scroll views`' normal case and no state changes — the action bar is a fixed footer, so `Book again` and
+`Delete order` stay on screen at every scroll position.
 
 ### Operator — Step 8
 
