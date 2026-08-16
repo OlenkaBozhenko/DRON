@@ -556,7 +556,7 @@ chrome so the toast cannot cover the control that raised it, and — where the r
 | Client onboarding | `onboarding-client.html` | `onboarding-client-empty.html` |
 | Operator onboarding | `onboarding-operator.html` | — |
 | Switch role (global) *(step 8)* | `switch-role.html` | — |
-| Account / profile | `account.html` | `account-edit.html` (edit settings — personal details, drone-document / insurance upload, save) |
+| Account / profile | `account.html` | `account-edit.html` (edit settings — personal details, drone-document / insurance upload, save), `account-photo.html` (change the profile photo — take a photo / choose from library / remove, save) |
 
 ### Client (MJ-1)
 | Screen | Base file | State pages |

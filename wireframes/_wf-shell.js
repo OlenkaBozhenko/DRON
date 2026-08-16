@@ -24,7 +24,7 @@
       { name: "Choose your role — Client or Operator", file: "role-select.html",        states: [] },
       { name: "Client onboarding",                     file: "onboarding-client.html",  states: [["empty","onboarding-client-empty.html"]] },
       { name: "Operator onboarding",                   file: "onboarding-operator.html",states: [] },
-      { name: "Account (profile · role switch)",       file: "account.html",            states: [["edit","account-edit.html"]] },
+      { name: "Account (profile · role switch)",       file: "account.html",            states: [["edit","account-edit.html"],["photo","account-photo.html"]] },
       { name: "Switch role · global",                  file: "switch-role.html",        states: [] }
     ]},
     { title: "Client · MJ-1", screens: [

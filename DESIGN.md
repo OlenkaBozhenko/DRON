@@ -303,9 +303,10 @@ Every pair carried on a product surface, verified in the browser.
 | `--ink` | `--media` | 13.33:1 | glyphs in a well |
 | `--ink` | `--btn2` | 11.54:1 | secondary button, settled status check |
 | `--ink` | `--green` | 9.46:1 | primary button label, walked node glyph |
+| `--danger-ink` | `--page` | 6.83:1 | destructive text action (`account-photo` · Remove photo) |
 | `--slate` | `--page` | 6.62:1 | lead copy, unselected tabs |
 | `--slate` | `--inset` | 6.33:1 | From / To labels |
-| `--danger-ink` | `--card` | 6.14:1 | — |
+| `--danger-ink` | `--card` | 6.14:1 | field error text; the destructive action if it ever stands on a card |
 | `--slate` | `--card` | 5.95:1 | keys, dates, ratings, body |
 | `--warn-ink` | `--card` | 5.72:1 | — |
 | `--warn-ink` | `--warn-wash` | 5.65:1 | late-notice mark |
@@ -559,6 +560,16 @@ gives it the corner. It never restates the parent's radius.
   2026-08-12 (rev 49) for `listings-filtered`'s Clear all; rev 51 replaced that control with
   the leading `All` chip, so the variant is currently spent nowhere. The slate tertiary stays
   the skip/cancel voice.
+- **Danger:** transparent, `--danger-ink` label — **6.83:1** on the page, **6.14:1** on the card;
+  hover and press darken to `--ink` with the same 1px dip, so the three text rungs differ in ink and
+  in nothing else. Added 2026-08-16 (rev 128) for `account-photo`'s *Remove photo*, and it is
+  `--danger-ink`'s **first spend as a control** — the family had been declared since rev 25 and drawn
+  only as `.dr-field__err` text and the `.dr-mark--danger` alert. `HIG · Action sheets` asks a
+  destructive choice to read as destructive; `WCAG 1.4.1` is untouched because the verb is in the
+  label, not in the colour. `--danger` (`#C4462A`, 4.07:1) stays declared and undrawn — it is a
+  **fill** rung, and no surface has asked to be red. Like `--tertiary` and `--text`, it stays out of
+  the action bar: the two filled buttons on the bottom edge are *Save photo* and *Cancel*, and Remove
+  is a body action in its own zone.
 - **Block:** `width:100%`. The default in an action bar and at the foot of a card.
 - **One action per row in the action bar** (designer, 2026-08-16, rev 120). Every button in a
   `.dr-actionbar` is `--block`, one per line, `gap:8` — **341px** at the 375 frame. The bar never
@@ -805,6 +816,37 @@ fill inside a charcoal ring — so whether the edge should stay charcoal when ch
 
 44 × 44, `50%`, `--btn2` fill, `--ink` glyph at 20px, hover → `--media`, `z-index:2` so it clears
 a full-card link overlay. Carries `aria-label` — the icon is the only content.
+
+### Avatar edit (`.dr-avatar-edit`)
+
+The pencil badge on a profile photo, added 2026-08-16 (rev 128) on the designer's word. **The link
+wraps the picture and the badge together**, so the target is the whole avatar — **56 × 56**, 127% of
+`HIG · 44pt` and 2.3× `WCAG 2.5.8` — and not the 20pt disc, which alone would be half the floor. The
+badge is `aria-hidden`; the link carries the name.
+
+- **Badge:** `--sz-avatar-badge` 20 × 20 at `right/bottom: −2px` — `.dr-count-badge`'s own offset,
+  which puts the disc's centre **28.28** from a 28px radius, i.e. on the circle's edge at 45°.
+- **Pair:** `--btn2` ground, `--ink` glyph — **11.54:1**, the circular icon action's own pair, so the
+  two edit affordances on one card are one material. The disc is **1.25:1** on the card and is *not*
+  the identifier: the glyph is, the way `.dr-upload`'s 1.08:1 well defers to its 32px mark.
+- **Ring:** `--w-badge-ring` 2px in `--card`, a **border and not a shadow** — it cuts the badge out of
+  the photograph, whose pixels cannot be measured, and the flat-surface rule holds with `--sh-sm`
+  under the green primary still the only shadow in the product.
+- **Glyph:** 12px, rendered stroke **0.85** — the scale's own value at that box; no compensation.
+- **Layout:** `align-self:flex-start` is load-bearing. `.dr-op` stretches its children and the wrapper
+  measured 56 × 73.3 without it, which hung the badge below the circle instead of on its edge.
+- **Sibling naming:** where an avatar badge and a row pencil stand on one card their accessible names
+  must differ by more than a word — *Change profile photo* against *Edit profile* (`WCAG 2.4.6`).
+
+### Profile photo, large (`.dr-avatar-lg`)
+
+**120 × 120**, `--r-pill`, `--media` ground (1.08:1 on the card), `object-fit:cover`, centred with
+`margin:0 auto`. **120 and not `--sz-avatar` 117:** that token is the operator panel's *width*, read
+off a 595 × 702 asset ratio, and a circle should not inherit a rectangle's arithmetic. The `<img>`
+takes real `alt` here, where the picture *is* the content, against the empty `alt` it carries beside
+a written name. **Open, measured, not fixed:** the served thumb is 128 × 128 against a 120px box, so
+a 2× frame upscales it 1.875× — §Imagery asks for ~2× the CSS box, i.e. 240 × 240 cut from the
+847 × 886 master.
 
 ### Cards
 

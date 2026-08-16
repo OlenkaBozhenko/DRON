@@ -865,7 +865,7 @@
 
 <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; ACTIONS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section id="actions">
-  <h2>Actions <span class="count">9</span></h2>
+  <h2>Actions <span class="count">11</span></h2>
   <p class="sec-note">
     One green control per screen. Everything else that can be tapped is warm grey &#8212; green is
     not spent inside card UI. Height is a <code>min-height</code>, never fixed: a button is a flex
@@ -977,6 +977,23 @@
         <td class="c-where"><p class="where">Onboarding &#183; account &#183; dispute</p></td>
       </tr>
 
+      <tr>
+        <td class="c-name">
+          <div class="nm">Destructive text action</div><span class="sel">.dr-btn--danger</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The tertiary&#8217;s grammar in the palette&#8217;s own danger ink. <code>--danger-ink</code> has been declared since rev 25 and drawn only as error text and the alert mark; this is its <b>first spend as a control</b>. <code>HIG &#183; Action sheets</code> asks a destructive choice to read as destructive.</p>
+        </td>
+        <td class="c-spec"><span class="plate wide"><button type="button" style="width:100%;min-height:44px;border:0;border-radius:12px;background:transparent;color:#9A3115;font-family:inherit;font-size:15px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;cursor:pointer">Remove photo</button></span></td>
+        <td class="c-screens"><span class="scr">1</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>label</dt><dd><span class="sw" style="background:#9A3115"></span>#9A3115</dd></div>
+          <div><dt>fill</dt><dd>transparent</dd></div>
+          <div><dt>on page</dt><dd>6.83:1</dd></div>
+          <div><dt>on card</dt><dd>6.14:1</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">account-photo &#183; Remove photo<code class="ln">the verb carries it, not the colour &#8212; 1.4.1 &#10003;</code></p></td>
+      </tr>
+
 
       <tr>
         <td class="c-name">
@@ -1004,6 +1021,23 @@
 
       <tr>
         <td class="c-name">
+          <div class="nm">Avatar edit</div><span class="sel">.dr-avatar-edit &#183; .dr-avatar-edit__badge</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The pencil badge on the profile photo, the designer&#8217;s call 2026-08-16. <b>The whole 56 &#215; 56 picture is the target</b> &#8212; a 20pt disc on its own would be half the HIG floor. The badge sits at 45&#176; on the circle&#8217;s edge, cut out of the photograph by a 2px card-coloured border rather than a shadow.</p>
+        </td>
+        <td class="c-spec"><span class="plate on-card"><span style="position:relative;display:inline-flex;width:56px;height:56px"><img src="../assets/people/thumbs/person-client-olena.png" alt="" style="width:56px;height:56px;border-radius:999px;object-fit:cover;display:block"><span style="position:absolute;right:-2px;bottom:-2px;width:20px;height:20px;border:2px solid #ECE9E4;border-radius:999px;background:#D6D2C9;color:#1A1A1A;display:inline-flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg></span></span></span></td>
+        <td class="c-screens"><span class="scr">1</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>target</dt><dd>56 &#215; 56 &#183; 127% of 44pt</dd></div>
+          <div><dt>badge</dt><dd>20 &#215; 20 at &#8722;2px</dd></div>
+          <div><dt>glyph</dt><dd><span class="sw" style="background:#1A1A1A"></span>11.54:1 &#183; stroke 0.85</dd></div>
+          <div><dt>ring</dt><dd><span class="sw" style="background:#ECE9E4"></span>2px #ECE9E4</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">account &#183; Profile<code class="ln">disc 1.25:1 &#8212; affordance, not identifier</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
           <div class="nm">Icon button</div><span class="sel">.icon-btn &#183; .ic-filter</span>
           <span class="st gray">grayscale</span>
           <p class="desc">A square filter affordance beside the search field on <code>listings</code>.</p>
@@ -1022,7 +1056,7 @@
 
 <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; CONTENT SURFACES &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <section id="surfaces">
-  <h2>Content surfaces <span class="count">13</span></h2>
+  <h2>Content surfaces <span class="count">15</span></h2>
   <p class="sec-note">
     Flat, all of them. No card, panel, well, map or photograph casts a shadow &#8212; separation is a
     warm tone step plus a radius, and every step is measured before it is used.
@@ -1150,6 +1184,23 @@
           <div><dt>chips</dt><dd>wrap below 390</dd></div>
         </dl></td>
         <td class="c-where"><p class="where">tracking &#215;3 painted<code class="ln">account, support, order-confirmed still grayscale</code></p></td>
+      </tr>
+
+      <tr>
+        <td class="c-name">
+          <div class="nm">Profile photo (large)</div><span class="sel">.dr-avatar-lg</span>
+          <span class="st painted">painted</span>
+          <p class="desc">The picture at the size of the screen that edits it. <b>120 and not 117:</b> <code>--sz-avatar</code> is the operator panel&#8217;s <i>width</i>, read off a 595 &#215; 702 asset ratio, and a circle should not inherit a rectangle&#8217;s arithmetic. Takes real <code>alt</code> here, where the picture <i>is</i> the content.</p>
+        </td>
+        <td class="c-spec"><span class="plate on-card"><span style="display:block;width:120px;height:120px;border-radius:999px;overflow:hidden;background:#E4E1DA"><img src="../assets/people/thumbs/person-client-olena.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></span></span></td>
+        <td class="c-screens"><span class="scr">1</span><span class="scr-sub">1 painted</span></td>
+        <td class="c-tok"><dl class="tok">
+          <div><dt>box</dt><dd>120 &#215; 120 &#183; 999px</dd></div>
+          <div><dt>ground</dt><dd><span class="sw" style="background:#E4E1DA"></span>1.08:1 on card</dd></div>
+          <div><dt>served</dt><dd>128 &#215; 128</dd></div>
+          <div><dt>wants</dt><dd>240 &#215; 240</dd></div>
+        </dl></td>
+        <td class="c-where"><p class="where">account-photo &#183; Photo<code class="ln">1.875&#215; upscale at 2&#215; &#8212; the thumb is short of the imagery rule</code></p></td>
       </tr>
 
       <tr>

@@ -176,6 +176,14 @@
   --sz-well-w-sm:   68px;  /* narrow tier */
   --sz-well-h-sm:   52px;
   --sz-avatar:      117px; /* the operator panel — the asset's own ratio */
+  --sz-avatar-xl:   120px; /* the profile photo where the screen IS the photo (account-photo).
+                              The 8-grid step, not 117: that number is a rectangle's width
+                              read off an asset ratio, and a circle should not inherit it. */
+  --sz-avatar-badge: 20px; /* the pencil badge on the avatar. 18 (--sz-fchip-x, the count
+                              badge) loses 4 to the ring and leaves a 12px glyph 1px of air;
+                              20 gives it 2 and holds 36% of the 56px circle. */
+  --w-badge-ring:    2px;  /* the badge's cut-out edge against the photograph — a border,
+                              never a shadow. */
   --sz-arrow:       26px;  /* the direction chip in a route strip */
   --sz-tick:        30px;  /* the green tick under a zone label */
   --sz-tick-h:      2px;
@@ -610,6 +618,22 @@ header.dr-topbar,
 .dr-btn--text{ background: transparent; color: var(--green-ink); }
 .dr-btn--text:hover{ color: var(--ink); }
 .dr-btn--text:active{ color: var(--ink); transform: translateY(var(--lift-active)) scale(var(--scale-active)); }
+
+/* The destructive text action (2026-08-16) — the tertiary's grammar in the
+   palette's own danger ink. `HIG · Action sheets` asks a destructive choice to
+   read as destructive, and the family for it was declared at rev 25 and drawn
+   only in error text (.dr-field__err) and the alert mark (.dr-mark--danger);
+   this is its first spend as a CONTROL. Measured: --danger-ink #9A3115 is
+   6.83:1 on the page and 6.14:1 on the card — `WCAG 1.4.3` ✓ AA at every size.
+   Colour is never the carrier: the verb is in the label ("Remove photo"), so
+   `WCAG 1.4.1` is untouched. Hover and press darken to --ink and take the same
+   1px dip as the other two text actions, because these rungs differ in ink and
+   in nothing else. --danger (#C4462A, 4.07:1) stays declared and undrawn: it is
+   a FILL rung, and nothing in the product has asked for a red surface.
+   One user: account-photo's Remove photo. */
+.dr-btn--danger{ background: transparent; color: var(--danger-ink); }
+.dr-btn--danger:hover{ color: var(--ink); }
+.dr-btn--danger:active{ color: var(--ink); transform: translateY(var(--lift-active)) scale(var(--scale-active)); }
 
 .dr-btn--block{ width: 100%; }
 
@@ -1120,6 +1144,69 @@ header.dr-topbar,
   font-size: var(--t-meta-size); color: var(--slate); font-variant-numeric: tabular-nums;
 }
 .dr-op__badges{ margin-top: var(--sp-9); }
+
+/* ═══ THE AVATAR EDIT ═════════════════════════════════════════════════════
+   The designer, 2026-08-16: «добав іконку едіт карандаш на аватарку». A pencil
+   badge on the profile photo, and the photo is the control.
+
+   THE TARGET IS THE WHOLE AVATAR, NOT THE BADGE. A 20px disc is 20pt — half of
+   `HIG · 44pt target`. So the <a> wraps the picture and the badge together and
+   measures 56 × 56: 127% of the floor, cleared without a hit-area hack, and
+   `WCAG 2.5.8` (24 × 24 minimum) is cleared 2.3×. The badge is aria-hidden —
+   the link carries the name.
+
+   THE PAIR IS THE ICON BUTTON'S OWN. --btn2 ground, --ink glyph: 11.54:1,
+   the same pair the pencil beside the name already wears on this card, so the
+   two edit affordances are one material. `WCAG 1.4.11` wants 3:1 on a
+   graphical object and gets 11.54:1 on the glyph. The DISC is 1.25:1 on the
+   card and is not the identifier — the pencil is, exactly as .dr-upload's well
+   is 1.08:1 and its 32px glyph carries the control.
+
+   THE RING IS STRUCTURAL, NOT A SHADOW. The badge sits at 45° on the circle's
+   edge, so half of it lands on the photograph, whose pixels are not a colour
+   anyone can measure. A 2px --card border cuts it out of the picture the way
+   iOS does, and it is a BORDER: the flat-surface rule stands, no fourth shadow
+   is spent, and the one --sh-sm under the green primary is still the only one.
+
+   20px, and 18 was tried first. --sz-fchip-x (18) is the system's existing
+   badge diameter, but the ring eats 4 of it and leaves 14 for a 12px glyph —
+   1px of air. 20 gives the glyph the 2px it needs and reads at 36% of the
+   56px circle, inside the iOS badge range. −2px on each axis is .dr-count-badge's
+   own offset, which puts the disc's centre on the circle's edge. */
+.dr-avatar-edit{
+  position: relative; flex: none;
+  display: inline-flex;                    /* shrink-wraps whatever avatar it holds */
+  align-self: flex-start;                  /* .dr-op stretches its children; measured at 56 × 73.3
+                                              before this line, which hung the badge 0.7px BELOW the
+                                              circle instead of on its edge. The wrapper must be the
+                                              picture's own box for a −2px offset to mean anything. */
+  border-radius: var(--r-pill);
+  color: var(--ink); text-decoration: none;
+}
+.dr-avatar-edit:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+.dr-avatar-edit__badge{
+  position: absolute; right: -2px; bottom: -2px;
+  width: var(--sz-avatar-badge); height: var(--sz-avatar-badge);
+  border: var(--w-badge-ring) solid var(--card);
+  border-radius: var(--r-pill);
+  background: var(--btn2); color: var(--ink);            /* 11.54:1 */
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.dr-avatar-edit__badge .dr-ic{ width: var(--ic-12); height: var(--ic-12); }
+.dr-avatar-edit:hover .dr-avatar-edit__badge{ background: var(--media); }   /* the icon button's own hover rung */
+
+/* The photo at the size the screen that edits it needs. 120 is the 8-grid step
+   that reads as a subject rather than a list item; --sz-avatar (117) is the
+   operator panel's WIDTH, derived from an asset ratio, and borrowing it here
+   would tie a circle to a rectangle's arithmetic. --media ground, 1.08:1 on the
+   card, for the moment before the picture decodes and for a cutout's
+   transparent corners. One user: account-photo. */
+.dr-avatar-lg{
+  width: var(--sz-avatar-xl); height: var(--sz-avatar-xl);
+  flex: none; margin: 0 auto; display: block;
+  border-radius: var(--r-pill); overflow: hidden; background: var(--media);
+}
+.dr-avatar-lg img{ width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; }
 
 /* ═══ FORMS ═══════════════════════════════════════════════════════════════
    A field has no border. 1.4.11 governs a boundary that is DRAWN, not one that
