@@ -415,30 +415,45 @@ Fluid below 375 (`max-width:100%`), so on a 360px device it renders at 321px.
 or action bar. Nine of the ten pages carry the four-tab bar; `tracking.html` carries a two-button
 action bar instead.
 
-**Content column.** `main` takes `padding:16px` and `gap:16px`. Usable width 341px at a 375 frame
-(375 − 2 border − 32 padding). Inside a 20px-inset card, 286.2px.
+**Content column.** `main` takes `padding:16px` and `gap:12px`. The inset and the zone gap were the
+same 16 until 2026-08-16 and are two different numbers now — the frame's edge is not the same
+promise as the distance between two cards. Usable width 341px at a 375 frame (375 − 2 border − 32
+padding). Inside a 20px-inset card, 286.2px.
+
+One consequence for every height recorded in this document before 2026-08-16: a screen with **N**
+zones is **4 × (N − 1)** shorter than it reads there, and a snug list of **M** cards a further
+**4 × (M − 1)**. Widths, insets and card interiors are untouched. Heights quoted inside a change
+narrative are left as they were measured on the day — they price that pass, not this one.
 
 **Spacing scale — base 4, not 8.**
 
 | Step | Use |
 |---|---|
 | 4 | within a group — title to date |
-| 8 | between sibling icon actions |
-| 12 | card-top gap, message-block gap, `.stack` gap; between cards **where the list is one zone among several** (`.dr-list--snug`) |
-| 16 | screen padding and gap; compact card inset; inset-strip padding |
+| 8 | between sibling icon actions; **within a zone** — `.dr-stack`, and between cards **where the list is one zone among several** (`.dr-list--snug`) |
+| 12 | **between zones** — `main`'s gap; card-top gap, message-block gap; the progress rail's own margin |
+| 16 | screen padding; compact card inset; inset-strip padding |
 | 20 | between groups inside a list card, and that card's own inset |
 | 28 | between cards **where the list is the screen** — greater than any interval inside one |
 | 32 | bottom inset of a card whose last element is a primary button |
 
-**Two list rungs, chosen by what surrounds the list.** `.dr-list` is 28 and `.dr-list--snug` is 12,
+**Two list rungs, chosen by what surrounds the list.** `.dr-list` is 28 and `.dr-list--snug` is 8,
 and the choice is not taste — it is proximity read one level up. `main` separates whole zones by
-**16**, so a list left at 28 puts *siblings further apart than strangers*: the two service cards on
+**12**, so a list left at 28 puts *siblings further apart than strangers*: the two service cards on
 `listings-filtered` sat 28 apart while the applied-filter row and the list itself sat 16 apart, and
 the list stopped reading as one thing. Where the list **is** the screen — nothing above or below it
 to compete — 28 is right, and it still clears the 20 inside a card. Where the list is **one zone
-among several**, 12 is right: above the 4px rhythm inside a card, under the 16 between zones, so
-the group clusters and the zones still separate. 28 in that position is the defect; 12 in the first
-position would leave the list undifferentiated from its own card interiors.
+among several**, the snug rung is right: above the 4px rhythm inside a card, under the gap between
+zones, so the group clusters and the zones still separate. 28 in that position is the defect; the
+snug rung in the first position would leave the list undifferentiated from its own card interiors.
+
+**The rung is a ratio, not a number, and it moved once.** Snug was **12 under a 16 zone gap**. On
+2026-08-16 the designer closed the zone gap to 12 — *«зроби менші відступи між картками»*, read on
+`contact-support` with annotations off, where the screen is two cards and one gap. That put the
+snug list level with the zone gap at 12:12, spacing grouping nothing, so it followed `.dr-stack`
+down to **8**: siblings 8, strangers 12, **1.5:1** — a stronger step than the 1.33:1 it replaced.
+Measured at 8 on `listings` ×3, `support`, `chat` and `inspection-report` ×2; measured at 12
+between zones on every screen that stacks them.
 
 `.kv` rows take `13px 0`; the action bar takes `12px 16px 24px`; the tab bar `6px 8px 4px`. The
 message block is `22px 18px` on `tracking` and `delivery`, and `16px 16px 32px` on
@@ -451,7 +466,8 @@ pay the extra 4px.
 **Responsive.** One breakpoint, `max-width: 389px`, tuned for `order-history` — the family with a
 fixed-width media box to protect — but declared on `:root`, so it reaches every page that uses the
 stepped tokens. Card inset 20 → 16, group gap 20 → 18, list gap 28 → 22 (`--sp-list` only:
-`--sp-snug` does not step, so a `.dr-list--snug` list holds 12 at both tiers),
+neither `--sp-within-lg` nor `--sp-snug` steps, so a `.dr-list--snug` list holds 8 and the zone gap
+holds 12 at both tiers),
 card-top gap 16 → 12, drone box 96 × 72 → 68 × 52, route padding 16 → 14. The skeleton page steps
 identically, so the loading and loaded lists stay the same height at both tiers.
 
@@ -468,10 +484,19 @@ against a photo of 341 × 180.
 **The Between-Beats-Within Rule.** Proximity groups in the right direction without a border or a
 shadow — but the rule holds **per level**, not as one number. Where the list *is* the screen, the
 gap between two cards (28) is larger than any gap inside one (≤20). Where the list is one zone
-among several, the level above it takes over: `main` separates zones by 16, so the cards must close
-to 12 or they read as further apart than the zones themselves. 12 is still above the 4px rhythm
+among several, the level above it takes over: `main` separates zones by 12, so the cards must close
+to 8 or they read as further apart than the zones themselves. 8 is still above the 4px rhythm
 inside a card, and the card's interior stays bounded by its drawn edge — `--card` on `--page` at
 1.11:1 plus the 16px radius — not by whitespace it has to win.
+
+**The corollary, learned on 2026-08-16:** a level cannot move alone. When the zone gap closed 16 →
+12, three numbers one level down had to be re-read against it — `.dr-stack` (12 → 8),
+`.dr-list--snug` (12 → 8), and the progress rail's margin (8 → 12, because what that modifier
+promises is a **24px clearance**, not a margin, and a margin against a smaller gap silently pays
+20). Two more were re-read and deliberately left: `.dr-list` at 28, whose condition is that nothing
+stands above or below it, and the card interiors, which are bounded by a drawn edge rather than by
+whitespace. A spacing token states a ratio; write the ratio down beside it or the next change to
+the level above will quietly spend it.
 
 **The Skeleton-Measures-The-Load Rule.** A loading block is the size of the thing it waits for. A
 skeleton is a claim about the loaded screen, so it expires when that screen changes treatment.

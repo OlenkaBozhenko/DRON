@@ -377,7 +377,7 @@
       },
       {
         "name": "The Between-Beats-Within Rule",
-        "body": "Proximity groups in the right direction without a border or a shadow, but the rule holds per level, not as one number. Where the list IS the screen, the gap between two cards (28) is larger than any gap inside one (<=20). Where the list is one zone among several, the level above it takes over: main separates zones by 16, so the cards must close to 12 (.dr-list--snug) or they read as further apart than the zones themselves. 12 is still above the 4px rhythm inside a card, and the card's interior stays bounded by its drawn edge (--card on --page at 1.11:1 plus the 16px radius), not by whitespace it has to win.",
+        "body": "Proximity groups in the right direction without a border or a shadow, but the rule holds per level, not as one number. Where the list IS the screen, the gap between two cards (28) is larger than any gap inside one (<=20). Where the list is one zone among several, the level above it takes over: main separates zones by 12, so the cards must close to 8 (.dr-list--snug) or they read as further apart than the zones themselves. 8 is still above the 4px rhythm inside a card, and the card's interior stays bounded by its drawn edge (--card on --page at 1.11:1 plus the 16px radius), not by whitespace it has to win.",
         "section": "layout"
       },
       {
