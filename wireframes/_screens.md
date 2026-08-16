@@ -296,7 +296,7 @@ how.**
 | Way out | Row label | Target | Why it is that shape |
 |---|---|---|---|
 | the phone | **Call operator** | `tel:` — the masked line | The OS dialer, so no screen. `voice.md` **A2** already permits a phone-only action to say *Call*. |
-| the thread | **Send message** | `chat.html` | The new screen. `voice.md` **A9**: to a person you **Send** — *Send message* is that entry verbatim. |
+| the thread | **Chat with the operator** | `chat.html` | The new screen. Her own word, fixed as `voice.md` **A12**: *chat* here is a **verb taking its object**, which is what the Button rule asks for — not the bare noun that names a room. `A9`'s *Send message* stays on the composer's own button, one message at a time. |
 | the platform | **Contact support** | `support.html` | `voice.md` **A2**'s fixed string, unchanged — where the button used to land for everyone. |
 
 **Three options is a drawer, not a screen** — the `≤ 6 → drawer` / `≥ 7 → push` rule (`ui/kit.js`), and
@@ -314,7 +314,7 @@ navigates on two others is the same drift arriving through behaviour instead of 
 - **Job:** `RJ-C2` — the void between payment and arrival, closed by a channel to the person named on
   the screen above; `RJ-C1` keeps the operator a real, reachable human rather than a photograph.
 - **Place in flow:** *not on the MJ-1 spine.* `Live tracking & ETA` → **Contact operator** drawer →
-  *Send message* → here; back returns to tracking. Nothing downstream depends on it.
+  *Chat with the operator* → here; back returns to tracking. Nothing downstream depends on it.
 - **States:** **base only.** No `flows.md` node produces an empty, error or loading thread — the thread
   is opened from a live job that already has an operator, so it is never empty; a failed send is a
   per-message state, not a screen. Built as one file, `chat.html`.

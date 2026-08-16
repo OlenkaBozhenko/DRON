@@ -244,7 +244,7 @@ flowchart TD
   D1c -->|yes| T["Live tracking & ETA"]
   T --> DC{"Contact the operator?"}
   DC -->|call| CALL(["Phone — masked DRON line, OS dialer"]):::state
-  DC -->|message| CH["Chat with the operator"]
+  DC -->|chat| CH["Chat with the operator"]
   DC -->|support| GH
   DC -->|no, keep watching| D2
   CALL --> T
@@ -275,8 +275,7 @@ flowchart TD
 - *Operator on time? / Keeps waiting?* — delay tolerance (`N-9` unknown).
 - *Contact operator* (added 2026-08-16, designer's call) — the standing action on the tracking screen
   is no longer a link to the Help hub but a **drawer that asks how**: `Call operator` (a masked DRON
-  line, answered by the OS dialer — no screen), `Send message` (**Chat with the operator**,
-  `wireframes/chat.html`), `Contact support` (the Help hub, where the button used to send everyone).
+  line, answered by the OS dialer — no screen), `Chat with the operator` (`wireframes/chat.html`, `voice.md` **A12**), `Contact support` (the Help hub, where the button used to send everyone).
   Both operator branches return to tracking; only the third leaves into `EJ-2`. Her words: *«by
   clicking on "Contact operator" open drawer with opportunity to select call, chat, support and add
   wireframes with a chat with operator»*.

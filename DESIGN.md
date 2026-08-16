@@ -1196,7 +1196,7 @@ Icon-only, so the accessible name is on the element.
 ### Action sheet (`.dr-sheet--picker` as a set of routes)
 
 The drawer's second job. Where a picker sheet sets a **value**, this one offers **ways out** — the
-`Contact operator` drawer on the three `tracking` states: *Call operator* · *Send message* ·
+`Contact operator` drawer on the three `tracking` states: *Call operator* · *Chat with the operator* ·
 *Contact support*. Same parts, no new class, token or rule: sheet, `.dr-picker__list`,
 `.dr-picker__item`, a `.dr-note` line and the named `Cancel` that `HIG · Action sheets` requires.
 

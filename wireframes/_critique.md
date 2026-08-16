@@ -500,3 +500,12 @@ where the price is locked and the operator was not chosen. The annotation is in 
 which is `voice.md` **A9**'s own words and the Button rule's *"never a bare noun"*. The file is
 `chat.html` because *chat* is the object's name in the sitemap — a file name is not a product string.
 One string on three files if she wants her word on the screen.
+
+**Closed the same day — the row is `Chat with the operator`.** The open question above was put to the
+designer with the standards first (`voice.md`'s Button rule, **A9**) and all three shapes measured;
+she chose her own word. It costs nothing: *chat* there is a **verb taking its object**, the grammar of
+`Book again` and `Add photo`, not the bare noun the Button rule bars — which is why *Chat* alone was
+never offered. Fixed as `voice.md` **A12**, so the destination has one name on every surface, and
+**A9** keeps the composer's `Send message`: that button commits one message, the row opens the
+conversation. The label does not wrap — 22 characters in a 309.4 column — and no measurement on the
+sheet moved. Recorded in `concept.md` rev 142.

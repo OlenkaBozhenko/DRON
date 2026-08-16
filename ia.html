@@ -749,7 +749,7 @@ rjc2: `flowchart TD
   D1c -->|yes| T["Live tracking & ETA"]
   T --> DC{"Contact the operator?"}
   DC -->|call| CALL(["Phone — masked DRON line, OS dialer"]):::state
-  DC -->|message| CH["Chat with the operator"]
+  DC -->|chat| CH["Chat with the operator"]
   DC -->|support| GH
   DC -->|no, keep watching| D2
   CALL --> T
