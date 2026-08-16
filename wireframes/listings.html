@@ -265,8 +265,12 @@
       <section aria-label="Service list">
         <ul class="dr-list dr-list--snug">
 
-          <!-- card entry → Order setup (whole card is the tap target) -->
-          <li>
+          <!-- card entry → Order setup (whole card is the tap target).
+               `data-cat` on the <li> and not on the card: the row is what the
+               filter hides, so the card link inside it leaves the tab order
+               with it. One value per card — the catalogue is CE-2's three
+               service types and a service belongs to exactly one. -->
+          <li data-cat="delivery">
             <article class="dr-card dr-card--row dr-listing">
               <a class="dr-card__link" href="order-setup.html" aria-label="Package delivery — start an order"></a>
               <span class="media-ph"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
