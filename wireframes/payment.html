@@ -30,8 +30,27 @@
         <p class="amount">₴180</p>
         <p class="amount-sub">Package delivery · Podil → Osokorky</p>
       </section>
+      <!-- A TITLED CARD from 2026-08-16 (rev 126), the designer's call after the
+           filter panel took the same shape: «якщо в проекті ще є аналогічні
+           картки добав до них так само заголовок і підзаголовок … там де є
+           необхідність вводити дані які посортовані по категоріях». This is the
+           same component as the filter's Time zone — `<fieldset>` + `.dr-picks`
+           — and the same gap: with the shell's annotations off, which is how the
+           designer reads the page, the three methods stood under no name at all.
+           THE SUBTITLE SAYS «for this order» ON PURPOSE. `account-edit`'s card
+           reads *How you pay and the language you see* and is the saved default;
+           this one is the choice for the order about to be paid, and the two
+           screens should not read as the same setting twice.
+           NAMED BY THE DRAWN LINE — aria-labelledby → the title replaces
+           `aria-label="Payment method"`, so the group's name is text the eye
+           reads (WCAG 1.3.1, 2.5.3, 4.1.2), and aria-describedby carries the
+           subtitle. THE AMOUNT BLOCK ABOVE IS LEFT ALONE: it is not a card, and
+           its content is the figure itself — a title over ₴180 would name what
+           the ₴180 already says. -->
       <p class="zlabel dr-label">Payment method <span class="dr-label__act">▸ choose how to pay</span></p>
-      <fieldset aria-label="Payment method">
+      <fieldset class="dr-zone" aria-labelledby="pay-title" aria-describedby="pay-sub">
+        <p class="dr-zone__title" id="pay-title">Payment method</p>
+        <p class="dr-zone__sub" id="pay-sub">How you pay for this order</p>
         <ul class="dr-picks">
           <li><label class="dr-pick x-done"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><span class="dr-pick__label">Apple Pay</span><input type="radio" name="pm" checked class="sr-only"></label></li>
           <li><label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><span class="dr-pick__label">Google Pay</span><input type="radio" name="pm" class="sr-only"></label></li>
