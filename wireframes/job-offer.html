@@ -44,8 +44,17 @@
       <p class="zlabel">Decide fast <span class="act">▸ offer auto-expires, reassigns</span></p>
       <p class="big-title">Expires in 8s</p>
     </main>
+    <!--
+      Stacked, not split — the designer, 2026-08-16, on the whole product:
+      «пройдись по проекту і подивись щоб кругом у нижньому барі кнопрки були
+      одна під одною». This page was the last holder of `.row2`; the class and
+      its CSS stay in `_wireframe.css` but are now applied to nothing.
+      Accept over Decline: the DOM order does not move, and under an offer that
+      expires in 8s the thumb should not have to choose between two equal boxes.
+    -->
     <footer class="actionbar">
-      <div class="row2"><a class="btn btn-primary" href="job-brief.html">Accept</a><a class="btn btn-secondary" href="operator-listings.html">Decline</a></div>
+      <a class="btn btn-primary btn-block" href="job-brief.html">Accept</a>
+      <a class="btn btn-secondary btn-block" href="operator-listings.html">Decline</a>
     </footer>
   </div>
 
