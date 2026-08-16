@@ -68,10 +68,13 @@
       </section>
 
       <p class="zlabel dr-label">Payment <span class="dr-label__act">▸ what it cost, as charged</span></p>
+      <!-- THE FINAL SUM ALONE, NO BREAKDOWN — the designer's call, 2026-08-16, on the built
+           record: "на цих wireframes що показують деталі вже виконаного замовлення лише
+           остаточна сума без розшифровки". Base fare / Distance / Service fee came off; the
+           breakdown belongs to order-review, where the price is a fact stated BEFORE the tap
+           (voice.md P3). This screen is a record of money that already moved, and
+           microcopy.md has only ever listed one string in this zone — Paid. -->
       <div class="dr-rows dr-rows--money" aria-label="What it cost">
-        <div class="dr-rows__row"><span class="dr-rows__key">Base fare</span><span class="dr-rows__val">&#8372;90</span></div>
-        <div class="dr-rows__row"><span class="dr-rows__key">Distance · 7.4 km</span><span class="dr-rows__val">&#8372;70</span></div>
-        <div class="dr-rows__row"><span class="dr-rows__key">Service fee</span><span class="dr-rows__val">&#8372;20</span></div>
         <div class="dr-rows__row dr-rows__row--total"><span class="dr-rows__key">Paid</span><span class="dr-rows__val">&#8372;180</span></div>
       </div>
     </main>
