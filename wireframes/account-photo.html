@@ -10,8 +10,15 @@
   Added 2026-08-16 on the designer's word: «добав ще один wireframe де можна загрузити
   аватарку зроби його по HIG вимогам». Reached from the pencil badge now sitting on the
   avatar in account.html; the pencil beside the name still goes to account-edit.html.
-  Exit (no dead-end): Save photo / Cancel / nav-bar back → Account.
-  Grounded in account-edit.html (the upload zones, the stacked action bar, the back chevron).
+
+  REBUILT AS A MODAL 2026-08-16 (rev 146) on her own reference, Figma `100:30`: «залиш
+  зображення аватарки посередині а кнопки "Take a photo", Choose a picture, Delete і Сancel
+  зроби у ботом барі по типу цього … лиш кнопки по стилю мої з кіта». Her frame is an iOS
+  action sheet over an Edit Profile screen, so the picture stands alone in `main` and the
+  three ways to change it moved to the bottom edge. `HIG · Modality` puts Cancel and Save in
+  the navigation bar of a view that commits — which is what her frame draws — so the back
+  chevron came off with the bar's own Cancel.
+  Exit (no dead-end): Cancel / Save → Account.
   FIDELITY: painted — the Studio layer, ../ui/kit.css, as every client screen carries.
 -->
 <link rel="stylesheet" href="_wireframe.css">
