@@ -294,6 +294,14 @@
   --up-out: -3.2px;     /* the arrow leaving the upload tray */
   --up-in:   2.6px;     /* and re-entering from below, still invisible */
   --turn-open: 180deg;  /* closed points down, open points up */
+  /* The photo pile's three angles, read off the designer's reference (Figma
+     YlGWlsWWjKSCxhONMzGG2F node 103:43). STATIC TILT, NOT MOTION: nothing
+     animates, so the reduced-motion block below leaves them alone. They
+     alternate sense — right, left, right — which is what makes a pile read as
+     a pile rather than as a skewed grid. */
+  --tilt-1:  3deg;
+  --tilt-2: -3.5deg;
+  --tilt-3:  2deg;
 
   /* ── LAYOUT ─────────────────────────────────────────────────────────────── */
   --screen-w: 375px;
@@ -1082,11 +1090,17 @@ header.dr-topbar,
    screen sat at .dr-main's 16, but the rail is the one zone with no ground:
    the map well and the ETA rows card both carry a surface, so 16 read as
    crowding a bare row between two solid ones. 8 top and bottom lands the two
-   gaps on 24 — the kit's own zone rhythm, what .dr-main--zones spends and
-   where .dr-sect puts a group boundary — so no new value enters the scale.
+   gaps on 24 — the kit's own zone rhythm, what .dr-main--zones spends — so no
+   new value enters the scale.
    A modifier, because order-history's rail sits INSIDE a card between the
-   header and the route inset, where the card's own rhythm governs. */
-.dr-rail--zone{ margin-block: var(--sp-within-lg); }
+   header and the route inset, where the card's own rhythm governs.
+   The MARGIN is the number that moved, not the clearance: it was 8 against a
+   16 zone gap, and when the gap closed to 12 on 2026-08-16 the clearance was
+   measured at 20 above and 20 below on all nine tracking pages — 4 taken back
+   out of a call one day old. 12 restores 24 exactly, on a rung the scale
+   already carries. What this modifier promises is the CLEARANCE, so the margin
+   is read against the zone gap of the day and re-cut when that moves. */
+.dr-rail--zone{ margin-block: var(--sp-snug); }
 .dr-rail__step{
   position: relative; z-index: 1;
   display: flex; flex-direction: column; align-items: center; gap: var(--sp-9);
