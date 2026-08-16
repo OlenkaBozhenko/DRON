@@ -274,9 +274,14 @@
            adjectives as a voice.md P2 departure taken on her instruction ("three
            adjectives, no checkable figure"); with them gone the zone states
            nothing but figures, so that departure closes.
-           THE TITLE IS THE <legend>, so the line the eye reads is also the
-           group's accessible name and no aria-label is spent on it (WCAG 1.3.1,
-           4.1.2). The subtitle is tied on with aria-describedby.
+           THE GROUP IS NAMED BY THE LINE THE EYE READS — aria-labelledby points
+           at the title, so the fieldset's name is drawn text and not a duplicate
+           string in an attribute (WCAG 1.3.1, 2.5.3, 4.1.2), and the subtitle is
+           tied on with aria-describedby. A <legend> was built first, which needs
+           no ARIA at all, and measured out: a rendered legend sits in the
+           fieldset's block-start BORDER region, outside the padding box, and it
+           took the whole card's 16px inset with it. The two zones above already
+           carry aria-label; this one points at text instead of repeating it.
            THE CHART IS A PICTURE OF SUPPLY, NOT OF THE CHOICE. It carries a
            role="img" sentence rather than aria-hidden (WCAG 1.1.1), and the band
            the user picked is said three further ways — the two thumbs, the
