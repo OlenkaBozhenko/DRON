@@ -8,7 +8,11 @@
   SCREEN (sitemap / _screens.md): "Contact human support" — EJ-2 human-escalation.
   PERSONA: Client C-1 (primary).
   JOB (jtbd): EJ-2 — a clear path to resolution; a real person, 24/7 (Airbnb model).
-  STATE: base. Sibling state: -error (escalation queue).
+  STATE: base. Sibling state: -error (escalation queue). Sub-view: call-support.html (the voice
+  channel to the same agent — added 2026-08-16, the designer's «зроби таку сторінку call.html яка
+  буде відкриватись при кліку на кнопку "Call support"». The control was a `<button>` with no target
+  at all; the `tel:` reading the old microcopy describes left the product at rev 141 with the masked
+  number, so it is an `<a>` now, the same change `Call operator` went through).
   FLOW NODE: flows.md EJ-2 "Contact human support" (HS) → D6 "Resolved with agent?".
   Deep in the flow → topbar Back → support.html + footer.actionbar.
 -->
