@@ -340,9 +340,11 @@
 <!-- ═══ ACTIONS ═══════════════════════════════════════════════════════════ -->
 <h2 class="sec">Actions</h2>
 <div class="row">
-  <div class="nm"><b>Button</b><code>.dr-btn · --primary · --secondary · --tertiary · --block · --icon</code>
+  <div class="nm"><b>Button</b><code>.dr-btn · --primary · --secondary · --tertiary · --text · --pay · --block · --icon</code>
     <p>One green control per screen. Everything else that can be tapped is warm grey — green is
-       never spent inside card UI.</p></div>
+       never spent inside card UI. <code>--pay</code> is the one rung whose colour is not ours:
+       Apple and Google each permit a host three fills on a button that <i>initiates</i> their
+       payment — black, white, white-with-outline — and forbid the rest.</p></div>
   <div class="spec col">
     <div class="plate wide" style="gap:12px">
       <button class="dr-btn dr-btn--primary dr-btn--block" type="button">Rate this order</button>
