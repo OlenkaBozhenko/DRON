@@ -619,6 +619,26 @@ Measured: typed `--ink` **14.37:1 → 15.99:1** moving off the card onto the pag
 stand at the frame's own 16; placeholder stays `--slate` at **5.95:1**, the designer's call when shown
 that `WCAG 1.4.3` floors a placeholder at 4.5:1 and the lightest passing warm grey is 4.52:1.
 
+**And an input group can take the card back, per group, by name.** `.dr-rows--card` (2026-08-16,
+rev 124, on the designer's word at `account-edit`: *«зроби бекграунд для групи імя телефон та
+адреса щоб вже тоді все в картках було»*) opts one group out of rev 98's strip. It is **not** a
+border on a field — the input still computes `border: 0px none` — it is the other of the two HIG
+form styles, spent on the one screen that **configures** rather than composes, where iOS itself
+draws a stack of grouped inset cards. **One user in the product**: `account-edit`'s Personal group;
+the six pages that compose (`order-setup`, `order-setup-error`, `contact-support`, `rate`,
+`report-issue`, and the `_field-options` spec) are untouched and still render the plain list.
+Measured at the 375 frame, annotations off, the class toggled live: the group's box does not move
+or resize — **326.2 × 148 at the same x, y** — `background` transparent → `--card`
+`rgb(236,233,228)`, `border-radius` 0 → **16**, the field takes its own 16 back so the label goes
+**288.8 → 304.8** (32 from the frame, level with the Preferences card above it), the separator
+indents **0 → 16** the way an iOS grouped list does, all three rows hold **44** (`HIG · 44pt` ✓,
+`WCAG 2.5.8` ✓), and `.dr-main` scrolls **642** in a **578** window before and after. Contrast moves
+with the ground and both pairs clear AA: label `--slate` **6.62:1 → 5.95:1**, typed `--ink`
+**15.99:1 → 14.37:1** (`WCAG 1.4.3` wants 4.5:1 at 15/400 — the weaker clears by **1.45**). The
+hairline goes **1.34:1 → 1.21:1** on its new ground; both are under 3:1 and permitted, because a
+list separator is decoration and the grouping stays programmatic (`WCAG 1.3.1` ✓) — and the card
+edge now says the group boundary the hairline used to carry alone.
+
 **The label column is `--sz-rowkey` 140 — the same axis as the read-only row** (rev 114, 2026-08-16,
 on the designer's word). It was `flex:1`, a 1:1 split, which held only where every row in a group had
 the same anatomy: on `account-edit` the two picker rows carry a chevron and the input row does not, so

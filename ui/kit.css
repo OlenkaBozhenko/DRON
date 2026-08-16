@@ -1162,11 +1162,24 @@ header.dr-topbar,
    separator keeps the indent it has a panel edge to indent from.
    Verified before the change: .dr-field--action lives on ONE page, account-edit,
    whose Preferences group holds an <input> row between its two action rows — so
-   that group still matches and renders byte-identical. */
+   that group still matches and renders byte-identical.
+
+   OPTED OUT OF, PER GROUP, 2026-08-16 (rev 124): `.dr-rows--card` puts the card
+   back under a group of typed inputs. The designer on the built `account-edit`:
+   «зроби бекграунд для групи імя телефон та адреса щоб вже тоді все в картках
+   було». This does NOT undo rev 98 and it does not put a border back on any
+   field — the input keeps having none. It picks the OTHER of the two form
+   styles HIG ships, for the one screen that is a settings screen: iOS Settings
+   is a stack of grouped inset cards, a compose form is a plain list, and this
+   screen's other three blocks (Preferences, and both upload zones) are already
+   cards. The modifier is opt-in, so the six pages that compose rather than
+   configure — order-setup, order-setup-error, contact-support, rate,
+   report-issue and the _field-options spec — keep rev 98/103's plain list
+   untouched, byte-identical. */
 .dr-rows:has(> .dr-field){ padding-left: 0; padding-right: 0; }
-.dr-rows:has(> .dr-field:not(.dr-field--action)){ background: none; border-radius: 0; }
-.dr-rows:has(> .dr-field:not(.dr-field--action)) > .dr-field{ padding-left: 0; padding-right: 0; }
-.dr-rows:has(> .dr-field:not(.dr-field--action)) > .dr-field + .dr-field::before{ left: 0; }
+.dr-rows:has(> .dr-field:not(.dr-field--action)):not(.dr-rows--card){ background: none; border-radius: 0; }
+.dr-rows:has(> .dr-field:not(.dr-field--action)):not(.dr-rows--card) > .dr-field{ padding-left: 0; padding-right: 0; }
+.dr-rows:has(> .dr-field:not(.dr-field--action)):not(.dr-rows--card) > .dr-field + .dr-field::before{ left: 0; }
 .dr-field + .dr-field::before{
   content: ""; position: absolute; left: var(--sp-screen); right: 0; top: 0;
   height: var(--hair); background: var(--line);
@@ -1609,6 +1622,45 @@ header.dr-topbar,
    second way, so the band never rests on colour alone (1.4.1). Thumbs are
    --sz-box 24, the AA floor of 2.5.8, standing in a 44px row so HIG's 44pt
    target is met by the rail's own height. */
+/* THE TITLED ZONE CARD — 2026-08-16 (rev 124), the designer's call on the built
+   listings-filters: «добав заголовок і підзаголовок у два фільта вище Location &
+   available date». rev 123 gave the Price zone a title and a subtitle inside its
+   card. The other two zones carried none, and the only name either of them had
+   was .zlabel — the WIREFRAME's structure annotation, which goes with the
+   shell's toggle, which is how she reads the page. With annotations off the
+   panel read as two unnamed cards standing under one named one.
+   THIS IS THE PRICE CARD'S OWN SHAPE, NOT A SECOND ONE. Same ground, same
+   radius, same 16 inset, same two lines at the top, same 20 to the content —
+   .dr-zone is what .dr .dr-range already was, minus the range; the two titles
+   and the two subtitles are ONE declaration each, listed with .dr-range__title
+   and .dr-range__sub below, so a repeat of the component cannot drift from it.
+   .dr-range keeps its own class names on the page that has it: renaming a built
+   zone is not what was asked for, and one declaration already holds the values.
+   SELECTED AS `.dr .dr-zone` FOR THE REASON .dr-range IS: the base
+   `.dr fieldset{ padding: 0 }` is 0-1-1 and out-specifies a bare class, and the
+   Time zone IS a fieldset — at 0-1-0 it would render with no inset at all.
+   THE CARD BOUNDARY MOVES; THE LIST DOES NOT. The zone takes the ground and the
+   radius the list used to carry, and the list gives up its own inset in exchange
+   — measured after, .dr-picks' rows and separators stand exactly where they
+   stood. .dr-rows bleeds back out over the card's padding, because its rows
+   carry their own 16 and its separator runs from that inset to the card's
+   trailing edge (HIG · inset grouped lists); without the bleed the line would
+   stop 16px short of the edge it is drawn to. */
+.dr .dr-zone{
+  display: block;
+  background: var(--card); border-radius: var(--r-card);
+  padding: var(--sp-screen);
+}
+.dr-zone > .dr-picks,
+.dr-zone > .dr-rows{
+  background: none; border-radius: 0; padding: 0;
+  margin-top: var(--sp-group);          /* the gap .dr-range__band already spends */
+}
+.dr-zone > .dr-rows{
+  margin-left: calc(var(--sp-screen) * -1);
+  margin-right: calc(var(--sp-screen) * -1);
+}
+
 /* THE BAND BECOMES THE WHOLE ZONE — 2026-08-16 (rev 119), the designer's call
    against a Figma reference (node 94:6): «зроби такий вю — заголовок Діапазон
    цін, підзаголовок ціна послуги, і підпис внизу мінімум та максимум, такий
@@ -1647,11 +1699,16 @@ header.dr-topbar,
   background: var(--card); border-radius: var(--r-card);
   padding: var(--sp-screen);
 }
+/* One declaration, three cards — see .dr-zone above. The title is the scale's
+   17 step and the subtitle its 13, the pair .dr-order and the upload card
+   already stand on. */
+.dr-zone__title,
 .dr-range__title{
   font-size: var(--t-title-size); font-weight: var(--t-title-weight);
   line-height: var(--t-title-line); letter-spacing: var(--t-title-track);
   color: var(--ink);                                          /* 14.37:1 */
 }
+.dr-zone__sub,
 .dr-range__sub{
   margin-top: var(--sp-within);
   font-size: var(--t-bodysm-size); line-height: var(--t-bodysm-line);
