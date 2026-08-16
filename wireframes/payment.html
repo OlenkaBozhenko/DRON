@@ -65,7 +65,19 @@
         <fieldset class="dr-zone" aria-labelledby="card-title" aria-describedby="card-sub">
           <p class="dr-zone__title" id="card-title">Card</p>
           <p class="dr-zone__sub" id="card-sub">Visa or Mastercard, charged once for this order</p>
-          <div class="dr-rows">
+          <!-- `.dr-rows--card` IS LOAD-BEARING HERE, and it was measured before it
+               was added. Without it rev 98's plain-list strip takes the fields' own
+               16 away while `.dr-zone > .dr-rows` still bleeds the group out by −16:
+               measured on the 351 frame, every label stood at x 17 against a title
+               at 33 — 16px left of the card it lives in — and all three separators
+               ran 0 → 0, edge to edge across the card instead of starting at its
+               inset (`HIG · Lists and tables`, inset grouped list). It is the same
+               modifier and the same reason as `account-edit`'s Personal card
+               (rev 124), which is the other titled card of typed rows in the
+               product. Both alignments are WCAG-clean — this is HIG and the
+               project's one-axis rule (`ui/inventory.md` rev 114), not a contrast
+               or a target failure. -->
+          <div class="dr-rows dr-rows--card">
             <div class="dr-field">
               <label class="dr-field__label" for="cc-num">Card number</label>
               <span class="dr-field__group"><input class="dr-field__input" id="cc-num" name="cc-number" type="text" inputmode="numeric" autocomplete="cc-number" value="1234 5678 9012 3456"></span>
