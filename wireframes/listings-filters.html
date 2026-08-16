@@ -624,7 +624,7 @@
     /* Done takes the pick: the option becomes the date, which is what iOS does
        with a set date row, and what kit.js does when an option is chosen. */
     function commit() {
-      label.textContent = pretty(sel) + ', ' + (timeEl.value || '00:00');
+      label.textContent = pretty(sel) + ', ' + hhEl.value + ':' + mmEl.value;
       pick.checked = true;
       lastChecked = pick;
       close();
