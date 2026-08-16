@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Past order details · base</title>
+<!--
+  SCREEN (_screens.md C4, sub-view): "Past order details" — what a FINISHED order was.
+  PERSONA: Client C-1. JOB: RJ-C5 (repeat without starting over) + RJ-C4 (the proof, kept).
+  STATE: base only. A finished order is a record: it cannot be empty, it has nothing to
+  load that the list did not already load, and there is no flows.md node that errors here.
+  flows.md RJ-C5: Order history → "Past order details" → Service + price still valid? → setup.
+
+  WHY IT EXISTS (2026-08-16, designer on the built order-history): "коли я відкриваю
+  замовлення що вже було виконане для мене, то я бачу самері звідки куди, вага яка була,
+  пруф фото що мені надіслав оператор; поля вводу коментів лишати у мене немає вже і вагу
+  я теж вибрати вже не можу, і кнопки мають бути в ботом барі — замовити ще раз чи
+  видалити. Або цього wireframe немає, або ти невірно залінкував."
+  It was the second: all three finished cards pointed at order-setup.html, an EDITABLE
+  form — a client tapping an order that is over got a live parcel-size picker, an empty
+  notes field and "Continue to review". Nothing on this screen is an input.
+
+  A SUB-VIEW, NOT A SITEMAP SCREEN — the account-photo precedent (concept.md rev 128):
+  sitemap.md §6.1 still lists one "Order history", this is its second file, and no
+  traceability column moves.
+
+  WHAT IT IS NOT: delivery.html is the same order at the moment it lands — a milestone,
+  ending in "Rate this order". This is the same order months later, ending in "Book again".
+  One is an event, the other is a record; they share the photograph and nothing else.
+
+  THE INSTANCE DRAWN is the 28 Jun package delivery (Podil ▸ Osokorky, ₴180) — the card the
+  designer pointed at. All three finished cards open it, which is the prototype showing one
+  pattern; an inspection order would carry the report cover in the well and a single
+  Location row instead of From ▸ To.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Past order details</h1>
+    <p class="sub">Client · RJ-C5 · state: <b>base</b> · file: order-details.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-C5 — see what was done before ordering it again; RJ-C4 — the proof stays reachable after the order closes.<br><b>flows.md:</b> Order history → <span class="cur">Past order details</span> → Book again → Order setup.<br><b>States:</b> none — a finished order is a record (per <code>_screens.md</code> C4).<br><b>Exit:</b> Book again → <b>Order setup</b>, or Delete order → <b>Order history</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Summary</b> ▸ what was done · where · what it weighed</p><p><b>Proof of delivery</b> ▸ the operator's photo (RJ-C4)</p><p><b>Payment</b> ▸ what it cost, as charged</p><p><b>Action bar</b> ▸ Book again · Delete order</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="order-history.html" aria-label="Back to Activity"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Package delivery</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <!-- HER ORDER OF READING, KEPT: "звідки куди, вага яка була, пруф фото". The summary
+           names the order, the photograph then shows it. -->
+      <p class="zlabel dr-label">Summary <span class="dr-label__act">▸ what was done</span></p>
+      <div class="dr-rows" aria-label="Order summary">
+        <div class="dr-rows__row"><span class="dr-rows__key">From</span><span class="dr-rows__val">Podil — Naberezhno-Khreshchatytska St, 21</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">To</span><span class="dr-rows__val">Osokorky — Dniprovska Naberezhna, 14</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Parcel</span><span class="dr-rows__val">Small · up to 2 kg</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Delivered</span><span class="dr-rows__val">28 Jun · 14:20</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Operator</span><span class="dr-rows__val">Andriy M.</span></div>
+      </div>
+
+      <p class="zlabel dr-label">Proof of delivery <span class="dr-label__act">▸ photo from the operator (RJ-C4)</span></p>
+      <section aria-label="Proof of delivery">
+        <div class="dr-well dr-well--photo" style="width:100%;height:180px;" role="img" aria-label="Delivery photo"><img src="../assets/scenes/thumbs/delivered-at-door.jpg" alt="" loading="lazy" decoding="async"></div>
+      </section>
+
+      <p class="zlabel dr-label">Payment <span class="dr-label__act">▸ what it cost, as charged</span></p>
+      <div class="dr-rows dr-rows--money" aria-label="What it cost">
+        <div class="dr-rows__row"><span class="dr-rows__key">Base fare</span><span class="dr-rows__val">&#8372;90</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Distance · 7.4 km</span><span class="dr-rows__val">&#8372;70</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Service fee</span><span class="dr-rows__val">&#8372;20</span></div>
+        <div class="dr-rows__row dr-rows__row--total"><span class="dr-rows__key">Paid</span><span class="dr-rows__val">&#8372;180</span></div>
+      </div>
+    </main>
+    <!-- THE TWO ACTIONS SHE NAMED, IN THE BOTTOM BAR. Book again is the one green control
+         on this screen; Delete order takes .dr-btn--danger, the rung rev 128 spent on
+         "Remove photo" — HIG · Action sheets asks a destructive choice to read as
+         destructive, and WCAG 1.4.1 is held because the verb carries it with the colour
+         taken away. -->
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="order-setup.html">Book again</a>
+      <a class="dr-btn dr-btn--danger dr-btn--block" href="order-history.html">Delete order</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
