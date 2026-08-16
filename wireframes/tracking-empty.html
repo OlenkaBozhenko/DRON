@@ -89,6 +89,30 @@
       </nav>
       <div class="dr-home"><span></span></div>
     </footer>
+
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <!--
+      THE SAME DRAWER AS tracking.html, BYTE-IDENTICAL — 2026-08-16. concept.md rev 26 fixed the
+      rule for this exact control after this file had drifted to the grey secondary: "the same
+      control at the same weight in every state". A button that opens a drawer on the base and
+      navigates away on the two state pages is that drift arriving through behaviour instead of
+      through colour, so the drawer is carried to all three. tracking-loading has no operator card
+      and no such button, so it is untouched.
+      See tracking.html for the full reasoning behind the three rows, their labels and the note.
+    -->
+    <section class="dr-sheet dr-sheet--picker" id="sheet-contact" role="dialog" aria-modal="true" aria-labelledby="sheet-contact-title" aria-describedby="sheet-contact-desc" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-contact-title">Contact operator</p>
+      <div class="dr-picker__list">
+        <a class="dr-picker__item" href="tel:+380440000180"><span class="dr-picker__label">Call operator</span></a>
+        <a class="dr-picker__item" href="chat.html"><span class="dr-picker__label">Send message</span></a>
+        <a class="dr-picker__item" href="support.html"><span class="dr-picker__label">Contact support</span></a>
+      </div>
+      <p class="dr-note" id="sheet-contact-desc">Calls and messages go through DRON. Your number is not shared with the operator.</p>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+    </section>
   </div>
+  <script src="../ui/kit.js"></script>
   <script src="_wf-shell.js"></script>
 </body></html>
