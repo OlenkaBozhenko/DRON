@@ -62,9 +62,20 @@
         <div class="dr-rows__row"><span class="dr-rows__key">Operator</span><span class="dr-rows__val">Andriy M.</span></div>
       </div>
 
-      <p class="zlabel dr-label">Proof of delivery <span class="dr-label__act">▸ photo from the operator (RJ-C4)</span></p>
-      <section aria-label="Proof of delivery">
-        <div class="dr-well dr-well--photo" style="width:100%;height:180px;" role="img" aria-label="Delivery photo"><img src="../assets/scenes/thumbs/delivered-at-door.jpg" alt="" loading="lazy" decoding="async"></div>
+      <!-- THE ZONE IS NAMED FOR ITS SERVICE — voice.md O5, which fixes one name per deliverable:
+           delivery photo · inspection report · photo/video set. It read "Proof of delivery" until
+           2026-08-16; O5 allows "proof" only as reassurance inside a sentence, never as a screen
+           object, and the well's own accessible name was already "Delivery photo", so one image was
+           being named twice, two ways.
+           THE ALT NOW DESCRIBES THE FRAME (WCAG 1.1.1). The well used to carry role="img" with the
+           label "Delivery photo" over an empty alt — a screen-reader user was told the category of
+           the picture and never its content, while the sighted client can see the parcel arrived,
+           which is the entire job of this zone (RJ-C4). Same construction inspection-report.html
+           has used since it was built: the section carries the zone name, the img carries what is
+           in it. -->
+      <p class="zlabel dr-label">Delivery photo <span class="dr-label__act">▸ what the operator sent back (RJ-C4)</span></p>
+      <section aria-label="Delivery photo">
+        <div class="dr-well dr-well--photo" style="width:100%;height:180px;"><img src="../assets/scenes/thumbs/delivered-at-door.jpg" alt="A cardboard parcel left upright on a doormat outside a flat door, the way the operator photographed it on arrival." loading="lazy" decoding="async"></div>
       </section>
 
       <p class="zlabel dr-label">Payment <span class="dr-label__act">▸ what it cost, as charged</span></p>
