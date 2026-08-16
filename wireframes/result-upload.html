@@ -26,7 +26,18 @@
     <main>
       <p class="zlabel">Result photo <span class="act">▸ proof before pay (H-7)</span></p>
       <section aria-label="Result photo">
-        <div class="upload-zone"><span class="up-ph">DELIVERY PHOTO</span><button type="button" class="btn btn-secondary btn-sm">Add photo</button></div>
+        <!-- THE TRAY CARRIES ITS PHOTO, 2026-08-16 — the designer's call: the
+             result-proof image should be visible on the screens that show the
+             finished job, using the pictures already in the repo. This is the
+             same file the client sees one step later on delivery.html, because
+             it is the same order (package delivery · Olena H. · ₴180). The base
+             state is "success", and its CTA closes the job — a screen that
+             cannot be submitted without the photo should not draw an empty
+             tray. _conventions.md §8 governs the filled tray. -->
+        <div class="upload-zone">
+          <span class="up-shot" role="img" aria-label="Delivery photo"><img src="../assets/scenes/thumbs/delivered-at-door.jpg" alt="" loading="lazy" decoding="async"></span>
+          <button type="button" class="btn btn-secondary btn-sm">Replace photo</button>
+        </div>
       </section>
 
       <p class="zlabel">Notes <span class="act">▸ handover details</span></p>
