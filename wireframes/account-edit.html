@@ -49,9 +49,17 @@
           so it was suppressing the card on Payment / Language. The group now
           draws the card at radius 16, which is what `account`'s Mode group and
           `listings-filters`' location group have always drawn.
+
+          AND NOW THIS GROUP TAKES THE SAME CARD, on the designer's word,
+          2026-08-16 (rev 124): «зроби бекграунд для групи імя телефон та адреса
+          щоб вже тоді все в картках було». `.dr-rows--card` opts this one group
+          out of rev 98's plain-list strip; the fields still have no border, and
+          the six other pages that carry typed inputs are untouched. Both shapes
+          are `HIG · Text fields`, and this is the one screen in the product that
+          is Settings rather than a compose form.
         -->
         <p class="zlabel dr-label">Personal <span class="dr-label__act">▸ editable name · phone · address</span></p>
-        <div class="dr-rows">
+        <div class="dr-rows dr-rows--card">
 <div class="dr-field">
           <label class="dr-field__label" for="name">Full name</label>
           <span class="dr-field__group"><input class="dr-field__input" id="name" name="name" value="Olena B."></span>
