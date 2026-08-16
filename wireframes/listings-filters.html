@@ -195,7 +195,29 @@
            the value ("Region, Kyiv City"), so WCAG 4.1.2 is answered by the
            element. -->
       <p class="zlabel dr-label">Location <span class="dr-label__act">▸ country ▸ region ▸ city ▸ district of the city</span></p>
-      <div class="dr-rows" role="group" aria-label="Location">
+
+      <!-- THE ZONE IS A TITLED CARD from 2026-08-16 (rev 124), the designer's
+           call on the built panel: «добав заголовок і підзаголовок у два фільта
+           вище Location & available date». Same shape the Price zone took at
+           rev 123 — .dr-zone IS .dr .dr-range minus the range, one declaration
+           for the two title lines — so the panel is three cards of one kind
+           rather than one titled card standing over two unnamed ones.
+           IT NAMES THE ZONE IN THE PRODUCT, WHICH .zlabel DOES NOT. The mono
+           label above is the WIREFRAME's structure annotation and vanishes with
+           the shell's toggle; the title and the subtitle are content and stay.
+           THE GROUP'S NAME IS NOW DRAWN TEXT — aria-labelledby points at the
+           title and aria-describedby at the subtitle, so `role="group"` is
+           named by the line the eye reads instead of by a duplicate string in
+           aria-label (WCAG 1.3.1, 2.5.3, 4.1.2). The role moves up to the card
+           with the name; the row list under it is a container and nothing else.
+           A <p> and not an <h2>, following the Price card: WCAG 2.4.10 Section
+           Headings is AAA and the project's target is AA (CLAUDE.md). One
+           attribute per card changes it, and it is hers to say. -->
+      <div class="dr-zone" role="group" aria-labelledby="loc-title" aria-describedby="loc-sub">
+        <p class="dr-zone__title" id="loc-title">Location</p>
+        <p class="dr-zone__sub" id="loc-sub">Where you need the service</p>
+
+      <div class="dr-rows">
         <a class="dr-field dr-field--action" href="listings-filter-country.html">
           <span class="dr-field__label">Country</span>
           <span class="dr-field__value">Ukraine</span>
