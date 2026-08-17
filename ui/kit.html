@@ -427,6 +427,30 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="nm"><b>Nav-bar avatar</b><code>.dr-avatar-sm &#183; --sz-avatar-sm</code>
+    <p>The operator's own face in the nav bar. Two screens: operator-listings and its empty state.</p></div>
+  <div class="spec">
+    <div class="plate">
+      <span class="dr dr-avatar-sm"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" decoding="async"></span>
+      <span class="st">28 &#215; 28 &#183; --media ground &#183; --r-pill</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>28 is derived, not picked.</b> <code>--h-topbar</code> is 56, so the disc is exactly half
+       the bar it stands in and centres with 14 above and below &#8212; measured 13.6 / 14.4, the 0.8
+       being the bar's own hairline. None of the four existing rungs could be borrowed:
+       <code>--sz-avatar</code> 117 is the operator panel's <i>width</i> from an asset ratio,
+       <code>--sz-avatar-xl</code> 120 is a subject, <code>--sz-avatar-call</code> 176 is a screen's
+       middle, and <code>--sz-avatar-badge</code> 20 is a badge <i>on</i> an avatar.</p>
+    <p><b>It exists to close a leak rather than to add a look.</b> The disc was drawn with
+       <code>_wireframe.css</code>'s own <code>.avatar</code>, whose ground is <b>#EEEEEE</b> &#8212; a
+       colour in no palette in this project &#8212; showing through the cutout's transparent corners.
+       It was <b>the last place a painted page read a colour from the grayscale sheet</b>.
+       <code>--media</code> here, the ground every other photo in the kit loads onto.</p>
+  </div>
+</div>
+
 <!-- ═══ ACTIONS ═══════════════════════════════════════════════════════════ -->
 <h2 class="sec">Actions</h2>
 <div class="row">
@@ -508,6 +532,35 @@
   <div class="notes">
     <p>Measured <b>286.2 &#215; 44</b> on <code>order-history</code>, <b>gap 8</b>, no ground of its own.
        The slot is a row, so one action or two sit on the same rhythm and the card&#8217;s inset is unchanged.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Identity mark</b><code>.dr-idmark</code>
+    <p>Diia and BankID on the sign-in buttons, from the designer's own artwork. Quoted, not drawn.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch">
+      <span class="dr dr-btn dr-btn--primary dr-btn--block"><img class="dr-idmark" src="../assets/brand/diia.png" alt="" width="20" height="20" decoding="async">Continue with Diia</span>
+      <span class="dr dr-btn dr-btn--secondary dr-btn--block" style="margin-top:8px"><img class="dr-idmark" src="../assets/brand/bankid.png" alt="" width="20" height="20" decoding="async">Continue with BankID</span>
+      <span class="st">20 &#215; 20 square &#183; signin</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>Square at 20 &#215; 20 where <code>.dr-paymark</code> is 40 &#215; 20</b>, because these are
+       <i>badges</i> and a 1:1 mark in a 2:1 box would letterbox. 20 matches the payment marks' height,
+       so the two families sit on one optical line if a screen ever shows both.</p>
+    <p><b>Quoted, not drawn.</b> PNG, outside the 24-grid icon set, the same rule the Apple Pay and
+       Google Pay marks follow. Each keeps its own colours &#8212; Diia's black squircle, BankID's
+       #94C11F plate with a white <i>id</i> &#8212; and <b>neither is recoloured to the palette nor
+       redrawn to the 1.7 stroke</b>: a brand mark that has been restyled is no longer the brand's
+       mark. The artwork carries its own rounded corners as transparency, so no CSS radius is set here
+       &#8212; a radius would cut a second corner inside the first. <code>alt=""</code> on both,
+       because the button's own text names the provider.</p>
+    <p><b>The designer's first asset was replaced by her second, and the reason is a rule:</b> the
+       Bank iD <i>wordmark</i> prints the brand's name twice beside a label that already says BankID,
+       so she supplied the badge instead. <i>To look at rather than a defect: BankID's green sits one
+       row below DRON's own <code>#9BCF4A</code> primary &#8212; two near greens, both correct, one the
+       brand's and one the product's.</i></p>
   </div>
 </div>
 
@@ -802,6 +855,109 @@
        it off the published kit. Everything about it was wrong: the wrong wash on the wrong chip, the
        wrong label, a missing checkmark on both, and a contrast figure that
        <code>DESIGN.md</code> has had right all along.</i></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Balance block</b><code>.dr-balance &#183; .dr-note--flush</code>
+    <p>A figure and the line that names it. Four screens: wallet, wallet-empty, withdraw, ratings.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch">
+      <section class="dr dr-balance" aria-label="Balance">
+        <p class="dr-number">&#8372;3,240</p>
+        <p class="dr-note dr-note--flush">Available to withdraw</p>
+      </section>
+      <span class="st">341 &#215; 42 &#183; figure 20 + gap 4 + caption 18 &#183; wallet</span>
+    </div>
+    <div class="plate wide" style="align-items:stretch">
+      <section class="dr dr-balance" aria-label="Balance" style="--x:1">
+        <p class="dr-number" style="font-size:var(--t-display-size)">&#8372;3,240</p>
+        <p class="dr-note dr-note--flush">Available to withdraw</p>
+      </section>
+      <span class="st">the display step, 22 &#183; withdraw</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>Why the block exists at all.</b> <code>_wireframe.css</code> draws this as
+       <code>.amount</code> at <b>34px / 600 / #252525</b> &#8212; a size outside the ten-step scale,
+       which tops out at 22, and an ink in no palette here. <i>The painted client page
+       <code>payment.html</code> still leaks it, and that is an open defect rather than a sanctioned
+       exception.</i></p>
+    <p><b>On withdraw the figure takes the display step, 22</b>, on the designer's call of
+       2026-08-18 &#8212; and it is spent through <code>.dr-number</code> rather than by swapping in
+       <code>.dr-display</code>, because <code>.dr-display</code> is <b>not tabular</b> and money must
+       line up digit under digit. The figure gets the display <i>size</i> and the number <i>role</i>.
+       Measured: <b>15.99:1</b> on the page, caption <code>--slate</code> <b>6.62:1</b>.</p>
+    <p><b><code>.dr-note--flush</code> is one keyword and no more.</b> <code>.dr-note</code> is
+       <code>text-align:center</code> by construction &#8212; the right default under a centred mark
+       inside <code>.dr-msg</code> &#8212; so a caption standing beside a left-aligned figure has to
+       say so. Nothing else about <code>.dr-note</code> changes. Spent 7 times across four packs.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Availability head</b><code>.dr-avail &#183; __dot &#183; __state &#183; __note</code>
+    <p>A dot, the state, and one supporting clause, standing above the segmented control that sets
+       it. Two screens: operator-listings and its empty state.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch">
+      <p class="dr dr-avail">
+        <span class="dr-avail__dot" aria-hidden="true"></span>
+        <b class="dr-avail__state">You are Available</b><span class="dr-avail__note">&#183; receiving jobs near Podil</span>
+      </p>
+      <span class="st">326.2 &#215; 19 &#183; gap 8 &#183; dot 10 &#183; operator-listings</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>The dot is <code>--ink</code> and not <code>--green</code>, and that is
+       <code>WCAG 1.4.1</code> rather than taste.</b> A dot that is green when Available and grey when
+       Offline would rest on colour alone. The sentence beside it says the state in words and the
+       segment below says it a third time, so <b>the dot is a bullet, not a signal</b>. It also keeps
+       the accent off a screen whose card CTAs already spend it.</p>
+    <p>Measured: dot <b>10 &#215; 10</b> &#8212; <code>--sz-dot</code>, the checked radio's own
+       centre, so no new size was cut; state 15/600 <code>--ink</code> <b>15.99:1</b>; note 13
+       <code>--slate</code> <b>6.62:1</b>. The wrapping section takes <code>.dr-stack</code>, so the
+       head needs no margin of its own.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Earned score</b><code>.dr-stars &#183; __fill &#183; .dr-listing__score</code>
+    <p>A score somebody else <i>gave</i>, not a score being given. One screen &#8212; ratings &#8212;
+       so it is a one-off on the watch-list, drawn here for the rule it carries.</p></div>
+  <div class="spec">
+    <div class="plate oncard">
+      <span class="dr dr-stars" style="--dr-full:4; --dr-part:.8" aria-hidden="true">
+        <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <span class="dr-stars__fill"><svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> </span>
+      </span>
+      <span class="st">4.8 &#183; fill 150.96 of 160</span>
+    </div>
+    <div class="plate oncard">
+      <span class="dr-listing__name">Olena H.<span class="dr-listing__score">&#183; 5.0</span></span>
+      <span class="st">the inline suffix &#183; 12.5 --slate 5.95:1</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>Why not <code>.dr-rating</code>.</b> That class is an <i>input</i>: five
+       <code>&lt;button&gt;</code>s, each a 44pt target carrying <code>aria-pressed</code>, built for
+       <code>rate</code> where the client awards a score. A read-only display must not be a row of
+       buttons announcing a pressed state it cannot change (<code>WCAG 4.1.2</code>), nor put five
+       stops in a dashboard's tab order. Same star path, same <code>--sz-star</code> 32, same two
+       colours, <b>no tab stop</b>: the row is <code>aria-hidden</code> and the figure beside it
+       states the value in <code>--ink</code> at <b>15.99:1</b>. That is what lets
+       <code>--warn</code>'s <b>1.84:1</b> and <code>--btn2</code>'s <b>1.39:1</b> carry a shape and
+       never a meaning.</p>
+    <p><b>The clip lands on the ink, not on the box &#8212; and this is the part worth keeping.</b>
+       The star path spans x 3.3 &#8594; 20.7 of its 24-grid, so only <b>72.5%</b> of a box is ink.
+       Clipping the row at score/5 &#8212; 96% for 4.8 &#8212; removes just the tip of the fifth arm
+       and the display renders <b>five full stars</b>. That was built, measured and rejected. Derived
+       from the path's own coordinates instead: 4.8 covers exactly <b>0.800</b> of the fifth
+       silhouette, fill <b>150.96</b> of a 160 row, and the fifth star visibly keeps a grey point. A
+       whole-star floor was the other candidate and renders 4.8 and 4.0 alike.</p>
+    <p><code>--sz-star-ink</code> and <code>--sz-star-inset</code> are the only <code>:root</code>
+       additions of the whole operator pass, and both are <b>arithmetic</b> on
+       <code>--sz-star</code> and the glyph's own grid coordinates &#8212; the habit
+       <code>--node-centre</code> and <code>--pick-indent</code> already keep.</p>
   </div>
 </div>
 
