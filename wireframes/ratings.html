@@ -60,10 +60,14 @@
     <main class="dr-main">
       <p class="zlabel dr-label">Overall <span class="dr-label__act">▸ headline score</span></p>
       <section aria-label="Overall rating" class="dr-center dr-center--tight">
-        <!-- 4.8 of 5 → 96% of the row. The value arrives inline the way .dr-rail
-             takes --dr-fill in ui/kit.html and the price chart's bars take their
-             heights on listings-filters: data inline, design in the class. -->
-        <span class="dr-stars" style="--dr-score:96%" aria-hidden="true">
+        <!-- 4.8 of 5 → four whole stars and eight tenths of the fifth. The value
+             arrives inline the way .dr-rail takes --dr-fill in ui/kit.html and the
+             price chart's bars take their heights on listings-filters: data inline,
+             design in the class. Two numbers rather than one percentage, because the
+             clip has to land on the star's INK: the path fills 72.5% of its 24-box,
+             so clipping the row at a flat 96% cuts only the tip of the fifth arm and
+             the display renders as five FULL stars — measured, and rejected. -->
+        <span class="dr-stars" style="--dr-full:4; --dr-part:.8" aria-hidden="true">
           <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
           <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
           <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
