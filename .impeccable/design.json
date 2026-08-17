@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-01T00:00:00Z",
+  "generatedAt": "2026-08-18T00:00:00Z",
   "title": "Design System: DRON",
   "extensions": {
-    "note": "Extracted from the ten painted product surfaces and verified by computed style in a browser. No tonal ramps are recorded: the project declares no tonal scale, and synthesising one would put colours in this file that no surface uses.",
+    "note": "Extracted from the painted product surfaces and verified by computed style in a browser; the set was completed 2026-08-18. No tonal ramps are recorded: the project declares no tonal scale, and synthesising one would put colours in this file that appear nowhere in the build.",
     "colorMeta": {
       "green": {
         "role": "primary",
@@ -111,13 +111,15 @@
         "role": "tertiary",
         "displayName": "Trust Ink",
         "canonical": "#2A5C7D",
-        "usage": "the ink of a credential the platform has CONFIRMED — the Insured badge label and its checkmark. 5.65:1 on its own wash, the family rung --warn-ink already stands at; 5.93:1 on the card. Added 2026-08-15 (rev 58). It speaks and it strokes, which the fill-only rule permits because that rule is --green s."
+        "usage": "the ink of a credential the platform has CONFIRMED — the Insured badge label and its checkmark. 5.65:1 on its own wash, the family rung --warn-ink already stands at; 5.93:1 on the card. Added 2026-08-15 (rev 58). It speaks and it strokes, which the fill-only rule permits because that rule is --green s.",
+        "description": " — RETIRED 2026-08-18: the designer collapsed the blue confirmed-credential rung into the green claim chip across all 14 screens that carried it, so green now means \"DRON confirmed this document\" and this pair is declared but spent nowhere."
       },
       "trust-wash": {
         "role": "tertiary",
         "displayName": "Trust Wash",
         "canonical": "#D8E6F2",
-        "usage": "the ground of the confirmed-credential chip. The system s first cool colour and the third semantic wash beside warn and danger — not a second accent. 1.05:1 on the card, and 1.03:1 against the --media chip beside it, which is why the checkmark and not the hue carries the state (WCAG 1.4.1)."
+        "usage": "the ground of the confirmed-credential chip. The system s first cool colour and the third semantic wash beside warn and danger — not a second accent. 1.05:1 on the card, and 1.03:1 against the --media chip beside it, which is why the checkmark and not the hue carries the state (WCAG 1.4.1).",
+        "description": " — RETIRED 2026-08-18: the designer collapsed the blue confirmed-credential rung into the green claim chip across all 14 screens that carried it, so green now means \"DRON confirmed this document\" and this pair is declared but spent nowhere."
       }
     },
     "typographyMeta": {
@@ -170,17 +172,17 @@
       {
         "name": "sh-sm",
         "value": "0 1px 2px rgba(20,18,15,.05)",
-        "purpose": "The only shadow spent in the system — under the green primary."
+        "purpose": "Under the green primary — the block primary, the circular primary and the pressed language toggle. One of the two rungs the system spends."
       },
       {
         "name": "sh-card",
         "value": "0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30)",
-        "purpose": "Declared on all ten pages, applied to nothing. A recorded rung."
+        "purpose": "Declared, applied to nothing. A recorded rung."
       },
       {
         "name": "sh-raised",
         "value": "0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34)",
-        "purpose": "Declared, applied to nothing."
+        "purpose": "Under the two surfaces that genuinely float: .dr-sheet and .dr-toast. Spent since rev 89/rev 129 — the flat rule is about cards sitting IN the page, and rev 43 named this exception in advance."
       },
       {
         "name": "ring-cutout",
@@ -323,11 +325,51 @@
       "description": "The accent cannot be the label colour at 1.69:1, so selection moves it into the fill: a tint appears and the ink darkens slate to charcoal. Two signals, not one.",
       "html": "<nav class=\"ds-tabs\" aria-label=\"Primary\"><a class=\"ds-tab\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"4\" y=\"4\" width=\"7\" height=\"7\" rx=\"1.6\"/><rect x=\"13\" y=\"4\" width=\"7\" height=\"7\" rx=\"1.6\"/><rect x=\"4\" y=\"13\" width=\"7\" height=\"7\" rx=\"1.6\"/><rect x=\"13\" y=\"13\" width=\"7\" height=\"7\" rx=\"1.6\"/></svg>Order</a><a class=\"ds-tab\" href=\"#\" aria-current=\"page\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 6h11M9 12h11M9 18h11\"/><circle cx=\"4.6\" cy=\"6\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"4.6\" cy=\"12\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"4.6\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>Activity</a><a class=\"ds-tab\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8.5\"/><path d=\"M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9\"/><circle cx=\"12\" cy=\"17\" r=\".9\" fill=\"currentColor\" stroke=\"none\"/></svg>Help</a><a class=\"ds-tab\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"8\" r=\"3.4\"/><path d=\"M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8\"/></svg>Account</a></nav>",
       "css": ".ds-tabs{ display:flex; height:60px; padding:6px 8px 4px; gap:4px; background:#F7F5F2; border-top:1px solid #D9D5CE; } .ds-tab{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; border-radius:16px; text-decoration:none; color:#5A5751; font:600 11px/15.4px -apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; } .ds-tab svg{ display:block; } .ds-tab[aria-current=\"page\"]{ background:#E7F0D2; color:#1A1A1A; } .ds-tab:focus-visible{ outline:2.5px solid #1A1A1A; outline-offset:2px; }"
+    },
+    {
+      "name": "Balance Block",
+      "kind": "display",
+      "refersTo": "balance-block",
+      "description": "A figure and the line that names it — a wallet balance, a payout amount, a rating score. The figure is tabular because money must line up digit under digit; it takes the display step 22 and the number role, never the grayscale sheet's off-scale 34px.",
+      "html": "<section class=\"ds-balance\"><p class=\"ds-figure\">₴3,240</p><p class=\"ds-caption\">Available to withdraw</p></section>",
+      "css": ".ds-balance{ display:flex; flex-direction:column; gap:4px; } .ds-figure{ margin:0; font:700 22px/1 -apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; letter-spacing:-.02em; font-variant-numeric:tabular-nums; color:#1A1A1A; } .ds-caption{ margin:0; font:400 12px/18px -apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; color:#5A5751; text-align:left; }"
+    },
+    {
+      "name": "Availability Head",
+      "kind": "status",
+      "refersTo": "availability-head",
+      "description": "A dot, the state in words, and one supporting clause, above the control that sets it. The dot is charcoal and not green on purpose: a green-for-available dot would rest on colour alone, and the words beside it already carry the state.",
+      "html": "<p class=\"ds-avail\"><span class=\"ds-avail-dot\"></span><b class=\"ds-avail-state\">You are Available</b><span class=\"ds-avail-note\">· receiving jobs near Podil</span></p>",
+      "css": ".ds-avail{ margin:0; display:flex; align-items:baseline; flex-wrap:wrap; gap:8px; font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; } .ds-avail-dot{ width:10px; height:10px; flex:none; align-self:center; border-radius:999px; background:#1A1A1A; } .ds-avail-state{ font:500 15px/21px inherit; color:#1A1A1A; } .ds-avail-note{ font:400 13px/20px inherit; color:#5A5751; }"
+    },
+    {
+      "name": "Earned Score",
+      "kind": "display",
+      "refersTo": "earned-score",
+      "description": "A read-only rating. Not the rating input: a display must not be a row of buttons announcing a pressed state it cannot change, so the stars are aria-hidden and the value is stated in text beside them. The partial star is clipped on the glyph's ink, not on its box — clipping at score/5 renders five full stars.",
+      "html": "<span class=\"ds-stars\" aria-hidden=\"true\" style=\"--full:4;--part:.8\"><i></i><i></i><i></i><i></i><i></i><span class=\"ds-stars-fill\"><i></i><i></i><i></i><i></i><i></i></span></span>",
+      "css": ".ds-stars{ position:relative; display:inline-flex; color:#D6D2C9; } .ds-stars i{ width:32px; height:32px; background:currentColor; -webkit-mask:var(--star) center/contain no-repeat; mask:var(--star) center/contain no-repeat; } .ds-stars-fill{ position:absolute; inset:0 auto 0 0; display:inline-flex; overflow:hidden; color:#E4A11B; width:calc(var(--full)*32px + 32px*3.3/24 + var(--part)*32px*17.4/24); }"
+    },
+    {
+      "name": "Onboarding Carousel",
+      "kind": "layout",
+      "refersTo": "onboarding-carousel",
+      "description": "Three slides on CSS scroll-snap, no JS, with a dot row under them. The dots are an indicator and not a control — an 8px target is below every minimum, and the answer was to remove the control rather than pad it, since the slider is swipeable and each slide announces its position.",
+      "html": "<div class=\"ds-slider\"><section class=\"ds-slide\" aria-label=\"Slide 1 of 3\"><p class=\"ds-slide-title\">You order, a pro handles it</p><p class=\"ds-slide-body\">A certified operator does the flying.</p><span class=\"ds-slide-art\"></span></section></div><div class=\"ds-pager\" aria-hidden=\"true\"><span class=\"on\"></span><span></span><span></span></div>",
+      "css": ".ds-slider{ display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; } .ds-slide{ flex:0 0 100%; scroll-snap-align:center; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; padding:8px 20px; } .ds-slide-art{ width:100%; height:35%; border-radius:13px; background:#E4E1DA; } .ds-pager{ display:flex; gap:8px; justify-content:center; margin-top:12px; } .ds-pager span{ width:8px; height:8px; border-radius:999px; background:#D6D2C9; } .ds-pager .on{ background:#9BCF4A; }"
+    },
+    {
+      "name": "Identity Mark",
+      "kind": "media",
+      "refersTo": "identity-mark",
+      "description": "A third-party identity badge beside a sign-in label — quoted, never redrawn. It keeps the brand's own colours and corners, sits outside the 24-grid icon set, and takes an empty alt because the button's text names the provider. Square at 20, where the payment lockups are 40 x 20.",
+      "html": "<button class=\"ds-btn ds-btn-secondary\"><img class=\"ds-idmark\" src=\"brand.png\" alt=\"\" width=\"20\" height=\"20\">Continue with BankID</button>",
+      "css": ".ds-idmark{ flex:0 0 auto; width:20px; height:20px; display:block; }"
     }
   ],
   "narrative": {
     "northStar": null,
-    "overview": "Extracted from the ten painted product surfaces and verified by computed style in a browser, 2026-08-01. Four painted surfaces on one warm ramp — page #F7F5F2, card #ECE9E4, media #E4E1DA, secondary button #D6D2C9 — with no white and no black anywhere in the palette. Two inks: #1A1A1A and #5A5751; every rendered string on all ten pages is one of the two. One accent, #9BCF4A, always a fill or a tint and never text or an icon stroke, measured at 4.43% / 5.09% / 4.71% of the frame on the three base screens. No card and no media surface casts a shadow; one shadow is spent in the whole system, under the green primary. 98 icons, all on a 24-grid at stroke-width 1.7. One font stack, ten type sizes, six radii plus circles. Zero text-contrast failures, the lowest pair being 4.77:1.",
+    "overview": "Extracted from the painted product surfaces and verified by computed style in a browser. As of 2026-08-18 the whole prototype is painted: 117 of 117 files link ui/kit.css, all 49 screens, no grayscale screen left, both personas end to end. Four painted surfaces on one warm ramp — page #F7F5F2, card #ECE9E4, media #E4E1DA, secondary button #D6D2C9 — two inks (#1A1A1A, #5A5751), one accent used as fill or tint only, ten type steps, six radii plus circles, and a flat surface rule that spends exactly two shadow rungs, both on things that genuinely float.",
     "keyCharacteristics": [
       "Four painted surfaces, one warm ramp — no white and no black in the palette",
       "Two inks: #1A1A1A and #5A5751, and nothing else on a product surface",
@@ -337,7 +379,9 @@
       "One icon system: 98 SVGs, 24-grid, stroke-width 1.7, fill none, currentColor",
       "One font stack declared once; ten type sizes, all in use",
       "Six radii plus circles for objects, the 2 / 4 / 8 scale for internal details; leading is 1.4 by inheritance and overridden only where the box demands it",
-      "Zero text-contrast failures; lowest pair 4.77:1"
+      "Zero text-contrast failures; lowest pair 4.77:1",
+      "117 of 117 files painted as of 2026-08-18 — both personas, no grayscale screen left",
+      "One credential colour: green means DRON confirmed it; the blue rung was retired 2026-08-18"
     ],
     "rules": [
       {
@@ -387,7 +431,7 @@
       },
       {
         "name": "The One-Shadow Rule",
-        "body": "Exactly one shadow is spent, and it is under the primary button. A card that casts no shadow at rest cannot grow one on hover.",
+        "body": "Surfaces are flat: no card, no panel, no well, no map and no photograph casts a shadow, and a card flat at rest cannot grow one on hover. Two rungs are spent, both on things that genuinely float — --sh-sm under the green primary, --sh-raised under the sheet and the toast. Proven by enumerating every box-shadow in the stylesheet, not asserted.",
         "section": "elevation"
       },
       {
@@ -436,7 +480,7 @@
       "Don't set text or an icon stroke in --green — 1.69:1 on the page, 1.52:1 on the card.",
       "Don't put white on green: 1.84:1.",
       "Don't introduce a darkened green as an ink. --green-ink #3F5B18 was deleted for exactly this reason: a darkened accent is still the accent used as text.",
-      "Don't add a shadow to a card, a panel, a well, a map or a photograph. One shadow exists and it is under the primary button.",
+      "Don't add a shadow to a card, a panel, a well, a map or a photograph. Only two shadow rungs are spent and both are under floating surfaces: the primary button, and the sheet/toast.",
       "Don't spend green inside card UI — the direction chip, the route strip and card actions are neutral.",
       "Don't give a surface, control, well or chip a radius outside the six, and don't restate a parent's radius on a full-bleed child. Internal details may use the 2 / 4 / 8 scale.",
       "Don't dim a control with blanket opacity — build the disabled state from its own pair.",

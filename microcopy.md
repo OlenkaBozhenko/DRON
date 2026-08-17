@@ -1241,9 +1241,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-verification | — | ‹ Sign in | Button |  |
 | operator-verification | — | Verification | Heading |  |
 | operator-verification | Documents | LICENCE (CAA/DASU) | Body | WF-PH |
-| operator-verification | Documents | Add document | Button |  |
+| operator-verification | Documents | Add licence | Button | **new 2026-08-18 (rev 157)** — both zones read `Add document` after painting, because the text that told them apart (`LICENCE (CAA/DASU)` / `INSURANCE DOCUMENT`) was a media placeholder and painting removes those. Her call, the same move as `account-edit` rev 57: **name the object**, not the act |
 | operator-verification | Documents | INSURANCE DOCUMENT | Body | WF-PH |
-| operator-verification | Documents | Add document | Button |  |
+| operator-verification | Documents | Add insurance | Button | **new 2026-08-18 (rev 157)** — the pair to `Add licence` above, and the same string `account-edit` already carries for the same document. One object, one wording |
 | operator-verification | Documents | Licence number | Field label |  |
 | operator-verification | Documents | e.g. UA-CAA-102938 | Field placeholder | DATA |
 | operator-verification | Documents | Review takes 2–3 business days. | Body |  |
@@ -1893,9 +1893,13 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | withdraw-loading | — | Transferring… | Button |  |
 | withdraw | — | ‹ Earnings | Button |  |
 | withdraw | — | Withdraw | Heading |  |
-| withdraw | Amount | Full balance | Body |  |
+| withdraw | Amount | ₴3,240 | Body | the available balance, and **the screen's opening line since 2026-08-18** — her call («зроби великим заголовком зверху») after I had put it in a 12px note under the field. An operator opens a payout screen to spend a balance, so the balance is stated first and the amount answers it |
+| withdraw | Amount | Available to withdraw | Body | **changed 2026-08-18 (rev 157)** — was `Full balance`, which stopped being true when the payout became partial. The wording is `wallet`'s own for the same fact: one concept, one phrasing. It is also the amount field's `aria-describedby` target, so a screen reader hears the ceiling on focus |
+| withdraw | Amount | Amount | Field label | **new 2026-08-18 (rev 157)** — the payout amount is typed now, where the screen used to cash out the whole balance («зроби можливим вказати суму яку хоче вивести»). A noun naming exactly what to enter |
 | withdraw | Withdrawal method | Instant to card •••• 3318 | Field label |  |
 | withdraw | Withdrawal method | Arrives in under a minute | Body |  |
 | withdraw | Withdrawal method | Bank transfer | Field label |  |
 | withdraw | Withdrawal method | 1–3 business days | Body |  |
-| withdraw | Withdrawal method | Withdraw ₴3,240 | Button |  |
+| operator-listings · job-offer · operator-dispute (+error) | Job card | Pay | Accessible name (`sr-only`) | **new 2026-08-18 (rev 157)** — six money figures were drawn bare, so a screen reader said "one hundred and eighty" with no word for what the number was. The idiom is painted `order-history`'s own (`Delivery fee`, `Total`); the word is **`Pay`**, which this file already registers for the same figure on `job-brief` and `result-upload`. Nothing visible changed |
+| operator-fee-terms | — | Back | Accessible name (`aria-label`) | **changed 2026-08-18 (rev 157)** — read `Back to Back`, which named nothing twice: D9 asks for `Back to {destination}` and this control returns to `onboarding-operator`, whose nav bar carries the DRON mark and no title. Her call: «не потрібно назви». The bare verb is what iOS says when a pushed screen has no titled parent |
+| withdraw | Withdrawal method | Withdraw ₴1,500 | Button | **changed 2026-08-18 (rev 157)** — the CTA names the sum asked for, not the whole balance |
