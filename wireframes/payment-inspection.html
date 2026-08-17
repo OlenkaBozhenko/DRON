@@ -32,9 +32,26 @@
     <header class="topbar dr-topbar"><a class="dr-back" href="order-review-inspection.html" aria-label="Back to Order review"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Card details</span><span class="dr-topbar__spacer"></span></header>
     <main class="dr-main">
       <p class="zlabel dr-label">Amount <span class="dr-label__act">▸ final total</span></p>
-      <section aria-label="Amount">
-        <p class="amount">₴650</p>
-        <p class="amount-sub">Inspection · Osokorky, 14</p>
+            <!--
+        THE LAST GRAYSCALE LEAK ON A PAINTED CLIENT PAGE, closed 2026-08-18 (rev 158).
+        This block rendered through `_wireframe.css`'s `.amount` / `.amount-sub` — 34px /
+        600 / #252525 over 13px / #909090 — which is a type size outside the ten-step
+        scale (it tops out at 22) and two inks that are in no palette in this project.
+        The page has linked ui/kit.css since 2026-08-16 and this was the one thing on it
+        the kit was not painting; DESIGN.md and concept.md rev 153 both recorded it as an
+        open defect rather than a sanctioned exception.
+        IT TAKES THE SAME BLOCK THE OPERATOR SIDE CUT FOR THE SAME SHAPE: `.dr-balance`
+        — a figure and the line that names it — which wallet, withdraw and ratings carry.
+        The figure is `.dr-number` at the display step 22 (the designer's call of
+        2026-08-18) and stays TABULAR, because money must line up digit under digit; the
+        caption is `.dr-note--flush`, 12/400 --slate. Nothing was invented for this page.
+        MEASURED CHANGE: 34 -> 22 on the figure, #252525 -> --ink (15.99:1 on --page),
+        13 -> 12 on the caption, #909090 -> --slate (6.62:1). Both pairs are rows of
+        DESIGN.md's measured table; the two they replaced were in no table at all.
+      -->
+      <section class="dr-balance" aria-label="Amount">
+        <p class="dr-number">₴650</p>
+        <p class="dr-note dr-note--flush">Inspection · Osokorky, 14</p>
       </section>
       <!-- THE SCREEN TAKES THE CARD, IT NO LONGER ASKS THE METHOD — 2026-08-16,
            the designer reading the built drawer: «по кліку на кнопку "Pay with

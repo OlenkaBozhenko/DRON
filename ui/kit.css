@@ -206,6 +206,15 @@
   --sz-avatar-xl:   120px; /* the profile photo where the screen IS the photo (account-photo).
                               The 8-grid step, not 117: that number is a rectangle's width
                               read off an asset ratio, and a circle should not inherit it. */
+  --sz-avatar-md:    56px; /* the profile row's face — account, operator-account,
+                              order-confirmed-empty. Added 2026-08-18 (rev 158) to finish
+                              what --sz-avatar-sm started: this disc was the LAST
+                              grayscale-only class reaching a product surface, drawn by
+                              _wireframe.css's .op-avatar whose ground is #EEEEEE.
+                              NO FALSE DERIVATION IS CLAIMED — 56 is the size the frames
+                              draw. What can be said honestly is that it is exactly twice
+                              --sz-avatar-sm, equal to --h-topbar, and 7 steps of the
+                              8-grid, so it sits in the scale rather than beside it. */
   --sz-avatar-sm:    28px; /* the operator's own face in the nav bar (operator-listings,
                               -empty). Added 2026-08-18 on the designer's word, closing the
                               last place the painted product read a colour from the grayscale
@@ -1617,6 +1626,21 @@ header.dr-topbar,
   border-radius: var(--r-pill); overflow: hidden; background: var(--media);
 }
 .dr-avatar-sm img{ width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; }
+
+/* THE SAME CIRCLE AT THE PROFILE ROW'S SIZE. Three users: account,
+   operator-account, order-confirmed-empty. Like --sm, it exists to close a leak
+   rather than to add a look: .op-avatar's #EEEEEE ground is in no palette here
+   and showed through a cutout's transparent corners. With this landed, NO
+   grayscale-only class reaches a product surface anywhere in the painted set —
+   the two that remain (`sub`, `stack`) live only in the three option partials,
+   which are comparison sheets and not screens. --media ground, 1.08:1 on the
+   card, the ground every other photo in the kit loads onto. */
+.dr-avatar-md{
+  width: var(--sz-avatar-md); height: var(--sz-avatar-md);
+  flex: none; display: block;
+  border-radius: var(--r-pill); overflow: hidden; background: var(--media);
+}
+.dr-avatar-md img{ width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; }
 
 /* ═══ FORMS ═══════════════════════════════════════════════════════════════
    A field has no border. 1.4.11 governs a boundary that is DRAWN, not one that
