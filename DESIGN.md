@@ -196,12 +196,20 @@ Extracted from the painted product surfaces and verified by computed style in a 
 2026-08-01 against ten pages carrying ten per-page `<style>` blocks; **re-counted 2026-08-16
 (rev 153), when that description had stopped being true of the build.**
 
-| | Measured 2026-08-16 |
+| | Measured 2026-08-18 |
 |---|---|
 | Files in `wireframes/` | **117** — 114 screen-and-state pages plus 3 option partials (`_field-options`, `_checkbox-options`, `_navbar-options`) |
 | Screens | **49**, collapsing `-empty` / `-error` / `-loading` states and the `-aerial` / `-inspection` per-service variants into the screen they are a state or a variant *of* |
-| Painted | **30 screens · 76 files** (+ the 3 partials = 79 files linking `ui/kit.css`) |
-| Still grayscale | **19 screens · 38 files** — every operator screen, plus client entry (`welcome`, `signin`, `role-select`, `onboarding-client`) |
+| Painted | **117 of 117 files · all 49 screens** |
+| Still grayscale | **none** |
+
+**The whole prototype is painted as of 2026-08-18** (`concept.md` rev 157). The layer that began on
+2026-08-01 across ten pages, each carrying its own pasted copy of the stylesheet, now covers both
+personas end to end: 38 remaining grayscale files were painted in one pass by five parallel agents
+— JOBS 13 · EARNINGS 6 · RATINGS 2 · ACCOUNT 9 · ENTRY 8 — and the whole of it cost the kit **four
+components and two modifiers**. The ACCOUNT pack, nine screens including the entire signup and
+verification flow, added **nothing**: every component it needed already existed. That is the number
+to read if you want to know whether this is a design system or a folder of screens.
 
 **There is no per-page `<style>` block any more, and that is the single largest structural change
 since this document was written.** The ten families that each carried their own byte-identical copy
@@ -312,7 +320,16 @@ it cannot carry a mark: `--warn` on the card is 1.84:1 and `--danger` reaches on
 - **`--warn-wash` / `--warn-ink`** (`#F6E7C4` / `#7A5200`) — ETA slipping. `tracking-empty`.
 - **`--danger-wash` / `--danger-ink`** (`#F2D8CF` / `#9A3115`) — signal lost, upload missing.
   `tracking-error`, `delivery-error`.
-- **`--trust-wash` / `--trust-ink`** (`#D8E6F2` / `#2A5C7D`) — a credential the platform has
+- **`--trust-wash` / `--trust-ink`** (`#D8E6F2` / `#2A5C7D`) — **RETIRED 2026-08-18 (rev 157) and
+  now spent nowhere.** The designer, on the operator card: *«оператор сірий лайсенс і insurance
+  зелені»*, and then, asked whether the client screens should follow: everywhere the same. So
+  `.dr-chip--trust` became `.dr-chip--claim` on **14 files** — the operator card plus every client
+  screen that says *Insured* — and the product's rule reads in one line: **green means DRON
+  confirmed this document, grey means a plain supporting fact.** The green pair is **14.75:1**
+  against this one's 5.65:1, and `--green-wash` is a tint (1.03:1 on the card) the green budget does
+  not count. The two tokens stay declared and unspent, like `--sh-card` and `--sh-onphoto`. What
+  follows is the reasoning they were cut on, kept because a rejected idea must not be re-proposed as
+  a new one — a credential the platform has
   **confirmed**, as against one merely stated. Added 2026-08-15 (rev 58) on the designer's call
   for a blue Insured badge with a confirming checkmark. **The system's first cool colour**, and
   the third semantic wash beside `warn` and `danger` — not a second accent: Signal Green is
@@ -346,7 +363,7 @@ Every pair carried on a product surface, verified in the browser.
 | `--slate` | `--card` | 5.95:1 | keys, dates, ratings, body |
 | `--warn-ink` | `--card` | 5.72:1 | — |
 | `--warn-ink` | `--warn-wash` | 5.65:1 | late-notice mark |
-| `--trust-ink` | `--trust-wash` | 5.65:1 | Insured badge — label and its checkmark |
+| `--trust-ink` | `--trust-wash` | 5.65:1 | ~~Insured badge~~ — **retired rev 157, spent nowhere** |
 | `--trust-ink` | `--card` | 5.93:1 | — |
 | `--green-ink` | `--page` | 5.58:1 | text button — spent again from rev 146 on `account-photo` · *Save*, the modal's commit in the navigation bar (rev 51 had taken its one earlier spend) |
 | `--slate` | `--media` | 5.51:1 | muted chips, upload glyph |
@@ -1443,6 +1460,112 @@ one-off, not a kit row — recorded here because it introduces six tokens and a 
   against the negative margin. Corrected in the comment 2026-08-16 (rev 153) so the file states what
   it does; the look itself is the designer's to keep or close — `gap: 0` lands 33.9%, and
   `--sp-stack-lap: -16.4%` lands 35% with the gap kept.
+
+### The balance block (`.dr-balance`) and `.dr-note--flush`
+
+A figure and the line that names it. **`wallet`, `wallet-empty`, `withdraw`, `ratings`.**
+
+Measured: block **341 × 42** — figure 20 + gap 4 (`--sp-within`) + caption 18; figure `--ink` on
+`--page` **15.99:1**, caption `--slate` **6.62:1**. On `withdraw` the figure takes the **display
+step, 22**, on the designer's call of 2026-08-18 — spent through `.dr-number` rather than by
+swapping in `.dr-display`, because `.dr-display` is not tabular and money must line up digit under
+digit, so the figure gets the display **size** and the number **role**.
+
+**Why the block exists at all.** `_wireframe.css` draws this as `.amount` at **34px / 600 /
+`#252525`** — a size outside the ten-step scale, which tops out at 22, and an ink in no palette
+here. **The painted client page `payment.html` still leaks it, and that is an open defect, not a
+sanctioned exception.**
+
+`.dr-note--flush` is `text-align: left`, nothing else: `.dr-note` is centred by construction — the
+right default under a centred mark inside `.dr-msg` — so a caption standing beside a left-aligned
+figure has to say so. Spent 7 times across four packs.
+
+### The availability head (`.dr-avail`)
+
+A dot, the state, and one supporting clause, standing above the segmented control that sets it.
+**`operator-listings`, `operator-listings-empty`.** Block **326.2 × 19**, gap 8; dot **10 × 10**
+(`--sz-dot`, the checked radio's own centre — no new size); state 15/600 `--ink` **15.99:1**; note
+13 `--slate` **6.62:1**.
+
+**The dot is `--ink` and not `--green`, and that is `WCAG 1.4.1` rather than taste.** A dot that is
+green when Available and grey when Offline would rest on colour alone. The sentence beside it says
+the state in words and the segment below says it a third time, so the dot is a bullet, not a signal.
+It also keeps the accent off a screen whose card CTAs already spend it.
+
+### The earned score (`.dr-stars`) and `.dr-listing__score`
+
+A score somebody else **gave**, not a score being given. **`ratings`.**
+
+**Why not `.dr-rating`.** That class is an *input*: five `<button>`s, each a 44pt target carrying
+`aria-pressed`, built for `rate.html` where the client awards a score. A read-only display must not
+be a row of buttons announcing a pressed state it cannot change (`WCAG 4.1.2`), nor put five stops
+in a dashboard's tab order. Same star path, same `--sz-star` 32, same two colours, **no tab stop**:
+the row is `aria-hidden` and the figure beside it states the value in `--ink` at **15.99:1**. That
+is what lets `--warn`'s **1.84:1** and `--btn2`'s **1.39:1** carry a shape and never a meaning.
+
+**The clip lands on the ink, not on the box.** The star path spans x 3.3 → 20.7 of its 24-grid, so
+only **72.5%** of a box is ink. Clipping the row at score/5 — 96% for 4.8 — removes just the tip of
+the fifth arm and the display renders **five full stars**; that was built, measured and rejected.
+Derived from the path's own coordinates instead: 4.8 covers exactly **0.800** of the fifth
+silhouette, fill **150.96** of a 160 row, and the fifth star visibly keeps a grey point. A
+whole-star floor renders 4.8 and 4.0 alike. `--sz-star-ink` / `--sz-star-inset` are the only `:root`
+additions of the whole pass and both are arithmetic on `--sz-star`.
+
+`.dr-listing__score` is the muted suffix on a name's own baseline — `· 5.0` beside a reviewer.
+12.5/400 `--slate` **5.95:1** on `--card`, tabular. Nothing in the kit fitted: `.dr-listing__desc`
+is the right ink but a block with `margin-top: 2`, and `.dr-op__rating` is the same string scoped to
+`.dr-op`.
+
+### The onboarding carousel (`.dr-slider`, `.dr-slide`)
+
+Three slides on CSS scroll-snap, no JS, with the kit's own `.dr-pager` under them. **`welcome`,
+`onboarding-client`, `onboarding-operator`.** The type inside a slide is the kit's own —
+`.dr-display` for the heading, `.dr-lead` for the sub-line — so no slide-specific type class was
+cut. Measured: slider **373.4 × 577.6** filling `.dr-main`'s padding box, art band **373.4 × 202.2
+= 35%** bottom-anchored, inner measure 333.4.
+
+**`--bleed` is opt-in, not automatic on `:has(img)`:** a slider whose slides mix the two treatments
+reads as broken, and three of the nine slides across the three screens are still waiting on a file.
+A slide without its picture keeps a `--media` ground and its mono label (`--slate` **5.51:1**), so a
+half-supplied slider reads as *picture pending* rather than as a broken layout. **No artwork was
+invented for the three.**
+
+**The pager is an indicator, not a control** — the designer, 2026-08-18: *«крапки не клікабельні там
+працює свайп»*. The dots were `<a href="#slide">` at an **8 × 8** target, three times under
+`WCAG 2.5.8`'s 24 × 24 and five times under `HIG`'s 44pt. The fix was not to pad a hit area around a
+dot nobody taps; it was to stop calling the dot a control. They are `<span>`s in an `aria-hidden`
+container, and nothing is lost: the slider is a scrollable region, each slide announces *Slide n of
+3*, and the position the dots draw is the position the slide states.
+
+### The identity mark (`.dr-idmark`)
+
+Diia and BankID on `signin`, from the designer's own Figma (`105:5`, `106:7`, supplied 2026-08-18).
+Square at **20 × 20** where `.dr-paymark` is 40 × 20, because these are **badges** and a 1:1 mark in
+a 2:1 box would letterbox; 20 matches the payment marks' height so the two families sit on one
+optical line.
+
+**Quoted, not drawn** — PNG, outside the 24-grid icon set, the same rule the Apple Pay and Google
+Pay marks follow. Each keeps its own colours: Diia's black squircle, BankID's `#94C11F` plate with a
+white `id`. **Neither is recoloured to the palette and neither is redrawn to the 1.7 stroke** — a
+brand mark that has been restyled is no longer the brand's mark. The artwork carries its own rounded
+corners as transparency, so no CSS radius: a radius here would cut a second corner inside the first.
+`alt=""` on both, because the button's own text names the provider.
+
+**One consequence to look at, not a defect:** BankID's `#94C11F` sits one row below DRON's
+`#9BCF4A` primary. Two near greens on one screen, both correct — the brand's and the product's.
+
+### The nav-bar avatar (`.dr-avatar-sm`)
+
+**`operator-listings`, `operator-listings-empty`.** `--sz-avatar-sm` **28px**, `--media` ground,
+`--r-pill`. Added 2026-08-18 on the designer's word, closing **the last place a painted page read a
+colour from the grayscale sheet**: the disc was drawn with `_wireframe.css`'s `.avatar`, whose ground
+is `#EEEEEE`, showing through a cutout's transparent corners.
+
+**28 is derived, not picked:** `--h-topbar` is 56, so the disc is exactly half the bar it stands in
+and centres with 14 above and below. None of the four existing rungs could be borrowed —
+`--sz-avatar` 117 is the operator panel's *width* from an asset ratio, `--sz-avatar-xl` 120 is a
+subject, `--sz-avatar-call` 176 is a screen's middle, and `--sz-avatar-badge` 20 is a badge *on* an
+avatar rather than an avatar.
 
 ### Navigation
 
