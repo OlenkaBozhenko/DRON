@@ -1598,14 +1598,14 @@
 
       <tr>
         <td class="c-name">
-          <div class="nm">Upload zone</div><span class="sel">.upload-zone &#183; .up-ph</span>
-          <span class="st gray">grayscale</span>
-          <p class="desc">Drop or pick a file &#8212; licence, dispute evidence, delivery photo, avatar.</p>
+          <div class="nm">Upload zone</div><span class="sel">.dr-upload &#183; [role="button"] &#183; .dr-upload--card &#183; .dr-upload__action</span>
+          <span class="st painted">painted</span>
+          <p class="desc">Drop or pick a file &#8212; drone documents, insurance, dispute evidence, a photo on a claim. <b>The zone is the control; there is no button inside it.</b></p>
         </td>
-        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
-        <td class="c-screens"><span class="scr">6</span><span class="scr-sub">0 painted</span></td>
-        <td class="c-where"><p class="where" style="max-width:34ch">The upload glyph and its motion already exist on <code>delivery-loading</code> at 32px and 5.51:1; this is the same mark at rest, in a dashed well.</p></td>
-        <td class="c-where"><p class="where">verification &#183; dispute &#183; report-issue &#183; account-edit</p></td>
+        <td class="c-spec"><span class="plate"><span style="width:262px;min-height:140px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;text-align:center;background:#ECE9E4;border-radius:16px"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#5A5751" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg><span style="font-size:15px;font-weight:600;line-height:1.4;color:#1A1A1A">Add drone documents</span><span style="font-size:13px;line-height:1.5;color:#5A5751;max-width:30ch;text-wrap:balance">Registration, serial, or manufacturer papers (PDF / photo).</span></span></span></td>
+        <td class="c-screens"><span class="scr">2</span><span class="scr-sub">3 zones &#183; painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>Two forms, keyed to the role and not to the class.</b> The base zone is bare; only <code>[role="button"]</code> takes a ground, because an interactive target keeps its visible boundary. <b>The well</b> &#8212; <code>--media</code> at 13, <b>341.4 &#215; 140</b> on <code>report-issue</code>, glyph <b>5.51:1</b>. <b>The card</b> &#8212; <code>.dr-upload--card</code>, the card's own <code>--card</code> at 16, <b>326.2 &#215; 161</b> on <code>account-edit</code>, title <b>14.37:1</b>, note <b>5.95:1</b>. Both: min-height 140, padding 24, gap 12, glyph 32px &#8212; the same mark <code>delivery-loading</code> animates, here at rest.<br><br><b>The nested secondary button is gone (rev 57, 2026-08-15)</b>, on her <i>&#8220;write just with text&#8221;</i>: the words became <code>.dr-upload__action</code> in the button's own 15/600. Rev 60 took the well out of the document zones too &#8212; a nested <code>--media</code> plane is the card-inside-a-card rev 56 had already removed from every text area. The same rev closed a <code>WCAG 2.4.7</code> failure open since 2026-08-03: a <code>tabindex="0"</code> control with no focus ring, and no hover.<br><br><b>This row said &#8220;grayscale &#183; not painted &#183; a dashed well&#8221; until 2026-08-16 (rev 154)</b> &#8212; the designer saw it on the published kit. <code>ui/inventory.md</code> and <code>ui/kit.css</code> had been right since rev 60; this rendered layer was three revisions behind.</p></td>
+        <td class="c-where"><p class="where">account-edit (&#215;2) &#183; report-issue<br><br>Still grayscale and waiting on the same component: operator-verification, operator-dispute, operator-profile-setup, result-upload.</p></td>
       </tr>
 
 
