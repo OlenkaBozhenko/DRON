@@ -48,15 +48,23 @@
           <span class="dr-op__info">
             <span class="dr-op__name">Ivan K.</span>
             <span class="dr-op__rating">4.9 ★ · 214 jobs · Verified by DRON</span>
-            <!-- THE CHIPS. `Operator` and `CAA licence` are plain supporting facts on
-                 the warm-grey rung, the pair account.html's own profile card carries.
-                 `Insured` is the kit's already-spent confirmed-credential chip —
-                 .dr-chip--trust, --trust-ink on --trust-wash at 5.65:1, with the
-                 shield and the trailing checkmark it wears on `tracking` — because
-                 rev 58/69 settled that on an OPERATOR card Insured states a fact the
-                 platform has confirmed. Whether `CAA licence` joins it in blue is the
-                 designer's call; the kit has spent --trust on one word only. -->
-            <span class="dr-chips dr-op__badges"><span class="dr-chip">Operator</span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim">CAA licence</span></span>
+            <!-- THE CHIPS, AND THE DESIGNER SETTLED THEM ON 2026-08-18:
+                 «оператор сірий лайсенс і insurance зелені».
+                 So the rule is now readable in one line: GREEN MEANS DRON CONFIRMED
+                 THIS DOCUMENT, grey means a plain supporting fact. `Operator` is a
+                 role, not a credential, so it stays the warm-grey rung. `Insured` and
+                 `CAA licence` are both documents the platform checked, so both take
+                 .dr-chip--claim — --green-wash behind --ink at 14.75:1 — and both
+                 wear the same shield with a trailing checkmark, because two chips of
+                 one kind must not be told apart by drawing.
+                 THIS REPLACES THE BLUE RUNG HERE AND EVERYWHERE. rev 58/69 had cut
+                 --trust-wash / --trust-ink for `Insured` at 5.65:1, on the reading
+                 that a third party's confirmation was a different kind of claim from
+                 DRON's own. Her call collapses that distinction: one word, one
+                 colour, across all 14 screens that carry it. The green wash is a tint
+                 (1.03:1 on the card) so the green budget does not count it, and the
+                 pair is 14.75:1 against the blue rung's 5.65:1. -->
+            <span class="dr-chips dr-op__badges"><span class="dr-chip">Operator</span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>CAA licence<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
           </span>
           <!-- THE EDIT AFFORDANCE. The CSS-drawn pencil (.op-edit / .ic-edit /
                .pencil / .tip, still declared in the <style> block above and now

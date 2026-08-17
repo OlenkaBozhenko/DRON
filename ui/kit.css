@@ -1954,6 +1954,21 @@ header.dr-topbar,
    and each mark is anchored left inside its own box so the marks align too.
    The row's 44px min-height is untouched (`HIG · 44pt target`). */
 .dr-paymark{ flex: 0 0 auto; width: 40px; height: 20px; display: block; }
+/* THE IDENTITY MARK — Diia and BankID on `signin`, the designer's own artwork
+   from Figma `105:5` / `106:7`, supplied 2026-08-18. Square where --dr-paymark
+   is 40 × 20, because these two are BADGES and not lockups: a 1:1 mark in a
+   2:1 box would letterbox. 20px matches the payment marks' own height, so the
+   two families sit on one optical line if a screen ever shows both.
+   THEY ARE QUOTED, NOT DRAWN, and that is why they are PNG and not part of the
+   24-grid icon set — the same rule the Apple Pay and Google Pay marks follow.
+   Each keeps its own colours: Diia's black squircle and BankID's #94C11F plate
+   with a white `id`. Neither is recoloured to the palette and neither is
+   redrawn to the 1.7 stroke; a brand mark that has been restyled is no longer
+   the brand's mark. The artwork carries its own rounded corners as transparency,
+   so no radius is set here — a CSS radius would cut a second corner inside the
+   first. Both are decorative: the button's own text names the provider, so the
+   img takes alt="" (WCAG 1.1.1). */
+.dr-idmark{ flex: 0 0 auto; width: 20px; height: 20px; display: block; }
 /* the two lockups that carry a word — Apple Pay, Google Pay — and the Visa
    wordmark are set in the product's own UI face rather than each brand's
    proprietary one. This is an APPROXIMATION and is written down as such:
