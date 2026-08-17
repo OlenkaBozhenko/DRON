@@ -665,11 +665,14 @@
 <div class="row">
   <div class="nm"><b>Cover card</b><code>.dr-card--cover &#183; .dr-listing__foot &#183; __body &#183; __name &#183; __desc</code>
     <p>The one card in the kit with no inset: a photograph runs to three of its edges, and the file&#8217;s
-       line sits under it.</p></div>
+       line sits under it. Markup copied from the frame.</p></div>
   <div class="spec">
     <div class="plate wide" style="align-items:stretch">
       <article class="dr dr-card dr-card--cover dr-listing">
-        <span class="dr-well dr-well--photo" style="width:100%;height:160px" role="img" aria-label="The raft from above, running a rapid between dark boulders"><img src="../assets/scenes/thumbs/aerial-rafting-boulders.jpg" alt="" loading="lazy" decoding="async"></span>
+        <div class="dr-well dr-well--photo" style="height:180px;">
+          <img src="../assets/scenes/thumbs/aerial-rafting-boulders.jpg" alt="A grey raft with a crew in red helmets and life jackets running a rapid between dark boulders, white water breaking around it, shot from above." loading="lazy" decoding="async">
+          <span class="dr-btn dr-btn--icon dr-btn--onphoto" role="img" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></span>
+        </div>
         <div class="dr-listing__foot">
           <span class="dr-listing__body">
             <span class="dr-listing__name">Video</span>
@@ -683,17 +686,19 @@
   </div>
   <div class="notes">
     <p><b>Measured on the build:</b> card <b>326.2 &#215; 248</b> &#8212; cover <b>180</b>, line
-       <b>326.2 &#215; 68</b> at padding <b>12 / 16</b>, gap <b>12</b>, radius 16, <b>no shadow</b>.
-       <i>The cover is 160 in this plate so the row fits the page; in the product it is 180.</i></p>
+       <b>326.2 &#215; 68</b> at padding <b>12 / 16</b>, gap <b>12</b>, radius 16, <b>no shadow</b>.</p>
     <p><b>A cover is never inset, and that is the imagery rule winning where it meets the inset rule.</b>
        &#8220;A photograph <i>is</i> the surface&#8221; &#8212; a picture floated inside a padded card is
        the sticker the rule forbids. So the card gives up its padding, clips with its own <b>16</b>, and
        the media&#8217;s <b>13</b> is switched off: two radii on one corner is a shape nobody chose. The
        padding moves onto the line below, <b>12 vertical against 16 horizontal</b>, because that line
        already carries a 44px control &#8212; its height is set by the target and the 12 is air, not measure.</p>
-    <p><b>The action is an icon, not a pill</b> (44 &#215; 44, <code>aria-label="Download video"</code>):
-       her reference draws it that way, and <code>WCAG 2.5.3 Label in Name</code> stops applying rather
-       than failing, since there is no visible label left to contain. The word is still
+    <p><b>Two files in one zone are told apart by what they show</b>, not by a badge: this cover is a
+       different run from the photo card above it. The <code>alt</code> describes the frame and only the
+       frame.</p>
+    <p><b>Both actions are icons, not pills</b> (44 &#215; 44, <code>aria-label</code> each): her
+       reference draws them that way, and <code>WCAG 2.5.3 Label in Name</code> stops applying rather than
+       failing, since there is no visible label left to contain. The word is still
        <code>voice.md</code> <b>A11 Download</b> &#8212; spoken instead of printed.</p>
   </div>
 </div>
@@ -850,7 +855,7 @@
 
 <h2 class="sec">Progress</h2>
 <div class="row">
-  <div class="nm"><b>One node, two axes</b><code>.dr-node · --done · --now · .dr-rail · .dr-track</code>
+  <div class="nm"><b>One node, two axes</b><code>.dr-node &#183; --done &#183; --now &#183; .dr-rail &#183; --at2 &#183; --zone &#183; .dr-track</code>
     <p>The order card's rail and the tracking timeline drew the same 22px circle under two class
        names — <code>.nd</code> and <code>.tl-dot</code>. That is the drift this closes.</p></div>
   <div class="spec">
@@ -864,13 +869,13 @@
       <span class="st">vertical · tracking</span>
     </div>
     <div class="plate">
-      <div class="dr-rail" style="width:260px;--dr-fill:25%">
-        <div class="dr-rail__step"><span class="dr-node dr-node--done"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-rail__lbl">Accepted</span></div>
-        <div class="dr-rail__step"><span class="dr-node dr-node--now"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-rail__lbl dr-rail__lbl--now">En route</span></div>
-        <div class="dr-rail__step"><span class="dr-node"></span><span class="dr-rail__lbl">On-site</span></div>
-        <div class="dr-rail__step"><span class="dr-node"></span><span class="dr-rail__lbl">Done</span></div>
-      </div>
-      <span class="st">horizontal · order card</span>
+      <ul class="dr-rail dr-rail--at2" style="width:260px">
+        <li class="dr-rail__step"><span class="dr-node dr-node--done" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-rail__lbl">Accepted</span></li>
+        <li class="dr-rail__step" aria-current="step"><span class="dr-node dr-node--now" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-rail__lbl dr-rail__lbl--now">En route</span></li>
+        <li class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">On&#8209;site</span></li>
+        <li class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">Done</span></li>
+      </ul>
+      <span class="st">horizontal &#183; order card &#183; 326.2 &#215; 45.7 on tracking</span>
     </div>
   </div>
   <div class="notes">
@@ -879,35 +884,25 @@
        <b>now</b> <code>--green</code> border, <code>--ink</code> dot and a 4px
        <code>color-mix(green 20%)</code> halo.</p>
     <p>Milestones are the canonical four everywhere: <b>Accepted · En route · On-site · Done</b>.</p>
+    <p><b>Two modifiers, and neither makes a second component.</b> <code>--at2</code> is <i>the fill</i>,
+       not a step count: <code>--dr-fill: var(--fill-2of4)</code>, the track coloured as far as the order
+       has walked &#8212; step 1 &#8594; 2 of 4, computed <b>25%</b>. <code>--zone</code> adds the
+       <b>12px</b> block margin the rail needs when it stands under a zone label.
+       <code>aria-current="step"</code> marks the live step programmatically, so the state is carried by
+       <b>glyph, weight and position</b> and never by colour alone (<code>WCAG 1.4.1</code>): the current
+       node has its own filled dot rather than being an empty ring, and its label steps from
+       <code>--slate</code> 10.5/400 to <code>--ink</code> 10.5/600.</p>
+    <p><i>A third rail specimen was added on 2026-08-16 (rev 155) and removed the same day (rev 156): the
+       page already drew this component twice, and a kit that shows one thing three times is the pile the
+       inclusion rule exists to prevent. The two modifiers it was really documenting are recorded here
+       instead. <code>On&#8209;site</code> takes a non-breaking hyphen so the shortest label cannot break
+       and shift the rail.</i></p>
     <p>The rail is a 4-column grid, each node centred over its own label, with the track drawn behind
        the circles from the centre of column 1 to the centre of column 4 —
        <code>--dr-fill</code> covers the walked span.</p>
   </div>
 </div>
 
-<div class="row">
-  <div class="nm"><b>Rail &#183; zone and two-stop</b><code>.dr-rail--zone &#183; --at2</code>
-    <p>The same horizontal rail, tuned for where it stands: inside a titled zone, and across two stops
-       instead of four.</p></div>
-  <div class="spec">
-    <div class="plate wide" style="align-items:stretch">
-      <ul class="dr dr-rail dr-rail--at2 dr-rail--zone">
-        <li class="dr-rail__step"><span class="dr-node dr-node--done" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-rail__label">Picked up</span></li>
-        <li class="dr-rail__step"><span class="dr-node dr-node--now" aria-hidden="true"></span><span class="dr-rail__label">On the way</span></li>
-      </ul>
-      <span class="st">326.2 &#215; 45.7 &#183; tracking</span>
-    </div>
-  </div>
-  <div class="notes">
-    <p><b>Measured <b>326.2 &#215; 45.7</b> on <code>tracking</code>.</b> <code>--at2</code> sets the
-       two-stop rhythm; <code>--zone</code> drops the rail&#8217;s own top margin because the zone label
-       above has already paid it &#8212; two modifiers, no second component.</p>
-    <p><b>State is never colour alone.</b> A done node is a green disc behind a charcoal check; the
-       current node takes the green ring and its halo. Each step is named in text under the node, so the
-       rail reads with no colour at all (<code>WCAG 1.4.1</code>), and the nodes are
-       <code>aria-hidden</code> because the label is the content.</p>
-  </div>
-</div>
 
 <!-- ═══ STATES ════════════════════════════════════════════════════════════ -->
 <div class="row">
@@ -1047,54 +1042,62 @@
 </div>
 
 <div class="row">
-  <div class="nm"><b>Banner message</b><code>.dr-msg--banner &#183; __banner</code>
-    <p>The empty state that carries a picture: an illustrated top, then the sentence and the way out.</p></div>
+  <div class="nm"><b>Banner message</b><code>.dr-msg--banner &#183; __banner &#183; __title &#183; __body &#183; __actions</code>
+    <p>The empty state that carries a picture: an illustrated top, the sentence, and one way out.
+       Copy is <code>order-history-empty</code>&#8217;s own, from microcopy.md.</p></div>
   <div class="spec">
     <div class="plate wide" style="align-items:stretch">
       <div class="dr dr-msg dr-msg--banner" role="status">
         <span class="dr-msg__banner" aria-hidden="true" style="background-image:url(../assets/drones/thumbs/drone-flight-front.png)"></span>
-        <p class="dr-msg__title">No orders yet</p>
-        <p class="dr-msg__text">Your first order will show up here, with live tracking while it runs.</p>
-        <span class="dr-btn dr-btn--primary dr-btn--block">Order a drone</span>
+        <span class="dr-msg__title">No orders yet</span>
+        <p class="dr-msg__body">Your orders appear here, ready to re-book in a tap.</p>
+        <div class="dr-msg__actions">
+          <span class="dr-btn dr-btn--primary">Browse services</span>
+        </div>
       </div>
       <span class="st">341.4 &#215; 347.8 &#183; padding 16/16/32 &#183; order-history-empty</span>
     </div>
   </div>
   <div class="notes">
     <p><b>Measured on the build:</b> <b>341.4 &#215; 347.8</b>, <code>--card</code> at 16, padding
-       <b>16 / 16 / 32</b> &#8212; the deeper floor is there because the block ends on a button and the
-       button needs its own air &#8212; gap 12, <b>no shadow</b>. The banner art sits at <b>78%</b> of the
-       box, 16 from the top.</p>
+       <b>16 / 16 / 32</b> &#8212; the deeper floor because the block ends on a button and the button needs
+       its own air &#8212; gap 12, <b>no shadow</b>. The art sits at <b>78%</b> of the box, 16 from the top.
+       <i>The frame serves the art as an inline base64 JPEG; this plate points at a render instead, so the
+       page carries one copy of each picture.</i></p>
     <p><b><code>role="status"</code></b>, so the state is announced without stealing focus
-       (<code>WCAG 4.1.3</code>). The art is <code>aria-hidden</code>: it is decoration, and it says
-       nothing the sentence does not.</p>
+       (<code>WCAG 4.1.3</code>). The art is <code>aria-hidden</code>: it is the one decorative image in
+       the product and says nothing the sentence does not.</p>
     <p><b>Voice:</b> an empty state names <i>why</i> it is empty and gives <i>one</i> way out &#8212; never
-       an apology and never a cheer. No dead ends: every empty and error screen in the set carries a
-       visible exit.</p>
+       an apology, never a cheer, and never &#8220;Oops&#8221;. <i>No orders yet</i> states the fact;
+       <i>ready to re-book in a tap</i> is the reason to come back; <i>Browse services</i> is the exit. No
+       empty or error screen in the set is a dead end.</p>
   </div>
 </div>
 
 <div class="row">
-  <div class="nm"><b>Skeleton &#183; pill and route</b><code>.dr-sk-line--pill &#183; .dr-inset--sk</code>
+  <div class="nm"><b>Skeleton &#183; pill and route</b><code>.dr-sk-line--pill &#183; .dr-sk-w40 &#183; .dr-inset--sk &#183; .dr-sk-route</code>
     <p>Two shapes a loading page needs that a plain bar cannot make: a pill where a chip will land, and
        one bar where a route strip will.</p></div>
   <div class="spec">
     <div class="plate wide" style="align-items:stretch">
       <div class="dr" style="display:flex;flex-direction:column;gap:12px">
-        <span class="dr-sk-line dr-sk-line--pill" style="width:96px"></span>
+        <div class="dr-rows__row"><span class="dr-sk-line dr-sk-line--pill dr-sk-w40"></span><span class="dr-sk-line dr-sk-line--pill dr-sk-w30"></span></div>
         <span class="dr-inset dr-inset--sk"><span class="dr-sk-route"></span></span>
       </div>
-      <span class="st">--skeleton &#183; 1.1s pulse &#183; order-history-loading</span>
+      <span class="st">--skeleton &#183; 1.1s pulse &#183; tracking-loading &#183; order-history-loading</span>
     </div>
   </div>
   <div class="notes">
+    <p><b>Widths are classes, not inline styles</b> &#8212; <code>.dr-sk-w30</code> /
+       <code>w40</code> / <code>w50</code> / <code>w70</code> &#8212; so a skeleton row cannot drift
+       from the row it is rehearsing. The pill rung exists because a chip <i>is</i> a pill: a
+       rectangular bar where a pill lands makes the page jump on load.</p>
     <p><b>A skeleton rehearses the layout, never more detail than the loaded state rewards.</b> The route
        strip&#8217;s skeleton collapsed to <b>one</b> bar on the designer&#8217;s call &#8212;
        <i>&#171;прибери усі блоки з цього прямокутника лише один прямокутник&#187;</i> &#8212; where it had
-       held five pulsing pieces for a loaded strip that shows two short place names. <b>The card did not
-       move by a pixel</b> when it changed.</p>
-    <p>The pill rung exists because a chip is a pill: a rectangular bar where a pill lands makes the page
-       jump on load. Every skeleton pulses on the one shared <b>1.1s</b> loop, and
+       held five pulsing pieces for a loaded strip that shows two short place names. <b>The 16px padding
+       stayed, so the strip still holds 67px and the card did not move by a pixel.</b></p>
+    <p>Every skeleton pulses on the one shared <b>1.1s</b> loop, and
        <code>prefers-reduced-motion</code> stops it.</p>
   </div>
 </div>
