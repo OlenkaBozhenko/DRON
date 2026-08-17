@@ -394,7 +394,21 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.dr-sr{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+/* THE SAME RULE UNDER BOTH NAMES, AND THE ALIAS IS A PORTABILITY FIX RATHER THAN
+   A TIDY-UP. `.dr-sr` is the kit's own name; `.sr-only` is the name the frames
+   actually write — **39 times across the painted set** — and until 2026-08-16
+   (rev 156) that name was declared *only* in `wireframes/_wireframe.css`, the
+   prototype's layer. So the painted product's screen-reader labels were being
+   hidden by a stylesheet that is not part of the product: lift a painted screen
+   out of the wireframe shell, or serve `kit.css` alone, and **39 invisible labels
+   become visible text** — every `sr-only` field label on `contact-support`,
+   `order-setup`, `rate`, `listings-filters` and the rest, printed on screen.
+   Declaring the alias here costs nothing (the two declarations were already
+   byte-identical) and needs no change to any frame's markup. Found while writing
+   the text-area specimen, which had to reach for `.dr-sr` because `.sr-only`
+   would not have hidden anything on this page. */
+.dr-sr,
+.sr-only{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 /* form containers are structure, not surfaces — the UA border goes */
 .dr fieldset{ border: 0; padding: 0; min-width: 0; }
 .dr legend{ padding: 0; }

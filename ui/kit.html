@@ -710,14 +710,14 @@
   <div class="spec">
     <div class="plate wide" style="align-items:stretch">
       <div class="dr" style="position:relative;height:236px;border-radius:var(--r-panel);overflow:hidden;background:var(--page)">
-        <div class="dr-scrim" aria-hidden="true"></div>
-        <div class="dr-sheet" style="animation:none">
+        <div class="dr-scrim dr-scrim--picker" aria-hidden="true" style="animation:none"></div>
+        <section class="dr-sheet dr-sheet--picker" aria-hidden="true" style="animation:none">
           <span class="dr-sheet__grip" aria-hidden="true"></span>
           <p class="dr-label">Contact operator</p>
           <span class="dr-btn dr-btn--secondary dr-btn--block">Call operator</span>
           <span class="dr-btn dr-btn--secondary dr-btn--block">Chat with the operator</span>
           <span class="dr-btn dr-btn--tertiary dr-btn--block">Cancel</span>
-        </div>
+        </section>
       </div>
       <span class="st">--r-panel 22 top &#183; grip 36 &#215; 5 &#183; --sh-raised</span>
     </div>
@@ -735,8 +735,26 @@
        <code>kit.js</code>: focus is trapped, the screen behind goes <code>inert</code>, Escape closes,
        and focus returns to the control that opened it. <b>The pay drawer is the one titleless sheet</b>,
        on her call &#8212; its accessible name stays behind on the sheet element.</p>
-    <p><i>This plate is static and its buttons are <code>&lt;span&gt;</code>s, so the page claims no
-       behaviour it is not running; the rise animation is stopped so the specimen sits still.</i></p>
+    <p><b>The markup contract, which is what to copy</b> &#8212; a page carrying a drawer holds, inside
+       <code>.wf-frame</code>:</p>
+    <pre style="margin:0;font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--slate);white-space:pre-wrap;overflow-x:auto">&lt;button class="dr-field dr-field--action" aria-haspopup="dialog"
+        aria-expanded="false" aria-controls="ID"&gt; &#8230; &lt;/button&gt;
+&lt;div class="dr-scrim dr-scrim--picker" data-scrim hidden&gt;&lt;/div&gt;
+&lt;section class="dr-sheet dr-sheet--picker" id="ID" role="dialog"
+         aria-modal="true" aria-labelledby="ID-title" hidden&gt; &#8230; &lt;/section&gt;</pre>
+    <p><b>One scrim serves every drawer on the page</b> &#8212; only one row was tapped. The row itself
+       stays a real <code>&lt;button&gt;</code>, so Enter, Space, the tab order and the accessible name come
+       from the element (<code>WCAG 4.1.2</code>); <code>kit.js</code> adds the modal contract and lands
+       the pick, it does not open the row. <b>An option is a <code>&lt;button&gt;</code> when it is a value
+       and an <code>&lt;a&gt;</code> when it is a route:</b> the mode picker's options leave the screen, so
+       they navigate and nothing is written back; every other picker sets the row's value, moves
+       <code>aria-current</code>, and closes.</p>
+    <p><i>The plate above carries the shape and the class names but deliberately <b>not</b>
+       <code>role="dialog"</code>, <code>aria-modal</code> or the <code>id</code> wiring: an inert
+       specimen announcing itself as a modal dialog would be a lie to assistive tech, and it traps no
+       focus. Its buttons are <code>&lt;span&gt;</code>s and the rise animation is stopped for the same
+       reason &#8212; the page must not claim behaviour it is not running. The contract above is the
+       copyable truth.</i></p>
   </div>
 </div>
 
