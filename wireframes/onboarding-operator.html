@@ -21,51 +21,41 @@
     <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__spacer"></span></header>
     <main class="dr-main">
       <!--
-        THE SLIDE AREA IS DELIBERATELY LEFT ON ITS GRAYSCALE GEOMETRY, and this is
-        recorded rather than quietly half-done. Three reasons, in order:
-        1. The bleed carousel is being defined once for `welcome` and
-           `onboarding-client`; this page must take THOSE class names, not a second
-           set, or one pattern ships under two APIs. Pending reconciliation.
-        2. The `is-bleed` band is `height: 35%` of the content area — a value the
-           kit has no token for (`--banner-art` 78% is the empty-state banner's).
-           A component that needs a new token stops here and is reported, it does
-           not get one invented for it.
-        3. Two of the three pictures do not exist yet (`STEPS`, `PAID`), so those
-           two wells are still the documented "picture pending" state.
-        WHAT IS PAINTED HERE: the frame, both system bars, the action bar, and the
-        slide TYPE — .dr-display and .dr-lead sit beside `big-title` / `lead`,
-        which the bleed layer's own z-index rules key on, so the copy is the
-        product's 22/700 and 15/400 on --ink / --slate while the layout stays put.
+        THE BLEED CAROUSEL is the one pattern shared with `welcome` and
+        `onboarding-client`, so it takes their class names and no second set:
+        .dr-slider / --bleed / .dr-slide / .dr-slide__art, with the kit's own
+        .dr-display and .dr-lead for the copy and .dr-pager for the dots. The
+        rules key off .dr-screen:has(.dr-slider--bleed), which is why the frame,
+        both system bars, main and the action bar all carry their kit classes —
+        without them the artwork layer would paint over the chrome.
+        TWO SLIDES HAVE NO PICTURE YET (`STEPS`, `PAID`) and keep the bare
+        uppercase label as the only child of .dr-slide__art: the :has(img) rule
+        drops the --media ground only where a photograph actually arrived, so a
+        half-supplied slider reads as "picture pending" instead of broken, and the
+        composition does not jump as you swipe. --slate on --media, 5.51:1.
+        No artwork is invented for them.
       -->
-      <div class="slider is-bleed" aria-label="How operating on DRON works">
+      <div class="dr-slider dr-slider--bleed" aria-label="How operating on DRON works">
         <!-- The picture comes last in the markup, not first: it is the bottom of
              the slide visually, and it is decorative (alt=""), so a screen reader
              should reach the heading before it rather than step over it. -->
-        <section class="slide" id="oo1" aria-label="Slide 1 of 3">
-          <p class="big-title dr-display">Jobs come to you</p>
-          <p class="lead dr-lead">Auto-dispatch sends pre-qualified jobs. Accept or decline in seconds — no bidding.</p>
-          <span class="slide-ph"><img src="../assets/scenes/thumbs/operator-at-work.png" alt="" loading="lazy" decoding="async"></span>
+        <section class="dr-slide" id="oo1" aria-label="Slide 1 of 3">
+          <p class="dr-display">Jobs come to you</p>
+          <p class="dr-lead">Auto-dispatch sends pre-qualified jobs. Accept or decline in seconds — no bidding.</p>
+          <span class="dr-slide__art"><img src="../assets/scenes/thumbs/operator-at-work.png" alt="" loading="lazy" decoding="async"></span>
         </section>
-        <section class="slide" id="oo2" aria-label="Slide 2 of 3">
-          <p class="big-title dr-display">Follow the checklist</p>
-          <p class="lead dr-lead">Every job has a step-by-step checklist so nothing is missed on site.</p>
-          <span class="slide-ph">STEPS</span>
+        <section class="dr-slide" id="oo2" aria-label="Slide 2 of 3">
+          <p class="dr-display">Follow the checklist</p>
+          <p class="dr-lead">Every job has a step-by-step checklist so nothing is missed on site.</p>
+          <span class="dr-slide__art">STEPS</span>
         </section>
-        <section class="slide" id="oo3" aria-label="Slide 3 of 3">
-          <p class="big-title dr-display">Get paid automatically</p>
-          <p class="lead dr-lead">Earnings land within 30 min of client confirmation. Withdraw to card or bank.</p>
-          <span class="slide-ph">PAID</span>
+        <section class="dr-slide" id="oo3" aria-label="Slide 3 of 3">
+          <p class="dr-display">Get paid automatically</p>
+          <p class="dr-lead">Earnings land within 30 min of client confirmation. Withdraw to card or bank.</p>
+          <span class="dr-slide__art">PAID</span>
         </section>
       </div>
-      <!-- The dot row takes .dr-pager (8px, no outline, --btn2 rests) and KEEPS
-           `pager`, because `.slider.is-bleed + .pager` is what lifts it clear of
-           the absolutely-positioned artwork layer — without it the dots sit behind
-           the picture and stop being clickable. One consequence, measured and
-           reported rather than papered over: `_wireframe.css`'s `.pager a.on`
-           (0,2,1) out-specifies the kit's `.dr-pager .on` (0,2,0), so the ACTIVE
-           dot still draws --wf-ink instead of --green until a one-line kit rule
-           at `.dr-pager a.on` lands. See the pack report. -->
-      <nav class="pager dr-pager" aria-label="Slides">
+      <nav class="dr-pager" aria-label="Slides">
         <a href="#oo1" class="on" aria-label="Go to slide 1"></a>
         <a href="#oo2" aria-label="Go to slide 2"></a>
         <a href="#oo3" aria-label="Go to slide 3"></a>
