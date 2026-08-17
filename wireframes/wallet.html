@@ -14,7 +14,12 @@
   user verifies. The caption takes .dr-note. `.dr-balance` is a PROVISIONAL wrapper carrying only
   the column and the 4px step between the two lines, plus the left alignment .dr-note's own
   text-align:center would otherwise take away — the frame sets this block flush left, like
-  payment's amount block.
+  payment's amount block, and `.dr-note--flush` is the second — .dr-note is text-align:center by
+  construction, so a caption that stands flush left needs the modifier said out loud.
+  THE PAID NOTICE IS .dr-note--flush AND NOT .dr-field__hint, AND THAT IS A MEASUREMENT, NOT A
+  PREFERENCE: .dr-field__hint declares `flex-basis:100%` for the row it belongs to, and in a COLUMN
+  flex container (.dr-main) flex-basis sizes the MAIN axis — measured, the one-line sentence came out
+  341 x 173 and swallowed the page's slack. The class is a field's own hint and does not leave one.
   THE EARNINGS FIGURE TAKES THE SAME .dr-number as order-history's card price, so the balance and
   the rows that add up to it are one material. The frame drew it at 15/600; the kit's money step
   wins (divergence logged).
