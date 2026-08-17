@@ -84,7 +84,11 @@
             <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
           </button>
         </div>
-        <p class="dr-field__hint">Switching changes what the app shows. Your Diia identity stays the same.</p>
+        <!-- A standalone notice, not a field hint: .dr-field__hint declares
+             flex-basis:100%, which in a column flex parent sizes the MAIN axis and
+             blows the box up wherever that parent has a definite height. So it takes
+             .dr-note with the flush modifier — same 12/400 --slate, left-aligned. -->
+        <p class="dr-note dr-note--flush">Switching changes what the app shows. Your Diia identity stays the same.</p>
       </section>
 
       <p class="zlabel dr-label">Account <span class="dr-label__act">▸ payout &amp; preferences</span></p>
