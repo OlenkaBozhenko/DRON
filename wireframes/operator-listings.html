@@ -253,123 +253,138 @@
   </aside>
 
   <!-- ── THE SCREEN · 375 × 812 ── -->
-  <div class="wf-frame">
+  <div class="wf-frame dr dr-screen">
 
     <!-- status bar (system, safe area) -->
-    <div class="statusbar">
-      <span>9:41</span>
-      <span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span>
-    </div>
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
 
-    <!-- HEADER · top bar -->
-    <header class="topbar">
+    <!-- HEADER · top bar.
+         The operator's own face and name stand where a client root screen carries
+         .dr-brand — the frame's content, kept. The 28px circle keeps `class="avatar"`
+         and takes its geometry from this page's own block, which is exactly what
+         painted account.html / order-confirmed-empty.html do with `op-avatar`: the
+         kit cuts no small-avatar rung and inventing a size token was refused. The NAME
+         takes .dr-op__name — the kit's own 15/600 --ink at 15.99:1 on --page — because
+         the block's `.who` paints #252525, an ink outside the palette. -->
+    <header class="topbar dr-topbar">
       <span class="avatar"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
-      <span class="who">Ivan K.</span>
-      <span class="spacer"></span>
+      <span class="dr-op__name">Ivan K.</span>
+      <span class="dr-topbar__spacer"></span>
     </header>
 
-    <!-- NAV · job groups -->
-    <nav class="groups" aria-label="Job groups">
-      <a class="grouptab" href="#incoming" aria-current="true">Incoming · 2</a>
-      <a class="grouptab" href="#active">Active · 1</a>
+    <!-- NAV · job groups — the painted in-page tab row from listings.html.
+         The state carrier is aria-current, which kit.css paints --green-wash behind
+         --ink at 14.75:1; the tint is not counted against the green budget (1.085:1
+         on the page). Links, not buttons: these are in-page anchors, as built. -->
+    <nav class="dr-groups" aria-label="Job groups">
+      <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming · 2</a>
+      <a class="dr-grouptab" href="#active">Active · 1</a>
     </nav>
 
     <!-- MAIN -->
-    <main>
+    <main class="dr-main">
 
       <!-- ZONE · status toggle (OE-4) -->
-      <p class="zlabel">Status <span class="act">▸ set availability — gates dispatch (O-02)</span></p>
-      <section aria-label="Availability status">
-        <div class="status-head">
-          <span class="dot" aria-hidden="true"></span>
-          <b>You are Available</b><span>· receiving jobs near Podil</span>
-        </div>
-        <form class="status-form">
-          <fieldset class="segment">
+      <p class="zlabel dr-label">Status <span class="dr-label__act">▸ set availability — gates dispatch (O-02)</span></p>
+      <section class="dr-stack" aria-label="Availability status">
+        <!-- .dr-avail is NEW (see the report's patch block): a dot, the state and one
+             supporting clause. The dot is --ink and not --green: this screen already
+             carries the accent on its card CTAs, and an availability dot that is green
+             when Available and grey when Offline would rest on colour alone
+             (WCAG 1.4.1) — the sentence beside it is the carrier, and the segmented
+             control below states the same fact a third time. -->
+        <p class="dr-avail">
+          <span class="dr-avail__dot" aria-hidden="true"></span>
+          <b class="dr-avail__state">You are Available</b><span class="dr-avail__note">· receiving jobs near Podil</span>
+        </p>
+        <form>
+          <fieldset class="dr-segment">
             <legend class="sr-only">Availability status</legend>
-            <label class="seg">Available<input type="radio" name="status" value="available" checked></label>
-            <label class="seg">Busy<input type="radio" name="status" value="busy"></label>
-            <label class="seg">Offline<input type="radio" name="status" value="offline"></label>
+            <label class="dr-segment__seg">Available<input type="radio" name="status" value="available" checked></label>
+            <label class="dr-segment__seg">Busy<input type="radio" name="status" value="busy"></label>
+            <label class="dr-segment__seg">Offline<input type="radio" name="status" value="offline"></label>
           </fieldset>
         </form>
       </section>
 
       <!-- ZONE · counter -->
-      <p class="zlabel">Counter <span class="act">▸ workload at a glance (auto-dispatched, nearest first)</span></p>
-      <section class="counter" aria-label="Jobs counter">
-        <output class="count"><b>2 new jobs</b> · 1 active job · nearest first</output>
+      <p class="zlabel dr-label">Counter <span class="dr-label__act">▸ workload at a glance (auto-dispatched, nearest first)</span></p>
+      <section class="dr-counter" aria-label="Jobs counter">
+        <output class="dr-counter__count"><b>2 new jobs</b> · 1 active job · nearest first</output>
       </section>
 
-      <!-- ZONE · incoming offers (OE-6) -->
-      <p class="zlabel" id="incoming">Incoming offers · cards <span class="act">▸ accept / decline in seconds (RJ-O1)</span></p>
+      <!-- ZONE · incoming offers (OE-6).
+           THE JOB CARD IS order-history's CARD, PROMOTED. .dr-order__top / __head /
+           __title / __date / __fee / __price / __acts were documented as a one-off
+           bound to order-history; the operator's job card is the same object (a title,
+           a one-line fact, a route, a figure, actions) so it reuses them and they stop
+           being a one-off. THREE DIVERGENCES, all resolved toward the kit and logged:
+           · the frame's banded header (a --wf-recessed strip with a hairline under it)
+             goes. The kit's card is flat and one ground by rule; a band inside a card
+             is a second surface the system does not have. The service name and the
+             status pill move into .dr-order__top, which is where order-history puts
+             exactly those two facts.
+           · the frame's vertical stop list (dots on a connector) becomes the kit's
+             .dr-inset From ▸ To strip — one route component in the product.
+           · the frame's 28px transparent kebab becomes .dr-btn--icon, the kit's only
+             icon-only shape: a 44px --btn2 disc, HIG · 44pt met on size alone. -->
+      <p class="zlabel dr-label" id="incoming">Incoming offers · cards <span class="dr-label__act">▸ accept / decline in seconds (RJ-O1)</span></p>
       <section aria-label="Incoming offers">
-        <ul class="list">
+        <ul class="dr-list dr-list--snug">
 
           <!-- offer card: header (service + status) · distance + options · route · fee + expiry · Accept/Decline -->
           <li>
-            <article class="card offer oh-card">
-              <a class="card-link" href="job-offer.html" aria-label="Package delivery job — open brief"></a>
-              <span class="oh-head">
-                <span class="oh-title">Package delivery</span>
-                <span class="oh-status live">New</span>
+            <article class="dr-card">
+              <a class="dr-card__link" href="job-offer.html" aria-label="Package delivery job — open brief"></a>
+              <span class="dr-order__top">
+                <span class="dr-order__head">
+                  <span class="dr-order__title">Package delivery</span>
+                  <span class="dr-order__date">2.3 km · ~18 min</span>
+                </span>
+                <span class="dr-chip dr-chip--claim">New</span>
+                <button class="dr-btn dr-btn--icon" type="button" aria-label="Job options">
+                  <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.6" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="18.4" r="1.4" fill="currentColor" stroke="none"/></svg>
+                </button>
               </span>
-              <span class="oh-body">
-                <span class="oh-top">
-                  <span class="oh-date">2.3 km · ~18 min</span>
-                  <button class="oh-more" type="button" aria-label="Job options">
-                    <span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span>
-                  </button>
-                </span>
-                <span class="oh-route route-2">
-                  <span class="oh-stop">
-                    <span class="oh-dot" aria-hidden="true"></span>
-                    <span class="oh-addr"><span class="oh-addr-lbl">Pickup</span>Podil</span>
-                  </span>
-                  <span class="oh-stop">
-                    <span class="oh-dot oh-dot-end" aria-hidden="true"></span>
-                    <span class="oh-addr"><span class="oh-addr-lbl">Drop-off</span>Osokorky</span>
-                  </span>
-                </span>
-                <span class="oh-meta">
-                  <span class="oh-price">₴180</span>
-                  <span class="oh-eta">expires in 8s</span>
-                </span>
-                <div class="actions">
-                  <a class="btn btn-primary" href="job-brief.html">Accept</a>
-                  <a class="btn btn-secondary" href="operator-listings.html">Decline</a>
-                </div>
+              <span class="dr-inset">
+                <span class="dr-inset__stop"><span class="dr-inset__lbl">Pickup</span><span class="dr-inset__place">Podil</span></span>
+                <span class="dr-inset__dir" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+                <span class="dr-inset__stop dr-inset__stop--to"><span class="dr-inset__lbl">Drop-off</span><span class="dr-inset__place">Osokorky</span></span>
+              </span>
+              <span class="dr-order__fee">
+                <span class="dr-number dr-order__price">₴180</span>
+                <span class="dr-chip">expires in 8s</span>
+              </span>
+              <span class="dr-card__actions">
+                <a class="dr-btn dr-btn--primary" href="job-brief.html">Accept</a>
+                <a class="dr-btn dr-btn--secondary" href="operator-listings.html">Decline</a>
               </span>
             </article>
           </li>
 
           <li>
-            <article class="card offer oh-card">
-              <a class="card-link" href="job-offer.html" aria-label="Roof inspection job — open brief"></a>
-              <span class="oh-head">
-                <span class="oh-title">Roof inspection</span>
-                <span class="oh-status live">New</span>
+            <article class="dr-card">
+              <a class="dr-card__link" href="job-offer.html" aria-label="Roof inspection job — open brief"></a>
+              <span class="dr-order__top">
+                <span class="dr-order__head">
+                  <span class="dr-order__title">Roof inspection</span>
+                  <span class="dr-order__date">5.1 km · ~35 min</span>
+                </span>
+                <span class="dr-chip dr-chip--claim">New</span>
+                <button class="dr-btn dr-btn--icon" type="button" aria-label="Job options">
+                  <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.6" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="18.4" r="1.4" fill="currentColor" stroke="none"/></svg>
+                </button>
               </span>
-              <span class="oh-body">
-                <span class="oh-top">
-                  <span class="oh-date">5.1 km · ~35 min</span>
-                  <button class="oh-more" type="button" aria-label="Job options">
-                    <span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span>
-                  </button>
-                </span>
-                <span class="oh-route">
-                  <span class="oh-stop">
-                    <span class="oh-dot oh-dot-end" aria-hidden="true"></span>
-                    <span class="oh-addr"><span class="oh-addr-lbl">Location</span>Obolon district</span>
-                  </span>
-                </span>
-                <span class="oh-meta">
-                  <span class="oh-price">₴650</span>
-                  <span class="oh-eta">expires in 6s</span>
-                </span>
-                <div class="actions">
-                  <a class="btn btn-primary" href="job-brief.html">Accept</a>
-                  <a class="btn btn-secondary" href="operator-listings.html">Decline</a>
-                </div>
+              <span class="dr-inset">
+                <span class="dr-inset__stop"><span class="dr-inset__lbl">Location</span><span class="dr-inset__place">Obolon district</span></span>
+              </span>
+              <span class="dr-order__fee">
+                <span class="dr-number dr-order__price">₴650</span>
+                <span class="dr-chip">expires in 6s</span>
+              </span>
+              <span class="dr-card__actions">
+                <a class="dr-btn dr-btn--primary" href="job-brief.html">Accept</a>
+                <a class="dr-btn dr-btn--secondary" href="operator-listings.html">Decline</a>
               </span>
             </article>
           </li>
@@ -378,36 +393,31 @@
       </section>
 
       <!-- ZONE · active jobs (OE-5) -->
-      <p class="zlabel" id="active">Active jobs · cards <span class="act">▸ continue a job in progress</span></p>
+      <p class="zlabel dr-label" id="active">Active jobs · cards <span class="dr-label__act">▸ continue a job in progress</span></p>
       <section aria-label="Active jobs">
-        <ul class="list">
+        <ul class="dr-list dr-list--snug">
           <li>
-            <article class="card active oh-card">
-              <a class="card-link" href="job-brief.html" aria-label="Aerial photo and video — open job"></a>
-              <span class="oh-head">
-                <span class="oh-title">Aerial photo &amp; video</span>
-                <span class="oh-status">In progress</span>
+            <article class="dr-card">
+              <a class="dr-card__link" href="job-brief.html" aria-label="Aerial photo and video — open job"></a>
+              <span class="dr-order__top">
+                <span class="dr-order__head">
+                  <span class="dr-order__title">Aerial photo &amp; video</span>
+                  <span class="dr-order__date">Client · Olena H.</span>
+                </span>
+                <span class="dr-chip">In progress</span>
+                <button class="dr-btn dr-btn--icon" type="button" aria-label="Job options">
+                  <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.6" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="18.4" r="1.4" fill="currentColor" stroke="none"/></svg>
+                </button>
               </span>
-              <span class="oh-body">
-                <span class="oh-top">
-                  <span class="oh-date">Client · Olena H.</span>
-                  <button class="oh-more" type="button" aria-label="Job options">
-                    <span class="ic-kebab" aria-hidden="true"><i></i><i></i><i></i></span>
-                  </button>
-                </span>
-                <span class="oh-route">
-                  <span class="oh-stop">
-                    <span class="oh-dot oh-dot-end" aria-hidden="true"></span>
-                    <span class="oh-addr"><span class="oh-addr-lbl">Location</span>Trukhaniv Island</span>
-                  </span>
-                </span>
-                <span class="oh-meta">
-                  <span class="oh-price">₴800</span>
-                  <span class="oh-eta">checklist 3 / 5</span>
-                </span>
-                <div class="actions">
-                  <a class="btn btn-primary" href="job-checklist.html">Continue</a>
-                </div>
+              <span class="dr-inset">
+                <span class="dr-inset__stop"><span class="dr-inset__lbl">Location</span><span class="dr-inset__place">Trukhaniv Island</span></span>
+              </span>
+              <span class="dr-order__fee">
+                <span class="dr-number dr-order__price">₴800</span>
+                <span class="dr-chip">checklist 3 / 5</span>
+              </span>
+              <span class="dr-card__actions">
+                <a class="dr-btn dr-btn--primary" href="job-checklist.html">Continue</a>
               </span>
             </article>
           </li>
@@ -416,23 +426,30 @@
 
     </main>
 
-    <!-- FOOTER · bottom bar (global nav — sitemap §7.2) -->
-    <footer class="tabbar">
-      <nav class="tabs" aria-label="Primary">
-        <a class="tab" href="operator-listings.html" aria-current="page">
-          <span class="sq sq-24" aria-hidden="true"></span>Jobs
+    <!-- FOOTER · bottom bar (global nav — sitemap §7.2).
+         THE FOUR OPERATOR GLYPHS ARE DRAWN HERE FOR THE FIRST TIME, on the 24-grid at
+         stroke 1.7, fill:none, currentColor, round caps and joins — §5's one icon
+         system. Jobs is a briefcase (the work queue, and deliberately not the client
+         bar's 2x2 catalogue grid); Earnings is a banknote with its centre coin;
+         Ratings is a five-point star drawn as an OUTLINE, because .dr-star's filled
+         glyph is the rating input's own exception and a tab icon is not a quantity;
+         Account is QUOTED verbatim from the client tab bar — same tab, same glyph. -->
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="operator-listings.html" aria-current="page">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="7.4" width="17.2" height="12.2" rx="2.2"/><path d="M9 7.4V6.1A1.7 1.7 0 0 1 10.7 4.4h2.6A1.7 1.7 0 0 1 15 6.1v1.3"/><path d="M3.4 12.6h17.2"/></svg>Jobs
         </a>
-        <a class="tab" href="wallet.html">
-          <span class="sq sq-24" aria-hidden="true"></span>Earnings
+        <a class="dr-tab" href="wallet.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="6.8" width="18.4" height="10.4" rx="2.2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.6v4.8M18 9.6v4.8"/></svg>Earnings
         </a>
-        <a class="tab" href="ratings.html">
-          <span class="sq sq-24" aria-hidden="true"></span>Ratings
+        <a class="dr-tab" href="ratings.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.79l2.84 5.75 6.36.93-4.6 4.48 1.09 6.33L12 17.29l-5.69 2.99 1.09-6.33-4.6-4.48 6.36-.93z"/></svg>Ratings
         </a>
-        <a class="tab" href="operator-account.html">
-          <span class="sq sq-24" aria-hidden="true"></span>Account
+        <a class="dr-tab" href="operator-account.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account
         </a>
       </nav>
-      <div class="home-indicator"><span></span></div>
+      <div class="dr-home"><span></span></div>
     </footer>
 
   </div>
