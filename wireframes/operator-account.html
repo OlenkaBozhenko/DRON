@@ -37,56 +37,93 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Profile</b> ▸ who you are (Diia-verified operator)</p><p><b>Mode</b> ▸ switch Operator ⇄ Client (dropdown)</p><p><b>Account</b> ▸ payout · service area · language</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="title">Account</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Profile <span class="act">▸ Diia-verified operator</span></p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Account</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Profile <span class="dr-label__act">▸ Diia-verified operator</span></p>
       <section aria-label="Profile">
-        <article class="op-card">
+        <article class="dr-op">
           <span class="op-avatar"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
-          <span class="op-info">
-            <span class="op-name">Ivan K.</span>
-            <span class="op-rating">4.9 ★ · 214 jobs · Verified by DRON</span>
-            <span class="badges"><span class="badge">Operator</span><span class="badge">Insured</span><span class="badge">CAA licence</span></span>
+          <span class="dr-op__info">
+            <span class="dr-op__name">Ivan K.</span>
+            <span class="dr-op__rating">4.9 ★ · 214 jobs · Verified by DRON</span>
+            <!-- THE CHIPS. `Operator` and `CAA licence` are plain supporting facts on
+                 the warm-grey rung, the pair account.html's own profile card carries.
+                 `Insured` is the kit's already-spent confirmed-credential chip —
+                 .dr-chip--trust, --trust-ink on --trust-wash at 5.65:1, with the
+                 shield and the trailing checkmark it wears on `tracking` — because
+                 rev 58/69 settled that on an OPERATOR card Insured states a fact the
+                 platform has confirmed. Whether `CAA licence` joins it in blue is the
+                 designer's call; the kit has spent --trust on one word only. -->
+            <span class="dr-chips dr-op__badges"><span class="dr-chip">Operator</span><span class="dr-chip dr-chip--trust"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip">CAA licence</span></span>
           </span>
-          <a class="op-edit" href="account-edit.html" aria-label="Edit profile">
-            <span class="ic-edit" aria-hidden="true"><span class="pencil"><span class="body"></span><span class="tip"></span></span></span>
+          <!-- THE EDIT AFFORDANCE. The CSS-drawn pencil (.op-edit / .ic-edit /
+               .pencil / .tip, still declared in the <style> block above and now
+               applied to nothing) is replaced by the kit's own icon button and the
+               real 24-grid pencil glyph — .dr-btn--icon, 44 × 44, --ink on --btn2 at
+               11.54:1, exactly as account.html's `Edit profile` control. -->
+          <a class="dr-btn dr-btn--icon" href="account-edit.html" aria-label="Edit profile">
+            <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>
           </a>
         </article>
       </section>
 
-      <p class="zlabel">Mode <span class="act">▸ switch Operator ⇄ Client</span></p>
-      <section aria-label="User mode">
-        <details class="dropdown">
-          <summary>Operator mode<span aria-hidden="true">▾</span></summary>
-          <a href="operator-listings.html">Operator — take jobs<span class="tag">current</span></a>
-          <a href="switch-role.html">Client — order services<span class="tag">switch</span></a>
-        </details>
-        <p class="hint">Switching changes what the app shows. Your Diia identity stays the same.</p>
+      <p class="zlabel dr-label">Mode <span class="dr-label__act">▸ switch Operator ⇄ Client</span></p>
+      <!-- The mode picker takes the project-wide rule (2026-08-16): two options,
+           under the six, so the list rises as a drawer instead of unfolding in
+           flow — the same construction account.html carries, and .dr-disclosure
+           (the in-flow <details>) is applied to no page in the painted product.
+           Its options are the one kind that stays an <a>: they are ROUTES, not
+           values, so they navigate and nothing is written back into the row. -->
+      <section class="dr-stack" aria-label="User mode">
+        <div class="dr-rows">
+          <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-mode">
+            <span class="dr-field__label">Mode</span>
+            <span class="dr-field__value">Operator</span>
+            <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+          </button>
+        </div>
+        <p class="dr-field__hint">Switching changes what the app shows. Your Diia identity stays the same.</p>
       </section>
 
-      <p class="zlabel">Account <span class="act">▸ payout &amp; preferences</span></p>
-      <div class="kv" aria-label="Account details">
-        <div class="kv-row"><span class="kv-key">Withdrawal method</span><span class="kv-val">Card •••• 4921</span></div>
-        <div class="kv-row"><span class="kv-key">Service area</span><span class="kv-val">Podil · Obolon</span></div>
-        <div class="kv-row"><span class="kv-key">Drone</span><span class="kv-val">DJI Mavic 3 · reg. verified</span></div>
-        <div class="kv-row"><span class="kv-key">Language</span><span class="kv-val">English</span></div>
-        <div class="kv-row"><span class="kv-key">Operator since</span><span class="kv-val">2026</span></div>
+      <p class="zlabel dr-label">Account <span class="dr-label__act">▸ payout &amp; preferences</span></p>
+      <div class="dr-rows" aria-label="Account details">
+        <div class="dr-rows__row"><span class="dr-rows__key">Withdrawal method</span><span class="dr-rows__val">Card •••• 4921</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Service area</span><span class="dr-rows__val">Podil · Obolon</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Drone</span><span class="dr-rows__val">DJI Mavic 3 · reg. verified</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Language</span><span class="dr-rows__val">English</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Operator since</span><span class="dr-rows__val">2026</span></div>
       </div>
     </main>
 
-    <footer class="tabbar">
-      <nav class="tabs" aria-label="Primary">
-        <a class="tab" href="operator-listings.html"><span class="sq sq-24" aria-hidden="true"></span>Jobs</a>
-        <a class="tab" href="wallet.html"><span class="sq sq-24" aria-hidden="true"></span>Earnings</a>
-        <a class="tab" href="ratings.html"><span class="sq sq-24" aria-hidden="true"></span>Ratings</a>
-        <a class="tab" href="operator-account.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="operator-listings.html"><!-- TABGLYPH: jobs -->Jobs</a>
+        <a class="dr-tab" href="wallet.html"><!-- TABGLYPH: earnings -->Earnings</a>
+        <a class="dr-tab" href="ratings.html"><!-- TABGLYPH: ratings -->Ratings</a>
+        <a class="dr-tab" href="operator-account.html" aria-current="page"><!-- TABGLYPH: account -->Account</a>
       </nav>
-      <div class="home-indicator"><span></span></div>
+      <div class="dr-home"><span></span></div>
     </footer>
+
+    <!-- THE MODE DRAWER. Two routes, so the options are <a href> and kit.js
+         leaves them alone: they navigate, and the row is not rewritten. The
+         current mode keeps its checkmark and aria-current. -->
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <section class="dr-sheet dr-sheet--picker" id="sheet-mode" role="dialog" aria-modal="true" aria-labelledby="sheet-mode-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-mode-title">Mode</p>
+      <div class="dr-picker__list">
+        <a class="dr-picker__item" href="operator-listings.html" aria-current="true"><span class="dr-picker__label">Operator — take jobs</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="switch-role.html"><span class="dr-picker__label">Client — order services</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+      </div>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+    </section>
   </div>
 
+  <script src="../ui/kit.js"></script>
   <script src="_wf-shell.js"></script>
 </body>
 </html>
