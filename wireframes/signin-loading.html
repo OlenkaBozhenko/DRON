@@ -6,6 +6,7 @@
 <title>DRON wireframe · Sign in with Diia / BankID · loading</title>
 <!-- SCREEN: "Sign in with Diia / BankID" — STATE: loading (redirecting to the provider). EXIT: Cancel (transient, not a dead-end). -->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -20,24 +21,33 @@
     <div class="legend"><p><b>Only the content changes:</b></p><p><b>Sign in</b> ▸ "Opening Diia…" + Cancel</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Sign in <span class="act">▸ loading — opening provider</span></p>
-      <section class="center" aria-label="Signing in" role="status" style="padding:32px 20px;">
-        <span class="success-mark">DIIA</span>
-        <p class="big-title">Opening Diia…</p>
-        <p class="lead">Redirecting you to Diia to confirm your identity. This takes a few seconds.</p>
-        <div class="stack" style="width:100%; margin-top:8px;">
-          <span class="sk-line sk-w90"></span>
-          <span class="sk-line sk-w70"></span>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Sign in <span class="dr-label__act">▸ loading — opening provider</span></p>
+      <section class="dr-center" aria-label="Signing in" role="status">
+        <!-- The grayscale frame drew "DIIA" in this mark. Painted, it is the
+             activity indicator, the way the other provider handoff in the product
+             draws it: payment-loading's "Confirming your payment with Apple Pay"
+             names the provider in words and spins the arc, and no brand artwork
+             stands in the circle. HIG · Progress indicators: no layout is coming
+             that a skeleton could rehearse for the redirect itself. -->
+        <span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5A8.5 8.5 0 1 1 3.5 12"/></svg></span>
+        <p class="dr-display">Opening Diia…</p>
+        <p class="dr-lead">Redirecting you to Diia to confirm your identity. This takes a few seconds.</p>
+        <!-- width:100% is layout, not a design value (kit.css's own rule keeps 100%
+             inline): .dr-center centres its children, so the stack would shrink to
+             its content and the two percentage-width bars would measure zero. -->
+        <div class="dr-stack" style="width:100%;">
+          <span class="dr-sk-line dr-sk-w90"></span>
+          <span class="dr-sk-line dr-sk-w70"></span>
         </div>
       </section>
     </main>
-    <footer class="actionbar">
-      <a class="btn btn-primary btn-block" href="role-select.html">Continue</a>
-      <a class="btn btn-secondary btn-block" href="signin.html">Cancel</a>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="role-select.html">Continue</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="signin.html">Cancel</a>
     </footer>
   </div>
 
