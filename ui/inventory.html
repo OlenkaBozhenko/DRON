@@ -859,14 +859,14 @@
 
       <tr>
         <td class="c-name">
-          <div class="nm">Back button</div><span class="sel">.back</span>
-          <span class="st gray">grayscale</span>
-          <p class="desc">The HIG back control, showing the title of the screen you return to (<code>&#8249; Order review</code>), never &#8220;Back to&#8230;&#8221;.</p>
+          <div class="nm">Back button</div><span class="sel">.dr-back</span>
+          <span class="st painted">painted</span>
+          <p class="desc"><b>No words &#8212; the control is the chevron icon alone.</b> One bar, one name, and the only name in the nav bar is the title of the screen you are on.</p>
         </td>
-        <td class="c-spec"><span class="nospec">no Studio values<br>not painted</span></td>
-        <td class="c-screens"><span class="scr">22</span><span class="scr-sub">0 painted</span></td>
-        <td class="c-where"><p class="where" style="max-width:34ch">None of the three painted screens is a pushed screen, so the painted set has never drawn one. Needs a chevron on the 24-grid and a 44pt target &#8212; both already settled elsewhere.</p></td>
-        <td class="c-where"><p class="where">Most non-root screens</p></td>
+        <td class="c-spec"><span class="plate tight"><span style="width:307px;height:56px;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 16px;background:#F7F5F2"><span style="width:44px;height:44px;margin-left:-10px;display:inline-flex;align-items:center;justify-content:center;color:#1A1A1A" role="img" aria-label="Back to Order review"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></span><span style="font-size:17px;font-weight:600;color:#1A1A1A">On the way</span></span></span></td>
+        <td class="c-screens"><span class="scr">42</span><span class="scr-sub">42 painted</span></td>
+        <td class="c-where"><p class="where" style="max-width:34ch"><b>The designer's rule, 2026-08-16</b> (<code>voice.md</code> &#167; <i>Nav-bar back button</i>, <code>microcopy.md</code> <b>D9</b>, superseding D1/D8): a labelled back button put a second screen name in the bar, and the two read as two titles rather than a control and a name. Chevron on the 24-grid at the tab bar's own <b>22</b> rung &#8212; no new size cut &#8212; target <b>44 &#215; 44</b>, <code>HIG &#183; 44pt</code> &#10003; and <b>1.83&#215;</b> <code>WCAG 2.5.8</code>.<br><br><b>Invisible, but named:</b> <code>aria-label="Back to {destination}"</code> on every one, because an icon-only control with no accessible name fails <code>WCAG 4.1.2</code>. Invisible, that name neither competes with the title nor engages <code>WCAG 2.5.3 Label in Name</code>, which reaches only visible labels &#8212; so <i>Back to&#8230;</i> is right as an accessible name and <b>forbidden as visible copy</b>.<br><br><b>This row read <code>.back</code> &#183; 22 &#183; 0 painted &#183; grayscale until 2026-08-16 (rev 155)</b>: the class had been renamed, the count had doubled, the component had been painted, and the rule it quoted had been superseded for two weeks.</p></td>
+        <td class="c-where"><p class="where">42 pages &#8212; every non-root screen.<br><br>One varies deliberately: <code>listings-filters</code> carries a <code>&#215;</code> with <i>Close filters</i>, a sheet dismissed rather than a screen popped.</p></td>
       </tr>
 
     </tbody>

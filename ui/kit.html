@@ -258,9 +258,15 @@
     <p><b>The Between-Beats-Within Rule.</b> The gap between two cards (28) is always larger than any
        gap inside one (≤ 20), so proximity groups in the right direction without a border or a
        shadow.</p>
-    <p><b>The One-Shadow Rule.</b> Exactly one shadow is spent, <code>--sh-sm</code>, under the green
-       primary. <code>--sh-card</code>, <code>--sh-raised</code> and <code>--sh-onphoto</code> are
-       declared rungs applied to nothing. A card flat at rest cannot grow one on hover.</p>
+    <p><b>The Flat-Surface Rule.</b> <b>No card, no media well and no photograph casts a shadow</b> &#8212;
+       proven 2026-08-16 (rev 153) by enumerating every <code>box-shadow</code> in the stylesheet, not
+       asserted. <b>Two rungs are spent, and only on things that genuinely float:</b>
+       <code>--sh-sm</code> under the green primary (block primary, circular primary, pressed language
+       toggle) and <code>--sh-raised</code> under <code>.dr-sheet</code> and <code>.dr-toast</code>.
+       rev 43 named that exception in advance &#8212; a floating surface belongs in a modal, drawer or
+       popover &#8212; so the rule is about cards sitting <i>in</i> the page. <code>--sh-card</code> and
+       <code>--sh-onphoto</code> are still declared rungs applied to nothing. A card flat at rest cannot
+       grow one on hover. <i>This paragraph read &#8220;exactly one shadow&#8221; until rev 155.</i></p>
     <p><b>The Closed-Ramp Rule.</b> A shape outside the six is a shape nobody chose.</p>
   </div>
 </div>
@@ -460,6 +466,51 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="nm"><b>Circular action &#183; three grounds</b><code>.dr-btn--icon + --danger-solid &#183; --night &#183; --onphoto</code>
+    <p>One 44 &#215; 44 disc, three grounds for three jobs. Added to this page 2026-08-16 (rev 155) &#8212;
+       all three were built and documented in DESIGN.md, and none had a specimen here.</p></div>
+  <div class="spec">
+    <div class="plate"><span class="dr-btn dr-btn--icon dr-btn--danger-solid" role="img" aria-label="End call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 14.3a12 12 0 0 1 17.2 0"/><path d="M3.4 14.3l1.7 1.7a1.5 1.5 0 0 0 2.1 0l1.1-1.1a1.5 1.5 0 0 0 0-2.1l-.7-.7"/><path d="M20.6 14.3l-1.7 1.7a1.5 1.5 0 0 1-2.1 0l-1.1-1.1a1.5 1.5 0 0 1 0-2.1l.7-.7"/></svg></span><span class="st">--danger-solid &#183; end call &#183; 4.53:1</span></div>
+    <div class="plate"><span class="dr-btn dr-btn--icon dr-btn--night" role="img" aria-label="Minimise the call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 3.5l6 6"/><path d="M4.5 9.5h5v-5"/><path d="M20.5 20.5l-6-6"/><path d="M19.5 14.5h-5v5"/></svg></span><span class="st">--night &#183; on the dark surface &#183; 15.99:1</span></div>
+    <div class="plate"><span class="dr-btn dr-btn--icon dr-btn--onphoto" role="img" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></span><span class="st">--onphoto &#183; over a photograph &#183; 11.54:1</span></div>
+  </div>
+  <div class="notes">
+    <p><b>Measured on the build:</b> every one <b>44 &#215; 44</b> with a 20px glyph (rendered stroke
+       <b>1.42</b>), <code>border-radius:50%</code>, <b>no shadow</b>. <code>HIG &#183; 44pt</code> exactly,
+       and <b>1.83&#215;</b> <code>WCAG 2.5.8</code>&#8217;s 24 &#215; 24.</p>
+    <p><b><code>--danger-solid</code></b> is <code>--danger</code> <code>#C4462A</code> with a
+       <code>--page</code> glyph &#8212; <b>4.53:1</b>, the palette&#8217;s one destructive fill, spent on
+       <i>End call</i>. <b><code>--night</code></b> is <code>--ink</code> with a <code>--page</code>
+       glyph, <b>15.99:1</b>, the strongest pair in the palette, and it exists because the call screen
+       is the product&#8217;s one dark surface. <b><code>--onphoto</code></b> is the ordinary
+       <code>--btn2</code> disc with an <code>--ink</code> glyph, <b>11.54:1</b>.</p>
+    <p><b><code>--onphoto</code> is position only, and its ring came off on the designer&#8217;s word</b>
+       &#8212; <i>&#171;забери stroke з цієї кнопки&#187;</i> &#8212; so rev 12&#8217;s no-border rule holds on a
+       photograph too. <b>What carries <code>WCAG 1.4.11</code> is the glyph, not the disc.</b> Measured
+       under it on the cover frame, luminance runs <b>L 0.0022 &#8594; 0.9486</b>, so no flat disc colour
+       holds 3:1 against every pixel; the <code>--ink</code> mark inside does, at 11.54:1 against its own
+       ground. That is this kit&#8217;s standing reading, already used by
+       <code>.dr-avatar-edit__badge</code> (1.25:1 disc) and <code>.dr-upload</code> (1.08:1 well).</p>
+    <p>Each carries an <code>aria-label</code>, since a glyph cannot be an accessible name
+       (<code>WCAG 1.1.1</code>, <code>4.1.2</code>). <i>These three plates are static
+       <code>role="img"</code> stand-ins, so the page states no interaction it does not have; in the
+       product they are an <code>&lt;a&gt;</code> or a <code>&lt;button&gt;</code>.</i></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Card action slot</b><code>.dr-card__actions</code>
+    <p>Where a card&#8217;s own actions sit, so a card never lays out buttons ad hoc.</p></div>
+  <div class="spec">
+    <div class="plate oncard wide"><span class="dr-card__actions"><span class="dr-btn dr-btn--primary">View details</span></span><span class="st">286.2 &#215; 44 &#183; gap 8 &#183; order-history</span></div>
+  </div>
+  <div class="notes">
+    <p>Measured <b>286.2 &#215; 44</b> on <code>order-history</code>, <b>gap 8</b>, no ground of its own.
+       The slot is a row, so one action or two sit on the same rhythm and the card&#8217;s inset is unchanged.</p>
+  </div>
+</div>
+
 <!-- ═══ SURFACES ══════════════════════════════════════════════════════════ -->
 <h2 class="sec">Surfaces</h2>
 <div class="row">
@@ -583,6 +634,135 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="nm"><b>Money rows</b><code>.dr-rows--money &#183; __row--total</code>
+    <p>A price broken into its parts, with the total set apart by air rather than by a colour.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch">
+      <div class="dr dr-rows dr-rows--money" aria-label="Price breakdown">
+        <div class="dr-rows__row"><span class="dr-rows__key">Base fare</span><span class="dr-rows__val">&#8372;90</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Distance &#183; 7.4 km</span><span class="dr-rows__val">&#8372;70</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Service fee</span><span class="dr-rows__val">&#8372;20</span></div>
+        <div class="dr-rows__row dr-rows__row--total"><span class="dr-rows__key">Total</span><span class="dr-rows__val">&#8372;180</span></div>
+      </div>
+      <span class="st">341.4 &#215; 213.4 &#183; padding 8/16 &#183; order-review</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>Measured on the build:</b> the panel is <b>341.4 &#215; 213.4</b> on <code>order-review</code>,
+       <code>--card</code> at <code>--r-card</code> 16, padding <b>8 / 16</b>. The total row is
+       <b>309.4 &#215; 54</b> with <b>13px</b> above and below &#8212; taller than a plain row, and that
+       extra air <i>is</i> the emphasis.</p>
+    <p><b>Figures are <code>tabular-nums</code></b>, so the hryvnia column lines up digit under digit; a
+       price that jitters between rows reads as an estimate. The panel itself is
+       <code>voice.md</code> <b>P3</b>&#8217;s discipline &#8212; the price is a fact stated before the tap,
+       so the breakdown is on the screen and not behind a disclosure.</p>
+    <p>The same panel is the pay drawer&#8217;s message, byte-identical to the card behind the scrim
+       (rev 138), which is why no class, token or string was added for the sheet.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Cover card</b><code>.dr-card--cover &#183; .dr-listing__foot &#183; __body &#183; __name &#183; __desc</code>
+    <p>The one card in the kit with no inset: a photograph runs to three of its edges, and the file&#8217;s
+       line sits under it.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch">
+      <article class="dr dr-card dr-card--cover dr-listing">
+        <span class="dr-well dr-well--photo" style="width:100%;height:160px" role="img" aria-label="The raft from above, running a rapid between dark boulders"><img src="../assets/scenes/thumbs/aerial-rafting-boulders.jpg" alt="" loading="lazy" decoding="async"></span>
+        <div class="dr-listing__foot">
+          <span class="dr-listing__body">
+            <span class="dr-listing__name">Video</span>
+            <span class="dr-listing__desc">0:38 &#183; 46 MB</span>
+          </span>
+          <span class="dr-btn dr-btn--icon" role="img" aria-label="Download video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M8 11l4 4 4-4"/><path d="M5 19.5h14"/></svg></span>
+        </div>
+      </article>
+      <span class="st">326.2 &#215; 248 &#183; cover 180 + line 68 &#183; order-details-aerial</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>Measured on the build:</b> card <b>326.2 &#215; 248</b> &#8212; cover <b>180</b>, line
+       <b>326.2 &#215; 68</b> at padding <b>12 / 16</b>, gap <b>12</b>, radius 16, <b>no shadow</b>.
+       <i>The cover is 160 in this plate so the row fits the page; in the product it is 180.</i></p>
+    <p><b>A cover is never inset, and that is the imagery rule winning where it meets the inset rule.</b>
+       &#8220;A photograph <i>is</i> the surface&#8221; &#8212; a picture floated inside a padded card is
+       the sticker the rule forbids. So the card gives up its padding, clips with its own <b>16</b>, and
+       the media&#8217;s <b>13</b> is switched off: two radii on one corner is a shape nobody chose. The
+       padding moves onto the line below, <b>12 vertical against 16 horizontal</b>, because that line
+       already carries a 44px control &#8212; its height is set by the target and the 12 is air, not measure.</p>
+    <p><b>The action is an icon, not a pill</b> (44 &#215; 44, <code>aria-label="Download video"</code>):
+       her reference draws it that way, and <code>WCAG 2.5.3 Label in Name</code> stops applying rather
+       than failing, since there is no visible label left to contain. The word is still
+       <code>voice.md</code> <b>A11 Download</b> &#8212; spoken instead of printed.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Sheet &#183; scrim &#183; grip</b><code>.dr-sheet &#183; --picker &#183; __grip &#183; .dr-scrim</code>
+    <p>The product&#8217;s floating surface, and one of only two things in the system that takes a shadow.
+       Built by ui/kit.js, so no page carries its markup.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch">
+      <div class="dr" style="position:relative;height:236px;border-radius:var(--r-panel);overflow:hidden;background:var(--page)">
+        <div class="dr-scrim" aria-hidden="true"></div>
+        <div class="dr-sheet" style="animation:none">
+          <span class="dr-sheet__grip" aria-hidden="true"></span>
+          <p class="dr-label">Contact operator</p>
+          <span class="dr-btn dr-btn--secondary dr-btn--block">Call operator</span>
+          <span class="dr-btn dr-btn--secondary dr-btn--block">Chat with the operator</span>
+          <span class="dr-btn dr-btn--tertiary dr-btn--block">Cancel</span>
+        </div>
+      </div>
+      <span class="st">--r-panel 22 top &#183; grip 36 &#215; 5 &#183; --sh-raised</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>Radius <code>--r-panel</code> 22 on the top corners only</b>, padding <b>12 / 16 / 24</b>,
+       gap 12, ground <code>--page</code>. The grip is <b>36 &#215; 5</b> at <code>--r-pill</code>.
+       <b>The scrim is warm ink, never black:</b> <code>color-mix(--ink 40%, transparent)</code>.</p>
+    <p><b>It takes <code>--sh-raised</code>, and that is not a break in the flat rule.</b> The rule is
+       about cards sitting <i>in</i> the page; rev 43 named the exception in advance &#8212; a floating
+       surface belongs in a modal, drawer or popover, <i>and there it is appropriate</i>. Two surfaces
+       spend that rung: this and <code>.dr-toast</code>.</p>
+    <p><b>Three options is a drawer</b> &#8212; the project&#8217;s own threshold: up to about six options
+       rise from the bottom, more than that is a screen. The picker variant adds the modal contract in
+       <code>kit.js</code>: focus is trapped, the screen behind goes <code>inert</code>, Escape closes,
+       and focus returns to the control that opened it. <b>The pay drawer is the one titleless sheet</b>,
+       on her call &#8212; its accessible name stays behind on the sheet element.</p>
+    <p><i>This plate is static and its buttons are <code>&lt;span&gt;</code>s, so the page claims no
+       behaviour it is not running; the rise animation is stopped so the specimen sits still.</i></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Trust chips</b><code>.dr-chip--trust &#183; .dr-chips--stack</code>
+    <p>The credential row: what makes an operator safe to hand a job to, on the card and before any tap.</p></div>
+  <div class="spec">
+    <div class="plate oncard">
+      <span class="dr-chips dr-chips--stack">
+        <span class="dr-chip dr-chip--trust"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured</span>
+        <span class="dr-chip dr-chip--trust"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Verified</span>
+      </span>
+      <span class="st">105.8 &#215; 26.8 &#183; --trust-wash &#183; 4.72:1</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>Measured on the build:</b> <b>105.8 &#215; 26.8</b>, padding <b>5 / 10</b>, gap 6, font
+       <b>12/600</b>, <code>--r-pill</code>. Ground <code>--trust-wash</code> <code>#D8E6F2</code> with
+       <code>--trust-ink</code> <code>#2A5C7D</code> &#8212; <b>4.72:1</b>, clearing
+       <code>WCAG 1.4.3</code>&#8217;s 4.5 floor.</p>
+    <p><b>This is the one place the palette leaves warm neutral and green, and it is a research finding
+       rather than a taste.</b> <code>RJ-C1</code> &#8212; <i>confirm the operator is real and
+       qualified</i> &#8212; is the highest single drop-off in the CJM, so the credential does not sit on a
+       profile page behind a tap; it sits on the card. A cool blue is the one hue the warm ramp cannot
+       absorb, which is exactly why a credential wears it.</p>
+    <p><b><code>.dr-chips--stack</code> wraps instead of scrolling</b>, measured
+       <b>196.4 &#215; 59.6</b> at gap 6: a credential that scrolls out of view is a credential the client
+       did not read. No green here &#8212; this is card UI.</p>
+  </div>
+</div>
+
 <!-- ═══ PROGRESS ══════════════════════════════════════════════════════════ -->
 <div class="row">
   <div class="nm"><b>Listing card</b>
@@ -683,6 +863,30 @@
     <p>The rail is a 4-column grid, each node centred over its own label, with the track drawn behind
        the circles from the centre of column 1 to the centre of column 4 —
        <code>--dr-fill</code> covers the walked span.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Rail &#183; zone and two-stop</b><code>.dr-rail--zone &#183; --at2</code>
+    <p>The same horizontal rail, tuned for where it stands: inside a titled zone, and across two stops
+       instead of four.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch">
+      <ul class="dr dr-rail dr-rail--at2 dr-rail--zone">
+        <li class="dr-rail__step"><span class="dr-node dr-node--done" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-rail__label">Picked up</span></li>
+        <li class="dr-rail__step"><span class="dr-node dr-node--now" aria-hidden="true"></span><span class="dr-rail__label">On the way</span></li>
+      </ul>
+      <span class="st">326.2 &#215; 45.7 &#183; tracking</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>Measured <b>326.2 &#215; 45.7</b> on <code>tracking</code>.</b> <code>--at2</code> sets the
+       two-stop rhythm; <code>--zone</code> drops the rail&#8217;s own top margin because the zone label
+       above has already paid it &#8212; two modifiers, no second component.</p>
+    <p><b>State is never colour alone.</b> A done node is a green disc behind a charcoal check; the
+       current node takes the green ring and its halo. Each step is named in text under the node, so the
+       rail reads with no colour at all (<code>WCAG 1.4.1</code>), and the nodes are
+       <code>aria-hidden</code> because the label is the content.</p>
   </div>
 </div>
 
@@ -820,6 +1024,59 @@
     <p><b>Only the arrow leaves the tray</b>, because what the screen waits on is a file going up. It
        rests <b>visible</b> at 0% and 100%, so a dropped animation leaves a legible icon. 1.6s is the
        cadence of an upload, not of a spinner.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Banner message</b><code>.dr-msg--banner &#183; __banner</code>
+    <p>The empty state that carries a picture: an illustrated top, then the sentence and the way out.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch">
+      <div class="dr dr-msg dr-msg--banner" role="status">
+        <span class="dr-msg__banner" aria-hidden="true" style="background-image:url(../assets/drones/thumbs/drone-flight-front.png)"></span>
+        <p class="dr-msg__title">No orders yet</p>
+        <p class="dr-msg__text">Your first order will show up here, with live tracking while it runs.</p>
+        <span class="dr-btn dr-btn--primary dr-btn--block">Order a drone</span>
+      </div>
+      <span class="st">341.4 &#215; 347.8 &#183; padding 16/16/32 &#183; order-history-empty</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>Measured on the build:</b> <b>341.4 &#215; 347.8</b>, <code>--card</code> at 16, padding
+       <b>16 / 16 / 32</b> &#8212; the deeper floor is there because the block ends on a button and the
+       button needs its own air &#8212; gap 12, <b>no shadow</b>. The banner art sits at <b>78%</b> of the
+       box, 16 from the top.</p>
+    <p><b><code>role="status"</code></b>, so the state is announced without stealing focus
+       (<code>WCAG 4.1.3</code>). The art is <code>aria-hidden</code>: it is decoration, and it says
+       nothing the sentence does not.</p>
+    <p><b>Voice:</b> an empty state names <i>why</i> it is empty and gives <i>one</i> way out &#8212; never
+       an apology and never a cheer. No dead ends: every empty and error screen in the set carries a
+       visible exit.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Skeleton &#183; pill and route</b><code>.dr-sk-line--pill &#183; .dr-inset--sk</code>
+    <p>Two shapes a loading page needs that a plain bar cannot make: a pill where a chip will land, and
+       one bar where a route strip will.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch">
+      <div class="dr" style="display:flex;flex-direction:column;gap:12px">
+        <span class="dr-sk-line dr-sk-line--pill" style="width:96px"></span>
+        <span class="dr-inset dr-inset--sk"><span class="dr-sk-route"></span></span>
+      </div>
+      <span class="st">--skeleton &#183; 1.1s pulse &#183; order-history-loading</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>A skeleton rehearses the layout, never more detail than the loaded state rewards.</b> The route
+       strip&#8217;s skeleton collapsed to <b>one</b> bar on the designer&#8217;s call &#8212;
+       <i>&#171;прибери усі блоки з цього прямокутника лише один прямокутник&#187;</i> &#8212; where it had
+       held five pulsing pieces for a loaded strip that shows two short place names. <b>The card did not
+       move by a pixel</b> when it changed.</p>
+    <p>The pill rung exists because a chip is a pill: a rectangular bar where a pill lands makes the page
+       jump on load. Every skeleton pulses on the one shared <b>1.1s</b> loop, and
+       <code>prefers-reduced-motion</code> stops it.</p>
   </div>
 </div>
 
@@ -998,8 +1255,18 @@
     <p><b>No border and no dividers.</b> The 1.21:1 boundary is removed rather than darkened — a
        surface is a card and not a frame, and a boundary that is absent cannot fail 1.4.11. The plate
        carries the state.</p>
-    <p>iOS lifts its plate with a shadow; this one is lifted by <b>tone</b>, because the system spends
-       exactly one shadow and it is not here.</p>
+    <p>iOS lifts its plate with a shadow; this one is lifted by <b>tone</b> &#8212; the system spends its
+       two shadow rungs on the green primary and on the two surfaces that float, and a segmented control
+       is neither.</p>
+    <p><b>The 2px inset is real again, and it was not for a while.</b> The reset&#8217;s
+       <code>.dr fieldset{ padding:0 }</code> is 0-1-1 and out-specifies a bare class, so
+       <code>.dr-segment</code> at 0-1-0 rendered with <b>computed padding 0</b> and the plate sat flush
+       to the track&#8217;s edge &#8212; the arithmetic printed above described a shape the build was not
+       drawing. Rewritten at <b>0-2-0</b> on 2026-08-16 (rev 155), the answer this stylesheet already
+       gives beside <code>.dr-zone</code> and <code>.dr-range</code>, which are fieldsets too. Measured
+       after: padding <b>2px</b>, plate inset <b>2</b> left and top, plate radius <b>10</b> inside a track
+       radius of <b>12</b>. Nothing shipped wrong &#8212; <code>operator-listings</code> still carries the
+       grayscale <code>.segment</code>, so the component had no painted user to break.</p>
   </div>
 </div>
 
@@ -1194,6 +1461,44 @@
        ways</b> — Esc, the scrim, and <b>Cancel</b> (<code>HIG · Action sheets</code> asks for the
        cancel by name; the <code>×</code> belongs to a full modal sheet screen, not to a drawer) —
        each returning focus to the row, which by then says the new value.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Text area &#183; two heights</b><code>.dr-field--area &#183; --area6 &#183; --half &#183; __group</code>
+    <p>One field, sized by what it is asking for. The height is the promise: it tells the user how much to
+       write before they start.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch">
+      <div class="dr dr-field dr-field--area dr-field--area6">
+        <label class="dr-sr" for="kit-ta1">Your message</label>
+        <textarea class="dr-field__input" id="kit-ta1" placeholder="Describe the issue and what you&#8217;d like to happen."></textarea>
+      </div>
+      <span class="st">--area6 &#183; 341.4 &#215; 183 &#183; six lines &#183; contact-support</span>
+    </div>
+    <div class="plate wide" style="align-items:stretch">
+      <div class="dr dr-field dr-field--area dr-field--half">
+        <label class="dr-sr" for="kit-ta2">Your review</label>
+        <textarea class="dr-field__input" id="kit-ta2" placeholder="What the operator did well, and anything to improve"></textarea>
+      </div>
+      <span class="st">--half &#183; half the frame &#183; rate</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>Measured on the build:</b> <code>--area6</code> is <b>341.4 &#215; 183</b> on
+       <code>contact-support</code> &#8212; six lines, for a message that has to explain something.
+       <code>--half</code> gives <code>rate</code>&#8217;s review the taller box, because a review is the
+       one place the product asks for prose.</p>
+    <p><b>The focus rule changed for these:</b> a text area&#8217;s ring is hung on the control itself
+       rather than inherited through <code>:focus-within</code>, so the ring traces the box the caret is
+       in and not its wrapper. <code>2.5px --ink</code>, keyboard only.</p>
+    <p><b>An <code>sr-only</code> label still exists</b> where the placeholder looks like the label: a
+       placeholder is not a name (<code>WCAG 1.3.5</code>, <code>4.1.2</code>), and it vanishes the moment
+       the user types. <code>__group</code> is the row that puts two fields side by side; a
+       <code>--half</code> field in a group takes back its floor when its label is <code>sr-only</code>
+       and leaves the flex flow.</p>
+    <p><b>The onscreen keyboard covers a text area&#8217;s own Return</b>, which is why dismissal is an
+       accessory bar and not the Return key &#8212; see <i>Shell &#183; Onscreen keyboard</i>.</p>
   </div>
 </div>
 

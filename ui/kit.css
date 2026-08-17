@@ -277,8 +277,12 @@
   --focus-offset: 2px;
 
   /* ── ELEVATION ──────────────────────────────────────────────────────────
-     Surfaces are flat. Exactly one shadow is spent, under the green primary.
-     The other three are declared rungs, applied to nothing. */
+     Surfaces are flat: no card, no media well and no photograph casts a shadow,
+     proven rev 153 by enumerating every box-shadow in this file. TWO rungs are
+     spent, both on things that genuinely float: --sh-sm under the green primary
+     (3 sites) and --sh-raised under .dr-sheet and .dr-toast (2 sites) - rev 43
+     named that exception in advance. --sh-card and --sh-onphoto are declared
+     rungs applied to nothing. This comment said "exactly one" until rev 155. */
   --sh-sm:      0 1px 2px rgba(20,18,15,.05);
   --sh-card:    0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30);
   --sh-raised:  0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34);
@@ -2283,9 +2287,23 @@ header.dr-topbar,
 
 /* Segmented control — HIG's own structure in DRON's tokens: a recessed track
    with a light plate raised inside it. iOS lifts its plate with a shadow; this
-   one is lifted by tone, because the system spends exactly one shadow and it is
-   not here. No border and no dividers — the plate carries the state. */
-.dr-segment{
+   one is lifted by tone, because the system spends its two shadow rungs on the
+   green primary and on the two surfaces that float, and a segmented control is
+   neither. No border and no dividers — the plate carries the state. */
+/* WRITTEN AT 0-2-0, AND THAT IS THE FIX THIS FILE ALREADY WARNED ABOUT TWICE.
+   The reset's `.dr fieldset{ padding: 0 }` is 0-1-1 and out-specifies a bare
+   class, so a component that IS a fieldset has to answer at 0-2-0 or it
+   silently renders with no inset — the exact note written beside `.dr-zone`
+   (line ~2094) and `.dr-range` (line ~2137), both of which answer correctly.
+   `.dr-segment` never did: measured on the kit page before this fix, its
+   computed padding was **0px** against the 2 declared, so the selected plate
+   sat flush to the track's edge and the arithmetic printed in its own notes —
+   12 − 2 = 10, the plate's radius one rung under the track's — described a
+   shape the build was not drawing. Caught 2026-08-16 (rev 155) when the
+   designer read the published kit. The product has not spent this component
+   yet (`operator-listings` still carries the grayscale `.segment`), so nothing
+   shipped wrong; it would have bitten the day that screen is painted. */
+.dr .dr-segment{
   display: flex; width: 100%;
   height: var(--h-control); padding: var(--sp-2);
   background: var(--media); border: 0; border-radius: var(--r-btn);

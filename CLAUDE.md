@@ -294,7 +294,7 @@ so a rejected idea is not re-proposed later as a new one.
 
 **State tone:** empty → why it's empty + one way out; error → what happened + what to do (no apology, no joke); loading → name what is loading; success → the fact + next step (no celebration).
 
-**Back buttons (Apple HIG, mobile client):** the nav-bar back shows the title of the screen you return to (`‹ Order review`), never "Back to…"; tab-root screens have no back.
+**Back buttons (Apple HIG, mobile client):** **the back control carries no words — it is the chevron icon alone** (designer's rule 2026-08-16, `microcopy.md` **D9**, superseding D1/D8: one bar, one name, and the only name in the nav bar is the title of the screen you are on). It still takes `aria-label="Back to {destination}"`, since an icon-only control with no accessible name fails `WCAG 4.1.2`; invisible, that name neither competes with the title nor engages `WCAG 2.5.3`. So `Back to…` is right as an accessible name and forbidden as visible copy. Tab-root screens have no back.
 
 ---
 
