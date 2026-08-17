@@ -29,7 +29,13 @@
       <section class="dr-stack" aria-label="Sign in">
         <p class="dr-display">Sign in to DRON</p>
         <p class="dr-lead">One verification lets you order drone services — or take jobs as a certified operator.</p>
-        <p class="dr-field__hint">Diia and BankID confirm who you are. DRON never sees your password.</p>
+        <!-- A standing notice, not a field hint: .dr-field__hint declares
+             flex-basis:100%, which sizes the MAIN axis in a column flex box, so a
+             lone hint whose parent has a definite height blows up. .dr-note is the
+             kit's caption; --flush is EARNINGS' modifier for the one thing this
+             position changes — it sits flush left under two left-aligned lines
+             instead of centred. -->
+        <p class="dr-note dr-note--flush">Diia and BankID confirm who you are. DRON never sees your password.</p>
       </section>
     </main>
     <!-- NO BRAND MARK ON EITHER BUTTON, AND THAT IS A GAP RATHER THAN A CHOICE OF
