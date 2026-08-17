@@ -5,7 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DRON wireframe · Withdraw to card / bank account · loading</title>
 <!-- SCREEN: "Withdraw to card / bank account" — STATE: loading (transfer in progress). Grounded in flows.md MJ-2: "Loading: instant transfer to card". EXIT: transient — resolves to "money on card / bank account". -->
+<!--
+  PAINTED (2026-08-18) — the Studio layer from ui/kit.css. Structure and copy unchanged.
+  THE MARK IS payment-loading's, COPIED: .dr-mark--milestone (--green-wash, 64px circle) carrying
+  the .dr-spin 270° arc at --ink, 14.74:1 — the system's activity indicator, added rev 65 and the
+  one loop that describes no object, only work. The frame's placeholder read `SEND`, naming a
+  paper-plane glyph; the kit already has the shape a transfer-in-progress screen wears, and the kit
+  wins (divergence logged). `HIG · Progress indicators` asks for an activity indicator exactly
+  where no layout is coming that a skeleton could rehearse.
+  THE INLINE PADDING IS payment-loading's `32px 20px`, not the frame's `padding-top:24px`: the
+  painted set has one idiom for this block and a wireframe-only value is not it.
+  THE SKELETON STAYS ITS OWN ZONE, as the frame draws it — main's 12px gap separates it from the
+  status block, so no inline width or margin is needed.
+  GREEN: one control, the `Transferring…` CTA. The milestone mark is --green-wash, a tint, which
+  the budget does not count.
+-->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -20,22 +36,22 @@
     <div class="legend"><p><b>Only the content changes:</b></p><p><b>Amount / method</b> → transferring status + receipt skeleton</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><a class="back" href="wallet.html" aria-label="Back to Earnings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="title">Withdraw</span><span class="spacer"></span></header>
-    <main>
-      <section class="center" role="status" style="padding-top:24px;">
-        <span class="success-mark">SEND</span>
-        <p class="big-title">Sending to your card…</p>
-        <p class="lead">Instant transfer to Visa •••• 3318 — usually under a minute.</p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="wallet.html" aria-label="Back to Earnings"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Withdraw</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <section class="dr-center" role="status" style="padding:32px 20px;">
+        <span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5A8.5 8.5 0 1 1 3.5 12"/></svg></span>
+        <p class="dr-display">Sending to your card…</p>
+        <p class="dr-lead">Instant transfer to Visa •••• 3318 — usually under a minute.</p>
       </section>
-      <section class="stack" aria-hidden="true">
-        <div class="sk-line sk-w90"></div>
-        <div class="sk-line sk-w50"></div>
+      <section class="dr-stack" aria-hidden="true">
+        <div class="dr-sk-line dr-sk-w90"></div>
+        <div class="dr-sk-line dr-sk-w50"></div>
       </section>
     </main>
-    <footer class="actionbar">
-      <a class="btn btn-primary btn-block" href="wallet.html">Transferring…</a>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="wallet.html">Transferring…</a>
     </footer>
   </div>
 
