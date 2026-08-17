@@ -2804,18 +2804,30 @@ header.dr-topbar,
    Settled 2026-08-03 by the designer: the active dot is green, the resting
    dots are plain --btn2 discs with no outline. Named number: --green on the
    page is 1.69:1 against 1.4.11's 3:1 — accepted on the live-disc precedent,
-   because the dot is never the sole carrier: the slide itself shows position
-   and each dot keeps its accessible name. */
+   because the dot is never the sole carrier: the slide itself shows position.
+
+   IT IS AN INDICATOR AND NOT A CONTROL — the designer, 2026-08-18, when the
+   operator paint gave this component its first real spend and the 8px dot's
+   target size came up: «крапки не клікабельні там працює свайп». So the
+   answer was not to pad a 44px hit area around a dot nobody taps; it was to
+   stop pretending the dot is a control. The dots were <a href="#slide"> at an
+   8 × 8 target — three times under WCAG 2.5.8's 24 × 24 and five times under
+   HIG's 44pt — and they are now <span>s inside an aria-hidden container.
+   NOTHING IS LOST TO ASSISTIVE TECH, which is why this is a repair and not a
+   removal: the slider is a scrollable region, each slide already announces
+   "Slide n of 3", and the position the dots draw is the position the slide
+   states. 2.5.8 no longer applies because there is no target; 2.1.1 no longer
+   applies because there is nothing to reach by keyboard that the scroll
+   container does not already give. */
 .dr-pager{
   display: flex; gap: var(--sp-within-lg); justify-content: center;
   margin-top: var(--sp-snug);
 }
-.dr-pager a{
-  width: var(--sz-pager-dot); height: var(--sz-pager-dot);
+.dr-pager > *{
+  width: var(--sz-pager-dot); height: var(--sz-pager-dot); flex: none;
   border: 0; border-radius: var(--r-pill); background: var(--btn2);
 }
 .dr-pager .on{ background: var(--green); }
-.dr-pager a:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 
 /* ═══ THE PRICE LINE ══════════════════════════════════════════════════════
    A label against a figure. The default is quiet — 13 slate over 17/600 ink.

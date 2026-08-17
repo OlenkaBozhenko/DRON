@@ -55,11 +55,14 @@
           <span class="dr-slide__art">PAID</span>
         </section>
       </div>
-      <nav class="dr-pager" aria-label="Slides">
-        <a href="#oo1" class="on" aria-label="Go to slide 1"></a>
-        <a href="#oo2" aria-label="Go to slide 2"></a>
-        <a href="#oo3" aria-label="Go to slide 3"></a>
-      </nav>
+      <!-- THE PAGER IS AN INDICATOR, NOT A CONTROL (designer, 2026-08-18:
+     «крапки не клікабельні там працює свайп»). The dots were <a href="#slide">
+     links at an 8x8 target — three times under WCAG 2.5.8's 24x24 and five
+     times under HIG's 44. Rather than pad a hit area onto a control nobody
+     taps, the control is removed: swipe is how the slider moves. No tab stop,
+     nothing to size, and aria-hidden because each slide already announces
+     "Slide n of 3" and the slider itself is the scrollable region. -->
+        <div class="dr-pager" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
     </main>
     <footer class="dr-actionbar">
       <a class="dr-btn dr-btn--secondary dr-btn--block" href="operator-listings.html">Skip</a>
