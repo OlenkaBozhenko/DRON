@@ -206,6 +206,19 @@
   footer .home-indicator{ height:34px; display:flex; align-items:center; justify-content:center; }
   footer .home-indicator span{ width:134px; height:5px; border-radius:2px; background:var(--wf-skeleton); }
 </style>
+<!--
+  VISUAL LAYER (2026-08-18): the Studio layer from ui/kit.css. The block ABOVE is left in
+  place and the kit link comes AFTER it, so the kit wins every product surface — the same
+  situation painted listings.html is already in and already documented (DESIGN.md:
+  "the block precedes the kit.css link, so the kit wins every product surface"). What the
+  block still paints is the canvas AROUND the frame (body #EEEEEE) and the 28px top-bar
+  avatar's geometry; everything else in it is now dead weight for this page, and the
+  grayscale class names it keys on (.card, .oh-*, .btn, .segment, .seg, .grouptab,
+  .tabbar, .tab, .counter, .status-head) have left the markup so they cannot out-specify
+  the kit. `topbar` and `zlabel` stay: _wf-shell.js reads the first, the annotation
+  toggle reads the second.
+-->
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
 
