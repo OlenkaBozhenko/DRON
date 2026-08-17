@@ -736,30 +736,49 @@
 </div>
 
 <div class="row">
-  <div class="nm"><b>Trust chips</b><code>.dr-chip--trust &#183; .dr-chips--stack</code>
+  <div class="nm"><b>Trust chips</b><code>.dr-chip &#183; --claim &#183; --trust &#183; .dr-chips &#183; --stack</code>
     <p>The credential row: what makes an operator safe to hand a job to, on the card and before any tap.</p></div>
   <div class="spec">
     <div class="plate oncard">
-      <span class="dr-chips dr-chips--stack">
-        <span class="dr-chip dr-chip--trust"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured</span>
-        <span class="dr-chip dr-chip--trust"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Verified</span>
+      <span class="dr-chips dr-op__badges dr-chips--stack">
+        <span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+        <span class="dr-chip dr-chip--trust"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
       </span>
-      <span class="st">105.8 &#215; 26.8 &#183; --trust-wash &#183; 4.72:1</span>
+      <span class="st">claim 164.1 &#215; 26.8 &#183; trust 105.8 &#215; 26.8 &#183; order-confirmed</span>
     </div>
   </div>
   <div class="notes">
-    <p><b>Measured on the build:</b> <b>105.8 &#215; 26.8</b>, padding <b>5 / 10</b>, gap 6, font
-       <b>12/600</b>, <code>--r-pill</code>. Ground <code>--trust-wash</code> <code>#D8E6F2</code> with
-       <code>--trust-ink</code> <code>#2A5C7D</code> &#8212; <b>4.72:1</b>, clearing
-       <code>WCAG 1.4.3</code>&#8217;s 4.5 floor.</p>
-    <p><b>This is the one place the palette leaves warm neutral and green, and it is a research finding
-       rather than a taste.</b> <code>RJ-C1</code> &#8212; <i>confirm the operator is real and
-       qualified</i> &#8212; is the highest single drop-off in the CJM, so the credential does not sit on a
-       profile page behind a tap; it sits on the card. A cool blue is the one hue the warm ramp cannot
-       absorb, which is exactly why a credential wears it.</p>
-    <p><b><code>.dr-chips--stack</code> wraps instead of scrolling</b>, measured
-       <b>196.4 &#215; 59.6</b> at gap 6: a credential that scrolls out of view is a credential the client
-       did not read. No green here &#8212; this is card UI.</p>
+    <p><b>Two chips, two washes, and each one is a different kind of claim.</b>
+       <b><code>--claim</code> is the green one</b> &#8212; <i>Verified by DRON</i>, the platform
+       vouching for its own operator: <code>--green-wash</code> <code>#E7F0D2</code> with an
+       <code>--ink</code> label at <b>14.75:1</b>. <b><code>--trust</code> is the blue one</b> &#8212;
+       <i>Insured</i>, a credential a third party confirmed: <code>--trust-wash</code>
+       <code>#D8E6F2</code> with <code>--trust-ink</code> <code>#2A5C7D</code> at <b>5.65:1</b>, the
+       same rung <code>--warn-ink</code> stands at. Both clear <code>WCAG 1.4.3</code>&#8217;s 4.5 floor.</p>
+    <p><b>Both chips carry a mark and a checkmark &#8212; a leading glyph and a trailing tick.</b> The
+       green chip&#8217;s shield has the check <i>inside</i> it and the blue chip&#8217;s shield is plain,
+       so the two are told apart by drawing and not by colour alone; the trailing tick is the same
+       glyph on both, and it is what says <i>confirmed</i> rather than merely stated. Measured:
+       <b>claim 164.1 &#215; 26.8</b>, <b>trust 105.8 &#215; 26.8</b>, both 12/600 at
+       <code>--r-pill</code>, padding <b>5 / 10</b>, gap <b>6</b>, glyphs <b>14px</b>.</p>
+    <p><b>The green chip does not break the fill-only rule &#8212; it is the rule.</b> Signal Green is a
+       fill or a tint and never a word: here it is the tint and the label is charcoal. The wash sits
+       <b>1.03:1</b> against the card, so it is not counted against the green budget, and no solid
+       <code>--trust</code> is declared at all because nothing draws one.</p>
+    <p><b><code>.dr-chips--stack</code> stacks the pair vertically</b> &#8212;
+       <code>flex-direction: column; align-items: flex-start</code>, measured
+       <b>196.4 &#215; 59.6</b> on the frame &#8212; because a credential that runs off the side of a
+       card is a credential the client did not read. <b>This is <code>RJ-C1</code>, the highest single
+       drop-off in the CJM:</b> confirm the operator is real and qualified. So the credential sits on
+       the card, before any tap, beside the operator&#8217;s name and job count &#8212; never on a
+       profile page behind a click. <b>Blue is the system&#8217;s first cool colour</b> (rev 58) and the
+       one hue the warm ramp cannot absorb, which is exactly why a third party&#8217;s confirmation
+       wears it.</p>
+    <p><i>This row drew two blue chips reading &#8220;Insured&#8221; and &#8220;Verified&#8221;, with one
+       glyph each and the ratio printed as 4.72:1, until 2026-08-16 (rev 156) &#8212; the designer read
+       it off the published kit. Everything about it was wrong: the wrong wash on the wrong chip, the
+       wrong label, a missing checkmark on both, and a contrast figure that
+       <code>DESIGN.md</code> has had right all along.</i></p>
   </div>
 </div>
 
