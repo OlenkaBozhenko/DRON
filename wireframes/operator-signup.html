@@ -35,7 +35,10 @@
       <section class="dr-stack" aria-label="Sign up">
         <p class="dr-display">Confirm your identity</p>
         <p class="dr-lead">DRON verifies every operator. Confirm who you are with Diia or BankID — then add your licence and insurance.</p>
-        <p class="dr-field__hint">Diia and BankID confirm who you are. DRON never sees your password.</p>
+        <!-- A standalone notice under the lead, not a field hint: .dr-field__hint's
+             flex-basis:100% sizes the MAIN axis in a column flex parent. .dr-note
+             with the flush modifier — same 12/400 --slate, left-aligned. -->
+        <p class="dr-note dr-note--flush">Diia and BankID confirm who you are. DRON never sees your password.</p>
       </section>
     </main>
     <footer class="dr-actionbar">
