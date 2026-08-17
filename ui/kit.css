@@ -206,6 +206,16 @@
   --sz-avatar-xl:   120px; /* the profile photo where the screen IS the photo (account-photo).
                               The 8-grid step, not 117: that number is a rectangle's width
                               read off an asset ratio, and a circle should not inherit it. */
+  --sz-avatar-sm:    28px; /* the operator's own face in the nav bar (operator-listings,
+                              -empty). Added 2026-08-18 on the designer's word, closing the
+                              last place the painted product read a colour from the grayscale
+                              sheet. 28 IS DERIVED, NOT PICKED: --h-topbar is 56, so the disc
+                              is exactly half the bar it stands in and centres with 14 above
+                              and below. The other rungs could not be borrowed — --sz-avatar
+                              117 is the operator panel's WIDTH from an asset ratio,
+                              --sz-avatar-xl 120 is a subject, --sz-avatar-call 176 is a
+                              screen's middle, and --sz-avatar-badge 20 is a badge ON an
+                              avatar rather than an avatar. */
   --sz-avatar-badge: 20px; /* the pencil badge on the avatar. 18 (--sz-fchip-x, the count
                               badge) loses 4 to the ring and leaves a 12px glyph 1px of air;
                               20 gives it 2 and holds 36% of the 56px circle. */
@@ -1592,6 +1602,21 @@ header.dr-topbar,
   border-radius: var(--r-pill); overflow: hidden; background: var(--media);
 }
 .dr-avatar-lg img{ width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; }
+
+/* THE SAME CIRCLE AT THE NAV BAR'S SIZE, and it exists to stop a leak rather
+   than to add a look. operator-listings drew this disc with the grayscale
+   sheet's own `.avatar`, whose ground is #EEEEEE — a colour that is in no
+   palette in this project and showed through a cutout's transparent corners.
+   It was the last such leak in the painted set; DESIGN.md records the same one
+   on `account` and `listings`, which are a separate fix. --media here, 1.08:1
+   on the page, the ground every other photo in the kit loads onto. Two users:
+   operator-listings and operator-listings-empty. */
+.dr-avatar-sm{
+  width: var(--sz-avatar-sm); height: var(--sz-avatar-sm);
+  flex: none; display: block;
+  border-radius: var(--r-pill); overflow: hidden; background: var(--media);
+}
+.dr-avatar-sm img{ width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; }
 
 /* ═══ FORMS ═══════════════════════════════════════════════════════════════
    A field has no border. 1.4.11 governs a boundary that is DRAWN, not one that

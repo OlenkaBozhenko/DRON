@@ -40,7 +40,17 @@
 
   <div class="wf-frame dr dr-screen">
     <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
-    <header class="topbar dr-topbar"><a class="dr-back" href="onboarding-operator.html" aria-label="Back to Back"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Operator terms</span><span class="dr-topbar__spacer"></span></header>
+    <header class="topbar dr-topbar"><!-- THE ONE BACK CONTROL IN THE PRODUCT THAT NAMES NO DESTINATION, and the
+             designer's call of 2026-08-18: «не потрібно назви». D9 asks for
+             aria-label="Back to {destination}", but this one returns to
+             `onboarding-operator`, whose nav bar carries the DRON mark and nothing
+             else — there is no screen name to say, and inventing one would be a
+             microcopy.md decision taken to satisfy a pattern. So the accessible name
+             is the bare verb, which is what iOS says when a pushed screen has no
+             titled parent. `WCAG 4.1.2` is satisfied — the control has a name; it
+             simply names the action rather than the place. It read "Back to Back"
+             until today, which named nothing twice. -->
+          <a class="dr-back" href="onboarding-operator.html" aria-label="Back"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Operator terms</span><span class="dr-topbar__spacer"></span></header>
     <main class="dr-main">
       <p class="zlabel dr-label">Value intro <span class="dr-label__act">▸ what you get</span></p>
       <section class="dr-stack" aria-label="Why operate with DRON">
