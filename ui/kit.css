@@ -3292,3 +3292,212 @@ header.dr-topbar,
 @media (prefers-reduced-motion: reduce){
   .dr-kb{ animation: none; }
 }
+
+/* ═══ OPERATOR PAINT — NEW, PENDING DESIGNER REVIEW ═══════════════════════════
+   Landed 2026-08-18 by the orchestrator of the five-pack operator paint. Five
+   agents painted 38 grayscale files (JOBS 13 · EARNINGS 6 · RATINGS 2 ·
+   ACCOUNT 9 · ENTRY 8); none of them wrote to this file, so every rule below
+   was proposed as a patch, deduped here, and landed once. That is why there is
+   exactly one job card and one slider rather than four of each.
+
+   THE SIZE OF THIS BLOCK IS THE RESULT WORTH READING. 38 screens produced
+   FOUR new components and two modifiers. The ACCOUNT pack — nine screens
+   including the whole verification and signup flow — added NOTHING: every
+   component it needed already existed. What that says is that the client-side
+   kit was already the operator-side kit, which is what a design system is for.
+
+   Everything here is built from tokens the kit already declares: no new hex,
+   no new radius, no new type step, no new shadow, no new duration. The two
+   exceptions are named as such below (--sz-star-ink / --sz-star-inset) and
+   both are ARITHMETIC on an existing value, not new values.
+
+   Pending her review — she reads the staged list, fixes what she wants, and
+   the fixes then go into concept.md / DESIGN.md / ui/inventory.md. Until then
+   this block stays marked so it is never mistaken for settled kit. */
+
+/* ── THE BALANCE / BIG-FIGURE BLOCK ───────────────────────── EARNINGS · used
+   by wallet, wallet-empty, withdraw (EARNINGS) and ratings (RATINGS).
+   A figure and the line that names it.
+   WHY IT EXISTS AT ALL: _wireframe.css draws this as `.amount` at 34px/600 in
+   #252525 — a size outside the ten-step scale (which tops out at 22) and an
+   ink outside the palette. The painted client page `payment.html` still leaks
+   it, which is a defect reported separately and NOT fixed here. The figure now
+   takes .dr-number (20/700, tabular — the role the kit cut for numerals) and
+   the caption .dr-note.
+   Measured: block 341 × 42 (figure 20 + gap 4 + caption 18); figure --ink on
+   --page 15.99:1, caption --slate on --page 6.62:1. The 4px step is
+   --sp-within, the scale's own within-a-group rung. RATINGS proved the block
+   takes a third child — its star row leads, then figure, then caption — with
+   no change to the rule. */
+.dr-balance{ display: flex; flex-direction: column; gap: var(--sp-within); }
+
+/* .dr-note is text-align:center by construction — the right default under a
+   centred mark inside .dr-msg — so a note standing beside a left-aligned
+   figure has to say so. A structural keyword only: no colour, size or weight
+   leaves .dr-note. Spent 13 times across four packs. */
+.dr-note--flush{ text-align: left; }
+
+/* ── THE AVAILABILITY HEAD ─────────────────────────────────── JOBS · used by
+   operator-listings, operator-listings-empty. A dot, the state, and one
+   supporting clause, standing above the segmented control that sets it.
+   THE DOT IS --ink AND NOT --green, and that is WCAG 1.4.1 rather than taste:
+   a dot that is green when Available and grey when Offline would rest on
+   colour alone. The sentence beside it says the state in words and the segment
+   below says it a third time, so the dot is a bullet, not a signal. It also
+   keeps the accent off a screen whose card CTAs already spend it.
+   Measured: block 326.2 × 19, gap 8; dot 10 × 10 (--sz-dot, the checked
+   radio's own centre — no new size); state 15/600 --ink 15.99:1; note 13
+   --slate 6.62:1. */
+.dr-avail{ display: flex; align-items: baseline; flex-wrap: wrap; gap: var(--sp-within-lg); }
+.dr-avail__dot{
+  width: var(--sz-dot); height: var(--sz-dot); flex: none; align-self: center;
+  border-radius: var(--r-pill); background: var(--ink);          /* 15.99:1 on --page */
+}
+.dr-avail__state{
+  font-size: var(--t-heading-size); font-weight: var(--weight-medium);
+  line-height: var(--t-heading-line); color: var(--ink);         /* 15.99:1 */
+}
+.dr-avail__note{
+  font-size: var(--t-bodysm-size); line-height: var(--t-bodysm-line);
+  color: var(--slate);                                           /* 6.62:1 */
+}
+
+/* ── THE EARNED SCORE ──────────────────────────────────────── RATINGS · used
+   by ratings. A score somebody else GAVE, not a score being given.
+   WHY NOT .dr-rating: that class is an INPUT — five <button>s, each a 44pt
+   target carrying aria-pressed, built for rate.html where the client awards a
+   score. A read-only display must not be a row of buttons announcing a pressed
+   state it cannot change (WCAG 4.1.2), and it must not put five stops in a
+   dashboard's tab order. Same star path, same --sz-star 32, same two colours,
+   NO tab stop: the row is aria-hidden and the figure beside it states the
+   value in --ink at 15.99:1. That is what lets --warn's 1.84:1 and --btn2's
+   1.39:1 carry a shape and never a meaning — both are the kit's own recorded
+   pairs for this glyph on this ground.
+
+   THE CLIP LANDS ON THE INK, NOT ON THE BOX, and this is the part worth
+   keeping. The star path spans x 3.3 → 20.7 of its 24-grid, so only 72.5% of
+   a box is ink. Clipping the row at score/5 — 96% for 4.8 — removes just the
+   tip of the fifth arm and the display renders FIVE FULL STARS. That was
+   built, measured, photographed and rejected. Derived from the path's own
+   coordinates instead: 4.8 covers exactly 0.800 of the fifth silhouette (fill
+   150.96 of a 160 row), and the fifth star visibly keeps a grey point. The
+   whole-star floor was the other candidate and renders 4.8 and 4.0 alike.
+   gap is 0 on purpose — the glyph's own 27.5% margin is the optical gap.
+
+   THE TWO RUNGS BELOW ARE THE BLOCK'S ONLY ADDITION TO :root, and both are
+   ARITHMETIC on --sz-star plus the glyph's own grid coordinates, in the habit
+   of --node-centre / --pick-indent / --hist-seat. They can be folded into the
+   calc() below at the cost of stating 3.3 / 17.4 / 24 inside a class — her
+   call, and the one open question this component carries. */
+:root{
+  --sz-star-ink:   calc(var(--sz-star) * 17.4 / 24);   /* the silhouette's width      */
+  --sz-star-inset: calc(var(--sz-star) *  3.3 / 24);   /* its left margin in the box  */
+}
+.dr-stars{ position: relative; display: inline-flex; align-self: flex-start; color: var(--btn2); }
+.dr-stars__fill{
+  position: absolute; inset: 0 auto 0 0;
+  display: inline-flex; overflow: hidden;
+  width: calc(var(--dr-full, 5) * var(--sz-star)
+            + var(--sz-star-inset)
+            + var(--dr-part, 0) * var(--sz-star-ink));
+  color: var(--warn);
+}
+.dr-stars .dr-ic{ width: var(--sz-star); height: var(--sz-star); fill: currentColor; stroke: none; }
+
+/* The muted suffix on a name's own baseline — `· 5.0` beside a reviewer.
+   RATINGS · used by ratings. Nothing in the kit fitted: .dr-listing__desc is
+   the right ink but is a block with margin-top 2, so on a baseline row it sits
+   2px low; .dr-op__rating is the same string in the operator card and is
+   likewise block, stacked and scoped to .dr-op. This is the inline rung of
+   that pair, at .dr-order__date's own 12.5/--slate without the nowrap a date
+   needs. Measured 12.5/400 --slate 5.95:1 on --card, tabular per the kit's
+   own figures rule. If the kit would rather have a general inline-meta rung,
+   this is the place to cut it and rename. */
+.dr-listing__score{
+  margin-left: var(--sp-within-lg);
+  font-size: var(--t-meta-size); font-weight: var(--weight-regular);
+  color: var(--slate); font-variant-numeric: tabular-nums;
+}
+
+/* ── THE SLIDE / CAROUSEL ──────────────────────────────────── ENTRY · used by
+   welcome, onboarding-client (ENTRY) and onboarding-operator (ACCOUNT).
+   The onboarding explainer: three slides on CSS scroll-snap, no JS, with the
+   kit's own .dr-pager under them. The type inside a slide is the kit's own —
+   .dr-display for the heading, .dr-lead for the sub-line — so no
+   slide-specific type class is cut, because the scale already has both. */
+.dr-slider{
+  display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+  margin: 0 calc(var(--sp-screen) * -1);
+  padding: var(--sp-within-lg) var(--sp-screen);
+  scrollbar-width: none;
+}
+.dr-slider::-webkit-scrollbar{ display: none; }
+.dr-slide{
+  flex: 0 0 100%; scroll-snap-align: center;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: var(--sp-screen);
+  padding: var(--sp-within-lg) var(--sp-within);
+}
+/* The art. A slide still waiting on its picture keeps a --media ground and its
+   mono label — --slate on --media is 5.51:1 — so a half-supplied slider reads
+   as "this picture is pending" rather than as a broken layout. Three of the
+   nine slides across the three screens are in that state today and no artwork
+   was invented for them. A slide that HAS its picture drops the ground: a
+   transparent cutout sits straight on the surface, never floated in a well. */
+.dr-slide__art{
+  width: 100%; flex: none;
+  border: 0; border-radius: var(--r-media);
+  background: var(--media); color: var(--slate);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--t-micro-size); font-weight: var(--t-micro-weight);
+  letter-spacing: var(--t-micro-track); line-height: var(--t-para-line);
+}
+.dr-slide__art:has(img){ background: none; }
+.dr-slide__art img{ width: 100%; height: 100%; object-fit: contain; display: block; }
+
+/* THE FULL-BLEED SLIDER. The picture is the background of the whole screen,
+   not of the slide box. The slider is lifted out of the flow and pinned to
+   .dr-main, which becomes its containing block — so the layer stops exactly
+   where the bottom bar begins, whatever height that bar happens to be, and no
+   number here names the bar. The bars stay opaque, so nothing is lost by
+   stopping at the content edge.
+   Opt-in, not automatic on :has(img): a slider whose slides mix the two
+   treatments reads as broken, and three slides are still waiting on a file.
+   Measured: slider 373.4 × 577.6 filling .dr-main's padding box; art band
+   373.4 × 202.2 = 35%, bottom-anchored; inner measure 333.4. */
+.dr-slider--bleed{
+  position: absolute; inset: 0; z-index: 0;
+  margin: 0; padding: 0; align-items: stretch;
+}
+.dr-slider--bleed .dr-slide{
+  height: 100%; position: relative; justify-content: center;
+  padding: 0 var(--sp-group); gap: var(--sp-snug);
+}
+/* The bars keep everything they had — ground, hairline, place in the column.
+   They are named only for paint order: an absolutely positioned slider paints
+   above its static siblings. HIG · Buttons wants the primary action on a
+   stable ground, so nothing here goes transparent. */
+.dr-screen:has(.dr-slider--bleed) > .dr-statusbar,
+.dr-screen:has(.dr-slider--bleed) > .dr-topbar,
+.dr-screen:has(.dr-slider--bleed) > .dr-actionbar{ position: relative; z-index: 1; }
+/* .dr-main is the containing block, and once the slider leaves the flow it
+   holds only the pager. Sent to the bottom so the pager stays under the
+   picture instead of jumping up under the top bar. */
+.dr-screen:has(.dr-slider--bleed) > .dr-main{ position: relative; justify-content: flex-end; }
+/* The art band runs the full width and stands on the content floor. Its height
+   is capped so no subject can climb into the copy, which is centred in the
+   same box: the cap only binds a portrait subject — the landscape cutouts are
+   width-bound and draw the same size with or without it. */
+.dr-slider--bleed .dr-slide__art{
+  position: absolute; left: 0; right: 0; bottom: 0; top: auto;
+  height: 35%; z-index: 0; width: auto; min-height: 0; margin: 0;
+}
+/* contain, never cover: these are transparent cutouts, and covering a
+   375-wide portrait would throw away most of a landscape's width. Anchored
+   bottom, so the figure meets the floor of the screen rather than floating. */
+.dr-slider--bleed .dr-slide__art img{ object-fit: contain; object-position: center bottom; }
+.dr-slider--bleed + .dr-pager{ position: relative; z-index: 1; margin-top: 0; }
+.dr-slider--bleed .dr-display,
+.dr-slider--bleed .dr-lead{ position: relative; z-index: 1; }
+/* ═══ END OPERATOR PAINT ══════════════════════════════════════════════════ */
