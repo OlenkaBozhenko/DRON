@@ -21,11 +21,11 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Result photo</b> ▸ the proof that gates payment</p><p><b>Notes</b> ▸ handover details</p><p><b>Job</b> ▸ what's being closed</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><a class="back" href="job-checklist.html" aria-label="Back to Checklist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="title">Close job</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Result photo <span class="act">▸ proof before pay (H-7)</span></p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="job-checklist.html" aria-label="Back to Checklist"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Close job</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Result photo <span class="dr-label__act">▸ proof before pay (H-7)</span></p>
       <section aria-label="Result photo">
         <!-- THE TRAY CARRIES ITS PHOTO, 2026-08-16 — the designer's call: the
              result-proof image should be visible on the screens that show the
@@ -34,30 +34,41 @@
              it is the same order (package delivery · Olena H. · ₴180). The base
              state is "success", and its CTA closes the job — a screen that
              cannot be submitted without the photo should not draw an empty
-             tray. _conventions.md §8 governs the filled tray. -->
-        <div class="upload-zone">
-          <span class="up-shot" role="img" aria-label="Delivery photo"><img src="../assets/scenes/thumbs/delivered-at-door.jpg" alt="" loading="lazy" decoding="async"></span>
-          <button type="button" class="btn btn-secondary btn-sm">Replace photo</button>
+             tray. _conventions.md §8 governs the filled tray.
+             `up-shot` NEEDS NO CLASS OF ITS OWN EITHER: a full-width 180px
+             photograph is .dr-well .dr-well--photo with the painted client idiom's
+             own inline box, copied byte for byte from order-details.html. A FILLED
+             tray is therefore not a .dr-upload at all — .dr-upload is the empty
+             zone that IS the control, and here the control is the Replace button.
+             The wrapper is .dr-stack, the kit's within-zone column. -->
+        <div class="dr-stack">
+          <span class="dr-well dr-well--photo" style="width:100%;height:180px;" role="img" aria-label="Delivery photo"><img src="../assets/scenes/thumbs/delivered-at-door.jpg" alt="" loading="lazy" decoding="async"></span>
+          <button type="button" class="dr-btn dr-btn--secondary dr-btn--block">Replace photo</button>
         </div>
       </section>
 
-      <p class="zlabel">Notes <span class="act">▸ handover details</span></p>
+      <p class="zlabel dr-label">Notes <span class="dr-label__act">▸ handover details</span></p>
       <section aria-label="Handover notes">
-        <textarea class="control" placeholder="Handover notes, client name…" aria-label="Handover notes"></textarea>
+        <div class="dr-rows">
+          <div class="dr-field dr-field--area dr-field--area6">
+            <textarea class="dr-field__input" placeholder="Handover notes, client name…" aria-label="Handover notes"></textarea>
+          </div>
+        </div>
       </section>
 
-      <p class="zlabel">Job <span class="act">▸ what's being closed</span></p>
-      <div class="kv" aria-label="Job summary">
-        <div class="kv-row"><span class="kv-key">Service</span><span class="kv-val">Package delivery</span></div>
-        <div class="kv-row"><span class="kv-key">Client</span><span class="kv-val">Olena H.</span></div>
-        <div class="kv-row"><span class="kv-key">Pay</span><span class="kv-val">₴180</span></div>
+      <p class="zlabel dr-label">Job <span class="dr-label__act">▸ what's being closed</span></p>
+      <div class="dr-rows" aria-label="Job summary">
+        <div class="dr-rows__row"><span class="dr-rows__key">Service</span><span class="dr-rows__val">Package delivery</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Client</span><span class="dr-rows__val">Olena H.</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Pay</span><span class="dr-rows__val">₴180</span></div>
       </div>
     </main>
-    <footer class="actionbar">
-      <a class="btn btn-primary btn-block" href="wallet.html">Submit &amp; close job</a>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="wallet.html">Submit &amp; close job</a>
     </footer>
   </div>
 
+  <script src="../ui/kit.js"></script>
   <script src="_wf-shell.js"></script>
 </body>
 </html>
