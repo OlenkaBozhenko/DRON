@@ -4,8 +4,19 @@ The component kit behind the whole product: **49 screens, both personas, painted
 alike.** This file is the source; [`ui/inventory.html`](inventory.html) and the published artifact
 are rendered from it.
 
-> **Live artifact:** https://claude.ai/code/artifact/b8f34fe2-1728-410d-9d72-28982190ae5e
+> **Live artifact — the inventory (this file):** https://claude.ai/code/artifact/b8f34fe2-1728-410d-9d72-28982190ae5e
 > — every painted component live at production size, republished to the same URL on every change.
+>
+> **Live artifact — the kit page (`ui/kit.html`):** https://claude.ai/code/artifact/09170e8f-7203-4f40-adab-1672bfcd6549
+> — published 2026-08-16 (rev 153). The two are different documents and both are kept: **this file
+> is the census** — what exists, on how many screens, decided or open — and **the kit page is the
+> specimen sheet**, every component drawn at production size with live CSS you can tab into and
+> hover. The artifact is `ui/kit.html` made self-contained, because a published page cannot reach a
+> repo: `ui/kit.css` is inlined, all 14 images and the brand mask are `data:` URIs, the markup is
+> escaped to pure ASCII so it renders the same whatever charset the host declares, and the two
+> links that pointed at the repo (`../research.html`, `shell.html`) are dropped or unlinked.
+> **Nothing else is changed** — no value, no class, no string, so the specimens stay the build's.
+> Republish by rebuilding from `ui/kit.html` to the same URL.
 
 ---
 
