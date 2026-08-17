@@ -5,7 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DRON wireframe · Withdraw to card / bank account · error</title>
 <!-- SCREEN: "Withdraw to card / bank account" — STATE: error (payout failed / invalid details). Grounded in flows.md MJ-2: "invalid card / bank details" + "payout failed, funds returned to balance". EXIT: retry / switch to bank transfer. -->
+<!--
+  PAINTED (2026-08-18) — the Studio layer from ui/kit.css. Structure and copy unchanged.
+  THE `FAILED` PLACEHOLDER BECOMES .dr-mark--danger — --danger-wash ground, --danger-ink glyph,
+  5.49:1, the wash-carries-ink family. The glyph is COMPOSED FROM TWO GLYPHS ALREADY PAINTED and
+  draws nothing new: order-review's payment card (`rect 3,6,18,12 rx 2.4` + the stripe) under
+  delivery-error's own strike (`M4 4l16 16`). A crossed card is what failed here.
+  THE MESSAGE BLOCK IS tracking-error's, byte for byte in its anatomy: .dr-msg[role="alert"],
+  .dr-mark, __title, __body, __actions with a primary and a secondary. The recovery lives in the
+  block, which is why the action bar below holds no button — the frame gives it one line of
+  reassurance instead, and there is still no dead end.
+  GREEN: one control, `Try again`.
+-->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -20,25 +33,25 @@
     <div class="legend"><p><b>Only the content changes:</b></p><p><b>Amount / method</b> → payout-failed notice + retry / use bank transfer</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><a class="back" href="wallet.html" aria-label="Back to Earnings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="title">Withdraw</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Amount <span class="act">▸ returned to balance</span></p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="wallet.html" aria-label="Back to Earnings"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Withdraw</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Amount <span class="dr-label__act">▸ returned to balance</span></p>
       <section aria-label="Payout error">
-        <div class="msg-block" role="alert">
-          <span class="msg-ph">FAILED</span>
-          <span class="msg-title">Withdrawal didn't go through</span>
-          <p class="msg-body">The transfer to your card failed and the ₴3,240 is back in your balance. Check the card details, or try a bank transfer instead.</p>
-          <div class="msg-actions">
-            <a class="btn btn-primary btn-block" href="withdraw-loading.html">Try again</a>
-            <a class="btn btn-secondary btn-block" href="withdraw.html">Use bank transfer</a>
+        <div class="dr-msg" role="alert">
+          <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2.4"/><path d="M3 10.4h18"/><path d="M4 4l16 16"/></svg></span>
+          <span class="dr-msg__title">Withdrawal didn't go through</span>
+          <p class="dr-msg__body">The transfer to your card failed and the &#8372;3,240 is back in your balance. Check the card details, or try a bank transfer instead.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="withdraw-loading.html">Try again</a>
+            <a class="dr-btn dr-btn--secondary" href="withdraw.html">Use bank transfer</a>
           </div>
         </div>
       </section>
     </main>
-    <footer class="actionbar">
-      <p class="note">Funds returned to your balance — nothing was lost.</p>
+    <footer class="dr-actionbar">
+      <p class="dr-note">Funds returned to your balance — nothing was lost.</p>
     </footer>
   </div>
 
