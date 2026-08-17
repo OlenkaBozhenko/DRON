@@ -21,20 +21,28 @@
     <div class="legend"><p><b>Only the content changes:</b></p><p><b>Result photo</b> → uploading status + photo skeleton</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><a class="back" href="job-checklist.html" aria-label="Back to Checklist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="title">Close job</span><span class="spacer"></span></header>
-    <main>
-      <section class="center" role="status" style="padding-top:24px;">
-        <span class="success-mark">SEND</span>
-        <p class="big-title">Uploading delivery photo…</p>
-        <p class="lead">Sending the delivery photo. Keep the app open.</p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="job-checklist.html" aria-label="Back to Checklist"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Close job</span><span class="dr-topbar__spacer"></span></header>
+    <!-- delivery-loading's own composition, copied: a milestone mark over the display
+         line and its lead, then the skeleton block the picture will land in with the
+         kit's .dr-sk-arrow motion inside it — "the tray holds still and only the arrow
+         leaves it: what the screen waits on is a file going up". The SEND placeholder
+         becomes that same upload glyph, so the mark and the motion agree.
+         --green-wash under --ink is 14.75:1 on the milestone mark. -->
+    <main class="dr-main">
+      <section class="dr-center" role="status" style="padding-top:24px;">
+        <span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg></span>
+        <p class="dr-display">Uploading delivery photo…</p>
+        <p class="dr-lead">Sending the delivery photo. Keep the app open.</p>
       </section>
-      <div class="sk-block" style="height:120px;" aria-hidden="true"></div>
-      <p class="hint">Payment is held until the client confirms — auto-confirms after 2h.</p>
+      <div class="dr-sk-block" style="height:120px;" aria-hidden="true">
+        <span class="dr-sk-up"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><g class="dr-sk-arrow"><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></g></svg></span>
+      </div>
+      <p class="dr-hint">Payment is held until the client confirms — auto-confirms after 2h.</p>
     </main>
-    <footer class="actionbar">
-      <a class="btn btn-primary btn-block" href="wallet.html">Uploading…</a>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="wallet.html">Uploading…</a>
     </footer>
   </div>
 
