@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Payment · aerial · card details (base)</title>
+<!-- SCREEN (sitemap): "Payment". JOB (jtbd): MJ-1 pay step (C-04). STATE: base. The method is chosen in the Pay drawer on order-review; this screen takes the card. Flow step → order-confirmed. -->
+<!-- NEW 2026-08-16 — the pay step, one file per service. The built screen stated ₴180 twice and
+     named *Package delivery* under the figure, on an order the previous screen had just priced at
+     ₴800 or ₴650. That is `voice.md` **P3** / `jtbd.md` **RJ-C3** broken at the sharpest possible
+     moment — the screen where the card goes in. NOT a WCAG or HIG failure: the markup, the
+     `cc-*` autocomplete tokens (`WCAG 1.3.5`), the drawn labels (`3.3.2`), the 44pt rows and the
+     save-card contract are the delivery file's exactly, and only the amount and its subtitle move. -->
+<link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="payment-aerial.html" class="cur" aria-current="page">success</a>
+      <a href="payment-error.html">error</a>
+      <a href="payment-loading.html">loading</a>
+    </nav>
+    <h1>Payment</h1>
+    <p class="sub">Client · MJ-1 · state: <b>success (base)</b> · file: payment-aerial.html</p>
+    <div class="flow"><b>Job (jtbd):</b> MJ-1 — the pay step (C-04). The method was answered in the Pay drawer on Order review; what is left to ask is the card.<br><b>Exit:</b> Pay ₴800 → <b>Order confirmed / operator revealed</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Amount</b> ▸ the locked total</p><p><b>Card</b> ▸ the card being charged</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="order-review-aerial.html" aria-label="Back to Order review"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Card details</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Amount <span class="dr-label__act">▸ final total</span></p>
+      <section aria-label="Amount">
+        <p class="amount">₴800</p>
+        <p class="amount-sub">Aerial photo &amp; video · Trukhaniv Island</p>
+      </section>
+      <!-- THE SCREEN TAKES THE CARD, IT NO LONGER ASKS THE METHOD — 2026-08-16,
+           the designer reading the built drawer: «по кліку на кнопку "Pay with
+           card" відкриваються поля вводу номера картки дати csv та ім'я власника
+           та сторінка яку ти відкриваєш вже не релевантна».
+           What was here until today: a second `Payment method` card with three
+           radios — Apple Pay / Google Pay / Visa •••• 4921 — behind a drawer that
+           had already answered exactly that question, and no card entry anywhere
+           in the product (this file's own header said so). The drawer asks HOW;
+           this screen asks WITH WHICH CARD. One question each.
+           THE TITLED CARD IS KEPT, NOT REBUILT — same `.dr-zone` fieldset, same
+           `aria-labelledby` / `aria-describedby` wiring as rev 127 gave it, so
+           the group's name is still text the eye reads (WCAG 1.3.1, 2.5.3, 4.1.2).
+           Only the title and the rows inside it changed.
+           WCAG 1.3.5 IDENTIFY INPUT PURPOSE (AA) IS WHAT GOVERNS THE FOUR ROWS:
+           each input carries the criterion's own token — cc-number, cc-exp,
+           cc-csc, cc-name — which is also the attribute that makes iOS offer
+           `Scan Credit Card` over the keyboard (HIG · Text fields). One attribute,
+           both standards. 3.3.2 is carried by the drawn label on every row (no
+           placeholder-only field); HIG's 44pt target by `.dr-field`'s
+           min-height:--h-control = 44px; 2.4.7 by the caret rather than a ring,
+           which is rev 100's rule for text fields, inherited and not re-decided.
+           THE SECURITY CODE IS MASKED — type="password" — the one value on the
+           screen that should not stand readable over a shoulder.
+           FOUR STACKED ROWS, NOT TWO-UP: `Expiry` and `CVV` sit side by side in
+           most checkouts, but this kit has no two-up row — `.dr-field--half` is
+           the rate screen's half-SCREEN-height textarea, not a half-width field.
+           Building the pair means adding a component, which is the designer's
+           call and not a side effect of this change.
+           THE AMOUNT BLOCK ABOVE IS LEFT ALONE: not a card, and its content is
+           the figure itself. -->
+      <p class="zlabel dr-label">Card <span class="dr-label__act">▸ number, expiry, CVV, name</span></p>
+      <form class="dr-stack" id="card-form" aria-label="Card details" action="#">
+        <fieldset class="dr-zone" aria-labelledby="card-title" aria-describedby="card-sub">
+          <p class="dr-zone__title" id="card-title">Card</p>
+          <p class="dr-zone__sub" id="card-sub">Visa or Mastercard, charged once for this order</p>
+          <!-- `.dr-rows--card` IS LOAD-BEARING HERE, and it was measured before it
+               was added. Without it rev 98's plain-list strip takes the fields' own
+               16 away while `.dr-zone > .dr-rows` still bleeds the group out by −16:
+               measured on the 351 frame, every label stood at x 17 against a title
+               at 33 — 16px left of the card it lives in — and all three separators
+               ran 0 → 0, edge to edge across the card instead of starting at its
+               inset (`HIG · Lists and tables`, inset grouped list). It is the same
+               modifier and the same reason as `account-edit`'s Personal card
+               (rev 124), which is the other titled card of typed rows in the
+               product. Both alignments are WCAG-clean — this is HIG and the
+               project's one-axis rule (`ui/inventory.md` rev 114), not a contrast
+               or a target failure. -->
+          <div class="dr-rows dr-rows--card">
+            <div class="dr-field">
+              <label class="dr-field__label" for="cc-num">Card number</label>
+              <span class="dr-field__group"><input class="dr-field__input" id="cc-num" name="cc-number" type="text" inputmode="numeric" autocomplete="cc-number" value="1234 5678 9012 3456"></span>
+            </div>
+            <div class="dr-field">
+              <label class="dr-field__label" for="cc-exp">Expiry</label>
+              <span class="dr-field__group"><input class="dr-field__input" id="cc-exp" name="cc-exp" type="text" inputmode="numeric" autocomplete="cc-exp" value="04/28"></span>
+            </div>
+            <div class="dr-field">
+              <label class="dr-field__label" for="cc-csc">CVV</label>
+              <span class="dr-field__group"><input class="dr-field__input" id="cc-csc" name="cc-csc" type="password" inputmode="numeric" autocomplete="cc-csc" value="123"></span>
+            </div>
+            <!-- THE NAME IS TWO ROWS, NOT ONE — the designer's call 2026-08-16:
+                 «імя прізвище». Both shapes were put to her with the standards
+                 first and NEITHER FAILS: `WCAG 1.3.5` names them both —
+                 `cc-name` for a single field, `cc-given-name` + `cc-family-name`
+                 for the split — and `HIG · Text fields` asks for the fewest
+                 fields, the name being printed on the card as one line. A taste
+                 call with nothing failing either way, and she took the split.
+                 `Cardholder` retires with it. -->
+            <div class="dr-field">
+              <label class="dr-field__label" for="cc-given">First name</label>
+              <span class="dr-field__group"><input class="dr-field__input" id="cc-given" name="cc-given-name" type="text" autocomplete="cc-given-name" value="OLENA"></span>
+            </div>
+            <div class="dr-field">
+              <label class="dr-field__label" for="cc-family">Last name</label>
+              <span class="dr-field__group"><input class="dr-field__input" id="cc-family" name="cc-family-name" type="text" autocomplete="cc-family-name" value="BOZHENKO"></span>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </main>
+    <!-- THE SAVE-CARD ROW SITS ON THE BOTTOM EDGE, above Pay — the same component,
+         the same place and the same sentence shape as `order-setup`'s
+         `Save this address for next time` (concept.md rev 115). The two costs of a
+         non-button control in an action bar are paid the same way there and here:
+         the input carries form="card-form", which keeps it a control OF the form it
+         left (WCAG 1.3.1 / 4.1.2), and it is placed BEFORE the button so DOM order
+         still equals reading order (WCAG 2.4.3).
+         IT IS ALSO WHAT GIVES `account-edit`'s SAVED Visa •••• 4921 AN ORIGIN:
+         without it no screen in the product ever saves a card. Chosen 2026-08-16
+         over a form with no switch, and over a saved-card row above the form —
+         which would have put a chooser back on the screen that just lost one. -->
+    <footer class="dr-actionbar">
+      <label class="dr-pick" style="border-radius:6px;"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this card for next time</span><input type="checkbox" name="save-card" form="card-form" class="sr-only"></label>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="order-confirmed-aerial.html">Pay ₴800</a>
+    </footer>
+  </div>
+
+  <!--
+    ui/kit.js arrives here 2026-08-16 (rev 151) for the onscreen keyboard, on the designer's
+    «застосуй цей функціонал (появлення розкладки клавіатури) для мобільної версії кругом де є
+    імпути і поля вводу та текстові поля» — the sweep of the behaviour rev 149 built on `rate`.
+    No markup for it lives on this page on purpose: the system draws the keyboard over an app and
+    is not part of the app's DOM, so the script builds it and every field on every screen gets the
+    same picture.
+    Five card fields, and one thing is reported rather than quietly drawn: `cc-num`, `cc-exp` and
+    `cc-csc` declare `inputmode="numeric"`, so `HIG · Onscreen keyboards` asks for the number pad,
+    and the kit draws one plane — the letter layout. The name fields are correct as drawn. Building
+    a second plane is the designer's call, so the mismatch is written here and put to her.
+  -->
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js"></script>
+</body>
+</html>

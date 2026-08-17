@@ -145,6 +145,8 @@
   --r-detail-lg: 8px; /* the same floor's next step. Cut 2026-08-15 (rev 92) for the
                          checkbox, which the designer chose to soften; --r-detail stays
                          4 because the skeleton bars spend it and they did not move. */
+  --r-key:      5px;  /* QUOTED FROM iOS, off the closed ramp on purpose — see
+                          THE ONSCREEN KEYBOARD. Reported, not hidden. */
   --r-hairline: 2px;  /* the home-indicator bar — same floor */
   --r-input:  10px;
   --r-btn:    12px;
@@ -176,6 +178,11 @@
   --h-tabs:      60px;
   --h-tab:       50px;
   --h-home:      30px;
+  --h-kb:       291px;   /* iOS portrait keyboard on a 375 x 812 frame: 216 keys
+                            + 45 QuickType + 30 home-indicator inset. HIG gives no
+                            number and asks you to read the keyboard's frame; this
+                            is what that frame measures on the device we draw. */
+  --h-kb-quick:  45px;   /* the prediction strip inside it */
   --h-groups:    48px;   /* the in-page tab row */
   --h-pill:      32px;   /* visible height of a chip / in-page tab */
   --w-home-bar:  134px;
@@ -204,6 +211,11 @@
                               20 gives it 2 and holds 36% of the 56px circle. */
   --w-badge-ring:    2px;  /* the badge's cut-out edge against the photograph — a border,
                               never a shadow. */
+  --w-shot-edge:     3px;  /* the same pattern one rung up: the cut-out edge that keeps two
+                              overlapping photographs in the pile apart on --page. 2 is the
+                              badge's number against a single picture; a picture against a
+                              picture needs the 8-grid's own half-step to survive the tilt,
+                              where the edge is read at an angle and thins optically. */
   --sz-arrow:       26px;  /* the direction chip in a route strip */
   --sz-tick:        30px;  /* the green tick under a zone label */
   --sz-tick-h:      2px;
@@ -318,6 +330,27 @@
   --banner-art:   78%;
   --banner-top:   16px;
   --sz-upload-min: 140px;  /* the upload tray's floor, from the wireframe */
+  /* THE PHOTO PILE — proportions, not pixels, so the pile keeps its shape at
+     every viewport the shell switches to. Read off Figma 103:43 and scaled up:
+     the reference's frames are 33% of a chat screen, ours are the subject of
+     the screen they sit on. */
+  --w-stack-shot:   62%;   /* of the content column: measured 206.7 of 333.4 on the 375 frame,
+                              the column being 341.4 less this block's own 4px sides. */
+  --stack-aspect:  3 / 2;  /* the shoot's own ratio — the photographs are not re-cropped. The
+                              three masters are 1514×1009 · 1488×992 · 1516×1011, all 1.500. */
+  --sp-stack-lap: -14%;    /* the overlap. A margin percentage resolves against the column's
+                              WIDTH, so -14% of 333.4 pulls 46.7px against a 137.8px-tall frame.
+                              WHAT THE BUILD ACTUALLY SHOWS IS 38.7 — 28.1%, NOT THE 34% THIS
+                              LINE CLAIMED UNTIL 2026-08-16 (rev 153), and the missing 8 is the
+                              kit's own `.dr-stack{ gap: --sp-within-lg }` above, which the pile
+                              inherits by being built on that class and which pushes back against
+                              every negative margin here. Measured, not derived. The reference
+                              (Figma 103:43) covers 35%. Left as built — the pile is a look and
+                              the look is hers; `gap: 0` inside the `:has()` rule below would
+                              land 33.9%, and -16.4% here would land 35% with the gap kept. */
+  --sp-stack-in:    6%;    /* the front frame pulls in from the right edge, so the pile ends
+                              on a different margin than it began and does not read as a
+                              column of right-aligned boxes. */
   --sz-pager-dot:  8px;
   --sz-today-dot:  4px;    /* the mark under today's numeral in the date picker.
                               Not --sz-dot (10, the checked radio's centre) and not
@@ -1290,6 +1323,80 @@ header.dr-topbar,
   font-family: var(--font-mono); font-size: var(--t-micro-size);
   letter-spacing: var(--t-micro-track); line-height: var(--t-para-line);
 }
+
+/* ═══ THE PHOTO PILE ══════════════════════════════════════════════════════
+   Several photographs from one order, shown the way a phone shows several
+   photographs — a loose pile, not a grid. Built 2026-08-16 to the designer's
+   reference: Figma `YlGWlsWWjKSCxhONMzGG2F` node `103:43`, a screenshot of
+   Instagram Direct's several-photos message, dropped on her canvas the same
+   way `99:26` gave the call screen its shape and `95:10` the pay drawer.
+
+   READ OFF THE REFERENCE (its frame is 419 wide, so these are proportions):
+     · three frames cascading downward, each ~1/3 of the screen wide
+     · each rotated a few degrees, ALTERNATING SENSE — right, left, right.
+       That alternation is the whole trick: one shared angle reads as a skewed
+       grid, opposed angles read as a pile somebody set down.
+     · ~35% of each frame is covered by the one below it — frame 1 spans
+       y 12..122 and frame 2 starts at 83, so 39 of 110.
+     · the LATER frame sits on top, so the pile reads front-to-back downward
+     · rounded corners, no frame line, no shadow
+
+   WHAT IS OURS, AND WHY IT DEPARTS
+     · The frames are 62% of the content column, not 33% of the screen. The
+       reference is a chat message glanced at in passing; this is the work the
+       client paid for and the subject of the screen it sits on.
+     · --r-media 13, the closed ramp's media rung, instead of the reference's
+       optical rounding (~14% of the frame's width, which is off the ramp).
+     · THE EDGE IS A BORDER, NOT A SHADOW. Instagram's ground is black, so its
+       frames separate themselves; on --page #F7F5F2 two overlapping
+       photographs run into one another. concept.md spends exactly one shadow
+       on the whole product — --sh-sm, under the green primary — so the pile
+       takes the pattern --w-badge-ring already sets on this same photograph:
+       a cut-out edge in the ground colour, "a border, never a shadow".
+     · No green anywhere near it. The pile is photographs and page ground.
+
+   ACCESSIBILITY. Every frame keeps its own descriptive alt, numbered "n of 3"
+   the way inspection-report's evidence frames are (`WCAG 1.1.1`), because a
+   partly covered photograph still carries the meaning. The tilt is static —
+   no transition, no animation — so `WCAG 2.3.3` / prefers-reduced-motion have
+   nothing to switch off, and no text is rotated: only the pictures are. */
+/* THE SELECTOR IS `:has()`, AND THAT IS A DEFECT REPAIR RATHER THAN A STYLE.
+   Built 2026-08-16 as a bare `.dr-stack{ padding }`, which is the kit's OWN
+   vertical stack — line 520, `gap: --sp-within-lg`, 24 plain instances across
+   26 painted pages — and a second bare `.dr-stack` rule later in the file wins
+   the cascade on every one of them at equal specificity. Measured on
+   `tracking` before the repair: the stack's child came back **318.2** where
+   every sibling on the screen is **326.2**, so a card inside a stack stood 4px
+   in from the screen's own 16 gutter and lined up with nothing; the column
+   grew **147.4 → 163.4** and `main` scrolled **714 → 730**. Nobody chose
+   either number. Confining the padding to the stack that actually holds a
+   pile — `:has(> .dr-stack__shot)`, one page — leaves the other 25 exactly as
+   they were built and needs no change to any wireframe's markup. Rev 153. */
+.dr-stack:has(> .dr-stack__shot){
+  /* CATCHES THE TILT'S BLEED, so the pile stays inside the screen's 16px
+     gutter. A frame turned 3.5deg grows about its own centre: a 62%-wide 3:2
+     frame gains ~8px of width and ~12px of height, half of it at each end.
+     4 inline and 8 block hold exactly that, and the outermost rotated corner
+     then lands flush on the column edge instead of 4px past it. */
+  padding: var(--sp-within-lg) var(--sp-within);
+}
+.dr-stack__shot{
+  position: relative;                  /* so the z-index below applies */
+  width: var(--w-stack-shot);
+  aspect-ratio: var(--stack-aspect);
+  border: var(--w-shot-edge) solid var(--page);
+  border-radius: var(--r-media);
+  overflow: hidden;
+  background: var(--media);            /* the ground it loads onto */
+}
+.dr-stack__shot img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+/* percentage margins resolve against the column's WIDTH, so one number holds
+   the 34% overlap at every viewport the shell switches to. */
+.dr-stack__shot + .dr-stack__shot{ margin-top: var(--sp-stack-lap); }
+.dr-stack__shot:nth-child(1){ align-self: flex-end;   transform: rotate(var(--tilt-1)); z-index: 1; }
+.dr-stack__shot:nth-child(2){ align-self: flex-start; transform: rotate(var(--tilt-2)); z-index: 2; }
+.dr-stack__shot:nth-child(3){ align-self: flex-end;   margin-right: var(--sp-stack-in);
+                              transform: rotate(var(--tilt-3)); z-index: 3; }
 
 /* ═══ THE ORDER CARD ══════════════════════════════════════════════════════ */
 
@@ -3039,4 +3146,117 @@ header.dr-topbar,
   .dr-card{ gap: var(--sp-18); }
   .dr-order__top{ gap: var(--sp-snug); }
   .dr-inset{ padding: var(--sp-14); }
+}
+
+/* ═══ THE ONSCREEN KEYBOARD ═══════════════════════════════════════════════
+   The designer, 2026-08-16, on `rate`'s review field: «коли юзер вводить
+   текст показуй дровер з клавіатурою відповідно до HIG».
+
+   THIS IS SYSTEM CHROME, NOT A PRODUCT SURFACE — the same class of thing as
+   the status bar and the home indicator the frame already draws. It depicts
+   what iOS puts on screen; it is not a control the product owns, and it is
+   `aria-hidden` with no tab stop and no pointer target on any key. Only the
+   toolbar's `Done` is real, because dismissal is the one thing the app owes
+   the user (`HIG · Onscreen keyboards`: a MULTILINE field's Return inserts a
+   newline and cannot dismiss, which is why the pattern is an accessory bar).
+
+   WHY 291 + 44. `HIG` publishes no keyboard height and says to respond to the
+   keyboard's frame, because it varies by device, language and QuickType. 291
+   is what iOS measures in portrait on this 375 × 812 frame — 216 keys + 45
+   QuickType + 30 home-indicator inset — and the accessory bar's 44 is the
+   `HIG · 44pt target` floor, so the pair stands at 335. Only the 216 is
+   quoted: the four key rows divide it evenly at 45 with a 12 gutter, which
+   is where the key's height comes from rather than a second borrowed number.
+   The content area shrinks to what is left, 100.8 → 476.2 = 375.4 on `rate`,
+   6.6 short of standing the 382 field whole — measured, reported, and hers
+   to close by shrinking the field if she wants it whole.
+
+   WHY THE ACTION BAR LEAVES. With the keyboard up, `Submit review` and
+   `Book again` sit entirely behind drawn author content while still holding
+   their place in the tab order — `WCAG 2.4.11 Focus Not Obscured (Minimum)`
+   fails the moment focus reaches one. `[hidden]` takes them out of the tree
+   rather than dimming them, and the keyboard's own `Done` is the way back.
+   The exception is a field that lives INSIDE the bar — a chat composer —
+   where the bar rides above the keys instead, since hiding it would hide the
+   field being typed into.
+
+   TWO VALUES ARE QUOTED FROM THE SYSTEM AND ARE NOT ON THE PRODUCT'S RAMPS,
+   AND THAT IS REPORTED, NOT HIDDEN: the key radius is 5 where the closed ramp
+   runs 10 · 12 · 13 · 16 · 22 · 999. It is Apple's geometry, and the frame
+   already carries one such quotation — the
+   home indicator's 2px bar. Moving the key to the ramp's 10 on a 42px key
+   reads as a pill, and to the 2/4/8 floor's 4 reads as square; 5 is the
+   picture. Hers to overrule.
+
+   COLOUR IS THE PRODUCT'S OWN, because a grey iOS plane on a warm page is a
+   third temperature nobody chose: the plane is --btn2, the keys --page above
+   it, modifiers --card, every label --ink. No new token enters. */
+.dr-kb{
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 6;                 /* the sheet layer's own rung */
+  display: flex; flex-direction: column;
+  transform: translateY(0);
+  animation: dr-kb-rise var(--dur-sheet, .28s) var(--ease-out, cubic-bezier(.2,.8,.2,1));
+}
+.dr-kb[hidden]{ display: none; }
+/* `[hidden]` is an ATTRIBUTE and the UA's `display:none` for it loses to any
+   class rule that sets display — `.dr-actionbar` sets flex, so hiding it left
+   the bar laid out, visible and still in the tab order, which is the exact
+   `WCAG 2.4.11` failure the hiding was for. Measured: the content area came
+   back 242.6 instead of 376.2, the bar's own 132.8 still spent. */
+.dr-actionbar[hidden]{ display: none; }
+/* The accessory bar — the one real control in the whole component. */
+.dr-kb__bar{
+  flex: none; height: var(--h-control);
+  display: flex; align-items: center; justify-content: flex-end;
+  padding: 0 var(--sp-screen);
+  background: var(--card); border-top: var(--hair) solid var(--line);
+}
+.dr-kb__done{
+  min-height: var(--h-control); padding: 0 var(--sp-snug);
+  display: inline-flex; align-items: center;
+  background: transparent; border: 0; cursor: pointer;
+  font-size: var(--t-heading-size); font-weight: var(--weight-medium);
+  color: var(--ink);                                   /* 14.75:1 on --card */
+  border-radius: var(--r-btn);
+}
+.dr-kb__done:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+/* The plane. Everything below this line is a picture: aria-hidden, no target. */
+.dr-kb__plane{
+  flex: none; height: var(--h-kb);
+  background: var(--btn2);
+  display: flex; flex-direction: column;
+  padding: 0 var(--sp-3) var(--h-home);
+  pointer-events: none; user-select: none;
+}
+/* QuickType. Empty until there is text to predict, which is what iOS shows. */
+.dr-kb__quick{
+  flex: none; height: var(--h-kb-quick);
+  display: flex; align-items: center;
+}
+.dr-kb__quick span{ flex: 1; height: var(--sp-18); }
+.dr-kb__quick span + span{ border-left: var(--hair) solid var(--line); }
+.dr-kb__rows{ flex: 1; display: flex; flex-direction: column; gap: var(--sp-snug); }
+.dr-kb__row{ flex: 1; display: flex; gap: var(--sp-6); }
+.dr-kb__row--mid{ padding: 0 var(--sp-18); }
+.dr-kb__key{
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  background: var(--page); border-radius: var(--r-key);
+  font-size: var(--t-display-size); color: var(--ink);   /* 15.32:1 on --page */
+}
+.dr-kb__key--mod{ flex: 1.5; background: var(--card); font-size: var(--t-caption-size); }
+.dr-kb__key--space{ flex: 5; }
+.dr-kb__key--return{ flex: 2.2; background: var(--card); font-size: var(--t-caption-size); }
+/* THE NUMBER PAD (2026-08-16, rev 152) — the designer's call after the sweep found
+   `payment`'s three `inputmode="numeric"` fields taking the letter plane, where
+   `HIG · Onscreen keyboards` asks the keyboard to match the field. It is the SAME
+   plane at the same 291: a keyboard's frame is what the app reads, and the frame
+   does not change with the layout drawn inside it — so no measurement downstream
+   moves. Three columns at the letter keys' own `flex:1`, which measures 118.3 × 45
+   against the letter row's 31.3 × 45. The bottom row is iOS's: an empty cell, `0`, and a delete
+   that carries no key face — both drawn with the plane behind them, so the two
+   dead cells read as plane rather than as unlit keys. */
+.dr-kb__key--blank{ background: transparent; }
+@keyframes dr-kb-rise{ from{ transform: translateY(100%); } to{ transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce){
+  .dr-kb{ animation: none; }
 }
