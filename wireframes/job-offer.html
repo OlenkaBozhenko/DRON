@@ -20,30 +20,33 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Offer</b> ▸ service · distance · pay</p><p><b>Route</b> ▸ pickup / drop-off</p><p><b>Countdown</b> ▸ decide before it expires</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="title">New job</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Offer <span class="act">▸ service · distance · pay</span></p>
-      <article class="card stack-card">
-        <div class="card-top">
-          <span class="media-ph"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
-          <span class="body">
-            <span class="name">Package delivery</span>
-            <span class="desc">2.3 km · ~18 min · pickup near Podil</span>
-            <span class="meta-row"><span class="price">₴180</span><span class="avail">· paid on completion</span></span>
-          </span>
-        </div>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">New job</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <!-- `card-top` NEEDS NO CLASS OF ITS OWN. It wrapped the well and the body so a
+           column card could hold one row; the kit already has that shape —
+           .dr-card--row turns the CARD into the row, which is what painted
+           listings.html does with the same three parts. So the wrapper goes and the
+           card is .dr-card .dr-card--row .dr-listing, byte-identical to listings. -->
+      <p class="zlabel dr-label">Offer <span class="dr-label__act">▸ service · distance · pay</span></p>
+      <article class="dr-card dr-card--row dr-listing">
+        <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
+        <span class="dr-listing__body">
+          <span class="dr-listing__name">Package delivery</span>
+          <span class="dr-listing__desc">2.3 km · ~18 min · pickup near Podil</span>
+          <span class="dr-listing__meta"><span class="dr-number">₴180</span><span class="dr-listing__desc">· paid on completion</span></span>
+        </span>
       </article>
 
-      <p class="zlabel">Route <span class="act">▸ pickup → drop-off</span></p>
-      <div class="kv" aria-label="Route">
-        <div class="kv-row"><span class="kv-key">Pickup</span><span class="kv-val">Podil, 21</span></div>
-        <div class="kv-row"><span class="kv-key">Drop-off</span><span class="kv-val">Osokorky, 14</span></div>
+      <p class="zlabel dr-label">Route <span class="dr-label__act">▸ pickup → drop-off</span></p>
+      <div class="dr-rows" aria-label="Route">
+        <div class="dr-rows__row"><span class="dr-rows__key">Pickup</span><span class="dr-rows__val">Podil, 21</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Drop-off</span><span class="dr-rows__val">Osokorky, 14</span></div>
       </div>
 
-      <p class="zlabel">Decide fast <span class="act">▸ offer auto-expires, reassigns</span></p>
-      <p class="big-title">Expires in 8s</p>
+      <p class="zlabel dr-label">Decide fast <span class="dr-label__act">▸ offer auto-expires, reassigns</span></p>
+      <p class="dr-display">Expires in 8s</p>
     </main>
     <!--
       Stacked, not split — the designer, 2026-08-16, on the whole product:
