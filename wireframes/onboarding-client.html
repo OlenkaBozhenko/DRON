@@ -6,6 +6,7 @@
 <title>DRON wireframe · Client onboarding · success (base)</title>
 <!-- SCREEN (sitemap §6.0 / Client Getting in): "Client onboarding". JOB (jtbd): EJ-1 — first use feels safe. STATE: base — a 3-slide swipeable explainer (CSS scroll-snap, no JS) with Skip. Pre-app: no bottom tab bar. -->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -19,39 +20,43 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Slider</b> ▸ 3 slides: verified · live · proof</p><p><b>Skip</b> ▸ jump straight to ordering</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="spacer"></span></header>
-    <main>
-      <div class="slider is-bleed" aria-label="How DRON works">
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <div class="dr-slider dr-slider--bleed" aria-label="How DRON works">
         <!-- The picture comes last in the markup, not first: it is the bottom of
              the slide visually, and it is decorative (alt=""), so a screen reader
              should reach the heading before it rather than step over it. -->
-        <section class="slide" id="oc1" aria-label="Slide 1 of 3">
-          <p class="big-title">A verified operator</p>
-          <p class="lead">DRON assigns the nearest certified, insured operator. You don't choose or guess.</p>
-          <span class="slide-ph"><img src="../assets/people/thumbs/operator.png" alt="" loading="lazy" decoding="async"></span>
+        <section class="dr-slide" id="oc1" aria-label="Slide 1 of 3">
+          <p class="dr-display">A verified operator</p>
+          <p class="dr-lead">DRON assigns the nearest certified, insured operator. You don't choose or guess.</p>
+          <span class="dr-slide__art"><img src="../assets/people/thumbs/operator.png" alt="" loading="lazy" decoding="async"></span>
         </section>
-        <section class="slide" id="oc2" aria-label="Slide 2 of 3">
-          <p class="big-title">Track it live</p>
-          <p class="lead">See the operator's name, photo and live position the moment you pay.</p>
-          <span class="slide-ph"><img src="../assets/scenes/thumbs/receive.png" alt="" loading="lazy" decoding="async"></span>
+        <section class="dr-slide" id="oc2" aria-label="Slide 2 of 3">
+          <p class="dr-display">Track it live</p>
+          <p class="dr-lead">See the operator's name, photo and live position the moment you pay.</p>
+          <span class="dr-slide__art"><img src="../assets/scenes/thumbs/receive.png" alt="" loading="lazy" decoding="async"></span>
         </section>
-        <section class="slide" id="oc3" aria-label="Slide 3 of 3">
-          <p class="big-title">A photo or report, every time</p>
-          <p class="lead">Get a photo or a report the moment it's done.</p>
-          <span class="slide-ph">REPORT</span>
+        <section class="dr-slide" id="oc3" aria-label="Slide 3 of 3">
+          <p class="dr-display">A photo or report, every time</p>
+          <p class="dr-lead">Get a photo or a report the moment it's done.</p>
+          <!-- NO ASSET YET. The well keeps its --media ground and its mono label, so a
+               half-supplied slider reads as "this picture is pending" rather than as a
+               broken layout, and the composition does not jump as you swipe. It closes
+               itself the day the file lands. -->
+          <span class="dr-slide__art">REPORT</span>
         </section>
       </div>
-      <nav class="pager" aria-label="Slides">
+      <nav class="dr-pager" aria-label="Slides">
         <a href="#oc1" class="on" aria-label="Go to slide 1"></a>
         <a href="#oc2" aria-label="Go to slide 2"></a>
         <a href="#oc3" aria-label="Go to slide 3"></a>
       </nav>
     </main>
-    <footer class="actionbar">
-      <a class="btn btn-secondary btn-block" href="listings.html">Skip</a>
-      <a class="btn btn-primary btn-block" href="listings.html">Get started</a>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="listings.html">Skip</a>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="listings.html">Get started</a>
     </footer>
   </div>
 
