@@ -20,37 +20,46 @@
     <div class="legend"><p><b>Only the content changes</b> vs operator-dispute.html:</p><p><b>Main</b> ▸ hold message + recovery actions</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><a class="back" href="operator-listings.html" aria-label="Back to Jobs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="title">Dispute</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Job <span class="act">▸ what's disputed</span></p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="operator-listings.html" aria-label="Back to Jobs"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Dispute</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Job <span class="dr-label__act">▸ what's disputed</span></p>
       <section aria-label="Disputed job">
-        <article class="card">
-          <span class="media-ph"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
-          <span class="body">
-            <span class="name">Job #DR-2841 · Aerial photo</span>
-            <span class="desc">Client: Olena H. · disputed</span>
-            <span class="meta-row"><span class="price">₴800</span><span class="avail">· held</span></span>
+        <article class="dr-card dr-card--row dr-listing">
+          <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="dr-listing__body">
+            <span class="dr-listing__name">Job #DR-2841 · Aerial photo</span>
+            <span class="dr-listing__desc">Client: Olena H. · disputed</span>
+            <span class="dr-listing__meta"><span class="dr-number">₴800</span><span class="dr-listing__desc">· held</span></span>
           </span>
         </article>
       </section>
 
-      <p class="zlabel">Status <span class="act">▸ payment held pending EJ-2</span></p>
+      <p class="zlabel dr-label">Status <span class="dr-label__act">▸ payment held pending EJ-2</span></p>
       <section aria-label="Payment held">
-        <div class="msg-block" role="status">
-          <span class="msg-ph">HELD</span>
-          <span class="msg-title">Payment held</span>
-          <p class="msg-body">₴800 for Job #DR-2841 stays on hold while the dispute is reviewed. Add more evidence to your response, or contact support to resolve it.</p>
-          <div class="msg-actions">
-            <a class="btn btn-primary" href="operator-dispute.html">Update response</a>
-            <a class="btn btn-secondary" href="contact-support.html">Contact support</a>
+        <!-- HELD takes .dr-mark--warn: the money is not lost, it is waiting, and the
+             copy says so ("stays on hold while the dispute is reviewed"). role="status",
+             not alert, in the frame — so --danger would overstate it. --warn-ink on
+             --warn-wash is 5.65:1. The glyph is a padlock, two strokes on the grid. -->
+        <div class="dr-msg" role="status">
+          <span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="9.5" rx="2.2"/><path d="M8.4 10.5V8.2a3.6 3.6 0 0 1 7.2 0v2.3"/></svg></span>
+          <span class="dr-msg__title">Payment held</span>
+          <p class="dr-msg__body">₴800 for Job #DR-2841 stays on hold while the dispute is reviewed. Add more evidence to your response, or contact support to resolve it.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="operator-dispute.html">Update response</a>
+            <a class="dr-btn dr-btn--secondary" href="contact-support.html">Contact support</a>
           </div>
         </div>
       </section>
     </main>
-    <footer class="actionbar">
-      <a class="btn btn-primary btn-block" href="operator-listings.html">Back to Jobs</a>
+    <!-- TWO GREEN CONTROLS ON THIS SCREEN, and it is reported rather than smoothed:
+         the block's `Update response` is the recovery the state exists for, and rev 112
+         requires the action bar's only button to be --primary ("the only button on the
+         bottom edge is the main action by definition"). Measured green and both options
+         are in the pack report; the designer has the number. -->
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="operator-listings.html">Back to Jobs</a>
     </footer>
   </div>
 
