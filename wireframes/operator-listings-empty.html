@@ -20,61 +20,67 @@
     <div class="legend"><p><b>Only the content changes:</b></p><p><b>Status toggle</b> ▸ set to Offline (gates dispatch)</p><p><b>Offers</b> → empty notice + recover</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
 
-    <header class="topbar">
+    <header class="topbar dr-topbar">
       <span class="avatar"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
-      <span class="who">Ivan K.</span>
-      <span class="spacer"></span>
+      <span class="dr-op__name">Ivan K.</span>
+      <span class="dr-topbar__spacer"></span>
     </header>
 
-    <nav class="groups" aria-label="Job groups">
-      <a class="grouptab" href="#incoming" aria-current="true">Incoming · 0</a>
-      <a class="grouptab" href="#active">Active · 0</a>
+    <nav class="dr-groups" aria-label="Job groups">
+      <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming · 0</a>
+      <a class="dr-grouptab" href="#active">Active · 0</a>
     </nav>
 
-    <main>
-      <p class="zlabel">Status <span class="act">▸ set availability — gates dispatch (O-02)</span></p>
-      <section aria-label="Availability status">
-        <div class="status-head">
-          <span class="dot" aria-hidden="true"></span>
-          <b>You are Offline</b><span>· no jobs while offline</span>
-        </div>
-        <form class="status-form">
-          <fieldset class="segment">
+    <main class="dr-main">
+      <p class="zlabel dr-label">Status <span class="dr-label__act">▸ set availability — gates dispatch (O-02)</span></p>
+      <section class="dr-stack" aria-label="Availability status">
+        <p class="dr-avail">
+          <span class="dr-avail__dot" aria-hidden="true"></span>
+          <b class="dr-avail__state">You are Offline</b><span class="dr-avail__note">· no jobs while offline</span>
+        </p>
+        <form>
+          <fieldset class="dr-segment">
             <legend class="sr-only">Availability status</legend>
-            <label class="seg">Available<input type="radio" name="status" value="available"></label>
-            <label class="seg">Busy<input type="radio" name="status" value="busy"></label>
-            <label class="seg">Offline<input type="radio" name="status" value="offline" checked></label>
+            <label class="dr-segment__seg">Available<input type="radio" name="status" value="available"></label>
+            <label class="dr-segment__seg">Busy<input type="radio" name="status" value="busy"></label>
+            <label class="dr-segment__seg">Offline<input type="radio" name="status" value="offline" checked></label>
           </fieldset>
         </form>
       </section>
 
-      <p class="zlabel">Offers <span class="act">▸ empty — idle while offline (exit)</span></p>
+      <p class="zlabel dr-label">Offers <span class="dr-label__act">▸ empty — idle while offline (exit)</span></p>
       <section aria-label="No offers">
-        <div class="msg-block" role="status">
-          <span class="msg-ph">OFFLINE</span>
-          <span class="msg-title">No jobs while you're offline</span>
-          <p class="msg-body">Go Available to start receiving pre-qualified jobs near you.</p>
-          <div class="msg-actions">
-            <a class="btn btn-primary" href="operator-listings.html">Go Available</a>
+        <!-- The OFFLINE text placeholder becomes the state mark. Base .dr-mark, the
+             NEUTRAL rung (--media ground, --slate glyph, 5.51:1): offline is a state
+             the operator chose, not a warning and not a failure, so neither the warn
+             nor the danger wash applies. The glyph is a slashed circle — two strokes
+             on the 24-grid, the set's own drawing rules. -->
+        <div class="dr-msg" role="status">
+          <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/></svg></span>
+          <span class="dr-msg__title">No jobs while you're offline</span>
+          <p class="dr-msg__body">Go Available to start receiving pre-qualified jobs near you.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="operator-listings.html">Go Available</a>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="tabbar">
-      <nav class="tabs" aria-label="Primary">
-        <a class="tab" href="operator-listings.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Jobs</a>
-        <a class="tab" href="wallet.html"><span class="sq sq-24" aria-hidden="true"></span>Earnings</a>
-        <a class="tab" href="ratings.html"><span class="sq sq-24" aria-hidden="true"></span>Ratings</a>
-        <a class="tab" href="operator-account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="operator-listings.html" aria-current="page"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="7.4" width="17.2" height="12.2" rx="2.2"/><path d="M9 7.4V6.1A1.7 1.7 0 0 1 10.7 4.4h2.6A1.7 1.7 0 0 1 15 6.1v1.3"/><path d="M3.4 12.6h17.2"/></svg>Jobs</a>
+        <a class="dr-tab" href="wallet.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="6.8" width="18.4" height="10.4" rx="2.2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.6v4.8M18 9.6v4.8"/></svg>Earnings</a>
+        <a class="dr-tab" href="ratings.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.79l2.84 5.75 6.36.93-4.6 4.48 1.09 6.33L12 17.29l-5.69 2.99 1.09-6.33-4.6-4.48 6.36-.93z"/></svg>Ratings</a>
+        <a class="dr-tab" href="operator-account.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
       </nav>
-      <div class="home-indicator"><span></span></div>
+      <div class="dr-home"><span></span></div>
     </footer>
   </div>
 
+  <script src="../ui/kit.js"></script>
   <script src="_wf-shell.js"></script>
 </body>
 </html>
