@@ -6,6 +6,7 @@
 <title>DRON wireframe · Choose your role · success (base)</title>
 <!-- SCREEN (sitemap §6.0): "Choose your role — Client or Operator". JOB (jtbd): MJ-1 · MJ-2 enabler — routes each persona to its path. STATE: base only (matrix: no empty/error/loading). Pre-role: no bottom tab bar. -->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -15,36 +16,41 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Role choice</b> ▸ declare Client or Operator</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Role choice <span class="act">▸ pick a side (switchable later)</span></p>
-      <section class="stack" aria-label="Choose your role">
-        <p class="big-title">How will you use DRON?</p>
-        <p class="lead">Pick a side to continue. You can switch anytime in Account.</p>
-        <div class="choice-list">
-          <a class="choice-card" href="onboarding-client.html">
-            <span class="media-ph inset"><img src="../assets/objects/thumbs/cargo-box.png" alt="" loading="lazy" decoding="async"></span>
-            <span class="body">
-              <span class="choice-title">I need a service done</span>
-              <span class="choice-desc">Order delivery, aerial photo/video or inspection — a verified operator handles it.</span>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Role choice <span class="dr-label__act">▸ pick a side (switchable later)</span></p>
+      <section class="dr-stack" aria-label="Choose your role">
+        <p class="dr-display">How will you use DRON?</p>
+        <p class="dr-lead">Pick a side to continue. You can switch anytime in Account.</p>
+        <!-- The two cards are the kit's choice card, markup copied from the
+             specimen sheet (ui/kit.html), which draws this exact pair. Both wells
+             are plain .dr-well: a transparent cutout sits straight on the card with
+             no ground, and the grayscale `inset` padding patch has no painted
+             counterpart (.dr-inset is the From ▸ To plane, a different component). -->
+        <div class="dr-list dr-list--snug">
+          <a class="dr-choice" href="onboarding-client.html">
+            <span class="dr-well"><img src="../assets/objects/thumbs/cargo-box.png" alt="" loading="lazy" decoding="async"></span>
+            <span class="dr-choice__body">
+              <span class="dr-choice__title">I need a service done</span>
+              <span class="dr-choice__desc">Order delivery, aerial photo/video or inspection — a verified operator handles it.</span>
             </span>
-            <span class="chev" aria-hidden="true">›</span>
+            <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
           </a>
-          <a class="choice-card" href="onboarding-operator.html">
-            <span class="media-ph"><img src="../assets/drones/thumbs/drone-flight-front.png" alt="" loading="lazy" decoding="async"></span>
-            <span class="body">
-              <span class="choice-title">I provide services</span>
-              <span class="choice-desc">You're a certified drone operator — take jobs and get paid.</span>
+          <a class="dr-choice" href="onboarding-operator.html">
+            <span class="dr-well"><img src="../assets/drones/thumbs/drone-flight-front.png" alt="" loading="lazy" decoding="async"></span>
+            <span class="dr-choice__body">
+              <span class="dr-choice__title">I provide services</span>
+              <span class="dr-choice__desc">You're a certified drone operator — take jobs and get paid.</span>
             </span>
-            <span class="chev" aria-hidden="true">›</span>
+            <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
           </a>
         </div>
       </section>
     </main>
-    <footer class="actionbar">
-      <p class="note">You can change this later in Account → Switch role.</p>
+    <footer class="dr-actionbar">
+      <p class="dr-note">You can change this later in Account → Switch role.</p>
     </footer>
   </div>
 
