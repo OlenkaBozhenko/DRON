@@ -649,31 +649,41 @@
   <p class="eyebrow">DRON &#183; client mobile web</p>
   <h1>ui/inventory</h1>
   <p class="standfirst">
-    The component kit behind 40 screens. A component earns a row here by appearing on
-    <b>two screens or more</b> &#8212; that is what makes it a kit rather than a pile. Three screens
-    carry the Studio layer and are measured from computed style in a browser; the other 37 still
+    The component kit behind 49 screens. A component earns a row here by appearing on
+    <b>two screens or more</b> &#8212; that is what makes it a kit rather than a pile. <b>30 screens
+    across 76 files</b> carry the Studio layer and are measured from computed style in a browser;
+    the remaining <b>19 screens</b> &#8212; every operator screen, plus client entry &#8212; still
     draw in the shared grayscale base, and their components are listed with <b>no values</b>,
     because a specimen would have to invent them. What lives on exactly one screen is collected
     at the end under <a href="#oneoff" style="color:inherit">One-off</a> and deliberately not
     pulled into the kit. <b>Out of scope for now:</b> the operator job card on <code>operator-listings</code>, which is neither painted nor hand-edited and is being reworked &#8212; counting it would inventory a draft.
   </p>
   <div class="provenance">
-    <span><b>Source</b> &#183; 84 files &#183; 40 screens</span>
-    <span><b>Painted</b> &#183; order-history, tracking, delivery</span>
+    <span><b>Source</b> &#183; 117 files &#183; 49 screens</span>
+    <span><b>Painted</b> &#183; 30 screens &#183; 76 files</span>
     <span><b>Spec</b> &#183; DESIGN.md</span>
-    <span><b>Read</b> &#183; 2026-08-02</span>
+    <span><b>Read</b> &#183; 2026-08-02, headline re-counted 2026-08-16</span>
   </div>
 
   <div class="figures">
-    <div class="fig"><div class="n">53</div><div class="k">in the kit</div></div>
-    <div class="fig"><div class="n">29</div><div class="k">carry values</div></div>
-    <div class="fig"><div class="n">24</div><div class="k">still grayscale</div></div>
-    <div class="fig"><div class="n">3<span style="font-size:15px;color:var(--fg-3)"> / 40</span></div><div class="k">screens painted</div></div>
-    <div class="fig"><div class="n">9</div><div class="k">one-off blocks</div></div>
+    <div class="fig"><div class="n">73</div><div class="k">in the kit</div></div>
+    <div class="fig"><div class="n">30<span style="font-size:15px;color:var(--fg-3)"> / 49</span></div><div class="k">screens painted</div></div>
+    <div class="fig"><div class="n">12</div><div class="k">one-off blocks</div></div>
     <div class="fig"><div class="n">2</div><div class="k">inks</div></div>
     <div class="fig"><div class="n">6</div><div class="k">radii + circles</div></div>
     <div class="fig"><div class="n">4.77</div><div class="k">contrast floor</div></div>
   </div>
+
+  <p class="standfirst" style="border-left:3px solid var(--accent); padding-left:14px; margin-top:22px">
+    <b>The per-row counts below still stand on the old denominator, and that is said rather than
+    quietly left.</b> Read 2026-08-02 against <b>84 files / 40 screens / 3 painted</b>, every
+    <span style="white-space:nowrap">&#8220;40 &#183; 3 painted&#8221;</span> in the tables is that
+    count, and the headline above is a fresh one &#8212; <b>117 / 49 / 30</b>, re-counted 2026-08-16
+    (<code>concept.md</code> rev 153). Recounting each row means reading class usage across 76
+    painted files, which is its own pass and was not done here. Until it is, trust the row&#8217;s
+    <i>values</i> and treat its <i>screen count</i> as a floor. The source of truth for both is
+    <a href="inventory.md" style="color:inherit">ui/inventory.md</a>.
+  </p>
 </header>
 
 <nav class="index" aria-label="Sections">
