@@ -192,14 +192,32 @@ components:
 
 ## Overview
 
-Extracted from the ten painted product surfaces and verified by computed style in a browser,
-2026-08-01:
+Extracted from the painted product surfaces and verified by computed style in a browser. Written
+2026-08-01 against ten pages carrying ten per-page `<style>` blocks; **re-counted 2026-08-16
+(rev 153), when that description had stopped being true of the build.**
 
-| Family | Files | `<style>` block |
-|---|---|---|
-| Order history | `order-history` · `-empty` · `-loading` | one per state |
-| Live tracking | `tracking` · `-empty` · `-error` · `-loading` | byte-identical ×4 (13 224 chars) |
-| Delivery confirmation | `delivery` · `-error` · `-loading` | byte-identical ×3 (13 042 chars) |
+| | Measured 2026-08-16 |
+|---|---|
+| Files in `wireframes/` | **117** — 114 screen-and-state pages plus 3 option partials (`_field-options`, `_checkbox-options`, `_navbar-options`) |
+| Screens | **49**, collapsing `-empty` / `-error` / `-loading` states and the `-aerial` / `-inspection` per-service variants into the screen they are a state or a variant *of* |
+| Painted | **30 screens · 76 files** (+ the 3 partials = 79 files linking `ui/kit.css`) |
+| Still grayscale | **19 screens · 38 files** — every operator screen, plus client entry (`welcome`, `signin`, `role-select`, `onboarding-client`) |
+
+**There is no per-page `<style>` block any more, and that is the single largest structural change
+since this document was written.** The ten families that each carried their own byte-identical copy
+now link one shared `ui/kit.css`, so a component cannot drift between two screens by being pasted
+twice. Three exceptions are recorded rather than tidied away:
+
+- `switch-role` carries **live** one-page CSS — `.success-mark:has(img)`, the confirm mark wearing
+  the client's own photograph. One screen, so by the kit's own inclusion rule it is a one-off and
+  stays out of `ui/kit.css`.
+- `account` and the ten `listings` files still carry the **grayscale base sheet inlined** from
+  before they were painted. It is dead weight, not a conflict: the block precedes the `kit.css`
+  link, so the kit wins every product surface — measured on `listings`, frame radius **22px**,
+  page **#F7F5F2**, card **#ECE9E4** at **16px**, exactly as on `tracking`. What it still paints is
+  the canvas *around* the frame (`body` `#EEEEEE`), which is not product.
+- `account`'s block also styles `.op-card` / `.op-edit`, which appear nowhere in that page's markup.
+  Dead CSS, named here so it is not rediscovered as a mystery.
 
 The layer applies to the phone frame only (`.wf-frame`, 375 × 812, `--r-panel` 22px, 1px `--line`
 border). The wireframe annotation sidebar keeps its own chrome and is not part of the system.
@@ -209,18 +227,36 @@ border). The wireframe annotation sidebar keeps its own chrome and is not part o
 - **Four painted surfaces, one warm ramp.** Page `#F7F5F2` → card `#ECE9E4` → media `#E4E1DA` →
   secondary button `#D6D2C9`. Every step is warm; there is no white and no black in the palette
   (`#FFFFFF` and `#000000` appear nowhere on a product surface).
-- **Two inks.** `#1A1A1A` and `#5A5751`. Every rendered string on all ten pages is one of the two.
+- **Two inks.** `#1A1A1A` and `#5A5751`. Every rendered string on a light surface is one of the two.
+  The one dark surface (`.dr-call`, the night pair) is the documented exception and carries its own.
 - **One accent, fill only.** `#9BCF4A` is a fill or a tint. It is never a text colour and never an
   icon stroke — measured, it is 1.69:1 on the page and 1.52:1 on the card.
 - **Measured green budget:** solid green covers **4.43% / 5.09% / 4.71%** of the frame on
-  `order-history` / `tracking` / `delivery`, and the primary CTA is 81–100% of that area.
-- **Flat.** No card and no media surface casts a shadow on any of the ten pages. One shadow is
-  spent in the whole system: `--sh-sm` under the green primary.
-- **One icon system.** 98 SVGs across the ten pages, all `viewBox="0 0 24 24"`, all
-  `stroke-width="1.7"`, all `fill="none"`, all `currentColor`.
+  `order-history` / `tracking` / `delivery`, and **4.93%** on `delivery-aerial` (15,022px² of
+  304,500, of which the `Rate this order` primary is the great majority). The primary CTA is
+  81–100% of the green on every page measured.
+- **Flat, and now with two shadow rungs spent instead of one.** No card, no media well and no
+  photograph casts a shadow anywhere in the kit — that rule is intact, and every `box-shadow` in
+  `ui/kit.css` was enumerated on 2026-08-16 to prove it. What has changed since 2026-08-01 is that
+  a second rung found its home: `--sh-sm` under the green primary (3 sites — block primary,
+  circular primary, pressed language toggle) and **`--sh-raised` under the two surfaces that
+  genuinely float**, `.dr-sheet` and `.dr-toast`. Both were recorded in the kit when spent, on the
+  reading rev 43 set: a floating surface belongs in a modal, drawer or popover, and the flat rule
+  is about cards sitting *in* the page. `--sh-card` and `--sh-onphoto` are still applied to nothing.
+- **One icon system.** **654 SVGs** across the 76 painted files. **636** are on `viewBox="0 0 24 24"`
+  and **631** declare `stroke-width="1.7"`, all `fill="none"`, all `currentColor`. The **18** that
+  are not are the third-party payment and identity marks — Apple Pay, Google Pay, Diia — which come
+  on their own boxes (`0 0 40 20`, `0 0 46 23`, `0 0 814 1000`, `2 2 43.12 44`) and are filled
+  artwork, not members of this set. They are quoted, not drawn, and are not exempted glyphs.
 - **One font stack**, declared once in `_wireframe.css`. No page declares a second UI family.
 - **Ten type sizes**, all in use: 22 · 20 · 17 · 15 · 14 · 13 · 12.5 · 12 · 11 · 10.5.
-- **Six radii plus circles.** `10` · `12` · `13` · `16` · `22` · `999`, and `50%`.
+- **Six radii plus circles.** `10` · `12` · `13` · `16` · `22` · `999`, and `50%`. Two values sit
+  off the ramp on purpose and are recorded as quotations rather than rungs: the home indicator's
+  `2` and the onscreen keyboard's key at `5`, both quoted from iOS (see the keyboard's own section).
+- **`--warn`, `--danger` and `--r-input` are live now.** This document said they were "declared and
+  applied to nothing"; that was true of the ten pages and is no longer true of the kit. `--warn`
+  paints `.dr-star[aria-pressed="true"]` and `--warn-wash`/`--warn-ink` the warning mark (5.65:1);
+  `--danger` paints `.dr-btn--danger-solid` (4.53:1 against `--page`); `--r-input` is spent 5 times.
 - **Zero text-contrast failures.** Lowest measured text pair is 4.77:1 (AA needs 4.5:1).
 
 ## Colors
@@ -472,6 +508,10 @@ card-top gap 16 → 12, drone box 96 × 72 → 68 × 52, route padding 16 → 14
 identically, so the loading and loaded lists stay the same height at both tiers.
 
 **The onscreen keyboard is system chrome, and it quotes two numbers the product does not own.**
+Classes: `.dr-kb` · `.dr-kb__bar` · `.dr-kb__done` · `.dr-kb__plane` · `.dr-kb__quick` ·
+`.dr-kb__rows` · `.dr-kb__row` (`--mid`) · `.dr-kb__key` (`--mod`, `--space`, `--return`, `--blank`),
+built by `ui/kit.js` — no page carries markup for it, because the system draws a keyboard *over* an
+app rather than inside it. **19 of the 32 pages linking `kit.js` carry a field**, across 14 screens.
 `--h-kb` **291** is what iOS measures in portrait on a 375 × 812 frame (216 keys + 45 QuickType +
 30 home-indicator inset); HIG publishes no height and asks an app to read the keyboard's frame.
 The accessory bar above it is **44**, the HIG target floor, so the pair stands at **335** and the
@@ -1357,6 +1397,53 @@ The drawer's second job. Where a picker sheet sets a **value**, this one offers 
   switched off. **Two files in one zone are told apart by what they show** — the video's cover is a
   different frame from the photo card's, not the same one re-used (`concept.md` rev 140).
 
+### The photo pile (`.dr-stack__shot`)
+
+Several photographs from one order, shown the way a phone shows several photographs — **a loose
+pile, not a grid.** Built to the designer's reference, Figma `YlGWlsWWjKSCxhONMzGG2F` node `103:43`
+(Instagram Direct's several-photos message), the same way `99:26` gave the call screen its shape and
+`95:10` the pay drawer. It stands on `delivery-aerial`, where the client's deliverable is a set
+rather than a single file. **One screen carries it**, so by the kit's inclusion rule it is a
+one-off, not a kit row — recorded here because it introduces six tokens and a rule about tilt.
+
+**Measured on the build, 375 × 812, annotations off, overlay scrollbars:**
+
+| | Value |
+|---|---|
+| Frame, unrotated | **206.7 × 137.8** — `--w-stack-shot` **62%** of the 333.4 content column, `--stack-aspect` **3 / 2** |
+| Rotated bounding boxes | 213.6 × 148.4 · 214.7 × 150.2 · 211.4 × 144.9 |
+| Tilt | `--tilt-1` **3deg** · `--tilt-2` **−3.5deg** · `--tilt-3` **2deg** — **alternating sense** |
+| Overlap | **38.7px of 137.8 = 28.1%** (`--sp-stack-lap` −14% of the column's *width*, less the stack's own 8px gap) |
+| Right-hand inset on the front frame | `--sp-stack-in` **6%** |
+| Edge | `--w-shot-edge` **3px** solid `--page` — a cut-out border, **never a shadow** |
+| Radius | `--r-media` **13** |
+| Block | pile **341.4 × 352.1**; bleed inside the frame **16.8** left, **17.3** right; horizontal overflow **0** |
+
+**The rules it follows, and the one place it departs.**
+
+- **Alternating tilt is the whole trick.** One shared angle reads as a skewed grid; opposed angles
+  read as a pile somebody set down. The sense alternates right · left · right, and the later frame
+  sits on top, so the pile reads front-to-back downward.
+- **The edge is a border, not a shadow.** Instagram's ground is black and its frames separate
+  themselves; on `--page` `#F7F5F2` two overlapping photographs run into one another. This kit
+  spends no shadow on a picture, so the pile takes the pattern `--w-badge-ring` already sets on a
+  photograph — *a border, never a shadow* — one rung up at 3px, because an edge read at an angle
+  thins optically.
+- **No green anywhere near it.** The pile is photographs and page ground.
+- **The photographs are not re-cropped.** The three masters are 1514 × 1009 · 1488 × 992 ·
+  1516 × 1011 — all 1.500 — so `3 / 2` is the shoot's own ratio, not a crop imposed by the layout.
+  Thumbs are 432 × 288, **2.09×** the CSS box, which is the set's ~2× rule.
+- **`WCAG 1.1.1`:** every frame keeps its own descriptive `alt`, numbered *"n of 3"* the way
+  `inspection-report`'s evidence frames are — a partly covered photograph still carries meaning.
+  **`WCAG 2.3.3`:** the tilt is static, no transition and no animation, so reduced motion has
+  nothing to switch off. No text is rotated; only the pictures are.
+- **The departure, measured and left as built:** the reference covers **35%** and the kit's own
+  comment claimed **34%**; the build shows **28.1%**. The missing 8px is `.dr-stack`'s own
+  `gap: --sp-within-lg`, which the pile inherits by being built on that class and which pushes back
+  against the negative margin. Corrected in the comment 2026-08-16 (rev 153) so the file states what
+  it does; the look itself is the designer's to keep or close — `gap: 0` lands 33.9%, and
+  `--sp-stack-lap: -16.4%` lands 35% with the gap kept.
+
 ### Navigation
 
 - **Nav bar:** **56px**, `--page`, `--line` bottom hairline, title as `<h1>` 17/600/−0.01em
@@ -1428,17 +1515,24 @@ sits; a clock is not a check; each keeps a text accessible name.
 
 ## Imagery
 
-Real renders and photographs, never illustration and never a gradient. Every image on the ten
-painted pages, with what it is doing there:
+Real renders and photographs, never illustration and never a gradient. Written 2026-08-01 as *every
+image on the ten painted pages*; the aerial set below joined the build later and was added to this
+table on 2026-08-16 (rev 153), the three pile frames having been in the build with no entry here at
+all. Each image, with what it is doing there:
 
 | Asset | Surface | Native | Served | Box | Treatment |
 |---|---|---|---|---|---|
-| `drones/thumbs/drone-08.png` | `order-history` — the **live** package-delivery card | 1024² | 256² | 96 × 72 frame, drawn 64 × 64 | cutout, `contain`, no ground |
+| `drones/thumbs/drone-08.png` | `order-history` — the **live** package-delivery card **and the 28 Jun delivered card** (twice on the page) | 1024² | 256² | 96 × 72 frame, drawn 64 × 64 | cutout, `contain`, no ground |
 | `drones/thumbs/drone-flight-camera.png` | `order-history` — aerial photo & video | 392 × 291 | 256² | same | same |
-| `drones/thumbs/drone-flight-clean.png` | **drawn nowhere since 2026-08-16** — it held `order-history`'s roof-inspection card until the result took the well. Kept: the `wide/` cut of it is `welcome`'s third slide | 409 × 174 | 256² | — | — |
+| `drones/thumbs/drone-flight-clean.png` | `order-history` — the roof-inspection card. **This row read “drawn nowhere since 2026-08-16” and was wrong** (corrected rev 153): the well was given a photograph that day and the designer reversed it the same day, so the render never left. The `wide/` cut of it is also `welcome`'s third slide | 409 × 174 | 256² | 96 × 72 frame | cutout, `contain`, no ground |
 | `people/thumbs/operator.png` | `tracking` · `-empty` · `-error` — operator card | 595 × 702 | 300 × 354 | 117 × 138.1 | cutout, `cover`, full-bleed left panel, no ground |
-| `scenes/thumbs/delivered-at-door.jpg` | `delivery` — proof of delivery · `order-history` — the 28 Jun delivered card | 1100 × 880 | 652 × 522 | 341 × 180 · **96 × 72** | photograph, `cover`, edge to edge |
-| `scenes/thumbs/inspection-roof-cracked-tiles.jpg` | `inspection-report` — cover · `order-history` — the 2 Jun delivered card | — | 652 × 489 | 341 × 180 · **96 × 72** | photograph, `cover`, edge to edge |
+| `scenes/thumbs/delivered-at-door.jpg` | `delivery` — proof of delivery. **Not on `order-history`** — this row said “the 28 Jun delivered card” until rev 153; that card carries `drone-08` | 1100 × 880 | 652 × 522 | 341 × 180 | photograph, `cover`, edge to edge |
+| `scenes/thumbs/inspection-roof-cracked-tiles.jpg` | `inspection-report` — cover. **Not on `order-history`** — same correction, rev 153; that card carries `drone-flight-clean` | — | 652 × 489 | 341 × 180 | photograph, `cover`, edge to edge |
+| `scenes/thumbs/aerial-rafting-run.jpg` | `order-details-aerial` — photo card. `order-history`'s aerial card keeps `drone-flight-camera` | 949 × 638 | 652 × 438 | 341 × 180 | photograph, `cover` |
+| `scenes/thumbs/aerial-rafting-boulders.jpg` | `order-details-aerial` — the video card's cover | 599 × 362 | same pixels | 341 × 180 | photograph, `cover`, runs to the card's three edges |
+| `scenes/thumbs/aerial-rafting-crew.jpg` | `delivery-aerial` — photo pile, 1 of 3 | 1514 × 1009 | 432 × 288 | 206.7 × 137.8 | photograph, `cover`, 3px `--page` edge, tilt +3deg |
+| `scenes/thumbs/aerial-rafting-drop.jpg` | `delivery-aerial` — photo pile, 2 of 3 | 1488 × 992 | 432 × 288 | same | same, tilt −3.5deg |
+| `scenes/thumbs/aerial-rafting-overhead.jpg` | `delivery-aerial` — photo pile, 3 of 3 | 1516 × 1011 | 432 × 288 | same | same, tilt +2deg, pulled 6% off the right edge |
 | `map/live-map.jpg` | `tracking` · `-empty` · `-error` — live map | 1100 × 552 | — | 326 × 164 | photograph, `center/cover`, native 1.99 |
 | inline base64 JPEG | `order-history-empty` — banner | — | — | 150px tall | `background-size: auto 78%`, `center 16px` |
 
@@ -1448,15 +1542,25 @@ inspection. In the fleet set every unit carries the same lime box, so a mixed li
 three deliveries — which is why the two service cards take in-flight cutouts and the two delivery
 cards take a fleet render. The screen mixes registers deliberately, and pays a register seam for it.
 
-**A finished card shows the result, not the machine (2026-08-16).** The rule above holds for a card
-whose order is still running; the moment an order is *done*, the well carries what came back. The
-designer's reason is recall, not decoration: a client who has had the same roof inspected three times
-sees three identical airframes and cannot tell the orders apart, where three photographs are three
-different roofs. So `order-history`'s 28 Jun and 2 Jun cards take `delivered-at-door` and
-`inspection-roof-cracked-tiles` — the inspection card taking the exact frame that opens that order's
-report, so the card and the report agree. The live card keeps its drone, because *what is flying* is
-the true answer while it flies. The aerial card keeps its drone only because the repo has no picture
-of an aerial deliverable (`visuals/gaps.md` B3 #17); that one is a gap, not a rule.
+**A finished card shows the result, not the machine — proposed, built, and reversed the same day
+(2026-08-16). The reversal is what shipped, and this paragraph recorded the wrong half of it until
+rev 153.** The idea was that the moment an order is *done*, the well carries what came back, on a
+reason that is recall rather than decoration: a client who has had the same roof inspected three
+times sees three identical airframes and cannot tell the orders apart, where three photographs are
+three different roofs. It was built — `order-history`'s 28 Jun and 2 Jun cards took
+`delivered-at-door` and `inspection-roof-cracked-tiles` — and the designer took it out the same day:
+*«та не на ці картки фото, верни назад дрони, а коли я відкриваю картку щоб подивитись деталі»* —
+**not photographs on these cards; put the drones back, and put the picture where I open the card to
+see details.** So **all four `order-history` wells carry drone renders**, verified against the build
+(`drone-08` twice, `drone-flight-camera`, `drone-flight-clean`), and the photographs live on the
+records the cards open — which is exactly where the per-service `order-details` split put them.
+Kept here as a decision with its reason, so it is not re-proposed later as a new idea. The live card
+keeps its drone on the original reasoning too, because *what is flying* is
+the true answer while it flies. The aerial card kept its drone only because the repo had no picture
+of an aerial deliverable — **that gap is closed**: `visuals/gaps.md` B3 #17 was filled the same month
+(rev 135) and the library now holds **five** aerial frames, #17 · #19 · #20 · #21 · #22. The card
+itself did not move, and that is the designer's earlier call holding rather than an omission — she
+reversed photographs on the `order-history` wells and kept the drones there.
 
 **Why the operator photograph is load-bearing.** It answers the highest-drop-off job in the CJM —
 confirm the operator is real and qualified — so it belongs exactly where the trust claim is made,

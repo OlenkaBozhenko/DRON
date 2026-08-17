@@ -569,8 +569,9 @@ and **which layer it lives in**.
 **When.** Add `data-toast="…"` only to a control whose action **finishes on this screen** and leaves **no
 other trace**. Both tests, not either: a tap that changes screen loses its toast (the mechanism fires on the
 page you stay on), and a tap whose result is already visible — a file landing in its upload well, a segment
-moving, a list redrawing — does not need one. Swept across all 84 files on 2026-08-16; four controls in the
-product qualify, and the refusals are listed with their reasons in `microcopy.md`.
+moving, a list redrawing — does not need one. Swept across the whole set on 2026-08-16 — **117 files**, a
+number this line first recorded as 84 and which was re-counted the same month (`concept.md` rev 153); four
+controls in the product qualify, and the refusals are listed with their reasons in `microcopy.md`.
 
 **Never on an error screen.** An error must stay re-readable and a toast leaves after 4s. Recovery copy is
 in the block, per §10.
@@ -683,7 +684,10 @@ A page is done when **all** hold:
 ## 13. Shared shell (`_wf-shell.js`)
 
 **Two shared scripts, and they are not the same kind of thing.** `_wf-shell.js` is **prototype chrome** — the
-screen map, the viewport switcher, the toolbar — and every one of the 84 pages links it. `../ui/kit.js`
+screen map, the viewport switcher, the toolbar — and **116 of the 117 pages** link it; the one that does not
+is `_navbar-options.html`, an option partial with no frame to put chrome around. (Re-counted 2026-08-16,
+`concept.md` rev 153; this line read "every one of the 84 pages" against a set that had since grown.)
+`../ui/kit.js`
 (added 2026-08-16, rev 111) is **product**: it carries the picker drawer's behaviour and nothing else, and
 only the pages that hold a drawer link it — `account-edit`, `order-setup`, `order-setup-error`,
 `report-issue`, `account`, `listings`, `listings-filters`, and from 2026-08-16 (rev 129) `order-review`.

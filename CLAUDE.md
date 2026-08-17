@@ -204,7 +204,9 @@ Sources: `sitemap.md`, `flows.md`, `ia.html`
 **Location:** `wireframes/`. A **grayscale, clickable wireframe prototype** — the step-2 deliverable of the
 working process. It proves **structure, hierarchy, zones and flow**, never looks.
 
-**Scope (built):** **80 HTML pages** covering **every** screen in `sitemap.md` `§6.0/§6.1/§6.2` plus each
+**Scope (built):** **117 HTML pages** — 114 screen-and-state pages plus 3 option partials; **49 screens**
+once states and the `-aerial` / `-inspection` per-service variants are collapsed (re-counted 2026-08-16,
+`concept.md` rev 153) — covering **every** screen in `sitemap.md` `§6.0/§6.1/§6.2` plus each
 screen's real states (`empty` / `error` / `loading` / success) from the `_screens.md` matrix — both main happy
 paths (Client MJ-1, Operator MJ-2 + RJ-O3) and every recovery, onboarding and EJ-2 resolution branch. Screens
 are wired into a walkable prototype along `flows.md`; a shared shell (`_wf-shell.js`) injects a left screen-map
@@ -252,19 +254,26 @@ tooling sits at `.impeccable/design.json`.
 | **One accent, fill only** | Signal Green `#9BCF4A` is a fill or a tint, **never text and never an icon stroke** — raw green is 1.52:1 on a card. Anything sitting on green is charcoal: 9.46:1 on the fill, 14.75:1 on the tint. |
 | **One green control per screen, ≤ ~5% of the frame** | Measured on the build, not asserted: solid green covers **4.43% / 5.09% / 4.71%** of `order-history` / `tracking` / `delivery`, and the primary CTA is **81–100%** of it. Exactly one green *control* — status marks may also be solid green, being under 6% of the screen's green; the `--green-wash` tint is not counted, at 1.085:1 against the page. Green is never spent inside card UI. |
 | **Every pair is measured** | A new colour/background pair is not used until its ratio is computed and written down. §07 of `concept.html` is the standing contrast table. Zero text-contrast failures across the four painted surfaces. |
-| **Surfaces are flat** | No card and no media well casts a shadow — separation is warm tone plus the 16px radius (`#ECE9E4` on `#F7F5F2` is a real 1.11:1 step). **Exactly one shadow is spent on a product surface:** `--sh-sm` under the green primary. `--sh-card`, `--sh-raised` and `--sh-onphoto` are declared rungs applied to nothing — `--sh-onphoto` is a `concept.html` token held for the first chip that actually floats over a photograph, and appears on none of the ten painted pages. |
+| **Surfaces are flat** | No card, no media well and no photograph casts a shadow — separation is warm tone plus the 16px radius (`#ECE9E4` on `#F7F5F2` is a real 1.11:1 step). **Two rungs are spent, and only on things that genuinely float** (re-counted 2026-08-16 by reading every `box-shadow` in `ui/kit.css`, `concept.md` rev 153): `--sh-sm` under the green primary — block primary, circular primary, pressed language toggle — and `--sh-raised` under `.dr-sheet` and `.dr-toast`. The flat rule is about cards sitting *in* the page, which is why a drawer and a toast do not break it. `--sh-card` and `--sh-onphoto` are still declared rungs applied to nothing — `--sh-onphoto` is held for the first chip that actually floats over a photograph, and is spent nowhere. |
 | **A closed ramp of six radii** | `10` input · `12` button · `13` media · `16` card · `22` panel · `999` pill. A shape that is none of these is a shape nobody chose. |
 | **Ten type steps, all in use** | The scale describes the product rather than preceding it: `22` display · `20` number · `17` title · `15` heading · `14` body · `13` body-sm · `12.5` meta · `12` caption · `11` micro · `10.5` micro-sm. |
 | **Imagery is real, never decoration** | Drone renders (`assets/drones/`), people (`assets/people/`), scenes and the live map (`assets/scenes/`, `assets/map/`). A transparent cutout sits *in* a well and is contained; a photograph *is* the surface and covers it. In the product a cutout has no well at all — it sits straight on the card. Pages serve a `thumbs/` copy at ~2× the CSS box; the master stays in the repo. |
 | **Icons are one system** | Flat outline, 24-grid, `stroke-width:1.7` declared **once**, `currentColor`, no fill. The rendered line follows the box — 0.85 at 12px, 2.27 at 32px — the way SF Symbols scales weight; no glyph compensates its stroke. Active / done is a green shape *behind* a charcoal glyph. |
 | **States are built, not dimmed** | Disabled is `--disabled-bg` / `--disabled-ink` — the secondary button's own pair at 4.77:1 — never a blanket opacity, which silently drops charcoal-on-green to 2.35:1. |
 
-**Applied to product surfaces:** [`order-history`](wireframes/order-history.html),
-[`tracking`](wireframes/tracking.html) and [`delivery`](wireframes/delivery.html) (with their states)
-carry the Studio layer. Each family shares one byte-identical `<style>` block, so every repeat of a
-component holds the same values. The whole set is audited against `concept.md` and the findings
-are closed in the change log, most recently rev 42 — the pass that wrote `DESIGN.md` and corrected
-`concept.md` to match the frames.
+**Applied to product surfaces:** **30 screens across 76 files** carry the Studio layer — the whole
+client side, from [`listings`](wireframes/listings.html) through
+[`order-history`](wireframes/order-history.html), [`tracking`](wireframes/tracking.html),
+[`delivery`](wireframes/delivery.html) and their states. The remaining **19 screens** — every
+operator screen plus client entry — are still grayscale. **The per-page `<style>` block is gone:**
+every painted page links one shared [`ui/kit.css`](ui/kit.css), so a component cannot drift between
+two screens by being pasted twice. Three pages keep CSS of their own and only one is alive
+(`switch-role`'s `.success-mark:has(img)`); the blocks on `account` and the `listings` files are
+dead grayscale left over from before they were painted, and the kit wins every product surface —
+measured. The set is audited against `concept.md` and the findings are closed in the change log,
+most recently **rev 153** — the sweep that read the built frames back into `concept.md`,
+`DESIGN.md` and the UI kit, and found a whole component (`delivery-aerial`'s photo pile) that had
+been built into a page without ever reaching a document.
 
 **Change log:** `concept.md` records every revision, including the ones that were tried and reverted —
 so a rejected idea is not re-proposed later as a new one.
