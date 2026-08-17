@@ -1026,24 +1026,59 @@
 
 <div class="row">
   <div class="nm"><b>Upload zone</b>
-    <code>.dr-upload</code>
-    <p><b>Approved 2026-08-03.</b> The dashed boundary does not survive painting — rev 43 made a
-       surface a card, not a frame, and rev 45 answered the same 1.21:1 by removing the line.</p></div>
+    <code>.dr-upload · [role="button"] · --card · __action</code>
+    <p><b>Two forms, and what differs is keyed to the role rather than to the class.</b> In both,
+       <i>the zone is the control</i> — there is no button inside it. Tab into either specimen to
+       see the ring.</p></div>
   <div class="spec">
-    <div class="plate wide" style="align-items:stretch">
-      <div class="dr dr-upload">
+    <div class="plate oncard wide" style="align-items:stretch">
+      <div class="dr dr-upload" role="button" tabindex="0" aria-label="Add a photo or note">
         <svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
-        <button class="dr-btn dr-btn--secondary" type="button">Add photo</button>
+        <span class="dr-field__hint">A photo makes your claim stronger. Order #DR-4821.</span>
       </div>
-      <span class="st">--media well · glyph 5.51:1 · at rest, no motion</span>
+      <span class="st">the well · --media at 13 · 341.4 × 140 · report-issue</span>
+    </div>
+    <div class="plate wide" style="align-items:stretch">
+      <div class="dr dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="kit-upl-title" aria-describedby="kit-upl-hint">
+        <svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+        <span class="dr-upload__action" id="kit-upl-title">Add drone documents</span>
+        <span class="dr-note" id="kit-upl-hint">Registration, serial, or manufacturer papers (PDF / photo).</span>
+      </div>
+      <span class="st">the card · --card at 16 · 326.2 × 161 · account-edit</span>
     </div>
   </div>
   <div class="notes">
-    <p>A <code>--media</code> well at <code>--r-media</code> 13, min-height 140. The glyph is the
-       delivery tray at rest — the same 32px mark <code>delivery-loading</code> animates; here the
-       arrow simply sits in the tray.</p>
-    <p>The action is an ordinary secondary button (<b>11.54:1</b>), labelled with the
-       <code>voice.md</code> verb: <b>Add…</b> — never &ldquo;Upload&rdquo;.</p>
+    <p><b>Approved 2026-08-03.</b> The dashed boundary does not survive painting — rev 43 made a
+       surface a card, not a frame, and rev 45 answered the same 1.21:1 by removing the line.
+       Both forms keep min-height <b>140</b>, padding <b>24</b>, gap <b>12</b>, and the delivery
+       tray glyph at rest — the same <b>32px</b> mark <code>delivery-loading</code> animates, here
+       with the arrow simply sitting in the tray.</p>
+    <p><b>The ground is keyed to the role.</b> The base zone is bare; only
+       <code>[role="button"]</code> — where the zone <i>is</i> the control — takes a ground, because
+       an interactive target keeps its visible boundary. <b>The well</b> is <code>--media</code> at
+       <code>--r-media</code> 13, glyph <b>5.51:1</b>; <b>the card</b> is
+       <code>.dr-upload--card</code>, the card's own <code>--card</code> at <code>--r-card</code> 16.</p>
+    <p><b>The nested button is gone, and that is the designer's call, not a simplification here.</b>
+       Rev 57 (2026-08-15) — her <i>&ldquo;write just with text&rdquo;</i> — gave both document zones the
+       role, so the <code>.dr-btn--secondary</code> came out and the words became the zone's own line:
+       <code>.dr-upload__action</code> in the button's own <b>15/600</b>. Rev 60 the same day took the
+       well out of those zones entirely — the nested <code>--media</code> plane was the
+       card-inside-a-card that rev 56 had already removed from every text area. Both pairs improved
+       by moving onto the card: title <b>13.33:1 → 14.37:1</b>, subtitle <b>5.51:1 → 5.95:1</b>.
+       <b>This specimen showed the retired construction until 2026-08-16 (rev 154)</b>, when she spotted
+       it on the published kit; the wireframes were right and the page was a build behind.</p>
+    <p><b>Two gaps the role change exposed, closed with it:</b> a <code>tabindex="0"</code> control had
+       <i>no focus ring</i> (<code>WCAG 2.4.7</code>, failing since 2026-08-03) and no hover. The ring is
+       the system's 2.5px <code>--ink</code>; hover steps one rung to <code>--btn2</code>, where ink is
+       <b>11.54:1</b> and slate <b>4.77:1</b> — both AA.</p>
+    <p><b>The well is 1.08:1 on the card and is never the identifier</b> — the 32px glyph, the verb and
+       the ring are. It stays because an upload zone, unlike a text area, has no label-value anatomy to
+       fall back on. <code>report-issue</code>'s Evidence zone keeps its well for that reason: it sits
+       inside a row panel as one field among several and carries no title line.</p>
+    <p>The subtitle is capped at <code>--t-note-measure</code> <b>30ch</b> and balanced, never broken with
+       a <code>&lt;br&gt;</code>: measured on the build, 28–32ch gives both document cards exactly two
+       lines, and both notes settle at the same <b>226.8px</b> — two cards of one component reading as
+       one. The verb stays <code>voice.md</code>'s <b>Add…</b> — never &ldquo;Upload&rdquo;.</p>
   </div>
 </div>
 
