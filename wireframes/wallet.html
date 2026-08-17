@@ -5,7 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DRON wireframe · Wallet / earnings · success (base)</title>
 <!-- SCREEN (sitemap): "Wallet / earnings". JOB (jtbd): RJ-O3 · O-05 — earnings move to balance on their own (auto-release ≤ 30 min of client confirmation). STATE: success (base — milestone "you got paid"). Destination → Withdraw. Operator tab bar (Earnings active). -->
+<!--
+  PAINTED (2026-08-18) — the Studio layer from ui/kit.css. Structure and copy unchanged.
+  THE BALANCE FIGURE IS .dr-number, NOT THE GRAYSCALE .amount. _wireframe.css sets .amount to
+  34px/600 #252525 — a size outside the project's ten steps (the largest is 22) and an ink outside
+  the palette. Money in this system is --t-number, 20/700 tabular (DESIGN.md · Hierarchy: "number
+  20 700 — money — ₴180, tabular"), and The Tabular Rule requires tabular figures for anything a
+  user verifies. The caption takes .dr-note. `.dr-balance` is a PROVISIONAL wrapper carrying only
+  the column and the 4px step between the two lines, plus the left alignment .dr-note's own
+  text-align:center would otherwise take away — the frame sets this block flush left, like
+  payment's amount block.
+  THE EARNINGS FIGURE TAKES THE SAME .dr-number as order-history's card price, so the balance and
+  the rows that add up to it are one material. The frame drew it at 15/600; the kit's money step
+  wins (divergence logged).
+  THE RECENT LIST IS .dr-list--snug (8), not .dr-list (28): the list is one zone among four here
+  (Balance · notice · Withdraw · Recent), and DESIGN.md's Between-Beats-Within rule reads the
+  level above — main separates zones by 12, so siblings must close to 8 or they read as further
+  apart than strangers.
+  GREEN: one control, the Withdraw CTA. The tab bar's selected Earnings is --green-wash, a tint,
+  which the budget does not count.
+  TAB GLYPHS are owned by the operator tab-bar pass; the four slots carry TABGLYPH markers.
+-->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -19,59 +41,59 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Balance</b> ▸ available to withdraw (the milestone)</p><p><b>Recent</b> ▸ earnings history</p><p><b>Withdraw</b> ▸ cash out to card / bank</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="title">Earnings</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Balance <span class="act">▸ available to withdraw</span></p>
-      <section aria-label="Balance">
-        <p class="amount">₴3,240</p>
-        <p class="amount-sub">Available to withdraw</p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Earnings</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Balance <span class="dr-label__act">▸ available to withdraw</span></p>
+      <section class="dr-balance" aria-label="Balance">
+        <p class="dr-number">&#8372;3,240</p>
+        <p class="dr-note">Available to withdraw</p>
       </section>
-      <p class="hint">₴800 paid for 'Aerial photo &amp; video', added to your balance 12 min ago.</p>
-      <a class="btn btn-primary btn-block" href="withdraw.html">Withdraw ₴3,240</a>
+      <p class="dr-field__hint">&#8372;800 paid for 'Aerial photo &amp; video', added to your balance 12 min ago.</p>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="withdraw.html">Withdraw &#8372;3,240</a>
 
-      <p class="zlabel">Recent <span class="act">▸ earnings history</span></p>
+      <p class="zlabel dr-label">Recent <span class="dr-label__act">▸ earnings history</span></p>
       <section aria-label="Recent earnings">
-        <ul class="list">
+        <ul class="dr-list dr-list--snug">
           <li>
-            <article class="card">
-              <span class="body">
-                <span class="name">Package delivery</span>
-                <span class="meta-row"><span class="desc">Today, 10:07</span></span>
+            <article class="dr-card dr-card--row">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Package delivery</span>
+                <span class="dr-listing__meta"><span class="dr-listing__desc">Today, 10:07</span></span>
               </span>
-              <span class="price">₴180</span>
+              <span class="dr-number">&#8372;180</span>
             </article>
           </li>
           <li>
-            <article class="card">
-              <span class="body">
-                <span class="name">Aerial photo &amp; video</span>
-                <span class="meta-row"><span class="desc">Today, 08:20</span></span>
+            <article class="dr-card dr-card--row">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Aerial photo &amp; video</span>
+                <span class="dr-listing__meta"><span class="dr-listing__desc">Today, 08:20</span></span>
               </span>
-              <span class="price">₴800</span>
+              <span class="dr-number">&#8372;800</span>
             </article>
           </li>
           <li>
-            <article class="card">
-              <span class="body">
-                <span class="name">Roof inspection</span>
-                <span class="meta-row"><span class="desc">Yesterday</span></span>
+            <article class="dr-card dr-card--row">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Roof inspection</span>
+                <span class="dr-listing__meta"><span class="dr-listing__desc">Yesterday</span></span>
               </span>
-              <span class="price">₴650</span>
+              <span class="dr-number">&#8372;650</span>
             </article>
           </li>
         </ul>
       </section>
     </main>
-    <footer class="tabbar">
-      <nav class="tabs" aria-label="Primary">
-        <a class="tab" href="operator-listings.html"><span class="sq sq-24" aria-hidden="true"></span>Jobs</a>
-        <a class="tab" href="wallet.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Earnings</a>
-        <a class="tab" href="ratings.html"><span class="sq sq-24" aria-hidden="true"></span>Ratings</a>
-        <a class="tab" href="operator-account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="operator-listings.html"><!-- TABGLYPH: jobs -->Jobs</a>
+        <a class="dr-tab" href="wallet.html" aria-current="page"><!-- TABGLYPH: earnings -->Earnings</a>
+        <a class="dr-tab" href="ratings.html"><!-- TABGLYPH: ratings -->Ratings</a>
+        <a class="dr-tab" href="operator-account.html"><!-- TABGLYPH: account -->Account</a>
       </nav>
-      <div class="home-indicator"><span></span></div>
+      <div class="dr-home"><span></span></div>
     </footer>
   </div>
 
