@@ -3342,6 +3342,15 @@ header.dr-topbar,
    takes a third child — its star row leads, then figure, then caption — with
    no change to the rule. */
 .dr-balance{ display: flex; flex-direction: column; gap: var(--sp-within); }
+/* THE FIGURE TAKES THE DISPLAY STEP, AND KEEPS ITS TABULAR FIGURES. The
+   designer, 2026-08-18, on the built wallet: 22, not 20. That is the scale's
+   largest existing step (--t-display-size), so nothing new is cut — but it is
+   spent here through .dr-number rather than by swapping in .dr-display,
+   because .dr-display is not tabular and money has to line up digit under
+   digit. So the balance gets the display SIZE and the number ROLE: 22/700,
+   tabular, --ink 15.99:1 on --page. The 34px the grayscale sheet drew stays
+   rejected — it is off the ten-step scale entirely. */
+.dr-balance .dr-number{ font-size: var(--t-display-size); }
 
 /* .dr-note is text-align:center by construction — the right default under a
    centred mark inside .dr-msg — so a note standing beside a left-aligned
