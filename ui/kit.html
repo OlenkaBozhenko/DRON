@@ -330,8 +330,23 @@
        <b>fill</b> and the ink darkens with it — two signals where the convention gives one. Icons
        stay outline in both states: a deliberate departure from the iOS filled-symbol convention,
        recorded rather than filed as a defect.</p>
-    <p><b>Two headers.</b> Root screens carry the brand and no back; a pushed screen carries a back
-       naming the screen you return to (<code>‹ Order review</code>), never “Back to…”.</p>
+    <p><b>Two headers, and the back control carries no words.</b> A root screen carries the brand and
+       no back. A pushed screen carries <b>the chevron alone</b> — the designer's rule of 2026-08-16
+       (<code>voice.md</code> § <i>Nav-bar back button</i>, <code>microcopy.md</code> <b>D9</b>,
+       superseding D1/D8): <b>one bar, one name</b>, and the only name in it is the title of the
+       screen you are on. A labelled back button puts a second screen name in the bar and the two
+       read as two titles rather than a control and a name. Verified across the build — all
+       <b>42</b> pages that carry a back control draw the glyph and nothing else.</p>
+    <p><b>Invisible, but named.</b> <code>aria-label="Back to {destination}"</code> on every one:
+       an icon-only control with no accessible name fails <code>WCAG 4.1.2 Name, Role, Value</code>.
+       Because the name is invisible it neither competes with the title nor engages
+       <code>WCAG 2.5.3 Label in Name</code>, which applies only where a visible label exists — so
+       <i>Back to…</i> is correct as an accessible name and forbidden as visible copy. Target
+       <b>44 × 44</b> on a glyph of 22.
+       <b>This specimen drew <code>‹ Order review</code> as visible text until 2026-08-16 (rev 155)</b>,
+       with no <code>aria-label</code> at all — the retired rule and a <code>4.1.2</code> failure in one
+       line, on the page that is supposed to settle the question. The designer caught it on the
+       published kit.</p>
     <p>Secondary sits <b>above</b> primary in the action bar, so the thumb reaches the primary
        first.</p>
   </div>
