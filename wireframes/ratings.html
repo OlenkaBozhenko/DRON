@@ -5,7 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DRON wireframe · Ratings dashboard · success (base)</title>
 <!-- SCREEN (sitemap / _screens.md STEP 8): "Ratings dashboard" (EJ-3). PERSONA: Operator O-1. JOB: EJ-3 — see what clients valued: score breakdown + review text, so effort turns into reputation. STATE: base (established O-1). GLOBAL — Ratings tab (sitemap §7.2). flows.md EJ-3: Operator home → Ratings dashboard → Score breakdown + review text shown? → yes → reputation grows. -->
+<!--
+  VISUAL LAYER (2026-08-18): the Studio layer from ui/kit.css. Structure and copy
+  unchanged; every value comes from the kit.
+
+  THE READ-ONLY SCORE IS NEW, AND IT IS NOT .dr-rating. That class is an INPUT —
+  five <button>s, each a 44pt target carrying aria-pressed — built for rate.html,
+  where the client is giving a score. This screen shows a score the operator was
+  GIVEN. Five buttons in the tab order, claiming a pressed state, on a dashboard
+  with nothing to press, would be five stops that toggle nothing (WCAG 4.1.2), so
+  the display is built separately as .dr-stars (provisional; see the pass report).
+  THE GLYPH AND THE COLOUR ARE THE INPUT'S, unchanged: the same star path, the
+  same --sz-star 32 (one component, one value — a second star size would be the
+  drift the kit exists to close), --warn filled over --btn2 unfilled on --page.
+  --warn on --page is 1.84:1 (kit.css · THE RATING, the figure the input already
+  records) and --btn2 on --page is 1.39:1, so the stars never carry the meaning:
+  they are aria-hidden and redundant to "4.8" standing under them in --ink at
+  15.99:1 (WCAG 1.1.1 · 1.4.1). PARTIAL, NOT ROUNDED — 4.8 draws four stars and
+  four fifths of the fifth, because rounding down understates by 0.8 and rounding
+  up overstates. No star row on the review cards or the per-service rows: those
+  scores are 12.5px and 15px text on an axis, and a 160 × 32 row would swamp both.
+
+  THE FIGURE IS 20px, NOT THE GRAYSCALE 34. _wireframe.css sets .amount to
+  34px/600/#252525 — a size outside the product's ten steps (max 22) and an ink
+  outside the palette. It takes .dr-number (20/700, tabular-nums), which the
+  Tabular Rule requires of a rating, and its caption takes .dr-note.
+
+  THE REVIEW LIST IS SNUG. Grayscale drew ul.list at 12 — the old snug rung —
+  and the list is one zone of three, so DESIGN.md's condition puts it on
+  .dr-list--snug (8) rather than .dr-list (28), which is for a list that IS the
+  screen. Card construction copied from inspection-report.html's findings list.
+
+  NO GREEN CONTROL ON THIS SCREEN, by the frame: it is a read-only dashboard and
+  flows.md gives it no action. Solid green is the three zone-label ticks alone.
+-->
 <link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
 </head>
 <body>
   <aside class="meta">
@@ -19,58 +54,81 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Overall</b> ▸ headline score</p><p><b>Per service</b> ▸ where you're strong / weak</p><p><b>Recent reviews</b> ▸ the 'why' behind the score</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="title">Ratings</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Overall <span class="act">▸ headline score</span></p>
-      <section aria-label="Overall rating">
-        <p class="amount">4.8</p>
-        <p class="amount-sub">· 126 ratings · last 90 days</p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Ratings</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Overall <span class="dr-label__act">▸ headline score</span></p>
+      <section aria-label="Overall rating" class="dr-center dr-center--tight">
+        <!-- 4.8 of 5 → 96% of the row. The value arrives inline the way .dr-rail
+             takes --dr-fill in ui/kit.html and the price chart's bars take their
+             heights on listings-filters: data inline, design in the class. -->
+        <span class="dr-stars" style="--dr-score:96%" aria-hidden="true">
+          <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
+          <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
+          <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
+          <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
+          <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
+          <span class="dr-stars__fill">
+            <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
+            <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
+            <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
+            <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
+            <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
+          </span>
+        </span>
+        <p class="dr-number">4.8</p>
+        <p class="dr-note">· 126 ratings · last 90 days</p>
       </section>
 
-      <p class="zlabel">Per service <span class="act">▸ score breakdown</span></p>
-      <div class="kv" aria-label="Rating by service">
-        <div class="kv-row"><span class="kv-key">Package delivery</span><span class="kv-val">4.9</span></div>
-        <div class="kv-row"><span class="kv-key">Aerial photo &amp; video</span><span class="kv-val">4.7</span></div>
-        <div class="kv-row"><span class="kv-key">Inspection</span><span class="kv-val">4.8</span></div>
+      <p class="zlabel dr-label">Per service <span class="dr-label__act">▸ score breakdown</span></p>
+      <div class="dr-rows" aria-label="Rating by service">
+        <div class="dr-rows__row"><span class="dr-rows__key">Package delivery</span><span class="dr-rows__val">4.9</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Aerial photo &amp; video</span><span class="dr-rows__val">4.7</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Inspection</span><span class="dr-rows__val">4.8</span></div>
       </div>
 
-      <p class="zlabel">Recent reviews <span class="act">▸ the 'why'</span></p>
+      <p class="zlabel dr-label">Recent reviews <span class="dr-label__act">▸ the 'why'</span></p>
       <section aria-label="Recent reviews">
-        <ul class="list">
+        <ul class="dr-list dr-list--snug">
           <li>
-            <article class="card stack-card">
-              <span class="meta-row"><span class="name">Olena H.</span><span class="avail">· 5.0</span></span>
-              <p class="desc" style="margin:0;">“Fast and careful — package arrived sealed and on time.”</p>
-              <span class="badges"><span class="badge">Package delivery</span><span class="badge">Today</span></span>
+            <article class="dr-card dr-card--row dr-listing">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
+                <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
+                <span class="dr-listing__meta"><span class="dr-chip">Package delivery</span><span class="dr-chip">Today</span></span>
+              </span>
             </article>
           </li>
           <li>
-            <article class="card stack-card">
-              <span class="meta-row"><span class="name">Andriy P.</span><span class="avail">· 4.0</span></span>
-              <p class="desc" style="margin:0;">“Good shots overall, a couple came out a bit dark.”</p>
-              <span class="badges"><span class="badge">Aerial photo &amp; video</span><span class="badge">Yesterday</span></span>
+            <article class="dr-card dr-card--row dr-listing">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Andriy P.<span class="dr-listing__score">· 4.0</span></span>
+                <p class="dr-listing__desc">“Good shots overall, a couple came out a bit dark.”</p>
+                <span class="dr-listing__meta"><span class="dr-chip">Aerial photo &amp; video</span><span class="dr-chip">Yesterday</span></span>
+              </span>
             </article>
           </li>
           <li>
-            <article class="card stack-card">
-              <span class="meta-row"><span class="name">Maria D.</span><span class="avail">· 5.0</span></span>
-              <p class="desc" style="margin:0;">“Clear roof footage, spotted the leak we couldn't see.”</p>
-              <span class="badges"><span class="badge">Inspection</span><span class="badge">2 days ago</span></span>
+            <article class="dr-card dr-card--row dr-listing">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Maria D.<span class="dr-listing__score">· 5.0</span></span>
+                <p class="dr-listing__desc">“Clear roof footage, spotted the leak we couldn't see.”</p>
+                <span class="dr-listing__meta"><span class="dr-chip">Inspection</span><span class="dr-chip">2 days ago</span></span>
+              </span>
             </article>
           </li>
         </ul>
       </section>
     </main>
-    <footer class="tabbar">
-      <nav class="tabs" aria-label="Primary">
-        <a class="tab" href="operator-listings.html"><span class="sq sq-24" aria-hidden="true"></span>Jobs</a>
-        <a class="tab" href="wallet.html"><span class="sq sq-24" aria-hidden="true"></span>Earnings</a>
-        <a class="tab" href="ratings.html" aria-current="page"><span class="sq sq-24" aria-hidden="true"></span>Ratings</a>
-        <a class="tab" href="operator-account.html"><span class="sq sq-24" aria-hidden="true"></span>Account</a>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="operator-listings.html"><!-- TABGLYPH: jobs -->Jobs</a>
+        <a class="dr-tab" href="wallet.html"><!-- TABGLYPH: earnings -->Earnings</a>
+        <a class="dr-tab" href="ratings.html" aria-current="page"><!-- TABGLYPH: ratings -->Ratings</a>
+        <a class="dr-tab" href="operator-account.html"><!-- TABGLYPH: account -->Account</a>
       </nav>
-      <div class="home-indicator"><span></span></div>
+      <div class="dr-home"><span></span></div>
     </footer>
   </div>
 
