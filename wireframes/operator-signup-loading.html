@@ -27,25 +27,28 @@
     <div class="legend"><p><b>Only the content changes:</b></p><p><b>Sign up</b> ▸ "Verifying your identity…" + skeletons</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><a class="back" href="operator-fee-terms.html" aria-label="Back to Operator terms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="title">Sign in</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Sign up <span class="act">▸ loading — verifying identity</span></p>
-      <section class="center" aria-label="Verifying identity" style="padding:32px 20px;">
-        <span class="success-mark">DIIA</span>
-        <p class="big-title">Verifying your identity…</p>
-        <p role="status">Confirming your details with Diia. This takes a few seconds.</p>
-        <div class="stack" style="width:100%; margin-top:8px;">
-          <span class="sk-line sk-w90"></span>
-          <span class="sk-line sk-w70"></span>
-          <span class="sk-line sk-w50"></span>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="operator-fee-terms.html" aria-label="Back to Operator terms"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Sign in</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Sign up <span class="dr-label__act">▸ loading — verifying identity</span></p>
+      <!-- The loading block is payment-loading's own: the milestone mark carrying
+           the kit's activity indicator, the display line, the lead, then the
+           skeleton bars. --green-wash ground, --ink glyph, 14.75:1. -->
+      <section class="dr-center" aria-label="Verifying identity" style="padding:32px 20px;">
+        <span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5A8.5 8.5 0 1 1 3.5 12"/></svg></span>
+        <p class="dr-display">Verifying your identity…</p>
+        <p class="dr-lead" role="status">Confirming your details with Diia. This takes a few seconds.</p>
+        <div class="dr-stack" style="width:100%; margin-top:8px;">
+          <span class="dr-sk-line dr-sk-w90"></span>
+          <span class="dr-sk-line dr-sk-w70"></span>
+          <span class="dr-sk-line dr-sk-w50"></span>
         </div>
       </section>
     </main>
-    <footer class="actionbar">
-      <a class="btn btn-primary btn-block" href="operator-verification.html">Continue</a>
-      <a class="btn btn-secondary btn-block" href="operator-signup.html">Cancel</a>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="operator-verification.html">Continue</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="operator-signup.html">Cancel</a>
     </footer>
   </div>
 
