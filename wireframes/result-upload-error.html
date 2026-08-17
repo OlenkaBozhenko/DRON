@@ -21,25 +21,30 @@
     <div class="legend"><p><b>Only the content changes:</b></p><p><b>Result photo</b> → upload-failed notice + retry / queue offline</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><a class="back" href="job-checklist.html" aria-label="Back to Checklist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="title">Close job</span><span class="spacer"></span></header>
-    <main>
-      <p class="zlabel">Result photo <span class="act">▸ upload failed</span></p>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="job-checklist.html" aria-label="Back to Checklist"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Close job</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Result photo <span class="dr-label__act">▸ upload failed</span></p>
       <section aria-label="Upload error">
-        <div class="msg-block" role="alert">
-          <span class="msg-ph">UPLOAD</span>
-          <span class="msg-title">Upload failed</span>
-          <p class="msg-body">The delivery photo didn't upload — weak signal. Try again, or queue it to upload automatically when you're back online. Payment is held until the photo uploads.</p>
-          <div class="msg-actions">
-            <a class="btn btn-primary btn-block" href="result-upload-loading.html">Try again</a>
-            <a class="btn btn-secondary btn-block" href="result-upload.html">Queue offline</a>
+        <!-- UPLOAD takes .dr-mark--danger, which is this family's own recorded home:
+             DESIGN.md names --danger-wash / --danger-ink for "signal lost, upload
+             missing" and that is literally this screen. --danger-ink on --danger-wash
+             is 5.49:1. The glyph is the kit's upload arrow with delivery-error's own
+             cancelling stroke `M4 4l16 16` — one idiom for "this did not happen". -->
+        <div class="dr-msg" role="alert">
+          <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/><path d="M4 4l16 16"/></svg></span>
+          <span class="dr-msg__title">Upload failed</span>
+          <p class="dr-msg__body">The delivery photo didn't upload — weak signal. Try again, or queue it to upload automatically when you're back online. Payment is held until the photo uploads.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary dr-btn--block" href="result-upload-loading.html">Try again</a>
+            <a class="dr-btn dr-btn--secondary dr-btn--block" href="result-upload.html">Queue offline</a>
           </div>
         </div>
       </section>
     </main>
-    <footer class="actionbar">
-      <p class="note">Payment stays held until the delivery photo uploads.</p>
+    <footer class="dr-actionbar">
+      <p class="dr-note">Payment stays held until the delivery photo uploads.</p>
     </footer>
   </div>
 
