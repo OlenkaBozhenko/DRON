@@ -16,39 +16,64 @@
     <div class="legend"><p><b>Zones:</b></p><p><b>Slider</b> ▸ 3 slides: dispatch · checklist · payout</p><p><b>Skip</b> ▸ jump to the jobs hub</p></div>
   </aside>
 
-  <div class="wf-frame">
-    <div class="statusbar"><span>9:41</span><span class="sysph"><span class="sq sq-16"></span><span class="sq sq-16"></span><span class="sq sq-16"></span></span></div>
-    <header class="topbar"><span class="brand" role="img" aria-label="DRON"></span><span class="spacer"></span></header>
-    <main>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <!--
+        THE SLIDE AREA IS DELIBERATELY LEFT ON ITS GRAYSCALE GEOMETRY, and this is
+        recorded rather than quietly half-done. Three reasons, in order:
+        1. The bleed carousel is being defined once for `welcome` and
+           `onboarding-client`; this page must take THOSE class names, not a second
+           set, or one pattern ships under two APIs. Pending reconciliation.
+        2. The `is-bleed` band is `height: 35%` of the content area — a value the
+           kit has no token for (`--banner-art` 78% is the empty-state banner's).
+           A component that needs a new token stops here and is reported, it does
+           not get one invented for it.
+        3. Two of the three pictures do not exist yet (`STEPS`, `PAID`), so those
+           two wells are still the documented "picture pending" state.
+        WHAT IS PAINTED HERE: the frame, both system bars, the action bar, and the
+        slide TYPE — .dr-display and .dr-lead sit beside `big-title` / `lead`,
+        which the bleed layer's own z-index rules key on, so the copy is the
+        product's 22/700 and 15/400 on --ink / --slate while the layout stays put.
+      -->
       <div class="slider is-bleed" aria-label="How operating on DRON works">
         <!-- The picture comes last in the markup, not first: it is the bottom of
              the slide visually, and it is decorative (alt=""), so a screen reader
              should reach the heading before it rather than step over it. -->
         <section class="slide" id="oo1" aria-label="Slide 1 of 3">
-          <p class="big-title">Jobs come to you</p>
-          <p class="lead">Auto-dispatch sends pre-qualified jobs. Accept or decline in seconds — no bidding.</p>
+          <p class="big-title dr-display">Jobs come to you</p>
+          <p class="lead dr-lead">Auto-dispatch sends pre-qualified jobs. Accept or decline in seconds — no bidding.</p>
           <span class="slide-ph"><img src="../assets/scenes/thumbs/operator-at-work.png" alt="" loading="lazy" decoding="async"></span>
         </section>
         <section class="slide" id="oo2" aria-label="Slide 2 of 3">
-          <p class="big-title">Follow the checklist</p>
-          <p class="lead">Every job has a step-by-step checklist so nothing is missed on site.</p>
+          <p class="big-title dr-display">Follow the checklist</p>
+          <p class="lead dr-lead">Every job has a step-by-step checklist so nothing is missed on site.</p>
           <span class="slide-ph">STEPS</span>
         </section>
         <section class="slide" id="oo3" aria-label="Slide 3 of 3">
-          <p class="big-title">Get paid automatically</p>
-          <p class="lead">Earnings land within 30 min of client confirmation. Withdraw to card or bank.</p>
+          <p class="big-title dr-display">Get paid automatically</p>
+          <p class="lead dr-lead">Earnings land within 30 min of client confirmation. Withdraw to card or bank.</p>
           <span class="slide-ph">PAID</span>
         </section>
       </div>
-      <nav class="pager" aria-label="Slides">
+      <!-- The dot row takes .dr-pager (8px, no outline, --btn2 rests) and KEEPS
+           `pager`, because `.slider.is-bleed + .pager` is what lifts it clear of
+           the absolutely-positioned artwork layer — without it the dots sit behind
+           the picture and stop being clickable. One consequence, measured and
+           reported rather than papered over: `_wireframe.css`'s `.pager a.on`
+           (0,2,1) out-specifies the kit's `.dr-pager .on` (0,2,0), so the ACTIVE
+           dot still draws --wf-ink instead of --green until a one-line kit rule
+           at `.dr-pager a.on` lands. See the pack report. -->
+      <nav class="pager dr-pager" aria-label="Slides">
         <a href="#oo1" class="on" aria-label="Go to slide 1"></a>
         <a href="#oo2" aria-label="Go to slide 2"></a>
         <a href="#oo3" aria-label="Go to slide 3"></a>
       </nav>
     </main>
-    <footer class="actionbar">
-      <a class="btn btn-secondary btn-block" href="operator-listings.html">Skip</a>
-      <a class="btn btn-primary btn-block" href="operator-listings.html">Get started</a>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="operator-listings.html">Skip</a>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="operator-listings.html">Get started</a>
     </footer>
   </div>
 
