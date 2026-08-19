@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Dispute / client issue · error</title>
+<!-- SCREEN: "Dispute / client issue" (operator, EJ-2) — STATE: error. Same shell as operator-dispute.html; only the main content becomes the hold message. flows.md MJ-2: Resolved in operator's favour? → no → "Error: payment held pending EJ-2 resolution" → back to Dispute (update response) or escalate to human support. Not a dead-end. -->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-dispute.html">base</a>
+      <a href="operator-dispute-error.html" class="cur" aria-current="page">error</a>
+    </nav>
+    <h1>Dispute / client issue</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>error</b> · file: operator-dispute-error.html</p>
+    <div class="flow"><b>Error (flows.md MJ-2):</b> Resolved in operator's favour? → <b>no</b> → <i>"payment held pending EJ-2 resolution"</i>. Recovery (not a dead-end): update the response or escalate to a human.<br>flows.md: Dispute → <span class="cur">payment held pending EJ-2</span> → back to Dispute.</div>
+    <div class="legend"><p><b>Only the content changes</b> vs operator-dispute.html:</p><p><b>Main</b> ▸ hold message + recovery actions</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="operator-listings.html" aria-label="Back to Jobs"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Dispute</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Job <span class="dr-label__act">▸ what's disputed</span></p>
+      <section aria-label="Disputed job">
+        <article class="dr-card dr-card--row dr-listing">
+          <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="dr-listing__body">
+            <span class="dr-listing__name">Job #DR-2841 · Aerial photo</span>
+            <span class="dr-listing__desc">Client: Olena H. · disputed</span>
+            <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴800</span></span><span class="dr-listing__desc">· held</span></span>
+          </span>
+        </article>
+      </section>
+
+      <p class="zlabel dr-label">Status <span class="dr-label__act">▸ payment held pending EJ-2</span></p>
+      <section aria-label="Payment held">
+        <!-- HELD takes .dr-mark--warn: the money is not lost, it is waiting, and the
+             copy says so ("stays on hold while the dispute is reviewed"). role="status",
+             not alert, in the frame — so --danger would overstate it. --warn-ink on
+             --warn-wash is 5.65:1. The glyph is a padlock, two strokes on the grid. -->
+        <div class="dr-msg" role="status">
+          <span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="9.5" rx="2.2"/><path d="M8.4 10.5V8.2a3.6 3.6 0 0 1 7.2 0v2.3"/></svg></span>
+          <span class="dr-msg__title">Payment held</span>
+          <p class="dr-msg__body">₴800 for Job #DR-2841 stays on hold while the dispute is reviewed. Add more evidence to your response, or contact support to resolve it.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--secondary" href="operator-dispute.html">Update response</a>
+            <a class="dr-btn dr-btn--secondary" href="contact-support.html">Contact support</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- TWO GREEN CONTROLS ON THIS SCREEN, and it is reported rather than smoothed:
+         the block's `Update response` is the recovery the state exists for, and rev 112
+         requires the action bar's only button to be --primary ("the only button on the
+         bottom edge is the main action by definition"). Measured green and both options
+         are in the pack report; the designer has the number. -->
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="operator-listings.html">Back to Jobs</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

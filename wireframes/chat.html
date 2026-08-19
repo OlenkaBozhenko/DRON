@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Chat with the operator · base</title>
+<!--
+  SCREEN (_screens.md §9b): "Chat with the operator" — a sub-view of "Live tracking & ETA", not a
+  node on the MJ-1 spine. PERSONA: Client C-1. JOB: RJ-C2 (the void between payment and arrival)
+  + RJ-C1 (the operator stays a reachable person, not a photograph). STATE: base only.
+  FLOW: tracking → "Contact operator" drawer → Chat with the operator → here; back → tracking.
+
+  ADDED 2026-08-16 on the designer's word against the built tracking screen: "by clicking on
+  'Contact operator' open drawer with opportunity to select call, chat, support and add wireframes
+  with a chat with operator."
+
+  WHAT THIS IS NOT. sitemap.md §4 deletes "Client ↔ operator chat / messaging" as the Rover
+  async-negotiation anti-pattern — haggling over a job BEFORE it is booked, which research.md
+  (M-1) says will not work for a Bolt/Glovo audience. This thread only exists while a PAID job is
+  running, between a client and the one operator already dispatched to them, and there is nothing
+  in it to negotiate: the price is locked (RJ-C3) and the operator was auto-assigned. It is the
+  Bolt in-ride message, not the Kabanchik thread. The verdict is annotated in sitemap.md §4, not
+  reversed.
+
+  BASE ONLY. No flows.md node produces an empty, error or loading thread: the screen is opened
+  from a live job that already has an operator, so it is never empty, and a failed send is a state
+  of one message, not of the screen.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Chat with the operator</h1>
+    <p class="sub">Client · MJ-1 (sub-view of Live tracking &amp; ETA) · state: <b>base only</b> · file: chat.html</p>
+    <dl>
+      <dt>Persona</dt><dd>Client C-1 (primary)</dd>
+      <dt>Job</dt><dd>RJ-C2 — close the void; RJ-C1 — the operator is reachable</dd>
+      <dt>Node</dt><dd>Not on the spine — tracking → Contact operator drawer → Chat with the operator</dd>
+    </dl>
+    <div class="flow"><b>In-job channel only.</b><br>Open while the order is running, with the one operator already dispatched. Nothing to negotiate — the price is locked (RJ-C3) and the operator was auto-assigned.<br><b>Exit:</b> back → <b>On the way</b> (tracking).<br><b>States:</b> none.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Thread</b> ▸ what was said, and when</p><p><b>Composer</b> ▸ write and send</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+
+    <!--
+      THE BAR CARRIES THE PERSON'S NAME, which is `HIG · Navigation bars` ("the title of the
+      current view") read the way Messages reads it: the view IS the correspondent. It is also the
+      one place RJ-C1 is answered on this screen — the client can see whose thread they are in
+      without a card repeating the operator panel that stands on tracking one tap away.
+      The back control is the chevron alone with aria-label="Back to On the way" — microcopy.md D9,
+      and "On the way" is what tracking's own bar is titled, the same destination string
+      inspection-report already uses.
+    -->
+    <header class="topbar dr-topbar"><a class="dr-back" href="tracking.html" aria-label="Back to On the way"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Andriy M.</span><span class="dr-topbar__spacer"></span></header>
+
+    <main class="dr-main">
+      <p class="zlabel dr-label">Thread <span class="dr-label__act">▸ what was said, and when (RJ-C2)</span></p>
+      <!--
+        A THREAD IS A LIST, so it is one (`WCAG 1.3.1`). .dr-list--snug is the 12px rung, the same
+        step every other grouped list in a zone uses; no new layout class is cut for this screen.
+        WHO SAID IT IS CARRIED BY THE EDGE, not by the two grounds — --card and --btn2 are 1.25:1
+        apart and no eye separates them. Each row therefore names its speaker for assistive tech,
+        which is what `WCAG 1.4.1` asks when a visual distinction is positional.
+        The day mark is .dr-note — the kit's centred caption, --slate 6.62:1 on the page — not a new
+        component: one line saying which day these times belong to.
+      -->
+      <section class="dr-stack dr-thread" aria-label="Thread">
+        <p class="dr-note">Today</p>
+        <ul class="dr-list dr-list--snug" aria-label="Messages">
+          <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Andriy M.:</span>Your parcel is picked up from Podil, 21. On the way to Osokorky, 14.<time class="dr-bubble__time" datetime="2026-08-16T09:32">9:32</time></li>
+          <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>The courtyard gate is locked — the code is 4471.<time class="dr-bubble__time" datetime="2026-08-16T09:34">9:34</time></li>
+          <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Andriy M.:</span>Got it. I'll land at the entrance and send the delivery photo.<time class="dr-bubble__time" datetime="2026-08-16T09:35">9:35</time></li>
+          <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>Which entrance?<time class="dr-bubble__time" datetime="2026-08-16T09:36">9:36</time></li>
+          <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Andriy M.:</span>The one facing the playground. About 6 minutes out.<time class="dr-bubble__time" datetime="2026-08-16T09:38">9:38</time></li>
+        </ul>
+      </section>
+    </main>
+
+    <!--
+      THE COMPOSER IS BUILT OUT OF PARTS THAT ALREADY EXIST — .dr-actionbar for the footer,
+      .dr-search-row for the row, .dr-search for the field, .dr-btn--icon for the disc. The only
+      new rule in the kit for this screen is the compound that lets --primary and --icon be worn
+      at once, because --icon is declared later and its grey fill would otherwise win the tie.
+      NO RING ON THE FIELD: rev 100's rule — `WCAG 2.4.7` names the text cursor in a text field as
+      a visible focus indicator, so the caret carries it. --ink on --media is 13.33:1.
+      SEND IS THE SCREEN'S ONE GREEN CONTROL — 44 × 44, 1,936px², 0.64% of the frame, glyph
+      --on-green on --green at 9.46:1, and the frame's only shadow sits under it.
+    -->
+    <footer class="dr-actionbar">
+      <div class="dr-search-row">
+        <label class="dr-search">
+          <span class="dr-sr">Message</span>
+          <input type="text" placeholder="Message">
+        </label>
+        <button class="dr-btn dr-btn--primary dr-btn--icon" type="button" aria-label="Send message"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19.5V5"/><path d="M5.5 11.5L12 5l6.5 6.5"/></svg></button>
+      </div>
+    </footer>
+  </div>
+
+  <!--
+    ui/kit.js arrives here 2026-08-16 (rev 151) for the onscreen keyboard, on the designer's
+    «застосуй цей функціонал (появлення розкладки клавіатури) для мобільної версії кругом де є
+    імпути і поля вводу та текстові поля» — the sweep of the behaviour rev 149 built on `rate`.
+    No markup for it lives on this page on purpose: the system draws the keyboard over an app and
+    is not part of the app's DOM, so the script builds it and every field on every screen gets the
+    same picture.
+    THIS PAGE IS THE EXCEPTION THE KIT NAMES: the field is the composer and it lives INSIDE
+    `.dr-actionbar`, so the bar rides above the keys instead of leaving — hiding it would hide the
+    field being typed into.
+  -->
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Delivery confirmation · aerial · success (base)</title>
+<!-- SCREEN (sitemap): "Delivery confirmation". JOB (jtbd): RJ-C4 (a clear, documented result — proof of work). STATE: success (base — milestone). Client confirm here releases the operator's pay (RJ-O3). EXIT → Rate the order. -->
+
+<!--
+  VISUAL LAYER (2026-08-01): Studio design language transferred from concept/concept.html
+  and the painted wireframes/order-history.html + wireframes/tracking.html — palette,
+  radii, shadows, Phosphor-line icons, and the §6.2 outcome image. Structure and copy
+  unchanged; only media/icon placeholders became the real marks they always stood for
+  ("DONE" → concept §09's success glyph, "DELIVERY PHOTO" → the render concept.md §6.2
+  assigns to this screen). The <style> block is byte-identical across all three delivery
+  states, so every repeat of a component carries the same values. See concept.md rev 25.
+-->
+<!-- NEW 2026-08-16 — the "what came back" screen for aerial. Inspection already had one
+     (`inspection-report.html`) and delivery had this file; aerial had neither, so the shoot's
+     tracking screen handed *View details* to a page about a parcel.
+     IT IS THE DLV SCREEN'S AERIAL VARIANT, not a fourth sitemap screen — same milestone, same
+     `RJ-C4` job, same release of the operator's pay on confirm (`RJ-O3`), same exit to Rate. Only
+     the deliverable it shows and the three detail rows differ. The file name is a file name, not a
+     product string: nothing on the screen says *delivery*.
+     THE ZONE IS NAMED FOR WHAT WAS ORDERED — `voice.md` **O5**, amended in this pass: this order
+     asked for *Photo & video*, so the zone is *Photo & video set*. A photo-only order would be
+     headed *Photo set*. The well carries the set's photograph; the video, with its `Download video`
+     control, lives on the record (`order-details-aerial`), which is where the set is kept. -->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="delivery-aerial.html" class="cur" aria-current="page">success</a>
+      <a href="delivery-error.html">error</a>
+      <a href="delivery-loading.html">loading</a>
+    </nav>
+    <h1>Delivery confirmation</h1>
+    <p class="sub">Client · MJ-1 · state: <b>success (base)</b> · file: delivery-aerial.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-C4 — a clear, documented result: proof of delivery I can trust and act on.<br><b>Flow:</b> confirming here releases the operator's pay (RJ-O3).<br><b>Exit:</b> Rate the order → <b>Rate</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Confirmation</b> ▸ delivered</p><p><b>Proof of delivery</b> ▸ photo (RJ-C4)</p><p><b>Details</b> ▸ where · when · who</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><h1 class="dr-topbar__title">Done</h1><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <!--
+        The Confirmation zone came off 2026-08-16 on the designer's «remove icon», pointing at the
+        milestone mark. It held ONE thing — a 64 × 64 --green-wash disc with a charcoal check,
+        aria-hidden, with no words beside it; the screen's «Done» is the nav-bar h1 and always was.
+        Every other milestone mark in the product stands with a sentence (Payment received · Refund
+        issued · Your parcel arrived at 10:07.), so this was the one wordless instance, and
+        kit.css's own note — delivered and waiting share one well, «the difference is the glyph and
+        the title» — is what a mark with no title fails. WCAG 1.1.1 loses nothing (aria-hidden, no
+        accessible name); 1.4.1 holds, the state being named in text by the bar and the content.
+        Measured: main 701 in a 620 window before, 620 = 620 after — the screen stops scrolling.
+      -->
+      <p class="zlabel dr-label">Photo &amp; video set <span class="dr-label__act">▸ what the operator sent back (RJ-C4)</span></p>
+      <section aria-label="Photo and video set">
+        <div class="dr-stack">
+          <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-crew.jpg" alt="Photo 1 of 3 — the crew head-on in white water, helmets up and both blades in the air." loading="lazy" decoding="async"></span>
+          <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-drop.jpg" alt="Photo 2 of 3 — the raft airborne off the waterfall, the whole crew's arms raised." loading="lazy" decoding="async"></span>
+          <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-overhead.jpg" alt="Photo 3 of 3 — the raft from directly overhead, running the rapid between wet rock and green water." loading="lazy" decoding="async"></span>
+        </div>
+      </section>
+      <p class="zlabel dr-label">Details <span class="dr-label__act">▸ where · when · who</span></p>
+      <div class="dr-rows" aria-label="Shoot details">
+        <div class="dr-rows__row"><span class="dr-rows__key">Location</span><span class="dr-rows__val">Trukhaniv Island</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Shot</span><span class="dr-rows__val">Wed 2 Jul · 09:00–10:00</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Operator</span><span class="dr-rows__val">Andriy M.</span></div>
+      </div>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="rate.html">Rate this order</a>
+    </main>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="listings.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+        <a class="dr-tab" href="order-history.html" aria-current="page"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+        <a class="dr-tab" href="support.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+        <a class="dr-tab" href="account.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

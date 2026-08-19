@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Incoming job offer / accept-decline · empty</title>
+<!-- SCREEN: "Incoming job offer / accept-decline" — STATE: empty (offer expired / reassigned). Grounded in flows.md MJ-2: "Accept within 10s? → no → offer expired, reassigned". EXIT: back to jobs. -->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="job-offer.html">success</a>
+      <a href="job-offer-empty.html" class="cur" aria-current="page">empty</a>
+    </nav>
+    <h1>Incoming job offer / accept-decline</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>empty</b> · file: job-offer-empty.html</p>
+    <div class="flow"><b>Empty:</b> the offer expired and was reassigned (flows.md MJ-2: "Accept within 10s? → no").<br><b>Exit (not a dead-end):</b> back to jobs — new offers arrive there.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Offer</b> → expired notice + recover</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">New job</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Offer <span class="dr-label__act">▸ empty — expired, recover (exit)</span></p>
+      <section aria-label="Offer expired">
+        <!-- EXPIRED takes .dr-mark--warn: the warn family is the palette's TIME rung
+             (DESIGN.md: "ETA slipping"), and a countdown that ran out is that fact.
+             --warn-ink on --warn-wash is 5.65:1. The glyph is the kit's own clock,
+             quoted from delivery-loading — one icon system, no second clock drawn. -->
+        <div class="dr-msg" role="status">
+          <span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.3 2"/></svg></span>
+          <span class="dr-msg__title">Job expired</span>
+          <p class="dr-msg__body">You didn't respond in time, so this job was reassigned to another operator. New jobs will appear here.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="operator-listings.html">Back to Jobs</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="dr-actionbar">
+      <p class="dr-note">Jobs auto-expire after 10s to keep dispatch moving.</p>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Account — profile photo</title>
+<!--
+  SCREEN: "Account" — STATE: photo (sub-view of account.html, sibling of account-edit.html).
+  JOB: identity utility (sitemap §7.4) — change the picture the operator sees when they arrive.
+  Added 2026-08-16 on the designer's word: «добав ще один wireframe де можна загрузити
+  аватарку зроби його по HIG вимогам». Reached from the pencil badge now sitting on the
+  avatar in account.html; the pencil beside the name still goes to account-edit.html.
+
+  REBUILT AS A MODAL 2026-08-16 (rev 146) on her own reference, Figma `100:30`: «залиш
+  зображення аватарки посередині а кнопки "Take a photo", Choose a picture, Delete і Сancel
+  зроби у ботом барі по типу цього … лиш кнопки по стилю мої з кіта». Her frame is an iOS
+  action sheet over an Edit Profile screen, so the picture stands alone in `main` and the
+  three ways to change it moved to the bottom edge. `HIG · Modality` puts Cancel and Save in
+  the navigation bar of a view that commits — which is what her frame draws — so the back
+  chevron came off with the bar's own Cancel.
+  Exit (no dead-end): Cancel / Save → Account.
+  FIDELITY: painted — the Studio layer, ../ui/kit.css, as every client screen carries.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="account.html">success</a>
+      <a href="account-edit.html">edit</a>
+      <a href="account-photo.html" class="cur" aria-current="page">photo</a>
+    </nav>
+    <h1>Account — profile photo</h1>
+    <p class="sub">Account utility · sub-view: <b>photo</b> · file: account-photo.html</p>
+    <div class="flow"><b>Job (jtbd):</b> change the profile photo — the picture the operator matches against on arrival (sitemap §7.4 identity utility; feeds <b>RJ-C1</b>'s two-way recognition).<br><b>Entry:</b> the pencil badge on the avatar, <b>Account</b>.<br><b>Exit:</b> Cancel or Save → <b>Account</b>. No dead-end, and no back chevron — a modal is dismissed by its named Cancel (<code>HIG · Modality</code>).<br><b>States:</b> none — an empty avatar is the base (the initials fallback), and no <code>flows.md</code> node produces an error or loading state here.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Nav bar</b> ▸ Cancel · Profile photo · Save</p><p><b>Photo</b> ▸ the picture as it stands, at 120</p><p><b>Action bar</b> ▸ Take a photo · Choose a picture · Delete, over the file rule</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <!--
+      TWO NAMED WORDS, NOT A CHEVRON — rev 146, the designer's reference (Figma
+      `100:30`) and `HIG · Modality`, which gives a view that EDITS something and
+      has to be committed a Cancel on the left and a Save on the right. The back
+      chevron rev 93 wrote for every pushed screen cannot stand beside them: a
+      screen cannot both go back and be dismissed without saving, and two exits a
+      thumb's width apart with two different meanings is the ambiguity
+      `WCAG 2.4.6` names. account-edit's bar is deliberately NOT swept with it —
+      that screen still pushes, and its Save lives on the bottom edge.
+
+      Both are `.dr-btn` text rungs, so both keep the 44 target and the kit's own
+      focus ring (`WCAG 2.4.7`, `HIG · 44pt`): Cancel on `--tertiary` (--slate,
+      6.62:1 on the page) and Save on `--text` (--green-ink, 5.58:1) — the accent
+      as an INK, which is the one green §0 lets speak, and the reason the pair
+      differs in more than position. The title still centres absolutely against
+      the bar and clears both labels.
+    -->
+    <header class="topbar dr-topbar"><a class="dr-btn dr-btn--tertiary" href="account.html">Cancel</a><span class="dr-topbar__title">Profile photo</span><span class="dr-topbar__spacer"></span><a class="dr-btn dr-btn--text" href="account.html">Save</a></header>
+
+    <main class="dr-main">
+
+      <!--
+        ZONE · photo — the subject of the screen, so it is shown as a subject:
+        120 (--sz-avatar-xl), centred on the card, with the one sentence that
+        says why the picture matters. `HIG · Modality` wants an editing view to
+        show what is being edited before it shows the ways to edit it.
+        The <img> takes real alt text here, not the empty alt it carries on
+        account.html: there the name is written beside it and the picture is
+        decoration (`WCAG 1.1.1`); here the picture IS the content.
+      -->
+      <p class="zlabel dr-label">Photo <span class="dr-label__act">▸ what your operator sees</span></p>
+      <div class="dr-card">
+        <span class="dr-avatar-lg"><img src="../assets/people/thumbs/person-client-olena.png" alt="Your profile photo" loading="lazy" decoding="async"></span>
+        <p class="dr-note">Your operator sees this photo when they arrive. Without one, they see your initials.</p>
+      </div>
+    </main>
+
+    <!--
+      THE THREE WAYS TO CHANGE THE PICTURE, ON THE BOTTOM EDGE — the designer's
+      own frame (Figma `100:30`), where they are an iOS action sheet: two sources
+      and the destructive choice, grouped away from the picture they act on.
+      `HIG · Action sheets` names both sources and asks the destructive one to
+      stand last; the message above them is the slot that guideline gives a sheet,
+      built as `.dr-note` — the caption line `_conventions.md` §11 already allows
+      in a bar — and tied to all three by aria-describedby so it is announced with
+      each button rather than sitting loose (`WCAG 1.3.1`, `4.1.2`).
+
+      THE FILLS ARE HER CALL, 2026-08-16: «дві зерені delete сіра». Take a photo
+      and Choose a picture are both `.dr-btn--primary`; Delete is the secondary
+      rung, which is the same answer rev 131 gave `Delete order` on order-details
+      («зроби кнопку секондарі сірою»), so the product's two destructive controls
+      now read alike. Every button is FILLED, which is rev 112's rule for a bar
+      («вони мають бути filled як праймері і секондарі») — the .dr-btn--danger
+      ghost this screen used to carry is exactly the shape that rule removed.
+      TWO PRIMARIES IN ONE BAR IS A DEPARTURE from that same rule's second half
+      and from §0's one-green-control budget; it is recorded with its measurement
+      in concept.md rev 146, not treated as conforming.
+
+      Charcoal on green is 9.46:1 and charcoal on --btn2 11.54:1 (`WCAG 1.4.3` ✓,
+      floor 4.5:1); with the colour gone from Delete the VERB carries the warning,
+      so `1.4.1` cannot fail here. Nothing in this bar commits on its own — the
+      message says so — which is why a destructive action needs no alert behind it.
+    -->
+    <footer class="dr-actionbar">
+      <p class="dr-note" id="photo-rules">JPG or PNG, up to 5 MB. Nothing changes until you save.</p>
+      <button class="dr-btn dr-btn--primary dr-btn--block" type="button" aria-describedby="photo-rules">Take a photo</button>
+      <button class="dr-btn dr-btn--primary dr-btn--block" type="button" aria-describedby="photo-rules">Choose a picture</button>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" aria-describedby="photo-rules">Delete</button>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

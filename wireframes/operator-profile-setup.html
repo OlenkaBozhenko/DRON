@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Profile setup · success (base)</title>
+<!--
+  SCREEN: "Profile setup" (flows.md MJ-2 — "approved → Profile setup → home").
+  PERSONA: Operator (MJ-2 activation gate — last step before going live).
+  JOB: MJ-2 activation — set the public profile clients see (RJ-C1 trust: photo, name, specializations).
+  STATE: base only (no state pages). Pre-live: no operator tabbar — topbar + actionbar.
+  flows.md node: "Profile setup" (approved → Profile setup → home).
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Profile setup</h1>
+    <p class="sub">Operator · MJ-2 activation · state: <b>base only</b> · file: operator-profile-setup.html</p>
+    <div class="flow"><b>Job (jtbd):</b> MJ-2 activation — the public profile clients see (RJ-C1 trust: photo, name, specializations). flows.md "approved → Profile setup → home".<br><b>Exit:</b> Save &amp; go live → <b>Operator home</b> (operator-listings).<br><b>States:</b> none.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Profile photo</b> ▸ how clients recognise you</p><p><b>Name &amp; bio</b> ▸ who you are</p><p><b>Specializations</b> ▸ which services you fly</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="operator-verification.html" aria-label="Back to Verification"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Profile setup</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Profile photo <span class="dr-label__act">▸ how clients recognise you</span></p>
+      <form class="dr-stack dr-stack--zones" aria-label="Profile setup" action="#">
+        <!-- THE ZONE IS THE CONTROL — the kit's card-ground upload zone (form b,
+             .dr-upload--card), the shape account-edit's two document zones carry.
+             The grayscale zone held a media placeholder plus a secondary button
+             inside it; the kit put the words on the zone itself at rev 57, so the
+             nested button goes and `Add photo` becomes the zone's own action line.
+             --card ground at radius 16, the 32px tray glyph at --slate 5.95:1,
+             title --ink 14.37:1, the whole card the 44pt+ target. -->
+        <div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="profile-photo-title">
+          <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+          <span class="dr-upload__action" id="profile-photo-title">Add photo</span>
+        </div>
+
+        <div class="dr-rows">
+          <div class="dr-field">
+            <label class="dr-field__label" for="nm">Display name</label>
+            <span class="dr-field__group"><input class="dr-field__input" id="nm" placeholder="e.g. Andriy K."></span>
+          </div>
+
+          <!-- The bio keeps .dr-field--area's own two-line floor and does NOT take
+               --area6: six lines is the compose rung (contact-support, order-setup,
+               report-issue), and this field's own hint promises "1–2 lines". -->
+          <div class="dr-field dr-field--area">
+            <label class="dr-field__label" for="bio">Short bio</label>
+            <textarea class="dr-field__input" id="bio" placeholder="Certified operator since 2023. Fast, careful deliveries across Kyiv…"></textarea>
+            <span class="dr-field__hint">1–2 lines clients see. Your experience and the area you cover.</span>
+          </div>
+        </div>
+
+        <!-- SPECIALIZATIONS — the kit's real checkbox group: a titled .dr-zone card
+             holding ul.dr-picks with a real <input type="checkbox">, the construction
+             order-setup-inspection and listings-filters ship. The group is named by
+             the drawn line (aria-labelledby → the title) rather than by a duplicate
+             aria-label string, per listings-filters (WCAG 1.3.1 / 2.5.3 / 4.1.2).
+             A checked box is a green fill behind a charcoal check at 9.46:1 and
+             counts on the green budget as a status mark, not as the screen's one
+             green control. The grayscale row dimmed a ticked label to --wf-text-2;
+             the kit keeps every label at --ink, so nothing is greyed. -->
+        <fieldset class="dr-zone" aria-labelledby="spec-title">
+          <p class="dr-zone__title" id="spec-title">Service specializations</p>
+          <ul class="dr-picks">
+            <li><label class="dr-pick">
+              <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+              <span class="dr-pick__label">Delivery</span>
+              <input type="checkbox" name="specialization" value="delivery" checked class="sr-only">
+            </label></li>
+            <li><label class="dr-pick">
+              <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+              <span class="dr-pick__label">Aerial photo &amp; video</span>
+              <input type="checkbox" name="specialization" value="aerial" checked class="sr-only">
+            </label></li>
+            <li><label class="dr-pick">
+              <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+              <span class="dr-pick__label">Inspection</span>
+              <input type="checkbox" name="specialization" value="inspection" class="sr-only">
+            </label></li>
+          </ul>
+        </fieldset>
+      </form>
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="operator-listings.html">Save &amp; go live</a>
+    </footer>
+  </div>
+
+  <!--
+    ui/kit.js arrives for the onscreen keyboard (rev 151): every text-entry field on a
+    mobile screen raises it, and no markup for it lives on this page on purpose — the
+    system draws a keyboard OVER an app, not inside it. Two fields here, the display
+    name and the bio; the action bar leaves the layout and the tab order while the keys
+    are up (WCAG 2.4.11) and the keyboard's own Done gives it back.
+  -->
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

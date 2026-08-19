@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Verification / document upload · success (base)</title>
+<!--
+  SCREEN: "Verification / document upload" (flows.md MJ-2 gate — "upload → docs complete?").
+  PERSONA: Operator (MJ-2 activation gate — "Join and get verified").
+  JOB: MJ-2 activation — prove licence + insurance to be cleared to work.
+  STATE: base. Other states: -error / -loading. Pre-live: no operator tabbar.
+  flows.md node: "Verification / document upload" → docs complete?.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-verification.html" class="cur" aria-current="page">success</a>
+      <a href="operator-verification-error.html">error</a>
+      <a href="operator-verification-loading.html">loading</a>
+    </nav>
+    <h1>Verification / document upload</h1>
+    <p class="sub">Operator · MJ-2 activation · state: <b>success (base)</b> · file: operator-verification.html</p>
+    <div class="flow"><b>Job (jtbd):</b> MJ-2 gate — upload licence &amp; insurance so DRON can clear you to fly (flows.md "upload → docs complete?").<br><b>Exit:</b> Submit for review → <b>review pending</b> (operator-verification-loading) → Profile setup.<br><b>States:</b> error (missing/invalid docs), loading (under review).</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Documents</b> ▸ licence + insurance upload</p><p><b>Licence number</b> ▸ registration detail</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="operator-signup.html" aria-label="Back to Sign in"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Verification</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Documents <span class="dr-label__act">▸ licence + insurance</span></p>
+      <form class="dr-stack" aria-label="Verification documents" action="#">
+        <!--
+          THE TWO DOCUMENT ZONES take upload form (b) — .dr-upload--card, the shape
+          account-edit's own two document zones carry: the card's ground at radius
+          16, the 32px tray glyph, and the words on the zone itself. THE ZONE IS THE
+          CONTROL; the grayscale secondary button inside it goes (kit rev 57), and
+          the uppercase media placeholders (`LICENCE (CAA/DASU)` / `INSURANCE
+          DOCUMENT`, both registered WF-PH in microcopy.md) are replaced by the real
+          glyph, as a media placeholder always is when a page is painted.
+          COPY GAP, RECORDED NOT INVENTED: the registered string on both buttons is
+          `Add document`, so with the placeholders gone the two zones now read
+          identically. account-edit answered the same collision at rev 57 by naming
+          each object (`Add drone documents` / `Add insurance`) — the equivalent here
+          would be `Add licence` / `Add insurance`, which is new copy and the
+          designer's to write. Left as registered; flagged, not fixed here.
+        -->
+        <div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="licence-title">
+          <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+          <span class="dr-upload__action" id="licence-title">Add licence</span>
+        </div>
+        <div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="insurance-title">
+          <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+          <span class="dr-upload__action" id="insurance-title">Add insurance</span>
+        </div>
+        <!-- A compose form, so the input group is the plain list rev 98 made the
+             default: no card, no radius, the hairline kept and un-indented, and
+             typed text standing at the screen's own 16. .dr-rows--card is
+             account-edit's opt-in and stays on the one screen that configures. -->
+        <div class="dr-rows">
+          <div class="dr-field">
+            <label class="dr-field__label" for="lic">Licence number</label>
+            <span class="dr-field__group"><input class="dr-field__input" id="lic" placeholder="e.g. UA-CAA-102938"></span>
+          </div>
+        </div>
+      </form>
+      <p class="dr-note">Review takes 2–3 business days.</p>
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="operator-verification-loading.html">Submit for review</a>
+    </footer>
+  </div>
+
+  <!--
+    ui/kit.js arrives for the onscreen keyboard (rev 151): every text-entry field on a
+    mobile screen raises it, and no markup for it lives on this page on purpose — the
+    system draws a keyboard OVER an app, not inside it. The field is the licence number.
+    The action bar leaves the layout and the tab order while the keys are up
+    (WCAG 2.4.11) and the keyboard's own Done gives it back.
+  -->
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

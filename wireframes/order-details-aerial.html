@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Past order details — Aerial photo &amp; video · base</title>
+<!--
+  SCREEN (_screens.md C4, sub-view): "Past order details" — the AERIAL PHOTO & VIDEO instance.
+  PERSONA: Client C-1. JOB: RJ-C5 (repeat without starting over) + RJ-C4 (the proof, kept).
+  STATE: base only, for the reason the delivery record gives: a finished order is a record.
+
+  WHY THIS FILE EXISTS (2026-08-16, the designer on the built order-history): "у мене є три
+  різні сторінки have already made orders де є доставка, огляд криші та фото — так от вони
+  мають мати різні назви відповідно і різні фотки", and against this card directly: "по
+  кліку на цю картку мають відкритись деталі цього замовлення з фоткою рафтингу яку я вже
+  давала". All three finished cards opened order-details.html.
+
+  ONE SCREEN, THREE INSTANCES — not three screens. Structure, zone order, the action bar and
+  the single Paid line are identical to order-details.html; what differs is the heading, the
+  summary strings and the one photograph. sitemap.md §6.1 still lists one "Order history".
+
+  THREE ZONES SINCE 2026-08-16 (rev 136), NOT FOUR — Summary · the deliverable · Action bar.
+  Paid moved into the summary card on the designer's word, given against THIS frame; the
+  reasoning sits on the row itself, below. All three records changed together, so the
+  instances still do not disagree.
+
+  THE FRAME CLOSES visuals/gaps.md B3 #17 — aerial-rafting-run.jpg, the designer's own
+  supply (Figma YlGWlsWWjKSCxhONMzGG2F node 96:14, 949 x 638 master, 652 x 438 thumb). It is
+  the repo's first aerial deliverable; until it arrived this card kept a drone render because
+  there was no picture of what came back.
+
+  THE LOCATION AND THE PICTURE DISAGREE, AND THAT IS RECORDED, NOT SMOOTHED. The row reads
+  "Trukhaniv Island" — a flat sand island in the Dnipro — and the frame is a raft running
+  rapids in a rock gorge. Put to the designer and kept on her call, 2026-08-16; the mismatch
+  is logged in _critique.md. The alt below therefore describes the frame and ONLY the frame:
+  an alt that echoed the label would state as fact something the image contradicts, which is
+  the failure WCAG 1.1.1 exists to prevent.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Past order details — Aerial photo &amp; video</h1>
+    <p class="sub">Client · RJ-C5 · state: <b>base</b> · file: order-details-aerial.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-C5 — see what was shot before booking it again; RJ-C4 — the set stays reachable after the order closes.<br><b>flows.md:</b> Order history → <span class="cur">Past order details</span> → Book again → Order setup.<br><b>States:</b> none — a finished order is a record (per <code>_screens.md</code> C4).<br><b>Exit:</b> Book again → <b>Order setup</b>, or Delete order → <b>Order history</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Summary</b> ▸ what was done · where · what was shot · what it cost</p><p><b>Photo &amp; video set</b> ▸ what the operator sent back (RJ-C4)</p><p><b>Action bar</b> ▸ Book again · Delete order</p></div>
+    <div class="flow"><b>One of three record files</b> (2026-08-16) — the same screen, one instance per service: <a href="order-details.html">order-details</a>, <a href="order-details-inspection.html">order-details-inspection</a> and this one. Only the heading, the summary strings and the one photograph differ.</div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="order-history.html" aria-label="Back to Activity"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Aerial photo &amp; video</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <!-- HER ORDER OF READING, KEPT: "звідки куди, вага яка була, пруф фото". The summary
+           names the order, the photograph then shows it. -->
+      <p class="zlabel dr-label">Summary <span class="dr-label__act">▸ what was done · what it cost</span></p>
+      <div class="dr-rows" aria-label="Order summary">
+        <!-- LOCATION, NOT From ▸ To — a shoot has one place, and the card this opens from
+             already shows a single Location row. SHOOT is this service's analogue of the
+             delivery record's Parcel and the inspection's Structure: the thing the order was
+             about. It is the client's own word for a booked session, not equipment (voice.md
+             P4); "job" was not available, voice.md reserving that for the operator side. EVENT
+             is the listings card's own word — "Events, real-estate listings, personal
+             occasions". -->
+        <div class="dr-rows__row"><span class="dr-rows__key">Location</span><span class="dr-rows__val">Trukhaniv Island</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Shoot</span><span class="dr-rows__val">Event · 30 min</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Delivered</span><span class="dr-rows__val">14 Jun · 11:30</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Operator</span><span class="dr-rows__val">Andriy M.</span></div>
+        <!-- PAID IS THE SUMMARY'S LAST ROW, NOT A ZONE OF ITS OWN — the designer on this very
+             frame, 2026-08-16 (rev 136): "помісти інфу Paid 800 у картку з самері і так само на
+             ще 2 аналогічних фреймах". rev 132 took the breakdown off, which left the Payment
+             zone as a card holding ONE row under a label that said nothing the row did not; the
+             record now reads what · where · when · who · how much in one panel, and the
+             deliverable is the only thing between the summary and the action bar.
+             AND IT TAKES THE CARD'S OWN ROW STYLE, NOT THE MONEY STEP — her call, asked with the
+             standards first and both readings conforming (HIG · inset grouped lists ships either
+             a uniform row or an emphasised total row; WCAG 1.4.3 unchanged at key 5.95:1 / value
+             14.37:1 on --card, 1.3.1 keeps the key/value pairing either way). So no
+             `.dr-rows__row--total`: with no breakdown there is no column for a total to total,
+             and the sum is a fact of the record like the four above it. That modifier is now
+             spent on order-review alone, where a total still has rows to add up. -->
+        <div class="dr-rows__row"><span class="dr-rows__key">Paid</span><span class="dr-rows__val">&#8372;800</span></div>
+      </div>
+
+      <!-- THE ZONE IS NAMED FOR ITS SERVICE — voice.md O5, which fixes one name per deliverable:
+           delivery photo · inspection report · photo/video set. Written with the ampersand here
+           to match the service heading in the nav bar directly above it on the same screen.
+           THE SECTION CARRIES THE ZONE NAME, THE IMG CARRIES WHAT IS IN IT (WCAG 1.1.1). -->
+      <p class="zlabel dr-label">Photo &amp; video set <span class="dr-label__act">▸ what the operator sent back (RJ-C4)</span></p>
+      <section class="dr-stack" aria-label="Photo &amp; video set">
+        <!-- TWO CARDS, ONE PER FILE — the designer, 2026-08-16 (rev 140), against the single
+             card the first build made: "має бути дві картки одна просто зображення … друга
+             картка відео". THE PHOTOGRAPH IS THE FIRST CARD AND CARRIES NOTHING: it is the
+             photo of the set, not the video, so no control stands on it. THE SECOND IS THE
+             VIDEO, built to the structure she pointed at (Figma 97:18) — the preview across
+             the card's top edge, the name and the facts under it, the file's one action at
+             the trailing end of that line.
+             THE ZONE FINALLY MATCHES ITS OWN NAME. "Photo & video set" (voice.md O5) held one
+             photograph from the day it was built; it now holds a photo AND a video, one card
+             each. Only this record gains them — a delivery photo and an inspection report are
+             single files. rev 137's readings, where one picture served as both, are recorded
+             in concept.md and are not to be re-proposed: they existed only because the repo
+             had one aerial frame, and she supplied the second. -->
+        <div class="dr-well dr-well--photo" style="width:100%;height:180px;"><img src="../assets/scenes/thumbs/aerial-rafting-run.jpg" alt="A raft of paddlers in helmets and yellow life vests dropping through white water between wet rock walls, shot from above." loading="lazy" decoding="async"></div>
+
+        <article class="dr-card dr-card--cover dr-listing">
+          <!-- THE PREVIEW IS HER SECOND FRAME (Figma 97:22, 599 x 362 — visuals/gaps.md B3
+               #19), a different run from the photo card above, so the two files are told
+               apart by what they show and not by a badge. It RUNS TO THE CARD'S EDGES: the
+               kit's imagery rule is that a photograph IS the surface and covers it, and a
+               picture inset in a padded card is the sticker that rule forbids. -->
+          <div class="dr-well dr-well--photo" style="height:180px;">
+            <img src="../assets/scenes/thumbs/aerial-rafting-boulders.jpg" alt="A grey raft with a crew in red helmets and life jackets running a rapid between dark boulders, white water breaking around it, shot from above." loading="lazy" decoding="async">
+            <!-- THE 44px CIRCULAR ACTION THE KIT ALREADY HAS, AND NOTHING ADDED TO IT.
+                 HIG · 44pt exactly (44 x 44, glyph 20 — the scale's own pair for this box).
+                 NO OUTLINE, her word on the built frame: "забери stroke з цієї кнопки у мене
+                 така кнопка без обводок". It was built with a 2px --ink ring for WCAG 1.4.11
+                 and the ring came off; what carries 1.4.11 now is the glyph, --ink on --btn2
+                 at 11.54:1, the same reading .dr-avatar-edit__badge and .dr-upload already
+                 use. Measured on this frame: the disc's edge against the picture runs 6.46:1
+                 mean, 74% of it at or above 3:1. All of it is in kit.css. -->
+            <button class="dr-btn dr-btn--icon dr-btn--onphoto" type="button" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></button>
+          </div>
+          <!-- THE TWO FACTS A THUMB NEEDS BEFORE IT TAPS DOWNLOAD — how long, and what it
+               costs in data. voice.md P3's discipline (the fact before the tap) applied to a
+               download instead of a price. 0:38 against the summary's "Event · 30 min" is not
+               a contradiction: one is the session booked, the other the set that came back. -->
+          <div class="dr-listing__foot">
+            <span class="dr-listing__body">
+              <span class="dr-listing__name">Video</span>
+              <span class="dr-listing__desc">0:38 &#183; 46 MB</span>
+            </span>
+            <!-- DOWNLOAD IS HER WORD ("скачати"), fixed once in voice.md as A11. Not Add (A3
+                 is the client putting a file INTO DRON) and not Withdraw (O6 is money leaving
+                 a balance). CIRCULAR AND ICON-ONLY, as her reference draws it — the kit's own
+                 .dr-btn--icon, which order-history already spends on Delete order and View
+                 details, and which "carries its own aria-label: the icon is the only content"
+                 (WCAG 1.1.1 / 4.1.2). GREY, NOT GREEN: Book again in the bar below is this
+                 screen's one green control, and concept.md allows exactly one. -->
+            <button class="dr-btn dr-btn--icon" type="button" aria-label="Download video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.8v10.4"/><path d="M7.6 9.8 12 14.2 16.4 9.8"/><path d="M5 19.2h14"/></svg></button>
+          </div>
+        </article>
+      </section>
+    </main>
+    <!-- THE TWO ACTIONS SHE NAMED, IN THE BOTTOM BAR. Book again is the one green control
+         on this screen. DELETE ORDER IS GREY, NOT RED — her call of 2026-08-16 ("зроби кнопку
+         секондарі сірою"), recorded on the delivery record at concept.md rev 131 and carried
+         here so the three instances do not disagree. WCAG 1.4.1 is strengthened rather than
+         held: with the colour gone, the verb "Delete" is the only carrier of the meaning.
+         BOOK AGAIN NOW OPENS THE AERIAL SETUP, 2026-08-16 — the designer, pressing it on this
+         frame: «має відкритись не delivery package wireframe but wireframe where I can order
+         aerial photo & video. Бачу це пропустили в wireframes». It had gone to order-setup.html,
+         which is the delivery form: a link named "Book again" inside a record of a shoot that
+         resolved to a screen asking for parcel weight — WCAG 2.4.4 Link Purpose (In Context), a
+         level-A failure, and one of six the same gap produced. Fixed by giving the screen one
+         file per service, the shape she had already chosen for this record (_screens.md §5). -->
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="order-setup-aerial.html">Book again</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="order-history.html">Delete order</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

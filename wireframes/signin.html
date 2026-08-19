@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Sign in with Diia / BankID · success (base)</title>
+<!-- SCREEN (sitemap): "Sign in with Diia / BankID". JOB (jtbd): MJ-1 enabler — a verified identity to transact (C-02). STATE: base. Pre-auth: no bottom tab bar. -->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="signin.html" class="cur" aria-current="page">success</a>
+      <a href="signin-error.html">error</a>
+      <a href="signin-loading.html">loading</a>
+    </nav>
+    <h1>Sign in with Diia / BankID</h1>
+    <p class="sub">Shared entry · state: <b>success (base)</b> · file: signin.html</p>
+    <div class="flow"><b>Job (jtbd):</b> MJ-1 enabler — handing the job over needs a verified identity (C-02, one-tap Diia / BankID).<br><b>Exit:</b> Continue with Diia / BankID → <b>Choose your role</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Sign in</b> ▸ verify with Diia or BankID</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Sign in <span class="dr-label__act">▸ verify once — to order or to work</span></p>
+      <section class="dr-stack" aria-label="Sign in">
+        <p class="dr-display">Sign in to DRON</p>
+        <p class="dr-lead">One verification lets you order drone services — or take jobs as a certified operator.</p>
+        <!-- A standing notice, not a field hint: .dr-field__hint declares
+             flex-basis:100%, which sizes the MAIN axis in a column flex box, so a
+             lone hint whose parent has a definite height blows up. .dr-note is the
+             kit's caption; --flush is EARNINGS' modifier for the one thing this
+             position changes — it sits flush left under two left-aligned lines
+             instead of centred. -->
+        <p class="dr-note dr-note--flush">Diia and BankID confirm who you are. DRON never sees your password.</p>
+      </section>
+    </main>
+    <!-- NO BRAND MARK ON EITHER BUTTON, AND THAT IS A GAP RATHER THAN A CHOICE OF
+         SHAPE. `.dr-paymark` (40 × 20, aria-hidden, the brand NAME in --ink beside
+         it) is the kit's slot for third-party artwork, and it is where Diia's and
+         BankID's own SVGs belong. Neither file exists in assets/, and the only
+         thing available without one is a wordmark set in the product's own SF —
+         which would print "Diia" twice on one 44px button. So the marks wait for
+         the real artwork; the buttons are ordinary kit rungs meanwhile. -->
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="role-select.html"><img class="dr-idmark" src="../assets/brand/diia.png" alt="" width="20" height="20" decoding="async">Continue with Diia</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="role-select.html"><img class="dr-idmark" src="../assets/brand/bankid.png" alt="" width="20" height="20" decoding="async">Continue with BankID</a>
+      <p class="dr-note">By continuing you agree to the Terms &amp; Privacy Policy.</p>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

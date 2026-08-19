@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Operator home + status toggle · empty</title>
+<!-- SCREEN: "Operator home + status toggle" — STATE: empty (idle / no offers). Grounded in flows.md MJ-2: "Idle: no offers while Offline / Busy" (Status = Available? → no). Structure copied from operator-listings.html; status set to Offline, job list replaced by an empty block. EXIT: Go Available. -->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-listings.html">success</a>
+      <a href="operator-listings-empty.html" class="cur" aria-current="page">empty</a>
+    </nav>
+    <h1>Operator home + status toggle</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>empty (idle / no offers)</b> · file: operator-listings-empty.html</p>
+    <div class="flow"><b>Empty:</b> Offline, so no offers are dispatched (flows.md MJ-2: "Idle — no offers while Offline / Busy").<br><b>Exit (not a dead-end):</b> Go Available → start receiving pre-qualified jobs.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Status toggle</b> ▸ set to Offline (gates dispatch)</p><p><b>Offers</b> → empty notice + recover</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+
+    <header class="topbar dr-topbar">
+      <span class="dr-avatar-sm"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
+      <span class="dr-op__name">Ivan K.</span>
+      <span class="dr-topbar__spacer"></span>
+    </header>
+
+    <nav class="dr-groups" aria-label="Job groups">
+      <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming · 0</a>
+      <a class="dr-grouptab" href="#active">Active · 0</a>
+    </nav>
+
+    <main class="dr-main">
+      <p class="zlabel dr-label">Status <span class="dr-label__act">▸ set availability — gates dispatch (O-02)</span></p>
+      <section class="dr-stack" aria-label="Availability status">
+        <p class="dr-avail">
+          <span class="dr-avail__dot" aria-hidden="true"></span>
+          <b class="dr-avail__state">You are Offline</b><span class="dr-avail__note">· no jobs while offline</span>
+        </p>
+        <form>
+          <fieldset class="dr-segment">
+            <legend class="sr-only">Availability status</legend>
+            <label class="dr-segment__seg">Available<input type="radio" name="status" value="available"></label>
+            <label class="dr-segment__seg">Busy<input type="radio" name="status" value="busy"></label>
+            <label class="dr-segment__seg">Offline<input type="radio" name="status" value="offline" checked></label>
+          </fieldset>
+        </form>
+      </section>
+
+      <p class="zlabel dr-label">Offers <span class="dr-label__act">▸ empty — idle while offline (exit)</span></p>
+      <section aria-label="No offers">
+        <!-- The OFFLINE text placeholder becomes the state mark. Base .dr-mark, the
+             NEUTRAL rung (--media ground, --slate glyph, 5.51:1): offline is a state
+             the operator chose, not a warning and not a failure, so neither the warn
+             nor the danger wash applies. The glyph is a slashed circle — two strokes
+             on the 24-grid, the set's own drawing rules. -->
+        <div class="dr-msg" role="status">
+          <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/></svg></span>
+          <span class="dr-msg__title">No jobs while you're offline</span>
+          <p class="dr-msg__body">Go Available to start receiving pre-qualified jobs near you.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="operator-listings.html">Go Available</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="operator-listings.html" aria-current="page"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="7.4" width="17.2" height="12.2" rx="2.2"/><path d="M9 7.4V6.1A1.7 1.7 0 0 1 10.7 4.4h2.6A1.7 1.7 0 0 1 15 6.1v1.3"/><path d="M3.4 12.6h17.2"/></svg>Jobs</a>
+        <a class="dr-tab" href="wallet.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="6.8" width="18.4" height="10.4" rx="2.2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.6v4.8M18 9.6v4.8"/></svg>Earnings</a>
+        <a class="dr-tab" href="ratings.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.79l2.84 5.75 6.36.93-4.6 4.48 1.09 6.33L12 17.29l-5.69 2.99 1.09-6.33-4.6-4.48 6.36-.93z"/></svg>Ratings</a>
+        <a class="dr-tab" href="operator-account.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

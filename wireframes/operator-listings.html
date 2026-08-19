@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Operator home + status toggle · success (base)</title>
+<!--
+  SCREEN (name from _screens.md §12): "Operator home + status toggle" — the Operator job list.
+  PERSONA: Operator O-1 (primary).
+  MAIN JOB: MJ-2 + RJ-O3 — take the order, fulfil it, receive payment.
+  STATE: success / base. Other state (-empty = idle / no offers) is a separate page, next step.
+  MODEL NOTE (sitemap §4, RJ-O1): operators do NOT browse or pick jobs. Auto-dispatch pushes offers;
+    the operator accepts / declines in seconds. So there is no job "search" — only a status toggle
+    and the incoming-offer / active-job groups (sitemap §7.2). No SRM map (O-07 is post-MVP / deleted).
+  ZONES GROUNDED IN sitemap.md: status = OE-4; incoming offers = OE-6; active jobs = OE-5;
+    card entry → Job brief (MJ-2 flow); bottom bar = §7.2 global nav.
+  FIDELITY: grayscale only, system font, no colour, no icons (placeholders), no shadows, no brand lockup.
+-->
+<style>
+  /* ── tokens (from _conventions.md §4) ── */
+  :root{
+    --wf-surface:#FFFFFF; --wf-bg:#F4F4F4; --wf-recessed:#EEEEEE; --wf-fill:#E2E2E2;
+    --wf-skeleton:#D8D8D8; --wf-muted:#909090; --wf-text-2:#5A5A5A; --wf-text:#252525;
+    --wf-ink:#111111; --wf-ink-max:#000000;
+    --wf-border:rgba(0,0,0,0.09); --wf-border-2:rgba(0,0,0,0.15);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{ -webkit-font-smoothing:antialiased; }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,sans-serif;
+    background:var(--wf-recessed); color:var(--wf-text);
+    font-size:15px; line-height:1.4;
+    display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start; padding:24px;
+  }
+  .sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+
+  /* ── wireframe annotation (NOT part of the screen) ── */
+  .meta{ width:320px; font-size:13px; color:var(--wf-text-2); }
+  .meta h1{ font-size:17px; font-weight:600; color:var(--wf-text); margin-bottom:4px; }
+  .meta .sub{ color:var(--wf-muted); margin-bottom:16px; }
+  .meta dl{ display:grid; grid-template-columns:auto 1fr; gap:4px 8px; margin-bottom:16px; }
+  .meta dt{ color:var(--wf-muted); text-transform:uppercase; font-size:11px; letter-spacing:.06em; padding-top:1px; }
+  .meta dd{ color:var(--wf-text-2); }
+  .meta .flow{ border:1px dashed var(--wf-border-2); border-radius:6px; padding:12px; margin-bottom:16px; line-height:1.6; }
+  .meta .flow b{ color:var(--wf-text); font-weight:600; }
+  .meta .flow .cur{ background:var(--wf-ink); color:var(--wf-surface); padding:1px 6px; border-radius:4px; font-weight:600; }
+  .meta .legend{ border-top:1px solid var(--wf-border); padding-top:12px; }
+  .meta .legend p{ margin-bottom:6px; }
+  .meta .legend b{ color:var(--wf-text); font-weight:600; }
+
+  /* states of this screen — quick switch (top of aside) */
+  .state-switch{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+  .state-switch a{ font-size:12px; padding:5px 10px; border:1px solid var(--wf-border-2); border-radius:6px;
+    text-decoration:none; color:var(--wf-text-2); background:var(--wf-surface); }
+  .state-switch a:hover{ background:var(--wf-recessed); color:var(--wf-text); }
+  .state-switch a.cur{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+
+  /* ── phone frame 375 × 812 ── */
+  .wf-frame{
+    width:375px; height:812px; flex:none;
+    background:var(--wf-bg); border:1px solid var(--wf-border-2); border-radius:8px;
+    overflow:hidden; display:flex; flex-direction:column; position:relative;
+  }
+
+  /* status bar (system, safe area ~44) */
+  .statusbar{ height:44px; flex:none; display:flex; align-items:center; justify-content:space-between;
+    padding:0 16px; background:var(--wf-surface); color:var(--wf-text-2); font-size:13px; font-weight:600; }
+  .statusbar .sysph{ display:flex; gap:4px; }
+  .sq{ display:inline-block; border:1px solid var(--wf-border-2); border-radius:4px; }
+  .sq-16{ width:16px; height:16px; } .sq-20{ width:20px; height:20px; } .sq-24{ width:24px; height:24px; }
+
+  /* header / top bar */
+  header.topbar{ height:56px; flex:none; display:flex; align-items:center; gap:8px;
+    padding:0 16px; background:var(--wf-surface); border-bottom:1px solid var(--wf-border); }
+  /* The DRON mark (_conventions.md 8). A mask, not an embedded file, so it takes
+     the wireframe ink and stays grayscale. 60 x 20; #252525 on white is 15.33:1. */
+  .brand{ width:60px; height:20px; flex:none; background:var(--wf-text);
+    -webkit-mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat;
+    mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat; }
+  .avatar{ width:28px; height:28px; border-radius:999px;
+    display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; color:var(--wf-text-2); }
+  /* A real face replaces the initials. The portrait is a cutout with a
+     transparent ground, so the circle keeps a fill of its own — otherwise the
+     top bar shows through beside the shoulders and the head floats. */
+  .avatar:has(img){ background:var(--wf-recessed); overflow:hidden; padding:0;
+    font-size:0; line-height:0; color:transparent; }
+  .avatar img{ width:100%; height:100%; display:block; object-fit:cover; border-radius:999px; }
+  .who{ font-size:15px; font-weight:600; color:var(--wf-text); }
+  .topbar .spacer{ flex:1; }
+
+  /* nav — job groups */
+  nav.groups{ height:48px; flex:none; display:flex; align-items:center; gap:8px;
+    padding:0 16px; background:var(--wf-surface); border-bottom:1px solid var(--wf-border); }
+  .grouptab{ flex:none; height:32px; padding:0 12px; border-radius:6px; border:1px solid var(--wf-border-2);
+    background:var(--wf-surface); color:var(--wf-text-2); font-size:13px; font-weight:600; text-decoration:none;
+    display:flex; align-items:center; }
+  .grouptab[aria-current="true"]{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+
+  /* main scroll area */
+  main{ flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:16px; }
+
+  /* zone annotation label */
+  .zlabel{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--wf-muted);
+    display:flex; flex-wrap:wrap; gap:6px; align-items:baseline; border-left:2px solid var(--wf-border-2);
+    padding-left:8px; margin-bottom:-4px; }
+  .zlabel .act{ color:var(--wf-text-2); text-transform:none; letter-spacing:0; font-size:12px; }
+
+  /* status toggle (OE-4) — segmented radio group */
+  .status-head{ display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .dot{ width:10px; height:10px; border-radius:999px; background:var(--wf-ink); flex:none; }
+  .status-head b{ font-weight:600; } .status-head span{ color:var(--wf-muted); font-size:13px; }
+  .segment{ display:flex; border:1px solid var(--wf-border-2); border-radius:6px; overflow:hidden; }
+  .seg{ flex:1; height:44px; display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:600; color:var(--wf-text-2); background:var(--wf-surface);
+    border-right:1px solid var(--wf-border); cursor:pointer; }
+  .seg:last-child{ border-right:0; }
+  .seg input{ position:absolute; opacity:0; width:0; height:0; }
+  .seg:has(input:checked){ background:var(--wf-ink); color:var(--wf-surface); }
+  .seg:has(input:focus-visible){ outline:2px solid var(--wf-border-2); outline-offset:-2px; }
+
+  /* counter zone */
+  .counter{ display:flex; align-items:center; justify-content:space-between; }
+  .counter .count{ font-size:13px; color:var(--wf-text-2); }
+  .counter .count b{ color:var(--wf-text); font-weight:600; }
+
+  /* job lists / cards */
+  ul.list{ list-style:none; display:flex; flex-direction:column; gap:12px; }
+  article.card{ position:relative; display:flex; flex-direction:column; gap:12px; padding:16px;
+    background:var(--wf-surface); border:1px solid var(--wf-border); border-radius:8px; }
+  article.card:hover{ border-color:var(--wf-border-2); background:var(--wf-recessed); }
+  article.card:focus-within{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  .card-link{ position:absolute; inset:0; z-index:1; border-radius:8px; }
+  .card-top{ display:flex; align-items:center; gap:12px; }
+  .media-ph{ width:56px; height:56px; flex:none; border:1px dashed var(--wf-border-2); border-radius:6px;
+    display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.04em; color:var(--wf-muted);
+    background:var(--wf-recessed); text-align:center; }
+  .card .body{ flex:1; min-width:0; }
+  .card .name{ display:block; font-size:17px; font-weight:600; color:var(--wf-text); }
+  .card .desc{ display:block; font-size:13px; color:var(--wf-text-2); margin:2px 0 6px; }
+  .card .meta-row{ display:flex; align-items:baseline; gap:8px; }
+  .card .price{ font-size:15px; font-weight:600; color:var(--wf-text); }
+  .card .avail{ font-size:13px; color:var(--wf-muted); }
+  .card .chev{ flex:none; font-size:22px; line-height:1; color:var(--wf-muted); align-self:center; }
+  .card .actions{ display:flex; gap:8px; }
+  .card .actions .btn{ flex:1; position:relative; z-index:2; }
+
+  /* job-card anatomy (shared design with order-history): header band + route dots + status chip.
+     CTAs are unchanged (Accept / Decline / Continue). */
+  .oh-card{ padding:0; gap:0; overflow:hidden; }
+  .oh-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    padding:12px 16px; border-bottom:1px solid var(--wf-border); background:var(--wf-recessed); }
+  .oh-title{ font-size:16px; font-weight:700; color:var(--wf-text); min-width:0; }
+  .oh-head .oh-status{ margin-top:1px; }
+  .oh-body{ padding:14px 16px 16px; display:flex; flex-direction:column; gap:12px; }
+  .oh-top{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .oh-date{ font-size:13px; font-weight:600; color:var(--wf-text-2); }
+  .oh-more{ position:relative; z-index:2; width:28px; height:28px; flex:none; display:inline-flex;
+    align-items:center; justify-content:center; border:0; background:transparent; color:var(--wf-text-2);
+    border-radius:6px; cursor:pointer; }
+  .oh-more:hover{ background:var(--wf-recessed); color:var(--wf-text); }
+  .oh-more:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  .ic-kebab{ display:inline-flex; flex-direction:column; align-items:center; gap:2.5px; }
+  .ic-kebab i{ width:3px; height:3px; border-radius:999px; background:currentColor; }
+  .oh-route{ position:relative; display:flex; flex-direction:column; gap:12px; }
+  .oh-route.route-2::before{ content:""; position:absolute; left:4px; top:9px; bottom:9px; width:2px;
+    background:var(--wf-border-2); z-index:0; }
+  .oh-stop{ display:flex; align-items:flex-start; gap:10px; }
+  .oh-dot{ width:9px; height:9px; flex:none; margin-top:4px; position:relative; z-index:1; pointer-events:none;
+    border:1.5px solid var(--wf-text-2); border-radius:999px; background:var(--wf-surface); }
+  .oh-dot-end{ background:var(--wf-ink); border-color:var(--wf-ink); }
+  .oh-addr{ font-size:15px; color:var(--wf-text); line-height:1.3; }
+  .oh-addr .oh-addr-lbl{ display:block; font-size:11px; font-weight:600; letter-spacing:.04em;
+    text-transform:uppercase; color:var(--wf-muted); }
+  .oh-meta{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .oh-price{ font-size:17px; font-weight:600; color:var(--wf-text); }
+  .oh-eta{ font-size:13px; color:var(--wf-muted); }
+  .oh-status{ flex:none; display:inline-flex; align-items:center; font-size:12px; font-weight:600;
+    color:var(--wf-text-2); border:1px solid var(--wf-border-2); border-radius:999px; padding:4px 10px;
+    background:var(--wf-surface); white-space:nowrap; }
+  .oh-status.live{ color:var(--wf-surface); background:var(--wf-ink); border-color:var(--wf-ink); }
+
+  /* buttons (_conventions §11) — variants + all interaction states */
+  .btn{ min-height:44px; padding:0 16px; border-radius:6px; font-size:15px; font-weight:600;
+    border:1px solid transparent; background:transparent; color:var(--wf-text); cursor:pointer;
+    display:inline-flex; align-items:center; justify-content:center; text-decoration:none; }
+  .btn:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  .btn:disabled{ background:var(--wf-fill); color:var(--wf-muted); border-color:transparent; cursor:not-allowed; }
+  .btn-primary{ background:var(--wf-ink); color:var(--wf-surface); }
+  .btn-primary:hover{ background:var(--wf-ink-max); }
+  .btn-primary:active{ background:var(--wf-ink-max); }
+  .btn-secondary{ background:var(--wf-surface); border-color:var(--wf-border-2); color:var(--wf-text); }
+  .btn-secondary:hover{ background:var(--wf-recessed); }
+  .btn-secondary:active{ background:var(--wf-fill); }
+  .btn-tertiary{ background:transparent; color:var(--wf-text-2); }
+  .btn-tertiary:hover{ color:var(--wf-text); }
+  .btn-sm{ min-height:32px; height:32px; padding:0 12px; font-size:13px; }
+
+  /* footer — bottom bar (§7.2 global nav) */
+  footer.tabbar{ flex:none; background:var(--wf-surface); border-top:1px solid var(--wf-border); }
+  footer .tabs{ height:56px; display:flex; }
+  footer .tab{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    text-decoration:none; color:var(--wf-muted); font-size:11px; }
+  footer .tab .sq{ border-radius:4px; }
+  footer .tab[aria-current="page"]{ color:var(--wf-ink); }
+  footer .tab[aria-current="page"] .sq{ border-color:var(--wf-ink); background:var(--wf-fill); }
+  footer .home-indicator{ height:34px; display:flex; align-items:center; justify-content:center; }
+  footer .home-indicator span{ width:134px; height:5px; border-radius:2px; background:var(--wf-skeleton); }
+</style>
+<!--
+  VISUAL LAYER (2026-08-18): the Studio layer from ui/kit.css. The block ABOVE is left in
+  place and the kit link comes AFTER it, so the kit wins every product surface — the same
+  situation painted listings.html is already in and already documented (DESIGN.md:
+  "the block precedes the kit.css link, so the kit wins every product surface"). What the
+  block still paints is the canvas AROUND the frame (body #EEEEEE) and the 28px top-bar
+  avatar's geometry; everything else in it is now dead weight for this page, and the
+  grayscale class names it keys on (.card, .oh-*, .btn, .segment, .seg, .grouptab,
+  .tabbar, .tab, .counter, .status-head) have left the markup so they cannot out-specify
+  the kit. `topbar` and `zlabel` stay: _wf-shell.js reads the first, the annotation
+  toggle reads the second.
+-->
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+
+  <!-- ── WIREFRAME ANNOTATION (not the screen) ── -->
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-listings.html" class="cur" aria-current="page">success</a>
+      <a href="operator-listings-empty.html">empty</a>
+    </nav>
+    <h1>Operator home + status toggle</h1>
+    <p class="sub">Operator job list · state: <b>success (base)</b> · file: operator-listings.html</p>
+    <dl>
+      <dt>Persona</dt><dd>Operator O-1 (primary)</dd>
+      <dt>Main job</dt><dd>MJ-2 + RJ-O3 — take, fulfil, get paid</dd>
+      <dt>Screen job</dt><dd>MJ-2 hub · O-02 status gate · RJ-O1 quick decision</dd>
+    </dl>
+    <div class="flow">
+      <b>Closes MJ-2 · step 1 — go Available &amp; accept a job</b> (the decision point; depth-1, §7.3).<br>
+      flows.md MJ-2+RJ-O3: <span class="cur">Operator home + status toggle</span> → Incoming job offer / accept-decline → Job brief → Checklist → Result upload → Wallet → Withdraw.<br>
+      <b>Next:</b> Accept an offer → <b>Job brief / detail</b>.
+    </div>
+    <div class="legend">
+      <p><b>Zones &amp; main action</b> (labelled in the screen):</p>
+      <p><b>Status toggle</b> ▸ set availability (gates dispatch)</p>
+      <p><b>Job groups</b> (nav) ▸ switch incoming / active</p>
+      <p><b>Counter</b> ▸ show workload (offers are auto-dispatched, nearest first — no manual sort)</p>
+      <p><b>Incoming offers</b> (cards) ▸ accept / decline in seconds</p>
+      <p><b>Active jobs</b> (cards) ▸ continue a job</p>
+      <p><b>Job card (entry)</b> ▸ open the job brief</p>
+      <p><b>Bottom bar</b> ▸ switch global section</p>
+    </div>
+  </aside>
+
+  <!-- ── THE SCREEN · 375 × 812 ── -->
+  <div class="wf-frame dr dr-screen">
+
+    <!-- status bar (system, safe area) -->
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+
+    <!-- HEADER · top bar.
+         The operator's own face and name stand where a client root screen carries
+         .dr-brand — the frame's content, kept. The 28px circle keeps `class="avatar"`
+         and takes its geometry from this page's own block, which is exactly what
+         painted account.html / order-confirmed-empty.html do with `op-avatar`: the
+         kit cuts no small-avatar rung and inventing a size token was refused. The NAME
+         takes .dr-op__name — the kit's own 15/600 --ink at 15.99:1 on --page — because
+         the block's `.who` paints #252525, an ink outside the palette. -->
+    <header class="topbar dr-topbar">
+      <span class="dr-avatar-sm"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
+      <span class="dr-op__name">Ivan K.</span>
+      <span class="dr-topbar__spacer"></span>
+    </header>
+
+    <!-- NAV · job groups — the painted in-page tab row from listings.html.
+         The state carrier is aria-current, which kit.css paints --green-wash behind
+         --ink at 14.75:1; the tint is not counted against the green budget (1.085:1
+         on the page). Links, not buttons: these are in-page anchors, as built. -->
+    <nav class="dr-groups" aria-label="Job groups">
+      <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming · 2</a>
+      <a class="dr-grouptab" href="#active">Active · 1</a>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="dr-main">
+
+      <!-- ZONE · status toggle (OE-4) -->
+      <p class="zlabel dr-label">Status <span class="dr-label__act">▸ set availability — gates dispatch (O-02)</span></p>
+      <section class="dr-stack" aria-label="Availability status">
+        <!-- .dr-avail is NEW (see the report's patch block): a dot, the state and one
+             supporting clause. The dot is --ink and not --green: this screen already
+             carries the accent on its card CTAs, and an availability dot that is green
+             when Available and grey when Offline would rest on colour alone
+             (WCAG 1.4.1) — the sentence beside it is the carrier, and the segmented
+             control below states the same fact a third time. -->
+        <p class="dr-avail">
+          <span class="dr-avail__dot" aria-hidden="true"></span>
+          <b class="dr-avail__state">You are Available</b><span class="dr-avail__note">· receiving jobs near Podil</span>
+        </p>
+        <form>
+          <fieldset class="dr-segment">
+            <legend class="sr-only">Availability status</legend>
+            <label class="dr-segment__seg">Available<input type="radio" name="status" value="available" checked></label>
+            <label class="dr-segment__seg">Busy<input type="radio" name="status" value="busy"></label>
+            <label class="dr-segment__seg">Offline<input type="radio" name="status" value="offline"></label>
+          </fieldset>
+        </form>
+      </section>
+
+      <!-- ZONE · counter -->
+      <p class="zlabel dr-label">Counter <span class="dr-label__act">▸ workload at a glance (auto-dispatched, nearest first)</span></p>
+      <section class="dr-counter" aria-label="Jobs counter">
+        <output class="dr-counter__count"><b>2 new jobs</b> · 1 active job · nearest first</output>
+      </section>
+
+      <!-- ZONE · incoming offers (OE-6).
+           THE JOB CARD IS order-history's CARD, PROMOTED. .dr-order__top / __head /
+           __title / __date / __fee / __price / __acts were documented as a one-off
+           bound to order-history; the operator's job card is the same object (a title,
+           a one-line fact, a route, a figure, actions) so it reuses them and they stop
+           being a one-off. THREE DIVERGENCES, all resolved toward the kit and logged:
+           · the frame's banded header (a --wf-recessed strip with a hairline under it)
+             goes. The kit's card is flat and one ground by rule; a band inside a card
+             is a second surface the system does not have. The service name and the
+             status pill move into .dr-order__top, which is where order-history puts
+             exactly those two facts.
+           · the frame's vertical stop list (dots on a connector) becomes the kit's
+             .dr-inset From ▸ To strip — one route component in the product.
+           · the frame's 28px transparent kebab becomes .dr-btn--icon, the kit's only
+             icon-only shape: a 44px --btn2 disc, HIG · 44pt met on size alone. -->
+      <p class="zlabel dr-label" id="incoming">Incoming offers · cards <span class="dr-label__act">▸ accept / decline in seconds (RJ-O1)</span></p>
+      <section aria-label="Incoming offers">
+        <ul class="dr-list dr-list--snug">
+
+          <!-- offer card: header (service + status) · distance + options · route · fee + expiry · Accept/Decline -->
+          <li>
+            <article class="dr-card">
+              <a class="dr-card__link" href="job-offer.html" aria-label="Package delivery job — open brief"></a>
+              <span class="dr-order__top">
+                <span class="dr-order__head">
+                  <span class="dr-order__title">Package delivery</span>
+                  <span class="dr-order__date">2.3 km · ~18 min</span>
+                </span>
+                <span class="dr-chip dr-chip--claim">New</span>
+                <button class="dr-btn dr-btn--icon" type="button" aria-label="Job options">
+                  <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.6" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="18.4" r="1.4" fill="currentColor" stroke="none"/></svg>
+                </button>
+              </span>
+              <span class="dr-inset">
+                <span class="dr-inset__stop"><span class="dr-inset__lbl">Pickup</span><span class="dr-inset__place">Podil</span></span>
+                <span class="dr-inset__dir" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+                <span class="dr-inset__stop dr-inset__stop--to"><span class="dr-inset__lbl">Drop-off</span><span class="dr-inset__place">Osokorky</span></span>
+              </span>
+              <span class="dr-order__fee">
+                <span><span class="sr-only">Pay</span><span class="dr-number dr-order__price">₴180</span></span>
+                <span class="dr-chip">expires in 8s</span>
+              </span>
+              <span class="dr-card__actions">
+                <a class="dr-btn dr-btn--primary" href="job-brief.html">Accept</a>
+                <a class="dr-btn dr-btn--secondary" href="operator-listings.html">Decline</a>
+              </span>
+            </article>
+          </li>
+
+          <li>
+            <article class="dr-card">
+              <a class="dr-card__link" href="job-offer.html" aria-label="Roof inspection job — open brief"></a>
+              <span class="dr-order__top">
+                <span class="dr-order__head">
+                  <span class="dr-order__title">Roof inspection</span>
+                  <span class="dr-order__date">5.1 km · ~35 min</span>
+                </span>
+                <span class="dr-chip dr-chip--claim">New</span>
+                <button class="dr-btn dr-btn--icon" type="button" aria-label="Job options">
+                  <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.6" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="18.4" r="1.4" fill="currentColor" stroke="none"/></svg>
+                </button>
+              </span>
+              <span class="dr-inset">
+                <span class="dr-inset__stop"><span class="dr-inset__lbl">Location</span><span class="dr-inset__place">Obolon district</span></span>
+              </span>
+              <span class="dr-order__fee">
+                <span><span class="sr-only">Pay</span><span class="dr-number dr-order__price">₴650</span></span>
+                <span class="dr-chip">expires in 6s</span>
+              </span>
+              <span class="dr-card__actions">
+                <a class="dr-btn dr-btn--primary" href="job-brief.html">Accept</a>
+                <a class="dr-btn dr-btn--secondary" href="operator-listings.html">Decline</a>
+              </span>
+            </article>
+          </li>
+
+        </ul>
+      </section>
+
+      <!-- ZONE · active jobs (OE-5) -->
+      <p class="zlabel dr-label" id="active">Active jobs · cards <span class="dr-label__act">▸ continue a job in progress</span></p>
+      <section aria-label="Active jobs">
+        <ul class="dr-list dr-list--snug">
+          <li>
+            <article class="dr-card">
+              <a class="dr-card__link" href="job-brief.html" aria-label="Aerial photo and video — open job"></a>
+              <span class="dr-order__top">
+                <span class="dr-order__head">
+                  <span class="dr-order__title">Aerial photo &amp; video</span>
+                  <span class="dr-order__date">Client · Olena H.</span>
+                </span>
+                <span class="dr-chip">In progress</span>
+                <button class="dr-btn dr-btn--icon" type="button" aria-label="Job options">
+                  <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.6" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="18.4" r="1.4" fill="currentColor" stroke="none"/></svg>
+                </button>
+              </span>
+              <span class="dr-inset">
+                <span class="dr-inset__stop"><span class="dr-inset__lbl">Location</span><span class="dr-inset__place">Trukhaniv Island</span></span>
+              </span>
+              <span class="dr-order__fee">
+                <span><span class="sr-only">Pay</span><span class="dr-number dr-order__price">₴800</span></span>
+                <span class="dr-chip">checklist 3 / 5</span>
+              </span>
+              <span class="dr-card__actions">
+                <a class="dr-btn dr-btn--primary" href="job-checklist.html">Continue</a>
+              </span>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- FOOTER · bottom bar (global nav — sitemap §7.2).
+         THE FOUR OPERATOR GLYPHS ARE DRAWN HERE FOR THE FIRST TIME, on the 24-grid at
+         stroke 1.7, fill:none, currentColor, round caps and joins — §5's one icon
+         system. Jobs is a briefcase (the work queue, and deliberately not the client
+         bar's 2x2 catalogue grid); Earnings is a banknote with its centre coin;
+         Ratings is a five-point star drawn as an OUTLINE, because .dr-star's filled
+         glyph is the rating input's own exception and a tab icon is not a quantity;
+         Account is QUOTED verbatim from the client tab bar — same tab, same glyph. -->
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="operator-listings.html" aria-current="page">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="7.4" width="17.2" height="12.2" rx="2.2"/><path d="M9 7.4V6.1A1.7 1.7 0 0 1 10.7 4.4h2.6A1.7 1.7 0 0 1 15 6.1v1.3"/><path d="M3.4 12.6h17.2"/></svg>Jobs
+        </a>
+        <a class="dr-tab" href="wallet.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="6.8" width="18.4" height="10.4" rx="2.2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.6v4.8M18 9.6v4.8"/></svg>Earnings
+        </a>
+        <a class="dr-tab" href="ratings.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.79l2.84 5.75 6.36.93-4.6 4.48 1.09 6.33L12 17.29l-5.69 2.99 1.09-6.33-4.6-4.48 6.36-.93z"/></svg>Ratings
+        </a>
+        <a class="dr-tab" href="operator-account.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account
+        </a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+
+  </div>
+
+  <!-- ui/kit.js — the onscreen keyboard and the picker drawer. It is linked on every
+       page carrying a form control; on THIS page the only controls are the three
+       availability radios, and rev 151's own rule says a radio raises no keyboard, so
+       nothing is drawn. Recorded rather than left implicit. -->
+  <script src="../ui/kit.js"></script>
+  <!-- shared wireframe shell: left nav tree + viewport switcher (same on every page) -->
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

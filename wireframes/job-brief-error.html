@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Job brief / detail · error</title>
+<!-- SCREEN: "Job brief / detail" — STATE: error (stand down — airspace / weather). Grounded in flows.md MJ-2: "Able to fly? → no → stand down, re-dispatched, client refunded". EXIT: back to jobs. -->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="job-brief.html">success</a>
+      <a href="job-brief-error.html" class="cur" aria-current="page">error</a>
+    </nav>
+    <h1>Job brief / detail</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>error</b> · file: job-brief-error.html</p>
+    <div class="flow"><b>Error:</b> flights grounded here (airspace / weather); flows.md MJ-2: "Able to fly? → no → re-dispatched, client refunded".<br><b>Exit (not a dead-end):</b> back to jobs, nothing to do, no penalty.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Brief</b> → stand-down alert + recover</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="operator-listings.html" aria-label="Back to Jobs"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Job brief</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Brief <span class="dr-label__act">▸ error — stand down (exit)</span></p>
+      <section aria-label="Stood down">
+        <!-- GROUNDED takes .dr-mark--warn and not --danger, and the copy is the reason:
+             "no action needed", "the client refunded", "no penalty". Nothing failed and
+             nothing is owed — --danger's family is reserved for a loss the user must
+             recover from ("signal lost, upload missing"). --warn-ink on --warn-wash is
+             5.65:1. Glyph: the universal restriction mark, a circle with one bar. -->
+        <div class="dr-msg" role="alert">
+          <span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M7.5 12h9"/></svg></span>
+          <span class="dr-msg__title">Stood down — airspace restricted</span>
+          <p class="dr-msg__body">Flights are grounded at this location right now (airspace / weather). The job was re-dispatched and the client refunded — no action needed.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="operator-listings.html">Back to Jobs</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="dr-actionbar">
+      <p class="dr-note">No penalty. A stand-down isn't counted against you.</p>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Filters — Region</title>
+<!--
+  SCREEN: "Home / start an order" — SUB-VIEW: the filter's place pick, level 1 of 3 (Region).
+  PERSONA: Client C-1. JOB: MJ-1 — narrow the service list to where the job happens.
+  Designer's call 2026-08-16: «помісти вибір міста у фільтр де юзер обирає регіон, спочатку
+  він має обрати місто область потім вже район міста» — depth settled at THREE levels.
+
+  WHY A SCREEN AND NOT A DRAWER: _conventions.md's picker rule is a count — ≤ 6 options open a
+  drawer from the bottom edge, ≥ 7 push a new screen from the right. This list is 25. It is the
+  FIRST page the ≥ 7 half of that rule has ever had; it was written 2026-08-16 (rev 102) and
+  stood empty until now.
+  WHY A SEARCH FIELD: 25 rows x --h-control 44 = 1100px in a ~640px main area, so the list
+  scrolls and cannot be taken in at once — HIG · Lists and tables asks for search exactly there.
+  The district screen is 484px and fits whole, so it has none.
+
+  EXIT: pick a row -> back to Filters with the region set (city and district reset with it);
+  the chevron back -> Filters unchanged. No dead end either way.
+  FIDELITY: painted (Studio) via ../ui/kit.css, like the rest of the listings family.
+-->
+<style>
+  /* ── tokens for the ANNOTATION COLUMN only (from _conventions.md §4) ── */
+  :root{
+    --wf-surface:#FFFFFF; --wf-bg:#F4F4F4; --wf-recessed:#EEEEEE; --wf-fill:#E2E2E2;
+    --wf-skeleton:#D8D8D8; --wf-muted:#909090; --wf-text-2:#5A5A5A; --wf-text:#252525;
+    --wf-ink:#111111; --wf-ink-max:#000000;
+    --wf-border:rgba(0,0,0,0.09); --wf-border-2:rgba(0,0,0,0.15);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{ -webkit-font-smoothing:antialiased; }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,sans-serif;
+    background:var(--wf-recessed); color:var(--wf-text);
+    font-size:15px; line-height:1.4;
+    display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start; padding:24px;
+  }
+
+  /* ── wireframe annotation (NOT part of the screen) ── */
+  .meta{ width:320px; font-size:13px; color:var(--wf-text-2); }
+  .meta h1{ font-size:17px; font-weight:600; color:var(--wf-text); margin-bottom:4px; }
+  .meta .sub{ color:var(--wf-muted); margin-bottom:16px; }
+  .meta .flow{ border:1px dashed var(--wf-border-2); border-radius:6px; padding:12px; margin-bottom:16px; line-height:1.6; }
+  .meta .flow b{ color:var(--wf-text); font-weight:600; }
+  .meta .flow .cur{ background:var(--wf-ink); color:var(--wf-surface); padding:1px 6px; border-radius:4px; font-weight:600; }
+  .meta .legend{ border-top:1px solid var(--wf-border); padding-top:12px; }
+  .meta .legend p{ margin-bottom:6px; }
+  .meta .legend b{ color:var(--wf-text); font-weight:600; }
+
+  .state-switch{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+  .state-switch a{ font-size:12px; padding:5px 10px; border:1px solid var(--wf-border-2); border-radius:6px;
+    text-decoration:none; color:var(--wf-text-2); background:var(--wf-surface); }
+  .state-switch a:hover{ background:var(--wf-recessed); color:var(--wf-text); }
+  .state-switch a.cur{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+
+  /* ── phone frame 375 × 812 (_conventions §6) ── */
+  .wf-frame{
+    width:375px; height:812px; flex:none;
+    background:var(--wf-bg); border:1px solid var(--wf-border-2); border-radius:8px;
+    overflow:hidden; display:flex; flex-direction:column; position:relative;
+  }
+
+  /* zone annotation label */
+  .zlabel{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--wf-muted);
+    display:flex; flex-wrap:wrap; gap:6px; align-items:baseline; border-left:2px solid var(--wf-border-2);
+    padding-left:8px; margin-bottom:-8px; }
+  .zlabel .act{ color:var(--wf-text-2); text-transform:none; letter-spacing:0; font-size:12px; }
+</style>
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+
+  <!-- ── WIREFRAME ANNOTATION (not the screen) ── -->
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="listings.html">success</a>
+      <a href="listings-filters.html">filters</a>
+      <a href="listings-filter-country.html">country</a>
+      <a href="listings-filter-region.html" class="cur" aria-current="page">region</a>
+      <a href="listings-filter-city.html">city</a>
+      <a href="listings-filter-district.html">district</a>
+      <a href="listings-filtered.html">filtered</a>
+      <a href="listings-empty.html">empty</a>
+      <a href="listings-error.html">error</a>
+      <a href="listings-loading.html">loading</a>
+    </nav>
+    <h1>Filters — Region</h1>
+    <p class="sub">Place pick · level <b>1 of 3</b> · file: listings-filter-region.html</p>
+    <div class="flow">
+      <b>Sub-flow of MJ-1 — where the job happens.</b><br>
+      Home → Filters → <span class="cur">Region</span> → City → District → <b>Apply</b>.<br>
+      <b>Pushed, not floating:</b> 25 options, and `_conventions.md` gives a list of 7 or more its own
+      screen. <b>Picking a region resets the city and the district</b> — you cannot leave a district
+      standing in a region it does not belong to.
+    </div>
+    <div class="legend">
+      <p><b>Zones &amp; main action</b> (labelled in the screen):</p>
+      <p><b>Search</b> ▸ 25 rows is 1100px in a 640px area — it scrolls, so it gets a search</p>
+      <p><b>Region list</b> ▸ one mark on the current row · tap to pick and return</p>
+      <p><b>Back (‹)</b> ▸ Filters, unchanged</p>
+    </div>
+  </aside>
+
+  <!-- ── THE SCREEN · 375 × 812 ── -->
+  <div class="wf-frame dr dr-screen">
+
+    <!-- status bar -->
+    <div class="dr-statusbar">
+      <span>9:41</span>
+      <span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span>
+    </div>
+
+    <!-- HEADER · a pushed screen: chevron back + its own centred title (_conventions.md) -->
+    <header class="dr-topbar">
+      <a class="dr-back" href="listings-filters.html" aria-label="Back to Filters"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <span class="dr-topbar__title">Region</span>
+      <span class="dr-topbar__spacer"></span>
+    </header>
+
+    <!-- MAIN -->
+    <main class="dr-main">
+
+      <!-- ZONE · search -->
+      <p class="zlabel dr-label">Search <span class="dr-label__act">▸ the list is longer than the screen</span></p>
+      <form role="search" action="#">
+        <span class="dr-search">
+          <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="search" name="region" placeholder="Search regions" aria-label="Search regions">
+        </span>
+      </form>
+
+      <!-- ZONE · region list
+           The current row carries the checkmark and aria-current="true"; every other
+           row holds the same mark hidden by visibility, so nothing moves when the pick
+           changes. --ink on --card is 14.37:1 (rev 86) — the mark clears 1.4.11 outright
+           and its presence, not its colour, is what carries the state. -->
+      <p class="zlabel dr-label">Region <span class="dr-label__act">▸ where DRON operates · 25</span></p>
+      <div class="dr-picker__list" role="group" aria-label="Region">
+        <a class="dr-picker__item" href="listings-filters.html">Cherkasy Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Chernihiv Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Chernivtsi Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Dnipropetrovsk Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Donetsk Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Ivano-Frankivsk Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Kharkiv Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Kherson Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Khmelnytskyi Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Kirovohrad Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html" aria-current="true">Kyiv City<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Kyiv Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Luhansk Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Lviv Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Mykolaiv Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Odesa Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Poltava Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Rivne Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Sumy Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Ternopil Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Vinnytsia Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Volyn Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Zakarpattia Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Zaporizhzhia Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Zhytomyr Oblast<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- shared wireframe shell: left nav tree + viewport switcher (same on every page) -->
+  <!--
+    ui/kit.js arrives here 2026-08-16 (rev 151) for the onscreen keyboard, on the designer's
+    «застосуй цей функціонал (появлення розкладки клавіатури) для мобільної версії кругом де є
+    імпути і поля вводу та текстові поля» — the sweep of the behaviour rev 149 built on `rate`.
+    No markup for it lives on this page on purpose: the system draws the keyboard over an app and
+    is not part of the app's DOM, so the script builds it and every field on every screen gets the
+    same picture.
+    The field is the region search input. This screen is a tab root, so what leaves is the
+    `.dr-tabbar` — four links behind 335pt of drawn keyboard are the same `WCAG 2.4.11` failure two
+    buttons were on `rate`, and rev 151 extends her call to them.
+  -->
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

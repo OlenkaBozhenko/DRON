@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Job checklist (in progress) · error</title>
+<!-- SCREEN: "Job checklist (in progress)" — STATE: error (required step skipped — cannot close). Grounded in flows.md MJ-2: "required step skipped — cannot close" → back to the checklist. EXIT: complete the open step. -->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="job-checklist.html">success</a>
+      <a href="job-checklist-error.html" class="cur" aria-current="page">error</a>
+    </nav>
+    <h1>Job checklist (in progress)</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>error</b> · file: job-checklist-error.html</p>
+    <div class="flow"><b>Error:</b> tried to close with a required step still open (flows.md MJ-2: "required step skipped — cannot close").<br><b>Exit (not a dead-end):</b> complete the open step, then close.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Checklist</b> ▸ blocking notice + disabled close</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="job-brief.html" aria-label="Back to Job brief"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Checklist</span><span class="dr-topbar__spacer"></span><span class="dr-chip">3 / 5</span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Pre-flight &amp; job steps <span class="dr-label__act">▸ required steps still open</span></p>
+      <ul class="dr-picks">
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Pre-flight safety check</span><input type="checkbox" class="sr-only" checked></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Battery ≥ 80%</span><input type="checkbox" class="sr-only" checked></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Parcel secured</span><input type="checkbox" class="sr-only" checked></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Capture delivery photo</span><input type="checkbox" class="sr-only"></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Confirm handover with the client</span><input type="checkbox" class="sr-only"></label></li>
+      </ul>
+      <section aria-label="Cannot close yet">
+        <!-- STEP LEFT takes .dr-mark--warn: the close is BLOCKED, not failed, and the
+             way out is one tap the operator already has. --danger's family is for a
+             loss to recover from. --warn-ink on --warn-wash is 5.65:1; the glyph is
+             the standard alert triangle, stroked in currentColor like every other. -->
+        <div class="dr-msg" role="alert">
+          <span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.6L21 19.4H3z"/><path d="M12 9.8v4.2"/><circle cx="12" cy="16.8" r=".9" fill="currentColor" stroke="none"/></svg></span>
+          <span class="dr-msg__title">Required steps still open</span>
+          <p class="dr-msg__body">You can't close the job until every required step is checked. 'Capture delivery photo' is still open.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="job-checklist.html">Complete the step</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Disabled is BUILT, not dimmed: .dr-btn:disabled is --btn2 with a --slate label
+         at 4.77:1, the secondary button's own pair. A blanket opacity on the green
+         primary would take charcoal-on-green to 2.35:1. So this screen carries NO
+         green control in the bar — the one green is the recovery CTA in the block. -->
+    <footer class="dr-actionbar">
+      <button type="button" class="dr-btn dr-btn--primary dr-btn--block" disabled>Complete all steps to continue</button>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

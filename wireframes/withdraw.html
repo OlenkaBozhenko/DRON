@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Withdraw to card / bank account · success (base)</title>
+<!-- SCREEN (sitemap): "Withdraw to card / bank account". JOB (jtbd): RJ-O3 — never chase money; the payout to an external account is the FINAL step (Bolt / Uklon cash-out model). STATE: base (the withdraw form). Flow: Withdraw → loading → "money on the way". Sticky action footer (not tabs). -->
+<!--
+  PAINTED (2026-08-18) — the Studio layer from ui/kit.css. Structure and copy unchanged.
+  THE AMOUNT IS A FIELD SINCE 2026-08-18, and this note used to say the opposite. The painted frame
+  stated the payout as a figure captioned `Full balance` and cashed out all of it; the designer
+  asked for a partial payout («зроби можливим вказати суму яку хоче вивести»), so the figure became
+  a .dr-field and the balance became the ceiling in the hint beneath it. .dr-balance is unchanged
+  and still spent on the two wallet screens and on ratings.
+  THE KEYBOARD IS LIVE HERE NOW, AND IT IS THE NUMBER PAD. This note used to record the opposite:
+  the page's only <input>s were the two payout radios, which `DESIGN.md` (rev 151) says raise no
+  keyboard, so `ui/kit.js` was linked for the product-wide behaviour and had nothing to act on. The
+  amount field changed that — it carries `inputmode="numeric"`, and rev 152 lets the markup pick
+  the plane, so focusing it raises the pad rather than QWERTY. The action bar leaves while the keys
+  are up (`WCAG 2.4.11`) and `Done` gives it back, exactly as on every other field in the product.
+  THE PAYOUT NOTE (`check-note` in ui/inventory.md §3 — "one line of copy with its own class")
+  RESOLVES TO A KIT CLASS RATHER THAN A NEW ONE: `.dr-pick__sub`, 12.5/400 --slate, declared in
+  ui/kit.css and spent on no page until now. It sits INSIDE .dr-pick__label so it takes its own
+  line under the option's name; as a flex sibling it would stand beside it.
+  THE OPTION ROWS ARE THE KIT'S REAL RADIOS, copied from listings-filters: one .dr-picks panel with
+  hairline separators, a real <input type="radio">, and a 24px .dr-box--radio whose checked state is
+  a --green fill behind an --on-green dot (9.46:1). The frame drew three separate bordered cards
+  with a "•" character in a box and a `done` class on the chosen one — the kit wins on all three
+  counts, and `checked` now carries the state that `done` was drawing (divergences logged).
+  GREEN: one control, the Withdraw CTA. The checked radio's 24px fill is a status mark on the
+  budget, the reading ui/kit.css records for the checked box and the walked node.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="withdraw.html" class="cur" aria-current="page">success</a>
+      <a href="withdraw-error.html">error</a>
+      <a href="withdraw-loading.html">loading</a>
+    </nav>
+    <h1>Withdraw to card / bank account</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>success (base — milestone)</b> · file: withdraw.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O3 — cash out from an accumulated balance; the payout is the last step of the flow (flows.md MJ-2 Phase B).<br><b>Exit:</b> Withdraw → <b>loading</b> → "money on the way" (the final milestone).</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Amount</b> ▸ full balance to cash out</p><p><b>Payout method</b> ▸ instant card / bank transfer</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="wallet.html" aria-label="Back to Earnings"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Withdraw</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Available <span class="dr-label__act">▸ the ceiling for this payout</span></p>
+      <!--
+        THE AMOUNT IS TYPED NOW, on the designer's call of 2026-08-18:
+        «зроби можливим вказати суму яку хоче вивести». The screen used to state the
+        full balance as a figure and cash out all of it — one .dr-balance block, no
+        input, the whole sum baked into the CTA — so an operator who wanted ₴1,500 of
+        ₴3,240 had no way to say so.
+        THE FIELD IDIOM IS payment.html's, COPIED: .dr-field with a drawn
+        .dr-field__label, the input inside .dr-field__group, the pair in a
+        .dr-rows--card panel. No new class and no new token.
+        THE &#8372;3,240ANCE DID NOT DISAPPEAR — IT BECAME THE CEILING. Two large figures on one
+        screen (available and requested) compete for the same job, so the available
+        balance moved into the hint under the field, where it is a fact stated before
+        the tap (voice.md P3) rather than a second headline.
+        inputmode="numeric" IS LOAD-BEARING: rev 152 made the markup pick the keyboard
+        plane, so this field raises the number pad and not QWERTY — a payout amount
+        under a letter keyboard states the wrong device. The page already linked
+        ui/kit.js and that link was inert until now, because two radios are not fields.
+        type="text" with inputmode, not type="number", for the same reason payment's
+        card number is: the value carries a group separator and a currency mark, which
+        a number input rejects.
+      -->
+      <!--
+        THE CEILING IS THE SCREEN'S OPENING STATEMENT, not a hint under the field —
+        the designer, 2026-08-18, pinning the hint: «зроби великим заголовком зверху».
+        My first build put the available balance in a 12px note beneath the input, on the
+        reading that two large figures would compete. Her call reverses that, and it is
+        the better reading of what the screen is FOR: an operator opens a payout screen
+        to spend a balance, so the balance is the first thing stated and the amount is
+        the answer to it. The figure is `.dr-balance` again — the same block wallet,
+        wallet-empty and ratings carry — so nothing is invented to say it.
+        THE STRING IS WALLET'S OWN, `Available to withdraw`, not a second phrasing of
+        the same fact. One concept, one wording (voice.md).
+        AND IT STAYS THE FIELD'S DESCRIPTION FOR ASSISTIVE TECH: the caption keeps an id
+        and the input keeps aria-describedby pointing at it, so a screen-reader user
+        still hears the ceiling on focusing the field even though the words are no
+        longer beside it (WCAG 1.3.1 — the relationship survives the move).
+      -->
+      <section class="dr-balance" aria-label="Available balance">
+        <p class="dr-number">&#8372;3,240</p>
+        <p class="dr-note dr-note--flush" id="wd-available">Available to withdraw</p>
+      </section>
+
+      <p class="zlabel dr-label">Amount <span class="dr-label__act">&#9656; how much to withdraw</span></p>
+      <section aria-label="Amount">
+        <div class="dr-rows dr-rows--card">
+          <div class="dr-field">
+            <label class="dr-field__label" for="wd-amount">Amount</label>
+            <span class="dr-field__group"><input class="dr-field__input" id="wd-amount" name="amount" type="text" inputmode="numeric" value="&#8372;1,500" aria-describedby="wd-available"></span>
+          </div>
+        </div>
+      </section>
+
+      <p class="zlabel dr-label">Withdrawal method <span class="dr-label__act">▸ pick where the money lands</span></p>
+      <section aria-label="Withdrawal method">
+        <ul class="dr-picks">
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">Instant to card &bull;&bull;&bull;&bull; 3318<span class="dr-pick__sub">Arrives in under a minute</span></span>
+            <input type="radio" name="payout" class="sr-only" checked>
+          </label></li>
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">Bank transfer<span class="dr-pick__sub">1&ndash;3 business days</span></span>
+            <input type="radio" name="payout" class="sr-only">
+          </label></li>
+        </ul>
+      </section>
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="withdraw-loading.html">Withdraw &#8372;1,500</a>
+    </footer>
+  </div>
+
+  <!-- ui/kit.js is the product-wide keyboard behaviour (rev 151). It is linked here because this
+       page carries <input> elements, and reported rather than assumed: both are radios, so
+       `isField()` never matches and the keyboard never rises on this screen. -->
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

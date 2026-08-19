@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Welcome / first-use explainer · empty</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Welcome / first-use explainer" — STATE: empty.
+  PERSONA: Client C-1. JOB: EJ-1 — first use feels safe.
+  STATE: empty — the one-card 15-second fallback for a skipped / too-long explainer. Same shell as welcome.html; only the main block changes.
+  flows.md node: RELATED · EJ-1 → "Empty: skipped / too long" → "Fallback: one-card 15-second version".
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="welcome.html">success</a>
+      <a href="welcome-empty.html" class="cur" aria-current="page">empty</a>
+    </nav>
+    <h1>Welcome / first-use explainer</h1>
+    <p class="sub">Shared entry · state: <b>empty</b> · file: welcome-empty.html</p>
+    <div class="flow"><b>Empty — explainer skipped or too long.</b><br>flows.md EJ-1: "Empty: skipped / too long" → <b>Fallback: one-card 15-second version</b> (never a dead-end).<br><b>Exit:</b> Continue → <b>Sign in</b>.</div>
+    <div class="legend"><p><b>Only the content changes</b> vs welcome.html:</p><p><b>One card</b> ▸ the 15-second essentials, no slider</p><p><b>Action</b> ▸ Continue (primary)</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">One-card fallback <span class="dr-label__act">▸ the 15-second version</span></p>
+      <section class="dr-center" aria-label="How DRON works in 15 seconds">
+        <!-- The grayscale frame drew the DRON word inside this mark. Painted, the
+             DRON mark already stands in the nav bar three lines above, so the
+             circle carries the kit's existing clock glyph instead — the literal
+             reading of the title, and the same glyph the second 15-second
+             fallback (onboarding-client-empty) uses. -->
+        <span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.3 2"/></svg></span>
+        <p class="dr-display">DRON in 15 seconds</p>
+        <p class="dr-lead">Order a drone service — a certified, insured operator does the flying. You see their name, photo and live position the moment you pay, and get a photo or report when it's done. The drone flies a set route and only records what your order needs.</p>
+      </section>
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="signin.html">Skip</a>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="signin.html">Continue</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

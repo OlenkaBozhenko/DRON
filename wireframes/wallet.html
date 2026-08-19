@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Wallet / earnings · success (base)</title>
+<!-- SCREEN (sitemap): "Wallet / earnings". JOB (jtbd): RJ-O3 · O-05 — earnings move to balance on their own (auto-release ≤ 30 min of client confirmation). STATE: success (base — milestone "you got paid"). Destination → Withdraw. Operator tab bar (Earnings active). -->
+<!--
+  PAINTED (2026-08-18) — the Studio layer from ui/kit.css. Structure and copy unchanged.
+  THE BALANCE FIGURE IS .dr-number, NOT THE GRAYSCALE .amount. _wireframe.css sets .amount to
+  34px/600 #252525 — a size outside the project's ten steps (the largest is 22) and an ink outside
+  the palette. Money in this system is --t-number, 20/700 tabular (DESIGN.md · Hierarchy: "number
+  20 700 — money — ₴180, tabular"), and The Tabular Rule requires tabular figures for anything a
+  user verifies. The caption takes .dr-note. `.dr-balance` is a PROVISIONAL wrapper carrying only
+  the column and the 4px step between the two lines, plus the left alignment .dr-note's own
+  text-align:center would otherwise take away — the frame sets this block flush left, like
+  payment's amount block, and `.dr-note--flush` is the second — .dr-note is text-align:center by
+  construction, so a caption that stands flush left needs the modifier said out loud.
+  THE PAID NOTICE IS .dr-note--flush AND NOT .dr-field__hint, AND THAT IS A MEASUREMENT, NOT A
+  PREFERENCE: .dr-field__hint declares `flex-basis:100%` for the row it belongs to, and in a COLUMN
+  flex container (.dr-main) flex-basis sizes the MAIN axis — measured, the one-line sentence came out
+  341 x 173 and swallowed the page's slack. The class is a field's own hint and does not leave one.
+  THE EARNINGS FIGURE TAKES THE SAME .dr-number as order-history's card price, so the balance and
+  the rows that add up to it are one material. The frame drew it at 15/600; the kit's money step
+  wins (divergence logged).
+  THE RECENT LIST IS .dr-list--snug (8), not .dr-list (28): the list is one zone among four here
+  (Balance · notice · Withdraw · Recent), and DESIGN.md's Between-Beats-Within rule reads the
+  level above — main separates zones by 12, so siblings must close to 8 or they read as further
+  apart than strangers.
+  GREEN: one control, the Withdraw CTA. The tab bar's selected Earnings is --green-wash, a tint,
+  which the budget does not count.
+  TAB GLYPHS are owned by the operator tab-bar pass and landed 2026-08-18: the four slots
+  carry the Jobs/Earnings/Ratings/Account glyphs, byte-identical to operator-listings.html.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="wallet.html" class="cur" aria-current="page">success</a>
+      <a href="wallet-empty.html">empty</a>
+    </nav>
+    <h1>Wallet / earnings</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>success (base — milestone)</b> · file: wallet.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O3 — the payment moves to the balance on its own, within 30 min of the client confirming (flows.md MJ-2: "Order paid: earnings added to balance"). The "you got paid" milestone.<br><b>Exit:</b> Withdraw → <b>Withdraw to card / bank account</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Balance</b> ▸ available to withdraw (the milestone)</p><p><b>Recent</b> ▸ earnings history</p><p><b>Withdraw</b> ▸ cash out to card / bank</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Earnings</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Balance <span class="dr-label__act">▸ available to withdraw</span></p>
+      <section class="dr-balance" aria-label="Balance">
+        <p class="dr-number">&#8372;3,240</p>
+        <p class="dr-note dr-note--flush">Available to withdraw</p>
+      </section>
+      <p class="dr-note dr-note--flush">&#8372;800 paid for 'Aerial photo &amp; video', added to your balance 12 min ago.</p>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="withdraw.html">Withdraw &#8372;3,240</a>
+
+      <p class="zlabel dr-label">Recent <span class="dr-label__act">▸ earnings history</span></p>
+      <section aria-label="Recent earnings">
+        <ul class="dr-list dr-list--snug">
+          <li>
+            <article class="dr-card dr-card--row">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Package delivery</span>
+                <span class="dr-listing__meta"><span class="dr-listing__desc">Today, 10:07</span></span>
+              </span>
+              <span class="dr-number">&#8372;180</span>
+            </article>
+          </li>
+          <li>
+            <article class="dr-card dr-card--row">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Aerial photo &amp; video</span>
+                <span class="dr-listing__meta"><span class="dr-listing__desc">Today, 08:20</span></span>
+              </span>
+              <span class="dr-number">&#8372;800</span>
+            </article>
+          </li>
+          <li>
+            <article class="dr-card dr-card--row">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">Roof inspection</span>
+                <span class="dr-listing__meta"><span class="dr-listing__desc">Yesterday</span></span>
+              </span>
+              <span class="dr-number">&#8372;650</span>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="operator-listings.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="7.4" width="17.2" height="12.2" rx="2.2"/><path d="M9 7.4V6.1A1.7 1.7 0 0 1 10.7 4.4h2.6A1.7 1.7 0 0 1 15 6.1v1.3"/><path d="M3.4 12.6h17.2"/></svg>Jobs</a>
+        <a class="dr-tab" href="wallet.html" aria-current="page"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="6.8" width="18.4" height="10.4" rx="2.2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.6v4.8M18 9.6v4.8"/></svg>Earnings</a>
+        <a class="dr-tab" href="ratings.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.79l2.84 5.75 6.36.93-4.6 4.48 1.09 6.33L12 17.29l-5.69 2.99 1.09-6.33-4.6-4.48 6.36-.93z"/></svg>Ratings</a>
+        <a class="dr-tab" href="operator-account.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

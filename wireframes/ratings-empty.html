@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Ratings dashboard · empty</title>
+<!-- SCREEN: "Ratings dashboard" (EJ-3) — STATE: empty (cold-start O-2). Same shell as ratings.html; only the main content becomes the no-ratings block. flows.md EJ-3: Has any ratings yet? → no → "Empty: no ratings yet — cold-start (O-2); auto-dispatch keeps feeding jobs; ratings accrue". Not a dead-end. GLOBAL — Ratings tab. -->
+<!--
+  VISUAL LAYER (2026-08-18): the Studio layer from ui/kit.css. Structure and copy
+  unchanged; the block is copied from listings-empty.html's painted .dr-msg.
+
+  THE MARK IS A STAR AND IT IS NEUTRAL. The grayscale placeholder read "NEW";
+  painted, it is the system's star inside a default .dr-mark — --media ground,
+  --slate glyph, 5.51:1 (WCAG 1.4.11 ✓ against 3:1). Not --mark--warn: nothing
+  is wrong here, an operator simply has not been rated yet. The star is the one
+  glyph in this system that FILLS instead of stroking, so the fill arrives as a
+  presentation attribute on the <path> — the idiom the status-bar battery and
+  the tab-bar dots already use, because .dr-ic{fill:none} is CSS and would beat
+  the same attribute written on the <svg>.
+
+  NO .dr-stars HERE. The read-only score display this pass defines is a picture
+  of a number, and on this screen there is no number: an empty row of five grey
+  stars would read as a score of zero, which is not what "not yet rated" means.
+  The state is carried by the title and the body, and the one way out is the
+  frame's own Find jobs — the only green control on the screen.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="ratings.html">success</a>
+      <a href="ratings-empty.html" class="cur" aria-current="page">empty</a>
+    </nav>
+    <h1>Ratings dashboard</h1>
+    <p class="sub">Operator · EJ-3 · state: <b>empty</b> · file: ratings-empty.html</p>
+    <div class="flow"><b>Empty (flows.md EJ-3):</b> Has any ratings yet? → <b>no</b> → <i>"no ratings yet — cold-start (O-2)"</i>. Recovery (no cold-start dead-end): <b>auto-dispatch keeps feeding jobs; ratings accrue from the first ones</b>.<br>flows.md: <span class="cur">no ratings yet</span> → platform still dispatches → back to Operator home.</div>
+    <div class="legend"><p><b>Only the content changes</b> vs ratings.html:</p><p><b>Main</b> ▸ empty block + path to first jobs</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Ratings</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Overall <span class="dr-label__act">▸ no ratings yet</span></p>
+      <section aria-label="Ratings">
+        <div class="dr-msg" role="status">
+          <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z" fill="currentColor" stroke="none"/></svg></span>
+          <span class="dr-msg__title">No ratings yet</span>
+          <p class="dr-msg__body">You haven't been rated yet. Ratings build from your first jobs — the platform keeps sending you jobs until they do.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="operator-listings.html">Find jobs</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="operator-listings.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="7.4" width="17.2" height="12.2" rx="2.2"/><path d="M9 7.4V6.1A1.7 1.7 0 0 1 10.7 4.4h2.6A1.7 1.7 0 0 1 15 6.1v1.3"/><path d="M3.4 12.6h17.2"/></svg>Jobs</a>
+        <a class="dr-tab" href="wallet.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="6.8" width="18.4" height="10.4" rx="2.2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.6v4.8M18 9.6v4.8"/></svg>Earnings</a>
+        <a class="dr-tab" href="ratings.html" aria-current="page"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.79l2.84 5.75 6.36.93-4.6 4.48 1.09 6.33L12 17.29l-5.69 2.99 1.09-6.33-4.6-4.48 6.36-.93z"/></svg>Ratings</a>
+        <a class="dr-tab" href="operator-account.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

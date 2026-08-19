@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Welcome / first-use explainer · success (base)</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Welcome / first-use explainer".
+  PERSONA: Client C-1 (primary — first-time drone user).
+  JOB: EJ-1 — first use feels safe ("someone accountable is coming").
+  STATE: base — a 3-slide explainer (what happens after you order + what the drone does / won't do: noise, safety, privacy).
+  flows.md node: RELATED · EJ-1 → "Welcome / first-use explainer". Pre-sign-in: no global tab bar.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="welcome.html" class="cur" aria-current="page">success</a>
+      <a href="welcome-empty.html">empty</a>
+    </nav>
+    <h1>Welcome / first-use explainer</h1>
+    <p class="sub">Shared entry · state: <b>success (base)</b> · file: welcome.html</p>
+    <div class="flow"><b>Job (jtbd):</b> EJ-1 — a stranger with a drone stops feeling like a risk. A 3-slide explainer: what happens after you order + the drone (noise, safety, privacy).<br><b>flows.md:</b> First-time open → <span class="cur">Welcome / first-use explainer</span> → understood? → Order confirmed.<br><b>Exit:</b> Get started → <b>Sign in</b>; Skip → one-card fallback.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Slider</b> ▸ 3 slides: order → operator → drone facts</p><p><b>Skip</b> ▸ jump to the 15-second version</p><p><b>Action</b> ▸ Get started (primary)</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <div class="dr-slider dr-slider--bleed" aria-label="What to expect from DRON">
+        <!-- The picture comes last in the markup, not first: it is the bottom of
+             the slide visually, and it is decorative (alt=""), so a screen reader
+             should reach the heading before it rather than step over it. -->
+        <section class="dr-slide" id="w1" aria-label="Slide 1 of 3">
+          <p class="dr-display">You order, a pro handles it</p>
+          <p class="dr-lead">Pick a service and pay. A certified DRON operator does the flying — you never touch the drone.</p>
+          <span class="dr-slide__art"><img src="../assets/scenes/thumbs/handover.png" alt="" decoding="async"></span>
+        </section>
+        <section class="dr-slide" id="w2" aria-label="Slide 2 of 3">
+          <p class="dr-display">A verified, insured operator</p>
+          <p class="dr-lead">The moment you pay you see their name, photo and live position. Someone accountable is on the way.</p>
+          <span class="dr-slide__art"><img src="../assets/people/thumbs/wide/operator.png" alt="" loading="lazy" decoding="async"></span>
+        </section>
+        <section class="dr-slide" id="w3" aria-label="Slide 3 of 3">
+          <p class="dr-display">What the drone does — and doesn't</p>
+          <p class="dr-lead">It flies a set route, keeps its distance, and only records what your order needs. Brief low noise on take-off and landing; no filming of your neighbours.</p>
+          <span class="dr-slide__art"><img src="../assets/drones/thumbs/wide/drone-flight-clean.png" alt="" loading="lazy" decoding="async"></span>
+        </section>
+      </div>
+      <!-- THE PAGER IS AN INDICATOR, NOT A CONTROL (designer, 2026-08-18:
+     «крапки не клікабельні там працює свайп»). The dots were <a href="#slide">
+     links at an 8x8 target — three times under WCAG 2.5.8's 24x24 and five
+     times under HIG's 44. Rather than pad a hit area onto a control nobody
+     taps, the control is removed: swipe is how the slider moves. No tab stop,
+     nothing to size, and aria-hidden because each slide already announces
+     "Slide n of 3" and the slider itself is the scrollable region. -->
+        <div class="dr-pager" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="welcome-empty.html">Skip</a>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="signin.html">Get started</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

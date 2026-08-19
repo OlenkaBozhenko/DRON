@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Sign up / identity · loading</title>
+<!--
+  SCREEN: "Sign up / identity" (flows.md MJ-2 activation — Diia / BankID identity handoff).
+  PERSONA: Operator (MJ-2 activation gate).
+  JOB: MJ-2 activation.
+  STATE: loading — verifying identity with the provider. Transient; forward to verification when done.
+  flows.md node: "Sign up / identity" — verifying branch.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-signup.html">success</a>
+      <a href="operator-signup-error.html">error</a>
+      <a href="operator-signup-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Sign up / identity</h1>
+    <p class="sub">Operator · MJ-2 activation · state: <b>loading</b> · file: operator-signup-loading.html</p>
+    <div class="flow"><b>Loading:</b> verifying your identity with Diia / BankID (external provider).<br><b>Exit:</b> Continue → <b>Verification / document upload</b> once verified.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Sign up</b> ▸ "Verifying your identity…" + skeletons</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="operator-fee-terms.html" aria-label="Back to Operator terms"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Sign in</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Sign up <span class="dr-label__act">▸ loading — verifying identity</span></p>
+      <!-- The loading block is payment-loading's own: the milestone mark carrying
+           the kit's activity indicator, the display line, the lead, then the
+           skeleton bars. --green-wash ground, --ink glyph, 14.75:1. -->
+      <section class="dr-center" aria-label="Verifying identity" style="padding:32px 20px;">
+        <span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5A8.5 8.5 0 1 1 3.5 12"/></svg></span>
+        <p class="dr-display">Verifying your identity…</p>
+        <p class="dr-lead" role="status">Confirming your details with Diia. This takes a few seconds.</p>
+        <div class="dr-stack" style="width:100%; margin-top:8px;">
+          <span class="dr-sk-line dr-sk-w90"></span>
+          <span class="dr-sk-line dr-sk-w70"></span>
+          <span class="dr-sk-line dr-sk-w50"></span>
+        </div>
+      </section>
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="operator-verification.html">Continue</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="operator-signup.html">Cancel</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

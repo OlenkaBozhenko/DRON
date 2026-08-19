@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe &middot; Filters &mdash; Country</title>
+<!--
+  SCREEN: "Home / start an order" — SUB-VIEW: the filter's place pick, level 1 of 4 (Country).
+  PERSONA: Client C-1. JOB: MJ-1 — narrow the service list to where the job happens.
+  Designer's call 2026-08-16 on the built filter panel: «добав ще Cauntry» — the place pick
+  goes four levels deep, Country -> Region -> City -> District of the city.
+
+  WHY THIS LEVEL EXISTS AT ALL. CLAUDE.md's geography is "Ukraine AND European countries", and
+  until now the filter stated the country nowhere and could not change it: every level under it
+  was Ukrainian by assumption. A filter that cannot reach the broadest fact it depends on is a
+  filter with a hidden constant in it.
+
+  WHY A SCREEN AND NOT A DRAWER: _conventions.md's picker rule is a count — 7 or more gets its own
+  pushed screen — and beside that, the rule set the same day says a DEPENDENT list takes the form
+  its longest case needs, so all four levels are screens whatever any one of them holds today.
+
+  WHY NO SEARCH FIELD, WHERE THE REGION SCREEN HAS ONE: the rule is a measurement, not a feeling.
+  8 rows x --h-control 44 = 352px inside a ~710px main area, so the list is visible whole and a
+  search field over it would be a control with nothing to do. Region is 1100px and scrolls, so it
+  has one; District is 484px and has none.
+
+  WHY THIS LIST AND NOT AN ATLAS. Designer's call: the rows are the countries DRON OPERATES IN —
+  a coverage list, the same reading as Region's "where DRON operates · 25" — not the ~44 countries
+  of Europe. The alternative was built out and rejected in the same breath: a full atlas asserts
+  nothing about coverage, but it lets a client pick a country DRON does not serve and land in
+  listings-empty, which is a dead end dressed as a choice. The eight are a PLACEHOLDER SET pending
+  the real launch markets.
+
+  ORDER: alphabetical, with the current pick sitting in its own alphabetical place and carrying
+  the mark — exactly as Kyiv City does among the 25 regions. The current row is not floated to the
+  top, because a list that reorders itself around the pick cannot be scanned twice the same way.
+
+  EXIT: pick a row -> back to Filters with the country set (region, city and district reset with
+  it); the chevron back -> Filters unchanged. No dead end either way.
+  FIDELITY: painted (Studio) via ../ui/kit.css, like the rest of the listings family.
+-->
+<style>
+  /* ── tokens for the ANNOTATION COLUMN only (from _conventions.md §4) ── */
+  :root{
+    --wf-surface:#FFFFFF; --wf-bg:#F4F4F4; --wf-recessed:#EEEEEE; --wf-fill:#E2E2E2;
+    --wf-skeleton:#D8D8D8; --wf-muted:#909090; --wf-text-2:#5A5A5A; --wf-text:#252525;
+    --wf-ink:#111111; --wf-ink-max:#000000;
+    --wf-border:rgba(0,0,0,0.09); --wf-border-2:rgba(0,0,0,0.15);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{ -webkit-font-smoothing:antialiased; }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,sans-serif;
+    background:var(--wf-recessed); color:var(--wf-text);
+    font-size:15px; line-height:1.4;
+    display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start; padding:24px;
+  }
+
+  /* ── wireframe annotation (NOT part of the screen) ── */
+  .meta{ width:320px; font-size:13px; color:var(--wf-text-2); }
+  .meta h1{ font-size:17px; font-weight:600; color:var(--wf-text); margin-bottom:4px; }
+  .meta .sub{ color:var(--wf-muted); margin-bottom:16px; }
+  .meta .flow{ border:1px dashed var(--wf-border-2); border-radius:6px; padding:12px; margin-bottom:16px; line-height:1.6; }
+  .meta .flow b{ color:var(--wf-text); font-weight:600; }
+  .meta .flow .cur{ background:var(--wf-ink); color:var(--wf-surface); padding:1px 6px; border-radius:4px; font-weight:600; }
+  .meta .legend{ border-top:1px solid var(--wf-border); padding-top:12px; }
+  .meta .legend p{ margin-bottom:6px; }
+  .meta .legend b{ color:var(--wf-text); font-weight:600; }
+
+  .state-switch{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+  .state-switch a{ font-size:12px; padding:5px 10px; border:1px solid var(--wf-border-2); border-radius:6px;
+    text-decoration:none; color:var(--wf-text-2); background:var(--wf-surface); }
+  .state-switch a:hover{ background:var(--wf-recessed); color:var(--wf-text); }
+  .state-switch a.cur{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+
+  /* ── phone frame 375 × 812 (_conventions §6) ── */
+  .wf-frame{
+    width:375px; height:812px; flex:none;
+    background:var(--wf-bg); border:1px solid var(--wf-border-2); border-radius:8px;
+    overflow:hidden; display:flex; flex-direction:column; position:relative;
+  }
+
+  /* zone annotation label */
+  .zlabel{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--wf-muted);
+    display:flex; flex-wrap:wrap; gap:6px; align-items:baseline; border-left:2px solid var(--wf-border-2);
+    padding-left:8px; margin-bottom:-8px; }
+  .zlabel .act{ color:var(--wf-text-2); text-transform:none; letter-spacing:0; font-size:12px; }
+</style>
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+
+  <!-- ── WIREFRAME ANNOTATION (not the screen) ── -->
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="listings.html">success</a>
+      <a href="listings-filters.html">filters</a>
+      <a href="listings-filter-country.html" class="cur" aria-current="page">country</a>
+      <a href="listings-filter-region.html">region</a>
+      <a href="listings-filter-city.html">city</a>
+      <a href="listings-filter-district.html">district</a>
+      <a href="listings-filtered.html">filtered</a>
+      <a href="listings-empty.html">empty</a>
+      <a href="listings-error.html">error</a>
+      <a href="listings-loading.html">loading</a>
+    </nav>
+    <h1>Filters &mdash; Country</h1>
+    <p class="sub">Place pick &middot; level <b>1 of 4</b> &middot; file: listings-filter-country.html</p>
+    <div class="flow">
+      <b>Sub-flow of MJ-1 &mdash; where the job happens.</b><br>
+      Home &rarr; Filters &rarr; <span class="cur">Country</span> &rarr; Region &rarr; City &rarr; District &rarr; <b>Apply</b>.<br>
+      <b>The broadest level, added 2026-08-16.</b> <b>Picking a country resets the region, the city
+      and the district</b> &mdash; nothing below it can outlive the country it belonged to.
+    </div>
+    <div class="legend">
+      <p><b>Zones &amp; main action</b> (labelled in the screen):</p>
+      <p><b>Country list</b> &blacktriangleright; where DRON operates &middot; 8 &middot; one mark on the current row</p>
+      <p><b>No search</b> &blacktriangleright; 8 rows = 352px in a 710px area, so the list is visible whole</p>
+      <p><b>Back (&lsaquo;)</b> &blacktriangleright; Filters, unchanged</p>
+    </div>
+  </aside>
+
+  <!-- ── THE SCREEN · 375 × 812 ── -->
+  <div class="wf-frame dr dr-screen">
+
+    <!-- status bar -->
+    <div class="dr-statusbar">
+      <span>9:41</span>
+      <span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span>
+    </div>
+
+    <!-- HEADER · a pushed screen: chevron back + its own centred title (_conventions.md) -->
+    <header class="dr-topbar">
+      <a class="dr-back" href="listings-filters.html" aria-label="Back to Filters"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <span class="dr-topbar__title">Country</span>
+      <span class="dr-topbar__spacer"></span>
+    </header>
+
+    <!-- MAIN -->
+    <main class="dr-main">
+
+      <!-- ZONE · country list
+           The current row carries the checkmark and aria-current="true"; every other
+           row holds the same mark hidden by visibility, so nothing moves when the pick
+           changes. --ink on --card is 14.37:1 (rev 86) — the mark clears 1.4.11 outright
+           and its presence, not its colour, is what carries the state.
+           The title is bare "Country" and names no parent, because this level has none —
+           Region names none either; City and District do. -->
+      <p class="zlabel dr-label">Country <span class="dr-label__act">&blacktriangleright; where DRON operates &middot; 8</span></p>
+      <div class="dr-picker__list" role="group" aria-label="Country">
+        <a class="dr-picker__item" href="listings-filters.html">Czechia<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Germany<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Hungary<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Moldova<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Poland<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Romania<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html">Slovakia<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="listings-filters.html" aria-current="true">Ukraine<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- shared wireframe shell: left nav tree + viewport switcher (same on every page) -->
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

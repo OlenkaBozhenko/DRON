@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Operator landing / fee terms · success (base)</title>
+<!--
+  SCREEN: "Operator landing / fee terms" (flows.md node "Operator landing / fee terms" → commission acceptable?).
+  PERSONA: Operator (MJ-2 activation gate — "Join and get verified").
+  JOB: MJ-2 activation — see the commission/payout terms before signing up.
+  STATE: base only (no state pages). Pre-live: no operator tabbar — topbar + actionbar.
+  flows.md node: "Operator landing / fee terms".
+-->
+<!--
+  PAINTED (2026-08-18) — the Studio layer from ui/kit.css. Structure and copy unchanged.
+  A READING SCREEN, SO NO NEW COMPONENT: type roles on --page (.dr-display 22/700 for the promise,
+  .dr-lead 15/400 --slate at 6.62:1 for the paragraph) over one read-only .dr-rows panel — the
+  grouped inset list, the same shape order-review's summary carries. Plain .dr-rows and not
+  --money: these four values are facts, not a column that adds up, so they stand on the product's
+  one label axis (--sz-rowkey 140) like every other fact row.
+  THE ACTION BAR PUTS THE SECONDARY ABOVE THE PRIMARY, which is tracking.html's built order and
+  the pass's standing rule; the frame wrote the primary first. Both buttons are filled, one per
+  row, --block (DESIGN.md rev 112 / rev 120). Logged as a divergence.
+  ONE DEFECT LEFT AS FOUND AND REPORTED, NOT FIXED: the back control's accessible name reads
+  `Back to Back`. Its destination, onboarding-operator.html, carries no title in its nav bar, so
+  there is no screen name to say — and inventing one is a microcopy.md decision, not a painting
+  decision. The chevron and the label are otherwise rule D9's shape exactly.
+  GREEN: one control, `Accept & continue`.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Operator landing / fee terms</h1>
+    <p class="sub">Operator · MJ-2 activation · state: <b>base only</b> · file: operator-fee-terms.html</p>
+    <div class="flow"><b>Job (jtbd):</b> MJ-2 activation — the commission &amp; payout terms before commitment (flows.md "Operator landing / fee terms" → commission acceptable?).<br><b>Exit:</b> Accept &amp; continue → <b>Sign up / identity</b> (operator-signup). Maybe later → back to onboarding.<br><b>States:</b> none.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Value intro</b> ▸ what you get</p><p><b>Fee terms</b> ▸ commission, payout, insurance, minimum</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><!-- THE ONE BACK CONTROL IN THE PRODUCT THAT NAMES NO DESTINATION, and the
+             designer's call of 2026-08-18: «не потрібно назви». D9 asks for
+             aria-label="Back to {destination}", but this one returns to
+             `onboarding-operator`, whose nav bar carries the DRON mark and nothing
+             else — there is no screen name to say, and inventing one would be a
+             microcopy.md decision taken to satisfy a pattern. So the accessible name
+             is the bare verb, which is what iOS says when a pushed screen has no
+             titled parent. `WCAG 4.1.2` is satisfied — the control has a name; it
+             simply names the action rather than the place. It read "Back to Back"
+             until today, which named nothing twice. -->
+          <a class="dr-back" href="onboarding-operator.html" aria-label="Back"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Operator terms</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Value intro <span class="dr-label__act">▸ what you get</span></p>
+      <section class="dr-stack" aria-label="Why operate with DRON">
+        <p class="dr-display">Earn on your schedule</p>
+        <p class="dr-lead">DRON dispatches pre-qualified jobs to you, insures every flight, and pays you automatically. Here's what you keep and how you get paid.</p>
+      </section>
+
+      <p class="zlabel dr-label">Fee terms <span class="dr-label__act">▸ commission, payout, insurance, minimum</span></p>
+      <div class="dr-rows" aria-label="Fee terms">
+        <div class="dr-rows__row"><span class="dr-rows__key">Commission</span><span class="dr-rows__val">18% per job</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Payment</span><span class="dr-rows__val">Auto-release ≤30 min after client confirms</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Insurance</span><span class="dr-rows__val">Covered from your first job</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Minimum withdrawal</span><span class="dr-rows__val">&#8372;500</span></div>
+      </div>
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="onboarding-operator.html">Maybe later</a>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="operator-signup.html">Accept &amp; continue</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

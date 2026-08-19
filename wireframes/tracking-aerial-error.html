@@ -1,0 +1,122 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Live tracking &amp; ETA · error (tracking lost)</title>
+<!-- SCREEN (sitemap): "Live tracking & ETA". JOB (jtbd): RJ-C2 (know where the operator is right now, C-05). STATE: error. flows.md RJ-C2: "Error: tracking lost". -->
+
+<!--
+  VISUAL LAYER (2026-08-01): Studio design language transferred from concept/concept.html
+  and the painted wireframes/order-history.html — palette, radii, shadows, Phosphor-line
+  icons, the live map render, and the operator trust layer. Structure and copy unchanged;
+  only media/icon placeholders became the real marks they always stood for. The <style>
+  block is byte-identical across all four tracking states, so every repeat of a component
+  carries the same values. New pairs contrast-checked in that block. See concept.md rev 21.
+  CTA WEIGHT (2026-08-01, designer feedback): "Contact operator" is the green primary on
+  tracking.html, so it is the green primary here too — the same control at the same weight
+  in every state. It is the standing action of the screen; the recovery button inside the
+  alert card (Try again / Keep waiting) keeps its own primary within that card.
+  See concept.md rev 26.
+-->
+<!-- NEW 2026-08-16 — live tracking, one file per service. The built states said *En route to
+     drop-off* on a job that has no drop-off, and the base handed *View details* to the delivery
+     confirmation. Everything else is the delivery file's byte for byte — the map well, the four-node
+     rail (Accepted · En route · On-site · Done, which already fitted all three services), the
+     operator trust layer, and the Contact-operator drawer with its masking note. -->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head><body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="tracking-aerial.html">success</a>
+      <a href="tracking-aerial-empty.html">empty</a>
+      <a href="tracking-aerial-error.html" class="cur" aria-current="page">error</a>
+      <a href="tracking-loading.html">loading</a>
+    </nav>
+    <h1>Live tracking &amp; ETA</h1>
+    <p class="sub">Client · MJ-1 · state: <b>error (tracking lost)</b> · file: tracking-aerial-error.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-C2 — the live signal dropped; reassure the client the job is still active and offer a way back to it.<br><b>Exit:</b> Refresh, or Contact support.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Tracking error</b> ▸ signal lost · refresh / support</p><p><b>ETA</b> ▸ last known</p><p><b>Operator</b> ▸ who is coming · contact</p><p><b>Progress</b> ▸ job milestones</p></div>
+  </aside>
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><h1 class="dr-topbar__title">On the way</h1><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Live map <span class="dr-label__act">▸ tracking lost (RJ-C2)</span></p>
+      <section aria-label="Live tracking">
+        <div class="dr-msg" role="alert">
+          <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity=".55"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g></svg></span>
+          <p class="dr-msg__title">Live tracking lost</p>
+          <p class="dr-msg__body">We've lost the live signal from the operator's device. Your order is still active.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="tracking-aerial.html">Try again</a>
+            <a class="dr-btn dr-btn--secondary" href="support.html">Contact support</a>
+          </div>
+        </div>
+      </section>
+      <p class="zlabel dr-label">Progress <span class="dr-label__act">▸ job milestones (RJ-C2)</span></p>
+      <section aria-label="Progress">
+        <ul class="dr-rail dr-rail--at2 dr-rail--zone">
+          <li class="dr-rail__step"><span class="dr-node dr-node--done" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-rail__lbl">Accepted</span></li>
+          <li class="dr-rail__step" aria-current="step"><span class="dr-node dr-node--now" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-rail__lbl dr-rail__lbl--now">En route</span></li>
+          <li class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">On&#8209;site</span></li>
+          <li class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">Done</span></li>
+        </ul>
+      </section>
+      <p class="zlabel dr-label">ETA <span class="dr-label__act">▸ last known (RJ-C2)</span></p>
+      <div class="dr-rows" aria-label="ETA">
+        <div class="dr-rows__row"><span class="dr-rows__key">ETA</span><span class="dr-rows__val">~6 min</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Status</span><span class="dr-rows__val">En route to the shoot</span></div>
+      </div>
+      <p class="zlabel dr-label">Operator <span class="dr-label__act">▸ who is coming (RJ-C1)</span></p>
+      <section aria-label="Operator">
+        <div class="dr-stack">
+          <article class="dr-op">
+            <span class="dr-op__photo"><img src="../assets/people/thumbs/operator.png" alt="" loading="lazy" decoding="async"></span>
+            <span class="dr-op__info">
+              <span class="dr-op__name">Andriy M.</span>
+              <span class="dr-op__rating">4.9 ★ · 214 jobs</span>
+              <span class="dr-chips dr-op__badges"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
+            </span>
+          </article>
+          <button class="dr-btn dr-btn--primary dr-btn--block" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-contact">Contact operator</button>
+        </div>
+      </section>
+    </main>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="listings.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+        <a class="dr-tab" href="order-history.html" aria-current="page"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+        <a class="dr-tab" href="support.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+        <a class="dr-tab" href="account.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <!--
+      THE SAME DRAWER AS tracking.html, BYTE-IDENTICAL — 2026-08-16. concept.md rev 26 fixed the
+      rule for this exact control after this file had drifted to the grey secondary: "the same
+      control at the same weight in every state". A button that opens a drawer on the base and
+      navigates away on the two state pages is that drift arriving through behaviour instead of
+      through colour, so the drawer is carried to all three. tracking-loading has no operator card
+      and no such button, so it is untouched.
+      ON THIS STATE IT MATTERS MOST: tracking is lost, and the one thing the client can still do is
+      reach the person — the drawer is the only place on the screen that offers a live channel to
+      them rather than a retry of the map.
+      See tracking.html for the full reasoning behind the three rows, their labels and the note.
+    -->
+    <section class="dr-sheet dr-sheet--picker" id="sheet-contact" role="dialog" aria-modal="true" aria-labelledby="sheet-contact-title" aria-describedby="sheet-contact-desc" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-contact-title">Contact operator</p>
+      <div class="dr-picker__list">
+        <a class="dr-picker__item" href="call.html"><span class="dr-picker__label">Call operator</span></a>
+        <a class="dr-picker__item" href="chat.html"><span class="dr-picker__label">Chat with the operator</span></a>
+        <a class="dr-picker__item" href="support.html"><span class="dr-picker__label">Contact support</span></a>
+      </div>
+      <p class="dr-note" id="sheet-contact-desc">Calls and messages go through DRON. Your number is not shared with the operator.</p>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+    </section>
+  </div>
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body></html>

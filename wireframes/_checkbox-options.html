@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON · checkbox &amp; radio — thicker edge, options to choose from</title>
+<!--
+  PROPOSAL PAGE, not a screen. Round 2, built 2026-08-15 on the designer's word:
+  "по всіх wireframes страшні чекбокси, не відповідають по стилю дизайну…
+   обводка має бути товстішою" — propose options, then fix the whole project.
+  Round 1 settled the CORNER (4 → 8, rev 92). This round is only the EDGE WEIGHT.
+  Both the checkbox and the radio are shown, because .dr-box sets the border for
+  both and whatever is chosen lands on all 15 painted controls at once.
+  Delete this file once she has chosen. Precedent: preview-text-button.html (rev 49).
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+<style>
+  body{ background:var(--page); font-family:var(--font-ui); color:var(--ink); padding:28px; margin:0; }
+  h1{ font-size:22px; font-weight:700; letter-spacing:-.02em; margin:0 0 4px; }
+  .sub{ color:var(--slate); font-size:14px; margin:0 0 24px; max-width:66ch; line-height:1.55; }
+  .sub b{ color:var(--ink); font-weight:600; }
+  .opt{ background:var(--card); border-radius:var(--r-card); padding:20px; margin-bottom:16px; max-width:620px; }
+  .opt h2{ font-size:15px; font-weight:600; margin:0 0 2px; }
+  .opt p{ font-size:13px; color:var(--slate); margin:0 0 14px; line-height:1.55; }
+  .opt p b{ color:var(--ink); font-weight:600; }
+  .demo{ display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap; }
+  .demo > div{ background:var(--page); border-radius:var(--r-btn); padding:12px 14px; }
+  .cap{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.09em;
+        text-transform:uppercase; color:var(--slate); margin-bottom:8px; }
+  .big{ zoom:2.4; }
+  .stack{ display:flex; flex-direction:column; gap:2px; }
+
+  /* the four candidates — edge weight only, nothing else moves */
+  .w15 .dr-box{ border-width:1.5px; }
+  .w17 .dr-box{ border-width:1.7px; }
+  .w20 .dr-box{ border-width:2px; }
+  .w17i .dr-box{ border-width:1.7px; border-color:var(--ink); }
+</style>
+</head>
+<body>
+
+<h1>Checkbox &amp; radio — how thick should the edge be?</h1>
+<p class="sub">Round 1 settled the corner (4 → 8). This round is <b>only the edge weight</b>. Every box
+is live — click it. Both controls are shown because they share one rule: whatever you pick lands on
+<b>all 15 painted controls</b> at once — the checkbox on <b>order-setup</b>, and the radios on
+<b>listings-filters</b> (11) and <b>payment</b> (3).</p>
+<p class="sub">Today it is <b>1px</b>, and that is almost certainly what looks wrong: every icon in
+the product is drawn at <b>1.7</b>, so the box is the one shape on the screen with a thinner line
+than the glyph sitting inside it.</p>
+
+<!-- 0 · as built -->
+<div class="opt">
+  <h2>0 · as built today — 1px</h2>
+  <p>The baseline, for comparison. Thinner than every glyph beside it.</p>
+  <div class="demo">
+    <div><p class="cap">rest &amp; checked</p><div class="stack">
+      <label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this address</span><input type="checkbox" class="sr-only"></label>
+      <label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><span class="dr-pick__label">Available now</span><input type="radio" name="r0" class="sr-only"></label>
+    </div></div>
+    <div class="big"><p class="cap">2.4×</p><div class="stack">
+      <label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><input type="checkbox" class="sr-only"></label>
+      <label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><input type="radio" name="r0b" class="sr-only" checked></label>
+    </div></div>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="opt w17">
+  <h2>2 · 1.7px — the icon system's own stroke</h2>
+  <p>The box stops being a different kind of line and joins the icon set: <b>stroke-width 1.7</b> is
+    declared once for every glyph in the product, and this makes the edge that exact weight. No new
+    number enters the system — it already has this one. <b>Measured caveat:</b> at this frame's
+    own rendering (DPR 2) a 1.5px and a 1.7px edge land on the same three device pixels and look
+    identical — they separate only on a 3× screen. So 1.5 is not offered as a separate choice; the
+    case for 1.7 is that it is the system's own number, not that it looks different from 1.5.</p>
+  <div class="demo">
+    <div><p class="cap">rest &amp; checked</p><div class="stack">
+      <label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this address</span><input type="checkbox" class="sr-only"></label>
+      <label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><span class="dr-pick__label">Available now</span><input type="radio" name="r2" class="sr-only"></label>
+    </div></div>
+    <div class="big"><p class="cap">2.4×</p><div class="stack">
+      <label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><input type="checkbox" class="sr-only"></label>
+      <label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><input type="radio" name="r2b" class="sr-only" checked></label>
+    </div></div>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="opt w20">
+  <h2>3 · 2px</h2>
+  <p>The boldest of the four, and closest to the weight iOS draws its own selection controls at. The
+    box starts to read as heavier than the check inside it.</p>
+  <div class="demo">
+    <div><p class="cap">rest &amp; checked</p><div class="stack">
+      <label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this address</span><input type="checkbox" class="sr-only"></label>
+      <label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><span class="dr-pick__label">Available now</span><input type="radio" name="r3" class="sr-only"></label>
+    </div></div>
+    <div class="big"><p class="cap">2.4×</p><div class="stack">
+      <label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><input type="checkbox" class="sr-only"></label>
+      <label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><input type="radio" name="r3b" class="sr-only" checked></label>
+    </div></div>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="opt w17i">
+  <h2>4 · 1.7px, and charcoal instead of grey</h2>
+  <p>Option 2's weight with the edge moved from <b>--slate</b> to <b>--ink</b>: <b>15.99:1</b> against
+    the page instead of 6.62:1. The firmest of the four without being the thickest — the line gets
+    darker rather than fatter.</p>
+  <div class="demo">
+    <div><p class="cap">rest &amp; checked</p><div class="stack">
+      <label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this address</span><input type="checkbox" class="sr-only"></label>
+      <label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><span class="dr-pick__label">Available now</span><input type="radio" name="r4" class="sr-only"></label>
+    </div></div>
+    <div class="big"><p class="cap">2.4×</p><div class="stack">
+      <label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><input type="checkbox" class="sr-only"></label>
+      <label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><input type="radio" name="r4b" class="sr-only" checked></label>
+    </div></div>
+  </div>
+</div>
+
+<script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

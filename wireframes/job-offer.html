@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Incoming job offer / accept-decline · success (base)</title>
+<!-- SCREEN: "Incoming job offer / accept-decline" — STATE: success (base). JOB (jtbd): RJ-O1 · O-01 — accept or pass without stopping to ask questions. Flow: MJ-2 "Incoming job offer" → Accept within 10s? EXIT: Accept → Job brief; Decline → Operator home. -->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="job-offer.html" class="cur" aria-current="page">success</a>
+      <a href="job-offer-empty.html">empty</a>
+    </nav>
+    <h1>Incoming job offer / accept-decline</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>success (base)</b> · file: job-offer.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O1 · O-01 — accept or pass in seconds (flows.md MJ-2: "Accept within 10s?").<br><b>Exit:</b> Accept → <b>Job brief</b>; Decline → back to <b>Operator home</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Offer</b> ▸ service · distance · pay</p><p><b>Route</b> ▸ pickup / drop-off</p><p><b>Countdown</b> ▸ decide before it expires</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">New job</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <!-- `card-top` NEEDS NO CLASS OF ITS OWN. It wrapped the well and the body so a
+           column card could hold one row; the kit already has that shape —
+           .dr-card--row turns the CARD into the row, which is what painted
+           listings.html does with the same three parts. So the wrapper goes and the
+           card is .dr-card .dr-card--row .dr-listing, byte-identical to listings. -->
+      <p class="zlabel dr-label">Offer <span class="dr-label__act">▸ service · distance · pay</span></p>
+      <article class="dr-card dr-card--row dr-listing">
+        <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
+        <span class="dr-listing__body">
+          <span class="dr-listing__name">Package delivery</span>
+          <span class="dr-listing__desc">2.3 km · ~18 min · pickup near Podil</span>
+          <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴180</span></span><span class="dr-listing__desc">· paid on completion</span></span>
+        </span>
+      </article>
+
+      <p class="zlabel dr-label">Route <span class="dr-label__act">▸ pickup → drop-off</span></p>
+      <div class="dr-rows" aria-label="Route">
+        <div class="dr-rows__row"><span class="dr-rows__key">Pickup</span><span class="dr-rows__val">Podil, 21</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Drop-off</span><span class="dr-rows__val">Osokorky, 14</span></div>
+      </div>
+
+      <p class="zlabel dr-label">Decide fast <span class="dr-label__act">▸ offer auto-expires, reassigns</span></p>
+      <p class="dr-display">Expires in 8s</p>
+    </main>
+    <!--
+      Stacked, not split — the designer, 2026-08-16, on the whole product:
+      «пройдись по проекту і подивись щоб кругом у нижньому барі кнопрки були
+      одна під одною». This page was the last holder of `.row2`; the class and
+      its CSS stay in `_wireframe.css` but are now applied to nothing.
+      Accept over Decline: the DOM order does not move, and under an offer that
+      expires in 8s the thumb should not have to choose between two equal boxes.
+    -->
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="job-brief.html">Accept</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="operator-listings.html">Decline</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Share / refer · success (base)</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Share / refer".
+  PERSONA: Client C-1. JOB: SJ-1 — be the one who introduced something new (share in a single action).
+  STATE: base — referral link + copy, share targets, reward note. Deep in flow (after Rate): back → rate, sticky action footer.
+  flows.md node: RELATED · SJ-1 → "Share / refer" → share completed → referral attributed.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="share.html" class="cur" aria-current="page">success</a>
+      <a href="share-empty.html">empty</a>
+    </nav>
+    <h1>Share / refer</h1>
+    <p class="sub">Client · SJ-1 · state: <b>success (base)</b> · file: share.html</p>
+    <div class="flow"><b>Job (jtbd):</b> SJ-1 — share DRON in one action after a good order, so I'm the one who showed people something new.<br><b>flows.md:</b> Rate → <span class="cur">Share / refer</span> → share completed → referral attributed.<br><b>Exit:</b> Send invite → back to <b>Home / start an order</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Link</b> ▸ personal referral link + copy</p><p><b>Targets</b> ▸ Message · Email · More</p><p><b>Reward</b> ▸ what both sides get</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="rate.html" aria-label="Back to Rate the order"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Share DRON</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main" style="position:relative; padding:0;">
+      <!-- The share sheet: the system's first floating surface. rev 43 named
+           its home — "a floating surface belongs in a modal, popover, drawer
+           or dropdown menu" — so --sh-raised is finally spent, on the drawer
+           it was declared for. Redesigned to the mobile share-sheet pattern
+           at the designer's instruction, 2026-08-03. -->
+      <div class="dr-scrim" aria-hidden="true"></div>
+
+      <section class="dr-sheet" role="dialog" aria-modal="true" aria-label="Share DRON">
+        <span class="dr-sheet__grip" aria-hidden="true"></span>
+
+        <div class="dr-center" style="gap:8px;">
+          <span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2v11"/><path d="M8.5 6.7L12 3.2l3.5 3.5"/><path d="M7.5 10H6.4A2.4 2.4 0 0 0 4 12.4v6.2A2.4 2.4 0 0 0 6.4 21h11.2a2.4 2.4 0 0 0 2.4-2.4v-6.2a2.4 2.4 0 0 0-2.4-2.4h-1.1"/></svg></span>
+          <p class="dr-sheet__title">Invite a friend</p>
+          <p class="dr-lead" style="text-align:center;">Send your link — you both get ₴100 off the next order.</p>
+        </div>
+
+        <div class="dr-rows">
+          <div class="dr-field">
+            <span class="dr-field__label">Referral link</span>
+            <span class="dr-field__value" style="margin-left:auto">dron.app/r/anna-k4</span>
+          </div>
+        </div>
+
+        <button type="button" class="dr-btn dr-btn--primary dr-btn--block" data-toast="Link copied.">Copy link</button>
+
+        <div class="dr-sheet__channels">
+          <button type="button" class="dr-channel"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.6a8.5 8.5 0 0 1-8.5 8.4c-1.6 0-3.1-.4-4.4-1.2L3 20l1.2-5.1A8.5 8.5 0 1 1 21 11.6z"/></svg>Message</button>
+          <button type="button" class="dr-channel"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7.5l9 6 9-6"/></svg>Email</button>
+          <button type="button" class="dr-channel"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>More</button>
+        </div>
+
+        <p class="dr-note">Your friend gets ₴100 off their first DRON order. When they complete it, ₴100 lands in your balance. No limit on invites.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Contact human support · error</title>
+<!--
+  SCREEN: "Contact human support" — STATE: error (unresolved → escalation queue).
+  PERSONA: Client C-1. JOB: EJ-2 — a clear path to resolution.
+  FLOW NODE: flows.md EJ-2 "Error: unresolved — escalation queue" (ESC) → D7 policy (SLA / refund cap / liability).
+  Same shell as contact-support.html (topbar Back → support, footer.actionbar); only the content changes.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="contact-support.html">success</a>
+      <a href="contact-support-error.html" class="cur" aria-current="page">error</a>
+    </nav>
+    <h1>Contact human support</h1>
+    <p class="sub">Client · EJ-2 · state: <b>error</b> · file: contact-support-error.html</p>
+    <div class="flow"><b>Error — not resolved with the agent.</b><br>flows.md EJ-2: "unresolved — escalation queue" → policy check (SLA, refund cap, liability).<br><b>Exit (not a dead-end):</b> it's queued for a senior agent; go back to orders or try support again.</div>
+    <div class="legend"><p><b>Only the content changes</b> vs contact-support.html:</p><p><b>Panel</b> → escalation-queue message + recovery</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="support.html" aria-label="Back to Help"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Support</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Escalation <span class="dr-label__act">▸ error — queued (exit)</span></p>
+      <section aria-label="Escalation queue">
+        <div class="dr-msg" role="alert">
+          <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 3.2L11.1 13.9"/><path d="M20.8 3.2L14.4 20.8 11.1 13.9 3.2 9.4Z"/></svg></span>
+          <span class="dr-msg__title">Sent to a senior agent</span>
+          <p class="dr-msg__body">We couldn't resolve this in chat, so a senior agent will review order #DR-4821 against our support policy and follow up. You don't need to wait here.</p>
+        </div>
+      </section>
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="listings.html">Back to Activity</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="contact-support.html">Contact support</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

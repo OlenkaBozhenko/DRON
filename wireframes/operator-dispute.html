@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Dispute / client issue · base</title>
+<!-- SCREEN (sitemap / _screens.md STEP 8): "Dispute / client issue" — operator side (EJ-2, OE-13). PERSONA: Operator O-1. JOB: MJ-2 — a client disputes the closed job; payment is held pending resolution and the operator responds with evidence. STATE: base. flows.md MJ-2: Client response? → disputes → Dispute / client issue → Resolved in operator's favour? Inside an active job — back to operator-listings, sticky actionbar (not a global tab destination). -->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-dispute.html" class="cur" aria-current="page">base</a>
+      <a href="operator-dispute-error.html">error</a>
+    </nav>
+    <h1>Dispute / client issue</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>base</b> · file: operator-dispute.html</p>
+    <div class="flow"><b>Job:</b> a client disputes the closed job; <b>payment is held</b> until it resolves (EJ-2). The operator answers the claim with evidence.<br>flows.md MJ-2: Client response? → disputes → <span class="cur">Dispute / client issue</span> → Resolved in operator's favour? → yes → paid · no → held pending EJ-2.<br><b>Exit:</b> Submit response → <b>Wallet</b> (pending release).</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Job</b> ▸ what's disputed</p><p><b>Claim</b> ▸ the client's report</p><p><b>Hold</b> ▸ payment held status</p><p><b>Response</b> ▸ reply + evidence</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="operator-listings.html" aria-label="Back to Jobs"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Dispute</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Job <span class="dr-label__act">▸ what's disputed</span></p>
+      <section aria-label="Disputed job">
+        <article class="dr-card dr-card--row dr-listing">
+          <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="dr-listing__body">
+            <span class="dr-listing__name">Job #DR-2841 · Aerial photo</span>
+            <span class="dr-listing__desc">Client: Olena H. · closed 22 min ago</span>
+            <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴800</span></span><span class="dr-listing__desc">· disputed</span></span>
+          </span>
+        </article>
+      </section>
+
+      <!-- The two inline style="margin:0" are gone: `.dr *{margin:0}` in the kit's own
+           reset already does it, so the frame's patch has nothing left to patch. -->
+      <p class="zlabel dr-label">Client claim <span class="dr-label__act">▸ the report</span></p>
+      <section aria-label="Client claim">
+        <article class="dr-card dr-card--compact">
+          <span class="dr-listing__desc">Client's issue</span>
+          <blockquote class="dr-lead">“The photos are blurry — I can't use them for the listing.”</blockquote>
+          <span class="dr-chips"><span class="dr-chip">Payment held</span></span>
+        </article>
+      </section>
+
+      <!-- THE FORM IS report-issue's FORM. One .dr-rows holding two .dr-field rows,
+           which rev 98 renders as a plain list (no card, no radius, hairline kept), so
+           typed text stands at the screen's own 16 — measured 15.99:1 for --ink there
+           against 14.37:1 on a card.
+           THE UPLOAD ZONE IS THE CONTROL, so the nested "Add evidence" button goes and
+           its words become the zone's own line (.dr-upload__action, account-edit's
+           idiom, rev 57: «write just with text»). The FLIGHT LOG / PHOTO placeholder
+           becomes the 32px upload glyph. The well stays --media at 1.08:1 and is not
+           the identifier — the glyph, the verb and the focus ring are.
+           `.dr-field:has(> .dr-upload)::before` drops the separator above it: two
+           drawn shapes 12px apart need no line between them (rev 109). -->
+      <p class="zlabel dr-label">Your response <span class="dr-label__act">▸ reply + evidence</span></p>
+      <form aria-label="Response to dispute" class="dr-stack">
+        <div class="dr-rows">
+          <div class="dr-field dr-field--area dr-field--area6">
+            <label class="dr-field__label" for="reply">Your response</label>
+            <textarea class="dr-field__input" id="reply" placeholder="Explain what was delivered, weather, capture settings…" aria-label="Your response"></textarea>
+          </div>
+          <div class="dr-field">
+            <span class="dr-field__label">Evidence</span>
+            <div class="dr-upload" role="button" tabindex="0" aria-labelledby="ev-act">
+              <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+              <span class="dr-upload__action" id="ev-act">Add evidence</span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="wallet.html">Submit response</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="operator-dispute-error.html">Payment still held?</a>
+    </footer>
+  </div>
+
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

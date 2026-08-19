@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Past order details — Roof inspection · base</title>
+<!--
+  SCREEN (_screens.md C4, sub-view): "Past order details" — the ROOF INSPECTION instance.
+  PERSONA: Client C-1. JOB: RJ-C5 (repeat without starting over) + RJ-C4 (the proof, kept).
+  STATE: base only, for the reason the delivery record gives: a finished order is a record.
+
+  WHY THIS FILE EXISTS (2026-08-16, the designer on the built order-history): "у мене є три
+  різні сторінки have already made orders де є доставка, огляд криші та фото — так от вони
+  мають мати різні назви відповідно і різні фотки", and against this card directly: "по
+  кліку на цю картку має відкритись сторінка з деталями замовлення і фоткою криші".
+  All three finished cards opened order-details.html, so tapping the roof inspection showed
+  a parcel on a doormat under the heading "Package delivery".
+
+  ONE SCREEN, THREE INSTANCES — not three screens. Structure, zone order, the action bar and
+  the single Paid line are identical to order-details.html; what differs is the heading, the
+  summary strings and the one photograph. sitemap.md §6.1 still lists one "Order history".
+
+  THREE ZONES SINCE 2026-08-16 (rev 136), NOT FOUR — Summary · the deliverable · Action bar.
+  Paid moved into the summary card on the designer's word, given against order-details-aerial
+  and applied to all three so the instances do not disagree; the reasoning sits on the row
+  itself, below.
+
+  THE FRAME IS THE ONE THAT OPENS THE REPORT — inspection-roof-cracked-tiles.jpg, the same
+  cover inspection-report.html leads with, so the record and the report agree on what the job
+  found. STRUCTURE reads "Roof · gutters · chimney" because those are the three findings the
+  report actually carries (north slope, east gutter run, chimney flashing) — the record names
+  the scope the report documents, rather than inventing one.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Past order details — Roof inspection</h1>
+    <p class="sub">Client · RJ-C5 · state: <b>base</b> · file: order-details-inspection.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-C5 — see what was done before ordering it again; RJ-C4 — the report stays reachable after the order closes.<br><b>flows.md:</b> Order history → <span class="cur">Past order details</span> → Book again → Order setup.<br><b>States:</b> none — a finished order is a record (per <code>_screens.md</code> C4).<br><b>Exit:</b> Book again → <b>Order setup</b>, or Delete order → <b>Order history</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Summary</b> ▸ what was done · where · what was inspected · what it cost</p><p><b>Inspection report</b> ▸ what the operator sent back (RJ-C4)</p><p><b>Action bar</b> ▸ Book again · Delete order</p></div>
+    <div class="flow"><b>One of three record files</b> (2026-08-16) — the same screen, one instance per service: <a href="order-details.html">order-details</a>, this one, and <a href="order-details-aerial.html">order-details-aerial</a>. Only the heading, the summary strings and the one photograph differ.</div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="order-history.html" aria-label="Back to Activity"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Roof inspection</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <!-- HER ORDER OF READING, KEPT: "звідки куди, вага яка була, пруф фото". The summary
+           names the order, the photograph then shows it. -->
+      <p class="zlabel dr-label">Summary <span class="dr-label__act">▸ what was done · what it cost</span></p>
+      <div class="dr-rows" aria-label="Order summary">
+        <!-- LOCATION, NOT From ▸ To — an inspection has one stop, and the card this opens from
+             already shows a single Location row. STRUCTURE is the inspection's analogue of the
+             delivery record's Parcel: the thing the order was about. DELIVERED is the same word
+             the other two records use — voice.md keeps one word per concept, and the concept is
+             "the deliverable landed", not "a parcel landed". -->
+        <div class="dr-rows__row"><span class="dr-rows__key">Location</span><span class="dr-rows__val">Osokorky, 14</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Structure</span><span class="dr-rows__val">Roof · gutters · chimney</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Delivered</span><span class="dr-rows__val">2 Jun · 09:15</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Operator</span><span class="dr-rows__val">Andriy M.</span></div>
+        <!-- PAID IS THE SUMMARY'S LAST ROW, NOT A ZONE OF ITS OWN — the designer, 2026-08-16
+             (rev 136), against order-details-aerial: "помісти інфу Paid 800 у картку з самері і
+             так само на ще 2 аналогічних фреймах". rev 132 took the breakdown off, which left the
+             Payment zone as a card holding ONE row under a label that said nothing the row did
+             not; the record now reads what · where · when · who · how much in one panel.
+             AND IT TAKES THE CARD'S OWN ROW STYLE, NOT THE MONEY STEP — her call, asked with the
+             standards first and both readings conforming (HIG · inset grouped lists ships either
+             a uniform row or an emphasised total row; WCAG 1.4.3 unchanged at key 5.95:1 / value
+             14.37:1 on --card, 1.3.1 keeps the key/value pairing either way). So no
+             `.dr-rows__row--total`: with no breakdown there is no column for a total to total,
+             and the sum is a fact of the record like the three above it. That modifier is now
+             spent on order-review alone, where a total still has rows to add up. -->
+        <div class="dr-rows__row"><span class="dr-rows__key">Paid</span><span class="dr-rows__val">&#8372;650</span></div>
+      </div>
+
+      <!-- THE ZONE IS NAMED FOR ITS SERVICE — voice.md O5, which fixes one name per deliverable:
+           delivery photo · inspection report · photo/video set. Not "proof", which O5 allows only
+           as reassurance inside a sentence, never as a screen object.
+           THE SECTION CARRIES THE ZONE NAME, THE IMG CARRIES WHAT IS IN IT (WCAG 1.1.1) — the
+           construction inspection-report.html has used since it was built, and the one the
+           delivery record was corrected to on 2026-08-16. No role="img" over an empty alt: that
+           tells a screen-reader user the category of the picture and never its content. -->
+      <p class="zlabel dr-label">Inspection report <span class="dr-label__act">▸ what the operator sent back (RJ-C4)</span></p>
+      <section aria-label="Inspection report">
+        <div class="dr-well dr-well--photo" style="width:100%;height:180px;"><img src="../assets/scenes/thumbs/inspection-roof-cracked-tiles.jpg" alt="Cracked roof tiles near the ridge — the cover of this order's report." loading="lazy" decoding="async"></div>
+      </section>
+    </main>
+    <!-- THE TWO ACTIONS SHE NAMED, IN THE BOTTOM BAR. Book again is the one green control
+         on this screen. DELETE ORDER IS GREY, NOT RED — her call of 2026-08-16 ("зроби кнопку
+         секондарі сірою"), recorded on the delivery record at concept.md rev 131 and carried
+         here so the three instances do not disagree. WCAG 1.4.1 is strengthened rather than
+         held: with the colour gone, the verb "Delete" is the only carrier of the meaning.
+         BOOK AGAIN NOW OPENS THE INSPECTION SETUP, 2026-08-16 — the same fix the aerial record
+         carries, found there and applying identically here: this button also went to the delivery
+         form, so a record of a roof inspection re-booked into a screen asking for parcel weight
+         (WCAG 2.4.4, level A). See _screens.md §5 for the one-file-per-service decision. -->
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="order-setup-inspection.html">Book again</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="order-history.html">Delete order</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

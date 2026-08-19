@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Time-slot pick · success (base)</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Time-slot pick — calendar-first" (C-2 planning branch).
+  PERSONA: Client C-1. JOB: MJ-1 — schedule aerial / inspection at a time an operator is free.
+  STATE: base — a day row + list of bookable slots. Deep in flow: back → order-setup, sticky action footer (not tabs).
+  flows.md node: MJ-1 (C-2 planning branch — pick a slot before review).
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="time-slot.html" class="cur" aria-current="page">success</a>
+      <a href="time-slot-empty.html">empty</a>
+    </nav>
+    <h1>Time-slot pick</h1>
+    <p class="sub">Client · MJ-1 (C-2) · state: <b>success (base)</b> · file: time-slot.html</p>
+    <div class="flow"><b>Job (jtbd):</b> MJ-1 — aerial &amp; inspection are scheduled, not instant: pick a day, then a slot when an operator is free.<br><b>Exit:</b> Confirm slot → <b>Order review &amp; price</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Day row</b> ▸ pick a date (chips)</p><p><b>Slots</b> ▸ operator availability per hour</p><p><b>Action</b> ▸ Confirm slot (primary)</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <!-- THE BACK BUTTON NAMED THE WRONG SERVICE UNTIL 2026-08-16. It read "Back to Package
+         delivery" and pointed at order-setup.html — the one service that never reaches this
+         screen: delivery is auto-dispatch, and only the two calendar-first services, aerial and
+         inspection, book a slot (sitemap.md CE-2). It was a back button naming a screen the user
+         could not have come from, which is the opposite of what HIG · Navigation Bars asks of it.
+         IT NOW NAMES THE AERIAL SETUP. Both calendar-first services arrive here and a static file
+         can carry one destination; aerial is the one the prototype walks. The limitation is
+         recorded in _critique.md rather than hidden — in the product this title is the screen the
+         client actually came from. -->
+    <header class="topbar dr-topbar"><a class="dr-back" href="order-setup-aerial.html" aria-label="Back to Aerial photo and video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Pick a time</span><span class="dr-topbar__spacer"></span></header>
+
+    <nav class="dr-groups" aria-label="Pick a day">
+      <button class="dr-grouptab">Tue 1</button>
+      <button class="dr-grouptab" aria-current="true">Wed 2</button>
+      <button class="dr-grouptab">Thu 3</button>
+      <button class="dr-grouptab">Fri 4</button>
+      <button class="dr-grouptab">Sat 5</button>
+    </nav>
+
+    <main class="dr-main">
+      <p class="zlabel dr-label">Slots · Wed 2 Jul <span class="dr-label__act">▸ tap a free hour</span></p>
+      <!-- EVERY EXIT FROM THIS SCREEN NOW LANDS ON THE AERIAL REVIEW, 2026-08-16 — the four slot
+           cards and Confirm slot alike. They went to order-review.html, which is the delivery
+           build: it summarised a pickup, a drop-off and a parcel, and priced the order by
+           `Distance · 7.4 km`. No client reaching a slot list has any of those, delivery being the
+           one service that never books an hour (sitemap.md CE-2).
+           THE FIGURES BELOW ALREADY AGREED WITH THE AERIAL ORDER before this pass — the action bar
+           reads `Wed 2 Jul, 09:00` and `₴800`, which is exactly what order-review-aerial now
+           states and what the aerial record was paid. The screen had been pricing a shoot all
+           along and handing it to a delivery review.
+           SAME ONE-DESTINATION LIMITATION AS THE BACK BUTTON: inspection also arrives here and a
+           static file carries one exit. Recorded in _critique.md, not smoothed over. -->
+      <section aria-label="Available time slots">
+        <ul class="dr-list">
+          <li>
+            <article class="dr-card dr-card--row dr-listing">
+              <a class="dr-card__link" href="order-review-aerial.html" aria-label="Book 09:00 to 10:00, operator free"></a>
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">09:00 – 10:00</span>
+                <span class="dr-listing__desc">Operator free · Andriy M. nearby</span>
+              </span>
+              <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </article>
+          </li>
+          <li>
+            <article class="dr-card dr-card--row dr-listing">
+              <a class="dr-card__link" href="order-review-aerial.html" aria-label="Book 11:00 to 12:00, operator free"></a>
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">11:00 – 12:00</span>
+                <span class="dr-listing__desc">Operator free</span>
+              </span>
+              <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </article>
+          </li>
+          <li>
+            <article class="dr-card dr-card--row dr-listing">
+              <a class="dr-card__link" href="order-review-aerial.html" aria-label="Book 13:00 to 14:00, operator free"></a>
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">13:00 – 14:00</span>
+                <span class="dr-listing__desc">Operator free</span>
+              </span>
+              <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </article>
+          </li>
+          <li>
+            <article class="dr-card dr-card--row dr-listing" aria-disabled="true" style="opacity:.55;">
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">15:00 – 16:00</span>
+                <span class="dr-listing__desc">Fully booked</span>
+              </span>
+            </article>
+          </li>
+          <li>
+            <article class="dr-card dr-card--row dr-listing">
+              <a class="dr-card__link" href="order-review-aerial.html" aria-label="Book 17:00 to 18:00, operator free"></a>
+              <span class="dr-listing__body">
+                <span class="dr-listing__name">17:00 – 18:00</span>
+                <span class="dr-listing__desc">Operator free · golden-hour light</span>
+              </span>
+              <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="dr-actionbar">
+      <div class="dr-price"><span class="dr-price__lbl">Selected · Wed 2 Jul, 09:00</span><span class="dr-price__val">₴800</span></div>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="order-review-aerial.html">Confirm slot</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

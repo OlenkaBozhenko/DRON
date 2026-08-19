@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Payment · error</title>
+<!-- SCREEN: "Payment" — STATE: error (payment failed). Grounded in flows.md MJ-1: "Error: payment failed" → retry / change method / leave. EXIT: try again / change method. -->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="payment.html">success</a>
+      <a href="payment-error.html" class="cur" aria-current="page">error</a>
+      <a href="payment-loading.html">loading</a>
+    </nav>
+    <h1>Payment</h1>
+    <p class="sub">Client · MJ-1 · state: <b>error</b> · file: payment-error.html</p>
+    <div class="flow"><b>Error:</b> the payment was declined (flows.md MJ-1: "payment failed").<br><b>Exit (not a dead-end):</b> try again, or change method. Nothing was charged.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Amount</b> → error notice + retry / change method</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="order-review.html" aria-label="Back to Order review"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Payment</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Amount <span class="dr-label__act">▸ not charged</span></p>
+      <section aria-label="Payment error">
+        <div class="dr-msg" role="alert">
+          <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.8 6.5H5a2 2 0 0 0-2 2v7a2 2 0 0 0 1 1.8"/><path d="M20 6.7a2 2 0 0 1 1 1.8v7a2 2 0 0 1-2 2H9.2"/><path d="M9.6 11.7A2.4 2.4 0 0 1 11.7 9.6"/><path d="M12.3 14.4A2.4 2.4 0 0 0 14.4 12.3"/><path d="M5.2 18.8L18.8 5.2"/></svg></span>
+          <span class="dr-msg__title">Payment declined</span>
+          <p class="dr-msg__body">Apple Pay couldn't complete the charge. Nothing was taken from your account. Try again or use another method.</p>
+        </div>
+      </section>
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="order-confirmed.html">Try again</a>
+      <!-- `Change method` POINTS AT THE DRAWER, NOT AT THIS SCREEN'S BASE — moved
+           2026-08-16, a consequence of `payment.html` becoming the card form. It used
+           to open `payment.html` because that was the method list; the method list is
+           now the Pay drawer on `order-review`, so that is where changing the method
+           happens. The string is unchanged. -->
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="order-review.html">Change method</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>

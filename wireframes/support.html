@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Support / dispute · success (base)</title>
+<!--
+  SCREEN (sitemap / _screens.md): "Support / dispute" — the EJ-2 resolution entry hub / triage.
+  PERSONA: Client C-1 (primary).
+  JOB (jtbd): EJ-2 — a clear path to resolution after a bad experience (not just a rating).
+  STATE: base (no state pages — _screens.md row = "—").
+  FLOW NODE: flows.md EJ-2 "Support / dispute" → D1 "What went wrong?" (didn't arrive / result not as expected / safety-trust).
+  GLOBAL destination — reached from the Help tab, so footer.tabbar with Help current.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=68709a4f">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Support / dispute</h1>
+    <p class="sub">Client · EJ-2 · state: <b>base only</b> · file: support.html</p>
+    <dl>
+      <dt>Persona</dt><dd>Client C-1 (primary)</dd>
+      <dt>Job</dt><dd>EJ-2 — a clear path to resolution</dd>
+      <dt>Node</dt><dd>flows.md EJ-2 · "Support / dispute" → D1 "What went wrong?"</dd>
+    </dl>
+    <div class="flow"><b>EJ-2 entry hub — triage the problem.</b><br>flows.md D1 "What went wrong?" routes to the right remedy: no-show → re-dispatch (Bolt) · quality → report an issue · safety → 24/7 human (Airbnb).<br><b>States:</b> none.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Triage list</b> ▸ pick what went wrong</p><p><b>Human fallback</b> ▸ talk to an agent</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Help</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <section aria-label="Support intro">
+        <h2 class="dr-display">What happened?</h2>
+        <p class="dr-lead">Pick the issue with your order and we'll route it to the right fix.</p>
+      </section>
+
+      <p class="zlabel dr-label">Triage list <span class="dr-label__act">▸ pick what went wrong</span></p>
+      <section aria-label="What went wrong">
+        <ul class="dr-list dr-list--snug" style="list-style:none;">
+          <li>
+            <a class="dr-choice" href="order-confirmed-loading.html">
+              <span class="dr-listing__body">
+                <span class="dr-choice__title">My order didn't arrive / no-show</span>
+                <span class="dr-choice__desc">We'll send a new operator now, or refund your order.</span>
+              </span>
+              <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </a>
+          </li>
+          <li>
+            <a class="dr-choice" href="report-issue.html">
+              <span class="dr-listing__body">
+                <span class="dr-choice__title">The photo or report wasn't what I expected</span>
+                <span class="dr-choice__desc">Report the issue with a photo or note and we'll review it.</span>
+              </span>
+              <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </a>
+          </li>
+          <li>
+            <a class="dr-choice" href="contact-support.html">
+              <span class="dr-listing__body">
+                <span class="dr-choice__title">Safety or trust concern</span>
+                <span class="dr-choice__desc">Contact support straight away — online 24/7.</span>
+              </span>
+              <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <p class="zlabel dr-label">Human fallback <span class="dr-label__act">▸ Airbnb-style 24/7 agent</span></p>
+      <section aria-label="Talk to a human" class="dr-center" style="padding-top:8px;">
+        <a class="dr-btn dr-btn--primary dr-btn--block" href="contact-support.html">Contact support</a>
+        <p class="dr-note">Can't find your issue above? A support agent is available any time, day or night.</p>
+      </section>
+    </main>
+
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="listings.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+        <a class="dr-tab" href="order-history.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+        <a class="dr-tab" href="support.html" aria-current="page"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+        <a class="dr-tab" href="account.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=68709a4f"></script>
+</body>
+</html>
