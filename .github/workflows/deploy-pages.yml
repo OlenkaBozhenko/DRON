@@ -13,6 +13,7 @@ on:
       - 'assets/**'
       - 'ui/*.html'
       - 'ui/*.css'
+      - 'ui/*.js'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
@@ -43,8 +44,15 @@ jobs:
           # ships with it: the painted wireframes load ../ui/kit.css, so an
           # html-only copy leaves order-history, tracking and delivery
           # unpainted on the published site while they look right locally.
+          # AND THE SCRIPT SHIPS WITH BOTH (2026-08-20). ui/kit.js is the kit's
+          # one behaviour — the picker drawer and the onscreen keyboard — and 39
+          # published wireframes link it. Copying only *.html and *.css left it
+          # 404 on gh-pages, so every drawer and dropdown on the live prototype
+          # was a dead tap while opening fine locally: the flow stopped at the
+          # first picker. A glob per extension is what let one file fall out, so
+          # this line names the three the kit is made of.
           mkdir -p _site/ui
-          cp ui/*.html ui/*.css _site/ui/
+          cp ui/*.html ui/*.css ui/*.js _site/ui/
           # Publish the clickable wireframe prototype (HTML pages + shared CSS/JS).
           # The .md sources stay on master and are not published.
           mkdir -p _site/wireframes
