@@ -1138,8 +1138,28 @@ subject. `.dr-op` is untouched on the eleven client screens that carry it.
   `--green-wash`, a 1.08:1 tint the budget does not count. `--on-green` charcoal on the fill is
   **9.46:1** — the star included, so the accent stays a fill and never an ink. 11px is normal text
   under `WCAG 1.4.3`, so 4.5:1 is the threshold cleared, not the 3:1 large-text one.
-- **Name:** `.dr-display` 22/700, `--ink`, **15.99:1**. **Role:** 15/400 `--slate`, **6.62:1** — a
-  word, not a pill, which reverses `.dr-chip--sm`'s use on this one page (that class stays declared).
+- **Name:** `.dr-display` 22/700, `--ink`, **15.99:1**.
+- **The pencil joins the pill on that bottom edge (2026-08-21):** *«додай для оператора біля бейджу з
+  рейтингом редагувати фото»*. It is the client's own `.dr-avatar-edit` — same class, same 20px disc,
+  `--ink` glyph on `--btn2` at **11.54:1**, the ring `--page` — pointing at `operator-account-photo`.
+  **No new CSS was written for it.** Measured on the 375 frame: pill **52.13 × 24.6** centred with its
+  centre line exactly on the circle's bottom edge (y 236.8 = circle bottom), disc **20 × 20** at the
+  box's corner, **15.93 apart**, overlapping 14.3 of vertical band so the two read as one pair.
+- **The link wraps the picture, not the disc** — **120 × 120**, `HIG · 44pt target` at **273%**,
+  `WCAG 2.5.8` at **5×**; the 20px disc alone would have to be padded out to a target it does not
+  look like. **And the rating stays outside that link**, deliberately: the `<a>` carries
+  `aria-label="Change profile photo"`, which replaces its content for the accessible name, so a
+  rating nested inside would stop being announced. Sibling, not child — the pill keeps its own
+  `Rating 4.9 ★` (`WCAG 1.3.1`, `4.1.2`) and the anchor keeps a name that says what it does.
+- **Role line: CUT from both heads, 2026-08-21** — *«видали це з обох варіантів client and
+  operator»*. It read `Operator · 214 jobs` here and `Client` on `account`, 15/400 `--slate` at
+  6.62:1, an 18px box over an 8px gap: **26 of height off each column**. Nothing is orphaned — the
+  **Mode** row states `Operator` / `Client` as its own value on both screens, and `· 214 jobs` was
+  put to the designer before the line went (cut, kept alone, or moved to the Account panel; she cut
+  it) and still rides Ivan's `.dr-op` card on `tracking` and `order-confirmed`, where the **client**
+  reads it. No criterion is engaged: the span labelled nothing (`1.3.1`), named no control (`4.1.2`)
+  and instructed no input (`3.3.2`). `.dr-profile__role` **stays declared and is spent on no page**,
+  the terms `.dr-chip--sm` was kept on.
 - **Rhythm:** 8 between siblings, **12** before the credential row and before the action — the group
   boundary reads larger than the space inside it (`HIG · Layout`). The photo carries `--sp-13` of
   margin to pay back the badge's 12.7 of overhang, so badge-to-name measures **8.3**.
@@ -1173,8 +1193,9 @@ ten client screens that meet an operator.
 - **The ring follows its ground:** `.dr-profile .dr-avatar-edit__badge{ border-color: var(--page) }`
   — the swap `.dr-profile__rating` already makes, since `--card` on `--page` is a 1.11:1 seam that
   means nothing. `operator-account` re-measured unchanged by both rules.
-- **Role:** `Client`, **with no count beside it**. The operator's `· 214 jobs` has no client
-  counterpart anywhere in the prototype, and a number nobody has measured is not a number to draw.
+- **Role:** none. It read `Client` with no count beside it for one day and was **cut on 2026-08-21**
+  with the operator's — see the role bullet above. The word is still on the screen as the **Mode**
+  row's value, so it is stated once instead of twice.
 - **Credential:** **one** `.dr-chip--claim`, `Verified with Diia`, **162.49 × 26.8** — the same
   shield-and-check the operator's two wear, because it means the same thing under the 2026-08-18
   rule: *green means DRON confirmed this document*. It was plain `--slate` text at the
@@ -1762,6 +1783,62 @@ palette reaches 3:1 against `--page` (the darkest grey rung, `--btn2` `#D6D2C9`,
 
 **`operator-listings`'s Status zone after the cut:** the `.dr-stack` holds the segment alone and
 measures **44** where it measured **71.19** (the head's 19.19 plus the stack's 8 gap).
+
+### The availability badge (`.dr-avail-badge`)
+
+The state the segmented control sets, standing in the **nav bar** so it stays on screen once the
+segment scrolls away (the designer, 2026-08-21: *«покажи індикатор відповідно до обраного
+статусу»*). **`operator-listings` and `operator-listings-empty` — 2 · 2.**
+
+**It is the kit's chip, and the only new CSS is the dot.** `.dr-chip--sm` — the rung cut the same
+day for a badge that rides beside a name — plus `.dr-avail-badge__dot`. The pill, `--r-pill`
+**999**, 11/600, padding `3 / 8` and the 6px gap all come from `.dr-chip` / `.dr-chip--sm`.
+**No new token:** the dot is **8px** (`--sz-pager-dot`), its ring **2px** (`--sz-status-ring`).
+
+**One declaration, two selectors.** Available wears the claim pair, and rather than repeat
+`--green-wash` / `--ink` in the badge's own block, `.dr-avail-badge[data-state="available"]` is
+named beside `.dr-chip--claim` in the chip block — one rule, two roles: a criterion being
+**claimed**, and a state that is **live**.
+
+**Measured in the shell's mobile viewport, frame 366 × 812, annotations off:**
+
+| State | Badge box | Fill / ink | Text ratio | Dot |
+|---|---|---|---|---|
+| Available | **79.98 × 21.39** | `--green-wash` / `--ink` | **14.75:1** | 8 × 8 filled `--green` — **1.56:1** on the wash |
+| Busy | **57.17 × 21.39** | `--media` / `--slate` | **5.51:1** | 8 × 8 filled `--slate` — **5.51:1** |
+| Offline | **67.61 × 21.39** | `--media` / `--slate` | **5.51:1** | 8 × 8 **hollow** — a 2px `--slate` ring round a 4px hole, **5.51:1** |
+
+Right edge **361** in all three, which is `--sp-screen` **16** off the bar's inner edge — the bar's
+own inset, nothing positioned by hand. The name's right edge sits at **116.25** and the widest
+badge starts at **281.02**, so **164.77px** of clear bar stands between them. `.dr-main`'s scroll is
+**958 before and after**: the badge is in the bar, not in the scroller.
+
+**Three carriers, and the word is the one that counts.** `WCAG 1.4.3` asks **4.5:1** of 11px text
+(11 is under the 18.66-bold / 24 large-text threshold, so the stricter figure is the one measured)
+— all three clear it, the smallest margin being **1.22×**. `WCAG 1.4.1 Use of Colour` (**A**) is
+answered by the word before the dot is looked at, which is why the dot is allowed a colour at all:
+**`--green` on `--green-wash` is 1.56:1**, under `1.4.11`'s **3:1**, and it is cleared the way
+`.dr-pager__dot` clears its own 1.69:1 — the dot is never the sole carrier. **This is the exact
+condition `.dr-avail__dot` refused green under**, satisfied here rather than avoided, because the
+word travels inside the same pill. Busy and Offline share a fill, so **shape** separates them:
+filled against hollow.
+
+**Green budget:** the solid green added is **8 × 8 = 64 px²**, under **1%** of the Accept button's
+own fill — a status mark, the case `concept.md` §0 admits beside the one-control rule. The
+`--green-wash` pill is a tint at **1.08:1** against the page and is excluded from the ≤5% budget.
+
+**Not a control and not a live region.** Nothing is tappable, so `HIG · 44pt` is not engaged. The
+state's programmatic carrier is still the checked radio in its legend-named fieldset (`WCAG 1.3.1`
+✓, `4.1.2` ✓); the badge restates it visually, and `role="status"` would announce the same fact a
+second time on every change. **Its word is read at runtime off the checked radio's own label**, so
+`Available` / `Busy` / `Offline` live in the markup once — in the segment — and the script carries
+no product string; only `data-state` is set from JS.
+
+**What it does and does not close.** It closes `1.4.1` on `operator-listings`, which rev 164 opened
+when the `.dr-avail` sentence came off and left plate fill and label ink — both colour — as the only
+cues. It does **not** move the segment's own plate, still `--page` on `--media` at **1.20:1**
+against `1.4.11`'s 3:1; the 1px `--slate` outline (**5.51:1**) remains the cheapest fix for that
+number and remains the designer's call.
 
 ### The earned score (`.dr-stars`) and `.dr-listing__score`
 

@@ -1117,7 +1117,14 @@ header.dr-topbar,
   white-space: nowrap;
   background: var(--media); color: var(--slate);      /* fact — 5.51:1 */
 }
-.dr-chip--claim{ background: var(--green-wash); color: var(--ink); }  /* 14.75:1 */
+/* ONE DECLARATION, TWO SELECTORS (2026-08-21, rev 181). The availability badge
+   in operator-listings' nav bar wears this exact pair for its Available state,
+   and the kit's own rule is that a value is stated once — so the badge is named
+   here beside the claim rung rather than repeating --green-wash / --ink in its
+   own block further down. Same pair, two roles: a CRITERION being claimed, and
+   a state that is LIVE right now. */
+.dr-chip--claim,
+.dr-avail-badge[data-state="available"]{ background: var(--green-wash); color: var(--ink); }  /* 14.75:1 */
 /* The confirmed credential (2026-08-15, rev 58): the designer's blue Insured
    badge. The trailing checkmark strokes in currentColor like every glyph here,
    so label and mark share the one measured pair — 5.65:1, and 1.4.11's 3:1 for
@@ -1689,14 +1696,20 @@ header.dr-topbar,
    fill is 9.46:1, the only colour allowed on green, so the accent is a FILL and
    the rating is charcoal — the star included, and never green ink.
 
-   THE ROLE IS A WORD AGAIN («словами оператор»), which reverses this morning's
-   .dr-chip--sm decision on this one screen. The reasoning survives the reversal
-   intact: `Operator` is who this person is, not a document DRON checked, so it
-   must not be drawn like the two chips that are. Beside the name a pill was how
-   it was told apart from them; under the name, in a column that has nothing
-   else at that rung, plain --slate says it with no drawing at all. .dr-chip--sm
-   stays declared and is applied to no page — it is not deleted, because the
-   next name row that needs a bracketed role will want exactly it. */
+   THE ROLE RUNG IS NOW SPENT ON NO PAGE, AND THE RULE STAYS DECLARED
+   (2026-08-21: «видали це з обох варіантів client and operator»). It was a word
+   for one day: written here for `Operator` at rev 171 — reversing that morning's
+   .dr-chip--sm pill on this one screen — and given `Client` at rev 182, then cut
+   from both heads the same evening. What was true of it stays true, which is why
+   the rule is not deleted: a role is who the person is, not a document DRON
+   checked, so it must never be drawn like the chips that are, and if it returns
+   it returns as plain --slate under the name. NOTHING WENT WITH IT that the two
+   screens do not still say — the Mode row states `Client` / `Operator` as its own
+   value on both, and the operator's `· 214 jobs` was put to the designer before
+   the line went and cut on her word (it still rides the .dr-op card in `tracking`
+   and `order-confirmed`, where the CLIENT reads it). .dr-chip--sm is kept on the
+   same terms: declared, applied to no page, waiting for the next name row that
+   needs a bracketed role. */
 
 .dr-profile{
   display: flex; flex-direction: column; align-items: center; text-align: center;
@@ -3737,6 +3750,52 @@ header.dr-topbar,
 .dr-avail__note{
   font-size: var(--t-bodysm-size); line-height: var(--t-bodysm-line);
   color: var(--slate);                                           /* 6.62:1 */
+}
+
+/* ── THE AVAILABILITY BADGE ────────────────────────────────── JOBS · used by
+   operator-listings, operator-listings-empty. The state the segmented control
+   sets, standing in the nav bar so it stays on screen while the operator reads
+   the offers below it (the designer, 2026-08-21, on the built header:
+   «покажи індикатор відповідно до обраного статусу дотупний, зайнятий та
+   недоступний»).
+
+   IT IS THE KIT'S CHIP, NOT A NEW SHAPE. `.dr-chip--sm` is the rung cut on
+   2026-08-21 for a badge that rides beside a name — operator-account, «постав
+   бейдж оператор біля імені зроби трохи меншим» — and `.dr-op__name` is the
+   name it rides beside here too, so the same rung answers the same problem on
+   a second screen. Everything below is the dot; the pill, its radius, its type
+   step and its two fills are already the chip's.
+
+   THREE STATES, AND THE WORD IS THE CARRIER. Available takes the claim pair
+   (--green-wash / --ink, 14.75:1, declared once up in the chip block); Busy and
+   Offline take the chip's own plain-fact pair (--slate on --media, 5.51:1); and
+   Offline's dot is HOLLOW where Busy's is filled, so the two grey states are
+   separated by SHAPE and not by the word alone. `WCAG 1.4.1 Use of Colour` is
+   answered before any of that: the badge always spells the state out —
+   Available / Busy / Offline — which is precisely what lets the dot carry a
+   colour at all. `.dr-avail__dot` REFUSED green for the mirror-image reason: a
+   dot with nothing beside it would have rested on colour alone. Here the word
+   is inside the same pill, so the condition is satisfied rather than avoided.
+
+   THE GREEN DOT'S NUMBER, MEASURED. --green on --green-wash is 1.56:1, under
+   `WCAG 1.4.11`'s 3:1 for a state indicator — cleared the way `.dr-pager__dot`
+   clears its own 1.69:1 on the page: the dot is never the sole carrier, the
+   word beside it is, so the criterion's "required to understand" test is not
+   engaged. Green here is a STATUS MARK and not the screen's one green control
+   — 8 x 8 = 64px^2, well under 1% of the Accept button's own green — which is
+   the case `concept.md` §0 admits alongside the one-control rule.
+
+   NO NEW TOKEN. 8px is --sz-pager-dot, the ring is --sz-status-ring, the pill
+   is --r-pill. Nothing is added to :root. */
+.dr-avail-badge{ flex: none; }
+.dr-avail-badge__dot{
+  width: var(--sz-pager-dot); height: var(--sz-pager-dot); flex: none;
+  border-radius: var(--r-pill); background: currentColor;      /* --slate on --media 5.51:1 */
+}
+.dr-avail-badge[data-state="available"] .dr-avail-badge__dot{ background: var(--green); }   /* 1.56:1 on the wash */
+.dr-avail-badge[data-state="offline"] .dr-avail-badge__dot{
+  background: transparent;
+  border: var(--sz-status-ring) solid currentColor;            /* hollow — shape, not colour, apart from Busy */
 }
 
 /* ── THE EARNED SCORE ──────────────────────────────────────── RATINGS · used

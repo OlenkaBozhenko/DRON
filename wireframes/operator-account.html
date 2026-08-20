@@ -30,10 +30,11 @@
     <nav class="state-switch" aria-label="States of this screen">
       <a href="operator-account.html" class="cur" aria-current="page">success</a>
       <a href="account-edit.html">edit</a>
+      <a href="operator-account-photo.html">photo</a>
     </nav>
     <h1>Operator account / profile</h1>
     <p class="sub">Operator · Account utility · state: <b>base only</b> · file: operator-account.html</p>
-    <div class="flow"><b>Job (jtbd):</b> operator identity &amp; payout utility + <b>Switch role</b> (Operator ⇄ Client).<br><b>Exit:</b> Mode dropdown → Operator home (operator-listings) or Client home (listings).<br><b>Why this page exists:</b> the operator Account tab used to open the client <b>account.html</b> (client bottom nav) — dropping the operator into the client flow. This keeps the operator inside the operator flow.<br><b>States:</b> none.</div>
+    <div class="flow"><b>Job (jtbd):</b> operator identity &amp; payout utility + <b>Switch role</b> (Operator ⇄ Client).<br><b>Exit:</b> Mode dropdown → Operator home (operator-listings) or Client home (listings).<br><b>Why this page exists:</b> the operator Account tab used to open the client <b>account.html</b> (client bottom nav) — dropping the operator into the client flow. This keeps the operator inside the operator flow.<br><b>Sub-view:</b> the pencil on the avatar → <b>operator-account-photo</b> (change the profile photo).<br><b>States:</b> none.</div>
     <div class="legend"><p><b>Zones:</b></p><p><b>Profile</b> ▸ who you are (Diia-verified operator)</p><p><b>Mode</b> ▸ switch Operator ⇄ Client (dropdown)</p><p><b>Account</b> ▸ payout · service area · language</p></div>
   </aside>
 
@@ -57,35 +58,69 @@
 
              AND THE CARD GOES WITH IT. Standing on --page instead of --card
              improves every pair on the head rather than costing one: the name
-             14.37 -> 15.99:1, the role 5.95 -> 6.62:1, and the secondary button's
-             fill 1.25 -> 1.39:1 against its ground. -->
+             14.37 -> 15.99:1 and the secondary button's fill 1.25 -> 1.39:1
+             against its ground. (The role line that gained by it too is gone —
+             see below.) -->
         <div class="dr-profile">
-          <!-- THE RATING RIDES ON THE PHOTOGRAPH. The model puts a small pill on
-               the circle's bottom edge; ours carries the number that pill is for.
-               Green FILL with charcoal on it at 9.46:1 — never green ink, and the
-               star is charcoal too. It is the ONLY solid green on this screen and
-               it is not a control: 0.45pct of the frame, where §0 allows a green
-               control ~5pct. The 2px --page ring is the cut-out edge
-               .dr-avatar-edit__badge already uses — a border, not a shadow. -->
+          <!-- TWO MARKS ON ONE BOTTOM EDGE, AND ONLY ONE OF THEM IS A CONTROL
+               (2026-08-21: «додай для оператора біля бейджу з рейтингом
+               редагувати фото»).
+
+               THE RATING RIDES ON THE PHOTOGRAPH, unchanged. The model puts a
+               small pill on the circle's bottom edge; ours carries the number
+               that pill is for. Green FILL with charcoal on it at 9.46:1 —
+               never green ink, and the star is charcoal too. It is the ONLY
+               solid green on this screen and it is not a control: 0.45pct of
+               the frame, where §0 allows a green control ~5pct. The 2px --page
+               ring is the cut-out edge .dr-avatar-edit__badge already uses — a
+               border, not a shadow.
+
+               THE PENCIL JOINS IT ON THAT EDGE, and it is the client's own —
+               .dr-avatar-edit, the same class, the same 20px disc, the same
+               --btn2 ground under an --ink glyph at 11.54:1, pointing at the
+               operator's own copy of the photo screen. Nothing new is drawn and
+               no new CSS is written: the two marks share the bottom edge with
+               the pill centred and the disc at the corner, 15.55 apart.
+
+               THE LINK WRAPS THE PICTURE, NOT THE DISC — `HIG · 44pt target` is
+               cleared at 273pct (120 x 120) and `WCAG 2.5.8` at 5x, where the
+               disc alone would be 20 and would have to be padded out to a
+               target it does not look like.
+
+               AND THE RATING STAYS OUTSIDE THAT LINK, deliberately. The <a>
+               carries aria-label="Change profile photo", which REPLACES its
+               content for the accessible name — so a rating nested inside it
+               would stop being announced at all. Sibling, not child: the pill
+               keeps its own `Rating 4.9 ★` reading (`WCAG 1.3.1`, `4.1.2`), and
+               the anchor keeps a name that says what it does. -->
           <span class="dr-profile__photo">
-            <span class="dr-avatar-lg"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
+            <a class="dr-avatar-edit" href="operator-account-photo.html" aria-label="Change profile photo">
+              <span class="dr-avatar-lg"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
+              <span class="dr-avatar-edit__badge" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg></span>
+            </a>
             <span class="dr-profile__rating"><span class="sr-only">Rating </span>4.9 ★</span>
           </span>
           <span class="dr-profile__name dr-display">Ivan K.</span>
-          <!-- THE ROLE IN WORDS («під ним словами оператор»), which reverses this
-               morning's pill on this screen. `Operator` is who he is, not a paper
-               DRON checked — beside the name a pill was what kept it from reading
-               like the two credentials below; under the name, alone at its rung,
-               plain --slate needs no drawing at all.
-               `· 214 jobs` RIDES WITH IT, AND SHE SETTLED IT THE SAME DAY. The
-               old meta line read `4.9 ★ · 214 jobs · Verified by DRON`: the rating
-               is now the badge and `Verified by DRON` is what the two green chips
-               below already say, but the job count had no seat in the new stack.
-               Put to her against two alternatives — cutting it, or moving it into
-               the Account panel as a row — she kept it here, so the role line
-               carries who he is AND how much he has done, and the Account panel
-               stays payout and preferences. Not a leftover: a decision. -->
-          <span class="dr-profile__role">Operator · 214 jobs</span>
+          <!-- THE ROLE LINE IS CUT (2026-08-21, «видали це з обох варіантів client
+               and operator»), and it took `· 214 jobs` with it. It read
+               `Operator · 214 jobs` at 15/400 --slate, 6.62:1, in an 18px line box
+               over an 8px gap — 26 of height off the column.
+
+               THE COUNT WAS PUT TO HER BEFORE THE LINE WENT, because she had
+               settled it that same morning: cut it with the line, keep it alone on
+               the line without the word, or move it into the Account panel as a
+               `Jobs done` row. She chose to cut it. Recorded as a decision, not as
+               a string that fell off.
+
+               NEITHER FACT IS ORPHANED. `Operator` is still on this screen as the
+               Mode row's value below, so it is stated once instead of twice; and
+               `4.9 ★ · 214 jobs` still rides on Ivan's .dr-op card in `tracking`
+               and `order-confirmed`, where the CLIENT reads it — which is the
+               reader the number was ever for. NO CRITERION IS ENGAGED: the span
+               labelled nothing (`WCAG 1.3.1`), named no control (`4.1.2`) and
+               instructed no input (`3.3.2`). `.dr-profile__role` stays declared in
+               the kit and is now spent on no page, the way `.dr-chip--sm` was kept
+               at rev 171. -->
           <!-- THE TWO CHECKED DOCUMENTS, UNCHANGED IN MEANING AND IN COLOUR.
                The rule set on 2026-08-18 — «оператор сірий, лайсенс і insurance
                зелені» — still holds: GREEN MEANS DRON CONFIRMED THIS DOCUMENT.
