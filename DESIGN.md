@@ -1533,22 +1533,27 @@ content area — `calc(var(--sp-screen) + var(--sp-cta))`, so the title's top ed
 down the frame — and the art band takes the rest and centres the picture in it. It replaces a
 centred copy block over a fixed **35%** band, then a floor-standing picture under **16** of padding.
 
-**Measured after, band × picture, space above / below:** `oc1` 428.3 × 309.0 **59.6 / 59.6** ·
-`oc2` 428.3 × 315.4 **56.4 / 56.5** · `oc3` 451.6 × 351.3 **50.1 / 50.1** · `oo1` 428.3 × 342.4
-**42.9 / 42.9** · `oo2` 428.3 × 352.8 **37.8 / 37.8** · `oo3` 428.3 × 430.0 **−0.8 / −0.8**. Only
-`onboarding-payout` is taller than its band, and centred it gives up 0.8 at each edge rather than
-1.6 at the top. **The cost lands on `welcome`, whose three pictures are library cutouts and not the
-onboarding set:** `w2` is a **440.5** figure in a **405.1** band, so it loses **17.7** off the top
-and **17.8** off the bottom where bottom-anchored it lost 3.4 off the top alone. Recorded, not
-fixed — a `welcome`-only modifier is the designer's to ask for.
+**The well keeps 32 of air and the picture fits the well** — the designer, 2026-08-21, on the one
+slide that filled its band edge to edge: *«зроби цю картинку трохи меншою у висоту як на інших
+wairframes аналогічних»*. `.dr-slide__art` takes `padding-block: var(--sp-cta)` and the image is
+`height: 100%` under `object-fit: contain`, so nothing can overflow the well and nothing is cut.
+
+**Measured after, picture × air above / below:** `oc1` 373.4 × 309.0 **59.6** · `oc2` 373.4 × 315.4
+**56.4** · `oc3` 373.4 × 351.3 **50.1** · `oo1` 373.4 × 342.4 **42.9** · `oo2` 373.4 × 352.8
+**37.8** · `oo3` **316.4 × 364.3** **32** · `w1` 373.4 × 265.4 **69.8** · `w2` **289.1 × 341.0**
+**32** · `w3` 373.4 × 158.9 **96.1**. Seven are pixel-identical to the width-led build — `contain`
+is width-limited for anything landscape. The two portrait cutouts are height-led instead: `oo3`
+drops **65.8** of height into its neighbours' range and gives up 57 of width, and `w2` stops being
+clipped (it was losing 17.7 off the cap and 17.8 off the feet). **For a picture taller than its
+space the only two answers are cut or narrower**, and narrower is the one that was chosen.
 
 **Every picture draws the full width** — the designer, 2026-08-21: *«зображення розтягни на всю
 ширину екрану в мобільному»*. A fixed band could not promise it: the band held a 1.043 box, so a
 portrait cutout was height-bound and drew **311 of 373.4 — 83.3%**. The band is now a flex item
 that takes the height the copy did not, and the picture is width-led inside it — **373.4 on all
-nine slides**, heights **159–441**. Where a picture is taller than the space left, the well clips
-it rather than letterboxing it — half at the top and half at the foot since the figure was centred
-on 2026-08-21: `cover` is still unused, because it would rescale and crop to fill.
+nine slides**, heights **159–441**, until the well took its 32 of air on 2026-08-21 — since then
+the seven landscape cutouts still draw 373.4 and the two portrait ones are height-led. Nothing is
+clipped either way: `cover` is still unused, because it would rescale and crop to fill.
 
 **The pager stays one element under the slider** — the designer, 2026-08-21: *«слайдер має бути де
 і був»*. A per-slide pager was built the same day and reverted on her word. Two costs, recorded
@@ -1566,10 +1571,10 @@ and the rule stands for the next slide that starts empty.
 doubled, the copy used to overrun the art by **181px** under the fixed 62% band and by **97px**
 under the centred composition that preceded it — no text lost, but text drawn over a phone mockup
 is not readable text. Measured again 2026-08-21, after the band became a flex item: **0px of
-overrun on every slide at 200%**, and again after the copy dropped to 48 — `oo1/2/3` band **196.4**
-with the sub-line ending 12 clear of it, `w3` band collapsed to **0** with the copy 7.3 clear of
-the content floor. The band gives its height up to the copy first and clips its own
-picture instead, so no type size can put text under artwork.
+overrun on every slide at 200%**, and again after the copy dropped to 48 and the well took its
+air — the copy clears the artwork by **44** on every slide, and on the worst one the well collapses
+to its own 64 of padding with the picture at 0. The band gives its height up to the copy first and
+gives its picture away rather than let a type size put text under artwork.
 
 **The pager is an indicator, not a control** — the designer, 2026-08-18: *«крапки не клікабельні там
 працює свайп»*. The dots were `<a href="#slide">` at an **8 × 8** target, three times under

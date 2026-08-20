@@ -3587,8 +3587,8 @@ header.dr-topbar,
    promise that: it held a 1.043 box, so a portrait cutout was height-bound
    and drew 311 of 373.4 — 83.3%. The band's height now follows the picture
    instead, which is what full width means when the aspect ratios differ.
-   Measured 2026-08-21: 373.4 wide on all nine slides; heights 309–430, the
-   tallest being onboarding-payout at 74.4% of a 577.6 main.
+   Measured 2026-08-21: 373.4 wide on the seven landscape cutouts, heights
+   158.9–352.8; the two portrait ones are height-led instead — see below.
    THE PICTURE IS CENTRED IN THAT SPACE, NOT STOOD ON THE FLOOR (designer,
    2026-08-21: «зображення постав по центру»). The band is the height the copy
    did not take, and seven of the nine pictures are shorter than it — bottom-
@@ -3596,31 +3596,41 @@ header.dr-topbar,
    picture and none under it. Centred, that space is halved to either side and
    the picture reads as the subject of the slide rather than as its floor.
    Nothing about the width changes: still width-led, still 373.4.
-   What it costs is named: a picture TALLER than the band now loses both edges
-   instead of one. Two are. `onboarding-payout` is over by 1.7, so it gives up
-   0.8 at each edge instead of 1.7 at the top — invisible. `welcome`'s w2 is a
-   440.5 person cutout in a 405.1 band and gives up 17.7 / 17.8, which is not:
-   it was 3.4 off the top alone. `welcome` carries library cutouts, not her
-   onboarding set; a page modifier is hers to ask for, not mine to add. */
+   AND THE BAND KEEPS 32 OF AIR TOP AND FOOT, SO A TALL PICTURE SCALES DOWN
+   INSTEAD OF BEING CUT (designer, 2026-08-21, on oo3: «зроби цю картинку
+   трохи меншою у висоту як на інших wairframes аналогічних»). Centring alone
+   left one slide of the six filling its band edge to edge — 430.1 of picture
+   in 428.3 of band — beside five that carried 37.8 to 59.6 of air. The air is
+   `--sp-cta` on both edges of the well, and the picture is `height: 100%` of
+   what is left with `object-fit: contain`, so the well's shape decides and
+   the picture never overflows it. Seven of the nine are untouched: contain is
+   width-limited for anything landscape, so it draws exactly what it drew.
+   The two portrait cutouts stop being clipped and become height-led instead —
+   which is where this trades against «на всю ширину»: at 364.3 tall
+   `onboarding-payout` is 316.4 wide, not 373.4, and `welcome`'s w2 is
+   289.1 × 341.0 with nothing clipped at all any more. Cut or
+   narrower is the whole of the choice for a picture taller than its space,
+   and she chose narrower on the one she was looking at. */
 .dr-slider--bleed .dr-slide__art{
   position: static; flex: 1 1 auto; min-height: 0; overflow: hidden;
   width: auto; margin: 0 calc(var(--sp-group) * -1);
+  padding-block: var(--sp-cta);
   align-items: center; z-index: 0;
 }
-/* Width-led, and the width always wins: the picture takes the frame's width
-   and keeps its own ratio, so no slide draws a letterboxed cutout with page
-   showing down both sides. What gives instead is the height — the box is the
-   space the copy did not take, and anything taller than it is clipped by the
-   well, half at the top and half at the foot since the figure was centred.
-   cover is still wrong and still unused: it would scale the subject up and
-   crop to fill; this crops what does not fit and never rescales.
+/* The picture fills the well and keeps its own ratio inside it. Width-led
+   wherever the width is what runs out first — which is every landscape cutout,
+   so seven of the nine still draw the frame's full 373.4. Where the HEIGHT
+   runs out first the picture scales rather than crops: nothing is cut off a
+   slide any more, and what a portrait cutout gives up is width. cover is
+   still wrong and still unused — it would rescale the subject and crop to
+   fill; contain never loses a pixel of the drawing.
    THAT IS ALSO WHAT MAKES THE COPY SAFE AT 200%. The band was positioned
    absolutely until 2026-08-21 and could not yield, so the copy grew straight
    into it — 181px of overrun, measured. As a flex item the band gives its
    height up to the copy first and clips itself, so text is never overdrawn at
    any type size. */
 .dr-slider--bleed .dr-slide__art img{
-  width: 100%; height: auto; max-height: none;
+  width: 100%; height: 100%; max-height: none;
   object-fit: contain; object-position: center;
 }
 /* ONE PAGER, UNDER THE SLIDER, WHERE IT WAS (designer, 2026-08-21: «слайдер
@@ -3634,4 +3644,93 @@ header.dr-topbar,
 .dr-slider--bleed + .dr-pager{ position: relative; z-index: 1; margin-top: 0; }
 .dr-slider--bleed .dr-display,
 .dr-slider--bleed .dr-lead{ position: relative; z-index: 1; }
+/* ── THE BALANCE CARD ──────────────────────────────────── EARNINGS · used by
+   wallet. The designer's reference, 2026-08-21 (Figma `YlGWlsWWjKSCxhONMzGG2F`
+   node `117:45`): a glyph at the left, and beside it the figure over the line
+   that names it — one filled card instead of two loose lines on the page.
+   IT IS A MODIFIER, NOT A SECOND COMPONENT. `.dr-balance` already owns the
+   figure-over-caption column and the 4px step between them; this turns that
+   column on its side, hangs a glyph off the front and fills the shape. The
+   ratings screen's three-child version of the same block is untouched.
+   THE FILL IS --green AND EVERYTHING ON IT IS --on-green, which is measured
+   rather than preferred: --slate, the caption's own ink on every other
+   surface, is 3.92:1 on --green — a real WCAG 1.4.3 failure at 12px — while
+   --on-green is 9.46:1. So the note's colour is said out loud here, the one
+   place `.dr-note` may not keep its own.
+   Measured: card 341.5 x 82; glyph 32 (stroke renders 2.27, the 24-grid's own
+   1.7 scaled by the box); figure 22/700 tabular --on-green 9.46:1; caption 12
+   --on-green 9.46:1. The card is FLAT — no shadow. It sits in the page like
+   every other card; only the floating pill below it is allowed to lift.
+   WHAT IT COSTS, STATED: solid green now covers 11.9% of this frame against
+   the ~5% ceiling concept.md sets, and the screen carries two green shapes
+   (this card and the floating CTA) where the rule asks for one control. Both
+   are the designer's instruction of 2026-08-21, reported with the numbers in
+   concept.md rev 161 rather than silently kept or silently trimmed. */
+.dr-balance--card{
+  flex-direction: row; align-items: center; gap: var(--sp-snug);
+  padding: var(--sp-group) var(--sp-screen);
+  border-radius: var(--r-card);
+  background: var(--green); color: var(--on-green);
+}
+.dr-balance__glyph{ flex: none; display: flex; }
+.dr-balance__glyph .dr-ic{ width: var(--ic-32); height: var(--ic-32); }
+.dr-balance__body{ display: flex; flex-direction: column; gap: var(--sp-within); min-width: 0; }
+.dr-balance--card .dr-number,
+.dr-balance--card .dr-note{ color: var(--on-green); }                 /* 9.46:1 */
+
+/* ── THE ROW BAND INSIDE A CARD ─────────────────────────── used by wallet.
+   `.dr-card--row` cannot serve and the reason is the one `.dr-listing__foot`
+   already records: that modifier turns the CARD into a row, and this card is a
+   column whose FIRST child is one. `__foot` itself is the wrong name for a
+   band that leads, so the family gets the neutral member it was missing, beside
+   `.dr-card__actions` and `.dr-card__link`. Structure only — no colour, no
+   size, no radius leaves it. */
+.dr-card__row{ display: flex; align-items: center; gap: var(--sp-snug); }
+
+/* ── THE FLOATING ACTION ────────────────────────────────── used by wallet.
+   The designer, 2026-08-21: «додай floating button посередині біля ботом бару
+   відповідно до HIG».
+   WHAT HIG ACTUALLY SAYS, because the shape people mean by "FAB" is Material's
+   and not Apple's: `HIG · Tab bars` — "a tab bar... don't use it to provide
+   actions" — so a circular button planted IN or OVER the bar would be the one
+   reading that fails. What iOS 26 does ship is the tab bar's **bottom
+   accessory**: a capsule that floats directly above the bar, clear of it, while
+   the bar stays four tabs and nothing else (Music's mini-player is the pattern
+   everyone has seen). That is what this is — the accessory shape, holding the
+   screen's primary action.
+   MEASURED: 44 min-height, the `HIG · 44pt` target, inherited from `.dr-btn`
+   and never overridden; label --on-green on --green 9.46:1 (`WCAG 1.4.3`);
+   the keyboard ring is `.dr-btn`'s own --ink at 2px (`WCAG 2.4.11`). `1.4.11`
+   is satisfied by the label, not the fill — green on the page is 1.69:1, and
+   the criterion exempts a boundary that is not required to identify a control
+   whose text already does.
+   IT LIFTS, AND THAT IS THE FLAT RULE HOLDING RATHER THAN BENDING: --sh-raised
+   is the rung `.dr-sheet` and `.dr-toast` spend, and concept.md's exception is
+   written for exactly this — "the flat rule is about cards sitting IN the page,
+   which is why a drawer and a toast do not break it". A control that floats
+   over a scrolling list is the third thing that genuinely floats. The green
+   primary's own --sh-sm would be the shadow of a button lying flat on the page,
+   which this one is not.
+   THE :active RE-DECLARATION IS LOAD-BEARING. `.dr-btn--primary:active` sets a
+   bare `transform`, which would drop the -50% that centres this button and make
+   it jump a half-width on press. Same specificity, so it is the later rule that
+   wins — this block must stay below the button pack, and it does. */
+.dr-fab{
+  position: absolute; z-index: 3;
+  left: 50%; transform: translateX(-50%);
+  bottom: calc(var(--h-tabs) + var(--h-home) + var(--sp-snug));
+  border-radius: var(--r-pill);
+  padding: 0 var(--sp-group);
+  box-shadow: var(--sh-raised);
+}
+.dr-fab:active{
+  transform: translateX(-50%) translateY(var(--lift-active)) scale(var(--scale-active));
+}
+/* The floor the floating button asks the column for. A control that hovers
+   over content must never be the reason a piece of content cannot be reached
+   (`HIG · Layout` — keep content clear of persistent controls). 44 of button +
+   12 of the gap it stands on + the column's own 16 = 72, so the last card
+   scrolls fully clear of the pill instead of stopping under it. */
+.dr-main--fab{ padding-bottom: calc(var(--h-control) + var(--sp-snug) + var(--sp-screen)); }
+
 /* ═══ END OPERATOR PAINT ══════════════════════════════════════════════════ */
