@@ -1098,7 +1098,7 @@ serves **128 × 128** into the same 120 box, so a 2× frame upscales **1.875×**
 
 ### Profile head (`.dr-profile`)
 
-The operator looking at himself, added 2026-08-21 (rev 170) on the designer's word and against a
+The operator looking at himself, added 2026-08-21 (rev 171) on the designer's word and against a
 frame of her own: *«аватарка по центру, на аватарці бейдж з рейтингом, під низом ім'я, під ним
 словами оператор, під низом кнопка редагувати, бекграунду немає»*. **It is a component of its own
 and not a modifier of `.dr-op`**, because every value disagrees: `.dr-op` is a row since it is a card

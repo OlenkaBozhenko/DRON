@@ -1590,6 +1590,94 @@ header.dr-topbar,
 .dr-op--badgerow{ flex-wrap: wrap; }
 .dr-op--badgerow .dr-op__badges{ flex-basis: 100%; margin-top: var(--sp-snug); }
 
+/* ═══ THE CENTRED PROFILE HEAD ═════════════════════════════════════
+   2026-08-21, the designer on operator-account, with a frame of her own as the
+   model: «аватарка по центру, на аватарці бейдж з рейтингом, під низом ім'я,
+   під ним словами оператор, під низом кнопка редагувати, бекграунду немає».
+
+   THIS IS A DIFFERENT COMPONENT FROM .dr-op, NOT A MODIFIER OF IT, and the
+   difference is whose screen it is. .dr-op is a ROW because it is a card in
+   somebody else's list — the client meeting an operator, scanning face, name
+   and credentials left-to-right beside four other things. .dr-profile is a
+   COLUMN because it is the operator meeting himself: there is one person on
+   this screen, he is the subject of it, and a subject is centred. The two must
+   not share a class, because every value in them disagrees — direction, photo
+   size, name step, and whether there is a card underneath at all.
+
+   NO CARD («бекграунду немає»). The head loses --card and stands on --page.
+   Nothing is lost by it: the card was doing separation work that a section of
+   one element does not need, and every pair on it gets BETTER, because --page
+   is the lighter ground. --ink name 14.37 → 15.99:1, --slate role 5.95 → 6.62:1,
+   and the secondary button's own fill, which sat at 1.25:1 against the card,
+   reads 1.39:1 against the page. `WCAG 1.4.3` wants 4.5 for both texts and both
+   clear it with the whole of the improvement to spare.
+
+   120, the rung account-photo already spends (--sz-avatar-xl). The model draws
+   its circle at ~25% of the frame width and 120 is 32% of 375 — larger, and
+   deliberately so, because 96 is not a size this system owns and a new avatar
+   rung would be a seventh number in a ramp that has six. The subject reads as
+   the subject either way.
+
+   THE BADGE STRADDLES THE EDGE, which is the rule .dr-avatar-edit__badge
+   already states in this file: the disc's CENTRE sits on the circle's edge, and
+   a --w-badge-ring border in the surrounding colour cuts it out of the
+   photograph the way iOS does. Here the surrounding colour is --page, not
+   --card, because the card is gone. It is a BORDER and not a shadow, so the
+   flat-surface rule is untouched and the frame still carries none.
+   The overhang is paid back in flow: translate(-50%, 50%) hangs 12.7 of the
+   25.4-high pill below the photo box, and --sp-13 of margin under the box
+   returns it, so the 8 this column spends between siblings is the 8.3 the eye
+   actually measures between badge and name.
+
+   THE BADGE IS GREEN AND IT IS THE ONLY GREEN ON THIS SCREEN. §0 allows one
+   green control per screen at ~5% of the frame; this is not a control at all
+   but a status mark, the case §0 admits alongside it, and operator-account
+   carries no green control to compete with — its selected tab is --green-wash,
+   a 1.085:1 tint the budget does not count. Drawn 53.5 × 25.4 = 1,359px² on the
+   375 × 812 frame: 0.45%, against a ~5% ceiling. --on-green charcoal on the
+   fill is 9.46:1, the only colour allowed on green, so the accent is a FILL and
+   the rating is charcoal — the star included, and never green ink.
+
+   THE ROLE IS A WORD AGAIN («словами оператор»), which reverses this morning's
+   .dr-chip--sm decision on this one screen. The reasoning survives the reversal
+   intact: `Operator` is who this person is, not a document DRON checked, so it
+   must not be drawn like the two chips that are. Beside the name a pill was how
+   it was told apart from them; under the name, in a column that has nothing
+   else at that rung, plain --slate says it with no drawing at all. .dr-chip--sm
+   stays declared and is applied to no page — it is not deleted, because the
+   next name row that needs a bracketed role will want exactly it. */
+
+.dr-profile{
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: var(--sp-within-lg);
+  padding: 0; border: 0; background: none;      /* «бекграунду немає» */
+}
+.dr-profile__photo{
+  position: relative; flex: none;
+  display: inline-flex;                          /* shrink-wraps the circle */
+  margin-bottom: var(--sp-13);                   /* pays back the badge's 12.7 of overhang */
+}
+.dr-profile__rating{
+  position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 50%);
+  display: inline-flex; align-items: center; gap: var(--sp-within);
+  padding: var(--sp-3) var(--sp-within-lg);
+  border: var(--w-badge-ring) solid var(--page);
+  border-radius: var(--r-pill);
+  background: var(--green); color: var(--on-green);          /* 9.46:1 */
+  font-size: var(--t-micro-size); font-weight: var(--t-micro-weight);
+  line-height: var(--t-micro-line);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.dr-profile__role{
+  display: block;
+  font-size: var(--t-heading-size); font-weight: var(--weight-regular);
+  line-height: var(--t-heading-line); color: var(--slate);   /* 6.62:1 on the page */
+}
+/* 12 above the action and above the credential row — the group boundary reads
+   larger than the 8 spent inside the column (HIG · Layout). */
+.dr-profile__badges{ justify-content: center; margin-top: var(--sp-within); }
+.dr-profile__edit{ margin-top: var(--sp-within); }
+
 /* ═══ THE AVATAR EDIT ═════════════════════════════════════════════════════
    The designer, 2026-08-16: «добав іконку едіт карандаш на аватарку». A pencil
    badge on the profile photo, and the photo is the control.
@@ -2142,11 +2230,32 @@ header.dr-topbar,
    is smaller than what rev 88 just gave her — so the row's slack stays. */
 .dr-picks{ list-style: none; background: var(--card); border-radius: var(--r-card); overflow: hidden;
   padding: var(--sp-screen); }
+/* A TWO-LINE ROW GETS ITS OWN AIR — 2026-08-21, the designer on `withdraw`:
+   «пофіксь paddings між рядками дуже зажате». `padding: 0` was right while
+   every pick was one line: 21 of text inside the 44 the HIG target sets left
+   11.5 above and below, and the hairline had 11.5 of clearance on each side.
+   `withdraw` is the first list whose rows carry .dr-pick__sub, and there the
+   same 44 holds 36 of text (21 label + 15 sub) — 4 above, 4 below, so the two
+   rows' text ran 8px apart across the separator while their own two lines sit
+   ~1 apart. The sub read as belonging to the next row as much as to its own.
+   8 ON THE BLOCK AXIS, WHICH IS --sp-within-lg, THE RUNG THIS KIT ALREADY
+   SPENDS INSIDE A GROUP. Measured on the 375 frame: the two-line row goes
+   44.0 → 52.0, the gap between the rows' text 8 → 16, and the card 120 → 136.
+   `HIG · 44pt target` is a floor and gains 8. `WCAG 2.5.8` wanted 24 and now
+   clears it ×2.17. Nothing else in the kit moves, and that is measured, not
+   hoped: every other pick in the build is a single line — 21 + 16 = 37 is
+   under the 44 min-height, so job-checklist, listings-filters,
+   operator-profile-setup, order-setup(-inspection), payment and the footer
+   picks all render at exactly the 44 they render at today.
+   THE ROW, NOT THE CARD, because rev 91's 16 on .dr-picks is hers and the
+   complaint is about the distance between rows, not the card's inset. It buys
+   the box's optical inset back on the way past: a 24 box centred in 52 keeps
+   14, so the radio sits 22 from the card's top edge where it sat 26. */
 .dr-pick{
   position: relative;
   min-height: var(--h-control);
   display: flex; align-items: center; gap: var(--sp-snug);
-  padding: 0;
+  padding: var(--sp-within-lg) 0;
   font-size: var(--t-heading-size); color: var(--ink); cursor: pointer;
 }
 .dr-pick + .dr-pick::before,

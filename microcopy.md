@@ -1069,10 +1069,11 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-account | — | Account | Heading |  |
 | operator-account | Profile | IK | Body | DATA |
 | operator-account | Profile | Ivan K. | Body | DATA |
-| operator-account | Profile | 4.9 ★ · 214 jobs · Verified by DRON | Body |  |
-| operator-account | Profile | Operator | Body |  |
+| operator-account | Profile | Rating 4.9 ★ | Body | DATA |
+| operator-account | Profile | Operator · 214 jobs | Body |  |
 | operator-account | Profile | Insured | Body |  |
 | operator-account | Profile | CAA licence | Body |  |
+| operator-account | Profile | Edit profile | Button |  |
 | operator-account | Mode | Operator mode | Body |  |
 | operator-account | Mode | Operator — take jobs | Body |  |
 | operator-account | Mode | current | Body |  |
