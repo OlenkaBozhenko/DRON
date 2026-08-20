@@ -509,6 +509,12 @@ Flow spine (`flows.md` MJ-2 + RJ-O3): **Operator home + status toggle → Incomi
   - **Loading —** not produced here.
   - **Success —** the hub, not an outcome; no "it worked" screen.
 
+**The three cards now open their own screens (2026-08-21).** Both offer cards sent their tap to the
+same `job-offer.html` and their **Accept** to the same `job-brief.html`, and the active card sent its
+tap there too — three different jobs, two shared destinations, both headed *Package delivery*. The
+split is recorded at §13 and §14; **on this page only the `href`s move**, and no card, string, zone or
+value is touched.
+
 ### 13. Incoming job offer / accept-decline
 - **Job:** `RJ-O1` — *"accept or pass without stopping to ask questions"* (`O-01`, lock-screen decision).
 - **Place in flow:** MJ-2 node `Incoming job offer / accept-decline` → `Accept within 10s?`.
@@ -517,6 +523,36 @@ Flow spine (`flows.md` MJ-2 + RJ-O3): **Operator home + status toggle → Incomi
   - **Error —** not produced here.
   - **Loading —** not produced here.
   - **Success —** accepting hands off to the Job brief; no "it worked" screen.
+
+**Two files, one per service, not two states (2026-08-21).** The designer, on the built list:
+*«коли я обираю accept мають відкриватись відповідні картки якщо це roof inspaction то і картка має
+бути відповідна відкриватись»*, and on how far it goes: *«офер бриф та ще й нотатки якщо клієнт
+залишив якісь»*. `operator-listings` carries two incoming offers and both pointed at this one file,
+which names **Package delivery · ₴180 · Podil → Osokorky**. Tapping *Roof inspection · ₴650 · Obolon
+district* therefore opened a parcel — `WCAG 2.4.4 Link Purpose (In Context)`, level **A**, failed by
+the same reading that closed `order-details` on 2026-08-16 and `earning-details` on 2026-08-21: the
+card's own accessible name is `Roof inspection job — open brief`, so the link states a purpose its
+destination does not carry.
+
+| File | Nav bar | Offer card | Second zone | Countdown | Accept → |
+|---|---|---|---|---|---|
+| `job-offer.html` | New job | Package delivery · 2.3 km · ~18 min · **₴180** | **Route** — Pickup *Podil, 21* → Drop-off *Osokorky, 14* | Expires in 8s | `job-brief.html` |
+| `job-offer-inspection.html` | New job | Roof inspection · 5.1 km · ~35 min · **₴650** | **Site** — Location *Obolon district* · Structure *Roof · gutters · chimney* | Expires in 6s | `job-brief-inspection.html` |
+
+**The second zone changes name with the service, because the shape of the trip does.** A delivery has
+two stops and reads `Route ▸ pickup → drop-off`; an inspection has one site and reads `Site ▸ where it
+is · what is checked`. **Nothing is invented:** the distance, the minutes, the pay and the countdown
+are `operator-listings`' own card, read off the frame; the structure string is the client's record
+(`order-details-inspection`); the drone in the well is `drone-11.png`, the thumbnail `listings.html`
+already gives Inspection.
+
+**The offer does not carry the client's note, and that is deliberate.** `RJ-O1` gives this screen a
+ten-second decision and `flows.md` gates it on `Accept within 10s?`; a paragraph of instructions is not
+readable in that budget and would compete with the countdown for the same seconds. The note lands one
+screen later, on the brief — the screen `RJ-O1` names for *everything in one glance*.
+
+**No `-aerial` offer file.** The aerial job on the list is already **In progress** (*checklist 3 / 5*):
+it was accepted before the frame opens, so there is no offer of it to draw. It joins at §14.
 
 ### 14. Job brief / detail
 - **Job:** `RJ-O1` / `MJ-2` — *"see everything I need — location, service type, duration, pay — in one glance"*.
@@ -527,6 +563,48 @@ Flow spine (`flows.md` MJ-2 + RJ-O3): **Operator home + status toggle → Incomi
   - **Loading —** not produced here.
   - **Success —** hands off to the checklist; no "it worked" screen.
 
+**Three files, one per service, not three states (2026-08-21)** — §13's split carried one screen down,
+because **Accept** on an offer *and* the tap on an active card both land here. All three of
+`operator-listings`' jobs opened `job-brief.html`, headed *Package delivery*.
+
+| File | Well | Details rows | Notes | Action bar |
+|---|---|---|---|---|
+| `job-brief.html` | Route · Podil → Osokorky | Service · Client *Olena H.* · Pickup · Drop-off · **Pay ₴180** · ~18 min | *Leave with the concierge, entrance code 4417.* | **Start job** → `job-checklist.html` |
+| `job-brief-aerial.html` | Site · Trukhaniv Island | Service · Client *Olena H.* · Location · Shoot *Event · 30 min* · **Pay ₴800** · ~30 min | **none left** — *The client left no notes.* | **Continue** → `job-checklist.html` |
+| `job-brief-inspection.html` | Site · Obolon district | Service · Client *Maria D.* · Location · Structure *Roof · gutters · chimney* · **Pay ₴650** · ~35 min | *Two storeys. Ladder access from the yard, gate code 22B. The north slope is where the water comes in.* | **Start job** → `job-checklist.html` |
+
+**The aerial file says `Continue`, not `Start job`, and that is the card's own verb.** It is the only
+one of the three reached from an **active** job — *In progress · checklist 3 / 5* — so the work has
+already begun and *Start job* would offer to begin it a second time. `operator-listings` already writes
+**Continue** on that card; the brief repeats the word rather than inventing a second one for the same
+act (`voice.md`, one word per concept). The delivery and inspection files are reached from an offer that
+was just accepted, so they keep **Start job**.
+
+**The Notes zone is the client's own field, and that field is optional.** All three `order-setup*`
+screens carry a free `Notes for the operator` textarea — *"Floor, entrance code, what's inside…"* /
+*"What to capture, access to the site, anything to avoid…"* / *"Height, access to the roof, what you
+want checked…"* — and none of them requires it. So a brief can arrive with nothing in it, which is the
+case the designer asked to see: *«нотатки якщо клієнт залишив якісь»*. **The aerial brief is the
+instance that carries none**, and it **states the absence instead of dropping the zone**: an operator
+who finds no Notes heading cannot tell *the client left none* from *it did not load*, and `voice.md`
+**P5** asks for the plain fact rather than a silence. The line is not actionable, so it takes
+`.dr-listing__desc` — `--slate` on `--card`, **5.95:1**, where `WCAG 1.4.3` needs **4.5:1** — and not
+the note's own `--ink` **14.37:1**, which `job-brief` spends on the one line the operator has to act on.
+**Open for the designer:** dropping the zone entirely on a noteless job is the other honest reading, and
+it is one element away.
+
+**Where it still diverges — reported, not fixed.** All three action bars go to `job-checklist.html`,
+whose steps read *Parcel secured* and *Capture delivery photo* and whose CTA is *Complete &amp; add
+delivery photo*; `result-upload` beyond it names *Package delivery*. That is `WCAG 2.4.4` again, one and
+two screens further down, and it is **outside the scope the designer set** — *«офер бриф»*. §15 and §16
+stay single-service until she says otherwise.
+
+**One fact disagrees with itself, and it is left alone.** `operator-listings`' inspection card says
+**Obolon district**; `earning-details-inspection` and the client's `order-details-inspection` say
+**Osokorky, 14**. The two new files carry the card's string, because the whole point of the split is
+that the destination matches the tap. They can also be read as two different roof inspections — a live
+offer and a settled payout. **Open for the designer:** whether the list card should say *Osokorky, 14*.
+
 ### 15. Job checklist (in progress)
 - **Job:** `RJ-O2` — *"a structured checklist... so I don't miss a required step"* (`O-03`; large touch targets for gloves / sunlight).
 - **Place in flow:** MJ-2 node `Job checklist (in progress)` → `All steps + result captured?`.
@@ -535,6 +613,81 @@ Flow spine (`flows.md` MJ-2 + RJ-O3): **Operator home + status toggle → Incomi
   - **Error ✓** — *"required step skipped — cannot close"* → back to the checklist.
   - **Loading —** not produced here.
   - **Success —** completing it hands off to Result upload; no "it worked" screen.
+
+**`Contact client` opens a drawer, added 2026-08-21 on the designer's word** — *«додай сюди ще Contact
+with client, по кліку відкривай дровер як у клієнта: дзвінок, повідомлення; додай wireframes яких не
+вистачає»*. It is the **mirror of `§9a`'s `Contact operator` drawer**, built on the same
+`ui/kit.js` contract and pointed the other way down the same channel.
+
+**It is `RJ-O2`, not a new job.** The checklist's own last two steps are *Capture delivery photo* and
+**Confirm handover with the client** — the two that cannot be completed alone. `ux-research`'s field
+cases for them are a locked courtyard gate, a wrong entrance and nobody at the door, and until now the
+operator's only answer on this screen was to improvise off-app, which is the exact thing `RJ-O2`
+exists to remove. The channel already existed and only ran one way: `chat.html` is the client writing
+*"the code is 4471"*, and no frame let the operator read it.
+
+| Way out | Row label | Target | Why it is that shape |
+|---|---|---|---|
+| the phone | **Call client** | `call-client.html` | The **second new screen**. `voice.md` **A2** permits the phone-only action to say *Call*; the object changes and the verb does not. The number is masked in **both** directions — the operator has never been shown the client's — so this is DRON's own screen for the same reason `call.html` is, and not a `tel:`. |
+| the thread | **Chat with the client** | `chat-client.html` | The new screen, and the **same conversation** `chat.html` already draws — the same five messages, read from the other end. `voice.md` **A12**: *chat* as a verb taking its object, the shape the designer fixed on 2026-08-16; `A9`'s *Send message* stays on the composer's own button. |
+
+**There is no third row, and that is a finding rather than a trim.** The client's drawer ends in
+*Contact support* → `support.html`, the Help hub. **The operator has no support hub in the product** —
+`sitemap.md §6.2` gives the operator side no `EJ-2` entry of its own, and `operator-dispute` is a
+*client-raised* issue on a closed job, not a channel to DRON. Inventing a target for a third row would
+have been inventing a screen; pointing it at the client's hub would have crossed the two personas'
+navigation. **Two rows is the honest count, and the gap is logged here for the designer** — the whole
+operator-side `EJ-2` route is one decision, not one row on one drawer.
+
+**Both checklist states take it, at the same weight.** `concept.md` rev 26's rule — *"the same control
+at the same weight in every state"* — is what kept `Contact operator` from drifting to grey on
+`tracking-error`. Here the weight is the **grey secondary** on both files, because the green budget is
+already spent: `job-checklist` spends it on *Complete & add delivery photo* and `job-checklist-error`
+on *Complete the step* inside the blocking notice. On the error state the drawer also does real work —
+the close is blocked, and the person who can unblock it is at the other end of it.
+
+### 15a. Chat with the client  *(sub-view of 15 · base only)*
+- **Job:** `RJ-O2` — the step *Confirm handover with the client* completed without improvising; it is
+  `RJ-C2`'s counterpart, read from the operator's end.
+- **Place in flow:** *not on the MJ-2 spine.* `Job checklist (in progress)` → **Contact client** drawer
+  → *Chat with the client* → here; back returns to the checklist. Nothing downstream depends on it.
+- **States:** **base only.** Same reading as `§9b`: the thread is opened from a live job that already
+  has both parties, so it is never empty, and a failed send is a per-message state, not a screen. Built
+  as one file, `chat-client.html`.
+- **It is one thread, drawn twice.** The five messages are `chat.html`'s five, with `--in` and `--out`
+  swapped and the `.dr-sr` speaker names exchanged — *Olena H.* is now the one being read and *You* is
+  the operator. Nothing is written for this frame that the client's frame does not already say, which
+  is the only way two screens of one conversation can be trusted to be one conversation.
+- **`sitemap.md §4` is not re-opened by this either.** The deleted object is the **pre-booking
+  negotiation** thread. This is the same in-job channel `§9b` scoped on 2026-08-16 — a paid job, one
+  auto-dispatched operator, a locked price — reached only from the checklist of a job already accepted.
+
+### 15b. Call the client  *(sub-view of 15 · base only)*
+- **Job:** `RJ-O2` — the channel that does not wait for a typed answer, for the thing happening now: a
+  gate that will not open with a drone already overhead.
+- **Place in flow:** *not on the MJ-2 spine.* `Job checklist (in progress)` → **Contact client** drawer
+  → *Call client* → here; **Minimise** and **End call** both return to the checklist.
+- **States:** **base only** — the connected call. Built as one file, `call-client.html`.
+- **The third instance of `.dr-call`, not a third call screen.** Everything it shares with `call.html`
+  and `call-support.html` is byte-identical — the `--night` ground, the 22/700 name over the tabular
+  duration, the 176px portrait disc, the `--night-raised` pill of four 44px discs, *End call* as the
+  one saturated fill. **Three things differ, each forced by who is on the line:** the **name** is
+  *Olena H.*, the string `job-brief` and `result-upload` already carry for this client; **both exits**
+  return to `job-checklist.html`, because that is the screen the call was raised from and the job is
+  still open on it; and the **top-right column keeps one control, not two** — the bubble to
+  `chat-client.html` stays, and *Add support to the call* comes off, having no operator-side target
+  (see the two-rows finding under `§15`).
+- **The portrait disc is a placeholder for good, not a slot waiting on a file.** `visuals/gaps.md` B1
+  #4 leaves the operator's own portrait pending; the **client's** portrait is a different thing — DRON
+  has no client photograph in the repo and no reason to hold one, and the operator seeing a face before
+  the door opens is not a job anything asks for. The disc stays the kit's outline person, the way
+  `call-support`'s does.
+- **`Video` is inherited, not re-decided** — the same reading `§9c` and `C9` already carry: a video
+  call has no `sitemap.md` job on either side. It is here because the control bar is one component and
+  one screen does not re-cut it; it comes off in one line, on all three call screens at once, if it is
+  not wanted.
+- **Two states are traced and not built:** *calling* (loading) and *no answer* (error — whose way out
+  is the thread, so it is not a dead-end). The same pair `§9c` records, held to the same decision.
 
 ### 16. Result upload / close job
 - **Job:** `RJ-O2` — the checklist ends in a result (`O-04`); this upload **gates** `RJ-O3` payment (proof before pay, `H-7`).
@@ -640,9 +793,13 @@ Rows = main-path screens (in flow order). Columns = the four states. **✓** = r
 | 13 | Incoming job offer / accept-decline | ✓ | — | — | — |
 | 14 | Job brief / detail | — | ✓ | — | — |
 | 15 | Job checklist (in progress) | — | ✓ | — | — |
+| 15a | Chat with the client *(sub-view of 15)* | — | — | — | — |
+| 15b | Call the client *(sub-view of 15)* | — | — ‡ | — ‡ | — |
 | 16 | Result upload / close job | — | ✓ | ✓ | — |
 | 17 | Wallet / earnings | ✓ | — | — | ✓ |
 | 18 | Withdraw to card / bank account | — | ✓ | ✓ | ✓ |
+
+‡ **15b — two states are traced but not built** (`§15b`), the same pair and the same decision as `§9c`: *calling* (loading) and *no answer* (error, whose way out is the thread). Recorded so the gap reads as a decision, not an oversight.
 
 **Success screens (deliberately few — five, not everywhere):** *Order confirmed / operator revealed*, *Delivery confirmation*, *Rate the order* (Client); *Wallet / earnings*, *Withdraw to card / bank account* (Operator). Each is a real "it worked" milestone; every other screen only hands off.
 
@@ -823,7 +980,18 @@ shape as `account-photo` under S2 and `chat` / `call` under §9.
 | O4 | **Profile setup** | `RJ-C1` consumes · `EJ-3` | *MJ-2 activation*: approved → Profile setup → home | base only (a setup form; no data state in the flow) | `operator-profile-setup.html` |
 | O5 | **Dispute / client issue (operator side)** | `EJ-2` operator side · `OE-13` | *MJ-2 main*: client disputes → payment held pending EJ-2 | **Error** ✓ (payment held pending resolution) | `operator-dispute.html`, `operator-dispute-error.html` |
 | O6 | **Ratings dashboard** | `EJ-3` · `O-06` | *EJ-3*: home → Ratings → has ratings? | **Empty** ✓ (no ratings yet — cold-start O-2; auto-dispatch keeps feeding jobs) | `ratings.html`, `ratings-empty.html` |
-| O7 | **Operator account / profile** | `§7.4` operator utility + role switch | *Account tab*: operator taps Account → own account (mode dropdown Operator ⇄ Client) | base only (fixes the leak where the operator Account tab opened the client `account.html` and dropped them into the client flow) | `operator-account.html` |
+| O7 | **Operator account / profile** | `§7.4` operator utility + role switch | *Account tab*: operator taps Account → own account (mode dropdown Operator ⇄ Client) | base + **photo** sub-view (change the profile photo — take a photo, choose a picture, delete; the same modal `account-photo` is, so no dead-end — Cancel / Save → Operator account, and no back chevron) | `operator-account.html`, `operator-account-photo.html` |
+
+**`operator-account-photo.html` is a sub-view of O7, not a new sitemap screen** — added 2026-08-21 on the
+designer's word: «додай для оператора біля бейджу з рейтингом редагувати фото і додай wireframes як у клієнта
+з можливістю загрузити фото або зробити». It is the twin of `account-photo.html` under S2 and stands in the
+same relation to its parent: the destination of a pencil badge that now rides on the operator's own avatar,
+beside the rating pill. Same modal shape (Cancel · *Profile photo* · Save in the bar; Take a photo · Choose a
+picture · Delete on the bottom edge), same **base only** — no `flows.md` node produces an empty, error or
+loading state, and an empty avatar is the base. **What differs is whose face and whose reader:** the note
+under the picture says the **client** sees it, where the client's says the **operator** does, because that is
+the person on the other side of each order. `sitemap.md §7.4` still lists one operator Account screen; the
+file is a state of it, listed in the `Files` column above rather than given a row of its own.
 
 **Not a new screen.** *Service catalogue* (`sitemap.md §6.1`) stays **merged into `listings.html`** per
 `sitemap.md §7.3` (Home ⊃ Catalogue) — no separate file, by design. Recorded here so its absence is explicit.

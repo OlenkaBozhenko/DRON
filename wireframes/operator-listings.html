@@ -345,6 +345,15 @@
       <section id="incoming" aria-label="Incoming offers">
         <ul class="dr-list dr-list--snug">
 
+          <!-- EACH CARD NOW OPENS ITS OWN JOB (2026-08-21, _screens.md §§13–14). The two
+               offers shared job-offer.html and all three cards shared job-brief.html, so
+               tapping "Roof inspection · ₴650" opened "Package delivery · ₴180" — WCAG 2.4.4
+               Link Purpose (In Context), level A, against the card's own accessible name.
+               Delivery keeps the unsuffixed pair; inspection goes to job-offer-inspection /
+               job-brief-inspection; the active aerial job to job-brief-aerial. ONLY THE
+               hrefs MOVE on this page — no card, string, zone or value is touched.
+               STILL DIVERGING, REPORTED AT §14: Accept → brief → Start job lands on
+               job-checklist.html, which reads "Parcel secured" whatever the service. -->
           <!-- offer card: header (service + status) · route · fee + expiry · Accept/Decline -->
           <li>
             <article class="dr-card">
@@ -374,7 +383,7 @@
 
           <li>
             <article class="dr-card">
-              <a class="dr-card__link" href="job-offer.html" aria-label="Roof inspection job — open brief"></a>
+              <a class="dr-card__link" href="job-offer-inspection.html" aria-label="Roof inspection job — open brief"></a>
               <span class="dr-order__top">
                 <span class="dr-order__head">
                   <span class="dr-order__title">Roof inspection</span>
@@ -390,7 +399,7 @@
                 <span class="dr-chip">expires in 6s</span>
               </span>
               <span class="dr-card__actions">
-                <a class="dr-btn dr-btn--primary" href="job-brief.html">Accept</a>
+                <a class="dr-btn dr-btn--primary" href="job-brief-inspection.html">Accept</a>
                 <a class="dr-btn dr-btn--secondary" href="operator-listings.html">Decline</a>
               </span>
             </article>
@@ -405,7 +414,7 @@
         <ul class="dr-list dr-list--snug">
           <li>
             <article class="dr-card">
-              <a class="dr-card__link" href="job-brief.html" aria-label="Aerial photo and video — open job"></a>
+              <a class="dr-card__link" href="job-brief-aerial.html" aria-label="Aerial photo and video — open job"></a>
               <span class="dr-order__top">
                 <span class="dr-order__head">
                   <span class="dr-order__title">Aerial photo &amp; video</span>

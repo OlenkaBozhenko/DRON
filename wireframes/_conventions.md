@@ -312,7 +312,8 @@ button rather than as a second control: the box is what says *tappable*, and on 
 is the only thing the target has to show for itself. Tertiary keeps its job **outside** the action
 bar — the top-bar text action (`listings-filters` · *Clear all*) and links inside a card.
 
-**Two primaries in one bar — the departure, on `account-photo`** (designer, 2026-08-16, rev 146:
+**Two primaries in one bar — the departure, on `account-photo` and its operator twin** (designer,
+2026-08-16, rev 146:
 *«дві зерені delete сіра»*). The rule above says *primary + secondary*, one main action per bar; this
 screen draws **Take a photo** and **Choose a picture** as two `.dr-btn--primary` and **Delete** as the
 secondary. **The ghost half of rev 112 is kept** — every button in the bar is filled, and the
@@ -324,6 +325,10 @@ Contrast is untouched — charcoal on green **9.46:1**, charcoal on `--btn2` **1
 is met at **341 × 44** three times, so nothing here fails a standard; what is spent is the product's own
 scarcity. Recorded as her call with the number, not as conformance. **One green returns the screen to
 the band** whenever she wants it: `Choose a picture` to `--secondary` puts it at 15,004px² · 4.93%.
+**`operator-account-photo` inherits the departure whole** (2026-08-21) — same three buttons, same two
+fills, the same 9.85% — because it is the same bar built for the same job on the other persona, and
+splitting the two would put one rule on the client's photo and another on the operator's. It is one
+departure carried twice, not a second one.
 
 **One action per row — the bottom bar never splits** (designer, 2026-08-16, rev 120:
 *«кнопки одна під одною. пройдись по проекту і подивись щоб кругом у нижньому барі кнопрки були
@@ -347,7 +352,7 @@ what joins them is closed and counted, not open:
 | May sit in the bar | Where it exists | Why |
 |---|---|---|
 | Buttons | every `footer.dr-actionbar` | §11 above |
-| A caption line (`.dr-note`) | `order-setup-error`, `account-photo` (rev 146) | states a fact about the action, not about `main`. On `account-photo` it is the message slot `HIG · Action sheets` puts above a set of choices, and it is tied to all three by `aria-describedby` |
+| A caption line (`.dr-note`) | `order-setup-error`, `account-photo` (rev 146), `operator-account-photo` (2026-08-21) | states a fact about the action, not about `main`. On both photo screens it is the message slot `HIG · Action sheets` puts above a set of choices, and it is tied to all three buttons by `aria-describedby` |
 | A price summary (`.dr-price`) | `time-slot`, `time-slot-empty` | the number the button commits to |
 | **A control that rides the same commit** | `order-setup` · *Save this address for next time* | it takes effect **when the button is pressed**, so it is read where it is committed |
 
@@ -406,7 +411,8 @@ control (`×`, `aria-label="Close …"`), not a chevron — `listings-filters.ht
 on her Figma `100:30`): **Cancel** on the left, **Save** on the right, no chevron and no `×`. `HIG · Modality`
 draws exactly this bar for a view that edits something and has to be committed or abandoned, and the pair is
 the whole reason the chevron cannot stay — a screen cannot both *go back* and *be dismissed without saving*,
-and offering both puts two exits with two different meanings a thumb's width apart. One screen: `account-photo`.
+and offering both puts two exits with two different meanings a thumb's width apart. Two screens:
+`account-photo` and `operator-account-photo` (2026-08-21).
 The `×` reading is not replaced — `listings-filters` applies as you tap and has nothing to commit, so it is
 dismissed, not cancelled.
 
@@ -631,9 +637,9 @@ chrome so the toast cannot cover the control that raised it, and — where the r
 | Screen | Base file | State pages |
 |---|---|---|
 | Operator home + status toggle | `operator-listings.html` | `operator-listings-empty.html` (idle / no offers) |
-| Incoming job offer / accept-decline | `job-offer.html` | `job-offer-empty.html` |
-| Job brief / detail | `job-brief.html` | `job-brief-error.html` |
-| Job checklist (in progress) | `job-checklist.html` | `job-checklist-error.html` |
+| Incoming job offer / accept-decline — **one file per service, two of them, 2026-08-21** (`_screens.md` §13). The offer card, the second zone and the countdown are the ones `operator-listings` writes on that card, so the screen the tap opens is the job the tap named (`WCAG 2.4.4`, level A). A delivery reads **Route** — pickup → drop-off; an inspection reads **Site** — location · structure. **The client’s note is not on this screen**: `RJ-O1` gives it a ten-second decision, and prose does not fit in it. No `-aerial` file — that job is already accepted, so it has no offer. | `job-offer.html` | `job-offer-empty.html`, `job-offer-inspection.html` |
+| Job brief / detail — **one file per service, three of them, 2026-08-21** (`_screens.md` §14), reached by **Accept** on an offer and by the tap on an active card. The well is a **Route** for delivery and a **Site** for the other two; the details rows name what that service has (Pickup / Drop-off · Shoot · Structure). **The Notes zone is the client’s optional `Notes for the operator` field**, so `job-brief-aerial` is the instance with none and **states the absence** — *The client left no notes.* in `.dr-listing__desc`, `--slate` on `--card` **5.95:1** — rather than dropping the zone, which would not distinguish *none left* from *not loaded*. `job-brief-aerial` also says **Continue**, not *Start job*: it is the only one reached from a job already in progress. | `job-brief.html` | `job-brief-error.html` (service-neutral — stand down is airspace / weather, not a service), `job-brief-aerial.html` · `job-brief-inspection.html` — base only |
+| Job checklist (in progress) *(the **Contact client** CTA opens a drawer — Call client · Chat with the client — on **both** states, at the grey secondary weight on both, the green being spent on the close CTA and on the error block's recovery CTA; **2026-08-21**, `_screens.md` §15)* | `job-checklist.html` | `job-checklist-error.html`, `call-client.html` · `chat-client.html` (sub-views — the two channels the drawer opens, both base only, and the **mirror** of `tracking`'s `call.html` · `chat.html`. Neither hands off to the OS: the number is masked in both directions, so the operator has never been shown the client's either. `call-client.html` is the **third** instance of `.dr-call`, not a third call screen — what differs is the name (*Olena H.*), both exits (back to the open job) and a top-right column of one control instead of two, *Add support to the call* having no operator-side target. `chat-client.html` is `chat.html`'s five messages with `--in` / `--out` swapped — one conversation, drawn from both ends) |
 | Result upload / close job | `result-upload.html` | `result-upload-error.html`, `result-upload-loading.html` |
 | Wallet / earnings *(base = success)* — **the balance is a green card and the Withdraw CTA floats above the tab bar, 2026-08-21** (`_screens.md` §17, `concept.md` rev 163) | `wallet.html` | `wallet-empty.html`, `earning-details.html` · `earning-details-aerial.html` · `earning-details-inspection.html` — the record behind one earnings card (**View details**), read-only: what the job was, where it ran, when it closed, what it paid and how it reached the balance. **One file per service, 2026-08-21**, the shape `order-details` set on 2026-08-16 and for the same reason — the heading names the service the card named. Base only, and no bottom bar: a settled payout has nothing to do to it |
 | Withdraw to card / bank account *(base = success)* | `withdraw.html` | `withdraw-error.html`, `withdraw-loading.html` |
@@ -656,11 +662,11 @@ chrome so the toast cannot cover the control that raised it, and — where the r
 | Profile setup (`RJ-C1` · `EJ-3`) | `operator-profile-setup.html` | — |
 | Dispute / client issue — operator (`EJ-2`, `OE-13`) | `operator-dispute.html` | `operator-dispute-error.html` |
 | Ratings dashboard (`EJ-3`) | `ratings.html` | `ratings-empty.html` |
-| Operator account / profile (`§7.4` operator · role switch) | `operator-account.html` | — |
+| Operator account / profile (`§7.4` operator · role switch) | `operator-account.html` | `operator-account-photo.html` (change the profile photo — the same **modal** `account-photo` is: Cancel · Save in the navigation bar, the three sources and Delete on the bottom edge, no back chevron) |
 
 *Service catalogue stays merged into `listings.html` (`sitemap.md §7.3`) — no separate file, by design.*
 
-*Operator vs client Account: the operator global nav's **Account** tab opens `operator-account.html` (operator bottom nav + payout/service-area/drone details), never the client `account.html`. Both share the `account-edit.html` edit sub-view (drone documents / insurance).*
+*Operator vs client Account: the operator global nav's **Account** tab opens `operator-account.html` (operator bottom nav + payout/service-area/drone details), never the client `account.html`. Both share the `account-edit.html` edit sub-view (drone documents / insurance) — but **not** the photo sub-view: from 2026-08-21 each persona has its own, `account-photo.html` and `operator-account-photo.html`, because each shows a different face and names a different reader (the client's photo is what the **operator** sees on arrival; the operator's is what the **client** sees).*
 
 ---
 

@@ -39,9 +39,9 @@
     ]},
     { title: "Operator · MJ-2 + RJ-O3", screens: [
       { name: "Operator home + status toggle",         file: "operator-listings.html",  states: [["empty","operator-listings-empty.html"]] },
-      { name: "Incoming job offer / accept-decline",   file: "job-offer.html",          states: [["empty","job-offer-empty.html"]] },
-      { name: "Job brief / detail",                    file: "job-brief.html",          states: [["error","job-brief-error.html"]] },
-      { name: "Job checklist (in progress)",           file: "job-checklist.html",      states: [["error","job-checklist-error.html"]] },
+      { name: "Incoming job offer / accept-decline",   file: "job-offer.html",          states: [["inspection","job-offer-inspection.html"],["empty","job-offer-empty.html"]] },
+      { name: "Job brief / detail",                    file: "job-brief.html",          states: [["aerial","job-brief-aerial.html"],["inspection","job-brief-inspection.html"],["error","job-brief-error.html"]] },
+      { name: "Job checklist (in progress)",           file: "job-checklist.html",      states: [["call the client","call-client.html"],["chat with client","chat-client.html"],["error","job-checklist-error.html"]] },
       { name: "Result upload / close job",             file: "result-upload.html",      states: [["error","result-upload-error.html"],["loading","result-upload-loading.html"]] },
       { name: "Wallet / earnings",                     file: "wallet.html",         success: true, states: [["details · delivery","earning-details.html"],["details · aerial","earning-details-aerial.html"],["details · inspection","earning-details-inspection.html"],["empty","wallet-empty.html"]] },
       { name: "Withdraw to card / bank account",       file: "withdraw.html",       success: true, states: [["error","withdraw-error.html"],["loading","withdraw-loading.html"]] }
