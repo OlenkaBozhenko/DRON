@@ -3550,16 +3550,23 @@ header.dr-topbar,
    stopping at the content edge.
    Opt-in, not automatic on :has(img): a slider whose slides mix the two
    treatments reads as broken.
-   Measured 2026-08-20, 390 frame: slider 373.4 × 577.6 filling .dr-main's
-   padding box; art band 373.4 × 358.1 = 62%, bottom-anchored; copy
-   top-anchored under 32 of padding; inner measure 333.4. */
+   Measured 2026-08-21, 375 frame: slider 373.5 × 577.6 filling .dr-main's
+   padding box; copy top-anchored under 48 of padding, the art band taking
+   what is left and centring the picture in it; inner measure 333.5. */
 .dr-slider--bleed{
   position: absolute; inset: 0; z-index: 0;
   margin: 0; padding: 0; align-items: stretch;
 }
+/* THE COPY SITS 48 BELOW THE CONTENT EDGE (designer, 2026-08-21: «Title and
+   subtitle опусти на 32 px вниз»). A delta, not a new value: 16 was where
+   rev 160 put it on her word, and 32 is `--sp-cta`, so the padding is the two
+   tokens added rather than a 48 nobody chose. It is her third setting of this
+   number today — 32 (rev 159), 16 (rev 160), 48 now — and each one is a look
+   at the built frame, which is why it is written as a sum and not baked in. */
 .dr-slider--bleed .dr-slide{
   height: 100%; position: relative; justify-content: flex-start;
-  padding: var(--sp-screen) var(--sp-group) 0; gap: var(--sp-snug);
+  padding: calc(var(--sp-screen) + var(--sp-cta)) var(--sp-group) 0;
+  gap: var(--sp-snug);
 }
 /* The bars keep everything they had — ground, hairline, place in the column.
    They are named only for paint order: an absolutely positioned slider paints
@@ -3571,10 +3578,10 @@ header.dr-topbar,
 /* .dr-main is the containing block, and once the slider leaves the flow it
    holds only the pager, which is positioned against the art band below. */
 .dr-screen:has(.dr-slider--bleed) > .dr-main{ position: relative; justify-content: flex-end; }
-/* THE COPY IS TOP-ANCHORED AND THE PICTURE TAKES THE FLOOR (designer,
+/* THE COPY IS TOP-ANCHORED AND THE PICTURE HOLDS THE REST (designer,
    2026-08-20, against a reference she supplied): heading and sub-line read
-   first, at the top of the screen, and the art stands under them on the
-   content floor.
+   first, at the top of the screen, and the art stands under them — on the
+   content floor until 2026-08-21, centred in the leftover band since.
    EVERY PICTURE DRAWS THE FULL WIDTH (designer, 2026-08-21: «зображення
    розтягни на всю ширину екрану в мобільному»). A fixed 62% band could not
    promise that: it held a 1.043 box, so a portrait cutout was height-bound
@@ -3582,20 +3589,31 @@ header.dr-topbar,
    instead, which is what full width means when the aspect ratios differ.
    Measured 2026-08-21: 373.4 wide on all nine slides; heights 309–430, the
    tallest being onboarding-payout at 74.4% of a 577.6 main.
-   The 74% cap is the guard, not the design: past it a picture would climb
-   into the copy, so it letterboxes instead. Nothing in the set reaches it. */
+   THE PICTURE IS CENTRED IN THAT SPACE, NOT STOOD ON THE FLOOR (designer,
+   2026-08-21: «зображення постав по центру»). The band is the height the copy
+   did not take, and seven of the nine pictures are shorter than it — bottom-
+   anchored, `oo2` left 107.4 of empty page between the sub-line and the
+   picture and none under it. Centred, that space is halved to either side and
+   the picture reads as the subject of the slide rather than as its floor.
+   Nothing about the width changes: still width-led, still 373.4.
+   What it costs is named: a picture TALLER than the band now loses both edges
+   instead of one. Two are. `onboarding-payout` is over by 1.7, so it gives up
+   0.8 at each edge instead of 1.7 at the top — invisible. `welcome`'s w2 is a
+   440.5 person cutout in a 405.1 band and gives up 17.7 / 17.8, which is not:
+   it was 3.4 off the top alone. `welcome` carries library cutouts, not her
+   onboarding set; a page modifier is hers to ask for, not mine to add. */
 .dr-slider--bleed .dr-slide__art{
   position: static; flex: 1 1 auto; min-height: 0; overflow: hidden;
   width: auto; margin: 0 calc(var(--sp-group) * -1);
-  align-items: flex-end; z-index: 0;
+  align-items: center; z-index: 0;
 }
 /* Width-led, and the width always wins: the picture takes the frame's width
    and keeps its own ratio, so no slide draws a letterboxed cutout with page
-   showing down both sides. What gives instead is the top of the picture — the
-   box is the space the copy did not take, and anything taller than it is
-   clipped there, which is why the figure is anchored bottom and why the well
-   clips. cover is still wrong and still unused: it would scale the subject up
-   and crop both ways; this crops one edge and never rescales.
+   showing down both sides. What gives instead is the height — the box is the
+   space the copy did not take, and anything taller than it is clipped by the
+   well, half at the top and half at the foot since the figure was centred.
+   cover is still wrong and still unused: it would scale the subject up and
+   crop to fill; this crops what does not fit and never rescales.
    THAT IS ALSO WHAT MAKES THE COPY SAFE AT 200%. The band was positioned
    absolutely until 2026-08-21 and could not yield, so the copy grew straight
    into it — 181px of overrun, measured. As a flex item the band gives its
@@ -3603,7 +3621,7 @@ header.dr-topbar,
    any type size. */
 .dr-slider--bleed .dr-slide__art img{
   width: 100%; height: auto; max-height: none;
-  object-fit: contain; object-position: center bottom;
+  object-fit: contain; object-position: center;
 }
 /* ONE PAGER, UNDER THE SLIDER, WHERE IT WAS (designer, 2026-08-21: «слайдер
    має бути де і був»). A per-slide pager was built the same day and reverted

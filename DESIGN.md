@@ -1521,21 +1521,34 @@ is the right ink but a block with `margin-top: 2`, and `.dr-op__rating` is the s
 Three slides on CSS scroll-snap, no JS, with the kit's own `.dr-pager`. **`welcome`,
 `onboarding-client`, `onboarding-operator`.** The type inside a slide is the kit's own —
 `.dr-display` for the heading, `.dr-lead` for the sub-line — so no slide-specific type class was
-cut. Measured 2026-08-20 on the 390 frame: slider **373.4 × 577.6** filling `.dr-main`'s padding
-box, art band **373.4 × 358.1 = 62%** bottom-anchored, inner measure 333.4.
+cut. Measured 2026-08-21 on the 375 frame: slider **373.4 × 577.6** filling `.dr-main`'s padding
+box, inner measure 333.4.
 
-**The copy is top-anchored, the picture takes the floor** — the designer, 2026-08-20, against a
-reference she supplied, and *«текст ще вище на самий верх сторінки»* on 2026-08-21: heading and
-sub-line read first, **16** below the top of the content area, and the art stands under them. It
-replaces a centred copy block over a fixed **35%** band.
+**The copy is top-anchored, the picture is centred in what is left** — the designer, 2026-08-20
+against a reference she supplied, then *«текст ще вище на самий верх сторінки»* and finally
+*«Title and subtitle опусти на 32 px вниз»* / *«зображення постав по центру»* on 2026-08-21, this
+last against a second reference: title and sub-line at the top, the illustration floating in the
+middle, the action bar untouched. Heading and sub-line read first, **48** below the top of the
+content area — `calc(var(--sp-screen) + var(--sp-cta))`, so the title's top edge sits **148.8**
+down the frame — and the art band takes the rest and centres the picture in it. It replaces a
+centred copy block over a fixed **35%** band, then a floor-standing picture under **16** of padding.
+
+**Measured after, band × picture, space above / below:** `oc1` 428.3 × 309.0 **59.6 / 59.6** ·
+`oc2` 428.3 × 315.4 **56.4 / 56.5** · `oc3` 451.6 × 351.3 **50.1 / 50.1** · `oo1` 428.3 × 342.4
+**42.9 / 42.9** · `oo2` 428.3 × 352.8 **37.8 / 37.8** · `oo3` 428.3 × 430.0 **−0.8 / −0.8**. Only
+`onboarding-payout` is taller than its band, and centred it gives up 0.8 at each edge rather than
+1.6 at the top. **The cost lands on `welcome`, whose three pictures are library cutouts and not the
+onboarding set:** `w2` is a **440.5** figure in a **405.1** band, so it loses **17.7** off the top
+and **17.8** off the bottom where bottom-anchored it lost 3.4 off the top alone. Recorded, not
+fixed — a `welcome`-only modifier is the designer's to ask for.
 
 **Every picture draws the full width** — the designer, 2026-08-21: *«зображення розтягни на всю
 ширину екрану в мобільному»*. A fixed band could not promise it: the band held a 1.043 box, so a
 portrait cutout was height-bound and drew **311 of 373.4 — 83.3%**. The band is now a flex item
 that takes the height the copy did not, and the picture is width-led inside it — **373.4 on all
 nine slides**, heights **159–441**. Where a picture is taller than the space left, the well clips
-its top rather than letterboxing it: `cover` is still unused, because it would rescale and crop
-both ways.
+it rather than letterboxing it — half at the top and half at the foot since the figure was centred
+on 2026-08-21: `cover` is still unused, because it would rescale and crop to fill.
 
 **The pager stays one element under the slider** — the designer, 2026-08-21: *«слайдер має бути де
 і був»*. A per-slide pager was built the same day and reverted on her word. Two costs, recorded
@@ -1553,7 +1566,9 @@ and the rule stands for the next slide that starts empty.
 doubled, the copy used to overrun the art by **181px** under the fixed 62% band and by **97px**
 under the centred composition that preceded it — no text lost, but text drawn over a phone mockup
 is not readable text. Measured again 2026-08-21, after the band became a flex item: **0px of
-overrun on every slide at 200%**. The band gives its height up to the copy first and clips its own
+overrun on every slide at 200%**, and again after the copy dropped to 48 — `oo1/2/3` band **196.4**
+with the sub-line ending 12 clear of it, `w3` band collapsed to **0** with the copy 7.3 clear of
+the content floor. The band gives its height up to the copy first and clips its own
 picture instead, so no type size can put text under artwork.
 
 **The pager is an indicator, not a control** — the designer, 2026-08-18: *«крапки не клікабельні там
