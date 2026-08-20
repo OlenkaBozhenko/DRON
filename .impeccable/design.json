@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-18T00:00:00Z",
+  "generatedAt": "2026-08-21T00:00:00Z",
   "title": "Design System: DRON",
   "extensions": {
     "note": "Extracted from the painted product surfaces and verified by computed style in a browser; the set was completed 2026-08-18. No tonal ramps are recorded: the project declares no tonal scale, and synthesising one would put colours in this file that appear nowhere in the build.",
@@ -282,9 +282,9 @@
       "name": "Chips",
       "kind": "chip",
       "refersTo": "chip-live",
-      "description": "Live/claim carries the green tint and charcoal; muted/fact carries the media grey and slate. Same geometry.",
-      "html": "<span class=\"ds-chip ds-chip-live\"><svg viewBox=\"0 0 24 24\" width=\"13\" height=\"13\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z\"/><path d=\"M9 11.5l2.2 2.2L15 10\"/></svg>Verified by DRON</span> <span class=\"ds-chip ds-chip-muted\"><svg viewBox=\"0 0 24 24\" width=\"13\" height=\"13\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z\"/></svg>Insured</span>",
-      "css": ".ds-chip{ display:inline-flex; align-items:center; gap:6px; padding:5px 10px; border:0; border-radius:999px; font:600 12px/16.8px -apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; } .ds-chip svg{ display:block; } .ds-chip-live{ background:#E7F0D2; color:#1A1A1A; } .ds-chip-muted{ background:#E4E1DA; color:#5A5751; }"
+      "description": "Live/claim carries the green tint and charcoal; muted/fact carries the media grey and slate. Same geometry. One second size only — .ds-chip-sm, 11/600 at 3px 8px, added 2026-08-21 for the role pill that rides BESIDE a name (operator-account's Operator): 65.66 × 21.39 against the base 74.17 × 26.80, colour untouched at 5.51:1. It is not an escape hatch for a row that will not fit — a row that will not fit gets more width, not smaller type.",
+      "html": "<span class=\"ds-chip ds-chip-live\"><svg viewBox=\"0 0 24 24\" width=\"13\" height=\"13\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z\"/><path d=\"M9 11.5l2.2 2.2L15 10\"/></svg>Verified by DRON</span> <span class=\"ds-chip ds-chip-muted\"><svg viewBox=\"0 0 24 24\" width=\"13\" height=\"13\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z\"/></svg>Insured</span> <span class=\"ds-chip ds-chip-muted ds-chip-sm\">Operator</span>",
+      "css": ".ds-chip{ display:inline-flex; align-items:center; gap:6px; padding:5px 10px; border:0; border-radius:999px; font:600 12px/16.8px -apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; } .ds-chip svg{ display:block; } .ds-chip-live{ background:#E7F0D2; color:#1A1A1A; } .ds-chip-muted{ background:#E4E1DA; color:#5A5751; } .ds-chip-sm{ padding:3px 8px; font-size:11px; line-height:15.4px; }"
     },
     {
       "name": "Status Indicator",

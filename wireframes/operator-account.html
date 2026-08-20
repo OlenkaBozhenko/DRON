@@ -43,28 +43,23 @@
     <main class="dr-main">
       <p class="zlabel dr-label">Profile <span class="dr-label__act">▸ Diia-verified operator</span></p>
       <section aria-label="Profile">
-        <article class="dr-op">
+        <article class="dr-op dr-op--badgerow">
           <span class="dr-avatar-md"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
           <span class="dr-op__info">
-            <span class="dr-op__name">Ivan K.</span>
+            <!-- THE ROLE RIDES BESIDE THE NAME (2026-08-21, the designer:
+                 «постав бейдж оператор біля імені зроби трохи меншим а ті два в
+                 один рядок»). `Operator` was never a credential — it is who this
+                 person is, which is the same rung as the name — so it belongs on
+                 the name's line and at the name's size, not in the row of checked
+                 documents. .dr-chip--sm draws it 65.7 × 21.4 against the 12px
+                 chip's 74.2 × 26.8 — 8.5 narrower, 5.4 shorter, and 3.4 taller
+                 than the name's own 18px line box, so it brackets the word
+                 instead of matching it. Pair unchanged at 5.51:1. -->
+            <span class="dr-op__head">
+              <span class="dr-op__name">Ivan K.</span>
+              <span class="dr-chip dr-chip--sm">Operator</span>
+            </span>
             <span class="dr-op__rating">4.9 ★ · 214 jobs · Verified by DRON</span>
-            <!-- THE CHIPS, AND THE DESIGNER SETTLED THEM ON 2026-08-18:
-                 «оператор сірий лайсенс і insurance зелені».
-                 So the rule is now readable in one line: GREEN MEANS DRON CONFIRMED
-                 THIS DOCUMENT, grey means a plain supporting fact. `Operator` is a
-                 role, not a credential, so it stays the warm-grey rung. `Insured` and
-                 `CAA licence` are both documents the platform checked, so both take
-                 .dr-chip--claim — --green-wash behind --ink at 14.75:1 — and both
-                 wear the same shield with a trailing checkmark, because two chips of
-                 one kind must not be told apart by drawing.
-                 THIS REPLACES THE BLUE RUNG HERE AND EVERYWHERE. rev 58/69 had cut
-                 --trust-wash / --trust-ink for `Insured` at 5.65:1, on the reading
-                 that a third party's confirmation was a different kind of claim from
-                 DRON's own. Her call collapses that distinction: one word, one
-                 colour, across all 14 screens that carry it. The green wash is a tint
-                 (1.03:1 on the card) so the green budget does not count it, and the
-                 pair is 14.75:1 against the blue rung's 5.65:1. -->
-            <span class="dr-chips dr-op__badges"><span class="dr-chip">Operator</span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>CAA licence<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
           </span>
           <!-- THE EDIT AFFORDANCE. The CSS-drawn pencil (.op-edit / .ic-edit /
                .pencil / .tip, still declared in the <style> block above and now
@@ -74,6 +69,24 @@
           <a class="dr-btn dr-btn--icon" href="account-edit.html" aria-label="Edit profile">
             <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>
           </a>
+          <!-- THE TWO CHECKED DOCUMENTS, ON THEIR OWN FULL-WIDTH LINE.
+               The rule set on 2026-08-18 — «оператор сірий лайсенс і insurance
+               зелені» — is unchanged and now reads cleaner for it: GREEN MEANS DRON
+               CONFIRMED THIS DOCUMENT. `Insured` and `CAA licence` are both papers
+               the platform checked, so both take .dr-chip--claim — --green-wash
+               behind --ink at 14.75:1 — and both wear the same shield with a
+               trailing checkmark, because two chips of one kind must not be told
+               apart by drawing. Nothing was cut to fit: the pair needs 244.1 and
+               .dr-op--badgerow gives it the card's full 309 instead of the info
+               column's 185, so 64.9 of slack sits at the end of the line.
+               THIS REPLACES THE BLUE RUNG HERE AND EVERYWHERE. rev 58/69 had cut
+               --trust-wash / --trust-ink for `Insured` at 5.65:1, on the reading
+               that a third party's confirmation was a different kind of claim from
+               DRON's own. Her call collapses that distinction: one word, one
+               colour, across all 14 screens that carry it. The green wash is a tint
+               (1.03:1 on the card) so the green budget does not count it, and the
+               pair is 14.75:1 against the blue rung's 5.65:1. -->
+          <span class="dr-chips dr-op__badges"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>CAA licence<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
         </article>
       </section>
 
@@ -92,11 +105,14 @@
             <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
           </button>
         </div>
-        <!-- A standalone notice, not a field hint: .dr-field__hint declares
-             flex-basis:100%, which in a column flex parent sizes the MAIN axis and
-             blows the box up wherever that parent has a definite height. So it takes
-             .dr-note with the flush modifier — same 12/400 --slate, left-aligned. -->
-        <p class="dr-note dr-note--flush">Switching changes what the app shows. Your Diia identity stays the same.</p>
+        <!-- NO NOTICE UNDER THE ROW (2026-08-21, the designer: «видали опис цей»).
+             The 12/400 --slate line — «Switching changes what the app shows. Your Diia
+             identity stays the same.» — is cut. It was supplementary help, not a
+             label: WCAG 3.3.2 governs instructions an INPUT needs to be understood,
+             and this control is a picker whose visible label reads Mode, whose value
+             reads Operator, and whose drawer names both routes in full («Operator —
+             take jobs» / «Client — order services»). The name survives the cut, so
+             nothing accessible left with the sentence. -->
       </section>
 
       <p class="zlabel dr-label">Account <span class="dr-label__act">▸ payout &amp; preferences</span></p>
