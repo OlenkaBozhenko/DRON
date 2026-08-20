@@ -3611,9 +3611,18 @@ header.dr-topbar,
    289.1 × 341.0 with nothing clipped at all any more. Cut or
    narrower is the whole of the choice for a picture taller than its space,
    and she chose narrower on the one she was looking at. */
+/* `align-self: stretch` IS LOAD-BEARING, AND IT COST A BROKEN SLIDE TO LEARN.
+   .dr-slide centres its children, so the well was shrink-to-fit; while the
+   picture was `height: auto` its width:100% held the well open at 373.4. Under
+   `height: 100%` the well's width comes from the picture's own ratio instead —
+   and an image that has not loaded HAS no ratio, so the well collapsed to 19.6
+   and, being 19.6 wide and off-screen, never tripped `loading="lazy"`. It
+   never loaded, so it never got a ratio: `oo3` and `w2` drew nothing at all.
+   Stretched, the well is 373.4 whatever the picture is doing, and `contain`
+   centres the drawing inside it — same geometry, no dependency on the load. */
 .dr-slider--bleed .dr-slide__art{
   position: static; flex: 1 1 auto; min-height: 0; overflow: hidden;
-  width: auto; margin: 0 calc(var(--sp-group) * -1);
+  width: auto; align-self: stretch; margin: 0 calc(var(--sp-group) * -1);
   padding-block: var(--sp-cta);
   align-items: center; z-index: 0;
 }
