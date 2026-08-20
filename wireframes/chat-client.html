@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Chat with the client · base</title>
+<!--
+  SCREEN (_screens.md §15a): "Chat with the client" — a sub-view of "Job checklist (in progress)",
+  not a node on the MJ-2 spine. PERSONA: Operator O-1. JOB: RJ-O2 (execute without improvising —
+  the checklist's own last steps are Capture delivery photo and Confirm handover with the client).
+  STATE: base only.
+  FLOW: job-checklist → "Contact client" drawer → Chat with the client → here; back → the checklist.
+
+  ADDED 2026-08-21 on the designer's word against the built checklist: «додай сюди ще Contact with
+  client, по кліку відкривай дровер як у клієнта: дзвінок, повідомлення; додай wireframes яких не
+  вистачає».
+
+  IT IS ONE THREAD, DRAWN TWICE — NOT A SECOND CONVERSATION. The five messages are chat.html's
+  five, with --in and --out swapped and the .dr-sr speaker names exchanged: "Olena H." is now the
+  one being read and "You" is the operator. Nothing is written for this frame that the client's
+  frame does not already say, which is the only way two screens of one conversation can be trusted
+  to be one conversation. THE SECOND MESSAGE IS WHY BOTH FRAMES EXIST: the client answers "the code
+  is 4471", and until today no operator frame let anyone read it.
+
+  WHAT THIS IS NOT. sitemap.md §4 deletes "Client ↔ operator chat / messaging" as the Rover
+  async-negotiation anti-pattern — haggling over a job BEFORE it is booked. This thread only exists
+  while a PAID job is running, between the one operator dispatched to it and that client, and there
+  is nothing in it to negotiate: the price was locked before payment (RJ-C3) and the operator was
+  not chosen. It is the Bolt in-ride message, not the Kabanchik thread. The verdict is annotated in
+  sitemap.md §4 for BOTH ends now, not reversed.
+
+  BASE ONLY. Same reading as §9b: no flows.md node produces an empty, error or loading thread — the
+  screen opens from a live job that already has both parties, so it is never empty, and a failed
+  send is a state of one message, not of the screen.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Chat with the client</h1>
+    <p class="sub">Operator · MJ-2 (sub-view of Job checklist) · state: <b>base only</b> · file: chat-client.html</p>
+    <dl>
+      <dt>Persona</dt><dd>Operator O-1 (primary)</dd>
+      <dt>Job</dt><dd>RJ-O2 — execute without improvising: the handover step, completed with the person it needs</dd>
+      <dt>Node</dt><dd>Not on the spine — job-checklist → Contact client drawer → Chat with the client</dd>
+    </dl>
+    <div class="flow"><b>The other end of <code>chat.html</code>.</b><br>The same five messages, read from the operator's side — one thread, two frames. Open only while an accepted job is running; nothing to negotiate, the price was locked before payment and the operator was not chosen.<br><b>Exit:</b> back → <b>Checklist</b>.<br><b>States:</b> none.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Thread</b> ▸ what was said, and when</p><p><b>Composer</b> ▸ write and send</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+
+    <!--
+      THE BAR CARRIES THE PERSON'S NAME, `HIG · Navigation bars` read the way Messages reads it: the
+      view IS the correspondent. The name is the string the operator's own screens already carry for
+      this client — job-brief's details row, result-upload's header, ratings — so you are writing to
+      the person the brief named and the name does not change on the way.
+      The back control is the chevron alone with aria-label="Back to Checklist" — microcopy.md D9,
+      and "Checklist" is what job-checklist's own bar is titled, the same destination-string rule
+      chat.html's "Back to On the way" follows.
+    -->
+    <header class="topbar dr-topbar"><a class="dr-back" href="job-checklist.html" aria-label="Back to Checklist"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Olena H.</span><span class="dr-topbar__spacer"></span></header>
+
+    <main class="dr-main">
+      <p class="zlabel dr-label">Thread <span class="dr-label__act">▸ what was said, and when (RJ-O2)</span></p>
+      <!--
+        A THREAD IS A LIST, so it is one (`WCAG 1.3.1`). .dr-list--snug is the 12px rung, the same
+        step every other grouped list in a zone uses; no new layout class is cut for this screen.
+        WHO SAID IT IS CARRIED BY THE EDGE, not by the two grounds — --card and --btn2 are 1.25:1
+        apart and no eye separates them. Each row therefore names its speaker for assistive tech,
+        which is what `WCAG 1.4.1` asks when a visual distinction is positional. THE PAIR IS SWAPPED
+        AGAINST chat.html AND THAT IS THE POINT: "You" is the operator on this frame.
+        The day mark is .dr-note — the kit's centred caption, --slate 6.62:1 on the page.
+      -->
+      <section class="dr-stack dr-thread" aria-label="Thread">
+        <p class="dr-note">Today</p>
+        <ul class="dr-list dr-list--snug" aria-label="Messages">
+          <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>Your parcel is picked up from Podil, 21. On the way to Osokorky, 14.<time class="dr-bubble__time" datetime="2026-08-21T09:32">9:32</time></li>
+          <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Olena H.:</span>The courtyard gate is locked — the code is 4471.<time class="dr-bubble__time" datetime="2026-08-21T09:34">9:34</time></li>
+          <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>Got it. I'll land at the entrance and send the delivery photo.<time class="dr-bubble__time" datetime="2026-08-21T09:35">9:35</time></li>
+          <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Olena H.:</span>Which entrance?<time class="dr-bubble__time" datetime="2026-08-21T09:36">9:36</time></li>
+          <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>The one facing the playground. About 6 minutes out.<time class="dr-bubble__time" datetime="2026-08-21T09:38">9:38</time></li>
+        </ul>
+      </section>
+    </main>
+
+    <!--
+      THE COMPOSER IS chat.html's COMPOSER, unchanged — .dr-actionbar for the footer,
+      .dr-search-row for the row, .dr-search for the field, .dr-btn--primary.dr-btn--icon for the
+      disc. Nothing new is cut for this screen.
+      NO RING ON THE FIELD: rev 100's rule — `WCAG 2.4.7` names the text cursor in a text field as
+      a visible focus indicator, so the caret carries it. --ink on --media is 13.33:1.
+      SEND IS THE SCREEN'S ONE GREEN CONTROL — 44 × 44, 1,936px², 0.64% of the frame, glyph
+      --on-green on --green at 9.46:1, and the frame's only shadow sits under it.
+    -->
+    <footer class="dr-actionbar">
+      <div class="dr-search-row">
+        <label class="dr-search">
+          <span class="dr-sr">Message</span>
+          <input type="text" placeholder="Message">
+        </label>
+        <button class="dr-btn dr-btn--primary dr-btn--icon" type="button" aria-label="Send message"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19.5V5"/><path d="M5.5 11.5L12 5l6.5 6.5"/></svg></button>
+      </div>
+    </footer>
+  </div>
+
+  <!--
+    ui/kit.js is here for the onscreen keyboard, the behaviour rev 149 built on `rate` and rev 151
+    swept across every field in the product. No markup for it lives on this page on purpose: the
+    system draws the keyboard over an app and is not part of the app's DOM.
+    THIS PAGE IS THE EXCEPTION THE KIT NAMES, the same one chat.html is: the field is the composer
+    and it lives INSIDE `.dr-actionbar`, so the bar rides above the keys instead of leaving —
+    hiding it would hide the field being typed into.
+  -->
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
