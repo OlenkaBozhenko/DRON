@@ -3807,17 +3807,44 @@ header.dr-topbar,
    which is what lets a 1.56:1 shape be a picture and not a failure.
 
    WHAT IT COSTS, STATED THE WAY rev 163 STATED WALLET'S: solid green goes from
-   180 px² — the three zone ticks, 0.06% — to 41,100 px², 13.50% of the
+   180 px² — the three zone ticks, 0.06% — to 32,234 px², 10.59% of the
    375 x 812 frame, against the ~5% `concept.md` §0 sets. This screen has no
    green CONTROL at all (flows.md gives the dashboard no action), so 100% of
    its green is a surface rather than the 81–100%-is-the-CTA the rule expects.
    Rev 163 put the same departure to her on wallet with four readings drawn and
    her call was KEEP AS BUILT, rule unchanged — so this is the second screen
    recorded against ~5%, not a ceiling that moved. Recorded with the number.
-   Measured: banner 341 x 120 (32 star row + 4 + 22 figure + 4 + 18 caption,
-   in 20/16 of padding), radius --r-card 16, FLAT — it sits in the page. */
+   Measured: banner 341 x 94 — 20 + a 32 head band + 4 + 18 caption + 20; see
+   the band note below for the composition. Radius --r-card 16, FLAT — it sits
+   in the page. */
 .dr-balance--banner .dr-stars{ color: var(--green-wash); }            /* 1.56:1 — the unearned track */
 .dr-balance--banner .dr-stars__fill{ color: var(--on-green); }        /* 9.46:1 — the earned star   */
+
+/* THE HEAD BAND — the value and its picture on one line, the fact under them.
+   The designer on the first build, 2026-08-21: «організуй композицію у картці
+   наразі дуже не органічно». Three flush-left children 4px apart put a 160 × 32
+   black star row ABOVE a 22px figure inside a 341-wide card: the decoration
+   outweighed the value it decorates, and 132 of the card's 309 content width
+   carried nothing. The two facts now share a band and take an edge each —
+   figure left, picture right — and the caption keeps the line under them.
+   Measured: banner 341 × 120 → 341 × 94 (20 + 32 + 4 + 18 + 20), the row using
+   its full 309.
+   IT IS `.dr-balance__head` AND NOT `.dr-card__row`, for the reason rev 163
+   gave when it cut that class: `__row` belongs to `.dr-card`, and a band that
+   leads `.dr-balance` is that block's member, not a card's. Structure only —
+   no colour, size or radius leaves it.
+   AND THE STAR ROW KEEPS `--sz-star` 32, WHICH IS WHAT THE BAND BOUGHT. The
+   tighter compositions were built and measured beside this one: the figure and
+   caption in a left column with the row at the right is **341 × 84**, wallet's
+   own height — but the caption's 148.8 of text plus a 160 row overruns the
+   content width, so it only fits at a star of 28 or less, and the fifth star's
+   unearned point falls from 4.64px of ink to 4.06 at 28 and 3.48 at 24. A
+   second star size to save 10px of height is the drift this kit exists to
+   close, and the partial star is the one thing the display is FOR. */
+.dr-balance__head{
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--sp-snug);
+}
 
 /* ── THE ROW BAND INSIDE A CARD ─────────────────────────── used by wallet.
    `.dr-card--row` cannot serve and the reason is the one `.dr-listing__foot`

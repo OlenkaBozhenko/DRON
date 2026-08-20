@@ -44,8 +44,8 @@
   THE OVERALL SCORE IS A GREEN BANNER (designer, 2026-08-21: «зроби у зеленому
   банері»). Same fill wallet's balance card took the same day, on the block that
   was already here: .dr-balance--banner adds 20/16 of padding, --r-card 16 and
-  the --green fill, and nothing moves — three children, same order, same 4px
-  step, no glyph drawn in. Every ink on it is --on-green at 9.46:1, the caption's
+  the --green fill, and no glyph is drawn in. THE COMPOSITION INSIDE IT WAS SET
+  BY HER SECOND CALL THE SAME DAY — see the band note on the block below. Every ink on it is --on-green at 9.46:1, the caption's
   --slate included, which measures 3.91:1 on --green and would be a real
   WCAG 1.4.3 failure at 12px.
   THE STAR ROW IS RE-INKED BECAUSE ITS OWN COLOURS DIE ON GREEN, measured:
@@ -58,7 +58,7 @@
   STILL NO GREEN CONTROL, by the frame: it is a read-only dashboard and flows.md
   gives it no action, so 100% of this screen's solid green is a surface, not the
   81–100%-is-the-CTA concept.md §0 expects. Solid green goes from 180 px² (the
-  three zone ticks, 0.06%) to 41,100 px², 13.50% of the 375 x 812 frame, against
+  three zone ticks, 0.06%) to 32,234 px², 10.59% of the 375 x 812 frame, against
   the ~5% ceiling — her instruction, recorded with the number, not trimmed. Rev 163
   put the same departure to her on wallet and her call was KEEP AS BUILT with the
   rule unchanged, so this is the second screen recorded against ~5%.
@@ -84,6 +84,15 @@
     <main class="dr-main">
       <p class="zlabel dr-label">Overall <span class="dr-label__act">▸ headline score</span></p>
       <section aria-label="Overall rating" class="dr-balance dr-balance--banner">
+        <!-- THE VALUE AND ITS PICTURE SHARE A BAND, THE FACT KEEPS THE LINE UNDER
+             THEM (designer, 2026-08-21: «організуй композицію у картці наразі дуже
+             не органічно»). Three flush-left children 4px apart stood a 160 × 32
+             black star row above a 22px figure and left 132 of the card's 309
+             content width empty. .dr-balance__head gives the two an edge each —
+             figure left, picture right — and the card goes 120 → 94. The figure
+             leads the reading order too, which it did not before. -->
+        <div class="dr-balance__head">
+          <p class="dr-number">4.8</p>
         <!-- 4.8 of 5 → four whole stars and eight tenths of the fifth. The value
              arrives inline the way .dr-rail takes --dr-fill in ui/kit.html and the
              price chart's bars take their heights on listings-filters: data inline,
@@ -105,7 +114,7 @@
             <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
           </span>
         </span>
-        <p class="dr-number">4.8</p>
+        </div>
         <p class="dr-note dr-note--flush">· 126 ratings · last 90 days</p>
       </section>
 

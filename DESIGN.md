@@ -1090,6 +1090,48 @@ a written name. **Open, measured, not fixed:** the served thumb is 128 × 128 ag
 a 2× frame upscales it 1.875× — §Imagery asks for ~2× the CSS box, i.e. 240 × 240 cut from the
 847 × 886 master.
 
+**Second user, 2026-08-21:** `operator-account`'s profile head. The `<img>` there takes **empty
+`alt`**, not real alt — the same rule read the other way, because the name is written directly under
+the circle. The thumb problem travels with it and is worse on that page: `person-operator-ivan.png`
+serves **128 × 128** into the same 120 box, so a 2× frame upscales **1.875×**; the master is
+634 × 634 and a 240 × 240 cut would close it. Recorded, not fixed — `assets/` is the designer's.
+
+### Profile head (`.dr-profile`)
+
+The operator looking at himself, added 2026-08-21 (rev 170) on the designer's word and against a
+frame of her own: *«аватарка по центру, на аватарці бейдж з рейтингом, під низом ім'я, під ним
+словами оператор, під низом кнопка редагувати, бекграунду немає»*. **It is a component of its own
+and not a modifier of `.dr-op`**, because every value disagrees: `.dr-op` is a row since it is a card
+in somebody else's list, and this is a column since there is one person on the screen and he is its
+subject. `.dr-op` is untouched on the eleven client screens that carry it.
+
+- **No card.** `background:none`, no padding, no radius — the head stands on `--page`. Every pair
+  improves rather than costing: name `--ink` **14.37 → 15.99:1**, role `--slate` **5.95 → 6.62:1**,
+  and the secondary button's own fill **1.25 → 1.39:1** against its ground. `WCAG 1.4.3` wants 4.5
+  for both texts and both clear it with the whole of the gain to spare.
+- **Photo:** `.dr-avatar-lg` at **120 × 120** — `--sz-avatar-xl`, the rung `account-photo` already
+  spends. The model draws its circle at ~25% of the frame; 120 is **32%** of 375, larger on purpose,
+  because 96 is not a size this system owns and a seventh avatar rung would widen a closed ramp.
+- **Rating badge (`.dr-profile__rating`):** drawn **52.9 × 25.4**, `--r-pill`, centred on the
+  circle's bottom edge by `translate(-50%, 50%)` — the same rule `.dr-avatar-edit__badge` states,
+  the disc's centre on the edge. `--w-badge-ring` 2px in **`--page`** (not `--card`, there is no
+  card) cuts it out of the photograph; it is a **border, not a shadow**, so the flat rule holds.
+- **The badge is the screen's only solid green, and it is a status mark rather than a control.**
+  **1,344px² = 0.441%** of the 375 × 812 frame, against §0's ~5% ceiling; the selected tab is
+  `--green-wash`, a 1.08:1 tint the budget does not count. `--on-green` charcoal on the fill is
+  **9.46:1** — the star included, so the accent stays a fill and never an ink. 11px is normal text
+  under `WCAG 1.4.3`, so 4.5:1 is the threshold cleared, not the 3:1 large-text one.
+- **Name:** `.dr-display` 22/700, `--ink`, **15.99:1**. **Role:** 15/400 `--slate`, **6.62:1** — a
+  word, not a pill, which reverses `.dr-chip--sm`'s use on this one page (that class stays declared).
+- **Rhythm:** 8 between siblings, **12** before the credential row and before the action — the group
+  boundary reads larger than the space inside it (`HIG · Layout`). The photo carries `--sp-13` of
+  margin to pay back the badge's 12.7 of overhang, so badge-to-name measures **8.3**.
+- **Action:** `.dr-btn--secondary` **144.7 × 44**, `--ink` on `--btn2` at **11.54:1**, `--r-btn` 12
+  — the kit's radius, not the model's pill. The label is now visible, so the accessible name comes
+  from content and the `aria-label` the icon-only disc needed for `WCAG 4.1.2` is gone.
+- **Credentials:** the two `.dr-chip--claim` pills, `--ink` on `--green-wash` at **14.75:1**,
+  centred and unchanged in meaning. The pair measures **244.1** in **343** of frame — one line.
+
 ### Cards
 
 - **Surface:** `--card`, `--r-card` 16px, no border, no shadow.
@@ -1553,6 +1595,18 @@ radius are declared **once** for the pair and only the direction differs. **`wal
 **341 × 84**. **`ratings`** takes `--banner`: the same column, but with the figure and the star row sharing a
 `.dr-balance__head` band and the caption on the line under it — **341 × 94**, 20 + 32 + 4 + 18 + 20. Both are
 `--r-card` **16** and **flat**: no shadow, they sit in the page.
+
+**`.dr-balance__head` is the banner's own band** — `display:flex; align-items:center;
+justify-content:space-between; gap:12`, structure and nothing else. It exists because three flush-left
+children 4px apart stood a **160 × 32** black star row *above* a 22px figure and left **132 of the card's
+309** content width carrying nothing; the value and its picture now take an edge each. It is **not**
+`.dr-card__row`, for the reason rev 163 gave when it cut that class: `__row` belongs to `.dr-card`, and a
+band leading `.dr-balance` is that block's member. **The star row keeps `--sz-star` 32, and the band is what
+bought it:** the tighter reading — figure over caption at the left, row at the right — measures **341 × 84**,
+wallet's own height, but 148.8 of caption text plus a 160 row overruns the content width, so it only fits at
+a star of **28 or less**, and the fifth star's unearned point falls from **4.64px** of ink to **4.06** at 28
+and **3.48** at 24. A second star size to save 10px of height is the drift the kit exists to close, and the
+partial star is what the display is *for*.
 
 **Every ink on either fill is `--on-green` at 9.46:1**, stated rather than inherited, because
 `.dr-note`'s own `--slate` measures **3.91:1** on `--green` — a real `WCAG 1.4.3` failure at 12px.
