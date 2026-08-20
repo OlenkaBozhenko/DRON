@@ -450,6 +450,65 @@
 
   </div>
 
+  <!--
+    THE GROUP ROW'S STATE. This page's one script, and it sits here for the reason
+    `listings`' filter does: the behaviour is not in `ui/kit.js` — that file is the
+    picker drawer and the keyboard, and says so at the top — and one page carries it
+    until a second page needs it.
+
+    WHAT THE MARKUP ALREADY GIVES, AND THIS DOES NOT RE-IMPLEMENT. The tabs are real
+    <a href="#…">, so Enter, the tab order, the 44px hit area (the ::after bleed on
+    .dr-grouptab) and the accessible name come from the element and from kit.css —
+    `WCAG 2.1.1` and the jump itself are answered before a line of this runs. THE
+    SCROLL IS STILL THE BROWSER'S: nothing here calls scrollIntoView or touches
+    scrollTop, so rev 174's four measured landings do not move. What is added is one
+    attribute moving.
+
+    IT FOLLOWS THE HASH, NOT THE CLICK, so there is one rule and not two. A tap sets
+    `location.hash`; back and forward set it too; a link from elsewhere can arrive at
+    `operator-listings.html#active` already. All four go through the same line, and
+    the row cannot disagree with the address bar. The click listener exists only for
+    the one case `hashchange` does not fire — tapping the group you are already on,
+    where the mark is right and nothing moves anyway.
+
+    AN UNKNOWN HASH LEAVES THE ROW ALONE. The markup rests with `Incoming` current;
+    a hash naming neither group is not a reason to strip that, so the row keeps what
+    the frame drew rather than briefly naming nothing.
+
+    WHAT IS STILL OPEN, AND IT IS THE DESIGNER'S: scrolling BY HAND does not move the
+    mark. Tap `Active`, scroll back up, and the row still says `Active` while you read
+    `Incoming`. Closing that is a scroll-linked observer — a second rule, a real
+    behaviour, and not what she asked for; the number is written into `concept.md`
+    rev 178 instead.
+  -->
+  <script>
+  (function () {
+    'use strict';
+
+    var row = document.querySelector('[data-groups]');
+    if (!row) return;
+
+    var tabs = row.querySelectorAll('.dr-grouptab');
+    if (!tabs.length) return;
+
+    function mark(hash) {
+      var known = false;
+      tabs.forEach(function (tab) { if (tab.getAttribute('href') === hash) known = true; });
+      if (!known) return;
+      tabs.forEach(function (tab) {
+        if (tab.getAttribute('href') === hash) tab.setAttribute('aria-current', 'true');
+        else tab.removeAttribute('aria-current');
+      });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { mark(tab.getAttribute('href')); });
+    });
+    window.addEventListener('hashchange', function () { mark(location.hash); });
+    mark(location.hash);
+  }());
+  </script>
+
   <!-- ui/kit.js — the onscreen keyboard and the picker drawer. It is linked on every
        page carrying a form control; on THIS page the only controls are the three
        availability radios, and rev 151's own rule says a radio raises no keyboard, so
