@@ -563,6 +563,12 @@ flowchart TD
   AB0 -->|no| ABRT(["Error: stand down — airspace / weather; re-dispatched, client refunded"]):::state
   ABRT --> H
   AB0 -->|yes| CL["Job checklist (in progress)"]
+  CL --> DCC{"Contact the client?"}
+  DCC -->|call| CALC["Call the client"]
+  DCC -->|chat| CHC["Chat with the client"]
+  DCC -->|"no, keep working"| D3
+  CALC --> CL
+  CHC --> CL
   CL --> D3{"All steps + result captured?"}
   D3 -->|no| E1(["Error: required step skipped — cannot close"]):::state
   E1 --> CL
@@ -614,6 +620,25 @@ flowchart TD
 - *Accept within 10s?* — lock-screen decision (`RJ-O1`, `O-01`); declining loops back to offers, not a dead-end.
 - *Able to fly (airspace / weather)?* — wartime/weather abort → re-dispatch + client refund (`research.md` Finding 1/4).
 - *All steps captured? / Upload succeeded?* — execution gates; a failed upload **queues offline**, never closes without proof.
+- *Contact the client* (added 2026-08-21, designer's call — *«додай сюди ще Contact with client, по кліку
+  відкривай дровер як у клієнта: дзвінок, повідомлення; додай wireframes яких не вистачає»*) — the
+  **mirror of `RJ-C2`'s Contact operator drawer**, hung on the checklist and pointed the other way down
+  the same channel: `Call client` (**Call the client**, `wireframes/call-client.html`),
+  `Chat with the client` (`wireframes/chat-client.html`, `voice.md` **A12**). **It is `RJ-O2`, not a new
+  job:** the checklist's last two steps are *Capture delivery photo* and *Confirm handover with the
+  client*, the two that cannot be completed alone — a locked gate, a wrong entrance, nobody at the door —
+  and until now the operator's only answer was to improvise off-app, which is what `RJ-O2` exists to
+  remove. **The branch is drawn from `CL` and returns to `CL`**, the same way the client's is drawn from
+  and returns to `T`: a detour inside the job, never a step of it, and neither branch can close the job
+  or skip a step. **No third row.** The client's drawer ends in *Contact support*; the operator side has
+  no `EJ-2` entry of its own in `sitemap.md §6.2`, and `Dispute / client issue` is a **client-raised**
+  case on a **closed** job, which is a different node further down this diagram. The gap is recorded in
+  `_screens.md §15` as one decision to take — the operator's support route — not as a missing row.
+- *The call is DRON's own screen here too* — the masking is **bilateral**: no frame has ever shown the
+  operator the client's number, so `Call client` opens `call-client.html`, the third instance of the one
+  dark surface, and not a `tel:`. Two ways back, both to the open job: *Minimise*, which leaves the call
+  running, and *End call*, which does not. **Two states traced and not built** — *calling* (loading) and
+  *no answer* (error, whose way out is the thread, so it is not a dead-end); see `_screens.md §15b`.
 - *Client response?* — confirm / 2h auto-confirm / **dispute** (operator-side EJ-2, payment held).
 - *Balance above minimum? / Method linked? / Payout type? / Transfer succeeded?* — the withdrawal tail, the last step.
 

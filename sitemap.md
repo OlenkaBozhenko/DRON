@@ -128,6 +128,21 @@ cannot become the thing this row deletes.
 
 **It is a sub-view, not a new §6.1 screen.** No traceability column moves; `_screens.md §9b` carries it
 under *Live tracking & ETA*, the way `order-details` sits under *Order history*.
+
+**2026-08-21 — the same thread gained its other end, and it is still one object.** On the designer's
+word (*«додай сюди ще Contact with client, по кліку відкривай дровер як у клієнта: дзвінок,
+повідомлення»*) the **Job checklist** now carries a *Contact client* drawer with the same two channels,
+built as `wireframes/chat-client.html` and `wireframes/call-client.html`. **Nothing new is added to
+this list by it.** A thread between a client and the one operator on their live job is a single object;
+before today only one party could open it, which was a hole in the build rather than a scoping
+decision — `chat.html` shows the client answering *"the code is 4471"* and no frame let the operator
+read it. It serves `RJ-O2` (execute without improvising: the checklist's own last steps are *Capture
+delivery photo* and *Confirm handover with the client*), and it cannot become the deleted object for
+the same structural reason as before — it opens only from a job already accepted, never from a
+listing, never before dispatch. `_screens.md §15a / §15b` carry both frames under *Job checklist
+(in progress)*. **One gap is opened and recorded, not filled by guessing:** the client's drawer has a
+third row, *Contact support*, and the operator has **no support hub anywhere in §6.2** — that route is
+a decision for the designer, taken as one thing, not invented as one row.
 | **Expanded service-education hub** `[?]` | Beyond the minimal `EJ-1` explainer (CE-9), broader education is `HJ-2` — could be critical or noise; no data. | **Backlog** — gate on `HJ-2` |
 | **Operator portfolio view** `[?]` | Serves `RJ-C1` only for C-2 on a `[?]` entity; `RJ-C1` is already closed by *Order confirmed* + *Verification* + *Profile setup* + *Rate*. | **Attach** to *Order confirmed / Profile* if C-2 validated; else **backlog** |
 
