@@ -51,11 +51,56 @@
          at 4.77:1, the secondary button's own pair. A blanket opacity on the green
          primary would take charcoal-on-green to 2.35:1. So this screen carries NO
          green control in the bar — the one green is the recovery CTA in the block. -->
+    <!--
+      CONTACT CLIENT IS HERE AT THE SAME WEIGHT AS ON THE BASE FILE — concept.md rev 26's rule,
+      the one that stopped Contact operator drifting to grey on tracking-error. Grey secondary on
+      both, because the green budget is spent on both: the base spends it on Complete & add
+      delivery photo, this state on Complete the step inside the blocking notice.
+      ON THIS STATE IT DOES REAL WORK RATHER THAN MIRRORING. The close is blocked and the primary
+      is disabled; the person who can unblock the open step — nobody at the door, a gate that will
+      not open — is at the other end of this drawer. It is also the only live control in the bar,
+      so the state keeps a way forward without touching the gate that produced it.
+    -->
     <footer class="dr-actionbar">
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-contact">Contact client</button>
       <button type="button" class="dr-btn dr-btn--primary dr-btn--block" disabled>Complete all steps to continue</button>
     </footer>
+
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <!--
+      TWO OPTIONS IS A DRAWER — the project's own rule (ui/kit.js): ≤ 6 options rise from the bottom
+      edge, ≥ 7 push a screen; `HIG · Action sheets` draws the same line. Text rows and no icons,
+      the shape the other eight pickers use. Nothing carries aria-current: these are two actions,
+      not one value with a pick. The rows are <a href>, so kit.js adds the modal contract and
+      Cancel and writes nothing back.
+      THERE IS NO THIRD ROW, AND THAT IS A FINDING, NOT A TRIM. The client's drawer ends in Contact
+      support → support.html, the Help hub. The OPERATOR HAS NO SUPPORT HUB in the product —
+      sitemap.md §6.2 gives the operator side no EJ-2 entry of its own, and operator-dispute is a
+      CLIENT-RAISED issue on a CLOSED job, not a channel to DRON. Inventing a target would have been
+      inventing a screen; pointing it at the client's hub would have crossed the two personas'
+      navigation. Two rows is the honest count; the gap is logged in _screens.md §15 as one decision
+      for the designer — the operator's support route — rather than as one row on one drawer.
+      THE MASKING FACT IS STATED BEFORE THE TAP (voice.md P3's discipline applied to privacy instead
+      of to price) and it is TRUE IN THIS DIRECTION TOO: no frame has ever shown the operator the
+      client's number either. That is what lets Call client be a row at all without a number
+      anywhere on the frame, and it is why the row opens DRON's own call screen and not a tel:.
+      CANCEL BY NAME, not an ×: `HIG · Action sheets` asks for it; the × belongs to a full modal
+      screen (rev 101's reading, unchanged).
+    -->
+    <section class="dr-sheet dr-sheet--picker" id="sheet-contact" role="dialog" aria-modal="true" aria-labelledby="sheet-contact-title" aria-describedby="sheet-contact-desc" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-contact-title">Contact client</p>
+      <div class="dr-picker__list">
+        <a class="dr-picker__item" href="call-client.html"><span class="dr-picker__label">Call client</span></a>
+        <a class="dr-picker__item" href="chat-client.html"><span class="dr-picker__label">Chat with the client</span></a>
+      </div>
+      <p class="dr-note" id="sheet-contact-desc">Calls and messages go through DRON. Your number is not shared with the client.</p>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+    </section>
   </div>
 
+  <script src="../ui/kit.js"></script>
   <script src="_wf-shell.js"></script>
 </body>
 </html>
