@@ -1518,17 +1518,32 @@ is the right ink but a block with `margin-top: 2`, and `.dr-op__rating` is the s
 
 ### The onboarding carousel (`.dr-slider`, `.dr-slide`)
 
-Three slides on CSS scroll-snap, no JS, with the kit's own `.dr-pager` under them. **`welcome`,
+Three slides on CSS scroll-snap, no JS, with the kit's own `.dr-pager`. **`welcome`,
 `onboarding-client`, `onboarding-operator`.** The type inside a slide is the kit's own —
 `.dr-display` for the heading, `.dr-lead` for the sub-line — so no slide-specific type class was
-cut. Measured: slider **373.4 × 577.6** filling `.dr-main`'s padding box, art band **373.4 × 202.2
-= 35%** bottom-anchored, inner measure 333.4.
+cut. Measured 2026-08-20 on the 390 frame: slider **373.4 × 577.6** filling `.dr-main`'s padding
+box, art band **373.4 × 358.1 = 62%** bottom-anchored, inner measure 333.4.
+
+**The copy is top-anchored, the picture takes the floor** — the designer, 2026-08-20, against a
+reference she supplied: heading and sub-line read first at the top of the screen under **32** of
+padding, and the art stands under them. It replaces a centred copy block over a **35%** band: at
+35% a square cutout drew **202.2** on a side, at 62% it draws the full **373.4** width. The dots
+sit **12** above the band rather than at the bottom of the column, where they had been landing
+*inside* the picture — legible against a plain cutout, invisible against a phone mockup.
 
 **`--bleed` is opt-in, not automatic on `:has(img)`:** a slider whose slides mix the two treatments
-reads as broken, and three of the nine slides across the three screens are still waiting on a file.
-A slide without its picture keeps a `--media` ground and its mono label (`--slate` **5.51:1**), so a
-half-supplied slider reads as *picture pending* rather than as a broken layout. **No artwork was
-invented for the three.**
+reads as broken. A slide without its picture keeps a `--media` ground and its mono label
+(`--slate` **5.51:1**), so a half-supplied slider reads as *picture pending* rather than as a broken
+layout — **nine of nine slides carry a file since 2026-08-20**, so that ground draws nowhere today
+and the rule stands for the next slide that starts empty.
+
+**`WCAG 1.4.4 Resize text` — measured, and it does not pass at either size.** With the type tokens
+doubled on the longest slide (`welcome` slide 1, three-line sub-line), the copy overruns the art
+band by **181px**; the centred-copy composition it replaced overran by **97px**. The failure is
+older than this change and this change deepens it, because the band grew. Neither number is a
+clipping — no text is lost — but text over a phone mockup is not readable text. **Open, and named
+here rather than left to be found:** the fix is to stop positioning the band absolutely and let it
+shrink as a flex item when the copy grows, which is a refactor of `--bleed`, not a value.
 
 **The pager is an indicator, not a control** — the designer, 2026-08-18: *«крапки не клікабельні там
 працює свайп»*. The dots were `<a href="#slide">` at an **8 × 8** target, three times under

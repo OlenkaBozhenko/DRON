@@ -28,12 +28,11 @@
         rules key off .dr-screen:has(.dr-slider--bleed), which is why the frame,
         both system bars, main and the action bar all carry their kit classes —
         without them the artwork layer would paint over the chrome.
-        TWO SLIDES HAVE NO PICTURE YET (`STEPS`, `PAID`) and keep the bare
-        uppercase label as the only child of .dr-slide__art: the :has(img) rule
-        drops the --media ground only where a photograph actually arrived, so a
-        half-supplied slider reads as "picture pending" instead of broken, and the
-        composition does not jump as you swipe. --slate on --media, 5.51:1.
-        No artwork is invented for them.
+        ALL THREE SLIDES CARRY THEIR PICTURE since 2026-08-20 — the designer's
+        own set, drawn in Figma («onboarding images», node 111:14) and cut out of
+        its white ground, so each one sits straight on the page with no well:
+        onboarding-dispatch · onboarding-checklist · onboarding-payout. The
+        heading and sub-line are top-anchored above them.
       -->
       <div class="dr-slider dr-slider--bleed" aria-label="How operating on DRON works">
         <!-- The picture comes last in the markup, not first: it is the bottom of
@@ -42,17 +41,17 @@
         <section class="dr-slide" id="oo1" aria-label="Slide 1 of 3">
           <p class="dr-display">Jobs come to you</p>
           <p class="dr-lead">Auto-dispatch sends pre-qualified jobs. Accept or decline in seconds — no bidding.</p>
-          <span class="dr-slide__art"><img src="../assets/scenes/thumbs/operator-at-work.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="dr-slide__art"><img src="../assets/scenes/thumbs/onboarding-dispatch.png" alt="" loading="lazy" decoding="async"></span>
         </section>
         <section class="dr-slide" id="oo2" aria-label="Slide 2 of 3">
           <p class="dr-display">Follow the checklist</p>
           <p class="dr-lead">Every job has a step-by-step checklist so nothing is missed on site.</p>
-          <span class="dr-slide__art">STEPS</span>
+          <span class="dr-slide__art"><img src="../assets/scenes/thumbs/onboarding-checklist.png" alt="" loading="lazy" decoding="async"></span>
         </section>
         <section class="dr-slide" id="oo3" aria-label="Slide 3 of 3">
           <p class="dr-display">Get paid automatically</p>
           <p class="dr-lead">Earnings land within 30 min of client confirmation. Withdraw to card or bank.</p>
-          <span class="dr-slide__art">PAID</span>
+          <span class="dr-slide__art"><img src="../assets/scenes/thumbs/onboarding-payout.png" alt="" loading="lazy" decoding="async"></span>
         </section>
       </div>
       <!-- THE PAGER IS AN INDICATOR, NOT A CONTROL (designer, 2026-08-18:

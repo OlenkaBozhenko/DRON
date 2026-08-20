@@ -3525,10 +3525,11 @@ header.dr-topbar,
 }
 /* The art. A slide still waiting on its picture keeps a --media ground and its
    mono label — --slate on --media is 5.51:1 — so a half-supplied slider reads
-   as "this picture is pending" rather than as a broken layout. Three of the
-   nine slides across the three screens are in that state today and no artwork
-   was invented for them. A slide that HAS its picture drops the ground: a
-   transparent cutout sits straight on the surface, never floated in a well. */
+   as "this picture is pending" rather than as a broken layout. Nine of the nine
+   slides across the three screens carry a file since 2026-08-20, so the ground
+   draws nowhere today; the rule stays because the next new slide starts empty.
+   A slide that HAS its picture drops the ground: a transparent cutout sits
+   straight on the surface, never floated in a well. */
 .dr-slide__art{
   width: 100%; flex: none;
   border: 0; border-radius: var(--r-media);
@@ -3548,16 +3549,17 @@ header.dr-topbar,
    number here names the bar. The bars stay opaque, so nothing is lost by
    stopping at the content edge.
    Opt-in, not automatic on :has(img): a slider whose slides mix the two
-   treatments reads as broken, and three slides are still waiting on a file.
-   Measured: slider 373.4 × 577.6 filling .dr-main's padding box; art band
-   373.4 × 202.2 = 35%, bottom-anchored; inner measure 333.4. */
+   treatments reads as broken.
+   Measured 2026-08-20, 390 frame: slider 373.4 × 577.6 filling .dr-main's
+   padding box; art band 373.4 × 358.1 = 62%, bottom-anchored; copy
+   top-anchored under 32 of padding; inner measure 333.4. */
 .dr-slider--bleed{
   position: absolute; inset: 0; z-index: 0;
   margin: 0; padding: 0; align-items: stretch;
 }
 .dr-slider--bleed .dr-slide{
-  height: 100%; position: relative; justify-content: center;
-  padding: 0 var(--sp-group); gap: var(--sp-snug);
+  height: 100%; position: relative; justify-content: flex-start;
+  padding: var(--sp-cta) var(--sp-group) 0; gap: var(--sp-snug);
 }
 /* The bars keep everything they had — ground, hairline, place in the column.
    They are named only for paint order: an absolutely positioned slider paints
@@ -3567,22 +3569,26 @@ header.dr-topbar,
 .dr-screen:has(.dr-slider--bleed) > .dr-topbar,
 .dr-screen:has(.dr-slider--bleed) > .dr-actionbar{ position: relative; z-index: 1; }
 /* .dr-main is the containing block, and once the slider leaves the flow it
-   holds only the pager. Sent to the bottom so the pager stays under the
-   picture instead of jumping up under the top bar. */
+   holds only the pager, which is positioned against the art band below. */
 .dr-screen:has(.dr-slider--bleed) > .dr-main{ position: relative; justify-content: flex-end; }
-/* The art band runs the full width and stands on the content floor. Its height
-   is capped so no subject can climb into the copy, which is centred in the
-   same box: the cap only binds a portrait subject — the landscape cutouts are
-   width-bound and draw the same size with or without it. */
+/* THE COPY IS TOP-ANCHORED AND THE PICTURE TAKES THE FLOOR (designer,
+   2026-08-20, against a reference she supplied): heading and sub-line read
+   first, at the top of the screen, and the art band stands under them on the
+   content floor. 62% of a 577.6 main is 358.1 — enough that a square cutout
+   draws the full 373.4 width instead of the 202.2 the old 35% band allowed. */
 .dr-slider--bleed .dr-slide__art{
   position: absolute; left: 0; right: 0; bottom: 0; top: auto;
-  height: 35%; z-index: 0; width: auto; min-height: 0; margin: 0;
+  height: 62%; z-index: 0; width: auto; min-height: 0; margin: 0;
 }
 /* contain, never cover: these are transparent cutouts, and covering a
    375-wide portrait would throw away most of a landscape's width. Anchored
    bottom, so the figure meets the floor of the screen rather than floating. */
 .dr-slider--bleed .dr-slide__art img{ object-fit: contain; object-position: center bottom; }
-.dr-slider--bleed + .dr-pager{ position: relative; z-index: 1; margin-top: 0; }
+/* The dots sit 12 above the art band, not on it. At the bottom of the column
+   they landed inside the picture — legible against a plain cutout, invisible
+   against a phone mockup — and the band is the one edge in this layout that
+   does not move with the copy, so the offset is stated against it. */
+.dr-slider--bleed + .dr-pager{ position: absolute; left: 0; right: 0; bottom: calc(62% + var(--sp-snug)); z-index: 1; margin: 0; }
 .dr-slider--bleed .dr-display,
 .dr-slider--bleed .dr-lead{ position: relative; z-index: 1; }
 /* ═══ END OPERATOR PAINT ══════════════════════════════════════════════════ */
