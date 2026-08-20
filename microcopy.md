@@ -650,13 +650,15 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account | Profile | Change profile photo | Button | the pencil badge on the avatar, new 2026-08-16 — an **accessible name only**, the badge being icon-only (`WCAG 4.1.2`). Deliberately *not* `Edit profile photo`: the sibling pencil beside the name is already `Edit profile`, and two adjacent icon controls announcing one word apart is the ambiguity `WCAG 2.4.6` names. Different verb, different object → `Change` + *profile photo* against `Edit` + *profile* |
 | account | Profile | OB | Body | DATA |
 | account | Profile | Olena B. | Body | DATA |
-| account | Profile | Verified with Diia | Body |  |
-| account | Profile | Client | Body |  |
+| account | Profile | Verified with Diia | Chip | rev 182 — it was body text at the `.dr-op__rating` rung; on the centred head that rung **is** the badge, so it moves to a `.dr-chip--claim`, the rung that says *DRON confirmed this document*. The string is unchanged. |
+| account | Profile | Client | Body | rev 182 — was a chip beside the phone, now the role line under the name, the seat `Operator · 214 jobs` holds on `operator-account`. **No count beside it:** the client has no order-count fact anywhere in the prototype, and `voice.md` **P2** asks for the proof, not the adjective — a number nobody has measured is neither. |
+| account | Profile | Edit profile | Button | rev 182 — the head ends with a worded action, so this is a **visible label** here, not the `aria-label` the icon-only disc carried. Kept distinct from `Change profile photo` above it so a screen reader announces two objects and not one word twice (`WCAG 2.4.6`). Same string as `operator-account`. |
 | account | Mode | Mode | Field label | rev 111 — the picker became a settings row, so the row gains a label and the drawer takes `Mode` as its title |
 | account | Mode | Client | Field value | rev 111 — replaces `Client mode`, which said the noun twice once the row was labelled |
 | account | Mode | Client — order services | Body |  |
 | account | Mode | Operator — take jobs | Body |  |
 | account | Mode | switch | Body |  |
+| account | Account | Phone | Body | rev 182 — the row the phone number moved into from the profile card. `Phone` is the word `account-edit` already labels the same field with, so one concept keeps one word (`voice.md` vocabulary). |
 | account | Account | Payment method | Body |  |
 | account | Account | Visa •••• 4921 | Body | DATA |
 | account | Account | Saved address | Body |  |

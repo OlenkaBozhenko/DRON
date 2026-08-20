@@ -1153,6 +1153,41 @@ subject. `.dr-op` is untouched on the eleven client screens that carry it.
 - **Credentials:** the two `.dr-chip--claim` pills, `--ink` on `--green-wash` at **14.75:1**,
   centred and unchanged in meaning. The pair measures **244.1** in **343** of frame — one line.
 
+**Second user, 2026-08-21 (rev 182) — the client's `account`.** The designer on the built page:
+*«зміни картку так як для оператора лише врахуй що для клієнта в картці інші дані»*. The head is
+copied whole and **not one value is new**; what changes is the data in it, and `.dr-op` stays on the
+ten client screens that meet an operator.
+
+- **The badge slot carries what the persona has there.** The operator's is `.dr-profile__rating`; a
+  client is not rated, so the slot takes the **pencil** `.dr-avatar-edit` already put on this photo
+  (2026-08-16) and `account-photo` stays reachable. The `<a>` still wraps picture and badge, but the
+  picture is 120 and not 56 — `HIG · 44pt target` at **273%**, `WCAG 2.5.8` at **5×**. `WCAG 1.4.11`
+  is carried by the **glyph**, `--ink` on `--btn2` at **11.54:1**; the disc is **1.39:1** on the page
+  (1.25:1 on the card it left — it improves), the reading this kit ships four times.
+- **Two `.dr-op` values are undone, scoped at 0,2,0,** because `.dr-avatar-edit` is written 54 lines
+  below `.dr-profile__photo` at equal specificity and wins every tie:
+  `.dr-profile__photo.dr-avatar-edit{ align-self:center; margin-bottom:0 }`. `align-self:flex-start`
+  is load-bearing inside `.dr-op` and in a centred column pushes the photo **110.7px off centre**;
+  `--sp-13` pays back the *rating* pill's 12.7 of overhang, where the pencil hangs **2**. Measured
+  after: photo dead centre (**0**), rhythm **8 / 8 / 12 / 12**, identical to the operator's.
+- **The ring follows its ground:** `.dr-profile .dr-avatar-edit__badge{ border-color: var(--page) }`
+  — the swap `.dr-profile__rating` already makes, since `--card` on `--page` is a 1.11:1 seam that
+  means nothing. `operator-account` re-measured unchanged by both rules.
+- **Role:** `Client`, **with no count beside it**. The operator's `· 214 jobs` has no client
+  counterpart anywhere in the prototype, and a number nobody has measured is not a number to draw.
+- **Credential:** **one** `.dr-chip--claim`, `Verified with Diia`, **162.49 × 26.8** — the same
+  shield-and-check the operator's two wear, because it means the same thing under the 2026-08-18
+  rule: *green means DRON confirmed this document*. It was plain `--slate` text at the
+  `.dr-op__rating` rung, and on this head that rung **is** the badge.
+- **The phone leaves the head for the Account panel.** `+380 •• 4417` is contact data, not a
+  credential, and a chip row mixing the two kinds stops saying one thing; `account-edit` already
+  carries Phone as a field beside Full name and Saved address. The fact leaves the card, not the
+  screen.
+- **No solid green on this screen at all,** where the operator's head carries one. The rating badge
+  was his only green mark; §0's one-control budget is spent at **0%** here. The claim chip and the
+  selected tab are both `--green-wash`, 1.085:1 against the page — a tint the budget does not count.
+- Action **144.29 × 44**, unchanged.
+
 ### Cards
 
 - **Surface:** `--card`, `--r-card` 16px, no border, no shadow.

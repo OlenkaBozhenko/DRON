@@ -42,35 +42,73 @@
     <main class="dr-main">
       <p class="zlabel dr-label">Profile <span class="dr-label__act">▸ Diia-verified identity</span></p>
       <section aria-label="Profile">
-        <article class="dr-op">
-          <!--
-            THE PHOTO IS A CONTROL NOW — the designer, 2026-08-16: «добав іконку
-            едіт карандаш на аватарку». The <a> wraps the picture AND the badge,
-            so the target is the whole 56 × 56 circle and not the 20px disc:
-            `HIG · 44pt target` cleared at 127%, `WCAG 2.5.8` at 2.3×. The badge
-            is aria-hidden and the link carries the name.
+        <!-- THE CLIENT'S HEAD IS THE OPERATOR'S HEAD, WITH THE CLIENT'S FACTS IN IT
+             (2026-08-21, the designer on the built page: «зміни картку так як для
+             оператора лише врахуй що для клієнта в картці інші дані»).
 
-            TWO PENCILS ON ONE CARD, AND THEY SAY DIFFERENT THINGS. This one
-            goes to the photo (`account-photo`); the one on the right goes to the
-            details (`account-edit`). Their accessible names are kept apart on
-            purpose — "Change profile photo" against "Edit profile" — so a
-            screen reader announcing them back to back gives two objects, not
-            one word twice (`WCAG 2.4.6`, `HIG · Buttons`: a control's name says
-            what it does).
-          -->
-          <a class="dr-avatar-edit" href="account-photo.html" aria-label="Change profile photo">
-            <span class="dr-avatar-md"><img src="../assets/people/thumbs/person-client-olena.png" alt="" loading="lazy" decoding="async"></span>
+             SO THE ROW BECOMES THE SAME COLUMN, FOR THE SAME REASON. `.dr-op` is a
+             row because it is a card in somebody else's list — the client scanning
+             an operator beside four other things. This screen is the client looking
+             at herself: one person, who is the subject of the screen, and a subject
+             is centred. `.dr-op` is untouched and still carries the ten other client
+             screens that meet an operator.
+
+             AND THE CARD GOES WITH IT («бекграунду немає»). Standing on --page
+             instead of --card improves every pair rather than costing one: the name
+             14.37 -> 15.99:1, the role 5.95 -> 6.62:1.
+
+             WHAT CHANGED IS THE DATA, SLOT FOR SLOT, AND NOTHING WAS INVENTED:
+               · badge on the circle -> the PENCIL, not a rating. A client is not
+                 rated, so the slot takes the control that was already on this photo
+                 and `account-photo` stays reachable. See kit.css.
+               · role line -> `Client`, with no count beside it. The operator's
+                 `· 214 jobs` has no client counterpart anywhere in the prototype,
+                 and a number nobody has measured is not a number to draw.
+               · credentials -> ONE claim chip, `Verified with Diia`. It was plain
+                 --slate text at the .dr-op__rating rung, which on this head is the
+                 BADGE — and the badge is now the pencil. Diia is the one document
+                 DRON checked about a client, so it moves to the rung that says
+                 exactly that, under the 2026-08-18 rule: green means DRON confirmed
+                 this document.
+               · `+380 •• 4417` -> the Account panel below. A phone is contact data,
+                 not a credential, and a chip row that mixes the two kinds stops
+                 saying one thing. `account-edit` already carries Phone as a field
+                 beside Full name and Saved address; the fact leaves the head and
+                 does not leave the screen. -->
+        <div class="dr-profile">
+          <!-- The <a> wraps the picture AND the badge, so the target is the whole
+               120 x 120 circle and not the 20px disc: `HIG · 44pt target` cleared at
+               273%, `WCAG 2.5.8` at 5x. The badge is aria-hidden and the link
+               carries the name.
+
+               TWO PENCILS ON ONE SCREEN, AND THEY STILL SAY DIFFERENT THINGS. This
+               one goes to the photo (`account-photo`); the one in the button below
+               goes to the details (`account-edit`). Their accessible names are kept
+               apart on purpose — "Change profile photo" against the button's visible
+               "Edit profile" — so a screen reader announcing them in sequence gives
+               two objects, not one word twice (`WCAG 2.4.6`, `HIG · Buttons`: a
+               control's name says what it does). -->
+          <a class="dr-profile__photo dr-avatar-edit" href="account-photo.html" aria-label="Change profile photo">
+            <span class="dr-avatar-lg"><img src="../assets/people/thumbs/person-client-olena.png" alt="" loading="lazy" decoding="async"></span>
             <span class="dr-avatar-edit__badge" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg></span>
           </a>
-          <span class="dr-op__info">
-            <span class="dr-op__name">Olena B.</span>
-            <span class="dr-op__rating">Verified with Diia</span>
-            <span class="dr-chips dr-op__badges"><span class="dr-chip">Client</span><span class="dr-chip">+380 •• 4417</span></span>
-          </span>
-          <a class="dr-btn dr-btn--icon" href="account-edit.html" aria-label="Edit profile">
-            <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>
-          </a>
-        </article>
+          <span class="dr-profile__name dr-display">Olena B.</span>
+          <span class="dr-profile__role">Client</span>
+          <!-- ONE CHIP, AND IT WEARS THE SAME SHIELD-AND-CHECK THE OPERATOR'S TWO
+               WEAR, because it means the same thing: DRON checked this document.
+               --green-wash behind --ink at 14.75:1 — a tint, never green ink, and
+               at 1.085:1 against the page it is not counted against the accent
+               budget. This screen carries no solid green at all. -->
+          <span class="dr-chips dr-profile__badges"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Verified with Diia<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
+          <!-- The outline action, the rung declared for this button on 2026-08-21
+               («кнопку зроби контурну без бекграунда скругленими краями як бейджі»):
+               --ink label at 15.99:1 on the page, a --slate edge at 6.62:1 where
+               `WCAG 1.4.11` asks 3:1 of the one mark that says *control* once the
+               fill is gone, --r-pill to the badge above it, min-height 44
+               (`HIG · 44pt target`). The visible label is the accessible name, so no
+               aria-label is carried for `WCAG 4.1.2`. -->
+          <a class="dr-btn dr-btn--outline dr-profile__edit" href="account-edit.html"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</a>
+        </div>
       </section>
 
       <p class="zlabel dr-label">Mode <span class="dr-label__act">▸ switch Client ⇄ Operator</span></p>
@@ -90,6 +128,10 @@
 
       <p class="zlabel dr-label">Account <span class="dr-label__act">▸ identity &amp; preferences</span></p>
       <div class="dr-rows" aria-label="Account details">
+        <!-- Phone arrives here from the profile head (2026-08-21) — see the head's
+             note. First in the panel, because the zone reads "identity &amp;
+             preferences" and this is the identity half. -->
+        <div class="dr-rows__row"><span class="dr-rows__key">Phone</span><span class="dr-rows__val">+380 •• 4417</span></div>
         <div class="dr-rows__row"><span class="dr-rows__key">Payment method</span><span class="dr-rows__val">Visa •••• 4921</span></div>
         <div class="dr-rows__row"><span class="dr-rows__key">Saved address</span><span class="dr-rows__val">Podil, 21</span></div>
         <div class="dr-rows__row"><span class="dr-rows__key">Language</span><span class="dr-rows__val">English</span></div>

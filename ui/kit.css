@@ -1729,6 +1729,47 @@ header.dr-topbar,
 .dr-profile__badges{ justify-content: center; margin-top: var(--sp-within); }
 .dr-profile__edit{ margin-top: var(--sp-within); }
 
+/* THE SAME HEAD ON THE CLIENT'S ACCOUNT, WHERE THE BADGE ON THE CIRCLE IS A
+   CONTROL AND NOT A SCORE (2026-08-21, the designer on the built `account`:
+   «зміни картку так як для оператора лише врахуй що для клієнта в картці інші
+   дані»).
+
+   THE BADGE SLOT CARRIES WHAT THE PERSONA HAS THERE. The operator's is
+   `.dr-profile__rating`, because a rating is the fact his screen is about. A
+   client has no rating and never will — she is not the one being rated — so
+   the slot takes the pencil `.dr-avatar-edit` already puts on that circle, and
+   the photograph stays the link to `account-photo`. Nothing is invented and
+   nothing is dropped: the 2026-08-16 decision («добав іконку едіт карандаш на
+   аватарку») outlives the card it was drawn on.
+
+   TWO DECLARED VALUES HAVE TO BE UNDONE, AND BOTH BELONG TO `.dr-op`, NOT TO
+   THIS HEAD. `.dr-avatar-edit` is written 54 lines below `.dr-profile__photo`
+   at the same specificity, so it wins every tie between the two:
+     · `align-self:flex-start` is LOAD-BEARING INSIDE `.dr-op`, which stretches
+       its children and measured the wrapper 56 × 73.3 without it, hanging the
+       badge below the circle instead of on its edge. In a centred column it
+       does the opposite of its job and pushes the photo to the left edge.
+       `center` here, and the line stays exactly as written for the eleven
+       `.dr-op` screens that need it.
+     · `--sp-13` of margin under the photo pays back the RATING pill's 12.7 of
+       overhang (25.4 high, hung at 50%). The pencil hangs 2 — `bottom:-2px` on
+       a 20 + 2×2 = 24 outer disc — so 13 would over-pay by 11 and open a 19
+       gap in a column that spends 8. Zero, and the column's own 8 IS the gap;
+       the 2 the badge eats sits 34px off-centre, nowhere near the name.
+
+   AND THE RING FOLLOWS ITS GROUND, WHICH IS THE SWAP `.dr-profile__rating`
+   ALREADY MAKES. The badge cuts itself out of the photograph with 2px of
+   `--card` — the colour it stands on inside `.dr-op`. Here there is no card,
+   and `--card` on `--page` would draw a 1.11:1 seam that means nothing.
+   `--page` instead. The disc itself reads **1.39:1** on the page, better than
+   the 1.25:1 it read on the card, and `WCAG 1.4.11` is carried by the GLYPH
+   and not the disc — `--ink` on `--btn2` at **11.54:1** — which is this kit's
+   standing reading, shipped four times (`.dr-btn--onphoto`, `.dr-upload`,
+   `.dr-btn--night`, and this badge itself). The target is the whole 120 circle,
+   not the 20 disc: `HIG · 44pt` cleared at **273%**, `WCAG 2.5.8` at **5×**. */
+.dr-profile__photo.dr-avatar-edit{ align-self: center; margin-bottom: 0; }
+.dr-profile .dr-avatar-edit__badge{ border-color: var(--page); }
+
 /* ═══ THE AVATAR EDIT ═════════════════════════════════════════════════════
    The designer, 2026-08-16: «добав іконку едіт карандаш на аватарку». A pencil
    badge on the profile photo, and the photo is the control.
@@ -1784,7 +1825,9 @@ header.dr-topbar,
    operator panel's WIDTH, derived from an asset ratio, and borrowing it here
    would tie a circle to a rectangle's arithmetic. --media ground, 1.08:1 on the
    card, for the moment before the picture decodes and for a cutout's
-   transparent corners. One user: account-photo. */
+   transparent corners. THREE USERS: account-photo, where the picture is the
+   content; operator-account and account, where it is the subject of a
+   .dr-profile head and the alt is empty because the name is written under it. */
 .dr-avatar-lg{
   width: var(--sz-avatar-xl); height: var(--sz-avatar-xl);
   flex: none; margin: 0 auto; display: block;
