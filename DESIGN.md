@@ -1597,21 +1597,25 @@ sanctioned exception.**
 headline figure on `--green`, and they are not the same shape — so the fill, the padding and the
 radius are declared **once** for the pair and only the direction differs. **`wallet`** takes
 `--card`: the column turned on its side, a **32** glyph at the front, figure over caption beside it,
-**341 × 84**. **`ratings`** takes `--banner`: the same column, but with the figure and the star row sharing a
-`.dr-balance__head` band and the caption on the line under it — **341 × 94**, 20 + 32 + 4 + 18 + 20. Both are
+**341 × 84**. **`ratings`** takes `--banner`: a **centred** column — a five-star arc, the figure under it, the line
+that names it under that — **341 × 120**, 20 + 32 + 4 + 22 + 4 + 18 + 20. It is the one place in the
+product where `.dr-note` keeps its own centred default instead of taking `--flush`. Both are
 `--r-card` **16** and **flat**: no shadow, they sit in the page.
 
-**`.dr-balance__head` is the banner's own band** — `display:flex; align-items:center;
-justify-content:space-between; gap:12`, structure and nothing else. It exists because three flush-left
-children 4px apart stood a **160 × 32** black star row *above* a 22px figure and left **132 of the card's
-309** content width carrying nothing; the value and its picture now take an edge each. It is **not**
-`.dr-card__row`, for the reason rev 163 gave when it cut that class: `__row` belongs to `.dr-card`, and a
-band leading `.dr-balance` is that block's member. **The star row keeps `--sz-star` 32, and the band is what
-bought it:** the tighter reading — figure over caption at the left, row at the right — measures **341 × 84**,
-wallet's own height, but 148.8 of caption text plus a 160 row overruns the content width, so it only fits at
-a star of **28 or less**, and the fifth star's unearned point falls from **4.64px** of ink to **4.06** at 28
-and **3.48** at 24. A second star size to save 10px of height is the drift the kit exists to close, and the
-partial star is what the display is *for*.
+**The star arc (`.dr-stars--arc`).** Five stars, the middle one largest, tapering symmetrically out, drawn
+to the designer's reference (Figma `YlGWlsWWjKSCxhONMzGG2F` node `119:64`). **The taper is measured off that
+bitmap and expressed as arithmetic on `--sz-star`, so no new size enters the ramp:** the reference draws its
+stars at **19 / 32 / 44 / 32 / 19** of ink, giving `--sz-star-out` **.44** and `--sz-star-mid` **.73** of the
+middle — declared the way `--sz-star-ink`, `--sz-star-inset`, `--node-centre` and `--pick-indent` are.
+Built boxes **14.08 / 23.36 / 32 / 23.36 / 14.08**, row **106.88 × 32** where the flat row was 160, centred
+with **117.1** of card either side.
+
+**The partial star survives and what it costs is measured.** The fill still clips the row's *ink*, but the
+boxes are no longer equal, so the width is written out — four full stars plus the fifth's own inset and its
+own `.8` — because a general formula over unequal boxes cannot be expressed in CSS. The fifth star is now
+the **smallest**, so 4.8 leaves **2.05px** of unearned point where the flat 32 row left **4.64**. Rounding to
+whole stars would render 4.8 and 5.0 alike, which rev 157 built, measured and rejected, so the point stays
+small rather than absent.
 
 **Every ink on either fill is `--on-green` at 9.46:1**, stated rather than inherited, because
 `.dr-note`'s own `--slate` measures **3.91:1** on `--green` — a real `WCAG 1.4.3` failure at 12px.
@@ -1671,7 +1675,8 @@ A score somebody else **gave**, not a score being given. **`ratings`.**
 **Why not `.dr-rating`.** That class is an *input*: five `<button>`s, each a 44pt target carrying
 `aria-pressed`, built for `rate.html` where the client awards a score. A read-only display must not
 be a row of buttons announcing a pressed state it cannot change (`WCAG 4.1.2`), nor put five stops
-in a dashboard's tab order. Same star path, same `--sz-star` 32, **no tab stop**:
+in a dashboard's tab order. Same star path, and `--sz-star` 32 still names the largest star — the arc's
+outer and inner rungs are `.44` and `.73` of it — **no tab stop**:
 the row is `aria-hidden` and the figure beside it states the value at **9.46:1** on the green banner
 (**15.99:1** on the page, before it). That is what lets a low-contrast shape carry a picture and
 never a meaning — `--warn`'s **2.05:1** over `--btn2`'s **1.39:1** on `--page`, and, since
@@ -1685,8 +1690,9 @@ the fifth arm and the display renders **five full stars**; that was built, measu
 Derived from the path's own coordinates instead: 4.8 covers exactly **0.800** of the fifth
 silhouette, fill **150.96** of a 160 row, and the fifth star visibly keeps its unearned point
 (grey on the page, `--green-wash` on the banner). A
-whole-star floor renders 4.8 and 4.0 alike. `--sz-star-ink` / `--sz-star-inset` are the only `:root`
-additions of the whole pass and both are arithmetic on `--sz-star`.
+whole-star floor renders 4.8 and 4.0 alike. `--sz-star-ink` / `--sz-star-inset` were the pass's only `:root`
+additions, and `--sz-star-mid` / `--sz-star-out` joined them on 2026-08-21 — all four arithmetic on
+`--sz-star`, none of them a new absolute size.
 
 `.dr-listing__score` is the muted suffix on a name's own baseline — `· 5.0` beside a reviewer.
 12.5/400 `--slate` **5.95:1** on `--card`, tabular. Nothing in the kit fitted: `.dr-listing__desc`

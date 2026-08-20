@@ -58,7 +58,7 @@
   STILL NO GREEN CONTROL, by the frame: it is a read-only dashboard and flows.md
   gives it no action, so 100% of this screen's solid green is a surface, not the
   81–100%-is-the-CTA concept.md §0 expects. Solid green goes from 180 px² (the
-  three zone ticks, 0.06%) to 32,234 px², 10.59% of the 375 x 812 frame, against
+  three zone ticks, 0.06%) to 41,100 px², 13.50% of the 375 x 812 frame, against
   the ~5% ceiling — her instruction, recorded with the number, not trimmed. Rev 163
   put the same departure to her on wallet and her call was KEEP AS BUILT with the
   rule unchanged, so this is the second screen recorded against ~5%.
@@ -84,15 +84,21 @@
     <main class="dr-main">
       <p class="zlabel dr-label">Overall <span class="dr-label__act">▸ headline score</span></p>
       <section aria-label="Overall rating" class="dr-balance dr-balance--banner">
-        <!-- THE VALUE AND ITS PICTURE SHARE A BAND, THE FACT KEEPS THE LINE UNDER
-             THEM (designer, 2026-08-21: «організуй композицію у картці наразі дуже
-             не органічно»). Three flush-left children 4px apart stood a 160 × 32
-             black star row above a 22px figure and left 132 of the card's 309
-             content width empty. .dr-balance__head gives the two an edge each —
-             figure left, picture right — and the card goes 120 → 94. The figure
-             leads the reading order too, which it did not before. -->
-        <div class="dr-balance__head">
-          <p class="dr-number">4.8</p>
+        <!-- THE COMPOSITION IS CENTRED AND THE STARS ARE AN ARC (designer,
+             2026-08-21, against Figma `YlGWlsWWjKSCxhONMzGG2F` node `119:64`:
+             «зроби зірочки по центру одна більша інші менші як на зразку сама
+             оцінка рейтинку під зірками і опиз піднизом вирівнювання у картці по
+             центру»). Stars, then the figure, then the line that names it, all
+             centred. The taper is her reference's own — 19 / 32 / 44 / 32 / 19 of
+             ink there, so .44 and .73 of the middle star here — and it is written
+             as arithmetic on --sz-star, so no new size enters the ramp.
+             THE CARD GOES BACK TO 341 x 120 (20 + 32 arc + 4 + 22 + 4 + 18 + 20):
+             a centred column of three is the shape the band was cut to avoid an
+             hour ago, and the 26px that band saved are spent again here on her
+             word. .dr-balance__head has no user left and is gone with it.
+             THE ROW IS 106.9 WIDE where the flat one was 160, centred with 117.1
+             of card either side, and the fifth star is now the SMALLEST — so 4.8
+             leaves 2.05px of unearned point where the flat 32 row left 4.64. -->
         <!-- 4.8 of 5 → four whole stars and eight tenths of the fifth. The value
              arrives inline the way .dr-rail takes --dr-fill in ui/kit.html and the
              price chart's bars take their heights on listings-filters: data inline,
@@ -100,7 +106,7 @@
              clip has to land on the star's INK: the path fills 72.5% of its 24-box,
              so clipping the row at a flat 96% cuts only the tip of the fifth arm and
              the display renders as five FULL stars — measured, and rejected. -->
-        <span class="dr-stars" style="--dr-full:4; --dr-part:.8" aria-hidden="true">
+        <span class="dr-stars dr-stars--arc" style="--dr-full:4; --dr-part:.8" aria-hidden="true">
           <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
           <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
           <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
@@ -114,8 +120,8 @@
             <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
           </span>
         </span>
-        </div>
-        <p class="dr-note dr-note--flush">· 126 ratings · last 90 days</p>
+        <p class="dr-number">4.8</p>
+        <p class="dr-note">· 126 ratings · last 90 days</p>
       </section>
 
       <p class="zlabel dr-label">Per service <span class="dr-label__act">▸ score breakdown</span></p>
