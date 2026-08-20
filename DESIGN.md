@@ -1550,8 +1550,8 @@ sanctioned exception.**
 headline figure on `--green`, and they are not the same shape — so the fill, the padding and the
 radius are declared **once** for the pair and only the direction differs. **`wallet`** takes
 `--card`: the column turned on its side, a **32** glyph at the front, figure over caption beside it,
-**341 × 84**. **`ratings`** takes `--banner`: the column exactly as it already stood, star row over
-figure over caption, **341 × 120** — 32 + 4 + 22 + 4 + 18 inside 20/16 of padding. Both are
+**341 × 84**. **`ratings`** takes `--banner`: the same column, but with the figure and the star row sharing a
+`.dr-balance__head` band and the caption on the line under it — **341 × 94**, 20 + 32 + 4 + 18 + 20. Both are
 `--r-card` **16** and **flat**: no shadow, they sit in the page.
 
 **Every ink on either fill is `--on-green` at 9.46:1**, stated rather than inherited, because
@@ -1563,8 +1563,8 @@ the picture does not weaken, it disappears. On this fill the two rungs become th
 against each other. **No new hex enters for either fill.**
 
 **What they cost, recorded rather than trimmed to fit.** The card is **9.41%** of `wallet`'s frame;
-the banner is **13.44%** of `ratings`', taking that screen's solid green from **180 px² · 0.06%**
-(three zone ticks) to **41,100 px² · 13.50%** of 375 × 812 — against the **~5%** ceiling
+the banner is **10.53%** of `ratings`', taking that screen's solid green from **180 px² · 0.06%**
+(three zone ticks) to **32,234 px² · 10.59%** of 375 × 812 — against the **~5%** ceiling
 `concept.md` §0 sets. And `ratings` has no green **control** at all, since `flows.md` gives the
 dashboard no action, so 100% of its green is a surface rather than the 81–100%-is-the-CTA the rule
 expects. Both fills are the designer's instruction of 2026-08-21 (`concept.md` rev 163, rev 166), and the
@@ -1671,7 +1671,13 @@ space the only two answers are cut or narrower**, and narrower is the one that w
 air under it reads as a fault in the drawing rather than as composition. The modifier gives the
 well `padding-bottom: 0` and the picture `object-position: center bottom`: **373.4 × 342.4, bottom
 edge 0.0 from the content floor.** It is on one `<section>` in `onboarding-operator.html` and
-nowhere else. The pager sits 24 above that floor, so on this slide the dots paint over the picture
+nowhere else. The picture is pushed **7 past the floor**, because the remaining gap was in the file: the PNG's
+last opaque row is 682 of 697, so it carries **14 transparent rows** = **6.88** at the 0.4913 this
+slide draws it at. `object-position: center calc(100% + 7px)` spends exactly that and the well
+clips the overhang, leaving the jacket **0.12** above the bar's hairline; only transparency is
+cut. It is a fixed length against a transparency that scales, so at 200% it overshoots by 3.1 —
+**cropping the 14 rows out of the asset and dropping the offset is the durable fix**, and the
+asset is the designer's. The pager sits 24 above that floor, so on this slide the dots paint over the picture
 — the lit dot is **1.17:1** on skin and the next **1.91:1**, where the same dots on the page are
 1.69:1 and 1.39:1. None of the four meets `WCAG 1.4.11`'s 3:1, on artwork or on page: the dot row
 has never been a 3:1 indicator and is `aria-hidden` because each slide announces its own position.

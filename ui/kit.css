@@ -3710,9 +3710,24 @@ header.dr-topbar,
    are composed with space under the subject and lose nothing by floating. The
    layer order is untouched — the well is still z-index 0 and the pager still
    paints over it, which on this slide means three dots on the jacket. That is
-   the same cost rev 160 accepted for the whole set, not a new one. */
+   the same cost rev 160 accepted for the whole set, not a new one.
+   AND IT IS PUSHED 7 PAST THE FLOOR, BECAUSE THE GAP IS IN THE FILE (designer,
+   2026-08-21: «ще на пару пікселів опусти не має бути відступу від картинки і
+   ботом бару»). `padding-bottom: 0` had already put the picture's box on the
+   floor — measured 0.0 — but `onboarding-dispatch.png` carries **14 fully
+   transparent rows** under the jacket, and at the 0.4913 the slide draws it at
+   that is **6.88** of empty page between the drawing and the bar. So the
+   offset is not a taste number: it is the file's own bottom margin, measured
+   off the bitmap's alpha and spent back. The well clips it, so nothing of the
+   drawing is lost. THE DURABLE FIX IS TO CROP THOSE 14 ROWS OUT OF THE ASSET,
+   and that is hers to approve — until then the offset is a fixed length while
+   the transparency it cancels scales with the picture, so at 200% type, where
+   the picture is height-limited at 0.2818, it overshoots by 3.1 and clips that
+   much jacket. Named rather than hidden. */
 .dr-slider--bleed .dr-slide--floor .dr-slide__art{ padding-bottom: 0; }
-.dr-slider--bleed .dr-slide--floor .dr-slide__art img{ object-position: center bottom; }
+.dr-slider--bleed .dr-slide--floor .dr-slide__art img{
+  object-position: center calc(100% + 7px);
+}
 /* ONE PAGER, UNDER THE SLIDER, WHERE IT WAS (designer, 2026-08-21: «слайдер
    має бути де і був»). A per-slide pager was built the same day and reverted
    on her word. What that costs is written down rather than argued: the dots
