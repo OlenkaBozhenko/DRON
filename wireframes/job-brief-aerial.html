@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Job brief / detail — Aerial photo &amp; video · base</title>
+<!-- SCREEN: "Job brief / detail" — INSTANCE: aerial (base). JOB (jtbd): RJ-O1 · MJ-2 — see everything needed in one glance (location, service, duration, pay). Flow: MJ-2 "Job brief" → Details sufficient? → Able to fly? EXIT: Continue → Checklist.
+     ONE OF THREE BRIEF FILES (2026-08-21, _screens.md §14). This is the instance reached from the
+     ACTIVE card on operator-listings — "Aerial photo & video · In progress · checklist 3 / 5" — which
+     opened a brief headed "Package delivery · ₴180" (WCAG 2.4.4 Link Purpose (In Context), level A:
+     the card's accessible name is "Aerial photo and video — open job").
+     IT IS ALSO THE INSTANCE WITH NO CLIENT NOTE, which is the case the designer asked to see:
+     «нотатки якщо клієнт залишив якісь». See the Notes zone below for why the absence is stated
+     rather than left silent. -->
+<link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Job brief / detail — Aerial photo &amp; video</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>base</b> · file: job-brief-aerial.html</p>
+    <div class="flow"><b>One of three brief files</b> (2026-08-21) — the same screen, one instance per service: <a href="job-brief.html">job-brief</a> (delivery), <a href="job-brief-inspection.html">job-brief-inspection</a> and this one.<br><b>Reached from an active job</b>, not from an offer — so the action bar says <b>Continue</b>, the verb the list card already writes on it, and not <i>Start job</i>.<br><b>Job (jtbd):</b> RJ-O1 · MJ-2 — location, service, duration, pay in one glance.<br><b>States:</b> none of its own — <code>job-brief-error</code> (stand down: airspace / weather) is service-neutral and stays on the delivery file.<br><b>Exit:</b> Continue → <b>Job checklist</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Site</b> ▸ map placeholder</p><p><b>Details</b> ▸ service · client · shoot · pay · time</p><p><b>Notes</b> ▸ the client left none — said, not omitted</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="operator-listings.html" aria-label="Back to Jobs"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Job brief</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <!-- SITE, NOT ROUTE. A shoot happens at one place, so the map well names it
+           instead of a leg between two addresses; the image and the well are the
+           delivery file's, byte for byte. -->
+      <p class="zlabel dr-label">Site <span class="dr-label__act">▸ where the shoot runs</span></p>
+      <div class="dr-well dr-well--map" role="img" aria-label="Site · Trukhaniv Island"><img src="../assets/map/thumbs/live-map.jpg" alt="" loading="lazy" decoding="async"></div>
+
+      <p class="zlabel dr-label">Details <span class="dr-label__act">▸ everything in one glance (RJ-O1)</span></p>
+      <div class="dr-rows" aria-label="Job details">
+        <div class="dr-rows__row"><span class="dr-rows__key">Service</span><span class="dr-rows__val">Aerial photo &amp; video</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Client</span><span class="dr-rows__val">Olena H.</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Location</span><span class="dr-rows__val">Trukhaniv Island</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Shoot</span><span class="dr-rows__val">Event · 30 min</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Pay</span><span class="dr-rows__val">₴800</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Est. time</span><span class="dr-rows__val">~30 min</span></div>
+      </div>
+
+      <!-- THE ABSENCE IS STATED, NOT DROPPED. The client's "Notes for the operator"
+           textarea in order-setup-aerial is optional — placeholder «What to capture,
+           access to the site, anything to avoid…» — so a brief can arrive with
+           nothing in it, and that is the case the designer asked to see. An operator
+           who finds no Notes heading at all cannot tell "the client left none" from
+           "it did not load"; voice.md P5 asks for the plain fact instead of a
+           silence.
+           IT IS NOT THE NOTE'S OWN INK. job-brief spends --ink 14.37:1 on the one
+           line the operator has to act on; there is nothing to act on here, so the
+           line takes .dr-listing__desc — --slate on --card, 5.95:1, where
+           WCAG 1.4.3 needs 4.5:1 for 13px regular text. -->
+      <p class="zlabel dr-label">Notes <span class="dr-label__act">▸ the client left none</span></p>
+      <article class="dr-card dr-card--compact"><span class="dr-listing__desc">The client left no notes.</span></article>
+    </main>
+    <!-- CONTINUE, NOT START JOB. This is the only brief of the three reached from an
+         ACTIVE job — In progress, checklist 3 / 5 — so the work has already begun and
+         "Start job" would offer to begin it a second time. operator-listings already
+         writes Continue on that card; the brief repeats the word rather than inventing
+         a second one for the same act (voice.md, one word per concept). -->
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="job-checklist.html">Continue</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
