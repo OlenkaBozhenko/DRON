@@ -286,12 +286,14 @@
          selected `--ink` on `--green-wash` 14.75:1 — every value passing, the tap
          dead. The ids now sit on the two `<section aria-label="…">`s, which are
          named regions and are on the page in both annotation modes.
-         `aria-current` STILL DOES NOT MOVE, and that is the designer's call, not an
-         oversight: offered the filter (the `listings` rev 126 pattern), the jump
-         alone, and the jump with the state moving, she chose the jump alone — so
-         the row keeps naming `Incoming` while you read `Active`. Recorded as a
-         decision in `concept.md` rev 174, with `WCAG 4.1.2` left open there. -->
-    <nav class="dr-groups" aria-label="Job groups">
+         `aria-current` NOW MOVES WITH THE TAP (designer, 2026-08-21: «так якщо я
+         обрала активні то відповідно і таба міняє стан на обрану»), which turns
+         rev 174's reading (b) — the jump alone — into reading (c), the jump with
+         the state moving. That closes the `WCAG 4.1.2` gap rev 174 left open on
+         her word: the row now names the group you asked for instead of the one
+         you left. The script is at the foot of this page. Recorded in
+         `concept.md` rev 178. -->
+    <nav class="dr-groups" aria-label="Job groups" data-groups>
       <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming · 2</a>
       <a class="dr-grouptab" href="#active">Active · 1</a>
     </nav>
