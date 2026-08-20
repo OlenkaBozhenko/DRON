@@ -702,6 +702,21 @@ the close is blocked, and the person who can unblock it is at the other end of i
     have nothing left to say.
   - **Error ✓** — *"slow or failed upload"* → retry / queue offline.
   - **Loading ✓** — *"saved offline — uploads when online; payment held until proof"* and *"awaiting confirmation (up to 2h)"*.
+    **Rebuilt 2026-08-21 on the designer's word** (*«цей wairframes не правильний бо він має показувати анімацію
+    загрузки та тій самій структурі сторінки що і success»*). It had been a **centred takeover** — one status block, a
+    120px skeleton, one hint — with **all three of the base frame's zones gone**: `_conventions.md` §10's *"do not
+    restructure the page per state"* broken outright, and the page's own sidebar legend (*"Only the content changes:
+    Result photo → uploading status + photo skeleton"*) describing a page it was not. **§10's one exception — a system
+    action with no layout to rehearse (`payment-loading`, `operator-verification-loading`) — does not reach here:**
+    the form is on screen at the moment *Submit & close job* is tapped, and the tray is exactly the box the picture
+    lands in. **It is now the base layout, re-contented in one zone.** `Job` rows and `Notes` stand as built — they are
+    the facts being submitted, not content that is arriving — and only `Result photo` changes: the label reads
+    *▸ uploading…*, the `.dr-upload` tray becomes a `.dr-sk-block` at the tray's own `--sz-upload-min` **140px** floor
+    (it was 120, so the box jumped **20px** when the photo landed — the no-reflow contract the skeleton exists to keep),
+    and the kit's `.dr-sk-arrow` motion runs inside it: the tray holds still and only the arrow leaves it. *Replace
+    photo* keeps its place carrying `disabled` (`--slate` on `--btn2`, **4.77:1**, `WCAG 1.4.3` ✓ — built, not dimmed),
+    so nothing under the thumb moves between the two frames. The `role="status"` that named the wait is **re-homed, not
+    dropped** (`WCAG 4.1.3`): it sits under the tray, on the line that says what is loading.
   - **Success —** payment success lands on Wallet, not here; this screen has no "it worked" state of its own.
 
 ### 17. Wallet / earnings
