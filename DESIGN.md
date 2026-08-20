@@ -1525,11 +1525,23 @@ cut. Measured 2026-08-20 on the 390 frame: slider **373.4 × 577.6** filling `.d
 box, art band **373.4 × 358.1 = 62%** bottom-anchored, inner measure 333.4.
 
 **The copy is top-anchored, the picture takes the floor** — the designer, 2026-08-20, against a
-reference she supplied: heading and sub-line read first at the top of the screen under **32** of
-padding, and the art stands under them. It replaces a centred copy block over a **35%** band: at
-35% a square cutout drew **202.2** on a side, at 62% it draws the full **373.4** width. The dots
-sit **12** above the band rather than at the bottom of the column, where they had been landing
-*inside* the picture — legible against a plain cutout, invisible against a phone mockup.
+reference she supplied, and *«текст ще вище на самий верх сторінки»* on 2026-08-21: heading and
+sub-line read first, **16** below the top of the content area, and the art stands under them. It
+replaces a centred copy block over a fixed **35%** band.
+
+**Every picture draws the full width** — the designer, 2026-08-21: *«зображення розтягни на всю
+ширину екрану в мобільному»*. A fixed band could not promise it: the band held a 1.043 box, so a
+portrait cutout was height-bound and drew **311 of 373.4 — 83.3%**. The band is now a flex item
+that takes the height the copy did not, and the picture is width-led inside it — **373.4 on all
+nine slides**, heights **159–441**. Where a picture is taller than the space left, the well clips
+its top rather than letterboxing it: `cover` is still unused, because it would rescale and crop
+both ways.
+
+**The pager stays one element under the slider** — the designer, 2026-08-21: *«слайдер має бути де
+і був»*. A per-slide pager was built the same day and reverted on her word. Two costs, recorded
+rather than argued: the artwork runs to the same floor, so it paints under the dots and on a phone
+mockup they are hard to pick out; and one element cannot follow a swipe it has no script to hear,
+so the lit dot is slide 1's on all three.
 
 **`--bleed` is opt-in, not automatic on `:has(img)`:** a slider whose slides mix the two treatments
 reads as broken. A slide without its picture keeps a `--media` ground and its mono label
@@ -1537,13 +1549,12 @@ reads as broken. A slide without its picture keeps a `--media` ground and its mo
 layout — **nine of nine slides carry a file since 2026-08-20**, so that ground draws nowhere today
 and the rule stands for the next slide that starts empty.
 
-**`WCAG 1.4.4 Resize text` — measured, and it does not pass at either size.** With the type tokens
-doubled on the longest slide (`welcome` slide 1, three-line sub-line), the copy overruns the art
-band by **181px**; the centred-copy composition it replaced overran by **97px**. The failure is
-older than this change and this change deepens it, because the band grew. Neither number is a
-clipping — no text is lost — but text over a phone mockup is not readable text. **Open, and named
-here rather than left to be found:** the fix is to stop positioning the band absolutely and let it
-shrink as a flex item when the copy grows, which is a refactor of `--bleed`, not a value.
+**`WCAG 1.4.4 Resize text` — was failing, and the flex band closed it.** With the type tokens
+doubled, the copy used to overrun the art by **181px** under the fixed 62% band and by **97px**
+under the centred composition that preceded it — no text lost, but text drawn over a phone mockup
+is not readable text. Measured again 2026-08-21, after the band became a flex item: **0px of
+overrun on every slide at 200%**. The band gives its height up to the copy first and clips its own
+picture instead, so no type size can put text under artwork.
 
 **The pager is an indicator, not a control** — the designer, 2026-08-18: *«крапки не клікабельні там
 працює свайп»*. The dots were `<a href="#slide">` at an **8 × 8** target, three times under
