@@ -43,7 +43,7 @@
       { name: "Job brief / detail",                    file: "job-brief.html",          states: [["error","job-brief-error.html"]] },
       { name: "Job checklist (in progress)",           file: "job-checklist.html",      states: [["error","job-checklist-error.html"]] },
       { name: "Result upload / close job",             file: "result-upload.html",      states: [["error","result-upload-error.html"],["loading","result-upload-loading.html"]] },
-      { name: "Wallet / earnings",                     file: "wallet.html",         success: true, states: [["empty","wallet-empty.html"]] },
+      { name: "Wallet / earnings",                     file: "wallet.html",         success: true, states: [["details · delivery","earning-details.html"],["details · aerial","earning-details-aerial.html"],["details · inspection","earning-details-inspection.html"],["empty","wallet-empty.html"]] },
       { name: "Withdraw to card / bank account",       file: "withdraw.html",       success: true, states: [["error","withdraw-error.html"],["loading","withdraw-loading.html"]] }
     ]},
     { title: "Client · step 8 (EJ-1/2 · C-2 · repeat)", screens: [

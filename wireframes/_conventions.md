@@ -569,7 +569,7 @@ and **which layer it lives in**.
 **When.** Add `data-toast="…"` only to a control whose action **finishes on this screen** and leaves **no
 other trace**. Both tests, not either: a tap that changes screen loses its toast (the mechanism fires on the
 page you stay on), and a tap whose result is already visible — a file landing in its upload well, a segment
-moving, a list redrawing — does not need one. Swept across the whole set on 2026-08-16 — **117 files**, a
+moving, a list redrawing — does not need one. Swept across the whole set on 2026-08-16 — **117 files** (**120** since 2026-08-21), a
 number this line first recorded as 84 and which was re-counted the same month (`concept.md` rev 153); four
 controls in the product qualify, and the refusals are listed with their reasons in `microcopy.md`.
 
@@ -635,7 +635,7 @@ chrome so the toast cannot cover the control that raised it, and — where the r
 | Job brief / detail | `job-brief.html` | `job-brief-error.html` |
 | Job checklist (in progress) | `job-checklist.html` | `job-checklist-error.html` |
 | Result upload / close job | `result-upload.html` | `result-upload-error.html`, `result-upload-loading.html` |
-| Wallet / earnings *(base = success)* | `wallet.html` | `wallet-empty.html` |
+| Wallet / earnings *(base = success)* — **the balance is a green card and the Withdraw CTA floats above the tab bar, 2026-08-21** (`_screens.md` §17, `concept.md` rev 163) | `wallet.html` | `wallet-empty.html`, `earning-details.html` · `earning-details-aerial.html` · `earning-details-inspection.html` — the record behind one earnings card (**View details**), read-only: what the job was, where it ran, when it closed, what it paid and how it reached the balance. **One file per service, 2026-08-21**, the shape `order-details` set on 2026-08-16 and for the same reason — the heading names the service the card named. Base only, and no bottom bar: a settled payout has nothing to do to it |
 | Withdraw to card / bank account *(base = success)* | `withdraw.html` | `withdraw-error.html`, `withdraw-loading.html` |
 
 ### Step 8 — remaining sitemap screens (states traced in [`_screens.md`](_screens.md) "STEP 8")
@@ -684,7 +684,7 @@ A page is done when **all** hold:
 ## 13. Shared shell (`_wf-shell.js`)
 
 **Two shared scripts, and they are not the same kind of thing.** `_wf-shell.js` is **prototype chrome** — the
-screen map, the viewport switcher, the toolbar — and **116 of the 117 pages** link it; the one that does not
+screen map, the viewport switcher, the toolbar — and **119 of the 120 pages** link it (116 of 117 until the three earning records landed 2026-08-21); the one that does not
 is `_navbar-options.html`, an option partial with no frame to put chrome around. (Re-counted 2026-08-16,
 `concept.md` rev 153; this line read "every one of the 84 pages" against a set that had since grown.)
 `../ui/kit.js`

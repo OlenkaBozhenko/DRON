@@ -554,6 +554,41 @@ Flow spine (`flows.md` MJ-2 + RJ-O3): **Operator home + status toggle → Incomi
   - **Loading —** transfers are on the Withdraw screen.
   - **Success ✓** — the dedicated "you got paid" screen: earnings added to balance within 30 min (closes `RJ-O3`'s core promise).
 
+### 17b. Earning details  *(sub-view of 17 · one file per service, three of them · base only)*
+- **Job:** `RJ-O3` — the wallet says *how much*; the record says *what for*. An operator who reads three
+  amounts in a list and cannot tell which job produced which one has to trust the number instead of
+  checking it, which is the operator-side shape of the same anxiety `RJ-C1` names on the client side.
+- **Place in flow:** *not on the MJ-2 spine.* `Wallet / earnings` → **View details** on an earnings card →
+  here; the back chevron returns to Earnings. Nothing downstream depends on it.
+- **States:** **base only** — a settled payout is a record, exactly the reading `C4` gives `order-details`:
+  no empty, no error and no loading of its own, and the wallet above it already carries the empty.
+- **Three files, one per service, not three states** — the shape the designer set on 2026-08-16 for
+  `order-details` («вони мають мати різні назви відповідно»), applied here for the same reason: the wallet
+  lists three different finished jobs, and one shared record would head a roof inspection *Package delivery*.
+
+| File | Heading (nav bar) | Summary rows | Payout rows |
+|---|---|---|---|
+| `earning-details.html` | Package delivery | Service · From · To · Done · **Earned ₴180** | Status · Released · To |
+| `earning-details-aerial.html` | Aerial photo &amp; video | Service · Location · Shoot · Done · **Earned ₴800** | Status · Released · To |
+| `earning-details-inspection.html` | Roof inspection | Service · Location · Structure · Done · **Earned ₴650** | Status · Released · To |
+
+**Nothing on the three is invented.** The delivery's stops and pay are `job-brief.html`'s own rows
+(*Podil, 21 → Osokorky, 14*, Pay ₴180); the aerial and inspection facts are the ones the client's records
+already carry (*Trukhaniv Island · Event · 30 min*; *Osokorky, 14 · Roof · gutters · chimney*); the times
+are the wallet cards' own; and the Payout zone quotes `operator-fee-terms.html` — **Auto-release ≤30 min
+after client confirms**. The Payout zone is byte-identical across the three; only the heading and the
+summary strings move.
+
+**There is deliberately no commission breakdown, and that is a gap reported rather than filled.**
+`operator-fee-terms` states **18% per job**, but `job-brief` states ₴180 as the operator's **Pay** — so the
+figure the wallet lists is already net, and a fee row would need a gross the project has never set. Writing
+one here would put arithmetic on the record that disagrees with the list above it. **Open for the designer:**
+whether the wallet's three amounts are gross or net, and whether the record should show the split.
+
+**`Earned`, not `Paid`, is the summary's last row.** `voice.md` keeps one word per concept and the client's
+record already spends *Paid* for what the **client** paid (`order-details`). The same figure seen from the
+operator's side is what they kept, so *Earned* says it without either screen borrowing the other's word.
+
 ### 18. Withdraw to card / bank account
 - **Job:** `RJ-O3` — *"never have to chase money"*: the payout to an external account is the **final** step (Bolt / Uklon cash-out model).
 - **Place in flow:** MJ-2 Phase B (last step) — `Balance above minimum? → yes → Withdraw` → `Method linked? / valid? / payout type? / transfer succeeded?`.

@@ -16,19 +16,28 @@
   text-align:center would otherwise take away — the frame sets this block flush left, like
   payment's amount block, and `.dr-note--flush` is the second — .dr-note is text-align:center by
   construction, so a caption that stands flush left needs the modifier said out loud.
-  THE PAID NOTICE IS .dr-note--flush AND NOT .dr-field__hint, AND THAT IS A MEASUREMENT, NOT A
-  PREFERENCE: .dr-field__hint declares `flex-basis:100%` for the row it belongs to, and in a COLUMN
-  flex container (.dr-main) flex-basis sizes the MAIN axis — measured, the one-line sentence came out
-  341 x 173 and swallowed the page's slack. The class is a field's own hint and does not leave one.
+  THE PAID NOTICE IS GONE (2026-08-21, designer: «видали цей текст»). What it used to be is kept
+  here so the class note is not lost with it: it was .dr-note--flush and NOT .dr-field__hint, which
+  was a measurement rather than a preference — .dr-field__hint declares `flex-basis:100%` for the row
+  it belongs to, and in a COLUMN flex container (.dr-main) flex-basis sizes the MAIN axis, so the
+  one-line sentence measured 341 x 173 and swallowed the page's slack. .dr-note--flush stays in use
+  on this screen: it is the balance card's caption.
   THE EARNINGS FIGURE TAKES THE SAME .dr-number as order-history's card price, so the balance and
   the rows that add up to it are one material. The frame drew it at 15/600; the kit's money step
   wins (divergence logged).
-  THE RECENT LIST IS .dr-list--snug (8), not .dr-list (28): the list is one zone among four here
-  (Balance · notice · Withdraw · Recent), and DESIGN.md's Between-Beats-Within rule reads the
-  level above — main separates zones by 12, so siblings must close to 8 or they read as further
-  apart than strangers.
-  GREEN: one control, the Withdraw CTA. The tab bar's selected Earnings is --green-wash, a tint,
-  which the budget does not count.
+  THE RECENT LIST IS .dr-list--snug (8), not .dr-list (28): the list is one zone among two here
+  (Balance · Recent — it was one of four until 2026-08-21 took the notice off and moved the CTA
+  out of the column), and DESIGN.md's Between-Beats-Within rule reads the level above — main
+  separates zones by 12, so siblings must close to 8 or they read as further apart than strangers.
+  GREEN, AND WHAT IT NOW COSTS — reported, not smoothed over. Until 2026-08-21 this screen spent
+  the accent exactly once, on the block Withdraw CTA. It now carries TWO green shapes, the balance
+  card and the floating Withdraw, both on the designer's instruction of that date. Measured on the
+  built frame (375 x 812 = 304,500 px²): the card is 341 x 84 = 28,644 px² (9.41%) and the CTA is
+  173.1 x 44 = 7,618 px² (2.50%), so solid green covers 11.91% against concept.md's «one green
+  control per screen, ≤ ~5% of the frame», and the CTA is 21.0% of that green where the rule reads
+  81–100%. The tab bar's selected Earnings is --green-wash, a tint, which the budget does not count.
+  Every ink standing on green is --on-green at 9.46:1, so nothing about WCAG 1.4.3 moves; what moves
+  is the concept's own quantity rule, and concept.md rev 163 carries the numbers and her options.
   TAB GLYPHS are owned by the operator tab-bar pass and landed 2026-08-18: the four slots
   carry the Jobs/Earnings/Ratings/Account glyphs, byte-identical to operator-listings.html.
 -->
@@ -43,55 +52,122 @@
     </nav>
     <h1>Wallet / earnings</h1>
     <p class="sub">Operator · MJ-2 · state: <b>success (base — milestone)</b> · file: wallet.html</p>
-    <div class="flow"><b>Job (jtbd):</b> RJ-O3 — the payment moves to the balance on its own, within 30 min of the client confirming (flows.md MJ-2: "Order paid: earnings added to balance"). The "you got paid" milestone.<br><b>Exit:</b> Withdraw → <b>Withdraw to card / bank account</b>.</div>
-    <div class="legend"><p><b>Zones:</b></p><p><b>Balance</b> ▸ available to withdraw (the milestone)</p><p><b>Recent</b> ▸ earnings history</p><p><b>Withdraw</b> ▸ cash out to card / bank</p></div>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O3 — the payment moves to the balance on its own, within 30 min of the client confirming (flows.md MJ-2: "Order paid: earnings added to balance"). The "you got paid" milestone.<br><b>Exit:</b> Withdraw (floating) → <b>Withdraw to card / bank account</b>; View details on a card → <b>Earning details</b>, the record behind one payout.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Balance</b> ▸ the green card — coin glyph, figure, "Available to withdraw" (the milestone)</p><p><b>Recent</b> ▸ earnings history, one card per job, each opening <a href="earning-details.html">its own record</a> — <a href="earning-details.html">delivery</a> · <a href="earning-details-aerial.html">aerial</a> · <a href="earning-details-inspection.html">inspection</a></p><p><b>Withdraw</b> ▸ the floating capsule above the tab bar (HIG's bottom-accessory slot) → cash out to card / bank</p></div>
   </aside>
 
   <div class="wf-frame dr dr-screen">
     <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
     <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Earnings</span><span class="dr-topbar__spacer"></span></header>
-    <main class="dr-main">
-      <p class="zlabel dr-label">Balance <span class="dr-label__act">▸ available to withdraw</span></p>
-      <section class="dr-balance" aria-label="Balance">
-        <p class="dr-number">&#8372;3,240</p>
-        <p class="dr-note dr-note--flush">Available to withdraw</p>
+    <main class="dr-main dr-main--fab">
+      <p class="zlabel dr-label">Balance <span class="dr-label__act">&#9656; available to withdraw</span></p>
+      <!-- THE BALANCE IS A CARD, AND THE CARD IS GREEN (designer, 2026-08-21, against her own
+           reference — Figma `YlGWlsWWjKSCxhONMzGG2F` node `117:45`): «зроби total зеленою карткою
+           іконку візьми відповідну щоб показати накопичені кошти далі сума та available to
+           withdrow... лиш нічого не домальовуй від себе». Three things on it and nothing else: the
+           glyph, the figure, the line. The reference sets its glyph in a dark rounded badge; that
+           badge is NOT copied, because a plate behind the icon would need a fifth surface colour
+           to sit on green and the palette has none — the glyph stands on the fill in --on-green,
+           which is the rule the fill already carries.
+           THE GLYPH IS A COIN STACK, not the wallet-card the Earnings tab draws two rows below.
+           «Накопичені кошти» is what it has to say — money that piled up — and three stacked
+           coins say accumulation where a bank card says payment. Flat outline, 24-grid,
+           stroke 1.7 declared once, currentColor, no fill: the icon system's own contract.
+           EVERY INK ON IT IS --on-green AT 9.46:1. .dr-note's own --slate measures 3.92:1 on
+           --green — below WCAG 1.4.3's 4.5:1 for 12px text — so the caption's colour is
+           overridden in the kit rather than inherited. The figure keeps .dr-number: 22/700 and
+           TABULAR, the balance and the amounts that add up to it being one material.
+           WHAT LEFT THIS ZONE: the paid notice, "₴800 paid for 'Aerial photo & video', added to
+           your balance 12 min ago" (designer, 2026-08-21: «видали цей текст»). The fact it
+           carried is not lost — it is on the record behind each card now, as the Payout zone's
+           three rows, which is where a settled payment belongs once it is no longer news. -->
+      <section class="dr-balance dr-balance--card" aria-label="Balance">
+        <span class="dr-balance__glyph" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6.6" rx="6.8" ry="2.9"/><path d="M5.2 6.6v4.5c0 1.6 3 2.9 6.8 2.9s6.8-1.3 6.8-2.9V6.6"/><path d="M5.2 11.1v4.5c0 1.6 3 2.9 6.8 2.9s6.8-1.3 6.8-2.9v-4.5"/></svg></span>
+        <div class="dr-balance__body">
+          <p class="dr-number">&#8372;3,240</p>
+          <p class="dr-note dr-note--flush">Available to withdraw</p>
+        </div>
       </section>
-      <p class="dr-note dr-note--flush">&#8372;800 paid for 'Aerial photo &amp; video', added to your balance 12 min ago.</p>
-      <a class="dr-btn dr-btn--primary dr-btn--block" href="withdraw.html">Withdraw &#8372;3,240</a>
 
-      <p class="zlabel dr-label">Recent <span class="dr-label__act">▸ earnings history</span></p>
+      <p class="zlabel dr-label">Recent <span class="dr-label__act">&#9656; earnings history</span></p>
+      <!-- EACH EARNING IS A CARD WITH ITS OWN WAY IN (designer, 2026-08-21, against her second
+           reference — Figma node `117:46`): «уся інша історія картками наподобі як тут з кнопкою
+           details яка буде секондарі кнопка». The row that was — name over time, amount opposite —
+           is unchanged and now leads a column card whose second band is the button, exactly the
+           shape `.dr-card__actions` was cut for. One button in the row, so it stretches the card.
+           SECONDARY, NOT PRIMARY, AND THAT IS ALSO THE GREEN BUDGET: this screen already spends
+           the accent on the balance card and the floating CTA. --ink on --btn2 measures 11.54:1.
+           THE VISIBLE LABEL IS `View details`, NOT `Details` — `voice.md` fixes one word per
+           concept and `microcopy.md` **A6** already settled this one: opening a record is
+           **View details** everywhere in the product (`order-history`, `tracking`). Two names for
+           one act is the thing that rule exists to stop.
+           EACH LINK'S ACCESSIBLE NAME SAYS WHICH RECORD IT OPENS. Three links reading `View
+           details` and going three different places is `WCAG 2.4.4`; the aria-label opens with
+           the visible words, so `WCAG 2.5.3` (Label in Name) holds too. -->
       <section aria-label="Recent earnings">
         <ul class="dr-list dr-list--snug">
           <li>
-            <article class="dr-card dr-card--row">
-              <span class="dr-listing__body">
-                <span class="dr-listing__name">Package delivery</span>
-                <span class="dr-listing__meta"><span class="dr-listing__desc">Today, 10:07</span></span>
+            <article class="dr-card">
+              <span class="dr-card__row">
+                <span class="dr-listing__body">
+                  <span class="dr-listing__name">Package delivery</span>
+                  <span class="dr-listing__meta"><span class="dr-listing__desc">Today, 10:07</span></span>
+                </span>
+                <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;180</span></span>
               </span>
-              <span class="dr-number">&#8372;180</span>
+              <span class="dr-card__actions">
+                <a class="dr-btn dr-btn--secondary" href="earning-details.html" aria-label="View details &#8212; Package delivery, today at 10:07">View details</a>
+              </span>
             </article>
           </li>
           <li>
-            <article class="dr-card dr-card--row">
-              <span class="dr-listing__body">
-                <span class="dr-listing__name">Aerial photo &amp; video</span>
-                <span class="dr-listing__meta"><span class="dr-listing__desc">Today, 08:20</span></span>
+            <article class="dr-card">
+              <span class="dr-card__row">
+                <span class="dr-listing__body">
+                  <span class="dr-listing__name">Aerial photo &amp; video</span>
+                  <span class="dr-listing__meta"><span class="dr-listing__desc">Today, 08:20</span></span>
+                </span>
+                <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;800</span></span>
               </span>
-              <span class="dr-number">&#8372;800</span>
+              <span class="dr-card__actions">
+                <a class="dr-btn dr-btn--secondary" href="earning-details-aerial.html" aria-label="View details &#8212; Aerial photo and video, today at 08:20">View details</a>
+              </span>
             </article>
           </li>
           <li>
-            <article class="dr-card dr-card--row">
-              <span class="dr-listing__body">
-                <span class="dr-listing__name">Roof inspection</span>
-                <span class="dr-listing__meta"><span class="dr-listing__desc">Yesterday</span></span>
+            <article class="dr-card">
+              <span class="dr-card__row">
+                <span class="dr-listing__body">
+                  <span class="dr-listing__name">Roof inspection</span>
+                  <span class="dr-listing__meta"><span class="dr-listing__desc">Yesterday</span></span>
+                </span>
+                <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;650</span></span>
               </span>
-              <span class="dr-number">&#8372;650</span>
+              <span class="dr-card__actions">
+                <a class="dr-btn dr-btn--secondary" href="earning-details-inspection.html" aria-label="View details &#8212; Roof inspection, yesterday">View details</a>
+              </span>
             </article>
           </li>
         </ul>
       </section>
     </main>
+    <!-- THE FLOATING WITHDRAW (designer, 2026-08-21): «додай floating button посередині біля
+         ботом бару відповідно до HIG "withdrow"». It REPLACES the block CTA that stood between
+         the balance and the list — same action, same words, same destination; two Withdraw
+         buttons on one screen would be duplication, not emphasis.
+         WHY IT IS A CAPSULE ABOVE THE BAR AND NOT A DISC ON IT: `HIG · Tab bars` says a tab bar
+         is for navigation and asks that actions stay out of it, so Material's centre-notch FAB is
+         the one shape here that would not conform. iOS 26's tab-bar **bottom accessory** — the
+         slot the Music mini-player rides in — is the Apple pattern for a persistent control that
+         floats clear above the bar while the bar stays four tabs and nothing else. That is what
+         this is.
+         IT SITS AFTER main IN THE DOM, which is where it sits on the screen: below the list,
+         above the tabs (`WCAG 1.3.2`, reading order follows the visual one). The column takes
+         `.dr-main--fab`'s 72px floor so the last card scrolls clear of it instead of parking
+         underneath (`HIG · Layout`).
+         Measured: 44 min-height (`HIG · 44pt`), label --on-green on --green 9.46:1
+         (`WCAG 1.4.3`), --ink focus ring at 2px (`WCAG 2.4.11`). -->
+    <a class="dr-btn dr-btn--primary dr-fab" href="withdraw.html">Withdraw &#8372;3,240</a>
     <footer class="dr-tabbar">
       <nav class="dr-tabs" aria-label="Primary">
         <a class="dr-tab" href="operator-listings.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="7.4" width="17.2" height="12.2" rx="2.2"/><path d="M9 7.4V6.1A1.7 1.7 0 0 1 10.7 4.4h2.6A1.7 1.7 0 0 1 15 6.1v1.3"/><path d="M3.4 12.6h17.2"/></svg>Jobs</a>

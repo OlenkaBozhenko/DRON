@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Earning details — Aerial photo &amp; video</title>
+<!-- SCREEN (_screens.md §17b): "Earning details" — sub-view of Wallet / earnings, one file per service.
+     PERSONA: Operator O-1. JOB: RJ-O3 · O-05 — the wallet says how much; the record says what for.
+     THIS INSTANCE: the aerial shoot. Second of the three service files.
+     STATE: base only — a settled payout is a record, so it has no empty, no error and no loading of its
+     own (the same reading _screens.md C4 gives order-details). Entered from the earnings card's
+     "View details"; the back chevron returns to Earnings. Nothing downstream depends on it. -->
+<!--
+  BUILT 2026-08-21, on the designer's word against her Figma reference `YlGWlsWWjKSCxhONMzGG2F`
+  node `117:46`: «з кнопкою details яка буде секондарі кнопка але тоді потрібно добавити ще
+  wairframes з деталями». A button that opens nothing is a dead tap, so the three cards get three
+  records — the shape she set for `order-details` on 2026-08-16 and the reason is the same one:
+  the wallet lists three different jobs, and one shared record would head a roof inspection
+  "Package delivery".
+  NOTHING ON THIS SCREEN IS INVENTED. Every row is a fact the prototype already carries: the place
+  and what was shot are `order-details-aerial.html`'s own rows (Trukhaniv Island · Event · 30 min),
+  the amount and the time are the wallet card's own (₴800 · Today, 08:20), and the payout line
+  quotes `operator-fee-terms.html` — "Auto-release ≤30 min after client confirms".
+  THERE IS NO COMMISSION BREAKDOWN, AND THAT IS DELIBERATE. `operator-fee-terms` states 18% per
+  job, but `job-brief` states its ₴180 as the operator's **Pay** — so the number in the wallet is
+  already what the operator keeps, and a fee row would need a gross figure the project has never
+  set. Inventing one here would put arithmetic on a screen that would then disagree with the list
+  above it. Recorded as a gap for the designer, not filled in.
+  THE NAV BAR NAMES THE SERVICE, NOT THE SCREEN — the rule `order-details` already follows
+  (microcopy.md): an operator arriving from a list of three knows they tapped a record; the one
+  thing they came to check is which job it was. The back control is the chevron alone
+  (microcopy.md **D9**) with `Back to Earnings` as its accessible name (`WCAG 4.1.2`).
+  NO BOTTOM BAR. There is nothing to do to a settled payout — the chevron is the exit, and this is
+  not the only screen built that way (`share`, the three `listings-filter-*` levels).
+  NO GREEN ANYWHERE ON IT. The record states facts and offers no action, so the accent has nothing
+  to mark; the screen's whole ink budget is --ink and --slate on --page and --card.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Earning details — Aerial photo &amp; video</h1>
+    <p class="sub">Operator · RJ-O3 · state: <b>base</b> · file: earning-details-aerial.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O3 — the payout landed on its own; this is the record that says which job produced it and how the money moved. This instance: the aerial shoot.<br><b>flows.md:</b> Wallet / earnings → <span class="cur">Earning details</span> → back to Earnings.<br><b>States:</b> none — a settled payout is a record (per <code>_screens.md</code> §17b).<br><b>Exit:</b> the back chevron → <b>Wallet / earnings</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Summary</b> ▸ what the job was · where it ran · when it closed · what it paid</p><p><b>Payout</b> ▸ how the money reached the balance (RJ-O3's promise, stated as fact)</p></div>
+    <div class="flow"><b>One of three record files</b> (2026-08-21) — the same screen, one instance per service: <a href="earning-details.html">earning-details</a>, this one and <a href="earning-details-inspection.html">earning-details-inspection</a>. Only the heading and the summary strings differ; the Payout zone is byte-identical across the three.</div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="wallet.html" aria-label="Back to Earnings"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Aerial photo &amp; video</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Summary <span class="dr-label__act">&#9656; what was done &#183; where &#183; when &#183; what it paid</span></p>
+      <div class="dr-rows" aria-label="Job summary">
+        <div class="dr-rows__row"><span class="dr-rows__key">Service</span><span class="dr-rows__val">Aerial photo &amp; video</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Location</span><span class="dr-rows__val">Trukhaniv Island</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Shoot</span><span class="dr-rows__val">Event &#183; 30 min</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Done</span><span class="dr-rows__val">Today, 08:20</span></div>
+        <!-- EARNED, NOT PAID. `voice.md` keeps one word per concept and the client's own record
+             already spends "Paid" for what the CLIENT paid (order-details). On the operator side the
+             same figure is what the operator kept, and "Earned" says that without either screen
+             borrowing the other's word. It closes the summary as its last row, which is the shape
+             the designer set for the client record on 2026-08-16 — what · where · when · how much,
+             one panel — and it takes the card's own row style, not the money step, for the reason
+             recorded there: with no breakdown above it there is no column for a total to total. -->
+        <div class="dr-rows__row"><span class="dr-rows__key">Earned</span><span class="dr-rows__val">&#8372;800</span></div>
+      </div>
+
+      <p class="zlabel dr-label">Payout <span class="dr-label__act">&#9656; how it reached your balance (RJ-O3)</span></p>
+      <div class="dr-rows" aria-label="Payout">
+        <div class="dr-rows__row"><span class="dr-rows__key">Status</span><span class="dr-rows__val">Paid</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Released</span><span class="dr-rows__val">Automatically, after the client confirmed</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">To</span><span class="dr-rows__val">Your balance</span></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
