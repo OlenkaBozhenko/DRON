@@ -1118,12 +1118,69 @@ a 2× frame upscales it 1.875× — §Imagery asks for ~2× the CSS box, i.e. 24
   44px control, so its height is set by the target and the 12 is air, not measure. It is not an
   exception to the inset rule but the imagery rule winning where the two meet — a photograph *is* the
   surface. One user: the video card on `order-details-aerial`.
+- **`.dr-card__row` — the band that leads** (2026-08-21, rev 163): `display:flex;
+  align-items:center; gap:12`, structure only. It exists because `.dr-card--row` turns the **card**
+  into a row and `wallet`’s earnings card is a **column whose first child is one**;
+  `.dr-listing__foot` records the same gap, but its name says *foot* and cannot serve a band that
+  leads. Third member of the family, beside `__actions` and `__link`.
 - **Whole-card link:** an absolutely-positioned `.card-link` covering the card, with inner controls
   lifted above it.
 - **Focus, keyboard only:** the inherited `:focus-within` ring is switched off and re-hung on
   `:has(> .card-link:focus-visible)`, so a pointer click does not flash an outline and a focused
   inner button does not double-ring the card.
 - **No hover lift.** Hover is desktop-only and the card is flat at rest.
+
+### The balance card (`.dr-balance--card`)
+
+Added 2026-08-21 (rev 163) on the built `wallet`, against the designer's own reference (Figma
+`YlGWlsWWjKSCxhONMzGG2F` node `117:45`): *«зроби total зеленою карткою іконку візьми відповідну щоб
+показати накопичені кошти далі сума та available to withdrow… лиш нічого не домальовуй від себе»*.
+
+- **A modifier, not a second component.** `.dr-balance` already owns the figure-over-caption column
+  and its 4px step; the modifier turns that column on its side and fills the shape. `ratings`'
+  three-child version of the same block is untouched.
+- **Measured:** **341 × 84**, padding **20 / 16**, `--r-card` **16**, ground `--green`, **no shadow** —
+  it sits *in* the page like every other card. Glyph **32** (`--ic-32`, rendered stroke **2.27**),
+  gap **12** to the body, **4** between figure and caption.
+- **Every ink on it is `--on-green`, 9.46:1** — figure and caption both. The caption's colour is
+  **stated in the kit rather than inherited**, and that is the one place a `.dr-note` may not keep
+  its own ink: `--slate` measures **3.91:1** on `--green`, a real `WCAG 1.4.3` failure at 12px.
+- **No plate behind the glyph.** The reference sets its icon in a dark rounded badge; copying it
+  would need a fifth surface colour to sit on green and the palette has none, so the glyph stands
+  on the fill. The glyph is a **coin stack**, not the Earnings tab's bank card — *accumulated
+  funds* is accumulation, and the tab two rows below already spends the card.
+- **What it costs, recorded not corrected:** the card alone is **9.41%** of a 375 × 812 frame, and
+  with the floating CTA the screen's solid green reaches **11.91%** against the ~5% ceiling in
+  *Named rules*. Both shapes are the designer's instruction of 2026-08-21; the reading is open.
+
+### The floating action (`.dr-fab`, `.dr-main--fab`)
+
+Added 2026-08-21 (rev 163): *«додай floating button посередині біля ботом бару відповідно до HIG»*.
+One user — `wallet`'s **Withdraw ₴3,240**, which left the column for this place.
+
+- **Apple's shape, not Material's.** `HIG · Tab bars` asks a tab bar to carry navigation and not
+  actions, so a circular button planted in or over the bar is the one reading that would fail.
+  iOS 26 ships the tab bar's **bottom accessory** — the slot the Music mini-player rides in — a
+  capsule floating clear above a bar that stays four tabs. That is this.
+- **Measured:** **173.1 × 44** (`--h-control`, so `HIG · 44pt` is met by construction), `--r-pill`,
+  centred with `left:50%` + `translateX(-50%)`, `bottom: calc(--h-tabs + --h-home + --sp-snug)` —
+  **11px** clear of the bar's top hairline. Label `--on-green` on `--green` **9.46:1**
+  (`WCAG 1.4.3`); focus ring `--ink` at 2px (`WCAG 2.4.11`). `WCAG 1.4.11` is satisfied by the
+  label, not the fill — green on the page is 1.69:1, and the criterion exempts a boundary not
+  required to identify a control whose text already does.
+- **`--sh-raised`, and that is the flat rule holding rather than bending.** rev 43's exception is
+  written for things that genuinely float — *"the flat rule is about cards sitting in the page,
+  which is why a drawer and a toast do not break it"* — and a control hovering over a scrolling
+  list is the third such thing. The rung is now spent on **three** sites: `.dr-sheet`, `.dr-toast`,
+  `.dr-fab`. The green primary's own `--sh-sm` is the shadow of a button lying flat, which this is
+  not.
+- **`.dr-main--fab` is the floor it asks for:** `padding-bottom` **72** (44 + 12 + 16), so the last
+  card scrolls fully clear instead of parking under the pill (`HIG · Layout`). Measured, the column
+  scrolls 735 in 619 — the list does pass under the pill while scrolling, which is what a floating
+  accessory does, and nothing is permanently unreachable.
+- **The `:active` re-declaration is load-bearing.** `.dr-btn--primary:active` sets a bare
+  `transform`, which would drop the centring `-50%`; the modifier restates both, and being later in
+  the sheet at equal specificity it wins. `.dr-fab` must stay below the button pack.
 
 ### Titled zone card (`.dr-zone`)
 
@@ -1483,14 +1540,32 @@ figure has to say so. Spent 7 times across four packs.
 ### The availability head (`.dr-avail`)
 
 A dot, the state, and one supporting clause, standing above the segmented control that sets it.
-**`operator-listings`, `operator-listings-empty`.** Block **326.2 × 19**, gap 8; dot **10 × 10**
-(`--sz-dot`, the checked radio's own centre — no new size); state 15/600 `--ink` **15.99:1**; note
-13 `--slate` **6.62:1**.
+**`operator-listings-empty` only, since 2026-08-21** — the designer took it off `operator-listings`
+(*«видали цю стрічку»*), so the head now has one product page instead of two. Block **326.2 × 19**
+(**332 × 19.19** measured at 390px), gap 8; dot **10 × 10** (`--sz-dot`, the checked radio's own
+centre — no new size); state 15/600 `--ink` **15.99:1**; note 13 `--slate` **6.62:1**.
 
 **The dot is `--ink` and not `--green`, and that is `WCAG 1.4.1` rather than taste.** A dot that is
 green when Available and grey when Offline would rest on colour alone. The sentence beside it says
 the state in words and the segment below says it a third time, so the dot is a bullet, not a signal.
 It also keeps the accent off a screen whose card CTAs already spend it.
+
+**What the removal costs on the page that lost it, measured rather than asserted.** The sentence was
+the third statement of one fact, so nothing programmatic moved: the carrier is still a checked
+`<input type="radio">` inside a `<fieldset>` named by its legend (`WCAG 1.3.1` ✓, `4.1.2` ✓), and a
+screen reader still reads *Availability status · Available, selected*. **What it does cost is the
+only wording of the state on the screen.** The segmented control's selected plate is `--page`
+`#F7F5F2` on the `--media` track `#E4E1DA` — **1.20:1**, against `WCAG 1.4.11`'s **3:1** floor for a
+state indicator, so it is **2.5× under**; the label's ink step (`--slate` **5.51:1** → `--ink`
+**15.99:1**) is text and outside `1.4.11`'s scope. That figure predates the deletion — the
+component measured 1.20:1 from the day it was painted — but until 2026-08-21 a sentence said the
+state in words beside it, and now nothing does. Reported to the designer with options at
+`concept.md` rev 164; the cheapest conforming fix, if she wants one, is a **1px `--slate` outline on
+the selected plate — 5.51:1 against the track, 1.8× over the floor** — because no *fill* in the warm
+palette reaches 3:1 against `--page` (the darkest grey rung, `--btn2` `#D6D2C9`, gets to **1.39:1**).
+
+**`operator-listings`'s Status zone after the cut:** the `.dr-stack` holds the segment alone and
+measures **44** where it measured **71.19** (the head's 19.19 plus the stack's 8 gap).
 
 ### The earned score (`.dr-stars`) and `.dr-listing__score`
 
@@ -1760,7 +1835,12 @@ drop the 26 KB base64 blob out of the HTML.
 ### Do
 
 - **Do** spend green as a fill and put `--ink` on it — 9.46:1 on the fill, 14.75:1 on the tint.
-- **Do** keep solid green at or under ~5% of the frame, with the primary CTA as most of it.
+- **Do** keep solid green at or under ~5% of the frame, with the primary CTA as most of it. **One
+  screen departs, on the designer’s instruction and with its numbers written down rather than its
+  instruction trimmed:** `wallet`, from 2026-08-21 (rev 163), carries a green balance card
+  **and** a floating green CTA — **11.91%** of the frame, the CTA **21.0%** of the green.
+  Contrast is unaffected (every ink on green is 9.46:1); it is the quantity rule that gives.
+  See `concept.md` rev 163.
 - **Do** separate surfaces with a warm tone step and a radius, and measure the step before using it.
 - **Do** give a state two signals — a shape *and* an ink change, or a glyph *and* a title.
 - **Do** use `min-height` for anything that must stay a 44pt target.

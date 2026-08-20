@@ -287,16 +287,6 @@
       <!-- ZONE · status toggle (OE-4) -->
       <p class="zlabel dr-label">Status <span class="dr-label__act">▸ set availability — gates dispatch (O-02)</span></p>
       <section class="dr-stack" aria-label="Availability status">
-        <!-- .dr-avail is NEW (see the report's patch block): a dot, the state and one
-             supporting clause. The dot is --ink and not --green: this screen already
-             carries the accent on its card CTAs, and an availability dot that is green
-             when Available and grey when Offline would rest on colour alone
-             (WCAG 1.4.1) — the sentence beside it is the carrier, and the segmented
-             control below states the same fact a third time. -->
-        <p class="dr-avail">
-          <span class="dr-avail__dot" aria-hidden="true"></span>
-          <b class="dr-avail__state">You are Available</b><span class="dr-avail__note">· receiving jobs near Podil</span>
-        </p>
         <form>
           <fieldset class="dr-segment">
             <legend class="sr-only">Availability status</legend>
@@ -305,12 +295,6 @@
             <label class="dr-segment__seg">Offline<input type="radio" name="status" value="offline"></label>
           </fieldset>
         </form>
-      </section>
-
-      <!-- ZONE · counter -->
-      <p class="zlabel dr-label">Counter <span class="dr-label__act">▸ workload at a glance (auto-dispatched, nearest first)</span></p>
-      <section class="dr-counter" aria-label="Jobs counter">
-        <output class="dr-counter__count"><b>2 new jobs</b> · 1 active job · nearest first</output>
       </section>
 
       <!-- ZONE · incoming offers (OE-6).
@@ -326,13 +310,17 @@
              exactly those two facts.
            · the frame's vertical stop list (dots on a connector) becomes the kit's
              .dr-inset From ▸ To strip — one route component in the product.
-           · the frame's 28px transparent kebab becomes .dr-btn--icon, the kit's only
-             icon-only shape: a 44px --btn2 disc, HIG · 44pt met on size alone. -->
+           · the frame's 28px transparent kebab CAME OFF ENTIRELY on the designer's
+             word, 2026-08-21: it opened nothing, and the row's two real answers are
+             the Accept / Decline buttons at the foot of the card. .dr-order__head is
+             flex:1, so the status chip takes the right edge on its own with no rule
+             added. (The kebab had been rebuilt here as .dr-btn--icon, a 44px --btn2
+             disc; that rung is still spent 26 times on nine other pages.) -->
       <p class="zlabel dr-label" id="incoming">Incoming offers · cards <span class="dr-label__act">▸ accept / decline in seconds (RJ-O1)</span></p>
       <section aria-label="Incoming offers">
         <ul class="dr-list dr-list--snug">
 
-          <!-- offer card: header (service + status) · distance + options · route · fee + expiry · Accept/Decline -->
+          <!-- offer card: header (service + status) · route · fee + expiry · Accept/Decline -->
           <li>
             <article class="dr-card">
               <a class="dr-card__link" href="job-offer.html" aria-label="Package delivery job — open brief"></a>
@@ -342,9 +330,6 @@
                   <span class="dr-order__date">2.3 km · ~18 min</span>
                 </span>
                 <span class="dr-chip dr-chip--claim">New</span>
-                <button class="dr-btn dr-btn--icon" type="button" aria-label="Job options">
-                  <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.6" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="18.4" r="1.4" fill="currentColor" stroke="none"/></svg>
-                </button>
               </span>
               <span class="dr-inset">
                 <span class="dr-inset__stop"><span class="dr-inset__lbl">Pickup</span><span class="dr-inset__place">Podil</span></span>
@@ -371,9 +356,6 @@
                   <span class="dr-order__date">5.1 km · ~35 min</span>
                 </span>
                 <span class="dr-chip dr-chip--claim">New</span>
-                <button class="dr-btn dr-btn--icon" type="button" aria-label="Job options">
-                  <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.6" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="18.4" r="1.4" fill="currentColor" stroke="none"/></svg>
-                </button>
               </span>
               <span class="dr-inset">
                 <span class="dr-inset__stop"><span class="dr-inset__lbl">Location</span><span class="dr-inset__place">Obolon district</span></span>
@@ -405,9 +387,6 @@
                   <span class="dr-order__date">Client · Olena H.</span>
                 </span>
                 <span class="dr-chip">In progress</span>
-                <button class="dr-btn dr-btn--icon" type="button" aria-label="Job options">
-                  <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.6" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="18.4" r="1.4" fill="currentColor" stroke="none"/></svg>
-                </button>
               </span>
               <span class="dr-inset">
                 <span class="dr-inset__stop"><span class="dr-inset__lbl">Location</span><span class="dr-inset__place">Trukhaniv Island</span></span>

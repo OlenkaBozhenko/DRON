@@ -167,8 +167,9 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | tracking | tracking.html | Actionbar (footer) | button | Delivery details | View details |
 | tracking | tracking-error.html | Live map / tracking lost | state message | We've lost the live signal from the operator's device. The job is still active. | We've lost the live signal from the operator's device. Your order is still active. |
 | tracking | tracking-error.html | Live map / tracking lost | button | Refresh | Try again |
-| wallet | wallet.html | Balance | state message | Paid: ₴800 for 'Aerial photo & video' added 12 min ago. | ₴800 paid for 'Aerial photo & video', added to your balance 12 min ago. |
-| wallet | wallet.html | Balance | button | Withdraw | Withdraw ₴3,240 |
+| wallet | wallet.html | Balance | state message | Paid: ₴800 for 'Aerial photo & video' added 12 min ago. | ~~₴800 paid for 'Aerial photo & video', added to your balance 12 min ago.~~ **String deleted 2026-08-21** (designer: *«видали цей текст»*). The fact it carried did not go with it — the Payout zone on each `earning-details` record now states it as three rows (Status · Released · To), which is where a settled payment belongs once it stops being news |
+| wallet | wallet.html | Balance | button | Withdraw | Withdraw ₴3,240 — **unchanged 2026-08-21 when the button left the column for the floating capsule above the tab bar.** Same words, same destination; only its place on the screen moved, so `voice.md` **P3** (the price as a fact before the tap) still reads with the amount on the card above it |
+| wallet | wallet.html | Recent | button | Details | **View details** — the designer asked for *«кнопкою details»* (2026-08-21); the visible label is the one **A6** already settled. `voice.md` keeps one word per concept and opening a record is **View details** across the product (`order-history`, `tracking`). Each of the three carries its own `aria-label` — *View details — Package delivery, today at 10:07* and so on — because three links reading the same words and going three places is `WCAG 2.4.4`; the label opens with the visible text, so `WCAG 2.5.3` holds |
 | wallet | wallet-empty.html | Keep earning / empty | heading | Almost there | Below the withdrawal minimum |
 | wallet | wallet-empty.html | Keep earning / empty | state message | You need ₴500 to cash out. Take one more job to reach the payout minimum. | You need ₴500 to withdraw. Take one more job to reach the minimum. |
 | wallet | wallet-empty.html | Keep earning / empty | placeholder | KEEP GOING | EMPTY |
@@ -423,7 +424,7 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
   | `operator-verification` **Add document** ×2 · `operator-profile-setup` **Add photo** · `result-upload` **Add photo** · `operator-dispute` **Add evidence** | The file lands in its own upload well. The result is on screen; a toast would restate it and teach the pattern that every tap owes a message. |
   | `contact-support` **Call support** | ~~Hands off to the phone app. The dialer is the confirmation, and nothing has happened yet at the moment of the tap.~~ **Reason corrected 2026-08-16, verdict unchanged:** there was never a dialer — the button had no target at all, and the `tel:` reading left the product at rev 141 with the masked number. It now opens `call-support.html`, so it **changes screen**, which puts it in the last row of this section rather than this one: a toast on a navigating control would have to ride the navigation. |
   | `listings*` **Filters** · the four service tabs · `time-slot*` day chips · `rate` stars | Open a picker or move a selection. Visible either way. |
-  | `operator-listings` availability segment | The line above it already reads **You are Available · receiving jobs near Podil**, and it stays readable. A permanent statement beats a 4-second one. |
+  | `operator-listings` availability segment | ~~The line above it already reads **You are Available · receiving jobs near Podil**, and it stays readable. A permanent statement beats a 4-second one.~~ **Reason corrected 2026-08-21, verdict unchanged:** that sentence came off the screen on the designer's word (*«видали цю стрічку»*), so it can no longer be the reason. The segment belongs in the row above instead — it **moves a selection**, and the selected plate is on screen and stays there, which is visible either way. |
   | every `-error` screen | An error must stay re-readable; a toast leaves. Now stated in `voice.md`. |
 - **`order-history` · Delete order (×3) — reported, not built, because it is not a toast question.** Three icon buttons, `aria-label="Delete order"`, no confirm and no undo anywhere in the flow. `voice.md`'s **Dangerous action** rule asks for the consequence **before** the tap (`Decline this job? … won't come back to you.` + `Decline` / `Keep job`), and a toast after the fact is not that. Two ways to close it — a confirm sheet before, or a toast **with an Undo**, which the component does not have — and both are the designer's call. The rule now says so out loud.
 - **Everything else that wants a toast wants one the mechanism cannot give.** Five real cases — `account-edit` **Save changes**, `rate` **Submit review**, `job-offer` **Decline**, `result-upload-error` **Queue offline**, `contact-support` **Mark resolved** — all finish by **changing screen**, and the toast would have to ride the navigation and appear on the screen the user lands on. Today `data-toast` fires only where you stay. That is rev 89's own open question, still open, still hers.
@@ -598,6 +599,15 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **`WCAG 1.1.1` is unaffected, and it was checked rather than assumed.** The mark was `aria-hidden="true"` and carried no accessible name; nothing it drew was information the text did not already hold. **`WCAG 1.4.1`** holds too — the state is named in text by the bar and by the rows, so green was never left carrying it alone.
 - **The sibling states are untouched**, having never duplicated their bar: `delivery-error` says *Delivery photo is missing*, `delivery-loading` says *Waiting for the delivery photo…*
 - **Two places still quote the retired line and are reported, not swept:** `voice.md` **P1** and its Success-state row use `Delivered. Your parcel arrived at 10:07.` as the worked example of naming the outcome, and `ui/kit.html` draws it as the `.dr-lead` type sample. Both are illustrations of a rule rather than claims about a screen, and replacing a principle's example is the designer's call.
+
+**Sync — 2026-08-21 (`operator-listings` loses its availability sentence, its counter and its kebab — four strings retire and one that was never written down)**
+- **Three calls on the built screen, all deletions:** *«видали цю стрічку»* on the availability head, *«видали стрічку»* on the jobs counter, and *«цієї кнопки тут немає натомість бейдж вирівняний по правому краю»* on the job card's options button.
+- **Four rows leave the master table**: `Status · You are Available` · `Status · · receiving jobs near Podil` · `Counter · 2 new jobs` · `Counter · · 1 active job · nearest first`. The rewrite-log rows at the head of this file stay, on the `listings` counter's own precedent (rev 54) — a rewrite that happened is history, not inventory.
+- **A fifth string retires that this file never held, and that is the finding worth keeping.** The kebab's accessible name **`Job options`** was built as an `aria-label` on three buttons and was never inventoried here, although the table does carry `Pay` (`sr-only`) and `Back` (`aria-label`) on this very screen. It leaves with the control, so the table is correct now by accident rather than by process. **And it is not the only one** — every `aria-label` on the page was enumerated rather than assumed, and the active job's card link, *Aerial photo and video — open job*, is inventoried nowhere either, while its two siblings (*Package delivery job — open brief*, *Roof inspection job — open brief*) sit in the rewrite log at rows 100–101. That one is still on the screen, so it is a real gap and is reported here rather than closed: adding a string to the master table on my own initiative would be writing product copy, which is hers.
+- **`nearest first` is the only fact that leaves the screen entirely, and it is reported rather than replaced.** The two counts survive verbatim in the group tabs the counter sat under — **`Incoming · 2`** and **`Active · 1`**, both already in this table — so *2 new jobs · 1 active job* was the page saying its own numbers a second time. The dispatch order was stated nowhere else. Whether it comes back, and where, is the designer's call; the zone annotation that carried it (`▸ workload at a glance (auto-dispatched, nearest first)`) went with the zone, and `.zlabel` is wireframe structure, not product copy.
+- **The service area leaves with the sentence too.** *Podil* still appears on the screen — as card 1's **`Pickup · Podil`** — but as the pickup of one job, not as the operator's dispatch radius. The two are different facts that happen to share a word, and only the first one is still stated.
+- **`voice.md` is not engaged by any of the three.** Nothing here is a state message being rewritten: the availability line and the counter were both statements of fact that another control already made, and the kebab carried no words at all. The **P2** rule (*show the proof, not the adjective*) is what the segmented control now satisfies alone — it is the proof, and the sentence above it was the adjective's grammatical cousin, a restatement.
+- **One passage in this file still quotes the retired line and is reported, not swept.** The no-toast table at *Sync — 2026-08-15 (the first toast)* justifies giving the availability segment no toast with *"The line above it already reads **You are Available · receiving jobs near Podil**, and it stays readable"* — the line no longer exists, so that reason is now void. **The verdict does not change and the row is corrected in place:** the segment is a selection, and this file's own rule for selections (*open a picker or move a selection — visible either way*) covers it without needing a sentence above it. The correction is written into the row rather than over it, so the first reasoning stays on the record.
 
 ---
 
@@ -1068,7 +1078,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-account | Mode | current | Body |  |
 | operator-account | Mode | Client — order services | Body |  |
 | operator-account | Mode | switch | Body |  |
-| operator-account | Mode | Switching changes what the app shows. Your Diia identity stays the same. | Body |  |
 | operator-account | Account | Withdrawal method | Body |  |
 | operator-account | Account | Card •••• 4921 | Body | DATA |
 | operator-account | Account | Service area | Body |  |
@@ -1147,8 +1156,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-listings | — | Ivan K. | Body | DATA |
 | operator-listings | — | Incoming · 2 | Body |  |
 | operator-listings | — | Active · 1 | Body |  |
-| operator-listings | Status | You are Available | Body |  |
-| operator-listings | Status | · receiving jobs near Podil | Body |  |
 | operator-listings | Status | Availability status | Body |  |
 | operator-listings | Status | Available | Field label |  |
 | operator-listings | Status | available | Field value | DATA |
@@ -1156,8 +1163,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-listings | Status | busy | Field value | DATA |
 | operator-listings | Status | Offline | Field label |  |
 | operator-listings | Status | offline | Field value | DATA |
-| operator-listings | Counter | 2 new jobs | Body |  |
-| operator-listings | Counter | · 1 active job · nearest first | Body |  |
 | operator-listings | Incoming offers · cards | Package delivery | Body |  |
 | operator-listings | Incoming offers · cards | New | Body |  |
 | operator-listings | Incoming offers · cards | 2.3 km · ~18 min | Body | DATA |

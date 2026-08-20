@@ -1458,7 +1458,16 @@ header.dr-topbar,
 .dr-order__acts{ display: flex; align-items: center; gap: var(--sp-within-lg); flex: none; }
 
 /* The results counter — a fact, set flush left. (Its sort action was removed
-   across the product at the designer's call, 2026-08-13.) */
+   across the product at the designer's call, 2026-08-13.)
+   ON THE BENCH AGAIN since 2026-08-21 (rev 164): the designer's «видали стрічку»
+   took the last one off `operator-listings`, and a grep across every page now
+   returns zero. NOTE WHAT THAT CORRECTS. Rev 54 put this rung on the bench when
+   the five client listing pages dropped their counter, and every document has
+   listed it as benched ever since — but `operator-listings` was painted with a
+   live `.dr-counter` at rev 157, so the rung had a user for three days while
+   the bench list still named it. The same class of drift rev 153 found on
+   `.dr-btn--text`: a bench is a claim about the whole product, and only a grep
+   can make it. Kept, not deleted — the shape is real, it has no page. */
 .dr-counter{ display: flex; align-items: center; justify-content: space-between; gap: var(--sp-within-lg); }
 .dr-counter__count{ font-size: var(--t-bodysm-size); color: var(--slate); }
 .dr-counter__count b{ color: var(--ink); font-weight: var(--weight-medium); }
@@ -2378,9 +2387,23 @@ header.dr-topbar,
    sat flush to the track's edge and the arithmetic printed in its own notes —
    12 − 2 = 10, the plate's radius one rung under the track's — described a
    shape the build was not drawing. Caught 2026-08-16 (rev 155) when the
-   designer read the published kit. The product has not spent this component
+   designer read the published kit. ~~The product has not spent this component
    yet (`operator-listings` still carries the grayscale `.segment`), so nothing
-   shipped wrong; it would have bitten the day that screen is painted. */
+   shipped wrong.~~ CORRECTED 2026-08-21 (rev 164): it has been spent since
+   rev 157 — `operator-listings` and `-empty` both carry `.dr-segment`, painted
+   two days after this note was written, and the note was never revisited. The
+   padding fix had already landed by then, so nothing shipped wrong either way;
+   what was wrong was the sentence claiming the component had no user.
+   AND SINCE 2026-08-21 IT CARRIES THE STATE ALONE. The designer's «видали цю
+   стрічку» took off the `.dr-avail` sentence that said *You are Available* in
+   words above it, so on `operator-listings` this control is now the only thing
+   on the screen naming the operator's availability. Measured: the selected
+   plate is `--page` on the `--media` track at 1.20:1, under WCAG 1.4.11's 3:1
+   floor for a state indicator — a pre-existing figure, not one that change
+   introduced, but one that used to have a sentence standing behind it and no
+   longer does. Reported to the designer with its options at rev 164. The
+   programmatic side is untouched: the carrier is a checked radio in a named
+   fieldset (1.3.1 OK, 4.1.2 OK). */
 .dr .dr-segment{
   display: flex; width: 100%;
   height: var(--h-control); padding: var(--sp-2);
@@ -3660,7 +3683,9 @@ header.dr-topbar,
    IT IS A MODIFIER, NOT A SECOND COMPONENT. `.dr-balance` already owns the
    figure-over-caption column and the 4px step between them; this turns that
    column on its side, hangs a glyph off the front and fills the shape. The
-   ratings screen's three-child version of the same block is untouched.
+   ratings screen's three-child version took the SAME fill on 2026-08-21 as
+   `.dr-balance--banner` below, which is why the fill is now declared once for
+   the pair and this modifier keeps only the turn.
    THE FILL IS --green AND EVERYTHING ON IT IS --on-green, which is measured
    rather than preferred: --slate, the caption's own ink on every other
    surface, is 3.92:1 on --green — a real WCAG 1.4.3 failure at 12px — while
@@ -3674,18 +3699,57 @@ header.dr-topbar,
    the ~5% ceiling concept.md sets, and the screen carries two green shapes
    (this card and the floating CTA) where the rule asks for one control. Both
    are the designer's instruction of 2026-08-21, reported with the numbers in
-   concept.md rev 161 rather than silently kept or silently trimmed. */
-.dr-balance--card{
-  flex-direction: row; align-items: center; gap: var(--sp-snug);
+   concept.md rev 163 rather than silently kept or silently trimmed. */
+/* THE FILL IS SHARED, THE DIRECTION IS NOT. Two screens now stand their
+   headline figure on green and they are not the same shape: wallet lays a
+   glyph beside the figure (a row), ratings stands its star row above it (the
+   column `.dr-balance` already is). So the padding, the radius, the fill and
+   the ink are declared ONCE for both, and `--card` adds only the turn. Pasting
+   the fill twice is the drift the kit exists to close. */
+.dr-balance--card,
+.dr-balance--banner{
   padding: var(--sp-group) var(--sp-screen);
   border-radius: var(--r-card);
   background: var(--green); color: var(--on-green);
 }
+.dr-balance--card{ flex-direction: row; align-items: center; gap: var(--sp-snug); }
 .dr-balance__glyph{ flex: none; display: flex; }
 .dr-balance__glyph .dr-ic{ width: var(--ic-32); height: var(--ic-32); }
 .dr-balance__body{ display: flex; flex-direction: column; gap: var(--sp-within); min-width: 0; }
 .dr-balance--card .dr-number,
-.dr-balance--card .dr-note{ color: var(--on-green); }                 /* 9.46:1 */
+.dr-balance--card .dr-note,
+.dr-balance--banner .dr-number,
+.dr-balance--banner .dr-note{ color: var(--on-green); }               /* 9.46:1 */
+
+/* ── THE SCORE BANNER ───────────────────────────────────── RATINGS · used by
+   ratings. The designer, 2026-08-21, on the built overall score: «зроби у
+   зеленому банері». It is the same fill wallet's balance card took the same
+   day, on the block that was already there — no glyph is added, nothing is
+   re-ordered, the three children keep their 4px step. `.dr-balance` is a
+   column by construction, so the banner needs nothing but the fill.
+
+   THE STAR ROW HAD TO BE RE-INKED, AND THE REASON IS MEASURED, NOT PREFERRED.
+   `.dr-stars` carries the rating input's own two colours — `--warn` filled
+   over `--btn2` unfilled — which are the kit's recorded pairs for this glyph
+   ON THE PAGE (1.84:1 and 1.39:1 there). On `--green` they measure 1.13:1 and
+   1.22:1: the row does not weaken, it disappears. So on this fill the two
+   rungs become the accent's own — `--on-green` earned, `--green-wash`
+   unearned — and NO NEW HEX ENTERS. Measured: the filled star 9.46:1 on the
+   fill, the unearned track 1.56:1 on it, and the two against each other
+   14.75:1. The row is still `aria-hidden` and still carries no meaning: the
+   figure under it states 4.8 in `--on-green` at 9.46:1 (`WCAG 1.1.1 · 1.4.1`),
+   which is what lets a 1.56:1 shape be a picture and not a failure.
+
+   WHAT IT COSTS, STATED THE WAY rev 163 STATED WALLET'S: solid green goes from
+   180 px² — the three zone ticks, 0.06% — to 41,100 px², 13.50% of the
+   375 x 812 frame, against the ~5% `concept.md` §0 sets. This screen has no
+   green CONTROL at all (flows.md gives the dashboard no action), so 100% of
+   its green is a surface rather than the 81–100%-is-the-CTA the rule expects.
+   Her instruction, recorded with the number rather than trimmed to fit.
+   Measured: banner 341 x 120 (32 star row + 4 + 22 figure + 4 + 18 caption,
+   in 20/16 of padding), radius --r-card 16, FLAT — it sits in the page. */
+.dr-balance--banner .dr-stars{ color: var(--green-wash); }            /* 1.56:1 — the unearned track */
+.dr-balance--banner .dr-stars__fill{ color: var(--on-green); }        /* 9.46:1 — the earned star   */
 
 /* ── THE ROW BAND INSIDE A CARD ─────────────────────────── used by wallet.
    `.dr-card--row` cannot serve and the reason is the one `.dr-listing__foot`
