@@ -255,6 +255,14 @@
       "css": ".ds-btn{ min-height:44px; padding:0 16px; border-radius:12px; font:600 15px/21px -apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; border:1px solid transparent; display:inline-flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; transition:filter .15s, background .15s, transform .12s; } .ds-btn-secondary{ background:#D6D2C9; color:#1A1A1A; } .ds-btn-secondary:hover{ background:#E4E1DA; } .ds-btn-secondary:active{ background:#E4E1DA; transform:translateY(1px) scale(.99); } .ds-btn-secondary:focus-visible{ outline:2.5px solid #1A1A1A; outline-offset:2px; } @media (prefers-reduced-motion:reduce){ .ds-btn{ transition:none; } }"
     },
     {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "No fill at all: a 1px --slate edge at 6.62:1 on the page carries the control, the label is --ink at 15.99:1, and the corner is the pill the badges wear. Added 2026-08-21 on the designer's word for operator-account's Edit profile. The edge is --slate and not --line because WCAG 1.4.11 asks 3:1 of the only mark identifying a control once the fill is gone: --line is 1.34:1 on the page, --slate clears the floor 2.2x. Hover and press darken edge and label to --ink with the kit's 1px dip, so no fill appears in any state. Spent on one button; the filled variants keep the 12px radius.",
+      "html": "<a class=\"ds-btn ds-btn-outline\" href=\"#\">Edit profile</a>",
+      "css": ".ds-btn{ min-height:44px; padding:0 16px; border-radius:12px; font:600 15px/21px -apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif; border:1px solid transparent; display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; cursor:pointer; transition:filter .15s, background .15s, transform .12s; } .ds-btn-outline{ background:transparent; color:#1A1A1A; border-color:#5A5751; border-radius:999px; } .ds-btn-outline:hover{ border-color:#1A1A1A; } .ds-btn-outline:active{ border-color:#1A1A1A; transform:translateY(1px) scale(.99); } .ds-btn-outline:focus-visible{ outline:2.5px solid #1A1A1A; outline-offset:2px; } @media (prefers-reduced-motion:reduce){ .ds-btn{ transition:none; } }"
+    },
+    {
       "name": "Circular Icon Action",
       "kind": "button",
       "refersTo": "button-icon",

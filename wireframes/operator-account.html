@@ -94,13 +94,18 @@
                two chips of one kind must not be told apart by drawing. Centred
                now, and above the action so the button closes the column. -->
           <span class="dr-chips dr-profile__badges"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>CAA licence<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
-          <!-- THE EDIT AFFORDANCE, NOW LABELLED. It was a 44 x 44 icon-only disc
-               in the card's top-right corner; the model ends its column with a
-               worded button and so does this one. .dr-btn--secondary: --ink on
-               --btn2 at 11.54:1, min-height 44 (`HIG · 44pt target`), and the
-               visible label is now the accessible name, so the aria-label the
-               icon needed for `WCAG 4.1.2` is no longer carried by an attribute. -->
-          <a class="dr-btn dr-btn--secondary dr-profile__edit" href="account-edit.html"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</a>
+          <!-- THE EDIT AFFORDANCE, NOW LABELLED AND NOW DRAWN RATHER THAN FILLED.
+               It was a 44 x 44 icon-only disc in the card's top-right corner;
+               the model ends its column with a worded button and so does this
+               one. The fill came off on 2026-08-21 («кнопку зроби контурну без
+               бекграунда скругленими краями як бейджі»), so it takes
+               .dr-btn--outline: --ink label at 15.99:1 on the page, a --slate
+               edge at 6.62:1 where `WCAG 1.4.11` asks 3:1 of the one thing that
+               says *control* once the fill is gone, --r-pill to the badges
+               above it, min-height 44 (`HIG · 44pt target`). The visible label
+               is the accessible name, so the aria-label the icon-only disc
+               needed for `WCAG 4.1.2` is no longer carried by an attribute. -->
+          <a class="dr-btn dr-btn--outline dr-profile__edit" href="account-edit.html"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</a>
         </div>
       </section>
 

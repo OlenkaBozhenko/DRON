@@ -664,11 +664,28 @@ gives it the corner. It never restates the parent's radius.
 ### Buttons
 
 - **Shape:** rounded rect, `--r-btn` 12px. Not a pill — this language is Fauna, not Monarch.
+  **One rung departs, on the designer's word (2026-08-21, rev 181):** `.dr-btn--outline` takes
+  `--r-pill`, cut to the badges it stands under on `operator-account`. The ramp is not widened —
+  999 is a rung it already owns — and the other four fills keep 12, so the sentence above still
+  describes every **filled** button in the system.
 - **Height:** `min-height:44px`, never a fixed height. Padding `0 16px` on every variant.
 - **Type:** 15/600, gap 8 to a leading glyph.
 - **Primary:** `--green` fill, `--on-green` label (9.46:1), `--sh-sm`. Hover
   `filter: brightness(1.03)`; active `translateY(1px) scale(.99)`.
 - **Secondary:** `--btn2` fill, `--ink` label (11.54:1), no shadow. Hover → `--media`.
+- **Outline:** no fill, `--ink` label — **15.99:1** on the page — over a **1px `--slate` edge** at
+  **6.62:1**, `--r-pill`. Added 2026-08-21 (rev 181) on the designer's word for `operator-account`'s
+  *Edit profile*, which had been `--secondary`: *«кнопку зроби контурну без бекграунда скругленими
+  краями як бейджі»*. **The edge colour is `WCAG 1.4.11`, not taste** — with the fill gone the border
+  is the only visual information identifying the control, so 3:1 against `--page` is the floor;
+  `--line` (the hairline every separator takes) is **1.34:1** and fails it 2.2×, `--slate` is
+  **6.62:1** and clears it 2.2×, the same answer the unchecked checkbox already records. **No fill in
+  any state:** hover and press darken edge and label to `--ink` (**15.99:1**) with the kit's 1px dip —
+  the tertiary's grammar, not the secondary's, because a rest state with no ground must not grow one
+  under the cursor. Geometry is unchanged by the swap — **144.69 × 44** measured after, against the
+  144.7 × 44 the fill drew, since `.dr-btn` already reserves `border: var(--hair) solid transparent`
+  and only the colour moved. Spent on that one button; the 67 pages carrying `--secondary` are
+  untouched.
 - **Text:** transparent, `--green-ink` label — **5.58:1** on the page, **5.01:1** on the card;
   hover and press darken to `--ink` with the kit's 1px dip, the tertiary's own grammar. Added
   2026-08-12 (rev 49) for `listings-filtered`'s Clear all; rev 51 replaced that control with
@@ -1126,9 +1143,13 @@ subject. `.dr-op` is untouched on the eleven client screens that carry it.
 - **Rhythm:** 8 between siblings, **12** before the credential row and before the action — the group
   boundary reads larger than the space inside it (`HIG · Layout`). The photo carries `--sp-13` of
   margin to pay back the badge's 12.7 of overhang, so badge-to-name measures **8.3**.
-- **Action:** `.dr-btn--secondary` **144.7 × 44**, `--ink` on `--btn2` at **11.54:1**, `--r-btn` 12
-  — the kit's radius, not the model's pill. The label is now visible, so the accessible name comes
-  from content and the `aria-label` the icon-only disc needed for `WCAG 4.1.2` is gone.
+- **Action:** `.dr-btn--outline` **144.69 × 44**, `--ink` label at **15.99:1** on the page over a 1px
+  `--slate` edge at **6.62:1**, `--r-pill` — the model's pill after all, cut to the two credential
+  badges directly above it (both measure 999 too). It was `--secondary` at 11.54:1 on `--btn2` with
+  `--r-btn` 12 until 2026-08-21 (rev 181); losing the fill improved the label's pair and left the box
+  identical, and the edge is `--slate` rather than `--line` because `WCAG 1.4.11` asks 3:1 of the one
+  mark that now says *control* — 1.34:1 against 6.62:1. The label is visible, so the accessible name
+  comes from content and the `aria-label` the icon-only disc needed for `WCAG 4.1.2` is gone.
 - **Credentials:** the two `.dr-chip--claim` pills, `--ink` on `--green-wash` at **14.75:1**,
   centred and unchanged in meaning. The pair measures **244.1** in **343** of frame — one line.
 
