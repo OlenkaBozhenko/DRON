@@ -270,6 +270,14 @@
       <span class="dr-avatar-sm"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
       <span class="dr-op__name">Ivan K.</span>
       <span class="dr-topbar__spacer"></span>
+      <!-- THE AVAILABILITY BADGE (designer, 2026-08-21: «покажи індикатор
+           відповідно до обраного статусу»). The state the segment below sets,
+           mirrored in the bar so it stays on screen once the segment scrolls
+           away. It is `.dr-chip--sm` — the rung she cut the same day for a badge
+           beside a name on operator-account — plus a dot; the word is inside the
+           pill, which is what lets the dot be green (WCAG 1.4.1). Not a control:
+           nothing is tappable here, so no 44px target is owed. -->
+      <span class="dr-chip dr-chip--sm dr-avail-badge" data-avail-badge data-state="available"><span class="dr-avail-badge__dot" aria-hidden="true"></span><span data-avail-word>Available</span></span>
     </header>
 
     <!-- NAV · job groups — the painted in-page tab row from listings.html.
@@ -506,6 +514,55 @@
     });
     window.addEventListener('hashchange', function () { mark(location.hash); });
     mark(location.hash);
+  }());
+  </script>
+
+  <!--
+    THE BADGE FOLLOWS THE SEGMENT. Second script, same reason as the first: the
+    behaviour belongs to this screen and not to `ui/kit.js`, which is the picker
+    drawer and the keyboard.
+
+    THE WORD COMES OFF THE RADIO'S OWN LABEL, so the three strings live in the
+    markup once — the segment — and this file never carries product copy. Only
+    `data-state` is set from JS; every colour, fill and shape behind it is in
+    `ui/kit.css`, which is the kit's standing rule that a design value never
+    leaves the stylesheet.
+
+    THE PROGRAMMATIC SIDE IS UNTOUCHED AND THAT IS DELIBERATE. The state's
+    carrier is still the checked radio inside its legend-named fieldset, which a
+    screen reader already reads as *Availability status · Available, selected*
+    (`WCAG 1.3.1` OK, `4.1.2` OK). The badge is a visual restatement of that, so
+    it is NOT a live region: `role="status"` here would announce the same fact a
+    second time on every change, and `microcopy.md`'s own rule for a selection —
+    *it moves a selection, visible either way* — is why the segment gets no toast
+    either.
+
+    IT SYNCS ON LOAD as well as on change, so the badge cannot disagree with the
+    radio the frame drew.
+  -->
+  <script>
+  (function () {
+    'use strict';
+
+    var badge = document.querySelector('[data-avail-badge]');
+    var word  = document.querySelector('[data-avail-word]');
+    if (!badge || !word) return;
+
+    var radios = document.querySelectorAll('input[name="status"]');
+    if (!radios.length) return;
+
+    function sync() {
+      radios.forEach(function (radio) {
+        if (!radio.checked) return;
+        badge.setAttribute('data-state', radio.value);
+        word.textContent = radio.parentNode.textContent.trim();
+      });
+    }
+
+    radios.forEach(function (radio) {
+      radio.addEventListener('change', sync);
+    });
+    sync();
   }());
   </script>
 

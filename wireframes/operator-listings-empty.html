@@ -27,6 +27,12 @@
       <span class="dr-avatar-sm"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
       <span class="dr-op__name">Ivan K.</span>
       <span class="dr-topbar__spacer"></span>
+      <!-- THE AVAILABILITY BADGE — the base page's, at this state's value. The
+           base file and its -empty are one screen in two states, so the header
+           carries the same component on both; only the value differs, and here
+           it is the Offline the segment below is checked on. Its dot is HOLLOW
+           where Busy's is filled, so Offline is not grey-versus-grey. -->
+      <span class="dr-chip dr-chip--sm dr-avail-badge" data-avail-badge data-state="offline"><span class="dr-avail-badge__dot" aria-hidden="true"></span><span data-avail-word>Offline</span></span>
     </header>
 
     <nav class="dr-groups" aria-label="Job groups">
@@ -79,6 +85,39 @@
       <div class="dr-home"><span></span></div>
     </footer>
   </div>
+
+  <!-- THE BADGE FOLLOWS THE SEGMENT — the base page's script verbatim. The word
+       is read off the checked radio's own label, so the strings live in the
+       markup once and this file carries no product copy; only `data-state` is
+       set from here, every fill and shape behind it staying in `ui/kit.css`.
+       The badge is not a live region: the checked radio in its legend-named
+       fieldset is still the programmatic carrier (`WCAG 1.3.1` OK, `4.1.2` OK),
+       and announcing the same fact twice is what that would buy. -->
+  <script>
+  (function () {
+    'use strict';
+
+    var badge = document.querySelector('[data-avail-badge]');
+    var word  = document.querySelector('[data-avail-word]');
+    if (!badge || !word) return;
+
+    var radios = document.querySelectorAll('input[name="status"]');
+    if (!radios.length) return;
+
+    function sync() {
+      radios.forEach(function (radio) {
+        if (!radio.checked) return;
+        badge.setAttribute('data-state', radio.value);
+        word.textContent = radio.parentNode.textContent.trim();
+      });
+    }
+
+    radios.forEach(function (radio) {
+      radio.addEventListener('change', sync);
+    });
+    sync();
+  }());
+  </script>
 
   <script src="../ui/kit.js"></script>
   <script src="_wf-shell.js"></script>
