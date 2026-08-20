@@ -1073,6 +1073,22 @@ header.dr-topbar,
    the mark is cleared by the same number. The fill-only rule is --green's, not
    this ink's; --danger-ink already strokes the alert triangle (rev 54). */
 .dr-chip--trust{ background: var(--trust-wash); color: var(--trust-ink); }  /* 5.65:1 */
+/* THE SMALL RUNG (2026-08-21, the designer on operator-account: «постав бейдж
+   оператор біля імені зроби трохи меншим»). A chip that rides beside a name
+   rather than under it, so it is sized to the name's line and not to the row
+   of credentials below. ONLY THE SIZE CHANGES: the pair is still --slate on
+   --media at 5.51:1, which clears WCAG 1.4.3's 4.5:1 for normal text at this
+   size too — 11px is well under the 18.66px-bold / 24px large-text threshold,
+   so the stricter number is the one being measured. 11px is --t-micro, a step
+   the scale already spends (.dr-tab, .dr-hint, .dr-stepper), so the closed
+   type ramp is not widened by a badge. Drawn: 65.7 × 21.4 against the 12px
+   chip's 74.2 × 26.8 — 8.5 narrower and 5.4 shorter. The name's own line box
+   is 18 (15px × 1.2), so the pill stands 3.4 taller and brackets the word
+   rather than matching it; that 3.4 is what sets the head row's height. */
+.dr-chip--sm{
+  padding: var(--sp-3) var(--sp-within-lg);
+  font-size: var(--t-micro-size); line-height: var(--t-micro-line);
+}
 /* SETTLED 2026-08-02 by the designer: 14px, everywhere. The build drew 13px in
    a badge (.badge) and 14px in the ETA pill (.ohl-eta) — one component with two
    values, against the One-Component-One-Value rule. One value now. */
@@ -1556,7 +1572,23 @@ header.dr-topbar,
   display: block; margin-top: var(--sp-2);
   font-size: var(--t-meta-size); color: var(--slate); font-variant-numeric: tabular-nums;
 }
+/* THE NAME ROW (2026-08-21). The role pill sits beside the name instead of
+   in the badge row; wrap is on so a long name drops it to its own line rather
+   than squeezing either. */
+.dr-op__head{ display: flex; align-items: center; flex-wrap: wrap; gap: var(--sp-6); }
 .dr-op__badges{ margin-top: var(--sp-9); }
+/* THE BADGES BREAK OUT TO THEIR OWN LINE (2026-08-21, the designer: «а ті два
+   в один рядок»). .dr-op is one row — avatar, info, action — so a chip row
+   nested in .dr-op__info can only ever have what the info column has: 185 on
+   the 375 frame, once 56 of avatar, 44 of button and 2 × 12 of gap are taken
+   off the card's 309 of inner width. Two credential chips need 244.1, which
+   is why they wrapped. Wrapping .dr-op and giving the chips the whole basis
+   drops them under the row at the FULL 309 — 64.9 of slack — and that is the
+   only reason one line is reachable at all. The modifier is opt-in: account,
+   contact-support, tracking and order-confirmed hang their own chips on
+   .dr-op__badges and keep the nested row they were drawn with. */
+.dr-op--badgerow{ flex-wrap: wrap; }
+.dr-op--badgerow .dr-op__badges{ flex-basis: 100%; margin-top: var(--sp-snug); }
 
 /* ═══ THE AVATAR EDIT ═════════════════════════════════════════════════════
    The designer, 2026-08-16: «добав іконку едіт карандаш на аватарку». A pencil
@@ -3699,7 +3731,10 @@ header.dr-topbar,
    the ~5% ceiling concept.md sets, and the screen carries two green shapes
    (this card and the floating CTA) where the rule asks for one control. Both
    are the designer's instruction of 2026-08-21, reported with the numbers in
-   concept.md rev 163 rather than silently kept or silently trimmed. */
+   concept.md rev 163 rather than silently kept or silently trimmed — and put to
+   her the same day with four readings drawn. HER CALL: KEEP AS BUILT, and leave
+   the ~5% rule where it stands rather than widen it to fit. A departure that
+   engages no WCAG or HIG criterion, recorded as a decision. */
 /* THE FILL IS SHARED, THE DIRECTION IS NOT. Two screens now stand their
    headline figure on green and they are not the same shape: wallet lays a
    glyph beside the figure (a row), ratings stands its star row above it (the
@@ -3731,7 +3766,7 @@ header.dr-topbar,
    THE STAR ROW HAD TO BE RE-INKED, AND THE REASON IS MEASURED, NOT PREFERRED.
    `.dr-stars` carries the rating input's own two colours — `--warn` filled
    over `--btn2` unfilled — which are the kit's recorded pairs for this glyph
-   ON THE PAGE (1.84:1 and 1.39:1 there). On `--green` they measure 1.13:1 and
+   ON THE PAGE (1.84:1 and 1.39:1 there). On `--green` they measure 1.21:1 and
    1.22:1: the row does not weaken, it disappears. So on this fill the two
    rungs become the accent's own — `--on-green` earned, `--green-wash`
    unearned — and NO NEW HEX ENTERS. Measured: the filled star 9.46:1 on the
@@ -3745,7 +3780,9 @@ header.dr-topbar,
    375 x 812 frame, against the ~5% `concept.md` §0 sets. This screen has no
    green CONTROL at all (flows.md gives the dashboard no action), so 100% of
    its green is a surface rather than the 81–100%-is-the-CTA the rule expects.
-   Her instruction, recorded with the number rather than trimmed to fit.
+   Rev 163 put the same departure to her on wallet with four readings drawn and
+   her call was KEEP AS BUILT, rule unchanged — so this is the second screen
+   recorded against ~5%, not a ceiling that moved. Recorded with the number.
    Measured: banner 341 x 120 (32 star row + 4 + 22 figure + 4 + 18 caption,
    in 20/16 of padding), radius --r-card 16, FLAT — it sits in the page. */
 .dr-balance--banner .dr-stars{ color: var(--green-wash); }            /* 1.56:1 — the unearned track */

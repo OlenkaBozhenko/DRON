@@ -15,21 +15,22 @@
   GIVEN. Five buttons in the tab order, claiming a pressed state, on a dashboard
   with nothing to press, would be five stops that toggle nothing (WCAG 4.1.2), so
   the display is built separately as .dr-stars (provisional; see the pass report).
-  THE GLYPH AND THE COLOUR ARE THE INPUT'S, unchanged: the same star path, the
-  same --sz-star 32 (one component, one value — a second star size would be the
-  drift the kit exists to close), --warn filled over --btn2 unfilled on --page.
-  --warn on --page is 1.84:1 (kit.css · THE RATING, the figure the input already
-  records) and --btn2 on --page is 1.39:1, so the stars never carry the meaning:
-  they are aria-hidden and redundant to "4.8" standing under them in --ink at
-  15.99:1 (WCAG 1.1.1 · 1.4.1). PARTIAL, NOT ROUNDED — 4.8 draws four stars and
+  THE GLYPH IS THE INPUT'S, unchanged: the same star path, the same --sz-star 32
+  (one component, one value — a second star size would be the drift the kit
+  exists to close). THE TWO INKS ARE NOT, AND THAT IS THE BANNER'S DOING — see
+  below. The stars never carry the meaning on either ground: they are
+  aria-hidden and redundant to "4.8" standing under them at 9.46:1
+  (WCAG 1.1.1 · 1.4.1). PARTIAL, NOT ROUNDED — 4.8 draws four stars and
   four fifths of the fifth, because rounding down understates by 0.8 and rounding
   up overstates. No star row on the review cards or the per-service rows: those
   scores are 12.5px and 15px text on an axis, and a 160 × 32 row would swamp both.
 
-  THE FIGURE IS 20px, NOT THE GRAYSCALE 34. _wireframe.css sets .amount to
+  THE FIGURE IS 22px, NOT THE GRAYSCALE 34. _wireframe.css sets .amount to
   34px/600/#252525 — a size outside the product's ten steps (max 22) and an ink
-  outside the palette. It takes .dr-number (20/700, tabular-nums), which the
-  Tabular Rule requires of a rating, and its caption .dr-note dr-note--flush.
+  outside the palette. It takes .dr-number, which the Tabular Rule requires of a
+  rating, and its caption .dr-note dr-note--flush. MEASURED 22/700 — .dr-balance
+  raises .dr-number to --t-display-size, the designer's call of 2026-08-18 on the
+  built wallet; this comment said 20 from rev 157 until it was measured again.
   THE BLOCK IS wallet's OWN .dr-balance, not a second treatment of the same
   thing: two operator tab roots open on a big figure over a caption, and the
   frame sets both flush left. The star row is a third child of it, so the score
@@ -40,8 +41,27 @@
   .dr-list--snug (8) rather than .dr-list (28), which is for a list that IS the
   screen. Card construction copied from inspection-report.html's findings list.
 
-  NO GREEN CONTROL ON THIS SCREEN, by the frame: it is a read-only dashboard and
-  flows.md gives it no action. Solid green is the three zone-label ticks alone.
+  THE OVERALL SCORE IS A GREEN BANNER (designer, 2026-08-21: «зроби у зеленому
+  банері»). Same fill wallet's balance card took the same day, on the block that
+  was already here: .dr-balance--banner adds 20/16 of padding, --r-card 16 and
+  the --green fill, and nothing moves — three children, same order, same 4px
+  step, no glyph drawn in. Every ink on it is --on-green at 9.46:1, the caption's
+  --slate included, which measures 3.91:1 on --green and would be a real
+  WCAG 1.4.3 failure at 12px.
+  THE STAR ROW IS RE-INKED BECAUSE ITS OWN COLOURS DIE ON GREEN, measured:
+  --warn is 1.21:1 on --green and --btn2 1.22:1 — the row disappears rather than
+  weakens. (On --page, the ground it stood on before, they measure 2.05:1 and
+  1.39:1. The 1.84:1 this comment used to quote is --warn on --card, the palette's
+  own figure for rate.html's stars, mis-transcribed here since rev 157.) On this fill the two rungs are the accent's own, --on-green earned
+  over --green-wash unearned: 9.46:1 and 1.56:1 on the fill, 14.75:1 against
+  each other. No new hex.
+  STILL NO GREEN CONTROL, by the frame: it is a read-only dashboard and flows.md
+  gives it no action, so 100% of this screen's solid green is a surface, not the
+  81–100%-is-the-CTA concept.md §0 expects. Solid green goes from 180 px² (the
+  three zone ticks, 0.06%) to 41,100 px², 13.50% of the 375 x 812 frame, against
+  the ~5% ceiling — her instruction, recorded with the number, not trimmed. Rev 163
+  put the same departure to her on wallet and her call was KEEP AS BUILT with the
+  rule unchanged, so this is the second screen recorded against ~5%.
 -->
 <link rel="stylesheet" href="_wireframe.css">
 <link rel="stylesheet" href="../ui/kit.css">
@@ -63,7 +83,7 @@
     <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Ratings</span><span class="dr-topbar__spacer"></span></header>
     <main class="dr-main">
       <p class="zlabel dr-label">Overall <span class="dr-label__act">▸ headline score</span></p>
-      <section aria-label="Overall rating" class="dr-balance">
+      <section aria-label="Overall rating" class="dr-balance dr-balance--banner">
         <!-- 4.8 of 5 → four whole stars and eight tenths of the fifth. The value
              arrives inline the way .dr-rail takes --dr-fill in ui/kit.html and the
              price chart's bars take their heights on listings-filters: data inline,

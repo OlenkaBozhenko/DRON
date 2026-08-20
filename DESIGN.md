@@ -426,7 +426,7 @@ Ten sizes, every one in use on a shipped surface.
 | `body-sm` | 13 | 400 | 18.2 (1.4) | — | keys |
 | `meta` | 12.5 | 400 | 15 (1.2) | — | dates |
 | `caption` | 12 | 600 | 16.8 (1.4) | — | chips, badges |
-| `micro` | 11 | 600 | 15.4 (1.4) | .09em | mono zone labels |
+| `micro` | 11 | 600 | 15.4 (1.4) | .09em | mono zone labels; `.dr-chip--sm`, the chip that rides beside a name (no tracking) |
 | `micro-sm` | 10.5 | 400 | 14.7 (1.4) | — | milestone labels under a rail |
 
 **Leading is 1.4 by inheritance; a step overrides it only where the box demands it.** The frame
@@ -1151,7 +1151,9 @@ Added 2026-08-21 (rev 163) on the built `wallet`, against the designer's own ref
   funds* is accumulation, and the tab two rows below already spends the card.
 - **What it costs, recorded not corrected:** the card alone is **9.41%** of a 375 × 812 frame, and
   with the floating CTA the screen's solid green reaches **11.91%** against the ~5% ceiling in
-  *Named rules*. Both shapes are the designer's instruction of 2026-08-21; the reading is open.
+  *Named rules*. Both shapes are the designer's instruction of 2026-08-21, and **she was shown the
+  four readings with the numbers and chose to keep it as built** — a conforming departure recorded,
+  not a defect. The ~5% rule is unchanged: she declined rewriting it as well.
 
 ### The floating action (`.dr-fab`, `.dr-main--fab`)
 
@@ -1283,8 +1285,19 @@ card UI. Present on every order card, including delivered ones.
 ETA pill (`.ohl-eta`) — one component with two values, against the One-Component-One-Value rule.
 The designer's call is **14 everywhere**.
 
-- **Live / claim:** `--green-wash` + `--ink` — *Verified by DRON*, the selected tab.
-- **Muted / fact:** `--media` + `--slate` — *Insured*, the ETA chip.
+- **Live / claim:** `--green-wash` + `--ink` at 14.75:1 — *Verified by DRON*, *Insured*,
+  *CAA licence*. Green here means **DRON checked this document** (settled 2026-08-18); the blue
+  `--trust-wash` rung it replaced is declared and spent nowhere.
+- **Muted / fact:** `--media` + `--slate` at 5.51:1 — *Operator*, *Client*, *Human agent*,
+  *Order #DR-4821*, the ETA chip.
+
+**A second size, and only one — `.dr-chip--sm`, added 2026-08-21.** 11/600 with padding `3px 8px`,
+drawn **65.7 × 21.4** against the base chip's **74.2 × 26.8**. It exists for one position: a chip
+that sits **beside a name** rather than in a row under it, where the base size out-weighs the 15px
+name it is standing next to. Colour is untouched, so the pair is still 5.51:1 — and 11px is a
+normal-text size under `WCAG 1.4.3`, which is the 4.5:1 threshold the pair already clears. Used on
+`operator-account`'s *Operator*. It is **not** an escape hatch for a row that will not fit; a row
+that will not fit gets more width, not smaller type.
 
 ### Status indicator
 
@@ -1533,6 +1546,31 @@ digit, so the figure gets the display **size** and the number **role**.
 here. **The painted client page `payment.html` still leaks it, and that is an open defect, not a
 sanctioned exception.**
 
+**The two green fills (`.dr-balance--card`, `.dr-balance--banner`).** Two screens stand their
+headline figure on `--green`, and they are not the same shape — so the fill, the padding and the
+radius are declared **once** for the pair and only the direction differs. **`wallet`** takes
+`--card`: the column turned on its side, a **32** glyph at the front, figure over caption beside it,
+**341 × 84**. **`ratings`** takes `--banner`: the column exactly as it already stood, star row over
+figure over caption, **341 × 120** — 32 + 4 + 22 + 4 + 18 inside 20/16 of padding. Both are
+`--r-card` **16** and **flat**: no shadow, they sit in the page.
+
+**Every ink on either fill is `--on-green` at 9.46:1**, stated rather than inherited, because
+`.dr-note`'s own `--slate` measures **3.91:1** on `--green` — a real `WCAG 1.4.3` failure at 12px.
+**On the banner the star row is re-inked as well**, and the reason is measured, not preferred:
+`--warn` and `--btn2`, the row's own two colours, measure **1.21:1** and **1.22:1** on `--green`, so
+the picture does not weaken, it disappears. On this fill the two rungs become the accent's own —
+`--on-green` earned over `--green-wash` unearned, **9.46:1** and **1.56:1** on the fill, **14.75:1**
+against each other. **No new hex enters for either fill.**
+
+**What they cost, recorded rather than trimmed to fit.** The card is **9.41%** of `wallet`'s frame;
+the banner is **13.44%** of `ratings`', taking that screen's solid green from **180 px² · 0.06%**
+(three zone ticks) to **41,100 px² · 13.50%** of 375 × 812 — against the **~5%** ceiling
+`concept.md` §0 sets. And `ratings` has no green **control** at all, since `flows.md` gives the
+dashboard no action, so 100% of its green is a surface rather than the 81–100%-is-the-CTA the rule
+expects. Both fills are the designer's instruction of 2026-08-21 (`concept.md` rev 163, rev 166), and the
+departure was put to her at rev 163 with four readings drawn — her call was **keep as built, and leave the
+~5% rule where it stands**. So these are **two screens recorded against the rule**, not a ceiling that moved.
+
 `.dr-note--flush` is `text-align: left`, nothing else: `.dr-note` is centred by construction — the
 right default under a centred mark inside `.dr-msg` — so a caption standing beside a left-aligned
 figure has to say so. Spent 7 times across four packs.
@@ -1574,15 +1612,20 @@ A score somebody else **gave**, not a score being given. **`ratings`.**
 **Why not `.dr-rating`.** That class is an *input*: five `<button>`s, each a 44pt target carrying
 `aria-pressed`, built for `rate.html` where the client awards a score. A read-only display must not
 be a row of buttons announcing a pressed state it cannot change (`WCAG 4.1.2`), nor put five stops
-in a dashboard's tab order. Same star path, same `--sz-star` 32, same two colours, **no tab stop**:
-the row is `aria-hidden` and the figure beside it states the value in `--ink` at **15.99:1**. That
-is what lets `--warn`'s **1.84:1** and `--btn2`'s **1.39:1** carry a shape and never a meaning.
+in a dashboard's tab order. Same star path, same `--sz-star` 32, **no tab stop**:
+the row is `aria-hidden` and the figure beside it states the value at **9.46:1** on the green banner
+(**15.99:1** on the page, before it). That is what lets a low-contrast shape carry a picture and
+never a meaning — `--warn`'s **2.05:1** over `--btn2`'s **1.39:1** on `--page`, and, since
+2026-08-21, `--on-green`'s **9.46:1** over `--green-wash`'s **1.56:1** on the banner's `--green`
+fill. **The page pair does not survive that fill and was not carried onto it:** `--warn` measures
+**1.21:1** and `--btn2` **1.22:1** on green, which is not a fainter picture but none at all.
 
 **The clip lands on the ink, not on the box.** The star path spans x 3.3 → 20.7 of its 24-grid, so
 only **72.5%** of a box is ink. Clipping the row at score/5 — 96% for 4.8 — removes just the tip of
 the fifth arm and the display renders **five full stars**; that was built, measured and rejected.
 Derived from the path's own coordinates instead: 4.8 covers exactly **0.800** of the fifth
-silhouette, fill **150.96** of a 160 row, and the fifth star visibly keeps a grey point. A
+silhouette, fill **150.96** of a 160 row, and the fifth star visibly keeps its unearned point
+(grey on the page, `--green-wash` on the banner). A
 whole-star floor renders 4.8 and 4.0 alike. `--sz-star-ink` / `--sz-star-inset` are the only `:root`
 additions of the whole pass and both are arithmetic on `--sz-star`.
 
@@ -1840,7 +1883,8 @@ drop the 26 KB base64 blob out of the HTML.
   instruction trimmed:** `wallet`, from 2026-08-21 (rev 163), carries a green balance card
   **and** a floating green CTA — **11.91%** of the frame, the CTA **21.0%** of the green.
   Contrast is unaffected (every ink on green is 9.46:1); it is the quantity rule that gives.
-  See `concept.md` rev 163.
+  **Put to her with the four readings drawn and the numbers on each; her call was to keep it as
+  built, and to leave this rule at ~5% rather than widen it.** See `concept.md` rev 163.
 - **Do** separate surfaces with a warm tone step and a radius, and measure the step before using it.
 - **Do** give a state two signals — a shape *and* an ink change, or a glyph *and* a title.
 - **Do** use `min-height` for anything that must stay a 44pt target.
