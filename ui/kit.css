@@ -3697,6 +3697,22 @@ header.dr-topbar,
   width: 100%; height: 100%; max-height: none;
   object-fit: contain; object-position: center;
 }
+/* ONE SLIDE STANDS ON THE FLOOR, AND IT IS THE DRAWING THAT DECIDES (designer,
+   2026-08-21, on oo1: «вона буде не так як усі інші бо тут композиція інша і
+   хлопець як обрізаний тому картинка буде слоєм під низом слайдера вирівняна
+   по нижньому краю»). `onboarding-dispatch` is the one picture in the nine
+   whose subject is cut by its own canvas — the operator ends at the bottom
+   edge of the file. Floated in air that crop reads as a mistake in the
+   drawing; standing on the content floor it reads as a figure walking out of
+   frame, which is what it is. So the well gives up its bottom 32 and the
+   picture is placed at the foot of the box.
+   A modifier on the slide, not a change to the component: eight of the nine
+   are composed with space under the subject and lose nothing by floating. The
+   layer order is untouched — the well is still z-index 0 and the pager still
+   paints over it, which on this slide means three dots on the jacket. That is
+   the same cost rev 160 accepted for the whole set, not a new one. */
+.dr-slider--bleed .dr-slide--floor .dr-slide__art{ padding-bottom: 0; }
+.dr-slider--bleed .dr-slide--floor .dr-slide__art img{ object-position: center bottom; }
 /* ONE PAGER, UNDER THE SLIDER, WHERE IT WAS (designer, 2026-08-21: «слайдер
    має бути де і був»). A per-slide pager was built the same day and reverted
    on her word. What that costs is written down rather than argued: the dots

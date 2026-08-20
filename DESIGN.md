@@ -1665,6 +1665,17 @@ drops **65.8** of height into its neighbours' range and gives up 57 of width, an
 clipped (it was losing 17.7 off the cap and 17.8 off the feet). **For a picture taller than its
 space the only two answers are cut or narrower**, and narrower is the one that was chosen.
 
+**`.dr-slide--floor` — one slide opts out of the bottom air.** The designer, 2026-08-21:
+*«хлопець як обрізаний тому картинка буде слоєм під низом слайдера вирівняна по нижньому краю»*.
+`onboarding-dispatch` is the only picture in the set whose **subject is cut by its own canvas**, so
+air under it reads as a fault in the drawing rather than as composition. The modifier gives the
+well `padding-bottom: 0` and the picture `object-position: center bottom`: **373.4 × 342.4, bottom
+edge 0.0 from the content floor.** It is on one `<section>` in `onboarding-operator.html` and
+nowhere else. The pager sits 24 above that floor, so on this slide the dots paint over the picture
+— the lit dot is **1.17:1** on skin and the next **1.91:1**, where the same dots on the page are
+1.69:1 and 1.39:1. None of the four meets `WCAG 1.4.11`'s 3:1, on artwork or on page: the dot row
+has never been a 3:1 indicator and is `aria-hidden` because each slide announces its own position.
+
 **Every picture draws the full width** — the designer, 2026-08-21: *«зображення розтягни на всю
 ширину екрану в мобільному»*. A fixed band could not promise it: the band held a 1.043 box, so a
 portrait cutout was height-bound and drew **311 of 373.4 — 83.3%**. The band is now a flex item
