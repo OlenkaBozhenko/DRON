@@ -275,7 +275,22 @@
     <!-- NAV · job groups — the painted in-page tab row from listings.html.
          The state carrier is aria-current, which kit.css paints --green-wash behind
          --ink at 14.75:1; the tint is not counted against the green budget (1.085:1
-         on the page). Links, not buttons: these are in-page anchors, as built. -->
+         on the page). Links, not buttons: these are in-page anchors, as built.
+         THE TWO TARGETS ARE THE SECTIONS, NOT THE ZONE LABELS (designer, 2026-08-21,
+         on the built screen: «не клікабельний»). Until this rev the two ids sat on the
+         `.zlabel` paragraphs, which the shell hides outright — `_wf-shell.js:176`,
+         `body.wf-hide-anno .zlabel{ display:none !important }` — so with annotations
+         off the target had no box at all and the tap moved `.dr-main`'s scrollTop
+         0 → 0. A control that measures clean and answers to nothing: 44px target
+         (32 visible + the `--pill-bleed` −6/−6), `--slate` on `--page` 6.62:1,
+         selected `--ink` on `--green-wash` 14.75:1 — every value passing, the tap
+         dead. The ids now sit on the two `<section aria-label="…">`s, which are
+         named regions and are on the page in both annotation modes.
+         `aria-current` STILL DOES NOT MOVE, and that is the designer's call, not an
+         oversight: offered the filter (the `listings` rev 126 pattern), the jump
+         alone, and the jump with the state moving, she chose the jump alone — so
+         the row keeps naming `Incoming` while you read `Active`. Recorded as a
+         decision in `concept.md` rev 174, with `WCAG 4.1.2` left open there. -->
     <nav class="dr-groups" aria-label="Job groups">
       <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming · 2</a>
       <a class="dr-grouptab" href="#active">Active · 1</a>
@@ -316,8 +331,8 @@
              flex:1, so the status chip takes the right edge on its own with no rule
              added. (The kebab had been rebuilt here as .dr-btn--icon, a 44px --btn2
              disc; that rung is still spent 26 times on nine other pages.) -->
-      <p class="zlabel dr-label" id="incoming">Incoming offers · cards <span class="dr-label__act">▸ accept / decline in seconds (RJ-O1)</span></p>
-      <section aria-label="Incoming offers">
+      <p class="zlabel dr-label">Incoming offers · cards <span class="dr-label__act">▸ accept / decline in seconds (RJ-O1)</span></p>
+      <section id="incoming" aria-label="Incoming offers">
         <ul class="dr-list dr-list--snug">
 
           <!-- offer card: header (service + status) · route · fee + expiry · Accept/Decline -->
@@ -375,8 +390,8 @@
       </section>
 
       <!-- ZONE · active jobs (OE-5) -->
-      <p class="zlabel dr-label" id="active">Active jobs · cards <span class="dr-label__act">▸ continue a job in progress</span></p>
-      <section aria-label="Active jobs">
+      <p class="zlabel dr-label">Active jobs · cards <span class="dr-label__act">▸ continue a job in progress</span></p>
+      <section id="active" aria-label="Active jobs">
         <ul class="dr-list dr-list--snug">
           <li>
             <article class="dr-card">

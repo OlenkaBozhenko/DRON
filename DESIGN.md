@@ -1143,9 +1143,16 @@ subject. `.dr-op` is untouched on the eleven client screens that carry it.
   off the row and onto the card, so the row carries **no horizontal** padding of its own — since
   2026-08-21 (rev 172) it carries **8 on the block axis**, which changes nothing on a single-line
   row (21 of text + 16 is 37, under the 44 `min-height`) and gives a **two-line** row the air it was
-  missing: on `withdraw`, the one list whose rows carry `.dr-pick__sub`, the row goes **44 → 52**,
-  the distance between the two rows' text **8 → 16**, and the card **120 → 136**. Nothing shifts
-  sideways:
+  missing. Since **rev 175** a two-line row takes **12** instead — `.dr-pick:has(.dr-pick__sub)`,
+  `--sp-snug` — so its inset matches the **11.5** the 44 `min-height` hands a one-line row for free,
+  and the row lands at **60**, the height `HIG · Lists` draws a subtitle cell at. The `:has()` scope
+  is load-bearing: 12 written on `.dr-pick` itself would put a one-line row at 21 + 24 = **45**, past
+  the `min-height`, and move every pick list in the build. On `withdraw`, the one list whose rows
+  carry `.dr-pick__sub`, the row goes **44 → 52 → 60**, the distance between the two rows' text
+  **8 → 16 → 24**, and the card **120 → 136 → 152**; measured after rev 175, every other pick in the
+  repo still draws at exactly **44** (`job-checklist`(-error), `listings-filters`,
+  `operator-profile-setup`, `order-setup`(-aerial/-inspection), `payment`(-aerial/-inspection)).
+  Nothing shifts sideways:
   the label still begins 52px from the card's edge (`16 + --sz-box 24 + --sp-snug 12`), and
   `--pick-indent` is derived from the two remaining terms so the separator's leading edge follows.
   **The cost, recorded not corrected:** the separator now stops 16px short of the trailing edge,

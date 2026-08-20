@@ -2263,6 +2263,35 @@ header.dr-topbar,
   padding: var(--sp-within-lg) 0;
   font-size: var(--t-heading-size); color: var(--ink); cursor: pointer;
 }
+/* AND ONE RUNG MORE, ON THE TWO-LINE ROW ONLY -- rev 175, 2026-08-21, the designer on
+   the same list: «ще на декілька пікселів пофіксь падінги». rev 172's 8 fixed
+   the grouping failure but left the two kinds of row unequal: a ONE-line pick
+   has no padding doing the work at all -- 21 of text inside the 44 that
+   `HIG · 44pt target` sets as a min-height gives it 11.5 above and below,
+   whatever the padding says -- while the two-line pick, at 36 of text, is the
+   only row whose padding is really its inset, and 8 is 3.5 short of what the
+   floor hands its neighbour for free.
+   12 IS THE NUMBER THAT MAKES THEM AGREE: --sp-snug, a rung already on the
+   scale, puts the two-line row's inset at 12 against the one-line row's 11.5,
+   so every pick in the product now reads with the same air whether or not it
+   carries a sub. It also lands the row at 36 + 24 = 60.0, which is the height
+   `HIG · Lists (subtitle row)` draws a two-line cell at.
+   SCOPED WITH :has() AND NOT WRITTEN ON .dr-pick, because 12 unscoped would
+   push a one-line row to 21 + 24 = 45 -- past the 44 min-height -- and move
+   every pick list in the build by a pixel. Measured after: job-checklist,
+   listings-filters, operator-profile-setup, order-setup(-inspection), payment
+   and the footer picks all still draw at exactly 44. Only .dr-pick__sub rows
+   move, and the whole repo has two of them, both on `withdraw`.
+   MEASURED ON THE 375 FRAME: the row 52.0 -> 60.0, the gap between the two
+   rows' text across the hairline 16 -> 24, the card 136 -> 152, the hit area
+   309 x 60. `WCAG 2.5.8` asks 24 on the short axis and is cleared x2.5;
+   `HIG · 44pt target` is a floor and gains 16.
+   THE COST rev 91 AND rev 172 BOTH RECORDED WIDENS ONE MORE RUNG: the optical
+   inset to the radio is 16 at the sides against 34 top and bottom (16 card + 12
+   row + 6 the centred 24 box keeps of the 36 content box). Same reason as
+   before -- equalising it means taking back the air the two lines asked for --
+   so the slack stays, and it stays written down. */
+.dr-pick:has(.dr-pick__sub){ padding: var(--sp-snug) 0; }
 .dr-pick + .dr-pick::before,
 .dr-picks li + li .dr-pick::before{
   content: ""; position: absolute; left: var(--pick-indent); right: 0; top: 0;
