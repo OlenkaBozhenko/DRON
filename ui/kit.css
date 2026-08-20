@@ -3998,15 +3998,17 @@ header.dr-topbar,
    which is what lets a 1.56:1 shape be a picture and not a failure.
 
    WHAT IT COSTS, STATED THE WAY rev 163 STATED WALLET'S: solid green goes from
-   180 px² — the three zone ticks, 0.06% — to 41,100 px², 13.50% of the
-   375 x 812 frame, against the ~5% `concept.md` §0 sets. This screen has no
+   180 px² — the three zone ticks, 0.06% — to 41,612 px², 13.67% of the
+   375 x 812 frame, against the ~5% `concept.md` §0 sets — 41,100 and 13.50%
+   until the caption took the body-sm rung on 2026-08-21 and the card grew the
+   1.5 that costs. This screen has no
    green CONTROL at all (flows.md gives the dashboard no action), so 100% of
    its green is a surface rather than the 81–100%-is-the-CTA the rule expects.
    Rev 163 put the same departure to her on wallet with four readings drawn and
    her call was KEEP AS BUILT, rule unchanged — so this is the second screen
    recorded against ~5%, not a ceiling that moved. Recorded with the number.
-   Measured: banner 341 x 120 — 20 + a 32 star arc + 4 + 22 figure + 4 + 18
-   caption + 20; see the composition note below. Radius --r-card 16, FLAT —
+   Measured: banner 341 x 121.5 — 20 + a 32 star arc + 4 + 22 figure + 4 +
+   19.5 caption + 20; see the composition note below. Radius --r-card 16, FLAT —
    it sits in the page. */
 .dr-balance--banner .dr-stars{ color: var(--green-wash); }            /* 1.56:1 — the unearned track */
 .dr-balance--banner .dr-stars__fill{ color: var(--on-green); }        /* 9.46:1 — the earned star   */
@@ -4027,8 +4029,10 @@ header.dr-topbar,
    32 stays the middle star, so the row is 106.9 wide where the flat row was
    160, and the card centres it — 117.1 of card either side, measured. The
    boxes are 14.08 / 23.36 / 32 / 23.36 / 14.08 and the row is 32 tall, so the
-   card is 341 x 120 again: a centred column of three costs the 26px the head
-   band had just saved, which is hers to spend and is spent.
+   card was 341 x 120 again: a centred column of three costs the 26px the head
+   band had just saved, which is hers to spend and is spent. It is 341 x 121.5
+   since the caption took the body-sm rung the same day — the 1.5 that a 19.5
+   line box costs where an 18 one stood.
 
    THE PARTIAL STAR SURVIVES, AND WHAT IT COSTS IS MEASURED. The fill is still
    a clip on the row's INK rather than on its boxes, but the boxes are no longer
@@ -4044,6 +4048,27 @@ header.dr-topbar,
    where that default is the one wanted. */
 .dr-balance--banner{ align-items: center; text-align: center; }
 .dr-balance--banner .dr-stars{ align-self: center; }
+
+/* THE CAPTION TAKES THE BODY-SM RUNG, ON THIS FILL AND NOWHERE ELSE (designer,
+   2026-08-21, on the built banner: «забери спереду крапку зроби більшим
+   шрифтом»). `.dr-note` is 12/400 everywhere else and STAYS THERE — it is spent
+   43 times across 36 pages and every one of those is a caption under something;
+   this is one line, on one card, that she asked to grow, so the size is scoped
+   to the banner rather than cut into the class.
+   13 IS THE NEXT RUNG UP IN THE CLOSED TEN-STEP SCALE, not a new value: 12
+   caption → 12.5 meta → 13 body-sm. 12.5 is half a pixel and would not read as
+   an answer to «більшим»; 14 is body — the step the review text under it takes —
+   and a caption that matches the sentences below it stops being a caption.
+   --t-bodysm-weight is 400, the weight `.dr-note` already carries, so nothing
+   but the size moves.
+   MEASURED: 13px on --t-para-line 1.5 → a 19.5 box where 12 gave 18, so the
+   banner grows 1.5 to 341 x 121.5. Contrast is unchanged and restated because
+   the size changed under it: --on-green on --green is 9.46:1 where WCAG 1.4.3
+   asks 4.5:1 for text at this size — it passes 2.10x, and a larger glyph only
+   widens the margin. HIG · Typography puts 13 at Footnote and 12 at Caption 1,
+   both inside the iOS ramp, with 11 the floor — one named step up, not a size
+   off the scale. */
+.dr-balance--banner .dr-note{ font-size: var(--t-bodysm-size); }
 :root{
   --sz-star-mid: calc(var(--sz-star) * .73);   /* her 32 of 44 */
   --sz-star-out: calc(var(--sz-star) * .44);   /* her 19 of 44 */

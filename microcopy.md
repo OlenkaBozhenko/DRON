@@ -1569,7 +1569,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | ratings-empty | Overall | Ratings | Button |  |
 | ratings-empty | Overall | Account | Button |  |
 | ratings | — | Ratings | Heading |  |
-| ratings | Overall | · 126 ratings · last 90 days | Body |  |
+| ratings | Overall | 126 ratings · last 90 days | Body | **changed 2026-08-21 (rev 179)** — the leading `·` is gone. It had nothing on its left, and had not since the grayscale frame (`80b47c4`, 2026-07-02) wrote it as `.amount-sub` under a bare `4.8`: a middle dot joins two facts, and one hanging off the front of the first joins nothing. Her call: «забери спереду крапку». The two facts it does separate — the count and the window — keep theirs |
 | ratings | Per service | Package delivery | Body |  |
 | ratings | Per service | Aerial photo & video | Body |  |
 | ratings | Per service | Inspection | Body |  |
