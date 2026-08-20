@@ -630,7 +630,7 @@ not a control or state indicator (1.4.11) — so no contrast minimum applies to 
 | `detail` | 4px | internal details only — skeleton bars. Not a token; the 2/4/8 floor below the ramp |
 | `--r-input` | 10px | declared, applied to nothing on these ten pages |
 | `--r-btn` | 12px | buttons; the From ▸ To inset strip |
-| `--r-media` | 13px | media wells, state marks, the delivery photo |
+| `--r-media` | 13px | media wells, state marks, the delivery photo, the balance glyph plate |
 | `--r-card` | 16px | cards, panels, the map, the tab pill |
 | `--r-panel` | 22px | the phone frame |
 | `--r-pill` | 999px | chips, badges, skeleton bars |
@@ -1194,17 +1194,38 @@ Added 2026-08-21 (rev 163) on the built `wallet`, against the designer's own ref
   and its 4px step; the modifier turns that column on its side and fills the shape. `ratings`'
   three-child version of the same block is untouched.
 - **Measured:** **341 × 84**, padding **20 / 16**, `--r-card` **16**, ground `--green`, **no shadow** —
-  it sits *in* the page like every other card. Glyph **32** (`--ic-32`, rendered stroke **2.27**),
-  gap **12** to the body, **4** between figure and caption.
+  it sits *in* the page like every other card. Glyph plate **44 × 44** (`--r-media` **13**, `--green-wash`),
+  glyph **22** inside it (`--ic-22`, rendered stroke **1.56**), gap **12** to the body, **4** between
+  figure and caption.
 - **Every ink on it is `--on-green`, 9.46:1** — figure and caption both. The caption's colour is
   **stated in the kit rather than inherited**, and that is the one place a `.dr-note` may not keep
   its own ink: `--slate` measures **3.91:1** on `--green`, a real `WCAG 1.4.3` failure at 12px.
-- **No plate behind the glyph.** The reference sets its icon in a dark rounded badge; copying it
-  would need a fifth surface colour to sit on green and the palette has none, so the glyph stands
-  on the fill. The glyph is a **coin stack**, not the Earnings tab's bank card — *accumulated
-  funds* is accumulation, and the tab two rows below already spends the card.
-- **What it costs, recorded not corrected:** the card alone is **9.41%** of a 375 × 812 frame, and
-  with the floating CTA the screen's solid green reaches **11.91%** against the ~5% ceiling in
+- **The glyph stands on a plate, and the plate is what makes the centring read** (2026-08-21,
+  rev 177: *«зроби іконку на бекграунді щоб відбулось вирівнювання по центру іконки та тексту з
+  права»*). The bare 32 glyph *was* centred against the 44 body — 6px of fill above and below,
+  midpoints identical — but two blocks of different height do not **read** as centred, because the
+  eye lines up edges. The plate is **44**, the body's own height (22 + 4 + 18), so the two columns
+  share a top and a bottom edge: **188.8 → 232.8** both, midpoints **210.8 / 210.8**. Card height
+  does not move. **It costs no new hex** — rev 163 refused the reference's badge because a plate
+  would need "a fifth surface colour", true of the four surfaces and false of the tint:
+  `--green-wash` is already spent on this fill as the banner's unearned star track, **1.56:1**.
+  Charcoal on the wash is **14.75:1**, better than the **9.46:1** the glyph had on the fill; the
+  plate's own **1.56:1** edge is under `WCAG 1.4.11`'s 3:1 and **does not engage it** — the span is
+  `aria-hidden` and the figure and caption carry every fact. The **44** is `--sz-glyph-plate`,
+  arithmetic on the body, **not** `--sz-action`'s 44: that one is a control's HIG target and this
+  plate is not a control. The glyph is **half the plate** (22 in 44, `.dr-call__avatar`'s own ratio).
+  It is a **coin stack**, not the Earnings tab's bank card — *accumulated funds* is accumulation,
+  and the tab two rows below already spends the card.
+- **The plate is a square, not a disc** (2026-08-21, rev 178: *«квадратний бекграунд для іконки
+  роби»*). It takes **`--r-media` 13** — not a new shape, since `.dr-mark` is the kit's other square
+  icon plate and has carried that corner since it was built, so the two are one shape at two sizes.
+  The ramp of six radii stays closed (a bare **0** corner is not on it), and **13 nests inside the
+  card's own `--r-card` 16**. The plate still measures **44 × 44**, so the centring above is
+  untouched. Square corners give back the **145 px²** a 13 radius rounds away, so the plate now cuts
+  **1,791 px²** out of the fill instead of **1,520**.
+- **What it costs, recorded not corrected:** the card alone is **8.82%** of a 375 × 812 frame
+  (**9.41%** before the plate was cut out of the fill; **8.91%** while it was a disc), and with the
+  floating CTA the screen's solid green reaches **11.32%** — was **11.91%** — against the ~5% ceiling in
   *Named rules*. Both shapes are the designer's instruction of 2026-08-21, and **she was shown the
   four readings with the numbers and chose to keep it as built** — a conforming departure recorded,
   not a defect. The ~5% rule is unchanged: she declined rewriting it as well.
@@ -1605,8 +1626,17 @@ headline figure on `--green`, and they are not the same shape — so the fill, t
 radius are declared **once** for the pair and only the direction differs. **`wallet`** takes
 `--card`: the column turned on its side, a **32** glyph at the front, figure over caption beside it,
 **341 × 84**. **`ratings`** takes `--banner`: a **centred** column — a five-star arc, the figure under it, the line
-that names it under that — **341 × 120**, 20 + 32 + 4 + 22 + 4 + 18 + 20. It is the one place in the
-product where `.dr-note` keeps its own centred default instead of taking `--flush`. Both are
+that names it under that — **341 × 121.5**, 20 + 32 + 4 + 22 + 4 + 19.5 + 20. It is the one place in the
+product where `.dr-note` keeps its own centred default instead of taking `--flush`, **and the one place it
+leaves the caption step**: on this fill only, the note takes `--t-bodysm-size` **13** where the class is 12
+everywhere else — the designer's call of 2026-08-21 (*«забери спереду крапку зроби більшим шрифтом»*), which
+also dropped the orphan `·` the string had carried since the grayscale frame. 13 is the **next rung up in
+the closed scale** (12 caption → 12.5 meta → 13 body-sm), not a new value; 12.5 is half a pixel and 14 is
+the body step the review sentences below already take. `--t-bodysm-weight` is 400, the weight `.dr-note`
+already carries, so only the size moves, and the 19.5 line box is the whole **1.5** the card grew.
+`HIG · Typography` puts 13 at **Footnote** and 12 at **Caption 1**, both inside the iOS ramp with 11 the
+floor. At 200% text the line wraps to two and the banner grows **121.5 → 180** with **0px** of horizontal
+overrun — `WCAG 1.4.4` ✓. Both are
 `--r-card` **16** and **flat**: no shadow, they sit in the page.
 
 **The star arc (`.dr-stars--arc`).** Five stars, the middle one largest, tapering symmetrically out, drawn
@@ -1632,9 +1662,11 @@ the picture does not weaken, it disappears. On this fill the two rungs become th
 `--on-green` earned over `--green-wash` unearned, **9.46:1** and **1.56:1** on the fill, **14.75:1**
 against each other. **No new hex enters for either fill.**
 
-**What they cost, recorded rather than trimmed to fit.** The card is **9.41%** of `wallet`'s frame;
-the banner is **10.53%** of `ratings`', taking that screen's solid green from **180 px² · 0.06%**
-(three zone ticks) to **32,234 px² · 10.59%** of 375 × 812 — against the **~5%** ceiling
+**What they cost, recorded rather than trimmed to fit.** The card is **8.82%** of `wallet`'s frame
+(**9.41%** before rev 177 cut the glyph plate out of the fill, **8.91%** while that plate was a disc);
+the banner is **13.61%** of `ratings`', taking that screen's solid green from **180 px² · 0.06%**
+(three zone ticks) to **41,612 px² · 13.67%** of 375 × 812 — re-measured 2026-08-21 off the built frame,
+where this paragraph had still been carrying the **pre-arc** card's 32,234 px² · 10.59% — against the **~5%** ceiling
 `concept.md` §0 sets. And `ratings` has no green **control** at all, since `flows.md` gives the
 dashboard no action, so 100% of its green is a surface rather than the 81–100%-is-the-CTA the rule
 expects. Both fills are the designer's instruction of 2026-08-21 (`concept.md` rev 163, rev 166), and the
@@ -1970,7 +2002,9 @@ drop the 26 KB base64 blob out of the HTML.
 - **Do** keep solid green at or under ~5% of the frame, with the primary CTA as most of it. **One
   screen departs, on the designer’s instruction and with its numbers written down rather than its
   instruction trimmed:** `wallet`, from 2026-08-21 (rev 163), carries a green balance card
-  **and** a floating green CTA — **11.91%** of the frame, the CTA **21.0%** of the green.
+  **and** a floating green CTA — **11.32%** of the frame, the CTA **22.1%** of the green
+  (**11.91%** / 21.0% before rev 177 cut the glyph plate out of the card's fill; **11.41%** / 21.9%
+  while that plate was a disc rather than rev 178's square).
   Contrast is unaffected (every ink on green is 9.46:1); it is the quantity rule that gives.
   **Put to her with the four readings drawn and the numbers on each; her call was to keep it as
   built, and to leave this rule at ~5% rather than widen it.** See `concept.md` rev 163.

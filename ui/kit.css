@@ -197,6 +197,15 @@
   --sz-mark:        52px;  /* state mark in a message block */
   --sz-mark-lg:     64px;  /* milestone mark */
   --sz-action:      44px;  /* circular icon action */
+  --sz-glyph-plate: calc(var(--t-display-size) * var(--t-number-line)
+                       + var(--sp-within)
+                       + var(--t-caption-size) * var(--t-para-line));
+                           /* 44 — the disc behind the balance card's glyph. It is NOT --sz-action's
+                              44: that one is the HIG target of a control and this plate is not a
+                              control. It is arithmetic on the body it stands beside — figure 22
+                              + step 4 + caption 18 — so the two columns share a top and a bottom
+                              edge and the centring is structural, not eyeballed. Change the
+                              figure's step and the plate follows it. */
   --sz-box:         24px;  /* checkbox / radio */
   --sz-well-w:      96px;  /* the card well that carries a render */
   --sz-well-h:      72px;
@@ -3897,12 +3906,18 @@ header.dr-topbar,
    surface, is 3.92:1 on --green — a real WCAG 1.4.3 failure at 12px — while
    --on-green is 9.46:1. So the note's colour is said out loud here, the one
    place `.dr-note` may not keep its own.
-   Measured: card 341.5 x 82; glyph 32 (stroke renders 2.27, the 24-grid's own
-   1.7 scaled by the box); figure 22/700 tabular --on-green 9.46:1; caption 12
-   --on-green 9.46:1. The card is FLAT — no shadow. It sits in the page like
+   Measured: card 341 x 84; glyph plate 44 square on a 13 corner, --green-wash 1.56:1 on the fill,
+   glyph 22 inside it (stroke renders 1.56, the 24-grid's own 1.7 scaled by the
+   box) --on-green 14.75:1 on the wash; figure 22/700 tabular --on-green 9.46:1;
+   caption 12 --on-green 9.46:1. The card is FLAT — no shadow. It sits in the page like
    every other card; only the floating pill below it is allowed to lift.
-   WHAT IT COSTS, STATED: solid green now covers 11.9% of this frame against
-   the ~5% ceiling concept.md sets, and the screen carries two green shapes
+   WHAT IT COSTS, STATED: solid green covers 11.3% of this frame against
+   the ~5% ceiling concept.md sets — 11.9% until the plate was cut out of the
+   fill on 2026-08-21, a 1,791 px² square that SUBTRACTS 0.59% of solid green
+   rather than adding any — 0.09% more than the 1,520 px² disc it replaced,
+   since square corners give back the 145 px² a 13 radius rounds away
+   (--green-wash is a tint and is not counted, the way
+   §0 does not count it on the page) — and the screen carries two green shapes
    (this card and the floating CTA) where the rule asks for one control. Both
    are the designer's instruction of 2026-08-21, reported with the numbers in
    concept.md rev 163 rather than silently kept or silently trimmed — and put to
@@ -3922,8 +3937,41 @@ header.dr-topbar,
   background: var(--green); color: var(--on-green);
 }
 .dr-balance--card{ flex-direction: row; align-items: center; gap: var(--sp-snug); }
-.dr-balance__glyph{ flex: none; display: flex; }
-.dr-balance__glyph .dr-ic{ width: var(--ic-32); height: var(--ic-32); }
+/* THE GLYPH STANDS ON A PLATE, AND THE PLATE IS WHAT MAKES THE CENTRING READ.
+   The designer, 2026-08-21: «зроби іконку на бекграунді щоб відбулось
+   вирівнювання по центру іконки та тексту з права». What was wrong is
+   measured, not felt: a bare 32 glyph beside a 44 body IS centred — 6px of
+   fill above it and 6 below — but two blocks of different height centred on
+   one axis do not READ as centred, because the eye lines up edges, and the
+   glyph had none. The plate gives it two: 44 tall, the body's own height, so
+   the columns start and stop together. Card height does not move.
+   THE PLATE COSTS NO NEW HEX, which is what rev 163 could not find. That
+   revision refused the reference's badge because "a plate on green would need
+   a fifth surface colour and the palette has none" — but --green-wash is
+   already spent ON this fill, as the banner's unearned star track, measured
+   1.56:1 there. The same 1.56:1 step is the plate. Charcoal on the wash is
+   14.75:1, better than the 9.46:1 the glyph had on the fill.
+   THE GLYPH IS HALF THE PLATE — 22 in 44, the ratio .dr-call__avatar already
+   uses (50%) and the reference's own. Rendered stroke follows the box:
+   1.7 × 22/24 = 1.56, down from 2.27 at 32. No icon compensates its stroke.
+   IT IS DECORATION AND SAYS SO: the span is aria-hidden, the figure and the
+   caption carry the meaning, so WCAG 1.4.11's 3:1 for graphical objects does
+   not bind on the 1.56:1 plate edge — nothing is lost if it is not seen.
+   THE PLATE IS A SQUARE, NOT A DISC — the designer, 2026-08-21: «квадратний
+   бекграунд для іконки роби». It takes --r-media 13, which is not a new shape:
+   .dr-mark is the kit's other square icon plate and has taken that same corner
+   since it was built, so the two plates are now one shape at two sizes rather
+   than a disc and a square. The ramp of six radii stays closed — a bare 0
+   corner is not on it, and 13 is the only rung already spent on an icon plate.
+   It also nests correctly: 13 inside the card's own --r-card 16. The plate
+   still measures 44 x 44, so the centring the plate was built for is untouched
+   — both columns keep the same top and bottom. */
+.dr-balance__glyph{
+  flex: none; display: flex; align-items: center; justify-content: center;
+  width: var(--sz-glyph-plate); height: var(--sz-glyph-plate);
+  border-radius: var(--r-media); background: var(--green-wash);         /* 1.56:1 on --green */
+}
+.dr-balance__glyph .dr-ic{ width: var(--ic-22); height: var(--ic-22); } /* 14.75:1 on the wash */
 .dr-balance__body{ display: flex; flex-direction: column; gap: var(--sp-within); min-width: 0; }
 .dr-balance--card .dr-number,
 .dr-balance--card .dr-note,
