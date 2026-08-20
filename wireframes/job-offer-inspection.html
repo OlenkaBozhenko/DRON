@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Incoming job offer / accept-decline — Roof inspection · base</title>
+<!-- SCREEN: "Incoming job offer / accept-decline" — INSTANCE: inspection (base). JOB (jtbd): RJ-O1 · O-01 — accept or pass without stopping to ask questions. Flow: MJ-2 "Incoming job offer" → Accept within 10s? EXIT: Accept → Job brief (inspection); Decline → Operator home.
+     ONE OF TWO OFFER FILES (2026-08-21, _screens.md §13). operator-listings carries two incoming
+     offers and both sent their tap AND their Accept to the delivery file, so tapping
+     "Roof inspection · ₴650 · Obolon district" opened a screen headed "Package delivery · ₴180 ·
+     Podil → Osokorky". WCAG 2.4.4 Link Purpose (In Context), level A: the card's own accessible name
+     is "Roof inspection job — open brief", so the link stated a purpose its destination did not carry.
+     The same reading closed order-details on 2026-08-16 and earning-details on 2026-08-21.
+     NOTHING HERE IS INVENTED — the distance, the minutes, the pay and the countdown are read off
+     operator-listings' own card; the structure string is the client's record (order-details-inspection);
+     drone-11.png is the thumbnail listings.html already gives Inspection. -->
+<link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Incoming job offer / accept-decline — Roof inspection</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>base</b> · file: job-offer-inspection.html</p>
+    <div class="flow"><b>One of two offer files</b> (2026-08-21) — the same screen, one instance per service: <a href="job-offer.html">job-offer</a> (delivery) and this one. There is no <code>-aerial</code> offer: that job is already <b>In progress</b> on the list, so it was accepted before the frame opens.<br><b>Job (jtbd):</b> RJ-O1 · O-01 — accept or pass in seconds (flows.md MJ-2: "Accept within 10s?").<br><b>States:</b> none of its own — <code>job-offer-empty</code> (offer expired, reassigned) is service-neutral and stays on the delivery file.<br><b>Exit:</b> Accept → <b>Job brief — Roof inspection</b>; Decline → back to <b>Operator home</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Offer</b> ▸ service · distance · pay</p><p><b>Site</b> ▸ where it is · what is checked</p><p><b>Countdown</b> ▸ decide before it expires</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">New job</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Offer <span class="dr-label__act">▸ service · distance · pay</span></p>
+      <article class="dr-card dr-card--row dr-listing">
+        <span class="dr-well"><img src="../assets/drones/thumbs/drone-11.png" alt="" loading="lazy" decoding="async"></span>
+        <span class="dr-listing__body">
+          <span class="dr-listing__name">Roof inspection</span>
+          <span class="dr-listing__desc">5.1 km · ~35 min · Obolon district</span>
+          <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴650</span></span><span class="dr-listing__desc">· paid on completion</span></span>
+        </span>
+      </article>
+
+      <!-- THE SECOND ZONE CHANGES NAME WITH THE SERVICE, because the shape of the
+           trip does. A delivery has two stops and reads Route ▸ pickup → drop-off;
+           an inspection has one site, so a "Drop-off" row would have nothing to
+           hold. Structure is the row the client's own record carries, and it is
+           what tells the operator whether the job is one roof or three parts. -->
+      <p class="zlabel dr-label">Site <span class="dr-label__act">▸ where it is · what is checked</span></p>
+      <div class="dr-rows" aria-label="Site">
+        <div class="dr-rows__row"><span class="dr-rows__key">Location</span><span class="dr-rows__val">Obolon district</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Structure</span><span class="dr-rows__val">Roof · gutters · chimney</span></div>
+      </div>
+
+      <p class="zlabel dr-label">Decide fast <span class="dr-label__act">▸ offer auto-expires, reassigns</span></p>
+      <p class="dr-display">Expires in 6s</p>
+    </main>
+    <!--
+      Stacked, not split — the designer, 2026-08-16, on the whole product:
+      «пройдись по проекту і подивись щоб кругом у нижньому барі кнопрки були
+      одна під одною». Accept over Decline: under an offer that expires in 6s the
+      thumb should not have to choose between two equal boxes.
+      THE CLIENT'S NOTE IS NOT ON THIS SCREEN. RJ-O1 gives the offer a ten-second
+      decision and flows.md gates it on "Accept within 10s?"; a paragraph of
+      instructions is not readable in that budget and would compete with the
+      countdown for the same seconds. It lands one screen later, on the brief.
+    -->
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="job-brief-inspection.html">Accept</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="operator-listings.html">Decline</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>
