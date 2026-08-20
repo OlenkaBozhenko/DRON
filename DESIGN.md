@@ -1140,7 +1140,12 @@ subject. `.dr-op` is untouched on the eleven client screens that carry it.
   row panel, and **8 / 0** on `.dr-disclosure`, the remaining full-bleed list, whose rows keep their
   own 16. 32px still at the bottom where the last element is a primary button.
 - **`.dr-picks` is the one card with a single inset on all four sides — `16`** (rev 91). The 16 moved
-  off the row and onto the card, so the row carries no padding of its own. Nothing shifts sideways:
+  off the row and onto the card, so the row carries **no horizontal** padding of its own — since
+  2026-08-21 (rev 172) it carries **8 on the block axis**, which changes nothing on a single-line
+  row (21 of text + 16 is 37, under the 44 `min-height`) and gives a **two-line** row the air it was
+  missing: on `withdraw`, the one list whose rows carry `.dr-pick__sub`, the row goes **44 → 52**,
+  the distance between the two rows' text **8 → 16**, and the card **120 → 136**. Nothing shifts
+  sideways:
   the label still begins 52px from the card's edge (`16 + --sz-box 24 + --sp-snug 12`), and
   `--pick-indent` is derived from the two remaining terms so the separator's leading edge follows.
   **The cost, recorded not corrected:** the separator now stops 16px short of the trailing edge,

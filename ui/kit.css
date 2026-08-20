@@ -2248,9 +2248,14 @@ header.dr-topbar,
    operator-profile-setup, order-setup(-inspection), payment and the footer
    picks all render at exactly the 44 they render at today.
    THE ROW, NOT THE CARD, because rev 91's 16 on .dr-picks is hers and the
-   complaint is about the distance between rows, not the card's inset. It buys
-   the box's optical inset back on the way past: a 24 box centred in 52 keeps
-   14, so the radio sits 22 from the card's top edge where it sat 26. */
+   complaint is about the distance between rows, not the card's inset.
+   WHAT IT COSTS, MEASURED AND NOT HIDDEN: the gap rev 91 named — 16 to the box
+   at the sides against 26 top and bottom — widens to 30 on this one list, and
+   for the same reason it was 26. `align-items: center` centres the 24 box in
+   the row's CONTENT box, which the padding leaves at 36, so the box keeps 6 of
+   its own on top of the card's 16 and the row's 8. Equalising it would mean
+   taking the padding off the box's side of the row, which is the very air the
+   two lines were asking for. The slack stays, one rung wider. */
 .dr-pick{
   position: relative;
   min-height: var(--h-control);
