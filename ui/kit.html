@@ -568,18 +568,18 @@
 <h2 class="sec">Surfaces</h2>
 <div class="row">
   <div class="nm"><b>Order card</b><code>.dr-card · .dr-order__* · .dr-status · .dr-rail · .dr-inset</code>
-    <p>The most measured component in the product: well + name-over-date, a progress rail, the
-       From ▸ To strip, fee and actions.</p></div>
+    <p>The most measured component in the product: name-over-date with the drone well closing
+       the row, a progress rail, the From ▸ To strip, fee and actions.</p></div>
   <div class="spec col">
     <article class="dr-card" style="width:341px;max-width:100%">
       <div class="dr-order__top">
-        <span class="dr-well">
-          <img src="../assets/drones/thumbs/drone-08.png" alt="">
-          <span class="dr-status dr-status--live" role="img" aria-label="In progress"></span>
-        </span>
         <span class="dr-order__head">
           <span class="dr-order__title">Package delivery</span>
           <span class="dr-order__date">Today · 10:03</span>
+        </span>
+        <span class="dr-well">
+          <img src="../assets/drones/thumbs/drone-08.png" alt="">
+          <span class="dr-status dr-status--live" role="img" aria-label="In progress"></span>
         </span>
       </div>
       <div class="dr-rail" style="--dr-fill:25%">
@@ -602,13 +602,13 @@
 
     <article class="dr-card" style="width:341px;max-width:100%">
       <div class="dr-order__top">
-        <span class="dr-well">
-          <img src="../assets/drones/thumbs/drone-08.png" alt="">
-          <span class="dr-status" role="img" aria-label="Delivered"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-        </span>
         <span class="dr-order__head">
           <span class="dr-order__title">Package delivery</span>
           <span class="dr-order__date">28 Jun · 14:20</span>
+        </span>
+        <span class="dr-well">
+          <img src="../assets/drones/thumbs/drone-08.png" alt="">
+          <span class="dr-status" role="img" aria-label="Delivered"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
         </span>
       </div>
       <div class="dr-inset">
@@ -628,6 +628,13 @@
     <p><b>Live and delivered differ by structure, not decoration.</b> A delivered order has no rail —
        four ticked nodes said nothing and cost 60px — and its green CTA becomes circular secondary
        actions.</p>
+    <p><b>The name leads and the well closes the row.</b> The head sits first in the DOM, not in a
+       <code>row-reverse</code>, so what the eye reads and what a screen reader announces stay the
+       same sequence (<code>WCAG 1.3.2</code>) — <i>"Package delivery · Today 10:03 · In progress"</i>,
+       the thing before its state. This is the arrangement every frame that draws
+       <code>.dr-order__top</code> already carries — <code>order-history</code>,
+       <code>order-history-loading</code>, <code>operator-listings</code> — and the kit drew it
+       mirrored until 2026-08-20 (rev 158).</p>
     <p><b>The status indicator rides the well</b>, the way a presence badge sits on an avatar. Live is
        a solid green disc that pings; done is <code>--btn2</code> with an <code>--ink</code> check at
        11.54:1. <b>Two signals, never colour alone</b> — shape and behaviour — and each keeps its
@@ -1185,11 +1192,11 @@
   <div class="spec col">
     <div class="dr-card" style="width:341px;max-width:100%">
       <div class="dr-order__top" style="gap:16px">
-        <span class="dr-sk-well"></span>
-        <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+        <span class="dr-sk-head">
           <span class="dr-sk-line dr-sk-title dr-sk-w70"></span>
           <span class="dr-sk-line dr-sk-date dr-sk-w40"></span>
         </span>
+        <span class="dr-sk-well"></span>
       </div>
       <span class="dr-sk-line dr-sk-w90"></span>
       <span class="dr-sk-line dr-sk-w50"></span>
