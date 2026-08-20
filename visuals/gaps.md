@@ -168,7 +168,7 @@ the client's question (*where is my order*), not the operator's (*where do I go,
 |---|---:|---|
 | `.msg-ph` — state mark | 23 | **52 × 52, `--r-media`, a 26px outline glyph** on a wash: neutral `--media`/`--slate`, `--warn-wash`/`--warn-ink`, `--danger-wash`/`--danger-ink`. Already built as SVG on `tracking-*` and `delivery-*`. |
 | `.success-mark` — milestone | 13 | **64px circle, `--green-wash` + `--ink`, 32px glyph.** Delivered draws a circle-check, waiting draws a clock in the same well. |
-| `.up-ph` — upload tray | 8 → **7** | The **empty** state of an upload control: a tray glyph and a button. `delivery-loading` already animates one (`skUp`). A *filled* tray would show a user's own thumbnail — the stand-ins for that are #17 above. **One of the eight is now filled** — `result-upload`, 2026-08-16, see the note at the foot of this file. The other seven stay empty: two are documents (`operator-verification`), one is a profile photo (`operator-profile-setup`), one waits on a picture that does not exist (`operator-dispute`, B3 #18). |
+| `.up-ph` — upload tray | 8 → 7 → **8 again** | The **empty** state of an upload control: a tray glyph and a button. `delivery-loading` already animates one (`skUp`). A *filled* tray would show a user's own thumbnail — the stand-ins for that are #17 above. **One of the eight was filled on 2026-08-16 — `result-upload` — and the designer emptied it again on 2026-08-21**, see the note at the foot of this file: the operator arrives at that screen *before* uploading anything, so the base frame has nothing to draw. All eight are empty on the base frames again — two documents (`operator-verification`), one profile photo (`operator-profile-setup`), one waiting on a picture that does not exist (`operator-dispute`, B3 #18), and `result-upload`'s, which fills only after the operator attaches a file. |
 | `.map-ph:ACQUIRING GPS…` | 1 | Deliberately **not** the city: the loading state shows the bare well because there is no signal yet. |
 
 **One exception, already filled.** `order-history-empty` uses `.msg-ph` as a 150px banner carrying a
@@ -215,6 +215,17 @@ over an example-of-the-outcome on the order form.
 `delivery.html`, because it is the same order: package delivery, client Olena H., ₴180. The rule that
 governs it is `_conventions.md` §8 (`.upload-zone:has(.up-shot)`); the button under it changes from
 `Add photo` to `Replace photo`, logged in `microcopy.md`.
+
+**Reversed on the base frame — 2026-08-21.** The designer, reading the built page:
+*«тут має бути загрузити фото, кнопка "Replace photo" не активна відповідно». **She is right, and `flows.md` is the
+reason rather than taste:** MJ-2 hands `Job checklist → Result upload` off **before** anything has been
+uploaded, so the frame the operator arrives on has no photograph to show — and drawing one showed the
+screen's own gate, *proof before pay* (`H-7`), as already satisfied at the moment you land, on a screen
+whose entire purpose is to satisfy it. The base frame is the **empty** tray again (`.dr-upload`,
+`Add photo`, measured **341 × 140**), with `Replace photo` under it carrying `disabled` — nothing to
+replace until a file lands. **The picture itself is not withdrawn:** `scenes/thumbs/delivered-at-door.jpg`
+is what the tray draws once it fills, at the same measured 180px band, and the client still sees it one
+step later on `delivery.html`. `_conventions.md` §8, `_screens.md` §16 and `microcopy.md` carry both states.
 
 **Not placed, and why — stated so it is not read as covered.**
 

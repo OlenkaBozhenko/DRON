@@ -540,7 +540,13 @@ Flow spine (`flows.md` MJ-2 + RJ-O3): **Operator home + status toggle → Incomi
 - **Job:** `RJ-O2` — the checklist ends in a result (`O-04`); this upload **gates** `RJ-O3` payment (proof before pay, `H-7`).
 - **Place in flow:** MJ-2 node `Result upload / close job` → `Upload succeeded?` → `Client response?`.
 - **States:**
-  - **Empty —** not produced.
+  - **Base —** the frame as the checklist hands it over, and it has **no photograph yet**. The tray is the empty
+    `.dr-upload` (`Add photo`) and `Replace photo` stands under it **disabled** — there is nothing to replace until a
+    file lands. **Corrected 2026-08-21 on the designer's word** (*«тут має бути загрузити фото, кнопка "Replace photo" не активна
+    відповідно»*): from 2026-08-16 the base drew the delivered-package photograph, which showed the `H-7` gate as
+    already met at the moment you arrive and left the screen no way to do the one thing it exists for.
+  - **Empty —** no page of its own: the base frame **is** the screen before the upload, so an `-empty` file would
+    have nothing left to say.
   - **Error ✓** — *"slow or failed upload"* → retry / queue offline.
   - **Loading ✓** — *"saved offline — uploads when online; payment held until proof"* and *"awaiting confirmation (up to 2h)"*.
   - **Success —** payment success lands on Wallet, not here; this screen has no "it worked" state of its own.

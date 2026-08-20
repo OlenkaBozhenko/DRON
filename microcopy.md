@@ -147,7 +147,7 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | resolution | resolution.html | Next steps | button | Book a free re-do | Book again — free |
 | resolution | resolution.html | Next steps | button | Still not resolved? | Contact support |
 | result-upload | result-upload.html | Notes | placeholder | Handover notes, recipient name… | Handover notes, client name… |
-| result-upload | result-upload.html | Result photo | button | Add photo | Replace photo (2026-08-16: the base state now carries the delivery photo, so the control's object changed. `voice.md` A3's one attach verb — **Add …** — names attaching a file that is *not there yet*; with the photo on screen the same word would offer a second one. `Replace` is a new verb in the product and is **open for her word**.) |
+| result-upload | result-upload.html | Result photo | button | Add photo | **Add photo** — and the round trip is the record. 2026-08-16 the base frame took the delivery photograph, so the control's object changed and the word became **Replace photo**: `voice.md` A3's one attach verb — **Add …** — names attaching a file that is *not there yet*, and with the photo on screen the same word would have offered a second one. **2026-08-21 the designer took the photograph back off the base frame** (*«тут має бути загрузити фото, кнопка "Replace photo" не активна відповідно»*), so the tray is empty again and **Add …** is once more the right verb for it. **`Replace photo` does not go away with the picture** — it stays under the tray carrying `disabled`, and goes live the moment a file lands. `Replace` is still a new verb in the product and is still **open for her word**. |
 | result-upload | result-upload-error.html | Result photo (upload error) | state message | The result photo didn't upload — weak signal. Retry now, or queue it to upload automatically when you're back online. Payment is held until proof arrives. | The delivery photo didn't upload — weak signal. Try again, or queue it to upload automatically when you're back online. Payment is held until the photo uploads. |
 | result-upload | result-upload-error.html | Result photo (upload error) | button | Retry upload | Try again |
 | result-upload | result-upload-error.html | Action bar note | state message | Payment stays held until the proof photo uploads. | Payment stays held until the delivery photo uploads. |
@@ -1649,8 +1649,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | result-upload-loading | — | Uploading… | Button |  |
 | result-upload | — | ‹ Checklist | Button |  |
 | result-upload | — | Close job | Heading |  |
-| result-upload | Result photo | DELIVERY PHOTO | Body | WF-PH |
-| result-upload | Result photo | Add photo | Button |  |
+| result-upload | Result photo | Add photo | Button | the tray's own line (`.dr-upload__action`) — the zone *is* the control, no button inside it. Replaces this table's `DELIVERY PHOTO` placeholder row, which left the page when the screen was painted |
+| result-upload | Result photo | Replace photo | Button | carries `disabled` on the base frame — nothing to replace until a file lands (2026-08-21) |
 | result-upload | Notes | Handover notes, client name… | Field placeholder |  |
 | result-upload | Job | Service | Body |  |
 | result-upload | Job | Package delivery | Body |  |
