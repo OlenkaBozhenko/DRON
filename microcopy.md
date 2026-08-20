@@ -152,6 +152,7 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | result-upload | result-upload-error.html | Result photo (upload error) | button | Retry upload | Try again |
 | result-upload | result-upload-error.html | Action bar note | state message | Payment stays held until the proof photo uploads. | Payment stays held until the delivery photo uploads. |
 | result-upload | result-upload-loading.html | Uploading status | state message | Uploading result… | Uploading delivery photo… |
+| result-upload | result-upload-loading.html | Uploading status | state message | Uploading delivery photo… *(display)* + Sending the delivery photo. Keep the app open. *(lead)* | **The lead alone, moved into the Result photo zone as `role="status"`.** 2026-08-21 the loading page was rebuilt onto the success frame (`_screens.md` §16), which has no headline block — so the display line left with the takeover it belonged to. What stays names the wait the way `voice.md` asks a loading state to (*name what is loading*), and the zone label carries the state in one word: **▸ uploading…** |
 | role-select | role-select.html | Role choice | body | PILOT | OPERATOR |
 | role-select | role-select.html | Role choice | body | You're a certified drone pilot — get dispatched jobs and get paid. | You're a certified drone operator — take jobs and get paid. |
 | share | share-empty.html | Invite not sent (empty state) | state message | You didn't send it yet | Invite not sent yet |
@@ -609,6 +610,14 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **`voice.md` is not engaged by any of the three.** Nothing here is a state message being rewritten: the availability line and the counter were both statements of fact that another control already made, and the kebab carried no words at all. The **P2** rule (*show the proof, not the adjective*) is what the segmented control now satisfies alone — it is the proof, and the sentence above it was the adjective's grammatical cousin, a restatement.
 - **One passage in this file still quotes the retired line and is reported, not swept.** The no-toast table at *Sync — 2026-08-15 (the first toast)* justifies giving the availability segment no toast with *"The line above it already reads **You are Available · receiving jobs near Podil**, and it stays readable"* — the line no longer exists, so that reason is now void. **The verdict does not change and the row is corrected in place:** the segment is a selection, and this file's own rule for selections (*open a picker or move a selection — visible either way*) covers it without needing a sentence above it. The correction is written into the row rather than over it, so the first reasoning stays on the record.
 
+**Sync — 2026-08-21 (`operator-listings` gets an availability badge in the nav bar — four rows enter the table and no string is written)**
+- **The designer’s call on the built header:** *«покажи індикатор відповідно до обраного статусу дотупний, зайнятий та недоступний»*. The state the Status segment sets now also stands in the nav bar, so it survives the scroll that takes the segment off screen.
+- **No product copy is written, and that is structural rather than a claim.** The badge’s word is read at runtime off the checked radio’s own `<label>` — `Available` / `Busy` / `Offline`, already in this table as *Field label* rows on both frames — so the three strings live in the markup **once**, in the segment, and the script carries none. The four new rows are an **inventory of where a string now appears**, not four new strings.
+- **This closes the gap rev 164 opened, from the side the designer chose.** That sync retired `Status · You are Available` on her word and recorded the cost: with the sentence gone, the segment’s selected plate and its label ink — both colour — were the only cues, which is `WCAG 1.4.1 Use of Colour` (**A**). Three options were put to her; the badge is option (c), *bring back a short state word*, moved to the bar instead of back above the control. The retired sentence does not return.
+- **The no-toast verdict is unchanged and is now better supported.** This file’s rule for a selection — *open a picker or move a selection, visible either way* — already covered the segment; the badge makes the *visible either way* literally true in the bar, and the badge is deliberately **not** a live region, since `role="status"` would announce a fact the checked radio already announces.
+- **`voice.md` is not engaged.** No state message is being written or rewritten: the badge restates a control’s value in that control’s own words.
+- **One row from rev 164 is still open and is repeated here rather than quietly dropped:** the active card’s link name *Aerial photo and video — open job* is inventoried nowhere, while its two siblings sit in the rewrite log. Still hers.
+
 ---
 
 ## Master table — every string
@@ -651,7 +660,6 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account | Profile | OB | Body | DATA |
 | account | Profile | Olena B. | Body | DATA |
 | account | Profile | Verified with Diia | Chip | rev 182 — it was body text at the `.dr-op__rating` rung; on the centred head that rung **is** the badge, so it moves to a `.dr-chip--claim`, the rung that says *DRON confirmed this document*. The string is unchanged. |
-| account | Profile | Client | Body | rev 182 — was a chip beside the phone, now the role line under the name, the seat `Operator · 214 jobs` holds on `operator-account`. **No count beside it:** the client has no order-count fact anywhere in the prototype, and `voice.md` **P2** asks for the proof, not the adjective — a number nobody has measured is neither. |
 | account | Profile | Edit profile | Button | rev 182 — the head ends with a worded action, so this is a **visible label** here, not the `aria-label` the icon-only disc carried. Kept distinct from `Change profile photo` above it so a screen reader announces two objects and not one word twice (`WCAG 2.4.6`). Same string as `operator-account`. |
 | account | Mode | Mode | Field label | rev 111 — the picker became a settings row, so the row gains a label and the drawer takes `Mode` as its title |
 | account | Mode | Client | Field value | rev 111 — replaces `Client mode`, which said the noun twice once the row was labelled |
@@ -704,6 +712,27 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | call-support | Controls | End call | Button | **accessible name only**, the same red disc and the same verb+object as on `call`. Not *Hang up*, not *End*, and **not** *Cancel* — the call happened. It returns to the message form, where `Mark resolved` and `Ask a senior agent` are still waiting, so the escalation ladder survives the call |
 | call-support | — | ~~Add support to the call~~ · ~~Chat with the operator~~ | Button | **NOT BUILT, and recorded so the absence reads as a decision.** Both are on `call`'s top right. The first is meaningless when support **is** the party on the line; the second names the wrong person, and the typed channel to *this* agent is the message form behind the screen — which is where **Minimise** already lands, so a second control for it would be one act under two names. `.dr-call__side--empty` holds their 44px so the name stays centred |
 | call | — | ~~The call goes through DRON. Your number is not shared with the operator.~~ | Body | **REMOVED 2026-08-16 with the light build**, and recorded rather than dropped quietly. The masking fact was the one thing this screen said in words, and the reference has no place for a sentence. It still runs where `voice.md` **P3**'s discipline actually wants it — in the `Contact operator` drawer, **before** the tap, not during the call. If it should also be on this screen, the place for it is under the duration |
+| call-client | Call | Olena H. | Heading | DATA, and **the string the operator's own screens already carry for this client** — `job-brief`'s details row, `result-upload`'s header, `ratings`. You called the person the brief named, and the name does not change on the way. 22/700, centred, no nav bar under it, the shape `call` and `call-support` set |
+| call-client | Call | 04:02 | Body | DATA. Same rule as both call screens before it: the running clock **is** the statement that the call is up, so nothing says *Connected*. 15/400 in `--btn2`, tabular |
+| call-client | Call | Call duration | Body | SR-ONLY — same reason as on `call`: a bare number is ambiguous, and `<time datetime="PT4M2S">` carries the machine-readable value (`WCAG 1.3.1`) |
+| call-client | Call | Minimise the call | Button | **accessible name only**, the same string and the same 44px disc as on `call` and `call-support` — one control, one name, on the third surface that has it. It returns to the **open job**, and the call carries on |
+| call-client | Call | Chat with the client | Button | **accessible name only** — `voice.md` **A12** with the other object, the same string the drawer's row carries, opening the same `chat-client.html`. One destination, one name, on both surfaces that reach it — the rule `call`'s bubble already follows |
+| call-client | Controls | Video | Button | **accessible name only**, the toggle rule unchanged (`aria-pressed` carries the state; the label does not flip). **Inherited with its flag, not re-decided** — `§9c` and `C9` both record that a video call has no `sitemap.md` job; the bar is one component and one screen does not re-cut it |
+| call-client | Controls | Speaker | Button | **accessible name only**, same toggle rule. Not *Speakerphone* (`voice.md` **P4**) |
+| call-client | Controls | Mute | Button | **accessible name only** — does not become *Unmute* when pressed (`WCAG 2.5.3`); the base file is the resting state |
+| call-client | Controls | End call | Button | **accessible name only**, the same red disc and the same verb+object as on both call screens before it. Not *Hang up*, not *Cancel* |
+| call-client | — | ~~Add support to the call~~ | Button | **NOT BUILT, and recorded so the absence reads as a decision** — the same shape `call-support` used for the pair it dropped. `call`'s person+ opens `contact-support.html`, the **client's** Help hub; the operator has no support hub in the product (`_screens.md §15`, the two-rows finding), and pointing an operator control at a client screen would cross the two personas' navigation. The 44px column keeps its single control rather than a spacer, the name staying centred either way |
+| chat-client | — | Back to Checklist | Button | **accessible name only** — the nav-bar back is the chevron alone (`microcopy.md` **D9**). *Checklist* is what `job-checklist`'s own bar is titled, the same destination-string rule `chat`'s *On the way* follows |
+| chat-client | — | Olena H. | Heading | DATA. **The bar carries the person, not the function**, the reading `chat` set: `HIG · Navigation bars` titles the current view, and the view **is** the correspondent |
+| chat-client | Thread | Today | Body | the day mark over the group, the same one word as on `chat` |
+| chat-client | Thread | Olena H.: · You: | Body | SR-ONLY, one per message — **and the pair is swapped against `chat`**, which is the whole point: *You* is the operator here. Which side said it is carried by the edge the bubble is anchored to, so each row names its speaker for assistive tech (`WCAG 1.4.1`) |
+| chat-client | Thread | Your parcel is picked up from Podil, 21. On the way to Osokorky, 14. | Body | DATA — USER content, and **`chat`'s own message read from the other end**: the operator sent it, so it is `--out` here and `--in` there. Not a second copy of the conversation — the same five strings, one thread, two frames |
+| chat-client | Thread | The courtyard gate is locked — the code is 4471. | Body | DATA — USER content. **The sentence that justifies this frame as well as the client's:** it is the client's answer, and the operator standing at the gate is the person who needed it. `RJ-O2` — execute without improvising |
+| chat-client | Thread | Got it. I'll land at the entrance and send the delivery photo. | Body | DATA — USER content. *Delivery photo* is `voice.md` **O5**'s word for this deliverable, and the same act the checklist behind this screen has open as a step |
+| chat-client | Thread | Which entrance? | Body | DATA — USER content |
+| chat-client | Thread | The one facing the playground. About 6 minutes out. | Body | DATA — USER content |
+| chat-client | Composer | Message | Field label + placeholder | the label is SR-ONLY and the placeholder carries it visually — `chat`'s row unchanged |
+| chat-client | Composer | Send message | Button | **accessible name only** — a 44px disc with an arrow and no visible text, so `WCAG 2.5.3` does not apply and the name has to carry the object (`1.1.1`, `4.1.2`). `voice.md` **A9**: *to a person: Send* |
 | chat | — | Back to On the way | Button | **accessible name only** — the nav-bar back is the chevron alone (`microcopy.md` **D9**). *On the way* is what `tracking`'s own bar is titled, so the destination is named by the name that place carries, the same string `inspection-report` already uses |
 | chat | — | Andriy M. | Heading | DATA. **The bar carries the person, not the function** — `HIG · Navigation bars` titles the current view, and here the view *is* the correspondent, which is how Messages reads it. It is also the only place `RJ-C1` is answered on this screen: the client sees whose thread they are in without repeating the operator panel standing one tap away on `tracking` |
 | chat | Thread | Today | Body | the day mark over the group. One word, not *Today, 16 August* — the times below it are all within the hour of a live job, and the longer form is the `wallet` list's rung, where entries span days |
@@ -835,6 +864,12 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | job-checklist-error | Pre-flight & job steps | You can't close the job until every required step is checked. 'Capture delivery photo' is still open. | State message |  |
 | job-checklist-error | Pre-flight & job steps | Complete the step | Button |  |
 | job-checklist-error | Pre-flight & job steps | Complete all steps to continue | Button |  |
+| job-checklist-error | Action bar (footer CTA) | Contact client | Button | the same control at the same weight as on the base file — `concept.md` rev 26's rule, the one that stopped `Contact operator` drifting to grey on `tracking-error`. **On this state it does more than mirror:** the close is blocked, and the person who can unblock the open step is at the other end of the drawer |
+| job-checklist-error · job-checklist | Contact drawer | Contact client | Heading | the sheet's title, and the same words as the button that raised it — the shape all eight pickers before it use, and `tracking`'s own drawer among them |
+| job-checklist-error · job-checklist | Contact drawer | Call client | Button | `voice.md` **A2** fixes *Contact support* for reaching a human **and names the exception in the same entry** — *"a phone-only action may say Call support — calling ≠ messaging."* This is that exception with the third object, after *Call support* and *Call operator*. Verb + object, so it stands beside the row under it without borrowing the drawer title's noun |
+| job-checklist-error · job-checklist | Contact drawer | Chat with the client | Button | `voice.md` **A12** with the other object — the designer's own word, fixed 2026-08-16 on the client's drawer and applied here rather than re-decided. *chat* is a **verb taking its object**, which is what the Button rule asks for, and **A9**'s *Send message* keeps its own job on the composer of `chat-client` |
+| job-checklist-error · job-checklist | Contact drawer | Calls and messages go through DRON. Your number is not shared with the client. | Body | `tracking`'s masking sentence **with the object turned round, and it is true in that direction too**: the masking is bilateral, so the operator has never been shown the client's number either. `voice.md` **P3**'s discipline — state the fact **before** the tap — applied to privacy instead of to price. It is also what lets a *Call client* row exist at all without a number anywhere on the frame |
+| job-checklist-error · job-checklist | Contact drawer | Cancel | Button | `HIG · Action sheets` asks for the cancelling action by name; the × belongs to a full modal screen (rev 101's reading, unchanged) |
 | job-checklist | — | ‹ Job brief | Button |  |
 | job-checklist | — | Checklist | Heading |  |
 | job-checklist | Pre-flight & job steps | Pre-flight safety check | Field label |  |
@@ -843,6 +878,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | job-checklist | Pre-flight & job steps | Capture delivery photo | Field label |  |
 | job-checklist | Pre-flight & job steps | Confirm handover with the client | Field label |  |
 | job-checklist | Pre-flight & job steps | Complete & add delivery photo | Button |  |
+| job-checklist | Action bar (footer CTA) | Contact client | Button | new 2026-08-21, the designer's word — *«додай сюди ще Contact with client, по кліку відкривай дровер як у клієнта»*. **The mirror of `tracking`'s *Contact operator*, and the label is the mirror too:** verb + the other party, no preposition, so the two personas' controls read as one pattern rather than two phrasings. `voice.md`'s vocabulary rule fixes the object — **client**, never *recipient*, never *customer*. It is the grey **secondary**: the green on this screen is already spent on *Complete & add delivery photo*, and this is the second thing you can do here, not the first |
 | job-offer-empty | — | New job | Heading |  |
 | job-offer-empty | Offer | EXPIRED | State message | WF-PH |
 | job-offer-empty | Offer | Job expired | State message |  |
@@ -1070,9 +1106,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | onboarding-operator | — | Get started | Button |  |
 | operator-account | — | Account | Heading |  |
 | operator-account | Profile | IK | Body | DATA |
+| operator-account | Profile | Change profile photo | Button | the pencil badge on the avatar, new 2026-08-21 «додай для оператора біля бейджу з рейтингом редагувати фото» — an **accessible name only**, the badge being icon-only (`WCAG 4.1.2`). The client's own pencil carries the identical string on `account`, and for the identical reason: the sibling button below is already `Edit profile`, so two adjacent controls must not announce one word apart (`WCAG 2.4.6`) — different verb, different object |
 | operator-account | Profile | Ivan K. | Body | DATA |
 | operator-account | Profile | Rating 4.9 ★ | Body | DATA |
-| operator-account | Profile | Operator · 214 jobs | Body |  |
 | operator-account | Profile | Insured | Body |  |
 | operator-account | Profile | CAA licence | Body |  |
 | operator-account | Profile | Edit profile | Button |  |
@@ -1094,6 +1130,14 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-account | Account | Earnings | Button |  |
 | operator-account | Account | Ratings | Button |  |
 | operator-account | Account | Account | Button |  |
+| operator-account-photo | — | Cancel | Button | the modal's dismissal, new 2026-08-21 — the twin of `account-photo`'s. `HIG · Modality` gives a view that commits with Save a **named** Cancel, and the back chevron leaves with it |
+| operator-account-photo | — | Profile photo | Heading | new screen 2026-08-21. **The same title the client's photo screen carries** — same object, same job, and a title that differed by persona would be a difference with nothing behind it |
+| operator-account-photo | — | Save | Button | the modal's commit, new 2026-08-21. Bare, because the bar's title stands beside it saying *Profile photo* |
+| operator-account-photo | Photo | Your client sees this photo when they arrive. Without one, they see your initials. | Body | P1 — names the outcome (being recognised on arrival), not the file. **One word differs from the client's copy of this line, and it is the whole point:** hers says *your operator*, his says *your client*, because the reader on the other side of the order is not the same person. `voice.md` fixes both words — never «pilot», never «recipient» |
+| operator-account-photo | Action bar | JPG or PNG, up to 5 MB. Nothing changes until you save. | Body | P3 — the file rule and the fact that **no button in this bar commits on its own**, which is what makes `Delete` recoverable with no confirmation alert. Tied to all three buttons by `aria-describedby` |
+| operator-account-photo | Action bar | Take a photo | Button | `HIG · Action sheets` ships this source by name |
+| operator-account-photo | Action bar | Choose a picture | Button | the second `HIG · Action sheets` source — the designer's own word at rev 146, carried across unchanged |
+| operator-account-photo | Action bar | Delete | Button | destructive, and `voice.md` **A13**'s one destruction verb. Bare, because the bar's own title says *Profile photo*. The verb carries the meaning with the colour gone (`WCAG 1.4.1`) |
 | operator-dispute-error | — | ‹ Jobs | Button |  |
 | operator-dispute-error | — | Dispute | Heading |  |
 | operator-dispute-error | Job | AERIAL | State message | WF-PH |
@@ -1138,6 +1182,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-listings-empty | — | Ivan K. | Body | DATA |
 | operator-listings-empty | — | Incoming · 0 | Body |  |
 | operator-listings-empty | — | Active · 0 | Body |  |
+| operator-listings-empty | — | Offline | Badge | the same badge at this state’s value, new 2026-08-21 (rev 183) — read off the checked radio’s label, as on the base file |
 | operator-listings-empty | Status | You are Offline | State message |  |
 | operator-listings-empty | Status | · no jobs while offline | State message |  |
 | operator-listings-empty | Status | Availability status | State message |  |
@@ -1159,6 +1204,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-listings | — | Ivan K. | Body | DATA |
 | operator-listings | — | Incoming · 2 | Body |  |
 | operator-listings | — | Active · 1 | Body |  |
+| operator-listings | — | Available | Badge | the nav-bar availability badge, new 2026-08-21 (rev 183). **Not a new string:** it is read at runtime off the checked radio’s own `<label>` in the Status segment three rows below, so the word lives in the markup once and the badge cannot drift from the control |
+| operator-listings | — | Busy | Badge | same badge, same source label |
+| operator-listings | — | Offline | Badge | same badge, same source label |
 | operator-listings | Status | Availability status | Body |  |
 | operator-listings | Status | Available | Field label |  |
 | operator-listings | Status | available | Field value | DATA |
@@ -1644,9 +1692,11 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | result-upload-error | Result photo | Payment stays held until the delivery photo uploads. | Body |  |
 | result-upload-loading | — | ‹ Checklist | Button |  |
 | result-upload-loading | — | Close job | Heading |  |
-| result-upload-loading | — | SEND | State message | WF-PH |
-| result-upload-loading | — | Uploading delivery photo… | State message |  |
-| result-upload-loading | — | Sending the delivery photo. Keep the app open. | State message |  |
+| result-upload-loading | Job | Service · Package delivery · Client · Olena H. · Pay · ₴180 | Body | the base frame's rows, unchanged — the facts being submitted are not content that is arriving, so they do not pulse |
+| result-upload-loading | Result photo | ▸ uploading… | Body | the zone label's action word (`.dr-label__act`); the base reads *▸ proof before pay (H-7)*. One zone changes, and the label says which |
+| result-upload-loading | Result photo | Sending the delivery photo. Keep the app open. | State message | `role="status"` under the tray — re-homed from the takeover block that left 2026-08-21, so `WCAG 4.1.3` survives the rebuild |
+| result-upload-loading | Result photo | Replace photo | Button | carries `disabled`, exactly as on the base frame — nothing under the thumb moves between the two states |
+| result-upload-loading | Notes | Handover notes, client name… | Field placeholder | the base placeholder, unchanged |
 | result-upload-loading | — | Payment is held until the client confirms — auto-confirms after 2h. | State message |  |
 | result-upload-loading | — | Uploading… | Button |  |
 | result-upload | — | ‹ Checklist | Button |  |
