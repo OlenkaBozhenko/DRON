@@ -711,12 +711,23 @@ the close is blocked, and the person who can unblock it is at the other end of i
     the form is on screen at the moment *Submit & close job* is tapped, and the tray is exactly the box the picture
     lands in. **It is now the base layout, re-contented in one zone.** `Job` rows and `Notes` stand as built — they are
     the facts being submitted, not content that is arriving — and only `Result photo` changes: the label reads
-    *▸ uploading…*, the `.dr-upload` tray becomes a `.dr-sk-block` at the tray's own `--sz-upload-min` **140px** floor
-    (it was 120, so the box jumped **20px** when the photo landed — the no-reflow contract the skeleton exists to keep),
-    and the kit's `.dr-sk-arrow` motion runs inside it: the tray holds still and only the arrow leaves it. *Replace
-    photo* keeps its place carrying `disabled` (`--slate` on `--btn2`, **4.77:1**, `WCAG 1.4.3` ✓ — built, not dimmed),
-    so nothing under the thumb moves between the two frames. The `role="status"` that named the wait is **re-homed, not
-    dropped** (`WCAG 4.1.3`): it sits under the tray, on the line that says what is loading.
+    *▸ uploading…*, the `.dr-upload` tray keeps its box and takes the kit's `.dr-sk-arrow` motion inside it: the tray
+    holds still and only the arrow leaves it. **Since 2026-08-24 the waiting tray IS the loaded tray's own class** —
+    `.dr-upload` + `.dr-sk-tray`, the modifier adding only the `--media` ground that `.dr-upload` paints for
+    `[role="button"]` alone — so the box is the same box by construction rather than by two numbers agreeing. It had
+    been `.dr-sk-block` with an inline `min-height` restating `--sz-upload-min` **140px** (and 120 before the rebuild,
+    so the box jumped **20px** when the photo landed — the no-reflow contract the skeleton exists to keep). **The
+    status line sits inside the tray, under the glyph**, in the slot *Add photo* holds on the base frame — the
+    designer, 2026-08-24: *«write this text under the loading upload icon»*. It had stood under the tray as a fourth
+    item in the stack, which was the frame's **only** remaining delta against success: the `Result photo` section drew
+    **220** there against the base frame's **192**. Measured after the move, both frames draw **192**, `.dr-main`
+    **629** on each, the tray **326 × 140** at `#E4E1DA` / 13px / no shadow on each, and *Replace photo* opens at
+    **+148** from the section top on each — nothing under the thumb moves between the two states. The sentence is
+    `--slate` on `--media`, **5.51:1** at 14px (`WCAG 1.4.3` ✓), centred by `.dr-upload`'s own `text-align` and
+    wrapping to 2 lines on a 278px measure. *Replace photo* keeps its place carrying `disabled` (`--slate` on
+    `--btn2`, **4.77:1**, `WCAG 1.4.3` ✓ — built, not dimmed). The `role="status"` that named the wait is **re-homed,
+    not dropped** (`WCAG 4.1.3`), and the `aria-hidden` that had sat on the whole skeleton block moved onto the glyph
+    alone — a live region inside an `aria-hidden` container is never announced.
   - **Success —** payment success lands on Wallet, not here; this screen has no "it worked" state of its own.
 
 ### 17. Wallet / earnings

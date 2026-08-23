@@ -3335,6 +3335,18 @@ header.dr-topbar,
 .dr-sk-d2 *{ animation-delay: -.93s; }
 @keyframes dr-pulse{ 0%,100%{ opacity: 1; } 50%{ opacity: var(--pulse-floor); } }
 
+/* The waiting tray IS the loaded tray, so it is built from the loaded tray's
+   own class: `.dr-upload` carries the min-height 140, the --r-media 13, the
+   column, the centring, the --sp-snug gap and the --sp-24 padding, and this
+   modifier adds the one thing `.dr-upload` only paints for [role="button"] —
+   the --media ground. Nothing about the box is restated, so the no-reflow
+   contract holds by construction rather than by two numbers agreeing: what
+   the glyph-over-label anatomy is on the base frame, the glyph-over-status
+   anatomy is here. Added 2026-08-24 on the designer's «write this text under
+   the loading upload icon» (rev 188). --slate on --media is 5.51:1 at 14px
+   (WCAG 1.4.3 ✓); the tray is not a control and takes no ring. */
+.dr-sk-tray{ background: var(--media); }
+
 /* The tray holds still and only the arrow leaves it: what the screen waits on
    is a file going up. It rests VISIBLE at 0% and 100%, so a dropped animation
    leaves a legible icon. */

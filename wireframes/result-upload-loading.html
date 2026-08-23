@@ -38,20 +38,31 @@
          lands in. So the layout is result-upload.html's, block for block, and ONE ZONE
          CHANGES. Job and Notes stand as built — they are the facts being submitted, not
          content that is arriving, so they do not pulse.
-         THE TRAY BECOMES ITS OWN SKELETON, SAME BOX: .dr-sk-block at the kit's
-         --sz-upload-min 140 (it was 120, so the box jumped 20px when the photo landed —
-         the no-reflow contract the skeleton exists to keep), --media at --r-media 13,
-         which is .dr-upload's own fill and radius. Inside it the kit's .dr-sk-arrow —
+         THE TRAY BECOMES ITS OWN SKELETON, SAME BOX — and since 2026-08-24 it is
+         literally the base frame's own class: .dr-upload + .dr-sk-tray, where .dr-upload
+         carries the kit's --sz-upload-min 140, --r-media 13, the column, the centring,
+         the --sp-snug 12 gap and the --sp-24 padding, and .dr-sk-tray adds only the
+         --media ground that .dr-upload paints for [role="button"] alone. It was
+         .dr-sk-block with an inline min-height restating 140 — the same box by two
+         numbers agreeing rather than by construction. Inside it the kit's .dr-sk-arrow —
          the tray holds still and only the arrow leaves it: what the screen waits on is a
          file going up. It rests visible at 0% and 100%, and kit.css's
          prefers-reduced-motion block stops it, leaving a legible icon.
+         THE STATUS LINE SITS UNDER THE ICON, INSIDE THE TRAY (the designer, 2026-08-24:
+         «write this text under the loading upload icon»). It stood under the tray as a
+         fourth item in the stack, which was the frame's only delta against success: the
+         Result photo section drew 220 there against the base frame's 192. In the tray it
+         takes the slot "Add photo" holds on the base frame — glyph over words, one box —
+         and the section returns to 192, so the two states are now the same height to the
+         pixel. Re-measured on the page: --slate on --media 5.51:1 at 14px (WCAG 1.4.3 ✓,
+         and the pair the base frame's 32px glyph already stands on); the sentence is
+         centred by .dr-upload's own text-align, not by a new rule.
          REPLACE PHOTO KEEPS ITS PLACE, disabled, exactly as on the base frame, so nothing
          under the thumb moves between the two states. Built, not dimmed: --slate on --btn2
          is 4.77:1 (WCAG 1.4.3 clear, without leaning on the inactive-component exemption).
-         THE role="status" IS RE-HOMED, NOT DROPPED (WCAG 4.1.3): it moves from the takeover
-         block onto the line under the tray that names what is loading — .dr-status-line,
-         14px SF on --slate, 5.95:1, the class order-history-loading already set for this
-         one job. -->
+         THE role="status" IS RE-HOMED, NOT DROPPED (WCAG 4.1.3) — and the aria-hidden that
+         sat on the whole skeleton block moved onto the glyph alone, since a live region
+         inside an aria-hidden container is never announced. -->
     <main class="dr-main">
       <p class="zlabel dr-label">Job <span class="dr-label__act">▸ what's being closed</span></p>
       <div class="dr-rows" aria-label="Job summary">
@@ -63,10 +74,10 @@
       <p class="zlabel dr-label">Result photo <span class="dr-label__act">▸ uploading…</span></p>
       <section aria-label="Result photo">
         <div class="dr-stack">
-          <div class="dr-sk-block" style="min-height:var(--sz-upload-min);" aria-hidden="true">
-            <span class="dr-sk-up"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><g class="dr-sk-arrow"><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></g></svg></span>
+          <div class="dr-upload dr-sk-tray">
+            <span class="dr-sk-up" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><g class="dr-sk-arrow"><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></g></svg></span>
+            <p class="dr-status-line" role="status">Sending the delivery photo. Keep the app open.</p>
           </div>
-          <p class="dr-status-line" role="status">Sending the delivery photo. Keep the app open.</p>
           <button type="button" class="dr-btn dr-btn--secondary dr-btn--block" disabled>Replace photo</button>
         </div>
       </section>

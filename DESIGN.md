@@ -566,7 +566,12 @@ are 44 × 44; tab targets measure 86.3 × 50.
 
 **No-reflow contract.** A skeleton measures its loaded counterpart: the `order-history` skeleton
 card is 263.0px against the delivered card's 263.6px; the `delivery` photo skeleton is 341 × 180
-against a photo of 341 × 180.
+against a photo of 341 × 180. **The strongest form is not a matching number but the same class**
+(2026-08-24): `result-upload-loading`'s waiting tray is `.dr-upload` + `.dr-sk-tray`, the loaded
+frame's own component plus a modifier adding only the `--media` ground that `.dr-upload` paints
+for `[role="button"]` alone. Nothing about the box is restated, so it cannot drift — measured,
+both frames draw the tray at **326 × 140**, `#E4E1DA`, 13px radius, no shadow, the `Result photo`
+section at **192**, `.dr-main` at **629**, and *Replace photo* at **+148** from the section top.
 
 ### Named rules
 
@@ -589,6 +594,11 @@ the level above will quietly spend it.
 
 **The Skeleton-Measures-The-Load Rule.** A loading block is the size of the thing it waits for. A
 skeleton is a claim about the loaded screen, so it expires when that screen changes treatment.
+**Where the loaded block is a component, build the skeleton from that component** rather than
+re-declaring its box — then the claim cannot expire, because there is only one box. And the words
+follow the box: `result-upload-loading`'s status sentence sits **inside** the tray, in the slot
+*Add photo* holds on the base frame, so the loading zone and the loaded zone are the same height
+to the pixel instead of the loading one running 28 taller.
 
 ## Elevation & Depth
 
@@ -2034,6 +2044,15 @@ The rule produces opposite answers by design: on `order-history-loading` the dro
 (the cutout sits *inside* it, so nothing survives the swap), while on `delivery-loading` the photo
 well pulses (the photograph *covers* it). The question is never "should this pulse" but **"does
 what loads replace this surface, or sit inside it"**.
+
+**`.dr-sk-tray`** — the one-declaration modifier (`background: var(--media)`) that turns the
+loaded `.dr-upload` tray into its own waiting state on `result-upload-loading`. It inherits the
+component's `min-height` 140, `--r-media` 13, column, centring, `--sp-snug` 12 gap and `--sp-24`
+padding, so the tray does not pulse and does not move: only the arrow inside it leaves (`skUp`).
+The status sentence stands under the glyph as `.dr-status-line` — 14px `--slate` on `--media`,
+**5.51:1** — where the loaded frame stands `Add photo` as `.dr-upload__action`. The `role="status"`
+lives on that sentence and the `aria-hidden` on the glyph alone, never on the tray: a live region
+inside an `aria-hidden` container is never announced (`WCAG 4.1.3`).
 
 ### Motion
 
