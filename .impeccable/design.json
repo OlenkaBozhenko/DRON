@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-21T00:00:00Z",
+  "generatedAt": "2026-08-24T00:00:00Z",
   "title": "Design System: DRON",
   "extensions": {
     "note": "Extracted from the painted product surfaces and verified by computed style in a browser; the set was completed 2026-08-18. No tonal ramps are recorded: the project declares no tonal scale, and synthesising one would put colours in this file that appear nowhere in the build.",
@@ -16,6 +16,12 @@
         "displayName": "On Green",
         "canonical": "#1A1A1A",
         "usage": "the only colour permitted on a green fill — 9.46:1. Never white (1.84:1)."
+      },
+      "green-soft": {
+        "role": "primary",
+        "displayName": "Signal Green Soft",
+        "canonical": "#A9D563",
+        "usage": "the accent one step lighter (2026-08-24) — --green 85% + --page 15%, derived rather than picked. One spend: the ratings score banner. Charcoal on it 10.26:1, better than 9.46:1 on --green; 1.56:1 on the page, so it is a FILL and counts against the green budget, not a tint. 1.08:1 against --green itself, so the two never sit side by side."
       },
       "green-wash": {
         "role": "primary",
