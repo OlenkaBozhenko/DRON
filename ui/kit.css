@@ -1887,7 +1887,31 @@ header.dr-topbar,
    BORDER, unchanged, so the flat-surface rule and its two rungs stand. Hover
    takes the green icon button's own rung — `brightness(--bright-hover)` — and
    not `--media`, which would drop the accent under the cursor. */
+/* AND ON BOTH HEADS THE DISC IS 24 (2026-08-24, the designer on the built
+   `account`: «edit photo on the avatar bigger a bit, as on the operator's
+   profile wireframes»). The operator's went to --sz-photo-mark the same day, to
+   share a height with the rating pill it was paired with; the client's stayed at
+   --sz-avatar-badge 20 because nothing on her head asked it to move. She asked.
+
+   NO NEW NUMBER — the token exists and this is its second site. 24 is `WCAG
+   2.5.8 Target Size (Minimum)`'s floor, so the pencil now clears the criterion
+   ON ITS OWN BOX; until today it leaned entirely on the 120px photograph that
+   wraps it (which still clears `HIG · 44pt` at 273% and 2.5.8 at 5×, so nothing
+   was failing — the disc simply gains a second, independent reading).
+
+   THE GLYPH STAYS 12, WHICH IS PARITY AND NOT AN OVERSIGHT. His 24 disc carries
+   a 12px pencil; matching it is the whole of what she asked for. Inside the 20
+   the 2px ring encloses, that leaves 4 of air against the 2 the 20px disc had —
+   the badge reads lighter, not heavier, and the rendered stroke is unchanged at
+   0.85 because the glyph box did not move.
+
+   PLACEMENT IS NOT TOUCHED AND THE TWO HEADS STILL DIFFER THERE, correctly: his
+   sits on the circle's bottom centre line beside the pill (the `:has(.dr-profile__rating)`
+   block below), hers keeps the corner, because she has no pill to pair with.
+   `--sz-avatar-badge` 20 stays the component's default for any badge that lands
+   on a 56px avatar; only the 120px profile heads take the larger rung. */
 .dr-profile .dr-avatar-edit__badge{
+  width: var(--sz-photo-mark); height: var(--sz-photo-mark);   /* 24 — WCAG 2.5.8's floor */
   border-color: var(--page);                                   /* 1.69:1 cut-out on the page */
   background: var(--green); color: var(--on-green);            /* 9.46:1 */
 }

@@ -684,7 +684,14 @@ gives it the corner. It never restates the parent's radius.
   **One rung departs, on the designer's word (2026-08-21, rev 181):** `.dr-btn--outline` takes
   `--r-pill`, cut to the badges it stands under on `operator-account`. The ramp is not widened —
   999 is a rung it already owns — and the other four fills keep 12, so the sentence above still
-  describes every **filled** button in the system.
+  describes every **filled** button in the system. **The rung is now DECLARED AND SPENT NOWHERE
+  (2026-08-24, rev 195).** Its two users left in the same week: `operator-account`'s Edit profile
+  for the floating accessory at rev 187, and the client `account`'s at rev 195 on her word
+  (*«make edit profile as floating button… as on the operator's profile wireframes»*). It is kept,
+  not cut — the way `.dr-chip--sm` and `.dr-profile__role` are kept — because it is a rung she
+  asked for by name and the reversal above is its reason for existing. **The §Buttons reversal is
+  therefore scoped to a variant nothing draws today**, which is stated here rather than quietly
+  left reading as if a live button carried it.
 - **Height:** `min-height:44px`, never a fixed height. Padding `0 16px` on every variant.
 - **Type:** 15/600, gap 8 to a leading glyph.
 - **Primary:** `--green` fill, `--on-green` label (9.46:1), `--sh-sm`. Hover
@@ -1101,7 +1108,20 @@ wraps the picture and the badge together**, so the target is the whole avatar �
 badge is `aria-hidden`; the link carries the name.
 
 - **Badge:** `--sz-avatar-badge` 20 × 20 at `right/bottom: −2px` — `.dr-count-badge`'s own offset,
-  which puts the disc's centre **28.28** from a 28px radius, i.e. on the circle's edge at 45°.
+  which puts the disc's centre **28.28** from a 28px radius, i.e. on the circle's edge at 45°. That
+  derivation is a **56px** avatar's; see the next bullet for the 120px profile heads.
+- **Badge on a profile head — 24 × 24 (2026-08-24, rev 195).** `.dr-profile .dr-avatar-edit__badge`
+  takes `--sz-photo-mark`, the rung the operator's pencil already stood at from being paired with his
+  rating pill: *«edit photo on the avatar bigger a bit, as on the operator's profile wireframes»*.
+  **No new number** — second site for an existing token. 24 is `WCAG 2.5.8 Target Size (Minimum)`'s
+  floor, so the pencil clears the criterion **on its own box**, where until now it leaned entirely on
+  the 120px photograph wrapping it (which still clears `HIG · 44pt` at **273%** and 2.5.8 at **5×** —
+  nothing was failing; the disc gains a second, independent reading). The **glyph stays 12** for
+  parity with his, leaving **4** of air inside the 20 the ring encloses against the 2 it had, so the
+  badge reads lighter rather than heavier and the rendered stroke is unchanged at **0.85**.
+  **Placement is untouched and the heads still differ there, correctly:** his sits on the circle's
+  bottom centre line beside the pill (`:has(.dr-profile__rating)`), hers keeps the corner — she has
+  no pill to pair with. `--sz-avatar-badge` 20 remains the component default for a 56px avatar.
 - **Pair:** `--btn2` ground, `--ink` glyph — **11.54:1**, the circular icon action's own pair, so the
   two edit affordances on one card are one material. The disc is **1.25:1** on the card and is *not*
   the identifier: the glyph is, the way `.dr-upload`'s 1.08:1 well defers to its 32px mark.
@@ -1125,9 +1145,10 @@ badge is `aria-hidden`; the link carries the name.
   either status mark G-5 already admits beside the one control (live disc 400px², walked node
   484px²), a column apart from the FAB and separately named (`Change profile photo` /
   `Edit profile`, `WCAG 2.4.6`). Taken on the designer's instruction and recorded, not corrected.
-  **Open with the designer:** the two edit affordances on `account` are no longer one material, since
-  the button below is `.dr-btn--outline` (rev 181) — the photo control now outranks the screen's
-  stated action. Both conform; the ranking is hers.
+  **The ranking question is answered (rev 195).** It was reported at rev 189 that the green photo
+  pencil outranked an outline `Edit profile` below it; the action is now the green floating capsule,
+  so the two edit affordances are one material again and the larger of them is the screen's stated
+  action.
 - **Ring:** `--w-badge-ring` 2px in `--card`, a **border and not a shadow** — it cuts the badge out of
   the photograph, whose pixels cannot be measured, and the flat-surface rule holds with `--sh-sm`
   under the green primary still the only shadow in the product.
@@ -1234,10 +1255,10 @@ subject. `.dr-op` is untouched on the eleven client screens that carry it.
   outline pill of rev 181 (`--ink` **15.99:1** over a 1px `--slate` edge at **6.62:1**, `--r-pill`,
   **144.69 × 44**), itself a `--secondary` at 11.54:1 on `--btn2` until that revision. **The
   credentials close the column now**, and the accessible name is still the visible label
-  (`WCAG 4.1.2`). **`.dr-btn--outline` keeps a live user** — the client's `account`, which was given
-  the same head at rev 182 and has not been asked to follow — so the rung is not orphaned and the
-  §Buttons pill reversal stands. **The two heads therefore differ for the first time since rev 182,
-  and that is open with the designer, not settled.**
+  (`WCAG 4.1.2`). **`.dr-btn--outline` kept a live user for three days and no longer does** — the
+  client's `account` followed onto the accessory at **rev 195** on the designer's word, so the rung
+  is declared and spent nowhere (see §Buttons). **The two heads are the same component again**, which
+  answers the question rev 187 left open rather than leaving it standing.
 - **Credentials:** the two `.dr-chip--claim` pills, `--ink` on `--green-wash` at **14.75:1**,
   centred and unchanged in meaning. The pair measures **244.1** in **343** of frame — one line.
 
