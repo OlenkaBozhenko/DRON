@@ -1149,6 +1149,27 @@ badge is `aria-hidden`; the link carries the name.
   **Placement is untouched and the heads still differ there, correctly:** his sits on the circle's
   bottom centre line beside the pill (`:has(.dr-profile__rating)`), hers keeps the corner — she has
   no pill to pair with. `--sz-avatar-badge` 20 remains the component default for a 56px avatar.
+- **Badge on the CLIENT's head — 32 × 32 (2026-08-24, rev 197).** *«зроби більшу іконку кнопку»*, hours
+  after the bullet above. The size leaves `.dr-profile` for
+  `.dr-profile__photo:not(:has(.dr-profile__rating))` and takes a token of its own, **`--sz-head-mark`
+  32px**. **The rung it left is a shared height, not a size:** `--sz-photo-mark` 24 is *what the
+  operator's two marks measure together* (rev 192), so raising it would have moved his rating pill.
+  **Nothing was failing at 24 and nothing fails at 32** — the target is still the 120px photograph
+  (`HIG · 44pt` **273%**, `WCAG 2.5.8` **5×**), the disc's own box goes **1.00× → 1.33×** of 2.5.8's
+  floor (**1.78×** the area), and `--on-green` on `--green` stays **9.46:1** against `WCAG 1.4.11`'s
+  3:1. **32 is proportion:** `--sz-avatar-badge` 20 holds **35.7%** of the 56px circle it was sized
+  for, 24 held **20.0%** of the 120 head, 32 reads **26.7%**. **The glyph follows to `--ic-16`** —
+  16-in-32 is the same **50%** 12-in-24 was, air inside the 2px ring goes **4 → 6**, rendered stroke
+  **1.7 × 16/24 = 1.13** (up from 0.85, inside the 0.85→2.27 range; no glyph compensates its own).
+  **The corner offset is not touched and growing the disc improves it:** `right/bottom: −2px` was
+  derived on a 56px avatar (centre **28.28** from r=28, on the edge at 45°) and does not hold on a
+  120px head — the centre stood **70.71** from r=60 at 24 (**10.71 outside** the picture) and stands
+  at **65.05** (**5.05 outside**) at 32; exactly on the edge would be **39.15**. Documented, not
+  re-derived. **`operator-account` keeps 24/12 by selector**, not by order — both heads are 0,3,0 and
+  neither depends on which rule is written last; what they still share is the material, the `--green`
+  fill and the `--page` ring. `order-details-aerial` sits outside `.dr-profile` and keeps 20.
+  **Green budget re-counted:** drawn fill **π × 14² = 616px²**, so `account` reads **6,285 + 616 =
+  6,901px² = 2.27%** of the frame (from 2.17%) against §0's ~5%, the primary control **91.1%** of it.
 - **Pair:** `--btn2` ground, `--ink` glyph — **11.54:1**, the circular icon action's own pair, so the
   two edit affordances on one card are one material. The disc is **1.25:1** on the card and is *not*
   the identifier: the glyph is, the way `.dr-upload`'s 1.08:1 well defers to its 32px mark.
@@ -2155,6 +2176,15 @@ and centres with 14 above and below. None of the four existing rungs could be bo
 `--sz-avatar` 117 is the operator panel's *width* from an asset ratio, `--sz-avatar-xl` 120 is a
 subject, `--sz-avatar-call` 176 is a screen's middle, and `--sz-avatar-badge` 20 is a badge *on* an
 avatar rather than an avatar.
+
+### The mark on a profile head (`--sz-head-mark`)
+
+**32px**, added 2026-08-24 (rev 197) for the pencil disc on the client's 120px head. It exists
+because `--sz-photo-mark` **24** is *the height the operator's rating pill and disc share*, not a
+disc size — so the client's could not grow on it without moving his pill. 32 is the 8-grid step,
+**26.7%** of the 120 circle (against `--sz-avatar-badge` 20's **35.7%** of the 56 it was sized for),
+and it takes `--ic-16` so the glyph holds the same **50%** of its disc that 12-in-24 held. Both
+discs clear `WCAG 2.5.8` on their own box — 24 at **1.00×**, 32 at **1.33×**.
 
 ### Navigation
 
