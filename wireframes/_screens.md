@@ -865,7 +865,7 @@ it. States below are each traced to a flow node. `—` = not produced.
 | # | Screen (`sitemap.md`) | Job | Flow position (`flows.md`) | States (real) | Files |
 |---|---|---|---|:---|---|
 | S1 | **Switch role (Client ⇄ Operator)** | `§7.4` global utility | *CHANGE PERSONA*: Account → confirm? → re-enter fork | base only (a confirm/decision screen; decline → back, confirm → fork) | `switch-role.html` |
-| S2 | **Account / profile** | `§7.4` identity &amp; preferences utility + MJ-2 credentials | Account tab (every tab bar) → Edit → save | base + **edit** sub-view (edit personal details, upload drone documents / insurance, save; no dead-end — Save / Cancel → Account) + **photo** sub-view (change the profile photo — take a photo, choose a picture, delete; **a modal from 2026-08-16 (rev 146)**: no dead-end — Cancel / Save → Account, and no back chevron, because a view that commits with Save is dismissed by its named Cancel) | `account.html`, `account-edit.html`, `account-photo.html` |
+| S2 | **Account / profile** | `§7.4` identity &amp; preferences utility + MJ-2 credentials | Account tab (every tab bar) → Edit → save | base + **edit** sub-view (edit personal details, set notifications, upload drone documents / insurance, save; no dead-end — Save / Cancel → Account) + **photo** sub-view (change the profile photo — take a photo, choose a picture, delete; **a modal from 2026-08-16 (rev 146)**: no dead-end — Cancel / Save → Account, and no back chevron, because a view that commits with Save is dismissed by its named Cancel) | `account.html`, `account-edit.html`, `account-photo.html` |
 
 **`account-edit`'s form is three titled cards from 2026-08-16** — **Personal details** ▸ *What the operator
 needs to reach you* (name · phone · saved address), **Payment & language** ▸ *How you pay and the language you
@@ -873,6 +873,45 @@ see*, and the two upload cards, which have carried their own title and subtitle 
 same designer's call as `payment` and the filter panel. **The heading that stood *above* the upload pair is
 not restored by it** — that came off on her word at rev 120, and what these two cards get is a title *inside*
 the card, which is a different thing.
+
+**A fourth card joined them on 2026-08-24 — Notifications** ▸ *What we tell you, and how*, on the designer's
+call, and the shape was hers too: the question was put as a row that pushes its own screen versus a card in
+place, and she chose the card («third card, inline»), then the control («make a toggle»).
+
+- **Why it belongs on this screen and nowhere else.** `HIG · Settings` keeps app-level preferences in one
+  place rather than scattered across the flows they affect, and `sitemap.md §7.4` files settings under
+  **Deep**. Depth is unchanged at 3 — Account (tab) → Edit account → the card. It is a **preferences facet of
+  `CE-1`**, so no `§6.1` screen and no traceability column is added; `sitemap.md §7.4` carries the reasoning.
+- **What it holds, and every row is grounded.** *Order updates* and *Operator on the way* are `CE-4`'s push,
+  the one the sitemap has named since the first cut (`RJ-C2`); *Offers and news* is the marketing channel and
+  is the one row that ships **off**; *Push* and *SMS* are the two channels. Five switch rows, one card.
+- **The control is a switch, and it is the kit's existing selected-state pair in a new shape** — a green fill
+  behind a charcoal knob, `--on-green` on `--green` at **9.46:1**, the same recipe as the checked `.dr-box`
+  (2026-08-03), the checked radio, the walked progress node and `.dr-range`'s thumb. Off is that box's other
+  half: a `--box-edge` charcoal ring with nothing filled in, knob at the left. **The green budget is settled by
+  the 2026-08-03 rule's own words** — *"on the green budget a checked box counts as a status mark, like the
+  node — not as the screen's one green control"* — so with three switches on, **Save changes** is still this
+  screen's one green control, and `concept.md`'s *green is never spent inside card UI* is untouched: that
+  clause governs green as a **control** in a card, and has excepted status marks since the checked box started
+  living inside `.dr-picks`.
+- **`WCAG 1.4.11`, measured in both states, and both clear 3:1.** Off: charcoal knob and charcoal ring on the
+  card, **14.37:1** — a 4.79× pass. On: the ring stays charcoal, so the boundary is the same **14.37:1**, and
+  the knob reads **9.46:1** inside the green — a 3.15× pass. **The ring is why it passes, and it is not a new
+  idea:** `.dr-range`'s thumb was decided on this exact criterion on 2026-08-15 (*"as a ring, `--green` on
+  `--card` is 1.52:1 and fails 1.4.11's 3:1 … as a fill behind an `--ink` ring the boundary still carries at
+  14.37:1"*). So the switch follows the range rather than the checked `.dr-box`, which turns its own border
+  green and leans on the glyph inside it — the two precedents differ, and this is the one that was decided
+  against the criterion. `1.4.1` is separately satisfied: state is **knob position** as well as fill.
+- **The operator half is deliberately short one row.** This screen is shared — `account.html:129` and
+  `operator-account.html:242` both point *Edit profile* here — so the card is read by both sides. `OE-6`, the
+  dispatch alert, is **not** offered as a switch: it is the mechanism `RJ-O1` runs on, and the operator
+  already has the right control in `OE-4` (Available / Busy / Offline) on operator home. An operator's
+  preferences are offers and payout only.
+- **The first permission ask is not here, and no frame invents it.** `HIG · Requesting permission` wants the
+  prompt in context with its reason stated; settings is where it is changed afterwards. The card carries one
+  `.dr-note` stating the fact — *Push works only after you allow it on this device* — and the priming moment
+  in the order flow stays an open decision (`sitemap.md §7.4`).
+- **Still no state pages.** A settings form has none; the card does not change that.
 
 **`account-photo.html` is a sub-view, not a new sitemap screen.** Added 2026-08-16 on the designer's word —
 «добав іконку едіт карандаш на аватарку і добав ще один wireframe де можна загрузити аватарку». It is the

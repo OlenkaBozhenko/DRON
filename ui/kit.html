@@ -1434,6 +1434,53 @@
 </div>
 
 <div class="row">
+  <div class="nm"><b>Switch</b><code>.dr-switch · .dr-switch__knob · .dr-field--toggle</code>
+    <p><b>One independent setting, on or off.</b> Where a checkbox sits in a list of several, a
+       switch sits alone on its own row and commits the moment it moves.</p></div>
+  <div class="spec">
+    <div class="plate">
+      <div class="dr-rows dr-rows--card" style="width:280px">
+        <label class="dr-field dr-field--toggle">
+          <span class="dr-field__label">Order updates</span>
+          <input type="checkbox" role="switch" checked>
+          <span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span>
+        </label>
+        <label class="dr-field dr-field--toggle">
+          <span class="dr-field__label">Offers and news</span>
+          <input type="checkbox" role="switch">
+          <span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span>
+        </label>
+      </div>
+      <span class="st">on 52 &times; 32 &middot; off &middot; the row is the 44pt target</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>The ring stays charcoal when it fills</b>, and that is the one place this parts from the
+       checked box above. It follows <code>.dr-range</code>'s thumb, which is the one of the two
+       precedents decided <i>on</i> <code>1.4.11</code>: as a ring <code>--green</code> on
+       <code>--card</code> is 1.52:1 and fails; as a fill behind an <code>--ink</code> ring the
+       boundary carries at <b>14.37:1</b>. So both states clear 3:1 &mdash; ring <b>14.37:1</b>
+       (4.79&times;), knob inside the green <b>9.46:1</b> (3.15&times;).</p>
+    <p><b>One size is declared and nothing else.</b> <code>--sz-switch</code> 52 is the width; the
+       height is <code>--h-pill</code> <b>32</b>, a rung already in the ramp, landing one pixel off
+       iOS's 51 &times; 31 at the same 1.63 ratio. The knob is <code>--h-pill</code> less its two
+       borders and two paddings &mdash; <b>24.6</b>, which is <code>--sz-box</code> to within the
+       border it sits inside &mdash; and the travel is
+       <code>--sz-switch &minus; --h-pill</code> = <b>20</b>, what a square knob filling the height
+       leaves over. No third number.</p>
+    <p><b>State is position as well as fill</b> (<code>1.4.1</code>), and it is a real
+       <code>&lt;input type="checkbox" role="switch"&gt;</code> inside the <code>&lt;label&gt;</code>
+       that is the row &mdash; so it announces &ldquo;on&rdquo;/&ldquo;off&rdquo; rather than
+       &ldquo;checked&rdquo; (<code>4.1.2</code>), the visible line is the accessible name
+       (<code>1.3.1</code>), and the 44 &times; 341 row carries <code>HIG &middot; 44pt</code> and
+       <code>2.5.8</code> at 7.75&times; the area floor. Motion is <code>--dur-fast</code> on
+       <code>transform</code>, with a <code>prefers-reduced-motion</code> opt-out.</p>
+    <p><b>Green budget:</b> a switch counts as a <b>status mark</b>, like the checked box and the
+       walked node &mdash; not as the screen's one green control.</p>
+  </div>
+</div>
+
+<div class="row">
   <div class="nm"><b>Segmented control</b><code>.dr-segment · __seg</code>
     <p>Mutually exclusive modes in one track. A real <code>&lt;fieldset&gt;</code> of radios, so
        <code>4.1.2</code> needs no ARIA patch.</p></div>

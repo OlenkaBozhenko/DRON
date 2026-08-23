@@ -1071,6 +1071,33 @@ drawn at**, so the box now carries the same line as the check inside it, where b
 **Recorded, not corrected:** the checked state paints a green edge on its green fill, **1.52:1**,
 carried by the charcoal glyph inside at 9.46:1. Rev 70 settled the price band the other way — a green
 fill inside a charcoal ring — so whether the edge should stay charcoal when checked is open.
+**Rev 196 answered it for the switch below and left the box alone**: the switch keeps its charcoal
+ring when it fills, so it clears 1.4.11 in both states without leaning on the knob. Two components
+now differ on the same question, and the box's half is still open.
+
+### Switch (`.dr-switch`)
+
+**52 × 32**, inside a 44pt row that is the whole tap target. Added 2026-08-24 (rev 196) for
+`account-edit`'s Notifications card, on the designer's *«make a toggle»* — the kit had no switch
+before it. **`--sz-switch` 52 is the only size the component declares**: the height is `--h-pill`
+32, a rung already in the ramp, which lands the width one pixel off iOS's 51 × 31 at the same
+**1.63** ratio. **The knob is not declared** — `--h-pill` less two `--box-edge` borders and two
+`--sp-2` paddings, computing to **24.6**, which is `--sz-box` to within the border it sits inside —
+and **the travel is `--sz-switch − --h-pill` = 20**, what a square knob filling the height leaves
+over. Radii `--r-pill` on the track, `--r-circle` on the knob; nothing outside the closed ramp.
+
+**On:** `--green` fill, `--on-green` knob, **9.46:1**. **Off:** no fill, knob `--ink`. **The ring is
+`--ink` in both states** — this follows `.dr-range`'s thumb (rev 70), not the checked checkbox above,
+because the range is the one of the two decided on this criterion. Measured: ring **14.37:1** on the
+card in both states — `WCAG 1.4.11` cleared **4.79×** — and the knob **9.46:1** inside the green,
+cleared **3.15×**. State is **knob position as well as fill**, so `WCAG 1.4.1` never rests on colour.
+
+Built as a real `<input type="checkbox" role="switch">` inside the `<label>` that is the row: the
+state announces "on"/"off" rather than "checked" (`4.1.2`) and the visible line is the accessible
+name (`1.3.1`). The target is the **row**, 44 × 341 — `HIG · 44pt` and `WCAG 2.5.8` carried at
+**7.75×** the area floor, not by the 52 × 32 track. Motion is `--dur-fast` on `transform` with a
+`prefers-reduced-motion` opt-out. **Green budget:** a switch counts as a status mark, like the
+checked box and the walked node — not as the screen's one green control.
 
 ### Circular icon action
 

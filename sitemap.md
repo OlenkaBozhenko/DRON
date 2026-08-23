@@ -34,10 +34,10 @@ self-listings) that **no confirmed job requires** — they all sit in `§4 Under
 
 | # | Entity | Fields / parts | Job that spawns it | Related to |
 |---|---|---|---|---|
-| CE-1 | **Client account & identity** | Diia / BankID identity, name, saved payment method(s), order history, **saved address(es) — opt-in** (captured from the order, saved only if the user ticks a "save this address" checkbox) | `MJ-1` (need an identity to transact), `RJ-C5` (history + saved address enable one-tap repeat), story `C-02` (one-tap Diia/BankID) | Order, Payment, Review (authored) |
+| CE-1 | **Client account & identity** | Diia / BankID identity, name, saved payment method(s), order history, **saved address(es) — opt-in** (captured from the order, saved only if the user ticks a "save this address" checkbox), **notification preferences** (order updates · operator on the way · offers and news; channel: push / SMS) | `MJ-1` (need an identity to transact), `RJ-C5` (history + saved address enable one-tap repeat), story `C-02` (one-tap Diia/BankID); the notification facet serves `RJ-C2` — the alerts that close the post-payment void are only a job if the client controls them | Order, Payment, Review (authored) |
 | CE-2 | **Service** (catalogue item) | Service type (delivery / aerial photo-video / inspection), use-case description, **price rule** (see note), flow mode (auto-dispatch vs calendar-first), availability / "next available" `C-01` | `MJ-1` (choose the result a drone delivers), `RJ-C3` (price visible on service details) | Order, Price |
 | CE-3 | **Order** | Service type, location (pickup / target), date-time (now or scheduled slot), parcel / object details, **locked price**, status, assigned-operator reference, payment reference, result reference | `MJ-1` (hand the job over — the core object), `RJ-C3`, `RJ-C5` (re-book pre-fills it) | Service, Operator profile, Payment, Result, Operator-side **Job** |
-| CE-4 | **Order live status / ETA** (live facet of CE-3) | Live operator/drone position, ETA countdown, status timeline, push ("Operator is 2 min away") | `RJ-C2` (close the void between payment and arrival), story `C-05` | Order, Operator profile |
+| CE-4 | **Order live status / ETA** (live facet of CE-3) | Live operator/drone position, ETA countdown, status timeline, push ("Operator is 2 min away") — **switchable by the client at CE-1**, per row and per channel | `RJ-C2` (close the void between payment and arrival), story `C-05` | Order, Operator profile |
 | CE-5 | **Operator profile** (read for trust) | Name, photo, rating (X.X ★ · N reviews), "Verified by DRON" badge, "Insured" badge `[?]` amount, completed-jobs count, service specialization, credential (CAA/DASU) `[?]`, portfolio `[?]` (C-2) | `RJ-C1` (confirm who is coming is real & qualified — #1 drop-off), `EJ-1` (first use feels safe) | Order (assigned operator), Review / Rating |
 | CE-6 | **Payment** (client side) | Amount, method (Apple Pay / Google Pay / Visa-Mastercard), status, timestamp, linked order | `MJ-1` (pay step of the core flow), story `C-04`; funds the operator **Payout** | Order, Operator Payout (boundary) |
 | CE-7 | **Result / Deliverable** (received) | Delivery: confirmation + photo (C-1). Inspection/photo: structured report — cover photo, annotated findings, photo set, operator signature (C-2) | `RJ-C4` (receive proof the job was done), story `C-06` | Order, Operator **Result upload** (boundary) |
@@ -69,7 +69,7 @@ The locked-price rule is called out wherever it appears.
 | OE-3 | **Operator profile** (owned / edited) | Name, photo, bio (needs template — Stage 2 Language friction), rating, badges (Verified, Insured), credentials, service specializations, portfolio `[?]` (C-2), completed-jobs count | `RJ-C1` (client reads it), `EJ-3` (reputation); profile setup Stage 2. Credential-as-identity meaning → `[?]` `HJ-1`, see `§4` | Verification, Review / Rating dashboard, Job |
 | OE-4 | **Operator status** | Available / Busy / Offline toggle state | story `O-02` (receive requests only when able) — gates dispatch | Job alert, Operator account |
 | OE-5 | **Job** (operator's view of the Order) | Job ID, service type, location / distance, estimated duration, pay, client reference, status, checklist ref, result ref | `MJ-2` (steady flow of pre-qualified jobs), `RJ-O1` | Client **Order** (boundary), Checklist, Result upload, Payout |
-| OE-6 | **Job alert / dispatch notification** | Service type, distance, estimated time, price, Accept / Decline (lock screen) | `RJ-O1` (decide in seconds), story `O-01` | Job, Operator status |
+| OE-6 | **Job alert / dispatch notification** | Service type, distance, estimated time, price, Accept / Decline (lock screen). **Not switchable by the operator** — it is the mechanism `RJ-O1` runs on, and OE-4 (Available / Busy / Offline) is already the control for "do not send me work now". An operator's notification preferences therefore cover offers and payout only | `RJ-O1` (decide in seconds), story `O-01` | Job, Operator status |
 | OE-7 | **Job checklist** | Per-service-type steps: pre-flight → execution → delivery confirmation → result photo; checkable items; large touch targets / high contrast (gloves, sunlight) | `RJ-O2` (execute without improvising), story `O-03` | Job, Result upload |
 | OE-8 | **Result upload** (authored) | Result photo(s), text note, structured report fields (inspection), operator signature | `RJ-O2` (checklist ends in result), story `O-04`; gates `RJ-O3` payment (H-7) | Job, Checklist, client **Result** (boundary), Payout |
 | OE-9 | **Payout / Operator wallet** | Balance (accrues across orders), auto-release transaction (≤ 30 min of client confirmation; auto-confirm after 2h), per-job earnings, status, earnings projection (O-2 trust trigger), **minimum payout threshold, linked payout method (card / bank account), withdrawal type — instant-to-card vs bank transfer (1–3 days), withdrawal transaction** | `RJ-O3` (get paid without managing it — top-3 MVP job; withdrawal to an external account is the **final step**, only after an order is completed — Bolt / Uklon driver cash-out model), story `O-05` | Job, client **Payment** (boundary), Operator account |
@@ -443,7 +443,7 @@ What is visible always, what surfaces inside a flow, and what is a rare, buried 
 |---|---|---|
 | **Global** (always visible) | Order (Home) · Activity · Help · Account | Jobs (Home) + status toggle · Earnings · Ratings · Account |
 | **Contextual** (appears in the flow) | Order setup + price · Payment · Order confirmed / operator revealed · Live tracking · Result · Rate the order · Share · Time-slot pick (C-2 only) · Report an issue · Resolution outcome · Contact human support | Job offer / accept-decline · Job brief · Checklist · Result upload / close · Withdraw to card / bank · Dispute / client issue |
-| **Deep** (rare actions) | First-use explainer · Client onboarding (re-run on switch) · Switch role (Client ⇄ Operator) · Edit profile / payment methods / saved addresses · Dispute detail (inside Help) · Language | Operator onboarding (re-run on switch) · Switch role (Operator ⇄ Client) · Verification / document re-upload · Profile edit · Fee terms (pre-signup) · Insurance details |
+| **Deep** (rare actions) | First-use explainer · Client onboarding (re-run on switch) · Switch role (Client ⇄ Operator) · Edit profile / payment methods / saved addresses · Dispute detail (inside Help) · Language · **Notifications** | Operator onboarding (re-run on switch) · Switch role (Operator ⇄ Client) · Verification / document re-upload · Profile edit · Fee terms (pre-signup) · Insurance details · **Notifications** (offers and payout only — `OE-6` dispatch alerts are not switchable) |
 
 **Reasoning.** Global = the doorways to the three job-clusters + account utility, nothing more
 (adding a 5th global item would dilute the main job's prominence). Contextual = screens that only
@@ -452,6 +452,23 @@ disappear after, so they never compete with the global entries. Deep = one-time 
 actions (onboarding, settings, dispute drill-down) that must exist but must not occupy primary
 navigation. States (`empty / loading / error`) are resolved per-screen at step 3 and are not part
 of this navigation model.
+
+**Notifications joined the Deep tier on 2026-08-24**, and it closes a hole rather than adding an
+object: `CE-4` has listed push since the first cut (*"Operator is 2 min away"*) and `OE-6` is a
+dispatch notification, so the product has always **sent** notifications and never let anyone
+**set** them. `RJ-C2` is the job it serves — the alert that closes the post-payment void is only a
+job the client owns if the client can turn it off. It is a **preferences facet of `CE-1`**, not a
+screen of its own: the frame is a fourth titled card on `wireframes/account-edit.html`, the way
+`account-photo` is a sub-view and not a `§6.1` entry. No traceability column moves.
+
+**Two things are deliberately not decided here.** ① **The channel `[?]`** — MVP is mobile web with
+no native app, and on iOS Safari web push works only after the site is added to the Home Screen.
+So *Push* is conditional on iOS and **SMS** may be the client's only reliable channel; the switch is
+drawn for both, and which one is the fallback is a platform decision, not a layout one.
+② **The first ask is not on this screen.** `HIG · Requesting permission` puts the permission
+prompt **in context with its reason stated**, not cold in settings — so a priming moment belongs in
+the order flow (after payment, where `CE-4` starts sending), and settings is only where it is
+changed afterwards. That moment has no frame yet and is not invented here.
 
 ---
 

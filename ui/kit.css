@@ -214,6 +214,15 @@
                               edge and the centring is structural, not eyeballed. Change the
                               figure's step and the plate follows it. */
   --sz-box:         24px;  /* checkbox / radio */
+  --sz-switch:      52px;  /* the switch's track WIDTH; its height is --h-pill 32, so the
+                              shape is 52 x 32. iOS ships 51 x 31 and HIG gives the switch
+                              no other number; snapping the height to --h-pill — the chip's
+                              own rung, already in the ramp — puts the width one pixel off
+                              Apple's at the same 1.63 ratio, and adds one declared size
+                              rather than two. The knob is not declared: it is the track's
+                              inside, so it follows the border and the padding instead of
+                              restating them, and the travel is (--sz-switch - --h-pill),
+                              which is 20 for the same reason. */
   --sz-well-w:      96px;  /* the card well that carries a render */
   --sz-well-h:      72px;
   --sz-well-w-sm:   68px;  /* narrow tier */
@@ -2621,6 +2630,89 @@ header.dr-topbar,
 .dr-pick:has(input:focus-visible) .dr-box{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 .dr-box .dr-ic{ width: var(--ic-14); height: var(--ic-14); }
 .dr-box__dot{ width: var(--sz-dot); height: var(--sz-dot); border-radius: var(--r-pill); background: currentColor; }
+
+/* ═══ THE SWITCH ══════════════════════════════════════════════════════════
+   Built 2026-08-24 for `account-edit`'s Notifications card, on the designer's
+   two words: «third card, inline», then «make a toggle». The kit had no switch
+   until now — grep found exactly two on/off shapes in this file, the checkbox
+   above and `.dr-channel[aria-pressed]`, which is benched.
+
+   IT IS NOT A NEW COLOUR DECISION. It is the checked `.dr-box`'s pair, settled
+   by the designer on 2026-08-03 and quoted twenty lines up: a GREEN fill behind
+   a charcoal mark, --on-green on --green, 9.46:1. Off is that box's other half —
+   the --box-edge charcoal outline with nothing filled in. One selected-state
+   logic in the product, two shapes wearing it.
+
+   AND THE GREEN BUDGET IS SETTLED BY THE SAME SENTENCE, not by a new exception:
+   "on the green budget a checked box counts as a status mark, like the node —
+   not as the screen's one green control". Three switches on and `Save changes`
+   still holds the screen's single green control. `concept.md`'s "green is never
+   spent inside card UI" is about green as a CONTROL inside a card; a status mark
+   is what that clause has always excepted, which is how the checked box has been
+   living inside `.dr-picks` since August.
+
+   `WCAG 1.4.11`, MEASURED IN BOTH STATES, AND BOTH CLEAR 3:1.
+     off — knob --ink and ring --ink on the card: 14.37:1, a 4.79x pass.
+     on  — the ring is STILL --ink, so the boundary is the same 14.37:1; the knob
+           reads --on-green inside the green at 9.46:1, a 3.15x pass.
+   The green never has to carry an edge, which is the whole point: as a ring
+   --green on --card is 1.52:1 and would fail. This is why the checked .dr-box's
+   own border-to-green is not copied here — see the note on the checked rule.
+   `1.4.1` — state is knob POSITION as well as fill, so colour is never alone.
+   `1.3.1 / 4.1.2` — a real <input type=checkbox role=switch>, so the state is
+   "on"/"off" to a screen reader rather than "checked", and the row is a <label>,
+   so the accessible name is the visible line. Nothing is drawn with aria only.
+   `HIG 44pt / WCAG 2.5.8` — the target is not the 52x32 track: the whole
+   `.dr-field` row is the label, so it is the row's --h-control 44 floor that is
+   tappable, full width. */
+.dr-field--toggle{ cursor: pointer; }
+/* a switch row has no value column, so the label is the ROW and not its key:
+   it takes the free width and it takes --ink, where a fact row's key is a fixed
+   --sz-rowkey column in --slate. 14.37:1 on the card. */
+.dr-field--toggle .dr-field__label{ flex: 1 1 auto; color: var(--ink); }
+.dr-field--toggle input{ position: absolute; opacity: 0; width: 0; height: 0; }
+.dr-switch{
+  flex: none; box-sizing: border-box;
+  width: var(--sz-switch); height: var(--h-pill);
+  border: var(--box-edge) solid var(--ink);            /* 14.37:1 on the card */
+  border-radius: var(--r-pill);
+  display: flex; align-items: center; padding: var(--sp-2);
+}
+/* THE KNOB IS THE TRACK'S INSIDE, NOT A NUMBER OF ITS OWN — height less its two
+   borders and its two paddings, so it cannot drift from them if any of the three
+   ever moves. It lands at 24.6, which is --sz-box to within the border it is
+   sitting inside. Written as arithmetic rather than as `align-self: stretch;
+   aspect-ratio: 1`: that shape reads better and depends on the aspect-ratio
+   transfer running off a stretched cross size, and a component in her frames
+   should not rest on a resolution order. */
+.dr-switch__knob{
+  width:  calc(var(--h-pill) - var(--box-edge) * 2 - var(--sp-2) * 2);
+  height: calc(var(--h-pill) - var(--box-edge) * 2 - var(--sp-2) * 2);
+  flex: none;
+  border-radius: var(--r-circle);
+  background: var(--ink);                              /* 14.37:1 on the card */
+  transition: transform var(--dur-fast) var(--ease-out),
+              background var(--dur-fast);
+}
+/* THE RING STAYS CHARCOAL WHEN IT FILLS — this follows `.dr-range`'s thumb, not
+   the checked box's border, and the range is the one of the two that was decided
+   ON this criterion: "as a ring, --green on --card is 1.52:1 and fails 1.4.11's
+   3:1 … as a fill behind a --ink ring the boundary still carries at 14.37:1".
+   Same recipe, same reason, and it costs the switch nothing to be the version
+   that clears 3:1 in BOTH states rather than leaning on the knob in one. */
+.dr-field--toggle:has(input:checked) .dr-switch{ background: var(--green); }
+/* the travel is the track's width less its height — the knob is square and fills
+   the height, so what is left over IS the distance. Derived: no third number. */
+.dr-field--toggle:has(input:checked) .dr-switch__knob{
+  background: var(--on-green);                         /* 9.46:1 on the green */
+  transform: translateX(calc(var(--sz-switch) - var(--h-pill)));
+}
+.dr-field--toggle:has(input:focus-visible) .dr-switch{
+  outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset);
+}
+@media (prefers-reduced-motion: reduce){
+  .dr-switch__knob{ transition: none; }
+}
 
 /* Range — a band the user drags, added 2026-08-15 on the designer's call for
    "a horizontal line with bullets you can drag, and the price changes there".
