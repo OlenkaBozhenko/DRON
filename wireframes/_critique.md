@@ -635,3 +635,79 @@ the control navigates now, so it sits in the sweep's *changes screen* row.
 **Checked and deliberately not changed:** `contact-support-error` has no *Call support* control, and
 should not — at the escalation queue the case has left the agent, so there is no one on the other end
 to call. Its two exits (`Back to Activity`, `Contact support`) are unchanged.
+
+---
+
+## 2026-08-24 — one screen stated its payment term in three different ways across three states
+
+### Fixed: `result-upload-loading`'s hold note was wearing the loading voice, in the wrong place
+
+The designer, reading `result-upload-loading.html`, asked whether the line
+*"Payment is held until the client confirms — auto-confirms after 2h."* was acceptable under
+HIG, and then: **«make as HIG do in this case»**.
+
+**What was built.** `<p class="dr-hint">`, last block of `.dr-main`, after Notes — SF Mono
+`11px`, weight 400, leading `1.4`, `--slate #5A5751` on `--page #F7F5F2`, rendered 324.6 × 30.8
+over two lines. It failed nothing: **6.62:1** against `WCAG 1.4.3`'s 4.5:1 floor, no fixed
+height so `1.4.12` survives a 1.5 override, and correctly no `role="status"` — it is a standing
+condition, not a status message, unlike the three `.dr-hint` lines on `order-review-loading` and
+`tracking-loading` that do carry one.
+
+**What was wrong was the class, and the kit had already written the reason.** `kit.css:699`
+declares `.dr-hint` in one line: *"Loading line — mono, because it names structure that is still
+arriving."* This sentence is true before the upload, during it and after it. Six of the seven
+other `.dr-hint` uses do name what is arriving; this one named a money term.
+
+**And the same screen already knew better.** Counted across the prototype: `.dr-note` — the
+kit's *"explanatory caption under a block"* (`kit.css:745`), SF `12px` regular, leading `1.5` —
+carries every comparable standing condition on **40 pages** against `.dr-hint`'s 8: *Jobs
+auto-expire after 10s*, *Review takes 2–3 business days*, *No penalty. A stand-down isn't counted
+against you.* On **nine** of those it sits inside `<footer class="dr-actionbar">`, and on
+`account-photo` it sits there **above the buttons, which `aria-describedby` it**. One of the nine
+is `result-upload-error.html:47` — the neighbouring state of this very screen, carrying this very
+term as *Payment stays held until the delivery photo uploads.*
+
+So the screen said one thing three ways: **absent** on the base frame, an 11px mono hint at the
+foot of the scroll on loading, a 12px centred action-bar note on error.
+
+**What HIG does.** A term that takes effect when a control is tapped goes **with that control** —
+the way a purchase sheet sets its terms immediately above the button — not at the bottom of a
+scrolling column four blocks below the `Pay ₴180` row it qualifies. Monospaced is the family Apple
+ships for coding environments. And `11pt` is HIG's floor for legibility, which the built line sat
+exactly on, with zero headroom, while carrying the one fact `CLAUDE.md` names as the operator's
+fastest churn trigger (`RJ-O3`).
+
+**Fixed** by moving the paragraph into `.dr-actionbar` as `.dr-note`, above the primary, with
+`id="hold-terms"` and `aria-describedby` on the button — which also closes `WCAG 1.3.1`, since the
+sentence previously had no programmatic tie to anything. **One class, one id, one attribute; no new
+string and no new CSS.**
+
+| | before | after | criterion |
+|---|---|---|---|
+| Face | ui-monospace / SF Mono | SF Pro Text | `HIG · Typography` — mono is for code |
+| Size | `11px` — on the floor | `12px` | `HIG` ≥ 11pt |
+| Leading | `15.4px` (1.4) | `18px` (1.5) | — |
+| Contrast | **6.62:1** ✓ | **6.62:1** ✓ | `WCAG 1.4.3` ≥ 4.5:1 |
+| Programmatic tie | none | `aria-describedby` | `WCAG 1.3.1` |
+| Matches the error state | no | yes | `_conventions.md` §10 |
+
+**HIG's own colour is deliberately not taken — a conforming departure.** Its footers and sheet
+disclosures use `secondaryLabel`, which over a light ground measures about **2.9:1** and fails
+`1.4.3` outright. `--slate` at 6.62:1 is the reading that satisfies both standards, and it is a
+pair the kit already records.
+
+**Nothing under the thumb moved.** `.dr-main` is top-anchored and `.dr-actionbar` bottom-anchored,
+so the Job rows, the tray, *Replace photo* and the primary all keep their `y`; the bar grew upward
+and main's scroll viewport gave back the same height.
+
+### Open, not fixed: the base frame states the term nowhere
+
+`result-upload.html` carries no payment line at all — the term is now stated on **loading** and
+**error**, but not on the frame where *Submit & close job* is actually tapped. HIG's reason for
+putting a disclosure with its control is that the person reads it **before** they commit, and on
+the base frame there is nothing to read. Putting it there would also settle `_conventions.md` §10
+outright: all three states would carry the same block in the same place, and the loading state
+would stop being a structural delta against its own base.
+
+That is **new content on a screen that has none**, so it is the designer's call and is left open
+rather than taken. `microcopy.md` would gain one row.
