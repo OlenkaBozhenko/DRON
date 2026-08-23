@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 106.88 32" width="106.88" height="32">
+  <!-- THE FIVE-STAR ARC, DRAWN ONCE AS AN IMAGE (2026-08-24, the designer on the
+       built ratings banner: «постав цей патерн як зображння на бекграунт»).
+       It is the same star the kit has always drawn, path unchanged from
+       .dr-stars, at rev 173's taper: measured off her own Figma reference
+       (node 119:64) as 19 / 32 / 44 / 32 / 19 of ink and written as .44 and .73
+       of the middle star. Here that is 14.08 / 23.36 / 32 / 23.36 / 14.08 on a
+       32 row, each box vertically centred, boxes butting with no gap, 106.88
+       wide, which is exactly what the live row measured.
+       IT CARRIES NO COLOUR ON PURPOSE. The fill is black so the file can be used
+       as a CSS mask, the way assets/brand/dron-logo.svg is: the ink stays a
+       token (7.80:1 charcoal on the yellow ground) instead of being baked in.
+       And no CSS custom property is named in this comment, because XML forbids
+       a double hyphen inside one and the first draft of this file was unparseable
+       for exactly that reason. -->
+  <g fill="#000">
+    <g transform="translate(0 8.96) scale(.5866667)"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></g>
+    <g transform="translate(14.08 4.32) scale(.9733333)"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></g>
+    <g transform="translate(37.44 0) scale(1.3333333)"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></g>
+    <g transform="translate(69.44 4.32) scale(.9733333)"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></g>
+    <g transform="translate(92.80 8.96) scale(.5866667)"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></g>
+  </g>
+</svg>

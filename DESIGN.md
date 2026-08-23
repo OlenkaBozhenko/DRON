@@ -1804,7 +1804,18 @@ floor. At 200% text the line wraps to two and the banner grows **121.5 → 180**
 overrun — `WCAG 1.4.4` ✓. Both are
 `--r-card` **16** and **flat**: no shadow, they sit in the page.
 
-**The star arc (`.dr-stars--arc`).** Five stars, the middle one largest, tapering symmetrically out, drawn
+**The star arc — one image since 2026-08-24 (rev 194).** *«постав цей патерн як зображння на бекграунт»*.
+The eleven inline SVGs that drew this row — five track stars, five clipped fill stars, and the clip that
+held them — are now a single mark, **`.dr-rating-arc`**, taking its shape from `assets/marks/rating-arc.svg`
+through a CSS **`mask`**: the construction `.dr-brand` has always used, so the picture is a file and the
+ink stays a token (`--ink`, **7.80:1** on the `--warn` ground) rather than being baked into the asset. The
+box asks for **`calc(--sz-star * 3.34)` × `--sz-star`** — the five ratios summed — so no absolute width
+enters the ramp. Measured on the built frame: **106.88 × 32**, **0px** off the card's centre line, geometry
+identical to the eleven-SVG build. **What it costs is the partial fifth star, and the designer chose it with
+the cost written out** — see below. **The description that follows is the geometry the image is drawn to**,
+and it is still true of the picture; what is no longer true is that any of it is live CSS.
+
+**The taper it is drawn to (`.dr-stars--arc`, now benched).** Five stars, the middle one largest, tapering symmetrically out, drawn
 to the designer's reference (Figma `YlGWlsWWjKSCxhONMzGG2F` node `119:64`). **The taper is measured off that
 bitmap and expressed as arithmetic on `--sz-star`, so no new size enters the ramp:** the reference draws its
 stars at **19 / 32 / 44 / 32 / 19** of ink, giving `--sz-star-out` **.44** and `--sz-star-mid` **.73** of the
@@ -1812,12 +1823,23 @@ middle — declared the way `--sz-star-ink`, `--sz-star-inset`, `--node-centre` 
 Built boxes **14.08 / 23.36 / 32 / 23.36 / 14.08**, row **106.88 × 32** where the flat row was 160, centred
 with **117.1** of card either side.
 
-**The partial star survives and what it costs is measured.** The fill still clips the row's *ink*, but the
-boxes are no longer equal, so the width is written out — four full stars plus the fifth's own inset and its
-own `.8` — because a general formula over unequal boxes cannot be expressed in CSS. The fifth star is now
-the **smallest**, so 4.8 leaves **2.05px** of unearned point where the flat 32 row left **4.64**. Rounding to
-whole stars would render 4.8 and 5.0 alike, which rev 157 built, measured and rejected, so the point stays
-small rather than absent.
+**The partial star did survive the arc, and it did not survive the image (rev 194).** While the row was
+live SVG the fill clipped the row's *ink*: the boxes were unequal so the width was written out — four full
+stars plus the fifth's own inset and its own `.8` — because a general formula over unequal boxes cannot be
+expressed in CSS. The fifth star being the **smallest**, 4.8 left **2.05px** of unearned point where the
+flat 32 row left **4.64**. One flat image cannot clip, so **4.8 and 5.0 now draw alike** — the rounding rev
+157 built, measured and rejected, arriving by another road. **It was put to the designer with that exact
+consequence written into the option she picked, so it is a decision and not a defect.** Nothing that states
+a fact was lost: the mark is `aria-hidden`, and **4.8** stands under it in charcoal at **7.80:1**, which is
+where `WCAG 1.1.1` and `1.4.1` were always answered. **A two-tone asset would keep the .8 visible** — the
+partial drawn into the file rather than clipped — at the price of baking two hexes into the image; it is the
+open alternative, not the built one.
+
+**And the read-only star display is now benched entirely, which is larger than the arc.** `.dr-stars`,
+`.dr-stars__fill`, `.dr-stars--arc`, `--sz-star-out` and `--sz-star-mid` have **no product page at all** —
+this banner was the last, and the only instance left in the repo is the specimen in `ui/kit.html`, a gallery
+and not a surface. All stay **declared**, the terms `.dr-chip--sm` and `.dr-profile__role` were kept on.
+**`.dr-star` — singular, the rating *input* on `rate` — is a different component and is untouched.**
 
 **Every ink on either fill is `--on-green` at 9.46:1**, stated rather than inherited, because
 `.dr-note`'s own `--slate` measures **3.91:1** on `--green` — a real `WCAG 1.4.3` failure at 12px.

@@ -4365,20 +4365,53 @@ header.dr-topbar,
    it sits in the page. The card's own edge against the page reads BETTER for
    the change, 1.69 -> 2.05:1, though nothing rests on that number: the fill is
    a surface and not a control, so `WCAG 1.4.11` is not engaged by it. */
-/* THE STAR ROW FOLLOWS THE FILL, AND ON YELLOW IT IS THE RATING'S OWN PAIR
-   RATHER THAN A BORROWED ONE (2026-08-24). On --green the two rungs had to be
-   the accent's own — --on-green earned over --green-wash unearned — because
-   .dr-stars' native --warn / --btn2 measured 1.21:1 and 1.22:1 there and the
-   row vanished. On --warn the family it belongs to IS the ground, so the track
-   is --warn-wash, the tint already declared beside it. Measured: earned star
-   --ink 7.80:1 on the fill (was 9.46 on green), unearned track 1.82:1 (was
-   1.56 — a stronger step, not a weaker one), the two against each other
-   14.21:1 (was 14.75). No new hex, and no rung enters the ramp.
-   The row is still `aria-hidden` and still carries no meaning on its own: the
-   figure under it states 4.8 in charcoal at 7.80:1 (`WCAG 1.1.1 · 1.4.1`),
-   which is what lets a 1.82:1 shape be a picture and not a failure. */
-.dr-balance--banner .dr-stars{ color: var(--warn-wash); }             /* 1.82:1 — the unearned track */
-.dr-balance--banner .dr-stars__fill{ color: var(--ink); }             /* 7.80:1 — the earned star   */
+/* THE STAR ROW IS ONE IMAGE NOW (2026-08-24, the designer on the built banner:
+   «постав цей патерн як зображння на бекграунт»). Eleven inline SVGs — five
+   track stars, five clipped fill stars and the clip that held them — become one
+   mark, `.dr-rating-arc`, whose shape comes from a file.
+
+   IT IS THE MECHANISM `.dr-brand` ALREADY USES, NOT A NEW ONE: `background`
+   is the token and `mask` is the picture, so the ink stays --ink instead of
+   being baked into the asset. Same construction, same `center/contain no-repeat`.
+
+   THE GEOMETRY IS rev 173'S, UNCHANGED AND STILL ARITHMETIC. The taper the
+   designer measured off Figma `119:64` — .44 and .73 of the middle star — is
+   drawn into the file at 14.08 / 23.36 / 32 / 23.36 / 14.08, and the box asks
+   for it as `--sz-star * 3.34` (the five ratios summed) so no absolute width
+   enters the ramp and the row still follows `--sz-star` if that ever moves.
+
+   WHAT IT COSTS, AND SHE WAS TOLD BEFORE SHE CHOSE IT: the partial fifth star
+   is gone. 4.8 rendered four whole stars and .8 of the fifth through
+   `.dr-stars__fill`; one flat image cannot, so 4.8 and 5.0 now draw alike. This
+   is rev 157's rejected rounding arriving by another road, taken on her word
+   with the consequence written out — a decision, not a defect. **The figure is
+   what carries the value and always was** (`WCAG 1.1.1 · 1.4.1`): the mark is
+   `aria-hidden`, and 4.8 stands under it in charcoal at 7.80:1. Nothing that
+   states a fact was in the picture.
+
+   AND THE UNEARNED TRACK GOES WITH IT — one revision after it arrived. Yellow
+   gave the row the rating's own tint (--warn-wash at 1.82:1 under --ink at
+   7.80:1); five identical stars have no unearned half to draw, so the pair is
+   spent nowhere.
+
+   AND THE WHOLE READ-ONLY STAR DISPLAY GOES TO THE BENCH WITH IT, WHICH IS
+   BIGGER THAN THE ARC AND IS SAID OUT LOUD RATHER THAN NOTICED LATER.
+   `.dr-stars`, `.dr-stars__fill`, `.dr-stars--arc`, `--sz-star-out` and
+   `--sz-star-mid` now have NO PRODUCT PAGE AT ALL — this banner was the last
+   one, and the only instance left in the repo is the specimen in `ui/kit.html`,
+   which is a gallery and not a surface. They stay DECLARED, the terms
+   `.dr-chip--sm` and `.dr-profile__role` were kept on: the fractional fill is
+   one instruction away from being wanted again, and the taper is arithmetic
+   nobody would want to re-derive. `.dr-star` — SINGULAR, the rating INPUT on
+   `rate` — is a different component and is untouched. */
+.dr-rating-arc{
+  display: block; flex: none; align-self: center;
+  width: calc(var(--sz-star) * 3.34);      /* .44 + .73 + 1 + .73 + .44 = 106.88 */
+  height: var(--sz-star);                  /* 32 */
+  background: var(--ink);                  /* 7.80:1 on --warn */
+  -webkit-mask: url(../assets/marks/rating-arc.svg) center/contain no-repeat;
+          mask: url(../assets/marks/rating-arc.svg) center/contain no-repeat;
+}
 
 /* THE COMPOSITION IS CENTRED AND THE STAR ROW IS AN ARC — five stars, the
    middle one largest, tapering symmetrically out, with the figure under them

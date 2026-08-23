@@ -116,27 +116,28 @@
              THE ROW IS 106.9 WIDE where the flat one was 160, centred with 117.1
              of card either side, and the fifth star is now the SMALLEST — so 4.8
              leaves 2.05px of unearned point where the flat 32 row left 4.64. -->
-        <!-- 4.8 of 5 → four whole stars and eight tenths of the fifth. The value
-             arrives inline the way .dr-rail takes --dr-fill in ui/kit.html and the
-             price chart's bars take their heights on listings-filters: data inline,
-             design in the class. Two numbers rather than one percentage, because the
-             clip has to land on the star's INK: the path fills 72.5% of its 24-box,
-             so clipping the row at a flat 96% cuts only the tip of the fifth arm and
-             the display renders as five FULL stars — measured, and rejected. -->
-        <span class="dr-stars dr-stars--arc" style="--dr-full:4; --dr-part:.8" aria-hidden="true">
-          <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
-          <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
-          <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
-          <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
-          <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
-          <span class="dr-stars__fill">
-            <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
-            <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
-            <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
-            <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
-            <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg>
-          </span>
-        </span>
+        <!-- THE ARC IS ONE IMAGE (2026-08-24: «постав цей патерн як зображння на
+             бекграунт»). Eleven inline SVGs — five track stars, five clipped fill
+             stars and the clip that held them — become one .dr-rating-arc, whose
+             shape comes from assets/marks/rating-arc.svg through a CSS mask. It is
+             the construction .dr-brand has always used: the picture is a file, the
+             ink is a token (--ink, 7.80:1 on the --warn ground), so nothing about
+             the colour is baked into the asset. The taper drawn into the file is
+             rev 173's own, measured off her Figma node 119:64 and still written as
+             arithmetic on --sz-star — 14.08 / 23.36 / 32 / 23.36 / 14.08 in 106.88.
+
+             WHAT WENT WITH IT, AND SHE WAS TOLD BEFORE SHE CHOSE IT. The value no
+             longer arrives inline: --dr-full:4 / --dr-part:.8 drew four whole stars
+             and eight tenths of the fifth, and one flat image cannot, so 4.8 and
+             5.0 now render alike. That is rev 157's rejected rounding arriving by
+             another road — taken on her word, with the cost written out, and
+             recorded as a decision rather than filed as a defect.
+
+             NOTHING THAT STATES A FACT WAS IN THE PICTURE. The mark is still
+             aria-hidden and still carries no meaning alone; 4.8 stands under it in
+             charcoal at 7.80:1, which is where WCAG 1.1.1 and 1.4.1 were always
+             answered. No screen reader hears any difference between the two builds. -->
+        <span class="dr-rating-arc" aria-hidden="true"></span>
         <p class="dr-number">4.8</p>
         <p class="dr-note">126 ratings · last 90 days</p>
       </section>
