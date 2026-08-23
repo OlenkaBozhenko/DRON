@@ -665,6 +665,21 @@ already spent: `job-checklist` spends it on *Complete & add delivery photo* and 
 on *Complete the step* inside the blocking notice. On the error state the drawer also does real work —
 the close is blocked, and the person who can unblock it is at the other end of it.
 
+**The masking sentence came off the drawer on 2026-08-24 — her word, *«delete this sentence»*.** It read
+*Calls and messages go through DRON. Your number is not shared with the client.* and it is kept struck
+through in `microcopy.md` rather than deleted from the record. What it was doing: `voice.md` **P3**'s
+discipline — state the fact **before** the tap — applied to privacy instead of to price, and it was true
+in this direction too, the masking being bilateral. **The structure it explained does not change:** *Call
+client* is still a row with no number anywhere on the frame and it still opens DRON's own call screen
+rather than a `tel:`. `aria-describedby` came off the `<section>` with it, because an IDREF that resolves
+to nothing is invalid (`ARIA 1.2`); the drawer keeps its accessible name from `aria-labelledby`, which is
+what `WCAG 4.1.2` asks of it. **Two consequences are reported and neither is decided here.** First, with
+`call`'s own masking line already removed at rev 144, **the operator side now states the fact nowhere** —
+the client's four `tracking` drawers still state it. Second, the instruction named `job-checklist` only,
+so **`job-checklist-error` still carries the sentence**, and the two states of one screen now differ in
+copy where the paragraph above records them as identical in weight. Removing it there is one line; it is
+hers to say, and nothing in `wireframes/` is deleted without her word.
+
 ### 15a. Chat with the client  *(sub-view of 15 · base only)*
 - **Job:** `RJ-O2` — the step *Confirm handover with the client* completed without improvising; it is
   `RJ-C2`'s counterpart, read from the operator's end.
