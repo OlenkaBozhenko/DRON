@@ -130,6 +130,86 @@
         </div>
 
         <!--
+          ZONE · notifications — THE FOURTH TITLED CARD, 2026-08-24, on the
+          designer's two words: «third card, inline» when the choice was a row
+          that pushes its own screen versus a card in place, and «make a toggle»
+          when the choice was the control.
+
+          IT CLOSES A HOLE RATHER THAN ADDING AN OBJECT. `sitemap.md CE-4` has
+          listed push since the first cut — "Operator is 2 min away" — and
+          `OE-6` IS a dispatch notification, so the product has always SENT
+          notifications and never let anyone SET them. `RJ-C2` is the job: the
+          alert that closes the post-payment void is only a job the client owns
+          if the client can turn it off. It is a preferences facet of `CE-1`, so
+          no new §6.1 screen and no traceability column moves.
+
+          THE SAME CARD COMPONENT AS THE TWO ABOVE IT — .dr-zone with
+          .dr-rows--card, the title and subtitle inside, role="group" named by
+          aria-labelledby and described by aria-describedby, exactly the shape
+          rev 127 settled. The --card modifier is what keeps the card here: a
+          group of plain .dr-field rows would otherwise fall to rev 98's plain
+          list, and this screen is Settings, not a compose form.
+
+          EVERY ROW IS GROUNDED, NONE INVENTED. Order updates and Operator on
+          the way are `CE-4`'s push (RJ-C2); Offers and news is the marketing
+          channel and is the one row that ships OFF; Push and SMS are the two
+          channels the platform actually has — there is no email anywhere in
+          `CE-1`, so no email row is drawn.
+
+          THE OPERATOR'S ROW IS MISSING ON PURPOSE. This screen is shared —
+          `account.html` and `operator-account.html` both point Edit profile
+          here — and `OE-6`'s dispatch alert is NOT offered as a switch: it is
+          the mechanism `RJ-O1` runs on, and the operator already has the right
+          control in `OE-4` (Available / Busy / Offline) on operator home.
+
+          THE FIRST ASK IS NOT HERE. `HIG · Requesting permission` wants the
+          prompt in context with its reason stated, not cold in settings; this
+          card is where it is CHANGED afterwards. The note under the rows states
+          that fact and nothing more, and the priming moment in the order flow
+          stays an open decision in `sitemap.md §7.4` rather than a guessed frame.
+
+          THE SWITCH: a real <input type="checkbox" role="switch"> inside the
+          <label> that IS the row, so the state reads "on"/"off" rather than
+          "checked" (`4.1.2`), the visible line is the accessible name (`1.3.1`),
+          and the target is the row's 44px floor across the full width, not the
+          52x32 track (`HIG · 44pt`, `WCAG 2.5.8`). Measured in `ui/kit.css`:
+          charcoal ring 14.37:1 in both states, charcoal knob 9.46:1 on the green.
+        -->
+        <p class="zlabel dr-label">Notifications <span class="dr-label__act">▸ what we send · which channel</span></p>
+        <div class="dr-zone" role="group" aria-labelledby="acc-notif-title" aria-describedby="acc-notif-sub">
+        <p class="dr-zone__title" id="acc-notif-title">Notifications</p>
+        <p class="dr-zone__sub" id="acc-notif-sub">What we tell you, and how</p>
+        <div class="dr-rows dr-rows--card">
+          <label class="dr-field dr-field--toggle">
+            <span class="dr-field__label">Order updates</span>
+            <input type="checkbox" role="switch" name="notify-order" checked>
+            <span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span>
+          </label>
+          <label class="dr-field dr-field--toggle">
+            <span class="dr-field__label">Operator on the way</span>
+            <input type="checkbox" role="switch" name="notify-eta" checked>
+            <span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span>
+          </label>
+          <label class="dr-field dr-field--toggle">
+            <span class="dr-field__label">Offers and news</span>
+            <input type="checkbox" role="switch" name="notify-offers">
+            <span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span>
+          </label>
+          <label class="dr-field dr-field--toggle">
+            <span class="dr-field__label">Push</span>
+            <input type="checkbox" role="switch" name="notify-push" checked>
+            <span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span>
+          </label>
+          <label class="dr-field dr-field--toggle">
+            <span class="dr-field__label">SMS</span>
+            <input type="checkbox" role="switch" name="notify-sms" checked>
+            <span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span>
+          </label>
+        </div>
+        <p class="dr-note dr-note--flush">Push works only after you allow it on this device.</p>
+        </div>
+
+        <!--
           ZONE · documents — last in the form on the designer's word, 2026-08-16:
           «перемісти картки з загрузкою на низ фрейма». The two 161px zones are
           the tallest thing on the screen and the rarest thing done here, so
