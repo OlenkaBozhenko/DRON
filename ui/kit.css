@@ -241,6 +241,20 @@
                               --sz-avatar-xl 120 is a subject, --sz-avatar-call 176 is a
                               screen's middle, and --sz-avatar-badge 20 is a badge ON an
                               avatar rather than an avatar. */
+  --sz-photo-mark:   24px; /* the height the two marks on the photograph's bottom edge SHARE
+                              (2026-08-24) — the rating pill and the pencil disc, which the
+                              designer asked to stand as a pair. It is `WCAG 2.5.8`'s target
+                              floor, so the disc that used to lean on the 120px photograph
+                              for its target now clears the criterion on its own box. It is
+                              NOT --sz-box 24: a checkbox and a badge are two concepts and
+                              a shared number is not a shared name. */
+  --sz-rating-w:     56px; /* the rating pill's declared width. It measured 52.92 — an
+                              accident of `4.9 ★` at 11/600 — and the pencil beside it has
+                              to be placed from the pill's edge, so the edge has to be a
+                              number somebody chose (§0: a shape that is none of these is a
+                              shape nobody chose). 56 leaves 36 of content box against the
+                              glyph run's 32.92: 3.08 of slack, and tabular-nums holds the
+                              digits still as the rating changes. */
   --sz-avatar-badge: 20px; /* the pencil badge on the avatar. 18 (--sz-fchip-x, the count
                               badge) loses 4 to the ring and leaves a 12px glyph 1px of air;
                               20 gives it 2 and holds 36% of the 56px circle. */
@@ -1879,6 +1893,66 @@ header.dr-topbar,
 }
 .dr-profile .dr-avatar-edit:hover .dr-avatar-edit__badge{
   background: var(--green); filter: brightness(var(--bright-hover));
+}
+
+/* ═══ THE TWO MARKS BECOME ONE PAIR ═══════════════════════════════════════
+   2026-08-24, the designer on the built operator head: «кнопку іконку постав
+   біля самого бейджа з правої сторони, висота має бути однакова, відступ між
+   ними пару пікселів 2-4».
+
+   WHAT WAS BUILT, MEASURED: the pill 52.92 x 25.39 centred on the circle's
+   bottom edge (centre y 322.39), the disc 20 x 20 at the lower-right corner
+   (centre y 314.39). THREE things were unequal at once — a 15.54 gap against
+   the 2-4 she asks for, 5.39 of height between them, and 8 of vertical offset,
+   so they read as two unrelated marks that happen to share an edge rather than
+   as a pair.
+
+   ONE HEIGHT, AND IT IS 24. Not the pill's 25.39, which is an arithmetic
+   left-over (11 x 1.4 + 3x2 + 2x2), and not the disc's 20, which would put an
+   11px line in a 19.4 box. 24 is the 8-grid step between them and it is
+   `WCAG 2.5.8 Target Size (Minimum)`'s floor — so the pencil, whose target has
+   until now been the 120px photograph it sits on, clears the criterion on its
+   OWN box as well. The disc takes it as `height`, an icon box with no text to
+   reflow; the pill takes it as `min-height` over a 23.4 natural box, so at
+   enlarged text it grows instead of clipping (`WCAG 1.4.4`).
+
+   ONE CENTRE LINE. Both now hang `bottom: 0; translateY(50%)` — centred on the
+   circle's bottom edge, which is where the pill already sat and where the disc
+   did not. The disc's own `right/bottom: -2px` corner offset is undone here and
+   left standing for `.dr-op` and the client's head, which still want a corner.
+
+   THE GAP IS 3 — the middle of her 2-4, and `--sp-3`, a rung the scale already
+   spends. It is exact rather than approximate because the disc is placed FROM
+   the pill's declared width: `50% + --sz-rating-w/2 + --sp-3`. That is the
+   whole reason --sz-rating-w exists.
+
+   --mark-shift IS THE ONE NUMBER THAT MOVES THE PAIR. 0 keeps the pill on the
+   photograph's centre and hangs the pencil off its right, which is what she
+   asked for literally — the pair then sits 13.5 right of centre. Setting it to
+   -13.5px centres the PAIR instead and moves the pill. One value, both
+   readings; hers to choose, and it is put to her rather than assumed.
+
+   THE MARGIN UNDER THE PHOTO FOLLOWS THE OVERHANG IT PAYS BACK. --sp-13 was
+   the pill's 12.7 of hang rounded up; at 24 both marks hang exactly 12, so the
+   margin is --sp-snug. Written on the operator head alone — the client's head
+   has no pill, still zeroes this margin, and is untouched by every line here.
+   THE SCOPE IS `:has(.dr-profile__rating)`, i.e. *the head that carries a
+   rating*, which is the operator's and only his. */
+.dr-profile__photo:has(.dr-profile__rating){
+  --mark-shift: 0px;
+  margin-bottom: var(--sp-snug);                 /* 12 of hang, paid back exactly */
+}
+.dr-profile__photo:has(.dr-profile__rating) .dr-profile__rating{
+  min-width: var(--sz-rating-w); min-height: var(--sz-photo-mark);
+  padding: var(--sp-2) var(--sp-within-lg);      /* 23.4 natural, lifted to 24 by min-height */
+  justify-content: center;
+  transform: translate(calc(-50% + var(--mark-shift)), 50%);
+}
+.dr-profile__photo:has(.dr-profile__rating) .dr-avatar-edit__badge{
+  width: var(--sz-photo-mark); height: var(--sz-photo-mark);
+  right: auto; bottom: 0;
+  left: calc(50% + var(--sz-rating-w) / 2 + var(--sp-3) + var(--mark-shift));
+  transform: translateY(50%);
 }
 
 /* ═══ THE AVATAR EDIT ═════════════════════════════════════════════════════

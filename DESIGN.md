@@ -1169,10 +1169,21 @@ subject. `.dr-op` is untouched on the eleven client screens that carry it.
 - **Photo:** `.dr-avatar-lg` at **120 × 120** — `--sz-avatar-xl`, the rung `account-photo` already
   spends. The model draws its circle at ~25% of the frame; 120 is **32%** of 375, larger on purpose,
   because 96 is not a size this system owns and a seventh avatar rung would widen a closed ramp.
-- **Rating badge (`.dr-profile__rating`):** drawn **52.9 × 25.4**, `--r-pill`, centred on the
-  circle's bottom edge by `translate(-50%, 50%)` — the same rule `.dr-avatar-edit__badge` states,
-  the disc's centre on the edge. `--w-badge-ring` 2px in **`--page`** (not `--card`, there is no
-  card) cuts it out of the photograph; it is a **border, not a shadow**, so the flat rule holds.
+- **Rating badge (`.dr-profile__rating`):** `--r-pill`, centred on the circle's bottom edge by
+  `translate(-50%, 50%)` — the same rule `.dr-avatar-edit__badge` states, the disc's centre on the
+  edge. `--w-badge-ring` 2px in **`--page`** (not `--card`, there is no card) cuts it out of the
+  photograph; it is a **border, not a shadow**, so the flat rule holds.
+- **The two marks are one pair (2026-08-24, rev 192).** They had been **52.9 × 25.4** and
+  **20 × 20** on two centre lines **15.54** apart; the designer asked for one height and a 2–4px
+  gap. Both are **24 high** now — the 8-grid step between 25.4 and 20, and `WCAG 2.5.8`'s target
+  floor, which the pencil had been meeting only through the 120px photograph it sits inside and now
+  meets on its own box at **1.00×**. They share one centre line (**0** offset) and a **3.00** gap,
+  exact because the disc is placed from the pill's edge — `calc(50% + --sz-rating-w/2 + --sp-3)` —
+  which is why the pill's width is **declared at 56** rather than left at the 52.92 its string
+  happened to measure (36 of content box against a 32.92 glyph run, 3.08 of slack). The disc takes
+  24 as `height`; the pill takes it as `min-height` over a 23.4 natural box, so enlarged text grows
+  it instead of clipping (`WCAG 1.4.4`). Scoped `:has(.dr-profile__rating)` — the operator's head
+  and only his; the client's pencil keeps its corner and its 20.
 - **The badge is YELLOW (2026-08-24, rev 190), and it went yellow so the pencil beside it could be
   green:** *«зроби кнопку редагувати фото зеленою біля бейджу з рейтингом а бейдж з рейтингом жовтого
   кольору»*. It was solid `--green` from rev 171 to that day, as a status **mark** rather than a
