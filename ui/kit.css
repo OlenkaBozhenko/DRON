@@ -1687,14 +1687,36 @@ header.dr-topbar,
    returns it, so the 8 this column spends between siblings is the 8.3 the eye
    actually measures between badge and name.
 
-   THE BADGE IS GREEN AND IT IS THE ONLY GREEN ON THIS SCREEN. §0 allows one
-   green control per screen at ~5% of the frame; this is not a control at all
-   but a status mark, the case §0 admits alongside it, and operator-account
-   carries no green control to compete with — its selected tab is --green-wash,
-   a 1.085:1 tint the budget does not count. Drawn 53.5 × 25.4 = 1,359px² on the
-   375 × 812 frame: 0.45%, against a ~5% ceiling. --on-green charcoal on the
-   fill is 9.46:1, the only colour allowed on green, so the accent is a FILL and
-   the rating is charcoal — the star included, and never green ink.
+   THE BADGE IS YELLOW, AND IT TURNED YELLOW SO THAT THE PENCIL BESIDE IT COULD
+   BE GREEN (2026-08-24, the designer on the built head: «зроби кнопку редагувати
+   фото зеленою бiля бейджу з рейтингом а бейдж з рейтингом жовтого кольору»).
+   It was solid --green from rev 171 to today, as a status MARK rather than a
+   control — the case G-5 admits beside its one-green-control clause.
+
+   THE YELLOW IS THE PALETTE'S OWN AND IT IS THE RATING'S OWN. --warn #E4A11B is
+   not a new value: it is the colour a filled star has worn since 2026-08-03
+   (.dr-star[aria-pressed="true"]), so a rating pill carrying a star is the one
+   place in the product where that yellow is already the subject's colour. No
+   token is cut and none is added.
+
+   MEASURED: --ink on --warn is 7.80:1, against `WCAG 1.4.3`'s 4.5 for the 11px
+   micro text — 1.73× it, and BETTER than the 4.5 floor by more than the green
+   it replaces needed. The star is charcoal for the same reason it was charcoal
+   on green: the accent is a FILL and never the ink. The pill's ground reads
+   2.05:1 on the page, up from green's 1.69:1, and it is not the identifier —
+   the number is, at 7.80:1, which is this kit's standing 1.4.11 reading.
+
+   NO --on-warn IS DECLARED. --on-green exists because #1A1A1A wearing that name
+   states a RULE — the only colour allowed on green. Yellow needs no such rule
+   and already owns an ink token, --warn-ink #7A5200, which belongs to the WASH
+   (5.65:1 on --warn-wash) and would be read as this pill's ink by anyone who saw
+   a fourth alias for #1A1A1A. --ink, plainly.
+
+   THE TWO MARKS ARE 15.55 APART AND SEPARATE BY HUE, NOT BY LUMINANCE — --warn
+   on --green is 1.21:1. Nothing rests on telling them apart by tone: each is cut
+   out of the photograph by its own 2px --page ring, they never touch, and
+   neither carries meaning in its colour (`WCAG 1.4.1`) — the pill states the
+   number, the disc states its purpose in the link's accessible name.
 
    THE ROLE RUNG IS NOW SPENT ON NO PAGE, AND THE RULE STAYS DECLARED
    (2026-08-21: «видали це з обох варіантів client and operator»). It was a word
@@ -1727,7 +1749,7 @@ header.dr-topbar,
   padding: var(--sp-3) var(--sp-within-lg);
   border: var(--w-badge-ring) solid var(--page);
   border-radius: var(--r-pill);
-  background: var(--green); color: var(--on-green);          /* 9.46:1 */
+  background: var(--warn); color: var(--ink);                 /* 7.80:1 */
   font-size: var(--t-micro-size); font-weight: var(--t-micro-weight);
   line-height: var(--t-micro-line);
   font-variant-numeric: tabular-nums; white-space: nowrap;
@@ -1782,6 +1804,44 @@ header.dr-topbar,
    not the 20 disc: `HIG · 44pt` cleared at **273%**, `WCAG 2.5.8` at **5×**. */
 .dr-profile__photo.dr-avatar-edit{ align-self: center; margin-bottom: 0; }
 .dr-profile .dr-avatar-edit__badge{ border-color: var(--page); }
+
+/* AND ON THIS HEAD THE PENCIL IS GREEN (2026-08-24, the designer on the built
+   `account`: «make the edit image button in green colour on the avatar»).
+
+   THE FILL MOVES, THE GLYPH DOES NOT. `--green` ground under an `--on-green`
+   pencil is **9.46:1**, against the 11.54:1 it read on `--btn2`. `WCAG 1.4.11`
+   asks **3:1** of the mark that identifies a control and gets **3.15×** it. The
+   accent stays a FILL: the pencil is charcoal and never a green stroke, §0's
+   one-accent rule, the same reason `.dr-profile__rating`'s star is charcoal.
+   The disc itself improves as ground — **1.39 → 1.69:1** on the page — and is
+   still not the identifier; the glyph is, which is this kit's standing reading.
+
+   IT IS THE SCREEN'S ONE GREEN CONTROL, AND THE SCREEN HAD NONE. §0 allows one
+   green control per screen at ~5% of the frame. `account` spends nothing else:
+   its action is `.dr-btn--outline` by the rev 181 rule, and its claim chip and
+   selected tab are `--green-wash` at 1.085:1 — a tint the budget excludes. The
+   green disc is the 16 inside a border-box 20 with a 2px ring: π × 8² =
+   **201px²** on the 375 × 812 frame, **0.066%** of it.
+
+   SCOPED TO THE CLIENT'S HEAD, WHERE THE PENCIL IS ALONE ON THAT EDGE.
+   `operator-account` hangs a green `.dr-profile__rating` pill **15.9** from this
+   disc, and a second green disc beside it would draw the control and the status
+   mark in one material on one edge. The compound `.dr-profile__photo.dr-avatar-edit`
+   is what this block already uses to mean *the client's head* — her <a> carries
+   both classes, his carries `.dr-avatar-edit` inside a `.dr-profile__photo`
+   <span> — so his pencil keeps `--btn2` at 11.54:1 until she says otherwise.
+
+   NO SHADOW IS SPENT AND NO RUNG IS ADDED. The green primary carries `--sh-sm`
+   because it floats; this badge is cut out of the photograph by a `--page`
+   BORDER, unchanged, so the flat-surface rule and its two rungs stand. Hover
+   takes the green icon button's own rung — `brightness(--bright-hover)` — and
+   not `--media`, which would drop the accent under the cursor. */
+.dr-profile__photo.dr-avatar-edit .dr-avatar-edit__badge{
+  background: var(--green); color: var(--on-green);            /* 9.46:1 */
+}
+.dr-profile__photo.dr-avatar-edit:hover .dr-avatar-edit__badge{
+  background: var(--green); filter: brightness(var(--bright-hover));
+}
 
 /* ═══ THE AVATAR EDIT ═════════════════════════════════════════════════════
    The designer, 2026-08-16: «добав іконку едіт карандаш на аватарку». A pencil

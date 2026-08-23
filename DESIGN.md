@@ -1098,6 +1098,19 @@ badge is `aria-hidden`; the link carries the name.
 - **Pair:** `--btn2` ground, `--ink` glyph — **11.54:1**, the circular icon action's own pair, so the
   two edit affordances on one card are one material. The disc is **1.25:1** on the card and is *not*
   the identifier: the glyph is, the way `.dr-upload`'s 1.08:1 well defers to its 32px mark.
+- **Pair on the client's head — green (2026-08-24, rev 189).** `.dr-profile__photo.dr-avatar-edit
+  .dr-avatar-edit__badge` swaps the ground to `--green` under an `--on-green` pencil: **9.46:1**,
+  against `WCAG 1.4.11`'s 3:1 — **3.15×** — and the accent is a **fill**, never a green stroke (§0).
+  The disc as ground goes **1.39 → 1.69:1** on the page and is still not the identifier. It is
+  `account`'s **one green control**, on a screen that carried **0%** solid green: the drawn fill is
+  the 16 inside the 2px ring, **π × 8² = 201px²**, **0.066%** of the 375 × 812 frame against §0's
+  ~5%. Hover is `brightness(--bright-hover)`, not `--media`, at **0,4,0** so file order is not what
+  decides it. **Scoped, and deliberately:** `operator-account` hangs a green `.dr-profile__rating`
+  **15.54** away and a green `.dr-fab` below (rev 187), so his badge keeps `--btn2` at 11.54:1 —
+  a third green mark on one head would draw the control and the status mark in one material.
+  **Open with the designer:** the two edit affordances on `account` are no longer one material, since
+  the button below is `.dr-btn--outline` (rev 181) — the photo control now outranks the screen's
+  stated action. Both conform; the ranking is hers.
 - **Ring:** `--w-badge-ring` 2px in `--card`, a **border and not a shadow** — it cuts the badge out of
   the photograph, whose pixels cannot be measured, and the flat-surface rule holds with `--sh-sm`
   under the green primary still the only shadow in the product.
