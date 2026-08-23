@@ -1203,6 +1203,25 @@ badge is `aria-hidden`; the link carries the name.
   with that consequence written into the option she picked, and decoupling the pill is one token
   away. And `--mark-shift` is still **0** by her earlier call, so the wider pair now sits **23.5**
   right of the photograph's centre where it sat 13.5 at 24.
+- **And the pair is unmade the same day — pill back to 24, disc stays 44 (rev 199).** *«why you
+  change raiting badge back it back as it was I didn't ask to do it just the edit button»*. The
+  rating badge was never named in any instruction; it moved because `--sz-photo-mark` had been
+  written `var(--sz-head-mark)`, so raising the disc **carried the pill through a token**. That is
+  the decoupling rev 198 said was one token away, spent. `--sz-photo-mark` is a **number again,
+  24px**, and it now means **the rating pill's height and nothing else**; his disc reads
+  `--sz-head-mark` **44** directly. **Measured:** pill **56 × 24** (`min-height` 24 over a **23.4**
+  natural box), disc **44 × 44**, glyph 22, gap **3.00**, both still `bottom:0; translateY(50%)` on
+  the circle's bottom edge. **The two marks now share the centre line and the gap, not the height** —
+  which reverses rev 192's *«висота має бути однакова»* for this pair, on her word, and is recorded
+  rather than corrected. **The margin follows the deeper mark, not the pill:** each hangs half its own
+  height — pill **12**, disc **22** — so `margin-bottom` is `calc(--sz-head-mark / 2)` = **22**
+  (`--sp-22`). Derived from the pill it would be 12, and the disc's bottom **10px** would run into the
+  name. **Nothing fails either way and the 44-capsule cost is gone:** `--ink` on `--warn` **7.80:1** at
+  11/600 against `WCAG 1.4.3`'s 4.5 (**1.73×**, colours never moved), `WCAG 1.4.4` held by `min-height`
+  over the natural box, and the pill is a `<span>` — **`HIG · 44pt` and `WCAG 2.5.8` are stated and not
+  engaged**, which is why its height was never a compliance number. Screen green unmoved at
+  **7,542px² = 2.48%** (the pill is `--warn`). `--mark-shift` is still **0**, so the **23.5** offset
+  stands — that is the disc's width, not its height.
 - **Pair:** `--btn2` ground, `--ink` glyph — **11.54:1**, the circular icon action's own pair, so the
   two edit affordances on one card are one material. The disc is **1.25:1** on the card and is *not*
   the identifier: the glyph is, the way `.dr-upload`'s 1.08:1 well defers to its 32px mark.
@@ -2225,6 +2244,13 @@ disc clears `WCAG 2.5.8` at **1.00× → 1.33× → 1.83×** across the three si
 ever the criterion's answer, since the `<a>` wraps the whole photograph. **And `--sz-photo-mark`
 now follows this token** (`var(--sz-head-mark)`), so the operator's pair keeps its equal height by
 construction.
+
+**And `--sz-photo-mark` stopped being written as this token the same day (rev 199).** It is
+**24px** again and means **the rating pill's height alone**: aliasing it to the disc carried the
+pill from 56 × 24 to 56 × 44 on an instruction that only ever named the edit button, and the
+designer took that back. The two marks share a centre line and a 3px gap; they no longer share a
+height. A token named for *what two things share* will move both when one is edited — which is the
+reason this pair is now two names.
 
 ### Navigation
 

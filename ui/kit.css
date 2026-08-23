@@ -250,23 +250,22 @@
                               --sz-avatar-xl 120 is a subject, --sz-avatar-call 176 is a
                               screen's middle, and --sz-avatar-badge 20 is a badge ON an
                               avatar rather than an avatar. */
-  --sz-photo-mark: var(--sz-head-mark);
-                           /* the height the two marks on the photograph's bottom edge SHARE
-                              (2026-08-24) — the rating pill and the pencil disc, which the
-                              designer asked to stand as a pair («висота має бути однакова»).
-                              IT IS NOT A NUMBER OF ITS OWN ANY MORE. It was 24 for a day,
-                              then the client's disc went to 44 and this followed, because a
-                              pair defined by equal height cannot be held to a height the
-                              disc no longer has. So it is written as the disc, not as 44:
-                              the pill's height is a CONSEQUENCE and now reads like one, and
-                              the two can never drift apart by one of them being edited.
-                              The pill takes it as `min-height` over a 23.4 natural box, so
-                              enlarged text grows it instead of clipping (`WCAG 1.4.4`); the
-                              disc takes it as `height`, an icon box with nothing to reflow.
-                              REPORTED, NOT HIDDEN: at 44 an 11px rating line stands in a
-                              44-tall capsule. The designer chose 44 with that consequence
-                              written into the option, and decoupling the pill from the disc
-                              is one word away. */
+  --sz-photo-mark:   24px; /* THE RATING PILL'S HEIGHT, and since 2026-08-24 that is ALL it is.
+                              It was declared that morning as the height the pill and the pencil
+                              disc SHARE («висота має бути однакова»), then written as
+                              var(--sz-head-mark) when the disc went to 44 — which carried the
+                              pill to 44 with it. THE DESIGNER TOOK THAT BACK THE SAME DAY, on
+                              the built operator head: «why you change raiting badge back it back
+                              as it was I didn't ask to do it just the edit button». So the pair
+                              is unmade: the disc grew and the pill did not, and this token holds
+                              the 24 the pill has had since it was built. The pill takes it as
+                              `min-height` over a 23.4 natural box, so enlarged text grows it
+                              instead of clipping (`WCAG 1.4.4`).
+                              WHAT THE TWO MARKS STILL SHARE IS THE CENTRE LINE, NOT THE HEIGHT —
+                              both hang `bottom:0; translateY(50%)` on the circle's bottom edge,
+                              and the 3px gap is still placed off --sz-rating-w. The equal-height
+                              reading is recorded in concept.md rev 192 and reversed at rev 199;
+                              it is not to be re-proposed as a discovery. */
   --sz-head-mark:  var(--sz-action);
                            /* the pencil disc on a 120px PROFILE HEAD. 20 -> 24 -> 32 -> 44
                               in one day, and 44 is where the component's own arithmetic
@@ -1988,7 +1987,7 @@ header.dr-topbar,
    half is a 56px pill on one centre line, and a 32 disc beside a 24 pill is
    the unequal-height reading that pair was built this morning to end. */
 .dr-profile__photo:not(:has(.dr-profile__rating)) .dr-avatar-edit__badge{
-  width: var(--sz-head-mark); height: var(--sz-head-mark);      /* 32 — 133% of 2.5.8's floor */
+  width: var(--sz-head-mark); height: var(--sz-head-mark);      /* 44 — 183% of 2.5.8's floor */
 }
 .dr-profile__photo:not(:has(.dr-profile__rating)) .dr-avatar-edit__badge .dr-ic{
   width: var(--ic-22); height: var(--ic-22);                    /* the same 50% of the disc */
@@ -2042,12 +2041,13 @@ header.dr-topbar,
    rating*, which is the operator's and only his. */
 .dr-profile__photo:has(.dr-profile__rating){
   --mark-shift: 0px;
-  /* Both marks hang HALF their own height below the circle (`bottom:0` +
-     `translateY(50%)`), so the margin that pays that back is derived and can
-     never come apart again: it was a hard 12 while the marks were 24, and at 44
-     it is 22 — which lands on --sp-22, a rung the scale already owns, so the
-     derived value is not an off-ramp number. */
-  margin-bottom: calc(var(--sz-photo-mark) / 2);
+  /* Each mark hangs HALF ITS OWN height below the circle (`bottom:0` +
+     `translateY(50%)`), and since 2026-08-24 (rev 199) the two heights differ:
+     the pill hangs 12, the disc hangs 22. THE MARGIN PAYS BACK THE DEEPER ONE,
+     so it is derived from --sz-head-mark and not from the pill — 22, which lands
+     on --sp-22, a rung the scale already owns. Reading it off --sz-photo-mark
+     would clear the pill and let the disc's bottom 10px run into the name. */
+  margin-bottom: calc(var(--sz-head-mark) / 2);
 }
 .dr-profile__photo:has(.dr-profile__rating) .dr-profile__rating{
   min-width: var(--sz-rating-w); min-height: var(--sz-photo-mark);
@@ -2056,7 +2056,7 @@ header.dr-topbar,
   transform: translate(calc(-50% + var(--mark-shift)), 50%);
 }
 .dr-profile__photo:has(.dr-profile__rating) .dr-avatar-edit__badge{
-  width: var(--sz-photo-mark); height: var(--sz-photo-mark);
+  width: var(--sz-head-mark); height: var(--sz-head-mark);   /* 44 — the disc, not the pill */
   right: auto; bottom: 0;
   left: calc(50% + var(--sz-rating-w) / 2 + var(--sp-3) + var(--mark-shift));
   transform: translateY(50%);
@@ -4466,7 +4466,13 @@ header.dr-topbar,
    radius. The fill and its ink move onto each modifier, which is not the
    pasting this block was written against — that warning is about ONE value
    written twice and drifting, and these are two values that must differ. Each
-   is stated with its own measured pair beside it. */
+   is stated with its own measured pair beside it.
+   THE YELLOW LASTED ONE AFTERNOON, AND THE SPLIT SURVIVES IT. Later the same
+   day the banner went back to `--green` on her word (see below), so the two
+   modifiers hold the same COLOUR again — but not the same DECLARATION: the
+   banner's fill now carries a picture the card must never have, so the two stay
+   split and the split has a second reason. What is still declared once is what
+   is still one value: the padding and the radius. */
 .dr-balance--card,
 .dr-balance--banner{
   padding: var(--sp-group) var(--sp-screen);
@@ -4476,7 +4482,36 @@ header.dr-topbar,
   flex-direction: row; align-items: center; gap: var(--sp-snug);
   background: var(--green); color: var(--on-green);            /* 9.46:1 */
 }
-.dr-balance--banner{ background: var(--warn); color: var(--ink); }  /* 7.80:1 */
+/* AND ON 2026-08-24, HOURS LATER, IT GOES BACK TO GREEN AND TAKES A PICTURE WITH
+   IT (the designer, on the built yellow banner: «display puttern on this card
+   … and chamge the background colour on green», against Figma
+   `YlGWlsWWjKSCxhONMzGG2F` node `121:4`). Two instructions, one declaration:
+   the fill is --green again and --assets/marks/rating-pattern.png paints over it.
+   The shorthand carries both in the order they stack — colour under, picture on
+   top — so the ground is still a token and never a hex baked into the file.
+   WHAT IS MEASURED IS THE INK ON IT, NOT THE PICTURE. --on-green on --green is
+   9.46:1 where WCAG 1.4.3 asks 4.5 for 22px and 13px — cleared 2.10x, BETTER
+   than the 7.80:1 the yellow gave. The picture does not weaken that pair,
+   because it paints nowhere near the glyphs: the artwork clusters in two
+   opposite corners and its middle band is empty by construction, which is the
+   composition the designer chose it for. Sampled on the built frame rather than
+   argued: the worst pixel under any glyph is the flat fill.
+   THE PICTURE IS SERVED FROM thumbs/ AT 682 x 384 — ~2x the 341 x 121.5 box,
+   the rule §0 gives every image in the product; the 1672 x 941 master stays in
+   the repo beside it.
+   IT IS DECORATION AND IT IS THE FIRST OF ITS KIND HERE, WHICH IS THE COST AND
+   IS WRITTEN DOWN RATHER THAN NOTICED LATER — §0's «imagery is real, never
+   decoration» has been the rule since the language was chosen, and rev 194
+   refused a background texture on exactly that ground. This is her reversal of
+   it, taken on her word, recorded as a decision in concept.md rev 198. The mark
+   states nothing: no text, no value, no status lives in the picture, so
+   WCAG 1.1.1 and 1.4.1 are answered where they always were — by 4.8 standing in
+   charcoal under the arc — and 1.4.11 does not bind on a graphic that carries
+   no meaning. Remove the file and the card still says everything it says. */
+.dr-balance--banner{
+  background: var(--green) url(../assets/marks/thumbs/rating-pattern.png) center/cover no-repeat;
+  color: var(--on-green);                                           /* 9.46:1 */
+}
 /* THE GLYPH STANDS ON A PLATE, AND THE PLATE IS WHAT MAKES THE CENTRING READ.
    The designer, 2026-08-21: «зроби іконку на бекграунді щоб відбулось
    вирівнювання по центру іконки та тексту з права». What was wrong is
@@ -4522,7 +4557,7 @@ header.dr-topbar,
    not --on-green because this ground is not green; the hex is the same #1A1A1A
    and the meaning is not. */
 .dr-balance--banner .dr-number,
-.dr-balance--banner .dr-note{ color: var(--ink); }                    /* 7.80:1 on --warn */
+.dr-balance--banner .dr-note{ color: var(--on-green); }               /* 9.46:1 on --green */
 
 /* ── THE SCORE BANNER ───────────────────────────────────── RATINGS · used by
    ratings. The designer, 2026-08-21, on the built overall score: «зроби у
@@ -4539,14 +4574,21 @@ header.dr-topbar,
    parts company with this screen entirely; see the cost note below, which now
    runs the other way.
 
-   THE STAR ROW WAS RE-INKED TWICE, AND BOTH TIMES THE REASON WAS MEASURED.
+   THE STAR ROW WAS RE-INKED THREE TIMES IN FOUR DAYS, AND EVERY TIME THE
+   REASON WAS MEASURED — the third one lands back where the second started.
    `.dr-stars` carries the rating input's own two colours — `--warn` filled
    over `--btn2` unfilled — the kit's recorded pairs for this glyph ON THE PAGE
    (1.84:1 and 1.39:1 there). On `--green` they measured 1.21:1 and 1.22:1: the
    row did not weaken, it disappeared, so the two rungs became the accent's own
    (`--on-green` earned at 9.46:1, `--green-wash` unearned at 1.56:1, 14.75:1
    against each other). On `--warn` the family the glyph belongs to IS the
-   ground, so the pair is the rating's own tint: see the rule below.
+   ground, so the pair was the rating's own tint for one afternoon. And with the
+   green back the arc is charcoal again — `--on-green` 9.46:1, the strongest of
+   the three grounds the mark has stood on (--warn gave 7.80:1, the page 15.99).
+   No unearned rung is needed on any of them: since rev 194 the arc is one flat
+   image with no half star to draw. Same hex as `--ink`, and the token is
+   `--on-green` because the ground is green — the name states which pair was
+   measured, which is the whole reason the kit keeps two names for #1A1A1A.
 
    AND THE COST NOTE NOW RUNS THE OTHER WAY. Until 2026-08-24 this was the
    second screen recorded against §0's ~5%: solid green ran 180 px² — the three
@@ -4560,6 +4602,20 @@ header.dr-topbar,
    and the ticks are annotation, not product. The departure is not narrowed,
    it is gone, and §0's ceiling is untouched. Wallet's own 11.32% is unaffected;
    this fill left the pair, that one did not.
+
+   AND HOURS LATER IT RE-OPENS, WHICH IS HERS TO RE-OPEN AND IS COUNTED AGAIN
+   RATHER THAN WAVED THROUGH («chamge the background colour on green»). The
+   41,612 px² come back: `ratings` returns to 13.67% of the 375 x 812 frame
+   against §0's ~5%, and because `flows.md` still gives this dashboard no
+   action, 100% of it is a SURFACE and not the 81–100%-is-the-CTA the rule
+   describes. It is the SAME departure wallet carries at 11.32% and the same
+   one she has already ruled on there — KEEP AS BUILT, rule unchanged — so
+   `ratings` rejoins the pair it left this morning rather than opening a new
+   kind of exception. The picture on top does not change the count either way:
+   the artwork is transparent and paints no green of its own, and what it
+   covers of the fill it covers at 9.28% of the card's area, most of it at less
+   than 1.10:1 — a watermark, not a second surface. Two revisions, one screen,
+   opposite directions, both recorded: see concept.md rev 197 and rev 198.
    Measured: banner 341 x 121.5 — 20 + a 32 star arc + 4 + 22 figure + 4 +
    19.5 caption + 20; see the composition note below. Radius --r-card 16, FLAT —
    it sits in the page. The card's own edge against the page reads BETTER for
@@ -4592,7 +4648,14 @@ header.dr-topbar,
    AND THE UNEARNED TRACK GOES WITH IT — one revision after it arrived. Yellow
    gave the row the rating's own tint (--warn-wash at 1.82:1 under --ink at
    7.80:1); five identical stars have no unearned half to draw, so the pair is
-   spent nowhere.
+   spent nowhere. `--warn-wash` was live on a product surface for a single
+   revision and `--warn` itself for two; both are still declared, and `--warn`
+   keeps its other site — the rating pill on `operator-account`.
+   THE MARK NOW SITS ON A PICTURE AS WELL AS A FILL (2026-08-24, rev 198), and
+   nothing about it changes: it is centred, the artwork's middle band is empty,
+   so every pixel of the arc stands on flat `--green` at 9.46:1. Sampled on the
+   built frame, not assumed — if the picture ever moves under it, that number is
+   the one to re-take.
 
    AND THE WHOLE READ-ONLY STAR DISPLAY GOES TO THE BENCH WITH IT, WHICH IS
    BIGGER THAN THE ARC AND IS SAID OUT LOUD RATHER THAN NOTICED LATER.
@@ -4608,7 +4671,7 @@ header.dr-topbar,
   display: block; flex: none; align-self: center;
   width: calc(var(--sz-star) * 3.34);      /* .44 + .73 + 1 + .73 + .44 = 106.88 */
   height: var(--sz-star);                  /* 32 */
-  background: var(--ink);                  /* 7.80:1 on --warn */
+  background: var(--on-green);             /* 9.46:1 on --green */
   -webkit-mask: url(../assets/marks/rating-arc.svg) center/contain no-repeat;
           mask: url(../assets/marks/rating-arc.svg) center/contain no-repeat;
 }
