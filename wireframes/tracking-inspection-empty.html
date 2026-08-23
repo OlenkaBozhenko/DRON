@@ -20,7 +20,7 @@
      drop-off* on a job that has no drop-off, and the base handed *View details* to the delivery
      confirmation. Everything else is the delivery file's byte for byte — the map well, the four-node
      rail (Accepted · En route · On-site · Done, which already fitted all three services), the
-     operator trust layer, and the Contact-operator drawer with its masking note. -->
+     operator trust layer, and the Contact-operator drawer (its masking note removed 2026-08-24, on her word). -->
 <link rel="stylesheet" href="_wireframe.css">
 <link rel="stylesheet" href="../ui/kit.css">
 </head><body>
@@ -106,7 +106,7 @@
       and no such button, so it is untouched.
       See tracking.html for the full reasoning behind the three rows, their labels and the note.
     -->
-    <section class="dr-sheet dr-sheet--picker" id="sheet-contact" role="dialog" aria-modal="true" aria-labelledby="sheet-contact-title" aria-describedby="sheet-contact-desc" hidden>
+    <section class="dr-sheet dr-sheet--picker" id="sheet-contact" role="dialog" aria-modal="true" aria-labelledby="sheet-contact-title" hidden>
       <span class="dr-sheet__grip" aria-hidden="true"></span>
       <p class="dr-sheet__title" id="sheet-contact-title">Contact operator</p>
       <div class="dr-picker__list">
@@ -114,7 +114,6 @@
         <a class="dr-picker__item" href="chat.html"><span class="dr-picker__label">Chat with the operator</span></a>
         <a class="dr-picker__item" href="support.html"><span class="dr-picker__label">Contact support</span></a>
       </div>
-      <p class="dr-note" id="sheet-contact-desc">Calls and messages go through DRON. Your number is not shared with the operator.</p>
       <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
     </section>
   </div>

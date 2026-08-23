@@ -237,8 +237,9 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   badges on `order-confirmed` and every `tracking` state — `RJ-C1` does not weaken because the
   operator arrives on Wednesday rather than in eight minutes. The four-node rail (*Accepted · En
   route · On-site · Done*) already fitted all three services. The `cc-*` autocomplete tokens
-  (`WCAG 1.3.5`), the drawn labels (`3.3.2`), the 44pt rows and the Contact-operator drawer with its
-  masking note are carried byte for byte.
+  (`WCAG 1.3.5`), the drawn labels (`3.3.2`), the 44pt rows and the Contact-operator drawer are carried
+  byte for byte — the drawer's masking note included until 2026-08-24, when it came off all nine files at
+  once and left them byte-identical still (§9a).
   **`order-confirmed` states the booking rather than asserting motion.** *Your operator is on the
   way* is false for a service booked for Wednesday; the two calendar-first files say *Your shoot /
   inspection is booked for Wed 2 Jul, 09:00* and their rows read **When** and **Booked**. *Track
@@ -375,6 +376,24 @@ exact control — *"the same control at the same weight in every state"* — aft
 `tracking-empty` had drifted to the grey secondary. A control that opens a drawer on one state and
 navigates on two others is the same drift arriving through behaviour instead of through colour.
 `tracking-loading` has no operator card and no such button, so it is untouched.
+
+**The masking sentence came off all nine client drawers on 2026-08-24 — her word.** It read *Calls and
+messages go through DRON. Your number is not shared with the operator.* and it is kept struck through in
+`microcopy.md`, not deleted from the record. The instruction was given on `job-checklist` (*«delete this
+sentence»*) and the scope was hers when it was put to her: **everywhere** — the two operator checklist
+states and the three tracking trios, **eleven frames**. `aria-describedby` came off each `<section>` with
+it, an IDREF resolving to nothing being invalid (`ARIA 1.2`); every drawer keeps its accessible name from
+`aria-labelledby` (`WCAG 4.1.2` ✓, verified on the built frames — **0 dangling IDREFs**). Measured: the
+client drawer stands at **276.8** against **324.8** (36 of note + the sheet's 12 gap), all four rows still
+**44** (`HIG · 44pt`), **0px** horizontal overrun; the drawer block is verified **byte-identical across all
+nine files** after the cut, which is the rule the paragraph above sets.
+
+**What it cost is written here rather than discovered later.** The sentence answered
+`ux-research/user-stories-cjm.md`'s 🔴 risk *"direct channel bypasses platform"* by telling the client why
+DRON sits in the middle. **The mechanism is untouched** — the call still runs down DRON's own screen and
+no frame states a number — but the client is no longer told why, and with `call`'s own line already gone
+at rev 144 the masking fact is now stated **nowhere in the product**, on either side. One instruction puts
+it back; that is why the string is kept.
 
 ### 9b. Chat with the operator  *(sub-view of 9 · base only)*
 - **Job:** `RJ-C2` — the void between payment and arrival, closed by a channel to the person named on
@@ -676,9 +695,10 @@ to nothing is invalid (`ARIA 1.2`); the drawer keeps its accessible name from `a
 what `WCAG 4.1.2` asks of it. **Two consequences are reported and neither is decided here.** First, with
 `call`'s own masking line already removed at rev 144, **the operator side now states the fact nowhere** —
 the client's four `tracking` drawers still state it. Second, the instruction named `job-checklist` only,
-so **`job-checklist-error` still carries the sentence**, and the two states of one screen now differ in
-copy where the paragraph above records them as identical in weight. Removing it there is one line; it is
-hers to say, and nothing in `wireframes/` is deleted without her word.
+so `job-checklist-error` kept the sentence for an hour; **put to her, the scope came back «everywhere»**,
+and the error twin went with it — the two states are identical again, verified byte-identical in the
+drawer block — along with the nine client drawers at §9a. Nothing in `wireframes/` was deleted without her
+word: the base frame on her instruction, the other ten on her answer.
 
 ### 15a. Chat with the client  *(sub-view of 15 · base only)*
 - **Job:** `RJ-O2` — the step *Confirm handover with the client* completed without improvising; it is
