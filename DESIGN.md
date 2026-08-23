@@ -1782,9 +1782,13 @@ digit, so the figure gets the display **size** and the number **role**.
 here. **The painted client page `payment.html` still leaks it, and that is an open defect, not a
 sanctioned exception.**
 
-**The two green fills (`.dr-balance--card`, `.dr-balance--banner`).** Two screens stand their
-headline figure on `--green`, and they are not the same shape — so the fill, the padding and the
-radius are declared **once** for the pair and only the direction differs. **`wallet`** takes
+**The two filled score cards (`.dr-balance--card`, `.dr-balance--banner`) — one green, one yellow
+since 2026-08-24 (rev 193).** Two screens stand their headline figure on a filled card. They were
+never the same shape, and on the designer's word (*«колір бекграунду зроби жовтим»*) they are no
+longer the same colour: **`wallet`'s money stays `--green`, `ratings`' score takes `--warn`**, the
+palette's one yellow and the colour a filled star has worn since 2026-08-03. **What is still declared
+once for the pair is the BOX** — padding and radius; the fill and its ink now sit on each modifier,
+because these are two values that must differ rather than one value written twice. **`wallet`** takes
 `--card`: the column turned on its side, a **32** glyph at the front, figure over caption beside it,
 **341 × 84**. **`ratings`** takes `--banner`: a **centred** column — a five-star arc, the figure under it, the line
 that names it under that — **341 × 121.5**, 20 + 32 + 4 + 22 + 4 + 19.5 + 20. It is the one place in the
@@ -1817,22 +1821,35 @@ small rather than absent.
 
 **Every ink on either fill is `--on-green` at 9.46:1**, stated rather than inherited, because
 `.dr-note`'s own `--slate` measures **3.91:1** on `--green` — a real `WCAG 1.4.3` failure at 12px.
-**On the banner the star row is re-inked as well**, and the reason is measured, not preferred:
-`--warn` and `--btn2`, the row's own two colours, measure **1.21:1** and **1.22:1** on `--green`, so
-the picture does not weaken, it disappears. On this fill the two rungs become the accent's own —
-`--on-green` earned over `--green-wash` unearned, **9.46:1** and **1.56:1** on the fill, **14.75:1**
-against each other. **No new hex enters for either fill.**
+**On the banner the star row is re-inked as well, and it has now been re-inked twice.** On `--green`
+the row's own two colours — `--warn` filled, `--btn2` unfilled — measured **1.21:1** and **1.22:1**, so
+the picture did not weaken, it disappeared, and the rungs had to become the accent's own
+(`--on-green` earned **9.46:1** over `--green-wash` unearned **1.56:1**, **14.75:1** apart). **On
+`--warn` the family the glyph belongs to IS the ground**, so the pair is the rating's own tint:
+earned `--ink` **7.80:1**, unearned track `--warn-wash` **1.82:1** — a *stronger* step than the 1.56
+it replaces — **14.21:1** against each other. The row stays `aria-hidden` and carries no meaning
+alone; the figure states 4.8 in charcoal, which is what lets a 1.82:1 shape be a picture and not a
+failure (`WCAG 1.1.1 · 1.4.1`). **No new hex enters for either fill.**
 
-**What they cost, recorded rather than trimmed to fit.** The card is **8.82%** of `wallet`'s frame
-(**9.41%** before rev 177 cut the glyph plate out of the fill, **8.91%** while that plate was a disc);
-the banner is **13.61%** of `ratings`', taking that screen's solid green from **180 px² · 0.06%**
-(three zone ticks) to **41,612 px² · 13.67%** of 375 × 812 — re-measured 2026-08-21 off the built frame,
-where this paragraph had still been carrying the **pre-arc** card's 32,234 px² · 10.59% — against the **~5%** ceiling
-`concept.md` §0 sets. And `ratings` has no green **control** at all, since `flows.md` gives the
-dashboard no action, so 100% of its green is a surface rather than the 81–100%-is-the-CTA the rule
-expects. Both fills are the designer's instruction of 2026-08-21 (`concept.md` rev 163, rev 166), and the
-departure was put to her at rev 163 with four readings drawn — her call was **keep as built, and leave the
-~5% rule where it stands**. So these are **two screens recorded against the rule**, not a ceiling that moved.
+**Every ink on the yellow, measured.** Figure and caption `--ink` on `--warn` **7.80:1** — `WCAG 1.4.3`
+asks 4.5 at 22px and at 13px, so it is cleared **1.73×**, against the 9.46:1 they read on green. The
+caption still says its ink out loud rather than keeping `--slate`, for the same reason it did on
+green: `--slate` is **3.23:1** on `--warn`, a real 1.4.3 failure at 13px, where it was 3.91:1 on
+`--green`. The token is `--ink` and not `--on-green` because this ground is not green; the hex is the
+same `#1A1A1A` and the meaning is not. The card's own edge against the page reads **1.69 → 2.05:1**,
+though nothing rests on that number — a surface is not a control, so `WCAG 1.4.11` is not engaged.
+
+**What they cost — and one of the two stopped costing anything on 2026-08-24.** The card is **8.82%**
+of `wallet`'s frame (**9.41%** before rev 177 cut the glyph plate out of the fill, **8.91%** while that
+plate was a disc), and that departure stands on the designer's rev 163 call: **keep as built, and leave
+the ~5% rule where it stands**. **`ratings` is no longer the second screen recorded against it.** The
+banner was **13.61%** of that frame and took the screen's solid green from **180 px² · 0.06%** (three
+zone ticks) to **41,612 px² · 13.67%** of 375 × 812 — and because `flows.md` gives the dashboard no
+action, **100%** of that green was a *surface* rather than the 81–100%-is-the-CTA the rule expects.
+The yellow **closes that departure outright rather than narrowing it**: this banner was the only solid
+green the screen ever carried, so `ratings` now measures **180 px² · 0.06%**, the three zone ticks,
+which are annotation and not product. §0's ceiling is untouched — one screen is recorded against it
+now, not two, and the rule did not move to make that true.
 
 `.dr-note--flush` is `text-align: left`, nothing else: `.dr-note` is centred by construction — the
 right default under a centred mark inside `.dr-msg` — so a caption standing beside a left-aligned

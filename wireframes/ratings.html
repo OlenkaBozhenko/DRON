@@ -41,27 +41,36 @@
   .dr-list--snug (8) rather than .dr-list (28), which is for a list that IS the
   screen. Card construction copied from inspection-report.html's findings list.
 
-  THE OVERALL SCORE IS A GREEN BANNER (designer, 2026-08-21: «зроби у зеленому
-  банері»). Same fill wallet's balance card took the same day, on the block that
-  was already here: .dr-balance--banner adds 20/16 of padding, --r-card 16 and
-  the --green fill, and no glyph is drawn in. THE COMPOSITION INSIDE IT WAS SET
-  BY HER SECOND CALL THE SAME DAY — see the band note on the block below. Every ink on it is --on-green at 9.46:1, the caption's
-  --slate included, which measures 3.91:1 on --green and would be a real
-  WCAG 1.4.3 failure at 12px.
-  THE STAR ROW IS RE-INKED BECAUSE ITS OWN COLOURS DIE ON GREEN, measured:
-  --warn is 1.21:1 on --green and --btn2 1.22:1 — the row disappears rather than
-  weakens. (On --page, the ground it stood on before, they measure 2.05:1 and
-  1.39:1. The 1.84:1 this comment used to quote is --warn on --card, the palette's
-  own figure for rate.html's stars, mis-transcribed here since rev 157.) On this fill the two rungs are the accent's own, --on-green earned
-  over --green-wash unearned: 9.46:1 and 1.56:1 on the fill, 14.75:1 against
-  each other. No new hex.
-  STILL NO GREEN CONTROL, by the frame: it is a read-only dashboard and flows.md
-  gives it no action, so 100% of this screen's solid green is a surface, not the
-  81–100%-is-the-CTA concept.md §0 expects. Solid green goes from 180 px² (the
-  three zone ticks, 0.06%) to 41,100 px², 13.50% of the 375 x 812 frame, against
-  the ~5% ceiling — her instruction, recorded with the number, not trimmed. Rev 163
-  put the same departure to her on wallet and her call was KEEP AS BUILT with the
-  rule unchanged, so this is the second screen recorded against ~5%.
+  THE OVERALL SCORE IS A YELLOW BANNER (designer, 2026-08-24: «колір бекграунду
+  зроби жовтим»). It was green from 2026-08-21 («зроби у зеленому банері»), the
+  same fill wallet's balance card took that day. The block is unchanged —
+  .dr-balance--banner still adds 20/16 of padding, --r-card 16 and no glyph, and
+  the composition inside it is still her second call of 2026-08-21 — only the
+  fill and the four inks standing on it moved. NO MARKUP CHANGED ON THIS PAGE.
+  THE YELLOW IS THE PALETTE'S OWN AND THE RATING'S OWN: --warn #E4A11B, the
+  colour a filled star has worn since 2026-08-03, so the card that reports a
+  rating is now the colour the rating already is and no hex enters the system.
+  Same instruction the rating pill on operator-account took the same day.
+  MEASURED, EVERY PAIR: figure and caption --ink on --warn 7.80:1 (was 9.46:1 on
+  --green), against WCAG 1.4.3's 4.5 for 22px and 13px — cleared 1.73x. The
+  caption still says its ink out loud rather than keeping --slate, for the same
+  reason it did on green: --slate is 3.23:1 on --warn, a real 1.4.3 failure at
+  13px, where it was 3.91:1 on --green. The token is --ink and not --on-green
+  because this ground is not green; the hex is the same #1A1A1A.
+  THE STAR ROW FOLLOWS THE FILL AND STOPS BORROWING. On --green its own colours
+  died — --warn 1.21:1, --btn2 1.22:1 — so the rungs had to become the accent's
+  (--on-green 9.46:1 earned over --green-wash 1.56:1 unearned, 14.75:1 apart).
+  On --warn the family the glyph belongs to IS the ground: earned --ink 7.80:1,
+  unearned track --warn-wash 1.82:1 — a STRONGER step than the 1.56 it replaces —
+  14.21:1 against each other. Still no new hex. The row stays aria-hidden and
+  carries no meaning alone; the figure states 4.8 in charcoal (WCAG 1.1.1, 1.4.1).
+  AND THE §0 DEPARTURE CLOSES RATHER THAN NARROWS. This banner was the only solid
+  green the screen ever carried — it is a read-only dashboard, flows.md gives it
+  no action, so 100% of that green was a SURFACE and not the 81–100%-is-the-CTA
+  concept.md §0 expects, at 41,612 px² / 13.67% of the 375 x 812 frame against a
+  ~5% ceiling. The screen now measures 180 px², 0.06% — the three zone ticks,
+  which are annotation and not product. Wallet's own 11.32% is untouched: this
+  fill left the pair, that one did not.
 -->
 <link rel="stylesheet" href="_wireframe.css">
 <link rel="stylesheet" href="../ui/kit.css">
