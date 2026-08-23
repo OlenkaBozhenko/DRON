@@ -105,11 +105,45 @@
           </div>
         </div>
       </section>
-
-      <p class="dr-hint">Payment is held until the client confirms — auto-confirms after 2h.</p>
     </main>
     <footer class="dr-actionbar">
-      <a class="dr-btn dr-btn--primary dr-btn--block" href="wallet.html">Uploading…</a>
+      <!-- THE PAYMENT TERM MOVES INTO THE BAR, 2026-08-24 (the designer, asked which face it
+           should wear: «make as HIG do in this case»). It stood at the foot of .dr-main as
+           <p class="dr-hint"> — SF Mono 11px, leading 1.4, left, after Notes — and two things
+           were wrong with it.
+           THE FACE. .dr-hint is the kit's LOADING voice, and kit.css:699 states its own
+           reason in one line: "mono, because it names structure that is still arriving."
+           This sentence is true before the upload, during it and after it — nothing about it
+           is arriving. Its class is .dr-note, the kit's "explanatory caption under a block"
+           (kit.css:745), which is what the other 40 pages spend on a standing condition —
+           result-upload-error among them, where this same term already reads *Payment stays
+           held until the delivery photo uploads.* One screen was saying one thing in two
+           faces depending on which state you were in.
+           THE PLACE. The term is a condition of the submission, and HIG puts a term that
+           takes effect on tap with the control that carries it — the way a purchase sheet
+           sets its terms immediately above the button, not four blocks down a scroll below
+           the row they qualify. That shape is already built here: account-photo puts
+           .dr-note first in .dr-actionbar and has the buttons aria-describedby it, and
+           .dr-actionbar is a flex column made to stack exactly that. Moving it also closes
+           WCAG 1.3.1 — the sentence was a loose <p> tied to nothing, and now it names the
+           control it belongs to.
+           NOTHING UNDER THE THUMB MOVES. .dr-main is top-anchored and .dr-actionbar is
+           bottom-anchored, so the Job rows, the tray, Replace photo and the primary all keep
+           their y; the bar grows upward and main's scroll viewport gives back the same 44.
+           MEASURED. --slate #5A5751 on --page #F7F5F2 = 6.62:1, unchanged by the move
+           (WCAG 1.4.3 ✓ at >= 4.5:1, +47%). Size 11 -> 12: HIG's floor is 11pt and the built
+           line sat exactly on it with no headroom, while 12 is Caption 1 and the value all
+           nine action-bar notes already carry. Leading 1.4 -> 1.5. Face SF, not the
+           monospaced family Apple ships for coding environments.
+           HIG'S OWN COLOUR IS NOT TAKEN. Its footers and disclosures are secondaryLabel,
+           which over a light ground measures about 2.9:1 and fails 1.4.3 outright. --slate is
+           the reading that satisfies both standards, and it is a pair the kit already records.
+           NO NEW STRING, NO NEW CSS — one class, one id, one aria-describedby. microcopy.md
+           still inventories one line; its zone becomes "Action bar note", as on the error
+           state. STILL OPEN AND THE DESIGNER'S: the base frame carries no such line at all,
+           so the term is stated on loading and error but not before the tap that causes it. -->
+      <p class="dr-note" id="hold-terms">Payment is held until the client confirms — auto-confirms after 2h.</p>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="wallet.html" aria-describedby="hold-terms">Uploading…</a>
     </footer>
   </div>
 
