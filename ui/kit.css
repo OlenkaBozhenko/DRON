@@ -63,6 +63,24 @@
   --line:        #D9D5CE;   /* every hairline — 1.21:1 on the card */
   --green:       #9BCF4A;   /* fill only. As a foreground: 1.69:1 / 1.52:1 */
   --on-green:    #1A1A1A;   /* 9.46:1 — the only colour allowed on green */
+  --green-soft:  #A9D563;   /* THE SAME GREEN, ONE STEP LIGHTER (2026-08-24, the designer on the
+                               built ratings banner: «зроби бекграйнд трохи світлішим зеленим»).
+                               DERIVED, NOT PICKED: --green 85% + --page 15% in sRGB — the hue is
+                               the accent's own and the 15% that lifts it is the ground the card
+                               already sits on, so a fifth green enters the palette as arithmetic
+                               between two members rather than as a value somebody chose by eye.
+                               MEASURED: --on-green on it is 10.26:1, BETTER than the 9.46:1 it
+                               replaces; 1.56:1 on the page and 1.40:1 on the card, so it is still
+                               a saturated FILL — it counts against §0's green budget exactly as
+                               --green does, and it is not a second --green-wash (1.085:1, a tint
+                               the budget does not count). --slate is 4.25:1 on it and still fails
+                               WCAG 1.4.3 at 13px, so --on-green stays compulsory here.
+                               THE ONE THING IT MAY NEVER DO: it is 1.08:1 against --green itself.
+                               Two greens this close cannot sit side by side and read as two
+                               surfaces — this is a REPLACEMENT fill on one card, never a second
+                               tone beside the first.
+                               ONE SPEND: .dr-balance--banner. --green is untouched everywhere
+                               else, wallet's .dr-balance--card included. */
   --green-wash:  #E7F0D2;   /* the one tint. Charcoal on it is 14.75:1 */
   --green-ink:   #4F6B22;   /* the green that may SPEAK (2026-08-12): signal green taken
                                down to the text-safe rung — 5.58:1 on the page, 5.01:1 on
@@ -4508,9 +4526,36 @@ header.dr-topbar,
    WCAG 1.1.1 and 1.4.1 are answered where they always were — by 4.8 standing in
    charcoal under the arc — and 1.4.11 does not bind on a graphic that carries
    no meaning. Remove the file and the card still says everything it says. */
+/* AND THE SAME EVENING THE FILL GOES UP ONE STEP IN LIGHT, WHICH IS A NEW
+   PALETTE MEMBER AND IS NAMED AS ONE (the designer on the built banner:
+   «зроби бекграйнд трохи світлішим зеленим»). --green-soft #A9D563, declared
+   in the palette above as --green 85% + --page 15% — arithmetic between two
+   members the system already holds, in the habit --sz-star-mid and --sz-star-out
+   set for sizes. It is the FIFTH green and that cost is stated plainly rather
+   than hidden inside a rule: the palette had --green, --on-green, --green-wash
+   and --green-ink, and this is one more.
+   THE INK GETS BETTER, NOT WORSE, WHICH IS THE ONLY NUMBER THAT BINDS.
+   --on-green on --green-soft is 10.26:1 where WCAG 1.4.3 asks 4.5 for the 22px
+   figure and the 13px line under it — cleared 2.28x, up from 2.10x on --green
+   and from the 1.73x the yellow gave. Nothing on this card comes closer to a
+   floor than it did an hour ago.
+   THE PICTURE GOES QUIETER AND THAT IS THE ONE THING SHE PAYS. rating-pattern.png
+   bakes its own greens (#AACE4A through #C8E75B) and cannot follow a token, so
+   raising the ground closes on them: composited and measured pixel by pixel over
+   both fills, the artwork's mean luminance contrast against its ground falls
+   0.0861 -> 0.0730, 15% softer. Its charcoal star is unaffected (0.883 -> 0.892).
+   The picture does not disappear — it recedes, which on a decoration is a
+   direction and not a defect, and is hers to reverse in one token.
+   WHAT DOES NOT MOVE: the geometry, the crop, the empty middle band the artwork
+   was chosen for, and therefore the reading that every glyph stands on flat fill
+   and never on ink. The green BUDGET does not move either — the card is the same
+   341 x 121.5 = 41,431.5px^2, 13.61% of a 375 x 812 frame against §0's ~5%, with
+   no green control on the screen to own it. --green-soft is a fill at 1.56:1 on
+   the page, so it is counted, not excused; the departure is rev 166's, unchanged
+   and still hers. */
 .dr-balance--banner{
-  background: var(--green) url(../assets/marks/thumbs/rating-pattern.png) center/cover no-repeat;
-  color: var(--on-green);                                           /* 9.46:1 */
+  background: var(--green-soft) url(../assets/marks/thumbs/rating-pattern.png) center/cover no-repeat;
+  color: var(--on-green);                                           /* 10.26:1 */
 }
 /* THE GLYPH STANDS ON A PLATE, AND THE PLATE IS WHAT MAKES THE CENTRING READ.
    The designer, 2026-08-21: «зроби іконку на бекграунді щоб відбулось
@@ -4550,14 +4595,18 @@ header.dr-topbar,
 .dr-balance__body{ display: flex; flex-direction: column; gap: var(--sp-within); min-width: 0; }
 .dr-balance--card .dr-number,
 .dr-balance--card .dr-note{ color: var(--on-green); }                 /* 9.46:1 on --green */
-/* The banner says its ink out loud for the same reason the green one does, and
-   the number is the same charcoal under a different name: `--slate`, the
-   caption's ink on every other surface, is 3.23:1 on --warn — a real
-   `WCAG 1.4.3` failure at 13px — where --ink is 7.80:1. The token is --ink and
-   not --on-green because this ground is not green; the hex is the same #1A1A1A
-   and the meaning is not. */
+/* The banner says its ink out loud for the same reason the card does, and the
+   reason survives every fill this card has worn: `--slate`, the caption's ink on
+   every other surface, measures 3.91:1 on --green, 3.23:1 on --warn and 4.25:1
+   on --green-soft — a real `WCAG 1.4.3` failure at 13px on all three — where
+   --on-green is 9.46 / 7.80 / 10.26:1. The lighter fill moves the failure closer
+   to the line and does not clear it, which is why the ink is still stated here
+   and not left to inherit.
+   (This note read --warn / --ink while the fill was yellow; it is rewritten
+   rather than deleted, and the yellow's figures are kept in it, because the
+   value it names has now been three colours in one day.) */
 .dr-balance--banner .dr-number,
-.dr-balance--banner .dr-note{ color: var(--on-green); }               /* 9.46:1 on --green */
+.dr-balance--banner .dr-note{ color: var(--on-green); }             /* 10.26:1 on --green-soft */
 
 /* ── THE SCORE BANNER ───────────────────────────────────── RATINGS · used by
    ratings. The designer, 2026-08-21, on the built overall score: «зроби у
@@ -4671,7 +4720,7 @@ header.dr-topbar,
   display: block; flex: none; align-self: center;
   width: calc(var(--sz-star) * 3.34);      /* .44 + .73 + 1 + .73 + .44 = 106.88 */
   height: var(--sz-star);                  /* 32 */
-  background: var(--on-green);             /* 9.46:1 on --green */
+  background: var(--on-green);             /* 10.26:1 on --green-soft */
   -webkit-mask: url(../assets/marks/rating-arc.svg) center/contain no-repeat;
           mask: url(../assets/marks/rating-arc.svg) center/contain no-repeat;
 }

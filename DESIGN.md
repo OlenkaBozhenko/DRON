@@ -12,6 +12,7 @@ colors:
   line: "#D9D5CE"
   green: "#9BCF4A"
   on-green: "#1A1A1A"
+  green-soft: "#A9D563"
   green-wash: "#E7F0D2"
   warn: "#E4A11B"
   warn-ink: "#7A5200"
@@ -283,6 +284,17 @@ and applied to nothing — they are recorded rungs, not live values (`var(--warn
   rule stands unqualified and that row has left the below-3:1 table.
 - **`--on-green`** (`#1A1A1A`) — the only colour permitted on a green fill. Never white: white on
   `#9BCF4A` is 1.84:1.
+- **`--green-soft`** (`#A9D563`) — the accent one step lighter, added 2026-08-24 on the designer's
+  word (*«зроби бекграйнд трохи світлішим зеленим»*). **Derived, not picked:** `--green` **85%** +
+  `--page` **15%** in sRGB, so the hue is the accent's own and the 15% that lifts it is the ground
+  the card sits on. Charcoal on it is **10.26:1**, *better* than the 9.46:1 of the fill it replaces;
+  against the page it is **1.56:1** and against the card **1.40:1**, so it is a **fill and not a
+  tint** — it counts against the green budget exactly as `--green` does. `--slate` is **4.25:1** on
+  it and still fails `WCAG 1.4.3` at 13px, so `--on-green` stays compulsory. **It is 1.08:1 against
+  `--green` itself**, which is the one thing it may never do: two greens this close cannot sit side
+  by side and read as two surfaces, so it is a *replacement* fill on one card and never a second
+  tone beside the first. **One spend:** `.dr-balance--banner` on `ratings`. `wallet`'s
+  `.dr-balance--card` keeps `--green`.
 - **`--green-wash`** (`#E7F0D2`) — the one green tint. Carries the selected tab, the verified
   badge, and the delivered / waiting milestone marks. Charcoal on it is **14.75:1**. Against the
   page it is only **1.085:1**, so the tint is a hue signal, not a luminance one — anything relying
@@ -1903,13 +1915,40 @@ digit, so the figure gets the display **size** and the number **role**.
 here. **The painted client page `payment.html` still leaks it, and that is an open defect, not a
 sanctioned exception.**
 
-**The two filled score cards (`.dr-balance--card`, `.dr-balance--banner`) — one green, one yellow
-since 2026-08-24 (rev 193).** Two screens stand their headline figure on a filled card. They were
-never the same shape, and on the designer's word (*«колір бекграунду зроби жовтим»*) they are no
-longer the same colour: **`wallet`'s money stays `--green`, `ratings`' score takes `--warn`**, the
-palette's one yellow and the colour a filled star has worn since 2026-08-03. **What is still declared
-once for the pair is the BOX** — padding and radius; the fill and its ink now sit on each modifier,
-because these are two values that must differ rather than one value written twice. **`wallet`** takes
+**The two filled score cards (`.dr-balance--card`, `.dr-balance--banner`) — both green again since
+2026-08-24 (rev 198), and one of them now carries a picture.** Two screens stand their headline
+figure on a filled card. They were never the same shape. They were briefly not the same colour
+either: rev 193 took `ratings` to `--warn` on the designer's word (*«колір бекграунду зроби
+жовтим»*), and **rev 198 took it back to `--green` the same day** (*«chamge the background colour on
+green»*). **The split in the declaration survives the reunion, and now has a second reason:** the
+banner's fill carries `assets/marks/rating-pattern.png` on top of the token, and the balance card
+must never have it — so the two fills stay written separately even while they hold the same hex.
+**What is still declared once for the pair is the BOX** — padding and radius; the fill and its ink
+sit on each modifier, because these are values that must be able to differ rather than one value
+written twice.
+
+**The pattern (`.dr-balance--banner`, 2026-08-24, rev 198)** — *«display puttern on this card»*,
+against Figma `YlGWlsWWjKSCxhONMzGG2F` node `121:4`. A transparent PNG of 3D stars, sparkles, arcs
+and rising bars clustered in two opposite corners around an empty middle, laid over the green as
+`center/cover no-repeat`. **The green under it is `--green-soft` `#A9D563`** — the banner returned to
+`--green` on her word and moved one step lighter on the next instruction the same day. Master **1672 × 941** in `assets/marks/`, served at **682 × 384** from
+`thumbs/` — **2.09×** the CSS box, the rule §0 gives every image. **It is the first decoration in
+the product, and that is a reversal of §0's «imagery is real, never decoration» taken on her word
+and recorded, not a gap** — rev 194 refused a background texture on exactly that rule four
+revisions earlier. **Measured on the built frame with the text hidden and the background scanned
+pixel by pixel: every glyph box — arc, figure and caption — stands on exactly ONE background
+colour** — `rgb(155,207,74)` when this was measured, **`rgb(169,213,99)` since the fill went to
+`--green-soft` hours later**, and flat either way, **so the worst contrast under any glyph is
+`--on-green` at 10.26:1** where `WCAG 1.4.3` asks 4.5 — cleared **2.28×**, up from the 2.10× the
+solid `--green` gave and the 1.73× of the yellow before it. The artwork
+paints **8.31%** of the card and none of it under type. The mark states nothing — no text, value or
+status is in the picture — so `WCAG 1.1.1` and `1.4.1` are answered where they always were, by
+**4.8** standing in charcoal, and `1.4.11` does not bind on a graphic carrying no meaning. **Two
+compositional costs, measured and reported rather than trimmed:** the artwork is **1.78:1** and the
+card is **2.69:1**, so `cover` crops **36%** of its height and **both hero stars are cut** — the
+top-left one halved by the card's edge; and the artwork's own **charcoal star (11.2 × 11.2 at
+x 276–287, y 87–98, 36px right of the caption's last glyph)** is the same ink as the arc's five and
+reads as a stray sixth. Both are open for her call; neither engages a criterion. **`wallet`** takes
 `--card`: the column turned on its side, a **32** glyph at the front, figure over caption beside it,
 **341 × 84**. **`ratings`** takes `--banner`: a **centred** column — a five-star arc, the figure under it, the line
 that names it under that — **341 × 121.5**, 20 + 32 + 4 + 22 + 4 + 19.5 + 20. It is the one place in the
@@ -1924,6 +1963,19 @@ already carries, so only the size moves, and the 19.5 line box is the whole **1.
 floor. At 200% text the line wraps to two and the banner grows **121.5 → 180** with **0px** of horizontal
 overrun — `WCAG 1.4.4` ✓. Both are
 `--r-card` **16** and **flat**: no shadow, they sit in the page.
+
+**And the banner's green goes up one step in light the same evening (rev 201)** — *«зроби бекграйнд
+трохи світлішим зеленим»*. The fill is **`--green-soft` `#A9D563`**, a new palette member declared as
+`--green` **85%** + `--page` **15%**; the picture, the box, the crop and the composition are untouched.
+**The ink improves:** `--on-green` goes **9.46:1 → 10.26:1**, `WCAG 1.4.3` cleared **2.28×** for the
+22px figure and the 13px line. **The one thing it costs is the picture's voice.**
+`rating-pattern.png` bakes its own greens (`#AACE4A` … `#C8E75B`) and cannot follow a token, so a
+lighter ground closes on them: composited pixel by pixel over both fills, the artwork's mean
+luminance contrast against its ground falls **0.0861 → 0.0730 — 15% softer**; its charcoal star is
+untouched (0.883 → 0.892). The decoration recedes rather than disappears, which on a decoration is a
+direction and not a defect, and one token reverses it. **The green budget does not move** — same
+**41,431.5px²**, **13.61%** of the frame against §0's ~5%, and `--green-soft` at 1.56:1 on the page is
+counted as a fill, not excused as a tint. `wallet` is untouched.
 
 **The star arc — one image since 2026-08-24 (rev 194).** *«постав цей патерн як зображння на бекграунт»*.
 The eleven inline SVGs that drew this row — five track stars, five clipped fill stars, and the clip that

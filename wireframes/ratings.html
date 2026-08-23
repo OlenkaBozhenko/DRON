@@ -41,7 +41,35 @@
   .dr-list--snug (8) rather than .dr-list (28), which is for a list that IS the
   screen. Card construction copied from inspection-report.html's findings list.
 
-  THE OVERALL SCORE IS A YELLOW BANNER (designer, 2026-08-24: «колір бекграунду
+  THE OVERALL SCORE IS A GREEN BANNER WITH A PATTERN ON IT (designer,
+  2026-08-24, rev 198: «display puttern on this card … and chamge the background
+  colour on green», against Figma `YlGWlsWWjKSCxhONMzGG2F` node `121:4`). It was
+  YELLOW for five hours the same day («колір бекграунду зроби жовтим», rev 193)
+  and green before that. One shorthand carries both halves of her instruction —
+  `background: var(--green) url(../assets/marks/thumbs/rating-pattern.png)
+  center/cover no-repeat` — so the ground stays a token and no hex is baked into
+  an asset; the figure, the caption and the arc all return to --on-green, the
+  same #1A1A1A under the name that says which pair was measured. THE TOKEN WENT
+  ONE STEP LIGHTER WITHIN THE HOUR — --green-soft #A9D563, her next instruction
+  («зроби бекграйнд трохи світлішим зеленим») — and the picture rides it
+  unchanged, which is exactly what declaring the ground as a token buys.
+  MEASURED THE ONLY WAY TEXT-OVER-IMAGE CAN BE: with the three children hidden,
+  the card screenshotted at device scale and each glyph's Range rect sampled
+  against the bitmap. All three boxes contain exactly ONE background colour and
+  no pattern pixel — the artwork's middle band is empty by construction — so the
+  worst contrast under any glyph is 10.26:1 against WCAG 1.4.3's 4.5 (2.28x, and
+  better than both grounds it replaced: --warn 7.80:1, --green 9.46:1). The
+  picture covers 8.31% of the card and 0% of it under type. It is aria-hidden decoration: 1.1.1 and 1.4.1 rest on
+  4.8 as they always have, and 1.4.11 does not bind on a graphic with no meaning.
+  IT IS THE PRODUCT'S FIRST DECORATION, WHICH REVERSES §0's «imagery is real,
+  never decoration» — the rule rev 194 enforced four revisions earlier when it
+  refused a background texture. Hers, on her word, recorded in concept.md rev 198
+  as a decision. TWO COSTS ARE OPEN AND REPORTED: her artwork is 1.78:1 against a
+  2.69:1 card, so `cover` crops 36% of its height and cuts both hero stars; and
+  the artwork's own charcoal star (11.2 square, 36px right of the caption) is the
+  arc's ink and reads as a stray sixth. Neither engages a criterion.
+
+  THE YELLOW, KEPT ON THE RECORD (designer, 2026-08-24: «колір бекграунду
   зроби жовтим»). It was green from 2026-08-21 («зроби у зеленому банері»), the
   same fill wallet's balance card took that day. The block is unchanged —
   .dr-balance--banner still adds 20/16 of padding, --r-card 16 and no glyph, and
