@@ -66,21 +66,47 @@
                (2026-08-21: «додай для оператора біля бейджу з рейтингом
                редагувати фото»).
 
-               THE RATING RIDES ON THE PHOTOGRAPH, unchanged. The model puts a
+               THE RATING RIDES ON THE PHOTOGRAPH, AND IT IS YELLOW NOW
+               (2026-08-24: «зроби кнопку редагувати фото зеленою біля бейджу з
+               рейтингом а бейдж з рейтингом жовтого кольору»). The model puts a
                small pill on the circle's bottom edge; ours carries the number
-               that pill is for. Green FILL with charcoal on it at 9.46:1 —
-               never green ink, and the star is charcoal too. It is the ONLY
-               solid green on this screen and it is not a control: 0.45pct of
-               the frame, where §0 allows a green control ~5pct. The 2px --page
-               ring is the cut-out edge .dr-avatar-edit__badge already uses — a
-               border, not a shadow.
+               that pill is for. --warn FILL with --ink charcoal on it at
+               7.80:1, `WCAG 1.4.3` wanting 4.5 for this 11px line — 1.73x it.
+               The yellow is the palette's own and the RATING's own: it is the
+               colour a filled star has worn since 2026-08-03, so nothing new
+               enters the system. The star stays charcoal, because the accent is
+               a fill and never the ink. The 2px --page ring is the cut-out edge
+               .dr-avatar-edit__badge already uses — a border, not a shadow.
 
-               THE PENCIL JOINS IT ON THAT EDGE, and it is the client's own —
-               .dr-avatar-edit, the same class, the same 20px disc, the same
-               --btn2 ground under an --ink glyph at 11.54:1, pointing at the
-               operator's own copy of the photo screen. Nothing new is drawn and
-               no new CSS is written: the two marks share the bottom edge with
-               the pill centred and the disc at the corner, 15.55 apart.
+               THE PENCIL JOINS IT ON THAT EDGE AND TOOK THE GREEN THE PILL GAVE
+               UP — .dr-avatar-edit, the client's own class, the same 20px disc,
+               now --green under an --on-green glyph at 9.46:1 (`WCAG 1.4.11`
+               wants 3 and gets 3.15x), pointing at the operator's own copy of
+               the photo screen. Nothing new is drawn and no new CSS value is
+               written: the client's green-pencil rule simply widens from her
+               head to both. The two marks share the bottom edge with the pill
+               centred and the disc at the corner, 15.55 apart, and they separate
+               by HUE, not luminance — --warn on --green is 1.21:1, which nothing
+               here rests on: each is cut out by its own --page ring, they never
+               touch, and neither states its meaning in its colour
+               (`WCAG 1.4.1`).
+
+               IT IS THE SCREEN'S SECOND GREEN CONTROL, WHICH G-5 COUNTS AND THE
+               DESIGNER OVERRODE. concept.md G-5: one solid-green control per
+               screen, the primary CTA and nothing else clickable — and the
+               floating Edit profile below is that CTA. G-5's OPERATIVE clause
+               is the pixel one, and it improves on rev 187's own measurements of
+               this frame: the FAB is 6,285px2 (152.29 x 44) and untouched, the
+               pill that left green was 1,153px2, the disc that entered it is
+               201px2, so the screen's solid green goes 7,438 -> 6,486px2,
+               2.44pct -> 2.13pct of 304,500, under a ~5pct ceiling. And it
+               CONCENTRATES: the primary control is now 96.9pct of the screen's
+               green, up from 84.5pct, deeper inside the 81-100pct band CLAUDE.md
+               records for a CTA. The disc is the other 3.1pct and is smaller
+               than either status mark G-5 already admits beside the one control
+               (live status disc 400px2, walked node 484px2). The two greens
+               stand a column apart with a different name each. Recorded as a
+               decision, not corrected as a defect.
 
                THE LINK WRAPS THE PICTURE, NOT THE DISC — `HIG · 44pt target` is
                cleared at 273pct (120 x 120) and `WCAG 2.5.8` at 5x, where the

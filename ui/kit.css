@@ -73,8 +73,15 @@
                                (.dr-btn--text, rev 49). The disclosure checkmark
                                tried it and returned to --green by the designer's
                                call (rev 50). */
-  --warn:        #E4A11B;   /* the filled rating star (2026-08-03) — 1.84:1 on the card, so
-                               state is never colour alone: fill + aria-pressed carry it */
+  --warn:        #E4A11B;   /* THE RATING'S YELLOW, and both its spends are a rating: the filled
+                               star (2026-08-03) and, from 2026-08-24, the operator's rating pill
+                               on his photograph — --ink on it at 7.80:1, where 11px normal text
+                               needs 4.5 (WCAG 1.4.3). 1.84:1 on the card and 2.05:1 on the page,
+                               so the fill NEVER carries a mark on its own: on the star it is
+                               fill + aria-pressed, on the pill it is the number written on it.
+                               No --on-warn is cut — --on-green names a RULE (the only colour
+                               allowed on green) and yellow has no such rule, while --warn-ink
+                               #7A5200 is already taken by the wash. Charcoal here is --ink. */
   --warn-ink:    #7A5200;   /* 5.65:1 on its wash */
   --warn-wash:   #F6E7C4;
   --danger:      #C4462A;   /* declared, drawn nowhere — 4.07:1 */
@@ -1689,7 +1696,7 @@ header.dr-topbar,
 
    THE BADGE IS YELLOW, AND IT TURNED YELLOW SO THAT THE PENCIL BESIDE IT COULD
    BE GREEN (2026-08-24, the designer on the built head: «зроби кнопку редагувати
-   фото зеленою бiля бейджу з рейтингом а бейдж з рейтингом жовтого кольору»).
+   фото зеленою біля бейджу з рейтингом а бейдж з рейтингом жовтого кольору»).
    It was solid --green from rev 171 to today, as a status MARK rather than a
    control — the case G-5 admits beside its one-green-control clause.
 
@@ -1800,13 +1807,19 @@ header.dr-topbar,
    the 1.25:1 it read on the card, and `WCAG 1.4.11` is carried by the GLYPH
    and not the disc — `--ink` on `--btn2` at **11.54:1** — which is this kit's
    standing reading, shipped four times (`.dr-btn--onphoto`, `.dr-upload`,
-   `.dr-btn--night`, and this badge itself). The target is the whole 120 circle,
+   `.dr-btn--night`, and this badge itself). THE DISC'S GROUND HAS SINCE MOVED
+   OFF `--btn2` — `--green` on both heads, the block below — and the ring, the
+   reading and the target are all unchanged by it; only the two ratios in this
+   paragraph are superseded there (1.39 → 1.69:1 disc, 11.54 → 9.46:1 glyph).
+   The target is the whole 120 circle,
    not the 20 disc: `HIG · 44pt` cleared at **273%**, `WCAG 2.5.8` at **5×**. */
 .dr-profile__photo.dr-avatar-edit{ align-self: center; margin-bottom: 0; }
-.dr-profile .dr-avatar-edit__badge{ border-color: var(--page); }
 
-/* AND ON THIS HEAD THE PENCIL IS GREEN (2026-08-24, the designer on the built
-   `account`: «make the edit image button in green colour on the avatar»).
+/* AND ON BOTH HEADS THE PENCIL IS GREEN. It was the client's alone this
+   morning («make the edit image button in green colour on the avatar») and the
+   operator was handed the same disc this afternoon, with the rating pill moved
+   off green to make room: «зроби кнопку редагувати фото зеленою біля бейджу з
+   рейтингом а бейдж з рейтингом жовтого кольору» (2026-08-24).
 
    THE FILL MOVES, THE GLYPH DOES NOT. `--green` ground under an `--on-green`
    pencil is **9.46:1**, against the 11.54:1 it read on `--btn2`. `WCAG 1.4.11`
@@ -1816,30 +1829,55 @@ header.dr-topbar,
    The disc itself improves as ground — **1.39 → 1.69:1** on the page — and is
    still not the identifier; the glyph is, which is this kit's standing reading.
 
-   IT IS THE SCREEN'S ONE GREEN CONTROL, AND THE SCREEN HAD NONE. §0 allows one
-   green control per screen at ~5% of the frame. `account` spends nothing else:
-   its action is `.dr-btn--outline` by the rev 181 rule, and its claim chip and
-   selected tab are `--green-wash` at 1.085:1 — a tint the budget excludes. The
-   green disc is the 16 inside a border-box 20 with a 2px ring: π × 8² =
-   **201px²** on the 375 × 812 frame, **0.066%** of it.
+   THE SCOPE WIDENS FROM `.dr-profile__photo.dr-avatar-edit` TO `.dr-profile`,
+   AND THAT IS THE WHOLE MECHANICAL CHANGE. The compound meant *the client's
+   head* — her <a> carries both classes, his carries `.dr-avatar-edit` inside a
+   `.dr-profile__photo` <span>. One rule for both heads is now the truth, and it
+   merges into the `border-color: var(--page)` line that already covered the
+   pair. `.dr-avatar-edit__badge`'s own `--btn2` ground is thereby spent on NO
+   page — kept declared, the way `.dr-chip--sm` and `.dr-profile__role` are,
+   because it is the component's default wherever it next lands on a card.
+   The hover rule needs the `.dr-profile` prefix to outrank the base
+   `.dr-avatar-edit:hover` written below it, which would repaint the disc
+   `--media` and drop the accent under the cursor.
 
-   SCOPED TO THE CLIENT'S HEAD, WHERE THE PENCIL IS ALONE ON THAT EDGE.
-   `operator-account` hangs a green `.dr-profile__rating` pill **15.9** from this
-   disc, and a second green disc beside it would draw the control and the status
-   mark in one material on one edge. The compound `.dr-profile__photo.dr-avatar-edit`
-   is what this block already uses to mean *the client's head* — her <a> carries
-   both classes, his carries `.dr-avatar-edit` inside a `.dr-profile__photo`
-   <span> — so his pencil keeps `--btn2` at 11.54:1 until she says otherwise.
+   ON THE CLIENT'S SCREEN IT IS STILL THE ONE GREEN CONTROL. `account` spends
+   nothing else: its action is `.dr-btn--outline` by the rev 181 rule, and its
+   claim chip and selected tab are `--green-wash` at 1.085:1 — a tint the budget
+   excludes. The green disc is the 16 inside a border-box 20 with a 2px ring:
+   π × 8² = **201px²** on the 375 × 812 frame, **0.066%** of it.
+
+   ON THE OPERATOR'S IT IS THE SECOND, AND THAT IS A DEPARTURE FROM G-5 TAKEN ON
+   HER WORD RATHER THAN A VALUE NOBODY CHECKED. `concept.md` G-5 reads *exactly
+   one solid-green control per screen — the primary CTA, and nothing else
+   clickable*; `operator-account` gained a green `.dr-fab` this morning, so the
+   pencil is a second clickable green. THE PIXEL CLAUSE, WHICH G-5 CALLS ITS
+   OPERATIVE ONE, IS UNTOUCHED AND IMPROVES, ON REV 187'S OWN MEASUREMENTS OF
+   THIS FRAME: the FAB is **6,285px²** (152.29 × 44) and unchanged, the pill that
+   left green was **1,153px²**, and the disc that entered it is **201px²**. The
+   screen's solid green goes **7,438 → 6,486px²**, **2.44% → 2.13%** of
+   375 × 812 = 304,500 — 952px² handed back under a ~5% ceiling. AND IT
+   CONCENTRATES WHERE THE RULE WANTS IT: the primary control is now **96.9%** of
+   the screen's green, up from 84.5%, deeper inside the **81–100%** band
+   `CLAUDE.md` records for a CTA. The disc is the remaining **3.1%**, and smaller
+   than either status mark G-5 already admits beside the one control (the live
+   status disc at 400px², the walked progress node at 484px²). What the count clause
+   guards against is two green things competing for the tap; these do not compete
+   — one is a 120px photograph at the top of the column, the other a 44-high
+   capsule floating over the tab bar, 500px apart, and each states its own
+   purpose in words (`Change profile photo` / `Edit profile`, `WCAG 2.4.6`).
+   Recorded as a decision with its number, not filed as a defect.
 
    NO SHADOW IS SPENT AND NO RUNG IS ADDED. The green primary carries `--sh-sm`
    because it floats; this badge is cut out of the photograph by a `--page`
    BORDER, unchanged, so the flat-surface rule and its two rungs stand. Hover
    takes the green icon button's own rung — `brightness(--bright-hover)` — and
    not `--media`, which would drop the accent under the cursor. */
-.dr-profile__photo.dr-avatar-edit .dr-avatar-edit__badge{
+.dr-profile .dr-avatar-edit__badge{
+  border-color: var(--page);                                   /* 1.69:1 cut-out on the page */
   background: var(--green); color: var(--on-green);            /* 9.46:1 */
 }
-.dr-profile__photo.dr-avatar-edit:hover .dr-avatar-edit__badge{
+.dr-profile .dr-avatar-edit:hover .dr-avatar-edit__badge{
   background: var(--green); filter: brightness(var(--bright-hover));
 }
 

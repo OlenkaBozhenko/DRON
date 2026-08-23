@@ -314,9 +314,15 @@ and applied to nothing — they are recorded rungs, not live values (`var(--warn
 
 ### Semantic
 
-Each family is a **wash carrying its own ink**. The raw hue is declared but never drawn, because
-it cannot carry a mark: `--warn` on the card is 1.84:1 and `--danger` reaches only 4.07:1.
+Each family is a **wash carrying its own ink**, and the raw hue is drawn only where TEXT ON IT does
+the identifying — `--warn` on the card is 1.84:1 and `--danger` reaches only 4.07:1, so neither hue
+can carry a mark on its own.
 
+- **`--warn`** (`#E4A11B`) — the yellow is the RATING's, in both places it is drawn: the filled star
+  (`.dr-star[aria-pressed="true"]`, 2026-08-03) and, from **2026-08-24 (rev 190)**, the operator's
+  rating pill on his photograph, `--ink` on it at **7.80:1** (`WCAG 1.4.3` ✓, 1.73× the 4.5 an 11px
+  line needs). The fill is 2.05:1 on the page and is not the identifier; the number is. `--danger`
+  is still declared and drawn nowhere.
 - **`--warn-wash` / `--warn-ink`** (`#F6E7C4` / `#7A5200`) — ETA slipping. `tracking-empty`.
 - **`--danger-wash` / `--danger-ink`** (`#F2D8CF` / `#9A3115`) — signal lost, upload missing.
   `tracking-error`, `delivery-error`.
@@ -355,12 +361,13 @@ Every pair carried on a product surface, verified in the browser.
 | `--ink` | `--card` | 14.37:1 | card titles, values |
 | `--ink` | `--media` | 13.33:1 | glyphs in a well |
 | `--ink` | `--btn2` | 11.54:1 | secondary button, settled status check |
-| `--ink` | `--green` | 9.46:1 | primary button label, walked node glyph |
+| `--ink` | `--green` | 9.46:1 | primary button label, walked node glyph, the profile pencil badge on both heads (rev 189/190) |
 | `--danger-ink` | `--page` | 6.83:1 | destructive text action — **on the bench since rev 146**: its one user, `account-photo` · *Remove photo*, became the grey `Delete` in the action bar |
 | `--slate` | `--page` | 6.62:1 | lead copy, unselected tabs |
 | `--slate` | `--inset` | 6.33:1 | From / To labels |
 | `--danger-ink` | `--card` | 6.14:1 | field error text; the destructive action if it ever stands on a card |
 | `--slate` | `--card` | 5.95:1 | keys, dates, ratings, body |
+| `--ink` | `--warn` | 7.80:1 | the operator's rating pill on his photograph (rev 190) |
 | `--warn-ink` | `--card` | 5.72:1 | — |
 | `--warn-ink` | `--warn-wash` | 5.65:1 | late-notice mark |
 | `--trust-ink` | `--trust-wash` | 5.65:1 | ~~Insured badge~~ — **retired rev 157, spent nowhere** |
@@ -1098,16 +1105,26 @@ badge is `aria-hidden`; the link carries the name.
 - **Pair:** `--btn2` ground, `--ink` glyph — **11.54:1**, the circular icon action's own pair, so the
   two edit affordances on one card are one material. The disc is **1.25:1** on the card and is *not*
   the identifier: the glyph is, the way `.dr-upload`'s 1.08:1 well defers to its 32px mark.
-- **Pair on the client's head — green (2026-08-24, rev 189).** `.dr-profile__photo.dr-avatar-edit
-  .dr-avatar-edit__badge` swaps the ground to `--green` under an `--on-green` pencil: **9.46:1**,
-  against `WCAG 1.4.11`'s 3:1 — **3.15×** — and the accent is a **fill**, never a green stroke (§0).
-  The disc as ground goes **1.39 → 1.69:1** on the page and is still not the identifier. It is
-  `account`'s **one green control**, on a screen that carried **0%** solid green: the drawn fill is
-  the 16 inside the 2px ring, **π × 8² = 201px²**, **0.066%** of the 375 × 812 frame against §0's
-  ~5%. Hover is `brightness(--bright-hover)`, not `--media`, at **0,4,0** so file order is not what
-  decides it. **Scoped, and deliberately:** `operator-account` hangs a green `.dr-profile__rating`
-  **15.54** away and a green `.dr-fab` below (rev 187), so his badge keeps `--btn2` at 11.54:1 —
-  a third green mark on one head would draw the control and the status mark in one material.
+- **Pair on BOTH profile heads — green (2026-08-24, rev 189 client, rev 190 operator).**
+  `.dr-profile .dr-avatar-edit__badge` swaps the ground to `--green` under an `--on-green` pencil:
+  **9.46:1**, against `WCAG 1.4.11`'s 3:1 — **3.15×** — and the accent is a **fill**, never a green
+  stroke (§0). The disc as ground goes **1.39 → 1.69:1** on the page and is still not the
+  identifier. The drawn fill is the 16 inside the 2px ring, **π × 8² = 201px²**, **0.066%** of the
+  375 × 812 frame against §0's ~5%. Hover is `brightness(--bright-hover)`, not `--media`, at
+  **0,3,0** so file order is not what decides it. The rule **merges into** the `border-color:
+  var(--page)` line that already covered both heads — one declaration block, not two — and
+  `.dr-avatar-edit__badge`'s own `--btn2` ground is thereby **spent on no page**, kept declared as the
+  component's default the way `.dr-chip--sm` and `.dr-profile__role` are.
+- **It is `account`'s one green control and `operator-account`'s second — a recorded G-5 departure
+  (rev 190).** `account` carried **0%** solid green, so hers is the screen's one. His screen already
+  has the green `.dr-fab` (rev 187), and G-5 reads *exactly one solid-green control per screen — the
+  primary CTA, and nothing else clickable*. **G-5's own operative clause is the pixel one and it
+  improves:** the rating pill left green the same day, so his frame goes **7,438 → 6,486px²**,
+  **2.44% → 2.13%** of 304,500, and the green **concentrates on the CTA — 84.5% → 96.9%**, deeper
+  inside the 81–100% band a primary CTA holds. The 201px² disc is the other 3.1%, smaller than
+  either status mark G-5 already admits beside the one control (live disc 400px², walked node
+  484px²), a column apart from the FAB and separately named (`Change profile photo` /
+  `Edit profile`, `WCAG 2.4.6`). Taken on the designer's instruction and recorded, not corrected.
   **Open with the designer:** the two edit affordances on `account` are no longer one material, since
   the button below is `.dr-btn--outline` (rev 181) — the photo control now outranks the screen's
   stated action. Both conform; the ranking is hers.
@@ -1156,15 +1173,28 @@ subject. `.dr-op` is untouched on the eleven client screens that carry it.
   circle's bottom edge by `translate(-50%, 50%)` — the same rule `.dr-avatar-edit__badge` states,
   the disc's centre on the edge. `--w-badge-ring` 2px in **`--page`** (not `--card`, there is no
   card) cuts it out of the photograph; it is a **border, not a shadow**, so the flat rule holds.
-- **The badge is the screen's only solid green, and it is a status mark rather than a control.**
-  **1,344px² = 0.441%** of the 375 × 812 frame, against §0's ~5% ceiling; the selected tab is
-  `--green-wash`, a 1.08:1 tint the budget does not count. `--on-green` charcoal on the fill is
-  **9.46:1** — the star included, so the accent stays a fill and never an ink. 11px is normal text
-  under `WCAG 1.4.3`, so 4.5:1 is the threshold cleared, not the 3:1 large-text one.
+- **The badge is YELLOW (2026-08-24, rev 190), and it went yellow so the pencil beside it could be
+  green:** *«зроби кнопку редагувати фото зеленою біля бейджу з рейтингом а бейдж з рейтингом жовтого
+  кольору»*. It was solid `--green` from rev 171 to that day, as a status **mark** rather than a
+  control — the case G-5 admits beside its one-control clause. **`--ink` on `--warn` `#E4A11B` is
+  7.80:1**; 11px is normal text under `WCAG 1.4.3`, so the threshold cleared is **4.5:1**, at
+  **1.73×**, not the 3:1 large-text one. **The yellow is the palette's own and the rating's own** —
+  `--warn` is the colour a filled star has worn since 2026-08-03 (`.dr-star[aria-pressed="true"]`),
+  so no token is added and none is cut. **No `--on-warn` is declared:** `--on-green` exists to state
+  a rule (*the only colour allowed on green*), yellow needs no such rule, and a fourth alias for
+  `#1A1A1A` would be read against `--warn-ink` `#7A5200`, which belongs to the wash. `--ink`,
+  plainly — the star included, so the accent stays a fill and never an ink.
+- **The pill's ground reads 2.05:1 on the page** (up from green's 1.69:1) and is **not** the
+  identifier; the number is, at 7.80:1 — this kit's standing `WCAG 1.4.11` reading. Against the green
+  pencil **15.93** away it is **1.21:1**: the two marks separate by **hue, not luminance**, and
+  nothing rests on telling them apart — each is cut out by its own 2px `--page` ring, they never
+  touch, and neither states its meaning in its colour (`WCAG 1.4.1`).
 - **Name:** `.dr-display` 22/700, `--ink`, **15.99:1**.
 - **The pencil joins the pill on that bottom edge (2026-08-21):** *«додай для оператора біля бейджу з
   рейтингом редагувати фото»*. It is the client's own `.dr-avatar-edit` — same class, same 20px disc,
-  `--ink` glyph on `--btn2` at **11.54:1**, the ring `--page` — pointing at `operator-account-photo`.
+  the ring `--page` — pointing at `operator-account-photo`. **Its ground took the green the pill gave
+  up on 2026-08-24 (rev 190):** `--on-green` glyph on `--green` at **9.46:1**, where it read `--ink`
+  on `--btn2` at 11.54:1 from rev 171 to that day.
   **No new CSS was written for it.** Measured on the 375 frame: pill **52.13 × 24.6** centred with its
   centre line exactly on the circle's bottom edge (y 236.8 = circle bottom), disc **20 × 20** at the
   box's corner, **15.93 apart**, overlapping 14.3 of vertical band so the two read as one pair.
@@ -1209,8 +1239,9 @@ ten client screens that meet an operator.
   client is not rated, so the slot takes the **pencil** `.dr-avatar-edit` already put on this photo
   (2026-08-16) and `account-photo` stays reachable. The `<a>` still wraps picture and badge, but the
   picture is 120 and not 56 — `HIG · 44pt target` at **273%**, `WCAG 2.5.8` at **5×**. `WCAG 1.4.11`
-  is carried by the **glyph**, `--ink` on `--btn2` at **11.54:1**; the disc is **1.39:1** on the page
-  (1.25:1 on the card it left — it improves), the reading this kit ships four times.
+  is carried by the **glyph**; the disc is not the identifier. Both figures moved on 2026-08-24 when
+  the ground went green on both heads: glyph **11.54 → 9.46:1**, disc **1.39 → 1.69:1** on the page
+  — see the Avatar edit bullets above.
 - **Two `.dr-op` values are undone, scoped at 0,2,0,** because `.dr-avatar-edit` is written 54 lines
   below `.dr-profile__photo` at equal specificity and wins every tie:
   `.dr-profile__photo.dr-avatar-edit{ align-self:center; margin-bottom:0 }`. `align-self:flex-start`
@@ -1218,8 +1249,9 @@ ten client screens that meet an operator.
   `--sp-13` pays back the *rating* pill's 12.7 of overhang, where the pencil hangs **2**. Measured
   after: photo dead centre (**0**), rhythm **8 / 8 / 12 / 12**, identical to the operator's.
 - **The ring follows its ground:** `.dr-profile .dr-avatar-edit__badge{ border-color: var(--page) }`
-  — the swap `.dr-profile__rating` already makes, since `--card` on `--page` is a 1.11:1 seam that
-  means nothing. `operator-account` re-measured unchanged by both rules.
+  — since `--card` on `--page` is a 1.11:1 seam that means nothing. `operator-account` re-measured
+  unchanged by both rules. **This block is now also where the green ground lives** (rev 190): the
+  ring rule and the `--green` / `--on-green` pair are one declaration block covering both heads.
 - **Role:** none. It read `Client` with no count beside it for one day and was **cut on 2026-08-21**
   with the operator's — see the role bullet above. The word is still on the screen as the **Mode**
   row's value, so it is stated once instead of twice.

@@ -73,9 +73,9 @@
       },
       "warn": {
         "role": "tertiary",
-        "displayName": "Warn (unspent)",
+        "displayName": "Warn",
         "canonical": "#E4A11B",
-        "usage": "declared, drawn nowhere — 1.84:1 on the card, so it cannot carry a mark."
+        "usage": "the rating's yellow, in both places it is drawn: the filled star (.dr-star[aria-pressed=true]) and the operator's rating pill on his photograph (rev 190), --ink on it at 7.80:1. 1.84:1 on the card and 2.05:1 on the page, so the fill never carries a mark on its own — the text on it does."
       },
       "warn-ink": {
         "role": "tertiary",
