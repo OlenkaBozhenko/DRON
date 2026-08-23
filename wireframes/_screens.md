@@ -534,10 +534,10 @@ the same reading that closed `order-details` on 2026-08-16 and `earning-details`
 card's own accessible name is `Roof inspection job — open brief`, so the link states a purpose its
 destination does not carry.
 
-| File | Nav bar | Offer card | Second zone | Countdown | Accept → |
-|---|---|---|---|---|---|
-| `job-offer.html` | New job | Package delivery · 2.3 km · ~18 min · **₴180** | **Route** — Pickup *Podil, 21* → Drop-off *Osokorky, 14* | Expires in 8s | `job-brief.html` |
-| `job-offer-inspection.html` | New job | Roof inspection · 5.1 km · ~35 min · **₴650** | **Site** — Location *Obolon district* · Structure *Roof · gutters · chimney* | Expires in 6s | `job-brief-inspection.html` |
+| File | Nav bar | Offer card | Second zone | Client note | Countdown | Accept → |
+|---|---|---|---|---|---|---|
+| `job-offer.html` | New job | Package delivery · 2.3 km · ~18 min · **₴180** | **Route** — Pickup *Podil, 21* → Drop-off *Osokorky, 14* | **not built** — see the open question below | Expires in 8s | `job-brief.html` |
+| `job-offer-inspection.html` | New job | Roof inspection · 5.1 km · ~35 min · **₴650** | **Site** — Location *Obolon district* · Structure *Roof · gutters · chimney* | **Notes** — *Two storeys. Ladder access from the yard, gate code 22B. The north slope is where the water comes in.* | Expires in 6s | `job-brief-inspection.html` |
 
 **The second zone changes name with the service, because the shape of the trip does.** A delivery has
 two stops and reads `Route ▸ pickup → drop-off`; an inspection has one site and reads `Site ▸ where it
@@ -546,10 +546,29 @@ are `operator-listings`' own card, read off the frame; the structure string is t
 (`order-details-inspection`); the drone in the well is `drone-11.png`, the thumbnail `listings.html`
 already gives Inspection.
 
-**The offer does not carry the client's note, and that is deliberate.** `RJ-O1` gives this screen a
-ten-second decision and `flows.md` gates it on `Accept within 10s?`; a paragraph of instructions is not
-readable in that budget and would compete with the countdown for the same seconds. The note lands one
-screen later, on the brief — the screen `RJ-O1` names for *everything in one glance*.
+**The inspection offer carries the client's note from 2026-08-24 — her call, and it reverses the one
+recorded here on 2026-08-21.** The designer, on the built frame: *«зроби ще одну картку з повідомленням
+від client»*. The reading it replaces is kept, not deleted, so it is not re-proposed later as a
+discovery: `RJ-O1` gives this screen a ten-second decision, and the note was held one screen back —
+on the brief, *"everything in one glance"* — on the ground that prose competes with the countdown for
+those seconds. **What the build shows is that there were seconds to spare.** Measured on the frame in
+product view (annotations off, `375 × 812`): the column stands at **577 of 577** with the note in it —
+**no scroll** — and *Expires in 6s* ends **125.83px clear** of the bottom of the scroller, in the place
+it already had. The countdown is still the last thing in the column, directly over **Accept**, so the
+seconds are read where the tap is made.
+
+**The note is the same string, not a second version of it.** The client writes it once, in
+`order-setup-inspection`'s *Notes for the operator* field (placeholder *«Height, access to the roof,
+what you want checked…»*), and `job-brief-inspection` and `job-offer-inspection` both read that one
+record. The zone is named `Notes ▸ client instructions` on both screens for the same reason —
+`voice.md` keeps one word per concept, and the concept is *what the client wrote*.
+
+**Open question, put to her and not taken: the delivery offer.** `job-offer.html` has a client note on
+its brief (*Leave with the concierge, entrance code 4417.*) and does not carry it on the offer, so the
+two offer files now differ in structure where §13's whole point was that they differ only in data. Her
+instruction named the inspection frame; carrying it across is one card and one zone label, and it is
+hers to say. `job-brief-aerial`'s answer for an empty field applies if it goes across — *the absence is
+stated, not dropped*.
 
 **No `-aerial` offer file.** The aerial job on the list is already **In progress** (*checklist 3 / 5*):
 it was accepted before the frame opens, so there is no offer of it to draw. It joins at §14.

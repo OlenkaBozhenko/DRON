@@ -346,6 +346,7 @@ _All rows below were the Step-01 finding; **all resolved** in the voice rewrite 
 | Screen | Zone | String |
 |---|---|---|
 | job-brief | Notes | Leave with the concierge, entrance code 4417. |
+| job-brief-inspection · job-offer-inspection | Notes | Two storeys. Ladder access from the yard, gate code 22B. The north slope is where the water comes in. |
 | listings-empty | Search & filters | crop spraying |
 | operator-dispute | Client claim | “The photos are blurry — I can't use them for the listing.” |
 | operator-profile-setup | Profile photo | Certified operator since 2023. Fast, careful deliveries across Kyiv… |
