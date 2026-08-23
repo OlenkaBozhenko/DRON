@@ -1163,13 +1163,17 @@ subject. `.dr-op` is untouched on the eleven client screens that carry it.
 - **Rhythm:** 8 between siblings, **12** before the credential row and before the action — the group
   boundary reads larger than the space inside it (`HIG · Layout`). The photo carries `--sp-13` of
   margin to pay back the badge's 12.7 of overhang, so badge-to-name measures **8.3**.
-- **Action:** `.dr-btn--outline` **144.69 × 44**, `--ink` label at **15.99:1** on the page over a 1px
-  `--slate` edge at **6.62:1**, `--r-pill` — the model's pill after all, cut to the two credential
-  badges directly above it (both measure 999 too). It was `--secondary` at 11.54:1 on `--btn2` with
-  `--r-btn` 12 until 2026-08-21 (rev 181); losing the fill improved the label's pair and left the box
-  identical, and the edge is `--slate` rather than `--line` because `WCAG 1.4.11` asks 3:1 of the one
-  mark that now says *control* — 1.34:1 against 6.62:1. The label is visible, so the accessible name
-  comes from content and the `aria-label` the icon-only disc needed for `WCAG 4.1.2` is gone.
+- **Action — not in the column any more (2026-08-24, rev 187):** *«make edit profile button as a
+  green float button»*. **Edit profile** leaves the head for the tab bar's bottom accessory and
+  becomes `.dr-btn--primary .dr-fab`, **152.29 × 44**, `--on-green` on `--green` at **9.46:1** — see
+  *The floating action* below, where the whole measurement lives. What it was, for the record: the
+  outline pill of rev 181 (`--ink` **15.99:1** over a 1px `--slate` edge at **6.62:1**, `--r-pill`,
+  **144.69 × 44**), itself a `--secondary` at 11.54:1 on `--btn2` until that revision. **The
+  credentials close the column now**, and the accessible name is still the visible label
+  (`WCAG 4.1.2`). **`.dr-btn--outline` keeps a live user** — the client's `account`, which was given
+  the same head at rev 182 and has not been asked to follow — so the rung is not orphaned and the
+  §Buttons pill reversal stands. **The two heads therefore differ for the first time since rev 182,
+  and that is open with the designer, not settled.**
 - **Credentials:** the two `.dr-chip--claim` pills, `--ink` on `--green-wash` at **14.75:1**,
   centred and unchanged in meaning. The pair measures **244.1** in **343** of frame — one line.
 
@@ -1310,18 +1314,23 @@ Added 2026-08-21 (rev 163) on the built `wallet`, against the designer's own ref
 ### The floating action (`.dr-fab`, `.dr-main--fab`)
 
 Added 2026-08-21 (rev 163): *«додай floating button посередині біля ботом бару відповідно до HIG»*.
-One user — `wallet`'s **Withdraw ₴3,240**, which left the column for this place.
+**Two users**, and both left a column for this place: `wallet`'s **Withdraw ₴3,240**, and — since
+2026-08-24 (rev 187), *«make edit profile button as a green float button»* — `operator-account`'s
+**Edit profile**. The second one added no class, no token and no page CSS.
 
 - **Apple's shape, not Material's.** `HIG · Tab bars` asks a tab bar to carry navigation and not
   actions, so a circular button planted in or over the bar is the one reading that would fail.
   iOS 26 ships the tab bar's **bottom accessory** — the slot the Music mini-player rides in — a
   capsule floating clear above a bar that stays four tabs. That is this.
-- **Measured:** **173.1 × 44** (`--h-control`, so `HIG · 44pt` is met by construction), `--r-pill`,
-  centred with `left:50%` + `translateX(-50%)`, `bottom: calc(--h-tabs + --h-home + --sp-snug)` —
-  **11px** clear of the bar's top hairline. Label `--on-green` on `--green` **9.46:1**
-  (`WCAG 1.4.3`); focus ring `--ink` at 2px (`WCAG 2.4.11`). `WCAG 1.4.11` is satisfied by the
-  label, not the fill — green on the page is 1.69:1, and the criterion exempts a boundary not
-  required to identify a control whose text already does.
+- **Measured:** `wallet` **173.1 × 44**, `operator-account` **152.29 × 44** (`--h-control`, so
+  `HIG · 44pt` is met by construction, and `WCAG 2.5.8`'s 24 × 24 is cleared 1.8× on the short
+  side), `--r-pill`, centred with `left:50%` + `translateX(-50%)` — **0px** off the frame's centre
+  line and **0px** of overrun on both — `bottom: calc(--h-tabs + --h-home + --sp-snug)` = **11.2px**
+  clear of the bar's top hairline. Label `--on-green` on `--green` **9.46:1** (`WCAG 1.4.3`); focus
+  ring `--ink` at 2px (`WCAG 2.4.11`). `WCAG 1.4.11` is satisfied by the label, not the fill — green
+  on the page is 1.69:1, and the criterion exempts a boundary not required to identify a control
+  whose text already does. **A leading glyph inherits the label's charcoal** — the `operator-account`
+  pencil is `currentColor` at 20px, so green is never the ink and never the stroke.
 - **`--sh-raised`, and that is the flat rule holding rather than bending.** rev 43's exception is
   written for things that genuinely float — *"the flat rule is about cards sitting in the page,
   which is why a drawer and a toast do not break it"* — and a control hovering over a scrolling
@@ -1329,9 +1338,18 @@ One user — `wallet`'s **Withdraw ₴3,240**, which left the column for this pl
   `.dr-fab`. The green primary's own `--sh-sm` is the shadow of a button lying flat, which this is
   not.
 - **`.dr-main--fab` is the floor it asks for:** `padding-bottom` **72** (44 + 12 + 16), so the last
-  card scrolls fully clear instead of parking under the pill (`HIG · Layout`). Measured, the column
-  scrolls 735 in 619 — the list does pass under the pill while scrolling, which is what a floating
-  accessory does, and nothing is permanently unreachable.
+  card scrolls fully clear instead of parking under the pill (`HIG · Layout`). Measured: `wallet`
+  scrolls 735 in 619; `operator-account` scrolls **658 in 620**, where the last Account row is
+  overlapped **13.4** at rest and stands **24.2 clear** at the bottom of the 37.6 of travel. The
+  list does pass under the pill while scrolling, which is what a floating accessory does, and
+  nothing is permanently unreachable.
+- **The green budget it spends, per screen.** On `operator-account` the pill is **6,285px² = 2.06%**
+  of the 375 × 812 frame and is the screen's **only green control** — the head had spent none of
+  §0's ~5%, since the two `.dr-chip--claim` credentials and the selected tab are all `--green-wash`
+  at 1.085:1, a tint the budget does not count. The rating badge on the photograph stays solid green
+  as a **status mark**, **1,153px² = 0.38%**; screen green totals **2.44%** and the control is
+  **84.5%** of it. On `wallet` the same component takes the screen to **11.32%** with the balance
+  card — a departure she was shown with the numbers and chose to keep.
 - **The `:active` re-declaration is load-bearing.** `.dr-btn--primary:active` sets a bare
   `transform`, which would drop the centring `-50%`; the modifier restates both, and being later in
   the sheet at equal specificity it wins. `.dr-fab` must stay below the button pack.

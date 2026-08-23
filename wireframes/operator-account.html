@@ -41,7 +41,7 @@
   <div class="wf-frame dr dr-screen">
     <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
     <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Account</span><span class="dr-topbar__spacer"></span></header>
-    <main class="dr-main">
+    <main class="dr-main dr-main--fab">
       <p class="zlabel dr-label">Profile <span class="dr-label__act">▸ Diia-verified operator</span></p>
       <section aria-label="Profile">
         <!-- THE PROFILE HEAD IS A CENTRED COLUMN (2026-08-21, the designer, with a
@@ -127,20 +127,18 @@
                Both take .dr-chip--claim, --green-wash behind --ink at 14.75:1,
                and both wear the same shield with a trailing checkmark, because
                two chips of one kind must not be told apart by drawing. Centred
-               now, and above the action so the button closes the column. -->
+               now, and they CLOSE the column: the action that used to stand
+               under them has left the page flow for the tab bar's accessory
+               slot (see the floating button after </main>). -->
           <span class="dr-chips dr-profile__badges"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>CAA licence<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
-          <!-- THE EDIT AFFORDANCE, NOW LABELLED AND NOW DRAWN RATHER THAN FILLED.
-               It was a 44 x 44 icon-only disc in the card's top-right corner;
-               the model ends its column with a worded button and so does this
-               one. The fill came off on 2026-08-21 («кнопку зроби контурну без
-               бекграунда скругленими краями як бейджі»), so it takes
-               .dr-btn--outline: --ink label at 15.99:1 on the page, a --slate
-               edge at 6.62:1 where `WCAG 1.4.11` asks 3:1 of the one thing that
-               says *control* once the fill is gone, --r-pill to the badges
-               above it, min-height 44 (`HIG · 44pt target`). The visible label
-               is the accessible name, so the aria-label the icon-only disc
-               needed for `WCAG 4.1.2` is no longer carried by an attribute. -->
-          <a class="dr-btn dr-btn--outline dr-profile__edit" href="account-edit.html"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</a>
+          <!-- THE ACTION IS NOT HERE ANY MORE (2026-08-24, the designer on the
+               built button: «make edit profile button as a green float
+               button»). It stood at the foot of this column twice — as a
+               44 x 44 icon-only disc in the card's top-right corner until rev
+               171, then as the worded .dr-btn--outline of rev 181 — and it now
+               leaves the flow for the tab bar's bottom accessory. The markup
+               sits after </main>, which is where it sits on the screen
+               (`WCAG 1.3.2`); the reasoning is written there. -->
         </div>
       </section>
 
@@ -178,6 +176,44 @@
         <div class="dr-rows__row"><span class="dr-rows__key">Operator since</span><span class="dr-rows__val">2026</span></div>
       </div>
     </main>
+
+    <!-- THE FLOATING ACTION (2026-08-24, the designer on the built Edit profile
+         button: «make edit profile button as a green float button»). It is the
+         kit's own .dr-fab, cut on 2026-08-21 for wallet's Withdraw and given its
+         second user here — no new class, no new value, no page CSS.
+
+         APPLE'S SHAPE AND NOT MATERIAL'S. `HIG · Tab bars` — "a tab bar…don't
+         use it to provide actions" — so a circular button planted IN or OVER the
+         bar is the one reading that would fail. iOS 26's tab-bar BOTTOM
+         ACCESSORY is a capsule that floats clear above a bar that stays four
+         tabs (Music's mini-player), and that is this: 11px of air over the bar's
+         top hairline.
+
+         IT IS THE ONE GREEN CONTROL ON THE SCREEN, which is what makes the fill
+         available. concept.md §0 allows one green control per screen at ~5% of
+         the frame, and this screen had spent none of it — the two credential
+         chips are --green-wash, a tint the budget does not count, and so is the
+         selected tab. The rating pill on the photograph stays solid green as a
+         status MARK, not a control, the case §0 admits beside the rule.
+
+         MEASURED: --on-green on --green 9.46:1 (`WCAG 1.4.3`) — green is never
+         the ink, here or anywhere, and the pencil is charcoal on the fill for
+         the same reason. min-height 44 (`HIG · 44pt target`), `WCAG 2.5.8`
+         cleared 1.8x on the short side. `WCAG 1.4.11` is carried by the label
+         and not by the fill, the kit's standing reading for this component.
+         The focus ring is .dr-btn's own --ink at 2px (`WCAG 2.4.11`).
+
+         IT LIFTS ON --sh-raised, WHICH IS THE FLAT RULE HOLDING RATHER THAN
+         BENDING: the rung .dr-sheet and .dr-toast spend, for the things that
+         genuinely float over the page instead of sitting in it. The column
+         takes .dr-main--fab's 72px floor so the last Account row scrolls clear
+         of the pill instead of parking under it (`HIG · Layout`).
+
+         THE LABEL IS UNCHANGED AND SO IS THE TARGET — Edit profile → account-edit,
+         the visible label still being the accessible name (`WCAG 4.1.2`), and
+         still a second name away from the photograph's own invisible «Change
+         profile photo» (`WCAG 2.4.6`). -->
+    <a class="dr-btn dr-btn--primary dr-fab" href="account-edit.html"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</a>
 
     <footer class="dr-tabbar">
       <nav class="dr-tabs" aria-label="Primary">
