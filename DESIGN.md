@@ -1170,6 +1170,39 @@ badge is `aria-hidden`; the link carries the name.
   fill and the `--page` ring. `order-details-aerial` sits outside `.dr-profile` and keeps 20.
   **Green budget re-counted:** drawn fill **π × 14² = 616px²**, so `account` reads **6,285 + 616 =
   6,901px² = 2.27%** of the frame (from 2.17%) against §0's ~5%, the primary control **91.1%** of it.
+- **And 32 lasted an hour — the disc is 44 × 44 (2026-08-24, rev 198).** *«зроби більшу іконку
+  кнопку»* again, answered this time by putting 32, 40 and 44 to the designer with all three
+  measured; **she chose 44**. `--sz-head-mark` becomes **`var(--sz-action)`**, so no number is
+  invented — it is the kit's circular icon action rung, already spent on `.dr-btn--icon`. **It is
+  the proportion the component always argued for:** `--sz-avatar-badge`'s own note says 20 "holds
+  36% of the 56px circle, inside the iOS badge range", and 36% of 120 is **43.2**. 24 read 20.0%,
+  32 read 26.7%, **44 reads 36.7%** — the first of the three inside the range the badge was
+  designed to. **Nothing was failing at any of them:** the target is still the 120px photograph
+  (`HIG · 44pt` 273%, `WCAG 2.5.8` 5×); on its own box the disc goes **1.33× → 1.83×** of 2.5.8's
+  floor (**3.36×** the area) and is now a `HIG · 44pt` box in its own right. `--on-green` on
+  `--green` **9.46:1** throughout (`WCAG 1.4.11` 3:1). **Glyph `--ic-22`** — the same **50%** of
+  its disc that 16-in-32 and 12-in-24 were; air inside the 2px ring **6 → 9**, rendered stroke
+  **1.7 × 22/24 = 1.56**. **The corner-offset drift closes:** the disc's centre stood 70.71 from
+  r=60 at 24 (10.71 *outside* the picture) and 65.05 at 32 (5.05 out); at 44 it measures **56.57 —
+  3.43 INSIDE**, since exactly-on-the-edge is 39.15 and the disc has now passed it. The offset was
+  never touched; it corrected itself by growing, which is what the rev 197 note predicted.
+  **Green re-counted, and one number crosses a line:** the disc draws **π × 22² = 1,521px²**, so
+  `account` reads **6,285 + 1,521 = 7,806px² = 2.56%** of the frame against §0's ~5% — comfortable
+  — but the primary control is now **80.5%** of the screen's green, **just under** the 81–100% band
+  `CLAUDE.md` records for a CTA (it was 91.1% at 32). Reported, not corrected: the screen already
+  carries two green controls by her instruction, and this is that departure being measured, not a
+  new one.
+- **The operator's pair follows to 44, because it is defined by equal height (rev 198).**
+  `--sz-photo-mark` is no longer a number — it is written **`var(--sz-head-mark)`**, so the pill's
+  height reads as the *consequence* it is and the two can never drift by one being edited. Measured
+  on his head: pill **56 × 44**, disc **44 × 44**, gap **3** (`--sp-3`), heights equal, both centres
+  on the circle's bottom edge at **288.8**. Each mark hangs **22** below the circle, so the margin
+  that pays it back is now derived — `calc(--sz-photo-mark / 2)` — landing on **22**, which is
+  `--sp-22`, a rung the scale already owns. Screen green **3.24%**. **Two costs are stated rather
+  than hidden.** An **11px rating line now stands in a 44-tall capsule** — the designer chose 44
+  with that consequence written into the option she picked, and decoupling the pill is one token
+  away. And `--mark-shift` is still **0** by her earlier call, so the wider pair now sits **23.5**
+  right of the photograph's centre where it sat 13.5 at 24.
 - **Pair:** `--btn2` ground, `--ink` glyph — **11.54:1**, the circular icon action's own pair, so the
   two edit affordances on one card are one material. The disc is **1.25:1** on the card and is *not*
   the identifier: the glyph is, the way `.dr-upload`'s 1.08:1 well defers to its 32px mark.
@@ -2179,12 +2212,19 @@ avatar rather than an avatar.
 
 ### The mark on a profile head (`--sz-head-mark`)
 
-**32px**, added 2026-08-24 (rev 197) for the pencil disc on the client's 120px head. It exists
-because `--sz-photo-mark` **24** is *the height the operator's rating pill and disc share*, not a
-disc size — so the client's could not grow on it without moving his pill. 32 is the 8-grid step,
-**26.7%** of the 120 circle (against `--sz-avatar-badge` 20's **35.7%** of the 56 it was sized for),
-and it takes `--ic-16` so the glyph holds the same **50%** of its disc that 12-in-24 held. Both
-discs clear `WCAG 2.5.8` on their own box — 24 at **1.00×**, 32 at **1.33×**.
+**`var(--sz-action)` = 44px.** Added 2026-08-24 (rev 197) at **32** for the pencil disc on the
+client's 120px head, and raised to **44** the same day (rev 198) when the designer asked again and
+chose 44 from 32 / 40 / 44 measured. It exists because `--sz-photo-mark` was *the height the
+operator's rating pill and disc share*, not a disc size — the client's could not grow on it without
+moving his pill. **It now resolves to an existing rung rather than a number of its own:**
+`--sz-action`, the kit's circular icon action, so the disc is a `HIG · 44pt` box in its own right.
+**36.7%** of the 120 circle, which is the first size to land inside the **~36%** iOS badge
+proportion `--sz-avatar-badge`'s own note cites (20 on 56 = 35.7%); 24 read 20.0% and 32 read 26.7%.
+Glyph `--ic-22`, the same **50%** of the disc that 16-in-32 and 12-in-24 held. On its own box the
+disc clears `WCAG 2.5.8` at **1.00× → 1.33× → 1.83×** across the three sizes — none of which was
+ever the criterion's answer, since the `<a>` wraps the whole photograph. **And `--sz-photo-mark`
+now follows this token** (`var(--sz-head-mark)`), so the operator's pair keeps its equal height by
+construction.
 
 ### Navigation
 
