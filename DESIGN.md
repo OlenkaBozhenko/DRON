@@ -2066,6 +2066,35 @@ now, not two, and the rule did not move to make that true.
 right default under a centred mark inside `.dr-msg` — so a caption standing beside a left-aligned
 figure has to say so. Spent 7 times across four packs.
 
+`.dr-note--balance` is `text-wrap: balance`, nothing else, and it is the **third** spend of that one
+property — `.dr-display--balance` (rate's question, 2026-08-13) and `.dr-upload--card .dr-note` (the
+upload subtitle, 2026-08-15) came first, and the rule they set is the rule here: **a measure or a
+property, never a `<br>`**, so the UA re-balances the string and no markup hard-codes an English
+break. **Two spends, both photo screens** (`account-photo`, `operator-account-photo`, 2026-08-27, the
+designer on both built frames: *«make in 2 rows but it should be more text in second row apply this
+chsnges for 2 profile roles»*). Left to the default, the 54-character file rule broke
+`JPG or PNG, up to 5 MB. Nothing changes until you` / `save.` in the photo card's **301** measure — a
+one-word orphan, reported at `concept.md` rev 202 and fixed here. Balanced it breaks on the sentence
+boundary: **`JPG or PNG, up to 5 MB.` 139.05** / **`Nothing changes until you save.` 180.14**, the
+second row **8 characters and 41.09px longer** than the first. **The paragraph is the same 301 × 36**
+— zero layout cost, so nothing downstream moves: card 341 × 268, `main` **525 = 525**, no scroll,
+0px overrun on either screen. **It changes where rows break and never how many**, verified by
+measuring both frames with the property and without it at 12px (2 rows / 36) and at a 2× text step
+(3 rows / 108, card bottom 457 in an 812 frame, overrun 0) — so `WCAG 1.4.4` reads exactly as it did.
+The sentence stays **one text node**, which is what keeps `WCAG 1.3.1` / `4.1.2` unmoved: all three
+action-bar buttons still resolve `aria-describedby="photo-rules"` and announce the same string,
+verified in the built DOM on both screens. `HIG · Typography` prescribes the ramp, not the break.
+
+**Not spent on the caption above it, and that is a choice with a number rather than an oversight.**
+The first `.dr-note` in the same `.dr-stack` breaks differently on the two screens: the client's
+splits cleanly at its own sentence boundary (`Your operator sees this photo when they arrive.` 267.75
+/ `Without one, they see your initials.` 195.2) and the operator's does not (`…they arrive. Without`
+**298.11 of 301** / `one, they see your initials.` 147.38). Balancing it was measured on both: it
+gives the operator's the second-row-longer shape (37 / 44 characters, 211.38 / 234.11) and costs the
+client's its clean sentence break (`…when they` / `arrive. Without one…`, 228.84 / 234.11), at **36px
+on all four readings**. One screen gains and one loses, so it is put to the designer rather than
+taken — the instruction named `#photo-rules`.
+
 ### The availability head (`.dr-avail`)
 
 A dot, the state, and one supporting clause, standing above the segmented control that sets it.

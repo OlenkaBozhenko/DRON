@@ -92,6 +92,7 @@ The current HTML also ships a **dark** theme. Wireframes do **not** use it, but 
 - **Sizes (hierarchy only, not a final scale):** `13 / 15 / 17 / 22 px`. Body = 15; captions/muted = 13; screen title = 22.
 - **Line-height:** `1.4` body, `1.2` headings. **Alignment:** left (never justified; centre only for a single empty-state block).
 - No letter-spacing tricks, no all-caps except a section eyebrow (11–13px, muted).
+- **Where a two-line caption breaks is a decision, and it is made with a property, never with a `<br>`** (designer, 2026-08-27, on both photo screens: *«make in 2 rows but it should be more text in second row apply this chsnges for 2 profile roles»*). A sentence pair left to the default breaks wherever the measure runs out — on `account-photo` / `operator-account-photo` that put the one word `save.` alone on row two. `text-wrap: balance` (kit: `.dr-note--balance`) moves the break onto the **sentence boundary**, one fact per row: `JPG or PNG, up to 5 MB.` **139.05** / `Nothing changes until you save.` **180.14** in a 301 measure — the second row 8 characters and 41.09px longer, which is the shape she asked for. **It changes where rows break, never how many:** measured at 12px and again at a 2× text step, the paragraph is 2 rows / 36px and 3 rows / 108px **with the property and without it**, 0px of horizontal overrun either way. The string stays **one text node**, so `WCAG 1.3.1` / `4.1.2` announce the same sentence and a translation re-balances itself instead of inheriting an English break.
 
 ---
 

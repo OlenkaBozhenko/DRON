@@ -805,6 +805,18 @@ header.dr-topbar,
   font-size: var(--t-caption-size); font-weight: var(--weight-regular);
   line-height: var(--t-para-line); color: var(--slate); text-align: center;
 }
+/* TWO ROWS, AND THE SECOND ONE CARRIES MORE THAN THE FIRST — 2026-08-27, the
+   designer on both built photo screens: «make in 2 rows but it should be more
+   text in second row apply this changes for 2 profile roles». Left alone, the
+   54-character file rule broke "…until you" / "save." in the photo card's 301
+   measure — a one-word orphan, which rev 202 measured and reported without
+   fixing. Balance moves the break onto the sentence boundary instead, so the
+   first row is the file rule and the second the commit note, one fact per line.
+   SAME DEVICE, THIRD SPEND: .dr-display--balance (rate) and .dr-upload--card
+   .dr-note (upload) already carry it, and the rule there is the rule here —
+   the UA re-balances the string, never a <br> and never a fixed width, so the
+   sentence stays one node for translation and for the accessible description. */
+.dr-note--balance{ text-wrap: balance; }
 
 /* ═══ BUTTONS ═════════════════════════════════════════════════════════════
    min-height, never height: a button is a flex item in a scrolling column and
