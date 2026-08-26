@@ -232,15 +232,24 @@
                               edge and the centring is structural, not eyeballed. Change the
                               figure's step and the plate follows it. */
   --sz-box:         24px;  /* checkbox / radio */
-  --sz-switch:      52px;  /* the switch's track WIDTH; its height is --h-pill 32, so the
-                              shape is 52 x 32. iOS ships 51 x 31 and HIG gives the switch
-                              no other number; snapping the height to --h-pill — the chip's
-                              own rung, already in the ramp — puts the width one pixel off
-                              Apple's at the same 1.63 ratio, and adds one declared size
-                              rather than two. The knob is not declared: it is the track's
-                              inside, so it follows the border and the padding instead of
-                              restating them, and the travel is (--sz-switch - --h-pill),
-                              which is 20 for the same reason. */
+  --sz-switch:      36px;  /* the switch's track WIDTH; its height is --sz-node 22, so the
+                              shape is 36 x 22. CUT FROM 52 x 32 on 2026-08-27 on the
+                              designer's «make this toggles smaller», and of the three sizes
+                              put to her this is the one that keeps the component at ONE
+                              declared number: 22 is a rung the ramp already had, so the
+                              height is still BORROWED and not invented. iOS ships 51 x 31
+                              and HIG gives the switch no other size, so this is a departure
+                              from the platform control — recorded, not corrected, because
+                              the rule that binds is the 44pt TARGET and the target is the
+                              row, not the track. 36/22 is 1.636 against Apple's 1.645, the
+                              closest ratio of the three. The knob is not declared: it is the
+                              track's inside, so it follows the border and the padding
+                              instead of restating them, and the travel is
+                              (--sz-switch - --sz-node), which is 14 for the same reason.
+                              ONE COUPLING IS BOUGHT HERE AND IT IS WRITTEN DOWN: --sz-node
+                              is the progress node's rung — a SHAPE's number read as a
+                              CONTROL's height. If the node ever moves, this switch is to be
+                              re-decided, not dragged along behind it. */
   --sz-well-w:      96px;  /* the card well that carries a render */
   --sz-well-h:      72px;
   --sz-well-w-sm:   68px;  /* narrow tier */
@@ -2764,9 +2773,21 @@ header.dr-topbar,
    `1.3.1 / 4.1.2` — a real <input type=checkbox role=switch>, so the state is
    "on"/"off" to a screen reader rather than "checked", and the row is a <label>,
    so the accessible name is the visible line. Nothing is drawn with aria only.
-   `HIG 44pt / WCAG 2.5.8` — the target is not the 52x32 track: the whole
+   `HIG 44pt / WCAG 2.5.8` — the target is not the 36x22 track: the whole
    `.dr-field` row is the label, so it is the row's --h-control 44 floor that is
-   tappable, full width. */
+   tappable, full width.
+
+   CUT 52 x 32 -> 36 x 22 ON 2026-08-27 (rev 202), on «make this toggles
+   smaller», and NOTHING ABOVE MOVED WITH IT. Every criterion this component was
+   built against is carried by the row or by the pair, and neither is a function
+   of the track: the row is still --h-control 44 at the card's full width, the
+   ring is still --ink at 14.37:1 in both states, the knob is still --on-green
+   inside the green at 9.46:1, and state is still POSITION as well as fill. What
+   the cut does spend is the likeness to iOS's 51 x 31 — a departure from the
+   platform size, which `CLAUDE.md` says is recorded with its reason rather than
+   filed as a defect, since HIG's binding number here is the 44pt target and the
+   row holds it. The size is hers: three were put to her with the standards
+   first, and she took the smallest that still landed on a rung. */
 .dr-field--toggle{ cursor: pointer; }
 /* a switch row has no value column, so the label is the ROW and not its key:
    it takes the free width and it takes --ink, where a fact row's key is a fixed
@@ -2775,21 +2796,24 @@ header.dr-topbar,
 .dr-field--toggle input{ position: absolute; opacity: 0; width: 0; height: 0; }
 .dr-switch{
   flex: none; box-sizing: border-box;
-  width: var(--sz-switch); height: var(--h-pill);
+  width: var(--sz-switch); height: var(--sz-node);
   border: var(--box-edge) solid var(--ink);            /* 14.37:1 on the card */
   border-radius: var(--r-pill);
   display: flex; align-items: center; padding: var(--sp-2);
 }
 /* THE KNOB IS THE TRACK'S INSIDE, NOT A NUMBER OF ITS OWN — height less its two
    borders and its two paddings, so it cannot drift from them if any of the three
-   ever moves. It lands at 24.6, which is --sz-box to within the border it is
-   sitting inside. Written as arithmetic rather than as `align-self: stretch;
-   aspect-ratio: 1`: that shape reads better and depends on the aspect-ratio
-   transfer running off a stretched cross size, and a component in her frames
-   should not rest on a resolution order. */
+   ever moves. It lands at 14.6 — at 52 x 32 this arithmetic gave 24.6, which was
+   --sz-box to within its border; at 36 x 22 it lands on no rung at all, and that
+   is correct rather than a loss. The knob was never a declared size: it is what
+   the track leaves over, and a derived number that happened to coincide with a
+   rung was a coincidence, not a rule. Written as arithmetic rather than as
+   `align-self: stretch; aspect-ratio: 1`: that shape reads better and depends on
+   the aspect-ratio transfer running off a stretched cross size, and a component
+   in her frames should not rest on a resolution order. */
 .dr-switch__knob{
-  width:  calc(var(--h-pill) - var(--box-edge) * 2 - var(--sp-2) * 2);
-  height: calc(var(--h-pill) - var(--box-edge) * 2 - var(--sp-2) * 2);
+  width:  calc(var(--sz-node) - var(--box-edge) * 2 - var(--sp-2) * 2);
+  height: calc(var(--sz-node) - var(--box-edge) * 2 - var(--sp-2) * 2);
   flex: none;
   border-radius: var(--r-circle);
   background: var(--ink);                              /* 14.37:1 on the card */
@@ -2807,7 +2831,7 @@ header.dr-topbar,
    the height, so what is left over IS the distance. Derived: no third number. */
 .dr-field--toggle:has(input:checked) .dr-switch__knob{
   background: var(--on-green);                         /* 9.46:1 on the green */
-  transform: translateX(calc(var(--sz-switch) - var(--h-pill)));
+  transform: translateX(calc(var(--sz-switch) - var(--sz-node)));
 }
 .dr-field--toggle:has(input:focus-visible) .dr-switch{
   outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset);

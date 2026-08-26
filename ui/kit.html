@@ -1452,7 +1452,7 @@
           <span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span>
         </label>
       </div>
-      <span class="st">on 52 &times; 32 &middot; off &middot; the row is the 44pt target</span>
+      <span class="st">on 36 &times; 22 &middot; off &middot; the row is the 44pt target</span>
     </div>
   </div>
   <div class="notes">
@@ -1462,19 +1462,29 @@
        <code>--card</code> is 1.52:1 and fails; as a fill behind an <code>--ink</code> ring the
        boundary carries at <b>14.37:1</b>. So both states clear 3:1 &mdash; ring <b>14.37:1</b>
        (4.79&times;), knob inside the green <b>9.46:1</b> (3.15&times;).</p>
-    <p><b>One size is declared and nothing else.</b> <code>--sz-switch</code> 52 is the width; the
-       height is <code>--h-pill</code> <b>32</b>, a rung already in the ramp, landing one pixel off
-       iOS's 51 &times; 31 at the same 1.63 ratio. The knob is <code>--h-pill</code> less its two
-       borders and two paddings &mdash; <b>24.6</b>, which is <code>--sz-box</code> to within the
-       border it sits inside &mdash; and the travel is
-       <code>--sz-switch &minus; --h-pill</code> = <b>20</b>, what a square knob filling the height
+    <p><b>One size is declared and nothing else — which is why it is this size.</b>
+       <code>--sz-switch</code> <b>36</b> is the width; the height is <code>--sz-node</code> <b>22</b>,
+       a rung the ramp already had, so it is borrowed and not invented. <b>Cut from 52 &times; 32 on
+       2026-08-27 (rev 202)</b> on the designer's <i>&laquo;make this toggls smaller&raquo;</i>: three
+       sizes were put to her with the standards first &mdash; 40 &times; 24 on <code>--sz-box</code>,
+       46 &times; 28 on a new rung, 36 &times; 22 on <code>--sz-node</code> &mdash; and she took the
+       smallest that still landed on a rung. The knob is the height less its two borders and two
+       paddings &mdash; <b>14.6</b> &mdash; and the travel is
+       <code>--sz-switch &minus; --sz-node</code> = <b>14</b>, what a square knob filling the height
        leaves over. No third number.</p>
+    <p><b>iOS ships 51 &times; 31 and HIG gives the switch no other size, so 36 &times; 22 is a
+       departure from the platform control</b> &mdash; recorded with its reason, not filed as a
+       defect, because what binds in <code>HIG</code> is the <b>44pt target</b> and the target is the
+       row. <b>One coupling is bought and written into the token:</b> <code>--sz-node</code> is the
+       progress node's rung, a <i>shape's</i> number read as a <i>control's</i> height; if the node
+       moves, this switch is re-decided rather than dragged along.</p>
     <p><b>State is position as well as fill</b> (<code>1.4.1</code>), and it is a real
        <code>&lt;input type="checkbox" role="switch"&gt;</code> inside the <code>&lt;label&gt;</code>
        that is the row &mdash; so it announces &ldquo;on&rdquo;/&ldquo;off&rdquo; rather than
        &ldquo;checked&rdquo; (<code>4.1.2</code>), the visible line is the accessible name
-       (<code>1.3.1</code>), and the 44 &times; 341 row carries <code>HIG &middot; 44pt</code> and
-       <code>2.5.8</code> at 7.75&times; the area floor. Motion is <code>--dur-fast</code> on
+       (<code>1.3.1</code>), and the row &mdash; re-measured at <b>326.2 &times; 44</b> after the cut
+       &mdash; carries <code>HIG &middot; 44pt</code> at 7.41&times; the 44 &times; 44 area and
+       <code>2.5.8</code> at 24.9&times; its 24 &times; 24 floor. Motion is <code>--dur-fast</code> on
        <code>transform</code>, with a <code>prefers-reduced-motion</code> opt-out.</p>
     <p><b>Green budget:</b> a switch counts as a <b>status mark</b>, like the checked box and the
        walked node &mdash; not as the screen's one green control.</p>

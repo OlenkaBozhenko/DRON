@@ -1089,25 +1089,41 @@ now differ on the same question, and the box's half is still open.
 
 ### Switch (`.dr-switch`)
 
-**52 × 32**, inside a 44pt row that is the whole tap target. Added 2026-08-24 (rev 196) for
+**36 × 22**, inside a 44pt row that is the whole tap target. Added 2026-08-24 (rev 196) for
 `account-edit`'s Notifications card, on the designer's *«make a toggle»* — the kit had no switch
-before it. **`--sz-switch` 52 is the only size the component declares**: the height is `--h-pill`
-32, a rung already in the ramp, which lands the width one pixel off iOS's 51 × 31 at the same
-**1.63** ratio. **The knob is not declared** — `--h-pill` less two `--box-edge` borders and two
-`--sp-2` paddings, computing to **24.6**, which is `--sz-box` to within the border it sits inside —
-and **the travel is `--sz-switch − --h-pill` = 20**, what a square knob filling the height leaves
-over. Radii `--r-pill` on the track, `--r-circle` on the knob; nothing outside the closed ramp.
+before it — and **cut from 52 × 32 on 2026-08-27 (rev 202)** on her *«make this toggles smaller»*.
+**`--sz-switch` 36 is the only size the component declares**, which is the reason this size and not
+another: the height is `--sz-node` **22**, a rung the ramp already had, so it is still borrowed and
+not invented. Three sizes were put to her with the standards first — 40 × 24 on `--sz-box`, 46 × 28
+on a new rung, 36 × 22 on `--sz-node` — and she took the smallest that still landed on a rung.
+**The knob is not declared** — the height less two `--box-edge` borders and two `--sp-2` paddings,
+computing to **14.6** — and **the travel is `--sz-switch − --sz-node` = 14**, what a square knob
+filling the height leaves over. Radii `--r-pill` on the track, `--r-circle` on the knob; nothing
+outside the closed ramp.
+
+**iOS ships the switch at 51 × 31 and `HIG` gives it no other size, so 36 × 22 is a departure from
+the platform control — recorded with its reason, not filed as a defect.** What binds in `HIG` here
+is the **44pt target**, and the target has never been the track: the whole `.dr-field` row is the
+`<label>`. Nothing else moved with the cut — the ring, the fill, the knob pair and the position
+cue are all independent of the track's size, and every one is re-measured below on the built frame.
+**One coupling is bought and is written into the token:** `--sz-node` is the progress node's rung,
+a *shape's* number read as a *control's* height. If that node ever moves, the switch is to be
+re-decided rather than dragged along.
 
 **On:** `--green` fill, `--on-green` knob, **9.46:1**. **Off:** no fill, knob `--ink`. **The ring is
 `--ink` in both states** — this follows `.dr-range`'s thumb (rev 70), not the checked checkbox above,
-because the range is the one of the two decided on this criterion. Measured: ring **14.37:1** on the
+because the range is the one of the two decided on this criterion. Measured on the built frame after the cut: track **36.0 × 22.0**, knob **14.6 × 14.6**, knob left
+edge **3.6 → 17.6** (a 14px travel), on-track `rgb(155,207,74)`, ring `rgb(26,26,26)` in **both**
+states, off-track `rgba(0,0,0,0)`. Ring **14.37:1** on the
 card in both states — `WCAG 1.4.11` cleared **4.79×** — and the knob **9.46:1** inside the green,
 cleared **3.15×**. State is **knob position as well as fill**, so `WCAG 1.4.1` never rests on colour.
 
 Built as a real `<input type="checkbox" role="switch">` inside the `<label>` that is the row: the
 state announces "on"/"off" rather than "checked" (`4.1.2`) and the visible line is the accessible
-name (`1.3.1`). The target is the **row**, 44 × 341 — `HIG · 44pt` and `WCAG 2.5.8` carried at
-**7.75×** the area floor, not by the 52 × 32 track. Motion is `--dur-fast` on `transform` with a
+name (`1.3.1`). The target is the **row**, measured **326.2 × 44** on the 375 frame — `HIG · 44pt`
+carried at **7.41×** the 44 × 44 area and `WCAG 2.5.8` at **24.9×** its 24 × 24 floor, not by the
+36 × 22 track. (The row was recorded as 44 × 341 before rev 202; re-measured on the built frame it
+is 326.2 wide, and the row's width never depended on the switch.) Motion is `--dur-fast` on `transform` with a
 `prefers-reduced-motion` opt-out. **Green budget:** a switch counts as a status mark, like the
 checked box and the walked node — not as the screen's one green control.
 
