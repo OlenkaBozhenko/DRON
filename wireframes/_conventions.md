@@ -352,7 +352,7 @@ what joins them is closed and counted, not open:
 | May sit in the bar | Where it exists | Why |
 |---|---|---|
 | Buttons | every `footer.dr-actionbar` | §11 above |
-| A caption line (`.dr-note`) | `order-setup-error`, `account-photo` (rev 146), `operator-account-photo` (2026-08-21) | states a fact about the action, not about `main`. On both photo screens it is the message slot `HIG · Action sheets` puts above a set of choices, and it is tied to all three buttons by `aria-describedby` |
+| A caption line (`.dr-note`) | `order-setup-error`, `operator-account-photo` (2026-08-21) | states a fact about the action, not about `main`. On the operator's photo screen it is the message slot `HIG · Action sheets` puts above a set of choices, and it is tied to all three buttons by `aria-describedby`. **`account-photo` left this list on 2026-08-27 (rev 201)** — the designer moved its file rule up into the photo card, so its bar is buttons and nothing else; the three buttons keep `aria-describedby="photo-rules"` pointing into `main`, because the description resolves by **id** and not by proximity. The twin still carries the line, and mirroring it is open |
 | A price summary (`.dr-price`) | `time-slot`, `time-slot-empty` | the number the button commits to |
 | **A control that rides the same commit** | `order-setup` · *Save this address for next time* | it takes effect **when the button is pressed**, so it is read where it is committed |
 
