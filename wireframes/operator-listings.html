@@ -278,6 +278,26 @@
            pill, which is what lets the dot be green (WCAG 1.4.1). Not a control:
            nothing is tappable here, so no 44px target is owed. -->
       <span class="dr-chip dr-chip--sm dr-avail-badge" data-avail-badge data-state="available"><span class="dr-avail-badge__dot" aria-hidden="true"></span><span data-avail-word>Available</span></span>
+      <!-- THE NOTIFICATION BELL - the operator's half of the same 2026-08-31 call
+           ("for both client and operator modes"). Identical component, identical
+           values; what differs is what the log holds, because the two sides hold
+           different records and speak different words (`voice.md`: his are JOBS).
+
+           IT STANDS AFTER THE AVAILABILITY BADGE, AND THAT IS A RULE, NOT A GUESS.
+           `HIG · Navigation bars` gives the bar's trailing edge to its CONTROLS; the
+           badge is not one - the block above already says so ("Not a control: nothing
+           is tappable here, so no 44px target is owed"). So the only tappable thing in
+           this bar takes the edge and the badge sits inboard of it. The badge's own
+           composition is untouched: same class, same dot, same word, same green. The
+           alternative - bell first, badge at the edge - conforms equally and is one
+           swap; it is noted here so the order reads as a decision, not a default.
+
+           NO SECOND GREEN CONTROL IS CREATED. The pill is 324px2 (0.107% of the
+           frame), a status mark on the sec.0 count, standing beside the badge's own
+           dot; the screen's one green CONTROL is still the offer card's Accept. -->
+      <a class="dr-bell" href="operator-notifications.html" aria-label="Notifications, 3 unread">
+        <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4a5.9 5.9 0 0 0-5.9 5.9c0 4.1-1.5 5.3-1.5 5.3h14.8s-1.5-1.2-1.5-5.3A5.9 5.9 0 0 0 12 3.4Z"/><path d="M10.1 18a2.1 2.1 0 0 0 3.8 0"/></svg><span class="dr-count-badge" aria-hidden="true">3</span>
+      </a>
     </header>
 
     <!-- NAV · job groups — the painted in-page tab row from listings.html.

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe &#183; Notifications (operator) &#183; empty</title>
+<!--
+  SCREEN (_screens.md O8): "Notifications - the alert log", OPERATOR, EMPTY.
+  A newly approved operator (O-2, the cold-start persona): verified, on the fleet, and
+  nothing has been dispatched to him yet. flows.md SHARED / Notifications: "Anything on
+  record?" -> no.
+
+  THE BODY NAMES THE THREE THINGS THAT WILL ARRIVE, and it names them in his words - job
+  offers (OE-6), payouts (RJ-O3), ratings (EJ-3). voice.md's empty rule wants why it is
+  empty plus one way out; naming what fills it is the honest version of "why" on a screen
+  whose emptiness is temporary by design.
+
+  FIND JOBS IS wallet-empty's OWN EXIT, reused rather than rewritten - the same operator,
+  the same door, the same three words. A8's rule (one phrasing per request) applies to
+  strings, and this is that rule kept.
+
+  NO DEAD-END: the back chevron returns to Jobs and the green CTA goes to the same place
+  with intent. The mark is the neutral .dr-mark (--media / --slate, 5.51:1) - nothing is
+  wrong here.
+-->
+<link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Notifications (operator) &#183; empty</h1>
+    <p class="sub">Operator O-2 (cold start) &#183; state: <b>empty</b> &#183; file: operator-notifications-empty.html</p>
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-notifications.html">base</a>
+      <a href="operator-notifications-empty.html" class="cur" aria-current="page">empty</a>
+    </nav>
+    <div class="flow"><b>flows.md:</b> Notifications &#8594; <span class="cur">Anything on record? &#8594; no</span> &#8594; one way out.<br><b>Exit:</b> <b>Find jobs</b> &#8594; Jobs, or the back chevron.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Empty block</b> &#9656; mark &#183; why &#183; one way out</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="operator-listings.html" aria-label="Back to Jobs"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Notifications</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Notifications <span class="dr-label__act">&#9656; nothing sent yet &#183; one way out</span></p>
+      <section aria-label="Notifications">
+        <div class="dr-msg" role="status">
+          <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.4a5.9 5.9 0 0 0-5.9 5.9c0 4.1-1.5 5.3-1.5 5.3h14.8s-1.5-1.2-1.5-5.3A5.9 5.9 0 0 0 12 3.4Z"/><path d="M10.1 18a2.1 2.1 0 0 0 3.8 0"/></svg></span>
+          <span class="dr-msg__title">No notifications yet</span>
+          <p class="dr-msg__body">Nothing has been sent to you yet. Job offers, payouts and ratings land here.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="operator-listings.html">Find jobs</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>

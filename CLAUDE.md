@@ -204,9 +204,12 @@ Sources: `sitemap.md`, `flows.md`, `ia.html`
 **Location:** `wireframes/`. A **grayscale, clickable wireframe prototype** — the step-2 deliverable of the
 working process. It proves **structure, hierarchy, zones and flow**, never looks.
 
-**Scope (built):** **120 HTML pages** — 117 screen-and-state pages plus 3 option partials; **50 screens**
-once states and the `-aerial` / `-inspection` per-service variants are collapsed (re-counted 2026-08-21 with
-the three `earning-details` records, `concept.md` rev 163; 117 pages / 49 screens before them) — covering **every** screen in `sitemap.md` `§6.0/§6.1/§6.2` plus each
+**Scope (built):** **131 HTML pages** — 128 screen-and-state pages plus 3 option partials; **52 screens**
+once states and the `-aerial` / `-inspection` per-service variants are collapsed (re-counted 2026-09-01 with
+the two `notifications` alert logs, `concept.md` rev 211. **The 120 / 117 / 50 this line carried had already
+drifted before that pass** — the directory held 126 pages when it was read, so the page figures are
+re-counted off the filesystem rather than incremented, and every one of the 128 is registered in the
+shell's `TREE` with no orphan either way, verified) — covering **every** screen in `sitemap.md` `§6.0/§6.1/§6.2` plus each
 screen's real states (`empty` / `error` / `loading` / success) from the `_screens.md` matrix — both main happy
 paths (Client MJ-1, Operator MJ-2 + RJ-O3) and every recovery, onboarding and EJ-2 resolution branch. Screens
 are wired into a walkable prototype along `flows.md`; a shared shell (`_wf-shell.js`) injects a left screen-map

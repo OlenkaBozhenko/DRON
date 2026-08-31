@@ -303,6 +303,56 @@ flowchart TD
 
 ---
 
+## SHARED · Notifications — the alert log (both personas, added 2026-08-31)
+
+> **When** the app has told me something while I was not looking at it, **I want** to find that message
+> again and act on it, **so that** an alert I missed is not a thing I have lost. — serves `RJ-C2` on the
+> client side (`CE-4` push) and `RJ-O1` / `RJ-O3` / `EJ-3` on the operator's (`OE-6` dispatch, payout,
+> rating).
+
+```mermaid
+flowchart TD
+  H["Home — Order (client) / Jobs (operator), the bell in the top bar"] --> D0{"Unread alerts?"}
+  D0 -->|"yes — the bell carries the count"| N
+  D0 -->|"no — the bell carries no count"| N
+  N["Notifications — the alert log"] --> L(["Loading: fetching the log"]):::state
+  L --> D1{"Anything on record?"}
+  D1 -->|no| E1(["Empty: nothing has been sent yet"]):::state
+  E1 --> W1["One way out — Browse services (client) / Find jobs (operator)"]
+  D1 -->|yes| LIST["The list — New, then Earlier"]
+  LIST --> D2{"Tap a row?"}
+  D2 -->|"no — read and leave"| BK(["Back to Home; the rows are now read"]):::done
+  D2 -->|yes| TGT["The screen that alert names"]
+  TGT --> OK(["Success: the alert is acted on where it lives"]):::done
+  classDef state fill:#1c1813,stroke:#c4943a,color:#e8d9b8;
+  classDef dead fill:#241313,stroke:#e05252,color:#f0d6d6;
+  classDef done fill:#10241a,stroke:#4a9e6b,color:#d6f0e0;
+```
+
+**Decisions**
+- *Unread alerts?* — the branch changes the **bell**, not the screen: with unread the control carries a
+  count, without it the control is the same control with no count. Both branches open the same log, which is
+  why the two arrows meet. There is no "unread-only" view.
+- *Tap a row?* — every row is a **doorway into a screen that already exists**; the log holds no content of
+  its own. Client: `tracking` · `delivery` · `inspection-report` · `rate` · `order-details`. Operator:
+  `job-offer` · `wallet` · `operator-verification` · `ratings`. A row that led nowhere would be a
+  notification the product could not act on, which is the thing this screen exists to end.
+- *Read and leave* is a real outcome, not a dead-end — the back chevron is on the bar and the alerts are
+  marked read by having been shown. Nothing is lost by leaving.
+
+**States & dead-ends**
+- `Loading` — fetching the log; drawn on the client (`notifications-loading.html`), matching
+  `order-history`, the client's other fetched list.
+- `Empty` — nothing sent yet; drawn on both sides, each with one way out (no dead-end).
+- `Error` — **traced and not drawn**, deliberately and on precedent: a log fetch can fail exactly as
+  `order-history`'s can, and that screen has carried `empty` + `loading` and no error page since it was
+  built. Recorded here so the gap reads as a decision to match a neighbour, not as an oversight. Drawing
+  both is one word.
+- **The operator gets no `loading` page**, on the same kind of precedent from his own side: `wallet` and
+  `ratings`, the operator's two list screens, are each `base` + `empty`. Also hers to change.
+
+---
+
 ## RELATED · RJ-C5 — Repeat without starting over
 
 > **When** I want the same service again, **I want** to get back to "confirmed" in a single action, **so that** the second time is easier than the first. — `jtbd.md` RJ-C5

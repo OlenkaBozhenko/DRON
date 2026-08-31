@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe &#183; Notifications (client) &#183; loading</title>
+<!--
+  SCREEN (_screens.md C10): "Notifications - the alert log", CLIENT, LOADING.
+  The log is fetched, so it has a real loading state - the same one order-history has,
+  and this page is built to that page's pattern rather than to a new one.
+
+  THE SENTENCE NAMES WHAT IS LOADING (voice.md, loading rule): "Loading your
+  notifications." - .dr-status-line, the plain-language sibling of .dr-hint, and the
+  voice order-history-loading uses for the same job. role="status" so the sentence is
+  announced; the skeleton beneath it is aria-hidden, because a screen reader has
+  nothing to gain from three grey bars.
+
+  THE SKELETON IS THE ROW IT REPLACES. .dr-choice's own box holding .dr-sk-head's
+  title and date bars - no new skeleton class - and the three are staggered by the
+  kit's existing .dr-sk-d1 / .dr-sk-d2 delays so the pulse does not march in step.
+
+  NO GREEN, AND NOTHING TO TAP. A loading screen has no control to make primary; the
+  back chevron is the only way out and it is enough (no dead-end).
+-->
+<link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Notifications (client) &#183; loading</h1>
+    <p class="sub">Client &#183; RJ-C2 &#183; state: <b>loading</b> &#183; file: notifications-loading.html</p>
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="notifications.html">base</a>
+      <a href="notifications-empty.html">empty</a>
+      <a href="notifications-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <div class="flow"><b>flows.md:</b> Home &#8594; <span class="cur">Loading: fetching the log</span> &#8594; anything on record?<br><b>Exit:</b> resolves to base or empty; the back chevron is live throughout.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Status line</b> &#9656; names what is loading</p><p><b>Skeleton</b> &#9656; three rows, staggered pulse</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="listings.html" aria-label="Back to Home"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Notifications</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Notifications <span class="dr-label__act">&#9656; fetching&#8230;</span></p>
+      <p class="dr-status-line" role="status">Loading your notifications&#8230;</p>
+      <section aria-label="Notifications are loading">
+        <ul class="dr-list dr-list--snug" style="list-style:none;" aria-hidden="true">
+          <li>
+            <div class="dr-choice">
+              <span class="dr-sk-head">
+                <span class="dr-sk-line dr-sk-title" style="width:68%"></span>
+                <span class="dr-sk-line dr-sk-date" style="width:44%"></span>
+              </span>
+            </div>
+          </li>
+          <li class="dr-sk-d1">
+            <div class="dr-choice">
+              <span class="dr-sk-head">
+                <span class="dr-sk-line dr-sk-title" style="width:54%"></span>
+                <span class="dr-sk-line dr-sk-date" style="width:38%"></span>
+              </span>
+            </div>
+          </li>
+          <li class="dr-sk-d2">
+            <div class="dr-choice">
+              <span class="dr-sk-head">
+                <span class="dr-sk-line dr-sk-title" style="width:61%"></span>
+                <span class="dr-sk-line dr-sk-date" style="width:41%"></span>
+              </span>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>

@@ -55,7 +55,8 @@
       { name: "Support / dispute",                     file: "support.html",            states: [] },
       { name: "Report an issue",                       file: "report-issue.html",       states: [["empty","report-issue-empty.html"],["loading","report-issue-loading.html"]] },
       { name: "Resolution outcome",                    file: "resolution.html",         states: [] },
-      { name: "Contact human support",                 file: "contact-support.html",    states: [["call support","call-support.html"],["error","contact-support-error.html"]] }
+      { name: "Contact human support",                 file: "contact-support.html",    states: [["call support","call-support.html"],["error","contact-support-error.html"]] },
+      { name: "Notifications (the alert log)",          file: "notifications.html",      states: [["empty","notifications-empty.html"],["loading","notifications-loading.html"]] }
     ]},
     { title: "Operator · step 8 (activation · standing)", screens: [
       { name: "Operator landing / fee terms",          file: "operator-fee-terms.html", states: [] },
@@ -64,7 +65,8 @@
       { name: "Profile setup",                         file: "operator-profile-setup.html", states: [] },
       { name: "Dispute / client issue",                file: "operator-dispute.html",   states: [["error","operator-dispute-error.html"]] },
       { name: "Ratings dashboard",                     file: "ratings.html",            states: [["empty","ratings-empty.html"]] },
-      { name: "Operator account (profile · role switch)", file: "operator-account.html", states: [["photo","operator-account-photo.html"]] }
+      { name: "Operator account (profile · role switch)", file: "operator-account.html", states: [["photo","operator-account-photo.html"]] },
+      { name: "Notifications (the alert log)",          file: "operator-notifications.html", states: [["empty","operator-notifications-empty.html"]] }
     ]}
   ];
 
@@ -229,6 +231,13 @@
     + '.wf-frame header.topbar .wf-lang{ display:none; flex:none; margin-left:auto;'
     + '  height:32px; border:0; border-radius:var(--r-btn,6px); overflow:hidden; }'
     + 'html[data-wf-viewport="desktop"] .wf-frame header.topbar .wf-lang{ display:inline-flex; }'
+    /* The bell (.dr-bell, 2026-08-31) pulls margin-right:-10px so its icon lands
+       back on the 16px gutter — .dr-back's rule, mirrored. In the DESKTOP preview
+       this tool-chrome toggle stands after it and the two boxes overlapped by 2px.
+       The product bar has no language toggle at all (language lives on account-edit),
+       so this is chrome fixing chrome: 12 here leaves a real 10px gap between the two
+       targets and touches nothing the product renders. */
+    + '.wf-frame header.topbar .dr-bell ~ .wf-lang{ margin-left:12px; }'
     + '.wf-frame header.topbar .wf-lang button{ position:relative; display:flex;'
     + '  align-items:center; justify-content:center; min-width:36px; padding:0 8px;'
     + '  border:0; cursor:pointer; font:inherit; font-size:12px; font-weight:600;'

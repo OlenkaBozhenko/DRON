@@ -245,7 +245,8 @@ CLIENT
 │
 ├─ The wait — after payment, before arrival
 │   ├─ Order confirmed / operator revealed .... (RJ-C2 + RJ-C1)      [ C-1 ]
-│   └─ Live tracking & ETA ................... (RJ-C2 · C-05)        [ C-1 ]
+│   ├─ Live tracking & ETA ................... (RJ-C2 · C-05)        [ C-1 ]
+│   └─ Notifications — the alert log .......... (RJ-C2 · CE-4)        [ C-1 · C-2 ]
 │
 ├─ The outcome — proof of work
 │   ├─ Delivery confirmation ................. (RJ-C4)               [ C-1 ]
@@ -302,7 +303,8 @@ OPERATOR
 │   └─ Profile setup ......................... (RJ-C1 consumes · EJ-3)         [ O-1 · O-2 ]
 │
 ├─ Ready to work — the hub
-│   └─ Operator home + status toggle ......... (O-02 · MJ-2)                   [ O-1 · O-2 ]
+│   ├─ Operator home + status toggle ......... (O-02 · MJ-2)                   [ O-1 · O-2 ]
+│   └─ Notifications — the alert log ......... (OE-6 · RJ-O3 · EJ-3)           [ O-1 · O-2 ]
 │
 ├─ Taking a job — offer → decision
 │   ├─ Incoming job offer / accept-decline ... (RJ-O1 · O-01)                  [ O-1 · O-2 ]
@@ -325,6 +327,40 @@ OPERATOR
 ✗ SRM map view of nearby requests (O-07) ..... [ORPHANED] — RJ-O1 already closed by the job
                                                offer/notification; removal candidate (jtbd.md §Removal)
 ```
+
+---
+
+**Notifications — the alert log (added 2026-08-31, the designer's call).** *"Add on the right side of
+the header on the home page a notification for both client and operator modes, and add wireframes by
+clicking this button with notification history."* This is the **second** half of a hole `§7.4` opened on
+2026-08-24 and only half-closed. That pass gave the product a place to **set** what it sends; it still had
+nowhere to **see** what it had sent. `CE-4` has carried push since the first cut (*"Operator is 2 min
+away"*) and `OE-6` is a dispatch alert — both are messages that arrive on a lock screen and are gone. The
+alert log is where they are kept.
+
+**It is one screen per persona, not one shared screen.** The two sides hold different records and speak
+different words (`voice.md`: the client's **order**, the operator's **job**), so this follows `§6.1` / `§6.2`
+the way every other screen does, and the cross-persona note below is unaffected — the role fork is still the
+only screen the two share.
+
+**No traceability column is added, and that is the same reading `§7.4` took for the settings card.** The log
+re-presents alerts already counted under `CE-4` (client) and `OE-6` / `OE-5` (operator); it originates no
+record and closes no job on its own. Its rows are doorways into screens that already hold columns — `TRK`,
+`DLV`, `RPT`, `RAT` on the client side, `OFF`, `WAL`, `VER`, `RTG` on the operator's. So `§8` is untouched.
+
+**Depth is unchanged at `§7.3`.** The bell is a control **on** Home, so the log stands at **1 tap** from Home
+for both personas — but it is not on the main-job path, and `§7.3` measures the ordering path. Reading an
+alert and then tapping into the order it names is a **branch off** MJ-1, the same standing the place pick has.
+
+**Two names, and they are now told apart.** *Notifications* meant the preferences card on `account-edit`
+until today. The `§7.4` Deep row is therefore renamed **Notification settings** — the same object, said
+unambiguously — and **Notifications** is the log. The screen titles follow: the card is a card inside *Edit
+profile*, the log is a screen called **Notifications**.
+
+**The bell is on Home only, and that is her instruction taken literally rather than generalised.** The
+client's other three tab roots (`order-history`, `support`, `account`) and the operator's (`wallet`,
+`ratings`, `operator-account`) do **not** carry it. Whether it should ride every tab root is open and hers;
+nothing here decides it.
 
 ---
 
@@ -443,7 +479,7 @@ What is visible always, what surfaces inside a flow, and what is a rare, buried 
 |---|---|---|
 | **Global** (always visible) | Order (Home) · Activity · Help · Account | Jobs (Home) + status toggle · Earnings · Ratings · Account |
 | **Contextual** (appears in the flow) | Order setup + price · Payment · Order confirmed / operator revealed · Live tracking · Result · Rate the order · Share · Time-slot pick (C-2 only) · Report an issue · Resolution outcome · Contact human support | Job offer / accept-decline · Job brief · Checklist · Result upload / close · Withdraw to card / bank · Dispute / client issue |
-| **Deep** (rare actions) | First-use explainer · Client onboarding (re-run on switch) · Switch role (Client ⇄ Operator) · Edit profile / payment methods / saved addresses · Dispute detail (inside Help) · Language · **Notifications** | Operator onboarding (re-run on switch) · Switch role (Operator ⇄ Client) · Verification / document re-upload · Profile edit · Fee terms (pre-signup) · Insurance details · **Notifications** (offers and payout only — `OE-6` dispatch alerts are not switchable) |
+| **Deep** (rare actions) | First-use explainer · Client onboarding (re-run on switch) · Switch role (Client ⇄ Operator) · Edit profile / payment methods / saved addresses · Dispute detail (inside Help) · Language · **Notification settings** | Operator onboarding (re-run on switch) · Switch role (Operator ⇄ Client) · Verification / document re-upload · Profile edit · Fee terms (pre-signup) · Insurance details · **Notification settings** (offers and payout only — `OE-6` dispatch alerts are not switchable) |
 
 **Reasoning.** Global = the doorways to the three job-clusters + account utility, nothing more
 (adding a 5th global item would dilute the main job's prominence). Contextual = screens that only
@@ -460,6 +496,13 @@ dispatch notification, so the product has always **sent** notifications and neve
 job the client owns if the client can turn it off. It is a **preferences facet of `CE-1`**, not a
 screen of its own: the frame is a fourth titled card on `wireframes/account-edit.html`, the way
 `account-photo` is a sub-view and not a `§6.1` entry. No traceability column moves.
+
+**The alert LOG is a different object from the settings card, and it sits in a different tier
+(2026-08-31).** The card is Deep — rare, buried, changed once. The log is reached by a **persistent control
+on the home screen** of both personas, which is the Contextual tier's shape without its condition: it does
+not wait for an order to exist. It is recorded here as **Home-bar utility → Deep screen** — the control is
+always on Home, the screen it opens is not in primary navigation and takes no tab. A fifth tab was considered
+and refused on this section's own rule: a fifth global item dilutes the main job.
 
 **Two things are deliberately not decided here.** ① **The channel `[?]`** — MVP is mobile web with
 no native app, and on iOS Safari web push works only after the site is added to the Home Screen.

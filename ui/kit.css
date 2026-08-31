@@ -643,6 +643,51 @@ header.dr-topbar,
 .dr-back:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: 0;
   border-radius: var(--r-btn); }
 
+/* THE NOTIFICATION BELL — the trailing twin of .dr-back (2026-08-31, the
+   designer: "add on the right side of the header on the home page a
+   notification for both client and operator modes"). It stands on the two HOME
+   bars only: listings (client) and operator-listings (operator).
+
+   EVERY VALUE IS .dr-back's, MIRRORED, AND NOT ONE NUMBER IS NEW. 44 x 44 box,
+   the 22px glyph rung (--ic-22, the tab bar's), transparent ground, --ink,
+   the same focus ring, and margin-RIGHT: -10px where the back control spends
+   margin-left — so the icon's own edge lands back on the 16px gutter and the
+   bar's optical right edge does not move. `HIG · 44pt target` ✓ at 100%;
+   `WCAG 2.5.8` ✓ at 1.83x the 24px minimum.
+
+   IT IS NOT .dr-btn--icon, AND THE BAR IS THE REASON. That component is a
+   --btn2 DISC, and no navigation bar in this product has ever held one: every
+   trailing bar control built so far is unfilled — Save / Clear all
+   (.dr-btn--text, .dr-btn--tertiary) and the leading chevron (.dr-back).
+   `HIG · Navigation bars` puts a glyph or a word in the bar, not a filled
+   shape. A grey disc beside the flat DRON wordmark would have been the first
+   of its kind in the chrome, so the bar's own precedent wins.
+
+   `WCAG 4.1.2` is carried by the link's aria-label, which SPEAKS THE COUNT
+   ("Notifications, 3 unread"), because the badge below is aria-hidden. That is
+   listings-filtered's own reading of the same pair, unchanged.
+
+   THE GLYPH IS NOT A STATE CARRIER AND DOES NOT NEED 3:1 — but it clears it
+   anyway: --ink #1A1A1A on --page #F7F5F2 is 15.99:1 against the 3:1
+   `WCAG 1.4.11` asks of a graphical object. */
+.dr-bell{
+  position: relative;                    /* the count badge anchors on this box */
+  flex: none;
+  width: 44px; height: 44px; margin-right: -10px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--ink); background: transparent; border: 0; cursor: pointer;
+  text-decoration: none; -webkit-tap-highlight-color: transparent;
+}
+.dr-bell .dr-ic{ width: var(--ic-22); height: var(--ic-22); }
+.dr-bell:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: 0;
+  border-radius: var(--r-btn); }
+/* The badge's own -2/-2 was derived on a 44px CIRCLE, where it lands the pill
+   on the edge at 45°. This box is a square, and -2/-2 would push the pill 2px
+   past the bar's 16px gutter with 4px left to the frame edge. --sp-within (4)
+   instead: the pill overhangs the 22px glyph the way a badge should and still
+   keeps 10px of air to the frame edge. One existing token, no new rung. */
+.dr-bell .dr-count-badge{ top: var(--sp-within); right: var(--sp-within); }
+
 /* The zone gap closed 16 -> 12 on 2026-08-16, the designer's «зроби менші
    відступи між картками», written against contact-support: with the shell's
    annotations off — the way she reads a page — that screen is two cards and

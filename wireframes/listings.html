@@ -229,6 +229,31 @@
            listings-filters, not from the nav bar. _conventions.md already said the
            mark stands alone on a listing screen; the bar now matches the rule. -->
       <span class="dr-topbar__spacer"></span>
+      <!-- THE NOTIFICATION BELL (designer, 2026-08-31: "add on the right side of the
+           header on the home page, in front of the DRON button icon, notification for
+           both client and operator modes"). The bar's trailing control, and the whole
+           entrance to the alert log — the screen `sitemap.md §6.1` gained the same day.
+           It stands on HOME only, which is her instruction read literally: the client's
+           other three tab roots do not carry it.
+
+           .dr-bell, not .dr-btn--icon: no navigation bar in this product has ever held
+           a filled disc, and `HIG · Navigation bars` puts a glyph or a word in the bar.
+           Every value is .dr-back's, mirrored — 44 x 44 (`HIG · 44pt` OK at 100%,
+           `WCAG 2.5.8` OK at 1.83x), the 22px glyph rung, --ink on --page at 15.99:1.
+
+           THE COUNT IS SPOKEN, NOT ONLY SHOWN. The pill is aria-hidden and the link's
+           own name carries the number - "Notifications, 3 unread" - so `WCAG 4.1.2` is
+           met and `WCAG 1.4.1 Use of Color` is never engaged: nothing here depends on
+           seeing green. That is listings-filtered's reading of the same pair, unchanged.
+
+           THE GREEN BUDGET. The pill is 18 x 18 = 324px2 - 0.107% of the 375 x 812
+           frame, against sec.0's ~5% ceiling. It is a STATUS MARK, not the screen's one
+           green control: this screen has no green control at all (the group tab carries
+           --green-wash, a tint, at 1.085:1 on the page and uncounted), which is exactly
+           where listings-filtered's filter count already stands. -->
+      <a class="dr-bell" href="notifications.html" aria-label="Notifications, 3 unread">
+        <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4a5.9 5.9 0 0 0-5.9 5.9c0 4.1-1.5 5.3-1.5 5.3h14.8s-1.5-1.2-1.5-5.3A5.9 5.9 0 0 0 12 3.4Z"/><path d="M10.1 18a2.1 2.1 0 0 0 3.8 0"/></svg><span class="dr-count-badge" aria-hidden="true">3</span>
+      </a>
     </header>
 
     <!-- NAV · service categories (filter)

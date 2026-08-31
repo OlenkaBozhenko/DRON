@@ -12,7 +12,7 @@ colors:
   line: "#D9D5CE"
   green: "#9BCF4A"
   on-green: "#1A1A1A"
-  green-soft: "#A9D563"
+  green-soft: "#B7DA7C"
   green-wash: "#E7F0D2"
   warn: "#E4A11B"
   warn-ink: "#7A5200"
@@ -284,17 +284,21 @@ and applied to nothing — they are recorded rungs, not live values (`var(--warn
   rule stands unqualified and that row has left the below-3:1 table.
 - **`--on-green`** (`#1A1A1A`) — the only colour permitted on a green fill. Never white: white on
   `#9BCF4A` is 1.84:1.
-- **`--green-soft`** (`#A9D563`) — the accent one step lighter, added 2026-08-24 on the designer's
-  word (*«зроби бекграйнд трохи світлішим зеленим»*). **Derived, not picked:** `--green` **85%** +
-  `--page` **15%** in sRGB, so the hue is the accent's own and the 15% that lifts it is the ground
-  the card sits on. Charcoal on it is **10.26:1**, *better* than the 9.46:1 of the fill it replaces;
-  against the page it is **1.56:1** and against the card **1.40:1**, so it is a **fill and not a
-  tint** — it counts against the green budget exactly as `--green` does. `--slate` is **4.25:1** on
-  it and still fails `WCAG 1.4.3` at 13px, so `--on-green` stays compulsory. **It is 1.08:1 against
-  `--green` itself**, which is the one thing it may never do: two greens this close cannot sit side
-  by side and read as two surfaces, so it is a *replacement* fill on one card and never a second
-  tone beside the first. **One spend:** `.dr-balance--banner` on `ratings`. `wallet`'s
-  `.dr-balance--card` keeps `--green`.
+- **`--green-soft`** (`#B7DA7C`) — the accent **two** steps lighter, added 2026-08-24 on the
+  designer's word (*«зроби бекграйнд трохи світлішим зеленим»*, then *«ще трохи світліший»*).
+  **Derived, not picked:** `--green` **70%** + `--page` **30%** in sRGB, so the hue is the accent's
+  own and the 30% that lifts it is the ground the card sits on. **The token was retuned, not
+  replaced** — it stood at `#A9D563` (85/15) for one revision; the name, the spend and the
+  construction never moved, only the mix. Charcoal on it is **11.05:1**, better again than the
+  10.26:1 it replaces and the 9.46:1 before that; against the page it is **1.45:1** and against the
+  card **1.30:1**, so it is a **fill and not a tint** — it counts against the green budget exactly
+  as `--green` does, and stands **1.33:1** clear of `--green-wash`. **`--slate` crosses the line
+  here at 4.57:1** — it now clears `WCAG 1.4.3`'s 4.5 at 13px, by **1.6%** — **and is still not
+  used**: a margin of a hundredth is not a margin, and `--on-green` is the palette's rule on any
+  green ground regardless. **It is 1.17:1 against `--green` itself**, which is the one thing it may
+  never do: two greens this close cannot sit side by side and read as two surfaces, so it is a
+  *replacement* fill on one card and never a second tone beside the first. **One spend:**
+  `.dr-balance--banner` on `ratings`. `wallet`'s `.dr-balance--card` keeps `--green`.
 - **`--green-wash`** (`#E7F0D2`) — the one green tint. Carries the selected tab, the verified
   badge, and the delivered / waiting milestone marks. Charcoal on it is **14.75:1**. Against the
   page it is only **1.085:1**, so the tint is a hue signal, not a luminance one — anything relying
@@ -1974,13 +1978,16 @@ figure on a filled card. They were never the same shape. They were briefly not t
 either: rev 193 took `ratings` to `--warn` on the designer's word (*«колір бекграунду зроби
 жовтим»*), and **rev 198 took it back to `--green` the same day** (*«chamge the background colour on
 green»*). **The split in the declaration survives the reunion, and now has a second reason:** the
-banner's fill carries `assets/marks/rating-pattern.png` on top of the token, and the balance card
-must never have it — so the two fills stay written separately even while they hold the same hex.
+banner's fill carries `assets/marks/rating-pattern.png` on top of the token (a second artwork under the
+same name since rev 207), and the balance card carried none — **until rev 208 gave it one of its own,
+`wallet-pattern.png`, on her word; the paragraph below records that reversal.** So the split now
+carries two reasons rather than one: the two cards hold different pictures **and** different greens —
+`--green` `#9BCF4A` on `wallet`, `--green-soft` `#B7DA7C` on `ratings` since rev 201.
 **What is still declared once for the pair is the BOX** — padding and radius; the fill and its ink
 sit on each modifier, because these are values that must be able to differ rather than one value
 written twice.
 
-**The pattern (`.dr-balance--banner`, 2026-08-24, rev 198)** — *«display puttern on this card»*,
+**The pattern (`.dr-balance--banner`, 2026-08-24, rev 198 — the artwork itself was REPLACED at rev 207, 2026-08-31; the figures for the picture now in the page are in the rev 207 paragraph below, the box and the crop are unchanged)** — *«display puttern on this card»*,
 against Figma `YlGWlsWWjKSCxhONMzGG2F` node `121:4`. A transparent PNG of 3D stars, sparkles, arcs
 and rising bars clustered in two opposite corners around an empty middle, laid over the green as
 `center/cover no-repeat`. **The green under it is `--green-soft` `#A9D563`** — the banner returned to
@@ -1990,10 +1997,10 @@ the product, and that is a reversal of §0's «imagery is real, never decoration
 and recorded, not a gap** — rev 194 refused a background texture on exactly that rule four
 revisions earlier. **Measured on the built frame with the text hidden and the background scanned
 pixel by pixel: every glyph box — arc, figure and caption — stands on exactly ONE background
-colour** — `rgb(155,207,74)` when this was measured, **`rgb(169,213,99)` since the fill went to
-`--green-soft` hours later**, and flat either way, **so the worst contrast under any glyph is
-`--on-green` at 10.26:1** where `WCAG 1.4.3` asks 4.5 — cleared **2.28×**, up from the 2.10× the
-solid `--green` gave and the 1.73× of the yellow before it. The artwork
+colour** — `rgb(155,207,74)` when this was measured, **`rgb(183,218,124)` since `--green-soft`
+took the fill and was retuned the same evening**, and flat every time, **so the worst contrast under
+any glyph is `--on-green` at 11.05:1** where `WCAG 1.4.3` asks 4.5 — cleared **2.46×**, up from the
+2.28× of the first lightening, the 2.10× the solid `--green` gave and the 1.73× of the yellow. The artwork
 paints **8.31%** of the card and none of it under type. The mark states nothing — no text, value or
 status is in the picture — so `WCAG 1.1.1` and `1.4.1` are answered where they always were, by
 **4.8** standing in charcoal, and `1.4.11` does not bind on a graphic carrying no meaning. **Two
@@ -2017,18 +2024,77 @@ floor. At 200% text the line wraps to two and the banner grows **121.5 → 180**
 overrun — `WCAG 1.4.4` ✓. Both are
 `--r-card` **16** and **flat**: no shadow, they sit in the page.
 
-**And the banner's green goes up one step in light the same evening (rev 201)** — *«зроби бекграйнд
-трохи світлішим зеленим»*. The fill is **`--green-soft` `#A9D563`**, a new palette member declared as
-`--green` **85%** + `--page` **15%**; the picture, the box, the crop and the composition are untouched.
-**The ink improves:** `--on-green` goes **9.46:1 → 10.26:1**, `WCAG 1.4.3` cleared **2.28×** for the
-22px figure and the 13px line. **The one thing it costs is the picture's voice.**
-`rating-pattern.png` bakes its own greens (`#AACE4A` … `#C8E75B`) and cannot follow a token, so a
-lighter ground closes on them: composited pixel by pixel over both fills, the artwork's mean
-luminance contrast against its ground falls **0.0861 → 0.0730 — 15% softer**; its charcoal star is
-untouched (0.883 → 0.892). The decoration recedes rather than disappears, which on a decoration is a
-direction and not a defect, and one token reverses it. **The green budget does not move** — same
-**41,431.5px²**, **13.61%** of the frame against §0's ~5%, and `--green-soft` at 1.56:1 on the page is
-counted as a fill, not excused as a tint. `wallet` is untouched.
+**And the banner's green goes up in light the same evening — twice (revs 200 and 201)** — *«зроби
+бекграйнд трохи світлішим зеленим»*, then, on the built lighter card, *«ще трохи світліший»*. The
+fill is **`--green-soft`**, a new palette member: `#A9D563` at `--green` **85%** + `--page` **15%**
+for one revision, **`#B7DA7C` at 70/30** now. **One token, two values** — the name, the spend and the
+construction never moved. The picture, the box, the crop and the composition are untouched throughout.
+**The ink improves at each step:** `--on-green` goes **9.46:1 → 10.26:1 → 11.05:1**, `WCAG 1.4.3`
+cleared **2.46×** for the 22px figure and the 13px line. **`--slate` crosses 4.5 at the second step**
+(3.91 → 4.25 → **4.57:1**) and is still not used — a 1.6% margin is not a margin, and `--on-green` is
+the rule on any green ground.
+**What the two steps do to the picture is a curve, not a slope, and it is measured.**
+`rating-pattern.png` bakes its own greens (`#AACE4A` … `#C8E75B`) and cannot follow a token. Composited
+pixel by pixel over all three fills, the artwork's mean luminance contrast against its ground runs
+**0.0861 → 0.0730 → 0.0827**: the first step closed the ground on the artwork's own greens and quieted
+it 15%; the second passed them, so the pattern reads dark-on-light again and comes back **13% louder**,
+landing **4% under** where the solid green had it. Its charcoal star is untouched throughout
+(0.883 → 0.892 → 0.897). **The green budget does not move** — same **41,431.5px²**, **13.61%** of the
+frame against §0's ~5%, and `--green-soft` at 1.45:1 on the page is counted as a fill, not excused as a
+tint. `wallet` is untouched.
+
+**And on 2026-08-31 the picture itself is replaced, and the declaration does not move (rev 207)** — *«change the puttern
+image on the background on this»*. **No CSS and no markup changed.** The asset is named for its **role**, not its version,
+so `.dr-balance--banner` still reads `background: var(--green-soft) url(../assets/marks/thumbs/rating-pattern.png)
+center/cover no-repeat` and a new picture is a new file under the old name. Master **1672 × 941**, served **682 × 384**
+— **2.00×** the 341 × 191.9 the cover crop actually renders; the old master is recoverable at
+`git show 7a17e09:assets/marks/rating-pattern.png`. **Same composition, different voice, and that is the headline because it
+runs against the two revisions above:** two opposite corners around an empty middle as before, but the top-left comet trail is
+now a **saturated green ribbon** where it was a white fade, and **four charcoal marks join the one that was already there**.
+Composited pixel by pixel over `--green-soft` by those revisions' own method, the artwork's mean |ΔL| against its ground goes
+**0.0764 → 0.1726 — 126% louder** — and the share of it standing more than **1.10:1** off the fill goes **34.4% → 69.0%**.
+**So rev 198's reading that the picture is «a watermark, not a second surface» is retired, not restated:** at a mean **1.62:1**
+this is legible artwork on a fill. Median artwork green `#BBD340` (**1.07:1** on the fill), darkest `#345B08` (**5.04:1**),
+where the old artwork ran `#B7DA4A` / `#415B10`. **The green count does not move** — the artwork paints no area the fill did not
+already own — so the card is the same **41,431.5px² · 13.61%** of a 375 × 812 frame, rev 166's departure standing.
+**The binding number did not move either, measured the same way:** at 4× supersample the **arc box and the figure box each
+contain exactly ONE colour, `rgb(183,218,124)`**, the caption box two that differ by a single unit — so the worst `--on-green`
+pair under any glyph is **10.94:1** where `WCAG 1.4.3` asks 4.5 at 22px and 13px, cleared **2.43×** — **and the arc box is flat
+now where the old artwork ran a hairline through it**. Artwork coverage of the card **7.07% → 9.37%**, still **0%** of it under
+type; the empty middle band survives the swap. `WCAG 1.1.1`, `1.4.1` and `1.4.11` are answered exactly where they were.
+**Two costs, measured and reported rather than trimmed:** (1) the charcoal marks **double — 98 → 210 css px², and one blob
+becomes five**: a 4-point sparkle at x 56–63 **cut by the card's top edge** (y 0–15), dots on the left arc at x 6–11 y 9–13 and
+x 37–42 y 35–39, a mark at x 70–79 y 11–14, and the old charcoal star at x 289–302 y 84–97 — rev 198's «stray sixth star» is
+now **five** marks in the arc's own ink, on a card whose subject is that five stars mean the rating; (2) the crop bites the same
+and shows more of it — the same **1.777:1** artwork in the same **2.807:1** card still drops **36.7%** of the height, but the
+ribbon runs off the left edge mid-stroke instead of fading out, and the nearest artwork pixel to the caption box closes from
+**9.09 to 5.40 css px**. Neither engages a criterion; both are hers. **One stale figure was found and corrected while measuring:**
+the rule's ink comment read **10.26:1**, the 85/15 number, three revisions after the token went to 70/30 — it is **11.05:1**.
+
+**And the balance card takes a picture of its own the same day (rev 208)** — *«put by analogi this puttern on the
+available withdrow amaunt»*, Figma node `136:11`. **This reverses the sentence the split above was written around** — rev 198
+said the banner carries a picture the balance card must never have, and rev 207 repeated it. Reversed on her word and
+recorded, not overwritten. **The split still earns its keep:** the two now carry **different pictures on different greens** —
+`--green` `#9BCF4A` on `wallet`, `--green-soft` `#B7DA7C` on `ratings`. **Its own artwork:**
+`assets/marks/wallet-pattern.png`, master **1672 × 941**, served **682 × 384** (**2.00×** the 341 × 191.9 the crop renders).
+Coins, sparkles, a diamond and one arc **in the bottom-right corner only** (source x 915–1671, y 325–940, the left 55% empty),
+which is what lets it survive a **row**: plate, figure and caption hold the left, the picture takes the right end.
+`background: var(--green) url(../assets/marks/thumbs/wallet-pattern.png) center/cover no-repeat`. **No markup changed**, and
+`wallet` is the only page that spends this modifier — `wallet-empty` and `withdraw` keep the bare `.dr-balance` and take no
+picture. **Measured at 4× over `--green`: the glyph-plate box, the figure box and the caption box each contain exactly ONE
+colour, `rgb(155,207,74)`**, so `--on-green` under every glyph is **9.46:1** flat against `WCAG 1.4.3`'s 4.5 at 20px and 12px
+— **2.10×**, the number this card has had since rev 163. Artwork at **x 223.8–340.8**; leftmost pixel on the figure's row
+**x 278**, on the caption's row **x 252.8**, against a caption ending near 190. Coverage **7.10%** of the card, **0%** under
+type; the 44 plate is opaque `--green-wash` and keeps its **14.75:1**. **It is not a watermark and never pretended to be:**
+mean |ΔL| **0.2625**, mean ratio **2.234:1**, **91.9%** of it over 1.10:1 off the fill — against 0.1726 / 1.62:1 for the
+rating banner. Median artwork green `#C7D647`, **1.15:1** on `--green`. **The green count does not move** — no area the fill
+did not already own — so `wallet` stands where rev 163 left it, **8.82%** of the frame, her call, keep as built.
+**Two costs, reported not trimmed:** (1) **the coin carries a Bitcoin mark** — 457 css px² of charcoal at x 285.8–334.8,
+y 29–83.8, the largest reading clearly as **₿** beside a figure that says **₴3,240**, in a product that takes Visa,
+Mastercard, Apple Pay and Google Pay and has no crypto in it. No WCAG or HIG criterion is engaged; it is a **`voice.md` P2/P4**
+objection, reported and hers to settle. (2) **The crop bites harder than the banner's** — the same 1.777:1 artwork in a
+**4.060:1** card against the banner's 2.807:1, so `cover` drops **56.2%** of the height (visible band y 265–676 of 941) and the
+coin stack's base is cut by the card's bottom edge, the artwork running to y 83.8 of 84.
 
 **The star arc — one image since 2026-08-24 (rev 194).** *«постав цей патерн як зображння на бекграунт»*.
 The eleven inline SVGs that drew this row — five track stars, five clipped fill stars, and the clip that
@@ -2581,6 +2647,83 @@ drop the 26 KB base64 blob out of the HTML.
   product screen.
 - **Don't** compensate an icon's `stroke-width` to hold a constant rendered weight — declare 1.7 on
   the 24-grid and change the *size* instead.
+
+### The notification bell (`.dr-bell`)
+
+**`listings`, `operator-listings`** — the two **home** screens, and nowhere else. Added 2026-08-31
+on the designer's word (*"add on the right side of the header on the home page, in front of the
+DRON button icon, notification for both client and operator modes"*), together with the alert log
+it opens (`wireframes/notifications.html`, `wireframes/operator-notifications.html`).
+
+**It is `.dr-back` mirrored, and not one number in it is new.** `44 × 44` box, the `--ic-22` glyph
+rung (the tab bar's, so no size was cut), transparent ground, `--ink` glyph, the same
+`:focus-visible` ring at `--focus-w` on `--r-btn`, and `margin-right: -10px` where the back control
+spends `margin-left` — which lands the icon's own edge back on the 16px gutter, measured **17.8px
+from the frame edge** against the chevron's mirrored 17.8 on the left. The bar's optical edge does
+not move.
+
+| Measured | Value | Criterion | Result |
+|---|---|---|---|
+| Target | `44 × 44` | `HIG · 44pt target` | ✓ **100%** |
+| Target | `44 × 44` | `WCAG 2.5.8 Target Size (Minimum)` | ✓ **1.83×** the 24px floor |
+| Glyph | `--ink` `#1A1A1A` on `--page` `#F7F5F2` | `WCAG 1.4.11 Non-text Contrast` | ✓ **15.99:1** against 3:1 |
+| Count digit | `--on-green` on `--green` | `WCAG 1.4.3` | ✓ **9.46:1** |
+| Name | `aria-label="Notifications, 3 unread"` | `WCAG 4.1.2 Name, Role, Value` | ✓ the count is spoken |
+| Colour dependence | none — the count is a numeral and a name | `WCAG 1.4.1 Use of Color` | ✓ not engaged |
+
+**Why it is not `.dr-btn--icon`, which would have cost no new CSS at all.** That component is a
+`--btn2` **disc**, and **no navigation bar in this product has ever held one** — counted on the
+build: every trailing bar control is unfilled (`.dr-btn--text` *Save*, `.dr-btn--tertiary` *Cancel*
+/ *Clear all*) and the one leading control is the bare `.dr-back` chevron. `HIG · Navigation bars`
+puts a glyph or a word in the bar, not a filled shape. A grey disc beside the flat DRON wordmark
+would have been the first of its kind in the chrome, so the bar's own precedent won and one class
+entered the kit.
+
+**The count badge is `.dr-count-badge`, unchanged, with one offset overridden.** The pill's own
+`-2px / -2px` was derived on a 44px **circle**, where it lands the badge on the edge at 45°. This
+box is a **square**, and `-2` would push the pill 2px past the bar's 16px gutter with 4px left to
+the frame edge. `.dr-bell .dr-count-badge` takes `--sp-within` (**4**) instead: the pill overhangs
+the 22px glyph by **7px** on each of two sides — the badge's normal reading — and keeps **10.8px**
+of air to the frame edge. One existing token, no new rung. The pill was drawn on exactly one page
+before this (`listings-filtered`'s filter count); it now stands on **three**.
+
+**Green budget.** The pill is `18 × 18` = **324px²** — **0.106%** of the 375 × 812 frame, against
+§0's **~5%** ceiling. It is a **status mark**, not a green *control*: on `listings` it is the only
+solid green on the screen (measured **0.106%** total, the group tab carrying `--green-wash`, a tint
+at 1.085:1 on the page, which §0 does not count), and on `operator-listings` it joins a screen that
+already measures **4.15%** visible green across two `Accept` buttons and the availability dot — the
+bell adds **0.11pp** and changes neither the count nor the ceiling.
+
+**On the operator's bar it stands after the availability badge**, at the trailing edge.
+`HIG · Navigation bars` gives that edge to the bar's **controls**, and the badge is not one —
+`operator-listings` already records that it is not tappable and owes no 44pt target. Gap between
+them, measured: **8px**. The reverse order conforms equally and is one swap.
+
+### The alert log's list row (`.dr-choice` on `notifications`)
+
+**No new component.** The log's rows are `.dr-choice` — the kit's tappable list row — with the
+`__title` / `__desc` pair `role-select` uses. Measured on the build: row **78px** tall
+(`HIG · 44pt` ✓ **177%**, `WCAG 2.5.8` ✓ **3.25×**), `--card` ground at `--r-card` **16px**, title
+17/600 `--ink` on `--card` **14.37:1**, description 13 `--slate` on `--card` **5.95:1**.
+
+**`__desc` is spent here under rev 209's own rule.** That revision made the description optional —
+*"a choice card is a TITLE, and it takes a description only where the destination is not
+self-evident from the words"*. Which order an alert belongs to, and when it arrived, are not in the
+title and cannot be; the second line is the row's proof (`voice.md` **P2**), not decoration.
+
+**The group heading is `.dr-sect`, and this is its first spend.** The rung was cut on 2026-08-15
+for `account-edit`'s Documents zone and then **declared and applied on 0 of 80 pages** — DESIGN.md
+and `ui/kit.css` both recorded it as open and hers. **New** / **Earlier** land it: 13/600 `--slate`
+on `--page`, **6.62:1**, written as `<h2>` so `WCAG 1.3.1` gets the grouping programmatically.
+
+**Unread is carried by words, not by a hue.** The two group names are the unread signal, so
+`WCAG 1.4.1 Use of Color` is not engaged anywhere on the screen. A green dot per unread row was the
+alternative; it conforms too (it would still need the same text somewhere), and the heading was
+chosen because it also **sorts**, which a dot does not.
+
+**Spacing is the kit's own ratio.** Measured: **8** within a group (`.dr-list--snug`), **12**
+between them (`.dr-main`'s zone gap) — siblings closer than strangers at **1.5:1**, the exact
+reading `--sp-list-snug`'s note in `ui/kit.css` was written to hold.
 
 ## Sources
 

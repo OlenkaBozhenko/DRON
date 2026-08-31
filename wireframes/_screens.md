@@ -981,6 +981,7 @@ the screen still has no dead-end, with two named ways out instead of three.
 | C7 | **Report an issue** | `EJ-2` | *EJ-2*: "result not as expected" → evidence? → review | **Empty** ✓ (no evidence — weaker claim, manual review) · **Loading** ✓ (issue under review) | `report-issue.html`, `report-issue-empty.html`, `report-issue-loading.html` |
 | C8 | **Resolution outcome** | `EJ-2` | *EJ-2*: review → Resolution? (refund / free re-do / human) | base only (shows the outcome; branches are links, not states) | `resolution.html` |
 | C9 | **Contact human support** | `EJ-2` | *EJ-2*: safety/trust or unresolved → agent | **Error** ✓ (unresolved with agent → escalation queue) · **sub-view** `call-support` — the voice channel to the same agent (base only: the connected call; **Minimise** and **End call** both return here) | `contact-support.html`, `contact-support-error.html`, `call-support.html` |
+| C10 | **Notifications — the alert log** | `RJ-C2` (`CE-4` push) | *SHARED · Notifications*: Home → the bell in the top bar → the log → the screen an alert names | **Empty** ✓ (nothing sent yet → Browse services) · **Loading** ✓ (fetching the log, matching `order-history`) · **Error** — traced, not drawn: the same fetch failure `order-history` has never drawn either (`flows.md`) | `notifications.html`, `notifications-empty.html`, `notifications-loading.html` |
 
 **`order-details` is three files, one per service — not three states.** Added 2026-08-16 on the designer's
 word: «у мене є три різні сторінки have already made orders де є доставка, огляд криші та фото — так от вони
@@ -1104,6 +1105,7 @@ shape as `account-photo` under S2 and `chat` / `call` under §9.
 | O5 | **Dispute / client issue (operator side)** | `EJ-2` operator side · `OE-13` | *MJ-2 main*: client disputes → payment held pending EJ-2 | **Error** ✓ (payment held pending resolution) | `operator-dispute.html`, `operator-dispute-error.html` |
 | O6 | **Ratings dashboard** | `EJ-3` · `O-06` | *EJ-3*: home → Ratings → has ratings? | **Empty** ✓ (no ratings yet — cold-start O-2; auto-dispatch keeps feeding jobs) | `ratings.html`, `ratings-empty.html` |
 | O7 | **Operator account / profile** | `§7.4` operator utility + role switch | *Account tab*: operator taps Account → own account (mode dropdown Operator ⇄ Client) | base + **photo** sub-view (change the profile photo — take a photo, choose a picture, delete; the same modal `account-photo` is, so no dead-end — Cancel / Save → Operator account, and no back chevron) | `operator-account.html`, `operator-account-photo.html` |
+| O8 | **Notifications — the alert log** | `RJ-O1` (`OE-6` dispatch) · `RJ-O3` (paid) · `EJ-3` (rating) | *SHARED · Notifications*: Jobs → the bell in the top bar → the log → the screen an alert names | **Empty** ✓ (nothing sent yet → Find jobs) · **Loading** — not drawn, on his own side's precedent: `wallet` and `ratings`, the operator's two list screens, are each base + empty · **Error** — traced, not drawn (`flows.md`) | `operator-notifications.html`, `operator-notifications-empty.html` |
 
 **`operator-account-photo.html` is a sub-view of O7, not a new sitemap screen** — added 2026-08-21 on the
 designer's word: «додай для оператора біля бейджу з рейтингом редагувати фото і додай wireframes як у клієнта
@@ -1115,6 +1117,29 @@ loading state, and an empty avatar is the base. **What differs is whose face and
 under the picture says the **client** sees it, where the client's says the **operator** does, because that is
 the person on the other side of each order. `sitemap.md §7.4` still lists one operator Account screen; the
 file is a state of it, listed in the `Files` column above rather than given a row of its own.
+
+**C10 / O8 — the alert log, added 2026-08-31 on the designer's word:** *«Add on the right side of the header
+on the home page, in front of the DRON button icon, “notification” for both client and operator modes. And add
+wireframes by clicking this button with notification history.»* Two screens, one per persona, plus their states.
+
+**It is a screen, not a sub-view, and the difference is that it has its own entrance.** `account-photo` and
+`order-details` are sub-views because they are reached from inside one parent screen and are that parent's
+record seen closer. The log is reached from a **control in the home screen's navigation bar**, holds records
+from every part of the product, and exits into eight different screens. `sitemap.md §6.1 / §6.2` carries it as
+a screen for that reason; `§8`'s traceability matrix does **not** gain a column, because the log originates no
+record — every row is a doorway into a screen that already holds one.
+
+**Two of the four states are deliberately absent and both absences are precedent, not omission.** Client
+`error` and operator `loading` / `error` are traced in `flows.md` and not drawn: the client's list neighbour
+(`order-history`) carries `empty` + `loading` and no error, and the operator's list neighbours (`wallet`,
+`ratings`) carry `empty` alone. Matching the neighbour is the reason; drawing the missing three is one word
+and this note is where that decision would be recorded.
+
+**The unread state is carried by words, not by a colour.** The list is grouped **New** / **Earlier** under
+`.dr-sect` headings rather than by a coloured dot on each row — `WCAG 1.4.1 Use of Color` is then not engaged
+at all, since nothing depends on seeing a hue. The bell's count badge is the one place the count is a number,
+and it is `aria-hidden` with the count spoken by the control's own name (`WCAG 4.1.2`), exactly as
+`listings-filtered`'s filter count already is.
 
 **Not a new screen.** *Service catalogue* (`sitemap.md §6.1`) stays **merged into `listings.html`** per
 `sitemap.md §7.3` (Home ⊃ Catalogue) — no separate file, by design. Recorded here so its absence is explicit.
