@@ -943,9 +943,13 @@ place, and she chose the card («third card, inline»), then the control («make
   already has the right control in `OE-4` (Available / Busy / Offline) on operator home. An operator's
   preferences are offers and payout only.
 - **The first permission ask is not here, and no frame invents it.** `HIG · Requesting permission` wants the
-  prompt in context with its reason stated; settings is where it is changed afterwards. The card carries one
-  `.dr-note` stating the fact — *Push works only after you allow it on this device* — and the priming moment
-  in the order flow stays an open decision (`sitemap.md §7.4`).
+  prompt in context with its reason stated; settings is where it is changed afterwards, and the priming moment
+  in the order flow stays an open decision (`sitemap.md §7.4`). **The card's one `.dr-note` — *Push works only
+  after you allow it on this device* — was cut on the designer's word 2026-08-31 (rev 210).** No criterion
+  moved: the note was named by no `aria-describedby` (the group takes `#acc-notif-sub`), and each switch keeps
+  its own visible `<label>`, so `WCAG 3.3.2` stands on the rows. What went with it is the only line in the
+  product saying the OS, not the switch, has the last word on Push. The card is five rows and nothing under
+  them.
 - **Still no state pages.** A settings form has none; the card does not change that.
 
 **`account-photo.html` is a sub-view, not a new sitemap screen.** Added 2026-08-16 on the designer's word —

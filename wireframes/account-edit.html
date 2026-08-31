@@ -165,9 +165,16 @@
 
           THE FIRST ASK IS NOT HERE. `HIG · Requesting permission` wants the
           prompt in context with its reason stated, not cold in settings; this
-          card is where it is CHANGED afterwards. The note under the rows states
-          that fact and nothing more, and the priming moment in the order flow
-          stays an open decision in `sitemap.md §7.4` rather than a guessed frame.
+          card is where it is CHANGED afterwards. The priming moment in the order
+          flow stays an open decision in `sitemap.md §7.4` rather than a guessed
+          frame. THE NOTE THAT SAID SO IS GONE, on the designer's word 2026-08-31
+          (rev 210): the card carried one `.dr-note` — *Push works only after you
+          allow it on this device* — and it was cut. No criterion moves: the note
+          was named by no `aria-describedby` (the group is described by
+          `#acc-notif-sub`), each switch keeps its own visible `<label>` so
+          `WCAG 3.3.2` stands on the rows, and `HIG · Requesting permission`
+          governs where the ASK lives, not whether settings restates it. What
+          goes with it is the only line saying the OS holds the last word.
 
           THE SWITCH: a real <input type="checkbox" role="switch"> inside the
           <label> that IS the row, so the state reads "on"/"off" rather than
@@ -207,7 +214,6 @@
             <span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span>
           </label>
         </div>
-        <p class="dr-note dr-note--flush">Push works only after you allow it on this device.</p>
         </div>
 
         <!--
