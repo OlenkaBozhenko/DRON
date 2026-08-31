@@ -81,7 +81,7 @@
         "role": "tertiary",
         "displayName": "Warn",
         "canonical": "#E4A11B",
-        "usage": "the rating's yellow, in both places it is drawn: the filled star (.dr-star[aria-pressed=true]) and the operator's rating pill on his photograph (rev 190), --ink on it at 7.80:1. 1.84:1 on the card and 2.05:1 on the page, so the fill never carries a mark on its own — the text on it does."
+        "usage": "the rating's yellow, and since 2026-08-27 (rev 204) it is drawn in one place again: the filled star (.dr-star[aria-pressed=true], .dr-stars). Its second spend — the operator's rating pill on his photograph (rev 190), --ink on it at 7.80:1 — was deleted on the designer's word; the declaration survives on .dr-profile__rating and is spent on no page. 1.84:1 on the card and 2.05:1 on the page, so the fill never carries a mark on its own — the text on it does."
       },
       "warn-ink": {
         "role": "tertiary",

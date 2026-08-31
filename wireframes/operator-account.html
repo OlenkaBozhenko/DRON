@@ -62,90 +62,71 @@
              against its ground. (The role line that gained by it too is gone —
              see below.) -->
         <div class="dr-profile">
-          <!-- TWO MARKS ON ONE BOTTOM EDGE, AND ONLY ONE OF THEM IS A CONTROL
-               (2026-08-21: «додай для оператора біля бейджу з рейтингом
-               редагувати фото»).
+          <!-- ONE MARK ON THAT EDGE AGAIN, AND THE HEAD STOPS BEING A SPECIAL
+               CASE (2026-08-27: «delete rating badge»).
 
-               THE RATING RIDES ON THE PHOTOGRAPH, AND IT IS YELLOW NOW
-               (2026-08-24: «зроби кнопку редагувати фото зеленою біля бейджу з
-               рейтингом а бейдж з рейтингом жовтого кольору»). The model puts a
-               small pill on the circle's bottom edge; ours carries the number
-               that pill is for. --warn FILL with --ink charcoal on it at
-               7.80:1, `WCAG 1.4.3` wanting 4.5 for this 11px line — 1.73x it.
-               The yellow is the palette's own and the RATING's own: it is the
-               colour a filled star has worn since 2026-08-03, so nothing new
-               enters the system. The star stays charcoal, because the accent is
-               a fill and never the ink. The 2px --page ring is the cut-out edge
-               .dr-avatar-edit__badge already uses — a border, not a shadow.
+               WHAT LEAVES IS THE PILL AND THE WRAPPER THAT EXISTED FOR IT.
+               `.dr-profile__rating` — `--warn` fill under `--ink` at 7.80:1,
+               56 x 24, hung on the circle's bottom centre line, reading
+               `Rating 4.9 ★` — is deleted from the one page that carried it.
+               The `<span class="dr-profile__photo">` around the anchor goes with
+               it: it was never a wrapper for the photograph, it was the
+               positioning context TWO marks needed to share one edge. With one
+               mark left, the mark's own `.dr-avatar-edit` is that context, and
+               the head collapses to the client's single element — the same
+               `<a class="dr-profile__photo dr-avatar-edit">` `account` has
+               carried since rev 182. THE STRUCTURE IS NOT REBUILT, IT IS THE
+               ONE THE OTHER HEAD ALREADY HAS.
 
-               THE PENCIL JOINS IT ON THAT EDGE AND TOOK THE GREEN THE PILL GAVE
-               UP — .dr-avatar-edit, the client's own class, the same 20px disc,
-               now --green under an --on-green glyph at 9.46:1 (`WCAG 1.4.11`
-               wants 3 and gets 3.15x), pointing at the operator's own copy of
-               the photo screen. Nothing new is drawn and no new CSS value is
-               written: the client's green-pencil rule simply widens from her
-               head to both. THE TWO MARKS ARE NOW ONE PAIR ON THAT EDGE
-               (2026-08-24: «кнопку іконку постав біля самого бейджа з правої
-               сторони, висота має бути однакова, відступ між ними пару пікселів
-               2-4»). They had been two marks that happened to share an edge —
-               15.54 apart, 5.39 of height between them, and the disc riding 8
-               above the pill's centre line. Built as a pair they measure
-               **24 high each, 0 of height difference, 0 of vertical offset and
-               a 3.00 gap** — the middle of her 2-4, and `--sp-3`, a rung the
-               scale already spends. 24 is the 8-grid step between the pill's
-               arithmetic 25.39 and the disc's 20, and it is `WCAG 2.5.8`'s
-               target floor, so the pencil now clears that criterion on its own
-               box as well as through the 120 photograph it sits on. The gap is
-               exact rather than approximate because the disc is placed FROM the
-               pill's declared width (`--sz-rating-w` 56) instead of from the
-               photo's corner. THE PAIR SITS 13.5 RIGHT OF THE PHOTO'S CENTRE,
-               which is what «постав біля самого бейджа» asks for literally —
-               the pill holds the centre it had and the pencil hangs off its
-               right. Centring the pair instead is one value (`--mark-shift`
-               0 -> -13.5px); both frames were rendered and PUT TO HER, and she
-               kept it as built (2026-08-24). Neither WCAG nor HIG governs where
-               a pair of marks sits horizontally, so both readings conform —
-               a decision, not a defect, and not to be re-proposed.
-               They separate by HUE, not luminance — --warn on --green is 1.21:1,
-               which nothing here rests on: each is cut out by its own --page
-               ring, they never touch, and neither states its meaning in its
-               colour (`WCAG 1.4.1`).
+               THE A11Y REASON FOR THE SIBLING LEAVES WITH THE SIBLING. The pill
+               sat OUTSIDE the link because `aria-label="Change profile photo"`
+               replaces the anchor's content for the accessible name, and a
+               rating nested inside would have stopped being announced at all
+               (`WCAG 1.3.1`, `4.1.2`). Nothing needs to stay outside the link
+               now, so nothing needs to be outside it.
 
-               IT IS THE SCREEN'S SECOND GREEN CONTROL, WHICH G-5 COUNTS AND THE
-               DESIGNER OVERRODE. concept.md G-5: one solid-green control per
-               screen, the primary CTA and nothing else clickable — and the
-               floating Edit profile below is that CTA. G-5's OPERATIVE clause
-               is the pixel one, and it improves on rev 187's own measurements of
-               this frame: the FAB is 6,285px2 (152.29 x 44) and untouched, the
-               pill that left green was 1,153px2, the disc that entered it is
-               201px2, so the screen's solid green goes 7,438 -> 6,486px2,
-               2.44pct -> 2.13pct of 304,500, under a ~5pct ceiling. And it
-               CONCENTRATES: the primary control is now 96.9pct of the screen's
-               green, up from 84.5pct, deeper inside the 81-100pct band CLAUDE.md
-               records for a CTA. The disc is the other 3.1pct and is smaller
-               than either status mark G-5 already admits beside the one control
-               (live status disc 400px2, walked node 484px2). The two greens
-               stand a column apart with a different name each. Recorded as a
-               decision, not corrected as a defect.
+               NO CRITERION IS ENGAGED BY THE REMOVAL, and that is stated rather
+               than assumed. The pill labelled no control (`4.1.2`), described no
+               group (`1.3.1`), instructed no input (`3.3.2`) and was never a
+               target — `HIG · 44pt` and `WCAG 2.5.8` are carried by the 120px
+               photograph, which is unchanged. Neither standard requires a fact
+               to be present; both govern how a present fact is drawn.
 
-               THE LINK WRAPS THE PICTURE, NOT THE DISC — `HIG · 44pt target` is
-               cleared at 273pct (120 x 120) and `WCAG 2.5.8` at 5x, where the
-               disc alone would be 20 and would have to be padded out to a
-               target it does not look like.
+               AND THE NUMBER IS NOT ORPHANED. 4.9 is the whole subject of
+               `ratings.html`, the operator's own tab in `Jobs · Earnings ·
+               Ratings · Account`, and it still rides Ivan's `.dr-op` card in
+               `tracking` and `order-confirmed`, where the CLIENT reads it —
+               which is the reader a rating was ever for. His own account head is
+               not where an operator learns his score.
 
-               AND THE RATING STAYS OUTSIDE THAT LINK, deliberately. The <a>
-               carries aria-label="Change profile photo", which REPLACES its
-               content for the accessible name — so a rating nested inside it
-               would stop being announced at all. Sibling, not child: the pill
-               keeps its own `Rating 4.9 ★` reading (`WCAG 1.3.1`, `4.1.2`), and
-               the anchor keeps a name that says what it does. -->
-          <span class="dr-profile__photo">
-            <a class="dr-avatar-edit" href="operator-account-photo.html" aria-label="Change profile photo">
-              <span class="dr-avatar-lg"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
-              <span class="dr-avatar-edit__badge" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg></span>
-            </a>
-            <span class="dr-profile__rating"><span class="sr-only">Rating </span>4.9 ★</span>
-          </span>
+               THE PENCIL GOES BACK TO ITS OWN PLACE AND NOT ONE LINE OF CSS IS
+               WRITTEN. Every rule that put the disc beside the pill is scoped
+               `:has(.dr-profile__rating)` and every rule that puts it in the
+               corner is scoped `:not(:has(.dr-profile__rating))` — the kit has
+               known both heads since rev 199, so deleting the pill flips this
+               one to the client's arrangement by itself: the 44 disc leaves the
+               bottom centre line for the circle's bottom-right corner (−2/−2),
+               keeps `--sz-head-mark` 44 and its `--ic-22` glyph, and the photo's
+               `margin-bottom` falls from the 22 that paid back the deeper mark's
+               hang to the 0 the client's rule declares. That last number is the
+               reason the wrapper had to go: `.dr-profile__photo.dr-avatar-edit`
+               zeroes the margin only on an element carrying BOTH classes, so a
+               span left around the anchor would have kept the base `--sp-13` and
+               opened a 13px gap in a column that spends 8.
+
+               THE GREEN DOES NOT MOVE, because what left was yellow. The screen
+               still spends solid green on the floating `Edit profile` and on this
+               disc, in the proportion rev 199 measured. `--warn` loses one of its
+               three spends and keeps the two that are stars.
+
+               `.dr-profile__rating`, `--sz-rating-w`, `--sz-photo-mark` and the
+               whole `:has(.dr-profile__rating)` block stay DECLARED in the kit
+               and are now spent on no page — the terms `.dr-chip--sm` and
+               `.dr-profile__role` are already kept on. -->
+          <a class="dr-profile__photo dr-avatar-edit" href="operator-account-photo.html" aria-label="Change profile photo">
+            <span class="dr-avatar-lg"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
+            <span class="dr-avatar-edit__badge" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg></span>
+          </a>
           <span class="dr-profile__name dr-display">Ivan K.</span>
           <!-- THE ROLE LINE IS CUT (2026-08-21, «видали це з обох варіантів client
                and operator»), and it took `· 214 jobs` with it. It read

@@ -158,9 +158,9 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | share | share-empty.html | Invite not sent (empty state) | state message | You didn't send it yet | Invite not sent yet |
 | support | support.html | Support intro | heading | How can we help? | What happened? |
 | support | support.html | Support intro | body | Tell us what went wrong with your order and we'll get it put right. | Pick the issue with your order and we'll route it to the right fix. |
-| support | support.html | Triage list — didn't arrive | body | We'll re-dispatch a new operator now — or refund you, no questions. | We'll send a new operator now, or refund your order. |
+| support | support.html | Triage list — didn't arrive | body | We'll re-dispatch a new operator now — or refund you, no questions. | We'll send a new operator now, or refund your order. — **cut from the build 2026-08-31 (rev 209):** the designer took the description line off all three triage cards (*«Delete subtitle with the descriptions on these cards»*). The rewrite stands as history; the string no longer ships. |
 | support | support.html | Triage list — quality | button | Result wasn't what I expected | The photo or report wasn't what I expected |
-| support | support.html | Triage list — safety | body | Talk to a human straight away — support is online 24/7. | Contact support straight away — online 24/7. |
+| support | support.html | Triage list — safety | body | Talk to a human straight away — support is online 24/7. | Contact support straight away — online 24/7. — **cut from the build 2026-08-31 (rev 209)** with the other two triage descriptions. The rewrite stands as history; the string no longer ships. The *«online 24/7»* fact is not lost — the Human-fallback note under the CTA still carries it. |
 | support | support.html | Human fallback | button | Talk to a human | Contact support |
 | switch-role | switch-role.html | Topbar | button | ‹ Back | ‹ Back to Account |
 | switch-role | switch-role.html | Confirm / Cancel (actionbar) | button | Confirm & switch | Switch to Operator |
@@ -1780,11 +1780,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | support | — | What happened? | Heading |  |
 | support | — | Pick the issue with your order and we'll route it to the right fix. | Body |  |
 | support | Triage list | My order didn't arrive / no-show | Body |  |
-| support | Triage list | We'll send a new operator now, or refund your order. | Body |  |
 | support | Triage list | The photo or report wasn't what I expected | Body |  |
-| support | Triage list | Report the issue with a photo or note and we'll review it. | Body |  |
 | support | Triage list | Safety or trust concern | Body |  |
-| support | Triage list | Contact support straight away — online 24/7. | Body |  |
 | support | Human fallback | Contact support | Button |  |
 | support | Human fallback | Can't find your issue above? A support agent is available any time, day or night. | Body |  |
 | support | Human fallback | Order | Button |  |

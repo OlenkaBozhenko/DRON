@@ -1465,24 +1465,34 @@
           <span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span>
         </label>
       </div>
-      <span class="st">on 36 &times; 22 &middot; off &middot; the row is the 44pt target</span>
+      <span class="st">on 36 &times; 22 &middot; off &middot; no stroke &middot; the row is the 44pt target</span>
     </div>
   </div>
   <div class="notes">
-    <p><b>The ring stays charcoal when it fills</b>, and that is the one place this parts from the
-       checked box above. It follows <code>.dr-range</code>'s thumb, which is the one of the two
-       precedents decided <i>on</i> <code>1.4.11</code>: as a ring <code>--green</code> on
-       <code>--card</code> is 1.52:1 and fails; as a fill behind an <code>--ink</code> ring the
-       boundary carries at <b>14.37:1</b>. So both states clear 3:1 &mdash; ring <b>14.37:1</b>
-       (4.79&times;), knob inside the green <b>9.46:1</b> (3.15&times;).</p>
+    <p><b>There is no ring &mdash; it came off 2026-08-27 (rev 203)</b> on the designer's
+       <i>&laquo;remove stroke on the toggle&raquo;</i>, and the off track took <code>--btn2</code>
+       in the same move: off had been <b>transparent</b>, so deleting the 1.7px
+       <code>--box-edge</code> alone deletes the track with it and leaves a knob adrift on the
+       card. <b>HIG gives the switch no ring at all</b> &mdash; a filled track, no stroke, a knob
+       that fills its height &mdash; so this moves <i>toward</i> the platform control where the
+       36 &times; 22 size moves away from it. <b>What carries <code>1.4.11</code> moves from the
+       edge to the knob:</b> <b>11.54:1</b> off (3.85&times; the 3:1 floor, down from the ring's
+       4.79&times;) and <b>9.46:1</b> on (3.15&times;, unmoved). The track is not the identifier
+       and is not measured as one &mdash; 1.25:1 (<code>--btn2</code>) and 1.52:1
+       (<code>--green</code>) against the card, the reading already shipped on
+       <code>.dr-upload</code>'s 1.08:1 well and <code>.dr-avatar-edit__badge</code>'s 1.25:1
+       disc. It had followed <code>.dr-range</code>'s thumb, which keeps that sentence &mdash;
+       as a ring <code>--green</code> on <code>--card</code> is 1.52:1 and fails; as a fill behind
+       an <code>--ink</code> ring the boundary carries at <b>14.37:1</b> &mdash; because a bullet
+       on a rail has nothing inside it to fall back on and this has a knob.</p>
     <p><b>One size is declared and nothing else — which is why it is this size.</b>
        <code>--sz-switch</code> <b>36</b> is the width; the height is <code>--sz-node</code> <b>22</b>,
        a rung the ramp already had, so it is borrowed and not invented. <b>Cut from 52 &times; 32 on
        2026-08-27 (rev 202)</b> on the designer's <i>&laquo;make this toggls smaller&raquo;</i>: three
        sizes were put to her with the standards first &mdash; 40 &times; 24 on <code>--sz-box</code>,
        46 &times; 28 on a new rung, 36 &times; 22 on <code>--sz-node</code> &mdash; and she took the
-       smallest that still landed on a rung. The knob is the height less its two borders and two
-       paddings &mdash; <b>14.6</b> &mdash; and the travel is
+       smallest that still landed on a rung. The knob is the height less its two paddings
+       &mdash; <b>18</b>, and 14.6 while the ring was subtracted too &mdash; and the travel is
        <code>--sz-switch &minus; --sz-node</code> = <b>14</b>, what a square knob filling the height
        leaves over. No third number.</p>
     <p><b>iOS ships 51 &times; 31 and HIG gives the switch no other size, so 36 &times; 22 is a

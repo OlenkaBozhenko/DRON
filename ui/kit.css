@@ -56,26 +56,35 @@
   --page:        #F7F5F2;   /* screen ground and every system bar */
   --card:        #ECE9E4;   /* 1.11:1 on the page */
   --media:       #E4E1DA;   /* 1.20:1 on the page — wells, muted chips */
-  --btn2:        #D6D2C9;   /* secondary button, icon action, skeleton bar */
+  --btn2:        #D6D2C9;   /* secondary button, icon action, skeleton bar, switch track (off) */
   --inset:       #F2F0EC;   /* 1.06:1 above the card — a plane inside a card */
   --ink:         #1A1A1A;   /* 15.99:1 on page · 14.37:1 on card */
   --slate:       #5A5751;   /* 6.62:1 on page · 5.95:1 on card · 4.77:1 on btn2 */
   --line:        #D9D5CE;   /* every hairline — 1.21:1 on the card */
   --green:       #9BCF4A;   /* fill only. As a foreground: 1.69:1 / 1.52:1 */
   --on-green:    #1A1A1A;   /* 9.46:1 — the only colour allowed on green */
-  --green-soft:  #A9D563;   /* THE SAME GREEN, ONE STEP LIGHTER (2026-08-24, the designer on the
-                               built ratings banner: «зроби бекграйнд трохи світлішим зеленим»).
-                               DERIVED, NOT PICKED: --green 85% + --page 15% in sRGB — the hue is
-                               the accent's own and the 15% that lifts it is the ground the card
+  --green-soft:  #B7DA7C;   /* THE SAME GREEN, TWO STEPS LIGHTER (2026-08-24, the designer on the
+                               built ratings banner: «зроби бекграйнд трохи світлішим зеленим»,
+                               then, on the built lighter one, «ще трохи світліший»).
+                               DERIVED, NOT PICKED: --green 70% + --page 30% in sRGB — the hue is
+                               the accent's own and the 30% that lifts it is the ground the card
                                already sits on, so a fifth green enters the palette as arithmetic
                                between two members rather than as a value somebody chose by eye.
-                               MEASURED: --on-green on it is 10.26:1, BETTER than the 9.46:1 it
-                               replaces; 1.56:1 on the page and 1.40:1 on the card, so it is still
-                               a saturated FILL — it counts against §0's green budget exactly as
-                               --green does, and it is not a second --green-wash (1.085:1, a tint
-                               the budget does not count). --slate is 4.25:1 on it and still fails
-                               WCAG 1.4.3 at 13px, so --on-green stays compulsory here.
-                               THE ONE THING IT MAY NEVER DO: it is 1.08:1 against --green itself.
+                               THE TOKEN IS RETUNED, NOT REPLACED. It was #A9D563 (85/15) for one
+                               revision; the name, the spend and the construction do not move, only
+                               the mix — one token, two values, the second on her word, and the
+                               first kept here so the walk is legible.
+                               MEASURED: --on-green on it is 11.05:1, BETTER again than the 10.26:1
+                               it replaces and the 9.46:1 before that; 1.45:1 on the page and
+                               1.30:1 on the card, so it is still a saturated FILL — it counts
+                               against §0's green budget exactly as --green does, and it is not a
+                               second --green-wash (1.085:1 on the page, a tint the budget does not
+                               count; this stands 1.33:1 against that wash).
+                               --slate CROSSES THE LINE HERE AND THE RULE STAYS ANYWAY: 4.25:1 at
+                               85/15, 4.57:1 now, so at 13px it clears WCAG 1.4.3's 4.5 — by 1.6%.
+                               A margin that thin is not a margin, and --on-green is the palette's
+                               rule on any green ground besides. The caption keeps saying its ink.
+                               THE ONE THING IT MAY NEVER DO: it is 1.17:1 against --green itself.
                                Two greens this close cannot sit side by side and read as two
                                surfaces — this is a REPLACEMENT fill on one card, never a second
                                tone beside the first.
@@ -1667,9 +1676,19 @@ header.dr-topbar,
 .dr-listing__foot{ display: flex; align-items: center; gap: var(--sp-snug); }
 
 /* ═══ THE CHOICE CARD ═════════════════════════════════════════════════════
-   Navigation, not a picker — both instances are links that leave the screen.
+   Navigation, not a picker — every instance is a link that leaves the screen.
    Approved 2026-08-03 with the values already decided: card ground, 16px
-   radius, a 44pt row by construction, a slate chevron, a keyboard-only ring. */
+   radius, a 44pt row by construction, a keyboard-only ring.
+   THE CHEVRON IS GONE — designer, 2026-08-31, rev 206: «delete arrows from
+   such kinde of cards». `.dr-choice__chev` is deleted, not benched, and it
+   took the eight copies `.dr-listing` had borrowed on the two time-slot
+   screens with it, so the listing card below finally matches the sentence it
+   has carried since 2026-08-03 — "no price row and no chevron". Nothing an
+   assistive tech hears moved: the glyph was `aria-hidden` and the row's name
+   and role have always come from the `<a href>` and the title (`WCAG 4.1.2`).
+   The affordance is the card, not a mark on it; the whole surface is the tap
+   target and is far past `HIG · 44pt`. `.dr-field__chev` is a DIFFERENT
+   component — the picker row's `chevron.forward` — and is untouched. */
 .dr-choice{
   position: relative;
   display: flex; align-items: center; gap: var(--sp-snug);
@@ -1692,7 +1711,17 @@ header.dr-topbar,
   font-size: var(--t-bodysm-size); line-height: var(--t-bodysm-line);
   color: var(--slate);
 }
-.dr-choice__chev{ flex: none; color: var(--slate); display: inline-flex; }
+/* THE DESCRIPTION IS OPTIONAL — designer, 2026-08-31, rev 209: «delete
+   subtitle with the descriptions on these cards», on support's three triage
+   rows. The rule the slot now carries: a choice card is a TITLE, and it takes
+   a description only where the destination is not self-evident from the words.
+   support's titles name the problem in the user's own words and take none;
+   role-select's two name a role whose consequences are not in the words and
+   keep theirs. Unlike __chev at rev 206, the class is NOT deleted — it has two
+   live instances. WCAG 2.4.4: the description sat inside the <a>, so the
+   accessible name is now the title alone, and each title states its own
+   purpose. HIG · 44pt: the smallest row left is 341.26 × 55.8, 9.8× the
+   44 × 44 area. */
 
 /* ═══ THE OPERATOR CARD ═══════════════════════════════════════════════════
    The trust surface. The photograph is a full-height panel on the left edge,
@@ -2774,13 +2803,18 @@ header.dr-topbar,
    is what that clause has always excepted, which is how the checked box has been
    living inside `.dr-picks` since August.
 
-   `WCAG 1.4.11`, MEASURED IN BOTH STATES, AND BOTH CLEAR 3:1.
-     off — knob --ink and ring --ink on the card: 14.37:1, a 4.79x pass.
-     on  — the ring is STILL --ink, so the boundary is the same 14.37:1; the knob
-           reads --on-green inside the green at 9.46:1, a 3.15x pass.
-   The green never has to carry an edge, which is the whole point: as a ring
-   --green on --card is 1.52:1 and would fail. This is why the checked .dr-box's
-   own border-to-green is not copied here — see the note on the checked rule.
+   `WCAG 1.4.11`, MEASURED IN BOTH STATES, AND BOTH CLEAR 3:1 — ON THE KNOB
+   SINCE 2026-08-27, WHEN THE RING CAME OFF (the last block of this note).
+     off — knob --ink inside the --btn2 track: 11.54:1, a 3.85x pass.
+     on  — knob --on-green inside the green:   9.46:1, a 3.15x pass.
+   THE TRACK IS NOT THE IDENTIFIER AND IS NOT MEASURED AS ONE — 1.25:1 (--btn2)
+   and 1.52:1 (--green) against the card, a shape under the mark that carries the
+   control. That is this kit's standing reading and its fourth shipping:
+   `.dr-upload`'s well is 1.08:1 and `.dr-avatar-edit__badge`'s disc is 1.25:1,
+   and in each the GLYPH clears 3:1. It also settles what the ring was there for:
+   green never had to carry an edge — as a ring --green on --card is 1.52:1 and
+   would fail — and now nothing does, so the checked `.dr-box`'s border-to-green
+   is still not copied here.
    `1.4.1` — state is knob POSITION as well as fill, so colour is never alone.
    `1.3.1 / 4.1.2` — a real <input type=checkbox role=switch>, so the state is
    "on"/"off" to a screen reader rather than "checked", and the row is a <label>,
@@ -2799,7 +2833,39 @@ header.dr-topbar,
    platform size, which `CLAUDE.md` says is recorded with its reason rather than
    filed as a defect, since HIG's binding number here is the 44pt target and the
    row holds it. The size is hers: three were put to her with the standards
-   first, and she took the smallest that still landed on a rung. */
+   first, and she took the smallest that still landed on a rung.
+
+   AND THE RING CAME OFF THE SAME DAY (rev 203), on «remove stroke on the
+   toggle» — so the sentence above, "the ring is still --ink at 14.37:1 in both
+   states", is rev 202's record of what the size cut did not touch, not a live
+   claim about the component.
+
+   A FILL TAKES THE STROKE'S PLACE, AND THAT IS WHAT KEEPS THE SHAPE. Off was a
+   TRANSPARENT track drawn only by its 1.7px --box-edge; delete the edge and the
+   track goes with it, leaving a charcoal dot alone on the card. So the off state
+   takes --btn2 — the kit's own control surface, already the secondary button,
+   the icon action and the skeleton bar — and the switch becomes what iOS
+   actually draws: a filled track, no stroke, a knob that fills its height. HIG
+   gives the switch no ring at all, so this moves TOWARD the platform control,
+   the opposite direction to rev 202's size, which is a departure and stays one.
+
+   WHAT CARRIES 1.4.11 MOVES FROM THE EDGE TO THE KNOB, and the margin it costs
+   is stated rather than rounded away: 14.37:1 on the ring becomes 11.54:1 on the
+   knob in the off state — 3.85x the 3:1 floor instead of 4.79x. The on state
+   does not move at all: --on-green inside --green, 9.46:1, 3.15x, the same
+   number it has had since the component was built. `1.4.1` is untouched — state
+   is still POSITION as well as fill, and the fill now differs in BOTH states
+   instead of one of them being empty. AND THE TWO TRACKS SEPARATE BY HUE, NOT
+   LUMINANCE: --btn2 against --green is 1.22:1, measured. If the fill were the
+   only difference this would be the whole of 1.4.1's case against it; the knob
+   travels 14px between the two states, so it is not, and the number is written
+   down rather than left to be discovered.
+
+   FOUR READINGS WERE PUT TO HER WITH THE STANDARDS FIRST and she took this one:
+   the fill; the bare knob with no track at all; a --slate ring at 5.95:1 on the
+   card and 3.92:1 on the green, which would have kept the EDGE carrying the
+   criterion; and keeping it as built. Recorded so the three she did not take are
+   not re-proposed as new. */
 .dr-field--toggle{ cursor: pointer; }
 /* a switch row has no value column, so the label is the ROW and not its key:
    it takes the free width and it takes --ink, where a fact row's key is a fixed
@@ -2809,35 +2875,40 @@ header.dr-topbar,
 .dr-switch{
   flex: none; box-sizing: border-box;
   width: var(--sz-switch); height: var(--sz-node);
-  border: var(--box-edge) solid var(--ink);            /* 14.37:1 on the card */
+  background: var(--btn2);                             /* the off track — 1.25:1 on the card,
+                                                          a shape; the knob carries 1.4.11 */
   border-radius: var(--r-pill);
   display: flex; align-items: center; padding: var(--sp-2);
 }
 /* THE KNOB IS THE TRACK'S INSIDE, NOT A NUMBER OF ITS OWN — height less its two
-   borders and its two paddings, so it cannot drift from them if any of the three
-   ever moves. It lands at 14.6 — at 52 x 32 this arithmetic gave 24.6, which was
-   --sz-box to within its border; at 36 x 22 it lands on no rung at all, and that
-   is correct rather than a loss. The knob was never a declared size: it is what
-   the track leaves over, and a derived number that happened to coincide with a
-   rung was a coincidence, not a rule. Written as arithmetic rather than as
+   paddings, so it cannot drift from them if either ever moves. IT GREW 14.6 -> 18
+   ON 2026-08-27 BECAUSE THE THING IT IS DERIVED FROM MOVED: the ring came off,
+   so the inside stopped subtracting two --box-edge borders it no longer has.
+   Nothing was chosen — the same sentence produced 24.6 at 52 x 32, 14.6 at
+   36 x 22 with a ring, and 18 at 36 x 22 without one. That 18 happens to be
+   --sp-18 and --sz-fchip-x, exactly as 24.6 happened to be --sz-box to within
+   its border; a derived number landing on a rung is a coincidence both times and
+   a rule neither time. Written as arithmetic rather than as
    `align-self: stretch; aspect-ratio: 1`: that shape reads better and depends on
    the aspect-ratio transfer running off a stretched cross size, and a component
    in her frames should not rest on a resolution order. */
 .dr-switch__knob{
-  width:  calc(var(--sz-node) - var(--box-edge) * 2 - var(--sp-2) * 2);
-  height: calc(var(--sz-node) - var(--box-edge) * 2 - var(--sp-2) * 2);
+  width:  calc(var(--sz-node) - var(--sp-2) * 2);
+  height: calc(var(--sz-node) - var(--sp-2) * 2);
   flex: none;
   border-radius: var(--r-circle);
-  background: var(--ink);                              /* 14.37:1 on the card */
+  background: var(--ink);                              /* 11.54:1 inside the --btn2 track */
   transition: transform var(--dur-fast) var(--ease-out),
               background var(--dur-fast);
 }
-/* THE RING STAYS CHARCOAL WHEN IT FILLS — this follows `.dr-range`'s thumb, not
-   the checked box's border, and the range is the one of the two that was decided
-   ON this criterion: "as a ring, --green on --card is 1.52:1 and fails 1.4.11's
-   3:1 … as a fill behind a --ink ring the boundary still carries at 14.37:1".
-   Same recipe, same reason, and it costs the switch nothing to be the version
-   that clears 3:1 in BOTH states rather than leaning on the knob in one. */
+/* ONE FILL REPLACES ANOTHER, WHICH IS WHAT THIS RULE IS SINCE THE RING CAME OFF
+   (2026-08-27): --btn2 -> --green, one control surface swapped for the accent,
+   not a colour laid into an empty track. It no longer follows `.dr-range`'s
+   thumb, and the thumb keeps the sentence this rule used to borrow — "as a ring,
+   --green on --card is 1.52:1 and fails 1.4.11's 3:1 … as a fill behind a --ink
+   ring the boundary still carries at 14.37:1". The range is a bullet on a rail
+   with nothing inside it to fall back on; the switch has a knob that reads
+   9.46:1 in this fill. Two components, one criterion, two honest answers. */
 .dr-field--toggle:has(input:checked) .dr-switch{ background: var(--green); }
 /* the travel is the track's width less its height — the knob is square and fills
    the height, so what is left over IS the distance. Derived: no third number. */
@@ -4532,9 +4603,57 @@ header.dr-topbar,
   padding: var(--sp-group) var(--sp-screen);
   border-radius: var(--r-card);
 }
+/* AND ON 2026-08-31 THE BALANCE CARD TAKES A PICTURE TOO, WHICH REVERSES THE
+   SENTENCE THIS BLOCK WAS WRITTEN AROUND (the designer, on the built wallet:
+   «put by analogi this puttern on the available withdrow amaunt», with her own
+   Figma node `136:11`). Rev 198 split these two declarations and said in as many
+   words that the banner's fill carries a picture the card MUST NEVER HAVE; rev
+   207 repeated it. That is now reversed on her word, and it is recorded as a
+   decision rather than quietly overwritten. The split survives the reversal and
+   still earns its keep: the two cards carry DIFFERENT pictures on DIFFERENT
+   greens — --green here, --green-soft there — so these remain two values that
+   must differ, not one written twice.
+   IT IS ITS OWN ARTWORK, NAMED FOR ITS ROLE: assets/marks/wallet-pattern.png,
+   master 1672 x 941, served 682 x 384 from thumbs/ — 2.00x the 341 x 191.9 the
+   cover crop renders — beside rating-pattern.png in the same folder. Coins,
+   sparkles, a diamond and one thin arc, clustered in the BOTTOM-RIGHT corner
+   only (source x 915..1671, y 325..940) with the left 55% of the canvas empty,
+   which is what makes it survive a card this wide: the row puts the plate, the
+   figure and the caption on the left and the picture has the right end to itself.
+   MEASURED, NOT ASSERTED. Composited at 4x over --green: the glyph plate box,
+   the figure box and the caption box each contain EXACTLY ONE colour,
+   rgb(155,207,74), so --on-green under every glyph is 9.46:1 flat, where
+   WCAG 1.4.3 asks 4.5 at 20px and 12px — cleared 2.10x, the number this card has
+   always had. The artwork lands at x 223.8..340.8; the leftmost pixel of it on
+   the figure's row is x 278 and on the caption's row x 252.8, against a caption
+   that ends near 190. The 44 plate is opaque --green-wash and covers whatever is
+   behind it, so its 14.75:1 is untouched. Artwork paints 7.10% of the card, 0% of
+   it under type.
+   IT IS NOT A WATERMARK AND THIS ONE NEVER PRETENDED TO BE. Mean |dL| against the
+   ground is 0.2625 and the mean ratio 2.234:1, with 91.9% of the artwork standing
+   more than 1.10:1 off the fill — against 0.1726 / 1.62:1 for the rating banner's
+   picture. rev 198's «a watermark, not a second surface» was already retired at
+   rev 207; on this card it would never have been sayable. The GREEN COUNT is
+   unchanged all the same — the picture paints no area the fill did not already
+   own — so wallet stands where rev 163 left it, 8.82% of the frame with two green
+   shapes on a screen the ~5% rule gives one, her call, keep as built.
+   TWO COSTS, MEASURED AND PUT TO HER RATHER THAN TRIMMED. (1) THE COIN CARRIES A
+   BITCOIN MARK. The charcoal in this artwork is 457 css px^2 at x 285.8..334.8,
+   y 29..83.8 — the dark coin faces — and the largest of them reads clearly as ₿ at
+   production size. The figure above it is ₴3,240 and the product takes Visa,
+   Mastercard, Apple Pay and Google Pay; there is no crypto anywhere in it. No WCAG
+   or HIG criterion is engaged — the picture is decoration, states nothing, and the
+   accessible text is unchanged — so this is a voice objection under voice.md P2 and
+   P4, reported and not acted on alone. (2) THE CROP BITES MUCH HARDER THAN THE
+   BANNER'S. Same 1.777:1 artwork, but this card is 4.060:1 where the banner is
+   2.807:1, so cover drops 56.2% of the height against the banner's 36.7% — visible
+   source band y 265..676 of 941 — and the coin stack's base is cut by the card's
+   bottom edge, the artwork running to y 83.8 of 84. Both are composition; both are
+   hers. */
 .dr-balance--card{
   flex-direction: row; align-items: center; gap: var(--sp-snug);
-  background: var(--green); color: var(--on-green);            /* 9.46:1 */
+  background: var(--green) url(../assets/marks/thumbs/wallet-pattern.png) center/cover no-repeat;
+  color: var(--on-green);                                      /* 9.46:1 */
 }
 /* AND ON 2026-08-24, HOURS LATER, IT GOES BACK TO GREEN AND TAKES A PICTURE WITH
    IT (the designer, on the built yellow banner: «display puttern on this card
@@ -4562,36 +4681,83 @@ header.dr-topbar,
    WCAG 1.1.1 and 1.4.1 are answered where they always were — by 4.8 standing in
    charcoal under the arc — and 1.4.11 does not bind on a graphic that carries
    no meaning. Remove the file and the card still says everything it says. */
-/* AND THE SAME EVENING THE FILL GOES UP ONE STEP IN LIGHT, WHICH IS A NEW
-   PALETTE MEMBER AND IS NAMED AS ONE (the designer on the built banner:
-   «зроби бекграйнд трохи світлішим зеленим»). --green-soft #A9D563, declared
-   in the palette above as --green 85% + --page 15% — arithmetic between two
-   members the system already holds, in the habit --sz-star-mid and --sz-star-out
-   set for sizes. It is the FIFTH green and that cost is stated plainly rather
-   than hidden inside a rule: the palette had --green, --on-green, --green-wash
-   and --green-ink, and this is one more.
-   THE INK GETS BETTER, NOT WORSE, WHICH IS THE ONLY NUMBER THAT BINDS.
-   --on-green on --green-soft is 10.26:1 where WCAG 1.4.3 asks 4.5 for the 22px
-   figure and the 13px line under it — cleared 2.28x, up from 2.10x on --green
-   and from the 1.73x the yellow gave. Nothing on this card comes closer to a
-   floor than it did an hour ago.
-   THE PICTURE GOES QUIETER AND THAT IS THE ONE THING SHE PAYS. rating-pattern.png
-   bakes its own greens (#AACE4A through #C8E75B) and cannot follow a token, so
-   raising the ground closes on them: composited and measured pixel by pixel over
-   both fills, the artwork's mean luminance contrast against its ground falls
-   0.0861 -> 0.0730, 15% softer. Its charcoal star is unaffected (0.883 -> 0.892).
-   The picture does not disappear — it recedes, which on a decoration is a
-   direction and not a defect, and is hers to reverse in one token.
+/* AND THE SAME EVENING THE FILL GOES UP IN LIGHT — TWICE, WHICH IS A NEW PALETTE
+   MEMBER AND IS NAMED AS ONE (the designer on the built banner: «зроби бекграйнд
+   трохи світлішим зеленим», then, on the built lighter one, «ще трохи світліший»).
+   --green-soft, declared in the palette above; #A9D563 at --green 85% + --page 15%
+   for one revision, #B7DA7C at 70/30 now — arithmetic between two members the
+   system already holds, in the habit --sz-star-mid and --sz-star-out set for
+   sizes. It is the FIFTH green and that cost is stated plainly rather than hidden
+   inside a rule: the palette had --green, --on-green, --green-wash and
+   --green-ink, and this is one more. TWO STEPS SPENT ONE TOKEN, NOT TWO — the
+   name and the spend never moved, only the mix.
+   THE INK GETS BETTER EACH TIME, WHICH IS THE ONLY NUMBER THAT BINDS.
+   --on-green on --green-soft is 11.05:1 where WCAG 1.4.3 asks 4.5 for the 22px
+   figure and the 13px line under it — cleared 2.46x, up from 2.28x at 85/15,
+   2.10x on solid --green and the 1.73x the yellow gave.
+   AND THE PICTURE GETS MOST OF ITS VOICE BACK, WHICH IS NOT WHAT THE FIRST STEP
+   DID. rating-pattern.png bakes its own greens (#AACE4A through #C8E75B) and
+   cannot follow a token, so the artwork's contrast against its ground is a curve
+   with a floor rather than a slope: composited and measured pixel by pixel, mean
+   luminance contrast runs 0.0861 on solid --green -> 0.0730 at 85/15, the ground
+   closing on the artwork's own greens -> 0.0827 now, the ground having passed
+   them and the picture reading dark-on-light again. This step is 13% LOUDER than
+   the last one and lands 4% under where the solid green had it. The charcoal star
+   is unaffected throughout (0.883 -> 0.892 -> 0.897).
    WHAT DOES NOT MOVE: the geometry, the crop, the empty middle band the artwork
    was chosen for, and therefore the reading that every glyph stands on flat fill
    and never on ink. The green BUDGET does not move either — the card is the same
    341 x 121.5 = 41,431.5px^2, 13.61% of a 375 x 812 frame against §0's ~5%, with
-   no green control on the screen to own it. --green-soft is a fill at 1.56:1 on
+   no green control on the screen to own it. --green-soft is a fill at 1.45:1 on
    the page, so it is counted, not excused; the departure is rev 166's, unchanged
    and still hers. */
+/* AND ON 2026-08-31 THE PICTURE ITSELF IS REPLACED — SAME NAME, SAME PATH, SAME
+   DECLARATION (the designer on the built banner: «change the puttern image on the
+   background on this»). Nothing below this comment moves: the file is still
+   assets/marks/thumbs/rating-pattern.png at center/cover no-repeat over
+   --green-soft, which is what naming an asset by its ROLE rather than its version
+   buys — a new picture is a new file under the old name, not a new rule.
+   Master 1672 x 941 again, served 682 x 384 again — 2.00x the 341 x 191.9 that the
+   cover crop actually renders. The old master is recoverable at
+   `git show 7a17e09:assets/marks/rating-pattern.png`.
+   IT IS THE SAME COMPOSITION AND A LOUDER ONE, AND THAT IS THE HEADLINE BECAUSE IT
+   RUNS AGAINST THE LAST TWO REVISIONS OF THIS CARD. Two opposite corners around an
+   empty middle, as before; but the top-left comet trail is now a saturated green
+   ribbon where it was a white fade, and four charcoal marks join the one that was
+   already there. Composited pixel by pixel over --green-soft the way revs 198 and
+   200 were: the artwork's mean |dL| against its ground goes 0.0764 -> 0.1726, 126%
+   LOUDER, and the share of it standing more than 1.10:1 off the fill goes
+   34.4% -> 69.0%. rev 198's reading that the picture is "a watermark, not a second
+   surface" is therefore RETIRED, not restated: at a mean 1.62:1 against the ground
+   this is legible artwork on a fill. The green COUNT is unchanged all the same —
+   the artwork paints no area the fill did not already own, so the card is still
+   41,431.5px^2, 13.61% of a 375 x 812 frame, rev 166's departure standing.
+   THE ONE NUMBER THAT BINDS DID NOT MOVE, AND IT WAS MEASURED THE SAME WAY.
+   The served thumb composited under the three glyph boxes at 4x: the arc box and
+   the figure box each contain EXACTLY ONE colour, rgb(183,218,124), and the
+   caption box two that differ by one unit — so the worst --on-green pair under any
+   glyph is 10.94:1 where WCAG 1.4.3 asks 4.5 at 22px and 13px, cleared 2.43x. The
+   ARC box is FLAT now where the old artwork ran a hairline through it. The empty
+   middle band the picture was chosen for survives the swap. Artwork coverage of
+   the card 7.07% -> 9.37%, still 0% of it under type.
+   WHAT SHE PAYS, MEASURED AND PUT TO HER RATHER THAN TRIMMED: (1) THE CHARCOAL
+   MARKS DOUBLE — 98 -> 210 css px^2, and ONE blob becomes FIVE: a 4-point sparkle
+   at x 56..63 CUT BY THE CARD'S TOP EDGE (y 0..15), two dots on the left arc
+   (x 6..11 y 9..13 and x 37..42 y 35..39), a third mark at x 70..79 y 11..14, and
+   the old charcoal star at x 289..302 y 84..97. That star was already recorded at
+   rev 198 as reading like a sixth star escaped from the arc; there are now five
+   such marks in the same ink as the arc, on a card whose whole subject is that
+   five stars mean the rating. (2) THE CROP BITES THE SAME AND SHOWS MORE OF IT.
+   Same 1.777:1 artwork in the same 2.807:1 card, so cover still drops 36.7% of the
+   height — but the new ribbon runs off the card's left edge mid-stroke instead of
+   fading out, and the nearest artwork pixel to the caption box closes from 9.09 to
+   5.40 css px. Neither cost engages a WCAG or HIG criterion; both are composition,
+   and both are hers.
+   (The ink comment on the rule below read 10.26:1, the 85/15 figure, after the
+   token went to 70/30 at rev 201; corrected to the measured 11.05:1 here.) */
 .dr-balance--banner{
   background: var(--green-soft) url(../assets/marks/thumbs/rating-pattern.png) center/cover no-repeat;
-  color: var(--on-green);                                           /* 10.26:1 */
+  color: var(--on-green);                                           /* 11.05:1 */
 }
 /* THE GLYPH STANDS ON A PLATE, AND THE PLATE IS WHAT MAKES THE CENTRING READ.
    The designer, 2026-08-21: «зроби іконку на бекграунді щоб відбулось
@@ -4631,18 +4797,21 @@ header.dr-topbar,
 .dr-balance__body{ display: flex; flex-direction: column; gap: var(--sp-within); min-width: 0; }
 .dr-balance--card .dr-number,
 .dr-balance--card .dr-note{ color: var(--on-green); }                 /* 9.46:1 on --green */
-/* The banner says its ink out loud for the same reason the card does, and the
-   reason survives every fill this card has worn: `--slate`, the caption's ink on
-   every other surface, measures 3.91:1 on --green, 3.23:1 on --warn and 4.25:1
-   on --green-soft — a real `WCAG 1.4.3` failure at 13px on all three — where
-   --on-green is 9.46 / 7.80 / 10.26:1. The lighter fill moves the failure closer
-   to the line and does not clear it, which is why the ink is still stated here
-   and not left to inherit.
+/* The banner says its ink out loud, and the reason has now outlived four fills:
+   `--slate`, the caption's ink on every other surface, measures 3.91:1 on
+   --green, 3.23:1 on --warn, 4.25:1 on --green-soft at 85/15 and 4.57:1 at
+   70/30, where --on-green is 9.46 / 7.80 / 10.26 / 11.05:1.
+   AT 70/30 --slate FINALLY CLEARS WCAG 1.4.3 AT 13px — 4.57 against 4.5, by
+   1.6% — AND IT IS STILL NOT USED. A margin of a hundredth is not a margin; it
+   would fail at the first nudge of this token, and --on-green is the palette's
+   own rule on any green ground regardless of what a ratio permits. So the
+   declaration below is unchanged, and this note records that it is now a CHOICE
+   rather than a necessity.
    (This note read --warn / --ink while the fill was yellow; it is rewritten
-   rather than deleted, and the yellow's figures are kept in it, because the
-   value it names has now been three colours in one day.) */
+   rather than deleted, and every fill's figures are kept in it, because the
+   value it names has been four colours in one day.) */
 .dr-balance--banner .dr-number,
-.dr-balance--banner .dr-note{ color: var(--on-green); }             /* 10.26:1 on --green-soft */
+.dr-balance--banner .dr-note{ color: var(--on-green); }             /* 11.05:1 on --green-soft */
 
 /* ── THE SCORE BANNER ───────────────────────────────────── RATINGS · used by
    ratings. The designer, 2026-08-21, on the built overall score: «зроби у
@@ -4756,7 +4925,7 @@ header.dr-topbar,
   display: block; flex: none; align-self: center;
   width: calc(var(--sz-star) * 3.34);      /* .44 + .73 + 1 + .73 + .44 = 106.88 */
   height: var(--sz-star);                  /* 32 */
-  background: var(--on-green);             /* 10.26:1 on --green-soft */
+  background: var(--on-green);             /* 11.05:1 on --green-soft */
   -webkit-mask: url(../assets/marks/rating-arc.svg) center/contain no-repeat;
           mask: url(../assets/marks/rating-arc.svg) center/contain no-repeat;
 }

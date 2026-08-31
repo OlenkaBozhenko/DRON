@@ -310,7 +310,8 @@ and applied to nothing — they are recorded rungs, not live values (`var(--warn
 - **`--media`** (`#E4E1DA`) — media wells, muted chips, the direction chip, the skeleton ground of
   a well. On the page it is a **1.20:1** step.
 - **`--btn2`** (`#D6D2C9`) — the secondary button, circular icon actions, skeleton bars, the
-  settled status disc.
+  settled status disc, and since **2026-08-27 (rev 203)** the switch's **off track**, where it
+  replaced a transparent track and a 1.7px `--ink` ring. The knob on it is **11.54:1**.
 - **`--inset`** (`#F2F0EC`) — derived, not declared: `color-mix(in srgb, var(--page) 55%, var(--card))`.
   The From ▸ To strip inside a card. It sits **1.06:1 above the card** and 1.05:1 under the page —
   a plane inside the card rather than a second card on it, which is what marks the route as a
@@ -330,10 +331,13 @@ Each family is a **wash carrying its own ink**, and the raw hue is drawn only wh
 the identifying — `--warn` on the card is 1.84:1 and `--danger` reaches only 4.07:1, so neither hue
 can carry a mark on its own.
 
-- **`--warn`** (`#E4A11B`) — the yellow is the RATING's, in both places it is drawn: the filled star
-  (`.dr-star[aria-pressed="true"]`, 2026-08-03) and, from **2026-08-24 (rev 190)**, the operator's
-  rating pill on his photograph, `--ink` on it at **7.80:1** (`WCAG 1.4.3` ✓, 1.73× the 4.5 an 11px
-  line needs). The fill is 2.05:1 on the page and is not the identifier; the number is. `--danger`
+- **`--warn`** (`#E4A11B`) — the yellow is the RATING's, and since **2026-08-27 (rev 204)** it is
+  drawn in **one** place again: the filled star (`.dr-star[aria-pressed="true"]`, `.dr-stars`,
+  2026-08-03). Its second spend — the operator's rating pill on his photograph, added
+  **2026-08-24 (rev 190)**, `--ink` on it at **7.80:1** (`WCAG 1.4.3` ✓, 1.73× the 4.5 an 11px
+  line needs) — was deleted on the designer's *«delete rating badge»*. The declaration survives
+  in `.dr-profile__rating` and is spent on no page. The fill was 2.05:1 on the page and was never
+  the identifier; the number was. `--danger`
   is still declared and drawn nowhere.
 - **`--warn-wash` / `--warn-ink`** (`#F6E7C4` / `#7A5200`) — ETA slipping. `tracking-empty`.
 - **`--danger-wash` / `--danger-ink`** (`#F2D8CF` / `#9A3115`) — signal lost, upload missing.
@@ -372,14 +376,14 @@ Every pair carried on a product surface, verified in the browser.
 | `--ink` | `--green-wash` | 14.75:1 | selected tab, verified badge, milestone marks |
 | `--ink` | `--card` | 14.37:1 | card titles, values |
 | `--ink` | `--media` | 13.33:1 | glyphs in a well |
-| `--ink` | `--btn2` | 11.54:1 | secondary button, settled status check |
+| `--ink` | `--btn2` | 11.54:1 | secondary button, settled status check, the switch's off knob-in-track (rev 203) |
 | `--ink` | `--green` | 9.46:1 | primary button label, walked node glyph, the profile pencil badge on both heads (rev 189/190) |
 | `--danger-ink` | `--page` | 6.83:1 | destructive text action — **on the bench since rev 146**: its one user, `account-photo` · *Remove photo*, became the grey `Delete` in the action bar |
 | `--slate` | `--page` | 6.62:1 | lead copy, unselected tabs |
 | `--slate` | `--inset` | 6.33:1 | From / To labels |
 | `--danger-ink` | `--card` | 6.14:1 | field error text; the destructive action if it ever stands on a card |
 | `--slate` | `--card` | 5.95:1 | keys, dates, ratings, body |
-| `--ink` | `--warn` | 7.80:1 | the operator's rating pill on his photograph (rev 190) |
+| `--ink` | `--warn` | 7.80:1 | the operator's rating pill on his photograph (rev 190) — **deleted rev 204**; the pair stays declared on `.dr-profile__rating` and is spent on no page |
 | `--warn-ink` | `--card` | 5.72:1 | — |
 | `--warn-ink` | `--warn-wash` | 5.65:1 | late-notice mark |
 | `--trust-ink` | `--trust-wash` | 5.65:1 | ~~Insured badge~~ — **retired rev 157, spent nowhere** |
@@ -1096,27 +1100,40 @@ before it — and **cut from 52 × 32 on 2026-08-27 (rev 202)** on her *«make t
 another: the height is `--sz-node` **22**, a rung the ramp already had, so it is still borrowed and
 not invented. Three sizes were put to her with the standards first — 40 × 24 on `--sz-box`, 46 × 28
 on a new rung, 36 × 22 on `--sz-node` — and she took the smallest that still landed on a rung.
-**The knob is not declared** — the height less two `--box-edge` borders and two `--sp-2` paddings,
-computing to **14.6** — and **the travel is `--sz-switch − --sz-node` = 14**, what a square knob
-filling the height leaves over. Radii `--r-pill` on the track, `--r-circle` on the knob; nothing
-outside the closed ramp.
+**The knob is not declared** — the height less its two `--sp-2` paddings, computing to **18**
+since the ring came off on 2026-08-27 (rev 203); it was **14.6** while two `--box-edge` borders
+were subtracted as well — and **the travel is `--sz-switch − --sz-node` = 14**, what a square
+knob filling the height leaves over, unmoved by the growth because 36 − 4 − 18 is the same 14.
+Radii `--r-pill` on the track, `--r-circle` on the knob; nothing outside the closed ramp.
 
 **iOS ships the switch at 51 × 31 and `HIG` gives it no other size, so 36 × 22 is a departure from
 the platform control — recorded with its reason, not filed as a defect.** What binds in `HIG` here
 is the **44pt target**, and the target has never been the track: the whole `.dr-field` row is the
 `<label>`. Nothing else moved with the cut — the ring, the fill, the knob pair and the position
-cue are all independent of the track's size, and every one is re-measured below on the built frame.
+cue are all independent of the track's size (the ring itself came off hours later, rev 203 below), and every one is re-measured below on the built frame.
 **One coupling is bought and is written into the token:** `--sz-node` is the progress node's rung,
 a *shape's* number read as a *control's* height. If that node ever moves, the switch is to be
 re-decided rather than dragged along.
 
-**On:** `--green` fill, `--on-green` knob, **9.46:1**. **Off:** no fill, knob `--ink`. **The ring is
-`--ink` in both states** — this follows `.dr-range`'s thumb (rev 70), not the checked checkbox above,
-because the range is the one of the two decided on this criterion. Measured on the built frame after the cut: track **36.0 × 22.0**, knob **14.6 × 14.6**, knob left
-edge **3.6 → 17.6** (a 14px travel), on-track `rgb(155,207,74)`, ring `rgb(26,26,26)` in **both**
-states, off-track `rgba(0,0,0,0)`. Ring **14.37:1** on the
-card in both states — `WCAG 1.4.11` cleared **4.79×** — and the knob **9.46:1** inside the green,
-cleared **3.15×**. State is **knob position as well as fill**, so `WCAG 1.4.1` never rests on colour.
+**On:** `--green` track, `--on-green` knob, **9.46:1**. **Off:** `--btn2` track, `--ink` knob,
+**11.54:1**. **There is no ring** — it came off on **2026-08-27 (rev 203)** on the designer's
+*«remove stroke on the toggle»*, and the off track took `--btn2` in the same move, because off had
+been **transparent**: deleting the 1.7px `--box-edge` alone deletes the track with it and leaves a
+knob adrift on the card. **`HIG` gives the switch no ring at all**, so this moves *toward* iOS's
+construction — a filled track, no stroke, a knob that fills its height — where the 36 × 22 size
+moves away from it. **What carries `WCAG 1.4.11` moves from the edge to the knob:** the ring's
+14.37:1 becomes **11.54:1** on the knob off (**3.85×** the 3:1 floor, down from **4.79×**) and
+**9.46:1** on the knob on (**3.15×**, unchanged). **The track is not the identifier and is not
+measured as one** — **1.25:1** (`--btn2`) and **1.52:1** (`--green`) against the card, the same
+reading already shipped on `.dr-upload`'s 1.08:1 well and `.dr-avatar-edit__badge`'s 1.25:1 disc.
+Four readings were put to her with the standards first — the fill, the bare knob with no track at
+all, a `--slate` ring at **5.95:1** on the card and **3.92:1** on the green which would have kept
+the *edge* carrying the criterion, and keeping it as built. Measured on the built frame, all five
+rows of `account-edit`: track **36 × 22**, `border` **none**, knob **18 × 18**, knob left edge
+**2 → 16** (a 14px travel), off-track `rgb(214,210,201)`, on-track `rgb(155,207,74)`, knob
+`rgb(26,26,26)` throughout, row **44**. State is **knob position as well as fill**, so `WCAG 1.4.1`
+never rests on colour — which it could not here in any case: the two tracks are **1.22:1** against
+each other, separating by hue, and the 14px travel is what actually carries the state.
 
 Built as a real `<input type="checkbox" role="switch">` inside the `<label>` that is the row: the
 state announces "on"/"off" rather than "checked" (`4.1.2`) and the visible line is the accessible
@@ -1250,6 +1267,26 @@ badge is `aria-hidden`; the link carries the name.
   engaged**, which is why its height was never a compliance number. Screen green unmoved at
   **7,542px² = 2.48%** (the pill is `--warn`). `--mark-shift` is still **0**, so the **23.5** offset
   stands — that is the disc's width, not its height.
+- **And the pair ends 2026-08-27 (rev 204) — the other half of it was deleted.** *«delete rating
+  badge»*. `.dr-profile__rating` leaves `operator-account`, the only page that ever carried it, and
+  the `<span class="dr-profile__photo">` wrapper leaves with it: it was the positioning context
+  **two** marks needed to share one edge, never a wrapper for the photograph. With one mark left the
+  head collapses to the client's single `<a class="dr-profile__photo dr-avatar-edit">`. **Not one
+  line of CSS was written**, because the scoping already knew both heads — every pair rule is
+  `:has(.dr-profile__rating)` and stops matching, every corner rule is
+  `:not(:has(.dr-profile__rating))` and starts. The disc keeps `--sz-head-mark` **44** and
+  `--ic-22` and returns to `right/bottom: −2px`; the photo's `margin-bottom` falls **22 → 0**, which
+  is the client's rule and the reason the wrapper had to go — `.dr-profile__photo.dr-avatar-edit`
+  zeroes that margin only on an element carrying **both** classes, so a span left around the anchor
+  would have kept the base `--sp-13` and opened a **13px** gap in a column that spends 8.
+  **Measured on both heads, and they are identical box for box:** photo **120 × 120**,
+  `margin-bottom` **0**, disc **44 × 44** hanging **2** below and **2** right of the circle, glyph
+  **22 × 22** (`stroke-width` declared 1.7, rendered **1.56** on that box), photo-to-name **8** —
+  the first time the two heads have measured the same since rev 192 built the pair. **No criterion
+  is engaged by the removal:** the pill labelled no control (`4.1.2`), described no group (`1.3.1`),
+  instructed no input (`3.3.2`) and was never a target, the 120px photograph carrying `HIG · 44pt`
+  and `WCAG 2.5.8`. **`--warn` drops to one spend, the filled star**, and screen green does not move
+  — what left was yellow.
 - **Pair:** `--btn2` ground, `--ink` glyph — **11.54:1**, the circular icon action's own pair, so the
   two edit affordances on one card are one material. The disc is **1.25:1** on the card and is *not*
   the identifier: the glyph is, the way `.dr-upload`'s 1.08:1 well defers to its 32px mark.
