@@ -858,8 +858,8 @@ edge now says the group boundary the hairline used to carry alone.
 (rev 227), the designer on `account-edit` pointing at the line under *Full name*: *«вона має мати
 однаковий відступ від краю картки, такий відступ від правого краю картки як і від лівого»*.
 `.dr-field + .dr-field::before` was `left: 16 / right: 0` — the line began where the row's text
-begins and ran out to the card's bleed edge, drawing **309** on the **341** card at the 375 frame.
-It is now `16 / 16`, **293** on the same card, spanning the row's content box exactly.
+begins and ran out to the card's bleed edge, drawing **325** on the **341** card at the 375 frame.
+It is now `16 / 16`, **309** on the same card, spanning the row's content box exactly.
 **It is a departure from `HIG · Lists and tables`, recorded rather than filed as a fix:** HIG insets
 a separator on the *leading* edge to align with the row's content and runs it full-bleed to the
 *trailing* edge, which is what was built. Nothing in WCAG moves — the hairline is **1.21:1** on

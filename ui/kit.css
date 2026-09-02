@@ -2608,8 +2608,9 @@ header.dr-topbar,
    separator on the LEADING edge to align with the row's content and lets it run
    full-bleed to the trailing edge — which is exactly what was built. So this is
    a departure, made on her word, and recorded as one rather than filed as a fix.
-   Nothing in WCAG governs it: the hairline measures 1.34:1 on `--card` and is
-   permitted only because a list separator is decoration and never the carrier of
+   Nothing in WCAG governs it: the hairline measures 1.21:1 on `--card` — 1.34:1
+   on `--page`, where the group is a plain list — and is permitted only there
+   because a list separator is decoration and never the carrier of
    structure (`1.4.11` applies to what conveys meaning), and the grouping stays
    programmatic in the DOM, so `1.3.1` is untouched by construction either way.
    WHAT IT MEASURES NOW: 16 / 16, a 309 hairline on the 341 card — the line
