@@ -1951,21 +1951,23 @@ The drawer's second job. Where a picker sheet sets a **value**, this one offers 
 
 - **Cutout (transparent PNG):** `object-fit: contain`, **no ground** — in the product the cutout
   sits straight on the card. The box is a measuring frame only.
-- **The well box has three sizes** (designer, 2026-09-03, revs 212 and 215). `--sz-well-w/h`
-  **96 × 72** wherever a render sits in a **list** row — `.dr-card--row` on `order-history`, the
-  job and tracking cards; `--sz-well-w/h-sm` **68 × 52** is the narrow tier's remap of that box;
-  `--sz-well-w/h-xs` **56 × 44** inside `.dr-choice`, which is `role-select`'s two cards and nothing
-  else. **The third rung is minted, and it is minted because nothing was left to land on:** rev 212
+- **The well box has three sizes, and the first two are square** (designer, 2026-09-03, revs 212,
+  215 and 230). `--sz-well-w/h` **96 × 96** wherever a render sits in a **list** row —
+  `.dr-card--row` on `order-history`, the job and tracking cards; `--sz-well-w/h-sm` **68 × 68** is
+  the narrow tier's remap of that box; `--sz-well-w/h-xs` **56 × 44** inside `.dr-choice`, which is
+  `role-select`'s two cards and nothing else. **The third rung is minted, and it is minted because nothing was left to land on:** rev 212
   got the first step down for free by taking `-sm` at every tier, and she asked for one step
   further. **No derivation is claimed** — 56 and 44 already exist in the file as `--sz-avatar-md`
   and `--sz-action`, and neither is the source; 56 is 7 steps of the 8-grid and 44 is not on it.
   The `≤ 389px` query still needs no remap: the box is already smaller than where it would send it.
-  The inset is `--sp-within` **4** throughout, so the picture box is **88 × 64**, **60 × 44** and
+  The inset is `--sp-within` **4** throughout, so the picture box is **88 × 88**, **60 × 60** and
   **48 × 36**.
-  Measured on `role-select` at 375 × 812: `cargo-box.png` (256 × 180) renders
+  Measured on `role-select` at 375 × 812 **against the 4:3 box the ramp then had**, which is the
+  shape rev 230 has since squared at the top two rungs: `cargo-box.png` (256 × 180) rendered
   **88 × 61.88 → 60 × 42.19 → 48 × 33.75** and `drone-flight-front.png` (256 × 73)
   **88 × 25.09 → 60 × 17.11 → 48 × 13.69** — **−45.5%** on the long edge and **−70.2%** of area
-  across the two steps. The text column takes it all back: body **201.4 → 229.4 → 241.4**,
+  across the two steps. Only the third figure in each row is still live: `role-select` is the one
+  file on `-xs`, and `-xs` did not move. The text column takes it all back: body **201.4 → 229.4 → 241.4**,
   **+19.9%** of measure, with **no description changing line count on either step**.
   **The second step buys measure and nothing else** — at `-sm` the well had already stopped setting
   either card's height, so cards **114.4 / 96.2** and list **218.6** are the same before and after
@@ -1986,6 +1988,45 @@ The drawer's second job. Where a picker sheet sets a **value**, this one offers 
   body **241 → 233**, and the longer title is 176.44 with **56.56** of slack. **At ≤ 389px the rung
   steps by itself** to `--sp-screen` **16** — ink 20, body 203, still one line, measured at a 380px
   viewport — where `--sp-snug` would not have stepped at all.
+- **The well is square, because the render is** (designer, 2026-09-03, rev 230: *«зроби більше
+  зображення»*, on the built `job-offer` card). `--sz-well-h` **72 → 96** and `--sz-well-h-sm`
+  **52 → 68**. **Width was never the lever and that is the whole of the answer:** every drone in
+  `assets/drones/thumbs/` is a **256 × 256 square PNG**, and `object-fit: contain` fits a square to
+  the **shorter** side — at 96 × 72 the paint was **64 × 64** inside an 88 × 64 box, so **24 of the
+  88 usable width painted nothing** and height was the cap. Widening could not have added a pixel.
+  **Three were drawn and measured and she took the largest:** ink on `job-offer` (drone-01's alpha
+  bbox is 233 × 164 of 256) **58.25 × 41.00 →** inset 4 → 0 **65.53 × 46.13** (+12.5%, free),
+  96 × 88 **72.81 × 51.25** (+25%), 96 × 96 **80.09 × 56.38** — **+37.5%** on the edge, **+89.1%**
+  of area. **No number is minted at either tier** — `-h` takes the 96 `-w` has always held and
+  `-h-sm` takes 68 the same way, where rev 215 had to mint 56/44 because nothing was left to land
+  on. **The ramp is no longer one shape and that is stated, not smoothed:** 96 × 96 and 68 × 68 are
+  1:1, `-xs` stays **56 × 44** — squaring `.dr-choice`'s well would grow `role-select` **27%** in
+  the direction she twice refused at revs 212 and 215.
+- **What the square costs, measured on every page that carries the box** (375 × 812 frame; wide tier
+  = a 1160 window, narrow = a 375 one). **Wide:** `job-offer` and `job-offer-inspection` card
+  **120 → 144** with `main` overflow **0 → 0** — the screen swallows all 24; `operator-dispute-error`
+  **132.8 → 144**, also no scroll; `order-history` **384.1 → 408.1** and **271.6 → 295.6** × 3, list
+  scroll **695 → 791**; `order-history-loading` **271 → 295** × 3, **313 → 385**. `operator-dispute`
+  does not move at all — **151 / 157.5** before and after, because the well was never that card's
+  floor. **Narrow:** the step is nearly free — `job-offer` **114.8 → 116**,
+  `operator-dispute-error` **132.8 → 132.8**, `order-history` **352.1 → 368.1** and
+  **243.6 → 259.6**. **The no-reflow contract holds by construction and the proof is that the drift
+  did not change:** `.dr-sk-well` reads the same two tokens, so loaded **295.6** against skeleton
+  **295** is the same **0.6** it was at **271.6 / 271**. `role-select` **76 × 2** and `support`
+  **55.8 × 3** are untouched, which is `-xs` staying put. **`.dr-well--photo` and `--map` set
+  width/height `auto` and cannot move; `--shot` keeps the box but is applied in no page in the
+  build** — comments only — **so no photograph re-crops.**
+- **What she was quoted and what it actually cost, recorded because the two differ.** The 96 × 96
+  option was put to her as the expensive one: *scroll +24, `Expires in 8s` under the fold*, read out
+  of rev 221's note — «577 in a 577 window» — as zero slack. **That note says the opposite:** `main`'s
+  **box** is 577 and its content fits. Measured after the change, `main.scrollHeight − clientHeight`
+  is **0** before and **0** after, and the countdown's bottom stands **252** above `main`'s. She took
+  the most expensive of the three and it turned out to be free.
+- **The tier she was looking at is not the tier a phone gets.** The shell draws a 375 frame inside
+  the browser window, so `@media (max-width: 389px)` fires on the **window**, not the frame — at
+  1160 it never fired, and the drone she called small was already the **larger** of the two. On a
+  real phone the ink goes **40.05 × 28.19 → 54.61 × 38.44**, **+36.4%**, the same move at the same
+  proportion.
 - **Photograph:** `object-fit: cover`, edge to edge inside `--r-media`, no padding — a photograph
   *is* the surface. Never inset on a `--media` ground; a floated photo reads as a sticker.
 - **Map:** `--r-card`, `center/cover`, native 1.99 aspect, `--media` as the pre-load ground.

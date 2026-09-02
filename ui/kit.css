@@ -266,9 +266,63 @@
                               CONTROL's height. If the node ever moves, this switch is to be
                               re-decided, not dragged along behind it. */
   --sz-well-w:      96px;  /* the card well that carries a render */
-  --sz-well-h:      72px;
-  --sz-well-w-sm:   68px;  /* narrow tier */
-  --sz-well-h-sm:   52px;
+  --sz-well-h:      96px;  /* THE WELL IS SQUARE — designer, 2026-09-03, rev 230: «зроби більше
+                              зображення», on the built `job-offer` card.
+                              WHY HEIGHT AND NOT WIDTH, WHICH IS THE WHOLE OF THE ANSWER: every
+                              drone render in `assets/drones/thumbs/` is a 256 x 256 SQUARE PNG, and
+                              `object-fit: contain` fits a square to the SHORTER side. At 96 x 72 the
+                              inset left an 88 x 64 picture box, so the paint was 64 x 64 with 12px
+                              of empty letterbox each side — 24 of the 88 usable width painting
+                              NOTHING, and the 64 of height the cap. Widening this box could not
+                              have made the drone one pixel bigger. Only height, or the inset, can.
+                              THREE WERE DRAWN AND MEASURED AND SHE TOOK THE LARGEST. Ink on
+                              `job-offer` (drone-01's alpha bbox is 233 x 164 of 256): inset 4 -> 0
+                              gave 65.53 x 46.13, +12.5% and free; 96 x 88 gave 72.81 x 51.25, +25%;
+                              96 x 96 gives 80.09 x 56.38 — +37.5% on the edge, +89.1% of area.
+                              THE PRICE SHE WAS QUOTED IS NOT THE PRICE, AND THE CORRECTION IS
+                              WRITTEN DOWN RATHER THAN QUIETLY POCKETED. She was told this option
+                              would scroll `job-offer` by 24 and put part of `Expires in 8s` under
+                              the fold, read out of rev 221's note — «577 in a 577 window» — as zero
+                              slack. That note says the opposite: `main`'s BOX is 577 and its content
+                              FITS. Measured after the change at 375 x 812 in a 1160 window,
+                              `main.scrollHeight - clientHeight` is 0 before and 0 after, and the
+                              countdown's bottom stands 252 above `main`'s. The card goes
+                              120 -> 144 — the well was this card's floor at 72 against a 67.19 body
+                              and still is at 96 — and the screen swallows all 24 of it. She took the
+                              most expensive of the three options and it turned out to be free.
+                              NO NUMBER IS MINTED, AT EITHER TIER — this is the rare step that costs
+                              nothing on the ramp: `-h` takes 96, which `-w` has always held, and
+                              `-h-sm` takes 68 the same way. Rev 215 had to mint 56/44 because
+                              nothing was left to land on; squaring lands on what is already there.
+                              THE RAMP IS NO LONGER ONE SHAPE AND THAT IS SAID PLAINLY: 96 x 96 and
+                              68 x 68 are 1:1, `-xs` stays 56 x 44. It is NOT squared, and the reason
+                              is that rev 215 minted it downward on her word twice («зроби зображення
+                              менші», «зроби зображення меншим») — squaring `.dr-choice`'s well would
+                              grow `role-select` 27% in the direction she twice refused.
+                              WHAT FOLLOWS AUTOMATICALLY AND WHAT DOES NOT. `.dr-sk-well` reads these
+                              same two tokens, so the loading list steps with the loaded one and the
+                              no-reflow contract holds by construction. `.dr-well--photo` and
+                              `--map` set width/height auto and do not move. `--shot` keeps the box,
+                              but it is applied in no page in the build — comments only — so no
+                              photograph re-crops.
+                              STANDARDS FIRST AND NOTHING IS ENGAGED, WHICH IS AN ANSWER AND NOT A
+                              GAP. `HIG · Lists` prescribes no size for a row's leading image.
+                              `HIG · 44pt` and `WCAG 2.5.8` are not engaged on `job-offer` — an
+                              `<article>` with no control on it — and on `order-history` the tap
+                              target is the whole card, which only grows. `WCAG 1.1.1` — every one of
+                              these images is `alt=""`, decorative, correctly hidden. `WCAG 1.4.11`
+                              is not engaged: no boundary here carries meaning. `WCAG 1.4.3` cannot
+                              move, no colour pair changes. `WCAG 1.4.10 Reflow` permits scrolling on
+                              ONE axis, and the new scroll is vertical — nothing scrolls sideways. */
+  --sz-well-w-sm:   68px;  /* narrow tier — squared with the rung above it at rev 230, ink
+                              40.05 x 28.19 -> 54.61 x 38.44, +36.4%, the same move at the same
+                              proportion. THIS IS THE TIER A REAL PHONE ACTUALLY GETS, and the frame
+                              in the shell is not it: she was looking at a 375 frame inside a 1160
+                              window, so the query never fired and the drone she called small was
+                              already the LARGER of the two. And here the step is nearly free —
+                              52 was under the 67.19 body, 68 is barely over it, so `job-offer` goes
+                              114.8 -> 116 and `operator-dispute-error` does not move at all. */
+  --sz-well-h-sm:   68px;
   --sz-well-w-xs:   56px;
   --sz-well-h-xs:   44px;  /* THE CHOICE CARD'S OWN WELL — designer, 2026-09-03, rev 215, one
                               step below the narrow tier's, asked for against the built 68 × 52.
