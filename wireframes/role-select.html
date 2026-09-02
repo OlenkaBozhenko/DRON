@@ -28,20 +28,23 @@
              specimen sheet (ui/kit.html), which draws this exact pair. Both wells
              are plain .dr-well: a transparent cutout sits straight on the card with
              no ground, and the grayscale `inset` padding patch has no painted
-             counterpart (.dr-inset is the From ▸ To plane, a different component). -->
+             counterpart (.dr-inset is the From ▸ To plane, a different component).
+             TITLE ONLY — the description is gone (designer, 2026-09-03, rev 216:
+             «видали підзаголовок»), which finishes on this screen what rev 209
+             started on support. WCAG 2.4.4: the desc sat INSIDE the <a>, so the
+             accessible name is now the title alone, and in context — the display
+             asks «How will you use DRON?» — each title states its own purpose. -->
         <div class="dr-list dr-list--snug">
           <a class="dr-choice" href="onboarding-client.html">
             <span class="dr-well"><img src="../assets/objects/thumbs/cargo-box.png" alt="" loading="lazy" decoding="async"></span>
             <span class="dr-choice__body">
               <span class="dr-choice__title">I need a service done</span>
-              <span class="dr-choice__desc">Order delivery, aerial photo/video or inspection — a verified operator handles it.</span>
             </span>
           </a>
           <a class="dr-choice" href="onboarding-operator.html">
             <span class="dr-well"><img src="../assets/drones/thumbs/drone-flight-front.png" alt="" loading="lazy" decoding="async"></span>
             <span class="dr-choice__body">
               <span class="dr-choice__title">I provide services</span>
-              <span class="dr-choice__desc">You're a certified drone operator — take jobs and get paid.</span>
             </span>
           </a>
         </div>

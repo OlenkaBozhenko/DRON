@@ -1019,33 +1019,47 @@
 
 <div class="row">
   <div class="nm"><b>Choice card</b>
-    <code>.dr-choice · __title · __desc</code>
+    <code>.dr-choice · __title</code>
     <p><b>Approved 2026-08-03</b>, built to the values already decided: navigation, not a picker
-       — both instances are links that leave the screen.</p></div>
+       — both instances are links that leave the screen. <b>Title only since 2026-09-03</b>
+       (rev 216); <code>__desc</code> now belongs to the alert row.</p></div>
   <div class="spec col">
     <a class="dr dr-choice" href="#" style="width:341px;max-width:100%">
       <span class="dr-well"><img src="../assets/objects/thumbs/cargo-box.png" alt=""></span>
       <span class="dr-choice__body">
         <span class="dr-choice__title">I need a service done</span>
-        <span class="dr-choice__desc">Order delivery, aerial photo/video or inspection — a verified operator handles it.</span>
       </span>
     </a>
     <a class="dr dr-choice" href="#" style="width:341px;max-width:100%">
       <span class="dr-well"><img src="../assets/drones/thumbs/drone-flight-front.png" alt=""></span>
       <span class="dr-choice__body">
         <span class="dr-choice__title">I provide services</span>
-        <span class="dr-choice__desc">You&rsquo;re a certified drone operator — take jobs and get paid.</span>
       </span>
     </a>
   </div>
   <div class="notes">
-    <p><code>--card</code> at <code>--r-card</code> 16 · title 17/600 <b>14.37:1</b> · description
-       13/400 <b>5.95:1</b> · <b>no chevron</b> (designer, 2026-08-31, rev 206) · the row clears
-       44pt by construction · focus ring is keyboard-only, <code>2.5px --ink</code>.</p>
-    <p><b>The well is this card's own size, not the list's</b> (designer, 2026-09-03, rev 212):
-       <code>--sz-well-*-sm</code> <b>68 &times; 52</b> against the list well's 96 &times; 72,
-       inset <code>--sp-within</code> 4, picture box <b>60 &times; 44</b>. No third number — it
-       takes the narrow tier's rung at every tier, so the media query leaves it alone.</p>
+    <p><code>--card</code> at <code>--r-card</code> 16 · title 17/600 <b>14.37:1</b> (stepped to 14 at rev 213, back to 17 at rev 217) ·
+       <b>no chevron</b> (designer, 2026-08-31, rev 206) · <b>no description</b> (designer,
+       2026-09-03, rev 216) · the row clears 44pt by construction · focus ring is keyboard-only,
+       <code>2.5px --ink</code>.</p>
+    <p><b>A choice card a person taps is a title</b> (designer, 2026-09-03, rev 216:
+       &laquo;видали підзаголовок&raquo;, finishing on <code>role-select</code> what rev 209
+       started on <code>support</code>). <code>.dr-choice__desc</code> is still declared and has
+       <b>11 live instances</b> — every one of them an <b>alert row</b> on
+       <code>notifications</code> / <code>operator-notifications</code>, where the second line is
+       which order it belongs to and when it arrived. That is a log's proof, not a fork's
+       explanation. <code>WCAG 2.4.4</code>: the desc sat inside the <code>&lt;a&gt;</code>, so
+       the accessible name is the title alone and each title states its purpose.</p>
+    <p><b>The well is this card's own size, not the list's</b> (designer, revs 212 and 215):
+       <code>--sz-well-*-xs</code> <b>56 &times; 44</b> against the list well's 96 &times; 72,
+       inset <code>--sp-within</code> 4, picture box <b>48 &times; 36</b> — the cargo cutout
+       renders 48 &times; 33.75, the drone 48 &times; 13.69. Rev 212 got one step down for free on
+       <code>--sz-well-*-sm</code>; rev 215 went a step further, and below the narrow tier's rung
+       there was none, so this pair is <b>a third rung, minted</b>. The media query still leaves
+       it alone — the box is already smaller than where it would send it.</p>
+    <p><b>With one line of text the well is the floor again:</b> body 23.8, well 44, padding 32 —
+       the smallest row is <b>341.4 &times; 76</b>, <code>HIG &middot; 44pt</code> <b>173%</b> and
+       <code>WCAG 2.5.8</code> <b>3.17&times;</b>.</p>
     <p>No hover treatment: a card flat at rest stays flat, and the surface is the affordance.</p>
   </div>
 </div>
