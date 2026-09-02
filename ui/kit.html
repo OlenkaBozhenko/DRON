@@ -156,7 +156,7 @@
       <tr><td><span class="sw" style="background:#E4E1DA"></span><code>--ink</code> on <code>--media</code></td><td class="ratio">13.33:1</td><td>glyph in a well</td></tr>
       <tr><td><span class="sw" style="background:#D6D2C9"></span><code>--ink</code> on <code>--btn2</code></td><td class="ratio">11.54:1</td><td>secondary button, icon action</td></tr>
       <tr><td><span class="sw" style="background:#9BCF4A"></span><code>--on-green</code> on <code>--green</code></td><td class="ratio">9.46:1</td><td>primary label, walked node glyph</td></tr>
-      <tr><td><span class="sw" style="background:#A9D563"></span><code>--on-green</code> on <code>--green-soft</code></td><td class="ratio">10.26:1</td><td>ratings score banner — the accent lightened, --green 85% + --page 15%</td></tr>
+      <tr><td><span class="sw" style="background:#B7DA7C"></span><code>--on-green</code> on <code>--green-soft</code></td><td class="ratio">11.05:1</td><td>ratings score banner — the accent lightened, --green 70% + --page 30%</td></tr>
       <tr><td><span class="sw" style="background:#F7F5F2"></span><code>--slate</code> on <code>--page</code></td><td class="ratio">6.62:1</td><td>lead copy, unselected tab</td></tr>
       <tr><td><span class="sw" style="background:#ECE9E4"></span><code>--slate</code> on <code>--card</code></td><td class="ratio">5.95:1</td><td>keys, dates, unchecked outline</td></tr>
       <tr><td><span class="sw" style="background:#E4E1DA"></span><code>--slate</code> on <code>--media</code></td><td class="ratio">5.51:1</td><td>muted chip, segment at rest</td></tr>
@@ -1019,7 +1019,7 @@
 
 <div class="row">
   <div class="nm"><b>Choice card</b>
-    <code>.dr-choice · __title · __desc · __chev</code>
+    <code>.dr-choice · __title · __desc</code>
     <p><b>Approved 2026-08-03</b>, built to the values already decided: navigation, not a picker
        — both instances are links that leave the screen.</p></div>
   <div class="spec col">
@@ -1029,7 +1029,6 @@
         <span class="dr-choice__title">I need a service done</span>
         <span class="dr-choice__desc">Order delivery, aerial photo/video or inspection — a verified operator handles it.</span>
       </span>
-      <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
     </a>
     <a class="dr dr-choice" href="#" style="width:341px;max-width:100%">
       <span class="dr-well"><img src="../assets/drones/thumbs/drone-flight-front.png" alt=""></span>
@@ -1037,13 +1036,16 @@
         <span class="dr-choice__title">I provide services</span>
         <span class="dr-choice__desc">You&rsquo;re a certified drone operator — take jobs and get paid.</span>
       </span>
-      <span class="dr-choice__chev" aria-hidden="true"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
     </a>
   </div>
   <div class="notes">
     <p><code>--card</code> at <code>--r-card</code> 16 · title 17/600 <b>14.37:1</b> · description
-       13/400 <b>5.95:1</b> · chevron <code>--slate</code> on the 24-grid · the row clears 44pt by
-       construction · focus ring is keyboard-only, <code>2.5px --ink</code>.</p>
+       13/400 <b>5.95:1</b> · <b>no chevron</b> (designer, 2026-08-31, rev 206) · the row clears
+       44pt by construction · focus ring is keyboard-only, <code>2.5px --ink</code>.</p>
+    <p><b>The well is this card's own size, not the list's</b> (designer, 2026-09-03, rev 212):
+       <code>--sz-well-*-sm</code> <b>68 &times; 52</b> against the list well's 96 &times; 72,
+       inset <code>--sp-within</code> 4, picture box <b>60 &times; 44</b>. No third number — it
+       takes the narrow tier's rung at every tier, so the media query leaves it alone.</p>
     <p>No hover treatment: a card flat at rest stays flat, and the surface is the affordance.</p>
   </div>
 </div>

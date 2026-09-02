@@ -1898,6 +1898,20 @@ The drawer's second job. Where a picker sheet sets a **value**, this one offers 
 
 - **Cutout (transparent PNG):** `object-fit: contain`, **no ground** — in the product the cutout
   sits straight on the card. The box is a measuring frame only.
+- **The well box has two sizes, not one** (designer, 2026-09-03, rev 212). `--sz-well-w/h`
+  **96 × 72** wherever a render sits in a **list** row — `.dr-card--row` on `order-history`, the
+  job and tracking cards; `--sz-well-w/h-sm` **68 × 52** inside `.dr-choice`, which is
+  `role-select`'s two cards and nothing else. **No third number was minted:** the choice well takes
+  the narrow tier's own rung at every tier, which is also why the `≤ 389px` query needs no remap for
+  it. The inset is `--sp-within` **4** in both, so the picture box is **88 × 64** and **60 × 44**.
+  Measured on `role-select` at 375 × 812: `cargo-box.png` (256 × 180) renders
+  **88 × 61.88 → 60 × 42.19** and `drone-flight-front.png` (256 × 73) **88 × 25.09 → 60 × 17.11** —
+  **−31.8%** on the long edge, **−53.5%** of area, the inset untouched. The text column takes the
+  28px back: body **201.4 → 229.4**, **+13.9%** of measure, with **neither description changing
+  line count** (3 and 2). Card 1 does not move — **114.4**, its body was already the taller of the
+  two — and card 2 goes **104 → 96.2**, the well having stopped setting its height; the list
+  **226.4 → 218.6**. Smallest row **341.4 × 96.2**: `HIG · 44pt` ✓ **219%**, `WCAG 2.5.8` ✓
+  **4.01×**.
 - **Photograph:** `object-fit: cover`, edge to edge inside `--r-media`, no padding — a photograph
   *is* the surface. Never inset on a `--media` ground; a floated photo reads as a sticker.
 - **Map:** `--r-card`, `center/cover`, native 1.99 aspect, `--media` as the pre-load ground.

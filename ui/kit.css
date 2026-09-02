@@ -1742,6 +1742,21 @@ header.dr-topbar,
   text-decoration: none; color: var(--ink);
 }
 .dr-choice:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+/* THE WELL IS SMALLER HERE THAN IN A LIST — designer, 2026-09-03, rev 212:
+   «make images in this 2 cards smaller a little bit», then «зроби зображення
+   менші» against the first step. Asked with three options drawn: the two that
+   kept 96 × 72 and shrank the render by inset alone were refused, so the BOX
+   steps and the row tightens with it. 80 × 60 was the first step and she asked
+   for one more, so THE WELL LANDS ON A RUNG THE RAMP ALREADY HAD rather than on
+   a third number of its own — --sz-well-*-sm, the narrow tier's well, taken at
+   every tier. That is also why the tier needs no remap: this box is already
+   where the media query would have sent it. The inset is untouched, 4px being
+   the well's own rung, so the picture box is 60 × 44.
+   Nothing an assistive tech hears moves — both images are alt="" cutouts on a
+   transparent well, so no `WCAG 1.4.11` boundary and no target lives in this
+   box; the tap target is the whole card and clears `HIG · 44pt` by construction
+   at every tier. */
+.dr-choice > .dr-well{ width: var(--sz-well-w-sm); height: var(--sz-well-h-sm); }
 .dr-choice__body{ flex: 1; min-width: 0; }
 .dr-choice__title{
   display: block;
