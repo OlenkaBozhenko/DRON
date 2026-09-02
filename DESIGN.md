@@ -2047,7 +2047,7 @@ reads as a stray sixth. Both are open for her call; neither engages a criterion.
 **341 × 98**, 20 + 32 + 4 + 22 + 20 (**326 × 98** as this screen actually renders, the frame's scrollbar
 taking 15 of the width; 341 is the scrollbar-free measure every figure in this section uses).
 **It carried a third child until 2026-09-03**: `126 ratings · last 90 days`, the line that named the
-score, removed at rev 215 on the designer's word (*«remove this frace»*) and taking **19.5** of line box
+score, removed at rev 219 on the designer's word (*«remove this frace»*) and taking **19.5** of line box
 plus the **4** step above it with it — **121.5 → 98**. What follows is the record of that line, kept so a
 rewrite that happened stays visible: it was the one place in the
 product where `.dr-note` kept its own centred default instead of taking `--flush`, **and the one place it
@@ -2059,7 +2059,7 @@ the body step the review sentences below already take. `--t-bodysm-weight` is 40
 already carries, so only the size moves, and the 19.5 line box is the whole **1.5** the card grew.
 `HIG · Typography` puts 13 at **Footnote** and 12 at **Caption 1**, both inside the iOS ramp with 11 the
 floor. At 200% text that line wrapped to two and the banner grew **121.5 → 180** with **0px** of horizontal
-overrun — `WCAG 1.4.4` ✓. **Re-measured after rev 215, with the line gone: 98 → 120**, the 22px figure
+overrun — `WCAG 1.4.4` ✓. **Re-measured after rev 219, with the line gone: 98 → 120**, the 22px figure
 doubling to 44 and nothing left to wrap, overrun still **0px**. Both rules are still declared and both now
 spend nothing: `.dr-balance--banner .dr-note{font-size:--t-bodysm-size}` has no element, and `.dr-note`
 is dead weight in the `--on-green` colour rule it shares with `.dr-number`. Both are
@@ -2165,7 +2165,7 @@ nothing rests on that number, since a surface engages no `WCAG 1.4.11`. **One co
 absorbed: `--green-soft` is now spent nowhere** — see the palette entry above.
 
 **And on 2026-09-03 the line under the score is removed, which is the first time this card has lost a
-child rather than a colour (rev 215)** — *«remove this frace»*, the designer pointing at
+child rather than a colour (rev 219)** — *«remove this frace»*, the designer pointing at
 `126 ratings · last 90 days`. **The card is now a two-child column: 341 × 121.5 → 341 × 98**, the caption's
 **19.5** line box and the **4** `--sp-within` step above it, measured on the build (**326 × 98** with the
 frame's scrollbar). Nothing reflows — the note lived **inside** the card, so no gap collapses and no

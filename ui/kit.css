@@ -5055,7 +5055,7 @@ header.dr-topbar,
    at both 22px and 13px. The rule below did not have to move for that: it has
    said --on-green through every fill, and 9.46:1 is what it now measures.
    AND ON 2026-09-03 THE .dr-note HALF OF THIS SELECTOR HAS NO ELEMENT: the
-   caption was removed from the banner on her word (rev 215, «remove this
+   caption was removed from the banner on her word (rev 219, «remove this
    frace»), so this rule now inks exactly one child, the figure. The selector is
    kept whole rather than trimmed to .dr-number — the pair it names is the pair
    that was measured, and one line of markup brings the second child back. */
@@ -5235,7 +5235,7 @@ header.dr-topbar,
    both inside the iOS ramp, with 11 the floor — one named step up, not a size
    off the scale.
    AND ON 2026-09-03 THIS RULE HAS NO USER AT ALL. The line it sized was removed
-   from the banner on her word (rev 215: «remove this frace»), and --banner is on
+   from the banner on her word (rev 219: «remove this frace»), and --banner is on
    `ratings` and nowhere else, so the scoping that kept 42 other captions still
    is now what leaves this declaration spending nothing. It stays DECLARED and is
    not deleted, the call --sh-card, --sh-onphoto, --warn-wash and the whole
