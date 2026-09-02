@@ -2937,13 +2937,20 @@ delivery** (the chip already said *New*), and *Your documents are approved* → 
 (250.77 against the narrow tier's 236.72). Measured after: **every title on both logs is one line at
 both tiers**, and every row is **77.98**.
 
-**Spacing is a break now, not a seam.** Measured: **8** within a group (`.dr-list--snug`), **4**
-under the heading (`--sp-within`), **28** between groups — `.dr-log`, a flex column spending
+**Spacing is a break now, not a seam.** Measured: **8** within a group (`.dr-list--snug`), **12**
+under the heading (`--sp-snug`), **28** between groups — `.dr-log`, a flex column spending
 `--sp-list`, because `.dr-main`'s generic **12** made a date break speak no louder than any other
 gap on the page (12 : 8 = **1.5:1**). **28 : 8 = 3.5:1**, the designer's own pick with 20
 (`--sp-group`, 2.5:1) and 24 (`--sp-24`, 3:1) drawn beside it. No rung is minted. The narrow tier
-takes it to **22**. `HIG · Layout` prescribes the direction and not a number; no WCAG criterion is
-engaged, `1.3.1` being carried by `<section aria-labelledby>` + `<h2>` throughout.
+takes it to **22**. **The heading's own gap is on its third value and the last one is hers:** 0 as
+first built, **4** (`--sp-within`) at rev 214, **12** at rev 220 — *«improve spases between titles
+and cards»* — because 4 sat tighter than the **8** the cards spend between themselves, and a card's
+top *edge* is a harder boundary than the gap between two of them. 8 (3.5:1), 12 (2.33:1) and keeping
+4 (7:1) were drawn and all three conform; 12 leaves the break **2.33:1** over the bind — **1.83:1**
+at the narrow tier, where `--sp-list` steps to 22 and `--sp-snug` does not step, reported and not
+re-cut — and each group grows exactly **8px**, four groups per log, **+32** a page. `HIG · Layout`
+prescribes the direction and not a number; no WCAG criterion is engaged, `1.3.1` being carried by
+`<section aria-labelledby>` + `<h2>` throughout.
 
 ## Sources
 

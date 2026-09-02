@@ -887,15 +887,35 @@ header.dr-topbar,
    PUT TO HER WITH THREE DRAWN — 20 (--sp-group, 2.5:1), 24 (--sp-24, 3:1) and
    28 — AND SHE TOOK 28. No rung is minted; the widest one on the ramp was
    already the right one.
-   THE 4 UNDER THE HEADING IS THE OTHER HALF OF THE SAME FIX. The heading used
-   to touch its own list at 0 while sitting 12 from the list above it, so
-   proximity was saying "seam" in both directions at once. 4 : 28 says it once,
-   and 4 is --sp-within, the same rung .dr-choice__desc already spends.
+   THE GAP UNDER THE HEADING IS THE OTHER HALF OF THE SAME FIX, AND IT IS ON
+   ITS THIRD VALUE. The heading used to touch its own list at 0 while sitting
+   12 from the list above it, so proximity was saying "seam" in both directions
+   at once. Rev 214 answered with 4 (--sp-within) — 28 : 4 = 7:1, the strongest
+   binding on the ramp — and on 2026-09-03 she read the built page again:
+   «improve spases between titles and cards».
+   WHAT 4 GOT WRONG IS THAT IT WAS TIGHTER THAN THE 8 THE CARDS SPEND BETWEEN
+   THEMSELVES. A card's top EDGE is a hard boundary and a card-to-card gap is
+   two soft ones, so 4 against an edge reads tighter than 8 between a pair: the
+   heading was crowding a surface rather than joining a list.
+   PUT TO HER WITH THREE DRAWN — 8 (--sp-within-lg, 28 : 8 = 3.5:1, the rows'
+   own rung), 12 (--sp-snug, 2.33:1) and keeping 4 (7:1) — EVERY ONE
+   CONFORMING, AND SHE TOOK 12. The heading now stands FURTHER from its list
+   than the rows stand from each other, which is the reading 8 would have
+   avoided; the break above is still 2.33x the bind below, so the group still
+   reads as one. No rung is minted — 12 is --sp-snug, the gap .dr-main already
+   spends between blocks. Each group grows exactly 8: Today 272.08 -> 280.08,
+   four groups per log, +32 a page, nothing else moving.
+   AT THE NARROW TIER THE RATIO NARROWS AND IS REPORTED, NOT HIDDEN: --sp-list
+   steps to 22 at <= 389px and --sp-snug does not step, so the break reads
+   22 : 12 = 1.83:1 there. Still the direction HIG asks for, one third of a step
+   shallower; a second breakpoint value would mint a rung to protect a ratio
+   that already conforms.
    `HIG · Layout` groups by proximity and prescribes the direction, not a
    number; no WCAG criterion is engaged — 1.3.1 is carried programmatically by
-   <section aria-labelledby> + <h2> and does not move. */
+   <section aria-labelledby> + <h2> and does not move, 2.5.8 is answered by the
+   341 x 77.98 row at 2.33x the floor, and no contrast pair changes. */
 .dr-log{ display: flex; flex-direction: column; gap: var(--sp-list); }
-.dr-log .dr-sect{ margin-bottom: var(--sp-within); }
+.dr-log .dr-sect{ margin-bottom: var(--sp-snug); }   /* rev 220: 4 -> 12, hers */
 /* Explanatory caption under a block. Same job as .dr-hint in a sentence voice. */
 .dr-note{
   font-size: var(--t-caption-size); font-weight: var(--weight-regular);
@@ -1375,6 +1395,53 @@ header.dr-topbar,
   overflow-x: auto; scrollbar-width: none;   /* the row scrolls; the chrome does not show it */
 }
 .dr-groups::-webkit-scrollbar{ display: none; }
+/* AND ON THE OPERATOR'S HOME THE ROW COMES DOWN INTO THE PAGE — the designer,
+   2026-09-03, against the built `operator-listings`: «it is not logical that the
+   toggle with operator status is under the filters which need to be below please
+   change the UX design on this page». SHE IS RIGHT AND IT IS A GUIDELINE MISS,
+   NOT A TASTE CALL, WHICH IS SAID FIRST: `HIG · Segmented Controls` puts a
+   segmented control directly above the content it affects, and this row had 44px
+   of unrelated control — the availability segment — standing between it and the
+   list it filters. `WCAG 1.3.2` and `2.4.3` both passed and both read at their
+   weakest: the filter was announced two zones before its target. And with the
+   shell's annotations off the `.zlabel` that named the segment is hidden
+   (`_wf-shell.js`, `body.wf-hide-anno .zlabel{display:none}`), so the segment
+   stood bare under the tab row and read as part of the filter.
+   THREE READINGS WENT TO HER WITH THE STANDARDS FIRST AND SHE TOOK THIS ONE:
+   the segment up into the chrome above the row (parity kept, and the topbar
+   badge's own stated reason — «so it stays on screen once the segment scrolls
+   away» — retired); the badge made the control and the segment deleted (parity
+   kept, and a 324px² chip that says «not a control» suddenly owing `HIG · 44pt`
+   and `WCAG 2.5.8`); or the row down into `main`. She took the row down.
+   THE SCOPE IS EXACT, NOT APPROXIMATE. `.dr-main > .dr-groups` reaches a row
+   that is a CHILD of main, and on the ten other pages that draw this component —
+   five `listings`, four `time-slot`, and the operator's own `-empty` before it
+   followed its base file — the `<nav>` is a SIBLING of `<main>`. Counted on the
+   files, not assumed: no client screen can be reached by this rule.
+   WHAT THE OVERRIDE UNDOES IS CHROME AND NOTHING ELSE. The 16 of its own padding
+   goes, because `.dr-main` already spends `--sp-screen` — so the tabs stand at
+   exactly 16 from the frame edge, the x they had in the chrome, and nothing moves
+   sideways. The hairline goes with it: a rule that stops 16px short of both edges
+   is a divider inside content, and §0 separates surfaces by tone and radius
+   rather than by lines — `.dr-main`'s own `--sp-snug` 12 does that work above and
+   below. The ground goes because `main`'s ground is `--page` already, so it was
+   painting `--page` on `--page`. The 48 height, the gap, the horizontal scroll
+   and every value on `.dr-grouptab` are UNTOUCHED: the 44px target (32 visible +
+   the `--pill-bleed` −6/−6) clears `HIG · 44pt` and `WCAG 2.5.8`, `--slate` on
+   `--page` is 6.62:1, and the selected tab is `--ink` on `--green-wash` at
+   14.75:1 with the tint still uncounted against the green budget at 1.085:1.
+   TWO COSTS, STATED RATHER THAN ABSORBED, AND BOTH WERE DRAWN BEFORE SHE CHOSE.
+   The row now scrolls away with the list, so `Active · 1` is off screen once the
+   operator is down the offers — the chrome used to hold it there. And
+   `WCAG 3.2.3 Consistent Navigation` no longer holds between the two home
+   screens: the client's `listings` keeps this same component in the chrome, the
+   operator's carries it in the page. Recorded as her decision, not filed as a
+   defect. */
+.dr-main > .dr-groups{
+  padding: 0;
+  border-bottom: 0;
+  background: transparent;
+}
 .dr-grouptab{
   position: relative; flex: none;
   height: var(--h-pill); padding: 0 var(--sp-snug);

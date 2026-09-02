@@ -35,11 +35,6 @@
       <span class="dr-chip dr-chip--sm dr-avail-badge" data-avail-badge data-state="offline"><span class="dr-avail-badge__dot" aria-hidden="true"></span><span data-avail-word>Offline</span></span>
     </header>
 
-    <nav class="dr-groups" aria-label="Job groups">
-      <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming · 0</a>
-      <a class="dr-grouptab" href="#active">Active · 0</a>
-    </nav>
-
     <main class="dr-main">
       <p class="zlabel dr-label">Status <span class="dr-label__act">▸ set availability — gates dispatch (O-02)</span></p>
       <section class="dr-stack" aria-label="Availability status">
@@ -56,6 +51,20 @@
           </fieldset>
         </form>
       </section>
+
+      <!-- THE ROW CAME DOWN WITH THE BASE PAGE'S (2026-09-03). This file and
+           `operator-listings` are one screen in two states, so the chrome and the
+           zone order are the same on both by `_conventions.md`'s rule — the row
+           could not stay in the chrome here while it sits in the page there. The
+           reason is the base page's and is written out there in full; what is
+           local is that this state's counts are `Incoming · 0` / `Active · 0`,
+           so the row filters two empty groups and the state mark below carries
+           the exit. No `data-groups` here: the base page's script is what moves
+           `aria-current`, and this page has none. -->
+      <nav class="dr-groups" aria-label="Job groups">
+        <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming · 0</a>
+        <a class="dr-grouptab" href="#active">Active · 0</a>
+      </nav>
 
       <p class="zlabel dr-label">Offers <span class="dr-label__act">▸ empty — idle while offline (exit)</span></p>
       <section aria-label="No offers">
