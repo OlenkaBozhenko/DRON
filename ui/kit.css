@@ -3083,9 +3083,38 @@ header.dr-topbar,
    before -- equalising it means taking back the air the two lines asked for --
    so the slack stays, and it stays written down. */
 .dr-pick:has(.dr-pick__sub){ padding: var(--sp-snug) 0; }
+/* THE ROW'S SEPARATOR DROPS ITS LABEL INDENT AND TAKES THE CARD'S OWN INSET,
+   BOTH ENDS — the designer, 2026-09-03 (rev 229), asked which way the radio
+   lists should follow rev 227's field card and chose the content box: 16 / 16,
+   one rule for both components.
+   WHAT WAS BUILT: left --pick-indent 36 inside a row that already sits 16 in,
+   so 52 from the card's leading edge against 16 from its trailing one — the
+   36 being an alignment to the LABEL, past the 24 radio box, not the card's
+   inset. `HIG · Lists and tables (separators)` prescribes exactly that, and
+   ships it with a full-bleed trailing edge; rev 91's 16 on .dr-picks had
+   already taken the trailing half away, which DESIGN.md recorded as a cost.
+   So this is the same departure rev 227 made, applied to the second component
+   that draws a line inside a card — recorded as a decision, not filed as a fix.
+   NO WCAG CRITERION MOVES: the hairline is --line on --card, 1.21:1 before and
+   after, permitted under 1.4.11's 3:1 only because a list separator is
+   decoration and never the carrier of structure; the grouping stays
+   programmatic in the DOM (1.3.1), and the row's own 44 min-height, its hit
+   area and every string are untouched — the line is a ::before with no target.
+   MEASURED FROM THE BOX MODEL, the pseudo-element's insets being literal: on a
+   341 card the row is 309 and the line goes 273 -> 309; on the 309 zone card
+   `listings-filters` draws, the row is 277 and the line goes 241 -> 277. Ten
+   pages carry a pick list — job-checklist(-error), listings-filters,
+   operator-profile-setup, order-setup(-aerial/-inspection), payment(-aerial/
+   -inspection), withdraw — plus the `_checkbox-options` spec, which holds no
+   override of its own and follows the kit.
+   --pick-indent IS NOW DECLARED AND SPENT NOWHERE, and it is kept rather than
+   deleted, the way --sh-card and --sh-onphoto are kept: it is the derived rung
+   that names the label's leading edge, and the day a row needs that axis again
+   it should not be re-derived by hand. Written down so it is not read later as
+   an oversight. */
 .dr-pick + .dr-pick::before,
 .dr-picks li + li .dr-pick::before{
-  content: ""; position: absolute; left: var(--pick-indent); right: 0; top: 0;
+  content: ""; position: absolute; left: 0; right: 0; top: 0;
   height: var(--hair); background: var(--line);
 }
 .dr-pick input{ position: absolute; opacity: 0; width: 0; height: 0; }
@@ -3408,7 +3437,7 @@ header.dr-topbar,
    The ::before hairline belonged to the band's old life as an <li> in .dr-picks
    and matches nothing now. */
 .dr-picks li + li .dr-range::before{
-  content: ""; position: absolute; left: var(--pick-indent); right: 0; top: 0;
+  content: ""; position: absolute; left: 0; right: 0; top: 0;   /* rev 229, with its live sibling */
   height: var(--hair); background: var(--line);
 }
 .dr-range__out{

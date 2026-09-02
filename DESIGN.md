@@ -1527,11 +1527,32 @@ ten client screens that meet an operator.
   where `HIG · Lists and tables` runs it to that edge, and the row's hit area narrows 326 → 294px
   (× 44 tall — `WCAG 2.5.8` cleared ×12.25 and ×1.83). The designer was shown both readings on
   2026-08-15 and chose the literal one.
+- **And on 2026-09-03 (rev 229) the leading edge goes too: the separator is `0 / 0` in the row,
+  which is `16 / 16` from the card.** Asked which way the radio lists should follow rev 227's field
+  card — leave them at `52 / 16`, mirror the indent at `52 / 52`, or drop it for the content box —
+  the designer chose the content box, so both components that draw a line inside a card now draw the
+  same line. `--pick-indent` **36** (`--sz-box 24 + --sp-snug 12`) stops being spent: the label still
+  begins **52** from the card edge, and the token is **kept, declared and spent nowhere**, the way
+  `--sh-card` and `--sh-onphoto` are kept. It is the second half of the same departure from
+  `HIG · Lists and tables`, whose separator is inset to the row's content on the leading edge and
+  full-bleed on the trailing one; rev 91 had already taken the trailing half away, and this takes the
+  leading half. **Nothing else moves and nothing is re-measured:** the hairline is `--line` on
+  `--card` **1.21:1** before and after — under `1.4.11`'s 3:1 and permitted there because a list
+  separator is decoration, the grouping staying programmatic in the DOM (`1.3.1` ✓) — the row keeps
+  its **44** `min-height` and its hit area (`HIG · 44pt` ✓, `WCAG 2.5.8` ✓), and a `::before` is not
+  a target. **Derived from the box model, the insets being literal:** on a 341 card the row is 309
+  and the line **273 → 309**; on the 309 zone card `listings-filters` draws, the row is 277 and the
+  line **241 → 277**. Ten pages carry a pick list — `job-checklist`(-error), `listings-filters`,
+  `operator-profile-setup`, `order-setup`(-aerial/-inspection), `payment`(-aerial/-inspection),
+  `withdraw` — plus the `_checkbox-options` spec, which holds no override and follows the kit. The
+  bench rule `.dr-picks li + li .dr-range::before` takes the same value, so it cannot come back off
+  the bench carrying a geometry the product no longer draws.
 - **Measured on `listings-filters`, before → after (all three cards identical):** card padding
   `8px 0` → `16px`; row padding `0 16px` → `0`; card-edge to the first radio 16 / 18 → 16 / 26
   (left / top — the 8px difference is the row's own slack, not the card's); card-edge to the row box
   8 → 16 top and bottom; separator 52 from the leading edge in both, 0 → 16 short of the trailing
-  edge; the Price card's foot below the `₴0 / ₴1,000+` labels 22 → 16.
+  edge (**16 from both since rev 229**); the Price card's foot below the `₴0 / ₴1,000+` labels
+  22 → 16.
 - **Internal rhythm:** 20px between groups, 4/8 within a group.
 - **The one card with no inset at all — `.dr-card--cover`** (2026-08-16, rev 140): padding `0`, gap
   `0`, `overflow:hidden`, its picture flush to three edges and clipped by the card's own 16 radius
