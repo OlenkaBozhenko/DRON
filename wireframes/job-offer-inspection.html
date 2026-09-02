@@ -37,16 +37,34 @@
       <article class="dr-card dr-card--row dr-listing">
         <span class="dr-listing__body">
           <span class="dr-listing__name">Roof inspection</span>
-          <!-- Two description rows and no pay tail, as on the delivery offer — one
-               screen, one arrangement. See job-offer.html for the designer's words, the
-               2px step and the `WCAG 1.4.3` / `1.3.1` note; this file carries the same
-               split and the same removal, no CSS. What differs is only which fact takes
-               the second row: the delivery names its pickup, an inspection names its
-               district — and that district is the Site zone's own `Location` value
-               below, the offer card stating it first so the operator can decide without
-               scrolling. -->
+          <!-- ONE FACT ROW, NOT TWO — as on the delivery offer: one screen, one
+               arrangement. Rev 220 split the description in two here as well;
+               rev 223 deleted that second row on the delivery card («delete
+               "Pickup near Podil"») and this file follows, because the two offer
+               files ARE one screen. That is the same reason they both took the
+               split, and it is not a weaker reason running backwards.
+               THE CASE IS STRONGER HERE, NOT WEAKER. This row read «Obolon
+               district» and the Site zone's `Location` row below reads «Obolon
+               district» — the SAME string twice on one screen, which is the
+               restatement `microcopy.md` A8 exists to catch. On the delivery card
+               the two were only close («near Podil» against «Podil, 21»); here
+               they were identical.
+               AND THE SENTENCE THIS COMMENT USED TO CARRY WAS NOT TRUE, SO IT IS
+               CORRECTED RATHER THAN COPIED FORWARD: it said the card states the
+               district first «so the operator can decide without scrolling».
+               Measured, this page scrolls either way — `main` **603** against a
+               **577** window as built, **587** once the row goes. The deletion
+               takes 16 of the 26 and the screen still scrolls; that is reported
+               here, not fixed here.
+               MEASURED, 375 × 812: body **87.38 → 67.19** (−20.19, the row
+               whole) but card **135.38 → 120** (−15.38), because the 96 × 72
+               well becomes the floor — 72 against a 67.19 body. Identical to the
+               delivery offer, the strings apart. Standards: `WCAG 1.4.3` unmoved — both
+               rows were `--slate` on `--card` 5.95:1; no aria attribute ever
+               named either row; the `sr-only` «Pay» stays welded to ₴650; and
+               `HIG · 44pt` / `WCAG 2.5.8` / `2.4.4` are not engaged — an
+               `<article>` with no link and no control on it. -->
           <span class="dr-listing__desc">5.1 km · ~35 min</span>
-          <span class="dr-listing__desc">Obolon district</span>
           <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴650</span></span></span>
         </span>
         <span class="dr-well"><img src="../assets/drones/thumbs/drone-11.png" alt="" loading="lazy" decoding="async"></span>

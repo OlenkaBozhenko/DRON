@@ -47,35 +47,45 @@
       <article class="dr-card dr-card--row dr-listing">
         <span class="dr-listing__body">
           <span class="dr-listing__name">Package delivery</span>
-          <!-- THE FACTS TAKE TWO ROWS, AND THE PAY LINE LOSES ITS TAIL — designer,
-               2026-09-03, against the built card: «pickup near Podil it is a second
-               row», and «remove» on `· paid on completion`. The description already
-               WRAPPED to two lines at 193px of measure; what changes is that the break
-               is chosen instead of found. Distance-and-time is one fact and where the
-               job starts is another, and a middle dot was joining two things that do
-               not sit on the same footing. Two `.dr-listing__desc` siblings — no new
-               class and no CSS: the step between them is the class's own
-               `margin-top: --sp-2` 2px, so the card grows by exactly that and nothing
-               reflows. `pickup` → `Pickup`, because a row that starts its own line
-               starts with a capital, which is what every other `__desc` in the product
-               does; the lowercase word was a mid-sentence fragment after a `·`. Hers
-               to reverse either way.
-               STANDARDS FIRST, AND NOTHING MOVES, WHICH IS AN ANSWER AND NOT A GAP.
-               `WCAG 1.4.3` — both rows are `--slate` on `--card`, 5.95:1, and the pair
-               that left carried that same ratio, so no number changes by losing an
-               element. `WCAG 1.3.1` / `4.1.2` — neither row was ever named by an aria
-               attribute, and the `sr-only` «Pay» stays welded to ₴180 inside its own
-               wrapper, which is the reason that wrapper is kept once its sibling goes:
-               it binds the invisible label to the value. `HIG · 44pt` and `WCAG 2.5.8`
-               are not engaged at all — this card is an `<article>` with no link and no
-               control on it.
-               WHAT THE REMOVAL COSTS, STATED RATHER THAN QUIETLY SPENT: the offer no
-               longer says WHEN the money lands. `operator-fee-terms` still does
-               (Payment ▸ «Auto-release ≤30 min after client confirms»), so the fact is
-               in the product — one screen away and behind onboarding, not on the card
-               the operator decides on in 8s. `voice.md` P3 is what that spends. -->
+          <!-- ONE FACT ROW, NOT TWO — AND THE SECOND ROW LASTED EXACTLY ONE
+               REVISION, WHICH IS RECORDED SO THE SPLIT IS NOT RE-PROPOSED LATER
+               AS A NEW IDEA. Rev 220, against this card: «pickup near Podil it
+               is a second row» — the description was split in two and the
+               fragment capitalised. Rev 223, against the built result: «delete
+               "Pickup near Podil"». The row goes, and with it the only thing the
+               split existed for; what is left is the line the card started with,
+               `2.3 km · ~18 min`, one line of a 193px measure.
+               THE FACT IS NOT LOST — IT IS ONE ZONE DOWN AND MORE EXACT. The
+               Route rows below read `Pickup · Podil, 21`, a street number
+               against the card's «near Podil». So the card carries what the
+               operator decides on in 8s — service, distance-and-time, pay — and
+               where the job starts is read where the route is read.
+               MEASURED ON THE BUILD, 375 × 812, AND THE TWO NUMBERS DIFFER FOR
+               A REASON WORTH KNOWING: the body loses the row whole — **87.38 →
+               67.19**, −20.19, the 18.19 line box plus its 2px `--sp-2` step —
+               but the card loses only **135.38 → 120**, −15.38, BECAUSE THE
+               96 × 72 WELL IS NOW THE FLOOR: 72 against a 67.19 body inside a
+               24px inset. Rev 220 could say the well was not the floor here;
+               that stops being true with this row, and anything else taken off
+               this card costs no height at all until the well changes. `main`
+               did not scroll before and does not scroll now, 577 in a 577
+               window.
+               STANDARDS FIRST, AND NOTHING IS ENGAGED, WHICH IS AN ANSWER AND
+               NOT A GAP. `WCAG 1.4.3` — the row that goes was `--slate` on
+               `--card` 5.95:1, the same pair the surviving row carries, so no
+               ratio moves by losing an element. `WCAG 1.3.1` / `4.1.2` — no aria
+               attribute ever named either row, and the `sr-only` «Pay» stays
+               welded to ₴180 inside its own wrapper. `HIG · 44pt` and
+               `WCAG 2.5.8` are not engaged at all, nor is `2.4.4`: this card is
+               an `<article>` with no link and no control on it.
+               THE PAY LINE'S TAIL WENT AT REV 220 AND STAYS GONE — «remove» on
+               `· paid on completion` — and what that costs is unchanged: the
+               offer does not say WHEN the money lands. `operator-fee-terms`
+               still does (Payment ▸ «Auto-release ≤30 min after client
+               confirms»), one screen away and behind onboarding rather than on
+               the card the operator decides on. `voice.md` P3 is what that
+               spends. -->
           <span class="dr-listing__desc">2.3 km · ~18 min</span>
-          <span class="dr-listing__desc">Pickup near Podil</span>
           <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴180</span></span></span>
         </span>
         <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>

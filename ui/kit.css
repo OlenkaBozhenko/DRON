@@ -1895,7 +1895,7 @@ header.dr-topbar,
    the pill past the card's edge.
    ALIGN CENTRE, NOT BASELINE: the small chip stands 21.4 (11 x 1.4 + 2 x 3)
    against the title's 23.8 line box (17 x 1.4 — it read 19.6 for the two
-   revisions the title spent at 14, and rev 217 put it back), so the pill is
+   revisions the title spent at 14, and rev 221 put it back), so the pill is
    now the SHORTER of the two by 2.4 and centring is what splits that
    difference evenly. A shared baseline would sit it against a line box it no
    longer matches, in whichever direction the two happen to differ.
@@ -1909,7 +1909,7 @@ header.dr-topbar,
    was REPHRASED, the remedy rev 213 took on `support`, and not truncated. */
 .dr-choice__head{ display: flex; align-items: center; gap: var(--sp-within-lg); }
 .dr-choice__head > .dr-choice__title{ flex: 1; min-width: 0; }
-/* THE TITLE IS 17 AGAIN — designer, 2026-09-03, rev 217: «поверни розмір
+/* THE TITLE IS 17 AGAIN — designer, 2026-09-03, rev 221: «поверни розмір
    шрифту заголовку», against the built role-select. This RETURNS the size
    rev 213 stepped down two revisions ago, and it can be returned because the
    thing that forced 14 is gone: 14 was the first step where support's quality
@@ -1953,7 +1953,7 @@ header.dr-topbar,
 .dr-choice__desc{
   /* 4, not the listing's 2 — set 2026-08-12 under a 17px title, where the 2px
      rung read crushed against the 16 inset. It was kept at rev 213 for a
-     DIFFERENT reason, and that reason expired at rev 217: for two revisions
+     DIFFERENT reason, and that reason expired at rev 221: for two revisions
      the pair was 14/600 over 13/400 and the hierarchy rested on weight and
      colour alone (14.37:1 against 5.95:1). With the title back at 17 the size
      gap is back too, and 4 goes back to being what it was on 2026-08-12 —

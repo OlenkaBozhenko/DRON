@@ -478,7 +478,7 @@ at unless it declares otherwise. Measured departures, and their reason:
 **One size, several roles.** 15px is `heading` at 600/1.2, the button label at 600/1.4, the `.kv`
 value at 600/1.4 tabular, and `.lead` at 400/1.55. **14px joined it on 2026-09-03** with the route
 strip's place name at 400/1.3 — and for two revisions with the choice card's title at
-600/1.4/−0.01em as well, until **rev 217 returned that title to 17**. 11px is mono-600 for zone and route labels,
+600/1.4/−0.01em as well, until **rev 221 returned that title to 17**. 11px is mono-600 for zone and route labels,
 SF-600 for tab labels, and SF-400 for the fee caption **until 2026-08-02, when the designer removed
 that caption** — 11px now carries the mono zone and route labels and the tab label, and the fee
 figure stands alone.
@@ -2792,7 +2792,7 @@ bell adds **0.11pp** and changes neither the count nor the ceiling.
 `operator-listings` already records that it is not tappable and owes no 44pt target. Gap between
 them, measured: **8px**. The reverse order conforms equally and is one swap.
 
-### The choice card's title returns to 17 (`.dr-choice__title`, rev 217)
+### The choice card's title returns to 17 (`.dr-choice__title`, rev 221)
 
 **The value is 17/600, leading 1.4, tracking −0.01em, `--ink` on `--card` 14.37:1** — the `title`
 step exactly as the scale defines it, with no departure left to record. It spent two revisions at
@@ -2889,7 +2889,7 @@ automatically / Earnings land within 30 min of client confirmation.*
 17/600 `--ink` on `--card` **14.37:1**, description 13 `--slate` on `--card` **5.95:1**.
 **The row made a round trip on 2026-09-03**: rev 213 stepped the shared `__title` 17 → 14 and every
 line box under it lost **4.2px** (**77.98 → 73.78**, lists of six / five **249.95 → 237.34**), and
-rev 217 put both back. No title on either log wrapped at either size — the widest,
+rev 221 put both back. No title on either log wrapped at either size — the widest,
 *Your photo and video set is ready*, is **277.89** of a **309px** measure — so the eleven rows read
 smaller for two revisions and now read as they did. Contrast is untouched throughout: a size change
 moves no ratio, and neither pair was ever leaning on the 3:1 large-text exemption.
