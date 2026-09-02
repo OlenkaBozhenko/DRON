@@ -854,6 +854,26 @@ hairline goes **1.34:1 → 1.21:1** on its new ground; both are under 3:1 and pe
 list separator is decoration and the grouping stays programmatic (`WCAG 1.3.1` ✓) — and the card
 edge now says the group boundary the hairline used to carry alone.
 
+**And the separator inside that card now stands on the card's inset at BOTH ends** — 2026-09-03
+(rev 227), the designer on `account-edit` pointing at the line under *Full name*: *«вона має мати
+однаковий відступ від краю картки, такий відступ від правого краю картки як і від лівого»*.
+`.dr-field + .dr-field::before` was `left: 16 / right: 0` — the line began where the row's text
+begins and ran out to the card's bleed edge, drawing **309** on the **341** card at the 375 frame.
+It is now `16 / 16`, **293** on the same card, spanning the row's content box exactly.
+**It is a departure from `HIG · Lists and tables`, recorded rather than filed as a fix:** HIG insets
+a separator on the *leading* edge to align with the row's content and runs it full-bleed to the
+*trailing* edge, which is what was built. Nothing in WCAG moves — the hairline is **1.21:1** on
+`--card` either way, permitted only because a list separator is decoration and never the carrier of
+structure (`1.4.11` reaches what conveys meaning), and the grouping stays programmatic in the DOM
+(`1.3.1` ✓). No row changes height, no text moves, and green is untouched at **0px²**.
+**Nine cards move** — `account-edit` (Personal, Notifications), `account` and `operator-account`
+(Mode), `listings-filters` (location, and `.dr-cal__time`'s own copy of the line below it),
+`payment` / `-aerial` / `-inspection`, `withdraw`. **The seven plain-list pages do not:** their
+override now writes `left: 0; right: 0` instead of inheriting the base's trailing edge, so they
+render byte-identical. **`.dr-picks` is deliberately not swept** — its separator's leading indent is
+`--pick-indent` **52** from the card edge, an alignment to the label past the radio rather than the
+card's own inset, so equalising it would mean a different decision, not this one.
+
 **The label column is `--sz-rowkey` 140 — the same axis as the read-only row** (rev 114, 2026-08-16,
 on the designer's word). It was `flex:1`, a 1:1 split, which held only where every row in a group had
 the same anatomy: on `account-edit` the two picker rows carry a chevron and the input row does not, so
@@ -1640,7 +1660,8 @@ order and operator cards, which display rather than collect.
 - **The card boundary moves; the list inside does not.** The list gives up the ground, the radius
   and its own inset to the card. `.dr-picks` needs nothing else — its rows were inset 16 by the list
   and are inset 16 by the card. `.dr-rows` bleeds **−16** either side, because its rows carry their
-  own 16 and its separator runs from that inset to the **card's** trailing edge.
+  own 16 and its separator runs from that inset to the matching inset on the other side (**16 / 16**
+  since rev 227 — it ran to the card's trailing edge until then).
 - **Measured on `listings-filters`, 375 × 812:** both new cards **341 × 273.99**; rows **341 × 44**
   with labels at **305** and separators **305 → 630**; options **309 × 44** with labels at **341**
   and separators **341 → 614** — every one of those numbers unchanged by the pass. On `account-edit`
@@ -1930,8 +1951,20 @@ The drawer's second job. Where a picker sheet sets a **value**, this one offers 
   it; the row only tightens again when the text does, which is what rev 216 then did.
 - **These heights are at a 17px title, and they were briefly something else:** rev 213 stepped the
   title 17 → 14 across all 16 instances, taking 4.2px of line box out of every card (114.4 / 96.2 /
-  218.6 became 110.2 / 92 / 210.2), and **rev 217 put it back to 17**. Every figure here is read
+  218.6 became 110.2 / 92 / 210.2), and **rev 221 put it back to 17**. Every figure here is read
   off the build after that round trip.
+- **The picture stands 20 from the text, not 12** (designer, 2026-09-03, rev 228: *«збільш відступи
+  від зображення до тексту»*). `.dr-choice`'s row gap goes `--sp-snug` **12** → `--sp-group` **20**.
+  **What was wrong was an asymmetry, not a small number:** the card's 16 inset plus the well's own 4
+  put the ink **20** from the card edge, while the 12 gap plus that same 4 put it **16** from the
+  title — the cutout read stuck to the words. At 20 the pair reads **20 against 24** and the text is
+  the further of the two. **Only `role-select` moves:** 2 of the 16 `.dr-choice` instances carry a
+  `.dr-well`, the other 14 hold a single child and a flex gap with one child is nothing — measured
+  after the change, `support` **55.80 × 3** and both alert logs **77.98 × 11**, unchanged. The card
+  keeps its **76** (the 44 well plus 2 × 16 sets it, not the 23.8 title); the text column pays the 8,
+  body **241 → 233**, and the longer title is 176.44 with **56.56** of slack. **At ≤ 389px the rung
+  steps by itself** to `--sp-screen` **16** — ink 20, body 203, still one line, measured at a 380px
+  viewport — where `--sp-snug` would not have stepped at all.
 - **Photograph:** `object-fit: cover`, edge to edge inside `--r-media`, no padding — a photograph
   *is* the surface. Never inset on a `--media` ground; a floated photo reads as a sticker.
 - **Map:** `--r-card`, `center/cover`, native 1.99 aspect, `--media` as the pre-load ground.

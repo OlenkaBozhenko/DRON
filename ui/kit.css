@@ -753,9 +753,16 @@ header.dr-topbar,
    spacing bitween copy and cards». The modifier itself does not move — this is
    the rung being spent where it was always right, not a new number. What it
    costs to know: `.dr-main`'s generic 12 is still what every other stacked
-   screen separates zones by, so 24 is a two-screen departure and not a promotion.
-   Neither --sp-24 nor --sp-within-lg steps at the narrow tier, so both screens
-   read 3:1 at either width. */
+   screen separates zones by, so 24 is a departure and not a promotion.
+   Neither --sp-24 nor --sp-within-lg steps at the narrow tier, so every screen
+   that pays it reads 3:1 at either width.
+   AND A THIRD THE SAME DAY (rev 226): `role-select`, on «Make more spase between
+   copy and cards» — her same sentence against the client's fork. That screen had
+   to be SPLIT before it could spend this: its question, sub-line and two cards
+   were one .dr-stack, so there was no seam to widen, only a stack whose every
+   gap was 8. Copy in one section and the fork in another, the way support is
+   built, and the boundary lands here. Three pages carry it — rate, support,
+   role-select — against 125 that separate zones by .dr-main's own 12. */
 .dr-main--zones{ gap: var(--sp-24); }
 
 .dr-tabbar{
@@ -1866,9 +1873,33 @@ header.dr-topbar,
    The affordance is the card, not a mark on it; the whole surface is the tap
    target and is far past `HIG · 44pt`. `.dr-field__chev` is a DIFFERENT
    component — the picker row's `chevron.forward` — and is untouched. */
+/* THE PICTURE STANDS 20 FROM THE TEXT, NOT 12 — designer, 2026-09-03, rev 228:
+   «збільш відступи від зображення до тексту», on the built `role-select`.
+   WHAT WAS WRONG IS NOT THAT 12 IS SMALL — IT IS THAT THE PICTURE SAT CLOSER TO
+   THE WORDS THAN TO THE CARD'S OWN EDGE. Measured: the card's 16 inset plus the
+   well's own 4 put the ink 20 from the card edge, while gap 12 plus that same 4
+   put it 16 from the title. The cutout was reading stuck to the text.
+   --sp-group 20 makes it 24 against 20, so the text is now the further of the
+   two — the direction she asked for. 16 (--sp-screen) is the option that merely
+   squares it at 20/20; 24 (--sp-24) is the one past this. No rung is minted.
+   THE DECLARATION IS SHARED AND THE EFFECT IS LOCAL, WHICH IS WORTH SAYING: of
+   the 16 .dr-choice instances only role-select's TWO carry a .dr-well. The other
+   14 hold a single child, and a flex gap with one child is nothing — so no alert
+   row and no triage row moves by a pixel.
+   NOTHING ELSE MOVES ON THE CARD EITHER. The row is 76 because the 44 well plus
+   2 x 16 sets it, not the title's 23.8 line box, so the height is unchanged; the
+   text column pays the 8 — body 241 -> 233 — and the longer of the two titles
+   still fits one line, 176.44 with 56.56 of slack.
+   AT THE NARROW TIER THE RUNG STEPS BY ITSELF: --sp-group is remapped to
+   --sp-screen 16 at <= 389px, so the gap returns to 16 (ink 20) exactly where
+   the measure is tightest. --sp-snug never stepped, so this is one thing the new
+   rung does better than the old one.
+   HIG · Lists prescribes no number for the space between a row's image and its
+   label, and no WCAG criterion is engaged: no contrast pair changes and the tap
+   target is the whole 341 x 76 card, which does not move. */
 .dr-choice{
   position: relative;
-  display: flex; align-items: center; gap: var(--sp-snug);
+  display: flex; align-items: center; gap: var(--sp-group);
   padding: var(--sp-screen);
   background: var(--card); border: 0; border-radius: var(--r-card);
   text-decoration: none; color: var(--ink);
@@ -2565,9 +2596,32 @@ header.dr-topbar,
 .dr-rows:has(> .dr-field){ padding-left: 0; padding-right: 0; }
 .dr-rows:has(> .dr-field:not(.dr-field--action)):not(.dr-rows--card){ background: none; border-radius: 0; }
 .dr-rows:has(> .dr-field:not(.dr-field--action)):not(.dr-rows--card) > .dr-field{ padding-left: 0; padding-right: 0; }
-.dr-rows:has(> .dr-field:not(.dr-field--action)):not(.dr-rows--card) > .dr-field + .dr-field::before{ left: 0; }
+.dr-rows:has(> .dr-field:not(.dr-field--action)):not(.dr-rows--card) > .dr-field + .dr-field::before{ left: 0; right: 0; }
+/* THE SEPARATOR STANDS ON THE CARD'S OWN INSET, BOTH SIDES — the designer's
+   call 2026-09-03 (rev 227) on the built `account-edit`, pointing at the line
+   under `Full name`: «вона має мати однаковий відступ від краю картки, такий
+   відступ від правого краю картки як і від лівого».
+   WHAT WAS BUILT: left 16, right 0 — the line began where the row's text begins
+   and ran out to the card's bleed edge. Measured on the 375 frame, the 341 card
+   drew a 325 hairline sitting 16 from the left edge and 0 from the right.
+   WHAT THE GUIDELINE PRESCRIBES: `HIG · Lists and tables (separators)` insets a
+   separator on the LEADING edge to align with the row's content and lets it run
+   full-bleed to the trailing edge — which is exactly what was built. So this is
+   a departure, made on her word, and recorded as one rather than filed as a fix.
+   Nothing in WCAG governs it: the hairline measures 1.34:1 on `--card` and is
+   permitted only because a list separator is decoration and never the carrier of
+   structure (`1.4.11` applies to what conveys meaning), and the grouping stays
+   programmatic in the DOM, so `1.3.1` is untouched by construction either way.
+   WHAT IT MEASURES NOW: 16 / 16, a 309 hairline on the 341 card — the line
+   spans the row's content box exactly, which is the axis every other line on
+   the card already stands on. Nine cards move: account-edit (Personal,
+   Notifications), account and operator-account (Mode), listings-filters
+   (location, and the calendar's time row below), payment / -aerial /
+   -inspection, withdraw. The seven pages that compose rather than configure
+   keep rev 98's plain list, and it stays symmetric there at 0 / 0 — the rule
+   above now says so out loud instead of inheriting the base's right edge. */
 .dr-field + .dr-field::before{
-  content: ""; position: absolute; left: var(--sp-screen); right: 0; top: 0;
+  content: ""; position: absolute; left: var(--sp-screen); right: var(--sp-screen); top: 0;
   height: var(--hair); background: var(--line);
 }
 /* THE UPLOAD FIELD TAKES NO SEPARATOR — the designer's call 2026-08-16 (rev 109)
@@ -4274,10 +4328,13 @@ header.dr-topbar,
   border-radius: var(--r-pill); background: currentColor;
 }
 /* the time row sits in the same card, full-bleed, on .dr-field's own 16 —
-   and takes the grouped-list separator .dr-rows draws between two fields. */
+   and takes the grouped-list separator .dr-rows draws between two fields,
+   including rev 227's second 16: the line is inset from the card's right edge
+   by what it is inset from the left. Written out rather than inherited because
+   this ::before is its own declaration, and the two must not drift apart. */
 .dr-cal__time{ position: relative; margin-top: var(--sp-within-lg); }
 .dr-cal__time::before{
-  content: ""; position: absolute; left: var(--sp-screen); right: 0; top: 0;
+  content: ""; position: absolute; left: var(--sp-screen); right: var(--sp-screen); top: 0;
   height: var(--hair); background: var(--line);
 }
 /* THE PAIR TAKES A GROUND — the third field in the system to do so, after the

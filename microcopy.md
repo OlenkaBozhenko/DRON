@@ -155,6 +155,7 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | result-upload | result-upload-loading.html | Uploading status | state message | Uploading delivery photo… *(display)* + Sending the delivery photo. Keep the app open. *(lead)* | **The lead alone, moved into the Result photo zone as `role="status"` — and 2026-08-24 into the tray itself, under the upload glyph.** 2026-08-21 the loading page was rebuilt onto the success frame (`_screens.md` §16), which has no headline block — so the display line left with the takeover it belonged to. What stays names the wait the way `voice.md` asks a loading state to (*name what is loading*), and the zone label carries the state in one word: **▸ uploading…** |
 | role-select | role-select.html | Role choice | body | PILOT | OPERATOR |
 | role-select | role-select.html | Role choice | body | You're a certified drone pilot — get dispatched jobs and get paid. | You're a certified drone operator — take jobs and get paid. **— CUT 2026-09-03 (rev 216):** the designer deleted both card descriptions on `role-select` («видали підзаголовок»), so this string is no longer on any screen. The rewrite is kept visible, not deleted, so *pilot → operator* is not re-proposed later as new copy. |
+| role-select | role-select.html | Role choice | body | Pick a side to continue. You can switch anytime in Account. *(lead)* + You can change this later in Account → Switch role. *(action-bar note)* | Pick a side to continue. / You can switch anytime between accounts. *(one lead, two rows)* — **2026-09-03 (rev 226):** the designer deleted the action-bar note (*«delete this face»*) and asked for the switch fact on the lead’s second row, so **one element now carries what two carried** and the frame loses its footer. Nothing is lost — the reassurance moves **up**, from a 55px bar at the bottom of the frame to directly under the question. **The word `accounts` is hers and is reported rather than silently changed:** the product has one Diia identity and two **roles** (`switch-role`: *Your Diia identity stays the same*), `Account` is one place in the tab bar, and plural *accounts* appears on **no** other screen — open for her word. |
 | share | share-empty.html | Invite not sent (empty state) | state message | You didn't send it yet | Invite not sent yet |
 | support | support.html | Support intro | heading | How can we help? | What happened? |
 | support | support.html | Support intro | body | Tell us what went wrong with your order and we'll get it put right. | Pick the issue with your order and we'll route it to the right fix. |
@@ -1787,12 +1788,11 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | result-upload | Job | Pay | Body |  |
 | result-upload | Job | Submit & close job | Button |  |
 | role-select | Role choice | How will you use DRON? | Body |  |
-| role-select | Role choice | Pick a side to continue. You can switch anytime in Account. | Body |  |
+| role-select | Role choice | Pick a side to continue. / You can switch anytime between accounts. | Body | **two rows, the break on the sentence boundary** — a `<br>`, because `text-wrap: balance` measures **224.22 / 243.31** on this string and breaks *inside* the second sentence. Absorbs the action-bar note deleted 2026-09-03 (rev 226) |
 | role-select | Role choice | CLIENT | Body | WF-PH |
 | role-select | Role choice | I need a service done | Body |  |
 | role-select | Role choice | OPERATOR | Body | WF-PH |
 | role-select | Role choice | I provide services | Body |  |
-| role-select | Role choice | You can change this later in Account → Switch role. | Body | DATA |
 | share-empty | — | ‹ Rate the order | Button |  |
 | share-empty | — | Share DRON | Heading |  |
 | share-empty | Invite | NOT SENT | State message | WF-PH |

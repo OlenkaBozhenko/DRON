@@ -19,11 +19,35 @@
   <div class="wf-frame dr dr-screen">
     <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
     <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__spacer"></span></header>
-    <main class="dr-main">
+    <main class="dr-main dr-main--zones">
       <p class="zlabel dr-label">Role choice <span class="dr-label__act">▸ pick a side (switchable later)</span></p>
-      <section class="dr-stack" aria-label="Choose your role">
+      <!-- THE COPY AND THE FORK ARE TWO ZONES, AND THE SEAM BETWEEN THEM IS 24
+           (designer, 2026-09-03, rev 226: «Make more spase between copy and
+           cards» — the same sentence she wrote against `support` the same day,
+           which rev 225 answered with this exact rung). They used to be ONE
+           .dr-stack, so the question, its sub-line and the two cards all sat 8
+           apart: the copy read as a third sibling of the cards rather than as the
+           thing asking the question. Split the way support is split — copy in one
+           section, the fork in another — and .dr-main--zones pays the boundary.
+           NOTHING IS MINTED AND NO CLASS IS WRITTEN: 24 is --sp-24, the rung rate
+           has spent since 2026-08-12 and support since rev 225; this screen is the
+           third. 24 : 8 = 3:1 against the list’s own gap, where 12 would have been
+           1.5:1 — the ratio rev 218 measured on the alert log and called too quiet
+           to read as a break.
+           THE LEAD’S SECOND SENTENCE TAKES THE SECOND ROW WITH A <br>, WHICH
+           DEPARTS FROM .dr-note--balance’s «never a <br>» AND IS RECORDED AS A
+           DEPARTURE RATHER THAN SMUGGLED: measured at this 341 measure, balance
+           breaks 224.22 / 243.31 — INSIDE the second sentence — and the natural
+           wrap breaks 333.83 / 133.72, also inside it. Only a hard break puts one
+           sentence per row. The rule it departs from is written against a break
+           INSIDE a sentence, which a translation can move; a break BETWEEN two
+           sentences cannot be moved by translation, and this <p> sits in no
+           accessible name, so neither reason that rule gives applies here. -->
+      <section class="dr-stack" aria-label="Role choice">
         <p class="dr-display">How will you use DRON?</p>
-        <p class="dr-lead">Pick a side to continue. You can switch anytime in Account.</p>
+        <p class="dr-lead">Pick a side to continue.<br>You can switch anytime between accounts.</p>
+      </section>
+      <section aria-label="Choose your role">
         <!-- The two cards are the kit's choice card, markup copied from the
              specimen sheet (ui/kit.html), which draws this exact pair. Both wells
              are plain .dr-well: a transparent cutout sits straight on the card with
@@ -50,9 +74,15 @@
         </div>
       </section>
     </main>
-    <footer class="dr-actionbar">
-      <p class="dr-note">You can change this later in Account → Switch role.</p>
-    </footer>
+    <!-- NO ACTION BAR (designer, 2026-09-03, rev 225: «delete this face»). The
+         note it held — «You can change this later in Account → Switch role.» —
+         is not lost: the same fact is now the lead's second row, above the two
+         cards instead of 55px below them. Nothing else stood in the bar, so the
+         bar goes with the note and the frame ends at </main>, the way
+         earning-details, notifications and the four filter screens already do.
+         The screen keeps no bottom chrome by design — it is pre-role, so there
+         is no tab bar, and there is no primary to strand at the bottom: the two
+         cards ARE the choice. -->
   </div>
 
   <script src="_wf-shell.js"></script>
