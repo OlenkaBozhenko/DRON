@@ -47,8 +47,36 @@
       <article class="dr-card dr-card--row dr-listing">
         <span class="dr-listing__body">
           <span class="dr-listing__name">Package delivery</span>
-          <span class="dr-listing__desc">2.3 km · ~18 min · pickup near Podil</span>
-          <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴180</span></span><span class="dr-listing__desc">· paid on completion</span></span>
+          <!-- THE FACTS TAKE TWO ROWS, AND THE PAY LINE LOSES ITS TAIL — designer,
+               2026-09-03, against the built card: «pickup near Podil it is a second
+               row», and «remove» on `· paid on completion`. The description already
+               WRAPPED to two lines at 193px of measure; what changes is that the break
+               is chosen instead of found. Distance-and-time is one fact and where the
+               job starts is another, and a middle dot was joining two things that do
+               not sit on the same footing. Two `.dr-listing__desc` siblings — no new
+               class and no CSS: the step between them is the class's own
+               `margin-top: --sp-2` 2px, so the card grows by exactly that and nothing
+               reflows. `pickup` → `Pickup`, because a row that starts its own line
+               starts with a capital, which is what every other `__desc` in the product
+               does; the lowercase word was a mid-sentence fragment after a `·`. Hers
+               to reverse either way.
+               STANDARDS FIRST, AND NOTHING MOVES, WHICH IS AN ANSWER AND NOT A GAP.
+               `WCAG 1.4.3` — both rows are `--slate` on `--card`, 5.95:1, and the pair
+               that left carried that same ratio, so no number changes by losing an
+               element. `WCAG 1.3.1` / `4.1.2` — neither row was ever named by an aria
+               attribute, and the `sr-only` «Pay» stays welded to ₴180 inside its own
+               wrapper, which is the reason that wrapper is kept once its sibling goes:
+               it binds the invisible label to the value. `HIG · 44pt` and `WCAG 2.5.8`
+               are not engaged at all — this card is an `<article>` with no link and no
+               control on it.
+               WHAT THE REMOVAL COSTS, STATED RATHER THAN QUIETLY SPENT: the offer no
+               longer says WHEN the money lands. `operator-fee-terms` still does
+               (Payment ▸ «Auto-release ≤30 min after client confirms»), so the fact is
+               in the product — one screen away and behind onboarding, not on the card
+               the operator decides on in 8s. `voice.md` P3 is what that spends. -->
+          <span class="dr-listing__desc">2.3 km · ~18 min</span>
+          <span class="dr-listing__desc">Pickup near Podil</span>
+          <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴180</span></span></span>
         </span>
         <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
       </article>

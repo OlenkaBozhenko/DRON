@@ -37,8 +37,17 @@
       <article class="dr-card dr-card--row dr-listing">
         <span class="dr-listing__body">
           <span class="dr-listing__name">Roof inspection</span>
-          <span class="dr-listing__desc">5.1 km · ~35 min · Obolon district</span>
-          <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴650</span></span><span class="dr-listing__desc">· paid on completion</span></span>
+          <!-- Two description rows and no pay tail, as on the delivery offer — one
+               screen, one arrangement. See job-offer.html for the designer's words, the
+               2px step and the `WCAG 1.4.3` / `1.3.1` note; this file carries the same
+               split and the same removal, no CSS. What differs is only which fact takes
+               the second row: the delivery names its pickup, an inspection names its
+               district — and that district is the Site zone's own `Location` value
+               below, the offer card stating it first so the operator can decide without
+               scrolling. -->
+          <span class="dr-listing__desc">5.1 km · ~35 min</span>
+          <span class="dr-listing__desc">Obolon district</span>
+          <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴650</span></span></span>
         </span>
         <span class="dr-well"><img src="../assets/drones/thumbs/drone-11.png" alt="" loading="lazy" decoding="async"></span>
       </article>
