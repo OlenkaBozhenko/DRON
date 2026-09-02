@@ -160,6 +160,8 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | support | support.html | Support intro | body | Tell us what went wrong with your order and we'll get it put right. | Pick the issue with your order and we'll route it to the right fix. |
 | support | support.html | Triage list — didn't arrive | body | We'll re-dispatch a new operator now — or refund you, no questions. | We'll send a new operator now, or refund your order. — **cut from the build 2026-08-31 (rev 209):** the designer took the description line off all three triage cards (*«Delete subtitle with the descriptions on these cards»*). The rewrite stands as history; the string no longer ships. |
 | support | support.html | Triage list — quality | button | Result wasn't what I expected | The photo or report wasn't what I expected |
+| support | support.html | Triage list — didn't arrive | button | My order didn't arrive / no-show | My order didn't arrive — **2026-09-03 (rev 213)**, with the title dropping 17 → 14px: *«зроби менший шрифт у цих картках та перефразуй щоб поміщалось в одну стрічку»*. `no-show` is the dispatch word for the same fact and is already carried by the destination; the client's own words are the first half. 268.7 → 149.5px against a 309.3px measure |
+| support | support.html | Triage list — quality | button | The photo or report wasn't what I expected | The photo or report isn't right — **2026-09-03 (rev 213)**, same ask. This was the only title in the product that wrapped: 279.3 + a second line at 17px, and still 297.6 of 309.3 at 14px, which is 11.7px from wrapping again. At 205.4 it has 103.9px of slack. *isn't right* rather than *is wrong* — `voice.md` **P5**: the client is naming a problem, not assigning fault, and the remedy behind the tap is a review, not an admission |
 | support | support.html | Triage list — safety | body | Talk to a human straight away — support is online 24/7. | Contact support straight away — online 24/7. — **cut from the build 2026-08-31 (rev 209)** with the other two triage descriptions. The rewrite stands as history; the string no longer ships. The *«online 24/7»* fact is not lost — the Human-fallback note under the CTA still carries it. |
 | support | support.html | Human fallback | button | Talk to a human | Contact support |
 | switch-role | switch-role.html | Topbar | button | ‹ Back | ‹ Back to Account |
@@ -1817,9 +1819,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | support | — | Help | Heading |  | *(was `Help & support` — corrected by D8: one screen, one name)* |
 | support | — | What happened? | Heading |  |
 | support | — | Pick the issue with your order and we'll route it to the right fix. | Body |  |
-| support | Triage list | My order didn't arrive / no-show | Body |  |
-| support | Triage list | The photo or report wasn't what I expected | Body |  |
-| support | Triage list | Safety or trust concern | Body |  |
+| support | Triage list | My order didn't arrive | Body | shortened 2026-09-03 (rev 213) with the title step — see the rewrite log. The dropped `/ no-show` was the operator's word for it, not the client's (`voice.md` **P4**), and the remedy behind the tap is unchanged |
+| support | Triage list | The photo or report isn't right | Body | shortened 2026-09-03 (rev 213) with the title step — see the rewrite log. Was `The photo or report wasn't what I expected`, the one string on the screen that wrapped to two lines |
+| support | Triage list | Safety or trust concern | Body | unchanged at rev 213 — 159.6 of 309.3 at the new step, already the shortest of the three |
 | support | Human fallback | Contact support | Button |  |
 | support | Human fallback | Can't find your issue above? A support agent is available any time, day or night. | Body |  |
 | support | Human fallback | Order | Button |  |

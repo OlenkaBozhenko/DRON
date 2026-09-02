@@ -449,7 +449,7 @@ Ten sizes, every one in use on a shipped surface.
 | `number` | 20 | 700 | 20 (1.0) | −0.02em | money — `₴180`, tabular |
 | `title` | 17 | 600 | 23.8 (1.4) | −0.01em | nav-bar title, alert title |
 | `heading` | 15 | 600 | 18 (1.2) | — | card title, operator name |
-| `body` | 14 | 400 | 18.2 (1.3) | — | place names |
+| `body` | 14 | 400 | 18.2 (1.3) | — | place names; **choice-card title** since 2026-09-03 (rev 213), at the title's own 600 / 1.4 / −0.01em — see the departures below |
 | `body-sm` | 13 | 400 | 18.2 (1.4) | — | keys |
 | `meta` | 12.5 | 400 | 15 (1.2) | — | dates |
 | `caption` | 12 | 600 | 16.8 (1.4) | — | chips, badges |
@@ -466,11 +466,13 @@ at unless it declares otherwise. Measured departures, and their reason:
 | 15 | 1.2 | card title, operator name — a one-line box |
 | 15 | 1.55 | `.lead` — a paragraph |
 | 14 | 1.3 | place name in the route strip |
+| 14 | 1.4 | `.dr-choice__title` — the **title** step's leading, weight and tracking kept when only the size dropped 17 → 14 (rev 213). A title that got smaller, not a body line that got bold: at 400/18.2 it would sit 1px and one shade from its own 13/400 description |
 | 13 | 1.5 | `.msg-body` — a paragraph |
 | 12.5 | 1.2 | card date · 1.4 on the operator rating |
 
 **One size, several roles.** 15px is `heading` at 600/1.2, the button label at 600/1.4, the `.kv`
-value at 600/1.4 tabular, and `.lead` at 400/1.55. 11px is mono-600 for zone and route labels,
+value at 600/1.4 tabular, and `.lead` at 400/1.55. **14px joined it on 2026-09-03:** the route
+strip's place name at 400/1.3, and the choice card's title at 600/1.4/−0.01em. 11px is mono-600 for zone and route labels,
 SF-600 for tab labels, and SF-400 for the fee caption **until 2026-08-02, when the designer removed
 that caption** — 11px now carries the mono zone and route labels and the tab label, and the fee
 figure stands alone.
@@ -2713,12 +2715,50 @@ bell adds **0.11pp** and changes neither the count nor the ceiling.
 `operator-listings` already records that it is not tappable and owes no 44pt target. Gap between
 them, measured: **8px**. The reverse order conforms equally and is one swap.
 
+### The choice card's title steps to 14 (`.dr-choice__title`, rev 213)
+
+**One declaration, five screens, and only the size moved.** `font-size` goes `--t-title-size` **17**
+→ `--t-body-size` **14**; weight **600**, leading **1.4** and tracking **−0.01em** stay the title's
+own. The scope was put to the designer with a support-only modifier drawn against the whole
+component, and **she took the component** — so the kit keeps one title size and the row cannot drift
+between a triage list and an alert feed.
+
+**15 was tried first and does not solve it.** On `support` the quality row wrapped at 17, and it
+still wraps at 15. **14 is the first step on the closed ramp where every `.dr-choice` title in the
+product fits one line**, and it is a token the scale already had, not a number minted here.
+
+| Screen | Row height | Title | Note |
+|---|---|---|---|
+| `support` | **55.8 / 79.59 / 55.8 → 51.59 × 3** | 17 → 14 | the wrap is gone and the three rows are one height; list **207.19 → 170.78**, **−17.6%** |
+| `role-select` | **114.36 / 96.17 → 110.16 / 91.97** | 17 → 14 | −4.2 each, the title's line box; **neither description re-wrapped** (3 lines and 2, as before); list **218.53 → 210.13** |
+| `notifications` | **77.98 → 73.78** × 6 | 17 → 14 | no title wrapped before or after; list **249.95 → 237.34** |
+| `operator-notifications` | **77.98 → 73.78** × 5 | 17 → 14 | as above |
+| `notifications-loading` | **64** × 3, unchanged | — | the skeleton is `<div>`s with no `__title`, so it does not follow |
+
+**Standards, measured rather than asserted.** `HIG · Typography` asks a minimum of **11pt** and puts
+SF Text below 20pt — 14 sits inside both. `HIG · 44pt` on the smallest row the component now has,
+**341 × 51.59**: ✓ **117%** of the 44pt height, **17,592px² = 9.1×** the 44 × 44 area;
+`WCAG 2.5.8` ✓ **2.15×**. `WCAG 1.4.3` is not moved by a size change — `--ink` on `--card` stays
+**14.37:1** and nothing here leans on the 3:1 large-text exemption. `WCAG 1.4.4` holds: px text still
+zooms to 200%. `WCAG 2.4.4` is untouched — the accessible name is still the title alone.
+
+**Two costs, recorded rather than fixed.** (1) Where the card carries a description the pair is now
+**14/600 over 13/400**, so the hierarchy rests on weight and colour — **14.37:1** against **5.95:1** —
+rather than on size; `--sp-within` **4** is kept for the same reason. (2) `notifications-loading`'s
+skeleton row was already **13.98px** short of the row it replaces (64 against 77.98) and is now
+**9.78px** short (64 against 73.78) — an inherited mismatch that got smaller, not a new one.
+
 ### The alert log's list row (`.dr-choice` on `notifications`)
 
 **No new component.** The log's rows are `.dr-choice` — the kit's tappable list row — with the
-`__title` / `__desc` pair `role-select` uses. Measured on the build: row **78px** tall
-(`HIG · 44pt` ✓ **177%**, `WCAG 2.5.8` ✓ **3.25×**), `--card` ground at `--r-card` **16px**, title
-17/600 `--ink` on `--card` **14.37:1**, description 13 `--slate` on `--card` **5.95:1**.
+`__title` / `__desc` pair `role-select` uses. Measured on the build: row **73.78px** tall
+(`HIG · 44pt` ✓ **168%**, `WCAG 2.5.8` ✓ **3.07×**), `--card` ground at `--r-card` **16px**, title
+14/600 `--ink` on `--card` **14.37:1**, description 13 `--slate` on `--card` **5.95:1**.
+**The row was 78px until 2026-09-03 (rev 213)**, when the shared `__title` stepped 17 → 14 and every
+line box under it lost **4.2px**. No title on either log wrapped before or after — the widest,
+*Your photo and video set is ready*, goes **277.9 → 228.9** of a **309px** measure — so the eleven rows
+simply read smaller, and each list of six / five goes **249.95 → 237.34**. Contrast is untouched: a
+size change moves no ratio, and neither pair was ever leaning on the 3:1 large-text exemption.
 
 **`__desc` is spent here under rev 209's own rule.** That revision made the description optional —
 *"a choice card is a TITLE, and it takes a description only where the destination is not

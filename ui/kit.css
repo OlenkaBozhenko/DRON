@@ -1758,15 +1758,35 @@ header.dr-topbar,
    at every tier. */
 .dr-choice > .dr-well{ width: var(--sz-well-w-sm); height: var(--sz-well-h-sm); }
 .dr-choice__body{ flex: 1; min-width: 0; }
+/* THE TITLE IS 14, NOT 17 — designer, 2026-09-03, rev 213: «the font in these
+   cards smaller, and rephrase so it fits on one line», on support's triage rows.
+   ONLY THE SIZE MOVES. Weight 600, leading 1.4 and the -.01em track stay the
+   title's own — this is a title that got smaller, not a body line that got
+   bold, and every measurement below was taken with exactly that substitution.
+   15 WAS TRIED FIRST AND DOES NOT SOLVE IT: at 15 the quality row still wraps.
+   14 is the first step on the closed ramp where every title in the product fits
+   one line, and it is --t-body-size, not a number minted here.
+   Scope was put to the designer with both drawn — a support-only modifier
+   against the whole component — AND SHE TOOK THE COMPONENT, so the kit keeps
+   one title size and cannot drift. No other title wrapped before or after; the
+   eleven alert rows and role-select's two simply read smaller.
+   HIG · Typography asks a minimum of 11pt and puts SF Text below 20pt — 14 sits
+   inside both. HIG · 44pt: the shortest row this makes is 341 × 51.59, 9.1× the
+   44 × 44 area. WCAG 1.4.3 is untouched by size — --ink on --card stays 14.37:1,
+   and nothing here leans on the 3:1 large-text exemption. WCAG 1.4.4 holds: px
+   text still zooms to 200%. */
 .dr-choice__title{
   display: block;
-  font-size: var(--t-title-size); font-weight: var(--t-title-weight);
+  font-size: var(--t-body-size); font-weight: var(--t-title-weight);
   line-height: var(--t-title-line); letter-spacing: var(--t-title-track);
   color: var(--ink);
 }
 .dr-choice__desc{
-  /* 4, not the listing's 2 — under a 17px title the 2px rung reads crushed
-     against the 16 inset; --sp-within is the scale's step for this size. */
+  /* 4, not the listing's 2 — set 2026-08-12 under a 17px title, where the 2px
+     rung read crushed against the 16 inset. Kept at rev 213 under the 14px
+     title: the pair is now 14/600 --ink over 13/400 --slate, so the hierarchy
+     rests on weight and colour (14.37:1 against 5.95:1) rather than on size,
+     and closing the gap to 2 would take the last of the separation with it. */
   display: block; margin-top: var(--sp-within);
   font-size: var(--t-bodysm-size); line-height: var(--t-bodysm-line);
   color: var(--slate);
