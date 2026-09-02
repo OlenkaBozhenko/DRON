@@ -915,7 +915,7 @@ header.dr-topbar,
    <section aria-labelledby> + <h2> and does not move, 2.5.8 is answered by the
    341 x 77.98 row at 2.33x the floor, and no contrast pair changes. */
 .dr-log{ display: flex; flex-direction: column; gap: var(--sp-list); }
-.dr-log .dr-sect{ margin-bottom: var(--sp-snug); }   /* rev 220: 4 -> 12, hers */
+.dr-log .dr-sect{ margin-bottom: var(--sp-snug); }   /* rev 222: 4 -> 12, hers */
 /* Explanatory caption under a block. Same job as .dr-hint in a sentence voice. */
 .dr-note{
   font-size: var(--t-caption-size); font-weight: var(--weight-regular);

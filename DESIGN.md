@@ -2943,7 +2943,7 @@ under the heading (`--sp-snug`), **28** between groups — `.dr-log`, a flex col
 gap on the page (12 : 8 = **1.5:1**). **28 : 8 = 3.5:1**, the designer's own pick with 20
 (`--sp-group`, 2.5:1) and 24 (`--sp-24`, 3:1) drawn beside it. No rung is minted. The narrow tier
 takes it to **22**. **The heading's own gap is on its third value and the last one is hers:** 0 as
-first built, **4** (`--sp-within`) at rev 214, **12** at rev 220 — *«improve spases between titles
+first built, **4** (`--sp-within`) at rev 214, **12** at rev 222 — *«improve spases between titles
 and cards»* — because 4 sat tighter than the **8** the cards spend between themselves, and a card's
 top *edge* is a harder boundary than the gap between two of them. 8 (3.5:1), 12 (2.33:1) and keeping
 4 (7:1) were drawn and all three conform; 12 leaves the break **2.33:1** over the bind — **1.83:1**
