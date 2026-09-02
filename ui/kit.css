@@ -269,6 +269,21 @@
   --sz-well-h:      72px;
   --sz-well-w-sm:   68px;  /* narrow tier */
   --sz-well-h-sm:   52px;
+  --sz-well-w-xs:   56px;
+  --sz-well-h-xs:   44px;  /* THE CHOICE CARD'S OWN WELL — designer, 2026-09-03, rev 215, one
+                              step below the narrow tier's, asked for against the built 68 × 52.
+                              A THIRD RUNG IS MINTED AND THE REASON IS THAT NO EXISTING ONE FITS:
+                              rev 212 landed this box on --sz-well-*-sm precisely to avoid a new
+                              number, and she asked for one step further, so there is nothing left
+                              on the ramp to land on. NO DERIVATION IS CLAIMED. What can be said
+                              honestly is that both numbers already exist in this file for other
+                              components — 56 is --sz-avatar-md, 44 is --sz-action — and neither
+                              is the source: a face's disc and a tap target are not where a media
+                              well gets its size. 56 is 7 steps of the 8-grid; 44 is not on it,
+                              and that is stated rather than smoothed over. It is the number that
+                              leaves the picture box at 48 × 36, which is what she chose.
+                              The narrow tier needs no remap for the third time running — this
+                              box is already smaller than where the ≤ 389px query would send it. */
   --sz-avatar:      117px; /* the operator panel — the asset's own ratio */
   --sz-avatar-xl:   120px; /* the profile photo where the screen IS the photo (account-photo).
                               The 8-grid step, not 117: that number is a rectangle's width
@@ -860,6 +875,27 @@ header.dr-topbar,
   margin-top: var(--sp-snug);
 }
 .dr-sect:first-child{ margin-top: 0; }
+/* THE DATE-GROUPED LOG — designer, 2026-09-03, rev 218, on the built
+   `operator-notifications` and anchored on its `New` heading: «write today,
+   yestaday and date if it more than yesterday and fix the mergings and
+   puddongs it should be viseal notised differen dates etc».
+   THE GAP BETWEEN TWO DAYS DOES NOT BELONG TO .dr-main. .dr-main's 12 is the
+   generic block gap, so a date break spoke no louder than any other seam on
+   the page — 12 against the rows' 8 is 1.5:1, and the eye does not read that
+   as a break. The column that holds the groups owns the number instead, and
+   the number is --sp-list 28, the rung already spent between two cards: 3.5:1.
+   PUT TO HER WITH THREE DRAWN — 20 (--sp-group, 2.5:1), 24 (--sp-24, 3:1) and
+   28 — AND SHE TOOK 28. No rung is minted; the widest one on the ramp was
+   already the right one.
+   THE 4 UNDER THE HEADING IS THE OTHER HALF OF THE SAME FIX. The heading used
+   to touch its own list at 0 while sitting 12 from the list above it, so
+   proximity was saying "seam" in both directions at once. 4 : 28 says it once,
+   and 4 is --sp-within, the same rung .dr-choice__desc already spends.
+   `HIG · Layout` groups by proximity and prescribes the direction, not a
+   number; no WCAG criterion is engaged — 1.3.1 is carried programmatically by
+   <section aria-labelledby> + <h2> and does not move. */
+.dr-log{ display: flex; flex-direction: column; gap: var(--sp-list); }
+.dr-log .dr-sect{ margin-bottom: var(--sp-within); }
 /* Explanatory caption under a block. Same job as .dr-hint in a sentence voice. */
 .dr-note{
   font-size: var(--t-caption-size); font-weight: var(--weight-regular);
@@ -1299,6 +1335,22 @@ header.dr-topbar,
   padding: var(--sp-3) var(--sp-within-lg);
   font-size: var(--t-micro-size); line-height: var(--t-micro-line);
 }
+/* THE UNREAD MARK (2026-09-03, rev 218). It exists because the date headings
+   took the job `New` / `Earlier` used to do: once a group is a DAY, an alert
+   that is still unread from yesterday has no heading left to sit under. So
+   unread comes off the heading and rides the row — still a WORD, which is why
+   `WCAG 1.4.1 Use of Color` is no more engaged now than it was before; the
+   fill is decoration the word does not depend on.
+   ONLY THE INK MOVES. The base chip's --media ground is kept and --slate is
+   swapped for --ink: 5.51:1 → 13.33:1. The reason is that --slate is the
+   description line's own colour one line below, and a mark that shares its
+   colour with the meta it sits above is not a mark.
+   NO GREEN, AND THAT IS A RULE RATHER THAN A PREFERENCE: concept.md's accent
+   is never spent inside card UI, and this chip sits inside a .dr-choice. The
+   pill's ground is 1.08:1 on the card, in the same band .dr-chip--trust
+   already sits at (1.05:1) — on this kit a chip is read by its text, never by
+   its edge, so no 1.4.11 boundary is being leaned on. */
+.dr-chip--unread{ color: var(--ink); }   /* 13.33:1 on --media */
 /* SETTLED 2026-08-02 by the designer: 14px, everywhere. The build drew 13px in
    a badge (.badge) and 14px in the ETA pill (.ohl-eta) — one component with two
    values, against the One-Component-One-Value rule. One value now. */
@@ -1748,66 +1800,126 @@ header.dr-topbar,
   text-decoration: none; color: var(--ink);
 }
 .dr-choice:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
-/* THE WELL IS SMALLER HERE THAN IN A LIST — designer, 2026-09-03, rev 212:
-   «make images in this 2 cards smaller a little bit», then «зроби зображення
-   менші» against the first step. Asked with three options drawn: the two that
-   kept 96 × 72 and shrank the render by inset alone were refused, so the BOX
-   steps and the row tightens with it. 80 × 60 was the first step and she asked
-   for one more, so THE WELL LANDS ON A RUNG THE RAMP ALREADY HAD rather than on
-   a third number of its own — --sz-well-*-sm, the narrow tier's well, taken at
-   every tier. That is also why the tier needs no remap: this box is already
-   where the media query would have sent it. The inset is untouched, 4px being
-   the well's own rung, so the picture box is 60 × 44.
+/* THE WELL IS SMALLER HERE THAN IN A LIST — designer, 2026-09-03, revs 212 and
+   215: «make images in this 2 cards smaller a little bit», then «зроби зображення
+   менші», then «зроби зображення меншим» against the built 68 × 52. Asked each
+   time with the options drawn and measured; at rev 212 the two that kept 96 × 72
+   and shrank the render by inset alone were refused, so the BOX steps and the
+   row tightens with it.
+   REV 215 IS THE STEP THAT COSTS A NUMBER, AND THAT IS WRITTEN DOWN RATHER THAN
+   HIDDEN: rev 212 could land on --sz-well-*-sm, the narrow tier's own well;
+   one step below it there is no rung, so --sz-well-*-xs 56 × 44 is minted. The
+   inset is untouched, 4px being the well's own rung, so the picture box is
+   48 × 36 — the cargo cutout renders 48 × 33.75 and the drone 48 × 13.69.
+   AND WHAT THIS STEP BUYS IS MEASURE, NOT A SHORTER ROW: at 44 the well is no
+   longer what sets either card's height — the description is — so the 12px it
+   gives back goes to the text column, 229.4 → 241.4. The row will only tighten
+   again when the description does.
    Nothing an assistive tech hears moves — both images are alt="" cutouts on a
    transparent well, so no `WCAG 1.4.11` boundary and no target lives in this
    box; the tap target is the whole card and clears `HIG · 44pt` by construction
    at every tier. */
-.dr-choice > .dr-well{ width: var(--sz-well-w-sm); height: var(--sz-well-h-sm); }
+.dr-choice > .dr-well{ width: var(--sz-well-w-xs); height: var(--sz-well-h-xs); }
 .dr-choice__body{ flex: 1; min-width: 0; }
-/* THE TITLE IS 14, NOT 17 — designer, 2026-09-03, rev 213: «the font in these
-   cards smaller, and rephrase so it fits on one line», on support's triage rows.
-   ONLY THE SIZE MOVES. Weight 600, leading 1.4 and the -.01em track stay the
-   title's own — this is a title that got smaller, not a body line that got
-   bold, and every measurement below was taken with exactly that substitution.
-   15 WAS TRIED FIRST AND DOES NOT SOLVE IT: at 15 the quality row still wraps.
-   14 is the first step on the closed ramp where every title in the product fits
-   one line, and it is --t-body-size, not a number minted here.
-   Scope was put to the designer with both drawn — a support-only modifier
-   against the whole component — AND SHE TOOK THE COMPONENT, so the kit keeps
-   one title size and cannot drift. No other title wrapped before or after; the
-   eleven alert rows and role-select's two simply read smaller.
-   HIG · Typography asks a minimum of 11pt and puts SF Text below 20pt — 14 sits
-   inside both. HIG · 44pt: the shortest row this makes is 341 × 51.59, 9.1× the
-   44 × 44 area. WCAG 1.4.3 is untouched by size — --ink on --card stays 14.37:1,
-   and nothing here leans on the 3:1 large-text exemption. WCAG 1.4.4 holds: px
-   text still zooms to 200%. */
+/* THE TITLE ROW THAT CAN CARRY A MARK (2026-09-03, rev 218). Used by the two
+   alert logs alone; every other .dr-choice keeps the title as a direct child
+   of __body and is untouched by this. The title takes the flex and the
+   min-width:0, so a long title wraps inside its own column instead of pushing
+   the pill past the card's edge.
+   ALIGN CENTRE, NOT BASELINE: the small chip stands 21.4 (11 x 1.4 + 2 x 3)
+   against the title's 23.8 line box (17 x 1.4 — it read 19.6 for the two
+   revisions the title spent at 14, and rev 217 put it back), so the pill is
+   now the SHORTER of the two by 2.4 and centring is what splits that
+   difference evenly. A shared baseline would sit it against a line box it no
+   longer matches, in whichever direction the two happen to differ.
+   CENTRING ALSO MEANS THE MARK COSTS THE ROW NOTHING: measured, an unread row
+   and a read row are both 77.98, so a group holding one of each is not ragged.
+   THE MEASURE IS THE REAL COST AND IT IS WRITTEN DOWN. The pill and its gap
+   take 48.28 of the 309 text column, so A TITLE THAT CARRIES A MARK IS WRITTEN
+   TO 260.72, not 309. Rev 217 returned the title to 17px while this was being
+   built and one string crossed that line — `New job offer · Package delivery`
+   went to two lines and its row to 101.78 beside a neighbour's 77.98 — so it
+   was REPHRASED, the remedy rev 213 took on `support`, and not truncated. */
+.dr-choice__head{ display: flex; align-items: center; gap: var(--sp-within-lg); }
+.dr-choice__head > .dr-choice__title{ flex: 1; min-width: 0; }
+/* THE TITLE IS 17 AGAIN — designer, 2026-09-03, rev 217: «поверни розмір
+   шрифту заголовку», against the built role-select. This RETURNS the size
+   rev 213 stepped down two revisions ago, and it can be returned because the
+   thing that forced 14 is gone: 14 was the first step where support's quality
+   row fitted one line, but that same revision ALSO rephrased that row, and the
+   rewritten string fits one line at 17 as well — «The photo or report isn't
+   right», 249.38 of a 309px measure, 59.62px of slack. SO THE REWRITE, NOT THE
+   SIZE, IS WHAT KEEPS THE TRIAGE LIST THREE EQUAL CARDS: 55.80 × 3, and the
+   ragged middle row rev 213 was asked to fix stays fixed at 17.
+   ONLY THE SIZE MOVES BACK — --t-body-size → --t-title-size. Weight 600,
+   leading 1.4 and the -.01em track never left, so the departure DESIGN.md
+   recorded at rev 213 (14 at a weight and leading the scale pairs with 400) is
+   CLOSED rather than carried: 17/600/1.4/-.01em is the title step itself.
+   SCOPE IS THE COMPONENT — the same answer she gave at rev 213 when a
+   support-only modifier was drawn against the whole component. The kit holds
+   ONE title size and a triage row cannot drift from an alert row; the cost is
+   that support and the eleven alert rows come back up with role-select, and
+   that is stated here rather than left to be discovered.
+   MEASURED ON THE BUILD, 375 × 812, EVERY INSTANCE AND NOT ONLY THE SCREEN SHE
+   POINTED AT. No title wraps at 17 on any of them:
+     role-select    76 × 2, UNCHANGED — the 44px well sets this row, not the
+                    title's 23.8 line box, so the size she asked for costs the
+                    screen nothing (titles 176.44 / 147.55 of a 241 measure);
+     support        51.59 → 55.80 × 3, list 170.78 → 183.39;
+     notifications  73.78 → 77.98 × 6, list 237.34 → 249.95, widest title
+                    277.89 of 309;
+     operator-notifications  73.78 → 77.98 × 5, lists 249.95 / 163.97.
+   Every .dr-main still reports scrollHeight == clientHeight at 17, so no
+   screen starts scrolling for this.
+   HIG · Typography puts SF Text below 20pt and asks 11pt as the floor — 17
+   sits inside both. HIG · 44pt on the SHORTEST row the component now has,
+   341 × 55.80: ✓ 127% of the 44pt height, 19,028px² = 9.8× the 44 × 44 area;
+   WCAG 2.5.8 ✓ 2.33×. WCAG 1.4.3 does not move with a size change — --ink on
+   --card stays 14.37:1 and nothing here leans on the 3:1 large-text exemption.
+   WCAG 1.4.4 holds: px text still zooms to 200%. */
 .dr-choice__title{
   display: block;
-  font-size: var(--t-body-size); font-weight: var(--t-title-weight);
+  font-size: var(--t-title-size); font-weight: var(--t-title-weight);
   line-height: var(--t-title-line); letter-spacing: var(--t-title-track);
   color: var(--ink);
 }
 .dr-choice__desc{
   /* 4, not the listing's 2 — set 2026-08-12 under a 17px title, where the 2px
-     rung read crushed against the 16 inset. Kept at rev 213 under the 14px
-     title: the pair is now 14/600 --ink over 13/400 --slate, so the hierarchy
-     rests on weight and colour (14.37:1 against 5.95:1) rather than on size,
-     and closing the gap to 2 would take the last of the separation with it. */
+     rung read crushed against the 16 inset. It was kept at rev 213 for a
+     DIFFERENT reason, and that reason expired at rev 217: for two revisions
+     the pair was 14/600 over 13/400 and the hierarchy rested on weight and
+     colour alone (14.37:1 against 5.95:1). With the title back at 17 the size
+     gap is back too, and 4 goes back to being what it was on 2026-08-12 —
+     the gap the 16px inset asks for, not the last of the separation. */
   display: block; margin-top: var(--sp-within);
   font-size: var(--t-bodysm-size); line-height: var(--t-bodysm-line);
   color: var(--slate);
 }
-/* THE DESCRIPTION IS OPTIONAL — designer, 2026-08-31, rev 209: «delete
-   subtitle with the descriptions on these cards», on support's three triage
-   rows. The rule the slot now carries: a choice card is a TITLE, and it takes
-   a description only where the destination is not self-evident from the words.
-   support's titles name the problem in the user's own words and take none;
-   role-select's two name a role whose consequences are not in the words and
-   keep theirs. Unlike __chev at rev 206, the class is NOT deleted — it has two
-   live instances. WCAG 2.4.4: the description sat inside the <a>, so the
-   accessible name is now the title alone, and each title states its own
-   purpose. HIG · 44pt: the smallest row left is 341.26 × 55.8, 9.8× the
-   44 × 44 area. */
+/* THE DESCRIPTION IS OPTIONAL, AND ON A CARD A PERSON TAPS IT IS NOW GONE —
+   designer, 2026-08-31, rev 209: «delete subtitle with the descriptions on
+   these cards», on support's three triage rows; then 2026-09-03, rev 216:
+   «видали підзаголовок», on role-select's two. Between them that is every
+   choice card in the product that is a NAVIGATION card.
+   REV 209's RULE IS NOT QUIETLY RETIRED, IT IS OVERRULED AND REPLACED, WHICH
+   IS SAID HERE SO THE OLD ONE IS NOT RE-PROPOSED AS A DISCOVERY. That rule
+   read: a card takes a description where the destination is not self-evident
+   from the words — and it named role-select as the case that qualified, since
+   a role's consequences (what you can order, that you get dispatched and paid)
+   are not in the words. She has now decided the other way on the same pair, so
+   the rule the slot carries is simply: A CHOICE CARD A PERSON TAPS IS A TITLE.
+   WHAT STILL DRAWS ONE IS NOT A CHOICE AT ALL: the 11 surviving instances are
+   the alert rows on notifications and operator-notifications, where the second
+   line is which order the alert belongs to and when it arrived — a row's proof
+   (voice.md P2), on a log rather than on a fork. So the class stays declared,
+   as at rev 209 and unlike __chev at rev 206, and it is now a LOG row's slot.
+   WCAG 2.4.4: the description sat inside the <a>, so the accessible name is
+   the title alone — verified in the DOM as «I need a service done» and «I
+   provide services», each stating its purpose under a display that asks «How
+   will you use DRON?». HIG · 44pt and WCAG 2.5.8: with the text down to one
+   line the WELL is the floor again — 44 + 32 of padding — so the smallest row
+   is 341.4 × 76, 173% of 44pt and 3.17× the 24px minimum. That floor is also
+   why the row stopped moving when the title size does: rev 213 stepped it
+   17 → 14 and rev 217 put it back, and neither figure reaches 44 + 32. */
 
 /* ═══ THE OPERATOR CARD ═══════════════════════════════════════════════════
    The trust surface. The photograph is a full-height panel on the left edge,
@@ -4941,9 +5053,14 @@ header.dr-topbar,
    AND ON 2026-09-03 THE FILL IS --green AGAIN, so the live number in this pair
    is --slate 3.91:1 — the plainest failure of the four, a real WCAG 1.4.3 miss
    at both 22px and 13px. The rule below did not have to move for that: it has
-   said --on-green through every fill, and 9.46:1 is what it now measures. */
+   said --on-green through every fill, and 9.46:1 is what it now measures.
+   AND ON 2026-09-03 THE .dr-note HALF OF THIS SELECTOR HAS NO ELEMENT: the
+   caption was removed from the banner on her word (rev 215, «remove this
+   frace»), so this rule now inks exactly one child, the figure. The selector is
+   kept whole rather than trimmed to .dr-number — the pair it names is the pair
+   that was measured, and one line of markup brings the second child back. */
 .dr-balance--banner .dr-number,
-.dr-balance--banner .dr-note{ color: var(--on-green); }                  /* 9.46:1 on --green */
+.dr-balance--banner .dr-note{ color: var(--on-green); }                  /* 9.46:1 on --green; .dr-note unspent since 2026-09-03 */
 
 /* ── THE SCORE BANNER ───────────────────────────────────── RATINGS · used by
    ratings. The designer, 2026-08-21, on the built overall score: «зроби у
@@ -5116,8 +5233,17 @@ header.dr-topbar,
    asks 4.5:1 for text at this size — it passes 2.10x, and a larger glyph only
    widens the margin. HIG · Typography puts 13 at Footnote and 12 at Caption 1,
    both inside the iOS ramp, with 11 the floor — one named step up, not a size
-   off the scale. */
-.dr-balance--banner .dr-note{ font-size: var(--t-bodysm-size); }
+   off the scale.
+   AND ON 2026-09-03 THIS RULE HAS NO USER AT ALL. The line it sized was removed
+   from the banner on her word (rev 215: «remove this frace»), and --banner is on
+   `ratings` and nowhere else, so the scoping that kept 42 other captions still
+   is now what leaves this declaration spending nothing. It stays DECLARED and is
+   not deleted, the call --sh-card, --sh-onphoto, --warn-wash and the whole
+   read-only .dr-stars family already have: the reasoning above is the record of
+   a decision she took, the value is one rung of the closed scale, and one line
+   of markup brings both back. What changes is that this note says the spend is
+   ZERO instead of claiming one. */
+.dr-balance--banner .dr-note{ font-size: var(--t-bodysm-size); }         /* no element since 2026-09-03 */
 :root{
   --sz-star-mid: calc(var(--sz-star) * .73);   /* her 32 of 44 */
   --sz-star-out: calc(var(--sz-star) * .44);   /* her 19 of 44 */

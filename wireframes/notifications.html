@@ -40,7 +40,18 @@
   assistive tech (aria-label="Back to Home"), because an icon-only control with no
   accessible name fails WCAG 4.1.2.
 
-  UNREAD IS CARRIED BY WORDS, NOT BY A COLOUR - New, then Earlier, as .dr-sect headings.
+  THE GROUPS ARE DAYS, NOT READ-STATE (2026-09-03, rev 218). They were New / Earlier
+  until the designer asked, on the operator's mirror of this screen: "write today,
+  yestaday and date if it more than yesterday and fix the mergings and puddongs it
+  should be viseal notised differen dates etc". HIG - Lists and tables gives a recent
+  date RELATIVELY - Today, Yesterday - and an absolute date past that.
+
+  UNREAD IS STILL CARRIED BY A WORD AND NOT BY A COLOUR - it just moved off the heading
+  and onto the row, as a .dr-chip--unread reading "New". WCAG 1.4.1 stays un-engaged.
+
+  THE SPACING IS THE SECOND HALF OF THE SAME ASK. The groups sit in a .dr-log column
+  whose gap is --sp-list 28 against the rows' 8 - a 3.5:1 break, hers, taken against 20
+  and 24 drawn beside it - and the heading now stands 4 above its own list instead of 0.
   WCAG 1.4.1 Use of Color is then not engaged at all: nothing on this screen depends on
   seeing a hue. A green dot per unread row was the alternative and it conforms too (it
   would need the same text somewhere); the group name was chosen because it also SORTS,
@@ -72,7 +83,7 @@
       <a href="notifications-loading.html">loading</a>
     </nav>
     <div class="flow"><b>Job (jtbd):</b> RJ-C2 - an alert that arrived while the app was closed is still findable.<br><b>flows.md:</b> Home &#8594; <span class="cur">Notifications</span> &#8594; the screen the alert names.<br><b>States:</b> empty &#10003; &#183; loading &#10003; &#183; error - traced, not drawn (matching <code>order-history</code>).<br><b>Exit:</b> back chevron &#8594; <b>Home</b>, or any row &#8594; its own screen.</div>
-    <div class="legend"><p><b>Zones:</b></p><p><b>New</b> &#9656; unread, newest first</p><p><b>Earlier</b> &#9656; already read</p><p><b>Row</b> &#9656; what happened &#183; which order &#183; when</p></div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Today</b> / <b>Yesterday</b> / <b>14 June</b> &#9656; one group per day, newest first</p><p><b>New</b> chip &#9656; unread &#8212; on the row, not the heading</p><p><b>Row</b> &#9656; what happened &#183; which order &#183; the time</p></div>
   </aside>
 
   <div class="wf-frame dr dr-screen">
@@ -80,64 +91,85 @@
     <header class="topbar dr-topbar"><a class="dr-back" href="listings.html" aria-label="Back to Home"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Notifications</span><span class="dr-topbar__spacer"></span></header>
     <main class="dr-main">
       <p class="zlabel dr-label">Notifications <span class="dr-label__act">&#9656; what the app told you &#183; tap a row to open the order</span></p>
-      <section aria-labelledby="ntf-new">
-        <h2 class="dr-sect" id="ntf-new">New</h2>
-        <ul class="dr-list dr-list--snug" style="list-style:none;">
-          <li>
-            <a class="dr-choice" href="delivery.html">
-              <span class="dr-choice__body">
-                <span class="dr-choice__title">Your delivery photo is ready</span>
-                <span class="dr-choice__desc">Package delivery &#183; Today, 10:12</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="dr-choice" href="tracking.html">
-              <span class="dr-choice__body">
-                <span class="dr-choice__title">Ivan is 2 minutes away</span>
-                <span class="dr-choice__desc">Package delivery &#183; Today, 10:03</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="dr-choice" href="order-confirmed.html">
-              <span class="dr-choice__body">
-                <span class="dr-choice__title">Ivan K. accepted your order</span>
-                <span class="dr-choice__desc">Package delivery &#183; Today, 09:41</span>
-              </span>
-            </a>
-          </li>
-        </ul>
-      </section>
-      <section aria-labelledby="ntf-earlier">
-        <h2 class="dr-sect" id="ntf-earlier">Earlier</h2>
-        <ul class="dr-list dr-list--snug" style="list-style:none;">
-          <li>
-            <a class="dr-choice" href="rate.html">
-              <span class="dr-choice__body">
-                <span class="dr-choice__title">Rate your order</span>
-                <span class="dr-choice__desc">Package delivery &#183; 28 Jun, 14:41</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="dr-choice" href="order-details-aerial.html">
-              <span class="dr-choice__body">
-                <span class="dr-choice__title">Your photo and video set is ready</span>
-                <span class="dr-choice__desc">Aerial photo &amp; video &#183; 14 Jun, 11:30</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="dr-choice" href="inspection-report.html">
-              <span class="dr-choice__body">
-                <span class="dr-choice__title">Your inspection report is ready</span>
-                <span class="dr-choice__desc">Roof inspection &#183; 2 Jun, 09:15</span>
-              </span>
-            </a>
-          </li>
-        </ul>
-      </section>
+      <div class="dr-log">
+        <section aria-labelledby="ntf-today">
+          <h2 class="dr-sect" id="ntf-today">Today</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="delivery.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">Your delivery photo is ready</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Package delivery &#183; 10:12</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="dr-choice" href="tracking.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">Ivan is 2 minutes away</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Package delivery &#183; 10:03</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="dr-choice" href="order-confirmed.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">Ivan K. accepted your order</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Package delivery &#183; 09:41</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-yesterday">
+          <h2 class="dr-sect" id="ntf-yesterday">Yesterday</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="rate.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__title">Rate your order</span>
+                  <span class="dr-choice__desc">Package delivery &#183; 14:41</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-jun14">
+          <h2 class="dr-sect" id="ntf-jun14">14 June</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="order-details-aerial.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__title">Your photo and video set is ready</span>
+                  <span class="dr-choice__desc">Aerial photo &amp; video &#183; 11:30</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-jun2">
+          <h2 class="dr-sect" id="ntf-jun2">2 June</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="inspection-report.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__title">Your inspection report is ready</span>
+                  <span class="dr-choice__desc">Roof inspection &#183; 09:15</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
     </main>
   </div>
 

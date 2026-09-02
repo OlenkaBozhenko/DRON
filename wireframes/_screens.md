@@ -1135,9 +1135,13 @@ record — every row is a doorway into a screen that already holds one.
 `ratings`) carry `empty` alone. Matching the neighbour is the reason; drawing the missing three is one word
 and this note is where that decision would be recorded.
 
-**The unread state is carried by words, not by a colour.** The list is grouped **New** / **Earlier** under
-`.dr-sect` headings rather than by a coloured dot on each row — `WCAG 1.4.1 Use of Color` is then not engaged
-at all, since nothing depends on seeing a hue. The bell's count badge is the one place the count is a number,
+**The unread state is carried by a word, not by a colour — and since 2026-09-03 it is carried on the row
+rather than by the heading.** The list was grouped **New** / **Earlier** under `.dr-sect` until the designer
+asked for the relative dates `HIG · Lists and tables` prescribes; the headings are now **Today**, **Yesterday**
+and then `d MMMM`, and unread rides the row as a **New** chip. Nothing depends on seeing a hue either way, so
+`WCAG 1.4.1 Use of Color` is not engaged, before or after. **What the move bought is that read-state and
+recency stopped being one axis:** the operator's *Your documents are approved* is unread and sits under
+**Yesterday**, a pair of facts the old two headings could not state together. The bell's count badge is the one place the count is a number,
 and it is `aria-hidden` with the count spoken by the control's own name (`WCAG 4.1.2`), exactly as
 `listings-filtered`'s filter count already is.
 

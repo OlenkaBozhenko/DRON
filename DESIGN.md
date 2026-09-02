@@ -472,13 +472,13 @@ at unless it declares otherwise. Measured departures, and their reason:
 | 15 | 1.2 | card title, operator name — a one-line box |
 | 15 | 1.55 | `.lead` — a paragraph |
 | 14 | 1.3 | place name in the route strip |
-| 14 | 1.4 | `.dr-choice__title` — the **title** step's leading, weight and tracking kept when only the size dropped 17 → 14 (rev 213). A title that got smaller, not a body line that got bold: at 400/18.2 it would sit 1px and one shade from its own 13/400 description |
 | 13 | 1.5 | `.msg-body` — a paragraph |
 | 12.5 | 1.2 | card date · 1.4 on the operator rating |
 
 **One size, several roles.** 15px is `heading` at 600/1.2, the button label at 600/1.4, the `.kv`
-value at 600/1.4 tabular, and `.lead` at 400/1.55. **14px joined it on 2026-09-03:** the route
-strip's place name at 400/1.3, and the choice card's title at 600/1.4/−0.01em. 11px is mono-600 for zone and route labels,
+value at 600/1.4 tabular, and `.lead` at 400/1.55. **14px joined it on 2026-09-03** with the route
+strip's place name at 400/1.3 — and for two revisions with the choice card's title at
+600/1.4/−0.01em as well, until **rev 217 returned that title to 17**. 11px is mono-600 for zone and route labels,
 SF-600 for tab labels, and SF-400 for the fee caption **until 2026-08-02, when the designer removed
 that caption** — 11px now carries the mono zone and route labels and the tab label, and the fee
 figure stands alone.
@@ -1906,20 +1906,29 @@ The drawer's second job. Where a picker sheet sets a **value**, this one offers 
 
 - **Cutout (transparent PNG):** `object-fit: contain`, **no ground** — in the product the cutout
   sits straight on the card. The box is a measuring frame only.
-- **The well box has two sizes, not one** (designer, 2026-09-03, rev 212). `--sz-well-w/h`
+- **The well box has three sizes** (designer, 2026-09-03, revs 212 and 215). `--sz-well-w/h`
   **96 × 72** wherever a render sits in a **list** row — `.dr-card--row` on `order-history`, the
-  job and tracking cards; `--sz-well-w/h-sm` **68 × 52** inside `.dr-choice`, which is
-  `role-select`'s two cards and nothing else. **No third number was minted:** the choice well takes
-  the narrow tier's own rung at every tier, which is also why the `≤ 389px` query needs no remap for
-  it. The inset is `--sp-within` **4** in both, so the picture box is **88 × 64** and **60 × 44**.
+  job and tracking cards; `--sz-well-w/h-sm` **68 × 52** is the narrow tier's remap of that box;
+  `--sz-well-w/h-xs` **56 × 44** inside `.dr-choice`, which is `role-select`'s two cards and nothing
+  else. **The third rung is minted, and it is minted because nothing was left to land on:** rev 212
+  got the first step down for free by taking `-sm` at every tier, and she asked for one step
+  further. **No derivation is claimed** — 56 and 44 already exist in the file as `--sz-avatar-md`
+  and `--sz-action`, and neither is the source; 56 is 7 steps of the 8-grid and 44 is not on it.
+  The `≤ 389px` query still needs no remap: the box is already smaller than where it would send it.
+  The inset is `--sp-within` **4** throughout, so the picture box is **88 × 64**, **60 × 44** and
+  **48 × 36**.
   Measured on `role-select` at 375 × 812: `cargo-box.png` (256 × 180) renders
-  **88 × 61.88 → 60 × 42.19** and `drone-flight-front.png` (256 × 73) **88 × 25.09 → 60 × 17.11** —
-  **−31.8%** on the long edge, **−53.5%** of area, the inset untouched. The text column takes the
-  28px back: body **201.4 → 229.4**, **+13.9%** of measure, with **neither description changing
-  line count** (3 and 2). Card 1 does not move — **114.4**, its body was already the taller of the
-  two — and card 2 goes **104 → 96.2**, the well having stopped setting its height; the list
-  **226.4 → 218.6**. Smallest row **341.4 × 96.2**: `HIG · 44pt` ✓ **219%**, `WCAG 2.5.8` ✓
-  **4.01×**.
+  **88 × 61.88 → 60 × 42.19 → 48 × 33.75** and `drone-flight-front.png` (256 × 73)
+  **88 × 25.09 → 60 × 17.11 → 48 × 13.69** — **−45.5%** on the long edge and **−70.2%** of area
+  across the two steps. The text column takes it all back: body **201.4 → 229.4 → 241.4**,
+  **+19.9%** of measure, with **no description changing line count on either step**.
+  **The second step buys measure and nothing else** — at `-sm` the well had already stopped setting
+  either card's height, so cards **114.4 / 96.2** and list **218.6** are the same before and after
+  it; the row only tightens again when the text does, which is what rev 216 then did.
+- **These heights are at a 17px title, and they were briefly something else:** rev 213 stepped the
+  title 17 → 14 across all 16 instances, taking 4.2px of line box out of every card (114.4 / 96.2 /
+  218.6 became 110.2 / 92 / 210.2), and **rev 217 put it back to 17**. Every figure here is read
+  off the build after that round trip.
 - **Photograph:** `object-fit: cover`, edge to edge inside `--r-media`, no padding — a photograph
   *is* the surface. Never inset on a `--media` ground; a floated photo reads as a sticker.
 - **Map:** `--r-card`, `center/cover`, native 1.99 aspect, `--media` as the pre-load ground.
@@ -2034,18 +2043,26 @@ top-left one halved by the card's edge; and the artwork's own **charcoal star (1
 x 276–287, y 87–98, 36px right of the caption's last glyph)** is the same ink as the arc's five and
 reads as a stray sixth. Both are open for her call; neither engages a criterion. **`wallet`** takes
 `--card`: the column turned on its side, a **32** glyph at the front, figure over caption beside it,
-**341 × 84**. **`ratings`** takes `--banner`: a **centred** column — a five-star arc, the figure under it, the line
-that names it under that — **341 × 121.5**, 20 + 32 + 4 + 22 + 4 + 19.5 + 20. It is the one place in the
-product where `.dr-note` keeps its own centred default instead of taking `--flush`, **and the one place it
-leaves the caption step**: on this fill only, the note takes `--t-bodysm-size` **13** where the class is 12
+**341 × 84**. **`ratings`** takes `--banner`: a **centred** column — a five-star arc and the figure under it —
+**341 × 98**, 20 + 32 + 4 + 22 + 20 (**326 × 98** as this screen actually renders, the frame's scrollbar
+taking 15 of the width; 341 is the scrollbar-free measure every figure in this section uses).
+**It carried a third child until 2026-09-03**: `126 ratings · last 90 days`, the line that named the
+score, removed at rev 215 on the designer's word (*«remove this frace»*) and taking **19.5** of line box
+plus the **4** step above it with it — **121.5 → 98**. What follows is the record of that line, kept so a
+rewrite that happened stays visible: it was the one place in the
+product where `.dr-note` kept its own centred default instead of taking `--flush`, **and the one place it
+left the caption step**: on this fill only, the note takes `--t-bodysm-size` **13** where the class is 12
 everywhere else — the designer's call of 2026-08-21 (*«забери спереду крапку зроби більшим шрифтом»*), which
 also dropped the orphan `·` the string had carried since the grayscale frame. 13 is the **next rung up in
 the closed scale** (12 caption → 12.5 meta → 13 body-sm), not a new value; 12.5 is half a pixel and 14 is
 the body step the review sentences below already take. `--t-bodysm-weight` is 400, the weight `.dr-note`
 already carries, so only the size moves, and the 19.5 line box is the whole **1.5** the card grew.
 `HIG · Typography` puts 13 at **Footnote** and 12 at **Caption 1**, both inside the iOS ramp with 11 the
-floor. At 200% text the line wraps to two and the banner grows **121.5 → 180** with **0px** of horizontal
-overrun — `WCAG 1.4.4` ✓. Both are
+floor. At 200% text that line wrapped to two and the banner grew **121.5 → 180** with **0px** of horizontal
+overrun — `WCAG 1.4.4` ✓. **Re-measured after rev 215, with the line gone: 98 → 120**, the 22px figure
+doubling to 44 and nothing left to wrap, overrun still **0px**. Both rules are still declared and both now
+spend nothing: `.dr-balance--banner .dr-note{font-size:--t-bodysm-size}` has no element, and `.dr-note`
+is dead weight in the `--on-green` colour rule it shares with `.dr-number`. Both are
 `--r-card` **16** and **flat**: no shadow, they sit in the page.
 
 **And the banner's green goes up in light the same evening — twice (revs 200 and 201)** — *«зроби
@@ -2146,6 +2163,31 @@ counted as a fill at 1.45:1 on the page and never excused as a tint — so the c
 it: **rev 166's departure, hers, standing.** The card's own edge against the page goes **1.45 → 1.69:1**;
 nothing rests on that number, since a surface engages no `WCAG 1.4.11`. **One cost, stated rather than
 absorbed: `--green-soft` is now spent nowhere** — see the palette entry above.
+
+**And on 2026-09-03 the line under the score is removed, which is the first time this card has lost a
+child rather than a colour (rev 215)** — *«remove this frace»*, the designer pointing at
+`126 ratings · last 90 days`. **The card is now a two-child column: 341 × 121.5 → 341 × 98**, the caption's
+**19.5** line box and the **4** `--sp-within` step above it, measured on the build (**326 × 98** with the
+frame's scrollbar). Nothing reflows — the note lived **inside** the card, so no gap collapses and no
+sibling moves; `main` goes **864.5 → 841** in a 619 window and still scrolls. **The binding number
+improves rather than holds, and it is measured by revs 198–214's own method** — the two remaining children
+hidden, the card screenshotted at **4×**, each glyph box read against the bitmap: the **arc box and the
+figure box each contain exactly ONE colour, `rgb(155,207,74)`**, so `--on-green` under every glyph is a
+flat **9.46:1** against `WCAG 1.4.3`'s 4.5 at 22px — **2.10×**. The card's worst pair was **7.60:1** at
+rev 214, and that was the caption's box catching the ribbon's darkest intrusion; with the box gone the
+worst pair on the card **is** 9.46:1. **The crop bites harder, and that is the one visual cost:** the
+1.777:1 artwork in a card that went from 2.807:1 to **3.480:1** now shows **51.1%** of its height where it
+showed 63.3% — **48.9% cropped**, up from 36.7% — so the two hero stars are cut further into. Artwork
+coverage of the card goes **9.37% → 10.63%** for the same reason, its dark ink measuring **289px² · 0.91%**
+of the card and **0%** of it under type. **The green budget falls for the first time on this screen:**
+**341 × 98 = 33,418px² · 10.97%** of a 375 × 812 frame, from 41,431.5px² · 13.61% — still over §0's ~5%
+with no green **control** to own it, so **rev 166's departure stands, narrowed by 2.64pp rather than
+closed**. **`WCAG 1.1.1`, `1.4.1`, `1.3.1` and `4.1.2` are untouched:** the card is
+`aria-label="Overall rating"`, the caption carried no `id` and was named by no `aria` attribute, the arc
+is still `aria-hidden` and **4.8** is still real text. **What is spent is proof, not conformance** —
+`voice.md` **P2** asks for the proof and not the adjective, and a 4.8 with no denominator is the
+adjective: 4.8 of 3 ratings and 4.8 of 126 now read alike, and the per-service rows carry no counts
+either. Hers to spend, recorded rather than argued with, and one line brings it back.
 
 **The star arc — one image since 2026-08-24 (rev 194).** *«постав цей патерн як зображння на бекграунт»*.
 The eleven inline SVGs that drew this row — five track stars, five clipped fill stars, and the clip that
@@ -2750,50 +2792,107 @@ bell adds **0.11pp** and changes neither the count nor the ceiling.
 `operator-listings` already records that it is not tappable and owes no 44pt target. Gap between
 them, measured: **8px**. The reverse order conforms equally and is one swap.
 
-### The choice card's title steps to 14 (`.dr-choice__title`, rev 213)
+### The choice card's title returns to 17 (`.dr-choice__title`, rev 217)
 
-**One declaration, five screens, and only the size moved.** `font-size` goes `--t-title-size` **17**
-→ `--t-body-size` **14**; weight **600**, leading **1.4** and tracking **−0.01em** stay the title's
-own. The scope was put to the designer with a support-only modifier drawn against the whole
-component, and **she took the component** — so the kit keeps one title size and the row cannot drift
-between a triage list and an alert feed.
+**The value is 17/600, leading 1.4, tracking −0.01em, `--ink` on `--card` 14.37:1** — the `title`
+step exactly as the scale defines it, with no departure left to record. It spent two revisions at
+**14** and came back: the designer, against the built `role-select`, *«поверни розмір шрифту
+заголовку»*.
 
-**15 was tried first and does not solve it.** On `support` the quality row wrapped at 17, and it
-still wraps at 15. **14 is the first step on the closed ramp where every `.dr-choice` title in the
-product fits one line**, and it is a token the scale already had, not a number minted here.
+**Why it could come back — the constraint that forced 14 no longer exists.** Rev 213 stepped the
+size down because one title in the product wrapped: `support`'s quality row, *The photo or report
+wasn't what I expected*, **279.3 + a second line** of a **309px** measure. **But that same revision
+also rewrote the row**, and the rewritten string — *The photo or report isn't right* — measures
+**249.38** at 17, **59.62px inside** the same measure. **The rewrite, not the size, is what keeps
+the triage list three equal cards**, and it keeps them at 17: **55.80 × 3**, the ragged middle row
+still gone. Measured across every instance, **no `.dr-choice` title wraps at 17**.
+
+**Scope is the component, which is the answer she gave at rev 213 too.** A `role-select`-only
+modifier was the alternative; taking the shared declaration keeps **one title size in the kit**, so
+a triage row cannot drift from an alert row. The cost is stated rather than left to be found:
+`support` and the eleven alert rows come back up **4.2px** each along with the screen she asked
+about.
 
 | Screen | Row height | Title | Note |
 |---|---|---|---|
-| `support` | **55.8 / 79.59 / 55.8 → 51.59 × 3** | 17 → 14 | the wrap is gone and the three rows are one height; list **207.19 → 170.78**, **−17.6%** |
-| `role-select` | **114.36 / 96.17 → 110.16 / 91.97** | 17 → 14 | −4.2 each, the title's line box; **neither description re-wrapped** (3 lines and 2, as before); list **218.53 → 210.13** |
-| `notifications` | **77.98 → 73.78** × 6 | 17 → 14 | no title wrapped before or after; list **249.95 → 237.34** |
-| `operator-notifications` | **77.98 → 73.78** × 5 | 17 → 14 | as above |
-| `notifications-loading` | **64** × 3, unchanged | — | the skeleton is `<div>`s with no `__title`, so it does not follow |
+| `role-select` | **76 × 2, unchanged** | 14 → 17 | the **44px well** sets this row, not the title's 23.8 line box — **the size she asked for costs the screen nothing**; titles **176.44 / 147.55** of a **241** measure; list **160** |
+| `support` | **51.59 → 55.80 × 3** | 14 → 17 | one height and one line each, as at 14; widest **249.38** of 309; list **170.78 → 183.39** |
+| `notifications` | **73.78 → 77.98** × 6 | 14 → 17 | widest title *Your photo and video set is ready* **228.86 → 277.89** of 309; list **237.34 → 249.95** |
+| `operator-notifications` | **73.78 → 77.98** × 5 | 14 → 17 | widest **269.06** of 309; lists **249.95 / 163.97** |
+| `notifications-loading` | **64** × 3, unchanged | — | the skeleton is `<div>`s with no `__title`, so it does not follow either way; the gap it stands short by goes **9.78 → 13.98**, back to the inherited figure it carried before rev 213 |
 
-**Standards, measured rather than asserted.** `HIG · Typography` asks a minimum of **11pt** and puts
-SF Text below 20pt — 14 sits inside both. `HIG · 44pt` on the smallest row the component now has,
-**341 × 51.59**: ✓ **117%** of the 44pt height, **17,592px² = 9.1×** the 44 × 44 area;
-`WCAG 2.5.8` ✓ **2.15×**. `WCAG 1.4.3` is not moved by a size change — `--ink` on `--card` stays
-**14.37:1** and nothing here leans on the 3:1 large-text exemption. `WCAG 1.4.4` holds: px text still
-zooms to 200%. `WCAG 2.4.4` is untouched — the accessible name is still the title alone.
+**Standards, measured rather than asserted.** `HIG · Typography` puts SF Text below 20pt and asks
+**11pt** as the floor — 17 sits inside both. `HIG · 44pt` on the **shortest** row the component now
+has, **341 × 55.80**: ✓ **127%** of the 44pt height, **19,028px² = 9.8×** the 44 × 44 area;
+`WCAG 2.5.8` ✓ **2.33×**. `WCAG 1.4.3` is not moved by a size change — `--ink` on `--card` stays
+**14.37:1** and nothing here leans on the 3:1 large-text exemption. `WCAG 1.4.4` holds: px text
+still zooms to 200%. `WCAG 2.4.4` is untouched — the accessible name is still the title alone.
+**Every `.dr-main` reports `scrollHeight == clientHeight` at 17**, so no screen starts scrolling for
+this.
 
-**Two costs, recorded rather than fixed.** (1) Where the card carries a description the pair is now
-**14/600 over 13/400**, so the hierarchy rests on weight and colour — **14.37:1** against **5.95:1** —
-rather than on size; `--sp-within` **4** is kept for the same reason. (2) `notifications-loading`'s
-skeleton row was already **13.98px** short of the row it replaces (64 against 77.98) and is now
-**9.78px** short (64 against 73.78) — an inherited mismatch that got smaller, not a new one.
+**And one thing rev 213 recorded as a cost is paid back.** Where the card carries a description the
+pair was **14/600 over 13/400** and the hierarchy rested on weight and colour alone; at 17 the size
+gap is back, and `--sp-within` **4** returns to being what 2026-08-12 set it for — the gap the 16px
+inset asks for.
+
+### The description leaves the cards a person taps (`.dr-choice__desc`, rev 216)
+
+**The designer, against the built `role-select`: «видали підзаголовок».** With rev 209 having taken
+the same line off `support`'s three triage cards, that is now **every choice card in the product
+that is a navigation fork**. The two lines that left:
+
+- *Order delivery, aerial photo/video or inspection — a verified operator handles it.*
+- *You're a certified drone operator — take jobs and get paid.*
+
+**Rev 209's rule is overruled, not quietly retired.** It read: a card takes a description where the
+destination is not self-evident from the words — and it named `role-select` as the case that
+qualified, since a role's consequences are not in the words. She has decided the other way on that
+same pair, so the rule is now **a choice card a person taps is a title**. `.dr-choice__desc` stays
+declared and has **11 live instances**, every one an **alert row** on `notifications` /
+`operator-notifications`, where the second line is which order it belongs to and when it arrived —
+a log's proof (`voice.md` **P2**), not a fork's explanation.
+
+**Measured on `role-select` at 375 × 812.** Body **82.4 / 64.2 → 23.8** (the title's line box
+alone); cards **114.4 / 96.2 → 76 × 2**; list **218.6 → 160**, **−26.8%**. `main` **655.6** with a
+scroll height of **656** before and after — the screen did not scroll and still does not — and
+horizontal overrun is **0**.
+
+**With one line of text the well is the floor again**, which is the whole reason rev 215's step now
+shows: 44 + 32 of padding = **76**, against a 23.8 body. The two cards, which have never been the
+same height, are now identical — **and the row is now immune to the title size**, since neither 17
+nor 14 reaches 76, so rev 213 and rev 217 both leave it where it is.
+
+**Standards.** `WCAG 2.4.4 Link Purpose (In Context)` is the criterion that moves, because the
+description sat **inside** the `<a>` and was part of the link's accessible name. Verified in the DOM:
+the names are now **«I need a service done»** and **«I provide services»**, each stating its own
+purpose under a display that asks *How will you use DRON?* ✓ `WCAG 4.1.2` untouched — role from the
+`<a href>`, name from the title. `HIG · 44pt` and `WCAG 2.5.8` on the smallest row, **341.4 × 76**:
+✓ **173%** of the 44pt height, **25,946px² = 13.4×** the 44 × 44 area, **3.17×** the 24px minimum.
+`WCAG 1.4.3` is not engaged by a removal; the 13/400 `--slate` line that left was **5.95:1** and
+passing when it left.
+
+**The cost, recorded as a cost.** *What you can order* and *who does it* were only written in the
+lines that left. **One of the two survives one tap later and one does not:**
+`onboarding-client`'s first slide reads *A verified operator* / *DRON assigns the nearest certified,
+insured operator. You don't choose or guess.* — so the trust proof (`RJ-C1`, the highest single
+drop-off in the CJM) arrives on the next screen. The **service list** — delivery, aerial photo/video,
+inspection — appears nowhere in client onboarding, so it is gone from the entry flow until the
+services list itself. On the operator side both halves survive: *Jobs come to you* and *Get paid
+automatically / Earnings land within 30 min of client confirmation.*
 
 ### The alert log's list row (`.dr-choice` on `notifications`)
 
 **No new component.** The log's rows are `.dr-choice` — the kit's tappable list row — with the
-`__title` / `__desc` pair `role-select` uses. Measured on the build: row **73.78px** tall
-(`HIG · 44pt` ✓ **168%**, `WCAG 2.5.8` ✓ **3.07×**), `--card` ground at `--r-card` **16px**, title
-14/600 `--ink` on `--card` **14.37:1**, description 13 `--slate` on `--card` **5.95:1**.
-**The row was 78px until 2026-09-03 (rev 213)**, when the shared `__title` stepped 17 → 14 and every
-line box under it lost **4.2px**. No title on either log wrapped before or after — the widest,
-*Your photo and video set is ready*, goes **277.9 → 228.9** of a **309px** measure — so the eleven rows
-simply read smaller, and each list of six / five goes **249.95 → 237.34**. Contrast is untouched: a
-size change moves no ratio, and neither pair was ever leaning on the 3:1 large-text exemption.
+`__title` / `__desc` pair. Since rev 216 these eleven rows are the **only** place `__desc` is drawn:
+`role-select` and `support` are title-only. Measured on the build: row **73.78px** tall
+(`HIG · 44pt` ✓ **177%**, `WCAG 2.5.8` ✓ **3.25×**), `--card` ground at `--r-card` **16px**, title
+17/600 `--ink` on `--card` **14.37:1**, description 13 `--slate` on `--card` **5.95:1**.
+**The row made a round trip on 2026-09-03**: rev 213 stepped the shared `__title` 17 → 14 and every
+line box under it lost **4.2px** (**77.98 → 73.78**, lists of six / five **249.95 → 237.34**), and
+rev 217 put both back. No title on either log wrapped at either size — the widest,
+*Your photo and video set is ready*, is **277.89** of a **309px** measure — so the eleven rows read
+smaller for two revisions and now read as they did. Contrast is untouched throughout: a size change
+moves no ratio, and neither pair was ever leaning on the 3:1 large-text exemption.
 
 **`__desc` is spent here under rev 209's own rule.** That revision made the description optional —
 *"a choice card is a TITLE, and it takes a description only where the destination is not
@@ -2802,17 +2901,49 @@ title and cannot be; the second line is the row's proof (`voice.md` **P2**), not
 
 **The group heading is `.dr-sect`, and this is its first spend.** The rung was cut on 2026-08-15
 for `account-edit`'s Documents zone and then **declared and applied on 0 of 80 pages** — DESIGN.md
-and `ui/kit.css` both recorded it as open and hers. **New** / **Earlier** land it: 13/600 `--slate`
-on `--page`, **6.62:1**, written as `<h2>` so `WCAG 1.3.1` gets the grouping programmatically.
+and `ui/kit.css` both recorded it as open and hers. It lands here: 13/600 `--slate` on `--page`,
+**6.62:1**, written as `<h2>` so `WCAG 1.3.1` gets the grouping programmatically.
 
-**Unread is carried by words, not by a hue.** The two group names are the unread signal, so
-`WCAG 1.4.1 Use of Color` is not engaged anywhere on the screen. A green dot per unread row was the
-alternative; it conforms too (it would still need the same text somewhere), and the heading was
-chosen because it also **sorts**, which a dot does not.
+**The headings are DAYS, since rev 218 — `Today` · `Yesterday` · `d MMMM`.** They were
+**New** / **Earlier** until the designer asked for relative dates against the built
+`operator-notifications`. `HIG · Lists and tables` gives a recent date relatively and an absolute
+date past that; the built log had **no *Yesterday* at all** and jumped *Today* → *28 Jun*, so a
+two-day-old alert was formatted like a sixty-seven-day-old one. The absolute step is a **format,
+not a string**: `d MMMM`, day-first for UA/EU, month spelled out.
 
-**Spacing is the kit's own ratio.** Measured: **8** within a group (`.dr-list--snug`), **12**
-between them (`.dr-main`'s zone gap) — siblings closer than strangers at **1.5:1**, the exact
-reading `--sp-list-snug`'s note in `ui/kit.css` was written to hold.
+**Unread is still carried by a word and not by a hue — the word moved to the row.**
+`.dr-chip--unread`, reading **New**: the base chip's `--media` ground with `--slate` swapped for
+`--ink`, **13.33:1** (against the base's 5.51:1, which is the description line's own colour one
+line below — a mark that matches the meta it sits above is not a mark). **No green**, because
+§0's accent is never spent inside card UI and this pill sits inside a `.dr-choice`; the ground is
+**1.08:1** on the card, the band `.dr-chip--trust` already sits in at 1.05:1, and a chip on this kit
+is read by its text and never by its edge. `WCAG 1.4.1` is no more engaged than it was as a
+heading. **What the move bought:** read-state and recency stopped being one axis — the operator's
+*Documents approved* is unread **under Yesterday**, a pair of facts the two old headings could not
+state together.
+
+**`.dr-choice__head` is the title row that can carry a mark.** `display:flex`, `align-items:center`,
+gap **8**; the title takes `flex:1; min-width:0`. Used by the two alert logs alone — every other
+`.dr-choice` keeps `__title` as a direct child of `__body`. Centre, not baseline: the chip stands
+**21.39** against the title's **23.8** line box, so it is the shorter of the two. **The mark costs
+the row nothing** — an unread row and a read row are both **77.98** — so a group holding one of each
+is not ragged.
+
+**The chip's real cost is measure, and the budget is written down.** The pill and its gap take
+**48.28** of the **309** text column, so a title carrying a mark is written to **260.72** at the
+standard tier and **236.72** at the narrow one (`≤ 389px`, frame 351). Two strings were rephrased to
+land inside it rather than truncated: *New job offer · Package delivery* → **Job offer · Package
+delivery** (the chip already said *New*), and *Your documents are approved* → **Documents approved**
+(250.77 against the narrow tier's 236.72). Measured after: **every title on both logs is one line at
+both tiers**, and every row is **77.98**.
+
+**Spacing is a break now, not a seam.** Measured: **8** within a group (`.dr-list--snug`), **4**
+under the heading (`--sp-within`), **28** between groups — `.dr-log`, a flex column spending
+`--sp-list`, because `.dr-main`'s generic **12** made a date break speak no louder than any other
+gap on the page (12 : 8 = **1.5:1**). **28 : 8 = 3.5:1**, the designer's own pick with 20
+(`--sp-group`, 2.5:1) and 24 (`--sp-24`, 3:1) drawn beside it. No rung is minted. The narrow tier
+takes it to **22**. `HIG · Layout` prescribes the direction and not a number; no WCAG criterion is
+engaged, `1.3.1` being carried by `<section aria-labelledby>` + `<h2>` throughout.
 
 ## Sources
 

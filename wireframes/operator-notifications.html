@@ -30,9 +30,15 @@
   traceability matrix gains NO column, because the log originates no record: every
   row is a doorway into a screen that already holds one.
 
-  NO NEW COMPONENT ON THIS PAGE. Rows are .dr-choice - the kit's tappable list row -
-  and the two group names are .dr-sect, a rung that has been DECLARED AND APPLIED ON
-  0 OF 80 PAGES since it was cut. This is its first spend.
+  ROWS ARE .dr-choice - the kit's tappable list row - and the group names are .dr-sect,
+  a rung that had been DECLARED AND APPLIED ON 0 OF 80 PAGES until this screen spent it.
+
+  THE GROUPS ARE DAYS, NOT READ-STATE (2026-09-03, rev 218). They were New / Earlier
+  until the designer asked, against this page: "write today, yestaday and date if it
+  more than yesterday and fix the mergings and puddongs it should be viseal notised
+  differen dates etc". HIG - Lists and tables gives a recent date RELATIVELY and an
+  absolute date past that; the built log had no Yesterday at all and jumped Today to
+  28 Jun, so a two-day-old alert was formatted like a sixty-seven-day-old one.
 
   THE MIRROR OF THE CLIENT'S SCREEN, AND THE ONE THING THAT IS NOT MIRRORED IS THE WORDS.
   Same shape, same components, same spacing. What differs is the vocabulary, because
@@ -51,7 +57,39 @@
 
   THE ROW ORDER IS THE OPERATOR'S ECONOMY, NEWEST FIRST: money, then work, then standing.
 
-  UNREAD IS CARRIED BY WORDS (New / Earlier, .dr-sect), so WCAG 1.4.1 is not engaged.
+  UNREAD IS CARRIED BY A WORD AND THAT WORD MOVED TO THE ROW. New / Earlier WERE the
+  unread signal; dates cannot carry it, so it rides each row as a .dr-chip--unread
+  reading "New" - still copy, never a hue, so WCAG 1.4.1 stays un-engaged. THE MOVE IS
+  WHAT THE TWO AXES WERE ASKING FOR, and this page is where it shows: "Your documents
+  are approved" is UNREAD and sits under YESTERDAY. The old pair of headings could not
+  state both facts at once. The bell still says "Notifications, 3 unread" and the count
+  is still 3.
+
+  THE SPACING IS THE SECOND HALF OF THE SAME ASK. The groups sit in a .dr-log column
+  whose gap is --sp-list 28 against the rows' 8 - a 3.5:1 break, hers, taken against 20
+  and 24 drawn beside it - and the heading now stands 4 above its own list instead of 0.
+
+TWO STRINGS SHORTENED, AND THE BUDGET THEY WERE WRITTEN TO IS RECORDED SO THE NEXT ONE
+  CAN BE. A title that carries a chip does not get the row's 309: the pill and its gap
+  take 48.28, so it is written to 260.72 at the standard tier and to 236.72 at the narrow
+  one (<= 389px, where the frame is 351). Both tiers were measured, not one.
+
+  (1) "New job offer - Package delivery" -> "Job offer - Package delivery". TWO REASONS
+  AT ONCE: the row's own chip already says New, so the title was restating it - the same
+  duplication that took "Today," out of the meta lines - and at the 17px rev 217 restored
+  the old string crossed 260.72 and wrapped, taking its row to 101.78 beside a
+  neighbour's 77.98.
+
+  (2) "Your documents are approved" -> "Documents approved". 250.77 against the narrow
+  tier's 236.72, so it wrapped on a 375px phone and nowhere else. THE PRONOUN IS WHAT WAS
+  SPENT AND THAT IS SAID RATHER THAN SMOOTHED: voice.md addresses the operator as "you",
+  and three titles on this screen already carry no pronoun, so the set is not broken - but
+  "approved" was kept over "Your" deliberately, because operator-verification-loading
+  promises "We'll notify you when it's approved" and this row is that promise kept in the
+  same word. "Your documents cleared" fits too, at 203.33, if she would rather keep the
+  pronoun and spend the word.
+
+  BOTH REPHRASED, NEITHER TRUNCATED - the remedy rev 213 took on support.
 -->
 <link rel="stylesheet" href="_wireframe.css">
 <link rel="stylesheet" href="../ui/kit.css">
@@ -65,7 +103,7 @@
       <a href="operator-notifications-empty.html">empty</a>
     </nav>
     <div class="flow"><b>Jobs (jtbd):</b> RJ-O1 - an offer that expired in a pocket is still findable; RJ-O3 - the payout says so where he looks.<br><b>flows.md:</b> Jobs &#8594; <span class="cur">Notifications</span> &#8594; the screen the alert names.<br><b>States:</b> empty &#10003; &#183; loading / error - traced, not drawn (matching <code>wallet</code> and <code>ratings</code>).<br><b>Exit:</b> back chevron &#8594; <b>Jobs</b>, or any row &#8594; its own screen.</div>
-    <div class="legend"><p><b>Zones:</b></p><p><b>New</b> &#9656; unread, newest first</p><p><b>Earlier</b> &#9656; already read</p><p><b>Row</b> &#9656; what happened &#183; which job &#183; when</p></div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Today</b> / <b>Yesterday</b> / <b>28 June</b> &#9656; one group per day, newest first</p><p><b>New</b> chip &#9656; unread &#8212; on the row, not the heading</p><p><b>Row</b> &#9656; what happened &#183; which job &#183; the time</p></div>
   </aside>
 
   <div class="wf-frame dr dr-screen">
@@ -73,56 +111,77 @@
     <header class="topbar dr-topbar"><a class="dr-back" href="operator-listings.html" aria-label="Back to Jobs"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Notifications</span><span class="dr-topbar__spacer"></span></header>
     <main class="dr-main">
       <p class="zlabel dr-label">Notifications <span class="dr-label__act">&#9656; what the app told you &#183; tap a row to open the job</span></p>
-      <section aria-labelledby="ntf-new">
-        <h2 class="dr-sect" id="ntf-new">New</h2>
-        <ul class="dr-list dr-list--snug" style="list-style:none;">
-          <li>
-            <a class="dr-choice" href="wallet.html">
-              <span class="dr-choice__body">
-                <span class="dr-choice__title">&#8372;720 paid to your balance</span>
-                <span class="dr-choice__desc">Package delivery &#183; Today, 11:20</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="dr-choice" href="job-offer.html">
-              <span class="dr-choice__body">
-                <span class="dr-choice__title">New job offer &#183; Package delivery</span>
-                <span class="dr-choice__desc">Podil &#8594; Osokorky &#183; Today, 10:45</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="dr-choice" href="operator-verification.html">
-              <span class="dr-choice__body">
-                <span class="dr-choice__title">Your documents are approved</span>
-                <span class="dr-choice__desc">Verification &#183; Today, 09:02</span>
-              </span>
-            </a>
-          </li>
-        </ul>
-      </section>
-      <section aria-labelledby="ntf-earlier">
-        <h2 class="dr-sect" id="ntf-earlier">Earlier</h2>
-        <ul class="dr-list dr-list--snug" style="list-style:none;">
-          <li>
-            <a class="dr-choice" href="ratings.html">
-              <span class="dr-choice__body">
-                <span class="dr-choice__title">Olena H. rated your job 5 stars</span>
-                <span class="dr-choice__desc">Package delivery &#183; 28 Jun, 15:02</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="dr-choice" href="wallet.html">
-              <span class="dr-choice__body">
-                <span class="dr-choice__title">Withdrawal sent to your card</span>
-                <span class="dr-choice__desc">&#8372;1,240 &#183; 27 Jun, 18:30</span>
-              </span>
-            </a>
-          </li>
-        </ul>
-      </section>
+      <div class="dr-log">
+        <section aria-labelledby="ntf-today">
+          <h2 class="dr-sect" id="ntf-today">Today</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="wallet.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">&#8372;720 paid to your balance</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Package delivery &#183; 11:20</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="dr-choice" href="job-offer.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">Job offer &#183; Package delivery</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Podil &#8594; Osokorky &#183; 10:45</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-yesterday">
+          <h2 class="dr-sect" id="ntf-yesterday">Yesterday</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="operator-verification.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">Documents approved</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Verification &#183; 09:02</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-jun28">
+          <h2 class="dr-sect" id="ntf-jun28">28 June</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="ratings.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__title">Olena H. rated your job 5 stars</span>
+                  <span class="dr-choice__desc">Package delivery &#183; 15:02</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-jun27">
+          <h2 class="dr-sect" id="ntf-jun27">27 June</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="wallet.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__title">Withdrawal sent to your card</span>
+                  <span class="dr-choice__desc">&#8372;1,240 &#183; 18:30</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
     </main>
   </div>
 
