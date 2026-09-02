@@ -297,8 +297,14 @@ and applied to nothing — they are recorded rungs, not live values (`var(--warn
   used**: a margin of a hundredth is not a margin, and `--on-green` is the palette's rule on any
   green ground regardless. **It is 1.17:1 against `--green` itself**, which is the one thing it may
   never do: two greens this close cannot sit side by side and read as two surfaces, so it is a
-  *replacement* fill on one card and never a second tone beside the first. **One spend:**
-  `.dr-balance--banner` on `ratings`. `wallet`'s `.dr-balance--card` keeps `--green`.
+  *replacement* fill on one card and never a second tone beside the first. **One spend, and since
+  2026-09-03 (rev 214) none:** `.dr-balance--banner` on `ratings` was its only site, and that banner
+  went back to solid `--green` on the designer's word (*«make background colour as on this page
+  bunner [wallet] keeping the existing puttern image with stars»*), so **a fifth green now sits in
+  the palette with no product surface.** It stays **declared** — the mix is arithmetic between two
+  members nobody should re-derive, and one word brings it back — but the spend is stated as **zero**
+  rather than left claimed, the way `--sh-card` and `--sh-onphoto` are. `wallet`'s
+  `.dr-balance--card` keeps `--green` and always did.
 - **`--green-wash`** (`#E7F0D2`) — the one green tint. Carries the selected tab, the verified
   badge, and the delivered / waiting milestone marks. Charcoal on it is **14.75:1**. Against the
   page it is only **1.085:1**, so the tint is a hue signal, not a luminance one — anything relying
@@ -1988,8 +1994,8 @@ digit, so the figure gets the display **size** and the number **role**.
 here. **The painted client page `payment.html` still leaks it, and that is an open defect, not a
 sanctioned exception.**
 
-**The two filled score cards (`.dr-balance--card`, `.dr-balance--banner`) — both green again since
-2026-08-24 (rev 198), and one of them now carries a picture.** Two screens stand their headline
+**The two filled score cards (`.dr-balance--card`, `.dr-balance--banner`) — the SAME green again
+since 2026-09-03 (rev 214), and both of them now carry a picture.** Two screens stand their headline
 figure on a filled card. They were never the same shape. They were briefly not the same colour
 either: rev 193 took `ratings` to `--warn` on the designer's word (*«колір бекграунду зроби
 жовтим»*), and **rev 198 took it back to `--green` the same day** (*«chamge the background colour on
@@ -1997,8 +2003,10 @@ green»*). **The split in the declaration survives the reunion, and now has a se
 banner's fill carries `assets/marks/rating-pattern.png` on top of the token (a second artwork under the
 same name since rev 207), and the balance card carried none — **until rev 208 gave it one of its own,
 `wallet-pattern.png`, on her word; the paragraph below records that reversal.** So the split now
-carries two reasons rather than one: the two cards hold different pictures **and** different greens —
-`--green` `#9BCF4A` on `wallet`, `--green-soft` `#B7DA7C` on `ratings` since rev 201.
+carried two reasons rather than one: the two cards hold different pictures **and**, from rev 201 to
+rev 213, different greens — `--green` `#9BCF4A` on `wallet`, `--green-soft` `#B7DA7C` on `ratings`.
+**Since rev 214 the greens are the same again and the split stands on the pictures alone**, which is
+still a reason: two different artworks cannot be one declaration.
 **What is still declared once for the pair is the BOX** — padding and radius; the fill and its ink
 sit on each modifier, because these are values that must be able to differ rather than one value
 written twice.
@@ -2111,6 +2119,33 @@ Mastercard, Apple Pay and Google Pay and has no crypto in it. No WCAG or HIG cri
 objection, reported and hers to settle. (2) **The crop bites harder than the banner's** — the same 1.777:1 artwork in a
 **4.060:1** card against the banner's 2.807:1, so `cover` drops **56.2%** of the height (visible band y 265–676 of 941) and the
 coin stack's base is cut by the card's bottom edge, the artwork running to y 83.8 of 84.
+
+**And on 2026-09-03 the banner goes back to solid `--green`, keeping its picture (rev 214)** — *«make
+background colour as on this page bunner [`wallet.html`] keeping the existing puttern image with stars»*.
+**This reverses the two lightening steps of 2026-08-24 and is recorded as a decision, not a correction:**
+revs 200 and 201 lit this fill on her word (*«зроби бекграйнд трохи світлішим зеленим»*, then *«ще трохи
+світліший»*) and derived `--green-soft` to hold it; today she asks for `wallet`'s ground on this card, and
+`wallet`'s ground is `--green`. Both stand in the log so neither is re-proposed later as new. **Only the
+token moves.** `background: var(--green) url(../assets/marks/thumbs/rating-pattern.png) center/cover
+no-repeat` — the file, the crop, the geometry and the empty middle band are untouched, which is what
+declaring the ground as a token has bought through four fills. **No markup changed;** `wireframes/ratings.html`
+moves only in its comment. **What binds, measured the way revs 198–207 measured it** — the served thumb
+composited over each ground at 4×, then the glyph boxes read: `--on-green` on `--green` is **9.46:1** against
+`WCAG 1.4.3`'s 4.5 for the 22px figure and the 13px line, cleared **2.10×**, **down from 2.46×** on
+`--green-soft`. **Both pass — the change spends margin, not conformance**, and that is said plainly rather
+than reported as a defect. Under the glyphs the **arc box and the figure box each still contain exactly ONE
+colour**, `rgb(155,207,74)` where rev 207 read `rgb(183,218,124)`; at the caption's widest credible extent the
+ribbon's darkest intrusion takes the worst pair to **7.60:1** from 7.84:1 — **1.69×** the requirement, with
+**0%** of the artwork under type. **The picture gets louder in count, not in voice, which is the opposite of
+what revs 200 and 201 bought:** composited over both grounds in one pass, mean |ΔL| goes **0.1597 → 0.1593**
+(flat, 0.3%) and mean ratio **1.556 → 1.513:1**, but the share of the artwork standing more than **1.10:1**
+off its fill goes **65.1% → 78.6%**, because `rating-pattern.png` bakes its own greens (`#AACE4A` … `#C8E75B`)
+and the darker ground drops below more of them. **The green budget does not move** — `--green-soft` was
+counted as a fill at 1.45:1 on the page and never excused as a tint — so the card is the same
+**41,431.5px² · 13.61%** of a 375 × 812 frame against §0's ~5%, with no green **control** on the screen to own
+it: **rev 166's departure, hers, standing.** The card's own edge against the page goes **1.45 → 1.69:1**;
+nothing rests on that number, since a surface engages no `WCAG 1.4.11`. **One cost, stated rather than
+absorbed: `--green-soft` is now spent nowhere** — see the palette entry above.
 
 **The star arc — one image since 2026-08-24 (rev 194).** *«постав цей патерн як зображння на бекграунт»*.
 The eleven inline SVGs that drew this row — five track stars, five clipped fill stars, and the clip that

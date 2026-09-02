@@ -20,8 +20,8 @@
       "green-soft": {
         "role": "primary",
         "displayName": "Signal Green Soft",
-        "canonical": "#A9D563",
-        "usage": "the accent one step lighter (2026-08-24) — --green 85% + --page 15%, derived rather than picked. One spend: the ratings score banner. Charcoal on it 10.26:1, better than 9.46:1 on --green; 1.56:1 on the page, so it is a FILL and counts against the green budget, not a tint. 1.08:1 against --green itself, so the two never sit side by side."
+        "canonical": "#B7DA7C",
+        "usage": "the accent TWO steps lighter (2026-08-24) — --green 70% + --page 30%, derived rather than picked; it stood at #A9D563 (85/15) for one revision. Charcoal on it 11.05:1, better than 9.46:1 on --green; 1.45:1 on the page, so it is a FILL and counts against the green budget, not a tint. 1.17:1 against --green itself, so the two never sit side by side. SPEND: none since 2026-09-03 (rev 214) — the ratings score banner was its only site and returned to solid --green on the designer's word. Kept declared, not deleted: the mix is arithmetic between two members and one word brings it back."
       },
       "green-wash": {
         "role": "primary",
