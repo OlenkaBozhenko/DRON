@@ -541,7 +541,10 @@ snug rung in the first position would leave the list undifferentiated from its o
 snug list level with the zone gap at 12:12, spacing grouping nothing, so it followed `.dr-stack`
 down to **8**: siblings 8, strangers 12, **1.5:1** — a stronger step than the 1.33:1 it replaced.
 Measured at 8 on `listings` ×3, `support`, `chat` and `inspection-report` ×2; measured at 12
-between zones on every screen that stacks them.
+between zones on every screen that stacks them **bar the two that pay the zone rhythm instead** —
+`rate` since 2026-08-12 and `support` since **rev 225**, both spending `--sp-24` **24** through
+`.dr-main--zones`. On those two the step against the snug list reads **3:1** rather than 1.5:1, and
+neither `--sp-24` nor `--sp-within-lg` steps at the narrow tier, so the ratio holds at both widths.
 
 `.kv` rows take `13px 0`; the action bar takes `12px 16px 24px`; the tab bar `6px 8px 4px`. The
 message block is `22px 18px` on `tracking` and `delivery`, and `16px 16px 32px` on

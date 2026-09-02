@@ -31,7 +31,37 @@
   <div class="wf-frame dr dr-screen">
     <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
     <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Help</span><span class="dr-topbar__spacer"></span></header>
-    <main class="dr-main">
+    <!-- THE ZONES ON THIS SCREEN SEPARATE AT 24, NOT 12 — designer, 2026-09-03,
+         rev 225, on the built page: «make more spacing bitween copy and cards».
+         `.dr-main`'s generic 12 was doing zone-boundary work above a list whose
+         own cards sit 8 apart — 12 : 8 = 1.5:1, the same ratio rev 218 measured
+         and called too quiet to read as a break. `.dr-main--zones` is the kit's
+         answer and NOTHING IS MINTED: 24 is `--sp-24`, the rung `rate` has spent
+         on a zone boundary since 2026-08-12, and this screen becomes the second
+         to spend it. 24 : 8 = 3:1.
+         BOTH BOUNDARIES MOVE, BECAUSE ALL THREE BLOCKS ARE PEERS — the intro
+         copy, the triage list and the human fallback are zones, and giving one
+         seam 24 while the other kept 12 would say they are not.
+         AND THE SECTION'S OWN `padding-top:8px` GOES WITH IT: an undocumented
+         inline patch that arrived in an `auto:` commit rather than as a decision,
+         and under a 24 gap it would have made that one boundary 32 — a number
+         that is not on the ramp. Both seams now read exactly 24. Hers to put back
+         in one attribute if the CTA wants the extra air.
+         MEASURED, 375 × 812, annotations off: copy → cards **12 → 24**, last card
+         → button **20 → 24**, and the screen does NOT start scrolling — `main` is
+         619 in a 619 window with **210.31px** of slack before and **186.31** after.
+         IT IS A DEPARTURE FROM THE 12 SHE SET PRODUCT-WIDE ON 2026-08-16, AND IT
+         IS SCOPED TO THIS SCREEN RATHER THAN PROMOTED: `.dr-main`'s own gap is
+         untouched, so no other page moves by a pixel.
+         `HIG · Layout` groups by proximity and prescribes the DIRECTION, never a
+         number — 20 (2.5:1), 24 (3:1) and 28 (3.5:1) all conform, and 24 is the
+         one the kit already owns. No `WCAG` criterion is engaged: `1.3.1` is
+         carried by the `<section aria-label>`s and does not move with a gap, no
+         contrast pair changes, and the rows' 341 × 55.80 targets do not move.
+         AT THE NARROW TIER THE RATIO HOLDS RATHER THAN NARROWING — neither
+         `--sp-24` nor `--sp-within-lg` steps at ≤ 389px, so 3:1 is read at both
+         widths, which is one better than rev 222's break could manage. -->
+    <main class="dr-main dr-main--zones">
       <section aria-label="Support intro">
         <h2 class="dr-display">What happened?</h2>
         <p class="dr-lead">Pick the issue with your order and we'll route it to the right fix.</p>
@@ -65,7 +95,7 @@
       </section>
 
       <p class="zlabel dr-label">Human fallback <span class="dr-label__act">▸ Airbnb-style 24/7 agent</span></p>
-      <section aria-label="Talk to a human" class="dr-center" style="padding-top:8px;">
+      <section aria-label="Talk to a human" class="dr-center">
         <a class="dr-btn dr-btn--primary dr-btn--block" href="contact-support.html">Contact support</a>
         <p class="dr-note">Can't find your issue above? A support agent is available any time, day or night.</p>
       </section>

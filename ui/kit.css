@@ -748,7 +748,14 @@ header.dr-topbar,
 /* zones read by proximity: 24 between zones against the 8 within one — the
    rate screen's call, designer 2026-08-12. Read 24/12 = 2:1 until the zone gap
    closed on 2026-08-16; the modifier did not move, so the step it spends is
-   now 3:1, and it stays the one screen that pays 24 for a zone boundary. */
+   now 3:1.
+   A SECOND SCREEN PAYS IT FROM 2026-09-03 (rev 225): `support`, on «make more
+   spacing bitween copy and cards». The modifier itself does not move — this is
+   the rung being spent where it was always right, not a new number. What it
+   costs to know: `.dr-main`'s generic 12 is still what every other stacked
+   screen separates zones by, so 24 is a two-screen departure and not a promotion.
+   Neither --sp-24 nor --sp-within-lg steps at the narrow tier, so both screens
+   read 3:1 at either width. */
 .dr-main--zones{ gap: var(--sp-24); }
 
 .dr-tabbar{
