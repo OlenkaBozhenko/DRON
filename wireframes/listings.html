@@ -141,7 +141,19 @@
      card (§6.3, designer call 2026-08-01).                                 */
   .media-ph:has(img){ width:96px; height:72px; border:0; background:none;
     padding:0; overflow:hidden; font-size:0; line-height:0; color:transparent; }
-  .media-ph img{ width:100%; height:100%; display:block; object-fit:contain; }
+  /* THE RENDER SITS ON THE CARD'S TRAILING INSET, NOT IN THE MIDDLE OF ITS BOX
+     — designer, 2026-09-03, rev 224: «aligne text by left side and image by right».
+     Rev 217 moved the BOX to the trailing edge; the picture inside it stayed
+     centred. The source is a 256² canvas contained in a 96 × 72 well, so it
+     paints a 72 × 72 square with 12px of empty box either side, and the row was
+     flush on one side only — measured on the build, the name's ink starts 20.5px
+     from the leading inset and the drone's ink stopped 36.5px short of the
+     trailing one. `object-position` moves the paint and never the box: nothing
+     reflows, the 193px body measure is unchanged, no line re-wraps, the card
+     keeps its 120px height. The 4px that remain are the PNG's own transparent
+     margin (ink runs columns 14…241 of 256) — the asset, not the layout. */
+  .media-ph img{ width:100%; height:100%; display:block; object-fit:contain;
+    object-position:100% 50%; }
   .card .body{ flex:1; min-width:0; }
   .card .name{ display:block; font-size:17px; font-weight:600; color:var(--wf-text); }
   .card .desc{ display:block; font-size:13px; color:var(--wf-text-2); margin:2px 0 0; }
