@@ -658,6 +658,16 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **`voice.md` is not engaged by any of it.** No state message is written or rewritten: a date heading names *when*, and the chip restates a state the bell already counts.
 - **No toast.** Tapping a row navigates, and this file's own rule already covers a screen change: visible either way.
 
+**Sync — 2026-09-10 (`account-edit`'s Preferences card becomes two cards — one string retires, and not one new word is authored)**
+
+- **The designer's call, given against the built card:** *«devide Payment and language into 2 cards»*. One card holding two picker rows becomes two cards holding one row each.
+- **THE STANDARDS WENT FIRST AND NEITHER ONE FORBIDS EITHER SHAPE, WHICH IS AN ANSWER AND NOT A GAP.** `HIG · Settings` groups **related** settings and ships one-row groups throughout iOS Settings — a payment method and an interface language are two topics, not one, so two groups is the reading `HIG · Layout`'s proximity rule prefers. `WCAG 1.3.1` is answered by construction: each card is its own `role="group"` named by `aria-labelledby` and described by `aria-describedby`, so the boundary the eye now sees is the boundary assistive tech reads. Nothing fails, and nothing failed before.
+- **One string retires: `Payment & language` (Heading).** It named two things because the card held two; there is no such card left.
+- **Not one new word is authored, and that is the whole point of how the copy was picked.** The two titles — **Payment method**, **Language** — are strings the product already carries twice each, on the row label and on the drawer title (rev 102). The two subtitles — **How you pay** and **The language you see** — are the two halves of the retired *How you pay and the language you see*, taken unchanged. So the split is lossless at the copy level: everything on the two cards was already on the one.
+- **What it costs is the word said twice, and it is reported rather than quietly absorbed.** Each card now prints its title and, 44px under it, the same word as the row's label — *Payment method* over *Payment method*, *Language* over *Language*. `WCAG 2.4.6` asks a label to describe its purpose and both do; nothing fails. But iOS Settings answers this shape the other way: a one-row group names the topic in the header and lets the row carry only the **value**. **That is a decision for the designer, put to her with both readings drawn, not taken here** — the rows are left exactly as built.
+- **`payment`'s card is untouched and the scope contrast survives.** `account-edit` is the **saved default** and `payment` is *for this order*; the words carrying that are still on both screens.
+- **No toast, no state.** A settings card is not a state message; `voice.md`'s state tone is not engaged.
+
 ## Master table — every string
 
 _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string, in document order. Regenerated from the current wireframes after the voice rewrite (Step 03 audit)._
@@ -671,18 +681,20 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account-edit | Personal | Full name | Field label |  |
 | account-edit | Personal | Olena B. | Field value | DATA |
 | account-edit | Personal | Phone | Field label |  |
-| account-edit | Preferences | Payment & language | Heading | the card's title, new 2026-08-16 (rev 127) — it names the two things in the card, where the `.zlabel`'s *Preferences* names only the drawer they sit in (P2 — the proof, not the category word) |
-| account-edit | Preferences | How you pay and the language you see | Body | the card's subtitle, new 2026-08-16 (rev 127) — `aria-describedby` on the group. It is the **saved default**, which is why `payment`'s card next to it reads *for this order*: two cards, two scopes, and the copy is what tells them apart |
-| account-edit | Preferences | Payment method | Field label | also the drawer's title (rev 102) |
-| account-edit | Preferences | Visa •••• 4921 | Body | DATA · the row's value and the current option |
-| account-edit | Preferences | Mastercard •••• 8830 | Body | DATA · picker option, new 2026-08-16 (rev 101) |
-| account-edit | Preferences | Apple Pay | Body | picker option, new 2026-08-16 (rev 101) — the `CLAUDE.md` payment set, named as the platform names itself |
-| account-edit | Preferences | Google Pay | Body | picker option, new 2026-08-16 (rev 101) — same |
-| account-edit | Preferences | Saved address | Field label |  |
-| account-edit | Preferences | Podil, 21 | Field value | DATA |
-| account-edit | Preferences | Language | Field label | also the drawer's title (rev 102) |
-| account-edit | Preferences | English | Body | the row's value and the current option |
-| account-edit | Preferences | Ukrainian | Body | picker option, new 2026-08-16 (rev 101) — the language is named **in the interface language**, not in its own («Українська»), because `CLAUDE.md` holds every file to English and the switcher elsewhere is EN/UA |
+| account-edit | Personal | Saved address | Field label | zone corrected 2026-09-10 — the row moved into the Personal card on 2026-08-16 and the table had kept it under *Preferences* ever since |
+| account-edit | Personal | Podil, 21 | Field value | DATA |
+| account-edit | Payment | Payment method | Heading | the card's title, 2026-09-10 (rev 231), when *Payment & language* became two cards. **No new string enters the product**: it is the word the row under it and the drawer (rev 102) already carry, which is also the cost — the card says *Payment method* twice, 44px apart |
+| account-edit | Payment | How you pay | Body | the card's subtitle, 2026-09-10 (rev 231) — the **first half of the retired sentence, unchanged**, so the split adds no words. `aria-describedby` on the group. Still the **saved default**, which is why `payment`'s card reads *for this order*: two cards, two scopes, and the copy is what tells them apart |
+| account-edit | Payment | Payment method | Field label | also the drawer's title (rev 102) |
+| account-edit | Payment | Visa •••• 4921 | Body | DATA · the row's value and the current option |
+| account-edit | Payment | Mastercard •••• 8830 | Body | DATA · picker option, new 2026-08-16 (rev 101) |
+| account-edit | Payment | Apple Pay | Body | picker option, new 2026-08-16 (rev 101) — the `CLAUDE.md` payment set, named as the platform names itself |
+| account-edit | Payment | Google Pay | Body | picker option, new 2026-08-16 (rev 101) — same |
+| account-edit | Language | Language | Heading | the card's title, 2026-09-10 (rev 231) — the same call and the same shape as the Payment card above it, and the same cost: the word is the row's label too |
+| account-edit | Language | The language you see | Body | the card's subtitle, 2026-09-10 (rev 231) — the **second half of the retired sentence, unchanged**. `aria-describedby` on the group |
+| account-edit | Language | Language | Field label | also the drawer's title (rev 102) |
+| account-edit | Language | English | Body | the row's value and the current option |
+| account-edit | Language | Ukrainian | Body | picker option, new 2026-08-16 (rev 101) — the language is named **in the interface language**, not in its own («Українська»), because `CLAUDE.md` holds every file to English and the switcher elsewhere is EN/UA |
 | account-edit | Notifications | Notifications | Heading | the card's title, new 2026-08-24 — the group's accessible name by `aria-labelledby`. The `.zlabel` says the same word, and here that is right rather than lazy: unlike *Personal* / *Personal details*, the category word **is** what the card holds |
 | account-edit | Notifications | What we tell you, and how | Body | the card's subtitle, new 2026-08-24 — `aria-describedby` on the group. Two halves in five words, because the card has two halves: three rows say **what**, two say **how**. Built on the pair beside it (*How you pay and the language you see*), so the three cards read as one sentence pattern |
 | account-edit | Notifications | Order updates | Toggle label | new 2026-08-24 — `CE-4`'s status timeline. **Order**, not *job*: this is the client's side of the wall (`voice.md` vocabulary) |
@@ -696,8 +708,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account-edit | Documents | INSURANCE DOCUMENT | Body | WF-PH · not in the painted build — see the 2026-08-15 sync |
 | account-edit | Documents | Add insurance | Button | the card's title |
 | account-edit | Documents | Valid liability insurance covering the drone. | Body | the card's subtitle |
-| account-edit | Preferences | Cancel | Button |  |
-| account-edit | Preferences | Save changes | Button |  |
+| account-edit | Action bar | Cancel | Button | zone corrected 2026-09-10 — the two buttons stand on the frame's bottom edge, never in the Preferences card, and the table had said otherwise since it was generated |
+| account-edit | Action bar | Save changes | Button |  |
 | account-edit | Payment drawer | Cancel | Button | the drawer's dismissal, new 2026-08-16 (rev 102) — `HIG · Action sheets` asks for the cancel by name. It never stands beside the form's own Cancel: the scrim covers the action bar while the drawer is up |
 | account-edit | Language drawer | Cancel | Button | same |
 | account | — | Account | Heading |  |

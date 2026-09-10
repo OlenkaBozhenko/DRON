@@ -909,6 +909,17 @@ same designer's call as `payment` and the filter panel. **The heading that stood
 not restored by it** — that came off on her word at rev 120, and what these two cards get is a title *inside*
 the card, which is a different thing.
 
+**The Preferences card became two cards on 2026-09-10 (rev 231)**, the designer's call on the built screen
+(*«devide Payment and language into 2 cards»*): **Payment method** ▸ *How you pay* and **Language** ▸ *The
+language you see*, one picker row in each. The form is now **six** cards — Personal details, Payment method,
+Language, Notifications, and the two upload zones. **No string is authored for it**: both titles already
+existed as the row label and the drawer title (rev 102), and both subtitles are the two halves of the retired
+*How you pay and the language you see*. `HIG · Settings` groups **related** settings and ships one-row groups
+throughout iOS Settings, and each card is its own `role="group"` named by `aria-labelledby` — so `WCAG 1.3.1`
+reads the boundary the eye now sees. **What it costs is the title and the row's label saying the same word**,
+44px apart, on both cards; iOS answers that shape by letting a one-row group's row carry only the value.
+**Open, and hers** — the rows are left exactly as built until she picks.
+
 **A fourth card joined them on 2026-08-24 — Notifications** ▸ *What we tell you, and how*, on the designer's
 call, and the shape was hers too: the question was put as a row that pushes its own screen versus a card in
 place, and she chose the card («third card, inline»), then the control («make a toggle»).

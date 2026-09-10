@@ -26,7 +26,7 @@
     <h1>Account — edit &amp; documents</h1>
     <p class="sub">Account utility · sub-view: <b>edit</b> · file: account-edit.html</p>
     <div class="flow"><b>Job (jtbd):</b> configure the account — edit personal details, set what we notify you about and on which channel (RJ-C2, sitemap CE-1), upload the drone documents / insurance, and save (sitemap §7.4 + MJ-2 credentials).<br><b>Exit:</b> Save changes or Cancel → <b>Account</b>. No dead-end.<br><b>States:</b> none (a settings form).</div>
-    <div class="legend"><p><b>Zones:</b></p><p><b>Personal</b> ▸ editable name · phone · address</p><p><b>Preferences</b> ▸ payment · language</p><p><b>Notifications</b> ▸ what we send · which channel</p><p><b>Documents</b> ▸ upload drone documents + insurance</p><p><b>Action bar</b> ▸ Save changes · Cancel (stacked)</p></div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Personal</b> ▸ editable name · phone · address</p><p><b>Payment</b> ▸ the saved method</p><p><b>Language</b> ▸ the interface language</p><p><b>Notifications</b> ▸ what we send · which channel</p><p><b>Documents</b> ▸ upload drone documents + insurance</p><p><b>Action bar</b> ▸ Save changes · Cancel (stacked)</p></div>
   </aside>
 
   <div class="wf-frame dr dr-screen">
@@ -109,20 +109,54 @@
 </div>
         </div>
 <!-- ZONE · preferences — a titled card from 2026-08-16 (rev 127), the same call
-     and the same component as Personal above it. The title is the two things in
-     it rather than the annotation's category word: `Payment & language` names
-     what the card holds, where `Preferences` names only the drawer it is in. -->
-        <p class="zlabel dr-label">Preferences <span class="dr-label__act">▸ payment · language</span></p>
-        <div class="dr-zone" role="group" aria-labelledby="acc-prefs-title" aria-describedby="acc-prefs-sub">
-        <p class="dr-zone__title" id="acc-prefs-title">Payment &amp; language</p>
-        <p class="dr-zone__sub" id="acc-prefs-sub">How you pay and the language you see</p>
+     and the same component as Personal above it. The title was the two things in
+     it rather than the annotation's category word: `Payment & language` named
+     what the card held, where `Preferences` names only the drawer it is in.
+
+     AND IT IS TWO CARDS FROM 2026-09-10 (rev 231), the designer's call on the
+     built screen: «devide Payment and language into 2 cards». One card of two
+     picker rows becomes two cards of one row each.
+     THE STANDARDS WENT FIRST AND NEITHER SHAPE FAILS, WHICH IS AN ANSWER AND
+     NOT A GAP. `HIG · Settings` groups RELATED settings and ships one-row groups
+     throughout iOS Settings — a saved card and an interface language are two
+     topics, so two groups is what `HIG · Layout`'s proximity rule prefers.
+     `WCAG 1.3.1` is answered by construction: each card is its own role="group",
+     named by aria-labelledby and described by aria-describedby, so the boundary
+     the eye now sees is the boundary assistive tech reads. Nothing failed before
+     and nothing fails now.
+     NOT ONE NEW WORD IS AUTHORED. Both titles already exist twice over — they
+     are the row's own label and the drawer's title (rev 102) — and the two
+     subtitles are the two halves of the retired `How you pay and the language
+     you see`, taken unchanged. The split is lossless at the copy level.
+     WHAT IT COSTS IS THE WORD SAID TWICE, and it is left standing rather than
+     quietly fixed: each card prints its title and, 44px under it, the same word
+     as its row's label. `WCAG 2.4.6` asks a label to describe its purpose and
+     both do, so nothing fails — but iOS answers this shape the other way, by
+     letting a one-row group name the topic in the header and the row carry only
+     the VALUE. That is the designer's call, put to her with both readings drawn.
+     The rows below are byte-identical to the ones the single card held.
+     NO CSS MOVES. `.dr-field + .dr-field::before` draws the separator between
+     two rows and there are no longer two in a group, so the hairline goes on its
+     own; and `.dr-rows` holding only `.dr-field--action` keeps the card rev 110
+     gave it, which `.dr-zone > .dr-rows` then zeroes exactly as before. -->
+        <p class="zlabel dr-label">Payment <span class="dr-label__act">▸ the saved method</span></p>
+        <div class="dr-zone" role="group" aria-labelledby="acc-pay-title" aria-describedby="acc-pay-sub">
+        <p class="dr-zone__title" id="acc-pay-title">Payment method</p>
+        <p class="dr-zone__sub" id="acc-pay-sub">How you pay</p>
         <div class="dr-rows">
 <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-payment">
           <span class="dr-field__label">Payment method</span>
           <span class="dr-field__value">Visa •••• 4921</span>
           <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
         </button>
-        <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-language">
+</div>
+        </div>
+        <p class="zlabel dr-label">Language <span class="dr-label__act">▸ the interface language</span></p>
+        <div class="dr-zone" role="group" aria-labelledby="acc-lang-title" aria-describedby="acc-lang-sub">
+        <p class="dr-zone__title" id="acc-lang-title">Language</p>
+        <p class="dr-zone__sub" id="acc-lang-sub">The language you see</p>
+        <div class="dr-rows">
+<button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-language">
           <span class="dr-field__label">Language</span>
           <span class="dr-field__value">English</span>
           <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
