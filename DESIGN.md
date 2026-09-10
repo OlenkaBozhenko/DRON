@@ -2408,8 +2408,9 @@ The sentence stays **one text node**, which is what keeps `WCAG 1.3.1` / `4.1.2`
 action-bar buttons still resolve `aria-describedby="photo-rules"` and announce the same string,
 verified in the built DOM on both screens. `HIG · Typography` prescribes the ramp, not the break.
 
-**`switch-role`'s note is the one caption in the product whose break is markup, and that is her decision
-with its cost written down.** 2026-09-10, against two rendered options: *«make like in this picture»*.
+**`switch-role`'s note *was* the one caption in the product whose break is markup — and the line itself
+was deleted hours later, so no caption in the product carries a markup break any more. The account
+stays because it records what the property cannot do.** 2026-09-10, against two rendered options: *«make like in this picture»*.
 **The property could not reach the shape she set on 2026-08-27.** `text-wrap: balance` re-balances the
 rows a measure produces — it does not create them, and it only ever *evens* them. Balanced, this
 sentence broke `Switching is always reversible` **167.61** / `from the same Account entry.` **166.86** —
@@ -2433,6 +2434,19 @@ break, it does not stop the segments reflowing. `1.4.3` unmoved at **6.62:1**; `
 the `<p>` is still one paragraph and the accessible string is still the sentence. **What it costs is
 translation:** the English break is frozen into the markup and the Ukrainian string inherits a break
 chosen for English words. Recorded as a departure from `_conventions.md` §95, not filed as a defect.
+
+**AND THEN THE LINE WENT — 2026-09-10 (rev 237), hers:** *«Remove this and all the other content aligne
+by center of the page»*. The words read as a deletion of the whole centred block, so she was asked first,
+and she kept the mark, the `h1` and the lead exactly as built: **only the note leaves, and its zone label
+with it** — `WHAT HAPPENS` had nothing left to head. **MEASURED ON THE BUILD, FRAME 375 × 812, IN BOTH VIEWS:**
+`.zlabel` is `display:none` under `wf-hide-anno`, so **in the view she reads** the note sat at **385.55 →
+421.55** and `main` loses **48px** — the 12 gap and the note's 36 — content ending **421.55 → 373.55**, gap to
+the action bar **308.45 → 356.45**; removing the label costs that view nothing. **With annotations on** the
+label is real and the loss is **81.39** (12 + 25.39 + its 8 + 36), content ending **488.33 → 406.94**. Either
+way `main.scrollHeight` **577 = 577** and `clientHeight` **577**, so the screen did not scroll before and does
+not now. No token, no radius, no type
+step, no green moves. **`.dr-note` keeps **31** spends across **26** other files and `.dr-note--balance` its **two**
+(both photo screens)** — the class is untouched; one element left the product, not a component.
 
 **Not spent on the caption above it, and that is a choice with a number rather than an oversight.**
 The first `.dr-note` in the same `.dr-stack` breaks differently on the two screens: the client's

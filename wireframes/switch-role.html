@@ -21,7 +21,7 @@
     <h1>Switch role (Client ⇄ Operator)</h1>
     <p class="sub">Shared global · state: <b>base only</b> · file: switch-role.html</p>
     <div class="flow"><b>Job:</b> CHANGE PERSONA (flows.md) — from <b>Account</b> a person re-enters the role fork to switch sides. A deliberate confirm so a mis-tap doesn't drop an in-progress order/job.<br>flows.md: Account → <span class="cur">Switch role</span> → Confirm switch? → yes → <b>Choose your role</b> (role-select). Decline returns unchanged.<br><b>Note:</b> a first-ever switch runs that side's onboarding once.<br><b>States:</b> none.</div>
-    <div class="legend"><p><b>Zones:</b></p><p><b>Explain</b> ▸ what switching does</p><p><b>Safety note</b> ▸ in-progress work isn't lost</p><p><b>Confirm / Cancel</b> ▸ deliberate confirm (actionbar)</p></div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Explain</b> ▸ what switching does</p><p><b>Confirm / Cancel</b> ▸ deliberate confirm (actionbar)</p></div>
   </aside>
 
   <div class="wf-frame dr dr-screen">
@@ -35,15 +35,11 @@
         <p class="dr-lead">You're in Client mode. Switching shows the Operator app — jobs, earnings and ratings. Your Diia identity stays the same.</p>
       </section>
 
-      <p class="zlabel dr-label">What happens <span class="dr-label__act">▸ nothing is lost</span></p>
-      <!-- HARD BREAK, HER CALL 2026-09-10 — she chose the shape over the rule: «make like in this
-           picture» against the two rendered options. _conventions.md §95 wants the break made with a
-           property; balance cannot make this one (it re-balances rows, it does not create them, and it
-           only ever evens them — 167.61 / 166.86, the first row longer). Her 2026-08-27 rule wants more
-           text in the second row, and no measure reaches it: every greedy width that isolates
-           "Switching is always" falls to three rows. So the break is markup, and the cost is that the
-           Ukrainian string inherits an English line. Recorded as a departure, not a defect. -->
-      <p class="dr-note">Switching is always <br>reversible from the same Account entry.</p>
+      <!-- WHAT-HAPPENS ZONE CUT 2026-09-10, HER CALL — «Remove this and all the other content
+           aligne by center of the page». Asked first, because the words read as a deletion of the
+           whole centred block: she kept the mark, the h1 and the lead as built and took the note
+           alone. The zone label goes with it — rev 234 took the fact panel, this took the note, so
+           WHAT HAPPENS had nothing left to head. microcopy.md logs the string; concept.md rev 237. -->
     </main>
     <footer class="dr-actionbar">
       <a class="dr-btn dr-btn--primary dr-btn--block" href="role-select.html">Switch to Operator</a>
