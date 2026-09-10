@@ -1,0 +1,159 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Job groups — schematic</title>
+<style>
+  :root{ --page:#F7F5F2; --card:#ECE9E4; --media:#E4E1DA; --line:#D9D5CE;
+         --ink:#1A1A1A; --slate:#5A5751; --green:#9BCF4A; --wash:#E7F0D2; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#fff; font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif; color:var(--ink); }
+  .sheet{ padding:28px 24px 34px; }
+  .row{ display:flex; gap:28px; align-items:flex-start; }
+  .col{ width:375px; }
+  h2{ font-size:15px; margin:0 0 4px; letter-spacing:.01em; }
+  h2 small{ display:block; font-weight:400; font-size:12px; color:var(--slate); margin-top:3px; letter-spacing:0; }
+  .frame{ background:var(--page); border:1px solid var(--line); border-radius:14px; padding:14px 16px 16px; margin-top:12px; }
+
+  .seg{ display:flex; height:44px; background:var(--media); border-radius:12px; padding:2px; }
+  .seg i{ flex:1; display:flex; align-items:center; justify-content:center; font-style:normal;
+          font-size:12px; color:var(--slate); }
+  .seg i.on{ background:var(--page); border-radius:10px; color:var(--ink); font-weight:600; }
+
+  .strip{ margin-top:12px; }
+
+  .tabs{ display:flex; align-items:center; height:32px; gap:8px; }
+  .tabs b{ font-weight:600; font-size:13px; height:32px; border-radius:999px; padding:0 12px;
+           display:flex; align-items:center; justify-content:center; }
+  .tabs b.on{ background:var(--wash); color:var(--ink); }
+  .tabs b.off{ color:var(--slate); font-weight:500; }
+  .tabs.half b{ flex:1; }
+  .empty{ flex:1; border:1px dashed #c4bfb6; height:32px; border-radius:6px;
+          display:flex; align-items:center; justify-content:center; font-size:11px; color:#a9a49b; }
+
+  .und{ display:flex; height:44px; border-bottom:2px solid var(--line); }
+  .und b{ flex:1; display:flex; align-items:center; justify-content:center; position:relative;
+          font-size:13px; font-weight:500; color:var(--slate); }
+  .und b.on{ color:var(--ink); font-weight:600; }
+  .und b.on::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:2px; background:var(--ink); }
+
+  .cards{ margin-top:14px; display:grid; gap:10px; }
+  .cards div{ height:52px; background:var(--card); border-radius:16px; }
+
+  .dims{ display:flex; gap:8px; margin-top:7px; }
+  .dim{ position:relative; height:16px; display:flex; align-items:center; justify-content:center; }
+  .dim::before{ content:""; position:absolute; left:0; right:0; top:7px; height:1px; background:#b5b0a7; }
+  .dim::after{ content:""; position:absolute; left:0; right:0; top:3px; height:9px;
+               border-left:1px solid #b5b0a7; border-right:1px solid #b5b0a7; }
+  .dim span{ position:relative; background:var(--page); padding:0 5px; font-size:10.5px; color:#8d887f;
+             font-variant-numeric:tabular-nums; }
+
+  .facts{ margin-top:14px; font-size:12px; line-height:1.55; color:var(--slate); }
+  .facts p{ margin:0 0 5px; display:flex; gap:8px; align-items:flex-start; }
+  .facts .k{ width:14px; flex:none; text-align:center; font-weight:700; }
+  .ok{ color:#3f7d16; } .no{ color:#a33; }
+  .sw{ display:inline-block; width:11px; height:11px; border-radius:3px; vertical-align:-1px;
+       border:1px solid rgba(0,0,0,.12); margin-right:2px; }
+
+  .echo{ margin-top:16px; padding-top:13px; border-top:1px dashed var(--line); }
+  .echo .lab{ font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:#a9a49b; margin-bottom:7px; }
+  .bar{ display:flex; gap:6px; }
+  .bar u{ flex:1; text-decoration:none; height:30px; border-radius:999px; display:flex; align-items:center;
+          justify-content:center; font-size:11px; color:var(--slate); }
+  .bar u.on{ background:var(--wash); color:var(--ink); font-weight:600; }
+  .tie{ font-size:11px; color:var(--slate); margin-top:7px; }
+</style>
+<div class="sheet">
+<div class="row">
+
+  <div class="col">
+    <h2>NOW<small>two chips, pushed left</small></h2>
+    <div class="frame">
+      <div class="seg"><i class="on">Available</i><i>Busy</i><i>Offline</i></div>
+      <div class="strip">
+        <div class="tabs"><b class="on">Incoming &middot; 2</b><b class="off">Active &middot; 1</b><span class="empty">nothing here</span></div>
+        <div class="dims">
+          <div class="dim" style="width:104px"><span>104</span></div>
+          <div class="dim" style="width:83px"><span>83</span></div>
+          <div class="dim" style="flex:1"><span>139 empty</span></div>
+        </div>
+      </div>
+      <div class="cards"><div></div><div></div></div>
+    </div>
+    <div class="facts">
+      <p><span class="k ok">&#10003;</span><span>target <b>104&times;44</b> / <b>83&times;44</b> &mdash; HIG 44pt</span></p>
+      <p><span class="k">&middot;</span><span>state = <span class="sw" style="background:var(--wash)"></span>fill &middot; 1.085:1</span></p>
+      <p><span class="k no">&#10007;</span><span>does not read as a bar &mdash; two loose chips</span></p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h2>A &mdash; same chip, two equal halves<small>one component, stretched</small></h2>
+    <div class="frame">
+      <div class="seg"><i class="on">Available</i><i>Busy</i><i>Offline</i></div>
+      <div class="strip">
+        <div class="tabs half"><b class="on">Incoming &middot; 2</b><b class="off">Active &middot; 1</b></div>
+        <div class="dims">
+          <div class="dim" style="flex:1"><span>159</span></div>
+          <div class="dim" style="flex:1"><span>159</span></div>
+        </div>
+      </div>
+      <div class="cards"><div></div><div></div></div>
+      <div class="echo">
+        <div class="lab">bottom tab bar &mdash; same screen</div>
+        <div class="bar"><u class="on">Jobs</u><u>Earnings</u><u>Ratings</u><u>Account</u></div>
+        <div class="tie">&uarr; same fill <span class="sw" style="background:var(--wash)"></span>#E7F0D2 &mdash; one language</div>
+      </div>
+    </div>
+    <div class="facts">
+      <p><span class="k ok">&#10003;</span><span>target <b>159&times;44</b> &mdash; HIG 44pt</span></p>
+      <p><span class="k">&middot;</span><span>state = <span class="sw" style="background:var(--wash)"></span>fill &middot; 1.085:1</span></p>
+      <p><span class="k ok">&#10003;</span><span>nothing new invented &mdash; 9 other pages stay identical</span></p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h2>B &mdash; underline tabs<small>a new state language</small></h2>
+    <div class="frame">
+      <div class="seg"><i class="on">Available</i><i>Busy</i><i>Offline</i></div>
+      <div class="strip">
+        <div class="und"><b class="on">Incoming &middot; 2</b><b>Active &middot; 1</b></div>
+        <div class="dims">
+          <div class="dim" style="flex:1"><span>163</span></div>
+          <div class="dim" style="flex:1"><span>163</span></div>
+        </div>
+      </div>
+      <div class="cards"><div></div><div></div></div>
+      <div class="echo">
+        <div class="lab">bottom tab bar &mdash; same screen</div>
+        <div class="bar"><u class="on">Jobs</u><u>Earnings</u><u>Ratings</u><u>Account</u></div>
+        <div class="tie">&uarr; fill here, underline above &mdash; two languages</div>
+      </div>
+    </div>
+    <div class="facts">
+      <p><span class="k ok">&#10003;</span><span>target <b>163&times;44</b> &mdash; HIG 44pt (row set to 45)</span></p>
+      <p><span class="k ok">&#10003;</span><span>state = ink underline <b>15.99:1</b> &mdash; only one passing 1.4.11 alone</span></p>
+      <p><span class="k no">&#10007;</span><span>needs a full-width line in content &mdash; &sect;0 says tone, not lines</span></p>
+    </div>
+  </div>
+
+  <div class="col">
+    <h2>C &mdash; second segmented control<small>the same object, twice</small></h2>
+    <div class="frame">
+      <div class="seg"><i class="on">Available</i><i>Busy</i><i>Offline</i></div>
+      <div class="strip">
+        <div class="seg"><i class="on">Incoming &middot; 2</i><i>Active &middot; 1</i></div>
+        <div class="dims">
+          <div class="dim" style="flex:1"><span>161</span></div>
+          <div class="dim" style="flex:1"><span>161</span></div>
+        </div>
+      </div>
+      <div class="cards"><div></div><div></div></div>
+    </div>
+    <div class="facts">
+      <p><span class="k no">&#10007;</span><span>target <b>161&times;40</b> &mdash; <b>4px under</b> HIG 44pt</span></p>
+      <p><span class="k">&middot;</span><span>state = <span class="sw" style="background:var(--page)"></span>page on track &middot; 1.20:1</span></p>
+      <p><span class="k no">&#10007;</span><span>two identical grey tracks stacked &mdash; status vs filter</span></p>
+    </div>
+  </div>
+
+</div>
+</div>
