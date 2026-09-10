@@ -1,0 +1,33 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>tab row — client vs operator</title>
+<style>
+  body{margin:0;background:#fff;font:13px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;color:#1A1A1A}
+  .row{display:flex;gap:24px;padding:20px}
+  .col{width:375px}
+  h2{font-size:12px;margin:0 0 8px;letter-spacing:.04em;text-transform:uppercase;color:#6B6560}
+  .shot{width:375px;height:430px;overflow:hidden;border:1px solid #D9D5CE;position:relative}
+  iframe{width:375px;height:900px;border:0;position:absolute;top:0;left:0}
+</style>
+<div class="row">
+  <div class="col"><h2>listings — client</h2><div class="shot"><iframe id="a" src="/wireframes/listings.html"></iframe></div></div>
+  <div class="col"><h2>operator-listings</h2><div class="shot"><iframe id="b" src="/wireframes/operator-listings.html"></iframe></div></div>
+</div>
+<script>
+  // hide the wireframe shell chrome inside each frame so only the phone frame shows
+  function strip(f){
+    try{
+      var d=f.contentDocument;
+      d.body.classList.add('wf-hide-anno');
+      var s=d.createElement('style');
+      s.textContent='.wf-shell,.wf-tree,.wf-toolbar,aside,.legend{display:none!important}'
+        +'body{margin:0!important;padding:0!important;background:#fff!important}'
+        +'.wf-frame{margin:0!important;transform:none!important}';
+      d.head.appendChild(s);
+    }catch(e){}
+  }
+  window.addEventListener('load',function(){
+    strip(document.getElementById('a'));
+    strip(document.getElementById('b'));
+  });
+</script>
