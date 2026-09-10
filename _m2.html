@@ -1,0 +1,56 @@
+<!doctype html><html><head><meta charset="utf-8"></head><body>
+<iframe id="a" src="/wireframes/operator-listings.html" width="1300" height="900" style="border:0"></iframe>
+<iframe id="b" src="/wireframes/operator-listings-empty.html" width="1300" height="900" style="border:0"></iframe>
+<pre id="out">…</pre>
+<script>
+var L = [], done = 0;
+function lum(c){var m=c.match(/[\d.]+/g).map(Number);var f=m.slice(0,3).map(function(v){v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4);});return 0.2126*f[0]+0.7152*f[1]+0.0722*f[2];}
+function ratio(a,b){var l1=lum(a),l2=lum(b);if(l2>l1){var t=l1;l1=l2;l2=t;}return ((l1+0.05)/(l2+0.05)).toFixed(2);}
+function bg(el){while(el){var c=getComputedStyle(el).backgroundColor;if(c&&c!=='rgba(0, 0, 0, 0)'&&c!=='transparent')return c;el=el.parentElement;}return 'rgb(255, 255, 255)';}
+var OLD = '<form><fieldset class="dr-segment"><legend class="sr-only">Availability status</legend>' +
+  '<label class="dr-segment__seg">Available<input type="radio" name="status" value="available" checked></label>' +
+  '<label class="dr-segment__seg">Busy<input type="radio" name="status" value="busy"></label>' +
+  '<label class="dr-segment__seg">Offline<input type="radio" name="status" value="offline"></label></fieldset></form>';
+
+function measure(id, name){
+  var fr = document.getElementById(id), d = fr.contentDocument, w = fr.contentWindow;
+  var sec = d.querySelector('section[aria-label="Availability status"]');
+  var main = d.querySelector('.dr-main');
+  L.push('── ' + name + ' ──');
+  var r = sec.getBoundingClientRect();
+  L.push('AFTER  zone .dr-stack : ' + r.width.toFixed(2) + ' x ' + r.height.toFixed(2));
+  var rows = sec.querySelector('.dr-rows'), row = sec.querySelector('.dr-field--action');
+  var rr = rows.getBoundingClientRect(), br = row.getBoundingClientRect();
+  L.push('AFTER  .dr-rows card  : ' + rr.width.toFixed(2) + ' x ' + rr.height.toFixed(2) + '  bg ' + w.getComputedStyle(rows).backgroundColor + '  radius ' + w.getComputedStyle(rows).borderRadius);
+  L.push('AFTER  row            : ' + br.width.toFixed(2) + ' x ' + br.height.toFixed(2));
+  var lab = row.querySelector('.dr-field__label'), val = row.querySelector('.dr-field__value');
+  var rbg = bg(row);
+  L.push('AFTER  label / value  : label x=' + lab.getBoundingClientRect().x.toFixed(1) + ' ' + w.getComputedStyle(lab).color + ' ' + ratio(w.getComputedStyle(lab).color, rbg) + ':1   value x=' + val.getBoundingClientRect().x.toFixed(1) + ' "' + val.textContent + '" ' + w.getComputedStyle(val).color + ' ' + ratio(w.getComputedStyle(val).color, rbg) + ':1  on ' + rbg);
+  L.push('AFTER  main scroll    : ' + main.scrollHeight + ' in ' + main.clientHeight);
+  // sheet
+  var sheet = d.getElementById('sheet-avail');
+  row.click();
+  var sr = sheet.getBoundingClientRect();
+  var items = sheet.querySelectorAll('.dr-picker__item');
+  L.push('AFTER  sheet          : ' + sr.width.toFixed(2) + ' x ' + sr.height.toFixed(2) + '  top ' + sr.y.toFixed(1) + '  option ' + items[0].getBoundingClientRect().width.toFixed(1) + ' x ' + items[0].getBoundingClientRect().height.toFixed(1) + ' x' + items.length);
+  L.push('AFTER  scrim          : ' + (d.querySelector('[data-scrim]').hidden ? 'hidden' : 'up') + '   frame behind inert: ' + main.inert);
+  var cancel = sheet.querySelector('[data-close]');
+  cancel.click();
+  L.push('AFTER  cancel closes  : sheet hidden=' + sheet.hidden + '  inert cleared=' + (main.inert === false));
+  // now the old shape, for the before figures
+  var html = sec.innerHTML;
+  sec.innerHTML = OLD;
+  var seg = sec.querySelector('.dr-segment');
+  var gr = seg.getBoundingClientRect(), zr = sec.getBoundingClientRect();
+  var plate = sec.querySelector('.dr-segment__seg');
+  L.push('BEFORE zone .dr-stack : ' + zr.width.toFixed(2) + ' x ' + zr.height.toFixed(2));
+  L.push('BEFORE segment track  : ' + gr.width.toFixed(2) + ' x ' + gr.height.toFixed(2) + '  bg ' + w.getComputedStyle(seg).backgroundColor);
+  L.push('BEFORE selected plate : ' + plate.getBoundingClientRect().width.toFixed(2) + ' x ' + plate.getBoundingClientRect().height.toFixed(2) + '  bg ' + w.getComputedStyle(plate).backgroundColor + '  vs track ' + ratio(w.getComputedStyle(plate).backgroundColor, w.getComputedStyle(seg).backgroundColor) + ':1');
+  L.push('BEFORE label ink      : selected ' + w.getComputedStyle(plate).color + '  unselected ' + w.getComputedStyle(sec.querySelectorAll('.dr-segment__seg')[1]).color);
+  sec.innerHTML = html;
+  L.push('');
+  if (++done === 2) document.getElementById('out').textContent = L.join('\n');
+}
+document.getElementById('a').addEventListener('load', function(){ measure('a', 'operator-listings (base)'); });
+document.getElementById('b').addEventListener('load', function(){ measure('b', 'operator-listings-empty'); });
+</script></body></html>
