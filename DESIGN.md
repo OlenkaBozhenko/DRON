@@ -2766,12 +2766,13 @@ from (`HIG · 44pt` ✓ +3.2, `WCAG 2.5.8` ✓ 1.96× the 44 × 44 area). Curren
 `1.4.11`'s floor and the only one of the row's two shapes that passes on the mark alone.
 
 - **`flex: 1 1 0` with `min-width: 0` — equal shares always, and the label gives way.**
-  `operator-listings` **182.7 × 47.2** twice at the 375 frame, both labels whole — **175.1 until
-  rev 240**, when the row left `main` for the chrome and stopped losing 15px to that column's
-  scrollbar; confirmed by measuring the shell's own 351 frame at **170.5**, which is the same
-  content box to **0.2px**. **The ≤ 389px figure this line carried (158.0) is not re-stated here:**
-  it was taken on the in-`main` row and the harness that measured rev 240 clamps the frame at 351,
-  so it is flagged for a re-measure rather than re-derived. `listings` **91.3 × 47.2** four times, and two of the four are cut: *Aerial photo &
+  `listings` only, since rev 241. **`operator-listings` left equal shares that evening** — two tabs
+  make each share half the screen (**163 × 47** around a **79.97** label), which reads as a button
+  rather than a tab, so on a row inside `main` the tab takes its own text instead:
+  `flex: 0 0 auto; min-width: max-content`, measured **103.97** and **82.92 × 47** against the
+  client's 85.25. **That width is text plus `--sp-snug` 12 either side, so it does not move with the
+  frame** — unlike a share, which went 170.5 at a 351 frame to 182.7 at 375. The row then spends
+  **186.89** of its track and leaves **139.11** empty, and the truncation below is **inert** on it. `listings` **91.3 × 47.2** four times, and two of the four are cut: *Aerial photo &
   video* needs **155** against **91** of room (over by **64**) and *Inspection* needs **93**
   (over by **2**). At ≤ 389px the quarters are **82.8** — *All* and *Delivery* still whole at
   **83 / 83**, exactly on the edge; the other two cut by **72** and **10**. The row does not scroll
@@ -2792,15 +2793,10 @@ from (`HIG · 44pt` ✓ +3.2, `WCAG 2.5.8` ✓ 1.96× the 44 × 44 area). Curren
 - **The row got tighter, not looser.** Measured on `listings` by toggling the class live: content
   **423 → 375**, hidden scroll **84 → 36** at ≤ 389px. The tab spends nothing on gap and 8 on row
   padding where the chip spent 24 and 32.
-- **The hairline — and since rev 240 there is only one answer, not two.** In the chrome it is the
-  row's own `border-bottom`, which has always been there, so the tab costs the screen no new line.
-  **`operator-listings` returned to the chrome on 2026-09-10** (*«зроби як тут»*, with `listings` open
-  beside it), so **all seven pages now take the row's own line and the full-bleed workaround has no
-  site**. What it was: in `main` the line had been deleted on the ground that an inset rule is a
-  divider inside content, and `.dr-main > .dr-groups--tabs` put it back edge to edge with
-  `margin-inline: -16` paid back as padding. That rule and rev 220's `.dr-main > .dr-groups` are
-  **kept declared with the spend stated as zero** — no page has a `.dr-groups` inside `.dr-main` any
-  more, counted on the files.
+- **The hairline.** In the chrome (`listings`) it is the row's own `border-bottom`, which has always
+  been there — the tab costs that screen no new line. In `main` (`operator-listings`) it had been
+  deleted on the ground that an inset rule is a divider inside content, so it returns **full-bleed**:
+  `margin-inline: -16` paid back as padding, the tabs not moving a pixel sideways.
 
 ### Icons
 

@@ -1613,16 +1613,6 @@ header.dr-topbar,
    screens: the client's `listings` keeps this same component in the chrome, the
    operator's carries it in the page. Recorded as her decision, not filed as a
    defect. */
-/* SPEND: NONE SINCE 2026-09-10. Both `.dr-main > .dr-groups` rules below and
-   above exist for a group row that is a CHILD of main, and the operator's home —
-   their only site, ever — put its row back in the CHROME on the designer's word
-   («зроби як тут», with `listings` open beside it). So no page in the product has
-   a `.dr-groups` inside `.dr-main` any more, counted on the files rather than
-   assumed. They stay DECLARED and are not deleted, the call `--green-soft`,
-   `--sh-card`, `--sh-onphoto` and the read-only `.dr-stars` family already have:
-   the reasoning each carries is worth more than the two rules cost, and one word
-   puts the row back in the page. What changes is that the spend is stated as
-   ZERO instead of left claimed. */
 .dr-main > .dr-groups{
   padding: 0;
   border-bottom: 0;
@@ -1756,20 +1746,49 @@ header.dr-topbar,
    sideways by a pixel and only the rule gets wider. `listings` needs none of
    this: its row is in the CHROME and has carried this exact hairline all along,
    so (B) costs that screen no line at all. */
-/* SPEND: NONE SINCE 2026-09-10. Both `.dr-main > .dr-groups` rules below and
-   above exist for a group row that is a CHILD of main, and the operator's home —
-   their only site, ever — put its row back in the CHROME on the designer's word
-   («зроби як тут», with `listings` open beside it). So no page in the product has
-   a `.dr-groups` inside `.dr-main` any more, counted on the files rather than
-   assumed. They stay DECLARED and are not deleted, the call `--green-soft`,
-   `--sh-card`, `--sh-onphoto` and the read-only `.dr-stars` family already have:
-   the reasoning each carries is worth more than the two rules cost, and one word
-   puts the row back in the page. What changes is that the spend is stated as
-   ZERO instead of left claimed. */
 .dr-main > .dr-groups--tabs{
   margin-inline: calc(var(--sp-screen) * -1);
   padding-inline: calc(var(--sp-screen) - var(--sp-snug));
   border-bottom: var(--hair) solid var(--line);
+}
+/* AND THE TAB ON THAT ROW TAKES ITS OWN WIDTH, WHICH IS WHAT MAKES IT READ LIKE
+   `listings` — the designer, 2026-09-10, on the built row with that page open
+   beside it: «я хочу щоб ти таби зробив так як на цьому фреймі … і зроби UI так
+   як на listings.html». THE ROW'S POSITION IS NOT THE SUBJECT AND WAS PUT BACK:
+   an earlier reading of «зроби як тут» moved the whole row into the chrome, and
+   she said plainly that was not it — the row stays inside `main`, where rev 220
+   put it on her word, and only the TAB changes.
+   WHY THE SHARED RULE IS RIGHT FOR FOUR TABS AND WRONG FOR TWO. rev 238's
+   `flex: 1 1 0; min-width: 0` divides the row EQUALLY, which is what she asked
+   for on `listings`: four tabs land on **85.25** and read as tabs. The same rule
+   on a row of TWO hands each half the screen — **163 × 47**, a **79.97** label
+   floating in a box twice its width — and a tab that wide stops reading as a tab
+   and starts reading as a button. The equal-shares rule was never wrong; it was
+   measured on four and spent on two.
+   SO ON A ROW INSIDE `main` THE TAB IS ITS OWN TEXT. `flex: 0 0 auto` with
+   `min-width: max-content` gives **Incoming · 2** 103.97 and **Active · 1**
+   82.92 — the client's tabs measure **85.25**, so the two rows now read at the
+   same size, which is the whole of what was asked.
+   THE SCOPE IS EXACT AND COUNTED, NOT ASSUMED. `.dr-main >` reaches a group row
+   that is a CHILD of main, and only `operator-listings` and its `-empty` put one
+   there — on the five `listings`, the four `time-slot` and every other page the
+   `<nav>` is a SIBLING of `<main>`, read off the files one by one. `listings`
+   keeps `flex: 1 1 0` untouched and does not move a pixel.
+   TWO CONSEQUENCES, STATED RATHER THAN ABSORBED. The row no longer fills its
+   width: **186.9** of the **341.4** content box is spent and the hairline runs
+   under **154.5** of empty track to the right of `Active · 1` — which is what a
+   left-aligned tab strip looks like, and is `listings`' own behaviour whenever
+   its four do not fill the row either. And rev 238's ellipsis goes INERT here:
+   both labels are whole at their own width, so nothing truncates on this row.
+   The truncation stays declared for `listings`, where it does real work.
+   NOTHING ON THE CONTROL MOVES AND NOTHING FAILS. Height is still the row's full
+   **47** — `HIG · 44pt` ✓ at both 103.97 × 47 and 82.92 × 47, `WCAG 2.5.8` ✓ by
+   more than 2× on the smaller of the two. The state is still a **2px `--ink`**
+   rule on `--page`, **15.99:1** against `WCAG 1.4.11`'s 3:1; the current label is
+   `--ink` **15.99:1** and the idle one `--slate` **6.62:1**. */
+.dr-main > .dr-groups--tabs .dr-grouptab{
+  flex: 0 0 auto;
+  min-width: max-content;
 }
 
 /* ═══ STATUS & PROGRESS ═══════════════════════════════════════════════════

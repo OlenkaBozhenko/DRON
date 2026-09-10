@@ -301,79 +301,6 @@
       </a>
     </header>
 
-    <!-- AND ON 2026-09-10 IT GOES BACK INTO THE CHROME, WHICH REVERSES THE BLOCK
-         ABOVE — the designer, against the built row, with `listings` open beside
-         it: «зроби як тут». THE TWO ROWS WERE MEASURED SIDE BY SIDE FIRST, and
-         the CSS turned out to be identical already: one component, one
-         `.dr-groups--tabs`, the same `flex: 1 1 0`. What differed was only where
-         the row LIVED — `listings` carries it in the chrome, flush under the top
-         bar; this page carried it inside `main`, 12px under the Availability row
-         and 15px narrower, because the scrolling `main` keeps a scrollbar. So the
-         answer to «як тут» is the position, and nothing about the tab itself moves.
-         THE 2026-09-03 READING IS NOT WRONG, IT IS SUPERSEDED, and both stay in
-         this file so neither is re-proposed later as new. That day the objection
-         was `HIG · Segmented Controls`: a SEGMENTED CONTROL stood between this row
-         and the list it filters. **That segment no longer exists** — on 2026-09-10
-         availability became `.dr-field--action`, a disclosure row opening a sheet —
-         so what now sits between them is one field row, and the guideline the old
-         reading rested on is not engaged by it.
-         WHAT COMES BACK WITH THE MOVE: the row is chrome again, so it never
-         scrolls away and `Active · 1` stays on screen; it runs the full frame
-         width instead of stopping short of the scrollbar; and `WCAG 3.2.3
-         Consistent Navigation` holds again between the two home screens, which
-         2026-09-03 had knowingly spent. `ui/kit.css`'s `.dr-main > .dr-groups`
-         and `.dr-main > .dr-groups--tabs` are left declared with the spend stated
-         as zero — one word puts the row back in the page. -->
-    <!-- THE ROW CAME DOWN INTO THE PAGE ON 2026-09-03 (designer, against the
-         built screen: «it is not logical that the toggle with operator status
-         is under the filters which need to be below please change the UX
-         design on this page»). It stood in the CHROME, between the top bar and
-         <main>, with the 44px availability segment sitting between it and the
-         list it filters — and HIG · Segmented Controls puts a segmented control
-         directly above the content it affects. With the shell's annotations off
-         the .zlabel naming that segment is hidden, so the segment stood bare
-         under this row and read as part of the filter.
-         THREE READINGS WENT TO HER WITH THE STANDARDS FIRST and she took this
-         one: the segment up into the chrome instead, the topbar badge made the
-         control with the segment deleted, or this row down. Availability is
-         first now because it gates dispatch for the whole screen; the filter is
-         last before the thing it filters.
-         TWO COSTS, HERS AND WRITTEN DOWN. The row scrolls away with the list
-         now, so `Active · 1` is off screen once the operator is down the offers
-         — the chrome used to hold it. And WCAG 3.2.3 Consistent Navigation no
-         longer holds between the two home screens: the client's listings keeps
-         this same component in the chrome. Nothing about the row itself moves —
-         44px target, 6.62:1, 14.75:1 selected — and the script at the foot is
-         unchanged, since it finds the row by [data-groups] and follows the
-         hash, never the DOM position. ui/kit.css carries the whole override in
-         `.dr-main > .dr-groups`, scoped so the ten other pages that draw this
-         row cannot be reached by it. -->
-    <!-- NAV · job groups — the painted in-page tab row from listings.html.
-         The state carrier is aria-current, which kit.css paints --green-wash behind
-         --ink at 14.75:1; the tint is not counted against the green budget (1.085:1
-         on the page). Links, not buttons: these are in-page anchors, as built.
-         THE TWO TARGETS ARE THE SECTIONS, NOT THE ZONE LABELS (designer, 2026-08-21,
-         on the built screen: «не клікабельний»). Until this rev the two ids sat on the
-         `.zlabel` paragraphs, which the shell hides outright — `_wf-shell.js:176`,
-         `body.wf-hide-anno .zlabel{ display:none !important }` — so with annotations
-         off the target had no box at all and the tap moved `.dr-main`'s scrollTop
-         0 → 0. A control that measures clean and answers to nothing: 44px target
-         (32 visible + the `--pill-bleed` −6/−6), `--slate` on `--page` 6.62:1,
-         selected `--ink` on `--green-wash` 14.75:1 — every value passing, the tap
-         dead. The ids now sit on the two `<section aria-label="…">`s, which are
-         named regions and are on the page in both annotation modes.
-         `aria-current` NOW MOVES WITH THE TAP (designer, 2026-08-21: «так якщо я
-         обрала активні то відповідно і таба міняє стан на обрану»), which turns
-         rev 174's reading (b) — the jump alone — into reading (c), the jump with
-         the state moving. That closes the `WCAG 4.1.2` gap rev 174 left open on
-         her word: the row now names the group you asked for instead of the one
-         you left. The script is at the foot of this page. Recorded in
-         `concept.md` rev 180. -->
-    <nav class="dr-groups dr-groups--tabs" aria-label="Job groups" data-groups>
-      <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming · 2</a>
-      <a class="dr-grouptab" href="#active">Active · 1</a>
-    </nav>
-
     <!-- MAIN -->
     <main class="dr-main">
 
@@ -415,6 +342,56 @@
           </button>
         </div>
       </section>
+
+      <!-- THE ROW CAME DOWN INTO THE PAGE ON 2026-09-03 (designer, against the
+           built screen: «it is not logical that the toggle with operator status
+           is under the filters which need to be below please change the UX
+           design on this page»). It stood in the CHROME, between the top bar and
+           <main>, with the 44px availability segment sitting between it and the
+           list it filters — and HIG · Segmented Controls puts a segmented control
+           directly above the content it affects. With the shell's annotations off
+           the .zlabel naming that segment is hidden, so the segment stood bare
+           under this row and read as part of the filter.
+           THREE READINGS WENT TO HER WITH THE STANDARDS FIRST and she took this
+           one: the segment up into the chrome instead, the topbar badge made the
+           control with the segment deleted, or this row down. Availability is
+           first now because it gates dispatch for the whole screen; the filter is
+           last before the thing it filters.
+           TWO COSTS, HERS AND WRITTEN DOWN. The row scrolls away with the list
+           now, so `Active · 1` is off screen once the operator is down the offers
+           — the chrome used to hold it. And WCAG 3.2.3 Consistent Navigation no
+           longer holds between the two home screens: the client's listings keeps
+           this same component in the chrome. Nothing about the row itself moves —
+           44px target, 6.62:1, 14.75:1 selected — and the script at the foot is
+           unchanged, since it finds the row by [data-groups] and follows the
+           hash, never the DOM position. ui/kit.css carries the whole override in
+           `.dr-main > .dr-groups`, scoped so the ten other pages that draw this
+           row cannot be reached by it. -->
+      <!-- NAV · job groups — the painted in-page tab row from listings.html.
+           The state carrier is aria-current, which kit.css paints --green-wash behind
+           --ink at 14.75:1; the tint is not counted against the green budget (1.085:1
+           on the page). Links, not buttons: these are in-page anchors, as built.
+           THE TWO TARGETS ARE THE SECTIONS, NOT THE ZONE LABELS (designer, 2026-08-21,
+           on the built screen: «не клікабельний»). Until this rev the two ids sat on the
+           `.zlabel` paragraphs, which the shell hides outright — `_wf-shell.js:176`,
+           `body.wf-hide-anno .zlabel{ display:none !important }` — so with annotations
+           off the target had no box at all and the tap moved `.dr-main`'s scrollTop
+           0 → 0. A control that measures clean and answers to nothing: 44px target
+           (32 visible + the `--pill-bleed` −6/−6), `--slate` on `--page` 6.62:1,
+           selected `--ink` on `--green-wash` 14.75:1 — every value passing, the tap
+           dead. The ids now sit on the two `<section aria-label="…">`s, which are
+           named regions and are on the page in both annotation modes.
+           `aria-current` NOW MOVES WITH THE TAP (designer, 2026-08-21: «так якщо я
+           обрала активні то відповідно і таба міняє стан на обрану»), which turns
+           rev 174's reading (b) — the jump alone — into reading (c), the jump with
+           the state moving. That closes the `WCAG 4.1.2` gap rev 174 left open on
+           her word: the row now names the group you asked for instead of the one
+           you left. The script is at the foot of this page. Recorded in
+           `concept.md` rev 180. -->
+      <nav class="dr-groups dr-groups--tabs" aria-label="Job groups" data-groups>
+        <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming · 2</a>
+        <a class="dr-grouptab" href="#active">Active · 1</a>
+      </nav>
 
       <!-- ZONE · incoming offers (OE-6).
            THE JOB CARD IS order-history's CARD, PROMOTED. .dr-order__top / __head /
