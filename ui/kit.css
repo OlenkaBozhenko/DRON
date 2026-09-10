@@ -1613,9 +1613,42 @@ header.dr-topbar,
    screens: the client's `listings` keeps this same component in the chrome, the
    operator's carries it in the page. Recorded as her decision, not filed as a
    defect. */
+/* AND ON 2026-09-10 THE IN-PAGE ROW IS CLOSED ON BOTH EDGES AND KEEPS THE CHIP —
+   the designer, pasting a picture of the row in its pre-rev-232 shape: «зроби UI
+   як тут, вибраний на зеленому бекграунді, тоненькі лінії зверху знизу». This
+   rule is rewritten rather than added to, because what rev 220 wrote here is the
+   opposite of what she now asks for and both readings cannot stand.
+   WHAT REV 220 SAID, AND WHY IT NO LONGER HOLDS. It deleted the row's hairline
+   outright, on the stated ground that «a rule that stops 16px short of both edges
+   is a divider inside content, and §0 separates surfaces by tone and radius
+   rather than by lines». That argument was against an INSET rule, and it is
+   answered rather than overruled: the row now pulls out by `--sp-screen` and pays
+   it straight back as padding, so both lines run EDGE TO EDGE and the chips do
+   not move sideways by a pixel — 16 from the frame, the same x the chrome row
+   gives them on `listings` and on the four `time-slot` days.
+   THE SECOND LINE IS THE NEW PART AND IT HAS A REASON THE CHROME ROW NEVER HAD:
+   a row standing inside `main` has content ABOVE it as well as below — here the
+   Availability field card — so it is closed on both edges. `.dr-groups` in the
+   chrome keeps its single `border-bottom`, because the top edge is the bar's own
+   line and a second one would double it.
+   THE ONE THING THAT GETS WORSE IS SAID OUT LOUD AND IS HERS. Leaving
+   `.dr-groups--tabs` takes the state mark from a 2px `--ink` underline at
+   **15.99:1** back to the chip's `--green-wash` tint, which is **1.085:1**
+   against the page — under `WCAG 1.4.11`'s 3:1. The label still carries the
+   change, `--slate` **6.62:1** → `--ink` **14.75:1** on the wash, but text
+   against text is not a pair WCAG measures, so the row leans on it again. This
+   is the chip's known condition — `DESIGN.md` has recorded it since rev 232 and
+   the four `time-slot` rows have never left it — reported as a regression she
+   chose from a picture, not filed as a defect and not quietly kept.
+   NOTHING ELSE MOVES. The chip is the base `.dr-grouptab` untouched: `--r-pill`,
+   **32** visible, the `--pill-bleed` −6/−6 `::after` taking the target to **44**
+   (`HIG · 44pt` ✓ 100%, `WCAG 2.5.8` ✓ **2.36×** on the wider of the two), gap
+   `--sp-within-lg` **8**, each chip its own text. The two rules are `--hair` 1px
+   `--line`; a divider states nothing, so `1.4.11` does not bind on them. */
 .dr-main > .dr-groups{
-  padding: 0;
-  border-bottom: 0;
+  margin-inline: calc(var(--sp-screen) * -1);
+  padding-inline: var(--sp-screen);
+  border-top: var(--hair) solid var(--line);
   background: transparent;
 }
 .dr-grouptab{
@@ -1746,6 +1779,11 @@ header.dr-topbar,
    sideways by a pixel and only the rule gets wider. `listings` needs none of
    this: its row is in the CHROME and has carried this exact hairline all along,
    so (B) costs that screen no line at all. */
+/* SPEND: NONE SINCE 2026-09-10. `operator-listings` was the only page that ever
+   put a `--tabs` row inside `main`, and it went back to the chip on the designer's
+   picture, so this rule addresses nothing. Kept DECLARED, not deleted — the call
+   `--green-soft`, `--sh-card` and the read-only `.dr-stars` family already have:
+   one word on the markup brings the underline row back and nothing is re-derived. */
 .dr-main > .dr-groups--tabs{
   margin-inline: calc(var(--sp-screen) * -1);
   padding-inline: calc(var(--sp-screen) - var(--sp-snug));
@@ -1786,6 +1824,11 @@ header.dr-topbar,
    more than 2× on the smaller of the two. The state is still a **2px `--ink`**
    rule on `--page`, **15.99:1** against `WCAG 1.4.11`'s 3:1; the current label is
    `--ink` **15.99:1** and the idle one `--slate` **6.62:1**. */
+/* SPEND: NONE SINCE 2026-09-10. `operator-listings` was the only page that ever
+   put a `--tabs` row inside `main`, and it went back to the chip on the designer's
+   picture, so this rule addresses nothing. Kept DECLARED, not deleted — the call
+   `--green-soft`, `--sh-card` and the read-only `.dr-stars` family already have:
+   one word on the markup brings the underline row back and nothing is re-derived. */
 .dr-main > .dr-groups--tabs .dr-grouptab{
   flex: 0 0 auto;
   min-width: max-content;

@@ -2749,14 +2749,16 @@ A row of places with one current, **48px**, `overflow-x: auto` with the scrollba
 never reached this document in either shape; both are written down here at rev 232, the second of
 them on the day it was built.
 
-**The chip (`.dr-groups`) — 4 pages.** The four `time-slot` day rows. Gap 8, row padding `0 16`,
+**The chip (`.dr-groups`) — 6 pages since rev 242.** The four `time-slot` day rows, and the two
+`operator-listings` files, which came back to this shape on 2026-09-10 on a picture the designer
+pasted (*«вибраний на зеленому бекграунді, тоненькі лінії зверху знизу»*) — see the hairline note below. Gap 8, row padding `0 16`,
 pill `--r-pill` at **32px visible** with a `--pill-bleed` −6/−6 `::after` taking the target to
 **44** (`HIG · 44pt` ✓, `WCAG 2.5.8` ✓ at 24). Current = `--green-wash` behind `--ink` (**14.75:1**);
 the rest `--slate` on `--page` (**6.62:1**). **The mark itself is `1.085:1`** — the tint against the
 page — which is under `WCAG 1.4.11`'s 3:1 and leans on the label moving 6.62 → 15.99 as well, a
 text-against-text difference WCAG does not measure. Recorded as the known condition it is.
 
-**The underline tab (`.dr-groups--tabs`) — 7 pages**, the designer's pick 2026-09-10 and re-cut the
+**The underline tab (`.dr-groups--tabs`) — 5 pages since rev 242** (seven until the operator's two went back to the chip), the designer's pick 2026-09-10 and re-cut the
 same day from own-width-and-scroll to equal-shares-and-truncate: five
 `listings` and two `operator-listings`. Gap 0, row padding `0 4` — `--sp-screen` 16 minus the tab's
 own `--sp-snug` 12, so the **label** lands on the screen margin and the underline runs 12 past the
@@ -2766,13 +2768,14 @@ from (`HIG · 44pt` ✓ +3.2, `WCAG 2.5.8` ✓ 1.96× the 44 × 44 area). Curren
 `1.4.11`'s floor and the only one of the row's two shapes that passes on the mark alone.
 
 - **`flex: 1 1 0` with `min-width: 0` — equal shares always, and the label gives way.**
-  `listings` only, since rev 241. **`operator-listings` left equal shares that evening** — two tabs
-  make each share half the screen (**163 × 47** around a **79.97** label), which reads as a button
-  rather than a tab, so on a row inside `main` the tab takes its own text instead:
-  `flex: 0 0 auto; min-width: max-content`, measured **103.97** and **82.92 × 47** against the
-  client's 85.25. **That width is text plus `--sp-snug` 12 either side, so it does not move with the
-  frame** — unlike a share, which went 170.5 at a 351 frame to 182.7 at 375. The row then spends
-  **186.89** of its track and leaves **139.11** empty, and the truncation below is **inert** on it. `listings` **91.3 × 47.2** four times, and two of the four are cut: *Aerial photo &
+  `listings` only, and since rev 242 that is the only page set this modifier has. **The operator's
+  row passed through this rule twice in one evening and kept neither reading**, which is recorded so
+  the arithmetic is not re-derived: equal shares gave two tabs **163 × 47** each — half the screen
+  around a **79.97** label, which reads as a button rather than a tab — and rev 241's
+  `flex: 0 0 auto; min-width: max-content` cut them to **103.97** and **82.92**, text plus
+  `--sp-snug` 12 either side, a width that does not move with the frame where a share goes 170.5 at
+  a 351 frame to 182.7 at 375. Rev 242 then left the modifier altogether for the chip, so **both
+  rules now address nothing** and are kept declared at zero spend. `listings` **91.3 × 47.2** four times, and two of the four are cut: *Aerial photo &
   video* needs **155** against **91** of room (over by **64**) and *Inspection* needs **93**
   (over by **2**). At ≤ 389px the quarters are **82.8** — *All* and *Delivery* still whole at
   **83 / 83**, exactly on the edge; the other two cut by **72** and **10**. The row does not scroll
@@ -2793,10 +2796,16 @@ from (`HIG · 44pt` ✓ +3.2, `WCAG 2.5.8` ✓ 1.96× the 44 × 44 area). Curren
 - **The row got tighter, not looser.** Measured on `listings` by toggling the class live: content
   **423 → 375**, hidden scroll **84 → 36** at ≤ 389px. The tab spends nothing on gap and 8 on row
   padding where the chip spent 24 and 32.
-- **The hairline.** In the chrome (`listings`) it is the row's own `border-bottom`, which has always
-  been there — the tab costs that screen no new line. In `main` (`operator-listings`) it had been
-  deleted on the ground that an inset rule is a divider inside content, so it returns **full-bleed**:
-  `margin-inline: -16` paid back as padding, the tabs not moving a pixel sideways.
+- **The hairline — one line in the chrome, two in the page.** In the chrome (`listings`) it is the
+  row's own `border-bottom`, which has always been there, so the row costs that screen no new line;
+  its top edge is the bar's own rule and a second one would double it. **In `main`
+  (`operator-listings`) the row is closed on BOTH edges since rev 242** — the designer's own ask
+  (*«тоненькі лінії зверху знизу»*) with a reason the chrome row never had: a row standing inside the
+  page has content **above** it as well as below, here the Availability field card. So `border-top`
+  is declared on `.dr-main > .dr-groups` and nowhere else. **Rev 220's objection is answered rather
+  than overruled** — it refused an *inset* rule as a divider inside content, and both lines run
+  **edge to edge**: `margin-inline: -16` paid straight back as padding, the chips not moving a pixel
+  sideways, **first chip measured at x 17**.
 
 ### Icons
 
