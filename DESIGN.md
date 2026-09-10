@@ -2408,6 +2408,30 @@ the third statement of one fact, so nothing programmatic moved: the carrier is s
 screen reader still reads *Availability status · Available, selected*. **What it does cost is the
 only wording of the state on the screen.** The segmented control's selected plate is `--page`
 `#F7F5F2` on the `--media` track `#E4E1DA` — **1.20:1**, against `WCAG 1.4.11`'s **3:1** floor for a
+`.dr-note--measure` is `max-width: var(--t-note-measure)` + `margin-inline: auto` + `text-wrap: balance`,
+and it exists because **balance alone cannot make rows it can only re-balance**. Spent **once**,
+`switch-role`, 2026-09-10, the designer on the built frame: *«write in 2 rows»*. The sentence measured
+**337.83px of text in a 341 box** — one row at **99.1%** of the width available, nothing for the
+property to move, the same wall the upload subtitle hit on 2026-08-15. **No rung is minted:**
+`--t-note-measure` **30ch** is the upload card's own measure at this same 12px step and renders the
+same **226.75px** here, so the note goes **341 × 18 → 226.75 × 36**. `margin-inline: auto` is the one
+part the upload card does not need — `.dr-main` is a column flex, and a `max-width`'d item lands at the
+start rather than centred; here it insets **57.13** each side. Balanced, the break falls on the
+prepositional phrase: **`Switching is always reversible` 167.61** / **`from the same Account entry.`
+166.86**, and it is stable — scanned 14ch–60ch, two rows hold **23ch to 44ch** with the row widths
+unmoved inside it, so 30ch is **7 steps from three rows and 14 from one**. The same **226.75 × 36**
+renders in all three shell viewports (frame **375 / 768 / 842**), overrun **0** in each; at a 2× text
+step the measure stops binding and the paragraph is still **2 rows / 72**, so `WCAG 1.4.4` reads as it
+did. `WCAG 1.4.8` (AAA) caps a measure at 80 characters and this sentence is **59** — one row conformed
+and two rows conform, which is an answer and not a gap. The 18px costs **no scroll**: content ends
+**470.33 → 488.33**, gap to the action bar **259.67 → 241.67**, `main.scrollHeight` **577 = 577**.
+**`.dr-note--balance` is deliberately not the vehicle** — its three spends would each have inherited a
+measure they never asked for. **One departure is recorded rather than corrected:** the designer's
+2026-08-27 rule wants *more text in the second row*, and here balance comes out the other way by
+**0.75px** (29 characters against 28). Greedy wrapping was probed at 120–167px and every width that
+isolates `Switching is always` falls to **three** rows, so that shape is reachable only with a `<br>` —
+which §95 forbids. Built balanced, open as her call.
+
 state indicator, so it is **2.5× under**; the label's ink step (`--slate` **5.51:1** → `--ink`
 **15.99:1**) is text and outside `1.4.11`'s scope. That figure predates the deletion — the
 component measured 1.20:1 from the day it was painted — but until 2026-08-21 a sentence said the
