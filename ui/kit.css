@@ -1630,19 +1630,19 @@ header.dr-topbar,
    on `listings` — where the four tabs do not fit and the row scrolls — tapping a
    tab would re-measure every tab and slide the row under the finger. `--ink` and
    the 2px rule carry the state; the metrics stay put.
-   ONE RULE GIVES BOTH BEHAVIOURS, WHICH IS WHY THERE IS ONE MODIFIER AND NOT TWO.
-   `flex: 1 1 0` divides the row EQUALLY — the basis is zero, so a tab's own text
-   length buys it nothing — and `min-width: max-content` then refuses to shrink a
-   tab under its label. `operator-listings`'s two become exact halves; `listings`'s
-   four ask for ~86 each, every one of them is wider than that (*Aerial photo &
-   video* alone needs more than double), so all four freeze at their own width and
-   the row scrolls, exactly as it does today. **`flex: 1 0 auto` was built first
-   and thrown away before it reached her**, written down so the near-miss is not
-   re-proposed as a discovery: an `auto` basis hands each tab its text width and
-   then adds the slack equally, which left `Incoming · 2` at **185.6** against
-   `Active · 1`'s **164.6** — grown, but still unequal, and «make it like a tab
-   bar» means halves. No label is ever squeezed or truncated either way, which is
-   the failure mode equal quarters would have had at this measure.
+   ONE RULE GIVES EVERY ROW ITS SHARES, WHICH IS WHY THERE IS ONE MODIFIER AND NOT
+   TWO. `flex: 1 1 0` divides the row EQUALLY — the basis is zero, so a tab's own
+   text length buys it nothing — and `min-width: 0` lets that share win over the
+   label. `operator-listings`'s two become exact halves; `listings`'s four become
+   exact quarters and the two long labels are cut to them. **`flex: 1 0 auto` was
+   built first and thrown away before it reached her**, written down so the
+   near-miss is not re-proposed as a discovery: an `auto` basis hands each tab its
+   text width and then adds the slack equally, which left `Incoming · 2` at
+   **185.6** against `Active · 1`'s **164.6** — grown, but still unequal, and
+   «make it like a tab bar» means halves. **`min-width: max-content` was the rule
+   for one day** (rev 232) and held each tab at its own text, which kept every
+   label whole and made `listings` scroll; she replaced it on 2026-09-10 having
+   seen all four readings in the frame — see the truncation block below.
    THE ROW'S INLINE PADDING IS 4, NOT 16, AND THAT IS ARITHMETIC RATHER THAN A NEW
    RUNG: the tab keeps its own `--sp-snug` 12, so 16 − 12 puts the first LABEL on
    the screen's 16 margin while the underline still runs 12 past the text at each
@@ -1652,9 +1652,43 @@ header.dr-topbar,
   padding-inline: calc(var(--sp-screen) - var(--sp-snug));   /* 4 — the label lands on 16, the underline runs 12 past it */
   border-bottom: var(--hair) solid var(--line);
 }
+/* EQUAL SHARES ALWAYS, AND THE LABEL GIVES WAY — the designer, 2026-09-10, on
+   the built `listings` after being shown her own `operator-listings` row back:
+   *«зроби таб як тут»*, then *«бери варіант 2 обрізання»* of four measured
+   readings. `min-width: max-content` HELD each tab at its own text and let the
+   row scroll; `min-width: 0` lets the equal share win and the text is cut to it.
+   THE THREE SHE DID NOT TAKE ARE WRITTEN DOWN SO THEY ARE NOT RE-PROPOSED. Own
+   width and scroll (what rev 232 built): nothing lost, the row scrolls **17** and
+   `Inspection` sits under the frame's edge. Equal quarters that WRAP: row
+   **48 → 58.4** and the tabs stop being one height — **47** beside **57.6** —
+   which iOS's own segmented control never does. Equal quarters with a SHORTER
+   WORD: clean at 48, but *Aerial photo & video* stands **34 times across 19
+   files** and the card directly under the tab carries it in full, so the tab and
+   the card would name one service two ways — `voice.md`'s one-word-per-concept
+   rule, and hers to spend, not mine.
+   NOTHING FAILS AND THAT IS SAID PLAINLY RATHER THAN LAST. The ellipsis is drawn
+   by CSS; the DOM text is untouched, so the ACCESSIBLE name stays the full
+   *Aerial photo & video* and `WCAG 4.1.2` and `2.5.3` are answered by the string
+   that is still there — a speech-input user says the whole name and hits the tab.
+   `HIG · Segmented Controls` truncates rather than wraps, so this is the shape
+   HIG prescribes for a label that will not fit. The target is unchanged at
+   **87.6 × 47.2**, clearing `HIG · 44pt` and `WCAG 2.5.8`. What is lost is
+   READING, not conformance: the eye cannot tell *Aerial p…* from another aerial
+   category, and no criterion measures that. Hers, taken with the cut shown to her
+   in the frame.
+   THE BOX STOPS BEING A FLEX CONTAINER, WHICH IS THE WHOLE REASON THIS RULE IS
+   THREE DECLARATIONS AND NOT ONE. `text-overflow` needs a block box with the text
+   IN it; inside `display:flex` the label becomes an anonymous flex item and the
+   ellipsis never draws — built that way first and measured not working. So the
+   tab is `display:block`, centred by `text-align` instead of `justify-content`,
+   and the line box does the vertical centring at
+   `--h-groups` − `--hair` = **47** — derived from the row it sits in, not typed. */
 .dr-groups--tabs .dr-grouptab{
-  flex: 1 1 0; min-width: max-content;   /* equal halves where they fit, own width where they do not */
-  height: 100%; justify-content: center;
+  flex: 1 1 0; min-width: 0;   /* equal shares always; the label is cut to its share */
+  display: block; height: 100%;
+  line-height: calc(var(--h-groups) - var(--hair));
+  text-align: center;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   border-radius: 0;
 }
 /* The hit area stops being a bleed and becomes the rule. The chip needed

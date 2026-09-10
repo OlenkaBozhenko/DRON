@@ -2740,7 +2740,8 @@ the rest `--slate` on `--page` (**6.62:1**). **The mark itself is `1.085:1`** �
 page — which is under `WCAG 1.4.11`'s 3:1 and leans on the label moving 6.62 → 15.99 as well, a
 text-against-text difference WCAG does not measure. Recorded as the known condition it is.
 
-**The underline tab (`.dr-groups--tabs`) — 7 pages**, the designer's pick 2026-09-10: five
+**The underline tab (`.dr-groups--tabs`) — 7 pages**, the designer's pick 2026-09-10 and re-cut the
+same day from own-width-and-scroll to equal-shares-and-truncate: five
 `listings` and two `operator-listings`. Gap 0, row padding `0 4` — `--sp-screen` 16 minus the tab's
 own `--sp-snug` 12, so the **label** lands on the screen margin and the underline runs 12 past the
 text at each end. Tab is the row's full height, **47.2** inside the 48 the hairline takes a pixel
@@ -2748,9 +2749,23 @@ from (`HIG · 44pt` ✓ +3.2, `WCAG 2.5.8` ✓ 1.96× the 44 × 44 area). Curren
 **2px `--ink`** rule on the bottom edge; the rest `--slate`. **The mark is `15.99:1`** — +12.99 over
 `1.4.11`'s floor and the only one of the row's two shapes that passes on the mark alone.
 
-- **`flex: 1 1 0` with `min-width: max-content`.** Equal halves where the labels fit, own width
-  where they do not, one rule for both: `operator-listings` **175.1 × 47.2** twice at the 375 frame
-  and **158.0 × 47.2** twice at ≤ 389px; `listings` keeps **41.2 / 77.7 / 155.3 / 92.9** and scrolls.
+- **`flex: 1 1 0` with `min-width: 0` — equal shares always, and the label gives way.**
+  `operator-listings` **175.1 × 47.2** twice at the 375 frame and **158.0 × 47.2** at ≤ 389px, both
+  labels whole. `listings` **91.3 × 47.2** four times, and two of the four are cut: *Aerial photo &
+  video* needs **155** against **91** of room (over by **64**) and *Inspection* needs **93**
+  (over by **2**). At ≤ 389px the quarters are **82.8** — *All* and *Delivery* still whole at
+  **83 / 83**, exactly on the edge; the other two cut by **72** and **10**. The row does not scroll
+  at either tier.
+- **Truncation, not wrap or scroll** (the designer's call 2026-09-10, having seen all four in the
+  frame). `HIG · Segmented Controls` truncates rather than wraps, so this is HIG's own answer for a
+  label that will not fit. **Nothing fails:** the ellipsis is drawn by CSS, the DOM text is
+  untouched, so the accessible name stays the full string and `WCAG 4.1.2` / `2.5.3` are answered by
+  it; the target is unchanged. **What is lost is reading, not conformance** — the eye cannot tell
+  *Aerial p…* from another aerial category, and no criterion measures that. Recorded as her decision.
+- **The tab is a block box, not a flex one** — `text-overflow` needs the text to be *in* the box, and
+  inside `display:flex` a bare label becomes an anonymous flex item where the ellipsis never draws.
+  So: `display:block`, `text-align:center`, and the line box centres vertically at
+  `--h-groups` − `--hair` = **47**, derived from the row rather than typed.
 - **The weight does not move with the state** — 600 in both. A heavier current tab is a wider tab,
   and on a row that scrolls that re-measures every sibling under the finger. Verified by tapping
   *Delivery* on the built page: all four widths byte-identical before and after.
