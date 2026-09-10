@@ -1007,21 +1007,6 @@ header.dr-topbar,
    the UA re-balances the string, never a <br> and never a fixed width, so the
    sentence stays one node for translation and for the accessible description. */
 .dr-note--balance{ text-wrap: balance; }
-/* TWO ROWS WHERE BALANCE ALONE CANNOT MAKE THEM — 2026-09-10, the designer on
-   the built `switch-role`: «write in 2 rows». Same position rev 224 already met
-   on the upload card: `text-wrap: balance` re-balances the rows a measure
-   produces, it does not produce them, and this sentence had none to balance —
-   337.83px of text in a 341 box, one row at 99.1% of the width available. So
-   the measure comes with it, and it is `--t-note-measure`, already minted for
-   the upload subtitle at the same 12px step and the same 226.75px it renders
-   here — no rung. THE BREAK IS THE UA'S, NEVER A <br>: `_conventions.md` §95
-   and the rule this modifier inherits. Balanced, it falls on the prepositional
-   phrase — «Switching is always reversible» 167.61 / «from the same Account
-   entry.» 166.86 — and the same break holds from 23ch to 44ch, so 30ch is 7
-   steps from three rows and 14 from one. `margin-inline: auto` because
-   `.dr-main` is a column flex and a max-width'd item lands at the start, not
-   centred; the upload card gets that from its own parent. */
-.dr-note--measure{ max-width: var(--t-note-measure); margin-inline: auto; text-wrap: balance; }
 
 /* ═══ BUTTONS ═════════════════════════════════════════════════════════════
    min-height, never height: a button is a flex item in a scrolling column and

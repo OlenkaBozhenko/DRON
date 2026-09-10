@@ -36,7 +36,14 @@
       </section>
 
       <p class="zlabel dr-label">What happens <span class="dr-label__act">▸ nothing is lost</span></p>
-      <p class="dr-note dr-note--measure">Switching is always reversible from the same Account entry.</p>
+      <!-- HARD BREAK, HER CALL 2026-09-10 — she chose the shape over the rule: «make like in this
+           picture» against the two rendered options. _conventions.md §95 wants the break made with a
+           property; balance cannot make this one (it re-balances rows, it does not create them, and it
+           only ever evens them — 167.61 / 166.86, the first row longer). Her 2026-08-27 rule wants more
+           text in the second row, and no measure reaches it: every greedy width that isolates
+           "Switching is always" falls to three rows. So the break is markup, and the cost is that the
+           Ukrainian string inherits an English line. Recorded as a departure, not a defect. -->
+      <p class="dr-note">Switching is always <br>reversible from the same Account entry.</p>
     </main>
     <footer class="dr-actionbar">
       <a class="dr-btn dr-btn--primary dr-btn--block" href="role-select.html">Switch to Operator</a>

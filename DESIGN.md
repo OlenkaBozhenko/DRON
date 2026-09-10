@@ -2408,29 +2408,31 @@ The sentence stays **one text node**, which is what keeps `WCAG 1.3.1` / `4.1.2`
 action-bar buttons still resolve `aria-describedby="photo-rules"` and announce the same string,
 verified in the built DOM on both screens. `HIG · Typography` prescribes the ramp, not the break.
 
-`.dr-note--measure` is `max-width: var(--t-note-measure)` + `margin-inline: auto` + `text-wrap: balance`,
-and it exists because **balance alone cannot make rows it can only re-balance**. Spent **once**,
-`switch-role`, 2026-09-10, the designer on the built frame: *«write in 2 rows»*. The sentence measured
-**337.83px of text in a 341 box** — one row at **99.1%** of the width available, nothing for the
-property to move, the same wall the upload subtitle hit on 2026-08-15. **No rung is minted:**
-`--t-note-measure` **30ch** is the upload card's own measure at this same 12px step and renders the
-same **226.75px** here, so the note goes **341 × 18 → 226.75 × 36**. `margin-inline: auto` is the one
-part the upload card does not need — `.dr-main` is a column flex, and a `max-width`'d item lands at the
-start rather than centred; here it insets **57.13** each side. Balanced, the break falls on the
-prepositional phrase: **`Switching is always reversible` 167.61** / **`from the same Account entry.`
-166.86**, and it is stable — scanned 14ch–60ch, two rows hold **23ch to 44ch** with the row widths
-unmoved inside it, so 30ch is **7 steps from three rows and 14 from one**. The same **226.75 × 36**
-renders in all three shell viewports (frame **375 / 768 / 842**), overrun **0** in each; at a 2× text
-step the measure stops binding and the paragraph is still **2 rows / 72**, so `WCAG 1.4.4` reads as it
-did. `WCAG 1.4.8` (AAA) caps a measure at 80 characters and this sentence is **59** — one row conformed
-and two rows conform, which is an answer and not a gap. The 18px costs **no scroll**: content ends
-**470.33 → 488.33**, gap to the action bar **259.67 → 241.67**, `main.scrollHeight` **577 = 577**.
-**`.dr-note--balance` is deliberately not the vehicle** — its three spends would each have inherited a
-measure they never asked for. **One departure is recorded rather than corrected:** the designer's
-2026-08-27 rule wants *more text in the second row*, and here balance comes out the other way by
-**0.75px** (29 characters against 28). Greedy wrapping was probed at 120–167px and every width that
-isolates `Switching is always` falls to **three** rows, so that shape is reachable only with a `<br>` —
-which §95 forbids. Built balanced, open as her call.
+**`switch-role`'s note is the one caption in the product whose break is markup, and that is her decision
+with its cost written down.** 2026-09-10, against two rendered options: *«make like in this picture»*.
+**The property could not reach the shape she set on 2026-08-27.** `text-wrap: balance` re-balances the
+rows a measure produces — it does not create them, and it only ever *evens* them. Balanced, this
+sentence broke `Switching is always reversible` **167.61** / `from the same Account entry.` **166.86** —
+the first row longer, the opposite of *more text in second row*. A measure cannot reach it either:
+greedy wrapping probed at 120 / 130 / 140 / 150 / 160 / 167px, and **every** width that isolates
+`Switching is always` falls to **three** rows. So the break is a `<br>`: **109.02 / 225.45**, the second
+row **116.43px and 19 characters longer**. **A `.dr-note--measure` class was minted for this an hour
+earlier and is retired unspent** — `max-width: var(--t-note-measure)` + `margin-inline: auto` +
+`text-wrap: balance`, correct for the two-row problem and wrong for this shape, and a rung applied to
+nothing does not stay in the kit. `--t-note-measure` keeps its one spend on the upload card.
+**THE SPACE BEFORE THE `<br>` CARRIES THE ACCESSIBILITY OF THE WHOLE DEPARTURE:** a `<br>` is a line
+break and **not a word separator**, so `always<br>reversible` computes `textContent` **`alwaysreversible`**
+— one word to a screen reader, to copy-paste and to any extraction. With the space the accessible string
+is the sentence again, and the trailing space collapses at end of line: **109.02 / 225.45** with it and
+without it, **0px** of layout cost. **MEASURED ON THE BUILD, FRAME 375 × 812:** the note **341 × 18 → 341 × 36**,
+box width unchanged because no measure binds it; content ends **470.33 → 488.33**, gap to the action bar
+**259.67 → 241.67**, `main.scrollHeight` **577 = 577** — no scroll bought and none owed. Two rows hold in
+all three shell viewports (frame **375 / 768 / 842**) and at a **320** frame, overrun **0** in each.
+`WCAG 1.4.4` at a 2× step: **3 rows / 108px**, `main` **577 = 577**, overrun **0** — the `<br>` fixes one
+break, it does not stop the segments reflowing. `1.4.3` unmoved at **6.62:1**; `1.3.1` / `4.1.2` unmoved,
+the `<p>` is still one paragraph and the accessible string is still the sentence. **What it costs is
+translation:** the English break is frozen into the markup and the Ukrainian string inherits a break
+chosen for English words. Recorded as a departure from `_conventions.md` §95, not filed as a defect.
 
 **Not spent on the caption above it, and that is a choice with a number rather than an oversight.**
 The first `.dr-note` in the same `.dr-stack` breaks differently on the two screens: the client's
