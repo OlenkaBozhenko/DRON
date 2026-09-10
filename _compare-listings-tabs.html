@@ -1,0 +1,46 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>listings tab row — four ways</title>
+<style>
+  body{ margin:0; background:#8f8b85; font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif; }
+  .row{ display:flex; gap:18px; padding:18px; align-items:flex-start; }
+  .col{ width:375px; }
+  .cap{ font-size:12px; color:#fff; font-weight:600; margin:0 0 7px; }
+  .cap b{ display:block; font-weight:400; font-size:11px; color:#e8e5e0; margin-top:2px; }
+  iframe{ width:375px; height:300px; border:0; background:#F7F5F2; }
+</style>
+<div class="row">
+  <div class="col"><p class="cap">NOW — four tabs, own width<b>row scrolls, nothing cut</b></p><iframe data-opt="now" src="wireframes/listings.html"></iframe></div>
+  <div class="col"><p class="cap">1 — equal quarters, labels wrap<b>row gets taller</b></p><iframe data-opt="wrap" src="wireframes/listings.html"></iframe></div>
+  <div class="col"><p class="cap">2 — equal quarters, labels cut<b>the name is lost</b></p><iframe data-opt="cut" src="wireframes/listings.html"></iframe></div>
+  <div class="col"><p class="cap">3 — equal quarters, shorter words<b>a copy change</b></p><iframe data-opt="short" src="wireframes/listings.html"></iframe></div>
+</div>
+<script>
+var CHROME = '.wf-tree,.wf-scrim,.wf-toolbar,.wf-voice-scrim,.wf-voice-drawer{display:none!important}'
+  + 'body.wf-shelled{padding:0!important;margin:0!important;background:#F7F5F2!important;display:block!important}'
+  + '.wf-frame{margin:0!important;position:static!important;box-shadow:none!important;border-radius:0!important;height:auto!important}';
+
+var EQ = '.dr-groups--tabs .dr-grouptab{ min-width:0; }';
+var OPT = {
+  now: '',
+  wrap: EQ + '.dr-groups--tabs{ height:auto; } .dr-groups--tabs .dr-grouptab{ height:auto; min-height:47px; padding-block:6px; text-align:center; }',
+  cut:  EQ + '.dr-groups--tabs .dr-grouptab{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block; line-height:47px; }',
+  short: EQ
+};
+
+document.querySelectorAll('iframe').forEach(function(f){
+  f.addEventListener('load', function(){
+    var d = f.contentDocument, opt = f.dataset.opt;
+    d.body.classList.add('wf-hide-anno');
+    var l = [...d.querySelectorAll('link[rel=stylesheet]')].find(function(x){ return x.href.indexOf('kit.css') > -1; });
+    if (l) l.href = l.href.split('?')[0] + '?b=' + Date.now();
+    var s = d.createElement('style');
+    s.textContent = CHROME + OPT[opt];
+    d.head.appendChild(s);
+    if (opt === 'short') {
+      var tabs = d.querySelectorAll('.dr-grouptab');
+      tabs[2].textContent = 'Aerial';
+    }
+  });
+});
+</script>
