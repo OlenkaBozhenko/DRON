@@ -1,0 +1,70 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>measure</title></head>
+<body>
+<iframe id="f" src="/wireframes/operator-listings.html" width="1200" height="900" style="border:0"></iframe>
+<pre id="out">…</pre>
+<script>
+function lum(c){
+  var m = c.match(/[\d.]+/g).map(Number);
+  var f = m.slice(0,3).map(function(v){ v/=255; return v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055,2.4); });
+  return 0.2126*f[0]+0.7152*f[1]+0.0722*f[2];
+}
+function ratio(a,b){ var l1=lum(a), l2=lum(b); if(l2>l1){var t=l1;l1=l2;l2=t;} return ((l1+0.05)/(l2+0.05)).toFixed(2); }
+function bg(el){
+  while(el){ var c=getComputedStyle(el).backgroundColor; if(c && c!=='rgba(0, 0, 0, 0)' && c!=='transparent') return c; el=el.parentElement; }
+  return 'rgb(255, 255, 255)';
+}
+var out = document.getElementById('out');
+document.getElementById('f').addEventListener('load', function(){
+  var d = this.contentDocument, w = this.contentWindow, L = [];
+  function line(s){ L.push(s); }
+  var row = d.querySelector('.dr-field--action[aria-controls="sheet-avail"]');
+  var r = row.getBoundingClientRect();
+  var lab = row.querySelector('.dr-field__label'), val = row.querySelector('.dr-field__value'), chev = row.querySelector('.dr-field__chev');
+  var rbg = bg(row);
+  line('ROW  box            : ' + r.width.toFixed(2) + ' x ' + r.height.toFixed(2) + '  at x=' + r.x.toFixed(0) + ' y=' + r.y.toFixed(0));
+  line('ROW  background     : ' + rbg);
+  line('ROW  min-height     : ' + w.getComputedStyle(row).minHeight);
+  line('LABEL "' + lab.textContent + '"  ' + w.getComputedStyle(lab).fontSize + '/' + w.getComputedStyle(lab).fontWeight + '  ' + w.getComputedStyle(lab).color + '  ratio ' + ratio(w.getComputedStyle(lab).color, rbg));
+  line('VALUE "' + val.textContent + '"  ' + w.getComputedStyle(val).fontSize + '/' + w.getComputedStyle(val).fontWeight + '  ' + w.getComputedStyle(val).color + '  ratio ' + ratio(w.getComputedStyle(val).color, rbg));
+  line('CHEV  colour        : ' + w.getComputedStyle(chev).color + '  ratio ' + ratio(w.getComputedStyle(chev).color, rbg));
+  line('');
+  // open the drawer
+  row.click();
+  var sheet = d.getElementById('sheet-avail');
+  line('SHEET hidden after click : ' + sheet.hidden + '   row aria-expanded=' + row.getAttribute('aria-expanded'));
+  line('SHEET background     : ' + w.getComputedStyle(sheet).backgroundColor + '  radius ' + w.getComputedStyle(sheet).borderRadius);
+  var items = sheet.querySelectorAll('.dr-picker__item');
+  var lbg = bg(sheet.querySelector('.dr-picker__list'));
+  items.forEach(function(it){
+    var b = it.getBoundingClientRect(), cs = w.getComputedStyle(it);
+    var ic = it.querySelector('.dr-ic');
+    line('OPT  ' + it.querySelector('.dr-picker__label').textContent.padEnd(10) + b.width.toFixed(1) + ' x ' + b.height.toFixed(1) +
+         '  ' + cs.fontSize + '  ' + cs.color + '  ratio ' + ratio(cs.color, lbg) +
+         '  mark=' + w.getComputedStyle(ic).visibility + '  aria-current=' + (it.getAttribute('aria-current')||'—'));
+  });
+  line('');
+  // pick Busy and see what lands
+  items[1].click();
+  var badge = d.querySelector('[data-avail-badge]');
+  line('AFTER picking Busy   : row value = "' + val.textContent + '"   sheet hidden = ' + sheet.hidden +
+       '   badge state = ' + badge.getAttribute('data-state') + '  badge word = "' + d.querySelector('[data-avail-word]').textContent + '"');
+  line('FOCUS returned to    : ' + (d.activeElement === row ? 'the row (correct)' : d.activeElement.className));
+  // and back to Available
+  row.click(); sheet.querySelectorAll('.dr-picker__item')[0].click();
+  line('BACK to Available    : row value = "' + val.textContent + '"  badge = ' + badge.getAttribute('data-state'));
+  // green area on the screen
+  var frame = d.querySelector('.wf-frame'), fr = frame.getBoundingClientRect();
+  var green = 0;
+  d.querySelectorAll('.wf-frame *').forEach(function(el){
+    var cs = w.getComputedStyle(el);
+    if (cs.backgroundColor.replace(/\s/g,'') === 'rgb(155,207,74)') {
+      var bb = el.getBoundingClientRect();
+      if (bb.width && bb.height) green += bb.width * bb.height;
+    }
+  });
+  line('GREEN solid in frame : ' + green.toFixed(0) + 'px2 = ' + (green / (fr.width*fr.height) * 100).toFixed(2) + '% of ' + fr.width + 'x' + fr.height);
+  out.textContent = L.join('\n');
+});
+</script>
+</body></html>
