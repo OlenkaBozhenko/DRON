@@ -825,6 +825,36 @@ header.dr-topbar,
    role-select — against 125 that separate zones by .dr-main's own 12. */
 .dr-main--zones{ gap: var(--sp-24); }
 
+/* ONE SCREEN WHOSE CONTENT IS THE WHOLE SCREEN. `switch-role` asks a question
+   and holds nothing else: with the shell's annotations off — the way she reads
+   a page — `main` has exactly one child, the .dr-center column, and it hung
+   from the top with 32.00 of air above the photo mark and 357.05 below it,
+   1:11.2. Her call, 2026-09-10: «aligne content on center», the second half of
+   the sentence rev 237 answered by halves. Measured after: 178.53 above,
+   178.53 below, delta 0.00.
+   IT IS `margin-block:auto` AND NOT `justify-content:center`, AND THE
+   DIFFERENCE IS A WCAG NUMBER, NOT A TASTE — BUT NOT A FAILURE TODAY, WHICH IS
+   SAID PLAINLY. `WCAG 1.4.4 Resize text` caps at 200%, and at 200% this column
+   is 490.20 in the 545.60 the content box gives: no overflow, 55.40 of
+   headroom, so BOTH properties pass as the screen stands. The headroom is one
+   line wide — the lead's line box at 200% is 46.50, so one more line still fits
+   with 8.90 to spare and two do not, and the UA string is the longer one.
+   WHAT HAPPENS WHEN IT CLOSES is why the property is chosen and not preferred:
+   .dr-main scrolls (`overflow-y:auto`), and a centred flex child pushes its own
+   overflow ABOVE the scroll origin, where no scrollbar reaches it. Forced and
+   measured (text at 4x, column 1729.40 in a 562 window): `justify-content:
+   center` stands the column's top 583.50 ABOVE main's edge at scrollTop 0 and
+   `scrollHeight` reports 1162 against the 1761 the content needs — 583.50 of
+   content unreachable. `margin-block:auto` resolves to 0 with no free space:
+   scrollHeight 1761 / clientHeight 562, first line at the padding edge, last
+   line reachable at the foot of the scroll. Auto margins answer 1.4.4 at any
+   growth; justify-content answers it only while the content happens to fit.
+   HIG · Alerts centres a confirmation's title and message in the space it is
+   given, the actions sitting apart from them — which is this screen: one
+   question, one consequence sentence, and the Switch / Cancel pair already
+   pinned in .dr-actionbar. One page carries it. */
+.dr-main--center > .dr-center{ margin-block: auto; }
+
 .dr-tabbar{
   flex: none; background: var(--page);
   border-top: var(--hair) solid var(--line);
