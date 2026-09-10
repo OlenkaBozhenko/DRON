@@ -874,15 +874,21 @@ render byte-identical. **`.dr-picks` is deliberately not swept** — its separat
 `--pick-indent` **52** from the card edge, an alignment to the label past the radio rather than the
 card's own inset, so equalising it would mean a different decision, not this one.
 
-**The label column is `--sz-rowkey` 140 — the same axis as the read-only row** (rev 114, 2026-08-16,
-on the designer's word). It was `flex:1`, a 1:1 split, which held only where every row in a group had
-the same anatomy: on `account-edit` the two picker rows carry a chevron and the input row does not, so
-`flex:1` left **152.5** on one and **165.5** on the other and the card read down three different left
-edges. Fixed, every value in the product — read, typed or chosen — starts **150** from its row's left
-edge (**166** from the frame where the group keeps its card). Typed track **165.5 → 191**. The widest
-field label is *Payment method* **135.64**, then *Drop-off address* **134.47**, both inside 140, so no
-label wraps and every row holds **44** (`HIG · 44pt` ✓, `WCAG 2.5.8` ✓). `.dr-field--area` is
-unaffected — its label has taken the full width since 2026-08-03.
+**The label column is the card's own, floored at `--sz-rowkey` 96** (rev 233, 2026-09-10, on the
+designer's word) — **it was a fixed 140 for the whole product** from rev 114 until then. The column
+is sized once per group, by the widest key **in that group**, and never below the floor: the group is
+a grid, `minmax(var(--sz-rowkey), max-content) 1fr`, and each row is a `subgrid` of it, so one axis
+per card is a property of the layout rather than of a number holding across 55 pages. What it fixed
+is not alignment — rev 114 had that — but the **air** a shared column spends on a card with short
+labels: `order-confirmed-aerial`'s `When` (35.25) sat 114.75px from its own value, and the value paid
+for it, taking two lines for a 187.06 string in a 159 cell. Measured on the build, **27 of 197 rows
+stood on two lines and 6 do now**; 188 of 189 values moved left, by **13.80 to 60.00**; **61 cards
+now stand on 12 columns**, 39 of them on the floor. Every row still holds **44** (`HIG · 44pt` ✓,
+`WCAG 2.5.8` ✓), every chevron is still flush with its row's trailing edge, and no page gained a
+pixel of scroll — `order-details-inspection` lost the 11 it had. `.dr-field--area`, `.dr-field--toggle`,
+the stacked badge row and the skeleton row stay flex and stay out of the subgrid, so they neither
+take the axis nor size it — which is why *Operator on the way* (**143.84**, the widest label in the
+product) no longer widens a column it does not stand in.
 
 **One row takes no separator, and it is keyed to the control.** `.dr-field:has(> .dr-upload)::before`
 is `content:none` — set 2026-08-16 (rev 109) on the designer's word, matching the **one** field in the
@@ -910,17 +916,28 @@ line of its own, so the well and the glyph are the whole of what identifies it t
 (rev 102) on the designer's word; `HIG · Action sheets` and `HIG · Lists and tables` draw the same
 line. Payment is 4 and language is 2, so the ≥ 7 half is a written rule with no page yet.
 
+**Nine rows on nine screens, and the ninth was a segmented control until 2026-09-10** —
+`operator-listings` and `operator-listings-empty` took the row for the operator's availability at
+rev 235, on the designer's word (*«make like select»*), which is the first time this component was
+spent to **replace** another control rather than to collect a value a form needed.
+
 **The row** is `.dr-field--action`: a real `<button>`, `aria-haspopup="dialog"` + `aria-expanded`,
 carrying `chevron.forward` — one mark for both halves, because both say the same true thing, that
 the list arrives from elsewhere. It replaced a `<span role="button">` that opened nothing and a
 text-glyph **▾** that was not in the icon system.
 
-**The trailing chevron is pinned by the shrink order, not by a number:** label `flex 0 0
-var(--sz-rowkey)`, value `flex 1` with `min-width:0` and the ellipsis, chevron `flex:none`, row
-**`flex-wrap: nowrap`**. The `nowrap` is load-bearing — measured, a 66-character value took the wrap
-instead of the ellipsis and the row went **44 → 78** with the chevron **325px** in from the edge.
-Measured after: both rows **44 × 341**, chevron right edge flush with the row's, gap to edge **0**,
-on a 14-character value and a 56-character one alike; no horizontal overflow.
+**The trailing chevron is pinned by a track of its own since rev 233 (2026-09-10)** — it was pinned
+by the shrink order before that: label `flex 0 0 var(--sz-rowkey)`, value `flex 1` with `min-width:0`
+and the ellipsis, chevron `flex:none`, row **`flex-wrap: nowrap`**, where the `nowrap` was
+load-bearing (measured, a 66-character value took the wrap instead of the ellipsis and the row went
+**44 → 78** with the chevron **325px** in from the edge). `.dr-field--action` is the one row in the
+kit whose markup carries **three** children with no wrapper around the trailing two, so a two-track
+card put the chevron on a second grid line under the label — measured on `listings-filters`, x **305**
+beneath a value at 395, row **44 → 47**. The card that holds a chevron declares a third `auto` track,
+and only that card: `:has(> .dr-field > .dr-field__chev)`, so the 26 groups without one do not pay a
+gap for an empty column. Measured after: every action row **44**, chevron flush with the row's
+trailing edge — gap **16** where the group keeps its card, **0** in a plain list — on a 14-character
+value and a 56-character one alike; no horizontal overflow.
 
 **The value reads from its left edge, not from the chevron** — rev 114, 2026-08-16. It was `label
 flex 0 0 auto` + `value flex 0 1 auto` with `margin-left:auto`, which put the value's *left* edge
@@ -929,7 +946,10 @@ wherever its string ended: on `account-edit`'s card *Visa •••• 4921* sto
 **140** column as every other row, so the picker value starts at **150** like the typed one and the
 read-only one, and the slack sits after the value instead of before it. **The cost, recorded:**
 `report-issue`'s *Poor quality — not as expected* measures **231.95** against a **165** track and
-now takes the ellipsis; it fit its old track by 7px.
+now takes the ellipsis; it fit its old track by 7px. **Rev 233 gives 44 of it back and not the rest** —
+the card's own column is the floor 96 there, so the track is **209** against 231.95 and the string is
+still clipped, by **22.95**. Hugging its one key (72.44) would have fit it exactly; the floor is the
+designer's call and this is its price, recorded rather than corrected.
 
 **The drawer** is `.dr-sheet` — `--page` ground, `--r-panel` **22** on the top corners only,
 `--sh-raised`, measured **373 wide** with its bottom flush to the frame — plus `.dr-sheet--picker`,
@@ -1703,16 +1723,22 @@ order and operator cards, which display rather than collect.
 8; the frame wins). Each row `13px 0` with a `--line` bottom hairline. Key `--slate` 13/400
 **5.95:1**; value `--ink` 15/600 tabular **14.37:1**.
 
-**Two columns on a fixed axis, both reading from the left** — the designer's call 2026-08-16, taken
-from the editable card (`.dr-field`) in `account-edit`. The label column is `--sz-rowkey` **140px**,
-sized on the widest key in the system (*First time as Operator*, **133.34**), so no label wraps; the
-value takes the rest, **159px** on a 341 card, and every value on every screen starts at **x = 166**.
-Gap `--sp-10`, not `--sp-snug`.
+**Two columns reading from the left, on the CARD's axis** — the designer's call 2026-08-16 for the
+alignment, taken from the editable card (`.dr-field`) in `account-edit`, and 2026-09-10 (rev 233) for
+the column. The label column is sized per group by the widest key **in that group** and floored at
+`--sz-rowkey` **96px**; the value takes the rest, gap `--sp-10`, not `--sp-snug`. On
+`order-confirmed-aerial` — keys `When` 35.25 and `Status` 39.30 — that is a **96** column and a
+**203** value, where the product-wide 140 left **159** and wrapped the date. **It was a fixed 140px
+from rev 97 to rev 232**, sized on the widest key anywhere (*First time as Operator*, **133.34**), so
+that every value on every screen started at **x = 166**; what that bought in cross-card alignment
+nobody can see — two cards are never on screen side by side — it spent in air on every card whose
+labels are short.
 
 **The field row joined this column at rev 114** (2026-08-16), which is where the axis was copied from
 in the first place: the reference card was still mixing a 1:1 split with two trailing picker values.
-One column now serves read, typed and chosen alike — `--sz-rowkey` is the product's single value axis,
-and *Payment method* **135.64** is its new widest key, still **4.36px** inside it.
+One rule serves read, typed and chosen alike — and since rev 233 what they share is the **mechanism**,
+not the number: every row in a card stands on that card's column, which is what rev 114's complaint
+(three axes inside one card) actually asked for.
 
 Before: `justify-content: space-between` with `text-align: right`, so the value's **left** edge landed
 wherever its string happened to end — measured across the 13 wireframes that carry it, **46 rows at
@@ -1742,10 +1768,13 @@ tables`), a leading value in a form row (`HIG · Text fields`) — so neither al
 conforming one and this is a taste call, not a compliance fix. WCAG is untouched: `1.4.3` keeps its
 pairs, `1.3.1` keeps its DOM order, `1.4.8` governs justified text and not trailing.
 
-**What the axis costs, measured:** the value column is 159, and four strings are wider, so rows on two
-lines go **3 → 5**. The two new ones are `switch-role`'s *Any time from Account* (172.45) and
-`tracking-empty`'s *~15 min (running late)* (168.97). No frame changed height (812 on all 13); no page
-scrolls sideways.
+**What the axis cost, measured at rev 97:** the value column was 159, four strings were wider, and
+rows on two lines went **3 → 5** — the two new ones `switch-role`'s *Any time from Account* (172.45)
+and `tracking-empty`'s *~15 min (running late)* (168.97). No frame changed height (812 on all 13) and
+no page scrolled sideways. **Both figures are history now and are kept as history:** the fixed column
+went on being paid for by pages built after it, reaching **27 of 197 rows on two lines** by
+2026-09-10, which is what rev 233 answered with a per-card column (**6**); and `switch-role`'s panel
+was deleted at rev 234, so the 172.45 string is no longer in the product at all.
 
 One component, **13 wireframes** plus `ui/kit.html` — the tracking ETA panel and the delivery details
 panel are the same two rules.
@@ -2379,35 +2408,6 @@ The sentence stays **one text node**, which is what keeps `WCAG 1.3.1` / `4.1.2`
 action-bar buttons still resolve `aria-describedby="photo-rules"` and announce the same string,
 verified in the built DOM on both screens. `HIG · Typography` prescribes the ramp, not the break.
 
-**Not spent on the caption above it, and that is a choice with a number rather than an oversight.**
-The first `.dr-note` in the same `.dr-stack` breaks differently on the two screens: the client's
-splits cleanly at its own sentence boundary (`Your operator sees this photo when they arrive.` 267.75
-/ `Without one, they see your initials.` 195.2) and the operator's does not (`…they arrive. Without`
-**298.11 of 301** / `one, they see your initials.` 147.38). Balancing it was measured on both: it
-gives the operator's the second-row-longer shape (37 / 44 characters, 211.38 / 234.11) and costs the
-client's its clean sentence break (`…when they` / `arrive. Without one…`, 228.84 / 234.11), at **36px
-on all four readings**. One screen gains and one loses, so it is put to the designer rather than
-taken — the instruction named `#photo-rules`.
-
-### The availability head (`.dr-avail`)
-
-A dot, the state, and one supporting clause, standing above the segmented control that sets it.
-**`operator-listings-empty` only, since 2026-08-21** — the designer took it off `operator-listings`
-(*«видали цю стрічку»*), so the head now has one product page instead of two. Block **326.2 × 19**
-(**332 × 19.19** measured at 390px), gap 8; dot **10 × 10** (`--sz-dot`, the checked radio's own
-centre — no new size); state 15/600 `--ink` **15.99:1**; note 13 `--slate` **6.62:1**.
-
-**The dot is `--ink` and not `--green`, and that is `WCAG 1.4.1` rather than taste.** A dot that is
-green when Available and grey when Offline would rest on colour alone. The sentence beside it says
-the state in words and the segment below says it a third time, so the dot is a bullet, not a signal.
-It also keeps the accent off a screen whose card CTAs already spend it.
-
-**What the removal costs on the page that lost it, measured rather than asserted.** The sentence was
-the third statement of one fact, so nothing programmatic moved: the carrier is still a checked
-`<input type="radio">` inside a `<fieldset>` named by its legend (`WCAG 1.3.1` ✓, `4.1.2` ✓), and a
-screen reader still reads *Availability status · Available, selected*. **What it does cost is the
-only wording of the state on the screen.** The segmented control's selected plate is `--page`
-`#F7F5F2` on the `--media` track `#E4E1DA` — **1.20:1**, against `WCAG 1.4.11`'s **3:1** floor for a
 `.dr-note--measure` is `max-width: var(--t-note-measure)` + `margin-inline: auto` + `text-wrap: balance`,
 and it exists because **balance alone cannot make rows it can only re-balance**. Spent **once**,
 `switch-role`, 2026-09-10, the designer on the built frame: *«write in 2 rows»*. The sentence measured
@@ -2432,22 +2432,65 @@ measure they never asked for. **One departure is recorded rather than corrected:
 isolates `Switching is always` falls to **three** rows, so that shape is reachable only with a `<br>` —
 which §95 forbids. Built balanced, open as her call.
 
-state indicator, so it is **2.5× under**; the label's ink step (`--slate` **5.51:1** → `--ink`
-**15.99:1**) is text and outside `1.4.11`'s scope. That figure predates the deletion — the
-component measured 1.20:1 from the day it was painted — but until 2026-08-21 a sentence said the
-state in words beside it, and now nothing does. Reported to the designer with options at
-`concept.md` rev 164; the cheapest conforming fix, if she wants one, is a **1px `--slate` outline on
-the selected plate — 5.51:1 against the track, 1.8× over the floor** — because no *fill* in the warm
-palette reaches 3:1 against `--page` (the darkest grey rung, `--btn2` `#D6D2C9`, gets to **1.39:1**).
+**Not spent on the caption above it, and that is a choice with a number rather than an oversight.**
+The first `.dr-note` in the same `.dr-stack` breaks differently on the two screens: the client's
+splits cleanly at its own sentence boundary (`Your operator sees this photo when they arrive.` 267.75
+/ `Without one, they see your initials.` 195.2) and the operator's does not (`…they arrive. Without`
+**298.11 of 301** / `one, they see your initials.` 147.38). Balancing it was measured on both: it
+gives the operator's the second-row-longer shape (37 / 44 characters, 211.38 / 234.11) and costs the
+client's its clean sentence break (`…when they` / `arrive. Without one…`, 228.84 / 234.11), at **36px
+on all four readings**. One screen gains and one loses, so it is put to the designer rather than
+taken — the instruction named `#photo-rules`.
 
-**`operator-listings`'s Status zone after the cut:** the `.dr-stack` holds the segment alone and
-measures **44** where it measured **71.19** (the head's 19.19 plus the stack's 8 gap).
+### The availability head (`.dr-avail`)
+
+A dot, the state, and one supporting clause, standing above the control that sets it — **the
+segmented control until 2026-09-10, the picker row since** (rev 235).
+**`operator-listings-empty` only, since 2026-08-21** — the designer took it off `operator-listings`
+(*«видали цю стрічку»*), so the head now has one product page instead of two. Block **326.2 × 19**
+(**332 × 19.19** measured at 390px), gap 8; dot **10 × 10** (`--sz-dot`, the checked radio's own
+centre — no new size); state 15/600 `--ink` **15.99:1**; note 13 `--slate` **6.62:1**.
+
+**The dot is `--ink` and not `--green`, and that is `WCAG 1.4.1` rather than taste.** A dot that is
+green when Available and grey when Offline would rest on colour alone. The sentence beside it says
+the state in words and the row below says it a third time, so the dot is a bullet, not a signal.
+It also keeps the accent off a screen whose card CTAs already spend it.
+
+**What the removal cost on the page that lost it, measured rather than asserted.** The sentence was
+the third statement of one fact, so nothing programmatic moved: the carrier was still a checked
+`<input type="radio">` inside a `<fieldset>` named by its legend (`WCAG 1.3.1` ✓, `4.1.2` ✓), and a
+screen reader still read *Availability status · Available, selected*. **What it did cost is the
+only wording of the state on the screen.** The segmented control's selected plate was `--page`
+`#F7F5F2` on the `--media` track `#E4E1DA` — **1.20:1**, against `WCAG 1.4.11`'s **3:1** floor for a
+state indicator, **2.5× under**; the label's ink step (`--slate` **5.51:1** → `--ink` **15.99:1**)
+is text and outside `1.4.11`'s scope. That figure predated the deletion — the component measured
+1.20:1 from the day it was painted — but until 2026-08-21 a sentence said the state in words beside
+it, and after that nothing did. Reported to the designer with options at `concept.md` rev 164; the
+cheapest conforming fix quoted then was a **1px `--slate` outline on the selected plate — 5.51:1
+against the track, 1.8× over the floor** — because no *fill* in the warm palette reaches 3:1
+against `--page` (the darkest grey rung, `--btn2` `#D6D2C9`, gets to **1.39:1**).
+
+**CLOSED 2026-09-10 (rev 235), AND BY DELETION RATHER THAN BY THE FIX THAT WAS QUOTED.** The
+designer replaced the segmented control with the kit's picker row — *«it shouldnt look like tab make
+it like in slack where I select a status make like select»* — so there is no plate left to outline.
+The state is now the row's **value**: `--ink` `#1A1A1A` on `--card` `#ECE9E4`, **14.37:1**, text and
+therefore measured against `1.4.3`'s 4.5 rather than `1.4.11`'s 3 — **3.19× clear**. The outline
+option is retired unspent.
+
+**`operator-listings`'s Status zone, through both changes:** the `.dr-stack` held head + segment at
+**71.19** (19.19 + the stack's 8 gap + 44); the head came off 2026-08-21 and it measured **44**; the
+row replaced the segment 2026-09-10 and it measures **60** — the row is still 44, and the extra 16 is
+the `.dr-rows` card's own 8 top and bottom. `.dr-main`'s scroll goes **1140 → 1156** in a 619
+viewport, a page that already scrolled. **On `operator-listings-empty`, which keeps the head, the
+zone goes 71.19 → 87.19 and `main` still does not scroll** — 619 of content in 619.
 
 ### The availability badge (`.dr-avail-badge`)
 
-The state the segmented control sets, standing in the **nav bar** so it stays on screen once the
-segment scrolls away (the designer, 2026-08-21: *«покажи індикатор відповідно до обраного
-статусу»*). **`operator-listings` and `operator-listings-empty` — 2 · 2.**
+The state the availability control sets, standing in the **nav bar** so it stays on screen once that
+control scrolls away (the designer, 2026-08-21: *«покажи індикатор відповідно до обраного
+статусу»*). **`operator-listings` and `operator-listings-empty` — 2 · 2.** The control under it was
+the segment until 2026-09-10 and is the picker row since (rev 235); the badge did not change a
+value, only where it reads the word from.
 
 **It is the kit's chip, and the only new CSS is the dot.** `.dr-chip--sm` — the rung cut the same
 day for a badge that rides beside a name — plus `.dr-avail-badge__dot`. The pill, `--r-pill`
@@ -2487,17 +2530,21 @@ own fill — a status mark, the case `concept.md` §0 admits beside the one-cont
 `--green-wash` pill is a tint at **1.08:1** against the page and is excluded from the ≤5% budget.
 
 **Not a control and not a live region.** Nothing is tappable, so `HIG · 44pt` is not engaged. The
-state's programmatic carrier is still the checked radio in its legend-named fieldset (`WCAG 1.3.1`
-✓, `4.1.2` ✓); the badge restates it visually, and `role="status"` would announce the same fact a
-second time on every change. **Its word is read at runtime off the checked radio's own label**, so
-`Available` / `Busy` / `Offline` live in the markup once — in the segment — and the script carries
-no product string; only `data-state` is set from JS.
+state's programmatic carrier is the control, not the badge — the checked radio in its legend-named
+fieldset until 2026-09-10, and since rev 235 the picker row that names its own value plus the option
+carrying `aria-current="true"` (`WCAG 1.3.1` ✓, `4.1.2` ✓). The badge restates it visually, and
+`role="status"` would announce the same fact a second time on every change. **Its word is read at
+runtime off the tapped option's own `.dr-picker__label`**, so `Available` / `Busy` / `Offline` live
+in the markup once — in the drawer — and the script carries no product string; only `data-state` is
+set from JS, read straight off the option that was tapped rather than from `aria-current`, which has
+not moved yet at the moment this listener runs.
 
-**What it does and does not close.** It closes `1.4.1` on `operator-listings`, which rev 164 opened
-when the `.dr-avail` sentence came off and left plate fill and label ink — both colour — as the only
-cues. It does **not** move the segment's own plate, still `--page` on `--media` at **1.20:1**
-against `1.4.11`'s 3:1; the 1px `--slate` outline (**5.51:1**) remains the cheapest fix for that
-number and remains the designer's call.
+**What it closes, in two steps.** It closed `1.4.1` on `operator-listings` in rev 183, which rev 164
+had opened when the `.dr-avail` sentence came off and left plate fill and label ink — both colour —
+as the only cues. It did **not** move the segment's own plate, `--page` on `--media` at **1.20:1**
+against `1.4.11`'s 3:1, and the 1px `--slate` outline (**5.51:1**) stood as the cheapest fix and the
+designer's call. **That number is gone rather than fixed since rev 235:** the segment is not on the
+product, and the state it carried is a row value at **14.37:1**.
 
 ### The earned score (`.dr-stars`) and `.dr-listing__score`
 

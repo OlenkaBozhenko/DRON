@@ -418,10 +418,16 @@
                               both name a box that is tapped or read; this is the height of
                               a picture standing on the rail, and the rail's 44px lane is
                               what it is measured against. */
-  --sz-rowkey:     140px;  /* the fact row's label column — sized on the widest
-                              key in the system, "First time as Operator" at
-                              133.34, so no label wraps and every value on every
-                              screen starts at the same x (2026-08-16) */
+  --sz-rowkey:      96px;  /* the label column's FLOOR, not its width. The column
+                              is the CARD's since rev 233 (2026-09-10) — it
+                              stands on the widest key in that card and never
+                              narrower than this. 140 was the product-wide axis
+                              of rev 97/114, sized on the widest key anywhere
+                              ("First time as Operator", 133.34); measured on the
+                              built product it left 114.75px of air after `When`
+                              on order-confirmed-aerial and wrapped 30 of 189
+                              rows. The floor is what keeps a two-word card from
+                              hugging its labels into a column of its own. */
   /* --sz-thumb-ring retired 2026-08-15 with the ring it named (rev 66 → 72).
      Not benched like --sh-onphoto or .dr-btn--text: those are rungs of a scale
      waiting for a home, this was a one-off with exactly one spend and none left. */
@@ -1001,12 +1007,6 @@ header.dr-topbar,
    the UA re-balances the string, never a <br> and never a fixed width, so the
    sentence stays one node for translation and for the accessible description. */
 .dr-note--balance{ text-wrap: balance; }
-
-/* ═══ BUTTONS ═════════════════════════════════════════════════════════════
-   min-height, never height: a button is a flex item in a scrolling column and
-   a fixed height gets shrunk below the 44pt target. */
-
-.dr-btn{
 /* TWO ROWS WHERE BALANCE ALONE CANNOT MAKE THEM — 2026-09-10, the designer on
    the built `switch-role`: «write in 2 rows». Same position rev 224 already met
    on the upload card: `text-wrap: balance` re-balances the rows a measure
@@ -1022,6 +1022,12 @@ header.dr-topbar,
    `.dr-main` is a column flex and a max-width'd item lands at the start, not
    centred; the upload card gets that from its own parent. */
 .dr-note--measure{ max-width: var(--t-note-measure); margin-inline: auto; text-wrap: balance; }
+
+/* ═══ BUTTONS ═════════════════════════════════════════════════════════════
+   min-height, never height: a button is a flex item in a scrolling column and
+   a fixed height gets shrunk below the 44pt target. */
+
+.dr-btn{
   min-height: var(--h-control);
   padding: 0 var(--sp-screen);
   border-radius: var(--r-btn);
@@ -1361,6 +1367,78 @@ header.dr-topbar,
    looking like the thing it stands in for. order-review-loading and
    tracking-loading render unchanged. Recorded as a decision, not a defect. */
 .dr-rows__row:has(> .dr-sk-line){ justify-content: space-between; }
+
+/* THE COLUMN BELONGS TO THE CARD, NOT TO THE PRODUCT — the designer's call
+   2026-09-10 (rev 233) on the built `order-confirmed-aerial`, against
+   `Wed 2 Jul · 09:00–10:00`: «move these text a little bit in a left near when
+   and booked also».
+   WHAT WAS BUILT: one fixed column for every card in the product, 140 + 10, so
+   every value started 150 from its row's left edge. On a card whose keys are
+   `When` (35.25) and `Status` (39.30) that is 114.75px of air between the label
+   and the fact — paid for by the value, which had 159 for a string measuring
+   187.06 and broke to two lines. Measured across the 55 pages that carry the
+   row: 27 of 197 rows stood on two lines, where rev 97 recorded 5. The aerial
+   and inspection variants, the tracking states, `earning-details` and
+   `operator-fee-terms` were all built after the column was sized and none was
+   measured against it. After: 6, and every one of the six is a string no card
+   of this width holds (the shortest, `Covered from your first job`, is 202.52
+   against the 173.97 that its own card's widest key leaves).
+   WHAT THE GUIDELINE PRESCRIBES: `HIG · Lists and tables` ships the trailing
+   value in a grouped row, `HIG · Text fields` the leading value on a label
+   column, and neither prescribes a width — so this is the same taste call rev 97
+   and rev 114 made, made a third time on a number rather than on an impression.
+   `WCAG 1.4.3` keeps its pairs untouched (key --slate 5.95:1, value --ink
+   14.37:1); `1.3.1` keeps its DOM order; `1.4.10` is the one criterion with
+   anything to say, and it is satisfied in the right direction — wrapping is not
+   loss of content, truncation is, and `report-issue`'s ellipsed picker value
+   gains room rather than losing it.
+   HOW IT IS DONE: the group is the grid and the row is a subgrid of it, so the
+   column is sized ONCE per card, by the widest key in that card, and every row
+   in the card stands on it. minmax() holds the floor at --sz-rowkey. This is
+   what rev 114's complaint actually asked for — that card stood on three axes
+   AT ONCE, and a per-card column can no more do that than a fixed one can.
+   MEASURED ON THE BUILD, headless at the 375 frame, before -> after: two-line
+   rows 27 -> 6; 188 of 189 values move left, by 13.80 to 60.00; 61 cards stand
+   on 12 columns and 39 of them on the floor; 22 rows shrink and NONE grows;
+   every interactive row is still 44 and every chevron still flush; horizontal
+   overflow 0 on every page, and `order-details-inspection` stops scrolling
+   (588 -> 577). The one value that does not move is `share`'s Referral link,
+   which carries an inline `margin-left:auto` in the page — rev 114 left it
+   standing for the same reason, wireframes/ not being edited without her word. */
+.dr-rows:not(.dr-rows--money){
+  display: grid;
+  grid-template-columns: minmax(var(--sz-rowkey), max-content) 1fr;
+  column-gap: var(--sp-10);
+}
+.dr-rows:not(.dr-rows--money) > .dr-rows__row,
+.dr-rows:not(.dr-rows--money) > .dr-field{
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+/* A CHEVRON IS A THIRD COLUMN, NOT A THIRD ROW. `.dr-field--action` is the one
+   row in the kit whose markup carries three children with no wrapper around the
+   trailing two — label, value, chevron — so a two-track card dropped the
+   chevron under the label (measured on `listings-filters`: x 305 under a value
+   at 395, and the row 44 → 47). The track is declared only where a chevron
+   exists, so the 26 cards without one do not pay a gap for an empty column. */
+.dr-rows:not(.dr-rows--money):has(> .dr-field > .dr-field__chev){
+  grid-template-columns: minmax(var(--sz-rowkey), max-content) 1fr auto;
+}
+/* The rows that are NOT a key beside a value keep the flex they were built
+   with, and by staying out of the subgrid they do not size the card's column.
+   The toggle is here on the same reasoning as the area: its label is `flex:1`
+   and its switch sits at the trailing edge — it was never on the value axis,
+   and putting it there would move every switch to the middle of the card. It
+   is also why `Operator on the way` (143.84, the widest label in the product)
+   no longer widens the Notifications column it does not stand in. */
+.dr-rows:not(.dr-rows--money) > .dr-rows__row--stack,
+.dr-rows:not(.dr-rows--money) > .dr-rows__row:has(> .dr-sk-line),
+.dr-rows:not(.dr-rows--money) > .dr-field--area,
+.dr-rows:not(.dr-rows--money) > .dr-field--toggle,
+.dr-rows:not(.dr-rows--money) > .dr-field:has(> .dr-upload){ display: flex; }
+/* a hint is a third line under both cells, never a third cell */
+.dr-rows:not(.dr-rows--money) > .dr-field > .dr-field__hint{ grid-column: 1 / -1; }
 
 /* A plane inside a card, not a second card on it — 1.06:1 above the card. */
 .dr-inset{
@@ -3684,16 +3762,27 @@ header.dr-topbar,
    two days after this note was written, and the note was never revisited. The
    padding fix had already landed by then, so nothing shipped wrong either way;
    what was wrong was the sentence claiming the component had no user.
-   AND SINCE 2026-08-21 IT CARRIES THE STATE ALONE. The designer's «видали цю
+   AND FROM 2026-08-21 IT CARRIED THE STATE ALONE. The designer's «видали цю
    стрічку» took off the `.dr-avail` sentence that said *You are Available* in
-   words above it, so on `operator-listings` this control is now the only thing
+   words above it, so on `operator-listings` this control became the only thing
    on the screen naming the operator's availability. Measured: the selected
    plate is `--page` on the `--media` track at 1.20:1, under WCAG 1.4.11's 3:1
    floor for a state indicator — a pre-existing figure, not one that change
    introduced, but one that used to have a sentence standing behind it and no
-   longer does. Reported to the designer with its options at rev 164. The
-   programmatic side is untouched: the carrier is a checked radio in a named
-   fieldset (1.3.1 OK, 4.1.2 OK). */
+   longer did. Reported to the designer with its options at rev 164.
+
+   THAT NUMBER IS NOT FIXED, IT IS GONE — AND SO IS THIS COMPONENT'S LAST USER.
+   2026-09-10 (rev 235), the designer against the built screen: «it shouldnt
+   look like tab make it like in slack where I select a status make like
+   select». Both `operator-listings` and `operator-listings-empty` now carry
+   `.dr-field--action` + `.dr-sheet--picker` — the kit's own picker row — so
+   the state is a row VALUE at 14.37:1 (--ink on --card, text, measured by
+   1.4.3) instead of a plate at 1.20:1, and the 1px --slate outline quoted as
+   the cheapest fix is retired unspent. THE BLOCK BELOW STAYS AND IS SPENT
+   NOWHERE, a declared rung applied to nothing the way --sh-card and
+   --sh-onphoto are; the padding fix above is what it would render with if a
+   screen ever asks for it again. Nothing here is deleted — the count is 0
+   pages, not 0 lines. */
 .dr .dr-segment{
   display: flex; width: 100%;
   height: var(--h-control); padding: var(--sp-2);
