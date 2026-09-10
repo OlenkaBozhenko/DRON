@@ -37,19 +37,45 @@
 
     <main class="dr-main">
       <p class="zlabel dr-label">Status <span class="dr-label__act">▸ set availability — gates dispatch (O-02)</span></p>
+      <!-- IT IS A SELECT NOW, AND IT WAS A SEGMENTED CONTROL UNTIL 2026-09-10
+           (the designer, against the built screen: «it shouldnt look like tab
+           make it like in slack where I select a status make like select»).
+
+           THE COMPONENT IS THE KIT'S OWN PICKER ROW, NOT A NEW SHAPE. `.dr-field
+           --action` + `.dr-sheet--picker` is what `order-setup` (Parcel size),
+           `operator-account` (Mode), `listings-filters` and five more rows already
+           are, so a ninth select on the ninth screen looks and answers like the
+           other eight (`WCAG 3.2.4 Consistent Identification`). Nothing was added
+           to `ui/kit.css` for this and no token was cut.
+
+           IT ALSO CLOSES AN OPEN WCAG FINDING RATHER THAN MOVING IT. The segment
+           carried its state as a `--page` plate on the `--media` track — 1.20:1,
+           against `WCAG 1.4.11 Non-text Contrast`'s 3:1 for a state indicator,
+           reported to her at rev 164 and still open. A select has no plate: the
+           state is the VALUE, `--ink` on `--page` at 15.99:1, so the criterion is
+           satisfied by text instead of waived. `HIG · Pop-up buttons` is the rule
+           the new shape answers to — a small set of mutually exclusive options
+           where the current choice matters more than seeing all of them at once,
+           which is what availability is.
+
+           THE TARGET IS UNCHANGED AT 44. `.dr-field` is `min-height: var(--h-control)`
+           = 44px, the same figure the three segments spent (`HIG · 44pt target`), and
+           the three options in the drawer are `.dr-picker__item` at 44 each.
+
+           THE COPY IS THE SEGMENT'S, WORD FOR WORD — Available / Busy / Offline —
+           so `microcopy.md` gains no string and loses none. -->
       <section class="dr-stack" aria-label="Availability status">
         <p class="dr-avail">
           <span class="dr-avail__dot" aria-hidden="true"></span>
           <b class="dr-avail__state">You are Offline</b><span class="dr-avail__note">· no jobs while offline</span>
         </p>
-        <form>
-          <fieldset class="dr-segment">
-            <legend class="sr-only">Availability status</legend>
-            <label class="dr-segment__seg">Available<input type="radio" name="status" value="available"></label>
-            <label class="dr-segment__seg">Busy<input type="radio" name="status" value="busy"></label>
-            <label class="dr-segment__seg">Offline<input type="radio" name="status" value="offline" checked></label>
-          </fieldset>
-        </form>
+        <div class="dr-rows">
+          <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-avail">
+            <span class="dr-field__label">Availability</span>
+            <span class="dr-field__value">Offline</span>
+            <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+          </button>
+        </div>
       </section>
 
       <!-- THE ROW CAME DOWN WITH THE BASE PAGE'S (2026-09-03). This file and
@@ -93,15 +119,37 @@
       </nav>
       <div class="dr-home"><span></span></div>
     </footer>
+
+    <!-- THE AVAILABILITY DRAWER. Three options, under the six, so the list rises
+         from the bottom edge rather than pushing a screen — `ui/kit.js`'s standing
+         rule (≤ 6 → drawer, ≥ 7 → a screen). One scrim serves the page; only one
+         row can be tapped. `data-state` on each option is the badge's carrier and
+         nothing else — every colour and shape behind it stays in `ui/kit.css`. -->
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <section class="dr-sheet dr-sheet--picker" id="sheet-avail" role="dialog" aria-modal="true" aria-labelledby="sheet-avail-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-avail-title">Availability</p>
+      <div class="dr-picker__list">
+        <button class="dr-picker__item" type="button" data-state="available"><span class="dr-picker__label">Available</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+        <button class="dr-picker__item" type="button" data-state="busy"><span class="dr-picker__label">Busy</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+        <button class="dr-picker__item" type="button" data-state="offline" aria-current="true"><span class="dr-picker__label">Offline</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+      </div>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+    </section>
+
   </div>
 
-  <!-- THE BADGE FOLLOWS THE SEGMENT — the base page's script verbatim. The word
-       is read off the checked radio's own label, so the strings live in the
-       markup once and this file carries no product copy; only `data-state` is
-       set from here, every fill and shape behind it staying in `ui/kit.css`.
-       The badge is not a live region: the checked radio in its legend-named
-       fieldset is still the programmatic carrier (`WCAG 1.3.1` OK, `4.1.2` OK),
-       and announcing the same fact twice is what that would buy. -->
+  <!-- THE BADGE FOLLOWS THE SELECT — the base page's script verbatim, rewired
+       with it on 2026-09-10 when the segment became a picker row. The word is
+       read off the tapped option's own label, so the strings live in the markup
+       once and this file carries no product copy; only `data-state` is set from
+       here, every fill and shape behind it staying in `ui/kit.css`. It reads the
+       tapped option rather than `aria-current` because this listener is
+       registered before `ui/kit.js` and therefore fires before the mark moves.
+       The badge is not a live region: the row names its own value and the
+       current option carries `aria-current` (`WCAG 1.3.1` OK, `4.1.2` OK), and
+       announcing the same fact twice is what that would buy. -->
   <script>
   (function () {
     'use strict';
@@ -110,21 +158,20 @@
     var word  = document.querySelector('[data-avail-word]');
     if (!badge || !word) return;
 
-    var radios = document.querySelectorAll('input[name="status"]');
-    if (!radios.length) return;
+    var items = document.querySelectorAll('#sheet-avail .dr-picker__item');
+    if (!items.length) return;
 
-    function sync() {
-      radios.forEach(function (radio) {
-        if (!radio.checked) return;
-        badge.setAttribute('data-state', radio.value);
-        word.textContent = radio.parentNode.textContent.trim();
-      });
+    function sync(item) {
+      badge.setAttribute('data-state', item.getAttribute('data-state'));
+      word.textContent = item.querySelector('.dr-picker__label').textContent.trim();
     }
 
-    radios.forEach(function (radio) {
-      radio.addEventListener('change', sync);
+    items.forEach(function (item) {
+      item.addEventListener('click', function () { sync(item); });
     });
-    sync();
+
+    var current = document.querySelector('#sheet-avail .dr-picker__item[aria-current="true"]');
+    if (current) sync(current);
   }());
   </script>
 

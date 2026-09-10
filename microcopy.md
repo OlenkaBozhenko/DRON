@@ -430,7 +430,7 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
   | `operator-verification` **Add document** ×2 · `operator-profile-setup` **Add photo** · `result-upload` **Add photo** · `operator-dispute` **Add evidence** | The file lands in its own upload well. The result is on screen; a toast would restate it and teach the pattern that every tap owes a message. |
   | `contact-support` **Call support** | ~~Hands off to the phone app. The dialer is the confirmation, and nothing has happened yet at the moment of the tap.~~ **Reason corrected 2026-08-16, verdict unchanged:** there was never a dialer — the button had no target at all, and the `tel:` reading left the product at rev 141 with the masked number. It now opens `call-support.html`, so it **changes screen**, which puts it in the last row of this section rather than this one: a toast on a navigating control would have to ride the navigation. |
   | `listings*` **Filters** · the four service tabs · `time-slot*` day chips · `rate` stars | Open a picker or move a selection. Visible either way. |
-  | `operator-listings` availability segment | ~~The line above it already reads **You are Available · receiving jobs near Podil**, and it stays readable. A permanent statement beats a 4-second one.~~ **Reason corrected 2026-08-21, verdict unchanged:** that sentence came off the screen on the designer's word (*«видали цю стрічку»*), so it can no longer be the reason. The segment belongs in the row above instead — it **moves a selection**, and the selected plate is on screen and stays there, which is visible either way. |
+  | `operator-listings` availability segment | ~~The line above it already reads **You are Available · receiving jobs near Podil**, and it stays readable. A permanent statement beats a 4-second one.~~ **Reason corrected 2026-08-21, verdict unchanged:** that sentence came off the screen on the designer's word (*«видали цю стрічку»*), so it can no longer be the reason. The segment belongs in the row above instead — it **moves a selection**, and the selected plate is on screen and stays there, which is visible either way. **Corrected again 2026-09-10 (rev 235), verdict unchanged a second time:** the segment is a **picker row** now, so this file’s rule covers it literally rather than by analogy — *open a picker or move a selection* — and what the pick sets is written twice on the screen it returns to, in the row’s own value and in the nav-bar badge. |
   | every `-error` screen | An error must stay re-readable; a toast leaves. Now stated in `voice.md`. |
 - **`order-history` · Delete order (×3) — reported, not built, because it is not a toast question.** Three icon buttons, `aria-label="Delete order"`, no confirm and no undo anywhere in the flow. `voice.md`'s **Dangerous action** rule asks for the consequence **before** the tap (`Decline this job? … won't come back to you.` + `Decline` / `Keep job`), and a toast after the fact is not that. Two ways to close it — a confirm sheet before, or a toast **with an Undo**, which the component does not have — and both are the designer's call. The rule now says so out loud.
 - **Everything else that wants a toast wants one the mechanism cannot give.** Five real cases — `account-edit` **Save changes**, `rate` **Submit review**, `job-offer` **Decline**, `result-upload-error` **Queue offline**, `contact-support` **Mark resolved** — all finish by **changing screen**, and the toast would have to ride the navigation and appear on the screen the user lands on. Today `data-toast` fires only where you stay. That is rev 89's own open question, still open, still hers.
@@ -668,6 +668,16 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **What it costs is the word said twice, and it is reported rather than quietly absorbed.** Each card now prints its title and, 44px under it, the same word as the row's label — *Payment method* over *Payment method*, *Language* over *Language*. `WCAG 2.4.6` asks a label to describe its purpose and both do; nothing fails. But iOS Settings answers this shape the other way: a one-row group names the topic in the header and lets the row carry only the **value**. **That is a decision for the designer, put to her with both readings drawn, not taken here** — the rows are left exactly as built.
 - **`payment`'s card is untouched and the scope contrast survives.** `account-edit` is the **saved default** and `payment` is *for this order*; the words carrying that are still on both screens.
 - **No toast, no state.** A settings card is not a state message; `voice.md`'s state tone is not engaged.
+
+**Sync — 2026-09-10 (the operator’s availability stops being a segmented control and becomes a select — one word is authored and none retires)**
+
+- **The designer’s call, given against the built screen:** *«it shouldnt look like tab make it like in slack where I select a status make like select»*. Three segments in a track become one row that names the current status and opens a drawer.
+- **THE STANDARDS WENT FIRST, AND HERE ONE OF THE TWO SHAPES ACTUALLY FAILED, WHICH IS RARER THAN THE USUAL ANSWER.** `HIG · Segmented Controls` and `HIG · Pop-Up Buttons` both fit three mutually exclusive options — the segment shows all three at once, the pop-up shows the chosen one — so HIG permits either. `WCAG 1.4.11 Non-text Contrast` does not: the segment carried its state as a `--page` plate on a `--media` track, **1.20:1** against the 3:1 floor, open since rev 164. The select has no plate. The state is the row’s **value**, `--ink` on `--card` at **14.37:1**, so the criterion is satisfied by text rather than waived.
+- **One string is authored: `Availability`.** It is the row’s label and the drawer’s title — the same word twice, which is exactly the construction rev 102 set for `account-edit`’s *Payment method* and *Language*, and rev 231 kept when that card split in two.
+- **Not one string retires.** *Available* / *Busy* / *Offline* are the segment’s own three words, moved from three `<label>`s to three `.dr-picker__label`s without an edit. *Availability status* survives as the zone’s `aria-label`; only its second home, the fieldset’s `<legend>`, went with the fieldset. *Cancel* is the drawer’s exit and the product already carries it on eight other pickers.
+- **The badge’s source moves and its rule does not.** It read the checked radio’s `<label>`; it now reads the tapped option’s `.dr-picker__label`. The three strings still live in the markup **once**, and the script still carries no product copy — only `data-state`.
+- **`voice.md` is not engaged.** Nothing here is a state message being rewritten: a picker row is a control, and the one new word is a label, not a sentence. **P4** (*speak the user’s words, not the equipment*) is the only principle with anything to say, and *Availability* is the word the zone’s own accessible name has used since the screen was drawn.
+- **No toast.** The no-toast table’s row for this control is corrected in place above: the rule (*open a picker or move a selection — visible either way*) now covers it literally, since it is both.
 
 ## Master table — every string
 
@@ -1272,10 +1282,13 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-listings-empty | — | Ivan K. | Body | DATA |
 | operator-listings-empty | — | Incoming · 0 | Body |  |
 | operator-listings-empty | — | Active · 0 | Body |  |
-| operator-listings-empty | — | Offline | Badge | the same badge at this state’s value, new 2026-08-21 (rev 183) — read off the checked radio’s label, as on the base file |
+| operator-listings-empty | — | Offline | Badge | the same badge at this state’s value, new 2026-08-21 (rev 183) — ~~read off the checked radio’s label~~ **read off the tapped option’s label in the availability drawer since 2026-09-10 (rev 235)**, as on the base file |
 | operator-listings-empty | Status | You are Offline | State message |  |
 | operator-listings-empty | Status | · no jobs while offline | State message |  |
-| operator-listings-empty | Status | Availability status | State message |  |
+| operator-listings-empty | Status | Availability status | State message | the zone’s `aria-label`; it was also the segment’s `<legend>` until 2026-09-10 (rev 235), and the legend went with the fieldset |
+| operator-listings-empty | Status | Availability | Field label | **new 2026-09-10 (rev 235)** — the picker row’s own label, and the drawer’s title, one word carried twice the way `account-edit`’s *Payment method* and *Language* are (rev 102) |
+| operator-listings-empty | Status | Offline | Field value | DATA — the row’s value at this state |
+| operator-listings-empty | Status | Cancel | Button | the drawer’s exit; the product’s existing string, `ui/kit.js`’s `[data-close]` |
 | operator-listings-empty | Status | Available | Field label |  |
 | operator-listings-empty | Status | available | Field value | DATA |
 | operator-listings-empty | Status | Busy | Field label |  |
@@ -1294,10 +1307,13 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-listings | — | Ivan K. | Body | DATA |
 | operator-listings | — | Incoming · 2 | Body |  |
 | operator-listings | — | Active · 1 | Body |  |
-| operator-listings | — | Available | Badge | the nav-bar availability badge, new 2026-08-21 (rev 183). **Not a new string:** it is read at runtime off the checked radio’s own `<label>` in the Status segment three rows below, so the word lives in the markup once and the badge cannot drift from the control |
+| operator-listings | — | Available | Badge | the nav-bar availability badge, new 2026-08-21 (rev 183). **Not a new string:** it is read at runtime off ~~the checked radio’s own `<label>` in the Status segment~~ **the tapped option’s own `.dr-picker__label` in the availability drawer (rev 235, 2026-09-10)** three rows below, so the word lives in the markup once and the badge cannot drift from the control |
 | operator-listings | — | Busy | Badge | same badge, same source label |
 | operator-listings | — | Offline | Badge | same badge, same source label |
-| operator-listings | Status | Availability status | Body |  |
+| operator-listings | Status | Availability status | Body | the zone’s `aria-label`; it was also the segment’s `<legend>` until 2026-09-10 (rev 235), and the legend went with the fieldset |
+| operator-listings | Status | Availability | Field label | **new 2026-09-10 (rev 235)** — the picker row’s own label, and the drawer’s title, one word carried twice the way `account-edit`’s *Payment method* and *Language* are (rev 102) |
+| operator-listings | Status | Available | Field value | DATA — the row’s value at this state |
+| operator-listings | Status | Cancel | Button | the drawer’s exit; the product’s existing string, `ui/kit.js`’s `[data-close]` |
 | operator-listings | Status | Available | Field label |  |
 | operator-listings | Status | available | Field value | DATA |
 | operator-listings | Status | Busy | Field label |  |
