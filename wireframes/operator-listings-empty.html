@@ -35,6 +35,43 @@
       <span class="dr-chip dr-chip--sm dr-avail-badge" data-avail-badge data-state="offline"><span class="dr-avail-badge__dot" aria-hidden="true"></span><span data-avail-word>Offline</span></span>
     </header>
 
+    <!-- AND ON 2026-09-10 IT GOES BACK INTO THE CHROME, WHICH REVERSES THE BLOCK
+         ABOVE — the designer, against the built row, with `listings` open beside
+         it: «зроби як тут». THE TWO ROWS WERE MEASURED SIDE BY SIDE FIRST, and
+         the CSS turned out to be identical already: one component, one
+         `.dr-groups--tabs`, the same `flex: 1 1 0`. What differed was only where
+         the row LIVED — `listings` carries it in the chrome, flush under the top
+         bar; this page carried it inside `main`, 12px under the Availability row
+         and 15px narrower, because the scrolling `main` keeps a scrollbar. So the
+         answer to «як тут» is the position, and nothing about the tab itself moves.
+         THE 2026-09-03 READING IS NOT WRONG, IT IS SUPERSEDED, and both stay in
+         this file so neither is re-proposed later as new. That day the objection
+         was `HIG · Segmented Controls`: a SEGMENTED CONTROL stood between this row
+         and the list it filters. **That segment no longer exists** — on 2026-09-10
+         availability became `.dr-field--action`, a disclosure row opening a sheet —
+         so what now sits between them is one field row, and the guideline the old
+         reading rested on is not engaged by it.
+         WHAT COMES BACK WITH THE MOVE: the row is chrome again, so it never
+         scrolls away and `Active · 1` stays on screen; it runs the full frame
+         width instead of stopping short of the scrollbar; and `WCAG 3.2.3
+         Consistent Navigation` holds again between the two home screens, which
+         2026-09-03 had knowingly spent. `ui/kit.css`'s `.dr-main > .dr-groups`
+         and `.dr-main > .dr-groups--tabs` are left declared with the spend stated
+         as zero — one word puts the row back in the page. -->
+    <!-- THE ROW CAME DOWN WITH THE BASE PAGE'S (2026-09-03). This file and
+         `operator-listings` are one screen in two states, so the chrome and the
+         zone order are the same on both by `_conventions.md`'s rule — the row
+         could not stay in the chrome here while it sits in the page there. The
+         reason is the base page's and is written out there in full; what is
+         local is that this state's counts are `Incoming · 0` / `Active · 0`,
+         so the row filters two empty groups and the state mark below carries
+         the exit. No `data-groups` here: the base page's script is what moves
+         `aria-current`, and this page has none. -->
+    <nav class="dr-groups dr-groups--tabs" aria-label="Job groups">
+      <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming · 0</a>
+      <a class="dr-grouptab" href="#active">Active · 0</a>
+    </nav>
+
     <main class="dr-main">
       <p class="zlabel dr-label">Status <span class="dr-label__act">▸ set availability — gates dispatch (O-02)</span></p>
       <!-- IT IS A SELECT NOW, AND IT WAS A SEGMENTED CONTROL UNTIL 2026-09-10
@@ -77,20 +114,6 @@
           </button>
         </div>
       </section>
-
-      <!-- THE ROW CAME DOWN WITH THE BASE PAGE'S (2026-09-03). This file and
-           `operator-listings` are one screen in two states, so the chrome and the
-           zone order are the same on both by `_conventions.md`'s rule — the row
-           could not stay in the chrome here while it sits in the page there. The
-           reason is the base page's and is written out there in full; what is
-           local is that this state's counts are `Incoming · 0` / `Active · 0`,
-           so the row filters two empty groups and the state mark below carries
-           the exit. No `data-groups` here: the base page's script is what moves
-           `aria-current`, and this page has none. -->
-      <nav class="dr-groups dr-groups--tabs" aria-label="Job groups">
-        <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming · 0</a>
-        <a class="dr-grouptab" href="#active">Active · 0</a>
-      </nav>
 
       <p class="zlabel dr-label">Offers <span class="dr-label__act">▸ empty — idle while offline (exit)</span></p>
       <section aria-label="No offers">
