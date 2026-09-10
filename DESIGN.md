@@ -2654,6 +2654,41 @@ reason this pair is now two names.
   darkens — because the accent cannot be the label colour at 1.69:1.
 - **Action bar:** `--page`, `--line` top, padding `12px 16px 24px`, gap 8, full-width buttons.
 
+### The in-page group row (`.dr-groups`) — two shapes, one component
+
+A row of places with one current, **48px**, `overflow-x: auto` with the scrollbar hidden. It had
+never reached this document in either shape; both are written down here at rev 232, the second of
+them on the day it was built.
+
+**The chip (`.dr-groups`) — 4 pages.** The four `time-slot` day rows. Gap 8, row padding `0 16`,
+pill `--r-pill` at **32px visible** with a `--pill-bleed` −6/−6 `::after` taking the target to
+**44** (`HIG · 44pt` ✓, `WCAG 2.5.8` ✓ at 24). Current = `--green-wash` behind `--ink` (**14.75:1**);
+the rest `--slate` on `--page` (**6.62:1**). **The mark itself is `1.085:1`** — the tint against the
+page — which is under `WCAG 1.4.11`'s 3:1 and leans on the label moving 6.62 → 15.99 as well, a
+text-against-text difference WCAG does not measure. Recorded as the known condition it is.
+
+**The underline tab (`.dr-groups--tabs`) — 7 pages**, the designer's pick 2026-09-10: five
+`listings` and two `operator-listings`. Gap 0, row padding `0 4` — `--sp-screen` 16 minus the tab's
+own `--sp-snug` 12, so the **label** lands on the screen margin and the underline runs 12 past the
+text at each end. Tab is the row's full height, **47.2** inside the 48 the hairline takes a pixel
+from (`HIG · 44pt` ✓ +3.2, `WCAG 2.5.8` ✓ 1.96× the 44 × 44 area). Current = `--ink` label plus a
+**2px `--ink`** rule on the bottom edge; the rest `--slate`. **The mark is `15.99:1`** — +12.99 over
+`1.4.11`'s floor and the only one of the row's two shapes that passes on the mark alone.
+
+- **`flex: 1 1 0` with `min-width: max-content`.** Equal halves where the labels fit, own width
+  where they do not, one rule for both: `operator-listings` **175.1 × 47.2** twice at the 375 frame
+  and **158.0 × 47.2** twice at ≤ 389px; `listings` keeps **41.2 / 77.7 / 155.3 / 92.9** and scrolls.
+- **The weight does not move with the state** — 600 in both. A heavier current tab is a wider tab,
+  and on a row that scrolls that re-measures every sibling under the finger. Verified by tapping
+  *Delivery* on the built page: all four widths byte-identical before and after.
+- **The row got tighter, not looser.** Measured on `listings` by toggling the class live: content
+  **423 → 375**, hidden scroll **84 → 36** at ≤ 389px. The tab spends nothing on gap and 8 on row
+  padding where the chip spent 24 and 32.
+- **The hairline.** In the chrome (`listings`) it is the row's own `border-bottom`, which has always
+  been there — the tab costs that screen no new line. In `main` (`operator-listings`) it had been
+  deleted on the ground that an inset rule is a divider inside content, so it returns **full-bleed**:
+  `margin-inline: -16` paid back as padding, the tabs not moving a pixel sideways.
+
 ### Icons
 
 Flat outline on a 24-grid, `stroke-width="1.7"` declared once, `fill="none"`, `currentColor`,

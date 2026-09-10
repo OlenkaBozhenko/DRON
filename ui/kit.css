@@ -1524,6 +1524,92 @@ header.dr-topbar,
 .dr-grouptab[aria-current="true"]{ background: var(--green-wash); color: var(--ink); }
 .dr-grouptab:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 
+/* AND THE SAME ROW, DRAWN AS UNDERLINE TABS — `.dr-groups--tabs`, the designer's
+   pick on 2026-09-10 against the built `operator-listings`: «make it like a tab
+   bar Incoming and active», then «роби варіант B» after three shapes were drawn
+   and measured for her.
+   THE NAMING WENT TO HER FIRST, BECAUSE THE WORD SHE USED IS ALREADY TAKEN.
+   `HIG · Tab Bars` reserves the tab bar for an app's top-level navigation at the
+   BOTTOM of the screen, and both of these pages already carry one. HIG's own
+   control for switching a list between mutually exclusive groups INSIDE a screen
+   is the segmented control — which is what shape (C) was, and it was measured and
+   rejected for two reasons written into rev 232: `161 × 40`, four short of
+   `HIG · 44pt`, and two identical `--media` tracks stacked 12px apart, one setting
+   availability and one filtering the list. So the shape she has is a tab in the
+   web sense and a departure from HIG's vocabulary, recorded as her decision.
+   WHAT CARRIES THE STATE, AND WHY THIS IS THE ONLY ONE OF THE THREE THAT PASSES
+   `WCAG 1.4.11` ON THE MARK ALONE. The chip marks the current group with
+   `--green-wash` behind `--ink`: the label pair is 14.75:1 and clears `1.4.3`
+   easily, but the MARK — the tint against the page — is `1.085:1`, under the 3:1
+   that `1.4.11` asks of a state, and it leans on the label also moving
+   `--slate` 6.62:1 → `--ink` 15.99:1, which WCAG does not itself measure (text
+   against text is not a tested pair). The underline is `--ink` on `--page` at
+   `15.99:1`, +12.99 over the floor, and the label still moves with it. Two
+   independent signals, the way `DESIGN.md`'s selected tab already asks for.
+   THE WEIGHT DELIBERATELY DOES NOT MOVE, WHICH IS A CHANGE FROM THE SHAPE SHE
+   WAS SHOWN. The schematic drew the current tab at 600 against 500. With
+   `flex: 1 0 auto; min-width: max-content` a heavier label is a WIDER label, so
+   on `listings` — where the four tabs do not fit and the row scrolls — tapping a
+   tab would re-measure every tab and slide the row under the finger. `--ink` and
+   the 2px rule carry the state; the metrics stay put.
+   ONE RULE GIVES BOTH BEHAVIOURS, WHICH IS WHY THERE IS ONE MODIFIER AND NOT TWO.
+   `flex: 1 1 0` divides the row EQUALLY — the basis is zero, so a tab's own text
+   length buys it nothing — and `min-width: max-content` then refuses to shrink a
+   tab under its label. `operator-listings`'s two become exact halves; `listings`'s
+   four ask for ~86 each, every one of them is wider than that (*Aerial photo &
+   video* alone needs more than double), so all four freeze at their own width and
+   the row scrolls, exactly as it does today. **`flex: 1 0 auto` was built first
+   and thrown away before it reached her**, written down so the near-miss is not
+   re-proposed as a discovery: an `auto` basis hands each tab its text width and
+   then adds the slack equally, which left `Incoming · 2` at **185.6** against
+   `Active · 1`'s **164.6** — grown, but still unequal, and «make it like a tab
+   bar» means halves. No label is ever squeezed or truncated either way, which is
+   the failure mode equal quarters would have had at this measure.
+   THE ROW'S INLINE PADDING IS 4, NOT 16, AND THAT IS ARITHMETIC RATHER THAN A NEW
+   RUNG: the tab keeps its own `--sp-snug` 12, so 16 − 12 puts the first LABEL on
+   the screen's 16 margin while the underline still runs 12 past the text at each
+   end. The chip row could not do this — its 16 is where the pill's fill begins. */
+.dr-groups--tabs{
+  gap: 0;
+  padding-inline: calc(var(--sp-screen) - var(--sp-snug));   /* 4 — the label lands on 16, the underline runs 12 past it */
+  border-bottom: var(--hair) solid var(--line);
+}
+.dr-groups--tabs .dr-grouptab{
+  flex: 1 1 0; min-width: max-content;   /* equal halves where they fit, own width where they do not */
+  height: 100%; justify-content: center;
+  border-radius: 0;
+}
+/* The hit area stops being a bleed and becomes the rule. The chip needed
+   `--pill-bleed` to reach 44 from 32; the tab is the row's full height — 47
+   inside the 48 the hairline takes a pixel from — so `::after` is free to be the
+   underline instead, and `HIG · 44pt` / `WCAG 2.5.8` are cleared by the box
+   itself with 3 to spare. */
+.dr-groups--tabs .dr-grouptab::after{ inset: auto 0 0 0; height: 2px; background: transparent; }
+.dr-groups--tabs .dr-grouptab[aria-selected="true"],
+.dr-groups--tabs .dr-grouptab[aria-current="true"]{ background: transparent; color: var(--ink); }
+.dr-groups--tabs .dr-grouptab[aria-selected="true"]::after,
+.dr-groups--tabs .dr-grouptab[aria-current="true"]::after{ background: var(--ink); }
+/* The ring turns inward: at full row height a +2 offset would paint outside the
+   row and over the card below it. Width, colour and `2.4.11` are untouched. */
+.dr-groups--tabs .dr-grouptab:focus-visible{ outline-offset: calc(var(--focus-offset) * -1); }
+
+/* ON THE OPERATOR'S HOME THE LINE HAS TO BE PUT BACK, AND FULL-BLEED, WHICH IS
+   THE ONE COST OF (B) AND WAS QUOTED TO HER BEFORE SHE CHOSE. Rev ~221's
+   `.dr-main > .dr-groups` deleted this hairline on the stated ground that «a rule
+   that stops 16px short of both edges is a divider inside content, and §0
+   separates surfaces by tone and radius rather than by lines». An underline tab
+   has no shape without a track to sit on, so the line returns — but it returns
+   EDGE TO EDGE rather than as the inset divider that was rejected: the row pulls
+   out by `--sp-screen` and pays it back as padding, so the tabs do not move
+   sideways by a pixel and only the rule gets wider. `listings` needs none of
+   this: its row is in the CHROME and has carried this exact hairline all along,
+   so (B) costs that screen no line at all. */
+.dr-main > .dr-groups--tabs{
+  margin-inline: calc(var(--sp-screen) * -1);
+  padding-inline: calc(var(--sp-screen) - var(--sp-snug));
+  border-bottom: var(--hair) solid var(--line);
+}
+
 /* ═══ STATUS & PROGRESS ═══════════════════════════════════════════════════
    Two states never differ by colour alone: a dot pings and a check sits. */
 
