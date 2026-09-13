@@ -1554,7 +1554,9 @@ header.dr-topbar,
    0 px of solid green added; the budget does not count the tint. The pill's
    edge is 1.03:1 on the card — a chip here is read by its word, never by its
    edge, so WCAG 1.4.1 and 1.4.11 are no more leaned on than they were in grey.
-   The Available badge's green DOT is not copied; that one is still hers. */
+   The Available badge's green DOT is not copied, on her word the same day:
+   «для new не потрібна крапка. Бо крапка то був статус» — the dot is the
+   availability status's own mark and does not travel with the pair. */
 /* SETTLED 2026-08-02 by the designer: 14px, everywhere. The build drew 13px in
    a badge (.badge) and 14px in the ETA pill (.ohl-eta) — one component with two
    values, against the One-Component-One-Value rule. One value now. */

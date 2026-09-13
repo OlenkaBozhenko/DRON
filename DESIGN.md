@@ -3207,7 +3207,9 @@ from rev 218 until then it was the base chip's `--media` ground with `--ink`, 13
 third selector on the one declaration `.dr-chip--claim` and the Available badge already share, not
 the pair restated. **No §0 rule bends:** the tint was already inside card UI — the Verified and
 Insured claim chips wear it inside `.dr-op` — and the green budget does not count it. **0 px of
-solid green added.** The dot the Available badge carries before its word is **not** copied. The
+solid green added.** **No dot, on her word** (*«для new не потрібна крапка. Бо крапка то був
+статус»*): the Available badge's dot is the availability status's own mark, one of three
+shapes, and it does not travel with the colour. The
 pill's edge is **1.03:1** on the card and is not what carries the state: unread is still the
 **word**, so `WCAG 1.4.1` is no more engaged than it was as a heading. **What the move bought:** read-state and recency stopped being one axis — the operator's
 *Documents approved* is unread **under Yesterday**, a pair of facts the two old headings could not
