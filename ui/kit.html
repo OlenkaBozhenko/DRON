@@ -1029,17 +1029,21 @@
       <span class="dr-choice__body">
         <span class="dr-choice__title">I need a service done</span>
       </span>
+      <span class="dr-choice__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
     </a>
     <a class="dr dr-choice" href="#" style="width:341px;max-width:100%">
       <span class="dr-well"><img src="../assets/drones/thumbs/drone-flight-front.png" alt=""></span>
       <span class="dr-choice__body">
         <span class="dr-choice__title">I provide services</span>
       </span>
+      <span class="dr-choice__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
     </a>
   </div>
   <div class="notes">
     <p><code>--card</code> at <code>--r-card</code> 16 · title 17/600 <b>14.37:1</b> (stepped to 14 at rev 213, back to 17 at rev 217) ·
-       <b>no chevron</b> (designer, 2026-08-31, rev 206) · <b>no description</b> (designer,
+       <b>trailing <code>chevron.forward</code></b>, <code>.dr-choice__chev</code> 16px <code>--slate</code> <b>5.95:1</b>,
+       16 from the edge and <code>--sp-group</code> from the text, on all 16 instances (removed at rev 206,
+       returned by the designer 2026-09-14, rev 244) · <b>no description</b> (designer,
        2026-09-03, rev 216) · the row clears 44pt by construction · focus ring is keyboard-only,
        <code>2.5px --ink</code>.</p>
     <p><b>A choice card a person taps is a title</b> (designer, 2026-09-03, rev 216:
