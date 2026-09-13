@@ -2267,6 +2267,19 @@ header.dr-topbar,
    take a second line (78 -> 101.8). Left wrapped, not truncated — see
    DESIGN.md. The skeleton <div>s on notifications-loading take none: a row
    that leads nowhere carries no arrow. */
+/* AND THE ALERT ROWS LET IT GO — designer, 2026-09-14, rev 245, on the built
+   `operator-notifications`: «we have no these icons in notifications cards
+   delete icons from notifications cards». Both logs, 11 rows; support 3 and
+   role-select 2 keep it. NO DECLARATION CHANGES — the markup omits the span,
+   so this class is spent on 5 cards. Rev 244's "every card now holds two" is
+   true of those five only: the eleven alert cards hold one child again, and
+   the flex gap does nothing there.
+   HIG · Lists and tables — a conforming departure: the chevron is a
+   convention, and iOS's own notification list draws none. WCAG 4.1.2 ✓ it was
+   aria-hidden. WCAG 1.4.11 and 3.2.4 not engaged. Target is the card,
+   341 × 77.98. WHAT COMES BACK: body 273 -> 309 in the 375 frame, and every
+   alert title is one line again at the 375 frame, a 380 and a 375 viewport,
+   every row 77.98. */
 /* THE PICTURE STANDS 20 FROM THE TEXT, NOT 12 — designer, 2026-09-03, rev 228:
    «збільш відступи від зображення до тексту», on the built `role-select`.
    WHAT WAS WRONG IS NOT THAT 12 IS SMALL — IT IS THAT THE PICTURE SAT CLOSER TO

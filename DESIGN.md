@@ -3045,8 +3045,10 @@ them, measured: **8px**. The reverse order conforms equally and is one swap.
 
 ### The choice card carries the arrow again (`.dr-choice__chev`, rev 244)
 
-**Every tappable choice card ends in `chevron.forward`, flush with its trailing edge** — all sixteen:
-`support` 3, `role-select` 2, `notifications` 6, `operator-notifications` 5. The designer, on the
+**Every tappable choice card that is not an alert row ends in `chevron.forward`, flush with its
+trailing edge** — five of the sixteen since rev 245: `support` 3, `role-select` 2. Rev 244 put it on
+all sixteen, `notifications` 6 and `operator-notifications` 5 included, and rev 245 took it off those
+eleven (next section). The designer, on the
 built `support`: *«зроби стрілку вправо вирівняй по правому краю»*, and then, asked the scope with
 `WCAG 3.2.4` on it, every choice card rather than `support`'s three. **This reverses rev 206**
 (*«delete arrows from such kinde of cards»*), which is kept in `concept.md` as the record of why it
@@ -3072,11 +3074,36 @@ ready*, *Ivan K. accepted your order* and *Your photo and video set is ready* go
 does (row **78 → 101.8**, page still does not scroll). At the narrow tier (380 viewport) six more
 rows take a second line, `support`'s *The photo or report isn't right* and `role-select`'s *I need a
 service done* among them. **Left wrapped, not truncated** — `WCAG 1.4.10` prefers the wrap; whether
-any string is rephrased is a copy decision, open and hers.
+any string is rephrased is a copy decision, open and hers. **The alert logs' share of that cost is
+repaid at rev 245**, which takes the arrow off their rows.
 
 **Where it does not go.** `notifications-loading`'s skeleton rows are `<div>`s, not links, and a row
 that leads nowhere carries no arrow. `.dr-listing` is a different component and keeps *no price row
-and no chevron*.
+and no chevron*. And since rev 245, **no alert row** — next section.
+
+### The alert rows carry no arrow (rev 245)
+
+**On `notifications` and `operator-notifications` the choice card ends at its text — no
+`.dr-choice__chev`.** The designer, on the built `operator-notifications`: *«we have no these icons in
+notifications cards delete icons from notifications cards»*. Both logs, because she named the
+notifications cards rather than one screen and the two logs are one screen in two vocabularies:
+**11** rows, `notifications` 6 and `operator-notifications` 5. `support` and `role-select` keep the
+arrow. **No CSS changes** — the markup omits the span; the class stays declared for the five cards
+that carry it.
+
+**The standards.** `HIG · Lists and tables` — the disclosure chevron is the convention for a row that
+opens another view, not a requirement, and iOS's own notification list draws none; a **conforming
+departure**, recorded as one. `WCAG 4.1.2` — the glyph was `aria-hidden`; name and role unchanged.
+`WCAG 1.4.11` — not engaged; the arrow was never the only tappable cue. `WCAG 3.2.4` — engaged by
+identification (name, label, text alternative), which a hidden glyph is not. `HIG · 44pt` /
+`WCAG 2.5.8` — the target is the card: **341 × 77.98** at the 375 frame.
+
+**What comes back, measured before and after on the build.** The text column regains **36** / **32**:
+body **273 → 309** in the shell's 375 frame (1138 window), **258 → 290** at a 380 viewport,
+**253 → 285** at a 375 viewport. Every row that the arrow had wrapped — four in the 375 frame, seven
+at a 375 viewport — returns **101.78 → 77.98**; `main`'s overflow goes **137 → 65** on
+`notifications` and **3 → 0** on `operator-notifications`. **Every title on both logs is one line at
+all three widths, and every row is 77.98.**
 
 ### The choice card's title returns to 17 (`.dr-choice__title`, rev 221)
 
@@ -3093,7 +3120,7 @@ also rewrote the row**, and the rewritten string — *The photo or report isn't 
 the triage list three equal cards**, and it keeps them at 17: **55.80 × 3**, the ragged middle row
 still gone. Measured across every instance, **no `.dr-choice` title wraps at 17** — true at rev 221;
 since rev 244's arrow took 36 of the column, four alert titles wrap at the standard tier (section
-above).
+above); since rev 245 took the arrow off the alert rows, none does.
 
 **Scope is the component, which is the answer she gave at rev 213 too.** A `role-select`-only
 modifier was the alternative; taking the shared declaration keeps **one title size in the kit**, so
@@ -3232,7 +3259,10 @@ both tiers**, and every row is **77.98**. **That budget is superseded at rev 244
 already stale before it:** re-measured on 2026-09-14, four alert titles stood on two lines at the
 narrow tier (380 viewport) with no arrow on the row. The arrow then takes **36** more at the standard
 tier, so a marked title is written to **225.12** there (273.4 − 48.28), and four titles wrap at the
-standard tier too — listed under *The choice card carries the arrow again*.
+standard tier too — listed under *The choice card carries the arrow again*. **Restored at rev 245:**
+the alert rows carry no arrow, so a marked title is written to **260.72** again, and re-measured the
+same day every title on both logs is one line in the 375 frame, at a 380 viewport and at a 375
+viewport. The narrow-tier wrap reported above did not reproduce; no cause is claimed.
 
 **Spacing is a break now, not a seam.** Measured: **8** within a group (`.dr-list--snug`), **12**
 under the heading (`--sp-snug`), **28** between groups — `.dr-log`, a flex column spending
