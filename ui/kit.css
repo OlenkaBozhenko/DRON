@@ -2245,6 +2245,26 @@ header.dr-topbar,
    The affordance is the card, not a mark on it; the whole surface is the tap
    target and is far past `HIG · 44pt`. `.dr-field__chev` is a DIFFERENT
    component — the picker row's `chevron.forward` — and is untouched. */
+/* AND IT CAME BACK — designer, 2026-09-14, rev 244, on the built `support`:
+   «зроби стрілку вправо вирівняй по правому краю». Asked the scope with
+   `WCAG 3.2.4` on it, she took ALL SIXTEEN over support's three, so the card
+   keeps one anatomy. Rev 206 above is left as written: it is why the arrow
+   left, and both readings conformed then as they do now.
+   `.dr-choice__chev` is the card's own class again, holding the same 16px
+   `chevron.forward` glyph `.dr-field__chev` draws — not that class borrowed,
+   which is the cross-namespace drift rev 206 found on the time-slot rows.
+   NOTHING IS MINTED FOR ITS PLACE: the card's flex gap sets the distance to
+   the text (--sp-group 20, 16 at <= 389px) and the card's inset the distance
+   to the edge (16). Measured: 16 from the edge, 20 from the text, centre
+   offset 0. This also retires rev 228's note below that 14 of the 16 cards
+   hold a single child — every card now holds two, so the gap is spent on all.
+   HIG · Lists and tables ✓ — every instance opens another screen. WCAG 1.4.11
+   ✓ --slate on --card 5.95:1. WCAG 4.1.2 ✓ aria-hidden, name and role unchanged.
+   THE COST IS MEASURE: 36 of the text column, 32 at the narrow tier. support
+   309.4 -> 273.4 and role-select 233.4 -> 197.4 move no row; four alert titles
+   take a second line (78 -> 101.8). Left wrapped, not truncated — see
+   DESIGN.md. The skeleton <div>s on notifications-loading take none: a row
+   that leads nowhere carries no arrow. */
 /* THE PICTURE STANDS 20 FROM THE TEXT, NOT 12 — designer, 2026-09-03, rev 228:
    «збільш відступи від зображення до тексту», on the built `role-select`.
    WHAT WAS WRONG IS NOT THAT 12 IS SMALL — IT IS THAT THE PICTURE SAT CLOSER TO
@@ -2298,6 +2318,7 @@ header.dr-topbar,
    at every tier. */
 .dr-choice > .dr-well{ width: var(--sz-well-w-xs); height: var(--sz-well-h-xs); }
 .dr-choice__body{ flex: 1; min-width: 0; }
+.dr-choice__chev{ flex: none; color: var(--slate); display: inline-flex; }   /* rev 244 · 5.95:1 on --card */
 /* THE TITLE ROW THAT CAN CARRY A MARK (2026-09-03, rev 218). Used by the two
    alert logs alone; every other .dr-choice keeps the title as a direct child
    of __body and is untouched by this. The title takes the flex and the

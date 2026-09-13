@@ -3043,6 +3043,41 @@ bell adds **0.11pp** and changes neither the count nor the ceiling.
 `operator-listings` already records that it is not tappable and owes no 44pt target. Gap between
 them, measured: **8px**. The reverse order conforms equally and is one swap.
 
+### The choice card carries the arrow again (`.dr-choice__chev`, rev 244)
+
+**Every tappable choice card ends in `chevron.forward`, flush with its trailing edge** — all sixteen:
+`support` 3, `role-select` 2, `notifications` 6, `operator-notifications` 5. The designer, on the
+built `support`: *«зроби стрілку вправо вирівняй по правому краю»*, and then, asked the scope with
+`WCAG 3.2.4` on it, every choice card rather than `support`'s three. **This reverses rev 206**
+(*«delete arrows from such kinde of cards»*), which is kept in `concept.md` as the record of why it
+left; both readings conformed then and both conform now.
+
+**The anatomy.** `.dr-choice__chev` is the card's last child: `flex:none`, `inline-flex`, `--slate`,
+holding the 16px `.dr-ic` with path `M9 5l7 7-7 7` — the same glyph `.dr-field__chev` draws on the
+picker rows, under the card's own class name. Nothing is minted for its position: the card's flex gap
+(`--sp-group` **20**, **16** at `≤ 389px`) sets the distance to the text, the card's inset
+(`--sp-screen` **16**) the distance to the edge. Vertical-centre offset measured **0**.
+
+**The standards.** `HIG · Lists and tables` — a chevron on a row that opens another view; every one
+of the sixteen is an `<a href>` that leaves the screen. `WCAG 1.4.11` — `--slate` on `--card`
+**5.95:1**, **1.98×** the 3:1 floor. `WCAG 4.1.2` — the glyph is `aria-hidden="true"`; name and role
+still come from the title and the link. `HIG · 44pt` / `WCAG 2.5.8` — the target is the card; the
+smallest is still **341.4 × 55.8**.
+
+**The cost is measure, 36 at the standard tier and 32 at the narrow one.** `support` body
+**309.4 → 273.4** and `role-select` **233.4 → 197.4**, no title wraps and no row moves at the
+standard tier. **The two alert logs pay it in lines:** on `notifications` *Your delivery photo is
+ready*, *Ivan K. accepted your order* and *Your photo and video set is ready* go to two lines (rows
+**78 → 101.8**, page scroll **11 → 82**); on `operator-notifications` *Job offer · Package delivery*
+does (row **78 → 101.8**, page still does not scroll). At the narrow tier (380 viewport) six more
+rows take a second line, `support`'s *The photo or report isn't right* and `role-select`'s *I need a
+service done* among them. **Left wrapped, not truncated** — `WCAG 1.4.10` prefers the wrap; whether
+any string is rephrased is a copy decision, open and hers.
+
+**Where it does not go.** `notifications-loading`'s skeleton rows are `<div>`s, not links, and a row
+that leads nowhere carries no arrow. `.dr-listing` is a different component and keeps *no price row
+and no chevron*.
+
 ### The choice card's title returns to 17 (`.dr-choice__title`, rev 221)
 
 **The value is 17/600, leading 1.4, tracking −0.01em, `--ink` on `--card` 14.37:1** — the `title`
@@ -3056,7 +3091,9 @@ wasn't what I expected*, **279.3 + a second line** of a **309px** measure. **But
 also rewrote the row**, and the rewritten string — *The photo or report isn't right* — measures
 **249.38** at 17, **59.62px inside** the same measure. **The rewrite, not the size, is what keeps
 the triage list three equal cards**, and it keeps them at 17: **55.80 × 3**, the ragged middle row
-still gone. Measured across every instance, **no `.dr-choice` title wraps at 17**.
+still gone. Measured across every instance, **no `.dr-choice` title wraps at 17** — true at rev 221;
+since rev 244's arrow took 36 of the column, four alert titles wrap at the standard tier (section
+above).
 
 **Scope is the component, which is the answer she gave at rev 213 too.** A `role-select`-only
 modifier was the alternative; taking the shared declaration keeps **one title size in the kit**, so
@@ -3189,7 +3226,11 @@ standard tier and **236.72** at the narrow one (`≤ 389px`, frame 351). Two str
 land inside it rather than truncated: *New job offer · Package delivery* → **Job offer · Package
 delivery** (the chip already said *New*), and *Your documents are approved* → **Documents approved**
 (250.77 against the narrow tier's 236.72). Measured after: **every title on both logs is one line at
-both tiers**, and every row is **77.98**.
+both tiers**, and every row is **77.98**. **That budget is superseded at rev 244, and the claim was
+already stale before it:** re-measured on 2026-09-14, four alert titles stood on two lines at the
+narrow tier (380 viewport) with no arrow on the row. The arrow then takes **36** more at the standard
+tier, so a marked title is written to **225.12** there (273.4 − 48.28), and four titles wrap at the
+standard tier too — listed under *The choice card carries the arrow again*.
 
 **Spacing is a break now, not a seam.** Measured: **8** within a group (`.dr-list--snug`), **12**
 under the heading (`--sp-snug`), **28** between groups — `.dr-log`, a flex column spending
