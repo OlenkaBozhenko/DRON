@@ -1506,9 +1506,12 @@ header.dr-topbar,
    and the kit's own rule is that a value is stated once — so the badge is named
    here beside the claim rung rather than repeating --green-wash / --ink in its
    own block further down. Same pair, two roles: a CRITERION being claimed, and
-   a state that is LIVE right now. */
+   a state that is LIVE right now. A THIRD SELECTOR since rev 243 — the alert
+   logs' unread chip, on the designer's «Зроби такий ж» pointing at the
+   Available badge; its own block is below. */
 .dr-chip--claim,
-.dr-avail-badge[data-state="available"]{ background: var(--green-wash); color: var(--ink); }  /* 14.75:1 */
+.dr-avail-badge[data-state="available"],
+.dr-chip--unread{ background: var(--green-wash); color: var(--ink); }  /* 14.75:1 */
 /* The confirmed credential (2026-08-15, rev 58): the designer's blue Insured
    badge. The trailing checkmark strokes in currentColor like every glyph here,
    so label and mark share the one measured pair — 5.65:1, and 1.4.11's 3:1 for
@@ -1537,16 +1540,21 @@ header.dr-topbar,
    unread comes off the heading and rides the row — still a WORD, which is why
    `WCAG 1.4.1 Use of Color` is no more engaged now than it was before; the
    fill is decoration the word does not depend on.
-   ONLY THE INK MOVES. The base chip's --media ground is kept and --slate is
-   swapped for --ink: 5.51:1 → 13.33:1. The reason is that --slate is the
-   description line's own colour one line below, and a mark that shares its
-   colour with the meta it sits above is not a mark.
-   NO GREEN, AND THAT IS A RULE RATHER THAN A PREFERENCE: concept.md's accent
-   is never spent inside card UI, and this chip sits inside a .dr-choice. The
-   pill's ground is 1.08:1 on the card, in the same band .dr-chip--trust
-   already sits at (1.05:1) — on this kit a chip is read by its text, never by
-   its edge, so no 1.4.11 boundary is being leaned on. */
-.dr-chip--unread{ color: var(--ink); }   /* 13.33:1 on --media */
+   AS BUILT AT REV 218 ONLY THE INK MOVED: --media kept, --slate → --ink,
+   5.51:1 → 13.33:1, because --slate is the description line's own colour one
+   line below and a mark that matches the meta under it is not a mark.
+   THE GROUND WENT GREEN AT REV 243 (2026-09-14), the designer on the built
+   operator-notifications: «зроби бейджі салатові … Зроби такий ж», pointing at
+   operator-listings' Available badge. So it wears that badge's pair and is
+   named in that badge's rule up in this block rather than restating it:
+   --ink on --green-wash, 14.75:1 at 11/600 — 3.28× WCAG 1.4.3's 4.5.
+   The tint, not the solid fill, and that keeps §0's card rule whole: the
+   accent kept out of card UI is SOLID green, while --green-wash was already
+   inside cards before rev 218 — the Verified and Insured claim chips in .dr-op.
+   0 px of solid green added; the budget does not count the tint. The pill's
+   edge is 1.03:1 on the card — a chip here is read by its word, never by its
+   edge, so WCAG 1.4.1 and 1.4.11 are no more leaned on than they were in grey.
+   The Available badge's green DOT is not copied; that one is still hers. */
 /* SETTLED 2026-08-02 by the designer: 14px, everywhere. The build drew 13px in
    a badge (.badge) and 14px in the ETA pill (.ohl-eta) — one component with two
    values, against the One-Component-One-Value rule. One value now. */

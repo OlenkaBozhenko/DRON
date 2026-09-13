@@ -3163,13 +3163,16 @@ two-day-old alert was formatted like a sixty-seven-day-old one. The absolute ste
 not a string**: `d MMMM`, day-first for UA/EU, month spelled out.
 
 **Unread is still carried by a word and not by a hue — the word moved to the row.**
-`.dr-chip--unread`, reading **New**: the base chip's `--media` ground with `--slate` swapped for
-`--ink`, **13.33:1** (against the base's 5.51:1, which is the description line's own colour one
-line below — a mark that matches the meta it sits above is not a mark). **No green**, because
-§0's accent is never spent inside card UI and this pill sits inside a `.dr-choice`; the ground is
-**1.08:1** on the card, the band `.dr-chip--trust` already sits in at 1.05:1, and a chip on this kit
-is read by its text and never by its edge. `WCAG 1.4.1` is no more engaged than it was as a
-heading. **What the move bought:** read-state and recency stopped being one axis — the operator's
+`.dr-chip--unread`, reading **New**: **the Available badge's pair, `--green-wash` behind `--ink`,
+14.75:1** at 11/600 — `WCAG 1.4.3` ✓ at **3.28×** the 4.5 floor. **Since rev 243, on the designer's
+word** (*«зроби бейджі салатові … Зроби такий ж»*, pointing at `operator-listings`' Available badge);
+from rev 218 until then it was the base chip's `--media` ground with `--ink`, 13.33:1. It is a
+third selector on the one declaration `.dr-chip--claim` and the Available badge already share, not
+the pair restated. **No §0 rule bends:** the tint was already inside card UI — the Verified and
+Insured claim chips wear it inside `.dr-op` — and the green budget does not count it. **0 px of
+solid green added.** The dot the Available badge carries before its word is **not** copied. The
+pill's edge is **1.03:1** on the card and is not what carries the state: unread is still the
+**word**, so `WCAG 1.4.1` is no more engaged than it was as a heading. **What the move bought:** read-state and recency stopped being one axis — the operator's
 *Documents approved* is unread **under Yesterday**, a pair of facts the two old headings could not
 state together.
 
