@@ -268,88 +268,64 @@
 
            THE GREEN BUDGET. The pill is 18 x 18 = 324px2 - 0.107% of the 375 x 812
            frame, against sec.0's ~5% ceiling. It is a STATUS MARK, not the screen's one
-           green control: this screen has no green control at all (the group tab carries
-           --green-wash, a tint, at 1.085:1 on the page and uncounted), which is exactly
-           where listings-filtered's filter count already stands. -->
+           green control — that is Find, from 2026-09-14, when Home became a search (the
+           chosen badge carries --green-wash, a tint, at 1.085:1 on the page and uncounted). -->
       <a class="dr-bell" href="notifications.html" aria-label="Notifications, 3 unread">
         <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4a5.9 5.9 0 0 0-5.9 5.9c0 4.1-1.5 5.3-1.5 5.3h14.8s-1.5-1.2-1.5-5.3A5.9 5.9 0 0 0 12 3.4Z"/><path d="M10.1 18a2.1 2.1 0 0 0 3.8 0"/></svg><span class="dr-count-badge" aria-hidden="true">3</span>
       </a>
     </header>
 
-    <!-- NAV · service categories (filter)
-         Live from 2026-08-16, the designer's call: the row was drawn but inert,
-         and now filters the list under it. The state carrier is `aria-current` —
-         the convention kit.css already paints (--green-wash behind --ink, 14.75:1)
-         and kit.js's picker already moves, so the filter invents no third way of
-         saying "this one". Buttons and not links: nothing leaves the screen. -->
-    <nav class="dr-groups dr-groups--tabs" aria-label="Service categories" data-groups>
-      <button class="dr-grouptab" type="button" data-cat="all" aria-current="true">All</button>
-      <button class="dr-grouptab" type="button" data-cat="delivery">Delivery</button>
-      <button class="dr-grouptab" type="button" data-cat="aerial">Aerial photo &amp; video</button>
-      <button class="dr-grouptab" type="button" data-cat="inspection">Inspection</button>
-    </nav>
-
-    <!-- MAIN -->
+    <!-- MAIN · the search. The category row that stood in the chrome here — All · Delivery ·
+         Aerial photo & video · Inspection, underline tabs (rev 232) — left the page on 2026-09-14
+         with the service list it filtered: the designer rebuilt Home as a search. -->
     <main class="dr-main">
 
-      <!-- ZONE · search & filters -->
-      <p class="zlabel dr-label">Search &amp; filters <span class="dr-label__act">▸ narrow the service list</span></p>
-      <section aria-label="Search and filters">
-        <form class="dr-search-row" role="search" action="#">
-          <span class="dr-search">
-            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="search" name="q" placeholder="Search services" aria-label="Search services">
-          </span>
-          <a class="dr-btn dr-btn--icon" href="listings-filters.html" aria-label="Filters">
-            <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5h9"/><circle cx="17" cy="7.5" r="2.4"/><path d="M20 16.5h-9"/><circle cx="7" cy="16.5" r="2.4"/></svg>
-          </a>
-        </form>
-      </section>
+      <p class="zlabel dr-label">Search <span class="dr-label__act">▸ pick a service, a day and a time</span></p>
+      <!-- role="search" names the landmark; the form never submits — Find is a link, so the
+           prototype walks without a server and the link can say where it goes (WCAG 2.4.4). -->
+      <form class="dr-finder" role="search" aria-label="Find a service" action="#">
 
-      <!-- ZONE · service list (cards) -->
-      <p class="zlabel dr-label">Service list · cards <span class="dr-label__act">▸ browse · tap a card to start an order</span></p>
-      <section aria-label="Service list">
-        <ul class="dr-list dr-list--snug">
+        <!-- THE THREE BADGES — a radio group, one always chosen, Delivery at rest. Her words
+             exactly: «Delivery, Photo, Inspection». The group's name is spoken, not drawn —
+             the reference draws none, and three service names need no heading over them. -->
+        <fieldset class="dr-finder__services" aria-label="Service">
+          <label class="dr-grouptab dr-grouptab--icon">
+            <input type="radio" name="service" value="delivery" checked class="sr-only">
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.6l7.6 4.2v8.4L12 20.4l-7.6-4.2V7.8z"/><path d="M4.6 7.9L12 12l7.4-4.1"/><path d="M12 12v8.3"/></svg>Delivery
+          </label>
+          <label class="dr-grouptab dr-grouptab--icon">
+            <input type="radio" name="service" value="aerial" class="sr-only">
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="7" width="17" height="12.5" rx="2.6"/><path d="M8.6 7l1.3-2.4h4.2L15.4 7"/><circle cx="12" cy="13.2" r="3.2"/></svg>Photo
+          </label>
+          <label class="dr-grouptab dr-grouptab--icon">
+            <input type="radio" name="service" value="inspection" class="sr-only">
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5v-3A1.5 1.5 0 0 1 5.5 4h3M15.5 4h3A1.5 1.5 0 0 1 20 5.5v3M20 15.5v3a1.5 1.5 0 0 1-1.5 1.5h-3M8.5 20h-3A1.5 1.5 0 0 1 4 18.5v-3"/><path d="M8 12.6L12 9l4 3.6V16H8z"/></svg>Inspection
+          </label>
+        </fieldset>
 
-          <!-- card entry → Order setup (whole card is the tap target).
-               `data-cat` on the <li> and not on the card: the row is what the
-               filter hides, so the card link inside it leaves the tab order
-               with it. One value per card — the catalogue is CE-2's three
-               service types and a service belongs to exactly one. -->
-          <li data-cat="delivery">
-            <article class="dr-card dr-card--row dr-listing dr-listing--service">
-              <a class="dr-card__link" href="order-setup.html" aria-label="Package delivery — start an order"></a>
-              <span class="dr-listing__body">
-                <span class="dr-listing__name">Package delivery</span>
-                <span class="dr-listing__desc">Parcels, documents, small goods — across the city</span>
-              </span>
-              <span class="media-ph"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
-            </article>
-          </li>
+        <!-- DATE · TIME — each half a button that owns its drawer (the page script below). -->
+        <div class="dr-when">
+          <button class="dr-when__cell" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="datepick" data-date-open>
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14.5" rx="2.4"/><path d="M4 10h16"/><path d="M8.5 3.5v4M15.5 3.5v4"/></svg>
+            <span class="dr-when__text"><span class="dr-when__label">Date</span><span class="dr-when__value" data-date-value>Today</span></span>
+          </button>
+          <button class="dr-when__cell" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="timepick" data-time-open>
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+            <span class="dr-when__text"><span class="dr-when__label">Time</span><span class="dr-when__value" data-time-value>Now</span></span>
+          </button>
+        </div>
 
-          <li data-cat="aerial">
-            <article class="dr-card dr-card--row dr-listing dr-listing--service">
-              <a class="dr-card__link" href="order-setup-aerial.html" aria-label="Aerial photo and video — start an order"></a>
-              <span class="dr-listing__body">
-                <span class="dr-listing__name">Aerial photo &amp; video</span>
-                <span class="dr-listing__desc">Events, real-estate listings, personal occasions</span>
-              </span>
-              <span class="media-ph"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
-            </article>
-          </li>
+        <!-- FILTERS · FIND. Filters is a .dr-btn[aria-controls], so ui/kit.js opens its drawer
+             and keeps the modal contract; Find is the screen's one green control and a link whose
+             href follows the chosen badge. The count badge is hidden until a filter is applied. -->
+        <div class="dr-finder__actions">
+          <button class="dr-btn dr-btn--secondary" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-filters" data-filters-open>
+            <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5h9"/><circle cx="17" cy="7.5" r="2.4"/><path d="M20 16.5h-9"/><circle cx="7" cy="16.5" r="2.4"/></svg>Filters<span class="dr-count-badge" aria-hidden="true" data-filters-count hidden></span>
+          </button>
+          <a class="dr-btn dr-btn--primary" href="listings-map.html" data-find>Find</a>
+        </div>
 
-          <li data-cat="inspection">
-            <article class="dr-card dr-card--row dr-listing dr-listing--service">
-              <a class="dr-card__link" href="order-setup-inspection.html" aria-label="Inspection — start an order"></a>
-              <span class="dr-listing__body">
-                <span class="dr-listing__name">Inspection</span>
-                <span class="dr-listing__desc">Roofs, facades, hard-to-reach structures</span>
-              </span>
-              <span class="media-ph"><img src="../assets/drones/thumbs/drone-11.png" alt="" loading="lazy" decoding="async"></span>
-            </article>
-          </li>
-
-        </ul>
-      </section>
+      </form>
 
     </main>
 
@@ -372,78 +348,490 @@
       <div class="dr-home"><span></span></div>
     </footer>
 
+    <!-- ── THE THREE DRAWERS ──────────────────────────────────────────────────
+         One scrim serves all three (ui/kit.js's contract: only one control was tapped).
+         Filters is opened by ui/kit.js; Date and Time by the page script, which keeps the
+         same modal contract — inert behind, focus inside, Escape and the scrim cancel. -->
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <!-- DATE — the calendar listings-filters built at rev 118, without its time row: the time
+         has its own half of the search now. Six week rows always, Monday first, no day before
+         today; Done takes the day, Cancel puts back the one there was. -->
+    <section class="dr-sheet dr-sheet--picker" id="datepick" role="dialog"
+             aria-modal="true" aria-labelledby="datepick-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="datepick-title">Pick a date</p>
+
+      <div class="dr-cal">
+        <div class="dr-cal__bar">
+          <button class="dr-cal__nav" type="button" data-prev aria-label="Previous month"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <span class="dr-cal__month" data-month aria-live="polite"></span>
+          <button class="dr-cal__nav" type="button" data-next aria-label="Next month"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+        <table class="dr-cal__grid" role="grid" aria-labelledby="datepick-title">
+          <thead>
+            <tr>
+              <th scope="col" aria-label="Monday">Mo</th>
+              <th scope="col" aria-label="Tuesday">Tu</th>
+              <th scope="col" aria-label="Wednesday">We</th>
+              <th scope="col" aria-label="Thursday">Th</th>
+              <th scope="col" aria-label="Friday">Fr</th>
+              <th scope="col" aria-label="Saturday">Sa</th>
+              <th scope="col" aria-label="Sunday">Su</th>
+            </tr>
+          </thead>
+          <tbody data-days></tbody>
+        </table>
+      </div>
+
+      <div class="dr-sheet__actions">
+        <button class="dr-btn dr-btn--primary" type="button" data-done>Done</button>
+        <button class="dr-btn dr-btn--secondary" type="button" data-close>Cancel</button>
+      </div>
+    </section>
+
+    <!-- TIME — two picks: Now, or a set time on the calendar's own hour : minute clock. Now is
+         offered only while the day is today; a later day disables it and the time becomes a set
+         one, so the search never says "Now" about next Tuesday. -->
+    <section class="dr-sheet dr-sheet--picker" id="timepick" role="dialog"
+             aria-modal="true" aria-labelledby="timepick-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="timepick-title">Pick a time</p>
+
+      <div class="dr-picks" role="radiogroup" aria-labelledby="timepick-title">
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">Now</span>
+          <input type="radio" name="when-time" value="now" checked class="sr-only" data-now>
+        </label>
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">At a set time</span>
+          <input type="radio" name="when-time" value="at" class="sr-only" data-at>
+          <span class="dr-cal__clock">
+            <select class="dr-cal__unit" data-hh aria-label="Hour"></select>
+            <span class="dr-cal__colon" aria-hidden="true">:</span>
+            <select class="dr-cal__unit" data-mm aria-label="Minute"></select>
+          </span>
+        </label>
+      </div>
+
+      <div class="dr-sheet__actions">
+        <button class="dr-btn dr-btn--primary" type="button" data-done>Done</button>
+        <button class="dr-btn dr-btn--secondary" type="button" data-close>Cancel</button>
+      </div>
+    </section>
+
+    <!-- FILTERS — the cards she already had on listings-filters, minus Date & time (her pick,
+         2026-09-14). Location's four rows still push their own screens, and those screens still
+         go back to listings-filters — open, _screens.md §3. The strings are that page's. -->
+    <section class="dr-sheet dr-sheet--picker dr-sheet--tall" id="sheet-filters" role="dialog"
+             aria-modal="true" aria-labelledby="sheet-filters-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-filters-title">Filters</p>
+
+      <div class="dr-sheet__scroll">
+        <div class="dr-zone" role="group" aria-labelledby="loc-title" aria-describedby="loc-sub">
+          <p class="dr-zone__title" id="loc-title">Location</p>
+          <p class="dr-zone__sub" id="loc-sub">Where you need the service</p>
+          <div class="dr-rows">
+            <a class="dr-field dr-field--action" href="listings-filter-country.html">
+              <span class="dr-field__label">Country</span>
+              <span class="dr-field__value">Ukraine</span>
+              <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </a>
+            <a class="dr-field dr-field--action" href="listings-filter-region.html">
+              <span class="dr-field__label">Region</span>
+              <span class="dr-field__value">Kyiv City</span>
+              <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </a>
+            <a class="dr-field dr-field--action" href="listings-filter-city.html">
+              <span class="dr-field__label">City</span>
+              <span class="dr-field__value">Kyiv</span>
+              <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </a>
+            <a class="dr-field dr-field--action" href="listings-filter-district.html">
+              <span class="dr-field__label">District</span>
+              <span class="dr-field__value">All districts</span>
+              <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </a>
+          </div>
+        </div>
+
+        <fieldset class="dr-range" data-range aria-labelledby="price-title" aria-describedby="price-sub">
+          <p class="dr-range__title" id="price-title">Price range</p>
+          <p class="dr-range__sub" id="price-sub">Service price, all fees included</p>
+          <div class="dr-range__band">
+            <div class="dr-range__hist" role="img" aria-label="How services are priced: most cost ₴200 – ₴350">
+              <i class="dr-range__bar" style="height:6%" data-bar></i><i class="dr-range__bar" style="height:8%" data-bar></i><i class="dr-range__bar" style="height:10%" data-bar></i><i class="dr-range__bar" style="height:14%" data-bar></i>
+              <i class="dr-range__bar" style="height:22%" data-bar></i><i class="dr-range__bar" style="height:30%" data-bar></i><i class="dr-range__bar" style="height:44%" data-bar></i><i class="dr-range__bar" style="height:58%" data-bar></i>
+              <i class="dr-range__bar" style="height:72%" data-bar></i><i class="dr-range__bar" style="height:86%" data-bar></i><i class="dr-range__bar" style="height:100%" data-bar></i><i class="dr-range__bar" style="height:92%" data-bar></i>
+              <i class="dr-range__bar" style="height:78%" data-bar></i><i class="dr-range__bar" style="height:70%" data-bar></i><i class="dr-range__bar" style="height:62%" data-bar></i><i class="dr-range__bar" style="height:66%" data-bar></i>
+              <i class="dr-range__bar" style="height:54%" data-bar></i><i class="dr-range__bar" style="height:46%" data-bar></i><i class="dr-range__bar" style="height:40%" data-bar></i><i class="dr-range__bar" style="height:44%" data-bar></i>
+              <i class="dr-range__bar" style="height:38%" data-bar></i><i class="dr-range__bar" style="height:32%" data-bar></i><i class="dr-range__bar" style="height:36%" data-bar></i><i class="dr-range__bar" style="height:28%" data-bar></i>
+              <i class="dr-range__bar" style="height:30%" data-bar></i><i class="dr-range__bar" style="height:24%" data-bar></i><i class="dr-range__bar" style="height:20%" data-bar></i><i class="dr-range__bar" style="height:22%" data-bar></i>
+              <i class="dr-range__bar" style="height:16%" data-bar></i><i class="dr-range__bar" style="height:14%" data-bar></i><i class="dr-range__bar" style="height:12%" data-bar></i><i class="dr-range__bar" style="height:14%" data-bar></i>
+              <i class="dr-range__bar" style="height:10%" data-bar></i><i class="dr-range__bar" style="height:8%" data-bar></i><i class="dr-range__bar" style="height:9%" data-bar></i><i class="dr-range__bar" style="height:7%" data-bar></i>
+              <i class="dr-range__bar" style="height:6%" data-bar></i><i class="dr-range__bar" style="height:8%" data-bar></i><i class="dr-range__bar" style="height:12%" data-bar></i><i class="dr-range__bar" style="height:26%" data-bar></i>
+            </div>
+            <div class="dr-range__rail">
+              <span class="dr-range__fill" data-fill></span>
+              <input class="dr-range__input" type="range" id="pmin" min="0" max="1000" step="50" value="0"
+                     aria-label="Minimum price" aria-valuetext="₴0" data-lo>
+              <input class="dr-range__input" type="range" id="pmax" min="0" max="1000" step="50" value="1000"
+                     aria-label="Maximum price" aria-valuetext="₴1,000+" data-hi>
+            </div>
+          </div>
+          <div class="dr-range__fields">
+            <p class="dr-range__field">
+              <span class="dr-range__cap">Minimum</span>
+              <output class="dr-range__val" for="pmin" data-lo-out>₴0</output>
+            </p>
+            <p class="dr-range__field">
+              <span class="dr-range__cap">Maximum</span>
+              <output class="dr-range__val" for="pmax" data-hi-out>₴1,000+</output>
+            </p>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Side by side, as the panel's action bar had them: neither is a cancel, so
+           `HIG · Action sheets`' stacked-cancel rule does not reach them. The scrim and Escape
+           close without applying. -->
+      <div class="dr-sheet__actions dr-sheet__actions--row">
+        <button class="dr-btn dr-btn--secondary" type="button" data-clear>Clear all</button>
+        <button class="dr-btn dr-btn--primary" type="button" data-apply>Apply filters</button>
+      </div>
+    </section>
+
   </div>
 
   <!--
-    THE CATEGORY FILTER. This page's one script, and it sits here for the reason
-    listings-filters' two do: the behaviour is not in `ui/kit.js` — that file is
-    the picker drawer and says so at the top — and one page carries it until a
-    second page needs it.
+    THE SEARCH. This page's one script, and it sits here for the reason listings-filters' two do:
+    none of it is in ui/kit.js, and one page carries it until a second page needs it.
 
-    WHAT THE MARKUP ALREADY GIVES, AND THIS DOES NOT RE-IMPLEMENT. The chips are
-    real <button>s, so Enter, Space, the tab order, the 44pt hit area (the
-    ::after bleed on .dr-grouptab) and the accessible name all come from the
-    element and from kit.css — `WCAG 2.1.1` and `4.1.2` are answered before a
-    line of this runs. What is added is two attributes moving.
+    FOUR THINGS, AND WHAT EACH DOES NOT RE-IMPLEMENT.
+    1. THE BADGE DECIDES WHERE FIND GOES. The badges are native radios, so choosing, the arrow
+       keys and the name come from the element; this only moves one href, so Find always says
+       where it leads (WCAG 2.4.4). It re-reads the checked radio on `pageshow`, because a browser
+       coming Back restores the form's radios and would otherwise send Find to the old service.
+    2. THE DATE DRAWER — listings-filters' calendar (WAI-ARIA APG Date Picker Dialog, selection
+       follows focus), without its time row. The month is the real one; no day before today.
+    3. THE TIME DRAWER — Now, or a set time. Now is offered only while the day is today.
+    4. THE FILTERS DRAWER'S TWO BUTTONS. ui/kit.js opens and closes the drawer; this applies the
+       band, puts the count on the button, and closes it through the scrim so there is one close.
+       The range script is listings-filters' verbatim.
 
-    `hidden`, NOT A CLASS. A card that is filtered out leaves the layout AND the
-    accessibility tree together, so the screen reader counts what the eye counts
-    (`WCAG 1.3.1`) and the hidden card's link is not a focus stop pointing at a
-    service the screen no longer offers (`WCAG 2.4.3`). The <li> carries it, so
-    the row and its link go as one.
-
-    NOTHING IS ANNOUNCED, AND THAT IS A DECISION, NOT AN OMISSION. The counter
-    row left all five listing states on the designer's word — *"remove this and
-    sorting — I have filters instead"* (microcopy.md) — so a live region here
-    would put `3 services` back on the page through the side door. Nothing fails
-    at AA for it: `WCAG 4.1.3 Status Messages` governs a status message a page
-    presents, and this page presents none; the change of state is spoken by the
-    chip the user just pressed, which is where the focus is. Whether the filter
-    should say "1 service" out loud is the designer's call, like the loading
-    state's own lost line (microcopy.md, 2026-08-16).
+    THE MODAL CONTRACT for 2 and 3 is ui/kit.js's, kept to the letter: inert behind, focus inside,
+    a Tab trap, Escape and the scrim cancel, and focus goes back to the half that opened it.
   -->
   <script>
   (function () {
     'use strict';
 
-    var row = document.querySelector('[data-groups]');
-    if (!row) return;
+    var frame = document.querySelector('.wf-frame');
+    if (!frame) return;
+    var scrim = frame.querySelector('[data-scrim]');
 
-    var tabs  = row.querySelectorAll('.dr-grouptab'),
-        cards = document.querySelectorAll('.dr-list [data-cat]');
-    if (!tabs.length || !cards.length) return;
+    /* ── 1 · the badge → Find ──────────────────────────────────────────── */
+    var FIND = {
+      delivery:   'listings-map.html',
+      aerial:     'listings-map-aerial.html',
+      inspection: 'listings-map-inspection.html'
+    };
+    var find = frame.querySelector('[data-find]'),
+        services = frame.querySelectorAll('input[name="service"]');
 
-    function pick(cat) {
-      tabs.forEach(function (tab) {
-        if (tab.getAttribute('data-cat') === cat) tab.setAttribute('aria-current', 'true');
-        else tab.removeAttribute('aria-current');
+    function syncFind() {
+      var on = frame.querySelector('input[name="service"]:checked');
+      if (find && on && FIND[on.value]) find.href = FIND[on.value];
+    }
+    services.forEach(function (r) { r.addEventListener('change', syncFind); });
+    window.addEventListener('pageshow', syncFind);
+    syncFind();
+
+    /* ── the modal contract for the page's own two drawers ─────────────── */
+    var behind = [].slice.call(frame.children).filter(function (el) {
+      return !el.classList.contains('dr-sheet') && el !== scrim;
+    });
+    var up = null;   /* { sheet, opener, cancel } while a drawer of ours is open */
+
+    function raise(sheet, opener, cancel) {
+      up = { sheet: sheet, opener: opener, cancel: cancel };
+      opener.setAttribute('aria-expanded', 'true');
+      scrim.hidden = false;
+      sheet.hidden = false;
+      behind.forEach(function (el) { el.inert = true; });
+    }
+    function lower() {
+      if (!up) return;
+      var was = up;
+      up = null;
+      behind.forEach(function (el) { el.inert = false; });
+      was.sheet.hidden = true;
+      scrim.hidden = true;
+      was.opener.setAttribute('aria-expanded', 'false');
+      was.opener.focus();
+    }
+    function dismiss() { if (up) { up.cancel(); lower(); } }
+
+    scrim.addEventListener('click', dismiss);
+    document.addEventListener('keydown', function (e) {
+      if (!up) return;
+      if (e.key === 'Escape') { e.preventDefault(); dismiss(); return; }
+      if (e.key !== 'Tab') return;
+      /* the trap: while the drawer is up it IS the tab order. An unchecked radio is not a tab
+         stop — the group is one stop, at its checked member. */
+      var stops = [].slice.call(up.sheet.querySelectorAll('button, a[href], input, select'))
+        .filter(function (el) {
+          return !el.disabled && el.tabIndex !== -1 && !(el.type === 'radio' && !el.checked);
+        });
+      if (!stops.length) return;
+      var first = stops[0], last = stops[stops.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    /* ── 2 · the date drawer ───────────────────────────────────────────── */
+    var dateBtn  = frame.querySelector('[data-date-open]'),
+        dateVal  = frame.querySelector('[data-date-value]'),
+        dateSh   = document.getElementById('datepick'),
+        monthEl  = dateSh.querySelector('[data-month]'),
+        daysEl   = dateSh.querySelector('[data-days]'),
+        prevBt   = dateSh.querySelector('[data-prev]'),
+        nextBt   = dateSh.querySelector('[data-next]');
+
+    function startOfDay(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+    function same(a, b) { return a.getTime() === b.getTime(); }
+    /* the product's own short format — `Wed 16 Sep` — built from arrays, not from the locale,
+       which gives "Sept" for September on current ICU (listings-filters, rev 118) */
+    var DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+        MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function pretty(d) { return DOW[d.getDay()] + ' ' + d.getDate() + ' ' + MON[d.getMonth()]; }
+
+    var today = startOfDay(new Date()),
+        day   = new Date(today),      /* the day the search holds */
+        sel   = new Date(today),      /* the day the open drawer holds */
+        view  = { y: today.getFullYear(), m: today.getMonth() };
+
+    function render() {
+      var first = new Date(view.y, view.m, 1),
+          lead  = (first.getDay() + 6) % 7,               /* Monday first */
+          start = new Date(view.y, view.m, 1 - lead);
+      monthEl.textContent = first.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+      prevBt.disabled = (view.y === today.getFullYear() && view.m === today.getMonth());
+      daysEl.textContent = '';
+      for (var w = 0; w < 6; w++) {                         /* six rows, always */
+        var tr = document.createElement('tr');
+        tr.setAttribute('role', 'row');
+        for (var i = 0; i < 7; i++) {
+          var d  = new Date(start.getFullYear(), start.getMonth(), start.getDate() + w * 7 + i),
+              td = document.createElement('td');
+          td.setAttribute('role', 'gridcell');
+          if (d.getMonth() === view.m) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'dr-cal__day' + (same(d, today) ? ' dr-cal__day--today' : '');
+            b.textContent = d.getDate();
+            b.dataset.date = d.getTime();
+            b.disabled = d < today;
+            b.setAttribute('aria-label', pretty(d) + ' ' + d.getFullYear() + (same(d, today) ? ', today' : ''));
+            b.tabIndex = same(d, sel) ? 0 : -1;
+            if (same(d, sel)) td.setAttribute('aria-selected', 'true');
+            td.appendChild(b);
+          }
+          tr.appendChild(td);
+        }
+        daysEl.appendChild(tr);
+      }
+      if (!daysEl.querySelector('.dr-cal__day[tabindex="0"]')) {
+        var free = daysEl.querySelector('.dr-cal__day:not(:disabled)');
+        if (free) free.tabIndex = 0;
+      }
+    }
+    function choose(d, focus) {
+      if (d < today) return;
+      sel = startOfDay(d);
+      view = { y: sel.getFullYear(), m: sel.getMonth() };
+      render();
+      if (focus) {
+        var b = daysEl.querySelector('.dr-cal__day[tabindex="0"]');
+        if (b) b.focus();
+      }
+    }
+    daysEl.addEventListener('click', function (e) {
+      var b = e.target.closest('.dr-cal__day');
+      if (b && !b.disabled) choose(new Date(+b.dataset.date), false);
+    });
+    daysEl.addEventListener('keydown', function (e) {
+      var b = e.target.closest('.dr-cal__day');
+      if (!b) return;
+      var d = new Date(+b.dataset.date), step = null;
+      switch (e.key) {
+        case 'ArrowLeft':  step = -1; break;
+        case 'ArrowRight': step = 1;  break;
+        case 'ArrowUp':    step = -7; break;
+        case 'ArrowDown':  step = 7;  break;
+        case 'Home':       step = -((d.getDay() + 6) % 7);    break;
+        case 'End':        step = 6 - ((d.getDay() + 6) % 7); break;
+        case 'PageUp':     e.preventDefault(); choose(new Date(d.getFullYear(), d.getMonth() - 1, d.getDate()), true); return;
+        case 'PageDown':   e.preventDefault(); choose(new Date(d.getFullYear(), d.getMonth() + 1, d.getDate()), true); return;
+        case 'Enter':
+        case ' ':          e.preventDefault(); takeDate(); return;
+        default: return;
+      }
+      e.preventDefault();
+      choose(new Date(d.getFullYear(), d.getMonth(), d.getDate() + step), true);
+    });
+    prevBt.addEventListener('click', function () { view.m--; if (view.m < 0) { view.m = 11; view.y--; } render(); });
+    nextBt.addEventListener('click', function () { view.m++; if (view.m > 11) { view.m = 0; view.y++; } render(); });
+
+    function takeDate() {
+      day = new Date(sel);
+      dateVal.textContent = same(day, today) ? 'Today' : pretty(day);
+      fitTime();
+      lower();
+    }
+    dateBtn.addEventListener('click', function () {
+      sel = new Date(day);
+      view = { y: sel.getFullYear(), m: sel.getMonth() };
+      render();
+      raise(dateSh, dateBtn, function () { sel = new Date(day); });
+      var b = daysEl.querySelector('.dr-cal__day[tabindex="0"]');
+      if (b) b.focus();
+    });
+    dateSh.querySelector('[data-done]').addEventListener('click', takeDate);
+    dateSh.querySelector('[data-close]').addEventListener('click', dismiss);
+
+    /* ── 3 · the time drawer ───────────────────────────────────────────── */
+    var timeBtn = frame.querySelector('[data-time-open]'),
+        timeVal = frame.querySelector('[data-time-value]'),
+        timeSh  = document.getElementById('timepick'),
+        nowR    = timeSh.querySelector('[data-now]'),
+        atR     = timeSh.querySelector('[data-at]'),
+        hhEl    = timeSh.querySelector('[data-hh]'),
+        mmEl    = timeSh.querySelector('[data-mm]');
+
+    /* 24 hours and the quarter-hour, 24-hour on every machine — listings-filters' clock */
+    (function fill() {
+      var i, o;
+      for (i = 0; i < 24; i++) {
+        o = document.createElement('option');
+        o.value = o.textContent = ('0' + i).slice(-2);
+        hhEl.appendChild(o);
+      }
+      ['00', '15', '30', '45'].forEach(function (v) {
+        o = document.createElement('option');
+        o.value = o.textContent = v;
+        mmEl.appendChild(o);
       });
-      /* "all" is a category like the others, so there is one code path and no
-         "clear" branch that could fall out of step with the three real ones */
-      cards.forEach(function (card) {
-        card.hidden = cat !== 'all' && card.getAttribute('data-cat') !== cat;
+    }());
+
+    var time = { now: true, hh: '14', mm: '00' };   /* what the search holds */
+
+    function paintTime() {
+      timeVal.textContent = time.now ? 'Now' : time.hh + ':' + time.mm;
+    }
+    /* a later day cannot be "Now" — the search moves to the set time it already holds */
+    function fitTime() {
+      if (!same(day, today) && time.now) { time.now = false; paintTime(); }
+    }
+    function loadTime() {
+      nowR.disabled = !same(day, today);
+      nowR.checked = time.now && !nowR.disabled;
+      atR.checked = !nowR.checked;
+      hhEl.value = time.hh;
+      mmEl.value = time.mm;
+    }
+    /* touching the clock is choosing the set time */
+    [hhEl, mmEl].forEach(function (s) {
+      s.addEventListener('change', function () { atR.checked = true; });
+    });
+    timeBtn.addEventListener('click', function () {
+      loadTime();
+      raise(timeSh, timeBtn, loadTime);
+      (nowR.checked ? nowR : atR).focus();
+    });
+    timeSh.querySelector('[data-done]').addEventListener('click', function () {
+      time = { now: nowR.checked, hh: hhEl.value, mm: mmEl.value };
+      paintTime();
+      lower();
+    });
+    timeSh.querySelector('[data-close]').addEventListener('click', dismiss);
+
+    hhEl.value = time.hh; mmEl.value = time.mm;
+
+    /* ── 4 · the filters drawer ────────────────────────────────────────── */
+    var box = document.querySelector('[data-range]');
+    if (!box) return;
+    var lo = box.querySelector('[data-lo]'),
+        hi = box.querySelector('[data-hi]'),
+        loOut = box.querySelector('[data-lo-out]'),
+        hiOut = box.querySelector('[data-hi-out]'),
+        fill = box.querySelector('[data-fill]'),
+        bars = box.querySelectorAll('[data-bar]'),
+        MAX = +lo.max;
+
+    function money(v) { return '₴' + (+v).toLocaleString('en-US') + (+v === MAX ? '+' : ''); }
+    function paint() {
+      var a = +lo.value, b = +hi.value, n = bars.length;
+      fill.style.left = (a / MAX * 100) + '%';
+      fill.style.right = (100 - b / MAX * 100) + '%';
+      loOut.textContent = money(a);
+      hiOut.textContent = money(b);
+      lo.setAttribute('aria-valuetext', money(a));
+      hi.setAttribute('aria-valuetext', money(b));
+      Array.prototype.forEach.call(bars, function (bar, i) {
+        var mid = (i + 0.5) / n * MAX;
+        bar.classList.toggle('dr-range__bar--in', mid >= a && mid <= b);
       });
     }
+    lo.addEventListener('input', function () { if (+lo.value > +hi.value) lo.value = hi.value; paint(); });
+    hi.addEventListener('input', function () { if (+hi.value < +lo.value) hi.value = lo.value; paint(); });
 
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () { pick(tab.getAttribute('data-cat')); });
+    var fBtn   = frame.querySelector('[data-filters-open]'),
+        fCount = frame.querySelector('[data-filters-count]'),
+        fSheet = document.getElementById('sheet-filters'),
+        applied = { lo: 0, hi: MAX };
+
+    /* the drawer always opens on what is APPLIED — a band dragged and then dismissed is not kept.
+       This listener is registered before ui/kit.js's (the script tag order), so the band is back
+       in place before the drawer shows it. */
+    fBtn.addEventListener('click', function () {
+      lo.value = applied.lo; hi.value = applied.hi; paint();
     });
+    function setCount() {
+      var n = (applied.lo > 0 || applied.hi < MAX) ? 1 : 0;
+      fCount.hidden = !n;
+      fCount.textContent = n ? String(n) : '';
+      /* the count is spoken in the name, which still begins with the drawn word (WCAG 2.5.3) */
+      if (n) fBtn.setAttribute('aria-label', 'Filters, ' + n + ' applied');
+      else fBtn.removeAttribute('aria-label');
+    }
+    fSheet.querySelector('[data-apply]').addEventListener('click', function () {
+      applied = { lo: +lo.value, hi: +hi.value };
+      setCount();
+      scrim.click();    /* ui/kit.js's own close: inert lifted, focus back on Filters */
+    });
+    fSheet.querySelector('[data-clear]').addEventListener('click', function () {
+      lo.value = 0; hi.value = MAX; paint();
+      applied = { lo: 0, hi: MAX };
+      setCount();
+      scrim.click();
+    });
+
+    paint();
+    setCount();
   }());
   </script>
 
   <!-- shared wireframe shell: left nav tree + viewport switcher (same on every page) -->
   <!--
-    ui/kit.js arrives here 2026-08-16 (rev 151) for the onscreen keyboard, on the designer's
-    «застосуй цей функціонал (появлення розкладки клавіатури) для мобільної версії кругом де є
-    імпути і поля вводу та текстові поля» — the sweep of the behaviour rev 149 built on `rate`.
-    No markup for it lives on this page on purpose: the system draws the keyboard over an app and
-    is not part of the app's DOM, so the script builds it and every field on every screen gets the
-    same picture.
-    The field is the search input at the top of `main`. This screen is a tab root, so what leaves is
-    the `.dr-tabbar` — four links behind 335pt of drawn keyboard are the same `WCAG 2.4.11` failure
-    two buttons were on `rate`, and rev 151 extends her call to them. This page's own comments
-    mention `ui/kit.js` twice for the picker drawer it does NOT carry; the file arrives here for
-    the keyboard alone, and the drawer half of it exits on the first line for want of a scrim.
+    ui/kit.js arrived here 2026-08-16 (rev 151) for the onscreen keyboard, when the search field stood
+    at the top of `main`. The field left with the service list on 2026-09-14, so the keyboard half now
+    finds nothing to rise for; the file stays for its OTHER half — the picker drawer's modal contract,
+    which opens and closes the Filters drawer (`.dr-btn[aria-controls]`). The page script above is
+    registered first on purpose: its Filters click puts the applied band back before kit.js shows it.
   -->
   <script src="../ui/kit.js"></script>
   <script src="_wf-shell.js"></script>

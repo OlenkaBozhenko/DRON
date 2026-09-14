@@ -1147,24 +1147,63 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-loading | Service list | Activity | Button |  |
 | listings-loading | Service list | Help | Button |  |
 | listings-loading | Service list | Account | Button |  |
-| listings | — | All | Button |  |
-| listings | — | Delivery | Button |  |
-| listings | — | Aerial photo & video | Button |  |
-| listings | — | Inspection | Button |  |
-| listings | Search & filters | Search services | Field placeholder |  |
-| listings | Service list · cards | DELIVERY | Body | WF-PH |
-| listings | Service list · cards | Package delivery | Heading |  |
-| listings | Service list · cards | Parcels, documents, small goods — across the city | Body |  |
-| listings | Service list · cards | AERIAL | Body | WF-PH |
-| listings | Service list · cards | Aerial photo & video | Heading |  |
-| listings | Service list · cards | Events, real-estate listings, personal occasions | Body |  |
-| listings | Service list · cards | INSPECT | Body | WF-PH |
-| listings | Service list · cards | Inspection | Heading |  |
-| listings | Service list · cards | Roofs, facades, hard-to-reach structures | Body |  |
-| listings | Service list · cards | Order | Button |  |
-| listings | Service list · cards | Activity | Button |  |
-| listings | Service list · cards | Help | Button |  |
-| listings | Service list · cards | Account | Button |  |
+| listings | — | Notifications, 3 unread | Accessible name (`aria-label`) | the bell, unchanged |
+| listings | Search | Service | Field label | accessible name only — the badge group's name (`aria-label` on the fieldset). **New 2026-09-14**, when Home became a search; the category row it replaces (*All · Delivery · Aerial photo & video · Inspection*, with the search field and the service cards) left the page with it |
+| listings | Search | Delivery | Button | a badge — a radio, chosen at rest |
+| listings | Search | Photo | Button | a badge. **The designer's own word, 2026-09-14** — the service is *Aerial photo & video* everywhere else, including the title of the results screen this badge opens. One concept in two words is `voice.md`'s one-word rule spent on her call, recorded rather than smoothed |
+| listings | Search | Inspection | Button | a badge |
+| listings | Search | Date | Field label | the left half of the date · time row; the button's name is *Date Today* — the drawn label plus the value (`WCAG 2.5.3`) |
+| listings | Search | Today | Field value | DATA — at rest; a picked day reads `Wed 16 Sep`, the product's own format (`time-slot`, `listings-filters`) |
+| listings | Search | Time | Field label | the right half |
+| listings | Search | Now | Field value | DATA — at rest; a set time reads `14:00`, 24-hour like the rest of the product |
+| listings | Search | Filters | Button | secondary; opens the Filters drawer. With a filter applied the accessible name is *Filters, 1 applied* and the count is drawn on the button, `aria-hidden` |
+| listings | Search | Find | Button | primary — the screen's one green control. Opens *Results on the map* for the chosen service |
+| listings | Date drawer | Pick a date | Heading | the drawer's title. `listings-filters`' drawer says *Pick a date & time* because it holds both; this one holds the day only |
+| listings | Date drawer | Previous month | Icon label |  |
+| listings | Date drawer | Next month | Icon label |  |
+| listings | Date drawer | September 2026 | Field value | DATA — month + year, `aria-live="polite"` |
+| listings | Date drawer | Done | Button |  |
+| listings | Date drawer | Cancel | Button |  |
+| listings | Time drawer | Pick a time | Heading | the drawer's title — the product's existing phrase (`order-setup-aerial`'s CTA) |
+| listings | Time drawer | Now | Body | a radio; only offered while the date is today |
+| listings | Time drawer | At a set time | Body | a radio; carries the hour : minute selects |
+| listings | Time drawer | Hour | Field label | accessible name only |
+| listings | Time drawer | Minute | Field label | accessible name only |
+| listings | Time drawer | Done | Button |  |
+| listings | Time drawer | Cancel | Button |  |
+| listings | Filters drawer | Filters | Heading | the drawer's title |
+| listings | Filters drawer | Location | Heading | the same card, the same strings, as `listings-filters` — *Where you need the service*, *Country · Ukraine*, *Region · Kyiv City*, *City · Kyiv*, *District · All districts* |
+| listings | Filters drawer | Price range | Heading | the same card as `listings-filters` — *Service price, all fees included*, *Minimum ₴0*, *Maximum ₴1,000+* |
+| listings | Filters drawer | Clear all | Button |  |
+| listings | Filters drawer | Apply filters | Button |  |
+| listings | Tab bar | Order | Button |  |
+| listings | Tab bar | Activity | Button |  |
+| listings | Tab bar | Help | Button |  |
+| listings | Tab bar | Account | Button |  |
+| listings-map | — | Back to Order | Accessible name (`aria-label`) | the chevron, no visible word (`microcopy.md` D9) — Home is the *Order* tab |
+| listings-map | — | Package delivery | Heading | the nav title. **New screen 2026-09-14** — *Results on the map*, what *Find* opens |
+| listings-map | Map | Map · available near you | Icon label | DATA — the map's text alternative (`role="img"`). Says what the map is for, not what flies over it (`voice.md` P1) |
+| listings-map | Choices | Parcel size | Heading | the drawer's title and the radio group's accessible name — the word `order-setup` already uses for the same choice |
+| listings-map | Choices | Up to 2 kg | Heading | a row's name. **Named by what it carries, not by the drone** — the designer's pick 2026-09-14 (`voice.md` P1, P4); the picture is the drone. `order-setup`'s picker says *Small — up to 2 kg* |
+| listings-map | Choices | 4 available · arrives in 6 min | Body | DATA — how many can take it, and when one arrives |
+| listings-map | Choices | ₴180 | Field value | DATA — the whole price, before the tap (`voice.md` P3); reconciles with `order-review`'s total |
+| listings-map | Choices | Up to 5 kg | Heading |  |
+| listings-map | Choices | 2 available · arrives in 9 min | Body | DATA |
+| listings-map | Choices | ₴240 | Field value | DATA |
+| listings-map | Choices | Up to 10 kg | Heading |  |
+| listings-map | Choices | 1 available · arrives in 14 min | Body | DATA |
+| listings-map | Choices | ₴320 | Field value | DATA |
+| listings-map | Choices | Order | Button | primary, the screen's one green control. The verb for the client's work (`voice.md` vocabulary: client-side = **order**) |
+| listings-map-aerial | — | Aerial photo & video | Heading | the nav title |
+| listings-map-aerial | Choices | What you get | Heading | the drawer's title — `order-setup-aerial`'s own field label |
+| listings-map-aerial | Choices | Photo · 3 available · arrives in 20 min · ₴640 | Body | DATA — one row: name, meta, price |
+| listings-map-aerial | Choices | Video · 2 available · arrives in 25 min · ₴720 | Body | DATA — one row |
+| listings-map-aerial | Choices | Photo & video · 2 available · arrives in 25 min · ₴800 | Body | DATA — one row; reconciles with `order-review-aerial`'s ₴800 |
+| listings-map-inspection | — | Inspection | Heading | the nav title |
+| listings-map-inspection | Choices | Parts to inspect | Heading | the drawer's title; *parts* is `order-review-inspection`'s word (*Inspection · 3 parts*) |
+| listings-map-inspection | Choices | 1 part · 3 available · arrives in 30 min · ₴330 | Body | DATA — one row |
+| listings-map-inspection | Choices | Up to 3 parts · 2 available · arrives in 30 min · ₴650 | Body | DATA — one row; reconciles with `order-review-inspection`'s ₴650 |
+| listings-map-inspection | Choices | Up to 5 parts · 1 available · arrives in 45 min · ₴970 | Body | DATA — one row |
 | onboarding-client-empty | Explainer | 15 SEC | State message | WF-PH |
 | onboarding-client-empty | Explainer | How DRON works | State message |  |
 | notifications | — | Notifications | Heading | the screen title, new 2026-08-31. The same word the `account-edit` card carries, and that is deliberate rather than lazy: one concept, one word. What tells them apart is the tier — `sitemap.md §7.4` renamed the settings row **Notification settings** the same day, so the log keeps the plain noun |

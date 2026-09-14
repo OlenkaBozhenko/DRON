@@ -29,6 +29,7 @@
     ]},
     { title: "Client · MJ-1", screens: [
       { name: "Home / start an order",                 file: "listings.html",           states: [["filters","listings-filters.html"],["country","listings-filter-country.html"],["region","listings-filter-region.html"],["city","listings-filter-city.html"],["district","listings-filter-district.html"],["filtered","listings-filtered.html"],["empty","listings-empty.html"],["error","listings-error.html"],["loading","listings-loading.html"]] },
+      { name: "Results on the map",                    file: "listings-map.html",       states: [["aerial","listings-map-aerial.html"],["inspection","listings-map-inspection.html"]] },
       { name: "Order setup / details",                 file: "order-setup.html",        states: [["aerial","order-setup-aerial.html"],["inspection","order-setup-inspection.html"],["empty","order-setup-empty.html"],["error","order-setup-error.html"]] },
       { name: "Order review & price",                  file: "order-review.html",       states: [["aerial","order-review-aerial.html"],["inspection","order-review-inspection.html"],["loading","order-review-loading.html"],["loading · aerial","order-review-loading-aerial.html"],["loading · inspection","order-review-loading-inspection.html"]] },
       { name: "Payment",                               file: "payment.html",            states: [["aerial","payment-aerial.html"],["inspection","payment-inspection.html"],["error","payment-error.html"],["loading","payment-loading.html"]] },

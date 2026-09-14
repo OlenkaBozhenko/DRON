@@ -5961,3 +5961,179 @@ header.dr-topbar,
 .dr-main--fab{ padding-bottom: calc(var(--h-control) + var(--sp-snug) + var(--sp-screen)); }
 
 /* ═══ END OPERATOR PAINT ══════════════════════════════════════════════════ */
+
+/* ═══ THE SEARCH HOME — `.dr-finder` ═══════════════════════════════════════
+   The designer, 2026-09-14, on the built `listings`: «треба змінити вигляд цієї
+   сторінки бо це стартова пошукова сторінка» — three service badges with icons,
+   a date that opens a calendar with the time to its right, `Filters` secondary
+   and `Find` primary. Two Figma references (`145:4`, `145:8`) were given for
+   structure only, «усі стилі з мого проекту», so every value below is a kit
+   rung that already exists; nothing here mints a token, a hex or a radius.
+
+   THE BADGES ARE THE CHIP, AS A RADIO. `.dr-grouptab` is untouched: 32 visible,
+   the `--pill-bleed` −6/−6 `::after` taking the target to 44 (`HIG · 44pt` ✓,
+   `WCAG 2.5.8` ✓), `--slate` 6.62:1 on the page at rest, `--ink` on
+   `--green-wash` 14.75:1 when chosen. A service is ONE of three and one is always
+   chosen, so the state carrier is a real `input[type=radio]` in a fieldset —
+   arrow keys, the group's name and the checked state come from the element
+   (`WCAG 1.3.1`, `2.1.1`, `4.1.2`) — and `:has(> input:checked)` paints what
+   `aria-current` painted on the old row.
+   THE CHIP'S KNOWN CONDITION COMES WITH IT AND IS SAID, NOT HIDDEN: the tint is
+   1.085:1 against the page, under `WCAG 1.4.11`'s 3:1 for a state, and the label
+   moving `--slate` → `--ink` is what carries the choice — the reading she took
+   for in-page rows on 2026-09-10 («вибраний на зеленому бекграунді»). The icon
+   is `currentColor`, so it moves with the label and is a second shape of the
+   same signal, never a separate one (`aria-hidden`). */
+.dr-finder{ display: flex; flex-direction: column; gap: var(--sp-snug); }
+.dr-finder__services{
+  display: flex; flex-wrap: wrap; gap: var(--sp-within-lg);
+  margin: 0; padding: 0; border: 0; min-width: 0;
+}
+.dr-grouptab--icon{ gap: var(--sp-6); }
+.dr-grouptab--icon .dr-ic{ width: var(--ic-16); height: var(--ic-16); }
+.dr-grouptab:has(> input:checked){ background: var(--green-wash); color: var(--ink); }
+.dr-grouptab:has(> input:focus-visible){ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+
+/* THE DATE · TIME ROW — two halves of one card, the reference's «дата … справа
+   час». Each half is a real <button> that owns a drawer (`aria-haspopup`,
+   `aria-expanded`, `aria-controls`), so Enter, Space and the name come from the
+   element. THE NAME IS THE DRAWN TEXT: label + value, «Date Today», so
+   `WCAG 2.5.3` holds by construction and nothing lives in `aria-label`.
+   A card, not a panel: `--card` on `--page` at 1.11:1 and `--r-card` 16, the
+   flat rule. The halves are split by the one hairline the form rows already
+   use, inset by `--sp-snug` top and bottom so it reads as a seam, not a border.
+   MEASURED PAIRS: label `--slate` on `--card` 5.95:1 at 12px (`WCAG 1.4.3` 4.5 ✓),
+   value `--ink` on `--card` 14.37:1, glyph `--slate` 5.95:1 (`1.4.11` 3:1 ✓ —
+   and decorative besides, the label names the half). Each half is at least
+   `--h-control` tall and half the row wide (`HIG · 44pt` ✓). The ring turns
+   inward like `.dr-field--action`'s, so it never paints over the badges above. */
+.dr-when{ display: flex; background: var(--card); border-radius: var(--r-card); }
+.dr-when__cell{
+  position: relative; flex: 1 1 0; min-width: 0; min-height: var(--h-control);
+  display: flex; align-items: center; gap: var(--sp-10);
+  padding: var(--sp-snug) var(--sp-screen);
+  border: 0; border-radius: var(--r-card); background: transparent;
+  font-family: var(--font-ui); text-align: left; color: var(--ink); cursor: pointer;
+}
+.dr-when__cell + .dr-when__cell::before{
+  content: ""; position: absolute; left: 0; top: var(--sp-snug); bottom: var(--sp-snug);
+  width: var(--hair); background: var(--line);
+}
+.dr-when__cell > .dr-ic{ width: var(--ic-20); height: var(--ic-20); color: var(--slate); }
+.dr-when__text{ display: flex; flex-direction: column; min-width: 0; }
+.dr-when__label{ font-size: var(--t-caption-size); font-weight: var(--weight-regular); line-height: var(--t-caption-line); color: var(--slate); }
+.dr-when__value{
+  font-size: var(--t-heading-size); font-weight: var(--weight-medium); line-height: var(--t-heading-line);
+  color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-variant-numeric: tabular-nums;
+}
+.dr-when__cell:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); }
+
+/* `Filters` and `Find`, one row, equal shares — the action bar's own row
+   rhythm, named for where it stands. `Find` is the screen's one green control;
+   the count badge on `Filters` is a status mark, `.dr-bell`'s reading. The
+   button is the badge's positioning box. */
+.dr-finder__actions{ display: flex; gap: var(--sp-within-lg); }
+.dr-finder__actions .dr-btn{ flex: 1 1 0; position: relative; }
+/* THE LABEL DOES NOT MOVE WHEN THE COUNT ARRIVES. Chrome still spends the flex `gap` on an
+   absolutely positioned child, so showing the badge widened the button's content by 8 and slid
+   *Filters* 4px left (measured: glyph at 45.39 → 41.39 from the button's edge). The same 8 is
+   carried as the glyph's own margin instead, so the badge has no gap to take. */
+.dr-finder__actions .dr-btn:has(> .dr-count-badge){ gap: 0; }
+.dr-finder__actions .dr-btn:has(> .dr-count-badge) > .dr-ic{ margin-right: var(--sp-within-lg); }
+.dr-finder__actions .dr-count-badge{ top: var(--pill-bleed); right: var(--pill-bleed); }
+/* the badge comes and goes with the filters; `display: inline-flex` beats the
+   UA's `[hidden]`, so it is said out loud, the `.dr-sheet[hidden]` reading */
+.dr-count-badge[hidden]{ display: none; }
+
+/* THE TIME DRAWER'S ROW — the calendar's own clock (`.dr-cal__clock`) carried
+   on the `At a set time` pick, pushed to the row's end. A disabled pick (`Now`
+   when the day is not today) keeps `--slate` on `--card` 5.95:1: disabled text
+   is exempt from `WCAG 1.4.3`, and it still clears it. */
+.dr-pick > .dr-cal__clock{ margin-left: auto; }
+.dr-pick:has(input:disabled){ color: var(--slate); cursor: not-allowed; }
+
+/* A DRAWER TALLER THAN ITS CONTENT ALLOWS — the Filters drawer holds two titled
+   cards and would stand past the status bar. It stops `--h-statusbar` under the
+   frame's top (`HIG · Sheets`, the large detent), and the cards scroll inside
+   while the grip, the title and the two buttons stay put. The scroller pulls out
+   by the sheet's inset and pays it back, so a focus ring on a card's edge is not
+   clipped by the overflow. */
+.dr-sheet--tall{ max-height: calc(100% - var(--h-statusbar)); }
+.dr-sheet__scroll{
+  flex: 1 1 auto; min-height: 0; overflow-y: auto;
+  display: flex; flex-direction: column; gap: var(--sp-snug);
+  margin-inline: calc(var(--sp-screen) * -1); padding: var(--sp-within) var(--sp-screen);
+}
+.dr-sheet__actions--row{ flex-direction: row; }
+.dr-sheet__actions--row .dr-btn{ flex: 1 1 0; }
+
+/* ═══ RESULTS ON THE MAP — `.dr-mapview` · `.dr-sheet--dock` · `.dr-offer` ═══
+   What `Find` opens (`_screens.md` §3a). The reference `145:8` is a map with a
+   drawer of choices; here the live map fills the screen under the navigation
+   bar and a DOCKED drawer rises over its lower edge.
+   THE MAP RUNS UNDER THE DRAWER'S CORNERS: it takes `--r-panel` more height than
+   the space above the drawer, so the 22px corners show map, not page. It is the
+   same `live-map.jpg` `tracking` carries, `cover`, anchored left of centre so the
+   drone and the route stand in the visible part rather than the destination pin.
+   Its text alternative is on the element (`role="img"`, `WCAG 1.1.1`).
+   THE DRAWER IS NOT A MODAL. `.dr-sheet` is absolute and raised; `--dock` puts
+   it back in the column (`position: relative`, so the flow order equals the
+   reading order, `WCAG 1.3.2`), keeps `--sh-raised` — it floats over the map,
+   the case `concept.md`'s flat rule already exempts — and has no scrim, no
+   `aria-modal` and no animation: it is there when the screen arrives. */
+.dr-mapview{
+  flex: 1 1 auto; min-height: 0;
+  margin-bottom: calc(var(--r-panel) * -1);
+  background-color: var(--media); background-size: cover;
+  background-position: 25% 50%; background-repeat: no-repeat;
+}
+.dr-sheet--dock{ position: relative; left: auto; right: auto; bottom: auto; z-index: 1; flex: none; }
+/* the screen's <main> holds both — the map and the drawer are its content, the
+   bars above are chrome — and hands them the column the map grows in */
+.dr-mapscreen{ flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+
+/* A CHOICE ROW — one of three, one always chosen, so again a radio: the row is
+   its <label>, the input is `.sr-only`, and the group is a fieldset named by the
+   drawer's drawn title (`aria-labelledby`, `WCAG 1.3.1`, `4.1.2`).
+   ANATOMY, THE REFERENCE'S: the picture, the name over one meta line, the price
+   at the end. The picture is the `--sz-well-*-xs` 56 × 44 well `.dr-choice`
+   uses, cutout contained, `alt=""` — the name says what the row is. The name is
+   17/400, the service card's title (rev 248); the price is 17/600 tabular, the
+   `.dr-price__val` pair; the meta is 13/400 `--slate`.
+   THE CHOSEN ROW IS RINGED IN INK, NOT TINTED — the one new state shape here,
+   and it is chosen because both obvious alternatives fail a rule. A green ring
+   or tint is green spent inside card UI (§0), and green as a stroke is 1.69:1;
+   the `--green-wash` fill is 1.085:1 against the page, under `WCAG 1.4.11`. The
+   `--sz-node-border` 2px ring in `--ink` is 15.99:1 against the page and
+   14.37:1 against the `--card` it closes around, and the ground stepping
+   `--page` → `--card` is a second, shape-free signal. Every row carries the
+   ring's width transparent, so choosing a row moves nothing by a pixel.
+   The focus ring stands OUTSIDE the chosen ring at `--focus-offset`, so a
+   focused, chosen row shows both (`WCAG 2.4.11`). MEASURED PAIRS: name `--ink`
+   on `--card` 14.37:1 / on `--page` 15.99:1; meta `--slate` 5.95:1 / 6.62:1
+   (`1.4.3` 4.5 ✓ at 13px). */
+.dr-offers{ margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: var(--sp-within); }
+.dr-offer{
+  position: relative; display: flex; align-items: center; gap: var(--sp-snug);
+  padding: var(--sp-within-lg) var(--sp-snug) var(--sp-within-lg) var(--sp-within-lg);
+  border: var(--sz-node-border) solid transparent; border-radius: var(--r-card);
+  color: var(--ink); cursor: pointer;
+}
+.dr-offer > .dr-well{ width: var(--sz-well-w-xs); height: var(--sz-well-h-xs); }
+.dr-offer__body{ flex: 1; min-width: 0; }
+.dr-offer__name{
+  display: block; font-size: var(--t-title-size); font-weight: var(--weight-regular);
+  line-height: var(--t-heading-line); color: var(--ink);
+}
+.dr-offer__meta{
+  display: block; margin-top: var(--sp-2);
+  font-size: var(--t-bodysm-size); line-height: var(--t-bodysm-line); color: var(--slate);
+  font-variant-numeric: tabular-nums;
+}
+.dr-offer__price{
+  flex: none; font-size: var(--t-title-size); font-weight: var(--t-title-weight);
+  color: var(--ink); font-variant-numeric: tabular-nums;
+}
+.dr-offer:has(> input:checked){ border-color: var(--ink); background: var(--card); }
+.dr-offer:has(> input:focus-visible){ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }

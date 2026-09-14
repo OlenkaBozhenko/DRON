@@ -133,6 +133,55 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     city resets the district. **Not data states** — four named sub-views, like `listings-filters` itself,
     so they take no row in the state matrix and no column in `sitemap.md §8`.
   - Grounded in the merged-catalogue model (`sitemap.md §7.3`) and the existing `listings-empty` *"loosen filters"* recovery.
+- **HOME BECOMES A SEARCH — 2026-09-14, the designer's call on the built `listings`** (*«треба змінити вигляд цієї
+  сторінки бо це стартова пошукова сторінка»*), against two Figma references used for structure only
+  (`YlGWlsWWjKSCxhONMzGG2F` nodes `145:4`, a search form, and `145:8`, a map with an offers drawer); every style is
+  the kit's. **`listings.html` stops being a service list.** Top to bottom, under the unchanged top bar (mark + bell):
+  - **Three service badges with icons** — *Delivery · Photo · Inspection*. One is always chosen (a radio group, no
+    *All*); *Delivery* is chosen at rest. **The short word *Photo* is her wording** for the service the rest of the
+    product names *Aerial photo &amp; video*; the results screen it opens keeps the full name in its title.
+  - **Date and time, side by side** — *Date · Today* on the left opens a **calendar drawer** (the `.dr-cal` month
+    grid, no date before today, *Done* / *Cancel*); *Time · Now* on the right opens a **time drawer** (*Now*, or
+    *At a set time* with hour : minute). *Now* is only offered for today; picking a later day moves the time to a
+    set one.
+  - **`Filters` (secondary) and `Find` (primary)**, one row. *Filters* opens a **drawer** holding **Location**
+    (Country ▸ Region ▸ City ▸ District — the same four rows, each still pushing its own screen) and **Price range**.
+    **Date &amp; time is not in the drawer** — it moved to the search itself, and one value is set in one place
+    (the designer's pick, 2026-09-14, of the two readings put to her). *Apply filters* closes the drawer and puts the
+    count on the button; *Clear all* resets and closes.
+  - **`Find` opens the results on the map** for the chosen service — see *Results on the map* below.
+  - **Not states, not sub-views:** the three drawers are controls on this page, the reading the date drawer already
+    had. **The sibling pages are not rebuilt with it** — `listings-filters` (the full-screen panel),
+    `listings-filtered`, `listings-empty`, `listings-error` and `listings-loading` still draw the service list, and
+    the four place-pick screens still go back to `listings-filters`. Recorded as open, not decided: each is a
+    separate page and the change was asked for on the base.
+
+### 3a. Results on the map  *(NEW · 2026-09-14 · the designer's call)*
+- **Job:** `MJ-1` — *choose the result a drone delivers* (`CE-2` Service), with `C-01` availability shown before
+  payment. It is the *Service catalogue* node of `flows.md` MJ-1 made visible: what used to be the list on Home.
+- **Place in flow:** Home → **Find** → here → **Order** → Order setup for that service.
+- **Shape:** a pushed screen — back chevron (*Back to Order*) and the service's name as the title, **no tab bar**.
+  The live map fills the screen; a **docked drawer** rises over its lower part with the choices, one per row:
+  **the drone's picture, what it does, how many are available, when one arrives, and the price**. One row is
+  chosen; **`Order`** (primary) sits at the bottom of the drawer.
+- **Rows are named by the outcome, not the drone** — the designer's pick, 2026-09-14, of the two readings put to
+  her (`voice.md` **P1**, **P4**): the picture shows the drone; the words say what it carries or makes.
+
+  | File | Title | Drawer title | Rows (price · available · arrives in) | Order → |
+  |---|---|---|---|---|
+  | `listings-map.html` | Package delivery | Parcel size | Up to 2 kg ₴180 · 4 · 6 min — Up to 5 kg ₴240 · 2 · 9 min — Up to 10 kg ₴320 · 1 · 14 min | `order-setup` |
+  | `listings-map-aerial.html` | Aerial photo &amp; video | What you get | Photo ₴640 · 3 · 20 min — Video ₴720 · 2 · 25 min — Photo &amp; video ₴800 · 2 · 25 min | `order-setup-aerial` |
+  | `listings-map-inspection.html` | Inspection | Parts to inspect | 1 part ₴330 · 3 · 30 min — Up to 3 parts ₴650 · 2 · 30 min — Up to 5 parts ₴970 · 1 · 45 min | `order-setup-inspection` |
+
+  **The prices are not invented for this screen.** On each file, the row that matches the order its `order-review`
+  already prices reconciles with that total — *Up to 2 kg* ₴180, *Photo &amp; video* ₴800 (30 min), *Up to 3 parts*
+  ₴650 — and the other rows move only the line the row changes: the deliverable (₴120 / ₴200 / ₴280 on a ₴500 shoot
+  + ₴20 fee), the parts (₴160 each, + ₴150 report + ₴20 fee). The two heavier parcel tiers are new figures.
+- **States:** none built. `flows.md`'s *none available now* is still the `order-setup-empty` page; whether it
+  moves here is open.
+- **Open, not decided:** the three setup screens still ask for what this screen and Home now collect — *Parcel size*,
+  *What you get*, and on the two calendar-first services a time slot — and their back control still returns to Home,
+  not to the map.
 
 ### 4. Service catalogue
 - **Job:** `MJ-1` — *"choose the result a drone delivers"* (`CE-2` Service).
@@ -920,6 +969,25 @@ reads the boundary the eye now sees. **What it costs is the title and the row's 
 44px apart, on both cards; iOS answers that shape by letting a one-row group's row carry only the value.
 **Open, and hers** — the rows are left exactly as built until she picks.
 
+**The Payment method drawer takes an `Add card` button on 2026-09-14 (rev 249)**, the designer's call on the
+built drawer: *«додай primary button "Add card" відкрий дровер де юзер зможе ввести номер картки (в полі вводу
+справа логотипи "Visa", MasterCard etc) дійсна до та CVV і CTA Add card»*.
+- **In the picker:** `Add card` (primary) under the four methods, `Cancel` (secondary) under it — confirm first,
+  cancel last, `HIG · Action sheets`, the `.dr-sheet__actions` group `listings-filters` already draws.
+- **It opens a second drawer, `Add card`, in the picker's place** — one drawer on the frame at a time, the scrim
+  and the inert screen kept; closing it returns focus to the *Payment method* row, since the drawer that held the
+  button is gone (`WCAG 2.4.3`). **Not a state and not a sub-view**, so no row in the matrix — a control on this
+  page, the reading every drawer here already has.
+- **Three typed rows in one card** — **Card number · Expiry · CVV**, the labels and the `WCAG 1.3.5` tokens
+  (`cc-number` · `cc-exp` · `cc-csc`) `payment` already uses, CVV masked as there. **No name rows**: she named
+  three fields, and `payment`'s *First name* / *Last name* are not carried in. **The Visa and Mastercard marks
+  stand at the right end of the card number**, the two the product accepts (`CLAUDE.md` · Payment) — the same
+  artwork as the picker rows, cropped to their ink; the field is described by a hidden *Visa or Mastercard*
+  (`WCAG 1.1.1`). Then **`Add card`** (primary) and **`Cancel`**. The fields open **empty** and the first one takes
+  focus, so the number pad rises with the drawer and the drawer rides on top of it.
+- **Open, and hers:** with both marks in the field the number has **140px** where a full 16-digit number needs
+  **157** — see `concept.md` rev 249.
+
 **A fourth card joined them on 2026-08-24 — Notifications** ▸ *What we tell you, and how*, on the designer's
 call, and the shape was hers too: the question was put as a row that pushes its own screen versus a card in
 place, and she chose the card («third card, inline»), then the control («make a toggle»).
@@ -969,25 +1037,6 @@ destination of the pencil badge now sitting on the avatar in `account.html`, the
 is the destination of the pencil beside the name. `sitemap.md §7.4` still lists **one** Account screen; both
 files are states of it, and both are listed in the `Files` column above rather than given a row of their own.
 It carries **base only** — no `flows.md` node produces an empty, error or loading state for it (an empty
-**The Payment method drawer takes an `Add card` button on 2026-09-14 (rev 249)**, the designer's call on the
-built drawer: *«додай primary button "Add card" відкрий дровер де юзер зможе ввести номер картки (в полі вводу
-справа логотипи "Visa", MasterCard etc) дійсна до та CVV і CTA Add card»*.
-- **In the picker:** `Add card` (primary) under the four methods, `Cancel` (secondary) under it — confirm first,
-  cancel last, `HIG · Action sheets`, the `.dr-sheet__actions` group `listings-filters` already draws.
-- **It opens a second drawer, `Add card`, in the picker's place** — one drawer on the frame at a time, the scrim
-  and the inert screen kept; closing it returns focus to the *Payment method* row, since the drawer that held the
-  button is gone (`WCAG 2.4.3`). **Not a state and not a sub-view**, so no row in the matrix — a control on this
-  page, the reading every drawer here already has.
-- **Three typed rows in one card** — **Card number · Expiry · CVV**, the labels and the `WCAG 1.3.5` tokens
-  (`cc-number` · `cc-exp` · `cc-csc`) `payment` already uses, CVV masked as there. **No name rows**: she named
-  three fields, and `payment`'s *First name* / *Last name* are not carried in. **The Visa and Mastercard marks
-  stand at the right end of the card number**, the two the product accepts (`CLAUDE.md` · Payment) — the same
-  artwork as the picker rows, cropped to their ink; the field is described by a hidden *Visa or Mastercard*
-  (`WCAG 1.1.1`). Then **`Add card`** (primary) and **`Cancel`**. The fields open **empty** and the first one takes
-  focus, so the number pad rises with the drawer and the drawer rides on top of it.
-- **Open, and hers:** with both marks in the field the number has **140px** where a full 16-digit number needs
-  **157** — see `concept.md` rev 249.
-
 avatar is the *base*: the initials fallback, which `account.html` already ships as `OB`).
 
 **It became a modal on 2026-08-16 (rev 146), on the designer's reference** (Figma `100:30`): *«залиш

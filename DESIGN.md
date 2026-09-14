@@ -2005,6 +2005,33 @@ The drawer's second job. Where a picker sheet sets a **value**, this one offers 
 - **The sheet holds zero green,** verified by computed style: the frame's green stays the CTA behind
   the scrim, **15,022px² · 4.93%**, exactly what it was before the drawer existed.
 
+### The search home (`.dr-finder`) and the results on the map (`.dr-offer`)
+
+**2026-09-14, rev 250.** The designer rebuilt Home as a search — *«це стартова пошукова сторінка»* — against
+two Figma references used for structure only. Every value is an existing rung.
+
+- **Service badges** — the `.dr-grouptab` chip as a **radio** (`.dr-grouptab--icon`), a 16px glyph before
+  the word: *Delivery* (package), *Photo* (camera), *Inspection* (a viewfinder round a house). 32 visible,
+  44 target; chosen = `--ink` on `--green-wash` **14.75:1**. The tint is **1.085:1** against the page — the
+  chip's recorded `WCAG 1.4.11` condition, carried unchanged; the label moving `--slate` → `--ink` carries
+  the state.
+- **Date · Time** (`.dr-when`) — one `--card` of two buttons split by a `--line` seam, each owning a drawer.
+  Label 12/400 `--slate` **5.95:1**, value 15/600 `--ink` **14.37:1**; each half **170.5 × 58.8**. The
+  button's name is its drawn text — *Date Today* (`WCAG 2.5.3`).
+- **Filters · Find** (`.dr-finder__actions`) — equal shares, **166.5 × 44**. *Find* is the screen's one green
+  control: **2.35%** of the frame, **2.43%** with the Filters count showing.
+- **Drawers** — *Pick a date* (the `.dr-cal` grid without its time row), *Pick a time* (*Now* / *At a set
+  time* with `.dr-cal__clock`; *Now* disabled for any day but today), *Filters* (`.dr-sheet--tall`:
+  Location + Price range, scrolling inside, *Clear all* · *Apply filters* side by side). **693.77** tall at
+  the 375 × 812 frame.
+- **Results on the map** — `.dr-mapview` fills the column under the nav bar and runs `--r-panel` under a
+  **docked** `.dr-sheet--dock` (no scrim, no `aria-modal`). Map **373 × 371.2**, drawer **344.8**.
+- **A choice row** (`.dr-offer`) is a radio label: 56 × 44 well · name 17/400 · meta 13/400 `--slate` ·
+  price 17/600 tabular — **341 × 64**. **The chosen row is ringed 2px in `--ink` on `--card`**: **15.99:1**
+  on the page, **14.37:1** on the card, and the ground step is a second signal. Not green — a green ring is
+  green inside card UI and 1.69:1 as a stroke; not the wash — 1.085:1 fails `1.4.11`. Every row carries the
+  ring transparent, so choosing moves nothing. *Order* is **4.80%** of the frame and the only solid green.
+
 ### Media
 
 - **Cutout (transparent PNG):** `object-fit: contain`, **no ground** — in the product the cutout
