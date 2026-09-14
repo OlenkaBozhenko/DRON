@@ -2025,7 +2025,20 @@ two Figma references used for structure only. Every value is an existing rung.
   **Delivery:** *From* (*Pickup address*) over *To* (*Drop-off address*), rows **341 × 58.8**, a route mark
   (hollow ring → hairline → filled dot, decorative) and a **44 × 44** swap `.dr-btn--icon` on the seam,
   *Swap pickup and drop-off*. **Photo, Inspection:** one row, *Where* (*Address*). The badge swaps the cards
-  in place (`WCAG 3.2.2`: content, not context).
+  in place (`WCAG 3.2.2`: content, not context). **From rev 254 each row is a button** (`.dr-route__open`)
+  that opens the address drawer — same picture: the value line is the grey placeholder at 400 while empty
+  and `--ink` 600 once an address is taken; the name is the drawn text, *From Pickup address*
+  (`WCAG 2.5.3`, `4.1.2`); the whole row is the target and the swap keeps its 44 above it; one ring, the row's.
+- **Address drawer** (rev 254) — one `.dr-sheet` for From, To and Where, titled by the row (*Pickup address* ·
+  *Drop-off address* · *Address*): a `.dr-search` field **341 × 44** (`--ink` on `--media` **13.33:1**,
+  placeholder *Search address* **5.51:1**) that takes focus, so the keyboard rises and the drawer rides on it;
+  the picker list with a **20px leading glyph** (`--slate` **5.95:1**) and a 12.5/400 `--slate` sub-line —
+  *Use my location* **44**, *Podil, 21 · Saved address* **58**, *Osokorky, 14 · Recent* **58**; *Done*
+  over *Cancel*, **341 × 44** each. With the keyboard up: **412.8** tall, top **63.2**, bottom on the
+  keyboard's **476**, overlap **0**. *Done* is **4.93%** of the frame, the only green above the scrim. A tapped
+  row is taken at once; *Done* takes what was typed; *Cancel*, the scrim and Escape change nothing.
+  `.dr-sheet--steady` keeps the height it opened at while typing narrows the list, so nothing above the
+  keyboard moves.
 - **Filters over Find** (`.dr-finder__actions`, rev 251) — each the full width, **341 × 44**, 8 apart, Filters
   first. *Find* is the screen's one green control: **4.88%** of the frame measured by pixel (the bell's count
   included), under §0's ~5%.

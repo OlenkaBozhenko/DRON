@@ -1152,13 +1152,25 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings | Search | Delivery | Button | a badge — a radio, chosen at rest |
 | listings | Search | Photo | Button | a badge. **The designer's own word, 2026-09-14** — the service is *Aerial photo & video* everywhere else, including the title of the results screen this badge opens. One concept in two words is `voice.md`'s one-word rule spent on her call, recorded rather than smoothed |
 | listings | Search | Inspection | Button | a badge |
-| listings | Search | From | Field label | **new 2026-09-14**, the designer's *«звідки і куди»* against Figma `145:4`. Delivery only. The label is the reference's word; the placeholder under it keeps the product's own, *Pickup address* (`order-setup`), so the field says both |
-| listings | Search | Pickup address | Field placeholder | `order-setup`'s field name, without its colon |
-| listings | Search | To | Field label | Delivery only |
-| listings | Search | Drop-off address | Field placeholder | `order-setup`'s field name |
+| listings | Search | From | Field label | **new 2026-09-14**, the designer's *«звідки і куди»* against Figma `145:4`. Delivery only. The label is the reference's word; the placeholder under it keeps the product's own, *Pickup address* (`order-setup`), so the field says both. **From rev 254 the row is a button** that opens the address drawer, and its name is the drawn text — *From Pickup address*, or *From Osokorky, 14* once one is taken (`WCAG 2.5.3`) |
+| listings | Search | Pickup address | Field placeholder | `order-setup`'s field name, without its colon. From rev 254 it is the row's grey value line while no address is taken — the placeholder's role, drawn as text in a button |
+| listings | Search | To | Field label | Delivery only; a button from rev 254, *To Drop-off address* |
+| listings | Search | Drop-off address | Field placeholder | `order-setup`'s field name; the grey value line from rev 254 |
 | listings | Search | Swap pickup and drop-off | Accessible name (`aria-label`) | the icon-only button between From and To — `voice.md`'s own two words for the two ends, so the name says what moves |
-| listings | Search | Where | Field label | Photo and Inspection — one place, nothing carried |
-| listings | Search | Address | Field placeholder | Photo and Inspection |
+| listings | Search | Where | Field label | Photo and Inspection — one place, nothing carried; a button from rev 254, *Where Address* |
+| listings | Search | Address | Field placeholder | Photo and Inspection; the grey value line from rev 254 |
+| listings | Address drawer | Pickup address | Heading | **new 2026-09-14 (rev 254)**, the designer: *«по кліку відкривай дровер знизу з можливістю ввести або обрати адресу»*. One drawer for the three rows, titled by the row that opened it — *Pickup address* (From), *Drop-off address* (To), *Address* (Where): each row's own placeholder, so no new words. The title is also the field's accessible name (`aria-labelledby`) |
+| listings | Address drawer | Search address | Field placeholder | the field that takes the typing. It narrows the list and `Done` takes what is written in it. The drawn name is the title above it, not this placeholder (`WCAG 3.3.2`) |
+| listings | Address drawer | Use my location | Button | the first row, always shown. **The designer's pick** of three readings put to her, standards first. `voice.md` P4 — the user's words, not *GPS* or *Geolocation*; the first person is the user speaking through the control, as `support`'s *My order didn't arrive* already does. The system's permission alert is the OS's and is not drawn |
+| listings | Address drawer | Pechersk, 12 | Field value | DATA — **new**, the located address the prototype writes into the row when *Use my location* is tapped. A Kyiv address in the short form the product already writes (*Podil, 21*, *Osokorky, 14*); not shown in the drawer |
+| listings | Address drawer | Podil, 21 | Button | DATA — the saved address, `account`'s and `account-edit`'s own value |
+| listings | Address drawer | Saved address | Body | the row's sub-line — `account`'s own field name for the same value |
+| listings | Address drawer | Osokorky, 14 | Button | DATA — the recent address: the last order's, `order-history` and `order-review` |
+| listings | Address drawer | Recent | Body | the row's sub-line |
+| listings | Address drawer | 1 address | Status (`role="status"`, not drawn) | spoken after typing narrows the list; *2 addresses* when both stay (`WCAG 4.1.3`). *Use my location* is not counted — it is always there |
+| listings | Address drawer | No matching address | Status (`role="status"`, not drawn) | spoken when typing rules out both addresses. What happened, in three words; the way on is on the screen — *Done* takes what was typed |
+| listings | Address drawer | Done | Button | primary — takes what is typed in the field; an emptied field clears the row. **Open, put to the designer:** with the keyboard up the keyboard's own accessory *Done* (put the keyboard away) stands 120 below it |
+| listings | Address drawer | Cancel | Button | leaves the row as it was |
 | listings | Search | Date | Field label | the left half of the date · time row; the button's name is *Date Today* — the drawn label plus the value (`WCAG 2.5.3`) |
 | listings | Search | Today | Field value | DATA — at rest; a picked day reads `Wed 16 Sep`, the product's own format (`time-slot`, `listings-filters`) |
 | listings | Search | Time | Field label | the right half |

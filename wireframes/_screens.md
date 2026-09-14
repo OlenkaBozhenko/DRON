@@ -148,8 +148,22 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     на зразку»*, reference `145:4`). It follows the chosen badge, her pick of the two readings put to her:
     **Delivery** draws **From** (*Pickup address*) over **To** (*Drop-off address*), joined by a route mark, with a
     **swap** button between them; **Photo** and **Inspection** draw one field, **Where** (*Address*) — a shoot and an
-    inspection have one place and nothing is carried. The fields are typed, empty at rest, and change in place when
+    inspection have one place and nothing is carried. The fields are empty at rest and change in place when
     the badge changes (a change of content, not of context — `WCAG 3.2.2`).
+  - **Each address row opens an address drawer — the designer on the built search, the same day** (*«по кліку
+    відкривай дровер знизу з можливістю ввести або обрати адресу»*). The row stops being typed into on Home and
+    becomes a button that looks the same — label over the value, or over the grey placeholder while empty — because
+    it now opens a dialog rather than taking text (`WCAG 4.1.2`); it opens on a tap, never on focus (`3.2.1`).
+    **One drawer serves From, To and Where**, titled by the field that opened it (*Pickup address* · *Drop-off
+    address* · *Address*). Top to bottom: a **search field** that takes focus, so the keyboard rises and the drawer
+    rides above it; **a list to choose from** — her pick of the three readings put to her, standards first:
+    *Use my location*, the **saved address** (*Podil, 21*, `account`), and the **recent** one (*Osokorky, 14*, the
+    last order in `order-history`); then **`Done`** over **`Cancel`**. Typing narrows the two addresses and says how
+    many are left (`4.1.3`); *Use my location* stays. **A tapped row is taken at once** and the drawer closes;
+    **`Done` takes what was typed** (an emptied field clears the row); **`Cancel`**, the scrim and Escape leave the
+    row as it was. Focus goes back to the row. The swap still trades the two values. **Not drawn:** the system's
+    location-permission alert — it is the OS's, asked at the tap (`HIG · Location`), and the prototype writes the
+    located address straight in. **Not a state** — a control on this page, like the other three drawers.
   - **`Filters` (secondary) over `Find` (primary), each the full width** — the designer, same message: *«кнопка
     мають бути по всій ширині одна під одною»*. They stood side by side in one row until then. *Filters* opens a **drawer** holding **Location**
     (Country ▸ Region ▸ City ▸ District — the same four rows, each still pushing its own screen) and **Price range**.

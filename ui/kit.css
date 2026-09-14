@@ -6088,12 +6088,71 @@ header.dr-topbar,
 .dr-route__input::placeholder{ color: var(--slate); font-weight: var(--weight-regular); opacity: 1; }
 /* the ring sits on the row, inward, the `.dr-field--action` reading: the input
    itself has no box to ring */
-.dr-route__row:has(.dr-route__input:focus-visible){ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); border-radius: var(--r-card); }
+.dr-route__row:has(.dr-route__input:focus-visible),
+.dr-route__row:has(.dr-route__open:focus-visible){ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); border-radius: var(--r-card); }
 .dr-route__swap{
   position: absolute; z-index: 1;
   right: var(--sp-screen); top: calc(50% - var(--sz-action) / 2);
 }
 .dr-route[hidden]{ display: none; }
+
+/* THE ROW OPENS THE ADDRESS DRAWER — the designer, 2026-09-14 (rev 254): «по кліку
+   відкривай дровер знизу з можливістю ввести або обрати адресу». The typing moves
+   into the drawer, so on Home the row no longer takes text: it OPENS A DIALOG, and a
+   textbox that opens a dialog reports the wrong role (`WCAG 4.1.2`). It becomes a
+   <button> that looks the way the field did — the label over the value line, the
+   value `--ink` 15/600 14.37:1, and while empty the placeholder's own `--slate` 400
+   5.95:1 — with `aria-haspopup="dialog"`. It opens on activation only, never on
+   focus (`3.2.1`). Its name is the drawn text, «From Pickup address» or «From
+   Podil, 21» (`2.5.3`).
+   THE WHOLE ROW IS THE TARGET: the button is the text column and its ::after spans
+   the row, mark and inset included, the way a card link does. The swap stands above
+   it at `z-index: 1`, so its 44 × 44 is not taken. `.dr-route__input` is kept
+   declared and is spent nowhere from this revision — a typed row is still a shape. */
+.dr-route__open{
+  flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: stretch;
+  margin: 0; padding: 0; border: 0; background: transparent; outline: none;
+  font-family: var(--font-ui); text-align: left; color: var(--ink); cursor: pointer;
+}
+.dr-route__open::after{ content: ""; position: absolute; inset: 0; border-radius: var(--r-card); }
+.dr-route__value{
+  font-size: var(--t-heading-size); font-weight: var(--weight-medium); line-height: var(--t-heading-line);
+  color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.dr-route__value[data-empty]{ color: var(--slate); font-weight: var(--weight-regular); }
+
+/* THE ADDRESS DRAWER'S LIST — the picker's own list and row (`.dr-picker__list`,
+   `.dr-picker__item`: 44 min-height, `--line` between rows, the hover and the inward
+   ring), so one shape keeps one set of values. Three things are added, and only on
+   a row that asks for them:
+   A LEADING GLYPH that says what kind of place the row is — location, saved, recent.
+   The picker hides every `.dr-ic` in a row until it is the current one, because its
+   only glyph is the checkmark; `__lead` is exempt. 20px, `--slate` on `--card`
+   5.95:1 (`1.4.11` 3:1 ✓), decorative — the words carry the kind.
+   A SUB-LINE under the label — *Saved address*, *Recent* — 12.5/400 `--slate` 5.95:1,
+   the `.dr-pick__sub` pair.
+   THE TWO-LINE ROW'S AIR: 12 on the block axis, rev 175's reading for `.dr-pick`, so
+   the row stands at about 60 and its two lines never crowd the hairline.
+   A row the typed text rules out takes `hidden`; `display: flex` beats the UA's
+   `[hidden]`, so it is said out loud. */
+.dr-picker__item:has(> .dr-picker__lead){ justify-content: flex-start; gap: var(--sp-snug); }
+.dr-picker__item > .dr-ic.dr-picker__lead{
+  visibility: visible; flex: none; width: var(--ic-20); height: var(--ic-20); color: var(--slate);
+}
+.dr-picker__item:has(.dr-picker__sub){ padding-block: var(--sp-snug); }
+.dr-picker__sub{
+  display: block; font-size: var(--t-meta-size); line-height: var(--t-meta-line); color: var(--slate);
+}
+.dr-picker__item[hidden]{ display: none; }
+/* A DRAWER WHOSE LIST NARROWS HOLDS ITS HEIGHT — rev 120's rule for the calendar
+   («the sheet does not change height between a 5-row month and a 6-row one»),
+   met a second way. With the keyboard up the drawer stands on the keyboard, so a
+   row leaving pulled its TOP edge down: measured, typing «osok» moved the title
+   and the field being typed into 58 down (sheet 412.8 → 354.8). The page script
+   pins the height the drawer opened at as a min-height, and the slack goes
+   between the list and the buttons, so the field, the list's top and the two
+   buttons all stay where they were. */
+.dr-sheet--steady > .dr-sheet__actions{ margin-top: auto; }
 
 /* `Filters` over `Find`, each the full width — the designer, the same message:
    «кнопка мають бути по всій ширині одна під одною». They stood side by side in
