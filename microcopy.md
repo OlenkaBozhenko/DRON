@@ -731,14 +731,14 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account-edit | Documents | Valid liability insurance covering the drone. | Body | the card's subtitle |
 | account-edit | Action bar | Cancel | Button | zone corrected 2026-09-10 — the two buttons stand on the frame's bottom edge, never in the Preferences card, and the table had said otherwise since it was generated |
 | account-edit | Action bar | Save changes | Button |  |
-| account-edit | Payment drawer | Add card | Button | new 2026-09-14 (rev 249) — the designer's word; primary, above Cancel. Opens the Add card drawer in this one's place |
+| account-edit | Payment drawer | Add card | Button | new 2026-09-14 (rev 249) — the designer's word; primary, under Cancel from rev 260 (above it until then). Opens the Add card drawer in this one's place |
 | account-edit | Payment drawer | Cancel | Button | the drawer's dismissal, new 2026-08-16 (rev 102) — `HIG · Action sheets` asks for the cancel by name. It never stands beside the form's own Cancel: the scrim covers the action bar while the drawer is up |
 | account-edit | Add card drawer | Add card | Heading | new 2026-09-14 (rev 249) — the drawer's title, named by the button that opened it (rev 102's construction) |
 | account-edit | Add card drawer | Card number | Field label | `payment`'s label, unchanged (rev 249) |
 | account-edit | Add card drawer | Visa or Mastercard | Body (hidden) | `.sr-only`, the card number's `aria-describedby` — the text for the two marks (`WCAG 1.1.1`). The first half of `payment`'s subtitle, unchanged (rev 249) |
 | account-edit | Add card drawer | Expiry | Field label | `payment`'s label, unchanged — the designer's *«дійсна до»* (rev 249) |
 | account-edit | Add card drawer | CVV | Field label | `payment`'s label, unchanged — the designer's word (rev 249) |
-| account-edit | Add card drawer | Add card | Button | new 2026-09-14 (rev 249) — the CTA, primary, above Cancel |
+| account-edit | Add card drawer | Add card | Button | new 2026-09-14 (rev 249) — the CTA, primary, under Cancel from rev 260 (above it until then) |
 | account-edit | Add card drawer | Cancel | Button | the drawer's dismissal (rev 249), as on every picker |
 | account-edit | Language drawer | Cancel | Button | same |
 | account | — | Account | Heading |  |
@@ -1169,8 +1169,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings | Address drawer | Recent | Body | the row's sub-line |
 | listings | Address drawer | 1 address | Status (`role="status"`, not drawn) | spoken after typing narrows the list; *2 addresses* when both stay (`WCAG 4.1.3`). *Use my location* is not counted — it is always there |
 | listings | Address drawer | No matching address | Status (`role="status"`, not drawn) | spoken when typing rules out both addresses. What happened, in three words; the way on is on the screen — *Done* takes what was typed |
-| listings | Address drawer | Done | Button | primary — takes what is typed in the field; an emptied field clears the row. Full width under the list, over *Cancel*, as on every other drawer. **Its place was decided twice on 2026-09-15:** rev 256 moved the pair into a top bar (`HIG · Sheets`' iOS placement, on *«зроби так як каже HIG»*); shown the three options drawn on the real pages, the designer put it back under the list at rev 258 — *«залиш кругом як є … добав там CTA як на усіх інших знизу»*. The keyboard accessory's own *Done* (put the keyboard away) stands **120** below it again, and that is her call, made having seen it |
-| listings | Address drawer | Cancel | Button | leaves the row as it was; under *Done*, the same stack |
+| listings | Address drawer | Done | Button | primary — takes what is typed in the field; an emptied field clears the row. Full width under the list, under *Cancel* (rev 260, *«зміни місцями primary and secondary»*), as on every other Done/Cancel drawer. **Its place was decided twice on 2026-09-15:** rev 256 moved the pair into a top bar (`HIG · Sheets`' iOS placement, on *«зроби так як каже HIG»*); shown the three options drawn on the real pages, the designer put it back under the list at rev 258 — *«залиш кругом як є … добав там CTA як на усіх інших знизу»*. The keyboard accessory's own *Done* (put the keyboard away) stands **120** below it again, and that is her call, made having seen it; turned under *Cancel* at rev 260, it stands **68** above the accessory's |
+| listings | Address drawer | Cancel | Button | leaves the row as it was; over *Done* from rev 260, the same stack |
 | listings | Search | Date | Field label | the left half of the date · time row; the button's name is *Date Today* — the drawn label plus the value (`WCAG 2.5.3`) |
 | listings | Search | Today | Field value | DATA — at rest; a picked day reads `Wed 16 Sep`, the product's own format (`time-slot`, `listings-filters`) |
 | listings | Search | Time | Field label | the right half |

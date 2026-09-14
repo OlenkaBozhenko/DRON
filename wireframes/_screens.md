@@ -97,7 +97,7 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     (*«помісти картку самою першою на сторінці»*); it had stood second, under Time, since the panel was built.
     **The Time zone's fourth option opens a date picker** — *Pick a date & time…* raises a **calendar
     drawer** (`.dr-cal`, added 2026-08-16 on the designer's call *«при кліку відкрий дата пікер як у IOS»*):
-    month grid with `‹ ›` paging, no date before today, a 24-hour time below it, *Cancel* / *Done*. **Done
+    month grid with `‹ ›` paging, no date before today, a 24-hour time below it, *Cancel* over *Done* (rev 260). **Done
     writes the value into the option itself** — the row then reads `Sat 22 Aug, 17:30` — and **Cancel puts
     back whichever option was checked before the drawer rose.** Not a state and not a sub-view: it is a
     control on this page, so it takes no row in the matrix.
@@ -141,7 +141,7 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     *All*); *Delivery* is chosen at rest. **The short word *Photo* is her wording** for the service the rest of the
     product names *Aerial photo &amp; video*; the results screen it opens keeps the full name in its title.
   - **Date and time, side by side** — *Date · Today* on the left opens a **calendar drawer** (the `.dr-cal` month
-    grid, no date before today, *Done* / *Cancel*); *Time · Now* on the right opens a **time drawer** (*Now*, or
+    grid, no date before today, *Cancel* over *Done*); *Time · Now* on the right opens a **time drawer** (*Now*, or
     *At a set time* with hour : minute). *Now* is only offered for today; picking a later day moves the time to a
     set one.
   - **Where the drone goes — added the same day, the designer on the built search** (*«а де звідки і куди як ось
@@ -158,10 +158,12 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     address* · *Address*). Top to bottom: a **search field** that takes focus, so the keyboard rises and the drawer
     rides above it; **a list to choose from** — her pick of the three readings put to her, standards first:
     *Use my location*, the **saved address** (*Podil, 21*, `account`), and the **recent** one (*Osokorky, 14*, the
-    last order in `order-history`); then **`Done`** over **`Cancel`**, each the full width, under the list — the
+    last order in `order-history`); then **`Cancel`** over **`Done`**, each the full width, under the list — the
     same stack every other drawer in the product carries. *(On 2026-09-15 the pair stood for one revision in a top
     bar, `Cancel` leading and `Done` trailing, `HIG · Sheets`' iOS placement; shown all three options side by side,
-    the designer put them back under the list: «залиш кругом як є … добав там CTA як на усіх інших знизу».)*
+    the designer put them back under the list: «залиш кругом як є … добав там CTA як на усіх інших знизу». The
+    same day, rev 260, she turned the stack over on every Done/Cancel drawer: «зміни місцями primary and
+    secondary» — `Cancel` on top, a recorded departure from `HIG · Alerts`' default-on-top stack.)*
     Typing narrows the two addresses and says how
     many are left (`4.1.3`); *Use my location* stays. **A tapped row is taken at once** and the drawer closes;
     **`Done` takes what was typed** (an emptied field clears the row); **`Cancel`**, the scrim and Escape leave the
@@ -1003,8 +1005,10 @@ reads the boundary the eye now sees. **What it costs is the title and the row's 
 **The Payment method drawer takes an `Add card` button on 2026-09-14 (rev 249)**, the designer's call on the
 built drawer: *«додай primary button "Add card" відкрий дровер де юзер зможе ввести номер картки (в полі вводу
 справа логотипи "Visa", MasterCard etc) дійсна до та CVV і CTA Add card»*.
-- **In the picker:** `Add card` (primary) under the four methods, `Cancel` (secondary) under it — confirm first,
-  cancel last, `HIG · Action sheets`, the `.dr-sheet__actions` group `listings-filters` already draws.
+- **In the picker:** `Cancel` (secondary) under the four methods, `Add card` (primary) under it — the
+  `.dr-sheet__actions` group `listings-filters` already draws. Built confirm first (`HIG · Action sheets`,
+  `HIG · Alerts`' default-on-top stack); turned over on 2026-09-15, rev 260, on the designer's word, with the
+  Add card drawer's own pair — a recorded departure.
 - **It opens a second drawer, `Add card`, in the picker's place** — one drawer on the frame at a time, the scrim
   and the inert screen kept; closing it returns focus to the *Payment method* row, since the drawer that held the
   button is gone (`WCAG 2.4.3`). **Not a state and not a sub-view**, so no row in the matrix — a control on this

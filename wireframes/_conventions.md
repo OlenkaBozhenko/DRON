@@ -487,12 +487,17 @@ a **44** jump on the month arrow. `.dr-cal__grid tbody tr{ height: var(--h-contr
 `height` is a minimum, so the 44 day circle still sets the row wherever one is drawn. Measured across six
 months: **593.59 constant**.
 
-**The drawer's two actions stack, confirm first** (designer, 2026-08-16, rev 120: *«кнопки одна під одною»*
-— the same call rev 119 took on `resolution`). `Done` **341 × 44** over `Cancel` **341 × 44** with the 8
-gap, and **`Done` is first in the markup**, not flipped in CSS: `HIG · Action sheets` puts the cancel at the
-bottom of a stacked group, and a CSS flip would leave the reading and tab order in the other order from the
-drawn one (`WCAG 1.3.2`, `2.4.3`). `.dr-sheet__actions` is `flex-direction: column` with no `flex:1` — the
-items stretch to the width and keep `.dr-btn`'s own `min-height: 44` (`HIG · 44pt target` ✓).
+**The drawer's two actions stack, `Cancel` first** (designer, 2026-08-16, rev 120: *«кнопки одна під
+одною»* — the same call rev 119 took on `resolution`; **turned over 2026-09-15, rev 260**: *«зміни місцями
+primary and secondary»*). `Cancel` **341 × 44** over the primary (`Done`, or `Add card`) **341 × 44** with
+the 8 gap, and **`Cancel` is first in the markup**, not flipped in CSS: a CSS flip would leave the reading and
+tab order in the other order from the drawn one (`WCAG 1.3.2`, `2.4.3`). **A recorded departure:**
+`HIG · Alerts` puts the default button at the top of a stack and the cancel at the bottom — the order rev 120
+built — and the designer turned it, shown that rule first; WCAG passes either way. It holds for every
+Done/Cancel pair (five drawers, three pages); a drawer with a lone `Cancel` has nothing to turn, and a
+side-by-side row keeps the primary trailing, which is HIG's row reading. `.dr-sheet__actions` is
+`flex-direction: column` with no `flex:1` — the items stretch to the width and keep `.dr-btn`'s own
+`min-height: 44` (`HIG · 44pt target` ✓).
 
 **The control that opens a picker may be an option rather than a row, and then the ellipsis is load-bearing.**
 The date opener is the *radio* in the Time group, not a `.dr-field--action`: the option has to stay mutually

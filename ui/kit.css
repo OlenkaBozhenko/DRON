@@ -4880,12 +4880,15 @@ header.dr-topbar,
 }
 .dr-cal__colon{ color: var(--ink); }
 
-/* Cancel UNDER the confirm, each one the full width (designer, 2026-08-16).
+/* Cancel OVER the confirm, each one the full width (designer, 2026-08-16;
+   turned 2026-09-15, rev 260: «зміни місцями primary and secondary»).
    `HIG · Action sheets` asks for the cancel BY NAME — the × belongs to a full
    modal sheet screen, not to a drawer, the same reading rev 101 wrote for the
-   picker — and it puts that cancel at the BOTTOM of a stacked group, which is
-   why the confirm is written first in the markup and not flipped in CSS: the
-   reading order and the tab order stay the drawn order (`WCAG 1.3.2`, `2.4.3`).
+   picker. `HIG · Alerts` puts the default at the TOP of a stack and the cancel
+   at the bottom, the order rev 120 built; the designer turned it, shown that
+   rule first — a recorded departure, WCAG passing either way. The turn is made
+   in the markup, not flipped in CSS: the reading order and the tab order stay
+   the drawn order (`WCAG 1.3.2`, `2.4.3`).
    No `flex:1` in a column — the items stretch to the width and keep the 44 the
    `.dr-btn` min-height gives them (`HIG · 44pt target`). */
 .dr-sheet__actions{ display: flex; flex-direction: column; gap: var(--sp-within-lg); }
@@ -6204,7 +6207,8 @@ header.dr-topbar,
    provide a Done button, always pair it with a Cancel button». The names are
    HIG's own, so they stay; the place moves.
    A DEPARTURE FROM rev 120, RECORDED AND SCOPED: every other drawer stacks its
-   confirm over `Cancel` under its content, on `HIG · Action sheets`' reading.
+   `Cancel` and confirm under its content (confirm on top until rev 260, `Cancel`
+   on top since).
    SPENT NOWHERE FROM rev 258, THE SAME DAY, AND KEPT DECLARED: shown the three
    options drawn on the real pages (keep · move the Done/Cancel pairs · move the
    lone Cancel too), the designer put the address drawer's pair back under its
