@@ -336,10 +336,11 @@
         <div class="dr-route dr-route--single" data-route="place" hidden>
           <div class="dr-route__row">
             <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg></span>
-            <span class="dr-route__text">
-              <label class="dr-route__label" for="route-where">Where</label>
-              <input class="dr-route__input" id="route-where" type="text" placeholder="Address">
-            </span>
+            <button class="dr-route__open" id="route-where" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="addrpick"
+                    data-addr="where" data-title="Address" data-placeholder="Address">
+              <span class="dr-route__label">Where</span>
+              <span class="dr-route__value" data-empty>Address</span>
+            </button>
           </div>
         </div>
 
