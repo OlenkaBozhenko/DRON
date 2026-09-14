@@ -316,14 +316,16 @@
       </div>
       <!--
         ADD CARD, 2026-09-14 (rev 249), the designer's call on this drawer:
-        «додай primary button "Add card" відкрий дровер…». Confirm first and
-        Cancel last in one stacked group — `HIG · Action sheets`, and the same
-        .dr-sheet__actions `listings-filters` draws. The button opens the next
-        drawer IN THIS ONE'S PLACE (ui/kit.js): one drawer on the frame at a time.
+        «додай primary button "Add card" відкрий дровер…». Cancel over Add card
+        in one stacked group — turned at rev 260 («зміни місцями primary and
+        secondary»), a recorded departure from `HIG · Alerts`' default-on-top
+        stack — the same .dr-sheet__actions `listings-filters` draws. The button
+        opens the next drawer IN THIS ONE'S PLACE (ui/kit.js): one drawer on the
+        frame at a time.
       -->
       <div class="dr-sheet__actions">
-        <button class="dr-btn dr-btn--primary dr-btn--block" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-card">Add card</button>
         <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+        <button class="dr-btn dr-btn--primary dr-btn--block" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-card">Add card</button>
       </div>
     </section>
 
