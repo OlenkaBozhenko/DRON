@@ -6305,33 +6305,40 @@ header.dr-topbar,
    uses, cutout contained, `alt=""` — the name says what the row is. The name is
    17/400, the service card's title (rev 248); the price is 17/600 tabular, the
    `.dr-price__val` pair; the meta is 13/400 `--slate`.
-   EVERY ROW IS A GREY CARD AND THE CHOSEN ONE IS ON GREEN — the designer,
-   2026-09-14 (rev 253), against rev 250's 2px `--ink` ring: «у мене в проекті
-   немає ніде обводки такої», then «зроби картки на сірому бекграунді а обране
-   на зеленому». The ring came from the reference, not the kit, and is gone:
-   no border at all, so the row is 341 × 60, 4 shorter than the ringed 64, and
-   the drawer 332.8 (was 344.8) — the map takes the 12, 383.2.
-   GREEN HERE IS THE WASH, NOT THE FILL — the reading `.dr-grouptab` already
-   gives her «вибраний на зеленому бекграунді». Solid `--green` behind a 341-wide
-   row would be a second green control and break §0's ~5% ceiling; the wash is
-   not counted, so *Order* stays the screen's only solid green.
-   THE STATE'S CONTRAST IS HER CALL, SAID RATHER THAN HIDDEN: the wash is
-   1.026:1 against the grey rows beside it and 1.085:1 against the drawer, under
-   `WCAG 1.4.11`'s 3:1, and the text does not change between states, so the tint
-   is the only visible sign — the chip's known condition without the chip's
-   label step. The state itself is programmatic (`WCAG 4.1.2` ✓ — a real radio).
+   EVERY ROW IS A GREY CARD, THE CHOSEN ONE INCLUDED — the designer, 2026-09-15
+   (rev 263): «покращ відступи між картками радіус скруглення зроби усі сірі».
+   Rev 250 ringed the chosen row 2px `--ink` (the reference's shape, gone at rev
+   253: «у мене в проекті немає ніде обводки такої»); rev 253 put it on
+   `--green-wash`, 1.026:1 against the rows beside it. Shown three readings of
+   «усі сірі» with the numbers, she took the one that draws nothing: the chosen
+   row on `--btn2` (1.25:1) and the wash kept (1.026:1) were the other two.
+   THE STATE HAS NO VISIBLE SIGN, HER CALL, SAID RATHER THAN HIDDEN: 1.00:1
+   against the other rows. It is programmatic (`WCAG 4.1.2` ✓ — a real radio)
+   and a keyboard user sees it under the focus ring, which the arrow keys move
+   with the choice; with no mark drawn, `1.4.11` has nothing to measure.
    `HIG · Lists and tables` marks a chosen row with a checkmark; that departure
-   is recorded, not filed. The rejected alternative put to her with the numbers
-   was `.dr-pick`'s green radio, 9.46:1.
+   is recorded, not filed.
+   8 APART, NOT 4 — rev 253 left the 4 open once the rows became cards. 8 is the
+   sibling rhythm `.dr-paylist` set: 8 inside the group against the sheet's own
+   12 out to the title and to *Order*; at 12 the rows would stand as far from
+   each other as from the button and stop reading as one list. It also clears
+   the focus ring: Chrome computes `--focus-w` 2.5 as 2 at every scale measured
+   (1, 1.25, 1.5, 2), so the ring stands 2 offset + 2 = 4 out — touching the next
+   row at a 4 gap, 4 clear of it now.
+   RADIUS 12, `--r-btn`, NOT `--r-card` 16 — *Order* sits directly under the
+   rows at the same 341 width, and the rows are controls (radios), so they take
+   the control's rung and the edges run as one column. 22 would make a 60-tall
+   row nearly a pill. HIG and WCAG set no number for either value; the target is
+   the whole 341 × 60 row and does not move. The drawer is 340.8 (was 332.8) and
+   the map pays the 8, 375.2.
    The focus ring stands outside the card at `--focus-offset`, `--ink` on the
    drawer 15.99:1 (`WCAG 2.4.11`). MEASURED PAIRS: name / price `--ink` on
-   `--card` 14.37:1, on `--green-wash` 14.75:1; meta `--slate` 5.95:1 / 6.10:1
-   (`1.4.3` 4.5 ✓ at 13px). */
-.dr-offers{ margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: var(--sp-within); }
+   `--card` 14.37:1; meta `--slate` 5.95:1 (`1.4.3` 4.5 ✓ at 13px). */
+.dr-offers{ margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: var(--sp-within-lg); }
 .dr-offer{
   position: relative; display: flex; align-items: center; gap: var(--sp-snug);
   padding: var(--sp-within-lg) var(--sp-snug) var(--sp-within-lg) var(--sp-within-lg);
-  border: 0; border-radius: var(--r-card); background: var(--card);
+  border: 0; border-radius: var(--r-btn); background: var(--card);
   color: var(--ink); cursor: pointer;
 }
 .dr-offer > .dr-well{ width: var(--sz-well-w-xs); height: var(--sz-well-h-xs); }
@@ -6349,5 +6356,4 @@ header.dr-topbar,
   flex: none; font-size: var(--t-title-size); font-weight: var(--t-title-weight);
   color: var(--ink); font-variant-numeric: tabular-nums;
 }
-.dr-offer:has(> input:checked){ background: var(--green-wash); }
 .dr-offer:has(> input:focus-visible){ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }

@@ -2075,17 +2075,18 @@ two Figma references used for structure only. Every value is an existing rung.
   had, so the drawer re-measures **693.8** with **0** to scroll. The four names depart from `voice.md` P4 / P1
   on the designer's word.
 - **Results on the map** — `.dr-mapview` fills the column under the nav bar and runs `--r-panel` under a
-  **docked** `.dr-sheet--dock` (no scrim, no `aria-modal`). Map **373 × 383.2**, drawer **332.8** (rev 253; **371.2** / **344.8** with rev 250's ringed rows).
+  **docked** `.dr-sheet--dock` (no scrim, no `aria-modal`). Map **373 × 375.2**, drawer **340.8** (rev 263; **383.2** / **332.8** at rev 253's 4 gap, **371.2** / **344.8** with rev 250's ringed rows).
 - **A choice row** (`.dr-offer`) is a radio label: 56 × 44 well · name 17/400 · meta 13/400 `--slate` ·
-  price 17/600 tabular — **341 × 60**, no border. **Every row is a `--card` card; the chosen one is on
-  `--green-wash`** (rev 253, the designer: *«зроби картки на сірому бекграунді а обране на зеленому»*, replacing
-  rev 250's 2px `--ink` ring, which no other surface in the kit carries). Text: name / price `--ink` **14.37:1**
-  on the card, **14.75:1** on the wash; meta `--slate` **5.95:1** / **6.10:1**. **The state is under
-  `WCAG 1.4.11`, her call:** the wash is **1.026:1** against the grey rows beside it and **1.085:1** against the
-  drawer, and the text does not change between states, so the tint is the only visible sign; the radio carries
-  it programmatically (`4.1.2` ✓). `HIG · Lists and tables` would mark it with a checkmark — a recorded
-  departure. *Order* is **4.80%** of the frame and still the only solid green —
-  the wash is not counted.
+  price 17/600 tabular — **341 × 60**, no border, **radius 12** (`--r-btn`, the radius of *Order* under the rows at
+  the same 341 width), **8 apart** (`--sp-within-lg`, against the sheet's 12 out to the title and *Order*).
+  **Every row is a `--card` card in every state, the chosen one included** (rev 263, the designer: *«зроби усі
+  сірі»*, choosing it over the chosen row on `--btn2` 1.25:1 and over rev 253's `--green-wash` 1.026:1; rev 253
+  had replaced rev 250's 2px `--ink` ring, which no other surface in the kit carries). Text: name / price `--ink`
+  **14.37:1**, meta `--slate` **5.95:1**, on every row. **The chosen state has no visible sign, her call:**
+  **1.00:1** against the rows beside it. The radio carries it programmatically (`4.1.2` ✓), and a keyboard user
+  sees it under the focus ring, which arrow keys move with the choice; with no mark drawn, `WCAG 1.4.11` has
+  nothing to measure. `HIG · Lists and tables` would mark it with a checkmark — a recorded departure. *Order* is
+  **4.80%** of the frame (its box unchanged by rev 263) and now the only green in the drawer, solid or tint.
 
 ### Media
 
