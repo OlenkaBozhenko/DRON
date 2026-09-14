@@ -453,9 +453,9 @@ Ten sizes, every one in use on a shipped surface.
 |---|---|---|---|---|---|
 | `display` | 22 | 700 | 30.8 (1.4) | −0.02em | outcome screen title — *Delivered* |
 | `number` | 20 | 700 | 20 (1.0) | −0.02em | money — `₴180`, tabular |
-| `title` | 17 | 600 | 23.8 (1.4) | −0.01em | nav-bar title, alert title |
+| `title` | 17 | 600 | 23.8 (1.4) | −0.01em | nav-bar title, alert title; **choice-card title at 400** since 2026-09-14 (rev 247) — see *One size, several roles* below |
 | `heading` | 15 | 600 | 18 (1.2) | — | card title, operator name |
-| `body` | 14 | 400 | 18.2 (1.3) | — | place names; **choice-card title** since 2026-09-03 (rev 213), at the title's own 600 / 1.4 / −0.01em — see the departures below |
+| `body` | 14 | 400 | 18.2 (1.3) | — | place names |
 | `body-sm` | 13 | 400 | 18.2 (1.4) | — | keys |
 | `meta` | 12.5 | 400 | 15 (1.2) | — | dates |
 | `caption` | 12 | 600 | 16.8 (1.4) | — | chips, badges |
@@ -478,7 +478,9 @@ at unless it declares otherwise. Measured departures, and their reason:
 **One size, several roles.** 15px is `heading` at 600/1.2, the button label at 600/1.4, the `.kv`
 value at 600/1.4 tabular, and `.lead` at 400/1.55. **14px joined it on 2026-09-03** with the route
 strip's place name at 400/1.3 — and for two revisions with the choice card's title at
-600/1.4/−0.01em as well, until **rev 221 returned that title to 17**. 11px is mono-600 for zone and route labels,
+600/1.4/−0.01em as well, until **rev 221 returned that title to 17**. **17px has two roles since rev
+247:** the `title` step at 600 on the nav bar and the message title, and the choice card's title at
+**400** with the same 1.4 leading and −0.01em track — `HIG · Lists and tables`' Body row label. 11px is mono-600 for zone and route labels,
 SF-600 for tab labels, and SF-400 for the fee caption **until 2026-08-02, when the designer removed
 that caption** — 11px now carries the mono zone and route labels and the tab label, and the fee
 figure stands alone.
@@ -3105,12 +3107,44 @@ at a 375 viewport — returns **101.78 → 77.98**; `main`'s overflow goes **137
 `notifications` and **3 → 0** on `operator-notifications`. **Every title on both logs is one line at
 all three widths, and every row is 77.98.**
 
+### The choice card's title is set at the row weight (`.dr-choice__title`, rev 247)
+
+**The value is 17/400, leading 1.4, tracking −0.01em, `--ink` on `--card` 14.37:1** — the `title`
+step's size, leading and track at `--weight-regular`. The designer, on the built `support`: *«перевір
+шрифт чи не дуже великий що каже HIG»*.
+
+**The size was not too big, and that was the answer first.** `HIG · Typography`'s default (Large)
+Dynamic Type sizes put **Body at 17 Regular** and **Headline at 17 Semibold**; `HIG · Lists and
+tables` sets a row's label in Body. So 17 was the platform's row size exactly. **The weight was the
+difference:** at 600 the row was Headline, and on `support` each row matched the nav-bar title *Help*
+at 17/600/−0.01em, under a 22/700 display only **1.29×** larger — and stood above every other card
+title in the product, which are **15/600**. Three options went to her, all conforming: **17/400**,
+**15/600** (rows **2.8px** shorter) and **17/600 kept**. She took 17/400. Rev 213's 14 was not
+re-offered.
+
+**A departure, recorded rather than minted.** 17 and 400 are both on the scale; the pairing is new.
+Scope is the component, as at revs 213 and 221 — all **16** instances.
+
+**Nothing moves but the stroke, by construction.** A line box is `size × leading` = **23.8** at either
+weight, so every row keeps its height — `support` **55.80**, `role-select` **76**, both logs
+**77.98** — and a regular glyph is narrower than a semibold one, so no title that fitted one line at
+600 can wrap at 400. Not re-measured in a browser.
+
+**Standards.** `WCAG 1.4.3` — **14.37:1**; a 17px line is normal text at both weights (bold becomes
+large at 18.66px), so the floor is **4.5:1** either way and it passes by **9.87**. `WCAG 1.4.4` holds.
+`HIG · 44pt` / `WCAG 2.5.8` — no target moves. On the alert rows the title/description hierarchy now
+rests on size and colour: 17/400 `--ink` **14.37:1** over 13/400 `--slate` **5.95:1**, **1.31×**; the
+unread signal is the **New** chip and never depended on weight.
+
+**Not to be confused with rev 246**, which kept the picker's `.dr-field__value` at 600: a chosen value
+on an entry row, a different component, untouched here.
+
 ### The choice card's title returns to 17 (`.dr-choice__title`, rev 221)
 
-**The value is 17/600, leading 1.4, tracking −0.01em, `--ink` on `--card` 14.37:1** — the `title`
-step exactly as the scale defines it, with no departure left to record. It spent two revisions at
-**14** and came back: the designer, against the built `role-select`, *«поверни розмір шрифту
-заголовку»*.
+**The value was 17/600, leading 1.4, tracking −0.01em, `--ink` on `--card` 14.37:1** — the `title`
+step exactly as the scale defines it, until rev 247 took the weight to 400 (section above). It spent
+two revisions at **14** and came back: the designer, against the built `role-select`, *«поверни
+розмір шрифту заголовку»*.
 
 **Why it could come back — the constraint that forced 14 no longer exists.** Rev 213 stepped the
 size down because one title in the product wrapped: `support`'s quality row, *The photo or report
@@ -3201,7 +3235,7 @@ automatically / Earnings land within 30 min of client confirmation.*
 `__title` / `__desc` pair. Since rev 216 these eleven rows are the **only** place `__desc` is drawn:
 `role-select` and `support` are title-only. Measured on the build: row **73.78px** tall
 (`HIG · 44pt` ✓ **177%**, `WCAG 2.5.8` ✓ **3.25×**), `--card` ground at `--r-card` **16px**, title
-17/600 `--ink` on `--card` **14.37:1**, description 13 `--slate` on `--card` **5.95:1**.
+17/400 (600 until rev 247) `--ink` on `--card` **14.37:1**, description 13 `--slate` on `--card` **5.95:1**.
 **The row made a round trip on 2026-09-03**: rev 213 stepped the shared `__title` 17 → 14 and every
 line box under it lost **4.2px** (**77.98 → 73.78**, lists of six / five **249.95 → 237.34**), and
 rev 221 put both back. No title on either log wrapped at either size — the widest,

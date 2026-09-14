@@ -2389,10 +2389,18 @@ header.dr-topbar,
    341 × 55.80: ✓ 127% of the 44pt height, 19,028px² = 9.8× the 44 × 44 area;
    WCAG 2.5.8 ✓ 2.33×. WCAG 1.4.3 does not move with a size change — --ink on
    --card stays 14.37:1 and nothing here leans on the 3:1 large-text exemption.
-   WCAG 1.4.4 holds: px text still zooms to 200%. */
+   WCAG 1.4.4 holds: px text still zooms to 200%.
+   THE WEIGHT IS 400, NOT THE TITLE STEP'S 600 — designer, 2026-09-14, rev 247,
+   on the built support: «перевір шрифт чи не дуже великий що каже HIG». HIG ·
+   Typography: Body 17 Regular, Headline 17 Semibold; HIG · Lists and tables
+   sets a row label in Body. The size was the platform's exactly; at 600 the
+   row was Headline and matched the nav bar's «Help». Only the weight moves:
+   the line box is 17 × 1.4 = 23.8 at either weight, so no row changes height,
+   and a regular glyph is narrower, so nothing new wraps. WCAG 1.4.3 — 14.37:1,
+   normal text at both weights, 4.5:1 floor. Scope is the component, all 16. */
 .dr-choice__title{
   display: block;
-  font-size: var(--t-title-size); font-weight: var(--t-title-weight);
+  font-size: var(--t-title-size); font-weight: var(--weight-regular);
   line-height: var(--t-title-line); letter-spacing: var(--t-title-track);
   color: var(--ink);
 }
