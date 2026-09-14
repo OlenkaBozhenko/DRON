@@ -2093,14 +2093,16 @@ two Figma references used for structure only. Every value is an existing rung.
 - **A choice row** (`.dr-offer`) is a radio label: 56 × 44 well · name 17/400 · meta 13/400 `--slate` ·
   price 17/600 tabular — **341 × 60**, no border, **radius 12** (`--r-btn`, the radius of *Order* under the rows at
   the same 341 width), **8 apart** (`--sp-within-lg`, against the sheet's 12 out to the title and *Order*).
-  **Every row is a `--card` card in every state, the chosen one included** (rev 263, the designer: *«зроби усі
-  сірі»*, choosing it over the chosen row on `--btn2` 1.25:1 and over rev 253's `--green-wash` 1.026:1; rev 253
-  had replaced rev 250's 2px `--ink` ring, which no other surface in the kit carries). Text: name / price `--ink`
-  **14.37:1**, meta `--slate` **5.95:1**, on every row. **The chosen state has no visible sign, her call:**
-  **1.00:1** against the rows beside it. The radio carries it programmatically (`4.1.2` ✓), and a keyboard user
-  sees it under the focus ring, which arrow keys move with the choice; with no mark drawn, `WCAG 1.4.11` has
-  nothing to measure. `HIG · Lists and tables` would mark it with a checkmark — a recorded departure. *Order* is
-  **4.80%** of the frame (its box unchanged by rev 263) and now the only green in the drawer, solid or tint.
+  **The unchosen rows are `--card` cards; the chosen row is solid `--green`** (rev 265, the designer: *«ту що
+  обрала роби зелену»*, choosing it over `--green-wash` 1.026:1; rev 263 had made every row grey, 1.00:1; rev 253
+  had put the chosen row on the wash; rev 250 ringed it 2px `--ink`, which no other surface in the kit carries).
+  Text on a grey row: name / price `--ink` **14.37:1**, meta `--slate` **5.95:1**. On the green row everything is
+  `--on-green` **9.46:1** — the meta included, since `--slate` on green is **3.91:1**, under `WCAG 1.4.3` at 13px.
+  The state moves no box: rows **341 × 60**, meta one line **18.19**, drawer **340.8**. **Measured departures, her
+  call:** the green fill is **1.52:1** against the grey rows, under `WCAG 1.4.11`'s 3:1 (the radio keeps it
+  programmatic, `4.1.2` ✓); `HIG · Lists and tables` would mark it with a checkmark; and §0's one green control is
+  now two — by pixel *Order* **4.77%**, the chosen row **5.94–6.01%**, the frame **10.71–10.78%** against ~5%.
+  The `--ink` focus ring stands outside the green at `--focus-offset`, **15.99:1** on the drawer (`2.4.11` ✓).
 
 ### Media
 

@@ -6315,19 +6315,18 @@ header.dr-topbar,
    uses, cutout contained, `alt=""` — the name says what the row is. The name is
    17/400, the service card's title (rev 248); the price is 17/600 tabular, the
    `.dr-price__val` pair; the meta is 13/400 `--slate`.
-   EVERY ROW IS A GREY CARD, THE CHOSEN ONE INCLUDED — the designer, 2026-09-15
-   (rev 263): «покращ відступи між картками радіус скруглення зроби усі сірі».
-   Rev 250 ringed the chosen row 2px `--ink` (the reference's shape, gone at rev
-   253: «у мене в проекті немає ніде обводки такої»); rev 253 put it on
-   `--green-wash`, 1.026:1 against the rows beside it. Shown three readings of
-   «усі сірі» with the numbers, she took the one that draws nothing: the chosen
-   row on `--btn2` (1.25:1) and the wash kept (1.026:1) were the other two.
-   THE STATE HAS NO VISIBLE SIGN, HER CALL, SAID RATHER THAN HIDDEN: 1.00:1
-   against the other rows. It is programmatic (`WCAG 4.1.2` ✓ — a real radio)
-   and a keyboard user sees it under the focus ring, which the arrow keys move
-   with the choice; with no mark drawn, `1.4.11` has nothing to measure.
-   `HIG · Lists and tables` marks a chosen row with a checkmark; that departure
-   is recorded, not filed.
+   THE ROWS ARE GREY CARDS, THE CHOSEN ONE SOLID GREEN — the designer,
+   2026-09-15 (rev 265): «ту що обрала роби зелену». Rev 250 ringed the chosen
+   row 2px `--ink`; rev 253 put it on `--green-wash` (1.026:1); rev 263 made
+   every row grey (1.00:1, no visible sign). Shown the wash and the solid fill
+   drawn on this drawer with the numbers, she took the fill.
+   ON GREEN, ONLY `--on-green`: name and price 9.46:1, and the meta too —
+   `--slate` on green is 3.91:1, under `WCAG 1.4.3`'s 4.5 at 13px.
+   DEPARTURES, HER CALL, SAID RATHER THAN HIDDEN: the fill is 1.52:1 against
+   the grey rows, under `1.4.11`'s 3:1 (the radio keeps the state programmatic,
+   `4.1.2` ✓); `HIG · Lists and tables` would add a checkmark; and §0's one
+   green control is two here — by pixel the row 5.94–6.01%, *Order* 4.77%, the
+   frame 10.71–10.78%. The state moves no box.
    8 APART, NOT 4 — rev 253 left the 4 open once the rows became cards. 8 is the
    sibling rhythm `.dr-paylist` set: 8 inside the group against the sheet's own
    12 out to the title and to *Order*; at 12 the rows would stand as far from
@@ -6366,4 +6365,6 @@ header.dr-topbar,
   flex: none; font-size: var(--t-title-size); font-weight: var(--t-title-weight);
   color: var(--ink); font-variant-numeric: tabular-nums;
 }
+.dr-offer:has(> input:checked){ background: var(--green); color: var(--on-green); }
+.dr-offer:has(> input:checked) :is(.dr-offer__name, .dr-offer__meta, .dr-offer__price){ color: var(--on-green); }
 .dr-offer:has(> input:focus-visible){ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
