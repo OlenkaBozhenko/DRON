@@ -389,3 +389,54 @@
     if (e.key === 'Escape' && kb && !kb.hidden) dismiss(true);
   });
 })();
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE CARD NUMBER'S MARKS — the kit's third behaviour, 2026-09-14 (rev 252).
+   The designer, on `account-edit`'s Add card drawer, shown the number typed
+   beside both marks: «А лишається один логотип що відповідає картці».
+
+   WHY IT IS A BEHAVIOUR AND NOT A PICTURE: beside Visa and Mastercard the
+   number had 139px and 16 digits need 157, so the first two scrolled out of
+   the field. One mark gives it 166 (Visa) or 176 (Mastercard).
+
+   THE MARKUP SAYS WHICH, THE SCRIPT ONLY READS IT: the field is the input
+   carrying `autocomplete="cc-number"` — the `WCAG 1.3.5` token it already has —
+   and each mark in the same `.dr-field__group` names its brand in
+   `data-brand`. No product copy lives here.
+
+   THE RULE: 4 is Visa; 51–55 and 2221–2720 are Mastercard (22–27 decides on two
+   digits, the four-digit range once there are four). Empty, or a prefix that is
+   neither, keeps both marks — nothing has been identified, so nothing goes.
+   Swapping a mark as the person types is content, not context (`WCAG 3.2.2`),
+   and the field's description, *Visa or Mastercard*, stays: it names the cards
+   the product takes, which typing does not change.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  function brandOf(value) {
+    var d = value.replace(/\D/g, '');
+    if (/^4/.test(d)) return 'visa';
+    if (/^5[1-5]/.test(d)) return 'mastercard';
+    if (d.length >= 4) {
+      var n = +d.slice(0, 4);
+      if (n >= 2221 && n <= 2720) return 'mastercard';
+    } else if (/^2[2-7]/.test(d)) return 'mastercard';
+    return null;
+  }
+
+  [].forEach.call(document.querySelectorAll('input[autocomplete="cc-number"]'), function (input) {
+    var group = input.closest('.dr-field__group'),
+        marks = group ? group.querySelectorAll('.dr-field__marks [data-brand]') : [];
+    if (!marks.length) return;
+    function update() {
+      var brand = brandOf(input.value);
+      [].forEach.call(marks, function (mark) {
+        if (brand && mark.getAttribute('data-brand') !== brand) mark.setAttribute('hidden', '');
+        else mark.removeAttribute('hidden');
+      });
+    }
+    input.addEventListener('input', update);
+    update();
+  });
+}());

@@ -338,8 +338,11 @@
       text through aria-describedby (`WCAG 1.1.1`).
       THE FIELDS OPEN EMPTY and the number takes focus (`autofocus`, read by
       ui/kit.js on open), so the number pad rises with the drawer and the drawer
-      rides above it. Measured and open: with both marks the number has 140px,
-      and 16 digits need 157 — concept.md rev 249.
+      rides above it.
+      ONE MARK ONCE THE NUMBER SAYS WHICH — the designer's pick 2026-09-14
+      (rev 252): «А лишається один логотип що відповідає картці». Beside both
+      marks 16 digits had 139px and need 157; `data-brand` lets ui/kit.js keep
+      the matching mark and give the number 166 (Visa) or 176 (Mastercard).
     -->
     <section class="dr-sheet dr-sheet--picker" id="sheet-card" role="dialog" aria-modal="true" aria-labelledby="sheet-card-title" hidden>
       <span class="dr-sheet__grip" aria-hidden="true"></span>
@@ -348,7 +351,7 @@
         <div class="dr-rows dr-rows--card">
           <div class="dr-field">
             <label class="dr-field__label" for="card-num">Card number</label>
-            <span class="dr-field__group"><input class="dr-field__input" id="card-num" name="cc-number" type="text" inputmode="numeric" autocomplete="cc-number" aria-describedby="card-brands" autofocus><span class="dr-field__marks" aria-hidden="true"><svg class="dr-paymark dr-paymark--fit" viewBox="0 0 31 20" focusable="false"><text x="0" y="14.8" textLength="30" lengthAdjust="spacingAndGlyphs" font-size="14" font-weight="700" font-style="italic" fill="#1434CB">VISA</text></svg><svg class="dr-paymark dr-paymark--fit" viewBox="0 0 21 20" focusable="false"><circle cx="7" cy="10" r="7" fill="#EB001B"/><circle cx="14" cy="10" r="7" fill="#F79E1B"/><path d="M10.5 3.94a7 7 0 0 1 0 12.12 7 7 0 0 1 0-12.12Z" fill="#FF5F00"/></svg></span><span class="sr-only" id="card-brands">Visa or Mastercard</span></span>
+            <span class="dr-field__group"><input class="dr-field__input" id="card-num" name="cc-number" type="text" inputmode="numeric" autocomplete="cc-number" aria-describedby="card-brands" autofocus><span class="dr-field__marks" aria-hidden="true"><svg class="dr-paymark dr-paymark--fit" viewBox="0 0 31 20" focusable="false" data-brand="visa"><text x="0" y="14.8" textLength="30" lengthAdjust="spacingAndGlyphs" font-size="14" font-weight="700" font-style="italic" fill="#1434CB">VISA</text></svg><svg class="dr-paymark dr-paymark--fit" viewBox="0 0 21 20" focusable="false" data-brand="mastercard"><circle cx="7" cy="10" r="7" fill="#EB001B"/><circle cx="14" cy="10" r="7" fill="#F79E1B"/><path d="M10.5 3.94a7 7 0 0 1 0 12.12 7 7 0 0 1 0-12.12Z" fill="#FF5F00"/></svg></span><span class="sr-only" id="card-brands">Visa or Mastercard</span></span>
           </div>
           <div class="dr-field">
             <label class="dr-field__label" for="card-exp">Expiry</label>

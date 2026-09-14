@@ -3422,6 +3422,12 @@ header.dr-topbar,
    work, and that is information (`WCAG 1.1.1`), so it reaches the field. */
 .dr-field__marks{ flex: none; display: flex; align-items: center; gap: var(--sp-6); }
 .dr-paymark--fit{ width: auto; }
+/* ONE MARK WHEN THE NUMBER SAYS WHICH — the designer's pick 2026-09-14 (rev
+   252): «А лишається один логотип що відповідає картці». ui/kit.js reads the
+   first digits and puts `hidden` on the other mark. Said out loud because
+   .dr-paymark sets display:block, which beats the UA's [hidden]; and on an SVG
+   the UA rule does not reach at all. */
+.dr-field__marks > [hidden]{ display: none; }
 
 /* A SHEET THAT COMES AND GOES needs [hidden] said out loud: .dr-sheet sets
    display:flex and .dr-scrim display is block, and either one beats the UA's

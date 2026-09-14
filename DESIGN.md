@@ -1009,9 +1009,11 @@ trailing edge. The fixed 40 × 20 box exists to line four labels up on one edge;
 beside each mark, and the 29px it would leave empty come straight off the typed number. Only the two
 cards the product accepts. **Here the marks carry information and no name stands beside them**, so the
 group is `aria-hidden` and the input is `aria-describedby` a `.sr-only` *Visa or Mastercard* (`WCAG
-1.1.1`). **Measured and open:** the value track is **207**, the marks and their gap take **68**, and a
-16-digit number measures **157.34** against the **139** left — **18.34px short**, so typed, the first
-two digits scroll out of the field. The three readings are in `concept.md` rev 249.
+1.1.1`). Beside both marks a 16-digit number measured **157.34** against **139**, so the first two digits
+scrolled out of the field; **so once the number says which card it is, only that mark stays** — the
+designer's pick, rev 252. Each mark carries `data-brand`, `ui/kit.js` reads the first digits (**4** Visa;
+**51–55**, **2221–2720** Mastercard) and hides the other, and the number gets **166** (Visa) or **176**
+(Mastercard) — measured, all 16 digits in view. Empty, or a prefix that is neither, keeps both.
 
 **A drawer can open a drawer, and the second takes the first one's place** (rev 249). `Add card` in
 the Payment method picker opens the Add card drawer: the picker goes down, the scrim and the inert

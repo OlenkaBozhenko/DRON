@@ -992,8 +992,12 @@ built drawer: *«додай primary button "Add card" відкрий дрове�
   artwork as the picker rows, cropped to their ink; the field is described by a hidden *Visa or Mastercard*
   (`WCAG 1.1.1`). Then **`Add card`** (primary) and **`Cancel`**. The fields open **empty** and the first one takes
   focus, so the number pad rises with the drawer and the drawer rides on top of it.
-- **Open, and hers:** with both marks in the field the number has **140px** where a full 16-digit number needs
-  **157** — see `concept.md` rev 249.
+- **Once a number is typed, only the matching mark stays — the designer's pick, 2026-09-14 (rev 252):** *«А
+  лишається один логотип що відповідає картці»*. Beside both marks the number had **139px** where 16 digits need
+  **157**, so the first two digits scrolled out of the field. Now the first digits choose the mark — **4** is
+  Visa, **51–55** and **2221–2720** are Mastercard — and the other one goes, which gives the number **166**
+  (Visa) or **176** (Mastercard). Empty, or a prefix that is neither, keeps both. **No error state is built**
+  for a card the product does not take; that would be a new state, and it is not asked for.
 
 **A fourth card joined them on 2026-08-24 — Notifications** ▸ *What we tell you, and how*, on the designer's
 call, and the shape was hers too: the question was put as a row that pushes its own screen versus a card in
