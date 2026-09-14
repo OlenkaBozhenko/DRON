@@ -511,41 +511,30 @@
       </div>
     </section>
 
-    <!-- FILTERS — the cards she already had on listings-filters, minus Date & time (her pick,
-         2026-09-14). Location's four rows still push their own screens, and those screens still
-         go back to listings-filters — open, _screens.md §3. The strings are that page's. -->
+    <!-- FILTERS — Drone type over Price range. Date & time left for the search on 2026-09-14; Location
+         left on 2026-09-15 on the designer's word («видали Location з філтрів … можеш додати натомість
+         типи дронів») — the address is set on the search card, one value in one place. listings-filters
+         keeps its Location card and the four place-pick screens still go back to it.
+         DRONE TYPE is the kit's titled card with a pick list, the shape listings-filters' Date & time
+         card draws: a fieldset named by its drawn title, checkbox rows, none ticked = any drone.
+         The four names are her pick of three readings, and they depart from voice.md P4 and P1 on her
+         word — recorded in microcopy.md, not a defect. -->
     <section class="dr-sheet dr-sheet--picker dr-sheet--tall" id="sheet-filters" role="dialog"
              aria-modal="true" aria-labelledby="sheet-filters-title" hidden>
       <span class="dr-sheet__grip" aria-hidden="true"></span>
       <p class="dr-sheet__title" id="sheet-filters-title">Filters</p>
 
       <div class="dr-sheet__scroll">
-        <div class="dr-zone" role="group" aria-labelledby="loc-title" aria-describedby="loc-sub">
-          <p class="dr-zone__title" id="loc-title">Location</p>
-          <p class="dr-zone__sub" id="loc-sub">Where you need the service</p>
-          <div class="dr-rows">
-            <a class="dr-field dr-field--action" href="listings-filter-country.html">
-              <span class="dr-field__label">Country</span>
-              <span class="dr-field__value">Ukraine</span>
-              <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
-            </a>
-            <a class="dr-field dr-field--action" href="listings-filter-region.html">
-              <span class="dr-field__label">Region</span>
-              <span class="dr-field__value">Kyiv City</span>
-              <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
-            </a>
-            <a class="dr-field dr-field--action" href="listings-filter-city.html">
-              <span class="dr-field__label">City</span>
-              <span class="dr-field__value">Kyiv</span>
-              <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
-            </a>
-            <a class="dr-field dr-field--action" href="listings-filter-district.html">
-              <span class="dr-field__label">District</span>
-              <span class="dr-field__value">All districts</span>
-              <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
-            </a>
-          </div>
-        </div>
+        <fieldset class="dr-zone" data-types aria-labelledby="type-title" aria-describedby="type-sub">
+          <p class="dr-zone__title" id="type-title">Drone type</p>
+          <p class="dr-zone__sub" id="type-sub">Which drone does the job</p>
+          <ul class="dr-picks">
+            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="drone-type" value="quadcopter" class="sr-only"></label></li>
+            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="drone-type" value="hexacopter" class="sr-only"></label></li>
+            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="drone-type" value="fpv" class="sr-only"></label></li>
+            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Fixed-wing</span><input type="checkbox" name="drone-type" value="fixed-wing" class="sr-only"></label></li>
+          </ul>
+        </fieldset>
 
         <fieldset class="dr-range" data-range aria-labelledby="price-title" aria-describedby="price-sub">
           <p class="dr-range__title" id="price-title">Price range</p>
