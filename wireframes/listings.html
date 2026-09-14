@@ -999,13 +999,14 @@
       else fBtn.removeAttribute('aria-label');
     }
     fSheet.querySelector('[data-apply]').addEventListener('click', function () {
-      applied = { lo: +lo.value, hi: +hi.value };
+      applied = { lo: +lo.value, hi: +hi.value, types: ticked() };
       setCount();
       scrim.click();    /* ui/kit.js's own close: inert lifted, focus back on Filters */
     });
     fSheet.querySelector('[data-clear]').addEventListener('click', function () {
       lo.value = 0; hi.value = MAX; paint();
-      applied = { lo: 0, hi: MAX };
+      types.forEach(function (c) { c.checked = false; });
+      applied = { lo: 0, hi: MAX, types: [] };
       setCount();
       scrim.click();
     });
