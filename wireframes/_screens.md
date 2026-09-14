@@ -158,7 +158,11 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     address* · *Address*). Top to bottom: a **search field** that takes focus, so the keyboard rises and the drawer
     rides above it; **a list to choose from** — her pick of the three readings put to her, standards first:
     *Use my location*, the **saved address** (*Podil, 21*, `account`), and the **recent** one (*Osokorky, 14*, the
-    last order in `order-history`); then **`Done`** over **`Cancel`**. Typing narrows the two addresses and says how
+    last order in `order-history`). **`Cancel` and `Done` stand in the drawer's top bar, `Cancel` on the leading
+    edge and `Done` on the trailing edge, the title between them** — the designer's word 2026-09-15, *«зроби так
+    як каже HIG»*, when shown the drawer's `Done` standing 120 above the keyboard's own: `HIG · Sheets` names the
+    pair *Cancel* and *Done* and puts them there on iOS. They stood stacked under the list until then, the
+    bottom-stack reading every other drawer in the product still keeps. Typing narrows the two addresses and says how
     many are left (`4.1.3`); *Use my location* stays. **A tapped row is taken at once** and the drawer closes;
     **`Done` takes what was typed** (an emptied field clears the row); **`Cancel`**, the scrim and Escape leave the
     row as it was. Focus goes back to the row. The swap still trades the two values. **Not drawn:** the system's

@@ -1169,8 +1169,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings | Address drawer | Recent | Body | the row's sub-line |
 | listings | Address drawer | 1 address | Status (`role="status"`, not drawn) | spoken after typing narrows the list; *2 addresses* when both stay (`WCAG 4.1.3`). *Use my location* is not counted — it is always there |
 | listings | Address drawer | No matching address | Status (`role="status"`, not drawn) | spoken when typing rules out both addresses. What happened, in three words; the way on is on the screen — *Done* takes what was typed |
-| listings | Address drawer | Done | Button | primary — takes what is typed in the field; an emptied field clears the row. **Open, put to the designer:** with the keyboard up the keyboard's own accessory *Done* (put the keyboard away) stands 120 below it |
-| listings | Address drawer | Cancel | Button | leaves the row as it was |
+| listings | Address drawer | Cancel | Button | leaves the row as it was. **From rev 256 on the leading edge of the drawer's top bar**, before the title — `HIG · Sheets`' own name and place for it |
+| listings | Address drawer | Done | Button | primary — takes what is typed in the field; an emptied field clears the row. **From rev 256 on the trailing edge of the top bar** — the designer, 2026-09-15, *«зроби так як каже HIG»*, when shown this *Done* standing 120 above the keyboard accessory's own *Done* (put the keyboard away). `HIG · Sheets` names the button *Done* and pairs it with *Cancel*, so the word stays and the place moves: the two now stand **296** apart with the whole drawer between them |
 | listings | Search | Date | Field label | the left half of the date · time row; the button's name is *Date Today* — the drawn label plus the value (`WCAG 2.5.3`) |
 | listings | Search | Today | Field value | DATA — at rest; a picked day reads `Wed 16 Sep`, the product's own format (`time-slot`, `listings-filters`) |
 | listings | Search | Time | Field label | the right half |
