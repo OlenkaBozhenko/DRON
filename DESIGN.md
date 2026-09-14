@@ -1001,6 +1001,27 @@ nowhere else, and it is *more* of an approximation than the row's, not less — 
 their lockups from the button's height, not from a host's type scale, and their supplied buttons
 replace both outright at handoff.
 
+**A third rung puts the marks inside a field** (rev 249, `account-edit`'s Add card drawer — the
+designer's *«в полі вводу справа логотипи»*). `.dr-paymark--fit` is the same artwork with its viewBox
+cropped to the ink and `width: auto`, so the box follows the mark at the same **20** height: Visa
+**31 × 20**, Mastercard **21 × 20**, held **6** apart in `.dr-field__marks` at the card-number row's
+trailing edge. The fixed 40 × 20 box exists to line four labels up on one edge; a field has no label
+beside each mark, and the 29px it would leave empty come straight off the typed number. Only the two
+cards the product accepts. **Here the marks carry information and no name stands beside them**, so the
+group is `aria-hidden` and the input is `aria-describedby` a `.sr-only` *Visa or Mastercard* (`WCAG
+1.1.1`). **Measured and open:** the value track is **207**, the marks and their gap take **68**, and a
+16-digit number measures **157.34** against the **139** left — **18.34px short**, so typed, the first
+two digits scroll out of the field. The three readings are in `concept.md` rev 249.
+
+**A drawer can open a drawer, and the second takes the first one's place** (rev 249). `Add card` in
+the Payment method picker opens the Add card drawer: the picker goes down, the scrim and the inert
+screen stay, and closing returns focus to the row on the screen that began it. **The Add card drawer
+is the first drawer that takes typing**, which gave `ui/kit.js` three duties: focus lands on the field
+marked `autofocus`; the Tab trap counts fields (card number → expiry → CVV → Add card → Cancel,
+measured); and a focused field **lifts the drawer above the whole keyboard** — keyboard top **476**,
+drawer bottom **476** on the 375 frame, overlap **0** (`WCAG 2.4.11`). Each drawer holds one green
+control, **341 × 44 = 4.93%** of the frame.
+
 **The modal contract is kept, not claimed.** Everything behind the drawer takes `inert`, so a tap or
 a Tab cannot reach the form under it; focus lands on the current option with its ring; Tab cycles
 inside the drawer only; and it closes three ways — **Esc**, the **scrim**, and a **`Cancel`** button

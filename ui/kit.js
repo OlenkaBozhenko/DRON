@@ -55,26 +55,47 @@
     return !el.classList.contains('dr-sheet') && el !== scrim;
   });
 
-  var openRow = null;
+  /* `openRow` is the control whose drawer is up; `origin` is the control ON THE
+     SCREEN that started it, and the one focus goes back to. They differ only
+     when a drawer was opened from inside another one. */
+  var openRow = null, origin = null;
 
   function sheetOf(row) {
     return document.getElementById(row.getAttribute('aria-controls'));
   }
 
+  /* everything focusable a drawer can hold, fields included — a drawer that
+     takes typing must keep its inputs inside the trap (`WCAG 2.1.1`) */
+  var STOPS = 'input:not([type="hidden"]), textarea, select, button, a[href]';
+
   function open(row) {
     var sheet = sheetOf(row);
     if (!sheet) return;
+    /* A DRAWER OPENED FROM INSIDE A DRAWER TAKES ITS PLACE (2026-09-14, rev 249):
+       `account-edit`'s Add card, inside the Payment method picker. One drawer
+       stands on the frame at a time — the picker goes down, the scrim and the
+       inert screen stay, and closing the second returns focus to the row on the
+       screen that began it, since the drawer holding the button is gone. */
+    var from = openRow && sheetOf(openRow);
+    if (from && from !== sheet && from.contains(row)) {
+      from.hidden = true;
+    } else {
+      origin = row;
+      scrim.hidden = false;
+      /* aria-modal is a promise made to assistive tech; inert is what keeps it
+         for the pointer and the tab key too */
+      behind.forEach(function (el) { el.inert = true; });
+    }
     openRow = row;
     row.setAttribute('aria-expanded', 'true');
-    scrim.hidden = false;
     sheet.hidden = false;
-    /* aria-modal is a promise made to assistive tech; inert is what keeps it
-       for the pointer and the tab key too */
-    behind.forEach(function (el) { el.inert = true; });
-    /* focus lands inside the drawer (`WCAG 2.4.3`): the current option if the
-       drawer holds a list of values, otherwise its first control — the pay
-       drawer's options are buttons, not .dr-picker__item rows. */
-    var current = sheet.querySelector('.dr-picker__item[aria-current="true"]')
+    /* focus lands inside the drawer (`WCAG 2.4.3`): a control the markup marks
+       `autofocus` first — the first field of a drawer that exists to be typed
+       into — then the current option if the drawer holds a list of values,
+       otherwise its first control — the pay drawer's options are buttons, not
+       .dr-picker__item rows. */
+    var current = sheet.querySelector('[autofocus]')
+               || sheet.querySelector('.dr-picker__item[aria-current="true"]')
                || sheet.querySelector('.dr-picker__item')
                || sheet.querySelector('button, a[href]');
     if (current) current.focus();
@@ -82,13 +103,14 @@
 
   function close() {
     if (!openRow) return;
-    var row = openRow, sheet = sheetOf(row);
-    openRow = null;
+    var row = openRow, back = origin || row, sheet = sheetOf(row);
+    openRow = null; origin = null;
     behind.forEach(function (el) { el.inert = false; });
     if (sheet) sheet.hidden = true;
     scrim.hidden = true;
     row.setAttribute('aria-expanded', 'false');
-    row.focus();
+    back.setAttribute('aria-expanded', 'false');
+    back.focus();
   }
 
   rows.forEach(function (row) {
@@ -97,9 +119,11 @@
 
     row.addEventListener('click', function () { open(row); });
 
+    /* every [data-close], not the first: a drawer that takes entry closes on
+       its confirm as well as on Cancel */
     var items = sheet.querySelectorAll('.dr-picker__item'),
         value = row.querySelector('.dr-field__value'),
-        exit  = sheet.querySelector('[data-close]');
+        exits = sheet.querySelectorAll('[data-close]');
 
     items.forEach(function (item) {
       /* a route leaves the screen — nothing to write back, nothing to close */
@@ -115,17 +139,23 @@
       });
     });
 
-    if (exit) exit.addEventListener('click', close);
+    exits.forEach(function (exit) { exit.addEventListener('click', close); });
   });
 
   scrim.addEventListener('click', close);
 
   document.addEventListener('keydown', function (e) {
     if (!openRow) return;
-    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'Escape') {
+      /* with the keyboard up, Escape puts the keyboard away and leaves the
+         drawer — the keyboard's own handler below does that */
+      var keys = frame.querySelector('.dr-kb');
+      if (keys && !keys.hidden) return;
+      close(); return;
+    }
     if (e.key !== 'Tab') return;
     /* the trap: while the drawer is up it IS the tab order */
-    var stops = sheetOf(openRow).querySelectorAll('button, a[href]'),
+    var stops = sheetOf(openRow).querySelectorAll(STOPS),
         first = stops[0], last = stops[stops.length - 1];
     if (!stops.length) return;
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
@@ -193,7 +223,7 @@
      not change with the layout inside it, so nothing measured downstream moves. */
   var NUM = [['1','2','3'], ['4','5','6'], ['7','8','9'], ['', '0', '⌫']];
 
-  var kb = null, bar = null, tabs = null, main = null, field = null, barRides = false, layout = null;
+  var kb = null, bar = null, tabs = null, main = null, field = null, barRides = false, layout = null, lift = null;
 
   function planeFor(el) {
     var im = (el.getAttribute('inputmode') || '').toLowerCase();
@@ -271,6 +301,21 @@
     if (!kb) kb = build();
     draw(planeFor(el));
     field = el;
+    /* A FIELD INSIDE A DRAWER LIFTS THE DRAWER (2026-09-14, rev 249) — the Add
+       card drawer on `account-edit` is the first drawer that takes typing. The
+       drawer and the keyboard both stand on the frame's bottom edge, so left
+       where it is the keyboard would sit on the very fields being typed into
+       (`WCAG 2.4.11`). The drawer rides on top of the whole keyboard instead,
+       the accessory bar included — the `chat` composer's rule of rev 151. The
+       screen behind is under the scrim and inert, so nothing on it moves. */
+    var sheet = el.closest && el.closest('.dr-sheet');
+    if (lift && lift !== sheet) { lift.style.bottom = ''; lift = null; }
+    if (sheet) {
+      lift = sheet;
+      lift.style.bottom = 'calc(var(--h-kb) + var(--h-control))';
+      kb.hidden = false;
+      return;
+    }
     bar = frame.querySelector('.dr-actionbar');
     tabs = frame.querySelector('.dr-tabbar');
     main = frame.querySelector('.dr-main');
@@ -304,6 +349,7 @@
   function dismiss(blur) {
     if (!kb || kb.hidden) return;
     kb.hidden = true;
+    if (lift) { lift.style.bottom = ''; lift = null; }
     if (bar) { bar.hidden = false; bar.style.marginBottom = ''; }
     if (tabs) { tabs.hidden = false; tabs = null; }
     if (main) { main.style.marginBottom = ''; main = null; }

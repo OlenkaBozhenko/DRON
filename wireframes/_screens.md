@@ -969,6 +969,25 @@ destination of the pencil badge now sitting on the avatar in `account.html`, the
 is the destination of the pencil beside the name. `sitemap.md §7.4` still lists **one** Account screen; both
 files are states of it, and both are listed in the `Files` column above rather than given a row of their own.
 It carries **base only** — no `flows.md` node produces an empty, error or loading state for it (an empty
+**The Payment method drawer takes an `Add card` button on 2026-09-14 (rev 249)**, the designer's call on the
+built drawer: *«додай primary button "Add card" відкрий дровер де юзер зможе ввести номер картки (в полі вводу
+справа логотипи "Visa", MasterCard etc) дійсна до та CVV і CTA Add card»*.
+- **In the picker:** `Add card` (primary) under the four methods, `Cancel` (secondary) under it — confirm first,
+  cancel last, `HIG · Action sheets`, the `.dr-sheet__actions` group `listings-filters` already draws.
+- **It opens a second drawer, `Add card`, in the picker's place** — one drawer on the frame at a time, the scrim
+  and the inert screen kept; closing it returns focus to the *Payment method* row, since the drawer that held the
+  button is gone (`WCAG 2.4.3`). **Not a state and not a sub-view**, so no row in the matrix — a control on this
+  page, the reading every drawer here already has.
+- **Three typed rows in one card** — **Card number · Expiry · CVV**, the labels and the `WCAG 1.3.5` tokens
+  (`cc-number` · `cc-exp` · `cc-csc`) `payment` already uses, CVV masked as there. **No name rows**: she named
+  three fields, and `payment`'s *First name* / *Last name* are not carried in. **The Visa and Mastercard marks
+  stand at the right end of the card number**, the two the product accepts (`CLAUDE.md` · Payment) — the same
+  artwork as the picker rows, cropped to their ink; the field is described by a hidden *Visa or Mastercard*
+  (`WCAG 1.1.1`). Then **`Add card`** (primary) and **`Cancel`**. The fields open **empty** and the first one takes
+  focus, so the number pad rises with the drawer and the drawer rides on top of it.
+- **Open, and hers:** with both marks in the field the number has **140px** where a full 16-digit number needs
+  **157** — see `concept.md` rev 249.
+
 avatar is the *base*: the initials fallback, which `account.html` already ships as `OB`).
 
 **It became a modal on 2026-08-16 (rev 146), on the designer's reference** (Figma `100:30`): *«залиш

@@ -680,6 +680,15 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **`voice.md` is not engaged.** Nothing here is a state message being rewritten: a picker row is a control, and the one new word is a label, not a sentence. **P4** (*speak the user’s words, not the equipment*) is the only principle with anything to say, and *Availability* is the word the zone’s own accessible name has used since the screen was drawn.
 - **No toast.** The no-toast table’s row for this control is corrected in place above: the rule (*open a picker or move a selection — visible either way*) now covers it literally, since it is both.
 
+**Sync — 2026-09-14 (`account-edit`'s Payment method drawer takes `Add card`, and a drawer that takes the card — one word is authored, the rest is `payment`'s)**
+
+- **The designer's call, given against the built drawer:** *«додай primary button "Add card" відкрий дровер де юзер зможе ввести номер картки (в полі вводу справа логотипи "Visa", MasterCard etc) дійсна до та CVV і CTA Add card»*.
+- **One string is authored: `Add card` — her word, and `voice.md`'s attach verb, *Add…*.** It stands three times: the picker's button, the new drawer's title, and its CTA. The title repeating the control that opened it is rev 102's construction (*Payment method* is the row and its drawer), so nothing new is decided there.
+- **Everything else is `payment`'s, unchanged.** `Card number` · `Expiry` · `CVV` are that screen's three labels — **CVV** still the designer's word where Mastercard prints CVC. *«дійсна до»* is read as **Expiry**, the label the product already carries, not as a new *Valid thru*. `Cancel` is the drawer's exit, as on every picker.
+- **One hidden string, not new:** *Visa or Mastercard* is the input's `aria-describedby`, standing in for the two marks (`WCAG 1.1.1`). It is the first half of `payment`'s subtitle *Visa or Mastercard, charged once for this order*, taken unchanged.
+- **Not carried in:** `First name` / `Last name` — she named three fields. No placeholder is written — `payment`'s card form has none.
+- **`voice.md` is not engaged beyond the verb.** No state message is written; the drawer has no error or success copy, and in the prototype the CTA only closes it.
+
 ## Master table — every string
 
 _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string, in document order. Regenerated from the current wireframes after the voice rewrite (Step 03 audit)._
@@ -722,7 +731,15 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account-edit | Documents | Valid liability insurance covering the drone. | Body | the card's subtitle |
 | account-edit | Action bar | Cancel | Button | zone corrected 2026-09-10 — the two buttons stand on the frame's bottom edge, never in the Preferences card, and the table had said otherwise since it was generated |
 | account-edit | Action bar | Save changes | Button |  |
+| account-edit | Payment drawer | Add card | Button | new 2026-09-14 (rev 249) — the designer's word; primary, above Cancel. Opens the Add card drawer in this one's place |
 | account-edit | Payment drawer | Cancel | Button | the drawer's dismissal, new 2026-08-16 (rev 102) — `HIG · Action sheets` asks for the cancel by name. It never stands beside the form's own Cancel: the scrim covers the action bar while the drawer is up |
+| account-edit | Add card drawer | Add card | Heading | new 2026-09-14 (rev 249) — the drawer's title, named by the button that opened it (rev 102's construction) |
+| account-edit | Add card drawer | Card number | Field label | `payment`'s label, unchanged (rev 249) |
+| account-edit | Add card drawer | Visa or Mastercard | Body (hidden) | `.sr-only`, the card number's `aria-describedby` — the text for the two marks (`WCAG 1.1.1`). The first half of `payment`'s subtitle, unchanged (rev 249) |
+| account-edit | Add card drawer | Expiry | Field label | `payment`'s label, unchanged — the designer's *«дійсна до»* (rev 249) |
+| account-edit | Add card drawer | CVV | Field label | `payment`'s label, unchanged — the designer's word (rev 249) |
+| account-edit | Add card drawer | Add card | Button | new 2026-09-14 (rev 249) — the CTA, primary, above Cancel |
+| account-edit | Add card drawer | Cancel | Button | the drawer's dismissal (rev 249), as on every picker |
 | account-edit | Language drawer | Cancel | Button | same |
 | account | — | Account | Heading |  |
 | account | Profile | Change profile photo | Button | the pencil badge on the avatar, new 2026-08-16 — an **accessible name only**, the badge being icon-only (`WCAG 4.1.2`). Deliberately *not* `Edit profile photo`: the sibling pencil beside the name is already `Edit profile`, and two adjacent icon controls announcing one word apart is the ambiguity `WCAG 2.4.6` names. Different verb, different object → `Change` + *profile photo* against `Edit` + *profile* |

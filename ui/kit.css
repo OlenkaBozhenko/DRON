@@ -3407,6 +3407,21 @@ header.dr-topbar,
    it, which would leave the mark and the text apart. With the label growing,
    the mark holds the left edge and the check the right. */
 .dr-picker__label{ flex: 1 1 auto; min-width: 0; }
+/* THE MARKS INSIDE A FIELD — the Add card drawer on `account-edit`, the
+   designer's call 2026-09-14 (rev 249): «в полі вводу справа логотипи». The
+   same two pieces of artwork as the picker rows, copied and not redrawn, which
+   is why the rev 108 departure is widened by one place and not re-decided: full
+   brand colour, inline on the artwork, never a token.
+   THE BOX FITS THE INK HERE. The picker's fixed 40 × 20 lines four labels up on
+   one edge; a field has no label beside each mark, and the 29px that box leaves
+   empty is taken straight from the typed number. So the artwork carries a
+   viewBox cropped to its own ink and `--fit` lets the width follow it at the
+   same 20 height: Visa 31, Mastercard 21.
+   NAMED IN TEXT, NOT IN ARTWORK: the group is aria-hidden and the input is
+   described by a `.sr-only` «Visa or Mastercard» — the marks say which cards
+   work, and that is information (`WCAG 1.1.1`), so it reaches the field. */
+.dr-field__marks{ flex: none; display: flex; align-items: center; gap: var(--sp-6); }
+.dr-paymark--fit{ width: auto; }
 
 /* A SHEET THAT COMES AND GOES needs [hidden] said out loud: .dr-sheet sets
    display:flex and .dr-scrim display is block, and either one beats the UA's
