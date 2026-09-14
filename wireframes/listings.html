@@ -974,16 +974,24 @@
     var fBtn   = frame.querySelector('[data-filters-open]'),
         fCount = frame.querySelector('[data-filters-count]'),
         fSheet = document.getElementById('sheet-filters'),
-        applied = { lo: 0, hi: MAX };
+        types  = [].slice.call(fSheet.querySelectorAll('[data-types] input[type="checkbox"]')),
+        applied = { lo: 0, hi: MAX, types: [] };
 
-    /* the drawer always opens on what is APPLIED — a band dragged and then dismissed is not kept.
-       This listener is registered before ui/kit.js's (the script tag order), so the band is back
-       in place before the drawer shows it. */
+    function ticked() {
+      return types.filter(function (c) { return c.checked; }).map(function (c) { return c.value; });
+    }
+
+    /* the drawer always opens on what is APPLIED — a band dragged or a type ticked and then dismissed
+       is not kept. This listener is registered before ui/kit.js's (the script tag order), so the band
+       and the ticks are back in place before the drawer shows them. */
     fBtn.addEventListener('click', function () {
       lo.value = applied.lo; hi.value = applied.hi; paint();
+      types.forEach(function (c) { c.checked = applied.types.indexOf(c.value) !== -1; });
     });
+    /* one per applied value, the way listings-filtered counts one per chip: the band is 1, each
+       ticked drone type is 1 */
     function setCount() {
-      var n = (applied.lo > 0 || applied.hi < MAX) ? 1 : 0;
+      var n = ((applied.lo > 0 || applied.hi < MAX) ? 1 : 0) + applied.types.length;
       fCount.hidden = !n;
       fCount.textContent = n ? String(n) : '';
       /* the count is spoken in the name, which still begins with the drawn word (WCAG 2.5.3) */
