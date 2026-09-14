@@ -591,20 +591,23 @@
     THE SEARCH. This page's one script, and it sits here for the reason listings-filters' two do:
     none of it is in ui/kit.js, and one page carries it until a second page needs it.
 
-    FOUR THINGS, AND WHAT EACH DOES NOT RE-IMPLEMENT.
+    FIVE THINGS, AND WHAT EACH DOES NOT RE-IMPLEMENT.
     1. THE BADGE DECIDES WHERE FIND GOES. The badges are native radios, so choosing, the arrow
        keys and the name come from the element; this only moves one href, so Find always says
        where it leads (WCAG 2.4.4). It re-reads the checked radio on `pageshow`, because a browser
        coming Back restores the form's radios and would otherwise send Find to the old service.
-    2. THE DATE DRAWER — listings-filters' calendar (WAI-ARIA APG Date Picker Dialog, selection
+    2. THE ADDRESS DRAWER (2026-09-14) — one drawer for From, To and Where. Its field is typed into,
+       so the keyboard and the lift above it are ui/kit.js's; this only fills the title, narrows
+       the list, and writes the pick back into the row.
+    3. THE DATE DRAWER — listings-filters' calendar (WAI-ARIA APG Date Picker Dialog, selection
        follows focus), without its time row. The month is the real one; no day before today.
-    3. THE TIME DRAWER — Now, or a set time. Now is offered only while the day is today.
-    4. THE FILTERS DRAWER'S TWO BUTTONS. ui/kit.js opens and closes the drawer; this applies the
+    4. THE TIME DRAWER — Now, or a set time. Now is offered only while the day is today.
+    5. THE FILTERS DRAWER'S TWO BUTTONS. ui/kit.js opens and closes the drawer; this applies the
        band, puts the count on the button, and closes it through the scrim so there is one close.
        The range script is listings-filters' verbatim.
 
-    THE MODAL CONTRACT for 2 and 3 is ui/kit.js's, kept to the letter: inert behind, focus inside,
-    a Tab trap, Escape and the scrim cancel, and focus goes back to the half that opened it.
+    THE MODAL CONTRACT for 2, 3 and 4 is ui/kit.js's, kept to the letter: inert behind, focus inside,
+    a Tab trap, Escape and the scrim cancel, and focus goes back to the control that opened it.
   -->
   <script>
   (function () {
