@@ -229,7 +229,9 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   moves here is open.
 - **Open, not decided:** the three setup screens still ask for what this screen and Home now collect — *Parcel size*,
   *What you get*, and on the two calendar-first services a time slot — and their back control still returns to Home,
-  not to the map.
+  not to the map. **Closed for aerial's time slot, 2026-09-15:** `order-setup-aerial`'s action bar now reads
+  *Confirm order* and goes to `order-review-aerial` (the designer's call; `microcopy.md` row). Inspection still ends
+  at `time-slot-inspection`, and `order-review-aerial`'s back still names *Pick a time* — neither decided yet.
 
 ### 4. Service catalogue
 - **Job:** `MJ-1` — *"choose the result a drone delivers"* (`CE-2` Service).
@@ -260,7 +262,7 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   | File | Nav title | The thing ordered | Exit |
   |---|---|---|---|
   | `order-setup.html` | Package delivery | Pickup · Drop-off · **Parcel size** | → `order-review` (auto-dispatch) |
-  | `order-setup-aerial.html` | Aerial photo &amp; video | Location · **Shoot** · **Duration** · **What you get** | → `time-slot` (calendar-first) |
+  | `order-setup-aerial.html` | Aerial photo &amp; video | Location · **Shoot** · **Duration** · **What you get** | → `order-review-aerial` via *Confirm order* (2026-09-15; was → `time-slot` — the hour is now chosen on Home) |
   | `order-setup-inspection.html` | Inspection | Location · **Structure** | → `time-slot` (calendar-first) |
 
   **Why two of them end at a time slot and one does not:** `sitemap.md` CE-2 gives each service a *flow

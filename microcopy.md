@@ -1183,7 +1183,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings | Date drawer | September 2026 | Field value | DATA — month + year, `aria-live="polite"` |
 | listings | Date drawer | Done | Button |  |
 | listings | Date drawer | Cancel | Button |  |
-| listings | Time drawer | Pick a time | Heading | the drawer's title — the product's existing phrase (`order-setup-aerial`'s CTA) |
+| listings | Time drawer | Pick a time | Heading | the drawer's title — the product's existing phrase (`time-slot`'s title; also `order-setup-aerial`'s CTA until that became *Confirm order*, 2026-09-15) |
 | listings | Time drawer | Now | Body | a radio; only offered while the date is today |
 | listings | Time drawer | At a set time | Body | a radio; carries the hour : minute selects |
 | listings | Time drawer | Hour | Field label | accessible name only |
@@ -1756,7 +1756,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-setup-aerial | Details form | Notes for the operator | Field label | SR-ONLY, as on the delivery file |
 | order-setup-aerial | Details form | Save this address for next time | Field label | identical to `order-setup`, including its place in the action bar and `form="order-details"` |
 | order-setup-aerial | Details form | Cancel | Button | each drawer's dismissal — `HIG · Action sheets` asks for the cancel by name |
-| order-setup-aerial | Action bar | Pick a time | Button | **not *Continue to review*, because the next screen is not review.** Aerial is calendar-first (`sitemap.md` CE-2): a shoot is booked for an hour, not dispatched now, so setup hands off to the slot list — whose own title is *Pick a time*, which is what the button names |
+| order-setup-aerial | Action bar | Confirm order | Button | **rewritten 2026-09-15** (was *Pick a time*) — the designer, on the built page: *«тут вже немає "Pick a time" тут "Confirm order"»*. The hour is now chosen on Home, in the search card's *Date* · *Time* cells, before *Find*, so this screen no longer hands off to the slot list, and a button still naming that list would name a step the client does not take (`WCAG 2.4.4`). **It leads to `order-review-aerial`, not past it:** that is where the price is stated before *Pay ₴800* (`voice.md` **P3**), so the tap confirms the details and charges nothing. `HIG · Buttons` (a verb phrase naming the action) passes; the button keeps **341 × 44** (`HIG · 44pt`, `WCAG 2.5.8`) and `--on-green` on `--green` **9.46:1** (`WCAG 1.4.3`) |
 | order-setup-inspection | — | ‹ Order | Button | new file 2026-08-16 |
 | order-setup-inspection | — | Inspection | Heading | the listings card's name for the service. **Not *Roof inspection***, which is what the record is headed: the record names the job that was done, the form is opened before the client has said which structure |
 | order-setup-inspection | Details form | enter location, what to inspect | Zone label | two things asked, so two named |
