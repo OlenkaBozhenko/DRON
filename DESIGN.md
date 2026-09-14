@@ -2066,7 +2066,21 @@ two Figma references used for structure only. Every value is an existing rung.
   keyboard moves.
 - **Filters over Find** (`.dr-finder__actions`, rev 251) — each the full width, **341 × 44**, 8 apart, Filters
   first. *Find* is the screen's one green control: **4.88%** of the frame measured by pixel (the bell's count
-  included), under §0's ~5%.
+  included), under §0's ~5%. **From rev 264 *Filters* carries no count** and its name is *Filters* in every state.
+- **Applied filters as chips** (`.dr-fchips` + `.dr-fchip` as a `<button>`, rev 264) — the designer on the built
+  button: *"display applied filters in badges"*. One kit dismissible chip per applied value, **above *Filters***,
+  12 from the card and 12 to *Filters*: each ticked drone type by name, then the band (*₴200 – ₴600*). A tap
+  removes that filter; focus goes to the chip that takes its place, or to *Filters* when the row empties. No
+  filter, no row (`.dr-fchips[hidden]`). **Measured at the 375 × 812 frame:** chip **28** tall — *Quadcopter*
+  **112.5**, *FPV* **64.9**, *₴200 – ₴600* **119.6** wide, 8 apart; three fit one line, all five wrap to two
+  (rows **36** apart) and move *Filters* **382.8 → 458.8** (one line: **422.8**). Label 12/600 `--ink` on
+  `--green-wash` **14.75:1** (`WCAG 1.4.3` ✓); × `--on-green` on `--green` **9.46:1**. Target: **28** clears
+  `WCAG 2.5.8`'s 24 by **4**; **16** under `HIG · 44pt` — the chip's departure recorded since rev 51, carried
+  unchanged. Name *Remove filter: Quadcopter*, `listings-filtered`'s (`WCAG 4.1.2`, `2.5.3`, `3.2.4`); the ring is
+  the kit's `--focus-w` `--ink` at `--focus-offset`. The button inherits `font-family` and `line-height`, so it
+  draws the `<a>` chip exactly. **Green, by pixel:** **4.90%** at rest, **5.12%** with three chips, **5.26%** with
+  five — each × pill ~**215 px²**, a status mark; over §0's ~5% by **0.12** / **0.26**, reported to the designer
+  before she chose. *Find* stays ~**92–95%** of the screen's solid green.
 - **Drawers** — *Pick a date* (the `.dr-cal` grid without its time row), *Pick a time* (*Now* / *At a set
   time* with `.dr-cal__clock`; *Now* disabled for any day but today), *Filters* (`.dr-sheet--tall`:
   Drone type + Price range, scrolling inside, *Clear all* · *Apply filters* side by side). **693.77** tall at

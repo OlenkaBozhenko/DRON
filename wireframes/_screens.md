@@ -180,8 +180,9 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     мають бути по всій ширині одна під одною»*. They stood side by side in one row until then. *Filters* opens a **drawer** holding **Drone type**
     and **Price range**. **Date &amp; time is not in the drawer** — it moved to the search itself, and one value is
     set in one place (the designer's pick, 2026-09-14, of the two readings put to her). *Apply filters* closes the
-    drawer and puts the count on the button — one per applied value, the way `listings-filtered` counts one per
-    chip: the band counts 1, each ticked drone type counts 1; *Clear all* resets and closes.
+    drawer and writes each applied value as a chip above *Filters* (see *Applied filters as chips* below); *Clear
+    all* resets and closes. *(Until 2026-09-15 Apply put a count on the button instead — one per applied value, the
+    band 1, each ticked drone type 1.)*
   - **Location leaves the Filters drawer, and Drone type takes its place — 2026-09-15, the designer on the built
     drawer** (*«видали Location з філтрів додаткових можеш додати натомість типи дронів»*). Until then the drawer's
     first card was **Location** (Country ▸ Region ▸ City ▸ District, each row pushing its own screen). The address
@@ -197,6 +198,16 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     P1**, and conforms to WCAG and `HIG · 44pt`: recorded as her deliberate departure, not a defect. **Not
     changed:** `listings-filters` (the full-screen panel) keeps its Location card, and the four place-pick screens
     stay and still go back to it; nothing on Home opens them now.
+  - **Applied filters as chips — 2026-09-15, the designer on the built *Filters* button** (*"display applied
+    filters in badges"*). Until then an applied filter showed only as a green count on the button (*Filters, 2
+    applied*). **Each applied value is now its own removable chip**, the kit's dismissible filter chip — the one
+    `listings-filtered` draws: each ticked drone type by its name (*Quadcopter*, *FPV*), then the price band as one
+    chip (*₴200 – ₴600*), in the drawer's own order. **Tapping a chip removes that filter**; focus moves to the
+    chip that takes its place, or to *Filters* when none is left. No filter, no row. **Two calls, each put to her
+    standards first:** the row sits **above *Filters***, after the where-and-when card, so *Filters* and *Find*
+    stay one pair (her pick over *under Filters*; both conform), and **the count leaves the button** — the chips
+    already say what is applied, so the button reads plain *Filters* (her pick over keeping the count; both
+    conform). No *All* chip: *Clear all* stays in the drawer. **Not a state** — the same page with filters applied.
   - **`Find` opens the results on the map** for the chosen service — see *Results on the map* below.
   - **Not states, not sub-views:** the three drawers are controls on this page, the reading the date drawer already
     had. **The sibling pages are not rebuilt with it** — `listings-filters` (the full-screen panel),
