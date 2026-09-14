@@ -986,10 +986,16 @@
     hi.addEventListener('input', function () { if (+hi.value < +lo.value) hi.value = lo.value; paint(); });
 
     var fBtn   = frame.querySelector('[data-filters-open]'),
-        fCount = frame.querySelector('[data-filters-count]'),
+        fChips = frame.querySelector('[data-fchips]'),
         fSheet = document.getElementById('sheet-filters'),
         types  = [].slice.call(fSheet.querySelectorAll('[data-types] input[type="checkbox"]')),
         applied = { lo: 0, hi: MAX, types: [] };
+
+    /* a drone type's chip says what its row in the drawer says */
+    var typeName = {};
+    types.forEach(function (c) {
+      typeName[c.value] = c.closest('.dr-pick').querySelector('.dr-pick__label').textContent;
+    });
 
     function ticked() {
       return types.filter(function (c) { return c.checked; }).map(function (c) { return c.value; });
