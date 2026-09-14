@@ -449,14 +449,15 @@
         </div>
       </div>
 
-      <!-- Stacked, and the confirm is FIRST in the markup because it is first on
-           the screen: `HIG · Action sheets` puts the cancel at the bottom of a
-           stacked group, and flipping it in CSS would leave the reading order and
-           the tab order in the other order from the drawn one (`WCAG 1.3.2`,
+      <!-- Stacked, and Cancel is FIRST in the markup because it is first on the
+           screen — the designer turned the stack at rev 260 («зміни місцями
+           primary and secondary»), a recorded departure from `HIG · Alerts`'
+           default-on-top stack. Flipping it in CSS would leave the reading order
+           and the tab order in the other order from the drawn one (`WCAG 1.3.2`,
            `2.4.3`). -->
       <div class="dr-sheet__actions">
-        <button class="dr-btn dr-btn--primary" type="button" data-done>Done</button>
         <button class="dr-btn dr-btn--secondary" type="button" data-close>Cancel</button>
+        <button class="dr-btn dr-btn--primary" type="button" data-done>Done</button>
       </div>
     </section>
 
