@@ -5,13 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DRON wireframe · Home / start an order · success (base)</title>
 <!--
-  SCREEN (name from _screens.md §3): "Home / start an order" — the Client Service list.
+  SCREEN (name from _screens.md §3): "Home / start an order" — A SEARCH from 2026-09-14.
   PERSONA: Client C-1 (primary — CLAUDE.md "Primary persona — C-1").
   MAIN JOB: MJ-1 — get a drone service done.
-  STATE: success / base. Other states (-empty / -error / -loading) are separate pages, next step.
-  FIDELITY: grayscale only, system font, no colour, no icons (placeholders), no shadows, no brand lockup — per _conventions.md.
-  ZONES ARE GROUNDED IN sitemap.md: services = CE-2; card entry → Order setup (MJ-1 flow); bottom bar = §7.1 global nav.
-  NOTE: the operator counterpart (Operator home + status toggle) is a separate build.
+  STATE: success / base.
+  THE REBUILD (designer, 2026-09-14): «треба змінити вигляд цієї сторінки бо це стартова пошукова сторінка» —
+  three service badges with icons, the date (a calendar) with the time to its right, Filters (secondary, a
+  drawer with the filters she already had) and Find (primary), which opens the map with a drawer of choices
+  and Order at its foot. Two Figma references (145:4, 145:8) for structure only; every style is ui/kit.css.
+  Two readings went to her before it was built, standards first, and she took both recommended ones: the
+  Filters drawer holds Location + Price (Date & time lives on the search, one value in one place), and the
+  rows on the map are named by the outcome, not the drone (voice.md P1, P4).
+  WHAT LEFT THE PAGE WITH HER WORD: the category row, the search field and the three service cards. The
+  service is now chosen by badge, and the choices it opens are on listings-map*.
+  THE INLINE <style> BELOW IS LEFT AS IT WAS — ui/kit.css wins every rule the frame uses, and its last live
+  rules (.media-ph, rev 248) went dead with the service cards. Nothing in it is deleted without her word.
 -->
 <style>
   /* ── tokens (from _conventions.md §4 / ia.html grays) ── */
