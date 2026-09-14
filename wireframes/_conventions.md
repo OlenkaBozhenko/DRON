@@ -731,6 +731,11 @@ phone). Neither the plane's 291 nor the keyboard's 335 changes with the layout d
 **From rev 255 the number pad types:** a click on one of its ten digits or its delete writes at the caret of
 the focused field and fires `input`, so a page script reading the value — `account-edit`'s card mark — sees the
 press. The letter plane stays a picture.
+**From rev 257 a press that is not on a field keeps the field's focus:** a press anywhere on a `.dr-field`
+row focuses its one text field (the row's 44 is the target, not the input's 18.4), and with the keys up a
+press inside the keyboard or the field's own drawer — its buttons included — leaves the focus where it is,
+so the keys and a lifted drawer stay put between fields. `Done`, Escape or a button that closes the drawer
+put the keys away; on a screen a press on blank content still does. No page markup changes.
 A page that holds **neither** a drawer nor a field must not link it. The page-level scripts left in the prototype are
 **both on `listings-filters`** and both are that page's alone: the **range readout**, and the **date picker**
 (added 2026-08-16, rev 118). The date picker is not in `kit.js` for a stated reason, not an oversight —

@@ -587,7 +587,14 @@ the ramp's 10 a 45px key reads as a pill; on the 2/4/8 floor's 4 it reads square
 `account-edit`'s card mark never had a number to read: its ten digits and delete are
 `.dr-kb__key--press` (`pointer-events: auto`), written at the caret with an `input` event; the letter
 plane, the blank cell and QuickType stay pictures. The pad key's **118.5 × 45** clears `2.5.8`, and the
-computer keyboard stays the keyboard path (`2.1.1`). Colour is the product's own: plane
+computer keyboard stays the keyboard path (`2.1.1`).
+**A press that is not on a field keeps the field's focus (rev 257)**, because a press on a label, a
+row's edge, a key gap or a drawer's title sent focus to `<body>`, the keys went, and a lifted drawer
+fell **335** under the pointer. Two rules: a `.dr-field` row is its one text field's target — the
+input is **18.4** tall and fails `HIG · 44pt` by **25.6**, the row's **44** clears it — and with the
+keys up a press inside the keyboard or the field's own drawer, its buttons included, keeps the focus.
+The keys go on `Done`, Escape or a button that closes the drawer; on a screen a press on blank
+content still puts them away. Colour is the product's own: plane
 `--btn2`, keys `--page`, modifiers `--card`, labels `--ink`. No new colour token.
 
 **It is a product-wide behaviour, not a screen's (rev 151).** Every text-entry field on every mobile

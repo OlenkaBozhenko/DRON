@@ -299,11 +299,8 @@
 
     done.addEventListener('click', function () { dismiss(true); });
 
-    /* a pad key never takes focus: the field keeps it, or focusout would put the
-       keys away under the press */
-    plane.addEventListener('mousedown', function (e) {
-      if (e.target.closest('.dr-kb__key--press')) e.preventDefault();
-    });
+    /* a pad key never takes focus — the press rule below keeps the field's, or
+       focusout would put the keys away under the press */
     plane.addEventListener('click', function (e) {
       var key = e.target.closest('.dr-kb__key--press');
       if (key && field) press(key.getAttribute('data-key'));
@@ -409,6 +406,56 @@
   new MutationObserver(function () {
     if (!onMobile()) dismiss(false);
   }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-wf-viewport'] });
+
+  /* A PRESS THAT CANNOT TAKE FOCUS DOES NOT TAKE IT AWAY (2026-09-15, rev 257).
+     The designer on `account-edit`'s Add card: «зроби щоб клавіатура з цифрами
+     не пропадала щоразу … а не пригає туди сюди коли я вводю то одне то інше
+     поле». Moving input to input never dropped the keys; a press on anything
+     that is not a control did — the row's label, the 25.6 of a 44 row above and
+     below an input that measures 18.4 tall, the gaps between pad keys, the
+     blank cell, QuickType, the drawer's title. Focus fell to <body>, the keys
+     went, the drawer fell 335 under the pointer and the release landed on
+     something else, so the next field was not taken either.
+     The same fall took the drawer's own buttons: a press on Cancel moved focus
+     to it, the keys went, and the release missed Cancel by 335.
+     TWO RULES, and a field is outside both — a press on an input still puts
+     the caret where it lands:
+     (1) THE ROW IS ITS FIELD'S TARGET. A press anywhere on a `.dr-field` that
+         is not a control and holds one text field gives that field the focus,
+         caret at the end, the way a tap on an iOS form row does. On every
+         screen, because the row is one component: the field's 18.4 fails
+         `HIG · 44pt` by 25.6, the row's 44 clears it.
+     (2) WITH THE KEYS UP, A PRESS INSIDE THE KEYBOARD OR THE FIELD'S OWN DRAWER
+         KEEPS THE FIELD'S FOCUS — its buttons included, so Cancel, Add card
+         and Done land where they were pressed; `listings`' address drawer
+         made the same call for its rows and bar (rev 256). The keys go when
+         asked — Done, Escape, or a button that closes the drawer — not on a
+         stray tap. Tab still reaches every button (`WCAG 2.1.1`). On a
+         screen a press on blank content still dismisses, as before; only the
+         drawer, which the keys lift, changes. */
+  var TAKES_FOCUS = 'button, a[href], [tabindex], [contenteditable], summary';
+
+  frame.addEventListener('mousedown', function (e) {
+    if (e.button !== 0) return;
+    var t = e.target;
+    if (t.closest('input, textarea, select')) return;
+    var row = !t.closest(TAKES_FOCUS) && t.closest('.dr-field'),
+        own = row ? [].filter.call(row.querySelectorAll('input, textarea'), function (el) {
+          return isField(el) && !el.disabled;
+        }) : [];
+    if (own.length === 1) {
+      e.preventDefault();
+      var f = own[0];
+      if (document.activeElement !== f) {
+        f.focus();
+        try { f.setSelectionRange(f.value.length, f.value.length); } catch (err) { /* type="number" */ }
+      }
+      return;
+    }
+    if (!kb || kb.hidden || !field) return;
+    var sheet = field.closest('.dr-sheet');
+    if (kb.contains(t) || (sheet && sheet.contains(t))) e.preventDefault();
+  });
 
   frame.addEventListener('focusin', function (e) {
     if (isField(e.target) && onMobile()) show(e.target);
