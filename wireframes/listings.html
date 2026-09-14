@@ -775,7 +775,7 @@
        under the finger before the release, and the tap would land on nothing. So the press does
        not take focus — the text field keeps it, as iOS keeps it when a suggestion is tapped.
        The Tab key still reaches every row. */
-    [].forEach.call(addrSh.querySelectorAll('.dr-picker__item, .dr-sheet__actions .dr-btn'), function (b) {
+    [].forEach.call(addrSh.querySelectorAll('.dr-picker__item, .dr-sheet__bar .dr-btn'), function (b) {
       b.addEventListener('mousedown', function (e) { e.preventDefault(); });
     });
 
