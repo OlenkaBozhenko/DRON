@@ -711,7 +711,67 @@
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
 
-    /* ── 2 · the date drawer ───────────────────────────────────────────── */
+    /* ── 2 · the address drawer ────────────────────────────────────────── */
+    var addrSh    = document.getElementById('addrpick'),
+        addrTitle = addrSh.querySelector('[data-addr-title]'),
+        addrIn    = addrSh.querySelector('[data-addr-input]'),
+        addrRows  = [].slice.call(addrSh.querySelectorAll('[data-addr-pick]')),
+        addrCount = addrSh.querySelector('[data-addr-count]'),
+        addrFor   = null;   /* the row whose drawer is up */
+
+    /* words, not characters: «pod 21» finds Podil — Naberezhno-Khreshchatytska St, 21 */
+    function words(s) { return s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim(); }
+    function narrow() {
+      var q = words(addrIn.value), left = 0;
+      addrRows.forEach(function (row) {
+        if (!row.hasAttribute('data-q')) return;          /* Use my location always stays */
+        var hay = ' ' + words(row.dataset.q) + ' ',
+            hit = !q || q.split(' ').every(function (w) { return hay.indexOf(' ' + w) !== -1; });
+        row.hidden = !hit;
+        if (hit) left++;
+      });
+      /* spoken, not drawn: the list itself shows what is left (WCAG 4.1.3) */
+      addrCount.textContent = left === 0 ? 'No matching address'
+        : left === 1 ? '1 address' : left + ' addresses';
+    }
+    function takeAddr(v) {
+      if (!addrFor) return;
+      addr[addrFor.dataset.addr] = v.trim();
+      paintAddr(addrFor);
+      lower();
+    }
+
+    addrBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        addrFor = btn;
+        addrTitle.textContent = btn.dataset.title;
+        addrIn.value = addr[btn.dataset.addr];
+        addrRows.forEach(function (row) { row.hidden = false; });
+        addrCount.textContent = '';
+        /* nothing to put back on cancel: the row is only ever written by a pick or Done */
+        raise(addrSh, btn, function () {});
+        addrIn.focus();
+      });
+    });
+    addrIn.addEventListener('input', narrow);
+    addrIn.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); takeAddr(addrIn.value); }
+    });
+    addrRows.forEach(function (row) {
+      row.addEventListener('click', function () { takeAddr(row.dataset.addrPick); });
+    });
+    addrSh.querySelector('[data-done]').addEventListener('click', function () { takeAddr(addrIn.value); });
+    addrSh.querySelector('[data-close]').addEventListener('click', dismiss);
+    /* A TAP KEEPS THE FIELD'S FOCUS. With the keyboard up the drawer rides 335 above the bottom
+       edge; a press that moved focus to a row would put the keyboard away and drop the drawer
+       under the finger before the release, and the tap would land on nothing. So the press does
+       not take focus — the text field keeps it, as iOS keeps it when a suggestion is tapped.
+       The Tab key still reaches every row. */
+    [].forEach.call(addrSh.querySelectorAll('.dr-picker__item, .dr-sheet__actions .dr-btn'), function (b) {
+      b.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    });
+
+    /* ── 3 · the date drawer ───────────────────────────────────────────── */
     var dateBtn  = frame.querySelector('[data-date-open]'),
         dateVal  = frame.querySelector('[data-date-value]'),
         dateSh   = document.getElementById('datepick'),
