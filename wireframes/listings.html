@@ -390,11 +390,50 @@
       <div class="dr-home"><span></span></div>
     </footer>
 
-    <!-- ── THE THREE DRAWERS ──────────────────────────────────────────────────
-         One scrim serves all three (ui/kit.js's contract: only one control was tapped).
-         Filters is opened by ui/kit.js; Date and Time by the page script, which keeps the
+    <!-- ── THE FOUR DRAWERS ───────────────────────────────────────────────────
+         One scrim serves all four (ui/kit.js's contract: only one control was tapped).
+         Filters is opened by ui/kit.js; Address, Date and Time by the page script, which keeps the
          same modal contract — inert behind, focus inside, Escape and the scrim cancel. -->
     <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <!-- ADDRESS — one drawer for From, To and Where, titled by the row that opened it. The field takes
+         focus, so the keyboard rises and ui/kit.js lifts the drawer above it. The list is the
+         designer's pick of three readings (2026-09-14): Use my location, the saved address
+         (`account`), the recent one (`order-history`'s last order). A row is taken at once; Done takes
+         what was typed; Cancel, the scrim and Escape leave the row as it was. Typing narrows the two
+         addresses (`data-q` holds each one written out) and the count is spoken (WCAG 4.1.3).
+         Use my location writes the located address straight in — the system's permission alert is
+         the OS's and is not drawn. -->
+    <section class="dr-sheet dr-sheet--picker" id="addrpick" role="dialog"
+             aria-modal="true" aria-labelledby="addrpick-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="addrpick-title" data-addr-title>Pickup address</p>
+
+      <span class="dr-search">
+        <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="text" placeholder="Search address" autocomplete="street-address" aria-labelledby="addrpick-title" data-addr-input>
+      </span>
+
+      <div class="dr-picker__list">
+        <button class="dr-picker__item" type="button" data-addr-pick="Pechersk, 12">
+          <svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 4.5L4.5 11l6.4 2.1 2.1 6.4z"/></svg>
+          <span class="dr-picker__label">Use my location</span>
+        </button>
+        <button class="dr-picker__item" type="button" data-addr-pick="Podil, 21" data-q="Podil Naberezhno-Khreshchatytska St, 21">
+          <svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11L12 4.5l7.5 6.5"/><path d="M6.5 9.3v10.2h11V9.3"/><path d="M10.2 19.5v-4.8h3.6v4.8"/></svg>
+          <span class="dr-picker__label">Podil, 21 <span class="dr-picker__sub">Saved address</span></span>
+        </button>
+        <button class="dr-picker__item" type="button" data-addr-pick="Osokorky, 14" data-q="Osokorky Dniprovska Naberezhna, 14">
+          <svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+          <span class="dr-picker__label">Osokorky, 14 <span class="dr-picker__sub">Recent</span></span>
+        </button>
+      </div>
+      <p class="sr-only" role="status" data-addr-count></p>
+
+      <div class="dr-sheet__actions">
+        <button class="dr-btn dr-btn--primary" type="button" data-done>Done</button>
+        <button class="dr-btn dr-btn--secondary" type="button" data-close>Cancel</button>
+      </div>
+    </section>
 
     <!-- DATE — the calendar listings-filters built at rev 118, without its time row: the time
          has its own half of the search now. Six week rows always, Monday first, no day before
