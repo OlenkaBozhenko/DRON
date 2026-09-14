@@ -144,7 +144,14 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     grid, no date before today, *Done* / *Cancel*); *Time · Now* on the right opens a **time drawer** (*Now*, or
     *At a set time* with hour : minute). *Now* is only offered for today; picking a later day moves the time to a
     set one.
-  - **`Filters` (secondary) and `Find` (primary)**, one row. *Filters* opens a **drawer** holding **Location**
+  - **Where the drone goes — added the same day, the designer on the built search** (*«а де звідки і куди як ось
+    на зразку»*, reference `145:4`). It follows the chosen badge, her pick of the two readings put to her:
+    **Delivery** draws **From** (*Pickup address*) over **To** (*Drop-off address*), joined by a route mark, with a
+    **swap** button between them; **Photo** and **Inspection** draw one field, **Where** (*Address*) — a shoot and an
+    inspection have one place and nothing is carried. The fields are typed, empty at rest, and change in place when
+    the badge changes (a change of content, not of context — `WCAG 3.2.2`).
+  - **`Filters` (secondary) over `Find` (primary), each the full width** — the designer, same message: *«кнопка
+    мають бути по всій ширині одна під одною»*. They stood side by side in one row until then. *Filters* opens a **drawer** holding **Location**
     (Country ▸ Region ▸ City ▸ District — the same four rows, each still pushing its own screen) and **Price range**.
     **Date &amp; time is not in the drawer** — it moved to the search itself, and one value is set in one place
     (the designer's pick, 2026-09-14, of the two readings put to her). *Apply filters* closes the drawer and puts the

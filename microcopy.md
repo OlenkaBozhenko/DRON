@@ -1152,6 +1152,13 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings | Search | Delivery | Button | a badge — a radio, chosen at rest |
 | listings | Search | Photo | Button | a badge. **The designer's own word, 2026-09-14** — the service is *Aerial photo & video* everywhere else, including the title of the results screen this badge opens. One concept in two words is `voice.md`'s one-word rule spent on her call, recorded rather than smoothed |
 | listings | Search | Inspection | Button | a badge |
+| listings | Search | From | Field label | **new 2026-09-14**, the designer's *«звідки і куди»* against Figma `145:4`. Delivery only. The label is the reference's word; the placeholder under it keeps the product's own, *Pickup address* (`order-setup`), so the field says both |
+| listings | Search | Pickup address | Field placeholder | `order-setup`'s field name, without its colon |
+| listings | Search | To | Field label | Delivery only |
+| listings | Search | Drop-off address | Field placeholder | `order-setup`'s field name |
+| listings | Search | Swap pickup and drop-off | Accessible name (`aria-label`) | the icon-only button between From and To — `voice.md`'s own two words for the two ends, so the name says what moves |
+| listings | Search | Where | Field label | Photo and Inspection — one place, nothing carried |
+| listings | Search | Address | Field placeholder | Photo and Inspection |
 | listings | Search | Date | Field label | the left half of the date · time row; the button's name is *Date Today* — the drawn label plus the value (`WCAG 2.5.3`) |
 | listings | Search | Today | Field value | DATA — at rest; a picked day reads `Wed 16 Sep`, the product's own format (`time-slot`, `listings-filters`) |
 | listings | Search | Time | Field label | the right half |

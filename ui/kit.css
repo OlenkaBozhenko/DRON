@@ -6029,12 +6029,76 @@ header.dr-topbar,
 }
 .dr-when__cell:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); }
 
-/* `Filters` and `Find`, one row, equal shares — the action bar's own row
-   rhythm, named for where it stands. `Find` is the screen's one green control;
+/* WHERE THE DRONE GOES — `.dr-route`, the designer on the built search, the same
+   day: «а де звідки і куди як ось на зразку» (Figma `145:4`). It follows the
+   badge, her pick: Delivery draws From over To with a swap button between;
+   Photo and Inspection draw one row, Where (`.dr-route--single`).
+   ONE CARD, THE DATE · TIME CARD'S VOCABULARY. Each row is the `.dr-when` pair —
+   label 12/400 `--slate` 5.95:1 over the value line at 15/600 `--ink` 14.37:1 —
+   so the two cards of one form read as one kind. The value line here is a real
+   <input> named by its <label> (`WCAG 1.3.1`, `3.3.2`: the label is drawn and
+   is not the placeholder); the placeholder is `--slate` on `--card` 5.95:1 at
+   400, clearing `1.4.3` though placeholder text is not required to.
+   THE ROUTE MARK is the reference's rail — a hollow ring at From, a filled dot at
+   To, a hairline in `--slate` joining them across the seam. Decorative
+   (`aria-hidden`): the words From and To carry the order. It is drawn from each
+   row's own mark cell, so it holds at any row height. The rows are the card's
+   only <div>s and the swap <button> follows them, so the ends are found by type.
+   THE SWAP is `.dr-btn--icon` as built — 44 × 44 (`HIG · 44pt` ✓, `WCAG 2.5.8`
+   ✓), `--ink` on `--btn2` 11.54:1 — standing on the seam at the card's trailing
+   inset, the reference's place for it. Positioned by `top`, never `transform`,
+   because `.dr-btn:active` owns `transform` and would drop a translate on press.
+   The rows keep 44 + 8 clear on the right so no value runs under it. */
+.dr-route{ position: relative; background: var(--card); border-radius: var(--r-card); }
+.dr-route__row{
+  position: relative; display: flex; align-items: center; gap: var(--sp-snug);
+  padding: var(--sp-snug) calc(var(--sp-screen) + var(--sz-action) + var(--sp-within-lg)) var(--sp-snug) var(--sp-screen);
+}
+.dr-route--single .dr-route__row{ padding-right: var(--sp-screen); }
+.dr-route__row + .dr-route__row::before{
+  content: ""; position: absolute; top: 0; height: var(--hair); background: var(--line);
+  left: calc(var(--sp-screen) + var(--ic-20) + var(--sp-snug));
+  right: calc(var(--sp-screen) + var(--sz-action) + var(--sp-within-lg));
+}
+.dr-route__mark{
+  position: relative; flex: none; align-self: stretch; width: var(--ic-20);
+  display: flex; align-items: center; justify-content: center; color: var(--slate);
+}
+.dr-route__mark .dr-ic{ width: var(--ic-16); height: var(--ic-16); }
+.dr-route__row:first-of-type:not(:last-of-type) .dr-route__mark::after,
+.dr-route__row:last-of-type:not(:first-of-type) .dr-route__mark::before{
+  content: ""; position: absolute; left: calc(50% - var(--hair) / 2); width: var(--hair); background: currentColor;
+}
+.dr-route__row:first-of-type:not(:last-of-type) .dr-route__mark::after{ top: calc(50% + var(--ic-16) / 2); bottom: calc(var(--sp-snug) * -1); }
+.dr-route__row:last-of-type:not(:first-of-type) .dr-route__mark::before{ top: calc(var(--sp-snug) * -1); bottom: calc(50% + var(--ic-16) / 2); }
+.dr-route__text{ flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.dr-route__label{ font-size: var(--t-caption-size); font-weight: var(--weight-regular); line-height: var(--t-caption-line); color: var(--slate); }
+.dr-route__input{
+  width: 100%; min-width: 0; padding: 0; border: 0; background: transparent; outline: none;
+  font-family: var(--font-ui); font-size: var(--t-heading-size); font-weight: var(--weight-medium);
+  line-height: var(--t-heading-line); color: var(--ink); caret-color: var(--ink);
+  text-overflow: ellipsis;
+}
+.dr-route__input::placeholder{ color: var(--slate); font-weight: var(--weight-regular); opacity: 1; }
+/* the ring sits on the row, inward, the `.dr-field--action` reading: the input
+   itself has no box to ring */
+.dr-route__row:has(.dr-route__input:focus-visible){ outline: var(--focus-w) solid var(--ink); outline-offset: calc(var(--focus-offset) * -1); border-radius: var(--r-card); }
+.dr-route__swap{
+  position: absolute; z-index: 1;
+  right: var(--sp-screen); top: calc(50% - var(--sz-action) / 2);
+}
+.dr-route[hidden]{ display: none; }
+
+/* `Filters` over `Find`, each the full width — the designer, the same message:
+   «кнопка мають бути по всій ширині одна під одною». They stood side by side in
+   equal shares until then. Her order is kept: Filters first, Find last — the
+   task's order (narrow, then find), the reference's Find at the foot of the
+   form, and the DOM order is the drawn order (`WCAG 1.3.2`, `2.4.3`). 8 between
+   them, the action bar's own stack. `Find` is the screen's one green control;
    the count badge on `Filters` is a status mark, `.dr-bell`'s reading. The
    button is the badge's positioning box. */
-.dr-finder__actions{ display: flex; gap: var(--sp-within-lg); }
-.dr-finder__actions .dr-btn{ flex: 1 1 0; position: relative; }
+.dr-finder__actions{ display: flex; flex-direction: column; gap: var(--sp-within-lg); }
+.dr-finder__actions .dr-btn{ width: 100%; position: relative; }
 /* THE LABEL DOES NOT MOVE WHEN THE COUNT ARRIVES. Chrome still spends the flex `gap` on an
    absolutely positioned child, so showing the badge widened the button's content by 8 and slid
    *Filters* 4px left (measured: glyph at 45.39 → 41.39 from the button's edge). The same 8 is
