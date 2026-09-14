@@ -307,21 +307,27 @@
              зразку» (Figma 145:4). It follows the badge, her pick: Delivery has two ends and a
              swap; Photo and Inspection have one place. Both cards are in the markup and the page
              script swaps `hidden`, so a hidden card leaves the tab order with its fields. With
-             no script, Delivery's card is what shows — Delivery is the badge chosen at rest. -->
+             no script, Delivery's card is what shows — Delivery is the badge chosen at rest.
+             EACH ROW OPENS THE ADDRESS DRAWER (the designer, the same day: «по кліку відкривай дровер
+             знизу з можливістю ввести або обрати адресу»). The typing moved into the drawer, so the row
+             is a button that looks the way the field did (WCAG 4.1.2); it opens on a tap, never on
+             focus (3.2.1). The grey line is the placeholder until an address is taken. -->
         <div class="dr-route" role="group" aria-label="Route" data-route="delivery">
           <div class="dr-route__row">
             <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6"/></svg></span>
-            <span class="dr-route__text">
-              <label class="dr-route__label" for="route-from">From</label>
-              <input class="dr-route__input" id="route-from" type="text" placeholder="Pickup address" data-from>
-            </span>
+            <button class="dr-route__open" id="route-from" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="addrpick"
+                    data-addr="from" data-title="Pickup address" data-placeholder="Pickup address">
+              <span class="dr-route__label">From</span>
+              <span class="dr-route__value" data-empty>Pickup address</span>
+            </button>
           </div>
           <div class="dr-route__row">
             <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg></span>
-            <span class="dr-route__text">
-              <label class="dr-route__label" for="route-to">To</label>
-              <input class="dr-route__input" id="route-to" type="text" placeholder="Drop-off address" data-to>
-            </span>
+            <button class="dr-route__open" id="route-to" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="addrpick"
+                    data-addr="to" data-title="Drop-off address" data-placeholder="Drop-off address">
+              <span class="dr-route__label">To</span>
+              <span class="dr-route__value" data-empty>Drop-off address</span>
+            </button>
           </div>
           <button class="dr-btn dr-btn--icon dr-route__swap" type="button" aria-label="Swap pickup and drop-off" data-swap>
             <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 19.5v-15"/><path d="M4.5 8L8 4.5 11.5 8"/><path d="M16 4.5v15"/><path d="M12.5 16l3.5 3.5 3.5-3.5"/></svg>
