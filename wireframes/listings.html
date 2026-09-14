@@ -689,13 +689,21 @@
     scrim.addEventListener('click', dismiss);
     document.addEventListener('keydown', function (e) {
       if (!up) return;
-      if (e.key === 'Escape') { e.preventDefault(); dismiss(); return; }
+      if (e.key === 'Escape') {
+        /* with the keyboard up, Escape puts the keyboard away and leaves the drawer —
+           ui/kit.js's own reading, and its keyboard handler does that */
+        var keys = frame.querySelector('.dr-kb');
+        if (keys && !keys.hidden) return;
+        e.preventDefault(); dismiss(); return;
+      }
       if (e.key !== 'Tab') return;
       /* the trap: while the drawer is up it IS the tab order. An unchecked radio is not a tab
-         stop — the group is one stop, at its checked member. */
+         stop — the group is one stop, at its checked member — and a row the typed address has
+         ruled out is not there at all. */
       var stops = [].slice.call(up.sheet.querySelectorAll('button, a[href], input, select'))
         .filter(function (el) {
-          return !el.disabled && el.tabIndex !== -1 && !(el.type === 'radio' && !el.checked);
+          return !el.disabled && el.tabIndex !== -1 && !(el.type === 'radio' && !el.checked)
+            && !el.closest('[hidden]');
         });
       if (!stops.length) return;
       var first = stops[0], last = stops[stops.length - 1];
