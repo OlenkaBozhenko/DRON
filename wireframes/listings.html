@@ -640,14 +640,24 @@
     window.addEventListener('pageshow', syncFind);
     syncFind();
 
-    /* the swap trades the two typed values; focus stays on the button, which is where the
-       user is, and each field keeps its own label — only what is written in them moves */
-    var swap = frame.querySelector('[data-swap]'),
-        from = frame.querySelector('[data-from]'),
-        to   = frame.querySelector('[data-to]');
-    if (swap && from && to) {
+    /* what the three address rows hold — written only by a pick or Done in the address drawer */
+    var addr = { from: '', to: '', where: '' },
+        addrBtns = [].slice.call(frame.querySelectorAll('[data-addr]'));
+
+    /* a row shows its address, or its grey placeholder while it has none */
+    function paintAddr(btn) {
+      var v = addr[btn.dataset.addr], out = btn.querySelector('.dr-route__value');
+      out.textContent = v || btn.dataset.placeholder;
+      out.toggleAttribute('data-empty', !v);
+    }
+
+    /* the swap trades the two addresses; focus stays on the button, which is where the
+       user is, and each row keeps its own label — only what is written in them moves */
+    var swap = frame.querySelector('[data-swap]');
+    if (swap) {
       swap.addEventListener('click', function () {
-        var v = from.value; from.value = to.value; to.value = v;
+        var v = addr.from; addr.from = addr.to; addr.to = v;
+        addrBtns.forEach(paintAddr);
       });
     }
 
