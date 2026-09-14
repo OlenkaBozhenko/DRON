@@ -753,6 +753,9 @@
         addrCount.textContent = '';
         /* nothing to put back on cancel: the row is only ever written by a pick or Done */
         raise(addrSh, btn, function () {});
+        /* the drawer keeps the height it opened at while the list narrows (.dr-sheet--steady) */
+        addrSh.style.minHeight = '';
+        addrSh.style.minHeight = addrSh.getBoundingClientRect().height + 'px';
         addrIn.focus();
       });
     });
