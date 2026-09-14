@@ -168,6 +168,12 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     row as it was. Focus goes back to the row. The swap still trades the two values. **Not drawn:** the system's
     location-permission alert — it is the OS's, asked at the tap (`HIG · Location`), and the prototype writes the
     located address straight in. **Not a state** — a control on this page, like the other three drawers.
+  - **The address, the date and the time on one card — 2026-09-15, the designer on the built search** (*«Зроби
+    адресу дату та час на одній картці»*). The address rows and the Date · Time pair stood as two cards, 12 apart;
+    they become one card — **the address rows on top** (*From* over *To* with the swap, or *Where*), **a hairline**,
+    then **Date and Time side by side** as before. Nothing inside changes what it does: every row keeps its
+    button, its drawer, its name and its 44 target, and the swap stays on the *From* / *To* seam. The page reads
+    top to bottom as where, then when.
   - **`Filters` (secondary) over `Find` (primary), each the full width** — the designer, same message: *«кнопка
     мають бути по всій ширині одна під одною»*. They stood side by side in one row until then. *Filters* opens a **drawer** holding **Location**
     (Country ▸ Region ▸ City ▸ District — the same four rows, each still pushing its own screen) and **Price range**.

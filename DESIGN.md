@@ -2040,6 +2040,15 @@ two Figma references used for structure only. Every value is an existing rung.
   that opens the address drawer — same picture: the value line is the grey placeholder at 400 while empty
   and `--ink` 600 once an address is taken; the name is the drawn text, *From Pickup address*
   (`WCAG 2.5.3`, `4.1.2`); the whole row is the target and the swap keeps its 44 above it; one ring, the row's.
+- **One card for where and when** (`.dr-finder__card`, rev 259) — the designer: *«Зроби адресу дату та час на
+  одній картці»*. The address rows and the Date · Time pair stop being two cards 12 apart and become one
+  `--card`, `--r-card` 16: addresses on top, a `--line` hairline from the text column (**48**) to the trailing
+  inset (**16**), then Date · Time. The two inner blocks give up their own ground, so no pair re-measures. Inside
+  the card a Date · Time half takes **12** between glyph and text (it carries **10** on its own), so *From*, *To*,
+  *Where* and *Date* start at one x — **48** into the card, measured. **Measured at the 375 frame:** card
+  **341.4 × 176.4** for Delivery (rows **58.8** ×2 + Date · Time **58.8**), **341.4 × 117.6** for Photo and
+  Inspection; each half **170.7 × 58.8**; swap **44 × 44** centred on the *From* / *To* seam at **219.6**. The
+  form is **12** shorter — Filters moves **361.2 → 349.2** — because one gap left it.
 - **Address drawer** (rev 254; rev 258) — one `.dr-sheet` for From, To and Where, titled by the row
   (*Pickup address* · *Drop-off address* · *Address*): a `.dr-search` field **341 × 44** (`--ink` on `--media`
   **13.33:1**, placeholder *Search address* **5.51:1**) that takes focus, so the keyboard rises and the drawer

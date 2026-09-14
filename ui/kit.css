@@ -6131,6 +6131,36 @@ header.dr-topbar,
 }
 .dr-route__value[data-empty]{ color: var(--slate); font-weight: var(--weight-regular); }
 
+/* THE ADDRESS, THE DATE AND THE TIME ON ONE CARD — `.dr-finder__card`, the
+   designer on the built search, 2026-09-15 (rev 259): «Зроби адресу дату та час
+   на одній картці». The route card and the Date · Time card stood 12 apart as two
+   `--card`s; they become the rows of one. The ground is the wrapper's — `--card`
+   on `--page` 1.11:1, `--r-card` 16, flat — and the two it holds give up their
+   own, the same colour on the same colour, so no pair inside re-measures: label
+   `--slate` 5.95:1, value `--ink` 14.37:1, placeholder `--slate` 5.95:1, swap
+   `--ink` on `--btn2` 11.54:1.
+   ONE SEAM BETWEEN WHERE AND WHEN — the route's own hairline, `--line`, from the
+   text column to the trailing inset. It starts where the From / To seam starts,
+   so the route mark and the calendar glyph share one open column; it runs to the
+   inset because nothing stands on it, where the From / To seam stops short for
+   the swap.
+   THE LABELS LINE UP: inside the card a Date · Time half takes the route row's 12
+   between glyph and text instead of its own 10, so From, To and Date start at one
+   x. The swap still centres on the route block, which keeps its own
+   `position: relative`, so it stays on the From / To seam. Every row and half is
+   still ≥ 44 tall (`HIG · 44pt` ✓, `WCAG 2.5.8` ✓), each ring still turns inward
+   on its own row, and DOM order is the drawn order — addresses, Date, Time
+   (`WCAG 1.3.2`). */
+.dr-finder__card{ background: var(--card); border-radius: var(--r-card); }
+.dr-finder__card > .dr-route,
+.dr-finder__card > .dr-when{ background: transparent; }
+.dr-finder__card > .dr-when{ position: relative; }
+.dr-finder__card > .dr-when::before{
+  content: ""; position: absolute; top: 0; height: var(--hair); background: var(--line);
+  left: calc(var(--sp-screen) + var(--ic-20) + var(--sp-snug)); right: var(--sp-screen);
+}
+.dr-finder__card .dr-when__cell{ gap: var(--sp-snug); }
+
 /* THE ADDRESS DRAWER'S LIST — the picker's own list and row (`.dr-picker__list`,
    `.dr-picker__item`: 44 min-height, `--line` between rows, the hover and the inward
    ring), so one shape keeps one set of values. Three things are added, and only on
