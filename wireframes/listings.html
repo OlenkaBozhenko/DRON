@@ -364,13 +364,22 @@
         </div>
         </div>
 
+        <!-- THE APPLIED FILTERS, AS CHIPS (the designer, 2026-09-15, on the built Filters button:
+             "display applied filters in badges"). The kit's dismissible filter chip, listings-filtered's,
+             one per applied value — each ticked drone type, then the price band — written by the page
+             script when Apply filters is tapped, and empty and hidden while nothing is applied. A tap
+             removes that one filter. ABOVE Filters, so Filters and Find stay one pair, and the count left
+             the button with it: her two picks, each put to her with the standards first. A group, not a
+             landmark — it sits inside the search. -->
+        <div class="dr-fchips" role="group" aria-label="Applied filters" data-fchips hidden></div>
+
         <!-- FILTERS over FIND, each the full width (the designer, 2026-09-14: «кнопка мають бути по
              всій ширині одна під одною»). Filters is a .dr-btn[aria-controls], so ui/kit.js opens its drawer
              and keeps the modal contract; Find is the screen's one green control and a link whose
-             href follows the chosen badge. The count badge is hidden until a filter is applied. -->
+             href follows the chosen badge. -->
         <div class="dr-finder__actions">
           <button class="dr-btn dr-btn--secondary" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-filters" data-filters-open>
-            <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5h9"/><circle cx="17" cy="7.5" r="2.4"/><path d="M20 16.5h-9"/><circle cx="7" cy="16.5" r="2.4"/></svg>Filters<span class="dr-count-badge" aria-hidden="true" data-filters-count hidden></span>
+            <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5h9"/><circle cx="17" cy="7.5" r="2.4"/><path d="M20 16.5h-9"/><circle cx="7" cy="16.5" r="2.4"/></svg>Filters
           </button>
           <a class="dr-btn dr-btn--primary" href="listings-map.html" data-find>Find</a>
         </div>
