@@ -2218,6 +2218,48 @@ header.dr-topbar,
   font-size: var(--t-heading-size); font-weight: var(--t-heading-weight);
   line-height: var(--t-heading-line); color: var(--ink);          /* 14.37:1 */
 }
+/* THE SERVICE CARD'S TITLE IS 17/400 — the designer, 2026-09-14, on the built
+   `listings` card: «який шрифт у заголовка», then, having seen 15 against 17
+   drawn side by side with nothing changed, «зроби 17/400».
+   SCOPED TO THE SERVICE CARD AND NOT CUT INTO THE CLASS, BECAUSE THE CLASS IS NOT
+   ONE THING. `.dr-listing__name` is spent **29** times across **12** pages — the
+   three service cards on `listings` and two on `listings-filtered`, but also the
+   reviewer's name on `ratings`, the slot hours on both `time-slot` pages, the
+   finding titles on `inspection-report`, the job title on `job-offer` and
+   `operator-dispute`, and the file name on `order-details-aerial`. She was looking
+   at one card. So the size is declared on `.dr-listing--service`, and the other
+   **24** titles stay 15/600.
+   A MODIFIER, NOT A STRUCTURAL SELECTOR, AND THAT WAS MEASURED BEFORE IT WAS
+   CHOSEN. The product's service card is the only `.dr-listing` holding a
+   `.media-ph`, so `:has(> .media-ph)` would have reached exactly the five and
+   needed no markup — but `ui/kit.html` draws the same card with `.dr-well`, and
+   the specimen would have stayed 15 while the product went to 17: the gallery
+   drifting from the page it documents. The class is on the five product cards
+   and the two specimens, and nowhere else.
+   TWO VALUES, BOTH ALREADY ON THE RAMP: `--t-title-size` **17** and
+   `--weight-regular` **400**. Leading stays `--t-heading-line` **1.2** and there
+   is no tracking, which is the reading she saw drawn.
+   AGAINST THE STANDARDS. `HIG · Typography`: 17pt Regular is iOS **Body**
+   exactly — a named text style, where the 15/600 it replaces was not one (15pt
+   is Subheadline, which is Regular; Semibold is Headline at 17). SF Pro Text is
+   still the right optical size below 20pt. `WCAG 1.4.3`: `--ink` on `--card`
+   **14.37:1**, unmoved — size and weight do not change the pair, and the title
+   never leaned on the large-text exemption.
+   A CONFORMING DEPARTURE FROM THE KIT'S OWN SCALE, RECORDED RATHER THAN SMOOTHED.
+   The ten-step table pairs 17 with **600 / 1.4 / −0.01em**; this is 17 at
+   **400 / 1.2 / none**. 17/400 is not new to the kit — rev 247 gave it to the
+   choice card's title — but that one keeps the title step's **1.4** leading and
+   **−0.01em** track, and this one does not: it is the reading she was shown
+   drawn, and the difference is written here rather than quietly aligned. One
+   line on this rule makes the two 17/400 titles one treatment.
+   ONE COST, STATED. Weight no longer separates the title from the line under it:
+   both are 400. What separates them now is SIZE, 17 against 13 (**1.31×**, where
+   15/600 against 13/400 was 1.15× plus a weight step), and COLOUR, `--ink`
+   **14.37:1** against `--slate` **5.95:1**. */
+.dr-listing--service .dr-listing__name{
+  font-size: var(--t-title-size);
+  font-weight: var(--weight-regular);
+}
 .dr-listing__desc{
   display: block; margin-top: var(--sp-2);
   font-size: var(--t-bodysm-size); line-height: var(--t-bodysm-line);

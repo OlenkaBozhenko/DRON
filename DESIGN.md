@@ -453,8 +453,8 @@ Ten sizes, every one in use on a shipped surface.
 |---|---|---|---|---|---|
 | `display` | 22 | 700 | 30.8 (1.4) | −0.02em | outcome screen title — *Delivered* |
 | `number` | 20 | 700 | 20 (1.0) | −0.02em | money — `₴180`, tabular |
-| `title` | 17 | 600 | 23.8 (1.4) | −0.01em | nav-bar title, alert title; **choice-card title at 400** since 2026-09-14 (rev 247) — see *One size, several roles* below |
-| `heading` | 15 | 600 | 18 (1.2) | — | card title, operator name |
+| `title` | 17 | 600 | 23.8 (1.4) | −0.01em | nav-bar title, alert title; **choice-card title at 400** since 2026-09-14 (rev 247); **service-card title at 400 / 20.4 (1.2) / no track** since 2026-09-14 (rev 248) — see *One size, several roles* below |
+| `heading` | 15 | 600 | 18 (1.2) | — | card title (every `.dr-listing` except the service card, since rev 248), operator name |
 | `body` | 14 | 400 | 18.2 (1.3) | — | place names |
 | `body-sm` | 13 | 400 | 18.2 (1.4) | — | keys |
 | `meta` | 12.5 | 400 | 15 (1.2) | — | dates |
@@ -469,6 +469,7 @@ at unless it declares otherwise. Measured departures, and their reason:
 | Size | Leading | Element |
 |---|---|---|
 | 20 | 1.0 | the price — a figure has no descender line to protect |
+| 17 | 1.2 | service-card title (rev 248) — a one-line box, kept at the leading the designer was shown |
 | 15 | 1.2 | card title, operator name — a one-line box |
 | 15 | 1.55 | `.lead` — a paragraph |
 | 14 | 1.3 | place name in the route strip |
@@ -478,9 +479,14 @@ at unless it declares otherwise. Measured departures, and their reason:
 **One size, several roles.** 15px is `heading` at 600/1.2, the button label at 600/1.4, the `.kv`
 value at 600/1.4 tabular, and `.lead` at 400/1.55. **14px joined it on 2026-09-03** with the route
 strip's place name at 400/1.3 — and for two revisions with the choice card's title at
-600/1.4/−0.01em as well, until **rev 221 returned that title to 17**. **17px has two roles since rev
-247:** the `title` step at 600 on the nav bar and the message title, and the choice card's title at
-**400** with the same 1.4 leading and −0.01em track — `HIG · Lists and tables`' Body row label. 11px is mono-600 for zone and route labels,
+600/1.4/−0.01em as well, until **rev 221 returned that title to 17**. **17px has three roles since rev
+248:** the `title` step at 600 on the nav bar and the message title; the choice card's title at
+**400** with the same 1.4 leading and −0.01em track — `HIG · Lists and tables`' Body row label (rev
+247); and **the service card's title at 400 / 1.2 / no track** (rev 248), `.dr-listing--service` on
+the five `listings` cards and the two `ui/kit.html` specimens — iOS **Body**, 17pt Regular. **The two
+17/400 titles differ in leading (1.4 against 1.2) and tracking (−0.01em against none)**, recorded
+rather than aligned: the service card took the reading she was shown drawn, and one line makes them
+one treatment. 11px is mono-600 for zone and route labels,
 SF-600 for tab labels, and SF-400 for the fee caption **until 2026-08-02, when the designer removed
 that caption** — 11px now carries the mono zone and route labels and the tab label, and the fee
 figure stands alone.
