@@ -582,8 +582,12 @@ content area shrinks to the **375.4** left above it. `--r-key` **5** is **off th
 ramp** (10 · 12 · 13 · 16 · 22 · 999) and is recorded as a departure, not a defect: the keyboard
 depicts Apple's geometry the way the status bar and the home-indicator's 2px bar already do. On
 the ramp's 10 a 45px key reads as a pill; on the 2/4/8 floor's 4 it reads square. The plane is
-`aria-hidden` with no tab stop and no pointer target, so `2.5.8` and `4.1.2` never engage — the
-system keyboard is not in an app's accessibility tree either. Colour is the product's own: plane
+`aria-hidden` with no tab stop — the system keyboard is not in an app's accessibility tree either.
+**The number pad takes a press (rev 255)**, because a click on a drawn digit wrote nothing and
+`account-edit`'s card mark never had a number to read: its ten digits and delete are
+`.dr-kb__key--press` (`pointer-events: auto`), written at the caret with an `input` event; the letter
+plane, the blank cell and QuickType stay pictures. The pad key's **118.5 × 45** clears `2.5.8`, and the
+computer keyboard stays the keyboard path (`2.1.1`). Colour is the product's own: plane
 `--btn2`, keys `--page`, modifiers `--card`, labels `--ink`. No new colour token.
 
 **It is a product-wide behaviour, not a screen's (rev 151).** Every text-entry field on every mobile

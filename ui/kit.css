@@ -4991,7 +4991,8 @@ header.dr-topbar,
   border-radius: var(--r-btn);
 }
 .dr-kb__done:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
-/* The plane. Everything below this line is a picture: aria-hidden, no target. */
+/* The plane. Everything below this line is a picture: aria-hidden, no target —
+   except the number pad's keys from rev 255, `.dr-kb__key--press` below. */
 .dr-kb__plane{
   flex: none; height: var(--h-kb);
   background: var(--btn2);
@@ -5027,6 +5028,15 @@ header.dr-topbar,
    that carries no key face — both drawn with the plane behind them, so the two
    dead cells read as plane rather than as unlit keys. */
 .dr-kb__key--blank{ background: transparent; }
+/* THE PAD TYPES (2026-09-14, rev 255), the designer on `account-edit`'s Add card:
+   «не відпрацьовує коли вводю має залишитись лише одне лого» — a click on a drawn
+   digit wrote nothing, so the card mark had no number to read. The ten digits and
+   the delete take the pointer back inside a plane that stays `none`; the blank
+   cell, QuickType and every letter key stay pictures, her pick. Still
+   `aria-hidden` and no tab stop — the computer keyboard is the keyboard path
+   (`WCAG 2.1.1`) — and 118.5 × 45 clears `2.5.8`'s 24 × 24. `ui/kit.js` writes
+   the key at the caret. */
+.dr-kb__key--press{ pointer-events: auto; cursor: pointer; }
 @keyframes dr-kb-rise{ from{ transform: translateY(100%); } to{ transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce){
   .dr-kb{ animation: none; }

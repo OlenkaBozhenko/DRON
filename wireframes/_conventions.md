@@ -728,6 +728,9 @@ recorded in `kit.js`; (3) the keys rise **only in the mobile viewport**, because
 `type="number | tel"` draws the number pad, everything else QWERTY — `HIG · Onscreen keyboards` asks the
 keyboard to match the field, and 10 fields ask for digits (`payment` ×3 fields on 3 pages, `account-edit`'s
 phone). Neither the plane's 291 nor the keyboard's 335 changes with the layout drawn inside it.
+**From rev 255 the number pad types:** a click on one of its ten digits or its delete writes at the caret of
+the focused field and fires `input`, so a page script reading the value — `account-edit`'s card mark — sees the
+press. The letter plane stays a picture.
 A page that holds **neither** a drawer nor a field must not link it. The page-level scripts left in the prototype are
 **both on `listings-filters`** and both are that page's alone: the **range readout**, and the **date picker**
 (added 2026-08-16, rev 118). The date picker is not in `kit.js` for a stated reason, not an oversight —

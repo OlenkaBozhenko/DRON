@@ -174,12 +174,19 @@
    claiming the app owns them, and 40 pages of that is 40 chances to drift.
    So no page markup changes: any field, on any screen, gets the same picture.
 
-   WHAT IS REAL AND WHAT IS A PICTURE. The plane is `aria-hidden`, has no tab
-   stop and no pointer target — `WCAG 2.5.8` and `4.1.2` never engage, which
-   is correct, because the system keyboard is not in the app's accessibility
-   tree either. The accessory bar's `Done` is a real <button>: `HIG · Onscreen
-   keyboards` notes a MULTILINE field's Return inserts a newline and cannot
-   dismiss, so the app owes the user a dismissal it can see.
+   WHAT IS REAL AND WHAT IS A PICTURE. The plane is `aria-hidden` and has no tab
+   stop, which is correct, because the system keyboard is not in the app's
+   accessibility tree either. The accessory bar's `Done` is a real <button>:
+   `HIG · Onscreen keyboards` notes a MULTILINE field's Return inserts a newline
+   and cannot dismiss, so the app owes the user a dismissal it can see.
+   THE NUMBER PAD TAKES A PRESS (2026-09-14, rev 255), the designer on
+   `account-edit`'s Add card: «не відпрацьовує коли вводю має залишитись лише
+   одне лого». A click on a drawn `5` wrote nothing, so the card mark never had a
+   number to read. The pad's digits and delete now write at the caret and fire
+   `input`; the letter plane, the blank cell and QuickType stay pictures — her
+   pick of three. Keys stay `aria-hidden` with no tab stop, so the computer
+   keyboard is still the keyboard path (`WCAG 2.1.1`); the pad key is 118.5 × 45,
+   clear of `2.5.8`'s 24 × 24.
 
    WHAT HAPPENS TO THE BOTTOM BAR — the designer's call, put to her with the
    measurement: with the keyboard up, `Submit review` and `Book again` sit
@@ -247,7 +254,9 @@
           + (k === 'space' ? ' dr-kb__key--space' : '')
           + (k === 'return' ? ' dr-kb__key--return' : '')
           + (kind === 'letters' && (k === '123' || k === '☺' || k === '⇧' || k === '⌫') ? ' dr-kb__key--mod' : '')
-          + (kind === 'digits' && (k === '' || k === '⌫') ? ' dr-kb__key--blank' : '');
+          + (kind === 'digits' && (k === '' || k === '⌫') ? ' dr-kb__key--blank' : '')
+          + (kind === 'digits' && k !== '' ? ' dr-kb__key--press' : '');
+        if (kind === 'digits' && k !== '') key.setAttribute('data-key', k);
         key.textContent = k === 'space' ? '' : k;
         row.appendChild(key);
       });
@@ -289,7 +298,36 @@
     frame.appendChild(el);
 
     done.addEventListener('click', function () { dismiss(true); });
+
+    /* a pad key never takes focus: the field keeps it, or focusout would put the
+       keys away under the press */
+    plane.addEventListener('mousedown', function (e) {
+      if (e.target.closest('.dr-kb__key--press')) e.preventDefault();
+    });
+    plane.addEventListener('click', function (e) {
+      var key = e.target.closest('.dr-kb__key--press');
+      if (key && field) press(key.getAttribute('data-key'));
+    });
     return el;
+  }
+
+  /* writes one pad key into the focused field at the caret, the way the system
+     key would, and says so with `input` — rev 252's card mark listens for it */
+  function press(k) {
+    var v = field.value, del = k === '⌫',
+        start = field.selectionStart, end = field.selectionEnd;
+    if (start === null) {                  /* type="number" has no caret to write at */
+      field.value = del ? v.slice(0, -1) : v + k;
+    } else if (del) {
+      if (start === end) { if (!start) return; start -= 1; }
+      field.setRangeText('', start, end, 'end');
+    } else {
+      if (field.maxLength > -1 && v.length - (end - start) >= field.maxLength) return;
+      field.setRangeText(k, start, end, 'end');
+    }
+    field.dispatchEvent(new InputEvent('input', {
+      bubbles: true, inputType: del ? 'deleteContentBackward' : 'insertText', data: del ? null : k
+    }));
   }
 
   function isField(el) {
