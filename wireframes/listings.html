@@ -1008,31 +1008,55 @@
       lo.value = applied.lo; hi.value = applied.hi; paint();
       types.forEach(function (c) { c.checked = applied.types.indexOf(c.value) !== -1; });
     });
-    /* one per applied value, the way listings-filtered counts one per chip: the band is 1, each
-       ticked drone type is 1 */
-    function setCount() {
-      var n = ((applied.lo > 0 || applied.hi < MAX) ? 1 : 0) + applied.types.length;
-      fCount.hidden = !n;
-      fCount.textContent = n ? String(n) : '';
-      /* the count is spoken in the name, which still begins with the drawn word (WCAG 2.5.3) */
-      if (n) fBtn.setAttribute('aria-label', 'Filters, ' + n + ' applied');
-      else fBtn.removeAttribute('aria-label');
+    /* THE CHIPS — one per applied value, in the drawer's order: each ticked drone type, then the band.
+       Written from `applied` alone, so the row can never say something the drawer would not open on.
+       `focusAt` is the place a removed chip stood: focus goes to the chip that slides into it, or the
+       one before it, or to Filters when the row is empty — never lost to the page (WCAG 2.4.3). */
+    function paintChips(focusAt) {
+      var list = applied.types.map(function (v) { return { type: v, label: typeName[v] }; });
+      if (applied.lo > 0 || applied.hi < MAX) list.push({ band: true, label: money(applied.lo) + ' – ' + money(applied.hi) });
+
+      fChips.textContent = '';
+      list.forEach(function (f) {
+        var chip = document.createElement('button'),
+            x    = document.createElement('span');
+        chip.type = 'button';
+        chip.className = 'dr-fchip';
+        /* listings-filtered's name for the same control; the drawn value is inside it (WCAG 2.5.3) */
+        chip.setAttribute('aria-label', 'Remove filter: ' + f.label);
+        x.className = 'dr-fchip__x';
+        x.setAttribute('aria-hidden', 'true');
+        x.textContent = '×';
+        chip.append(f.label, x);
+        chip.addEventListener('click', function () {
+          var at = [].indexOf.call(fChips.children, chip);
+          if (f.band) { applied.lo = 0; applied.hi = MAX; }
+          else applied.types = applied.types.filter(function (v) { return v !== f.type; });
+          paintChips(at);
+        });
+        fChips.appendChild(chip);
+      });
+      fChips.hidden = !list.length;
+
+      if (focusAt == null) return;
+      var left = fChips.children;
+      (left[Math.min(focusAt, left.length - 1)] || fBtn).focus();
     }
     fSheet.querySelector('[data-apply]').addEventListener('click', function () {
       applied = { lo: +lo.value, hi: +hi.value, types: ticked() };
-      setCount();
+      paintChips();
       scrim.click();    /* ui/kit.js's own close: inert lifted, focus back on Filters */
     });
     fSheet.querySelector('[data-clear]').addEventListener('click', function () {
       lo.value = 0; hi.value = MAX; paint();
       types.forEach(function (c) { c.checked = false; });
       applied = { lo: 0, hi: MAX, types: [] };
-      setCount();
+      paintChips();
       scrim.click();
     });
 
     paint();
-    setCount();
+    paintChips();
   }());
   </script>
 
