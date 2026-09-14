@@ -404,17 +404,13 @@
          addresses (`data-q` holds each one written out) and the count is spoken (WCAG 4.1.3).
          Use my location writes the located address straight in — the system's permission alert is
          the OS's and is not drawn.
-         CANCEL AND DONE ARE IN THE TOP BAR (the designer, 2026-09-15: «зроби так як каже HIG»):
-         `HIG · Sheets` puts Cancel on the leading edge of the top toolbar and Done on the trailing
-         edge. The other three drawers on this page still stack them under their content. -->
+         DONE OVER CANCEL UNDER THE LIST, as on every other drawer (the designer, 2026-09-15: «залиш
+         кругом як є … добав там CTA як на усіх інших знизу»). For one revision they stood in a top bar,
+         `HIG · Sheets`' iOS placement; she chose the product's own stack. -->
     <section class="dr-sheet dr-sheet--picker dr-sheet--steady" id="addrpick" role="dialog"
              aria-modal="true" aria-labelledby="addrpick-title" hidden>
       <span class="dr-sheet__grip" aria-hidden="true"></span>
-      <div class="dr-sheet__bar">
-        <button class="dr-btn dr-btn--secondary" type="button" data-close>Cancel</button>
-        <p class="dr-sheet__title" id="addrpick-title" data-addr-title>Pickup address</p>
-        <button class="dr-btn dr-btn--primary" type="button" data-done>Done</button>
-      </div>
+      <p class="dr-sheet__title" id="addrpick-title" data-addr-title>Pickup address</p>
 
       <span class="dr-search">
         <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="text" placeholder="Search address" autocomplete="street-address" aria-labelledby="addrpick-title" data-addr-input>
