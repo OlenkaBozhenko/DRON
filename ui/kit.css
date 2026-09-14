@@ -6171,23 +6171,33 @@ header.dr-topbar,
    uses, cutout contained, `alt=""` — the name says what the row is. The name is
    17/400, the service card's title (rev 248); the price is 17/600 tabular, the
    `.dr-price__val` pair; the meta is 13/400 `--slate`.
-   THE CHOSEN ROW IS RINGED IN INK, NOT TINTED — the one new state shape here,
-   and it is chosen because both obvious alternatives fail a rule. A green ring
-   or tint is green spent inside card UI (§0), and green as a stroke is 1.69:1;
-   the `--green-wash` fill is 1.085:1 against the page, under `WCAG 1.4.11`. The
-   `--sz-node-border` 2px ring in `--ink` is 15.99:1 against the page and
-   14.37:1 against the `--card` it closes around, and the ground stepping
-   `--page` → `--card` is a second, shape-free signal. Every row carries the
-   ring's width transparent, so choosing a row moves nothing by a pixel.
-   The focus ring stands OUTSIDE the chosen ring at `--focus-offset`, so a
-   focused, chosen row shows both (`WCAG 2.4.11`). MEASURED PAIRS: name `--ink`
-   on `--card` 14.37:1 / on `--page` 15.99:1; meta `--slate` 5.95:1 / 6.62:1
+   EVERY ROW IS A GREY CARD AND THE CHOSEN ONE IS ON GREEN — the designer,
+   2026-09-14 (rev 253), against rev 250's 2px `--ink` ring: «у мене в проекті
+   немає ніде обводки такої», then «зроби картки на сірому бекграунді а обране
+   на зеленому». The ring came from the reference, not the kit, and is gone:
+   no border at all, so the row is 341 × 60, 4 shorter than the ringed 64, and
+   the drawer 332.8 (was 344.8) — the map takes the 12, 383.2.
+   GREEN HERE IS THE WASH, NOT THE FILL — the reading `.dr-grouptab` already
+   gives her «вибраний на зеленому бекграунді». Solid `--green` behind a 341-wide
+   row would be a second green control and break §0's ~5% ceiling; the wash is
+   not counted, so *Order* stays the screen's only solid green.
+   THE STATE'S CONTRAST IS HER CALL, SAID RATHER THAN HIDDEN: the wash is
+   1.026:1 against the grey rows beside it and 1.085:1 against the drawer, under
+   `WCAG 1.4.11`'s 3:1, and the text does not change between states, so the tint
+   is the only visible sign — the chip's known condition without the chip's
+   label step. The state itself is programmatic (`WCAG 4.1.2` ✓ — a real radio).
+   `HIG · Lists and tables` marks a chosen row with a checkmark; that departure
+   is recorded, not filed. The rejected alternative put to her with the numbers
+   was `.dr-pick`'s green radio, 9.46:1.
+   The focus ring stands outside the card at `--focus-offset`, `--ink` on the
+   drawer 15.99:1 (`WCAG 2.4.11`). MEASURED PAIRS: name / price `--ink` on
+   `--card` 14.37:1, on `--green-wash` 14.75:1; meta `--slate` 5.95:1 / 6.10:1
    (`1.4.3` 4.5 ✓ at 13px). */
 .dr-offers{ margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: var(--sp-within); }
 .dr-offer{
   position: relative; display: flex; align-items: center; gap: var(--sp-snug);
   padding: var(--sp-within-lg) var(--sp-snug) var(--sp-within-lg) var(--sp-within-lg);
-  border: var(--sz-node-border) solid transparent; border-radius: var(--r-card);
+  border: 0; border-radius: var(--r-card); background: var(--card);
   color: var(--ink); cursor: pointer;
 }
 .dr-offer > .dr-well{ width: var(--sz-well-w-xs); height: var(--sz-well-h-xs); }
@@ -6205,5 +6215,5 @@ header.dr-topbar,
   flex: none; font-size: var(--t-title-size); font-weight: var(--t-title-weight);
   color: var(--ink); font-variant-numeric: tabular-nums;
 }
-.dr-offer:has(> input:checked){ border-color: var(--ink); background: var(--card); }
+.dr-offer:has(> input:checked){ background: var(--green-wash); }
 .dr-offer:has(> input:focus-visible){ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }

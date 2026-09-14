@@ -2034,12 +2034,17 @@ two Figma references used for structure only. Every value is an existing rung.
   Location + Price range, scrolling inside, *Clear all* · *Apply filters* side by side). **693.77** tall at
   the 375 × 812 frame.
 - **Results on the map** — `.dr-mapview` fills the column under the nav bar and runs `--r-panel` under a
-  **docked** `.dr-sheet--dock` (no scrim, no `aria-modal`). Map **373 × 371.2**, drawer **344.8**.
+  **docked** `.dr-sheet--dock` (no scrim, no `aria-modal`). Map **373 × 383.2**, drawer **332.8** (rev 253; **371.2** / **344.8** with rev 250's ringed rows).
 - **A choice row** (`.dr-offer`) is a radio label: 56 × 44 well · name 17/400 · meta 13/400 `--slate` ·
-  price 17/600 tabular — **341 × 64**. **The chosen row is ringed 2px in `--ink` on `--card`**: **15.99:1**
-  on the page, **14.37:1** on the card, and the ground step is a second signal. Not green — a green ring is
-  green inside card UI and 1.69:1 as a stroke; not the wash — 1.085:1 fails `1.4.11`. Every row carries the
-  ring transparent, so choosing moves nothing. *Order* is **4.80%** of the frame and the only solid green.
+  price 17/600 tabular — **341 × 60**, no border. **Every row is a `--card` card; the chosen one is on
+  `--green-wash`** (rev 253, the designer: *«зроби картки на сірому бекграунді а обране на зеленому»*, replacing
+  rev 250's 2px `--ink` ring, which no other surface in the kit carries). Text: name / price `--ink` **14.37:1**
+  on the card, **14.75:1** on the wash; meta `--slate` **5.95:1** / **6.10:1**. **The state is under
+  `WCAG 1.4.11`, her call:** the wash is **1.026:1** against the grey rows beside it and **1.085:1** against the
+  drawer, and the text does not change between states, so the tint is the only visible sign; the radio carries
+  it programmatically (`4.1.2` ✓). `HIG · Lists and tables` would mark it with a checkmark — a recorded
+  departure. *Order* is **4.80%** of the frame and still the only solid green —
+  the wash is not counted.
 
 ### Media
 
