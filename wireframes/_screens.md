@@ -177,11 +177,25 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     button, its drawer, its name and its 44 target, and the swap stays on the *From* / *To* seam. The page reads
     top to bottom as where, then when.
   - **`Filters` (secondary) over `Find` (primary), each the full width** — the designer, same message: *«кнопка
-    мають бути по всій ширині одна під одною»*. They stood side by side in one row until then. *Filters* opens a **drawer** holding **Location**
-    (Country ▸ Region ▸ City ▸ District — the same four rows, each still pushing its own screen) and **Price range**.
-    **Date &amp; time is not in the drawer** — it moved to the search itself, and one value is set in one place
-    (the designer's pick, 2026-09-14, of the two readings put to her). *Apply filters* closes the drawer and puts the
-    count on the button; *Clear all* resets and closes.
+    мають бути по всій ширині одна під одною»*. They stood side by side in one row until then. *Filters* opens a **drawer** holding **Drone type**
+    and **Price range**. **Date &amp; time is not in the drawer** — it moved to the search itself, and one value is
+    set in one place (the designer's pick, 2026-09-14, of the two readings put to her). *Apply filters* closes the
+    drawer and puts the count on the button — one per applied value, the way `listings-filtered` counts one per
+    chip: the band counts 1, each ticked drone type counts 1; *Clear all* resets and closes.
+  - **Location leaves the Filters drawer, and Drone type takes its place — 2026-09-15, the designer on the built
+    drawer** (*«видали Location з філтрів додаткових можеш додати натомість типи дронів»*). Until then the drawer's
+    first card was **Location** (Country ▸ Region ▸ City ▸ District, each row pushing its own screen). The address
+    already stands on the search card (*From* / *To* or *Where*), so the place is set in one place — the reason
+    Date &amp; time left the drawer on 2026-09-14. **The new card is `Drone type`** — subtitle *Which drone does the
+    job* — with four checkbox rows, **Quadcopter · Hexacopter · FPV · Fixed-wing**; none ticked means any drone.
+    It is the kit's own titled card with a pick list (`fieldset.dr-zone` + `.dr-picks` + `.dr-pick` with
+    `.dr-box--check`), the shape `listings-filters`' Date &amp; time card already draws. **The list is her pick of
+    three readings put to her, standards first** — by size (*Small · Medium · Large*), by purpose (*Camera ·
+    Cargo · Inspection drone*, which repeats the service badge), or by the equipment's names. **It departs from
+    `voice.md` P4** (*speak the user's words, not the equipment*; «квадрокоптер» is on its anti-pattern list) **and
+    P1**, and conforms to WCAG and `HIG · 44pt`: recorded as her deliberate departure, not a defect. **Not
+    changed:** `listings-filters` (the full-screen panel) keeps its Location card, and the four place-pick screens
+    stay and still go back to it; nothing on Home opens them now.
   - **`Find` opens the results on the map** for the chosen service — see *Results on the map* below.
   - **Not states, not sub-views:** the three drawers are controls on this page, the reading the date drawer already
     had. **The sibling pages are not rebuilt with it** — `listings-filters` (the full-screen panel),

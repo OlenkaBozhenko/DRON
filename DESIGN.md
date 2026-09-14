@@ -2069,8 +2069,11 @@ two Figma references used for structure only. Every value is an existing rung.
   included), under §0's ~5%.
 - **Drawers** — *Pick a date* (the `.dr-cal` grid without its time row), *Pick a time* (*Now* / *At a set
   time* with `.dr-cal__clock`; *Now* disabled for any day but today), *Filters* (`.dr-sheet--tall`:
-  Location + Price range, scrolling inside, *Clear all* · *Apply filters* side by side). **693.77** tall at
-  the 375 × 812 frame.
+  Drone type + Price range, scrolling inside, *Clear all* · *Apply filters* side by side). **693.77** tall at
+  the 375 × 812 frame. **Drone type replaced Location on 2026-09-15 (rev 261)** — `fieldset.dr-zone` with four
+  `.dr-pick` checkbox rows (*Quadcopter · Hexacopter · FPV · Fixed-wing*), **341 × 274**, the height Location
+  had, so the drawer re-measures **693.8** with **0** to scroll. The four names depart from `voice.md` P4 / P1
+  on the designer's word.
 - **Results on the map** — `.dr-mapview` fills the column under the nav bar and runs `--r-panel` under a
   **docked** `.dr-sheet--dock` (no scrim, no `aria-modal`). Map **373 × 383.2**, drawer **332.8** (rev 253; **371.2** / **344.8** with rev 250's ringed rows).
 - **A choice row** (`.dr-offer`) is a radio label: 56 × 44 well · name 17/400 · meta 13/400 `--slate` ·

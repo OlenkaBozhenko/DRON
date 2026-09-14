@@ -1175,7 +1175,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings | Search | Today | Field value | DATA — at rest; a picked day reads `Wed 16 Sep`, the product's own format (`time-slot`, `listings-filters`) |
 | listings | Search | Time | Field label | the right half |
 | listings | Search | Now | Field value | DATA — at rest; a set time reads `14:00`, 24-hour like the rest of the product |
-| listings | Search | Filters | Button | secondary; opens the Filters drawer. With a filter applied the accessible name is *Filters, 1 applied* and the count is drawn on the button, `aria-hidden` |
+| listings | Search | Filters | Button | secondary; opens the Filters drawer. With a filter applied the accessible name is *Filters, 1 applied* — *Filters, 3 applied* for the band and two drone types, one per applied value — and the count is drawn on the button, `aria-hidden` |
 | listings | Search | Find | Button | primary — the screen's one green control. Opens *Results on the map* for the chosen service |
 | listings | Date drawer | Pick a date | Heading | the drawer's title. `listings-filters`' drawer says *Pick a date & time* because it holds both; this one holds the day only |
 | listings | Date drawer | Previous month | Icon label |  |
@@ -1191,7 +1191,13 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings | Time drawer | Done | Button |  |
 | listings | Time drawer | Cancel | Button |  |
 | listings | Filters drawer | Filters | Heading | the drawer's title |
-| listings | Filters drawer | Location | Heading | the same card, the same strings, as `listings-filters` — *Where you need the service*, *Country · Ukraine*, *Region · Kyiv City*, *City · Kyiv*, *District · All districts* |
+| listings | Filters drawer | ~~Location~~ | Heading | **CUT 2026-09-15** — the designer, on the built drawer: *«видали Location з філтрів додаткових можеш додати натомість типи дронів»*. The card and its strings left the drawer together — *Where you need the service*, *Country · Ukraine*, *Region · Kyiv City*, *City · Kyiv*, *District · All districts*. The address is set on the search card itself, one value in one place. Struck rather than deleted, so the card is not re-proposed as new. **`listings-filters` keeps the same card and every one of its strings** |
+| listings | Filters drawer | Drone type | Heading | **new 2026-09-15**, in Location's place — the card's title and the group's name (`aria-labelledby` on the fieldset, `WCAG 1.3.1`, `4.1.2`). **Her pick of three readings put to her, standards first** (by size · by purpose · by the equipment's names) |
+| listings | Filters drawer | Which drone does the job | Body | the card's subtitle, `aria-describedby` on the group. Shown to her in the preview she chose. **Flag, reported and not smoothed:** *job* is the operator's word in `voice.md`'s vocabulary (client-side work is an *order*); on a client surface the two are never crossed. The rewrite that keeps the shape is *Which drone does your order* — hers to say |
+| listings | Filters drawer | Quadcopter | Body | a checkbox row. **A conforming departure from `voice.md` P4** (*speak the user's words, not the equipment*), which names drone hardware words as the thing never to write, with «квадрокоптер» on its OLX anti-pattern list — and from **P1** (*name the outcome, not the drone*). The designer chose the equipment's names having been shown both rules and the two plain-word readings beside them. WCAG and `HIG · 44pt` are met; the departure is the voice rule's, recorded here as hers |
+| listings | Filters drawer | Hexacopter | Body | a checkbox row — the same departure as *Quadcopter* |
+| listings | Filters drawer | FPV | Body | a checkbox row — the same departure; an abbreviation, spoken letter by letter by a screen reader. `WCAG 3.1.4 Abbreviations` is AAA and outside the product's AA bar, so no expansion is required — recorded, not added |
+| listings | Filters drawer | Fixed-wing | Body | a checkbox row — the same departure as *Quadcopter* |
 | listings | Filters drawer | Price range | Heading | the same card as `listings-filters` — *Service price, all fees included*, *Minimum ₴0*, *Maximum ₴1,000+* |
 | listings | Filters drawer | Clear all | Button |  |
 | listings | Filters drawer | Apply filters | Button |  |
