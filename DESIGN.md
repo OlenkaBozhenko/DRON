@@ -2040,17 +2040,16 @@ two Figma references used for structure only. Every value is an existing rung.
   that opens the address drawer — same picture: the value line is the grey placeholder at 400 while empty
   and `--ink` 600 once an address is taken; the name is the drawn text, *From Pickup address*
   (`WCAG 2.5.3`, `4.1.2`); the whole row is the target and the swap keeps its 44 above it; one ring, the row's.
-- **Address drawer** (rev 254, top bar rev 256) — one `.dr-sheet` for From, To and Where. **Its top bar**
-  (`.dr-sheet__bar`) holds *Cancel* on the leading edge, the title centred (*Pickup address* · *Drop-off
-  address* · *Address*) and *Done* on the trailing edge — `HIG · Sheets`' iOS placement, on the designer's
-  *«зроби так як каже HIG»*; *Cancel* secondary **85.64 × 44** (**11.54:1**), *Done* primary **72.94 × 44**
-  (**9.46:1**). **The only drawer with a top bar** — every other one stacks its confirm over *Cancel* under
-  its content (rev 120). Under the bar: a `.dr-search` field **341 × 44** (`--ink` on `--media` **13.33:1**,
-  placeholder *Search address* **5.51:1**) that takes focus, so the keyboard rises and the drawer rides on it;
-  the picker list with a **20px leading glyph** (`--slate` **5.95:1**) and a 12.5/400 `--slate` sub-line —
-  *Use my location* **44**, *Podil, 21 · Saved address* **58**, *Osokorky, 14 · Recent* **58**. With the
-  keyboard up: **325** tall, top **151**, bottom on the keyboard's **476**, overlap **0**. *Done* is **1.05%**
-  of the frame, the only green above the scrim. A tapped
+- **Address drawer** (rev 254; rev 258) — one `.dr-sheet` for From, To and Where, titled by the row
+  (*Pickup address* · *Drop-off address* · *Address*): a `.dr-search` field **341 × 44** (`--ink` on `--media`
+  **13.33:1**, placeholder *Search address* **5.51:1**) that takes focus, so the keyboard rises and the drawer
+  rides on it; the picker list with a **20px leading glyph** (`--slate` **5.95:1**) and a 12.5/400 `--slate`
+  sub-line — *Use my location* **44**, *Podil, 21 · Saved address* **58**, *Osokorky, 14 · Recent* **58**; then
+  *Done* over *Cancel*, **341 × 44** each, the stack every drawer carries. With the keyboard up: **412.8** tall,
+  top **63.2**, bottom on the keyboard's **476**, overlap **0**. *Done* is **4.93%** of the frame, the only green
+  above the scrim. **The buttons stood in a top bar for one revision** (rev 256, `.dr-sheet__bar`, `HIG · Sheets`'
+  iOS placement); shown the options drawn, the designer put them back under the list — the bar stays declared
+  and is spent nowhere. A tapped
   row is taken at once; *Done* takes what was typed; *Cancel*, the scrim and Escape change nothing.
   `.dr-sheet--steady` keeps the height it opened at while typing narrows the list, so nothing above the
   keyboard moves.
