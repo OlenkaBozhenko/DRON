@@ -186,8 +186,9 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     drawer** (*«видали Location з філтрів додаткових можеш додати натомість типи дронів»*). Until then the drawer's
     first card was **Location** (Country ▸ Region ▸ City ▸ District, each row pushing its own screen). The address
     already stands on the search card (*From* / *To* or *Where*), so the place is set in one place — the reason
-    Date &amp; time left the drawer on 2026-09-14. **The new card is `Drone type`** — subtitle *Which drone does the
-    job* — with four checkbox rows, **Quadcopter · Hexacopter · FPV · Fixed-wing**; none ticked means any drone.
+    Date &amp; time left the drawer on 2026-09-14. **The new card is `Drone type`** — subtitle *Which drone does your
+    order* (her pick, rev 262, over rev 261's *…does the job*, which crossed the operator's word onto a client
+    surface) — with four checkbox rows, **Quadcopter · Hexacopter · FPV · Fixed-wing**; none ticked means any drone.
     It is the kit's own titled card with a pick list (`fieldset.dr-zone` + `.dr-picks` + `.dr-pick` with
     `.dr-box--check`), the shape `listings-filters`' Date &amp; time card already draws. **The list is her pick of
     three readings put to her, standards first** — by size (*Small · Medium · Large*), by purpose (*Camera ·
