@@ -576,13 +576,33 @@
     var find = frame.querySelector('[data-find]'),
         services = frame.querySelectorAll('input[name="service"]');
 
+    /* the badge also decides which address card stands: Delivery has two ends, the other two
+       services one place (the designer's pick, 2026-09-14) */
+    var routeTwo = frame.querySelector('[data-route="delivery"]'),
+        routeOne = frame.querySelector('[data-route="place"]');
+
     function syncFind() {
       var on = frame.querySelector('input[name="service"]:checked');
       if (find && on && FIND[on.value]) find.href = FIND[on.value];
+      if (on && routeTwo && routeOne) {
+        routeTwo.hidden = on.value !== 'delivery';
+        routeOne.hidden = on.value === 'delivery';
+      }
     }
     services.forEach(function (r) { r.addEventListener('change', syncFind); });
     window.addEventListener('pageshow', syncFind);
     syncFind();
+
+    /* the swap trades the two typed values; focus stays on the button, which is where the
+       user is, and each field keeps its own label — only what is written in them moves */
+    var swap = frame.querySelector('[data-swap]'),
+        from = frame.querySelector('[data-from]'),
+        to   = frame.querySelector('[data-to]');
+    if (swap && from && to) {
+      swap.addEventListener('click', function () {
+        var v = from.value; from.value = to.value; to.value = v;
+      });
+    }
 
     /* ── the modal contract for the page's own two drawers ─────────────── */
     var behind = [].slice.call(frame.children).filter(function (el) {
