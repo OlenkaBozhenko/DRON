@@ -75,6 +75,28 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   assumed here. **The four sibling states (`-filtered`, `-empty`, `-error`, `-loading`) carry the same chip row
   and it is still inert on all four** — reported, not carried over: each is a separate page and the change was
   asked for on the base.
+- **THE FOUR SIBLING STATES TAKE HOME'S BADGE ROW — 2026-09-19, the designer on the built `listings`:**
+  *«зроби такі таби у всіх станах»*. The underline tabs leave `-filtered`, `-empty`, `-error` and `-loading`;
+  in their place stands the row `listings.html` has carried since rev 250 — `.dr-grouptab` as a radio with a
+  16px glyph before the word — **moved out of the chrome and into the zone it filters**, first control of
+  *Search &amp; filters*, so the hairline strip over `main` goes with it.
+  - ***All* STAYS — her call**, taken with both readings drawn and the standards first (`_compare-state-tabs.html`).
+    **Both conform and that is said plainly:** `HIG · 44pt` and `WCAG 2.5.8` are met at 44 either way, `WCAG 1.4.3`
+    at **5.51:1** idle and **9.46:1** chosen, and the radio group answers `WCAG 1.3.1` / `4.1.2` better than the
+    `button[aria-current]` row it replaces — state, group name and arrow keys come from the element. The difference
+    is meaning, not conformance: Home's three badges **choose** a service, a state's row **filters** a list, so it
+    keeps the way back to the whole of it. *All* stands first, chosen at rest, and carries **no icon** — it is not
+    a service.
+  - **AND THE ROW SCROLLS RATHER THAN WRAPS:** *«те що не влазить по ширині не переноситься на нижній рядок а має
+    горизонтальний скрол»*. Four badges do not fit the 343 column; wrapping was drawn (the row at 72 with
+    *Inspection* alone on the second line) and **she took the scroll**. This is the reading declined on 2026-09-10
+    for the *underline* row — where the tabs were equal quarters and the clipped word was the only word in its
+    quarter — and taken here for the *chip* row, where the clipped chip is whole and the row runs to the frame
+    edge. Recorded so neither call is re-proposed as the other's.
+  - **The chip row is `Photo`, and the card under it is still `Aerial photo &amp; video`** — her word on Home since
+    rev 250, now standing over the card that names the service in full on `listings-filtered`. A known condition
+    against `voice.md`'s one word per concept, recorded rather than corrected: the shorter word is hers to spend
+    and she spent it on the base.
 - **Filter sub-views (added July 2026, build decision):** because *Service catalogue* is merged into Home,
   browsing needs to be narrowable. Two named sub-views (not data states):
   - **`listings-filters`** — the filter panel open, **three titled cards of one kind, in this order**:
@@ -213,7 +235,10 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     had. **The sibling pages are not rebuilt with it** — `listings-filters` (the full-screen panel),
     `listings-filtered`, `listings-empty`, `listings-error` and `listings-loading` still draw the service list, and
     the four place-pick screens still go back to `listings-filters`. Recorded as open, not decided: each is a
-    separate page and the change was asked for on the base.
+    separate page and the change was asked for on the base. **Closed in part on 2026-09-19:** the four state pages
+    take Home's badge row (above, *«зроби такі таби у всіх станах»*), with *All* kept and the row scrolling. The
+    rest of each page — the search field, the *Filters* button and the service list under them — is untouched and
+    stays open.
 
 ### 3a. Results on the map  *(NEW · 2026-09-14 · the designer's call)*
 - **Job:** `MJ-1` — *choose the result a drone delivers* (`CE-2` Service), with `C-01` availability shown before

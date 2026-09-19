@@ -2043,6 +2043,22 @@ two Figma references used for structure only. Every value is an existing rung.
   chip's recorded `WCAG 1.4.11` condition, improved from the wash's 1.085:1 and still short of 3:1; the label
   moving `--slate` → `--on-green` carries the state with it. Measured on the build: *Delivery* **99.7 × 32**,
   *Photo* **84.4 × 32**, *Inspection* **116 × 32**, all three on one line at the 375 frame.
+  **From rev 273 the row stands on five pages, not one, and it scrolls rather than wraps.** The designer,
+  2026-09-19: *«зроби такі таби у всіх станах»*, then *«те що не влазить по ширині не переноситься на нижній
+  рядок а має горизонтальний скрол»*. `listings-empty`, `-error`, `-loading` and `-filtered` give up the
+  underline row (`.dr-groups--tabs`) in the chrome and take this one as the first control of *Search &amp;
+  filters*, with a fourth badge — ***All***, first, chosen at rest, **41.2 × 32**, no icon because it is not a
+  service — so the row keeps the way back to the whole list it filters. **`flex-wrap: nowrap` +
+  `overflow-x: auto`**, the box bleeding `--sp-screen` to the frame edge and paying it back as padding, so the
+  next chip sits under the edge (`HIG · Layout`). Measured: content **364.2** in a **374** box → **22** hidden
+  (**38** where `main` carries a scrollbar); first chip at **x 16.7**, last edge at **380.9** on a 375 frame;
+  Home's three badges are **315** and do not scroll, unmoved to the pixel. **The scroller would have eaten the
+  target**, `overflow` clipping both axes at the padding box, so the box takes `--sp-6` of block padding and
+  gives it straight back as negative margin — hit-tested at ±5 of the chip: **44** intact, `HIG · 44pt` ✓,
+  `WCAG 2.5.8` ✓. **Written at 0-2-0** (`.dr .dr-finder__services`), the reset's `.dr fieldset{ padding: 0 }`
+  being 0-1-1. **Green per frame, measured:** `-loading` **0.43%**, `-filtered` **0.86%**, `-error` **4.85%**
+  (the *Try again* primary is **4.42** of it) — all under §0's ~5%, and the chosen chip is a second solid-green
+  control on each, the condition rev 269 recorded for this row.
 - **Date · Time** (`.dr-when`) — one `--card` of two buttons split by a `--line` seam, each owning a drawer.
   Label 12/400 `--slate` **5.95:1**, value 15/600 `--ink` **14.37:1**; each half **170.5 × 58.8**. The
   button's name is its drawn text — *Date Today* (`WCAG 2.5.3`).
