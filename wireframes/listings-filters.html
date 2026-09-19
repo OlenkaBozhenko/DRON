@@ -8,8 +8,11 @@
   SCREEN (name from _screens.md §3): "Home / start an order" — A SEARCH from 2026-09-14.
   PERSONA: Client C-1 (primary — CLAUDE.md "Primary persona — C-1").
   MAIN JOB: MJ-1 — get a drone service done.
-  STATE: sub-view — the Filters DRAWER open over the search. Not a data state: one control on
-  this page, up.
+  STATE: sub-view — the Filters DRAWER open over the search, ON WHAT IS APPLIED. Not a data state:
+  one control on this page, up.
+  THE FRAME IS HERS (2026-09-19): «ця сторінка має виглядати ось так» — Hexacopter ticked and the
+  band at ₴600 – ₴1,000+, the same set `listings-filtered` carries, so the two frames tell one story:
+  the drawer re-opened on the filters that are on.
   REBUILT 2026-09-19, her word with the drawer's own picture beside the page: «я переробила
   сторінку на таку» — the page's states ARE these three (the search, this drawer, the search with
   filters applied). Until now this file drew a FULL-SCREEN panel with a Location card and four
@@ -235,7 +238,7 @@
     <div class="legend">
       <p><b>Zones &amp; main action</b> (labelled in the screen):</p>
       <p><b>Search</b> ▸ service badges · one card: From / To with swap (Delivery) or Where (Photo, Inspection), each opening the address drawer, then Date (calendar drawer) · Time (time drawer)</p>
-      <p><b>Filters drawer</b> ▸ <i>Drone type</i> — four checkbox rows, none ticked = any drone · <i>Price range</i> — the two-handle band over the price histogram</p>
+      <p><b>Filters drawer</b> ▸ <i>Drone type</i> — four checkbox rows, <i>Hexacopter</i> ticked · <i>Price range</i> — the two-handle band over the price histogram, <i>₴600 – ₴1,000+</i></p>
       <p><b>Filters · Find</b> ▸ full width, one under the other · Filters drawer (Drone type · Price) · Find opens the map</p>
       <p><b>Bottom bar</b> ▸ switch between the global sections</p>
     </div>
@@ -548,7 +551,7 @@
           <p class="dr-zone__sub" id="type-sub">Which drone does your order</p>
           <ul class="dr-picks">
             <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="drone-type" value="quadcopter" class="sr-only"></label></li>
-            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="drone-type" value="hexacopter" class="sr-only"></label></li>
+            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="drone-type" value="hexacopter" class="sr-only" checked></label></li>
             <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="drone-type" value="fpv" class="sr-only"></label></li>
             <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Fixed-wing</span><input type="checkbox" name="drone-type" value="fixed-wing" class="sr-only"></label></li>
           </ul>
@@ -572,8 +575,8 @@
             </div>
             <div class="dr-range__rail">
               <span class="dr-range__fill" data-fill></span>
-              <input class="dr-range__input" type="range" id="pmin" min="0" max="1000" step="50" value="0"
-                     aria-label="Minimum price" aria-valuetext="₴0" data-lo>
+              <input class="dr-range__input" type="range" id="pmin" min="0" max="1000" step="50" value="600"
+                     aria-label="Minimum price" aria-valuetext="₴600" data-lo>
               <input class="dr-range__input" type="range" id="pmax" min="0" max="1000" step="50" value="1000"
                      aria-label="Maximum price" aria-valuetext="₴1,000+" data-hi>
             </div>
@@ -581,7 +584,7 @@
           <div class="dr-range__fields">
             <p class="dr-range__field">
               <span class="dr-range__cap">Minimum</span>
-              <output class="dr-range__val" for="pmin" data-lo-out>₴0</output>
+              <output class="dr-range__val" for="pmin" data-lo-out>₴600</output>
             </p>
             <p class="dr-range__field">
               <span class="dr-range__cap">Maximum</span>
@@ -995,7 +998,11 @@
         fChips = frame.querySelector('[data-fchips]'),
         fSheet = document.getElementById('sheet-filters'),
         types  = [].slice.call(fSheet.querySelectorAll('[data-types] input[type="checkbox"]')),
-        applied = { lo: 0, hi: MAX, types: [] };
+        /* THE DRAWER OPENS ON WHAT IS APPLIED, so this page's frame is one value — her own set
+           (2026-09-19), the same two `listings-filtered` carries. The opener's handler writes the
+           band and the ticks from `applied` before the sheet shows, so the markup below and this
+           line have to agree; both say Hexacopter, ₴600 – ₴1,000+. */
+        applied = { lo: 600, hi: 1000, types: ['hexacopter'] };
 
     /* a drone type's chip says what its row in the drawer says */
     var typeName = {};
