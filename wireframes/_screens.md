@@ -132,9 +132,18 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     see `_critique.md` fix 4. **What returned 2026-08-15 is not that.** An ordering rearranges the whole list
     and removes nothing; a band **narrows** it, which is what a filter is for. The rejected idea stays
     rejected: there is no Recommended / Low→High / High→Low control anywhere.)*
-  - **`listings-filtered`** — filters applied: the leading *All* chip + the removable applied-filter chips, the
-    filtered result list, and the Filters button showing its active count. No dead-end — every chip exits to the full list,
-    *All* first among them (it replaced the *Clear all* text button, designer's call 2026-08-13).
+  - **`listings-filtered`** — ~~filters applied: the leading *All* chip + the removable applied-filter chips, the
+    filtered result list, and the Filters button showing its active count~~ (the service-list reading, to 2026-09-19).
+    **REBUILT ON THE SEARCH, 2026-09-19 — the designer:** *«фльтра я ж змінила … решту стейтів потрібно змінити
+    відповідно до цієї сторінки»*. It is now **`listings.html` with two drone types and a price band already
+    applied** — the same badges, the same where-and-when card, the same drawers — and the whole of its difference
+    is one value in the page script (`applied = { lo: 200, hi: 600, types: ['quadcopter','fpv'] }`). **The chips are
+    not hand-written:** `paintChips()` draws them from that value, the same call *Apply filters* makes, so the row
+    cannot say something the drawer would not open on — verified on the build: *Quadcopter* (112.5), *FPV* (64.9),
+    *₴200 – ₴600* (119.6) on one 341.7 row, and the drawer opens with both boxes ticked and the band at 200/600.
+    **No *All* chip and no count on the button:** both left with the rebuild (rev 264, `_screens.md` §3 above) —
+    *Clear all* is in the drawer and the chips say what is applied. No dead-end: every chip ✕ removes its own
+    filter and *Clear all* empties the row, which makes the page `listings` again.
   - **`listings-filter-country` · `listings-filter-region` · `listings-filter-city` · `listings-filter-district`**
     *(added 2026-08-16, designer's call)* — the **place pick**, four dependent levels of one filter dimension:
     **Country → Region → City → District of the city**. The designer, on the built `listings` top bar:
