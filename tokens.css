@@ -1,0 +1,335 @@
+/* ==========================================================================
+   DRON - tokens.css
+   Two tiers. PRIMITIVE holds raw values and knows nothing about roles;
+   SEMANTIC names a role and points at a primitive through var().
+
+   GENERATED FROM ui/kit.css AT rev 272 (d3c4fb7), NOT AUTHORED. Every value
+   below already existed in kit.css. Nothing was invented, nothing rounded,
+   nothing added. The roles are the candidates already named in
+   tokens/tokens-audit.md §5 - no new search was made for them.
+
+   WHAT COLLAPSED. kit.css spends 238 names on 129 distinct values, because
+   one number is written under as many as eight names (tokens-audit.md §A5).
+   Here each value is declared ONCE and its comment lists every kit.css name
+   that lands on it. That is the whole of the collapse: no value moved, and
+   the grayscale palette in wireframes/_wireframe.css (§A1) does not enter -
+   it is the prototype's scaffold, not the product's.
+
+   WHY LENGTHS ARE ONE RAMP AND NOT space / radius / size. The three scales
+   share their numbers: 2px is a radius, a gap AND five box sizes; 12px is a
+   type step, a radius, a gap, a glyph and a skeleton bar; 16px is a radius,
+   the screen gutter, a bar, a glyph and a background offset. Splitting them
+   into three families would re-mint the second and third name for one number,
+   which is the drift this file closes. A component reads the number it needs
+   - border-radius: var(--len-16) - which is what the brief asks: geometry
+   gets no token of its own above PRIMITIVE.
+   ========================================================================== */
+
+:root{
+
+  /* -- PRIMITIVE / COLOUR --------------------------------------------------
+     Five hue families read off the painted surfaces. Named by hue and step,
+     so the name carries no job. DESIGN.md's own words for them: the four
+     painted surfaces, the two inks, Signal Green, three semantic washes. */
+  --cream-50:      #F7F5F2;   /* --page */
+  --cream-100:     #F2F0EC;   /* --inset */
+  --cream-200:     #ECE9E4;   /* --card */
+  --cream-300:     #E4E1DA;   /* --media */
+  --cream-400:     #D9D5CE;   /* --line */
+  --cream-500:     #D6D2C9;   /* --btn2 */
+  --cream-700:     #5A5751;   /* --slate */
+  --charcoal-800:  #2E2E2E;   /* --night-raised */
+  --charcoal-900:  #1A1A1A;   /* --ink + --on-green + --night   COLLAPSED: one value, 3 names */
+  --green-100:     #E7F0D2;   /* --green-wash */
+  --green-300:     #B7DA7C;   /* --green-soft */
+  --green-500:     #9BCF4A;   /* --green */
+  --green-700:     #4F6B22;   /* --green-ink */
+  --amber-100:     #F6E7C4;   /* --warn-wash */
+  --amber-500:     #E4A11B;   /* --warn */
+  --amber-800:     #7A5200;   /* --warn-ink */
+  --rust-100:      #F2D8CF;   /* --danger-wash */
+  --rust-500:      #C4462A;   /* --danger */
+  --rust-700:      #9A3115;   /* --danger-ink */
+  --blue-100:      #D8E6F2;   /* --trust-wash */
+  --blue-700:      #2A5C7D;   /* --trust-ink */
+
+  /* -- PRIMITIVE / LENGTH --------------------------------------------------
+     Every px value in kit.css, once. The comment is the full list of names
+     that resolved to it; where the list crosses a radius, a gap and a box,
+     the crossing is the finding, not a mistake to hide. */
+  --len-n3-2:        -3.2px;   /* --up-out */
+  --len-0:           0px;   /* --mark-shift */
+  --len-1:           1px;   /* --hair + --lift-active   COLLAPSED 2 names */
+  --len-1-7:         1.7px;   /* --box-edge */
+  --len-2:           2px;   /* --r-hairline + --sp-2 + --sz-node-border + --sz-track + --sz-status-ring + --w-badge-ring + --sz-tick-h + --focus-offset   COLLAPSED 8 names */
+  --len-2-5:         2.5px;   /* --focus-w */
+  --len-2-6:         2.6px;   /* --up-in */
+  --len-3:           3px;   /* --sp-3 + --w-shot-edge   COLLAPSED 2 names */
+  --len-4:           4px;   /* --r-detail + --sp-within + --sz-rail + --sz-today-dot   COLLAPSED 4 names */
+  --len-5:           5px;   /* --r-key + --sp-5 + --h-home-bar + --sz-grip-h   COLLAPSED 4 names */
+  --len-6:           6px;   /* --sp-6 */
+  --len-7:           7px;   /* --sk-stop-gap */
+  --len-8:           8px;   /* --r-detail-lg + --sp-within-lg + --sk-head-gap + --ping-reach + --sz-pager-dot   COLLAPSED 5 names */
+  --len-9:           9px;   /* --sp-9 */
+  --len-10:          10px;   /* --r-input + --sp-10 + --sz-dot + --sk-date-h   COLLAPSED 4 names */
+  --len-10-5:        10.5px;   /* --t-microsm-size */
+  --len-11:          11px;   /* --t-micro-size */
+  --len-12:          12px;   /* --t-caption-size + --r-btn + --sp-snug + --sz-node-glyph + --sk-lbl-h + --ic-12   COLLAPSED 6 names */
+  --len-12-5:        12.5px;   /* --t-meta-size */
+  --len-13:          13px;   /* --t-bodysm-size + --r-media + --sp-13 + --ic-13   COLLAPSED 4 names */
+  --len-14:          14px;   /* --t-body-size + --sp-14 + --sk-title-h + --ic-14   COLLAPSED 4 names */
+  --len-15:          15px;   /* --t-heading-size + --t-lead-size + --t-base-size   COLLAPSED 3 names */
+  --len-16:          16px;   /* --r-card + --sp-screen + --sk-place-h + --ic-16 + --banner-top   COLLAPSED 5 names */
+  --len-17:          17px;   /* --t-title-size + --ic-17   COLLAPSED 2 names */
+  --len-18:          18px;   /* --sp-18 + --sk-price-h + --sz-fchip-x   COLLAPSED 3 names */
+  --len-20:          20px;   /* --t-number-size + --sp-group + --sz-status + --sz-avatar-badge + --sz-brand-h + --ic-20   COLLAPSED 6 names */
+  --len-22:          22px;   /* --t-display-size + --r-panel + --sp-22 + --sz-node + --sk-lbl-w-sm + --ic-22   COLLAPSED 6 names */
+  --len-24:          24px;   /* --sp-24 + --sz-box + --sz-photo-mark   COLLAPSED 3 names */
+  --len-26:          26px;   /* --sz-arrow + --ic-26   COLLAPSED 2 names */
+  --len-28:          28px;   /* --sp-list + --sz-avatar-sm   COLLAPSED 2 names */
+  --len-30:          30px;   /* --h-home + --sz-tick   COLLAPSED 2 names */
+  --len-32:          32px;   /* --sp-cta + --h-pill + --ic-32 + --sz-star   COLLAPSED 4 names */
+  --len-36:          36px;   /* --sz-switch + --sz-grip-w   COLLAPSED 2 names */
+  --len-38:          38px;   /* --sk-lbl-w */
+  --len-44:          44px;   /* --h-control + --h-statusbar + --sz-action + --sz-well-h-xs + --sz-head-mark (= --sz-action)   COLLAPSED 5 names */
+  --len-45:          45px;   /* --h-kb-quick */
+  --len-48:          48px;   /* --h-groups + --sz-hist   COLLAPSED 2 names */
+  --len-50:          50px;   /* --h-tab */
+  --len-52:          52px;   /* --sz-mark */
+  --len-56:          56px;   /* --h-topbar + --sz-well-w-xs + --sz-avatar-md + --sz-rating-w + --banner-shift   COLLAPSED 5 names */
+  --len-60:          60px;   /* --h-tabs + --sz-brand-w   COLLAPSED 2 names */
+  --len-64:          64px;   /* --sz-mark-lg */
+  --len-68:          68px;   /* --sz-well-w-sm + --sz-well-h-sm   COLLAPSED 2 names */
+  --len-80:          80px;   /* --sz-area-min */
+  --len-84:          84px;   /* --sk-price-w */
+  --len-96:          96px;   /* --sz-well-w + --sz-well-h + --sz-rowkey   COLLAPSED 3 names */
+  --len-117:         117px;   /* --sz-avatar */
+  --len-120:         120px;   /* --sz-avatar-xl */
+  --len-134:         134px;   /* --w-home-bar */
+  --len-140:         140px;   /* --sz-upload-min */
+  --len-150:         150px;   /* --banner-h */
+  --len-176:         176px;   /* --sz-avatar-call */
+  --len-260:         260px;   /* --measure-msg */
+  --len-291:         291px;   /* --h-kb */
+  --len-375:         375px;   /* --screen-w */
+  --len-812:         812px;   /* --screen-h */
+  --len-999:         999px;   /* --r-pill */
+
+  /* -- PRIMITIVE / PERCENTAGE ----------------------------------------------
+     Spans and shares, not boxes: rail fill, skeleton bar widths, the pile. */
+  --pct-n14:         -14%;   /* --sp-stack-lap */
+  --pct-6:           6%;   /* --sp-stack-in */
+  --pct-12-5:        12.5%;   /* --rail-track-start */
+  --pct-25:          25%;   /* --fill-2of4 + --dr-fill (= --fill-2of4)   COLLAPSED 2 names */
+  --pct-30:          30%;   /* --sk-w30 */
+  --pct-40:          40%;   /* --sk-w40 */
+  --pct-50:          50%;   /* --r-circle + --sk-w50   COLLAPSED 2 names */
+  --pct-62:          62%;   /* --w-stack-shot */
+  --pct-70:          70%;   /* --sk-w70 */
+  --pct-75:          75%;   /* --rail-track-span */
+  --pct-78:          78%;   /* --banner-art */
+  --pct-90:          90%;   /* --sk-w90 */
+
+  /* -- PRIMITIVE / UNITLESS  (leading, weight, factor) ---------------------
+  --num-0-5:         .5;   /* --pulse-floor */
+  --num-0-99:        .99;   /* --scale-active */
+  --num-1:           1;   /* --t-number-line */
+  --num-1-03:        1.03;   /* --bright-hover */
+  --num-1-2:         1.2;   /* --t-heading-line + --t-meta-line   COLLAPSED 2 names */
+  --num-1-3:         1.3;   /* --t-body-line */
+  --num-1-4:         1.4;   /* --t-display-line + --t-title-line + --t-bodysm-line + --t-caption-line + --t-micro-line + --t-microsm-line + --t-base-line   COLLAPSED 7 names */
+  --num-1-5:         1.5;   /* --t-para-line */
+  --num-1-55:        1.55;   /* --t-lead-line */
+  --num-1-7:         1.7;   /* --ic-stroke */
+  --num-1-99:        1.99;   /* --map-aspect */
+  --num-400:         400;   /* --t-lead-weight + --t-body-weight + --t-bodysm-weight + --t-meta-weight + --t-microsm-weight + --weight-regular   COLLAPSED 6 names */
+  --num-600:         600;   /* --t-title-weight + --t-heading-weight + --t-caption-weight + --t-micro-weight + --weight-medium   COLLAPSED 5 names */
+  --num-700:         700;   /* --t-display-weight + --t-number-weight   COLLAPSED 2 names */
+
+  /* -- PRIMITIVE / TRACKING, MEASURE, ANGLE --------------------------------
+  --track-n0-02:     -.02em;   /* --t-display-track + --t-number-track   COLLAPSED 2 names */
+  --track-n0-01:     -.01em;   /* --t-title-track */
+  --track-0-02:      .02em;   /* --t-act-track */
+  --track-0-05:      .05em;   /* --t-micro-track-tight */
+  --track-0-09:      .09em;   /* --t-micro-track */
+  --ch-18:           18ch;   /* --t-display-measure */
+  --ch-30:           30ch;   /* --t-note-measure */
+  --deg-n3-5:        -3.5deg;   /* --tilt-2 */
+  --deg-2:           2deg;   /* --tilt-3 */
+  --deg-3:           3deg;   /* --tilt-1 */
+  --deg-180:         180deg;   /* --turn-open */
+
+  /* -- PRIMITIVE / TIME and EASING -----------------------------------------
+  --time-0-12:       .12s;   /* --dur-fast */
+  --time-0-15:       .15s;   /* --dur-base */
+  --time-0-32:       .32s;   /* --dur-sheet */
+  --time-1-1:        1.1s;   /* --dur-spin */
+  --time-1-4:        1.4s;   /* --dur-pulse */
+  --time-1-6:        1.6s;   /* --dur-upload */
+  --time-1-8:        1.8s;   /* --dur-ping */
+  --ease-out:        cubic-bezier(.22,.61,.36,1);   /* --ease-out */
+
+  /* -- PRIMITIVE / SHADOW --------------------------------------------------
+     Four declared rungs. Two are spent in the build, two are not; that is
+     recorded in tokens-audit.md §1.7 and not decided here. */
+  --shadow-sm: 0 1px 2px rgba(20,18,15,.05);   /* --sh-sm */
+  --shadow-card: 0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30);   /* --sh-card */
+  --shadow-raised: 0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34);   /* --sh-raised */
+  --shadow-onphoto: 0 2px 8px rgba(20,18,15,.18);   /* --sh-onphoto */
+
+  /* -- PRIMITIVE / TYPEFACE ------------------------------------------------
+  --font-ui:   -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;   /* --font-ui */
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;   /* --font-mono */
+
+  /* -- PRIMITIVE / THE DERIVED LENGTHS -------------------------------------
+     kit.css computes these from other tokens so the arithmetic cannot drift.
+     Re-pointed at the ramp above; not one number changed. */
+  --len-node-centre: calc((var(--len-22) - var(--len-2)) / 2);   /* --node-centre    (--sz-node 22 - --sz-track 2) / 2 */
+  --len-pick-indent: calc(var(--len-24) + var(--len-12));   /* --pick-indent    --sz-box 24 + --sp-snug 12 */
+  --len-pill-bleed: calc((var(--len-44) - var(--len-32)) / -2);   /* --pill-bleed     (--h-control 44 - --h-pill 32) / -2 */
+  --len-hist-seat: calc(var(--len-4) / 2 - var(--len-44) / 2);   /* --hist-seat      --sz-rail 4 / 2 - --h-control 44 / 2 */
+  --len-glyph-plate: calc(var(--len-22) * var(--num-1) + var(--len-4) + var(--len-12) * var(--num-1-5));   /* --sz-glyph-plate  22*1 + 4 + 12*1.5 = 44 */
+  --len-star-ink: calc(var(--len-32) * 17.4 / 24);   /* --sz-star-ink */
+  --len-star-inset: calc(var(--len-32) * 3.3 / 24);   /* --sz-star-inset */
+  --len-star-mid: calc(var(--len-32) * .73);   /* --sz-star-mid */
+  --len-star-out: calc(var(--len-32) * .44);   /* --sz-star-out */
+
+  /* -- PRIMITIVE / NEITHER LENGTH NOR COLOUR -------------------------------
+  --ratio-stack: 3 / 2;   /* --stack-aspect - the shoot's own ratio, uncropped */
+  --ratio-map:   1.99;     /* --map-aspect - the live map's native ratio */
+  --icon-grid:   0 0 24 24;   /* --ic-grid - declared in kit.css, spent nowhere */
+
+  /* == SEMANTIC ===============================================================
+     A role, and the primitive it points at. Colour only: geometry gets no
+     semantic token, so a component reads --len-* / --pct-* / --num-* directly.
+
+     Every role below is one the audit already found in the built frames; each
+     comment names the uses it grew out of. Names come from tokens-audit.md §5
+     and from DESIGN.md's own vocabulary - the four painted surfaces, the two
+     inks, Signal Green, the washes - not from a ready-made set.
+
+     A role may point at the same primitive as another role. That is not a
+     mistake to collapse: two jobs that happen to share a value today are still
+     two jobs, and the file says so rather than hiding it.
+     ======================================================================== */
+
+  /* -- SURFACE / the four painted rungs, plus the one dark screen -----------
+     Audit §5 "Card background": the evidence says this is a FOUR-RUNG RAMP and
+     not one role, because .dr-card > .dr-inset > .dr-well stacks them. */
+  --bg-page:          var(--cream-50);      /* §1.1 --page: background on .dr, .dr-screen and every
+                                               system bar - .dr-statusbar, .dr-topbar, .dr-tabbar,
+                                               .dr-actionbar, .dr-groups, .dr-sheet, .dr-kb__key.
+                                               14 background sites over 131 pages. */
+  --bg-surface:       var(--cream-200);     /* §1.1 --card: 21 background sites - .dr-card, .dr-rows,
+                                               .dr-msg, .dr-choice, .dr-op, .dr-picks, .dr-zone,
+                                               .dr-range, .dr-cal, .dr-when, .dr-route, .dr-offer,
+                                               .dr-finder__card. 116 pages. */
+  --bg-inset:         var(--cream-100);     /* §1.1 --inset: 1 use, .dr-inset, 3 pages - a plane
+                                               INSIDE a card, which is the rung's whole point.
+                                               Rests on a single class; see the critique. */
+  --bg-well:          var(--cream-300);     /* §1.1 --media: 30 background sites - .dr-well--photo,
+                                               .dr-mark, .dr-chip, .dr-avatar-*, .dr-search,
+                                               .dr-sk-well, .dr-slide__art. 117 pages. */
+  --bg-muted:         var(--cream-500);     /* §1.1 --btn2: 20 background sites - .dr-btn--secondary,
+                                               .dr-btn--icon, the switch track, .dr-range__rail,
+                                               .dr-sk-line, .dr-pager, .dr-kb__plane. 121 pages. */
+  --bg-night:         var(--charcoal-900);  /* §1.1 --night: .dr-call and its own status and action
+                                               bars, .dr-btn--night. 3 call pages. The product's one
+                                               dark surface - a platform takeover, not a theme. */
+  --bg-night-raised:  var(--charcoal-800);  /* §1.1 --night-raised: .dr-call__avatar, .dr-call__bar,
+                                               .dr-btn--night:hover. One tone step above it. */
+
+  /* -- INK ------------------------------------------------------------------
+     Audit §5 "Text primary" / "Text secondary". The secondary ink has TWO
+     values by surface, because --slate fails on the night ground at 2.42:1. */
+  --text-primary:     var(--charcoal-900);  /* §1.1 --ink: colour on 79 selectors - every title,
+                                               value, button label, row value, current tab. */
+  --text-muted:       var(--cream-700);     /* §1.1 --slate: colour on 59 selectors - every __desc,
+                                               __sub, __label, __hint, __key, __meta, and every
+                                               ::placeholder. 133 pages. */
+  --text-on-night:       var(--cream-50);   /* §1.1 --page used as INK: .dr-call, .dr-call__name,
+                                               .dr-toast, .dr-btn--danger-solid. 9 colour sites. */
+  --text-on-night-muted: var(--cream-500);  /* §1.1 --btn2 used as INK: .dr-call .dr-label,
+                                               .dr-call__time, .dr-star, .dr-stars. The secondary
+                                               ink on the dark surface, because --slate is barred
+                                               there - 2.42:1, a real 1.4.3 failure. */
+
+  /* -- DISABLED / built, not dimmed ----------------------------------------
+     Audit §5 "Disabled": .dr-btn:disabled is --slate on --btn2 at 4.77:1. It
+     has no colour of its own; it borrows the secondary pair. concept.md §4
+     names --disabled-bg / --disabled-ink and NEITHER NAME EXISTS in kit.css -
+     0 occurrences. These two are that pair, named at last, pointing at the
+     same primitives the rule already spells out. */
+  --bg-disabled:      var(--cream-500);
+  --text-disabled:    var(--cream-700);
+
+  /* -- LINE -----------------------------------------------------------------
+     Audit §5 "Line": 25 sites, of which 10 are not borders at all but the fill
+     of a separator element or of .dr-sheet__grip. One token, two jobs - the
+     split is recorded, not resolved here. */
+  --border-hairline:  var(--cream-400);     /* §1.1 --line: border-top/-bottom/-left on .dr-topbar,
+                                               .dr-tabbar, .dr-actionbar, .dr-rows__row, .dr-groups,
+                                               .dr-picker__item; and 10 separator backgrounds. */
+
+  /* -- ACTION ---------------------------------------------------------------
+     Audit §5 "Action": the role is complete as a cluster - fill, ink, shadow,
+     hover, press - and it is the one green spend the "one green control per
+     screen" rule counts. */
+  --color-action:     var(--green-500);     /* §1.1 --green on .dr-btn--primary and
+                                               .dr-btn--primary.dr-btn--icon. The token does eight
+                                               other jobs besides (§3); this names only the first. */
+  --on-action:        var(--charcoal-900);  /* §1.1 --on-green: the ONLY colour allowed on a green
+                                               fill - 17 colour sites - and the fill of
+                                               .dr-switch__knob:checked and .dr-rating-arc. */
+
+  /* -- SELECTED / VERIFIED: one primitive, two roles, and that is the point --
+     Audit §5 "Selection / state" and "Trust" both land on --green-wash. The
+     product currently cannot tell "chosen" from "confirmed" by colour alone;
+     both carry an ink change or a glyph instead. Two names, so that the day
+     they part, only one of them has to move. */
+  --bg-selected:      var(--green-100);     /* §1.1 --green-wash: .dr-tab[aria-current],
+                                               .dr-fchip (applied filter), .dr-grouptab__count,
+                                               .dr-mark--milestone, .dr-balance__glyph. 48 pages. */
+  --color-verified:   var(--green-100);     /* §5 "Trust": the blue pair was RETIRED at rev 157 and
+                                               .dr-chip--trust became .dr-chip--claim on 17 pages.
+                                               DESIGN.md states the rule in one line: green means
+                                               DRON confirmed this document, grey means a plain
+                                               supporting fact. So the verified ground is the wash. */
+
+  /* -- TROUBLE / each family is a wash carrying its own ink (DESIGN.md) ----- */
+  --color-danger:     var(--rust-700);      /* §1.1 --danger-ink: .dr-btn--danger, .dr-mark--danger,
+                                               .dr-field__err. 3 classes, 9 error pages. The hue
+                                               that is a WORD; the solid one is a fill, see below. */
+  --bg-danger:        var(--rust-100);      /* §1.1 --danger-wash: .dr-mark--danger's ground. */
+  --color-warning:    var(--amber-800);     /* §1.1 --warn-ink: .dr-mark--warn. 7 pages. */
+  --bg-warning:       var(--amber-100);     /* §1.1 --warn-wash: .dr-mark--warn's ground. The pair
+                                               is only ever used together. */
+
+  /* -- OVERLAY --------------------------------------------------------------- */
+  --scrim:            color-mix(in srgb, var(--charcoal-900) 40%, transparent);
+                                            /* §1.7 --scrim: .dr-scrim on 26 pages. Warm, never
+                                               black - the ink at 40%, not a flat overlay. */
+  --halo-action:      0 0 0 4px color-mix(in srgb, var(--green-500) 20%, transparent);
+                                            /* §1.7 --halo-now: .dr-node--now, 10 pages. The ring
+                                               that marks the step being walked. */
+
+  /* -- NOT GIVEN A SEMANTIC TOKEN, ON PURPOSE -------------------------------
+     A colour that stands in exactly one place is not a role yet. These four
+     stay PRIMITIVE-only and are argued in design-system/_critique.md §06:
+
+       --amber-500  #E4A11B  one file, one class: rate.html x .dr-star. Its two
+                             other declarations - .dr-profile__rating and
+                             .dr-stars__fill - are in no page's markup.
+       --blue-700   #2A5C7D  .dr-chip--trust. ZERO pages. Retired at rev 157.
+       --blue-100   #D8E6F2  the same chip, the same zero.
+       --green-300  #B7DA7C  zero uses anywhere. Its one site went back to
+                             --green-500 on 2026-09-03.
+
+     Six more are spent on a SINGLE CLASS across several files - not excluded
+     by the rule, but not repeated either: --cream-100 (.dr-inset), --green-700
+     (.dr-btn--text), --amber-800 and --amber-100 (.dr-mark--warn), --rust-500
+     (.dr-btn--danger-solid), --rust-100 (.dr-mark--danger). Four of those six
+     are given a role above because the audit names the family shape they
+     belong to; all six are listed in the critique so that a second spend is
+     noticed when it arrives. */
+}
