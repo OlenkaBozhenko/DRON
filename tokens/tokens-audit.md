@@ -1,11 +1,20 @@
 # Tokens — audit of what is built
 
-**Read:** `ui/kit.css` (6 578 lines · 2 781 declarations · 238 variable definitions) and all
+**Read:** `ui/kit.css` (6 586 lines · 2 782 declarations · 238 variable definitions) and all
 **134** `wireframes/*.html`. Read alongside them, because every one of those pages links it:
 `wireframes/_wireframe.css` (943 declarations · 12 variable definitions) and the 17 per-page
 `<style>` blocks.
 
-**Nothing is changed, renamed, merged or deleted by this document.** It records what is there.
+**Nothing is changed, renamed, merged or deleted by this document.** The wireframes are the
+design; where this document disagreed with a frame, the document was corrected. It records what
+is there.
+
+**Read at `ui/kit.css` rev 272** (`d3c4fb7`, 2026-09-19). That revision landed *while* this audit
+was being taken, inserting eight lines at 4444, so the three line numbers in §C1 above that point
+were re-read against it. No `wireframes/*.html` changed between the first read and the last —
+verified by diff — so every page-side figure here was measured on one state of the frames. **The
+line numbers in §C1 are the only part of this document that a later revision of `kit.css` will
+silently invalidate**; everything else is named by selector and class.
 
 ---
 
@@ -86,10 +95,10 @@ selector, is §A1.
 | `--t-number-weight` | `700` | 16 pages | `font-weight`, same three. |
 | `--t-number-line` | `1` | 13 pages | `line-height` on two of them; also a term of `--sz-glyph-plate`. |
 | `--t-number-track` | `-.02em` | 16 pages | `letter-spacing`, same three. |
-| `--t-title-size` | `17px` | 121 pages · 9 uses | `font-size` on `.dr-topbar__title`, `.dr-msg__title`, `.dr-choice__title`, `.dr-zone__title`, `.dr-range__title`, `.dr-sheet__title`, `.dr-price__val`, `.dr-offer__name`, `.dr-offer__price`. |
-| `--t-title-weight` | `600` | 120 pages · 7 uses | `font-weight` on the same set less `.dr-offer__name` and `.dr-listing--service`. |
+| `--t-title-size` | `17px` | 121 pages · 9 uses | `font-size` on `.dr-topbar__title`, `.dr-msg__title`, `.dr-listing--service .dr-listing__name`, `.dr-choice__title`, `.dr-zone__title, .dr-range__title` (one declaration), `.dr-sheet__title`, `.dr-price__val`, `.dr-offer__name`, `.dr-offer__price`. |
+| `--t-title-weight` | `600` | 120 pages · 7 uses | `font-weight` on the same set less two. `.dr-offer__name` takes the title's **size** but `--weight-medium` for its weight — the same `600` under a second name, §A5 in miniature. `.dr-listing--service .dr-listing__name` takes `--weight-regular` `400`, so the service card's title is genuinely lighter. |
 | `--t-title-line` | `1.4` | 122 pages · 5 uses | `line-height`; also on `.dr-call__time`, which takes the title's leading at the lead's size. |
-| `--t-title-track` | `-.01em` | 120 pages · 5 uses | `letter-spacing`. |
+| `--t-title-track` | `-.01em` | 120 pages · 5 uses | `letter-spacing` on `.dr-topbar__title`, `.dr-msg__title`, `.dr-choice__title`, `.dr-zone__title, .dr-range__title`, `.dr-sheet__title`. |
 | `--t-heading-size` | `15px` | 128 pages · 28 uses | `font-size` on `.dr-btn`, `.dr-rows__val`, `.dr-order__title`, `.dr-listing__name`, `.dr-op__name`, `.dr-field__label/__input/__value`, `.dr-search input`, `.dr-pick`, `.dr-range__val/__out`, `.dr-disclosure > summary`, `.dr-picker__item`, `.dr-upload__action`, `.dr-cal__month/__day/__unit`, `.dr-kb__done`, `.dr-avail__state`, `.dr-when__value`, `.dr-route__input/__value`; also a term inside two `min-height` calcs. |
 | `--t-heading-weight` | `600` | 30 pages · 4 uses | `font-weight` on `.dr-order__title`, `.dr-listing__name`, `.dr-op__name`, `.dr-cal__month`. |
 | `--t-heading-line` | `1.2` | 32 pages · 9 uses | `line-height` on nine headings. |
@@ -147,7 +156,7 @@ selector, is §A1.
 | `--sp-within-lg` | `8px` | 133 · 54 | `gap` (28 selectors) · `padding` (17) · `margin`, `margin-left/-right/-top` · **`transform`** on `.dr-toast` · **`width`** on `.dr-cal__grid` · `right` of a route separator. |
 | `--sp-snug` | `12px` | 132 · 68 | The most-spent token: `gap` (30) · `padding` (15) · `min-height` terms · `padding-block/-inline/-top/-bottom` · `left`/`top`/`bottom` offsets of five separators · `margin-block`, `margin-top`, `margin-bottom`; also `--pick-indent`'s second term. |
 | `--sp-screen` | `16px` | 132 · 59 | `padding` (26 selectors) — the 16px screen gutter; `margin-inline`, `margin-left/-right`; `gap`; `left`/`right`/`top` of full-bleed separators; a term of `.dr-topbar__title`'s `max-width`; and in a media query it **redefines `--sp-group`**. |
-| `--sp-group` | `20px` | 58 · 15 | `padding` on `.dr-card`, `.dr-op`, `.dr-toast`, `.dr-balance`, `.dr-fab`; `gap` on `.dr-card`, `.dr-choice`, `.dr-call .dr-main`; `margin-top` on three; `bottom` of `.dr-toast`; `margin` of a bleed slide. |
+| `--sp-group` | `20px` | 58 · 15 | `padding` on `.dr-card`, `.dr-card--compact`, `.dr-op`, `.dr-toast`, `.dr-slider--bleed .dr-slide`, `.dr-balance--card, .dr-balance--banner`, `.dr-fab` (7); `gap` on `.dr-card`, `.dr-choice`, `.dr-call .dr-main` (3); `margin-top` on `.dr-zone > .dr-picks, .dr-zone > .dr-rows`, `.dr-range__band`, `.dr-range__fields` (3); `bottom` of `.dr-toast`; `margin` of `.dr-slider--bleed .dr-slide__art`. |
 | `--sp-list` | `28px` | 18 · 2 | `gap` on `.dr-log`, `.dr-list` — the gap *between* cards. |
 | `--sp-cta` | `32px` | 4 · 4 | `padding` on `.dr-msg--banner`, a bleed slide; `padding-block`; `padding-bottom` on `.dr-card--cta`. |
 | `--sp-2` | `2px` | 38 · 15 | `gap`, `padding`, `margin-top`, **and `width`/`height` of `.dr-switch__knob`'s inset**. |
@@ -207,7 +216,7 @@ selector, is §A1.
 | `--sz-dot` | `10px` | 5 · 4 | `width`/`height` of `.dr-box__dot` (checked radio) and `.dr-avail__dot`. |
 | `--sz-rail` | `4px` | 2 · 3 | `height` of `.dr-range__rail::before` and `.dr-range__fill`; a term of `--hist-seat`. |
 | `--sz-hist` | `48px` | 2 · 1 | `height` of `.dr-range__hist` — the price chart. |
-| `--sz-rowkey` | `96px` | 58 · 4 | `flex` basis of `.dr-rows__key` and `.dr-field__label`; `grid-template-columns` of `.dr-rows`. The label column's **floor**, not its width. |
+| `--sz-rowkey` | `96px` | 58 · 4 | `flex` basis of `.dr-rows__key` and `.dr-field__label`; `grid-template-columns` of `.dr-rows:not(.dr-rows--money)` and of that same selector `:has(> .dr-field > .dr-field__chev)`. **The money rows are excluded by name** — a price row does not take the 96px column. The label column's **floor**, not its width. |
 | `--sk-title-h` `--sk-date-h` `--sk-lbl-h` `--sk-lbl-w` `--sk-lbl-w-sm` `--sk-place-h` `--sk-price-h` `--sk-price-w` `--sk-stop-gap` `--sk-head-gap` | `14` `10` `12` `38` `22` `16` `18` `84` `7` `8` px | 0–6 pages each | Each is one skeleton bar's `height` or `width`, sized to the element it stands in for, on `order-history-loading` and `notifications-loading`. `--sk-lbl-w` and `--sk-lbl-w-sm` reach no page: `.dr-sk-lbl` is in no markup. |
 | `--sz-brand-w` / `--sz-brand-h` | `60px` / `20px` | 48 · 1 each | `width` / `height` of `.dr-brand`. |
 | `--node-centre` | `calc((22−2)/2)` | 10 · 2 | `left` / `top` of the rail and connector — derived so the arithmetic cannot drift. |
@@ -262,7 +271,7 @@ selector, is §A1.
 | `--sh-card` | 2-layer | **0 uses** | Declared rung, applied to nothing. |
 | `--sh-raised` | 2-layer | 30 · 3 | `box-shadow` on `.dr-sheet`, `.dr-toast`, `.dr-fab` — the three things that genuinely float. |
 | `--sh-onphoto` | `0 2px 8px rgba(20,18,15,.18)` | **0 uses** | Declared rung, held for a chip that floats over a photograph. |
-| `--halo-now` | `0 0 0 4px green@20%` | 10 · 1 | `box-shadow` on `.dr-node--now`. |
+| `--halo-now` | `0 0 0 4px color-mix(in srgb, var(--green) 20%, transparent)` | 10 · 1 | `box-shadow` on `.dr-node--now`. |
 | `--dur-fast` | `.12s` | 119 · 5 | `transition` of `transform` on `.dr-btn`; of the switch knob, the disclosure chevron, the pager dot. |
 | `--dur-base` | `.15s` | 119 · 4 | `transition` of `filter` and `background` on `.dr-btn`; of `.dr-toast`. |
 | `--dur-ping` | `1.8s` | 1 · 1 | `animation` of `.dr-status--live::after`. |
@@ -385,7 +394,7 @@ Ordered by how far apart the roles are.
 
 | Variable | Roles it carries at once | Sites |
 |---|---|---|
-| **`--green`** | **action** (primary CTA) · **selection** (chosen tab, checked box, checked radio, selected day, selected offer, language toggle) · **live state** (status disc, ping ring) · **done state** (node, rail, checklist line, tick under a zone label) · **count** (`.dr-count-badge`, `.dr-grouptab__count`'s ground) · **identity/edit affordance** (`.dr-profile .dr-avatar-edit__badge`) · **money** (`.dr-balance--card/--banner`) · **removal** (`.dr-fchip__x`) | 23 background sites + 3 borders |
+| **`--green`** | **action** (primary CTA) · **selection** (chosen tab, checked box, checked radio, selected day, selected offer, language toggle) · **live state** (status disc, ping ring) · **done state** (node, rail, checklist line, tick under a zone label) · **count** (`.dr-count-badge` only — the group tab's own `.dr-grouptab__count` is the **wash** with `--ink`, so the two count badges share `--sz-fchip-x` and `--r-pill` but not their green) · **identity/edit affordance** (`.dr-profile .dr-avatar-edit__badge`) · **money** (`.dr-balance--card/--banner`) · **removal** (`.dr-fchip__x`) | 23 background sites + 3 borders |
 | **`--ink`** | **primary text** (79 selectors) · **a fill** (brand mark, home indicator, switch knob, range fill, toast ground, selected-tab underline) · **the focus ring's colour** (28 of the 30 outlines) · **a caret** · **a border** (`.dr-box`) · **the scrim's source** | 128 uses |
 | **`--btn2`** | **a surface** (secondary button, disabled button, icon button, switch track, skeleton bar, pager dot, keyboard plane) · **an ink** (`.dr-call .dr-label`, `.dr-call__time`, `.dr-star`, `.dr-stars` — light text on the night ground) | 20 backgrounds + 4 colours |
 | **`--page`** | **the screen's ground** · **an ink** (on `--night` and on `--danger`) · **a border** (the photo-pile cut-out) · **a focus ring** on dark | 14 + 9 + 2 + 2 |
@@ -437,24 +446,24 @@ Two of them are modifier classes whose token is still spent through a descendant
 
 ## 4. Finding C — values past variables
 
-### C1 · `ui/kit.css` — 20 literal design values in 2 781 declarations
+### C1 · `ui/kit.css` — 20 literal design values in 2 782 declarations
 
 Every one carries a comment saying why. Listed as found, not judged.
 
 | Line | Selector | Declaration | What it bypasses |
 |---|---|---|---|
-| 4502 | `.dr-btn--pay` | `background: #000; color: #FFF` | The palette's own rule at line 55: *"No `#FFFFFF` and no `#000000` anywhere."* Apple's and Google's brand requirement; the hover state immediately steps back to `var(--ink)`. |
+| 4510 | `.dr-btn--pay` | `background: #000; color: #FFF` | The palette's own rule at line 55: *"No `#FFFFFF` and no `#000000` anywhere."* Apple's and Google's brand requirement; the hover state immediately steps back to `var(--ink)`. |
 | 718 | `.dr-back` | `width: 44px; height: 44px` | `--h-control` / `--sz-action`, both 44. |
 | 757 | `.dr-bell` | `width: 44px; height: 44px` | the same two. |
 | 678 | `.dr-topbar__title` | `max-width: calc(100% − 2 * (44px + var(--sp-screen)))` | the 44 is `.dr-back`'s box restated. |
 | 1889 | `.dr-groups--tabs .dr-grouptab::after` | `height: 2px` | `--sz-track` / `--r-hairline` / `--sp-2`, all 2. |
 | 3537 | `.dr-paymark` | `width: 40px; height: 20px` | no rung exists; `20` is `--sz-brand-h`. |
-| 4515 | `.dr-paymark--pay` | `width: 46px; height: 23px` | the 40 × 20 box scaled 15/13. |
+| 4523 | `.dr-paymark--pay` | `width: 46px; height: 23px` | the 40 × 20 box scaled 15/13. |
 | 3552 | `.dr-idmark` | `width: 20px; height: 20px` | `--ic-20` / `--sz-status` / `--sz-avatar-badge`, all 20. |
 | 4237 | `.dr-lang button` | `min-width: 36px` | `--sz-switch` / `--sz-grip-w`, both 36. |
 | 4242 | `.dr-lang button` | `letter-spacing: .04em` | not on the tracking scale (`.09` / `.05` / `.02` / `−.01` / `−.02`). |
 | 4407 | `.dr-fchip__x` | `line-height: 1` | `--t-number-line` is 1. |
-| 5600 | `.dr-slide--floor .dr-slide__art img` | `object-position: center calc(100% + 7px)` | no rung; `7` is `--sk-stop-gap`. |
+| 5608 | `.dr-slide--floor .dr-slide__art img` | `object-position: center calc(100% + 7px)` | no rung; `7` is `--sk-stop-gap`. |
 | 609 | `.dr-sr, .sr-only` | `width: 1px; height: 1px` | the standard clip idiom — structural, not a design value. |
 
 ### C2 · Page `<style>` blocks — 1 263 literal design values across 17 pages
@@ -505,10 +514,12 @@ The most repeated literals inside these blocks: `font-weight: 600` (106×),
 
 ### C4 · Literal hexes in markup — brand artwork
 
-`account-edit.html` carries Visa `#1434CB`, Mastercard `#EB001B` / `#FF5F00` / `#F79E1B` and
-Apple `#000` inline in SVG; `order-review.html`, `-aerial`, `-inspection` carry Google Pay's
-`#4285F4` / `#34A853` / `#EA4335` / `#FBBC05` and `#FFF`. These are quoted marks and the kit
-says so at line 3545; they are recorded here because they are literal colour in a page.
+`account-edit.html` carries **ten** literal SVG fills — the whole payment-method picker in one
+place: Visa `#1434CB`, Mastercard `#EB001B` / `#FF5F00` / `#F79E1B`, Apple `#000`, Google's
+wordmark grey `#5F6368`, **and Google's four** `#4285F4` / `#34A853` / `#EA4335` / `#FBBC05`.
+`order-review.html`, `-aerial`, `-inspection` carry Google's same four plus `#FFF` — the pay
+button's lockup rather than the picker row's mark. These are quoted marks and the kit says so at
+line 3545; they are recorded here because they are literal colour in a page.
 
 ---
 
