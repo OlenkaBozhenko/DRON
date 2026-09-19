@@ -329,7 +329,6 @@
         <button class="dr-btn dr-btn--primary dr-btn--block" type="button">View details</button>
       </footer>
     </div>
-    <span class="st">--bleed &#183; the art runs edge to edge, the words keep the 20px gutter &#183; welcome</span>
   </div>
   <div class="notes">
     <p>Status bar <b>44</b> · nav bar <b>56</b> · tabs <b>60</b> + home <b>30</b>. Tab target
@@ -711,9 +710,17 @@
       <div class="dr-rows__row"><span class="dr-rows__key">Delivered to</span><span class="dr-rows__val">Osokorky, 14</span></div>
       <div class="dr-rows__row"><span class="dr-rows__key">Time</span><span class="dr-rows__val">10:07</span></div>
       <div class="dr-rows__row"><span class="dr-rows__key">Operator</span><span class="dr-rows__val">Andriy M.</span></div>
+      <div class="dr-rows__row dr-rows__row--stack"><span class="dr-rows__key">Signed</span><span class="dr-rows__val">2 Jul, 15:42 &#183; <span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span></div>
     </div>
+    <span class="st">--stack &#183; the value is too wide for the line, so it takes one of its own</span>
   </div>
   <div class="notes">
+    <p><b><code>--row--stack</code> is the row that gives up on one line.</b>
+       <code>flex-wrap: wrap</code> with <code>flex-basis: 100%</code> on every child, so the key
+       sits above the value instead of beside it. <code>inspection-report</code> spends it on
+       <i>Signed</i>, where the value carries a date <i>and</i> a credential chip: on one line the
+       chip would be squeezed under its own 44px minimum, or the date would ellipsis away. The row
+       keeps the panel&#8217;s key/value semantics and only changes the axis.</p>
     <p>Key <code>--slate</code> 13/400 at <b>5.95:1</b>; value <code>--ink</code> 15/600
        <code>tabular-nums</code>, right-aligned, at <b>14.37:1</b>.</p>
     <p><b>The One-Component-One-Value Rule.</b> The same component drawn on two screens carries the
@@ -1076,6 +1083,19 @@
       </div>
       <span class="st">--bg-night ground &#183; avatar disc 176 &#183; four controls, one of them red</span>
     </div>
+    <div class="plate" style="align-items:stretch;padding:0;width:341px;max-width:100%">
+      <div class="dr dr-call" style="padding:var(--len-12) var(--len-16);border-radius:var(--len-22)">
+        <div class="dr-call__top">
+          <span class="dr-btn dr-btn--icon dr-btn--night" role="img" aria-label="Minimise the call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 3.5l6 6"/><path d="M4.5 9.5h5v-5"/><path d="M20.5 20.5l-6-6"/><path d="M19.5 14.5h-5v5"/></svg></span>
+          <span class="dr-call__who">
+            <span class="dr-call__name">DRON support</span>
+            <span class="dr-call__time"><span class="dr-sr">Call duration </span><time datetime="PT0M42S">00:42</time></span>
+          </span>
+          <span class="dr-call__side dr-call__side--empty"></span>
+        </div>
+      </div>
+      <span class="st">--empty &#183; nothing to add support to, so the 44 stays and the name stays centred</span>
+    </div>
   </div>
   <div class="notes">
     <p><b>It is not a second theme and it is not a dark mode.</b> It is the one surface a call
@@ -1091,6 +1111,12 @@
        <b>2.42:1</b>, a real <code>WCAG 1.4.3</code> failure. The dimmer ink here is
        <code>--text-on-night-muted</code> at <b>11.54:1</b>, and the bright one is
        <code>--text-on-night</code> at <b>15.99:1</b> &#8212; the toast&#8217;s own pair, inverted.</p>
+    <p><b><code>--side--empty</code> is a 44px hole, and it is doing real work.</b> On
+       <code>call-support</code> there is nobody left to add, so the right-hand button is gone
+       &#8212; but the name is centred by having equal weight either side of it, and an empty
+       <code>&lt;span&gt;</code> collapses to nothing. <code>width: 44px</code> keeps the reserve
+       the button had, so the name sits on the same axis on all three call screens instead of
+       sliding right on one of them.</p>
     <p><b>The red is the one fill the danger hue takes.</b> End call is
        <code>--bg-danger-solid</code>; everywhere else in the product danger is a <i>word</i> in
        <code>--color-danger</code>. Each control is a 44 circle, and the label is on the button,
@@ -1436,7 +1462,7 @@
             <p class="dr-lead">Pick a service and pay. A certified DRON operator does the flying &#8212; you never touch the drone.</p>
             <span class="dr-slide__art"><img src="../assets/scenes/thumbs/handover.png" alt="" decoding="async"></span>
           </section>
-          <section class="dr-slide" aria-label="Slide 2 of 3">
+          <section class="dr-slide dr-slide--floor" aria-label="Slide 2 of 3">
             <p class="dr-display">A verified, insured operator</p>
             <p class="dr-lead">The moment you pay you see their name, photo and live position.</p>
             <span class="dr-slide__art"><img src="../assets/people/thumbs/wide/operator.png" alt="" loading="lazy" decoding="async"></span>
@@ -1449,6 +1475,7 @@
         <span class="dr-btn dr-btn--primary dr-btn--block">Get started</span>
       </footer>
     </div>
+    <span class="st">--bleed &#183; the art runs edge to edge, the words keep the 20px gutter &#183; slide 2 is --floor</span>
   </div>
   <div class="notes">
     <p><b><code>--bleed</code> is the one place a picture reaches the frame,</b> and it buys it
@@ -1460,6 +1487,12 @@
        inside is <code>.dr-screen:has(.dr-slider--bleed) &gt; .dr-main</code> &#8212; the frame
        itself opts in. The same <code>:has()</code> lifts the status bar, the top bar and the
        action bar to <code>z-index:1</code>, so the chrome stays over the artwork.</p>
+    <p><b><code>--floor</code> is the slide whose subject stands on the bottom edge.</b> The art
+       keeps its 32px of top padding and drops the bottom one, then
+       <code>object-position: center calc(100% + 7px)</code> pushes the picture 7px past the floor
+       &#8212; so an operator standing in frame is cut at the shoe rather than floating over a band
+       of page. It is per-slide, not per-slider: the first slide is a handover in mid-air and keeps
+       its floor.</p>
     <p><b>The art is <code>contain</code>, never <code>cover</code>.</b> These are real photographs
        of a real handover and a real operator; cropping them to fill a box would cut the subject.
        <code>--floor</code> is the variant that lets one run to the bottom edge, and it pays for
@@ -1565,15 +1598,17 @@
        where a score is <i>given</i> rather than reported.</p></div>
   <div class="spec">
     <div class="plate wide" style="align-items:center">
+      <section class="dr dr-center dr-center--tight" aria-label="Rating" style="width:100%">
       <p class="dr-display dr-display--balance" style="text-align:center">How did Andriy do?</p>
-      <div class="dr dr-rating" role="group" aria-label="Rating">
+      <div class="dr-rating" role="group" aria-label="Rating">
         <button class="dr-star" aria-pressed="true" type="button" aria-label="1 star"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
         <button class="dr-star" aria-pressed="true" type="button" aria-label="2 stars"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
         <button class="dr-star" aria-pressed="true" type="button" aria-label="3 stars"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
         <button class="dr-star" aria-pressed="true" type="button" aria-label="4 stars"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
         <button class="dr-star" aria-pressed="false" type="button" aria-label="5 stars"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
       </div>
-      <span class="st">star 32 in a 44 target &#183; filled --color-rating &#183; empty --color-rating-empty</span>
+      </section>
+      <span class="st">--tight &#183; the question sits 8 from the stars, not 12 &#183; star 32 in a 44 target</span>
     </div>
   </div>
   <div class="notes">
@@ -1587,9 +1622,182 @@
        <code>1.4.11</code>&#8217;s 3:1 if it stood alone. It does not: the fill pairs with
        <code>aria-pressed</code>, and the empty star is
        <code>--color-rating-empty</code> &#8212; grey, with no outline. Shape and state, not hue.</p>
+    <p><b>The question and the stars are one thing, so they sit at 8.</b>
+       <code>.dr-center</code> is the centred column at the column&#8217;s own 12;
+       <code>--tight</code> pulls it to <code>--sp-8</code>, because a heading and the control it
+       names should not read as two blocks. Around the pair, <code>rate</code>&#8217;s
+       <code>.dr-main--zones</code> puts 24 &#8212; so the gap inside the group is a third of the
+       gap around it.</p>
     <p><b>The star is the one glyph in the system that fills instead of stroking</b> &#8212; a
        rating is a quantity, not an icon. Everything else on the 24-grid is
        <code>--ic-stroke</code> 1.7 in <code>currentColor</code> with no fill.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Zone boundaries</b><code>.dr-main--zones &#183; .dr-stack--zones &#183; .dr-center--tight &#183; .dr-rail--zone</code>
+    <p>Four rungs that say <i>this is a different question</i>. <code>rate</code>,
+       <code>support</code>, <code>role-select</code>, <code>account-edit</code>,
+       <code>tracking</code>.</p></div>
+  <div class="spec col">
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <div class="plate" style="align-items:stretch;padding:0;width:162px">
+        <div class="dr dr-main" style="height:auto;overflow:visible">
+          <p class="dr-label">Copy</p>
+          <p class="dr-note">The intro that asks the question.</p>
+          <ul class="dr-list dr-list--snug" style="list-style:none">
+            <li><article class="dr-card dr-card--compact"><span class="dr-listing__name">Client</span></article></li>
+            <li><article class="dr-card dr-card--compact"><span class="dr-listing__name">Operator</span></article></li>
+          </ul>
+        </div>
+        <span class="st">.dr-main &#183; 12 between the blocks, 8 inside the list &#183; 1.5:1</span>
+      </div>
+      <div class="plate" style="align-items:stretch;padding:0;width:162px">
+        <div class="dr dr-main dr-main--zones" style="height:auto;overflow:visible">
+          <p class="dr-label">Copy</p>
+          <p class="dr-note">The intro that asks the question.</p>
+          <ul class="dr-list dr-list--snug" style="list-style:none">
+            <li><article class="dr-card dr-card--compact"><span class="dr-listing__name">Client</span></article></li>
+            <li><article class="dr-card dr-card--compact"><span class="dr-listing__name">Operator</span></article></li>
+          </ul>
+        </div>
+        <span class="st">--zones &#183; 24 between the blocks, 8 inside &#183; 3:1</span>
+      </div>
+    </div>
+    <ul class="scale" style="width:100%;padding:0;margin:0">
+      <li><span class="tk">.dr-main</span><span class="vv">gap 12</span><span>the generic column</span></li>
+      <li><span class="tk">--zones</span><span class="vv">gap 24</span><span>a zone boundary &#183; 3:1 against a list</span></li>
+      <li><span class="tk">.dr-stack--zones</span><span class="vv">gap 12</span><span>zones inside a form</span></li>
+      <li><span class="tk">.dr-center--tight</span><span class="vv">gap 8</span><span>a heading welded to its control</span></li>
+      <li><span class="tk">.dr-rail--zone</span><span class="vv">margin-block 12</span><span>the rail as a block, not a row</span></li>
+    </ul>
+  </div>
+  <div class="notes">
+    <p><b>Not one of these mints a value.</b> 24, 12 and 8 are <code>--sp-24</code>,
+       <code>--sp-12</code> and <code>--sp-8</code>, three rungs of the spacing scale that were
+       already spent elsewhere. Four one-declaration classes, and every number in them is a rung
+       the system had.</p>
+    <p><b>The ratio is the argument, not the number.</b> <code>.dr-main</code>&#8217;s generic 12
+       above a list whose own cards sit 8 apart is <b>1.5:1</b> &#8212; measured on the built page
+       and called too quiet to read as a break. <code>--zones</code> makes it <b>3:1</b>, which is
+       what a boundary between <i>the copy asking</i> and <i>the fork answering</i> needs. There is
+       no <code>WCAG</code> criterion for this; it is the proximity rule, and the check is a
+       ratio either way.</p>
+    <p><b><code>--tight</code> runs the other way, and that is the same argument.</b> A heading
+       and the control it names are one thing, so they sit at <b>8</b> &#8212; tighter than the
+       column&#8217;s 12 &#8212; while <code>--zones</code> puts 24 around the pair. Both
+       boundaries move together: the blocks are peers, so pushing one apart without the other
+       would just re-group them differently.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Centred main</b><code>.dr-main--center &gt; .dr-center</code>
+    <p>One screen spends it &#8212; <code>switch-role</code>, where the column is the only thing in
+       the frame.</p></div>
+  <div class="spec">
+    <div class="plate" style="align-items:stretch;padding:0;width:341px;max-width:100%">
+      <div class="dr dr-screen" style="height:420px;width:auto">
+        <header class="dr-topbar"><span class="dr-topbar__title">Switch role</span><span class="dr-topbar__spacer"></span></header>
+        <main class="dr-main dr-main--center">
+          <div class="dr-center">
+            <span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5h13"/><path d="M13.5 5l3.5 3.5-3.5 3.5"/><path d="M20 15.5H7"/><path d="M10.5 12L7 15.5 10.5 19"/></svg></span>
+            <p class="dr-display dr-display--balance">Switch to operator</p>
+            <p class="dr-lead">Your client orders stay where they are.</p>
+          </div>
+        </main>
+        <footer class="dr-actionbar"><span class="dr-btn dr-btn--primary dr-btn--block">Switch</span></footer>
+      </div>
+      <span class="st">the column sits between the bars, not against the top</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b><code>margin-block: auto</code>, and deliberately not
+       <code>justify-content: center</code>.</b> The two look identical until the text grows. Past
+       the point where the column is taller than the space, a centred flex child overflows in
+       <i>both</i> directions and the top half is pushed above the scroll origin &#8212;
+       unreachable. Auto margins collapse to zero instead and the column just starts at the top.</p>
+    <p><b>The measurement is on the page, at 200%.</b> The column is <b>490.20px</b> in
+       <b>545.60px</b> of main &#8212; <code>WCAG 1.4.4</code> clear with <b>55.40px</b> to spare
+       &#8212; and it is the behaviour <i>past</i> 200% that decided the declaration. A rule that
+       is right at the tested size and loses content one step beyond it is not right.</p>
+    <p><b>It applies to the child, not the container.</b> The selector is
+       <code>.dr-main--center &gt; .dr-center</code>: main keeps its own padding and gap, and only
+       a direct <code>.dr-center</code> is centred. A screen with two blocks in it is not affected
+       by the class at all.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Balanced note</b><code>.dr-note--balance</code>
+    <p>Two screens spend it &#8212; <code>account-photo</code> and
+       <code>operator-account-photo</code>, on the line stating the file rules.</p></div>
+  <div class="spec col">
+    <div class="plate" style="align-items:stretch;padding:0;width:260px">
+      <p class="dr-note" style="margin:0">JPG or PNG, up to 5 MB. Nothing changes until you save.</p>
+      <span class="st">.dr-note &#183; the last line is whatever is left over</span>
+    </div>
+    <div class="plate" style="align-items:stretch;padding:0;width:260px">
+      <p class="dr-note dr-note--balance" style="margin:0">JPG or PNG, up to 5 MB. Nothing changes until you save.</p>
+      <span class="st">--balance &#183; the lines are evened out</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>One declaration, <code>text-wrap: balance</code>,</b> and it is spent on the one kind of
+       line that suffers without it: a short centred note that would otherwise leave two or three
+       words orphaned on a last line. The browser evens the lines instead of filling each one to
+       the edge.</p>
+    <p><b>It is a text rule, not a layout rule.</b> Nothing moves, nothing resizes, no box changes
+       &#8212; which is why it can be spent freely and why it needs no measurement. It also
+       degrades to nothing: a browser without it wraps the old way and the note still reads.</p>
+    <p><b>It is not on every note, on purpose.</b> The line above it &#8212; <i>Your operator sees
+       this photo when they arrive</i> &#8212; is long enough to fill its own lines. Balancing a
+       paragraph that does not need it only makes the measure ragged.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Form in zones</b><code>.dr-stack--zones</code>
+    <p><code>account-edit</code> and <code>operator-profile-setup</code>: one form, sorted by the
+       kind of control rather than by the order the fields were thought of.</p></div>
+  <div class="spec">
+    <form class="dr dr-stack dr-stack--zones" action="#" aria-label="Edit account" style="width:341px;max-width:100%">
+      <div class="dr-rows">
+        <div class="dr-field">
+          <label class="dr-field__label" for="kit-nm">Name</label>
+          <span class="dr-field__group"><input class="dr-field__input" id="kit-nm" type="text" value="Olena B."></span>
+        </div>
+        <div class="dr-field">
+          <label class="dr-field__label" for="kit-ph">Phone</label>
+          <span class="dr-field__group"><input class="dr-field__input" id="kit-ph" type="tel" value="+380 67 123 4567"></span>
+        </div>
+      </div>
+      <div class="dr-rows">
+        <span class="dr-field dr-field--action">
+          <span class="dr-field__label">Payment method</span>
+          <span class="dr-field__group"><span class="dr-field__value">Visa &#8226;&#8226;&#8226;&#8226; 4921</span><svg class="dr-ic dr-field__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+        </span>
+        <span class="dr-field dr-field--action">
+          <span class="dr-field__label">Language</span>
+          <span class="dr-field__group"><span class="dr-field__value">English</span><svg class="dr-ic dr-field__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+        </span>
+      </div>
+    </form>
+  </div>
+  <div class="notes">
+    <p><b>Two groups, and the split is by control, not by topic.</b> Three things you type sit in
+       the first panel; two things that open a drawer sit in the second. A typed row wedged
+       between two chevrons reads as a chevron that does not work, which is the mistake this
+       arrangement was made to fix.</p>
+    <p><b><code>--zones</code> here is 12, not 24 &#8212; and the difference is the container.</b>
+       <code>.dr-stack</code>&#8217;s own gap is 8, so 12 is already a 1.5:1 step, and the two
+       groups are <i>panels</i> with their own surface and radius: the card edge does most of the
+       separating and the gap only has to keep them from touching. On <code>.dr-main</code>,
+       where the blocks are bare text and a list, there is no edge to help, so the same job costs
+       24.</p>
+    <p><b>No heading between the groups, on purpose.</b> Labelling them <i>Personal</i> and
+       <i>Preferences</i> would put two more lines of type on a screen where every row already
+       names itself. The boundary is spatial, and the form keeps one accessible name.</p>
   </div>
 </div>
 
@@ -1958,13 +2166,13 @@
        names — <code>.nd</code> and <code>.tl-dot</code>. That is the drift this closes.</p></div>
   <div class="spec">
     <div class="plate">
-      <ul class="dr-rail dr-rail--at2" style="width:260px">
+      <ul class="dr-rail dr-rail--at2 dr-rail--zone" style="width:260px">
         <li class="dr-rail__step"><span class="dr-node dr-node--done" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-rail__lbl">Accepted</span></li>
         <li class="dr-rail__step" aria-current="step"><span class="dr-node dr-node--now" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-rail__lbl dr-rail__lbl--now">En route</span></li>
         <li class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">On&#8209;site</span></li>
         <li class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">Done</span></li>
       </ul>
-      <span class="st">horizontal &#183; order card &#183; 326.2 &#215; 45.7 on tracking</span>
+      <span class="st">--at2 --zone &#183; horizontal &#183; 326.2 &#215; 45.7 on tracking</span>
     </div>
   </div>
   <div class="notes">
