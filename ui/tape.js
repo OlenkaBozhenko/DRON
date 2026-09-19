@@ -1,0 +1,341 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   DRON landing — the tape player
+   Spec: landing.md. One component, two live modes:
+
+     data-mode="reel"  the flow plays itself; touch it and it hands over
+     data-mode="live"  nothing moves until the visitor moves it
+
+   THE STANDING PROHIBITION (landing.md §0): nothing in wireframes/ is ever
+   modified for this file's benefit. The embedded page is rendered exactly as
+   it ships and is dressed from OUT HERE — the parent writes one stylesheet
+   into the iframe document (same origin), and tapes address only selectors
+   that already exist in the built page. When a selector breaks, THIS file is
+   fixed. Never the page.
+
+   Accessibility, built rather than asserted (landing.md §3):
+     WCAG 2.2.2  a real <button> pauses the reel — keyboard reachable.
+     WCAG 2.1.1  pointer take-over is a bonus on top of that button, not the
+                 mechanism; a keyboard user never touches anything.
+     HIG Motion  prefers-reduced-motion: no autoplay, no crossfade.
+     WCAG 4.1.2  every iframe carries a title; the back layer is inert.
+   ───────────────────────────────────────────────────────────────────────── */
+(function () {
+  "use strict";
+
+  var BASE = "wireframes/";
+  var FADE = 260;            /* ms — matches .lp-view transition in landing.css */
+  var SCROLL_SETTLE = 380;   /* ms — after scrolling a target into view        */
+
+  var REDUCED = window.matchMedia
+    ? window.matchMedia("(prefers-reduced-motion: reduce)")
+    : { matches: false, addEventListener: function () {} };
+
+  /* The stylesheet the parent writes into every embedded page.
+     `body.wf-shelled` is named explicitly: _wf-shell.js sets
+     .wf-shelled{padding:52px 24px 24px 272px !important}, and a class
+     selector beats a bare `body` even when both are !important. */
+  var INJECT = [
+    ".wf-toolbar,.wf-tree,.wf-scrim,.wf-voice-drawer,.wf-voice-scrim,",
+    ".meta,.state-switch{display:none!important}",
+    "body,body.wf-shelled{margin:0!important;padding:0!important;",
+    "background:transparent!important;display:block!important}",
+    ".wf-frame{border:0!important;border-radius:0!important}"
+  ].join("");
+
+  function Player(root) {
+    var self = this;
+
+    this.root = root;
+    this.mode = root.getAttribute("data-mode") || "live";
+    this.phone = root.querySelector(".lp-phone");
+    this.caps = Array.prototype.slice.call(root.querySelectorAll(".lp-steps li"));
+    this.toggle = root.querySelector(".lp-toggle");
+    this.note = root.querySelector(".lp-note");
+
+    /* The tape. Written in landing.html, sourced from landing.md §5. */
+    var json = root.querySelector(".lp-tape");
+    this.tape = json ? JSON.parse(json.textContent) : [];
+
+    /* Layer A is already in the HTML with a src, so the section works with
+       JavaScript off — it degrades to a plain, clickable prototype. Layer B
+       is added here purely to carry the crossfade. */
+    this.a = this.phone.querySelector("iframe");
+    this.b = this.a.cloneNode(false);
+    this.b.removeAttribute("src");
+    this.b.classList.add("is-back");
+    this.b.setAttribute("aria-hidden", "true");
+    this.b.inert = true;
+    this.phone.appendChild(this.b);
+
+    this.pulse = document.createElement("span");
+    this.pulse.className = "lp-pulse";
+    this.pulse.setAttribute("aria-hidden", "true");
+    this.phone.appendChild(this.pulse);
+
+    this.idx = 0;
+    this.playing = false;
+    this.taken = false;
+    this.timer = null;
+
+    this.dress(this.a);
+    this.a.addEventListener("load", function () { self.dress(self.a); });
+
+    if (this.mode === "reel") this.setupReel();
+    if (this.toggle) {
+      this.toggle.addEventListener("click", function () {
+        if (self.mode === "live") { self.restart(); return; }
+        if (self.playing) self.pause("paused"); else self.play();
+      });
+    }
+  }
+
+  /* ── the embedded page, dressed from outside ───────────────────────────── */
+
+  Player.prototype.doc = function (fr) {
+    try {
+      var d = fr.contentDocument;
+      /* Touch it: an opaque origin throws here rather than returning null. */
+      return d && d.body ? d : null;
+    } catch (e) { return null; }
+  };
+
+  Player.prototype.dress = function (fr) {
+    var self = this;
+    var d = this.doc(fr);
+    if (!d) { this.blocked(); return false; }
+
+    if (!d.getElementById("lp-injected")) {
+      var s = d.createElement("style");
+      s.id = "lp-injected";
+      s.textContent = INJECT;
+      d.head.appendChild(s);
+    }
+
+    /* Take-over by keyboard is the Pause button's job; this is only the
+       pointer path, and only in live mode — while a reel plays, the veil in
+       the parent document catches the pointer instead. */
+    if (this.mode === "live" && !d.__lpLinked) {
+      d.__lpLinked = true;
+      d.addEventListener("click", function (ev) {
+        var a = ev.target.closest && ev.target.closest("a[href]");
+        if (!a) return;
+        var href = a.getAttribute("href") || "";
+        if (!/^[a-z0-9._-]+\.html(#.*)?$/i.test(href)) return;  /* leave anything else native */
+        ev.preventDefault();
+        self.show(href.split("#")[0]);
+      }, true);
+    }
+    return true;
+  };
+
+  Player.prototype.blocked = function () {
+    if (!this.note) return;
+    this.note.hidden = false;
+    this.root.classList.add("is-blocked");
+    if (this.toggle) this.toggle.disabled = true;
+  };
+
+  /* ── crossfade ─────────────────────────────────────────────────────────── */
+
+  Player.prototype.show = function (file, then) {
+    var self = this;
+    var fade = REDUCED.matches ? 0 : FADE;
+
+    this.b.addEventListener("load", function once() {
+      self.b.removeEventListener("load", once);
+      self.dress(self.b);
+
+      var front = self.b, back = self.a;
+      front.classList.remove("is-back");
+      back.classList.add("is-back");
+      front.inert = self.playing;
+      back.inert = true;
+      front.removeAttribute("aria-hidden");
+      back.setAttribute("aria-hidden", "true");
+      self.a = front; self.b = back;
+
+      window.setTimeout(function () {
+        self.b.removeAttribute("src");
+        if (then) then();
+      }, fade);
+    });
+    this.b.src = BASE + file;
+  };
+
+  /* ── the pulse: where a finger would land ──────────────────────────────── */
+
+  Player.prototype.point = function (sel, then) {
+    var self = this;
+    var d = this.doc(this.a);
+    var el = d && d.querySelector(sel);
+    if (!el) { if (then) then(); return; }   /* a moved selector never stalls the reel */
+
+    var place = function () {
+      var r = el.getBoundingClientRect();
+      self.pulse.style.left = (r.left + r.width / 2) + "px";
+      self.pulse.style.top = (r.top + r.height / 2) + "px";
+      self.pulse.classList.remove("on");
+      void self.pulse.offsetWidth;            /* restart the animation */
+      self.pulse.classList.add("on");
+      if (then) then();
+    };
+
+    var r0 = el.getBoundingClientRect();
+    var h = d.documentElement.clientHeight;
+    if (r0.top < 0 || r0.bottom > h) {
+      el.scrollIntoView({ block: "center", behavior: REDUCED.matches ? "auto" : "smooth" });
+      window.setTimeout(place, REDUCED.matches ? 0 : SCROLL_SETTLE);
+    } else { place(); }
+  };
+
+  /* ── the reel ──────────────────────────────────────────────────────────── */
+
+  Player.prototype.setupReel = function () {
+    var self = this;
+
+    /* The veil sits in the PARENT document, over the phone. Two jobs: it
+       stops a stray click landing on a screen that is about to change, and
+       it is what "touch it and it hands over" actually catches — events
+       inside an iframe do not reach the parent, and the iframe is inert
+       while playing anyway. */
+    this.veil = document.createElement("button");
+    this.veil.type = "button";
+    this.veil.className = "lp-veil";
+    this.veil.tabIndex = -1;                  /* the Pause button is the keyboard path */
+    this.veil.setAttribute("aria-hidden", "true");
+    this.veil.addEventListener("pointerdown", function () { self.pause("taken"); });
+    this.phone.appendChild(this.veil);
+
+    this.caps.forEach(function (li, n) {
+      var btn = li.querySelector("button");
+      if (!btn) return;
+      btn.addEventListener("click", function () {
+        var at = 0;
+        for (var i = 0; i < self.tape.length; i++) { if (self.tape[i].cap === n) { at = i; break; } }
+        self.idx = at;
+        self.play();
+      });
+    });
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+            if (!self.taken && !self.userPaused) self.play();
+          } else if (self.playing) {
+            self.halt();                       /* out of sight: stop the clock, keep the state */
+          }
+        });
+      }, { threshold: [0, 0.5] }).observe(this.root);
+    }
+
+    REDUCED.addEventListener("change", function () { if (REDUCED.matches) self.pause("reduced"); });
+    if (this.toggle) this.toggle.disabled = false;
+    this.setToggle();
+  };
+
+  Player.prototype.setToggle = function () {
+    if (!this.toggle) return;
+    if (this.mode === "live") { this.toggle.textContent = "Start over"; return; }
+    var on = this.playing;
+    this.toggle.textContent = on ? "Pause" : (this.taken ? "Replay" : "Play");
+    this.toggle.setAttribute("aria-pressed", on ? "false" : "true");
+    this.root.classList.toggle("is-playing", on);
+    this.root.classList.toggle("is-taken", !on && this.taken);
+  };
+
+  Player.prototype.play = function () {
+    if (this.root.classList.contains("is-blocked")) return;
+    this.userPaused = false;
+    this.taken = false;
+    this.playing = true;
+    this.a.inert = true;
+    this.setToggle();
+    this.step();
+  };
+
+  /* halt = the clock stops but nothing is handed over (scrolled out of view). */
+  Player.prototype.halt = function () {
+    window.clearTimeout(this.timer);
+    this.playing = false;
+    this.setToggle();
+  };
+
+  Player.prototype.pause = function (why) {
+    window.clearTimeout(this.timer);
+    this.playing = false;
+    this.userPaused = true;
+    this.taken = (why === "taken");
+    this.a.inert = false;                      /* the screen becomes operable */
+    this.pulse.classList.remove("on");
+    this.setToggle();
+  };
+
+  Player.prototype.step = function () {
+    var self = this;
+    if (!this.playing) return;
+
+    var s = this.tape[this.idx];
+    if (!s) { this.idx = 0; this.step(); return; }
+
+    if (typeof s.cap === "number") {
+      this.caps.forEach(function (li, n) {
+        var on = (n === s.cap);
+        li.classList.toggle("on", on);
+        var b = li.querySelector("button");
+        if (b) { if (on) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current"); }
+      });
+    }
+
+    var after = function () {
+      self.timer = window.setTimeout(function () {
+        self.idx = (self.idx + 1) % self.tape.length;
+        self.step();
+      }, s.hold || 1200);
+    };
+
+    if (s.page) { this.show(s.page, after); return; }
+    if (s.tap) {
+      this.point(s.tap, function () {
+        var d = self.doc(self.a);
+        var el = d && d.querySelector(s.tap);
+        window.setTimeout(function () { if (el) el.click(); after(); }, 220);
+      });
+      return;
+    }
+    if (s.point) { this.point(s.point, after); return; }
+    after();
+  };
+
+  Player.prototype.restart = function () {
+    var first = this.tape.length && this.tape[0].page;
+    if (first) this.show(first);
+  };
+
+  /* ── boot ──────────────────────────────────────────────────────────────── */
+
+  /* Under 375 CSS px the frame no longer fits. It is scaled rather than
+     allowed to push the page sideways — WCAG 1.4.10 Reflow beats the 4%
+     the 44pt target loses at a 360px viewport (landing.md §4.4). */
+  function fit() {
+    var w = document.documentElement.clientWidth;
+    var s = w < 375 ? Math.max(w / 375, 0.6) : 1;
+    document.documentElement.style.setProperty("--lp-s", s.toFixed(4));
+    Array.prototype.forEach.call(document.querySelectorAll(".lp-stage"), function (st) {
+      var dev = st.querySelector(".lp-device");
+      if (!dev) return;
+      st.style.height = s === 1 ? "" : (dev.offsetHeight * s) + "px";
+    });
+  }
+
+  function boot() {
+    Array.prototype.forEach.call(document.querySelectorAll(".lp-player"), function (el) {
+      new Player(el);
+    });
+    fit();
+    window.addEventListener("resize", fit);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else { boot(); }
+})();
