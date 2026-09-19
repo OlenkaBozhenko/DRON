@@ -1098,6 +1098,114 @@
 </div>
 
 <div class="row">
+  <div class="nm"><b>The map screen</b><code>.dr-mapscreen &#183; .dr-mapview &#183; .dr-sheet--dock &#183; .dr-offers &#183; .dr-offer &#183; __body &#183; __name &#183; __meta &#183; __price</code>
+    <p>Where the finder sends you: the live map with a sheet <b>docked</b> on it, carrying the
+       offers you choose between. Three files &#8212; <code>listings-map</code> and its two service
+       variants.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch;padding:0">
+      <div class="dr" style="width:100%;border-radius:var(--len-22);overflow:hidden">
+        <main class="dr-mapscreen" style="height:420px">
+          <div class="dr-mapview" style="background-image:url(../assets/map/live-map.jpg)" role="img" aria-label="Map &#183; available near you"></div>
+          <section class="dr-sheet dr-sheet--dock">
+            <span class="dr-sheet__grip" aria-hidden="true"></span>
+            <p class="dr-sheet__title">Parcel size</p>
+            <fieldset class="dr-offers">
+        <label class="dr-offer">
+          <input type="radio" name="kitoffer" class="sr-only" checked>
+          <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="dr-offer__body">
+            <span class="dr-offer__name">Up to 2 kg</span>
+            <span class="dr-offer__meta">4 available &#183; arrives in 6 min</span>
+          </span>
+          <span class="dr-offer__price">&#8372;180</span>
+        </label>
+        <label class="dr-offer">
+          <input type="radio" name="kitoffer" class="sr-only">
+          <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="dr-offer__body">
+            <span class="dr-offer__name">Up to 5 kg</span>
+            <span class="dr-offer__meta">2 available &#183; arrives in 9 min</span>
+          </span>
+          <span class="dr-offer__price">&#8372;240</span>
+        </label>
+            </fieldset>
+            <span class="dr-btn dr-btn--primary dr-btn--block">Order</span>
+          </section>
+        </main>
+      </div>
+      <span class="st">map behind &#183; sheet docked to the bottom &#183; the chosen offer takes the accent</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b><code>--dock</code> is the sheet that does not float.</b> The picker sheet arrives over a
+       scrim and can be dismissed; this one <i>is</i> the bottom of the screen &#8212; no scrim, no
+       exit, because there is nothing behind it to go back to. It keeps the grip, because the grip
+       is what says a surface can be dragged.</p>
+    <p><b>The offer is a radio wearing a card.</b> A <code>&lt;label&gt;</code> around an
+       <code>.sr-only</code> radio, so the whole row is the target, the group is one tab stop with
+       arrow keys inside it, and the chosen state is the control&#8217;s own rather than an
+       attribute a script keeps true. Chosen takes <code>--color-action</code> under
+       <code>--on-action</code> at <b>9.46:1</b> &#8212; name, meta and price all move to the ink
+       together.</p>
+    <p><b>The map is a background-image on a div, not an <code>&lt;img&gt;</code>,</b> and it
+       carries <code>role="img"</code> with its own label, so it is one object to a screen reader
+       instead of a decorative nothing. The price is <code>--t-title-size</code> 17/600 &#8212; a
+       title, because on this screen the price is what is being chosen.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Date picker &#183; and its clock</b><code>.dr-cal &#183; __bar &#183; __nav &#183; __month &#183; __grid &#183; __day &#183; --today &#183; __clock &#183; __unit &#183; __colon</code>
+    <p>The sheet the finder opens when you tap <i>Date</i> or <i>Time</i>.
+       <code>listings</code> and <code>listings-filters</code> build the day cells with a page
+       script; the classes and attributes here are the ones that script writes.</p></div>
+  <div class="spec col">
+    <div class="dr dr-cal" style="width:341px;max-width:100%">
+      <div class="dr-cal__bar">
+        <button class="dr-cal__nav" type="button" aria-label="Previous month"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <span class="dr-cal__month">September 2026</span>
+        <button class="dr-cal__nav" type="button" aria-label="Next month"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <table class="dr-cal__grid" role="grid">
+        <thead><tr><th scope="col" aria-label="Monday">Mo</th><th scope="col" aria-label="Tuesday">Tu</th><th scope="col" aria-label="Wednesday">We</th><th scope="col" aria-label="Thursday">Th</th><th scope="col" aria-label="Friday">Fr</th><th scope="col" aria-label="Saturday">Sa</th><th scope="col" aria-label="Sunday">Su</th></tr></thead>
+        <tbody>
+            <tr><td></td><td><button class="dr-cal__day" type="button" disabled>1</button></td><td><button class="dr-cal__day" type="button" disabled>2</button></td><td><button class="dr-cal__day" type="button" disabled>3</button></td><td><button class="dr-cal__day" type="button" disabled>4</button></td><td><button class="dr-cal__day" type="button" disabled>5</button></td><td><button class="dr-cal__day" type="button" disabled>6</button></td></tr>
+            <tr><td><button class="dr-cal__day" type="button" disabled>7</button></td><td><button class="dr-cal__day" type="button" disabled>8</button></td><td><button class="dr-cal__day" type="button" disabled>9</button></td><td><button class="dr-cal__day" type="button" disabled>10</button></td><td><button class="dr-cal__day" type="button" disabled>11</button></td><td><button class="dr-cal__day" type="button" disabled>12</button></td><td><button class="dr-cal__day" type="button" disabled>13</button></td></tr>
+            <tr><td><button class="dr-cal__day" type="button" disabled>14</button></td><td><button class="dr-cal__day" type="button" disabled>15</button></td><td><button class="dr-cal__day" type="button" disabled>16</button></td><td><button class="dr-cal__day" type="button" disabled>17</button></td><td><button class="dr-cal__day" type="button">18</button></td><td><button class="dr-cal__day" type="button">19</button></td><td><button class="dr-cal__day dr-cal__day--today" type="button">20</button></td></tr>
+            <tr><td><button class="dr-cal__day" type="button">21</button></td><td><button class="dr-cal__day" type="button">22</button></td><td><button class="dr-cal__day" type="button">23</button></td><td aria-selected="true"><button class="dr-cal__day" type="button">24</button></td><td><button class="dr-cal__day" type="button">25</button></td><td><button class="dr-cal__day" type="button">26</button></td><td><button class="dr-cal__day" type="button">27</button></td></tr>
+            <tr><td><button class="dr-cal__day" type="button">28</button></td><td><button class="dr-cal__day" type="button">29</button></td><td><button class="dr-cal__day" type="button">30</button></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <div class="dr-cal__time">
+        <span class="dr-cal__clock">
+          <select class="dr-cal__unit" aria-label="Hour"><option>09</option><option>10</option><option>11</option><option>12</option><option>13</option><option selected>14</option><option>15</option><option>16</option><option>17</option><option>18</option></select>
+          <span class="dr-cal__colon" aria-hidden="true">:</span>
+          <select class="dr-cal__unit" aria-label="Minute"><option>00</option><option>15</option><option selected>30</option><option>45</option></select>
+        </span>
+      </div>
+    </div>
+    <span class="st">day cell 44 &#215; 44 &#183; today marked under the numeral &#183; the 24th chosen</span>
+  </div>
+  <div class="notes">
+    <p><b>Every day is a 44 &#215; 44 button, and the row is 44 tall,</b> so
+       <code>HIG &#183; 44pt</code> and <code>WCAG 2.5.8</code> are cleared by the cell itself
+       rather than by a bleed around it. A day that cannot be booked is a real
+       <code>disabled</code> button in <code>--text-muted</code>, not a greyed span &#8212; it
+       stays in the grid, keeps its place, and is skipped by the keyboard.</p>
+    <p><b>Today is a dot under the numeral, not a fill.</b> <code>--sz-today-dot</code> is
+       <b>4px</b> &#8212; not the checked radio&#8217;s 10 and not the pager&#8217;s 8, because
+       both of those are the whole carrier of their state and this one sits <i>under</i> a numeral
+       inside a 44 circle, where 8 would read as a second glyph. The chosen day is the fill:
+       <code>--color-action</code> under <code>--on-action</code>.</p>
+    <p><b>The clock is two real <code>&lt;select&gt;</code>s.</b> Hour and minute are lists of
+       fixed values, so the platform&#8217;s own control is the right one &#8212; it brings the
+       wheel on iOS, the keyboard on desktop, and a label each. The colon between them is
+       <code>aria-hidden</code>: it is punctuation, not a third field.</p>
+  </div>
+</div>
+
+<div class="row">
   <div class="nm"><b>Rating input</b><code>.dr-rating &#183; .dr-star &#183; .dr-display--balance &#183; .dr-center--tight &#183; .dr-main--zones</code>
     <p>Five buttons, one screen &#8212; <code>rate</code> &#8212; and the only place in the product
        where a score is <i>given</i> rather than reported.</p></div>
