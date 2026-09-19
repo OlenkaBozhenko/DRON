@@ -3,16 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DRON wireframe · Home / start an order · error</title>
+<title>DRON wireframe · Home / start an order · error — nothing found</title>
 <!--
   SCREEN (name from _screens.md §3): "Home / start an order" — A SEARCH from 2026-09-14.
   PERSONA: Client C-1 (primary — CLAUDE.md "Primary persona — C-1").
   MAIN JOB: MJ-1 — get a drone service done.
-  STATE: error.
-  REBUILT ON THE SEARCH 2026-09-19, her word against the built base: «відповідно усі стейти перероби
-  під це вю». It drew the pre-2026-09-14 service list until then. THE PAGE IS `listings.html` — the
-  badges, the where-and-when card, the four drawers and the same script; only this state's difference
-  is added, so nothing can drift between the base and its states.
+  STATE: error — NOTHING WAS FOUND, the designer's own definition (2026-09-19): «error коли нічого
+  не знайдено». The page is `listings.html` with the search filled in, her own two filters applied,
+  and the answer under the buttons.
+  HER WORD FOR IT IS `error` AND THE FILE FOLLOWS HER, WITH THE CONVENTION SAID OUT LOUD RATHER THAN
+  QUIETLY APPLIED: `_screens.md`'s matrix calls a search that returns nothing an EMPTY and keeps
+  `error` for a failure (no connection, the server). Nothing here failed, so the block is
+  role="status", not role="alert" — that part follows what the screen IS, because a screen reader
+  would otherwise interrupt for a result that is merely nil.
+  THE FILTERS ARE ON THE SCREEN ON PURPOSE: they are the likeliest reason nothing came back, and
+  `Clear filters` is only a real way out if the client can see what is applied.
   THE REBUILD (designer, 2026-09-14): «треба змінити вигляд цієї сторінки бо це стартова пошукова сторінка» —
   three service badges with icons, the date (a calendar) with the time to its right, Filters (secondary, a
   drawer with the filters she already had) and Find (primary), which opens the map with a drawer of choices
@@ -226,10 +231,10 @@
       <dt>Screen job</dt><dd>MJ-1 launch point — pick a service, a day and a time</dd>
     </dl>
     <div class="flow">
-      <b>MJ-1 · step 1 — <i>Find</i> could not reach DRON.</b><br>
+      <b>MJ-1 · step 1 — the search came back with nothing.</b><br>
       flows.md MJ-1: … → <span class="cur">Home / start an order</span> → <a href="listings-map.html">Results on the map</a> → Order setup → Order review → Payment → Order confirmed.<br>
       <b>Next:</b> <b>Find</b> → the map for the chosen service (<a href="listings-map.html">delivery</a> · <a href="listings-map-aerial.html">photo</a> · <a href="listings-map-inspection.html">inspection</a>).<br>
-      <b>Exit (not a dead-end):</b> <b>Find</b> itself is the retry — it is still the screen's one green control, and the search above it is untouched, so nothing typed is lost. <b>Contact support</b> is the second way out.
+      <b>Exit (not a dead-end), three of them:</b> <b>Clear filters</b> under the message, the two chips above it (each ✕ removes one), and the card itself — another time, another day or another address, then <b>Find</b> again.
     </div>
     <div class="legend">
       <p><b>Zones &amp; main action</b> (labelled in the screen):</p>
@@ -288,7 +293,7 @@
          with the service list it filtered: the designer rebuilt Home as a search. -->
     <main class="dr-main">
 
-      <p class="zlabel dr-label">Search <span class="dr-label__act">▸ the search stands; the last Find failed</span></p>
+      <p class="zlabel dr-label">Search <span class="dr-label__act">▸ nothing came back for this search</span></p>
       <!-- role="search" names the landmark; the form never submits — Find is a link, so the
            prototype walks without a server and the link can say where it goes (WCAG 2.4.4). -->
       <form class="dr-finder" role="search" aria-label="Find a service" action="#">
@@ -330,7 +335,7 @@
             <button class="dr-route__open" id="route-from" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="addrpick"
                     data-addr="from" data-title="Pickup address" data-placeholder="Pickup address">
               <span class="dr-route__label">From</span>
-              <span class="dr-route__value" data-empty>Pickup address</span>
+              <span class="dr-route__value">Podil, 21</span>
             </button>
           </div>
           <div class="dr-route__row">
@@ -338,7 +343,7 @@
             <button class="dr-route__open" id="route-to" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="addrpick"
                     data-addr="to" data-title="Drop-off address" data-placeholder="Drop-off address">
               <span class="dr-route__label">To</span>
-              <span class="dr-route__value" data-empty>Drop-off address</span>
+              <span class="dr-route__value">Osokorky, 14</span>
             </button>
           </div>
           <button class="dr-btn dr-btn--icon dr-route__swap" type="button" aria-label="Swap pickup and drop-off" data-swap>
@@ -391,23 +396,23 @@
 
       </form>
 
-      <!-- THE ERROR IS THE ANSWER TO `Find`, SO IT STANDS UNDER IT (`HIG · Feedback`: report the failure
-           where the action was taken). The search above is left exactly as it was — `WCAG 3.3.1` is about
-           not losing what the user entered, and nothing here is cleared.
-           NO SECOND GREEN: the retry is `Find`, which is already on the screen, so the block carries no
-           retry of its own — only `Contact support`, secondary — `concept.md` §0 allows one green control per
-           screen, and a second control for the same job would have said it twice. It also earns the height:
-           with the shell's annotations off the block ended 13px past the fold with two buttons in it.
-           role="alert", the voice `voice.md` P5 asks for: what happened, what it costs, what to do — no
-           apology, no joke. The strings are `listings-error`'s own, kept. -->
-      <p class="zlabel dr-label">Result <span class="dr-label__act">▸ error — Find again (exit)</span></p>
-      <section aria-label="Search failed">
-        <div class="dr-msg" role="alert">
-          <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></svg></span>
-          <span class="dr-msg__title">Couldn't reach DRON</span>
-          <p class="dr-msg__body">No internet connection. Check it and tap Find again.</p>
+      <!-- THE ANSWER STANDS UNDER THE CONTROL THAT ASKED FOR IT (`HIG · Feedback`). The search above is
+           untouched — nothing entered is cleared, so `Find` can be tapped again the moment one thing
+           changes.
+           role="status", NOT alert: nothing failed. `voice.md` on an empty result — say why it is empty
+           and give one way out; the body names the two things that narrowed it (the time and the
+           filters) rather than blaming the client or apologising.
+           NO SECOND GREEN: `Clear filters` is secondary and `Find` stays the screen's one green control.
+           THE MARK IS THIS PAGE'S OWN STRUCK MAGNIFIER (rev 77) — we looked, there is nothing here — so
+           the icon system gains nothing. -->
+      <p class="zlabel dr-label">Result <span class="dr-label__act">▸ nothing found — loosen it (exit)</span></p>
+      <section aria-label="Nothing found">
+        <div class="dr-msg" role="status">
+          <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/><path d="M13.5 8.5l-5 5"/></svg></span>
+          <span class="dr-msg__title">No drones for this search</span>
+          <p class="dr-msg__body">Nothing is free today at this time with these filters. Try another time, or clear the filters.</p>
           <div class="dr-msg__actions">
-            <a class="dr-btn dr-btn--secondary" href="support.html">Contact support</a>
+            <a class="dr-btn dr-btn--secondary" href="listings.html">Clear filters</a>
           </div>
         </div>
       </section>
@@ -568,7 +573,7 @@
           <p class="dr-zone__sub" id="type-sub">Which drone does your order</p>
           <ul class="dr-picks">
             <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="drone-type" value="quadcopter" class="sr-only"></label></li>
-            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="drone-type" value="hexacopter" class="sr-only"></label></li>
+            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="drone-type" value="hexacopter" class="sr-only" checked></label></li>
             <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="drone-type" value="fpv" class="sr-only"></label></li>
             <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Fixed-wing</span><input type="checkbox" name="drone-type" value="fixed-wing" class="sr-only"></label></li>
           </ul>
@@ -592,8 +597,8 @@
             </div>
             <div class="dr-range__rail">
               <span class="dr-range__fill" data-fill></span>
-              <input class="dr-range__input" type="range" id="pmin" min="0" max="1000" step="50" value="0"
-                     aria-label="Minimum price" aria-valuetext="₴0" data-lo>
+              <input class="dr-range__input" type="range" id="pmin" min="0" max="1000" step="50" value="600"
+                     aria-label="Minimum price" aria-valuetext="₴600" data-lo>
               <input class="dr-range__input" type="range" id="pmax" min="0" max="1000" step="50" value="1000"
                      aria-label="Maximum price" aria-valuetext="₴1,000+" data-hi>
             </div>
@@ -601,7 +606,7 @@
           <div class="dr-range__fields">
             <p class="dr-range__field">
               <span class="dr-range__cap">Minimum</span>
-              <output class="dr-range__val" for="pmin" data-lo-out>₴0</output>
+              <output class="dr-range__val" for="pmin" data-lo-out>₴600</output>
             </p>
             <p class="dr-range__field">
               <span class="dr-range__cap">Maximum</span>
@@ -1015,7 +1020,10 @@
         fChips = frame.querySelector('[data-fchips]'),
         fSheet = document.getElementById('sheet-filters'),
         types  = [].slice.call(fSheet.querySelectorAll('[data-types] input[type="checkbox"]')),
-        applied = { lo: 0, hi: MAX, types: [] };
+        /* THE SEARCH THAT FOUND NOTHING WAS RUN WITH THESE — her own set (2026-09-19), the same
+           two the `filtered` page carries. `paintChips()` draws the row from this value, so the
+           message, the chips and the drawer cannot disagree about what was applied. */
+        applied = { lo: 600, hi: 1000, types: ['hexacopter'] };
 
     /* a drone type's chip says what its row in the drawer says */
     var typeName = {};

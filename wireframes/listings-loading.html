@@ -3,16 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DRON wireframe · Home / start an order · loading</title>
+<title>DRON wireframe · Home / start an order · loading — searching</title>
 <!--
   SCREEN (name from _screens.md §3): "Home / start an order" — A SEARCH from 2026-09-14.
   PERSONA: Client C-1 (primary — CLAUDE.md "Primary persona — C-1").
   MAIN JOB: MJ-1 — get a drone service done.
-  STATE: loading.
-  REBUILT ON THE SEARCH 2026-09-19, her word against the built base: «відповідно усі стейти перероби
-  під це вю». It drew the pre-2026-09-14 service list until then. THE PAGE IS `listings.html` — the
-  badges, the where-and-when card, the four drawers and the same script; only this state's difference
-  is added, so nothing can drift between the base and its states.
+  STATE: loading — THE SEARCH IS RUNNING, the designer's own definition (2026-09-19):
+  «loading коли шукаємо». Not the old service list being fetched: `Find` has been tapped and the
+  answer has not come back. The page is `listings.html` with three differences — the card is filled
+  in (a search that is running was run on something), `Find` is a DISABLED button saying what it is
+  doing, and a status line names the search.
+  FIND IS BUILT DISABLED, NOT DIMMED (§0): `.dr-btn:disabled` is `--btn2` behind `--slate`, the
+  secondary button's own pair at 4.77:1 — a blanket opacity would have taken charcoal-on-green to
+  2.35:1. It is a <button>, not the base's <a>: a link that looks disabled still follows its href.
+  THE SCREEN'S GREEN GOES WITH IT and that is correct — nothing on this page is actionable while the
+  search runs, so nothing wears the accent.
   THE REBUILD (designer, 2026-09-14): «треба змінити вигляд цієї сторінки бо це стартова пошукова сторінка» —
   three service badges with icons, the date (a calendar) with the time to its right, Filters (secondary, a
   drawer with the filters she already had) and Find (primary), which opens the map with a drawer of choices
@@ -226,10 +231,10 @@
       <dt>Screen job</dt><dd>MJ-1 launch point — pick a service, a day and a time</dd>
     </dl>
     <div class="flow">
-      <b>MJ-1 · step 1 — the search, before its saved values are in.</b><br>
+      <b>MJ-1 · step 1 — <i>Find</i> was tapped and the search is running.</b><br>
       flows.md MJ-1: … → <span class="cur">Home / start an order</span> → <a href="listings-map.html">Results on the map</a> → Order setup → Order review → Payment → Order confirmed.<br>
       <b>Next:</b> <b>Find</b> → the map for the chosen service (<a href="listings-map.html">delivery</a> · <a href="listings-map-aerial.html">photo</a> · <a href="listings-map-inspection.html">inspection</a>).<br>
-      <b>Exit:</b> resolves to the base. The rows stay live throughout — a client who will not wait sets the address by hand, which is why nothing here is disabled.
+      <b>Exit:</b> transient — it resolves to <a href="listings-map.html">the results on the map</a>, or to <a href="listings-error.html">nothing found</a>. The search itself stays live: the date, the time and both addresses can be changed while it runs.
     </div>
     <div class="legend">
       <p><b>Zones &amp; main action</b> (labelled in the screen):</p>
@@ -288,7 +293,7 @@
          with the service list it filtered: the designer rebuilt Home as a search. -->
     <main class="dr-main">
 
-      <p class="zlabel dr-label">Search <span class="dr-label__act">▸ fetching your saved address and your last order</span></p>
+      <p class="zlabel dr-label">Search <span class="dr-label__act">▸ searching — Find is working</span></p>
       <!-- role="search" names the landmark; the form never submits — Find is a link, so the
            prototype walks without a server and the link can say where it goes (WCAG 2.4.4). -->
       <form class="dr-finder" role="search" aria-label="Find a service" action="#">
@@ -311,13 +316,6 @@
           </label>
         </fieldset>
 
-        <!-- WHAT IS LOADING IS SAID, NOT SPUN — `voice.md`: a loading state names the thing.
-             `.dr-status-line` with role="status" is `notifications-loading`'s component, the
-             sentence a screen reader is handed once (`WCAG 4.1.3`). What loads is the search's
-             PRE-FILL — the saved address (`account`) and the last order (`order-history`) — which
-             is the personalisation `flows.md` RJ-C5 already puts on this node. -->
-        <p class="dr-status-line" role="status">Loading your saved address…</p>
-
         <!-- WHERE THE DRONE GOES — the designer, the same day: «а де звідки і куди як ось на
              зразку» (Figma 145:4). It follows the badge, her pick: Delivery has two ends and a
              swap; Photo and Inspection have one place. Both cards are in the markup and the page
@@ -337,7 +335,7 @@
             <button class="dr-route__open" id="route-from" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="addrpick"
                     data-addr="from" data-title="Pickup address" data-placeholder="Pickup address">
               <span class="dr-route__label">From</span>
-              <span class="dr-route__value dr-sk-line" data-empty style="display:block;margin:2.5px 0;width:62%" aria-hidden="true"></span>
+              <span class="dr-route__value">Podil, 21</span>
             </button>
           </div>
           <div class="dr-route__row">
@@ -345,7 +343,7 @@
             <button class="dr-route__open" id="route-to" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="addrpick"
                     data-addr="to" data-title="Drop-off address" data-placeholder="Drop-off address">
               <span class="dr-route__label">To</span>
-              <span class="dr-route__value dr-sk-line" data-empty style="display:block;margin:2.5px 0;width:48%" aria-hidden="true"></span>
+              <span class="dr-route__value">Osokorky, 14</span>
             </button>
           </div>
           <button class="dr-btn dr-btn--icon dr-route__swap" type="button" aria-label="Swap pickup and drop-off" data-swap>
@@ -358,7 +356,7 @@
             <button class="dr-route__open" id="route-where" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="addrpick"
                     data-addr="where" data-title="Address" data-placeholder="Address">
               <span class="dr-route__label">Where</span>
-              <span class="dr-route__value dr-sk-line" data-empty style="display:block;margin:2.5px 0;width:56%" aria-hidden="true"></span>
+              <span class="dr-route__value" data-empty>Address</span>
             </button>
           </div>
         </div>
@@ -367,11 +365,11 @@
         <div class="dr-when">
           <button class="dr-when__cell" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="datepick" data-date-open>
             <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14.5" rx="2.4"/><path d="M4 10h16"/><path d="M8.5 3.5v4M15.5 3.5v4"/></svg>
-            <span class="dr-when__text"><span class="dr-when__label">Date</span><span class="dr-when__value dr-sk-line" data-date-value style="display:block;margin:2.5px 0;width:46px" aria-hidden="true"></span></span>
+            <span class="dr-when__text"><span class="dr-when__label">Date</span><span class="dr-when__value" data-date-value>Today</span></span>
           </button>
           <button class="dr-when__cell" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="timepick" data-time-open>
             <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
-            <span class="dr-when__text"><span class="dr-when__label">Time</span><span class="dr-when__value dr-sk-line" data-time-value style="display:block;margin:2.5px 0;width:34px" aria-hidden="true"></span></span>
+            <span class="dr-when__text"><span class="dr-when__label">Time</span><span class="dr-when__value" data-time-value>Now</span></span>
           </button>
         </div>
         </div>
@@ -393,8 +391,14 @@
           <button class="dr-btn dr-btn--secondary" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-filters" data-filters-open>
             <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5h9"/><circle cx="17" cy="7.5" r="2.4"/><path d="M20 16.5h-9"/><circle cx="7" cy="16.5" r="2.4"/></svg>Filters
           </button>
-          <a class="dr-btn dr-btn--primary" href="listings-map.html" data-find>Find</a>
+          <button class="dr-btn dr-btn--primary" type="button" disabled>Searching…</button>
         </div>
+
+        <!-- WHAT IS BEING LOOKED FOR IS SAID, NOT SPUN (`voice.md`: a loading state names the
+             thing; `WCAG 4.1.3`: a status message is spoken once). `.dr-status-line` is
+             `notifications-loading`'s component, and the sentence names the place, because that is
+             what the client is waiting on. -->
+        <p class="dr-status-line" role="status">Looking for drones near Podil, 21…</p>
 
       </form>
 
