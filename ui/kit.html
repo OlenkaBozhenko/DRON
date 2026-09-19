@@ -1070,16 +1070,8 @@
         <span class="dr-btn dr-btn--primary">Find</span>
       </div>
     </form>
-    <span class="st">service &#183; route &#183; when &#183; two actions &#183; listings</span>
-    <article class="dr dr-card dr-card--row dr-listing dr-listing--service" style="width:341px;max-width:100%">
-      <a class="dr-card__link" href="#" aria-label="Package delivery"></a>
-      <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
-      <span class="dr-listing__body">
-        <span class="dr-listing__name">Package delivery</span>
-        <span class="dr-listing__desc">Parcels, documents, small goods &#8212; across the city</span>
-      </span>
-    </article>
-    <span class="st">the card that survived &#183; listings-filtered only</span>
+    <span class="st">service &#183; route &#183; when &#183; two actions &#183; this is what listings offers now</span>
+    
   </div>
   <div class="notes">
     <p><b>The service tabs are the in-page tab, wearing a radio.</b> Each is a
@@ -1092,9 +1084,16 @@
        <code>.dr-finder__card</code>,</b> so the three questions read as one answer being assembled
        rather than three settings. The route rows are parted by a hairline that starts past the mark
        rather than by a box each; the two when-cells are split by a single vertical rule.</p>
-    <p><b>The card is not gone, it moved.</b> <code>.dr-listing--service</code> now draws only on
-       <code>listings-filtered</code> &#8212; the <i>results</i> of the finder, not the way into it.
-       The whole card is still the tap target: no price row, no chevron.</p>
+    <p><b>The service card is not here, because it is not in the frames either.</b>
+       The showcase drew one &#8212; <i>Package delivery</i>, a <code>.dr-well</code> on the left
+       &#8212; and no wireframe builds that. <code>.dr-listing--service</code> survives on
+       <code>listings-filtered</code> alone, where it draws <i>Aerial photo &amp; video</i> and
+       <i>Inspection</i>, puts its picture <b>after</b> the body rather than before it, and uses
+       <code>.media-ph</code> &#8212; a class local to that page&#8217;s own
+       <code>&lt;style&gt;</code>, on the grayscale palette, with no rule anywhere in
+       <code>components/</code>. That is <code>tokens-audit.md</code> &#167;A3, still open: the same
+       well at <b>96 &#215; 72</b> against the kit&#8217;s <b>96 &#215; 96</b>. Until it is a kit
+       class again there is nothing here to show.</p>
   </div>
 </div>
 
@@ -1645,7 +1644,7 @@
       </nav>
       </div>
     </div>
-    <span class="st">--tabs, on the screen &#183; four equal shares, 91 &#215; 47, cut to fit &#183; listings-empty</span>
+    <span class="st">--tabs, on the screen &#183; four equal shares, 91 &#215; 47, cut to fit &#183; listings-empty, -error, -filtered, -loading</span>
     <div class="plate" style="width:341px;max-width:100%;align-items:stretch">
       <section class="dr-fchips" aria-label="Applied filters">
         <span class="dr-fchip dr-fchip--all">All <span class="dr-fchip__x" aria-hidden="true">&times;</span></span>
