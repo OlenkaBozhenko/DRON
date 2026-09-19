@@ -17,7 +17,7 @@
   --page:#F7F5F2; --card:#ECE9E4; --media:#E4E1DA; --btn2:#D6D2C9;
   --ink:#1A1A1A; --slate:#5A5751; --line:#D9D5CE; --graphite:#1F2124;
   /* primary / accent */
-  --green:#9BCF4A; --on-green:#1A1A1A; --green-soft:#A9D563; --green-wash:#E7F0D2;
+  --green:#9BCF4A; --on-green:#1A1A1A; --green-soft:#B7DA7C; --green-wash:#E7F0D2;
   /* semantic */
   --warn:#E4A11B; --warn-ink:#7A5200; --warn-wash:#F6E7C4;
   --danger:#C4462A; --danger-ink:#9A3115; --danger-wash:#F2D8CF;
@@ -520,7 +520,7 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
     <div class="palgrid">
       <div class="sw"><div class="chip-c" style="background:#9BCF4A"></div><div class="nm">Signal Green</div><div class="hx">#9BCF4A</div><div class="ro">Primary · the one accent — CTAs, live, verified. Fill only.</div></div>
       <div class="sw"><div class="chip-c" style="background:#1A1A1A"></div><div class="nm">On-green / Ink</div><div class="hx">#1A1A1A</div><div class="ro">Charcoal that always sits on the green (8.8:1). Body text.</div></div>
-      <div class="sw"><div class="chip-c" style="background:#A9D563"></div><div class="nm">Signal Green soft</div><div class="hx">#A9D563</div><div class="ro">The accent one step lighter (2026-08-24) — <b>--green 85% + --page 15%</b>. A fill, not a tint: 1.56:1 on the page, charcoal on it 10.26:1. One spend — the ratings score banner. 1.08:1 against --green, so the two never sit side by side.</div></div>
+      <div class="sw"><div class="chip-c" style="background:#B7DA7C"></div><div class="nm">Signal Green soft</div><div class="hx">#B7DA7C</div><div class="ro">The accent two steps lighter (2026-08-24) — <b>--green 70% + --page 30%</b>, retuned from 85/15 the same evening. A fill, not a tint: 1.45:1 on the page, charcoal on it 11.05:1. One spend — the ratings score banner. 1.17:1 against --green, so the two never sit side by side.</div></div>
       <div class="sw"><div class="chip-c" style="background:#E7F0D2"></div><div class="nm">Green wash</div><div class="hx">#E7F0D2</div><div class="ro">Tint behind live / certified pills and active tabs.</div></div>
     </div>
 
@@ -747,8 +747,8 @@ footer{padding:36px 0 0; color:var(--slate); font-family:var(--mono); font-size:
           <tr><td><span class="swatch-pair"><span style="background:#9BCF4A;color:#1A1A1A">Aa</span></span><span class="mono">#1A1A1A on #9BCF4A</span></td><td>Charcoal on the green button</td><td class="mono tnum">8.83 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
           <tr><td><span class="swatch-pair"><span style="background:#ECE9E4;color:#1A1A1A">Aa</span></span><span class="mono">#1A1A1A on #ECE9E4</span></td><td>Body text on card</td><td class="mono tnum">15.8 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
           <tr><td><span class="swatch-pair"><span style="background:#ECE9E4;color:#5A5751">Aa</span></span><span class="mono">#5A5751 on #ECE9E4</span></td><td>Slate metadata on card</td><td class="mono tnum">6.29 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
-          <tr><td><span class="swatch-pair"><span style="background:#A9D563;color:#1A1A1A">Aa</span></span><span class="mono">#1A1A1A on #A9D563</span></td><td>Charcoal on the lightened green — the ratings score banner</td><td class="mono tnum">10.26 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
-          <tr><td><span class="swatch-pair"><span style="background:#A9D563;color:#5A5751">Aa</span></span><span class="mono">#5A5751 on #A9D563</span></td><td>Slate on the lightened green — why the banner states its ink instead of inheriting</td><td class="mono tnum">4.25 : 1</td><td><span class="verdict fail">FAIL</span></td></tr>
+          <tr><td><span class="swatch-pair"><span style="background:#B7DA7C;color:#1A1A1A">Aa</span></span><span class="mono">#1A1A1A on #B7DA7C</span></td><td>Charcoal on the lightened green — the ratings score banner</td><td class="mono tnum">11.05 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
+          <tr><td><span class="swatch-pair"><span style="background:#B7DA7C;color:#5A5751">Aa</span></span><span class="mono">#5A5751 on #B7DA7C</span></td><td>Slate on the lightened green — clears 4.5 by 1.6% at 70/30 and is still not used; the banner states its ink</td><td class="mono tnum">4.57 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
           <tr><td><span class="swatch-pair"><span style="background:#E7F0D2;color:#1A1A1A">Aa</span></span><span class="mono">#1A1A1A on #E7F0D2</span></td><td>Charcoal on the live / certified tint — green is never the text</td><td class="mono tnum">14.75 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
           <tr><td><span class="swatch-pair"><span style="background:#F7F5F2;color:#5A5751">Aa</span></span><span class="mono">#5A5751 on #F7F5F2</span></td><td>Slate on the page ground</td><td class="mono tnum">6.7 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
           <tr><td><span class="swatch-pair"><span style="background:#F2D8CF;color:#9A3115">Aa</span></span><span class="mono">#9A3115 on #F2D8CF</span></td><td>Danger text on its wash</td><td class="mono tnum">5.2 : 1</td><td><span class="verdict pass">PASS</span></td></tr>
