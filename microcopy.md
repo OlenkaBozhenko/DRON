@@ -352,7 +352,6 @@ _All rows below were the Step-01 finding; **all resolved** in the voice rewrite 
 |---|---|---|
 | job-brief | Notes | Leave with the concierge, entrance code 4417. |
 | job-brief-inspection · job-offer-inspection | Notes | Two storeys. Ladder access from the yard, gate code 22B. The north slope is where the water comes in. |
-| listings-empty | Search & filters | crop spraying |
 | operator-dispute | Client claim | “The photos are blurry — I can't use them for the listing.” |
 | operator-profile-setup | Profile photo | Certified operator since 2023. Fast, careful deliveries across Kyiv… |
 | ratings | Recent reviews | “Fast and careful — package arrived sealed and on time.” |
@@ -995,36 +994,17 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | job-offer | Decide fast | Expires in 8s | Body |  |
 | job-offer | Decide fast | Accept | Button |  |
 | job-offer | Decide fast | Decline | Button |  |
-| listings-empty | Search & filters | All | Button |  |
-| listings-empty | Search & filters | Delivery | Button |  |
-| listings-empty | Search & filters | Photo & video | Button |  |
-| listings-empty | Search & filters | Inspection | Button |  |
-| listings-empty | Search & filters | Search services | Field placeholder |  |
-| listings-empty | Search & filters | crop spraying | Field value | USER |
-| listings-empty | Search & filters | Filters | Button |  |
-| listings-empty | Service list | No services match your search | State message |  |
-| listings-empty | Service list | No services match “crop spraying” with your filters. Clear the filters or search again. | State message |  |
-| listings-empty | Service list | Clear filters | Button |  |
-| listings-empty | Service list | Notify me when available | Button |  |
-| listings-empty | Service list | Request received. We'll tell you when it's available. | Toast |  |
-| listings-empty | Service list | Order | Button |  |
-| listings-empty | Service list | Activity | Button |  |
-| listings-empty | Service list | Help | Button |  |
-| listings-empty | Service list | Account | Button |  |
-| listings-error | Search & filters | All | Button |  |
-| listings-error | Search & filters | Delivery | Button |  |
-| listings-error | Search & filters | Photo & video | Button |  |
-| listings-error | Search & filters | Inspection | Button |  |
-| listings-error | Search & filters | Search services | Field placeholder |  |
-| listings-error | Search & filters | Filters | Button |  |
-| listings-error | Service list | Couldn't load services | State message |  |
-| listings-error | Service list | No internet connection. Check it and try again. | State message |  |
-| listings-error | Service list | Try again | Button |  |
-| listings-error | Service list | Contact support | Button |  |
-| listings-error | Service list | Order | Button |  |
-| listings-error | Service list | Activity | Button |  |
-| listings-error | Service list | Help | Button |  |
-| listings-error | Service list | Account | Button |  |
+| listings-empty | — | *the page is `listings.html`* | — | **REBUILT ON THE SEARCH 2026-09-19** (*«відповідно усі стейти перероби під це вю»*). Every string on this page — the badges, the card's labels and placeholders, *Filters*, *Find*, the four drawers, the tab bar — is the base's own row above and is not repeated here; what follows is only what this state adds or changes |
+| listings-empty | Search | Zhytomyr, Kyivska 4 | Field value | DATA — the *From* address that produced the empty. A place the product already names: *Zhytomyr Oblast* is a row in the region pick |
+| listings-empty | Search | Zhytomyr, Peremohy 12 | Field value | DATA — the *To* address |
+| listings-empty | Result | DRON doesn't fly in Zhytomyr yet | State message | **new 2026-09-19**, replacing ~~*No services match your search*~~. `flows.md` MJ-1 asks *Service available in your region?* and answers *no*; since 2026-09-14 the address is set on this card, so this is the screen that can answer it. Names the place, because *your area* would not tell the client which address is the problem (`voice.md` empty: say why) |
+| listings-empty | Result | We fly in Kyiv today. Leave the address and we'll tell you when we reach it. | State message | **new 2026-09-19**, replacing the *crop spraying* body. The fact first, then the one way out; no apology, no *unfortunately* (`voice.md` P5). *Kyiv* is where every built order happens, so the sentence states the product's own truth |
+| listings-empty | Result | Notify me when available | Button | kept from the service-list page this replaces — `flows.md`'s *notify me when DRON launches here*. **Secondary**, so `Find` above stays the screen's one green control |
+| listings-empty | Result | Request received. We'll tell you when it's available. | Toast | kept, unchanged |
+| listings-error | — | *the page is `listings.html`* | — | **REBUILT ON THE SEARCH 2026-09-19.** Every string but the three below is the base's own row above |
+| listings-error | Result | Couldn't reach DRON | State message | **new 2026-09-19**, replacing ~~*Couldn't load services*~~: there is no list to load on a search — what failed is **Find**. Says what happened, not what the app was doing (`voice.md` P5) |
+| listings-error | Result | No internet connection. Check it and tap Find again. | State message | the old body with its retry pointed at the control that is already on the screen. **No second *Try again* button:** `concept.md` §0 allows one green control per screen and two controls for one job would say it twice — measured too, the block ended 13px past the fold with both in it |
+| listings-error | Result | Contact support | Button | Vocabulary **A2** — one label to reach a human. Secondary, the second way out `flows.md` asks for (*errors route to Support*) |
 | listings-filter-country | — | Country | Heading |  |
 | listings-filter-country | — | Back to Filters | Button | invisible label on the chevron — microcopy.md D9 |
 | listings-filter-country | Country | Czechia | Body | DATA |
@@ -1147,17 +1127,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filters | Price | ₴1,000+ | Field value | DATA |
 | listings-filters | Location | Clear all | Button |  |
 | listings-filters | Location | Apply filters | Button |  |
-| listings-loading | Search & filters | All | Button |  |
-| listings-loading | Search & filters | Delivery | Button |  |
-| listings-loading | Search & filters | Photo & video | Button |  |
-| listings-loading | Search & filters | Inspection | Button |  |
-| listings-loading | Search & filters | Search services | Field placeholder |  |
-| listings-loading | Search & filters | Filters | Button |  |
-| listings-loading | Service list | Browse services | Button |  |
-| listings-loading | Service list | Order | Button |  |
-| listings-loading | Service list | Activity | Button |  |
-| listings-loading | Service list | Help | Button |  |
-| listings-loading | Service list | Account | Button |  |
+| listings-loading | — | *the page is `listings.html`* | — | **REBUILT ON THE SEARCH 2026-09-19.** Every string but the one below is the base's own row above; the card's four values are skeleton bars, which are not strings |
+| listings-loading | Search | Loading your saved address… | State message | **new 2026-09-19**, replacing ~~*Browse services*~~ and the counter's *Loading services…*. `voice.md`: a loading state names the thing being fetched. `role="status"` on `notifications-loading`'s own `.dr-status-line`, so it is spoken once (`WCAG 4.1.3`). What loads is the search's **pre-fill** — the saved address (`account`) and the last order (`order-history`) — which is the personalisation `flows.md` RJ-C5 already puts on this node |
 | listings | — | Notifications, 3 unread | Accessible name (`aria-label`) | the bell, unchanged |
 | listings | Search | Service | Field label | accessible name only — the badge group's name (`aria-label` on the fieldset). **New 2026-09-14**, when Home became a search; the category row it replaces (*All · Delivery · Aerial photo & video · Inspection*, with the search field and the service cards) left the page with it |
 | listings | Search | Delivery | Button | a badge — a radio, chosen at rest |
