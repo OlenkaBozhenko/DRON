@@ -115,11 +115,13 @@ is allowed, and §0 is kept — the wireframe file is never edited:
 
 ```css
 .wf-toolbar, .wf-tree, .wf-scrim, .wf-voice-drawer, .wf-voice-scrim,
-.meta, .state-switch { display: none !important; }
+.meta, .zlabel, .state-switch { display: none !important; }
 body, body.wf-shelled { margin: 0 !important; padding: 0 !important;
                         background: transparent !important; display: block !important; }
 .wf-frame { border: 0 !important; border-radius: 0 !important; }
 ```
+
+and, on the same pass, the parent adds the class `wf-hide-anno` to the embedded `<body>`.
 
 `body.wf-shelled` is named explicitly because `_wf-shell.js` sets
 `.wf-shelled{ padding:52px 24px 24px 272px !important }` — a class selector beats a bare `body`
@@ -127,6 +129,21 @@ even when both are `!important`, so the override has to match its specificity.
 
 `.wf-frame` keeps its natural **375 × 812**. The stage is built to that size, so nothing is
 stretched and nothing is scaled. See §4.4.
+
+**No annotation is ever shown on the landing** — designer's rule, 2026-09-19. Two things are
+annotation, and both go:
+
+- **`.meta`** — the description panel beside the frame.
+- **`.zlabel`** — the zone label drawn **inside** the frame ("YOUR OPERATOR · who is coming (SC-2)").
+  It is on **124** of the pages and reads as product copy at a glance, which is exactly why it must
+  not be there. This one was missed on rev 1 and shipped visible into the first reel.
+
+Both are hidden twice over, on purpose. The stylesheet names them as they stand today; the class
+`wf-hide-anno` is the wireframes' **own** annotations-off switch, whose rule is
+`body.wf-hide-anno .meta, body.wf-hide-anno .zlabel{display:none!important}`. Using the page's own
+mechanism means a third kind of annotation added to that rule later disappears from the landing
+without `ui/tape.js` learning anything. Runtime state only — no file in `wireframes/` is edited
+(§0), and the stored preference the designer browses the wireframes with is not touched.
 
 ### 4.3 It needs an http origin
 
@@ -298,6 +315,19 @@ either way: those pixels are the product's own and are not this file's to move (
 ---
 
 ## 7. Change log
+
+**Rev 3 — 2026-09-19.** *The designer, on seeing the first reel: annotations are to appear
+nowhere.* Rev 1 hid the `.meta` panel and missed `.zlabel`, the zone label drawn inside the frame —
+so "Your operator ▸ who is coming (RJ-C1)" rode along in the reel, reading like product copy. Now
+hidden twice: named in the injected stylesheet, and switched off through the wireframes' own
+`wf-hide-anno` class so a future third kind of annotation follows without this file changing (§4.2).
+Verified page by page: `payment-loading` 0 of 0 visible, `order-confirmed` 0 of 2, `tracking` 0 of 4,
+`chat` 0 of 0; the `.meta` panel 0 everywhere.
+
+A second defect surfaced while checking it: jumping to a step from its caption left the previous
+step's timer running, so two clocks drove the reel and it skipped ahead by itself. `play()` now
+cancels the pending step first. Re-checked — captions 5, 3 and 0 land on `chat`, `tracking` and
+`payment-loading` exactly.
 
 **Rev 2 — 2026-09-19.** Opened in Chrome and watched. The reel plays all seven steps on its own,
 the captions light in step, the injected stylesheet takes (`.wf-toolbar` computes to `display:none`,

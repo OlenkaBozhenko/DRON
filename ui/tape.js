@@ -36,7 +36,10 @@
      selector beats a bare `body` even when both are !important. */
   var INJECT = [
     ".wf-toolbar,.wf-tree,.wf-scrim,.wf-voice-drawer,.wf-voice-scrim,",
-    ".meta,.state-switch{display:none!important}",
+    /* .zlabel is the zone annotation drawn INSIDE the frame — it is on 124 of
+       the pages and it is not product copy. Nothing annotated is ever shown
+       on the landing. */
+    ".meta,.zlabel,.state-switch{display:none!important}",
     "body,body.wf-shelled{margin:0!important;padding:0!important;",
     "background:transparent!important;display:block!important}",
     ".wf-frame{border:0!important;border-radius:0!important}"
@@ -116,6 +119,15 @@
       s.textContent = INJECT;
       d.head.appendChild(s);
     }
+
+    /* Belt and braces on annotations. The stylesheet above names the two
+       classes as they stand today; this switches on the page's OWN
+       annotations-off state, so if a wireframe ever grows a third kind of
+       annotation and adds it to that rule, the landing hides it without this
+       file learning about it. Runtime state only — the file is not edited
+       (landing.md §0), and the designer's own stored preference for browsing
+       the wireframes is left alone. */
+    d.body.classList.add("wf-hide-anno");
 
     /* Take-over by keyboard is the Pause button's job; this is only the
        pointer path, and only in live mode — while a reel plays, the veil in
@@ -252,6 +264,10 @@
 
   Player.prototype.play = function () {
     if (this.root.classList.contains("is-blocked")) return;
+    /* Any step still counting down is cancelled first. Without this, jumping
+       to a step from its caption leaves the previous timer running and two
+       clocks drive the reel at once — it skips ahead on its own. */
+    window.clearTimeout(this.timer);
     this.userPaused = false;
     this.taken = false;
     this.playing = true;
