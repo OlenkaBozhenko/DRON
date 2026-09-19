@@ -106,3 +106,39 @@
   animation: dr-spin var(--time-1-1) linear infinite;
   transform-origin: 50% 50%;
 }
+
+/* The loop this file's rule names. kit.css keeps the reasoning; only the
+   token names moved. */
+@keyframes dr-pulse{
+  0%, 100%{
+    opacity: 1;
+  }
+  50%{
+    opacity: var(--num-0-5);
+  }
+}
+/* The tray holds still and only the arrow leaves it. It rests VISIBLE at 0%
+   and 100%, so a dropped animation leaves a legible icon. */
+@keyframes dr-up{
+  0%, 10%{
+    transform: translateY(0);
+    opacity: 1;
+  }
+  55%{
+    transform: translateY(var(--len-n3-2));
+    opacity: 0;
+  }
+  56%{
+    transform: translateY(var(--len-2-6));
+    opacity: 0;
+  }
+  100%{
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes dr-spin{
+  to{
+    transform: rotate(var(--deg-360));
+  }
+}

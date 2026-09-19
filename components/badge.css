@@ -186,3 +186,17 @@
 .dr-count-badge[hidden]{
   display: none;
 }
+
+/* The loop this file's rule names. kit.css keeps the reasoning; only the
+   token names moved. */
+@keyframes dr-ping{
+  0%{
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-action) 90%, transparent);
+  }
+  70%{
+    box-shadow: 0 0 0 var(--len-8) color-mix(in srgb, var(--color-action) 0%, transparent);
+  }
+  100%{
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-action) 0%, transparent);
+  }
+}

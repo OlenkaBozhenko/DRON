@@ -1,20 +1,28 @@
 # Tokens — audit of what is built
 
-**Read:** `ui/kit.css` (6 586 lines · 2 782 declarations · 238 variable definitions) and all
-**134** `wireframes/*.html`. Read alongside them, because every one of those pages links it:
-`wireframes/_wireframe.css` (943 declarations · 12 variable definitions) and the 17 per-page
+**Read:** `ui/kit.css` (6 631 lines · 2 787 declarations · 238 variable definitions) and all
+**128** `wireframes/*.html`. Read alongside them, because 126 of those pages link it:
+`wireframes/_wireframe.css` (943 declarations · 12 variable definitions) and the per-page
 `<style>` blocks.
 
 **Nothing is changed, renamed, merged or deleted by this document.** The wireframes are the
 design; where this document disagreed with a frame, the document was corrected. It records what
 is there.
 
-**Read at `ui/kit.css` rev 272** (`d3c4fb7`, 2026-09-19). That revision landed *while* this audit
-was being taken, inserting eight lines at 4444, so the three line numbers in §C1 above that point
-were re-read against it. No `wireframes/*.html` changed between the first read and the last —
-verified by diff — so every page-side figure here was measured on one state of the frames. **The
-line numbers in §C1 are the only part of this document that a later revision of `kit.css` will
-silently invalidate**; everything else is named by selector and class.
+**Re-taken at `ui/kit.css` rev 273** (`a174102`, 2026-09-19), after revs 273–282 moved 31 frames
+under it. Every page and use figure in this document was re-measured against that state by the
+same method §0 describes; 50 of the 63 counted rows moved and were rewritten, 13 stood. The
+largest single cause is arithmetic rather than design: **six pages were deleted on the designer's
+word** (rev 282 — `listings-empty`, `listings-filtered` and the four `listings-filter-*`), which
+is most of the `133 → 127` and `131 → 125` steps. The rest are real: rev 273 turned the chosen
+service badge from a wash into a fill and made its row scroll, and rev 276 rebuilt Home's four
+states on the search.
+
+*Originally read at rev 272 (`d3c4fb7`), which landed mid-audit and moved three §C1 line numbers.*
+
+**The line numbers in §C1 are the only part of this document that a later revision of `kit.css`
+will silently invalidate**; everything else is named by selector and class, and every count in it
+can be re-taken by the method in §0.
 
 ---
 
@@ -27,8 +35,8 @@ silently invalidate**; everything else is named by selector and class.
 | **Where used — pages** | Pages whose **markup** carries every class the selector needs. This is a static count of `class="…"` tokens. |
 | **Role** | Read off the property + selector pair. Where the same variable lands on two unlike properties, both roles are named. |
 
-**A 0 in the pages column is not automatically a finding.** Twenty-four variables score 0, and
-ten of them are drawn — the count simply cannot see them:
+**A 0 in the pages column is not automatically a finding.** **Thirty** variables score 0, and
+**eight** of them are drawn — the count simply cannot see them:
 
 - **Seventeen classes are built by script**, so no `class="…"` token exists to count: the eleven
   `.dr-kb*` (keyboard — `ui/kit.js`), `.dr-toast` + `.dr-toast--over-sheet` and `.dr-lang`
@@ -36,12 +44,22 @@ ten of them are drawn — the count simply cannot see them:
   `.dr-range__bar--in` (page scripts in `listings.html` / `listings-filters.html`). This is what
   zeroes `--h-kb`, `--h-kb-quick`, `--r-key` and `--sz-today-dot`.
 - **Four are spent only inside `@keyframes`**, which has no selector to match:
-  `--pulse-floor`, `--ping-reach`, `--up-out`, `--up-in`. The animations run.
+  `--pulse-floor`, `--ping-reach`, `--up-out`, `--up-in`. The animations run **here**. They did
+  not survive the port: `components/` named all seven keyframes and defined none, so every loop
+  in the built system was inert until it was measured and fixed — `design-system/_critique.md`
+  §09a.
 - **Two redefine another token inside a media query** rather than landing on a class:
-  `--sz-well-w-sm`, `--sz-well-h-sm`. They are live below 389px.
+  `--sz-well-w-sm`, `--sz-well-h-sm`. They are live below 389px, and the count now reaches them
+  through that `:root`, so they no longer score 0.
 
-**The remaining fourteen are the finding** — declared in the kit, spent in the kit, and landing
-on a class no page carries. They are listed in §3.
+**Fourteen are the finding** — declared in the kit, spent in the kit, and landing on a class no
+page carries: `--ic-13`, `--mark-shift`, `--sk-lbl-w`, `--sk-lbl-w-sm`, `--sz-head-mark`,
+`--sz-photo-mark`, `--sz-rating-w`, `--sz-star-ink`, `--sz-star-inset`, `--sz-star-mid`,
+`--sz-star-out`, `--trust-ink`, `--trust-wash`, `--turn-open`.
+
+**And eight are declared and spent nowhere at all**, not even in the kit: `--green-soft`,
+`--ic-grid`, `--pick-indent`, `--sh-card`, `--sh-onphoto`, `--sz-node-glyph`, `--t-body-weight`,
+`--t-bodysm-weight`. 8 drawn-but-invisible + 14 + 8 = the thirty.
 
 **Load order on every painted page** is `_wireframe.css` (where linked) → per-page `<style>`
 (where present) → `ui/kit.css`. The kit is always last. What that is worth, measured selector by
@@ -55,25 +73,25 @@ selector, is §A1.
 
 | Variable | Value | Where used (pages · classes) | Role in each place |
 |---|---|---|---|
-| `--page` | `#F7F5F2` | 131 pages · 28 uses | **background** on `.dr`, `.dr-screen`, `.dr-statusbar`, `.dr-topbar`, `.dr-tabbar`, `.dr-actionbar`, `.dr-groups`, `.dr-sheet`, `.dr-kb__key`, `.dr-segment__seg:checked`, `.dr-call .dr-home span`, `.dr-btn--night[pressed]` → screen ground and every system bar; **colour (ink)** on `.dr-call`, `.dr-call__name`, `.dr-toast`, `.dr-btn--danger-solid`, `.dr-channel[pressed]` → light ink on a dark ground; **border** on `.dr-stack__shot`, `.dr-profile__rating` → the cut-out edge against a photograph; **outline** on `.dr-btn--night:focus-visible`, `.dr-btn--danger-solid:focus-visible` → focus ring on dark. |
-| `--card` | `#ECE9E4` | 116 pages · 24 uses | **background** on `.dr-card`, `.dr-rows`, `.dr-node`, `.dr-msg`, `.dr-bubble--in`, `.dr-choice`, `.dr-op`, `.dr-picker__list`, `.dr-picks`, `.dr-zone`, `.dr-range`, `.dr-disclosure`, `.dr-upload--card`, `.dr-cal`, `.dr-kb__bar`, `.dr-kb__key--mod/--return`, `.dr-when`, `.dr-route`, `.dr-finder__card`, `.dr-offer` → the card plane; **background-color** on `.dr-msg__banner`; **border** on `.dr-avatar-edit__badge`; **box-shadow** on `.dr-status` → a 2px ring in the card's own colour, cutting the live disc out of the well. |
-| `--media` | `#E4E1DA` | 117 pages · 32 uses | **background** on `.dr-chip`, `.dr-grouptab`, `.dr-mark`, `.dr-well--photo/--shot/--acquiring`, `.dr-stack__shot`, `.dr-avatar-lg/-sm/-md`, `.dr-field--area .dr-field__input`, `.dr-search`, `.dr-range__val`, `.dr-segment`, `.dr-sk-well/-block/-tray`, `.dr-cal__clock`, `.dr-slide__art`, `.dr-mapview` → media wells, muted chips, inert fields; **background on hover** for `.dr-btn--secondary`, `.dr-btn--icon`, `.dr-lang button`, `.dr-disclosure__item`, `.dr-picker__item`, `.dr-channel`, `.dr-cal__nav`, `.dr-cal__day`, `.dr-avatar-edit__badge` → the hover step of the secondary pair. |
-| `--btn2` | `#D6D2C9` | 121 pages · 24 uses | **background** on `.dr-btn--secondary`, `.dr-btn:disabled`, `.dr-btn--icon`, `.dr-status`, `.dr-bubble--out`, `.dr-avatar-edit__badge`, `.dr-field__clear`, `.dr-switch`, `.dr-range__bar`, `.dr-range__rail::before`, `.dr-lang button`, `.dr-fchip--all`, `.dr-channel`, `.dr-pager > *`, `.dr-sk-line/-btn/-dir/-route`, `.dr-kb__plane` → secondary ground, disabled ground, switch track, skeleton bar; **colour (ink)** on `.dr-call .dr-label`, `.dr-call__time`, `.dr-star`, `.dr-stars` → the secondary ink on the night surface (`--slate` is barred there at 2.42:1) and the unfilled star. |
+| `--page` | `#F7F5F2` | 125 pages · 28 uses | **background** on `.dr`, `.dr-screen`, `.dr-statusbar`, `.dr-topbar`, `.dr-tabbar`, `.dr-actionbar`, `.dr-groups`, `.dr-sheet`, `.dr-kb__key`, `.dr-segment__seg:checked`, `.dr-call .dr-home span`, `.dr-btn--night[pressed]` → screen ground and every system bar; **colour (ink)** on `.dr-call`, `.dr-call__name`, `.dr-toast`, `.dr-btn--danger-solid`, `.dr-channel[pressed]` → light ink on a dark ground; **border** on `.dr-stack__shot`, `.dr-profile__rating` → the cut-out edge against a photograph; **outline** on `.dr-btn--night:focus-visible`, `.dr-btn--danger-solid:focus-visible` → focus ring on dark. |
+| `--card` | `#ECE9E4` | 110 pages · 24 uses | **background** on `.dr-card`, `.dr-rows`, `.dr-node`, `.dr-msg`, `.dr-bubble--in`, `.dr-choice`, `.dr-op`, `.dr-picker__list`, `.dr-picks`, `.dr-zone`, `.dr-range`, `.dr-disclosure`, `.dr-upload--card`, `.dr-cal`, `.dr-kb__bar`, `.dr-kb__key--mod/--return`, `.dr-when`, `.dr-route`, `.dr-finder__card`, `.dr-offer` → the card plane; **background-color** on `.dr-msg__banner`; **border** on `.dr-avatar-edit__badge`; **box-shadow** on `.dr-status` → a 2px ring in the card's own colour, cutting the live disc out of the well. |
+| `--media` | `#E4E1DA` | 111 pages · 32 uses | **background** on `.dr-chip`, `.dr-grouptab`, `.dr-mark`, `.dr-well--photo/--shot/--acquiring`, `.dr-stack__shot`, `.dr-avatar-lg/-sm/-md`, `.dr-field--area .dr-field__input`, `.dr-search`, `.dr-range__val`, `.dr-segment`, `.dr-sk-well/-block/-tray`, `.dr-cal__clock`, `.dr-slide__art`, `.dr-mapview` → media wells, muted chips, inert fields; **background on hover** for `.dr-btn--secondary`, `.dr-btn--icon`, `.dr-lang button`, `.dr-disclosure__item`, `.dr-picker__item`, `.dr-channel`, `.dr-cal__nav`, `.dr-cal__day`, `.dr-avatar-edit__badge` → the hover step of the secondary pair. |
+| `--btn2` | `#D6D2C9` | 118 pages · 24 uses | **background** on `.dr-btn--secondary`, `.dr-btn:disabled`, `.dr-btn--icon`, `.dr-status`, `.dr-bubble--out`, `.dr-avatar-edit__badge`, `.dr-field__clear`, `.dr-switch`, `.dr-range__bar`, `.dr-range__rail::before`, `.dr-lang button`, `.dr-fchip--all`, `.dr-channel`, `.dr-pager > *`, `.dr-sk-line/-btn/-dir/-route`, `.dr-kb__plane` → secondary ground, disabled ground, switch track, skeleton bar; **colour (ink)** on `.dr-call .dr-label`, `.dr-call__time`, `.dr-star`, `.dr-stars` → the secondary ink on the night surface (`--slate` is barred there at 2.42:1) and the unfilled star. |
 | `--inset` | `#F2F0EC` | 3 pages (`order-history`, `-loading`, `operator-listings`) · 1 use | **background** on `.dr-inset` — the only plane declared to sit *inside* a card. |
-| `--ink` | `#1A1A1A` | 133 pages · 128 uses | **colour** on 79 selectors — every title, value, label, button label, tab-current, number; **background** on `.dr-brand`, `.dr-home span`, `.dr-switch__knob`, `.dr-range__bar--in`, `.dr-range__fill`, range thumbs, `.dr-toast`, `.dr-avail__dot`, `.dr-btn--pay:hover/:active`, `.dr-channel[pressed]`, `.dr-groups--tabs .dr-grouptab[selected]::after` → ink as a fill and as the selected-tab underline; **border** on `.dr-box`; **border-color** on `.dr-btn--outline:hover/:active`; **caret-color** on three inputs; **outline** on 28 of the 30 `:focus-visible` rules → the focus ring's colour, the other two being `--page` on the night surface; **`--scrim`** source at 40 %. |
-| `--slate` | `#5A5751` | 133 pages · 60 uses | **colour** on `.dr-tab`, `.dr-lead`, `.dr-label`, `.dr-hint`, `.dr-note`, `.dr-sect`, `.dr-rows__key`, `.dr-chip`, `.dr-grouptab`, `.dr-node`, `.dr-track__text`, `.dr-msg__body`, `.dr-order__date`, `.dr-listing__desc`, `.dr-choice__desc`, `.dr-op__rating`, `.dr-field__label`, every `::placeholder`, `.dr-price__lbl`, `.dr-cal__grid th`, `.dr-picker__sub`, `.dr-offer__meta`, `.dr-btn:disabled`, `.dr-btn--tertiary` → the secondary ink, and the disabled ink; **border-color** on `.dr-btn--outline` → the same value carrying an edge rather than a word. |
-| `--line` | `#D9D5CE` | 133 pages · 25 uses | **border-top / -bottom / -left** on `.dr-topbar`, `.dr-tabbar`, `.dr-actionbar`, `.dr-rows__row`, `.dr-groups`, `.dr-label`, `.dr-disclosure`, `.dr-picker__item`, `.dr-kb__bar`, `.dr-kb__quick span+span` → every hairline; **border** on `.dr-screen`, `.dr-node`; **background** on nine separator pseudo-elements *and* on `.dr-sheet__grip` → a line colour filling the drawer's grabber, which is a shape, not a rule. |
-| `--green` | `#9BCF4A` | 132 pages · 30 uses | **background** on `.dr-btn--primary` (+ `--icon`), `.dr-grouptab[selected]`, `.dr-status--live`, `.dr-node--done`, `.dr-rail::after`, `.dr-track__item--done::before`, `.dr-label::after`, `.dr-profile .dr-avatar-edit__badge`, `.dr-box:checked`, `.dr-switch:checked`, `.dr-lang button[pressed]`, `.dr-fchip__x`, `.dr-count-badge`, `.dr-pager .on`, `.dr-cal__grid td[selected] .dr-cal__day`, `.dr-avail-badge__dot`, `.dr-balance--card/--banner`, `.dr-offer:checked` → action, selection, live state, done state, count badge, balance card, selected day — **all one token**; **border-color** on `.dr-node--done/--now`, checked `.dr-box`; **box-shadow** in `@keyframes dr-ping`; **`--halo-now`** source at 20 %. |
-| `--on-green` | `#1A1A1A` | 115 pages · 19 uses | **colour** on everything sitting on a green fill (17 selectors); **background** on `.dr-switch__knob:checked` and `.dr-rating-arc`. Same hex as `--ink`, declared again to name the rule "the only colour allowed on green". |
+| `--ink` | `#1A1A1A` | 127 pages · 128 uses | **colour** on 79 selectors — every title, value, label, button label, tab-current, number; **background** on `.dr-brand`, `.dr-home span`, `.dr-switch__knob`, `.dr-range__bar--in`, `.dr-range__fill`, range thumbs, `.dr-toast`, `.dr-avail__dot`, `.dr-btn--pay:hover/:active`, `.dr-channel[pressed]`, `.dr-groups--tabs .dr-grouptab[selected]::after` → ink as a fill and as the selected-tab underline; **border** on `.dr-box`; **border-color** on `.dr-btn--outline:hover/:active`; **caret-color** on three inputs; **outline** on 28 of the 30 `:focus-visible` rules → the focus ring's colour, the other two being `--page` on the night surface; **`--scrim`** source at 40 %. |
+| `--slate` | `#5A5751` | 127 pages · 60 uses | **colour** on `.dr-tab`, `.dr-lead`, `.dr-label`, `.dr-hint`, `.dr-note`, `.dr-sect`, `.dr-rows__key`, `.dr-chip`, `.dr-grouptab`, `.dr-node`, `.dr-track__text`, `.dr-msg__body`, `.dr-order__date`, `.dr-listing__desc`, `.dr-choice__desc`, `.dr-op__rating`, `.dr-field__label`, every `::placeholder`, `.dr-price__lbl`, `.dr-cal__grid th`, `.dr-picker__sub`, `.dr-offer__meta`, `.dr-btn:disabled`, `.dr-btn--tertiary` → the secondary ink, and the disabled ink; **border-color** on `.dr-btn--outline` → the same value carrying an edge rather than a word. |
+| `--line` | `#D9D5CE` | 127 pages · 25 uses | **border-top / -bottom / -left** on `.dr-topbar`, `.dr-tabbar`, `.dr-actionbar`, `.dr-rows__row`, `.dr-groups`, `.dr-label`, `.dr-disclosure`, `.dr-picker__item`, `.dr-kb__bar`, `.dr-kb__quick span+span` → every hairline; **border** on `.dr-screen`, `.dr-node`; **background** on nine separator pseudo-elements *and* on `.dr-sheet__grip` → a line colour filling the drawer's grabber, which is a shape, not a rule. |
+| `--green` | `#9BCF4A` | 126 pages · 30 uses | **background** on `.dr-btn--primary` (+ `--icon`), `.dr-grouptab[selected]`, `.dr-status--live`, `.dr-node--done`, `.dr-rail::after`, `.dr-track__item--done::before`, `.dr-label::after`, `.dr-profile .dr-avatar-edit__badge`, `.dr-box:checked`, `.dr-switch:checked`, `.dr-lang button[pressed]`, `.dr-fchip__x`, `.dr-count-badge`, `.dr-pager .on`, `.dr-cal__grid td[selected] .dr-cal__day`, `.dr-avail-badge__dot`, `.dr-balance--card/--banner`, `.dr-offer:checked` → action, selection, live state, done state, count badge, balance card, selected day — **all one token**; **border-color** on `.dr-node--done/--now`, checked `.dr-box`; **box-shadow** in `@keyframes dr-ping`; **`--halo-now`** source at 20 %. |
+| `--on-green` | `#1A1A1A` | 113 pages · 19 uses | **colour** on everything sitting on a green fill (17 selectors); **background** on `.dr-switch__knob:checked` and `.dr-rating-arc`. Same hex as `--ink`, declared again to name the rule "the only colour allowed on green". |
 | `--green-soft` | `#B7DA7C` | **0 pages · 0 uses** | Declared, spent nowhere. Was `#A9D563`; retuned, not replaced. Its one site (`.dr-balance--banner`) went back to `--green` on 2026-09-03. |
-| `--green-wash` | `#E7F0D2` | 48 pages · 6 uses | **background** on `.dr-tab[aria-current]`, `.dr-chip--claim`, `.dr-chip--unread`, `.dr-avail-badge[available]`, `.dr-grouptab__count`, `.dr-mark--milestone`, `.dr-fchip`, `.dr-balance__glyph` → the tint behind a current tab, a claim chip, an applied filter, a milestone. |
+| `--green-wash` | `#E7F0D2` | 47 pages · 6 uses | **background** on `.dr-tab[aria-current]`, `.dr-chip--claim`, `.dr-chip--unread`, `.dr-avail-badge[available]`, `.dr-grouptab__count`, `.dr-mark--milestone`, `.dr-fchip`, `.dr-balance__glyph` → the tint behind a current tab, a claim chip, an applied filter, a milestone. |
 | `--green-ink` | `#4F6B22` | 2 pages (`account-photo`, `operator-account-photo`) · 1 use | **colour** on `.dr-btn--text` — the only place green is allowed to be a word. |
 | `--warn` | `#E4A11B` | 1 page (`rate`) · 3 uses | **colour** on `.dr-star[aria-pressed]` and `.dr-stars__fill` → the filled star; **background** on `.dr-profile__rating` → the rating pill. `.dr-stars__fill` and `.dr-profile__rating` are in **no page's markup**, so the built spend is the star alone. |
 | `--warn-ink` | `#7A5200` | 7 pages · 1 use | **colour** on `.dr-mark--warn`. |
 | `--warn-wash` | `#F6E7C4` | 7 pages · 1 use | **background** on `.dr-mark--warn` — the pair is only ever used together. |
 | `--danger` | `#C4462A` | 3 pages (`call`, `-client`, `-support`) · 3 uses | **background** on `.dr-btn--danger-solid` (+ `--icon`, + hover) → the end-call button. |
-| `--danger-ink` | `#9A3115` | 9 error pages · 3 uses | **colour** on `.dr-btn--danger`, `.dr-mark--danger`, `.dr-field__err`. `.dr-field__err` is in no markup. |
-| `--danger-wash` | `#F2D8CF` | 9 error pages · 1 use | **background** on `.dr-mark--danger`. |
+| `--danger-ink` | `#9A3115` | 8 error pages · 3 uses | **colour** on `.dr-btn--danger`, `.dr-mark--danger`, `.dr-field__err`. `.dr-field__err` is in no markup. |
+| `--danger-wash` | `#F2D8CF` | 8 error pages · 1 use | **background** on `.dr-mark--danger`. |
 | `--trust-ink` | `#2A5C7D` | **0 pages** · 1 use | **colour** on `.dr-chip--trust`. |
 | `--trust-wash` | `#D8E6F2` | **0 pages** · 1 use | **background** on `.dr-chip--trust`. The whole trust pair is declared and drawn nowhere. |
 | `--night` | `#1A1A1A` | 3 call pages · 5 uses | **background** on `.dr-call`, its status bar, its action bar, `.dr-btn--night`; **colour** on `.dr-btn--night[pressed]`. Same hex as `--ink`, third name for a third role. |
@@ -83,9 +101,9 @@ selector, is §A1.
 
 | Variable | Value | Where used (pages · classes) | Role in each place |
 |---|---|---|---|
-| `--font-ui` | SF stack | 132 pages · 16 uses | `font-family` on `.dr` and on every element that resets it: `.dr-btn`, `.dr-grouptab`, `.dr-field__input`, `.dr-picker__item`, `.dr-search input`, `.dr-segment__seg`, `.dr-lang button`, `.dr-channel`, `.dr-cal__day/__unit`, `.dr-when__cell`, `.dr-route__input/__open`, `.dr-paymark text`. |
-| `--font-mono` | mono stack | 127 pages · 5 uses | `font-family` on `.dr-label`, `.dr-hint`, `.dr-inset__lbl`, `.dr-well--acquiring`, `.dr-slide__art` → structural labels only. |
-| `--t-display-size` | `22px` | 38 pages · 5 uses | `font-size` on `.dr-display`, `.dr-call__name`, `.dr-kb__key`, `.dr-balance .dr-number`; also the first term of `--sz-glyph-plate`. |
+| `--font-ui` | SF stack | 126 pages · 16 uses | `font-family` on `.dr` and on every element that resets it: `.dr-btn`, `.dr-grouptab`, `.dr-field__input`, `.dr-picker__item`, `.dr-search input`, `.dr-segment__seg`, `.dr-lang button`, `.dr-channel`, `.dr-cal__day/__unit`, `.dr-when__cell`, `.dr-route__input/__open`, `.dr-paymark text`. |
+| `--font-mono` | mono stack | 121 pages · 5 uses | `font-family` on `.dr-label`, `.dr-hint`, `.dr-inset__lbl`, `.dr-well--acquiring`, `.dr-slide__art` → structural labels only. |
+| `--t-display-size` | `22px` | 38 pages · 6 uses | `font-size` on `.dr-display`, `.dr-call__name`, `.dr-kb__key`, `.dr-balance .dr-number`; also the first term of `--sz-glyph-plate`. |
 | `--t-display-weight` | `700` | 31 pages | `font-weight` on `.dr-display`, `.dr-call__name`. |
 | `--t-display-line` | `1.4` | 31 pages | `line-height`, same two. |
 | `--t-display-track` | `-.02em` | 31 pages | `letter-spacing`, same two. |
@@ -95,58 +113,58 @@ selector, is §A1.
 | `--t-number-weight` | `700` | 16 pages | `font-weight`, same three. |
 | `--t-number-line` | `1` | 13 pages | `line-height` on two of them; also a term of `--sz-glyph-plate`. |
 | `--t-number-track` | `-.02em` | 16 pages | `letter-spacing`, same three. |
-| `--t-title-size` | `17px` | 121 pages · 9 uses | `font-size` on `.dr-topbar__title`, `.dr-msg__title`, `.dr-listing--service .dr-listing__name`, `.dr-choice__title`, `.dr-zone__title, .dr-range__title` (one declaration), `.dr-sheet__title`, `.dr-price__val`, `.dr-offer__name`, `.dr-offer__price`. |
-| `--t-title-weight` | `600` | 120 pages · 7 uses | `font-weight` on the same set less two. `.dr-offer__name` takes the title's **size** but `--weight-medium` for its weight — the same `600` under a second name, §A5 in miniature. `.dr-listing--service .dr-listing__name` takes `--weight-regular` `400`, so the service card's title is genuinely lighter. |
-| `--t-title-line` | `1.4` | 122 pages · 5 uses | `line-height`; also on `.dr-call__time`, which takes the title's leading at the lead's size. |
-| `--t-title-track` | `-.01em` | 120 pages · 5 uses | `letter-spacing` on `.dr-topbar__title`, `.dr-msg__title`, `.dr-choice__title`, `.dr-zone__title, .dr-range__title`, `.dr-sheet__title`. |
-| `--t-heading-size` | `15px` | 128 pages · 28 uses | `font-size` on `.dr-btn`, `.dr-rows__val`, `.dr-order__title`, `.dr-listing__name`, `.dr-op__name`, `.dr-field__label/__input/__value`, `.dr-search input`, `.dr-pick`, `.dr-range__val/__out`, `.dr-disclosure > summary`, `.dr-picker__item`, `.dr-upload__action`, `.dr-cal__month/__day/__unit`, `.dr-kb__done`, `.dr-avail__state`, `.dr-when__value`, `.dr-route__input/__value`; also a term inside two `min-height` calcs. |
-| `--t-heading-weight` | `600` | 30 pages · 4 uses | `font-weight` on `.dr-order__title`, `.dr-listing__name`, `.dr-op__name`, `.dr-cal__month`. |
-| `--t-heading-line` | `1.2` | 32 pages · 9 uses | `line-height` on nine headings. |
+| `--t-title-size` | `17px` | 116 pages · 9 uses | `font-size` on `.dr-topbar__title`, `.dr-msg__title`, `.dr-listing--service .dr-listing__name`, `.dr-choice__title`, `.dr-zone__title, .dr-range__title` (one declaration), `.dr-sheet__title`, `.dr-price__val`, `.dr-offer__name`, `.dr-offer__price`. |
+| `--t-title-weight` | `600` | 116 pages · 7 uses | `font-weight` on the same set less two. `.dr-offer__name` takes the title's **size** but `--weight-medium` for its weight — the same `600` under a second name, §A5 in miniature. `.dr-listing--service .dr-listing__name` takes `--weight-regular` `400`, so the service card's title is genuinely lighter. |
+| `--t-title-line` | `1.4` | 118 pages · 5 uses | `line-height`; also on `.dr-call__time`, which takes the title's leading at the lead's size. |
+| `--t-title-track` | `-.01em` | 116 pages · 5 uses | `letter-spacing` on `.dr-topbar__title`, `.dr-msg__title`, `.dr-choice__title`, `.dr-zone__title, .dr-range__title`, `.dr-sheet__title`. |
+| `--t-heading-size` | `15px` | 122 pages · 28 uses | `font-size` on `.dr-btn`, `.dr-rows__val`, `.dr-order__title`, `.dr-listing__name`, `.dr-op__name`, `.dr-field__label/__input/__value`, `.dr-search input`, `.dr-pick`, `.dr-range__val/__out`, `.dr-disclosure > summary`, `.dr-picker__item`, `.dr-upload__action`, `.dr-cal__month/__day/__unit`, `.dr-kb__done`, `.dr-avail__state`, `.dr-when__value`, `.dr-route__input/__value`; also a term inside two `min-height` calcs. |
+| `--t-heading-weight` | `600` | 31 pages · 4 uses | `font-weight` on `.dr-order__title`, `.dr-listing__name`, `.dr-op__name`, `.dr-cal__month`. |
+| `--t-heading-line` | `1.2` | 34 pages · 9 uses | `line-height` on nine headings. |
 | `--t-lead-size` | `15px` | 29 pages · 2 uses | `font-size` on `.dr-lead`, `.dr-call__time`. |
 | `--t-lead-weight` | `400` | 26 pages | `font-weight` on `.dr-lead`. |
 | `--t-lead-line` | `1.55` | 26 pages | `line-height` on `.dr-lead`. |
-| `--t-body-size` | `14px` | 8 pages · 6 uses | `font-size` on `.dr-status-line`, `.dr-inset__place`, `.dr-track__text`, `.dr-msg--banner .dr-msg__body`, `.dr-bubble`, `.dr-toast`. |
+| `--t-body-size` | `14px` | 9 pages · 6 uses | `font-size` on `.dr-status-line`, `.dr-inset__place`, `.dr-track__text`, `.dr-msg--banner .dr-msg__body`, `.dr-bubble`, `.dr-toast`. |
 | `--t-body-weight` | `400` | **0 uses** | Declared; every body element inherits 400 instead. |
 | `--t-body-line` | `1.3` | 2 pages · 1 use | `line-height` on `.dr-inset__place` only. |
-| `--t-bodysm-size` | `13px` | 131 pages · 14 uses | `font-size` on `.dr-statusbar`, `.dr-sect`, `.dr-rows__key`, `.dr-grouptab`, `.dr-msg__body`, `.dr-counter__count`, `.dr-listing__desc`, `.dr-choice__desc`, `.dr-zone__sub`, `.dr-segment__seg`, `.dr-price__lbl`, `.dr-avail__note`, `.dr-balance--banner .dr-note`, `.dr-offer__meta`. |
+| `--t-bodysm-size` | `13px` | 125 pages · 14 uses | `font-size` on `.dr-statusbar`, `.dr-sect`, `.dr-rows__key`, `.dr-grouptab`, `.dr-msg__body`, `.dr-counter__count`, `.dr-listing__desc`, `.dr-choice__desc`, `.dr-zone__sub`, `.dr-segment__seg`, `.dr-price__lbl`, `.dr-avail__note`, `.dr-balance--banner .dr-note`, `.dr-offer__meta`. |
 | `--t-bodysm-weight` | `400` | **0 uses** | Declared, inherited instead. |
-| `--t-bodysm-line` | `1.4` | 25 pages · 6 uses | `line-height` on six of the above. |
-| `--t-para-line` | `1.5` | 67 pages · 9 uses | `line-height` on `.dr-note`, `.dr-msg__body`, `.dr-bubble`, `.dr-well--acquiring`, `.dr-field--area .dr-field__input`, `.dr-slide__art`; a term of `--sz-glyph-plate`; and a term of `.dr-field--area6`'s `min-height`. |
-| `--t-meta-size` | `12.5px` | 22 pages · 8 uses | `font-size` on `.dr-bubble__time`, `.dr-order__date`, `.dr-op__rating`, `.dr-pick__sub`, `.dr-range__cap/__ends`, `.dr-listing__score`, `.dr-picker__sub`. |
+| `--t-bodysm-line` | `1.4` | 26 pages · 6 uses | `line-height` on six of the above. |
+| `--t-para-line` | `1.5` | 65 pages · 10 uses | `line-height` on `.dr-note`, `.dr-msg__body`, `.dr-bubble`, `.dr-well--acquiring`, `.dr-field--area .dr-field__input`, `.dr-slide__art`; a term of `--sz-glyph-plate`; and a term of `.dr-field--area6`'s `min-height`. |
+| `--t-meta-size` | `12.5px` | 24 pages · 8 uses | `font-size` on `.dr-bubble__time`, `.dr-order__date`, `.dr-op__rating`, `.dr-pick__sub`, `.dr-range__cap/__ends`, `.dr-listing__score`, `.dr-picker__sub`. |
 | `--t-meta-weight` | `400` | 2 pages · 1 use | `font-weight` on `.dr-bubble__time`. |
-| `--t-meta-line` | `1.2` | 7 pages · 5 uses | `line-height` on five of the meta set. |
-| `--t-caption-size` | `12px` | 57 pages · 14 uses | `font-size` on `.dr-note`, `.dr-chip`, `.dr-field__err/__hint`, `.dr-lang button`, `.dr-fchip`, `.dr-fchip__x`, `.dr-channel`, `.dr-cal__grid th`, `.dr-kb__key--mod/--return`, `.dr-when__label`, `.dr-route__label`; a term of `--sz-glyph-plate`. |
-| `--t-caption-weight` | `600` | 30 pages · 4 uses | `font-weight` on `.dr-chip`, `.dr-fchip`, `.dr-channel`, `.dr-cal__grid th`. |
-| `--t-caption-line` | `1.4` | 27 pages · 3 uses | `line-height` on `.dr-chip`, `.dr-when__label`, `.dr-route__label`. |
-| `--t-micro-size` | `11px` | 128 pages · 9 uses | `font-size` on `.dr-tab`, `.dr-label`, `.dr-label__act`, `.dr-hint`, `.dr-inset__lbl`, `.dr-chip--sm`, `.dr-well--acquiring`, `.dr-profile__rating`, `.dr-slide__art`. |
-| `--t-micro-weight` | `600` | 127 pages · 4 uses | `font-weight` on `.dr-label`, `.dr-inset__lbl`, `.dr-profile__rating`, `.dr-slide__art`. |
+| `--t-meta-line` | `1.2` | 9 pages · 5 uses | `line-height` on five of the meta set. |
+| `--t-caption-size` | `12px` | 57 pages · 15 uses | `font-size` on `.dr-note`, `.dr-chip`, `.dr-field__err/__hint`, `.dr-lang button`, `.dr-fchip`, `.dr-fchip__x`, `.dr-channel`, `.dr-cal__grid th`, `.dr-kb__key--mod/--return`, `.dr-when__label`, `.dr-route__label`; a term of `--sz-glyph-plate`. |
+| `--t-caption-weight` | `600` | 31 pages · 4 uses | `font-weight` on `.dr-chip`, `.dr-fchip`, `.dr-channel`, `.dr-cal__grid th`. |
+| `--t-caption-line` | `1.4` | 30 pages · 3 uses | `line-height` on `.dr-chip`, `.dr-when__label`, `.dr-route__label`. |
+| `--t-micro-size` | `11px` | 122 pages · 9 uses | `font-size` on `.dr-tab`, `.dr-label`, `.dr-label__act`, `.dr-hint`, `.dr-inset__lbl`, `.dr-chip--sm`, `.dr-well--acquiring`, `.dr-profile__rating`, `.dr-slide__art`. |
+| `--t-micro-weight` | `600` | 121 pages · 4 uses | `font-weight` on `.dr-label`, `.dr-inset__lbl`, `.dr-profile__rating`, `.dr-slide__art`. |
 | `--t-micro-line` | `1.4` | 4 pages · 2 uses | `line-height` on `.dr-chip--sm`, `.dr-profile__rating`. |
-| `--t-micro-track` | `.09em` | 127 pages · 3 uses | `letter-spacing` on `.dr-label`, `.dr-well--acquiring`, `.dr-slide__art`. |
+| `--t-micro-track` | `.09em` | 121 pages · 3 uses | `letter-spacing` on `.dr-label`, `.dr-well--acquiring`, `.dr-slide__art`. |
 | `--t-micro-track-tight` | `.05em` | 2 pages · 1 use | `letter-spacing` on `.dr-inset__lbl` — the FROM / TO route labels. |
-| `--t-act-track` | `.02em` | 124 pages · 1 use | `letter-spacing` on `.dr-label__act` — the zone label's trailing note. |
-| `--t-microsm-size` | `10.5px` | 14 pages · 3 uses | `font-size` on `.dr-grouptab__count`, `.dr-rail__lbl`, `.dr-count-badge`. |
+| `--t-act-track` | `.02em` | 118 pages · 1 use | `letter-spacing` on `.dr-label__act` — the zone label's trailing note. |
+| `--t-microsm-size` | `10.5px` | 16 pages · 3 uses | `font-size` on `.dr-grouptab__count`, `.dr-rail__lbl`, `.dr-count-badge`. |
 | `--t-microsm-weight` | `400` | 10 pages · 1 use | `font-weight` on `.dr-rail__lbl`. |
 | `--t-microsm-line` | `1.4` | 10 pages · 1 use | `line-height` on `.dr-rail__lbl`. |
-| `--t-base-size` | `15px` | 131 pages · 1 use | `font-size` on `.dr` — the frame's inherited default. |
-| `--t-base-line` | `1.4` | 131 pages · 5 uses | `line-height` on `.dr`, `.dr-btn`, `.dr-upload__action`, `.dr-toast`; a term of `.dr-field--half`'s `min-height`. |
-| `--weight-regular` | `400` | 54 pages · 11 uses | `font-weight` where an element must be pulled *back* to regular: `.dr-note`, `.dr-listing--service .dr-listing__name`, `.dr-profile__role`, `.dr-field__hint`, `.dr-picker__item`, `.dr-call__time`, `.dr-listing__score`, `.dr-when__label`, `.dr-route__label`, two placeholder states. |
-| `--weight-medium` | `600` | 131 pages · 28 uses | `font-weight` on 28 selectors — the product's working weight. |
+| `--t-base-size` | `15px` | 125 pages · 1 use | `font-size` on `.dr` — the frame's inherited default. |
+| `--t-base-line` | `1.4` | 125 pages · 5 uses | `line-height` on `.dr`, `.dr-btn`, `.dr-upload__action`, `.dr-toast`; a term of `.dr-field--half`'s `min-height`. |
+| `--weight-regular` | `400` | 52 pages · 11 uses | `font-weight` where an element must be pulled *back* to regular: `.dr-note`, `.dr-listing--service .dr-listing__name`, `.dr-profile__role`, `.dr-field__hint`, `.dr-picker__item`, `.dr-call__time`, `.dr-listing__score`, `.dr-when__label`, `.dr-route__label`, two placeholder states. |
+| `--weight-medium` | `600` | 125 pages · 28 uses | `font-weight` on 28 selectors — the product's working weight. |
 
 ### 1.3 Radius — a closed ramp of six, plus two off-ramp rungs and circles
 
 | Variable | Value | Where used (pages · classes) | Role in each place |
 |---|---|---|---|
-| `--r-detail` | `4px` | 17 pages · 4 uses | `border-radius` on `.dr-sk-line`, `.dr-sk-route`, `.dr-sk-price`, `.dr-cal__unit:focus-visible` — an internal detail below the ramp. |
-| `--r-detail-lg` | `8px` | 11 pages · 1 use | `border-radius` on `.dr-box--check` only. |
+| `--r-detail` | `4px` | 18 pages · 4 uses | `border-radius` on `.dr-sk-line`, `.dr-sk-route`, `.dr-sk-price`, `.dr-cal__unit:focus-visible` — an internal detail below the ramp. |
+| `--r-detail-lg` | `8px` | 14 pages · 1 use | `border-radius` on `.dr-box--check` only. |
 | `--r-key` | `5px` | 0 pages (script-built) · 1 use | `border-radius` on `.dr-kb__key` — quoted from iOS, off the ramp on purpose. |
-| `--r-hairline` | `2px` | 38 pages · 3 uses | `border-radius` on `.dr-home span`, `.dr-range__bar`. |
-| `--r-input` | `10px` | 19 pages · 5 uses | `border-radius` on `.dr-field--area .dr-field__input`, `.dr-search`, `.dr-range__val`, `.dr-segment__seg`, `.dr-cal__clock`. |
-| `--r-btn` | `12px` | 129 pages · 9 uses | `border-radius` on `.dr-btn`, `.dr-inset`, `.dr-segment`, `.dr-lang`, `.dr-channel`, `.dr-kb__done`, `.dr-offer`, and the focus rings of `.dr-back` / `.dr-bell`. |
-| `--r-media` | `13px` | 83 pages · 9 uses | `border-radius` on `.dr-mark`, `.dr-msg__banner`, `.dr-well`, `.dr-stack__shot`, `.dr-upload`, `.dr-sk-well`, `.dr-sk-block`, `.dr-slide__art`, `.dr-balance__glyph`. |
-| `--r-card` | `16px` | 114 pages · 23 uses | `border-radius` on every card-class surface plus `.dr-tab`, `.dr-well--map`, `.dr-when__cell`, `.dr-route__open::after`, `.dr-finder__card`. |
-| `--r-panel` | `22px` | 131 pages · 4 uses | `border-radius` on `.dr-screen`, `.dr-sheet`; and **negated as a `margin-bottom`** on `.dr-mapview` (`calc(var(--r-panel) * -1)`) — the same number spent as a distance, so the map bleeds under the screen's own rounded corner. Derived, so the two cannot drift apart. |
-| `--r-pill` | `999px` | 60 pages · 31 uses | `border-radius` on pills, chips, badges, the switch track, range rail and thumb, the sheet grip, the toast, the FAB — **and on the three avatar discs** `.dr-avatar-lg/-md/-sm`. |
-| `--r-circle` | `50%` | 36 pages · 11 uses | `border-radius` on `.dr-btn--icon`, `.dr-status`, `.dr-node`, `.dr-mark--milestone`, `.dr-field__clear`, `.dr-switch__knob`, `.dr-call__avatar`, `.dr-sk-btn`, `.dr-cal__nav`, `.dr-cal__day`. **The same role as `--r-pill` on the avatars — see §3.** |
+| `--r-hairline` | `2px` | 36 pages · 2 uses | `border-radius` on `.dr-home span`, `.dr-range__bar`. |
+| `--r-input` | `10px` | 16 pages · 5 uses | `border-radius` on `.dr-field--area .dr-field__input`, `.dr-search`, `.dr-range__val`, `.dr-segment__seg`, `.dr-cal__clock`. |
+| `--r-btn` | `12px` | 123 pages · 9 uses | `border-radius` on `.dr-btn`, `.dr-inset`, `.dr-segment`, `.dr-lang`, `.dr-channel`, `.dr-kb__done`, `.dr-offer`, and the focus rings of `.dr-back` / `.dr-bell`. |
+| `--r-media` | `13px` | 81 pages · 9 uses | `border-radius` on `.dr-mark`, `.dr-msg__banner`, `.dr-well`, `.dr-stack__shot`, `.dr-upload`, `.dr-sk-well`, `.dr-sk-block`, `.dr-slide__art`, `.dr-balance__glyph`. |
+| `--r-card` | `16px` | 108 pages · 23 uses | `border-radius` on every card-class surface plus `.dr-tab`, `.dr-well--map`, `.dr-when__cell`, `.dr-route__open::after`, `.dr-finder__card`. |
+| `--r-panel` | `22px` | 125 pages · 3 uses | `border-radius` on `.dr-screen`, `.dr-sheet`; and **negated as a `margin-bottom`** on `.dr-mapview` (`calc(var(--r-panel) * -1)`) — the same number spent as a distance, so the map bleeds under the screen's own rounded corner. Derived, so the two cannot drift apart. |
+| `--r-pill` | `999px` | 58 pages · 31 uses | `border-radius` on pills, chips, badges, the switch track, range rail and thumb, the sheet grip, the toast, the FAB — **and on the three avatar discs** `.dr-avatar-lg/-md/-sm`. |
+| `--r-circle` | `50%` | 37 pages · 11 uses | `border-radius` on `.dr-btn--icon`, `.dr-status`, `.dr-node`, `.dr-mark--milestone`, `.dr-field__clear`, `.dr-switch__knob`, `.dr-call__avatar`, `.dr-sk-btn`, `.dr-cal__nav`, `.dr-cal__day`. **The same role as `--r-pill` on the avatars — see §3.** |
 
 ### 1.4 Space — base 4
 

@@ -116,3 +116,14 @@
   pointer-events: auto;
   cursor: pointer;
 }
+
+/* The loop this file's rule names. kit.css keeps the reasoning; only the
+   token names moved. */
+@keyframes dr-kb-rise{
+  from{
+    transform: translateY(var(--pct-100));
+  }
+  to{
+    transform: translateY(0);
+  }
+}

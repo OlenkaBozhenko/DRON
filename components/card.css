@@ -316,14 +316,26 @@
   flex-direction: column;
   gap: var(--len-12);
 }
-.dr-finder__services{
+/* WRITTEN AT 0-2-0, and the `.dr ` is load-bearing. This component IS a
+   <fieldset>, and misc.css's reset `.dr fieldset{ padding: 0 }` is 0-1-1 -
+   it out-specifies a bare class, so at 0-1-0 the padding below computes to
+   0px, the row bleeds to the frame edge with its first chip ON it, and,
+   32px short of the box it thinks it has, it never scrolls at all. kit.css
+   carries the same rule at the same weight and warns about this trap for
+   .dr-zone, .dr-range and .dr-segment as well. */
+.dr .dr-finder__services{
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--len-8);
-  margin: 0;
-  padding: 0;
   border: 0;
   min-width: 0;
+  padding: var(--len-6) var(--len-16);
+  margin: calc(var(--len-6) * -1) calc(var(--len-16) * -1);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.dr .dr-finder__services::-webkit-scrollbar{
+  display: none;
 }
 .dr-finder__card{
   background: var(--bg-surface);

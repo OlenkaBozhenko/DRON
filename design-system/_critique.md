@@ -471,3 +471,140 @@ state-only classes are traced to the page or script that builds them, **0** with
 console errors, and no element in a specimen wider than its frame. **66** specimen rows. Every
 figure here was read off the rendered page, not the source.
 
+---
+
+## §09 — `tokens.css` and `components/` against the frames
+
+§08 checked the showcase. This checks the layer under it: does `components/` still render what
+`ui/kit.css` renders, and does `tokens.css` carry everything it needs? Four checks, run as
+programs against the files rather than by reading:
+
+1. every `dr-*` class a frame carries → is there a rule for it in `components/`
+2. every selector in `kit.css` → is it in `components/`, and does it say the same thing
+3. every `@media` block and every `@keyframes` in `kit.css` → did it survive the port
+4. every `var()` a component reads → is it defined, and is it a *semantic* token where it is a
+   colour
+
+Check 2 is the one that needed care. A first run reported 24 selectors disagreeing; every one was
+false, because the comparison was flattening `kit.css`'s `@media (max-width: 389px)` `:root` over
+its base `:root` and then comparing a narrow-tier value against a base one. Corrected to compare
+base with base and media with media, the real count was **one**. The numbers below are from the
+corrected run.
+
+### 09a — Seven keyframes were named and none defined *(fixed)*
+
+`components/` carries nine `animation:` declarations naming **seven** keyframes — `dr-ping`,
+`dr-pulse`, `dr-up`, `dr-spin`, `dr-sheet-rise`, `dr-scrim-in`, `dr-kb-rise` — and defined **none
+of them**. An animation naming a keyframe that does not exist is not an error; it simply does not
+run. Measured on the built page before the fix:
+
+| | `wireframes/*` (reads `ui/kit.css`) | `ui/kit.html` (reads `components/`) |
+|---|---|---|
+| `@keyframes` defined | 7 | **0** |
+| animations running | 1 (`dr-up`, on a loading page) | **0** |
+
+So the skeleton did not pulse, the upload arrow did not travel, the drawer did not rise and the
+live ring did not ping. `tokens-audit.md` §0 had already noticed the shape of this from the other
+side — four variables that score 0 pages because they are *spent only inside `@keyframes`* — and
+it says of them, correctly for the kit, «The animations run.» In the port they did not.
+
+**Fixed by putting each keyframe in the one component file that spends it** — `dr-ping` in
+`badge.css`, the two drawer loops in `sheet.css`, the three skeleton loops in `skeleton.css`,
+`dr-kb-rise` in `keyboard.css` — which is the one-file-per-component rule the port already
+follows. Two primitives the loops need had been dropped with them and are restored: `--pct-100`
+(the sheet and the keyboard rise their own height) and `--deg-360` (one turn of the activity
+ring). Colour still goes through the semantic tier: `dr-ping` mixes `--color-action`, not
+`--green-500`.
+
+**After: 7 keyframes defined, 11 animations running** — eight skeleton bars, the upload arrow and
+two transitions — and `prefers-reduced-motion: reduce` still takes every one of them back to
+zero, verified by emulating it.
+
+### 09b — The narrow tier was dropped in the port *(fixed)*
+
+`kit.css` spends its one breakpoint by re-binding four tokens on `:root`:
+
+```
+@media (max-width: 389px){ :root{ --sp-group: 16 · --sp-list: 22 · --sz-well-w/h: 68 } }
+```
+
+`components/responsive.css` carried the three *class* rules from that block and not the `:root`,
+so below 389px a page on `components/` kept the wide tier: the card well stayed **96** where the
+frame steps it to **68**, and the list gap stayed 28 against the frame's 22.
+
+**`tokens.css` cannot answer this in kind, and that is not a gap in it.** Its lengths are named by
+their value — `--len-20` *is* 20 — so re-binding one to 16 would make the name a lie, and geometry
+takes no semantic token by the designer's rule for this layer. The re-binding therefore has to be
+spent where it lands. The 17 selectors in `kit.css` whose declarations reach one of the four were
+found by resolving the token chains rather than by memory, and each one now has its narrow-tier
+line in `responsive.css`.
+
+Verified by loading a frame and the showcase side by side at 380px — the frame renders from
+`kit.css`, the showcase from `components/` — and reading the same properties off both:
+
+| | frame | showcase |
+|---|---|---|
+| `.dr-well` | 68 × 68 | 68 × 68 |
+| `.dr-list` gap | 22 | 22 |
+| `.dr-card` gap / padding | 18 · 24 16 | 18 · 24 16 |
+| `.dr-inset` padding | 14 | 14 |
+| `.dr-order__top` gap | 12 | 12 |
+
+One consequence is named in the file rather than left to be discovered: under the `:root` form a
+**new** consumer of `--sp-group` would step at this width for free, and under this one it will
+not. When a component starts spending one of the four, its narrow-tier line belongs there too.
+
+### 09c — `.dr-finder__services`: `components/` was a revision behind *(fixed)*
+
+The only declaration-level disagreement in the whole port, and it was live on four pages.
+`components/card.css` held the row as it was *before* rev 273 — `flex-wrap: wrap`, no padding, no
+scroll — while `kit.css` had turned it into a single scrolling line, on the designer's word:
+«те що не влазить по ширині не переноситься на нижній рядок а має горизонтальний скрол».
+
+The rule also has to be written at **0-2-0**, and `kit.css` says why in a comment that names this
+trap for `.dr-zone`, `.dr-range` and `.dr-segment` as well: this component is a `<fieldset>`, and
+the reset `.dr fieldset{ padding: 0 }` is 0-1-1, which out-specifies a bare class. The port had
+written it bare. Restored as `.dr .dr-finder__services`, with the `::-webkit-scrollbar` rule that
+goes with it, and measured: padding **6px 16px**, margin **−6px −16px**, `flex-wrap: nowrap`,
+`overflow-x: auto`, the scroller **44** tall around **32** of chip ink, and the first chip landing
+back on the form's own measure — the negative margin giving the gutter back exactly.
+
+### 09d — What is missing and staying missing
+
+**Two classes the frames carry have no rule anywhere, and correctly so.** `.dr-listing`
+(9 pages) and `.dr-profile__name` (2 pages) have no rule in `components/` **and none in
+`ui/kit.css` either**. They are namespaces — the look comes from a co-class — so there is nothing
+to port. This is not a hole.
+
+**Twenty-six classes `components/` declares are carried by no frame.** Twenty are built by a
+script and so cannot appear in markup (`.dr-kb*`, `.dr-toast`, `.dr-lang`, `.dr-cal__day--today`,
+`.dr-fchip`). The rest are genuinely without a surface, and they are the same list
+`tokens-audit.md` keeps: `.dr-disclosure__item`, `.dr-listing--service`, `.dr-route__input`,
+`.dr-sk-dir`, `.dr-groups--tabs` (the underline row the search replaced), `.dr-fchip--all` and
+`.dr-cal__time`. **Nothing was deleted.** The port is a port; these stay until the designer says
+to trim them, and this is the list to trim from.
+
+**`.dr-cal__time` cost the showcase a specimen.** It is a wrapper `kit.css` declares from the
+revision when date and time shared one sheet; they have been two drawers since, and the clock
+rides a `.dr-pick` row inside the second one (`.dr-pick > .dr-cal__clock{ margin-left: auto }`).
+The date-picker specimen had rebuilt them as one. Corrected to the two drawers the frame builds —
+the third invented thing this sweep has found, after `.dr-chip--live` and the `--all` chip.
+
+**One duplicate primitive.** `--num-1-99` and `--ratio-map` are both `1.99`, both PRIMITIVE, and
+only `--ratio-map` is read. Two primitive names on one raw value is the drift `tokens.css` exists
+to end. It is **marked in the file and left standing** rather than deleted without the designer's
+word.
+
+### 09e — The state after
+
+| Check | Result |
+|---|---|
+| frame classes with no rule in `components/` | **2**, both namespace-only, neither in `kit.css` either |
+| selectors where `components/` says something different | **0** |
+| `@media` conditions carried | **2 of 2**, contents verified declaration by declaration |
+| `@keyframes` carried | **7 of 7** |
+| `var()` read by a component and not defined | **0** |
+| raw hex or px written into a component class | **0** |
+| primitive colour read straight by a component | **0** — every colour goes through a semantic role |
+| `tokens.css` | 178 definitions · 170 distinct values · 1 marked duplicate |
+| `components/` | 30 files · 2 316 declarations |

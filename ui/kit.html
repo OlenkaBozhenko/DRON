@@ -1183,10 +1183,10 @@
 </div>
 
 <div class="row">
-  <div class="nm"><b>Date picker &#183; and its clock</b><code>.dr-cal &#183; __bar &#183; __nav &#183; __month &#183; __grid &#183; __day &#183; --today &#183; __clock &#183; __unit &#183; __colon</code>
-    <p>The sheet the finder opens when you tap <i>Date</i> or <i>Time</i>.
-       <code>listings</code> and <code>listings-filters</code> build the day cells with a page
-       script; the classes and attributes here are the ones that script writes.</p></div>
+  <div class="nm"><b>Date picker &#183; and its clock</b><code>.dr-cal &#183; __bar &#183; __nav &#183; __month &#183; __grid &#183; __day &#183; --today &#183; .dr-picks &#183; .dr-pick &#183; __clock &#183; __unit &#183; __colon</code>
+    <p><b>Two drawers, not one.</b> <i>Date</i> opens the calendar, <i>Time</i> opens a pair of
+       picks. <code>listings</code> and <code>listings-filters</code> build the day cells with a
+       page script; the classes and attributes here are the ones that script writes.</p></div>
   <div class="spec col">
     <div class="dr dr-cal" style="width:341px;max-width:100%">
       <div class="dr-cal__bar">
@@ -1204,15 +1204,26 @@
             <tr><td><button class="dr-cal__day" type="button">28</button></td><td><button class="dr-cal__day" type="button">29</button></td><td><button class="dr-cal__day" type="button">30</button></td><td></td><td></td><td></td><td></td></tr>
         </tbody>
       </table>
-      <div class="dr-cal__time">
+    </div>
+    <span class="st">Pick a date &#183; day cell 44 &#215; 44 &#183; today marked under the numeral &#183; the 24th chosen</span>
+    <div class="dr dr-picks" role="radiogroup" aria-label="Pick a time" style="width:341px;max-width:100%;list-style:none">
+      <label class="dr-pick">
+        <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+        <span class="dr-pick__label">Now</span>
+        <input type="radio" name="kitwhen" value="now" checked class="sr-only">
+      </label>
+      <label class="dr-pick">
+        <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+        <span class="dr-pick__label">At a set time</span>
+        <input type="radio" name="kitwhen" value="at" class="sr-only">
         <span class="dr-cal__clock">
           <select class="dr-cal__unit" aria-label="Hour"><option>09</option><option>10</option><option>11</option><option>12</option><option>13</option><option selected>14</option><option>15</option><option>16</option><option>17</option><option>18</option></select>
           <span class="dr-cal__colon" aria-hidden="true">:</span>
           <select class="dr-cal__unit" aria-label="Minute"><option>00</option><option>15</option><option selected>30</option><option>45</option></select>
         </span>
-      </div>
+      </label>
     </div>
-    <span class="st">day cell 44 &#215; 44 &#183; today marked under the numeral &#183; the 24th chosen</span>
+    <span class="st">Pick a time &#183; a second drawer &#183; the clock rides the &#8220;At a set time&#8221; row</span>
   </div>
   <div class="notes">
     <p><b>Every day is a 44 &#215; 44 button, and the row is 44 tall,</b> so
@@ -1229,6 +1240,17 @@
        fixed values, so the platform&#8217;s own control is the right one &#8212; it brings the
        wheel on iOS, the keyboard on desktop, and a label each. The colon between them is
        <code>aria-hidden</code>: it is punctuation, not a third field.</p>
+    <p><b>The clock does not stand on its own &#8212; it rides a radio row.</b> The time drawer
+       offers two picks, <i>Now</i> and <i>At a set time</i>, and the selects sit inside the
+       second label, pushed right by <code>.dr-pick &gt; .dr-cal__clock{ margin-left: auto }</code>.
+       That is what makes the pair a real choice: setting an hour <i>is</i> choosing the second
+       option, so the state cannot disagree with the value. <i>Now</i> is offered only while the
+       chosen day is today &#8212; the search never says <i>Now</i> about next Tuesday.</p>
+    <p><b><code>.dr-cal__time</code> is not drawn here, because nothing draws it.</b> kit.css
+       declares it &#8212; a wrapper with a hairline above the clock &#8212; from the revision
+       when date and time shared one sheet. They have been two drawers since, and the rule has had
+       no surface ever since. It is filed with <code>.dr-fchip--all</code> in
+       <code>design-system/_critique.md</code>.</p>
   </div>
 </div>
 

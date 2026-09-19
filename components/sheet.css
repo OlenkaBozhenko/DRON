@@ -184,3 +184,22 @@
   z-index: 1;
   flex: none;
 }
+
+/* The loop this file's rule names. kit.css keeps the reasoning; only the
+   token names moved. */
+@keyframes dr-sheet-rise{
+  from{
+    transform: translateY(var(--pct-100));
+  }
+  to{
+    transform: translateY(0);
+  }
+}
+@keyframes dr-scrim-in{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}

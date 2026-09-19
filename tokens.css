@@ -129,6 +129,7 @@
   --pct-75:          75%;   /* --rail-track-span */
   --pct-78:          78%;   /* --banner-art */
   --pct-90:          90%;   /* --sk-w90 */
+  --pct-100:         100%;   /* the sheet and the keyboard rise their own height */
 
   /* -- PRIMITIVE / UNITLESS  (leading, weight, factor) --------------------- */
   --num-0-5:         .5;   /* --pulse-floor */
@@ -141,7 +142,11 @@
   --num-1-5:         1.5;   /* --t-para-line */
   --num-1-55:        1.55;   /* --t-lead-line */
   --num-1-7:         1.7;   /* --ic-stroke */
-  --num-1-99:        1.99;   /* --map-aspect */
+  --num-1-99:        1.99;   /* --map-aspect - DUPLICATE of --ratio-map below, which is
+                                the one components/ reads. Two primitive names on one
+                                raw value is the drift this file exists to end; left
+                                standing rather than deleted without the designer's
+                                word, and filed in design-system/_critique.md 09c. */
   --num-400:         400;   /* --t-lead-weight + --t-body-weight + --t-bodysm-weight + --t-meta-weight + --t-microsm-weight + --weight-regular   COLLAPSED 6 names */
   --num-600:         600;   /* --t-title-weight + --t-heading-weight + --t-caption-weight + --t-micro-weight + --weight-medium   COLLAPSED 5 names */
   --num-700:         700;   /* --t-display-weight + --t-number-weight   COLLAPSED 2 names */
@@ -158,6 +163,7 @@
   --deg-2:           2deg;   /* --tilt-3 */
   --deg-3:           3deg;   /* --tilt-1 */
   --deg-180:         180deg;   /* --turn-open */
+  --deg-360:         360deg;   /* one turn of the activity ring */
 
   /* -- PRIMITIVE / TIME and EASING ----------------------------------------- */
   --time-0-12:       .12s;   /* --dur-fast */

@@ -6,12 +6,93 @@
    geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
    The reasoning for every value stays in ui/kit.css, which is still the
    archive; it is not copied here, so it cannot drift from itself.
+
+   THE NARROW TIER IS WRITTEN OUT, NOT RE-BOUND. ui/kit.css spends this
+   breakpoint by redefining four tokens on :root -
+
+       --sp-group 20 -> 16 · --sp-list 28 -> 22 · --sz-well-w/h 96 -> 68
+
+   - and every consumer follows. tokens.css cannot do that: its lengths are
+   named by their value, so --len-20 can never be made to mean 16 without the
+   name becoming a lie, and geometry takes no semantic token (the designer's
+   rule for this layer). So the re-binding is spent where it lands instead:
+   the 17 selectors below are every rule in kit.css whose declarations reach
+   one of the four, found by resolving the token chains rather than by memory.
+   Each one keeps kit.css's computed value at this width.
+
+   One consequence is worth naming: under the :root form a NEW consumer of
+   --sp-group would step at this width for free, and here it would not. When a
+   component starts spending one of the four, its narrow-tier line belongs in
+   this block too.
    ------------------------------------------------------------------------ */
 
 @media (max-width: 389px){
+
+  /* --sp-list 28 -> 22 */
+  .dr-log{
+    gap: var(--len-22);
+  }
+  .dr-list{
+    gap: var(--len-22);
+  }
+
+  /* --sp-group 20 -> 16 */
+  /* gap is --sp-18 here, not --sp-group's 16: kit.css's narrow rule lands
+     after the re-binding and wins. Padding still follows --sp-group. */
   .dr-card{
     gap: var(--len-18);
+    padding: var(--len-24) var(--len-16);
   }
+  .dr-card--compact{
+    padding: var(--len-16) var(--len-16);
+  }
+  .dr-choice{
+    gap: var(--len-16);
+  }
+  .dr-op{
+    padding: var(--len-16) var(--len-16);
+  }
+  .dr-zone > .dr-picks, .dr-zone > .dr-rows{
+    margin-top: var(--len-16);
+  }
+  .dr-range__band{
+    margin-top: var(--len-16);
+  }
+  .dr-range__fields{
+    margin-top: var(--len-16);
+  }
+  .dr-call .dr-main{
+    gap: var(--len-16);
+  }
+  .dr-toast{
+    bottom: var(--len-16);
+    padding: var(--len-12) var(--len-16);
+  }
+  .dr-slider--bleed .dr-slide{
+    padding: calc(var(--len-16) + var(--len-32)) var(--len-16) 0;
+  }
+  .dr-slider--bleed .dr-slide__art{
+    margin: 0 calc(var(--len-16) * -1);
+  }
+  .dr-balance--card, .dr-balance--banner{
+    padding: var(--len-16) var(--len-16);
+  }
+  .dr-fab{
+    padding: 0 var(--len-16);
+  }
+
+  /* --sz-well-w/h 96 -> 68. The skeleton steps with the well it stands in
+     for, so a loading list and a loaded list keep the same height. */
+  .dr-well{
+    width: var(--len-68);
+    height: var(--len-68);
+  }
+  .dr-sk-well{
+    width: var(--len-68);
+    height: var(--len-68);
+  }
+
+  /* kit.css's own narrow-tier rules, which were never token re-bindings */
   .dr-order__top{
     gap: var(--len-12);
   }
