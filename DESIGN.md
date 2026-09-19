@@ -2936,6 +2936,34 @@ from (`HIG · 44pt` ✓ +3.2, `WCAG 2.5.8` ✓ 1.96× the 44 × 44 area). Curren
   than overruled** — it refused an *inset* rule as a divider inside content, and both lines run
   **edge to edge**: `margin-inline: -16` paid straight back as padding, the chips not moving a pixel
   sideways, **first chip measured at x 17**.
+- **And since rev 267 (2026-09-19) the in-page row PINS to the top of the list.** The designer
+  against the built `operator-listings`: *«Make fixed position»*. It is `position: sticky` and not
+  `fixed` — `fixed` resolves against the **viewport**, and every screen here is drawn inside
+  `.wf-frame`, a 375-wide phone standing in a 1151-wide browser, so a fixed row would leave the
+  frame and lie across the shell; `sticky` resolves against the nearest scrollport, which is
+  `.dr-main` itself (`overflow-y: auto`). **`top` is `-17px` and both halves of it were measured,
+  not reasoned:** a sticky child pins to its scroll container's **content** box, so `top: 0` left
+  the row standing **15px** below `.dr-topbar` with the list scrolling visibly through `.dr-main`'s
+  own 16 of padding above it — `--sp-screen` is paid back (**−16**) to bring the row flush to the
+  chrome, and one more `--hair` (**−17**) holds the row's own top rule outside `main`'s overflow
+  edge so it is clipped, leaving **one** hairline at the junction instead of 2px of `--line`.
+  **Measured, 375 × 812, annotations off:** at rest the row is unmoved — `373 × 48` at **88** from
+  the scrollport, chip `103.97 × 32`; pinned it sits at **−1** with **47** visible and its bottom
+  edge at **47**. `background` goes `transparent` → `--page` `rgb(247, 245, 242)`, which is the
+  frame's own ground, so nothing changes at rest and nothing shows through when pinned; `z-index: 3`
+  clears `.dr-card__link` **1** and `.dr-card__actions .dr-btn` **2** and stays under the scrim **5**
+  and the sheet **6**, so the availability drawer still covers the row. **`WCAG 2.4.11 Focus Not
+  Obscured (Minimum)` is answered in CSS rather than left open:** `scroll-padding-top:
+  calc(var(--h-groups) - var(--hair))` = **47** on `.dr-main:has(> .dr-groups)`; tabbing the whole
+  screen measures **0px of overlap** between the pinned row and every one of the eight focusable
+  controls under it, and the row's own `#incoming` / `#active` jumps land **272** clear. **It repays
+  the first of rev 220's two recorded costs** — `Active · 1` can no longer scroll off — **and
+  restores `WCAG 3.2.3 Consistent Navigation`** between the two home screens without moving the DOM
+  order, so rev 220's `HIG · Segmented Controls` reading holds at the same time. **`WCAG 1.4.11` is
+  unmoved and still open:** the chip's mark is `--green-wash` at **1.085:1**. **Scope verified live,
+  not assumed** — `operator-listings` and `operator-listings-empty` only; on `listings`,
+  `listings-filtered`, `time-slot` and `order-history` the nav is a **sibling** of `main`,
+  `position: static`, `scroll-padding-top: auto`. **0** console errors.
 
 ### Icons
 

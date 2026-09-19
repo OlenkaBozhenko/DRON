@@ -1655,12 +1655,73 @@ header.dr-topbar,
    (`HIG · 44pt` ✓ 100%, `WCAG 2.5.8` ✓ **2.36×** on the wider of the two), gap
    `--sp-within-lg` **8**, each chip its own text. The two rules are `--hair` 1px
    `--line`; a divider states nothing, so `1.4.11` does not bind on them. */
+/* AND ON 2026-09-19 THE IN-PAGE ROW PINS — the designer, against the built
+   `operator-listings`: «Make fixed position». IT ANSWERS A COST THIS FILE
+   ALREADY CARRIES IN WRITING. Rev 220 brought the row down out of the chrome and
+   recorded what that lost: «the row now scrolls away with the list, so
+   `Active · 1` is off screen once the operator is down the offers — the chrome
+   used to hold it there». The row now holds itself, and her rev 220 order is
+   untouched — availability first because it gates dispatch, the filter last
+   before the list it filters.
+   IT IS `position: sticky`, NOT `position: fixed`, AND THAT IS NOT A LIBERTY.
+   `fixed` resolves against the VIEWPORT, and every screen here is drawn inside
+   `.wf-frame` — a 375-wide phone standing in a 1151-wide browser — so a fixed
+   row would leave the frame and lie across the shell. `sticky` resolves against
+   the nearest scrollport, which is `.dr-main` itself (`overflow-y: auto`), so
+   the row pins to the top of the list and to nothing else, at all three of the
+   shell's viewports.
+   THE STANDARDS, IN ORDER.
+   · `HIG · Scroll views` pins the header of a grouped list to the top of the
+     scroll view while its section is on screen. A row that names which group you
+     are reading is that object. ✓
+   · `WCAG 3.2.3 Consistent Navigation` was recorded BROKEN at rev 220 between
+     the two home screens — the client's `listings` keeps this row in the chrome
+     where it never moves, the operator's carried it in the page where it
+     scrolled away. Pinned, the operator's row is on screen whenever the client's
+     is, and `HIG · Segmented Controls` / `WCAG 1.3.2` keep rev 220's reading at
+     the same time, because the DOM order does not move. Both hold at once now.
+   · `WCAG 2.4.11 Focus Not Obscured (Minimum)` is the criterion a pinned row
+     breaks by default: Tab into the first offer card and the browser scrolls the
+     focused control flush to the scrollport top — UNDER the row. Answered in CSS
+     rather than left open: `scroll-padding-top` on the scroll container holds
+     every scroll-into-view clear of the pinned 47 — Tab, the `#incoming` /
+     `#active` anchor jumps the row's own links make, and back/forward with them.
+     Scoped `:has(> .dr-groups)` so no other `.dr-main` is reached.
+   · `WCAG 1.4.10 Reflow`: the row costs 47 of the frame's height permanently —
+     5.8% of the 375 × 812 frame, leaving the list 596. 1.4.10 asks for no
+     two-axis scroll, not for a share of the height, and none is introduced. ✓
+   · `WCAG 1.4.11` is UNMOVED, said plainly: the chip's `--green-wash` mark is
+     still 1.085:1 against the page and still leans on the label going --slate
+     6.62:1 → --ink 14.75:1. Pinning neither helps it nor hurts it. Rev 250's
+     recorded condition, still open, not quietly reopened as new.
+   TWO DECLARATIONS DO THE WORK AND A THIRD IS THE PRICE OF IT. `background`
+   goes `transparent` → `--page`, because a row that content passes behind cannot
+   be see-through — and `--page` is the ground `main` was painting under it
+   anyway, so nothing changes at rest. `z-index: 3` clears the card's own two
+   rungs (`.dr-card__link` 1, `.dr-card__actions .dr-btn` 2) and stays under the
+   scrim 5 and the sheet 6, so the availability drawer still covers the row.
+   `top` IS `-17px` AND NOT 0, AND BOTH HALVES OF THAT FIGURE WERE MEASURED, NOT
+   REASONED. A sticky child pins to its scroll container's CONTENT box, not to the
+   scrollport — `top: 0` left the row standing **15px** below `.dr-topbar`, with
+   `.dr-main`'s own 16 of padding open above it and the list scrolling VISIBLY
+   through that band before the overflow edge cut it. So the offset pays
+   `--sp-screen` back (**−16**) to bring the row flush to the frame's chrome. The
+   extra `--hair` (**−17**) is the second half: flush at −16 the row's own 1px top
+   rule lands on `.dr-topbar`'s `border-bottom` and draws **2px** of `--line`,
+   against «every hairline is one pixel». Held one pixel higher, that top rule
+   falls outside `main`'s overflow edge and is clipped, so exactly ONE line shows
+   in both states. THE COST, STATED: the pinned row is **47** tall instead of 48
+   and its chips sit 1px higher than they do at rest. The chips themselves are
+   untouched — 32 visible, the `--pill-bleed` −6/−6 `::after` still taking the
+   target to 44 (`HIG · 44pt` ✓, `WCAG 2.5.8` ✓ 2.36×). */
 .dr-main > .dr-groups{
+  position: sticky; top: calc((var(--sp-screen) + var(--hair)) * -1); z-index: 3;
   margin-inline: calc(var(--sp-screen) * -1);
   padding-inline: var(--sp-screen);
   border-top: var(--hair) solid var(--line);
-  background: transparent;
+  background: var(--page);
 }
+.dr-main:has(> .dr-groups){ scroll-padding-top: calc(var(--h-groups) - var(--hair)); }
 .dr-grouptab{
   position: relative; flex: none;
   height: var(--h-pill); padding: 0 var(--sp-snug);
