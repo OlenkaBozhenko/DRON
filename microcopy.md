@@ -689,6 +689,17 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **Not carried in:** `First name` / `Last name` — she named three fields. No placeholder is written — `payment`'s card form has none.
 - **`voice.md` is not engaged beyond the verb.** No state message is written; the drawer has no error or success copy, and in the prototype the CTA only closes it.
 
+**Sync — 2026-09-19 (the aerial service takes one name across the whole product, and the record gains the row that says which files came back)**
+
+- **The designer's call, given against the built `listings` badge:** *«Photo & Video should be make changes hier in all of the files»*, then, on the two questions put to her, **one name everywhere** and **sentence case**. The badge had read *Photo* since 2026-09-14; twenty-three wireframe files drew *Aerial photo & video*. From this pass every one of them says **`Photo & video`**.
+- **THE STANDARDS WENT FIRST, AND THEY PULLED APART ON THE CASE, WHICH IS THE PART SHE DECIDED.** `WCAG 3.2.4 Consistent Identification` was the argument for the rename and is now met: one function, one name, on the badge, the four category tabs, every nav title, every card, every record and the operator side. On the case, `HIG · Writing` prescribes title-style for button titles and view titles — which `Photo & Video` satisfies and the product's other strings (*Package delivery*, *View details*, *Book again*) do not — against `concept.md` rev 60's sentence-case rule, which every service name in the build already follows. **She was shown both drawn on `ratings` and chose sentence case**, so no new departure is opened and `HIG · Writing` stays departed-from exactly where it already was.
+- **THE MEASURED COST IS ON THE HOME BADGE ROW AND SHE TOOK IT.** The chip grows **84.42 → 136.45px**; the three badges need **367.07px** of the **341.67px** a 375pt frame gives them, so **Inspection wraps to a second line** at 375 and below. One line returns at **≥ 402px**. `WCAG 1.4.10 Reflow` ✓ — wrapping *is* the reflow, and the row already wrapped at 320 before this change. `WCAG 2.5.8` / `HIG · 44pt` untouched: 32 visible + `--pill-bleed` = **44**, and a wider label only grows the target. `WCAG 1.4.3` untouched: the pair is the same, **6.62:1** at rest and **9.46:1** chosen.
+- **ONE DEFECT SHRINKS AND DOES NOT CLOSE, AND IS REPORTED RATHER THAN FIXED.** The four category tabs on `listings-empty` / `-error` / `-filtered` / `-loading` split 374px four ways and give each label **91px**. *Aerial photo & video* needed **155px** — **41% of it was cut**, and the client read *«Aerial p…»*. *Photo & video* needs **114px**: still an ellipsis, **20% cut**. Only the retired one-word *Photo* would have fitted whole. The row is not re-engineered here; the number is stated and left with the designer.
+- **ONE STRING IS AUTHORED, AND IT IS HERS:** **`What you get`** on `order-details-aerial` — *«там де what you get потрібно поставити в деталях замовлення те що обрав користувач або фото або відео або і те і те може бути»*. The label already exists on `order-setup-aerial` and `order-review-aerial`; the record had no row for it at all, so which of the three files the client bought could only be inferred from the zone heading below. It now sits after **Shoot**, the review screen's own position, and reads **`Photo & video`** on this record.
+- **THE NAME COLLISION IS HERS AND IS RECORDED, NOT CORRECTED.** *Photo & video* is now both the **service** and the **fullest of the three deliverables** (`voice.md` **O5**), so `order-review-aerial` says the three words three times — *Service*, *What you get*, and the priced line. She was shown that screen with all three ringed and chose to keep the deliverable named for what the client picked. `voice.md`'s one-concept-one-word rule is spent here on her call; the reading that holds it together is that *Service* names what was booked and *What you get* names which files come back, and they differ the moment the client picks *Photo* alone.
+- **NOT TOUCHED, ON PURPOSE.** Dated history is not rewritten: the Batch-1/2 rewrite logs, the rev-164 and rev-223 audit notes, and the `listings` row at **1151** all keep the old name because they record what was true when they were written. **One stale row is found and reported rather than corrected:** `wallet | Balance | ₴800 paid for 'Aerial photo & video', added to your balance 12 min ago.` is still in the master table although the string was **deleted on 2026-08-21** (row 176) and is in no build — it is a drift that predates this pass, and removing a row is not mine to do.
+
+
 ## Master table — every string
 
 _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string, in document order. Regenerated from the current wireframes after the voice rewrite (Step 03 audit)._
@@ -984,10 +995,10 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | job-offer | Decide fast | Expires in 8s | Body |  |
 | job-offer | Decide fast | Accept | Button |  |
 | job-offer | Decide fast | Decline | Button |  |
-| listings-empty | — | All | Button |  |
-| listings-empty | — | Delivery | Button |  |
-| listings-empty | — | Aerial photo & video | Button |  |
-| listings-empty | — | Inspection | Button |  |
+| listings-empty | Search & filters | All | Button |  |
+| listings-empty | Search & filters | Delivery | Button |  |
+| listings-empty | Search & filters | Photo & video | Button |  |
+| listings-empty | Search & filters | Inspection | Button |  |
 | listings-empty | Search & filters | Search services | Field placeholder |  |
 | listings-empty | Search & filters | crop spraying | Field value | USER |
 | listings-empty | Search & filters | Filters | Button |  |
@@ -1000,10 +1011,10 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-empty | Service list | Activity | Button |  |
 | listings-empty | Service list | Help | Button |  |
 | listings-empty | Service list | Account | Button |  |
-| listings-error | — | All | Button |  |
-| listings-error | — | Delivery | Button |  |
-| listings-error | — | Aerial photo & video | Button |  |
-| listings-error | — | Inspection | Button |  |
+| listings-error | Search & filters | All | Button |  |
+| listings-error | Search & filters | Delivery | Button |  |
+| listings-error | Search & filters | Photo & video | Button |  |
+| listings-error | Search & filters | Inspection | Button |  |
 | listings-error | Search & filters | Search services | Field placeholder |  |
 | listings-error | Search & filters | Filters | Button |  |
 | listings-error | Service list | Couldn't load services | State message |  |
@@ -1070,16 +1081,16 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filter-region | Region | Zakarpattia Oblast | Body | DATA |
 | listings-filter-region | Region | Zaporizhzhia Oblast | Body | DATA |
 | listings-filter-region | Region | Zhytomyr Oblast | Body | DATA |
-| listings-filtered | — | All | Button |  |
-| listings-filtered | — | Delivery | Button |  |
-| listings-filtered | — | Aerial photo & video | Button |  |
-| listings-filtered | — | Inspection | Button |  |
+| listings-filtered | Search & filters | All | Button |  |
+| listings-filtered | Search & filters | Delivery | Button |  |
+| listings-filtered | Search & filters | Photo & video | Button |  |
+| listings-filtered | Search & filters | Inspection | Button |  |
 | listings-filtered | Search & filters | Search services | Field placeholder |  |
 | listings-filtered | Applied filters | Today | Body |  |
 | listings-filtered | Applied filters | Podilskyi | Body |  |
 | listings-filtered | Applied filters | All | Body | the leading chip — took the exit-to-full-list job from the Clear all text button at the designer's call, 2026-08-13 |
 | listings-filtered | Service list · cards | AERIAL | Body | WF-PH |
-| listings-filtered | Service list · cards | Aerial photo & video | Heading |  |
+| listings-filtered | Service list · cards | Photo & video | Heading |  |
 | listings-filtered | Service list · cards | Events, real-estate listings, personal occasions | Body |  |
 | listings-filtered | Service list · cards | INSPECT | Body | WF-PH |
 | listings-filtered | Service list · cards | Inspection | Heading |  |
@@ -1136,10 +1147,10 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filters | Price | ₴1,000+ | Field value | DATA |
 | listings-filters | Location | Clear all | Button |  |
 | listings-filters | Location | Apply filters | Button |  |
-| listings-loading | — | All | Button |  |
-| listings-loading | — | Delivery | Button |  |
-| listings-loading | — | Aerial photo & video | Button |  |
-| listings-loading | — | Inspection | Button |  |
+| listings-loading | Search & filters | All | Button |  |
+| listings-loading | Search & filters | Delivery | Button |  |
+| listings-loading | Search & filters | Photo & video | Button |  |
+| listings-loading | Search & filters | Inspection | Button |  |
 | listings-loading | Search & filters | Search services | Field placeholder |  |
 | listings-loading | Search & filters | Filters | Button |  |
 | listings-loading | Service list | Browse services | Button |  |
@@ -1150,7 +1161,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings | — | Notifications, 3 unread | Accessible name (`aria-label`) | the bell, unchanged |
 | listings | Search | Service | Field label | accessible name only — the badge group's name (`aria-label` on the fieldset). **New 2026-09-14**, when Home became a search; the category row it replaces (*All · Delivery · Aerial photo & video · Inspection*, with the search field and the service cards) left the page with it |
 | listings | Search | Delivery | Button | a badge — a radio, chosen at rest |
-| listings | Search | Photo | Button | a badge. **The designer's own word, 2026-09-14** — the service is *Aerial photo & video* everywhere else, including the title of the results screen this badge opens. One concept in two words is `voice.md`'s one-word rule spent on her call, recorded rather than smoothed |
+| listings | Search | Photo & video | Button | a badge. **Renamed on the designer's call, 2026-09-19** — it read *Photo* from 2026-09-14, against *Aerial photo & video* on the twenty-three files that draw the service elsewhere. She chose one name for the whole product and sentence case for it, so the badge, the category tabs, every nav title, every card and the operator side now say the same three words (`WCAG 3.2.4` ✓). **The measured cost, accepted — and it is a scroll, not a wrap:** the chip grows **84.4 → 136.4px** and the row needs **367.1** of the **374** a 375pt frame gives it. The wrap this note first recorded was overtaken the same day by rev 273, which made the badge row one line that scrolls sideways on her word (*«те що не влазить по ширині не переноситься на нижній рядок а має горизонтальний скрол»*), so **25** sits under the frame edge on Home and **74** on the four state pages, where *All* stands in front of the three — at rest that row shows **56.3** of *Inspection*'s 114.9 and the rest arrives with a swipe. **Nothing is truncated in the DOM**, so the accessible name stays the whole string on every chip (`WCAG 4.1.2`, `2.5.3`), and `1.4.10` is not engaged by a component that scrolls inside a page that does not |
 | listings | Search | Inspection | Button | a badge |
 | listings | Search | From | Field label | **new 2026-09-14**, the designer's *«звідки і куди»* against Figma `145:4`. Delivery only. The label is the reference's word; the placeholder under it keeps the product's own, *Pickup address* (`order-setup`), so the field says both. **From rev 254 the row is a button** that opens the address drawer, and its name is the drawn text — *From Pickup address*, or *From Osokorky, 14* once one is taken (`WCAG 2.5.3`) |
 | listings | Search | Pickup address | Field placeholder | `order-setup`'s field name, without its colon. From rev 254 it is the row's grey value line while no address is taken — the placeholder's role, drawn as text in a button |
@@ -1224,7 +1235,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-map | Choices | 1 available · arrives in 14 min | Body | DATA |
 | listings-map | Choices | ₴320 | Field value | DATA |
 | listings-map | Choices | Order | Button | primary, the screen's one green control. The verb for the client's work (`voice.md` vocabulary: client-side = **order**) |
-| listings-map-aerial | — | Aerial photo & video | Heading | the nav title |
+| listings-map-aerial | — | Photo & video | Heading | the nav title |
 | listings-map-aerial | Choices | What you get | Heading | the drawer's title — `order-setup-aerial`'s own field label |
 | listings-map-aerial | Choices | Photo · 3 available · arrives in 20 min · ₴640 | Body | DATA — one row: name, meta, price |
 | listings-map-aerial | Choices | Video · 2 available · arrives in 25 min · ₴720 | Body | DATA — one row |
@@ -1328,7 +1339,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-dispute-error | — | ‹ Jobs | Button |  |
 | operator-dispute-error | — | Dispute | Heading |  |
 | operator-dispute-error | Job | AERIAL | State message | WF-PH |
-| operator-dispute-error | Job | Job #DR-2841 · Aerial photo | Heading |  |
+| operator-dispute-error | Job | Job #DR-2841 · Photo & video | Heading |  |
 | operator-dispute-error | Job | Client: Olena H. · disputed | State message |  |
 | operator-dispute-error | Job | · held | State message |  |
 | operator-dispute-error | Status | HELD | State message | WF-PH |
@@ -1340,7 +1351,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-dispute | — | ‹ Jobs | Button |  |
 | operator-dispute | — | Dispute | Heading |  |
 | operator-dispute | Job | AERIAL | Body | WF-PH |
-| operator-dispute | Job | Job #DR-2841 · Aerial photo | Heading |  |
+| operator-dispute | Job | Job #DR-2841 · Photo & video | Heading |  |
 | operator-dispute | Job | Client: Olena H. · closed 22 min ago | Body | DATA |
 | operator-dispute | Job | · disputed | Body |  |
 | operator-dispute | Client claim | Client's issue | Body |  |
@@ -1425,7 +1436,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-listings | Incoming offers · cards | expires in 6s | Body |  |
 | operator-listings | Incoming offers · cards | Accept | Button |  |
 | operator-listings | Incoming offers · cards | Decline | Button |  |
-| operator-listings | Active jobs · cards | Aerial photo & video | Body |  |
+| operator-listings | Active jobs · cards | Photo & video | Body |  |
 | operator-listings | Active jobs · cards | In progress | Body |  |
 | operator-listings | Active jobs · cards | Client · Olena H. | Body |  |
 | operator-listings | Active jobs · cards | Location | Body |  |
@@ -1447,7 +1458,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-profile-setup | Profile photo | 1–2 lines clients see. Your experience and the area you cover. | Body |  |
 | operator-profile-setup | Profile photo | Service specializations | Field label |  |
 | operator-profile-setup | Profile photo | Delivery | Field label |  |
-| operator-profile-setup | Profile photo | Aerial photo & video | Field label |  |
+| operator-profile-setup | Profile photo | Photo & video | Field label |  |
 | operator-profile-setup | Profile photo | Inspection | Field label |  |
 | operator-profile-setup | Profile photo | Save & go live | Button |  |
 | operator-signup-error | — | ‹ Operator terms | Button |  |
@@ -1582,15 +1593,15 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-details-inspection | Summary | ₴650 | Values | DATA — the sum on the card that opens it |
 | order-details-inspection | Action bar | Book again · Delete order | Buttons | identical to `order-details`, including the grey secondary rung (rev 131) |
 | order-details-aerial | — | ‹ Activity | Button | new file 2026-08-16 |
-| order-details-aerial | — | Aerial photo & video | Heading | copied from the card that opens it, ampersand included |
-| order-details-aerial | Summary | Location · Shoot · Delivered · Operator · Paid | Field labels | **Shoot** is this service's analogue of `Parcel` / `Structure` — the thing the order was about. It is the client's own word for a booked photo session, not equipment (`voice.md` **P4**); *Job* was not available for it, since `voice.md` reserves *job* for the operator side |
-| order-details-aerial | Summary | Trukhaniv Island · Event · 30 min · 14 Jun · 11:30 · Andriy M. | Values | DATA — from the card that opens it. **`Event` is the listings card's own word** (*Events, real-estate listings, personal occasions*). **`Trukhaniv Island` is kept on the designer's call, 2026-08-16, against the frame** — the photograph she chose is a raft running rapids in a rock gorge, which cannot be a flat sand island in the Dnipro. Asked and decided rather than smoothed; the mismatch is recorded in `wireframes/_critique.md`, not corrected |
+| order-details-aerial | — | Photo & video | Heading | copied from the card that opens it, ampersand included |
+| order-details-aerial | Summary | Location · Shoot · What you get · Delivered · Operator · Paid | Field labels | **Shoot** is this service's analogue of `Parcel` / `Structure` — the thing the order was about. It is the client's own word for a booked photo session, not equipment (`voice.md` **P4**); *Job* was not available for it, since `voice.md` reserves *job* for the operator side — **`What you get` is new on this record, 2026-09-19, on the designer's call** — *«там де what you get потрібно поставити в деталях замовлення те що обрав користувач або фото або відео або і те і те може бути»*. The row the order was placed with (`order-setup-aerial`, `order-review-aerial`) now survives into the record, so the client can read back which of the three they bought. It sits where the review screen puts it, after **Shoot**, and it is the same label on all three screens (`WCAG 3.2.4`) |
+| order-details-aerial | Summary | Trukhaniv Island · Event · 30 min · Photo &amp; video · 14 Jun · 11:30 · Andriy M. | Values | DATA — from the card that opens it. **`Event` is the listings card's own word** (*Events, real-estate listings, personal occasions*). **`Trukhaniv Island` is kept on the designer's call, 2026-08-16, against the frame** — the photograph she chose is a raft running rapids in a rock gorge, which cannot be a flat sand island in the Dnipro. Asked and decided rather than smoothed; the mismatch is recorded in `wireframes/_critique.md`, not corrected. **`Photo &amp; video` is this record's own choice**, which is why the zone below is headed *Photo &amp; video set* — `voice.md` **O5**: a photo-only order would read *Photo* here and *Photo set* there. **It is the same three words as the service name above it from 2026-09-19, and that is the designer's decision, recorded not corrected** — *Service* names what was booked, *What you get* names which files came back, and the client may pick *Photo* alone |
 | order-details-aerial | Photo & video set | Photo & video set | Section name | `voice.md` **O5** names it *photo/video set*; written with the ampersand to match the service heading directly above it on the same screen |
 | order-details-aerial | Photo & video set | A raft of paddlers in helmets and yellow life vests dropping through white water between wet rock walls, shot from above. | Alt text | **No head-count in it, deliberately** — the first draft said *"six people"* and the frame holds seven: six paddlers in green and yellow plus a guide in black at the stern. A number in an alt is a claim that can be wrong, and here it was. Otherwise it describes the frame and only the frame. It does **not** repeat *Trukhaniv Island* from the row above: with the label kept against the picture (see the Values row), an alt that echoed the label would state as fact something the image contradicts, which is the failure `WCAG 1.1.1` exists to prevent |
 | order-details-aerial | Photo & video set | A grey raft with a crew in red helmets and life jackets running a rapid between dark boulders, white water breaking around it, shot from above. | Alt text | **the video card's cover, new 2026-08-16 (rev 140)** — the designer's second frame (Figma `97:22`). Written against the rendered picture like the one above it, and **no head-count in it either**: the crew is described by what it wears, which is what tells the two files apart at a glance. It does **not** say *video* or *preview* — an alt says what is in the frame; that this one plays is carried by the control standing on it, whose name is `Play video · 0:38` |
 | order-details-aerial | Summary | Paid | Field label | as the other two records, including its move into the summary card at rev 136 — this is the frame she pointed at when she asked for it |
 | order-details-aerial | Summary | ₴800 | Values | DATA — the sum on the card, and the same ₴800 `wallet` shows landing on the operator's balance for this service |
-| order-details-aerial | Photo & video set | Video | Body | **new 2026-08-16 (rev 137)** — the designer, on this frame: *«добав сюди картку з відео прев'ю та можливістю скачати відео»*. The item's name inside a zone already called *Photo & video set*: it says the one thing the picture cannot, which of the two files this is. Not *Aerial video* — the nav bar three lines above already reads *Aerial photo & video* — and not *Clip* or *Footage*: `voice.md` **P4** takes the word the client would say out loud |
+| order-details-aerial | Photo & video set | Video | Body | **new 2026-08-16 (rev 137)** — the designer, on this frame: *«добав сюди картку з відео прев'ю та можливістю скачати відео»*. The item's name inside a zone already called *Photo & video set*: it says the one thing the picture cannot, which of the two files this is. Not *Aerial video* — the nav bar three lines above already reads *Photo & video* — and not *Clip* or *Footage*: `voice.md` **P4** takes the word the client would say out loud |
 | order-details-aerial | Photo & video set | 0:38 · 46 MB | Body | DATA. **The two facts a thumb needs before it taps Download** — how long the thing is and what it will cost in data — stated before the tap rather than discovered after it, which is `voice.md` **P3**'s discipline applied to a download instead of a price. The order was a *30 min* shoot and the set that came back is *0:38*; the two numbers are different things and are not reconciled. Same middot the record uses everywhere else (*Event · 30 min*) |
 | order-details-aerial | Photo & video set | Download video | Button | **accessible name only from 2026-08-16 (rev 140) — the button is a circular icon action and has no visible text.** The verb is still the designer's own (*«можливістю скачати відео»*, `скачати` = download), fixed once in `voice.md` as **A11**: **Download**, never *Save*, *Export* or *Get*; not `A3 Add` reversed (*Add* is the client putting a file **into** DRON) and not `O6 Withdraw`, which is reserved for money leaving a balance. It was built as a labelled pill (`Download`, 136.64 × 44) and became an icon on her instruction to follow the card she drew (Figma `97:18`), where the file's action is a 44px disc at the end of the line. `WCAG 2.5.3 Label in Name` no longer applies — there is no visible label to contain — and the name carries the object because the glyph cannot: `1.1.1` / `4.1.2`. The same reading `order-history` already ships on *Delete order* and *View details* |
 | order-details-aerial | Photo & video set | Play video · 0:38 | Button | accessible name, not visible text — the mark on the poster is a play triangle and nothing else, so the name carries the verb **and** the length. The duration repeats the facts line below on purpose: a screen-reader user arriving at the control has not necessarily passed that line yet |
@@ -1614,7 +1625,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-history | Order history | To | Body |  |
 | order-history | Order history | Osokorky | Body |  |
 | order-history | Order history | Delete order | Button |  |
-| order-history | Order history | Aerial photo & video | Body |  |
+| order-history | Order history | Photo & video | Body |  |
 | order-history | Order history | Delivered | Label | status indicator — accessible name, not visible text |
 | order-history | Order history | 14 Jun · 11:30 | Body | DATA |
 | order-history | Order history | Location | Body |  |
@@ -1658,10 +1669,10 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-review | Price breakdown | Total | Body |  |
 | order-review | Price breakdown | Pay ₴180 | Button |  |
 | order-review | Action bar | Pay ₴180 | Button | rev 129 — the string is unchanged, the element is not: it was an `<a href>` to Payment and is now a `<button>` that opens the pay drawer. `HIG · Buttons` asks a label that ends in `…` when a control needs more input before it completes; this one does **not** take the ellipsis, because the drawer it opens is the completion, not a detour — the amount is already final and the next tap pays |
-| order-review-aerial | — | ‹ Pick a time | Button | **new file 2026-08-16.** *Not* ‹ Aerial photo & video: `HIG · Navigation Bars` puts the title of the screen you return to on the back control, and on a calendar-first service that screen is the slot list, not the setup form two steps back |
+| order-review-aerial | — | ‹ Pick a time | Button | **new file 2026-08-16.** *Not* ‹ Photo & video: `HIG · Navigation Bars` puts the title of the screen you return to on the back control, and on a calendar-first service that screen is the slot list, not the setup form two steps back |
 | order-review-aerial | — | Order review | Heading | unchanged across all three review files — the screen is the same screen |
 | order-review-aerial | Summary | Service · Location · Shoot · What you get · When | Field labels | the setup form read back in the order it was asked. **Five rows, the delivery file's own count**, so nothing about the frame moves |
-| order-review-aerial | Summary | Aerial photo &amp; video · Trukhaniv Island · Event · 30 min · Photo &amp; video · Wed 2 Jul · 09:00–10:00 | Values | DATA. **`Shoot` carries both facts in one row** (*Event · 30 min*), as on the finished record: the form asks them as two pickers, the summary joins them with the middot the product already uses for *14 Jun · 11:30*. **`When` is a booked hour, not an ETA** — this order was scheduled on `time-slot`, so the row states the slot chosen there instead of the delivery file's *Now · ~25 min* |
+| order-review-aerial | Summary | Photo &amp; video · Trukhaniv Island · Event · 30 min · Photo &amp; video · Wed 2 Jul · 09:00–10:00 | Values | DATA. **`Shoot` carries both facts in one row** (*Event · 30 min*), as on the finished record: the form asks them as two pickers, the summary joins them with the middot the product already uses for *14 Jun · 11:30*. **`When` is a booked hour, not an ETA** — this order was scheduled on `time-slot`, so the row states the slot chosen there instead of the delivery file's *Now · ~25 min* |
 | order-review-aerial | Price breakdown | Shoot · 30 min · Photo &amp; video · Service fee · Total | Field labels | **the deliverable takes its own line — the designer's call, 2026-08-16**, over a delivery-shaped *base fare + variable + fee*. `voice.md` **P3**: she had just made *What you get* a client choice, and a choice that moves the price shows its price before the tap rather than hiding it in a base fare — pick *Photo* alone and it is this line that moves. **No `Distance` row**: a shoot is paid for by the hour it occupies, not the kilometres to it, and a meaningless row is not carried over as a nominal zero |
 | order-review-aerial | Price breakdown | ₴500 · ₴280 · ₴20 · ₴800 | Values | DATA. **Reconciles exactly — 500 + 280 + 20 = 800.** `RJ-C3`'s point: a breakdown that does not add up is the "plus fees" surprise under another name. ₴800 is not invented here — it is what the aerial record was paid, what `wallet` shows landing on the operator's balance, and what `time-slot`'s action bar was already showing before this screen existed |
 | order-review-aerial | Action bar | Pay ₴800 | Button | the `order-review` string with its own figure; same `<button>` opening the pay drawer, same reason for taking no ellipsis |
@@ -1675,7 +1686,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-review-inspection | Action bar | Pay ₴650 | Button | as the aerial file, with its own figure |
 | order-review-inspection | Pay drawer | Pay ₴650 | Accessible name | as the aerial file |
 | payment-aerial | Amount | ₴800 | Values | DATA — **the figure the previous screen locked.** The delivery file said ₴180 here regardless of what was ordered, which is `voice.md` **P3** / `RJ-C3` broken at the sharpest point in the flow: the screen where the card goes in. Nothing else on the screen moves — the `cc-*` tokens (`WCAG 1.3.5`), the drawn labels (`3.3.2`), the 44pt rows and the save-card contract are the delivery file's |
-| payment-aerial | Amount | Aerial photo &amp; video · Trukhaniv Island | Body | what the money is for, in the service's own name and the order's own place. The delivery file writes the route (*Podil → Osokorky*) because a delivery has two ends; a shoot has one |
+| payment-aerial | Amount | Photo &amp; video · Trukhaniv Island | Body | what the money is for, in the service's own name and the order's own place. The delivery file writes the route (*Podil → Osokorky*) because a delivery has two ends; a shoot has one |
 | payment-aerial | Action bar | Pay ₴800 | Button | the same string and element as the delivery file, with its own figure |
 | payment-inspection | Amount | ₴650 · Inspection · Osokorky, 14 | Values | DATA, as the aerial file |
 | payment-inspection | Action bar | Pay ₴650 | Button | as the aerial file |
@@ -1746,7 +1757,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-setup | Details form | Save this address for next time | Field label |  |
 | order-setup | Details form | Continue to review | Button |  |
 | order-setup-aerial | — | ‹ Order | Button | new file 2026-08-16 |
-| order-setup-aerial | — | Aerial photo &amp; video | Heading | copied from the card that opens it, ampersand included — the fix is that the link text and the destination now name the same service (`WCAG 2.4.4`) |
+| order-setup-aerial | — | Photo &amp; video | Heading | copied from the card that opens it, ampersand included — the fix is that the link text and the destination now name the same service (`WCAG 2.4.4`) |
 | order-setup-aerial | Details form | enter location, shoot, what you get | Zone label | the zone label states the three things asked, as the delivery file's *enter pickup, drop-off, parcel* does |
 | order-setup-aerial | Details form | Location: | Field label | **one place, not two.** The delivery form's Pickup / Drop-off pair collapses to one field: a shoot happens somewhere, it does not travel — which is also why the aerial record shows a single `Location` row and not `From ▸ To`. Colon as on the delivery fields |
 | order-setup-aerial | Details form | Trukhaniv Island | Field value | DATA — the aerial record's own location, so *Book again* arrives pre-filled with what was booked (`sitemap.md` CE-3, *"re-book pre-fills it"*). The place-vs-photograph mismatch already logged in `_critique.md` is inherited here, not re-opened |
@@ -1814,7 +1825,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | ratings | — | Ratings | Heading |  |
 | ratings | Overall | ~~126 ratings · last 90 days~~ | Body | **removed 2026-09-03 (rev 219)** — the designer, pointing at the built line: «remove this frace». The score keeps no denominator: 4.8 out of 3 ratings and 4.8 out of 126 now read alike, and the per-service rows carry no counts either — `voice.md` **P2** (the proof, not the adjective) is what this spends, and it is hers to spend. Struck rather than deleted so the rewrite below is not re-proposed later as new copy. Earlier: **changed 2026-08-21 (rev 179)** — the leading `·` is gone. It had nothing on its left, and had not since the grayscale frame (`80b47c4`, 2026-07-02) wrote it as `.amount-sub` under a bare `4.8`: a middle dot joins two facts, and one hanging off the front of the first joins nothing. Her call: «забери спереду крапку». The two facts it does separate — the count and the window — keep theirs |
 | ratings | Per service | Package delivery | Body |  |
-| ratings | Per service | Aerial photo & video | Body |  |
+| ratings | Per service | Photo & video | Body |  |
 | ratings | Per service | Inspection | Body |  |
 | ratings | Recent reviews | Olena H. | Heading | DATA |
 | ratings | Recent reviews | “Fast and careful — package arrived sealed and on time.” | Body | USER |
@@ -1822,7 +1833,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | ratings | Recent reviews | Today | Body |  |
 | ratings | Recent reviews | Andriy P. | Heading | DATA |
 | ratings | Recent reviews | “Good shots overall, a couple came out a bit dark.” | Body | USER |
-| ratings | Recent reviews | Aerial photo & video | Body |  |
+| ratings | Recent reviews | Photo & video | Body |  |
 | ratings | Recent reviews | Yesterday | Body |  |
 | ratings | Recent reviews | Maria D. | Heading | DATA |
 | ratings | Recent reviews | “Clear roof footage, spotted the leak we couldn't see.” | Body | USER |
@@ -2091,7 +2102,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | wallet | Balance | Withdraw ₴3,240 | Button |  |
 | wallet | Recent | Package delivery | Heading |  |
 | wallet | Recent | Today, 10:07 | Body | DATA |
-| wallet | Recent | Aerial photo & video | Heading |  |
+| wallet | Recent | Photo & video | Heading |  |
 | wallet | Recent | Today, 08:20 | Body | DATA |
 | wallet | Recent | Roof inspection | Heading |  |
 | wallet | Recent | Yesterday | Body |  |

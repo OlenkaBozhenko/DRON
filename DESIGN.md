@@ -2042,7 +2042,9 @@ two Figma references used for structure only. Every value is an existing rung.
   5.51:1** — both fills, her picture of a category row. The mark is **1.41:1** (`--green` on `--media`) — the
   chip's recorded `WCAG 1.4.11` condition, improved from the wash's 1.085:1 and still short of 3:1; the label
   moving `--slate` → `--on-green` carries the state with it. Measured on the build: *Delivery* **99.7 × 32**,
-  *Photo* **84.4 × 32**, *Inspection* **116 × 32**, all three on one line at the 375 frame.
+  ~~*Photo* **84.4 × 32**~~ → ***Photo &amp; video* 136.4 × 32** from rev 274, *Inspection* **114.9 × 32** —
+  **367.1 of content in the 374** the row is given, so Home's own row scrolls **25** where the three badges
+  used to fit at 315.
   **From rev 273 the row stands on five pages, not one, and it scrolls rather than wraps.** The designer,
   2026-09-19: *«зроби такі таби у всіх станах»*, then *«те що не влазить по ширині не переноситься на нижній
   рядок а має горизонтальний скрол»*. `listings-empty`, `-error`, `-loading` and `-filtered` give up the
@@ -2050,9 +2052,11 @@ two Figma references used for structure only. Every value is an existing rung.
   filters*, with a fourth badge — ***All***, first, chosen at rest, **41.2 × 32**, no icon because it is not a
   service — so the row keeps the way back to the whole list it filters. **`flex-wrap: nowrap` +
   `overflow-x: auto`**, the box bleeding `--sp-screen` to the frame edge and paying it back as padding, so the
-  next chip sits under the edge (`HIG · Layout`). Measured: content **364.2** in a **374** box → **22** hidden
-  (**38** where `main` carries a scrollbar); first chip at **x 16.7**, last edge at **380.9** on a 375 frame;
-  Home's three badges are **315** and do not scroll, unmoved to the pixel. **The scroller would have eaten the
+  next chip sits under the edge (`HIG · Layout`). Measured at rev 273, with the badge still reading *Photo*:
+  content **364.2** in a **374** box → **22** hidden (**38** where `main` carries a scrollbar); first chip at
+  **x 16.7**, last edge at **380.9** on a 375 frame; Home's three badges **315**, no scroll. **Re-measured at
+  rev 274, the badge now reading *Photo &amp; video*:** the state row is **416.2** → **74** hidden, showing
+  **56.3** of *Inspection*'s 114.9 at rest, and Home is **367.1** → **25** hidden. **The scroller would have eaten the
   target**, `overflow` clipping both axes at the padding box, so the box takes `--sp-6` of block padding and
   gives it straight back as negative margin — hit-tested at ±5 of the chip: **44** intact, `HIG · 44pt` ✓,
   `WCAG 2.5.8` ✓. **Written at 0-2-0** (`.dr .dr-finder__services`), the reset's `.dr fieldset{ padding: 0 }`
