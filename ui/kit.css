@@ -4444,6 +4444,14 @@ header.dr-topbar,
   padding: var(--sp-snug) var(--sp-screen) var(--sp-24);
   display: flex; flex-direction: column; gap: var(--sp-snug);
 }
+/* THE DRAWER ITSELF TAKES THE FOCUS WHEN A FINGER OPENED IT (2026-09-19, rev
+   271), and a surface that is only ever focused by script wears no ring. The
+   `tabindex="-1"` is written by `ui/kit.js`, never by a page, so the drawer is
+   not in the tab order and `WCAG 2.4.7 Focus Visible` — which is owed to
+   keyboard-operable components — does not bind on it. The ring stays exactly
+   where it is owed: on the options, `.dr-picker__item:focus-visible`, 2.5px
+   `--ink` at 14.37:1 on the card, unchanged. */
+.dr-sheet:focus{ outline: none; }
 .dr-sheet__grip{
   width: var(--sz-grip-w); height: var(--sz-grip-h); flex: none;
   margin: 0 auto; border-radius: var(--r-pill); background: var(--line);

@@ -64,6 +64,25 @@
      when a drawer was opened from inside another one. */
   var openRow = null, origin = null;
 
+  /* THE MODALITY — which input opened the drawer, and the script needs it for
+     exactly one thing: a focus ring (2026-09-19, rev 271). The designer on the
+     built `operator-account` on an iPhone, the Mode drawer up: «на телефоні
+     обраний стейт кругом має чорну обводку а немає мати».
+     The ring is ours — `.dr-picker__item:focus-visible` — and it is drawn
+     because `open()` moves the focus onto the current option. Chromium does not
+     match `:focus-visible` on a programmatic focus that follows a pointer
+     (measured: `focusVisible false`, `outline-style: none`), WebKit does, so the
+     same line that is invisible on the desktop paints a 2.5px charcoal ring
+     around the chosen row on her phone.
+     IT IS READ FROM THE EVENT, NOT GUESSED FROM `click.detail`: a tap-
+     synthesised click does not report its origin the same way in every engine,
+     while `pointerdown` covers mouse, pen and finger alike and a keyboard
+     activation fires no pointer event at all. Capture phase, so the flag is
+     already right by the time the row's own handler runs. */
+  var byKey = false;
+  document.addEventListener('keydown', function () { byKey = true; }, true);
+  document.addEventListener('pointerdown', function () { byKey = false; }, true);
+
   function sheetOf(row) {
     return document.getElementById(row.getAttribute('aria-controls'));
   }
@@ -93,16 +112,24 @@
     openRow = row;
     row.setAttribute('aria-expanded', 'true');
     sheet.hidden = false;
-    /* focus lands inside the drawer (`WCAG 2.4.3`): a control the markup marks
-       `autofocus` first — the first field of a drawer that exists to be typed
-       into — then the current option if the drawer holds a list of values,
-       otherwise its first control — the pay drawer's options are buttons, not
-       .dr-picker__item rows. */
+    /* FOCUS LANDS INSIDE THE DRAWER EITHER WAY (`WCAG 2.4.3`, `HIG · Action
+       sheets`) — what it lands ON is what rev 271 made depend on the modality.
+       A control the markup marks `autofocus` is focused whatever opened it:
+       that drawer exists to be typed into and the system raises the keyboard on
+       a tap too. Otherwise a KEY lands the focus on the current option, with its
+       ring — the behaviour `ui/inventory.md` has described since rev 111 — and a
+       FINGER lands it on the drawer itself, which wears none (`.dr-sheet:focus{
+       outline:none }`). The option order is unchanged: the current value first,
+       then the first option, then the first control — the pay drawer's options
+       are buttons, not .dr-picker__item rows. */
     var current = sheet.querySelector('[autofocus]')
-               || sheet.querySelector('.dr-picker__item[aria-current="true"]')
-               || sheet.querySelector('.dr-picker__item')
-               || sheet.querySelector('button, a[href]');
-    if (current) current.focus();
+               || (byKey && (sheet.querySelector('.dr-picker__item[aria-current="true"]')
+                          || sheet.querySelector('.dr-picker__item')
+                          || sheet.querySelector('button, a[href]')));
+    /* written by the script and never by a page: 25 files carry a drawer, and a
+       `tabindex` pasted 25 times is 25 chances to drift */
+    sheet.tabIndex = -1;
+    (current || sheet).focus();
   }
 
   function close() {
@@ -159,9 +186,15 @@
     }
     if (e.key !== 'Tab') return;
     /* the trap: while the drawer is up it IS the tab order */
-    var stops = sheetOf(openRow).querySelectorAll(STOPS),
+    var sheet = sheetOf(openRow),
+        stops = sheet.querySelectorAll(STOPS),
         first = stops[0], last = stops[stops.length - 1];
     if (!stops.length) return;
+    /* THE DRAWER ITSELF MAY BE HOLDING THE FOCUS (rev 271) — a finger opened it
+       — and the container is not one of the stops, so the wrap is said for it
+       too: Shift+Tab off it would otherwise walk out of the document, and with
+       everything behind `inert` there would be nothing to walk back into. */
+    if (document.activeElement === sheet) { e.preventDefault(); (e.shiftKey ? last : first).focus(); return; }
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });

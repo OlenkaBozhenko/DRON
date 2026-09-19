@@ -1039,7 +1039,12 @@ drawer bottom **476** on the 375 frame, overlap **0** (`WCAG 2.4.11`). Each draw
 control, **341 × 44 = 4.93%** of the frame.
 
 **The modal contract is kept, not claimed.** Everything behind the drawer takes `inert`, so a tap or
-a Tab cannot reach the form under it; focus lands on the current option with its ring; Tab cycles
+a Tab cannot reach the form under it; **focus lands on the current option with its ring when a KEY
+opened the drawer, and on the drawer itself — which wears none — when a FINGER did** (rev 271:
+WebKit matches `:focus-visible` on a programmatic focus where Chromium does not, so the ring was
+painting a charcoal box round the chosen row on the phone and nothing on the desktop; the sheet
+takes a script-written `tabindex="-1"` and `outline:none`, and `WCAG 2.4.7` does not bind on a
+container that is not in the tab order, so the option's own 2.5px `--ink` ring is untouched); Tab cycles
 inside the drawer only; and it closes three ways — **Esc**, the **scrim**, and a **`Cancel`** button
 (`HIG · Action sheets` asks for the cancel by name) — each returning focus to the row that opened
 it. A drawer takes Cancel, not the `×` a full modal sheet screen takes.
