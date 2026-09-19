@@ -1,12 +1,16 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    DRON — the kit's one script.
 
-   The kit is CSS. This file exists because exactly one component in it cannot
-   be built out of CSS alone: THE PICKER DRAWER. A floating surface that opens,
-   traps focus, makes the screen behind it unreachable and gives the focus back
-   on close is behaviour, not appearance — and behaviour written four times in
-   four pages is four chances to drift. So it is written once, here, and the
-   pages that carry a picker link it.
+   The kit is CSS. This file holds the few things in it that cannot be built
+   out of CSS alone, and each block below had to pass the same test to get in:
+   is this appearance, or is it behaviour? Four have passed — THE PICKER
+   DRAWER, THE ONSCREEN KEYBOARD, THE CARD NUMBER'S MARKS and THE PAGER, in
+   that order, each with its own header naming the instruction that asked for
+   it. A floating surface that opens, traps focus, makes the screen behind it
+   unreachable and gives the focus back on close is behaviour, not appearance —
+   and behaviour written four times in four pages is four chances to drift. So
+   each one is written once, here, and the pages that carry the component link
+   this file.
 
    THE RULE IT SERVES (designer, 2026-08-16):
      ≤ 6 options → the list rises as a DRAWER from the bottom edge — this file.
@@ -523,5 +527,98 @@
     }
     input.addEventListener('input', update);
     update();
+  });
+}());
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE PAGER FOLLOWS THE SWIPE — the kit's fourth behaviour, 2026-09-19
+   (rev 270). The designer, on the built `onboarding-operator`: «коли я свайпаю
+   слайдер не показує на якому я скріні 1, 2 чи 3 зроби щоб коли я свайпаю
+   сторінку слайдер відповідно змінював колір кружочка залежно від того на якій
+   я сторінці».
+
+   IT CLOSES A COST NAMED IN REV 160 AND CARRIED SINCE, WITHOUT MOVING THE
+   ELEMENT SHE PLACED. `.on` was written into the markup on dot 1 and stayed
+   there on all three carousel screens, whichever slide was showing. rev 159
+   had fixed it as a side effect of giving every slide its own pager, and she
+   reverted that the same day — «слайдер має бути де і був». So the pager stays
+   one element under the slider and only the class moves.
+
+   WHY A SCRIPT, ON THE TEST THIS FILE ALREADY APPLIES. The three behaviours
+   above each earned their place by being behaviour and not appearance, and
+   reading a scroll offset is behaviour. CSS can express it — a `view-timeline`
+   per slide with `timeline-scope` on `.dr-main` — but scroll-driven animations
+   do not run in every engine, and they fail SILENTLY: the dot would simply
+   never move on the platform whose guidelines the client side is written to
+   (`HIG`, iOS Safari), with nothing on the page to say so. Twenty lines that
+   run everywhere beat a declaration that is right only where it is supported.
+
+   NOTHING IS ADDED TO THE MARKUP AND NOTHING NEW IS ANNOUNCED. `.dr-pager`
+   stays `aria-hidden`; each slide already carries "Slide n of 3", which is the
+   accessible statement of position and the reason `WCAG 1.4.11` was never
+   engaged by the dot row. This moves a decoration into agreement with what was
+   already announced — it does not make the decoration the carrier. No
+   `aria-live` either: a swipe is the user's own action and the slide it lands
+   on is read on arrival; announcing "2 of 3" on top of it would be a second
+   voice for one event.
+
+   THE NEAREST CENTRE WINS, IN VIEWPORT COORDINATES. Not
+   `Math.round(scrollLeft / clientWidth)`: `.dr-slider` carries
+   `padding: 8px 16px` and `.dr-slider--bleed` resets it to 0, so a rounded
+   quotient would be true of whichever modifier it was written against and
+   quietly wrong on the other. Comparing rects costs the same and is true of
+   both — and of any future slide that is not exactly one screen wide.
+
+   IT IS WATCHED WITH A ResizeObserver AND NOT ONLY window.resize, because the
+   shell's viewport switcher (mobile / tablet / desktop) changes the frame's
+   width without the window ever changing size.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var sliders = document.querySelectorAll('.dr-slider');
+  if (!sliders.length) return;
+
+  [].forEach.call(sliders, function (slider) {
+    /* the markup contract: the pager is the slider's next sibling. Three
+       screens carry it — welcome, onboarding-client, onboarding-operator. */
+    var pager = slider.nextElementSibling;
+    if (!pager || !pager.classList.contains('dr-pager')) return;
+
+    var slides = slider.querySelectorAll('.dr-slide'),
+        dots   = pager.children;
+    if (!slides.length || slides.length !== dots.length) return;
+
+    function paint() {
+      var box  = slider.getBoundingClientRect(),
+          mid  = box.left + box.width / 2,
+          best = 0,
+          gap  = Infinity;
+
+      [].forEach.call(slides, function (slide, i) {
+        var r = slide.getBoundingClientRect(),
+            d = Math.abs(r.left + r.width / 2 - mid);
+        if (d < gap) { gap = d; best = i; }
+      });
+
+      [].forEach.call(dots, function (dot, i) {
+        dot.classList.toggle('on', i === best);
+      });
+    }
+
+    /* one paint per frame: a swipe fires scroll far faster than the screen
+       redraws, and the dot has nothing to say between frames */
+    var queued = false;
+    function schedule() {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(function () { queued = false; paint(); });
+    }
+
+    slider.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    if (window.ResizeObserver) new ResizeObserver(schedule).observe(slider);
+
+    paint();
   });
 }());

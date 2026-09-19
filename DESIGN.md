@@ -2734,7 +2734,7 @@ is the right ink but a block with `margin-top: 2`, and `.dr-op__rating` is the s
 
 ### The onboarding carousel (`.dr-slider`, `.dr-slide`)
 
-Three slides on CSS scroll-snap, no JS, with the kit's own `.dr-pager`. **`welcome`,
+Three slides on CSS scroll-snap, with the kit's own `.dr-pager`. **`welcome`,
 `onboarding-client`, `onboarding-operator`.** The type inside a slide is the kit's own —
 `.dr-display` for the heading, `.dr-lead` for the sub-line — so no slide-specific type class was
 cut. Measured 2026-08-21 on the 375 frame: slider **373.4 × 577.6** filling `.dr-main`'s padding
@@ -2789,10 +2789,32 @@ the seven landscape cutouts still draw 373.4 and the two portrait ones are heigh
 clipped either way: `cover` is still unused, because it would rescale and crop to fill.
 
 **The pager stays one element under the slider** — the designer, 2026-08-21: *«слайдер має бути де
-і був»*. A per-slide pager was built the same day and reverted on her word. Two costs, recorded
+і був»*. A per-slide pager was built the same day and reverted on her word. Two costs were recorded
 rather than argued: the artwork runs to the same floor, so it paints under the dots and on a phone
 mockup they are hard to pick out; and one element cannot follow a swipe it has no script to hear,
-so the lit dot is slide 1's on all three.
+so the lit dot was slide 1's on all three.
+
+**The lit dot follows the swipe since 2026-09-19 (rev 270) — and the element still has not moved.**
+The designer, on the built `onboarding-operator`: *«коли я свайпаю слайдер не показує на якому я
+скріні 1, 2 чи 3 зроби щоб коли я свайпаю сторінку слайдер відповідно змінював колір кружочка
+залежно від того на якій я сторінці»*. This closes the second of the two costs above and touches
+neither the pager's place nor its markup: `.on` in the HTML is now the first paint only, and
+`ui/kit.js` moves the class to whichever slide's centre is nearest the scrollport's, once per
+animation frame. The first cost stands and is still open — the dots still paint over artwork on a
+picture-filled slide. `HIG · Page controls` prescribes exactly this behaviour ("the current page
+indicator is filled"), so a static dot was a departure from it and this is the repair.
+
+**The two dots against each other: `--green` on `--btn2` is 1.22:1.** The pair that answers *which
+slide am I on* is lit-against-idle, and it is weaker than either dot against the page (**1.69:1**
+green, **1.39:1** grey). `WCAG 1.4.11` asks **3:1** of a graphic that carries meaning and none of
+the three reaches it. **The criterion is not engaged** — the row is `aria-hidden` and every slide
+announces *Slide n of 3*, so the dot is never the sole carrier — but the figure is recorded rather
+than left to be found: 1.22:1 is why an 8px row reads as undifferentiated even with the right dot
+lit. Open, and the designer's to spend.
+
+**The fade is `--dur-fast` (.12s) on `background-color` only,** the rung the switch knob and the
+disclosure chevron already use, with a `prefers-reduced-motion: reduce` counterpart beside the rule
+(`WCAG 2.3.3`). Nothing moves, grows or travels — the dot's size, place and shape are constant.
 
 **`--bleed` is opt-in, not automatic on `:has(img)`:** a slider whose slides mix the two treatments
 reads as broken. A slide without its picture keeps a `--media` ground and its mono label

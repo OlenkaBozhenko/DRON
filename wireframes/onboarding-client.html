@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DRON wireframe · Client onboarding · success (base)</title>
-<!-- SCREEN (sitemap §6.0 / Client Getting in): "Client onboarding". JOB (jtbd): EJ-1 — first use feels safe. STATE: base — a 3-slide swipeable explainer (CSS scroll-snap, no JS) with Skip. Pre-app: no bottom tab bar. -->
+<!-- SCREEN (sitemap §6.0 / Client Getting in): "Client onboarding". JOB (jtbd): EJ-1 — first use feels safe. STATE: base — a 3-slide swipeable explainer (CSS scroll-snap; ui/kit.js only to move the lit pager dot) with Skip. Pre-app: no bottom tab bar. -->
 <link rel="stylesheet" href="_wireframe.css">
 <link rel="stylesheet" href="../ui/kit.css">
 </head>
@@ -34,9 +34,15 @@
      IT STAYS ONE ELEMENT UNDER THE SLIDER (designer, 2026-08-21: «слайдер має
      бути де і був»). A per-slide pager was tried the same day and reverted:
      it would have let each slide state its own position, but the dots are hers
-     and they belong where she put them. The two things that costs are named in
-     concept.md rev 160 rather than fixed behind her back — the dot does not
-     follow the swipe, and the artwork paints under it. -->
+     and they belong where she put them.
+     AND IT NOW FOLLOWS THE SWIPE WITHOUT MOVING (designer, 2026-09-19, rev 270:
+     «коли я свайпаю слайдер не показує на якому я скріні 1, 2 чи 3»). The
+     `.on` below is the first paint only — ui/kit.js moves the class to the
+     slide nearest the centre on every scroll frame, so the element she placed
+     is untouched and only the colour travels. The first of the two costs
+     rev 160 recorded is closed; THE SECOND STANDS AND IS STILL HERS — the
+     artwork runs to the same floor, so on a picture-filled slide the dots
+     paint over it (rev 168 sampled 1.17:1 and 1.91:1 off the bitmap). -->
       <div class="dr-slider dr-slider--bleed" aria-label="How DRON works">
         <!-- The picture comes last in the markup, not first: it is the bottom of
              the slide visually, and it is decorative (alt=""), so a screen reader
@@ -67,6 +73,7 @@
     </footer>
   </div>
 
+  <script src="../ui/kit.js"></script>
   <script src="_wf-shell.js"></script>
 </body>
 </html>

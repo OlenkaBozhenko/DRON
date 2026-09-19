@@ -4694,7 +4694,35 @@ header.dr-topbar,
    "Slide n of 3", and the position the dots draw is the position the slide
    states. 2.5.8 no longer applies because there is no target; 2.1.1 no longer
    applies because there is nothing to reach by keyboard that the scroll
-   container does not already give. */
+   container does not already give.
+
+   THE LIT DOT FOLLOWS THE SWIPE SINCE 2026-09-19 (rev 270), and the element
+   has not moved to get there. The designer, on the built `onboarding-operator`:
+   «коли я свайпаю слайдер не показує на якому я скріні 1, 2 чи 3 зроби щоб
+   коли я свайпаю сторінку слайдер відповідно змінював колір кружочка залежно
+   від того на якій я сторінці». Until now `.on` was written into the markup on
+   dot 1 and stayed there, which rev 160 recorded as a cost rather than a
+   defect — rev 159 had fixed it by giving each slide its own pager, and she
+   reverted that the same day («слайдер має бути де і був»). So the class is
+   what moves and the one pager stays under the slider. `ui/kit.js` does the
+   moving; nothing here knows how it is driven, and a page that does not link
+   the script still paints dot 1 exactly as it did.
+
+   THE TWO NUMBERS THE MOVEMENT MAKES MATTER, MEASURED. `--green` on `--page`
+   is 1.69:1 and `--btn2` on `--page` is 1.39:1, both long recorded; the pair
+   that now carries the answer to her question is LIT AGAINST IDLE — `--green`
+   on `--btn2` is **1.22:1**, the weakest of the three. `WCAG 1.4.11` asks 3:1
+   of a graphic that carries meaning and none of the three reaches it. The
+   criterion is still not engaged, on the same reading as above — the row is
+   aria-hidden and every slide announces "Slide n of 3" — but the figure is
+   put here rather than left to be found, because 1.22:1 is why the row reads
+   as undifferentiated at 8px even once the right dot is lit. It is the
+   designer's to spend and it is open.
+
+   THE FADE IS --dur-fast, the rung the switch knob and the disclosure chevron
+   already use, with the reduced-motion counterpart beside it (`WCAG 2.3.3`).
+   A swipe is an interaction and the dot is its feedback, so the transition is
+   on the colour only — nothing moves, grows or travels. */
 .dr-pager{
   display: flex; gap: var(--sp-within-lg); justify-content: center;
   margin-top: var(--sp-snug);
@@ -4702,8 +4730,12 @@ header.dr-topbar,
 .dr-pager > *{
   width: var(--sz-pager-dot); height: var(--sz-pager-dot); flex: none;
   border: 0; border-radius: var(--r-pill); background: var(--btn2);
+  transition: background-color var(--dur-fast) var(--ease-out);
 }
 .dr-pager .on{ background: var(--green); }
+@media (prefers-reduced-motion: reduce){
+  .dr-pager > *{ transition: none; }
+}
 
 /* ═══ THE PRICE LINE ══════════════════════════════════════════════════════
    A label against a figure. The default is quiet — 13 slate over 17/600 ink.
@@ -5392,7 +5424,7 @@ header.dr-topbar,
 
 /* ── THE SLIDE / CAROUSEL ──────────────────────────────────── ENTRY · used by
    welcome, onboarding-client (ENTRY) and onboarding-operator (ACCOUNT).
-   The onboarding explainer: three slides on CSS scroll-snap, no JS, with the
+   The onboarding explainer: three slides on CSS scroll-snap, with the
    kit's own .dr-pager under them. The type inside a slide is the kit's own —
    .dr-display for the heading, .dr-lead for the sub-line — so no
    slide-specific type class is cut, because the scale already has both. */
