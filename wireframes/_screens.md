@@ -93,10 +93,10 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     for the *underline* row — where the tabs were equal quarters and the clipped word was the only word in its
     quarter — and taken here for the *chip* row, where the clipped chip is whole and the row runs to the frame
     edge. Recorded so neither call is re-proposed as the other's.
-  - **The chip row is `Photo`, and the card under it is still `Aerial photo &amp; video`** — her word on Home since
-    rev 250, now standing over the card that names the service in full on `listings-filtered`. A known condition
-    against `voice.md`'s one word per concept, recorded rather than corrected: the shorter word is hers to spend
-    and she spent it on the base.
+  - ~~**The chip row is `Photo`, and the card under it is still `Aerial photo &amp; video`**~~ — **closed the
+    same day (rev 274 / 275).** The badge read *Photo* for five days against *Aerial photo &amp; video* on the card
+    six rows under it; on her call the whole product took one name, **`Photo &amp; video`**, so the badge, the card,
+    every nav title, every record and the operator side now say it (`WCAG 3.2.4` ✓). `voice.md` carries the rule.
 - **Filter sub-views (added July 2026, build decision):** because *Service catalogue* is merged into Home,
   browsing needs to be narrowable. Two named sub-views (not data states):
   - **`listings-filters`** — the filter panel open, **three titled cards of one kind, in this order**:
@@ -161,7 +161,7 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   the kit's. **`listings.html` stops being a service list.** Top to bottom, under the unchanged top bar (mark + bell):
   - **Three service badges with icons** — *Delivery · Photo · Inspection*. One is always chosen (a radio group, no
     *All*); *Delivery* is chosen at rest. **The short word *Photo* is her wording** for the service the rest of the
-    product names *Aerial photo &amp; video*; the results screen it opens keeps the full name in its title.
+    product names *Photo &amp; video* from 2026-09-19; the results screen it opens carries the same name in its title.
   - **Date and time, side by side** — *Date · Today* on the left opens a **calendar drawer** (the `.dr-cal` month
     grid, no date before today, *Cancel* over *Done*); *Time · Now* on the right opens a **time drawer** (*Now*, or
     *At a set time* with hour : minute). *Now* is only offered for today; picking a later day moves the time to a
@@ -254,7 +254,7 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   | File | Title | Drawer title | Rows (price · available · arrives in) | Order → |
   |---|---|---|---|---|
   | `listings-map.html` | Package delivery | Parcel size | Up to 2 kg ₴180 · 4 · 6 min — Up to 5 kg ₴240 · 2 · 9 min — Up to 10 kg ₴320 · 1 · 14 min | `order-setup` |
-  | `listings-map-aerial.html` | Aerial photo &amp; video | What you get | Photo ₴640 · 3 · 20 min — Video ₴720 · 2 · 25 min — Photo &amp; video ₴800 · 2 · 25 min | `order-setup-aerial` |
+  | `listings-map-aerial.html` | Photo &amp; video | What you get | Photo ₴640 · 3 · 20 min — Video ₴720 · 2 · 25 min — Photo &amp; video ₴800 · 2 · 25 min | `order-setup-aerial` |
   | `listings-map-inspection.html` | Inspection | Parts to inspect | 1 part ₴330 · 3 · 30 min — Up to 3 parts ₴650 · 2 · 30 min — Up to 5 parts ₴970 · 1 · 45 min | `order-setup-inspection` |
 
   **The prices are not invented for this screen.** On each file, the row that matches the order its `order-review`
@@ -298,7 +298,7 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   | File | Nav title | The thing ordered | Exit |
   |---|---|---|---|
   | `order-setup.html` | Package delivery | Pickup · Drop-off · **Parcel size** | → `order-review` (auto-dispatch) |
-  | `order-setup-aerial.html` | Aerial photo &amp; video | Location · **Shoot** · **Duration** · **What you get** | → `order-review-aerial` via *Confirm order* (2026-09-15; was → `time-slot` — the hour is now chosen on Home) |
+  | `order-setup-aerial.html` | Photo &amp; video | Location · **Shoot** · **Duration** · **What you get** | → `order-review-aerial` via *Confirm order* (2026-09-15; was → `time-slot` — the hour is now chosen on Home) |
   | `order-setup-inspection.html` | Inspection | Location · **Structure** | → `time-slot` (calendar-first) |
 
   **Why two of them end at a time slot and one does not:** `sitemap.md` CE-2 gives each service a *flow
@@ -943,7 +943,7 @@ word: the base frame on her instruction, the other ten on her answer.
 | File | Heading (nav bar) | Summary rows | Payout rows |
 |---|---|---|---|
 | `earning-details.html` | Package delivery | Service · From · To · Done · **Earned ₴180** | Status · Released · To |
-| `earning-details-aerial.html` | Aerial photo &amp; video | Service · Location · Shoot · Done · **Earned ₴800** | Status · Released · To |
+| `earning-details-aerial.html` | Photo &amp; video | Service · Location · Shoot · Done · **Earned ₴800** | Status · Released · To |
 | `earning-details-inspection.html` | Roof inspection | Service · Location · Structure · Done · **Earned ₴650** | Status · Released · To |
 
 **Nothing on the three is invented.** The delivery's stops and pay are `job-brief.html`'s own rows
@@ -1165,7 +1165,7 @@ are exactly the two she named — **the heading** and **the deliverable in the w
 |---|---|---|---|---|
 | `order-details.html` | Package delivery | From · To · Parcel · Delivered · Operator · **Paid** | **Delivery photo** | `scenes/delivered-at-door.jpg` |
 | `order-details-inspection.html` | Roof inspection | Location · Structure · Delivered · Operator · **Paid** | **Inspection report** | `scenes/inspection-roof-cracked-tiles.jpg` |
-| `order-details-aerial.html` | Aerial photo &amp; video | Location · Shoot · Delivered · Operator · **Paid** | **Photo &amp; video set** — **two cards**: the photograph, then the video. *The zone is named for **what that order asked for**, from 2026-08-16: with `order-setup-aerial` letting the client pick Photo / Video / Photo &amp; video (`voice.md` **O5**), a photo-only order is headed **Photo set** and holds one card, a video-only order **Video**. **This record is a Photo &amp; video order**, so the built frame is correct as it stands and is not touched.* | `scenes/aerial-rafting-run.jpg` + `scenes/aerial-rafting-boulders.jpg` |
+| `order-details-aerial.html` | Photo &amp; video | Location · Shoot · Delivered · Operator · **Paid** | **Photo &amp; video set** — **two cards**: the photograph, then the video. *The zone is named for **what that order asked for**, from 2026-08-16: with `order-setup-aerial` letting the client pick Photo / Video / Photo &amp; video (`voice.md` **O5**), a photo-only order is headed **Photo set** and holds one card, a video-only order **Video**. **This record is a Photo &amp; video order**, so the built frame is correct as it stands and is not touched.* | `scenes/aerial-rafting-run.jpg` + `scenes/aerial-rafting-boulders.jpg` |
 
 The three zone names are not invented for this screen — `voice.md` **O5** already fixes one name per
 deliverable: *delivery photo* · *inspection report* · *photo/video set*. Structure, zone order, action bar
