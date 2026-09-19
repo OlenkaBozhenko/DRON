@@ -31,6 +31,10 @@
   width: var(--len-16);
   height: var(--len-16);
 }
+.dr-ic--20{
+  width: var(--len-20);
+  height: var(--len-20);
+}
 .dr-ic--22{
   width: var(--len-22);
   height: var(--len-22);

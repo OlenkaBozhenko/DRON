@@ -624,6 +624,13 @@
 .dr-ic--14{ width: var(--ic-14); height: var(--ic-14); }
 .dr-ic--16{ width: var(--ic-16); height: var(--ic-16); }
 .dr-ic--17{ width: var(--ic-17); height: var(--ic-17); }
+.dr-ic--20{ width: var(--ic-20); height: var(--ic-20); }   /* the base .dr-ic is already 20; this
+                                                              declares it, so a context rule that
+                                                              resizes .dr-ic cannot silently take
+                                                              the 20 the markup asked for. Seven
+                                                              wireframes write it: account, listings,
+                                                              listings-filtered, operator-account and
+                                                              the three order-review pages. */
 .dr-ic--22{ width: var(--ic-22); height: var(--ic-22); }
 .dr-ic--26{ width: var(--ic-26); height: var(--ic-26); }
 .dr-ic--32{ width: var(--ic-32); height: var(--ic-32); }
