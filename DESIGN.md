@@ -305,8 +305,9 @@ and applied to nothing — they are recorded rungs, not live values (`var(--warn
   members nobody should re-derive, and one word brings it back — but the spend is stated as **zero**
   rather than left claimed, the way `--sh-card` and `--sh-onphoto` are. `wallet`'s
   `.dr-balance--card` keeps `--green` and always did.
-- **`--green-wash`** (`#E7F0D2`) — the one green tint. Carries the selected tab, the verified
-  badge, and the delivered / waiting milestone marks. Charcoal on it is **14.75:1**. Against the
+- **`--green-wash`** (`#E7F0D2`) — the one green tint. Carries the selected **bottom** tab, the
+  verified badge, the delivered / waiting milestone marks, and from rev 269 the count badge on an
+  in-page tab (the in-page tab's own selected state went to solid `--green` that revision). Charcoal on it is **14.75:1**. Against the
   page it is only **1.085:1**, so the tint is a hue signal, not a luminance one — anything relying
   on it also carries an ink change or a glyph.
 
@@ -383,11 +384,12 @@ Every pair carried on a product surface, verified in the browser.
 |---|---|---|---|
 | `--ink` | `--page` | 15.99:1 | nav-bar title, focus ring |
 | `--ink` | `--inset` | 15.29:1 | route place names |
-| `--ink` | `--green-wash` | 14.75:1 | selected tab, verified badge, milestone marks |
+| `--ink` | `--green-wash` | 14.75:1 | selected bottom tab, verified badge, milestone marks, the count badge on an in-page tab (rev 269) |
 | `--ink` | `--card` | 14.37:1 | card titles, values |
 | `--ink` | `--media` | 13.33:1 | glyphs in a well |
+| `--slate` | `--media` | 5.51:1 | the idle in-page tab's label (rev 269) |
 | `--ink` | `--btn2` | 11.54:1 | secondary button, settled status check, the switch's off knob-in-track (rev 203) |
-| `--ink` | `--green` | 9.46:1 | primary button label, walked node glyph, the profile pencil badge on both heads (rev 189/190) |
+| `--ink` | `--green` | 9.46:1 | primary button label, walked node glyph, the profile pencil badge on both heads (rev 189/190), the chosen in-page tab (rev 269) |
 | `--danger-ink` | `--page` | 6.83:1 | destructive text action — **on the bench since rev 146**: its one user, `account-photo` · *Remove photo*, became the grey `Delete` in the action bar |
 | `--slate` | `--page` | 6.62:1 | lead copy, unselected tabs |
 | `--slate` | `--inset` | 6.33:1 | From / To labels |
@@ -413,6 +415,7 @@ Every pair carried on a product surface, verified in the browser.
 | `--media` on `--page` | 1.20:1 | Same. |
 | `--card` on `--page` | 1.11:1 | Same. |
 | `--green-wash` on `--page` | 1.085:1 | Same; the selected state also moves the ink `--slate` → `--ink`. |
+| `--green` chosen in-page tab on `--media` | 1.41:1 | The chip row's mark since rev 269, up from the wash's 1.085:1 and still under 3:1. The label moves `--slate` 5.51:1 → `--on-green` 9.46:1 with it. `--ink` selected on `--media` idle would be **13.33:1** and was refused in favour of the accent. |
 | `--danger-ink` at `opacity .55` on `--danger-wash` | 2.43:1 | The lost-signal glyph, where the fade *is* the semantic. It sits in an `aria-hidden` well and the meaning is carried by the visible title. **Switch to `.70` (3.20:1) if the glyph is ever made load-bearing.** |
 | `--green` walked rail node on `--page` | 1.69:1 | The progress rail's done step, entered 2026-08-15 (rev 65) when the rail landed on `tracking`. Colour is not the carrier and does not need to clear 3:1: the walked node is a **filled disc with a checkmark**, the current one a **ring with a halo**, the pending ones **empty circles**, the current label steps `--slate` 6.62:1 → `--ink` 15.99:1, and `aria-current="step"` speaks it. Same reading the live disc and the pager dot above already hold. |
 | `--card` pending rail node on `--page` | 1.11:1 | Same rail, same reading — the unwalked step is identified by holding *no* mark, not by its fill. |
@@ -2025,9 +2028,11 @@ two Figma references used for structure only. Every value is an existing rung.
 
 - **Service badges** — the `.dr-grouptab` chip as a **radio** (`.dr-grouptab--icon`), a 16px glyph before
   the word: *Delivery* (package), *Photo* (camera), *Inspection* (a viewfinder round a house). 32 visible,
-  44 target; chosen = `--ink` on `--green-wash` **14.75:1**. The tint is **1.085:1** against the page — the
-  chip's recorded `WCAG 1.4.11` condition, carried unchanged; the label moving `--slate` → `--ink` carries
-  the state.
+  44 target. **From rev 269 chosen = `--on-green` on `--green` 9.46:1 and idle = `--slate` on `--media`
+  5.51:1** — both fills, her picture of a category row. The mark is **1.41:1** (`--green` on `--media`) — the
+  chip's recorded `WCAG 1.4.11` condition, improved from the wash's 1.085:1 and still short of 3:1; the label
+  moving `--slate` → `--on-green` carries the state with it. Measured on the build: *Delivery* **99.7 × 32**,
+  *Photo* **84.4 × 32**, *Inspection* **116 × 32**, all three on one line at the 375 frame.
 - **Date · Time** (`.dr-when`) — one `--card` of two buttons split by a `--line` seam, each owning a drawer.
   Label 12/400 `--slate` **5.95:1**, value 15/600 `--ink` **14.37:1**; each half **170.5 × 58.8**. The
   button's name is its drawn text — *Date Today* (`WCAG 2.5.3`).
@@ -2065,8 +2070,10 @@ two Figma references used for structure only. Every value is an existing rung.
   `.dr-sheet--steady` keeps the height it opened at while typing narrows the list, so nothing above the
   keyboard moves.
 - **Filters over Find** (`.dr-finder__actions`, rev 251) — each the full width, **341 × 44**, 8 apart, Filters
-  first. *Find* is the screen's one green control: **4.88%** of the frame measured by pixel (the bell's count
-  included), under §0's ~5%. **From rev 264 *Filters* carries no count** and its name is *Filters* in every state.
+  first. *Find* is the screen's **primary** green control: **4.93%** of the frame (341 × 44). **From rev 269
+  it is no longer the only one** — the chosen service badge is a solid-green control too, **99.7 × 32 =
+  3,191px², 1.05%** — so Home's solid green measures **6.08%** (Find 4.93 + the badge 1.05 + the bell's count
+  0.11), over §0's ~5% ceiling and its one-green-control rule. Both are the designer's, recorded at rev 269. **From rev 264 *Filters* carries no count** and its name is *Filters* in every state.
 - **Applied filters as chips** (`.dr-fchips` + `.dr-fchip` as a `<button>`, rev 264) — the designer on the built
   button: *"display applied filters in badges"*. One kit dismissible chip per applied value, **above *Filters***,
   12 from the card and 12 to *Filters*: each ticked drone type by name, then the band (*₴200 – ₴600*). A tap
@@ -2883,16 +2890,30 @@ them on the day it was built.
 `operator-listings` files, which came back to this shape on 2026-09-10 on a picture the designer
 pasted (*«вибраний на зеленому бекграунді, тоненькі лінії зверху знизу»*) — see the hairline note below. Gap 8, row padding `0 16`,
 pill `--r-pill` at **32px visible** with a `--pill-bleed` −6/−6 `::after` taking the target to
-**44** (`HIG · 44pt` ✓, `WCAG 2.5.8` ✓ at 24). Current = `--green-wash` behind `--ink` (**14.75:1**);
-the rest `--slate` on `--page` (**6.62:1**). **The mark itself is `1.085:1`** — the tint against the
-page — which is under `WCAG 1.4.11`'s 3:1 and leans on the label moving 6.62 → 15.99 as well, a
-text-against-text difference WCAG does not measure. Recorded as the known condition it is.
+**44** (`HIG · 44pt` ✓, `WCAG 2.5.8` ✓ at 24). **From rev 269 both states are a fill** — the designer
+against a category row she pasted (*«selected on green background, not selected gray»*): current =
+`--on-green` on `--green` (**9.46:1**), the rest `--slate` on `--media` (**5.51:1**, down from 6.62:1
+on the page and still **1.22×** the 4.5 floor). **The mark itself is `1.41:1`** — `--green` against
+`--media` — which is under `WCAG 1.4.11`'s 3:1 and leans on the label moving 5.51 → 9.46 as well, a
+text-against-text difference WCAG does not measure. Recorded as the known condition it is: the wash
+it replaces measured **1.085:1**, so the fill improves the mark by **+0.33** without clearing the
+floor, and the reading that would clear it — `--ink` selected on `--media` idle, **13.33:1**, the
+pasted picture literally — was drawn and refused in favour of the accent.
+
+**The count on a tab (`.dr-grouptab__count`, rev 269).** *Incoming · 2* becomes *Incoming* + a badge:
+`--sz-fchip-x` **18** square, `--r-pill`, `--sp-2` inline, 10.5/500, `--green-wash` behind `--ink`
+(**14.75:1**) — `.dr-chip--unread`'s pair in `.dr-count-badge`'s box, so nothing is minted. The badge
+is a shape around text and not a state, so `1.4.11` does not bind on its edge — **1.56:1** on the
+chosen pill, **1.11:1** on the idle one, the same hue-not-luminance reading `notifications` has run
+on since 2026-08-31 (1.03:1 on `--card`). The digit is the tab's own text, so the accessible name is
+*Incoming 2* and `4.1.2` needs nothing added.
 
 **The underline tab (`.dr-groups--tabs`) — 5 pages since rev 242** (seven until the operator's two went back to the chip), the designer's pick 2026-09-10 and re-cut the
 same day from own-width-and-scroll to equal-shares-and-truncate: five
 `listings` and two `operator-listings`. Gap 0, row padding `0 4` — `--sp-screen` 16 minus the tab's
 own `--sp-snug` 12, so the **label** lands on the screen margin and the underline runs 12 past the
-text at each end. Tab is the row's full height, **47.2** inside the 48 the hairline takes a pixel
+text at each end. It takes its transparent ground back explicitly at rev 269, the chip having been
+filled. Tab is the row's full height, **47.2** inside the 48 the hairline takes a pixel
 from (`HIG · 44pt` ✓ +3.2, `WCAG 2.5.8` ✓ 1.96× the 44 × 44 area). Current = `--ink` label plus a
 **2px `--ink`** rule on the bottom edge; the rest `--slate`. **The mark is `15.99:1`** — +12.99 over
 `1.4.11`'s floor and the only one of the row's two shapes that passes on the mark alone.
@@ -3192,7 +3213,8 @@ before this (`listings-filtered`'s filter count); it now stands on **three**.
 **Green budget.** The pill is `18 × 18` = **324px²** — **0.106%** of the 375 × 812 frame, against
 §0's **~5%** ceiling. It is a **status mark**, not a green *control*: on `listings` it is the only
 solid green on the screen (measured **0.106%** total, the group tab carrying `--green-wash`, a tint
-at 1.085:1 on the page, which §0 does not count), and on `operator-listings` it joins a screen that
+at 1.085:1 on the page, which §0 does not count — **rev 269 ends that**: the chosen tab is solid
+`--green` and Home now measures 6.08%), and on `operator-listings` it joins a screen that
 already measures **4.15%** visible green across two `Accept` buttons and the availability dot — the
 bell adds **0.11pp** and changes neither the count nor the ceiling.
 

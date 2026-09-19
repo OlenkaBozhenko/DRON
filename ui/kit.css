@@ -1722,10 +1722,41 @@ header.dr-topbar,
   background: var(--page);
 }
 .dr-main:has(> .dr-groups){ scroll-padding-top: calc(var(--h-groups) - var(--hair)); }
+/* AND ON 2026-09-19 THE ROW BECOMES A FILLED PILL ON BOTH STATES — the designer,
+   against the built `listings`, with a picture of a category row (black selected
+   pill, grey unselected pills, the next one cut by the frame's edge): «make the
+   tabs like on this example but using my design system colours, selected on green
+   background, not selected gray; the number make like light green badge without
+   opacity, as on notifications».
+   WHAT ACTUALLY CHANGES IS TWO FILLS. The chip's geometry is untouched — `--r-pill`,
+   **32** visible, `--sp-snug` 12 inline, the `--pill-bleed` −6/−6 `::after` taking
+   the target to **44** (`HIG · 44pt` ✓ 100%, `WCAG 2.5.8` ✓ 2.36× on the wider of
+   the two), gap `--sp-within-lg` 8, the row still scrolling. Only the ground moves:
+   idle `transparent` → `--media`, chosen `--green-wash` → `--green`.
+   THE STANDARDS, IN ORDER, AND THE ONE THAT STILL DOES NOT PASS.
+   · `WCAG 1.4.3` on the idle label: `--slate` on `--media` **5.51:1** at 13/500 —
+     over the 4.5 floor by **1.22×**. It was 6.62:1 on the page, so the label pays
+     1.11 for standing on a fill; it still clears.
+   · `WCAG 1.4.3` on the chosen label: `--on-green` on `--green` **9.46:1**, **2.10×**
+     the floor, and it is §0's only reading — charcoal is the one colour allowed on
+     green, since `--green` as text is 1.52:1.
+   · `WCAG 1.4.11` on the MARK: `--green` against `--media` is **1.41:1**, under the
+     3:1 a state indicator owes. Said plainly rather than buried: this row has never
+     passed 1.4.11 on the mark alone — the wash-on-page it replaces was **1.085:1** —
+     so the fill improves the mark by **+0.33** and still leans on the label moving
+     `--slate` 5.51:1 → `--on-green` 9.46:1, which WCAG does not measure (text against
+     text is not a tested pair). The reading that WOULD pass was drawn and quoted:
+     `--ink` selected on `--media` idle is **13.33:1**, the example literally — she
+     chose green. Recorded as her decision, not filed as a defect.
+   · `HIG · Segmented Controls` asks that the selected segment be unmistakable and
+     that the control not wrap; both hold.
+   THE GREEN BUDGET MOVES AND THE FIGURE IS MEASURED, NOT ASSERTED — see rev 269 in
+   `concept.md`: the chosen pill is a SECOND solid-green control on every screen that
+   carries this row, against §0's «exactly one green control per screen». */
 .dr-grouptab{
   position: relative; flex: none;
   height: var(--h-pill); padding: 0 var(--sp-snug);
-  border: 0; border-radius: var(--r-pill); background: transparent;
+  border: 0; border-radius: var(--r-pill); background: var(--media);
   font-family: var(--font-ui);
   font-size: var(--t-bodysm-size); font-weight: var(--weight-medium);
   color: var(--slate); text-decoration: none; cursor: pointer;
@@ -1733,8 +1764,31 @@ header.dr-topbar,
 }
 .dr-grouptab::after{ content: ""; position: absolute; inset: var(--pill-bleed) 0; }
 .dr-grouptab[aria-selected="true"],
-.dr-grouptab[aria-current="true"]{ background: var(--green-wash); color: var(--ink); }
+.dr-grouptab[aria-current="true"]{ background: var(--green); color: var(--on-green); }
 .dr-grouptab:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
+
+/* THE COUNT ON A TAB, AS THE NOTIFICATION BADGE — her «light green badge without
+   opacity, as on notifications». It is `.dr-chip--unread`'s pair (`--green-wash`
+   behind `--ink`, **14.75:1**) in `.dr-count-badge`'s box (`--sz-fchip-x` 18 square,
+   `--r-pill`, `--sp-2` inline, 10.5/500), which is why it mints nothing: both rungs
+   are already spent on `notifications`. NOT AN OPACITY, SAID OUT LOUD: `--green-wash`
+   is a declared hex, so the number keeps 14.75:1 wherever the badge lands — a 
+   translucent white would have dropped it with the ground under it.
+   THE BADGE IS A SHAPE AROUND TEXT, NOT A STATE, so `WCAG 1.4.11` does not bind on
+   its edge — which is as well, because that edge is **1.56:1** on the chosen pill and
+   **1.11:1** on the idle one. The notifications row it copies stands at 1.03:1 against
+   `--card` and has read since 2026-08-31: the hue carries it, not the luminance. What
+   1.4.3 does measure — the digit — is **14.75:1** in both places.
+   THE NUMBER IS NOT AN aria-hidden DECORATION here, unlike the bell's: it is the tab's
+   own text, so `Incoming 2` is the accessible name and `WCAG 4.1.2` needs nothing
+   added. The separator it replaces (`Incoming · 2`) was spoken; the badge is too. */
+.dr-grouptab__count{
+  margin-left: var(--sp-6);
+  min-width: var(--sz-fchip-x); height: var(--sz-fchip-x); padding: 0 var(--sp-2);
+  border-radius: var(--r-pill); background: var(--green-wash); color: var(--ink);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: var(--t-microsm-size); font-weight: var(--weight-medium);
+}
 
 /* AND THE SAME ROW, DRAWN AS UNDERLINE TABS — `.dr-groups--tabs`, the designer's
    pick on 2026-09-10 against the built `operator-listings`: «make it like a tab
@@ -1820,6 +1874,8 @@ header.dr-topbar,
 .dr-groups--tabs .dr-grouptab{
   flex: 1 1 0; min-width: 0;   /* equal shares always; the label is cut to its share */
   display: block; height: 100%;
+  background: transparent;     /* rev 269 filled the chip; the underline shape is a
+                                  track and a rule, so it takes its ground back */
   line-height: calc(var(--h-groups) - var(--hair));
   text-align: center;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -6118,7 +6174,7 @@ header.dr-topbar,
 }
 .dr-grouptab--icon{ gap: var(--sp-6); }
 .dr-grouptab--icon .dr-ic{ width: var(--ic-16); height: var(--ic-16); }
-.dr-grouptab:has(> input:checked){ background: var(--green-wash); color: var(--ink); }
+.dr-grouptab:has(> input:checked){ background: var(--green); color: var(--on-green); }
 .dr-grouptab:has(> input:focus-visible){ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 
 /* THE DATE · TIME ROW — two halves of one card, the reference's «дата … справа
