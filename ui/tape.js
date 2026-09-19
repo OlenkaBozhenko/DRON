@@ -70,6 +70,12 @@
     this.pulse = document.createElement("span");
     this.pulse.className = "lp-pulse";
     this.pulse.setAttribute("aria-hidden", "true");
+    /* The class comes off when the animation ends. Left on, it is invisible
+       (the keyframes finish at opacity 0) but it makes the element lie about
+       its state to anything reading the DOM. */
+    this.pulse.addEventListener("animationend", function () {
+      self.pulse.classList.remove("on");
+    });
     this.phone.appendChild(this.pulse);
 
     this.idx = 0;

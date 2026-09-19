@@ -64,6 +64,11 @@ body {
 .lp-player {
   display: grid;
   grid-template-columns: minmax(0, 1fr) var(--screen-w);
+  /* The stage spans both rows and is 812px tall. Without an explicit row
+     sizing the two rows split that height between them and the step list
+     falls to the middle of the column; `auto 1fr` keeps the heading at its
+     own height and the list directly under it. */
+  grid-template-rows: auto 1fr;
   grid-template-areas: "head stage" "side stage";
   align-items: start;
   gap: 24px 64px;

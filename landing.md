@@ -299,10 +299,22 @@ either way: those pixels are the product's own and are not this file's to move (
 
 ## 7. Change log
 
+**Rev 2 — 2026-09-19.** Opened in Chrome and watched. The reel plays all seven steps on its own,
+the captions light in step, the injected stylesheet takes (`.wf-toolbar` computes to `display:none`,
+`body` padding to `0px`), and Pause hands the screen over — `inert` comes off the front frame, the
+veil goes, the button reads Play. Two defects found and fixed: the step list fell to the middle of
+the column, because a stage spanning two auto rows split its 812px between them (`grid-template-rows:
+auto 1fr`); and the tap pulse kept its `.on` class after the animation finished, invisible but
+lying to anything reading the DOM (removed on `animationend`).
+
+**Still unverified: the narrow layouts of §4.4.** The automation window would not change the page's
+CSS viewport, so the bezel-drop at 560px and the scale under 375px have not been seen. Narrowing a
+real browser window is the check.
+
 **Rev 1 — 2026-09-19.** Built and checked without a browser: the Playwright profile was held by
-another session and the Chrome extension was not connected, so the probe is verified from the files
-— the tape parses, all six captions are addressed, and every selector it names resolves exactly
-once in the page it names. The motion itself is unverified until it is opened. Written from the session where the approach was chosen. The designer's calls
+another session and the Chrome extension was not connected, so the probe was verified from the
+files — the tape parses, all six captions are addressed, and every selector it names resolves
+exactly once in the page it names. Written from the session where the approach was chosen. The designer's calls
 recorded here: the mode is **per block, not per site**; "hybrid" means *a block that plays itself
 and hands over when touched*, not a split between technologies; `wireframes/` is **never** modified
 (§0); the first built section is RJ-C2 (§5.1).
