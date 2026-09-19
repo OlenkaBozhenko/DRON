@@ -15,9 +15,6 @@ First screens rewritten against `voice.md` (Step 02). **Text only — structure 
 
 | Screen | Zone | Type | Before | After | Why (voice.md) |
 |---|---|---|---|---|---|
-| listings-empty | Counter | State message | Nothing found | 0 services | Microcopy › empty: state the fact; mirrors base "3 services" |
-| listings-empty | Service list | State message (title) | Nothing found | No services match your search | Microcopy › empty: say *why* it's empty |
-| listings-empty | Service list | State message (body) | No services match “crop spraying” and your current filters. Clear the filters or change your search. | No services match “crop spraying” with your filters. Clear the filters or search again. | Tightened; leads straight to the action (query echo kept — it's the user's input) |
 | listings-error | Counter | State message | List unavailable | Couldn't load | Plain status |
 | listings-error | Service list | State message (title) | Couldn't load the list | Couldn't load services | Dictionary word *services*, not "the list"; Microcopy › error: what happened |
 | listings-error | Service list | State message (body) | No connection to the server. Check your internet and try again. | No internet connection. Check it and try again. | P4 plain (drop "server"); Microcopy › error: what to do |
@@ -994,94 +991,12 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | job-offer | Decide fast | Expires in 8s | Body |  |
 | job-offer | Decide fast | Accept | Button |  |
 | job-offer | Decide fast | Decline | Button |  |
-| listings-empty | — | *out of the walk from 2026-09-19, kept on disk* | — | The designer, on the rebuilt page: *«ця сторінка теж має бути іншою (треба змінити або видалити) як ця посуті»* — it said what `listings-error` says. By her own definitions the search has two states, *searching* and *nothing found*; a form has no third way of being empty. The region empty is still a node in `flows.md`, but it belongs to **Results on the map** now, so the rows below stay inventoried against the day it is drawn there |
-| listings-empty | — | *the page is `listings.html`* | — | **REBUILT ON THE SEARCH 2026-09-19** (*«відповідно усі стейти перероби під це вю»*). Every string on this page — the badges, the card's labels and placeholders, *Filters*, *Find*, the four drawers, the tab bar — is the base's own row above and is not repeated here; what follows is only what this state adds or changes |
-| listings-empty | Search | Zhytomyr, Kyivska 4 | Field value | DATA — the *From* address that produced the empty. A place the product already names: *Zhytomyr Oblast* is a row in the region pick |
-| listings-empty | Search | Zhytomyr, Peremohy 12 | Field value | DATA — the *To* address |
-| listings-empty | Result | DRON doesn't fly in Zhytomyr yet | State message | **new 2026-09-19**, replacing ~~*No services match your search*~~. `flows.md` MJ-1 asks *Service available in your region?* and answers *no*; since 2026-09-14 the address is set on this card, so this is the screen that can answer it. Names the place, because *your area* would not tell the client which address is the problem (`voice.md` empty: say why) |
-| listings-empty | Result | We fly in Kyiv today. Leave the address and we'll tell you when we reach it. | State message | **new 2026-09-19**, replacing the *crop spraying* body. The fact first, then the one way out; no apology, no *unfortunately* (`voice.md` P5). *Kyiv* is where every built order happens, so the sentence states the product's own truth |
-| listings-empty | Result | Notify me when available | Button | kept from the service-list page this replaces — `flows.md`'s *notify me when DRON launches here*. **Secondary**, so `Find` above stays the screen's one green control |
-| listings-empty | Result | Request received. We'll tell you when it's available. | Toast | kept, unchanged |
+| — *(six deleted pages)* | — | `listings-empty` · `listings-filtered` · `listings-filter-country` · `-region` · `-city` · `-district` | — | **DELETED 2026-09-19** — *«все що сховала тепер зітри»*, after a day out of the walk. Their rows are gone from this table because the table inventories what the product draws, and it draws none of it: the applied-filter row is a state `listings.html` writes itself, the four place picks lost their entrance when *Location* left the Filters drawer (2026-09-15), and the empty said what `listings-error` says. **Nothing is lost:** every string is in git and the reasoning is in `concept.md` revs 261, 275, 277 and 279–282. If the region empty is drawn again it belongs to *Results on the map* |
 | listings-error | — | *the page is `listings.html`* | — | **REBUILT 2026-09-19, and re-cut the same day on her own definition of the state:** *«error коли нічого не знайдено»*. Every string but the four below is the base's own row above. ~~*Couldn't reach DRON* / *No internet connection…*~~ was the network reading, replaced by hers |
 | listings-error | Search | Podil, 21 · Osokorky, 14 | Field values | DATA — the address drawer's own saved and recent rows. A search that came back with nothing was run on something |
 | listings-error | Result | No drones for this search | State message | **new 2026-09-19.** Names the outcome in the client's words (`voice.md` P1: the outcome, not the equipment — *drones* is what is missing, and it is what the filter above names) |
 | listings-error | Result | Nothing is free today at this time with these filters. Try another time, or clear the filters. | State message | **new 2026-09-19.** Why it is empty — the two things that narrowed it, the time and the filters — then the ways out (`voice.md`: an empty says why and gives one way out). No apology and no *unfortunately* |
 | listings-error | Result | Clear filters | Button | secondary, so `Find` stays the screen's one green control. Kept from the page this replaces, where it was the primary |
-| listings-filtered · listings-filter-country · -region · -city · -district | — | *out of the walk from 2026-09-19, kept on disk* | — | The designer took these five pages out of the prototype's tree and state switch (*«цих … вже немає»*) and chose **hide, not delete**. The applied-filter row is a state `listings.html` draws itself; the four place picks lost their only entrance when *Location* left the Filters drawer on 2026-09-15. **The rows that follow are the retired service-list set**, kept because the four place-pick files still draw exactly what they list; `listings-filtered.html` itself was rebuilt on the search (rev 275 / 277) before it left the walk, so what that file draws today is the base's strings, not the rows below. **They were deleted by accident in rev 277 and restored in rev 279** — two range edits took 122 rows where 48 were meant; the correction is recorded rather than smoothed |
-| listings-filter-country | — | Country | Heading |  |
-| listings-filter-country | — | Back to Filters | Button | invisible label on the chevron — microcopy.md D9 |
-| listings-filter-country | Country | Czechia | Body | DATA |
-| listings-filter-country | Country | Germany | Body | DATA |
-| listings-filter-country | Country | Hungary | Body | DATA |
-| listings-filter-country | Country | Moldova | Body | DATA |
-| listings-filter-country | Country | Poland | Body | DATA |
-| listings-filter-country | Country | Romania | Body | DATA |
-| listings-filter-country | Country | Slovakia | Body | DATA |
-| listings-filter-country | Country | Ukraine | Body | DATA · the current pick, sitting in its alphabetical place like Kyiv City does on listings-filter-region |
-| listings-filter-city | — | City · Kyiv City | Heading |  |
-| listings-filter-city | — | Back to Filters | Button | invisible label on the chevron — microcopy.md D9 |
-| listings-filter-city | City | Kyiv | Body | DATA |
-| listings-filter-city | City | Kyiv City holds one city. To serve elsewhere, change the region. | State message | the way out of the shortest case — voice.md P5, plain and not apologetic |
-| listings-filter-city | City | Change region | Button |  |
-| listings-filter-district | — | District · Kyiv | Heading |  |
-| listings-filter-district | — | Back to Filters | Button | invisible label on the chevron — microcopy.md D9 |
-| listings-filter-district | District | All districts | Body | the default and the way to widen again |
-| listings-filter-district | District | Darnytskyi | Body | DATA |
-| listings-filter-district | District | Desnianskyi | Body | DATA |
-| listings-filter-district | District | Dniprovskyi | Body | DATA |
-| listings-filter-district | District | Holosiivskyi | Body | DATA |
-| listings-filter-district | District | Obolonskyi | Body | DATA |
-| listings-filter-district | District | Pecherskyi | Body | DATA |
-| listings-filter-district | District | Podilskyi | Body | DATA |
-| listings-filter-district | District | Shevchenkivskyi | Body | DATA |
-| listings-filter-district | District | Solomianskyi | Body | DATA |
-| listings-filter-district | District | Sviatoshynskyi | Body | DATA |
-| listings-filter-region | — | Region | Heading |  |
-| listings-filter-region | — | Back to Filters | Button | invisible label on the chevron — microcopy.md D9 |
-| listings-filter-region | Search | Search regions | Field placeholder | the list is 1100px in a 640px area, so it scrolls and takes a search |
-| listings-filter-region | Region | Cherkasy Oblast | Body | DATA |
-| listings-filter-region | Region | Chernihiv Oblast | Body | DATA |
-| listings-filter-region | Region | Chernivtsi Oblast | Body | DATA |
-| listings-filter-region | Region | Dnipropetrovsk Oblast | Body | DATA |
-| listings-filter-region | Region | Donetsk Oblast | Body | DATA |
-| listings-filter-region | Region | Ivano-Frankivsk Oblast | Body | DATA |
-| listings-filter-region | Region | Kharkiv Oblast | Body | DATA |
-| listings-filter-region | Region | Kherson Oblast | Body | DATA |
-| listings-filter-region | Region | Khmelnytskyi Oblast | Body | DATA |
-| listings-filter-region | Region | Kirovohrad Oblast | Body | DATA |
-| listings-filter-region | Region | Kyiv City | Body | DATA |
-| listings-filter-region | Region | Kyiv Oblast | Body | DATA |
-| listings-filter-region | Region | Luhansk Oblast | Body | DATA |
-| listings-filter-region | Region | Lviv Oblast | Body | DATA |
-| listings-filter-region | Region | Mykolaiv Oblast | Body | DATA |
-| listings-filter-region | Region | Odesa Oblast | Body | DATA |
-| listings-filter-region | Region | Poltava Oblast | Body | DATA |
-| listings-filter-region | Region | Rivne Oblast | Body | DATA |
-| listings-filter-region | Region | Sumy Oblast | Body | DATA |
-| listings-filter-region | Region | Ternopil Oblast | Body | DATA |
-| listings-filter-region | Region | Vinnytsia Oblast | Body | DATA |
-| listings-filter-region | Region | Volyn Oblast | Body | DATA |
-| listings-filter-region | Region | Zakarpattia Oblast | Body | DATA |
-| listings-filter-region | Region | Zaporizhzhia Oblast | Body | DATA |
-| listings-filter-region | Region | Zhytomyr Oblast | Body | DATA |
-| listings-filtered | Search & filters | All | Button |  |
-| listings-filtered | Search & filters | Delivery | Button |  |
-| listings-filtered | Search & filters | Photo & video | Button |  |
-| listings-filtered | Search & filters | Inspection | Button |  |
-| listings-filtered | Search & filters | Search services | Field placeholder |  |
-| listings-filtered | Applied filters | Today | Body |  |
-| listings-filtered | Applied filters | Podilskyi | Body |  |
-| listings-filtered | Applied filters | All | Body | the leading chip — took the exit-to-full-list job from the Clear all text button at the designer's call, 2026-08-13 |
-| listings-filtered | Service list · cards | AERIAL | Body | WF-PH |
-| listings-filtered | Service list · cards | Photo & video | Heading |  |
-| listings-filtered | Service list · cards | Events, real-estate listings, personal occasions | Body |  |
-| listings-filtered | Service list · cards | INSPECT | Body | WF-PH |
-| listings-filtered | Service list · cards | Inspection | Heading |  |
-| listings-filtered | Service list · cards | Roofs, facades, hard-to-reach structures | Body |  |
-| listings-filtered | Service list · cards | Order | Button |  |
-| listings-filtered | Service list · cards | Activity | Button |  |
-| listings-filtered | Service list · cards | Help | Button |  |
-| listings-filtered | Service list · cards | Account | Button |  |
 | listings-filters | — | *the page is `listings.html`, with its Filters drawer up* | — | **REBUILT 2026-09-19** (*«я переробила сторінку на таку»*). ~~The full-screen panel — *Location* over *Date &amp; time* over *Price*, with *Country · Region · City · District* rows into four place-pick screens~~ is gone: the filter has been a **drawer on the search** since 2026-09-14, and *Location* left that drawer on 2026-09-15. **Every string on this page is the base's own row above** — *Filters*, *Drone type*, *Which drone does your order*, the four drone names, *Price range*, *Service price, all fees included*, *Minimum* / *Maximum*, *₴0* / *₴1,000+*, *Clear all*, *Apply filters* — and none is repeated here |
 | listings-filters | Filters drawer | ₴600 | Field value | DATA — the only string this page draws that the base does not: the drawer stands **on what is applied** (*Hexacopter*, *₴600 – ₴1,000+*), her frame of 2026-09-19, so *Minimum* reads ₴600 where the base reads ₴0 |
 | listings-loading | — | *the page is `listings.html`* | — | **REBUILT 2026-09-19, re-cut the same day on her own definition:** *«loading коли шукаємо»* — the state is the search RUNNING, not the page's data arriving. Every string but the three below is the base's own row above |
