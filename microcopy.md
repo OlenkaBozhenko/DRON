@@ -994,6 +994,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | job-offer | Decide fast | Expires in 8s | Body |  |
 | job-offer | Decide fast | Accept | Button |  |
 | job-offer | Decide fast | Decline | Button |  |
+| listings-empty | — | *out of the walk from 2026-09-19, kept on disk* | — | The designer, on the rebuilt page: *«ця сторінка теж має бути іншою (треба змінити або видалити) як ця посуті»* — it said what `listings-error` says. By her own definitions the search has two states, *searching* and *nothing found*; a form has no third way of being empty. The region empty is still a node in `flows.md`, but it belongs to **Results on the map** now, so the rows below stay inventoried against the day it is drawn there |
 | listings-empty | — | *the page is `listings.html`* | — | **REBUILT ON THE SEARCH 2026-09-19** (*«відповідно усі стейти перероби під це вю»*). Every string on this page — the badges, the card's labels and placeholders, *Filters*, *Find*, the four drawers, the tab bar — is the base's own row above and is not repeated here; what follows is only what this state adds or changes |
 | listings-empty | Search | Zhytomyr, Kyivska 4 | Field value | DATA — the *From* address that produced the empty. A place the product already names: *Zhytomyr Oblast* is a row in the region pick |
 | listings-empty | Search | Zhytomyr, Peremohy 12 | Field value | DATA — the *To* address |
