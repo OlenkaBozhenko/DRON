@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON — see the product working</title>
+<meta name="robots" content="noindex">
+<!--
+  DRON — landing page.  SOURCE OF TRUTH: landing.md.  Nothing is written here
+  that is not in that file first (CLAUDE.md → Content Rules).
+
+  STATUS 2026-09-19: the probe. One feature section is built — landing.md §5.1,
+  the RJ-C2 reel. §5.2–§5.5 are specified and not yet made.
+
+  THE STANDING PROHIBITION (landing.md §0): nothing in wireframes/ is modified
+  for this page. The screens inside the phone are the real, shipped files,
+  loaded untouched; ui/tape.js dresses them from out here and addresses only
+  selectors that already exist in them.
+
+  Mobile view only. There is no desktop view of DRON on the landing, because
+  there is no desktop view of DRON.
+-->
+<link rel="stylesheet" href="ui/landing.css">
+<script src="ui/tape.js" defer></script>
+</head>
+<body>
+
+<div class="lp-wrap">
+
+  <header>
+    <p class="lp-brand">DRON</p>
+    <h1 class="lp-title">You order the outcome. A certified operator does the rest.</h1>
+    <p class="lp-sub">
+      Aerial photo and video, package delivery, roof and facade inspection — in Ukraine and across
+      Europe. What follows is not a picture of the product. It is the product, on a phone, playing
+      itself. Touch it and it stops, and the screen is yours.
+    </p>
+  </header>
+
+  <!-- ── landing.md §5.1 — RJ-C2 ─────────────────────────────────────────── -->
+  <section class="lp-player" data-mode="reel" aria-labelledby="rjc2-title">
+
+    <div class="lp-head">
+      <p class="lp-eyebrow">The wait</p>
+      <h2 id="rjc2-title">The gap between paying and arriving</h2>
+      <p>
+        The moment most people leave is the one right after they pay. DRON fills it with a name, a
+        face and a live map — not a receipt and a wait.
+      </p>
+    </div>
+
+    <div class="lp-stage">
+      <div class="lp-device">
+        <div class="lp-phone">
+          <iframe class="lp-view" src="wireframes/payment-loading.html"
+                  title="DRON prototype — paying, the operator revealed, live tracking"></iframe>
+        </div>
+      </div>
+      <p class="lp-note" hidden>
+        This section needs an http origin. Opened straight from the file system, the browser treats
+        every file as its own origin and the page cannot dress the frame inside it. Run
+        <code>python -m http.server</code> in the repo root, then open
+        <code>http://localhost:8000/landing.html</code>.
+      </p>
+      <p class="lp-hint">Touch the screen to take over, or use Pause.</p>
+    </div>
+
+    <div class="lp-side">
+      <!-- The captions are the text alternative to the motion: real text with
+           JavaScript off, and a way to jump to any step. -->
+      <ol class="lp-steps">
+        <li><button type="button">Payment clears first. Nothing is booked until it does.</button></li>
+        <li><button type="button">Your operator is named before the drone leaves: Andriy M., verified and insured.</button></li>
+        <li><button type="button">One tap from the confirmation to the map.</button></li>
+        <li><button type="button">Live position and ETA, the whole way.</button></li>
+        <li><button type="button">Reach the operator from inside the order.</button></li>
+        <li><button type="button">One thread, tied to this order.</button></li>
+      </ol>
+      <button type="button" class="lp-toggle" disabled>Play</button>
+
+      <script type="application/json" class="lp-tape">
+      [
+        { "page": "payment-loading.html",                        "hold": 1500, "cap": 0 },
+        { "page": "order-confirmed.html",                        "hold": 2200, "cap": 1 },
+        { "point": ".dr-btn--primary",                           "hold":  800, "cap": 2 },
+        { "page": "tracking.html",                               "hold": 2800, "cap": 3 },
+        { "tap": "button[aria-controls='sheet-contact']",        "hold": 1800, "cap": 4 },
+        { "point": "a[href='chat.html']",                        "hold":  700, "cap": 4 },
+        { "page": "chat.html",                                   "hold": 2600, "cap": 5 }
+      ]
+      </script>
+    </div>
+
+  </section>
+
+</div>
+
+</body>
+</html>
