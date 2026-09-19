@@ -1,0 +1,1075 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Home / start an order · success (base)</title>
+<!--
+  SCREEN (name from _screens.md §3): "Home / start an order" — A SEARCH from 2026-09-14.
+  PERSONA: Client C-1 (primary — CLAUDE.md "Primary persona — C-1").
+  MAIN JOB: MJ-1 — get a drone service done.
+  STATE: success / base.
+  THE REBUILD (designer, 2026-09-14): «треба змінити вигляд цієї сторінки бо це стартова пошукова сторінка» —
+  three service badges with icons, the date (a calendar) with the time to its right, Filters (secondary, a
+  drawer with the filters she already had) and Find (primary), which opens the map with a drawer of choices
+  and Order at its foot. Two Figma references (145:4, 145:8) for structure only; every style is ui/kit.css.
+  Two readings went to her before it was built, standards first, and she took both recommended ones: the
+  Filters drawer holds Location + Price (Date & time lives on the search, one value in one place), and the
+  rows on the map are named by the outcome, not the drone (voice.md P1, P4).
+  2026-09-15, HER WORD ON THE BUILT DRAWER: Location leaves it (the address is on the search card) and
+  Drone type takes its place — Quadcopter · Hexacopter · FPV · Fixed-wing, her pick of three readings,
+  a recorded departure from voice.md P4 / P1 (microcopy.md, _screens.md §3).
+  WHAT LEFT THE PAGE WITH HER WORD: the category row, the search field and the three service cards. The
+  service is now chosen by badge, and the choices it opens are on listings-map*.
+  THE INLINE <style> BELOW IS LEFT AS IT WAS — ui/kit.css wins every rule the frame uses, and its last live
+  rules (.media-ph, rev 248) went dead with the service cards. Nothing in it is deleted without her word.
+-->
+<style>
+  /* ── tokens (from _conventions.md §4 / ia.html grays) ── */
+  :root{
+    --wf-surface:#FFFFFF; --wf-bg:#F4F4F4; --wf-recessed:#EEEEEE; --wf-fill:#E2E2E2;
+    --wf-skeleton:#D8D8D8; --wf-muted:#909090; --wf-text-2:#5A5A5A; --wf-text:#252525;
+    --wf-ink:#111111; --wf-ink-max:#000000;
+    --wf-border:rgba(0,0,0,0.09); --wf-border-2:rgba(0,0,0,0.15);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{ -webkit-font-smoothing:antialiased; }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,sans-serif;
+    background:var(--wf-recessed); color:var(--wf-text);
+    font-size:15px; line-height:1.4;
+    display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start;
+    padding:24px;
+  }
+
+  /* ── wireframe annotation (NOT part of the screen) ── */
+  .meta{ width:320px; font-size:13px; color:var(--wf-text-2); }
+  .meta h1{ font-size:17px; font-weight:600; color:var(--wf-text); margin-bottom:4px; }
+  .meta .sub{ color:var(--wf-muted); margin-bottom:16px; }
+  .meta dl{ display:grid; grid-template-columns:auto 1fr; gap:4px 8px; margin-bottom:16px; }
+  .meta dt{ color:var(--wf-muted); text-transform:uppercase; font-size:11px; letter-spacing:.06em; padding-top:1px; }
+  .meta dd{ color:var(--wf-text-2); }
+  .meta .flow{ border:1px dashed var(--wf-border-2); border-radius:6px; padding:12px; margin-bottom:16px; line-height:1.6; }
+  .meta .flow b{ color:var(--wf-text); font-weight:600; }
+  .meta .flow .cur{ background:var(--wf-ink); color:var(--wf-surface); padding:1px 6px; border-radius:4px; font-weight:600; }
+  .meta .legend{ border-top:1px solid var(--wf-border); padding-top:12px; }
+  .meta .legend p{ margin-bottom:6px; }
+  .meta .legend b{ color:var(--wf-text); font-weight:600; }
+
+  /* states of this screen — quick switch (top of page) */
+  .state-switch{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+  .state-switch a{ font-size:12px; padding:5px 10px; border:1px solid var(--wf-border-2); border-radius:6px;
+    text-decoration:none; color:var(--wf-text-2); background:var(--wf-surface); }
+  .state-switch a:hover{ background:var(--wf-recessed); color:var(--wf-text); }
+  .state-switch a.cur{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+
+  /* ── phone frame 375 × 812 (_conventions §6) ── */
+  .wf-frame{
+    width:375px; height:812px; flex:none;
+    background:var(--wf-bg); border:1px solid var(--wf-border-2); border-radius:8px;
+    overflow:hidden; display:flex; flex-direction:column; position:relative;
+  }
+
+  /* status bar (safe area ~44) */
+  .statusbar{ height:44px; flex:none; display:flex; align-items:center; justify-content:space-between;
+    padding:0 16px; background:var(--wf-surface); color:var(--wf-text-2); font-size:13px; font-weight:600; }
+  .statusbar .sysph{ display:flex; gap:4px; }
+  .sq{ display:inline-block; border:1px solid var(--wf-border-2); border-radius:4px; }
+  .sq-16{ width:16px; height:16px; } .sq-20{ width:20px; height:20px; } .sq-24{ width:24px; height:24px; }
+
+  /* header / top bar */
+  header.topbar{ height:56px; flex:none; display:flex; align-items:center; gap:8px;
+    padding:0 16px; background:var(--wf-surface); border-bottom:1px solid var(--wf-border); }
+  /* The DRON mark (_conventions.md 8). A mask, not an embedded file, so it takes
+     the wireframe ink and stays grayscale. 60 x 20; #252525 on white is 15.33:1. */
+  .brand{ width:60px; height:20px; flex:none; background:var(--wf-text);
+    -webkit-mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat;
+    mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat; }
+  .loc{ font-size:15px; font-weight:600; color:var(--wf-text); }
+  .topbar .spacer{ flex:1; }
+
+  /* nav — service categories (filters) */
+  nav.cats{ height:48px; flex:none; display:flex; align-items:center; gap:8px;
+    padding:0 16px; background:var(--wf-surface); border-bottom:1px solid var(--wf-border); overflow-x:auto; }
+  .chip{ flex:none; height:32px; padding:0 12px; border-radius:6px; border:1px solid var(--wf-border-2);
+    background:var(--wf-surface); color:var(--wf-text-2); font-size:13px; font-weight:600; }
+  .chip[aria-current="true"]{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+
+  /* main scroll area */
+  main{ flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:16px; }
+
+  /* zone annotation label */
+  .zlabel{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--wf-muted);
+    display:flex; flex-wrap:wrap; gap:6px; align-items:baseline; border-left:2px solid var(--wf-border-2);
+    padding-left:8px; margin-bottom:-4px; }
+  .zlabel .act{ color:var(--wf-text-2); text-transform:none; letter-spacing:0; font-size:12px; }
+
+  /* search & filters zone */
+  .search-row{ display:flex; gap:8px; align-items:center; }
+  .field{ flex:1 1 auto; min-width:0; height:44px; display:flex; align-items:center; gap:8px; padding:0 12px;
+    background:var(--wf-surface); border:1px solid var(--wf-border-2); border-radius:6px; }
+  .field input{ flex:1; min-width:0; border:0; background:transparent; font:inherit; color:var(--wf-text); outline:none; }
+  .field input::placeholder{ color:var(--wf-muted); }
+  /* Filters icon button (grayscale glyph placeholder — no real icon, per _conventions §8) */
+  .icon-btn{ flex:0 0 44px; width:44px; height:44px; padding:0; position:relative;
+    display:inline-flex; align-items:center; justify-content:center; border-radius:6px;
+    border:1px solid var(--wf-ink); background:var(--wf-ink); color:var(--wf-surface); cursor:pointer; text-decoration:none; }
+  .icon-btn:hover{ background:var(--wf-ink-max); }
+  .icon-btn:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  .ic-filter{ display:flex; flex-direction:column; align-items:center; gap:3px; width:20px; }
+  .ic-filter i{ height:2px; border-radius:1px; background:currentColor; }
+  .ic-filter i:nth-child(1){ width:20px; } .ic-filter i:nth-child(2){ width:13px; } .ic-filter i:nth-child(3){ width:7px; }
+  .count-badge{ position:absolute; top:-6px; right:-6px; min-width:18px; height:18px; padding:0 4px;
+    border-radius:999px; background:var(--wf-surface); color:var(--wf-ink); border:1px solid var(--wf-ink);
+    font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+
+  /* counter zone */
+  .counter{ display:flex; align-items:center; justify-content:space-between; }
+  .counter .count{ font-size:13px; color:var(--wf-text-2); }
+  .counter .count b{ color:var(--wf-text); font-weight:600; }
+
+  /* service list */
+  ul.list{ list-style:none; display:flex; flex-direction:column; gap:12px; }
+  article.card{ position:relative; display:flex; align-items:center; gap:12px; padding:16px;
+    background:var(--wf-surface); border:1px solid var(--wf-border); border-radius:8px; }
+  article.card:hover{ border-color:var(--wf-border-2); background:var(--wf-recessed); }
+  article.card:active{ background:var(--wf-fill); }
+  article.card:focus-within{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  .card-link{ position:absolute; inset:0; z-index:1; border-radius:8px; }
+  .card-link:focus{ outline:none; }
+  .media-ph{ width:56px; height:56px; flex:none; border:1px dashed var(--wf-border-2); border-radius:6px;
+    display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.06em; color:var(--wf-muted);
+    background:var(--wf-recessed); }
+  /* ── IMAGERY ────────────────────────────────────────────────────────────
+     The service card now carries the drone that does that job, so the label
+     placeholder gives way to the render it stood for. Same rules as the
+     shared sheet (_wireframe.css → IMAGERY); repeated here because this page
+     is self-contained and links no stylesheet.
+     The well grows 56 → 96 × 72: concept.md §6.3 puts the floor at ~96px,
+     below which the rotors stop resolving, and order-history already took
+     this exact step for the same reason. Landscape because the subject is.
+     No ground and no border — in the product a cutout sits straight on the
+     card (§6.3, designer call 2026-08-01).                                 */
+  .media-ph:has(img){ width:96px; height:72px; border:0; background:none;
+    padding:0; overflow:hidden; font-size:0; line-height:0; color:transparent; }
+  /* THE RENDER SITS ON THE CARD'S TRAILING INSET, NOT IN THE MIDDLE OF ITS BOX
+     — designer, 2026-09-03, rev 224: «aligne text by left side and image by right».
+     Rev 217 moved the BOX to the trailing edge; the picture inside it stayed
+     centred. The source is a 256² canvas contained in a 96 × 72 well, so it
+     paints a 72 × 72 square with 12px of empty box either side, and the row was
+     flush on one side only — measured on the build, the name's ink starts 20.5px
+     from the leading inset and the drone's ink stopped 36.5px short of the
+     trailing one. `object-position` moves the paint and never the box: nothing
+     reflows, the 193px body measure is unchanged, no line re-wraps, the card
+     keeps its 120px height. The 4px that remain are the PNG's own transparent
+     margin (ink runs columns 14…241 of 256) — the asset, not the layout. */
+  .media-ph img{ width:100%; height:100%; display:block; object-fit:contain;
+    object-position:100% 50%; }
+  .card .body{ flex:1; min-width:0; }
+  .card .name{ display:block; font-size:17px; font-weight:600; color:var(--wf-text); }
+  .card .desc{ display:block; font-size:13px; color:var(--wf-text-2); margin:2px 0 0; }
+
+  /* buttons (_conventions §11) — variants + all interaction states */
+  .btn{ min-height:44px; padding:0 16px; border-radius:6px; font-size:15px; font-weight:600;
+    border:1px solid transparent; background:transparent; color:var(--wf-text); cursor:pointer;
+    display:inline-flex; align-items:center; justify-content:center; text-decoration:none; }
+  .btn:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  .btn:disabled{ background:var(--wf-fill); color:var(--wf-muted); border-color:transparent; cursor:not-allowed; }
+  .btn-primary{ background:var(--wf-ink); color:var(--wf-surface); }
+  .btn-primary:hover{ background:var(--wf-ink-max); }
+  .btn-primary:active{ background:var(--wf-ink-max); }
+  .btn-secondary{ background:var(--wf-surface); border-color:var(--wf-border-2); color:var(--wf-text); }
+  .btn-secondary:hover{ background:var(--wf-recessed); }
+  .btn-secondary:active{ background:var(--wf-fill); }
+  .btn-tertiary{ background:transparent; color:var(--wf-text-2); }
+  .btn-tertiary:hover{ color:var(--wf-text); }
+  .btn-sm{ min-height:32px; height:32px; padding:0 12px; font-size:13px; border-radius:6px; }
+
+  /* footer — bottom bar (§7.1 global nav) */
+  footer.tabbar{ flex:none; background:var(--wf-surface); border-top:1px solid var(--wf-border); }
+  footer .tabs{ height:56px; display:flex; }
+  footer .tab{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    text-decoration:none; color:var(--wf-muted); font-size:11px; }
+  footer .tab .sq{ border-radius:4px; }
+  footer .tab[aria-current="page"]{ color:var(--wf-ink); }
+  footer .tab[aria-current="page"] .sq{ border-color:var(--wf-ink); background:var(--wf-fill); }
+  footer .home-indicator{ height:34px; display:flex; align-items:center; justify-content:center; }
+  footer .home-indicator span{ width:134px; height:5px; border-radius:2px; background:var(--wf-skeleton); }
+</style>
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+
+  <!-- ── WIREFRAME ANNOTATION (not the screen) ── -->
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="listings.html" class="cur" aria-current="page">success</a>
+      <a href="listings-filters.html">filters</a>
+      <a href="listings-filter-country.html">country</a>
+      <a href="listings-filter-region.html">region</a>
+      <a href="listings-filter-city.html">city</a>
+      <a href="listings-filter-district.html">district</a>
+      <a href="listings-filtered.html">filtered</a>
+      <a href="listings-empty.html">empty</a>
+      <a href="listings-error.html">error</a>
+      <a href="listings-loading.html">loading</a>
+    </nav>
+    <h1>Home / start an order</h1>
+    <p class="sub">Client · a search · state: <b>success (base)</b> · file: listings.html</p>
+    <dl>
+      <dt>Persona</dt><dd>Client C-1 (primary)</dd>
+      <dt>Main job</dt><dd>MJ-1 — get a drone service done</dd>
+      <dt>Screen job</dt><dd>MJ-1 launch point — pick a service, a day and a time</dd>
+    </dl>
+    <div class="flow">
+      <b>MJ-1 · step 1 — say what, when, and find.</b><br>
+      flows.md MJ-1: … → <span class="cur">Home / start an order</span> → <a href="listings-map.html">Results on the map</a> → Order setup → Order review → Payment → Order confirmed.<br>
+      <b>Next:</b> <b>Find</b> → the map for the chosen service (<a href="listings-map.html">delivery</a> · <a href="listings-map-aerial.html">photo</a> · <a href="listings-map-inspection.html">inspection</a>).<br>
+      <b>Open:</b> the state pages to the left still draw the service list this page had before 2026-09-14 (<code>_screens.md</code> §3).
+    </div>
+    <div class="legend">
+      <p><b>Zones &amp; main action</b> (labelled in the screen):</p>
+      <p><b>Search</b> ▸ service badges · one card: From / To with swap (Delivery) or Where (Photo, Inspection), each opening the address drawer, then Date (calendar drawer) · Time (time drawer)</p>
+      <p><b>Applied filters</b> ▸ one removable chip per applied value, above Filters · no row while nothing is applied</p>
+      <p><b>Filters · Find</b> ▸ full width, one under the other · Filters drawer (Drone type · Price) · Find opens the map</p>
+      <p><b>Bottom bar</b> ▸ switch between the global sections</p>
+    </div>
+  </aside>
+
+  <!-- ── THE SCREEN · 375 × 812 ── -->
+  <div class="wf-frame dr dr-screen">
+
+    <!-- status bar (system, safe area) -->
+    <div class="dr-statusbar">
+      <span>9:41</span>
+      <span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span>
+    </div>
+
+    <!-- HEADER · top bar -->
+    <header class="topbar dr-topbar">
+      <span class="dr-brand" role="img" aria-label="DRON"></span>
+      <!-- The city picker that stood here moved into the filter on 2026-08-16, the
+           designer's call: place is chosen as Region > City > District inside
+           listings-filters, not from the nav bar. _conventions.md already said the
+           mark stands alone on a listing screen; the bar now matches the rule. -->
+      <span class="dr-topbar__spacer"></span>
+      <!-- THE NOTIFICATION BELL (designer, 2026-08-31: "add on the right side of the
+           header on the home page, in front of the DRON button icon, notification for
+           both client and operator modes"). The bar's trailing control, and the whole
+           entrance to the alert log — the screen `sitemap.md §6.1` gained the same day.
+           It stands on HOME only, which is her instruction read literally: the client's
+           other three tab roots do not carry it.
+
+           .dr-bell, not .dr-btn--icon: no navigation bar in this product has ever held
+           a filled disc, and `HIG · Navigation bars` puts a glyph or a word in the bar.
+           Every value is .dr-back's, mirrored — 44 x 44 (`HIG · 44pt` OK at 100%,
+           `WCAG 2.5.8` OK at 1.83x), the 22px glyph rung, --ink on --page at 15.99:1.
+
+           THE COUNT IS SPOKEN, NOT ONLY SHOWN. The pill is aria-hidden and the link's
+           own name carries the number - "Notifications, 3 unread" - so `WCAG 4.1.2` is
+           met and `WCAG 1.4.1 Use of Color` is never engaged: nothing here depends on
+           seeing green. That is listings-filtered's reading of the same pair, unchanged.
+
+           THE GREEN BUDGET. The pill is 18 x 18 = 324px2 - 0.107% of the 375 x 812
+           frame, against sec.0's ~5% ceiling. It is a STATUS MARK, not the screen's one
+           green control — that is Find, from 2026-09-14, when Home became a search (the
+           chosen badge carries --green-wash, a tint, at 1.085:1 on the page and uncounted). -->
+      <a class="dr-bell" href="notifications.html" aria-label="Notifications, 3 unread">
+        <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4a5.9 5.9 0 0 0-5.9 5.9c0 4.1-1.5 5.3-1.5 5.3h14.8s-1.5-1.2-1.5-5.3A5.9 5.9 0 0 0 12 3.4Z"/><path d="M10.1 18a2.1 2.1 0 0 0 3.8 0"/></svg><span class="dr-count-badge" aria-hidden="true">3</span>
+      </a>
+    </header>
+
+    <!-- MAIN · the search. The category row that stood in the chrome here — All · Delivery ·
+         Aerial photo & video · Inspection, underline tabs (rev 232) — left the page on 2026-09-14
+         with the service list it filtered: the designer rebuilt Home as a search. -->
+    <main class="dr-main">
+
+      <p class="zlabel dr-label">Search <span class="dr-label__act">▸ pick a service, a day and a time</span></p>
+      <!-- role="search" names the landmark; the form never submits — Find is a link, so the
+           prototype walks without a server and the link can say where it goes (WCAG 2.4.4). -->
+      <form class="dr-finder" role="search" aria-label="Find a service" action="#">
+
+        <!-- THE THREE BADGES — a radio group, one always chosen, Delivery at rest. Her words
+             exactly: «Delivery, Photo, Inspection». The group's name is spoken, not drawn —
+             the reference draws none, and three service names need no heading over them. -->
+        <fieldset class="dr-finder__services" aria-label="Service">
+          <label class="dr-grouptab dr-grouptab--icon">
+            <input type="radio" name="service" value="delivery" checked class="sr-only">
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.6l7.6 4.2v8.4L12 20.4l-7.6-4.2V7.8z"/><path d="M4.6 7.9L12 12l7.4-4.1"/><path d="M12 12v8.3"/></svg>Delivery
+          </label>
+          <label class="dr-grouptab dr-grouptab--icon">
+            <input type="radio" name="service" value="aerial" class="sr-only">
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="7" width="17" height="12.5" rx="2.6"/><path d="M8.6 7l1.3-2.4h4.2L15.4 7"/><circle cx="12" cy="13.2" r="3.2"/></svg>Photo
+          </label>
+          <label class="dr-grouptab dr-grouptab--icon">
+            <input type="radio" name="service" value="inspection" class="sr-only">
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5v-3A1.5 1.5 0 0 1 5.5 4h3M15.5 4h3A1.5 1.5 0 0 1 20 5.5v3M20 15.5v3a1.5 1.5 0 0 1-1.5 1.5h-3M8.5 20h-3A1.5 1.5 0 0 1 4 18.5v-3"/><path d="M8 12.6L12 9l4 3.6V16H8z"/></svg>Inspection
+          </label>
+        </fieldset>
+
+        <!-- WHERE THE DRONE GOES — the designer, the same day: «а де звідки і куди як ось на
+             зразку» (Figma 145:4). It follows the badge, her pick: Delivery has two ends and a
+             swap; Photo and Inspection have one place. Both cards are in the markup and the page
+             script swaps `hidden`, so a hidden card leaves the tab order with its fields. With
+             no script, Delivery's card is what shows — Delivery is the badge chosen at rest.
+             EACH ROW OPENS THE ADDRESS DRAWER (the designer, the same day: «по кліку відкривай дровер
+             знизу з можливістю ввести або обрати адресу»). The typing moved into the drawer, so the row
+             is a button that looks the way the field did (WCAG 4.1.2); it opens on a tap, never on
+             focus (3.2.1). The grey line is the placeholder until an address is taken.
+             ONE CARD FOR WHERE AND WHEN (the designer, 2026-09-15: «Зроби адресу дату та час на одній
+             картці»). The address rows and Date · Time stood as two cards; .dr-finder__card holds both,
+             a hairline between them. Nothing inside moves: same buttons, drawers, names and targets. -->
+        <div class="dr-finder__card">
+        <div class="dr-route" role="group" aria-label="Route" data-route="delivery">
+          <div class="dr-route__row">
+            <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6"/></svg></span>
+            <button class="dr-route__open" id="route-from" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="addrpick"
+                    data-addr="from" data-title="Pickup address" data-placeholder="Pickup address">
+              <span class="dr-route__label">From</span>
+              <span class="dr-route__value" data-empty>Pickup address</span>
+            </button>
+          </div>
+          <div class="dr-route__row">
+            <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg></span>
+            <button class="dr-route__open" id="route-to" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="addrpick"
+                    data-addr="to" data-title="Drop-off address" data-placeholder="Drop-off address">
+              <span class="dr-route__label">To</span>
+              <span class="dr-route__value" data-empty>Drop-off address</span>
+            </button>
+          </div>
+          <button class="dr-btn dr-btn--icon dr-route__swap" type="button" aria-label="Swap pickup and drop-off" data-swap>
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 19.5v-15"/><path d="M4.5 8L8 4.5 11.5 8"/><path d="M16 4.5v15"/><path d="M12.5 16l3.5 3.5 3.5-3.5"/></svg>
+          </button>
+        </div>
+        <div class="dr-route dr-route--single" data-route="place" hidden>
+          <div class="dr-route__row">
+            <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg></span>
+            <button class="dr-route__open" id="route-where" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="addrpick"
+                    data-addr="where" data-title="Address" data-placeholder="Address">
+              <span class="dr-route__label">Where</span>
+              <span class="dr-route__value" data-empty>Address</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- DATE · TIME — each half a button that owns its drawer (the page script below). -->
+        <div class="dr-when">
+          <button class="dr-when__cell" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="datepick" data-date-open>
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14.5" rx="2.4"/><path d="M4 10h16"/><path d="M8.5 3.5v4M15.5 3.5v4"/></svg>
+            <span class="dr-when__text"><span class="dr-when__label">Date</span><span class="dr-when__value" data-date-value>Today</span></span>
+          </button>
+          <button class="dr-when__cell" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="timepick" data-time-open>
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+            <span class="dr-when__text"><span class="dr-when__label">Time</span><span class="dr-when__value" data-time-value>Now</span></span>
+          </button>
+        </div>
+        </div>
+
+        <!-- THE APPLIED FILTERS, AS CHIPS (the designer, 2026-09-15, on the built Filters button:
+             "display applied filters in badges"). The kit's dismissible filter chip, listings-filtered's,
+             one per applied value — each ticked drone type, then the price band — written by the page
+             script when Apply filters is tapped, and empty and hidden while nothing is applied. A tap
+             removes that one filter. ABOVE Filters, so Filters and Find stay one pair, and the count left
+             the button with it: her two picks, each put to her with the standards first. A group, not a
+             landmark — it sits inside the search. -->
+        <div class="dr-fchips" role="group" aria-label="Applied filters" data-fchips hidden></div>
+
+        <!-- FILTERS over FIND, each the full width (the designer, 2026-09-14: «кнопка мають бути по
+             всій ширині одна під одною»). Filters is a .dr-btn[aria-controls], so ui/kit.js opens its drawer
+             and keeps the modal contract; Find is the screen's one green control and a link whose
+             href follows the chosen badge. -->
+        <div class="dr-finder__actions">
+          <button class="dr-btn dr-btn--secondary" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-filters" data-filters-open>
+            <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5h9"/><circle cx="17" cy="7.5" r="2.4"/><path d="M20 16.5h-9"/><circle cx="7" cy="16.5" r="2.4"/></svg>Filters
+          </button>
+          <a class="dr-btn dr-btn--primary" href="listings-map.html" data-find>Find</a>
+        </div>
+
+      </form>
+
+    </main>
+
+    <!-- FOOTER · bottom bar (global nav — sitemap §7.1) -->
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="listings.html" aria-current="page">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order
+        </a>
+        <a class="dr-tab" href="order-history.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity
+        </a>
+        <a class="dr-tab" href="support.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help
+        </a>
+        <a class="dr-tab" href="account.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account
+        </a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+
+    <!-- ── THE FOUR DRAWERS ───────────────────────────────────────────────────
+         One scrim serves all four (ui/kit.js's contract: only one control was tapped).
+         Filters is opened by ui/kit.js; Address, Date and Time by the page script, which keeps the
+         same modal contract — inert behind, focus inside, Escape and the scrim cancel. -->
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <!-- ADDRESS — one drawer for From, To and Where, titled by the row that opened it. The field takes
+         focus, so the keyboard rises and ui/kit.js lifts the drawer above it. The list is the
+         designer's pick of three readings (2026-09-14): Use my location, the saved address
+         (`account`), the recent one (`order-history`'s last order). A row is taken at once; Done takes
+         what was typed; Cancel, the scrim and Escape leave the row as it was. Typing narrows the two
+         addresses (`data-q` holds each one written out) and the count is spoken (WCAG 4.1.3).
+         Use my location writes the located address straight in — the system's permission alert is
+         the OS's and is not drawn.
+         DONE OVER CANCEL UNDER THE LIST, as on every other drawer (the designer, 2026-09-15: «залиш
+         кругом як є … добав там CTA як на усіх інших знизу»). For one revision they stood in a top bar,
+         `HIG · Sheets`' iOS placement; she chose the product's own stack. -->
+    <section class="dr-sheet dr-sheet--picker dr-sheet--steady" id="addrpick" role="dialog"
+             aria-modal="true" aria-labelledby="addrpick-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="addrpick-title" data-addr-title>Pickup address</p>
+
+      <span class="dr-search">
+        <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="text" placeholder="Search address" autocomplete="street-address" aria-labelledby="addrpick-title" data-addr-input>
+      </span>
+
+      <div class="dr-picker__list">
+        <button class="dr-picker__item" type="button" data-addr-pick="Pechersk, 12">
+          <svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 4.5L4.5 11l6.4 2.1 2.1 6.4z"/></svg>
+          <span class="dr-picker__label">Use my location</span>
+        </button>
+        <button class="dr-picker__item" type="button" data-addr-pick="Podil, 21" data-q="Podil Naberezhno-Khreshchatytska St, 21">
+          <svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11L12 4.5l7.5 6.5"/><path d="M6.5 9.3v10.2h11V9.3"/><path d="M10.2 19.5v-4.8h3.6v4.8"/></svg>
+          <span class="dr-picker__label">Podil, 21 <span class="dr-picker__sub">Saved address</span></span>
+        </button>
+        <button class="dr-picker__item" type="button" data-addr-pick="Osokorky, 14" data-q="Osokorky Dniprovska Naberezhna, 14">
+          <svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+          <span class="dr-picker__label">Osokorky, 14 <span class="dr-picker__sub">Recent</span></span>
+        </button>
+      </div>
+      <p class="sr-only" role="status" data-addr-count></p>
+
+      <div class="dr-sheet__actions">
+        <button class="dr-btn dr-btn--secondary" type="button" data-close>Cancel</button>
+        <button class="dr-btn dr-btn--primary" type="button" data-done>Done</button>
+      </div>
+    </section>
+
+    <!-- DATE — the calendar listings-filters built at rev 118, without its time row: the time
+         has its own half of the search now. Six week rows always, Monday first, no day before
+         today; Done takes the day, Cancel puts back the one there was. -->
+    <section class="dr-sheet dr-sheet--picker" id="datepick" role="dialog"
+             aria-modal="true" aria-labelledby="datepick-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="datepick-title">Pick a date</p>
+
+      <div class="dr-cal">
+        <div class="dr-cal__bar">
+          <button class="dr-cal__nav" type="button" data-prev aria-label="Previous month"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <span class="dr-cal__month" data-month aria-live="polite"></span>
+          <button class="dr-cal__nav" type="button" data-next aria-label="Next month"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+        <table class="dr-cal__grid" role="grid" aria-labelledby="datepick-title">
+          <thead>
+            <tr>
+              <th scope="col" aria-label="Monday">Mo</th>
+              <th scope="col" aria-label="Tuesday">Tu</th>
+              <th scope="col" aria-label="Wednesday">We</th>
+              <th scope="col" aria-label="Thursday">Th</th>
+              <th scope="col" aria-label="Friday">Fr</th>
+              <th scope="col" aria-label="Saturday">Sa</th>
+              <th scope="col" aria-label="Sunday">Su</th>
+            </tr>
+          </thead>
+          <tbody data-days></tbody>
+        </table>
+      </div>
+
+      <div class="dr-sheet__actions">
+        <button class="dr-btn dr-btn--secondary" type="button" data-close>Cancel</button>
+        <button class="dr-btn dr-btn--primary" type="button" data-done>Done</button>
+      </div>
+    </section>
+
+    <!-- TIME — two picks: Now, or a set time on the calendar's own hour : minute clock. Now is
+         offered only while the day is today; a later day disables it and the time becomes a set
+         one, so the search never says "Now" about next Tuesday. -->
+    <section class="dr-sheet dr-sheet--picker" id="timepick" role="dialog"
+             aria-modal="true" aria-labelledby="timepick-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="timepick-title">Pick a time</p>
+
+      <div class="dr-picks" role="radiogroup" aria-labelledby="timepick-title">
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">Now</span>
+          <input type="radio" name="when-time" value="now" checked class="sr-only" data-now>
+        </label>
+        <label class="dr-pick">
+          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+          <span class="dr-pick__label">At a set time</span>
+          <input type="radio" name="when-time" value="at" class="sr-only" data-at>
+          <span class="dr-cal__clock">
+            <select class="dr-cal__unit" data-hh aria-label="Hour"></select>
+            <span class="dr-cal__colon" aria-hidden="true">:</span>
+            <select class="dr-cal__unit" data-mm aria-label="Minute"></select>
+          </span>
+        </label>
+      </div>
+
+      <div class="dr-sheet__actions">
+        <button class="dr-btn dr-btn--secondary" type="button" data-close>Cancel</button>
+        <button class="dr-btn dr-btn--primary" type="button" data-done>Done</button>
+      </div>
+    </section>
+
+    <!-- FILTERS — Drone type over Price range. Date & time left for the search on 2026-09-14; Location
+         left on 2026-09-15 on the designer's word («видали Location з філтрів … можеш додати натомість
+         типи дронів») — the address is set on the search card, one value in one place. listings-filters
+         keeps its Location card and the four place-pick screens still go back to it.
+         DRONE TYPE is the kit's titled card with a pick list, the shape listings-filters' Date & time
+         card draws: a fieldset named by its drawn title, checkbox rows, none ticked = any drone.
+         The four names are her pick of three readings, and they depart from voice.md P4 and P1 on her
+         word — recorded in microcopy.md, not a defect. -->
+    <section class="dr-sheet dr-sheet--picker dr-sheet--tall" id="sheet-filters" role="dialog"
+             aria-modal="true" aria-labelledby="sheet-filters-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-filters-title">Filters</p>
+
+      <div class="dr-sheet__scroll">
+        <fieldset class="dr-zone" data-types aria-labelledby="type-title" aria-describedby="type-sub">
+          <p class="dr-zone__title" id="type-title">Drone type</p>
+          <p class="dr-zone__sub" id="type-sub">Which drone does your order</p>
+          <ul class="dr-picks">
+            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="drone-type" value="quadcopter" class="sr-only"></label></li>
+            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="drone-type" value="hexacopter" class="sr-only"></label></li>
+            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="drone-type" value="fpv" class="sr-only"></label></li>
+            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Fixed-wing</span><input type="checkbox" name="drone-type" value="fixed-wing" class="sr-only"></label></li>
+          </ul>
+        </fieldset>
+
+        <fieldset class="dr-range" data-range aria-labelledby="price-title" aria-describedby="price-sub">
+          <p class="dr-range__title" id="price-title">Price range</p>
+          <p class="dr-range__sub" id="price-sub">Service price, all fees included</p>
+          <div class="dr-range__band">
+            <div class="dr-range__hist" role="img" aria-label="How services are priced: most cost ₴200 – ₴350">
+              <i class="dr-range__bar" style="height:6%" data-bar></i><i class="dr-range__bar" style="height:8%" data-bar></i><i class="dr-range__bar" style="height:10%" data-bar></i><i class="dr-range__bar" style="height:14%" data-bar></i>
+              <i class="dr-range__bar" style="height:22%" data-bar></i><i class="dr-range__bar" style="height:30%" data-bar></i><i class="dr-range__bar" style="height:44%" data-bar></i><i class="dr-range__bar" style="height:58%" data-bar></i>
+              <i class="dr-range__bar" style="height:72%" data-bar></i><i class="dr-range__bar" style="height:86%" data-bar></i><i class="dr-range__bar" style="height:100%" data-bar></i><i class="dr-range__bar" style="height:92%" data-bar></i>
+              <i class="dr-range__bar" style="height:78%" data-bar></i><i class="dr-range__bar" style="height:70%" data-bar></i><i class="dr-range__bar" style="height:62%" data-bar></i><i class="dr-range__bar" style="height:66%" data-bar></i>
+              <i class="dr-range__bar" style="height:54%" data-bar></i><i class="dr-range__bar" style="height:46%" data-bar></i><i class="dr-range__bar" style="height:40%" data-bar></i><i class="dr-range__bar" style="height:44%" data-bar></i>
+              <i class="dr-range__bar" style="height:38%" data-bar></i><i class="dr-range__bar" style="height:32%" data-bar></i><i class="dr-range__bar" style="height:36%" data-bar></i><i class="dr-range__bar" style="height:28%" data-bar></i>
+              <i class="dr-range__bar" style="height:30%" data-bar></i><i class="dr-range__bar" style="height:24%" data-bar></i><i class="dr-range__bar" style="height:20%" data-bar></i><i class="dr-range__bar" style="height:22%" data-bar></i>
+              <i class="dr-range__bar" style="height:16%" data-bar></i><i class="dr-range__bar" style="height:14%" data-bar></i><i class="dr-range__bar" style="height:12%" data-bar></i><i class="dr-range__bar" style="height:14%" data-bar></i>
+              <i class="dr-range__bar" style="height:10%" data-bar></i><i class="dr-range__bar" style="height:8%" data-bar></i><i class="dr-range__bar" style="height:9%" data-bar></i><i class="dr-range__bar" style="height:7%" data-bar></i>
+              <i class="dr-range__bar" style="height:6%" data-bar></i><i class="dr-range__bar" style="height:8%" data-bar></i><i class="dr-range__bar" style="height:12%" data-bar></i><i class="dr-range__bar" style="height:26%" data-bar></i>
+            </div>
+            <div class="dr-range__rail">
+              <span class="dr-range__fill" data-fill></span>
+              <input class="dr-range__input" type="range" id="pmin" min="0" max="1000" step="50" value="0"
+                     aria-label="Minimum price" aria-valuetext="₴0" data-lo>
+              <input class="dr-range__input" type="range" id="pmax" min="0" max="1000" step="50" value="1000"
+                     aria-label="Maximum price" aria-valuetext="₴1,000+" data-hi>
+            </div>
+          </div>
+          <div class="dr-range__fields">
+            <p class="dr-range__field">
+              <span class="dr-range__cap">Minimum</span>
+              <output class="dr-range__val" for="pmin" data-lo-out>₴0</output>
+            </p>
+            <p class="dr-range__field">
+              <span class="dr-range__cap">Maximum</span>
+              <output class="dr-range__val" for="pmax" data-hi-out>₴1,000+</output>
+            </p>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Side by side, as the panel's action bar had them: neither is a cancel, so
+           `HIG · Action sheets`' stacked-cancel rule does not reach them. The scrim and Escape
+           close without applying. -->
+      <div class="dr-sheet__actions dr-sheet__actions--row">
+        <button class="dr-btn dr-btn--secondary" type="button" data-clear>Clear all</button>
+        <button class="dr-btn dr-btn--primary" type="button" data-apply>Apply filters</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!--
+    THE SEARCH. This page's one script, and it sits here for the reason listings-filters' two do:
+    none of it is in ui/kit.js, and one page carries it until a second page needs it.
+
+    FIVE THINGS, AND WHAT EACH DOES NOT RE-IMPLEMENT.
+    1. THE BADGE DECIDES WHERE FIND GOES. The badges are native radios, so choosing, the arrow
+       keys and the name come from the element; this only moves one href, so Find always says
+       where it leads (WCAG 2.4.4). It re-reads the checked radio on `pageshow`, because a browser
+       coming Back restores the form's radios and would otherwise send Find to the old service.
+    2. THE ADDRESS DRAWER (2026-09-14) — one drawer for From, To and Where. Its field is typed into,
+       so the keyboard and the lift above it are ui/kit.js's; this only fills the title, narrows
+       the list, and writes the pick back into the row.
+    3. THE DATE DRAWER — listings-filters' calendar (WAI-ARIA APG Date Picker Dialog, selection
+       follows focus), without its time row. The month is the real one; no day before today.
+    4. THE TIME DRAWER — Now, or a set time. Now is offered only while the day is today.
+    5. THE FILTERS DRAWER'S TWO BUTTONS, AND THE CHIPS THEY WRITE. ui/kit.js opens and closes the
+       drawer; this applies the band and the ticked drone types, writes one chip per applied value
+       above Filters, and closes the drawer through the scrim so there is one close. A chip's tap
+       takes its one value back out.
+       The range script is listings-filters' verbatim.
+
+    THE MODAL CONTRACT for 2, 3 and 4 is ui/kit.js's, kept to the letter: inert behind, focus inside,
+    a Tab trap, Escape and the scrim cancel, and focus goes back to the control that opened it.
+  -->
+  <script>
+  (function () {
+    'use strict';
+
+    var frame = document.querySelector('.wf-frame');
+    if (!frame) return;
+    var scrim = frame.querySelector('[data-scrim]');
+
+    /* ── 1 · the badge → Find ──────────────────────────────────────────── */
+    var FIND = {
+      delivery:   'listings-map.html',
+      aerial:     'listings-map-aerial.html',
+      inspection: 'listings-map-inspection.html'
+    };
+    var find = frame.querySelector('[data-find]'),
+        services = frame.querySelectorAll('input[name="service"]');
+
+    /* the badge also decides which address card stands: Delivery has two ends, the other two
+       services one place (the designer's pick, 2026-09-14) */
+    var routeTwo = frame.querySelector('[data-route="delivery"]'),
+        routeOne = frame.querySelector('[data-route="place"]');
+
+    function syncFind() {
+      var on = frame.querySelector('input[name="service"]:checked');
+      if (find && on && FIND[on.value]) find.href = FIND[on.value];
+      if (on && routeTwo && routeOne) {
+        routeTwo.hidden = on.value !== 'delivery';
+        routeOne.hidden = on.value === 'delivery';
+      }
+    }
+    services.forEach(function (r) { r.addEventListener('change', syncFind); });
+    window.addEventListener('pageshow', syncFind);
+    syncFind();
+
+    /* what the three address rows hold — written only by a pick or Done in the address drawer */
+    var addr = { from: '', to: '', where: '' },
+        addrBtns = [].slice.call(frame.querySelectorAll('[data-addr]'));
+
+    /* a row shows its address, or its grey placeholder while it has none */
+    function paintAddr(btn) {
+      var v = addr[btn.dataset.addr], out = btn.querySelector('.dr-route__value');
+      out.textContent = v || btn.dataset.placeholder;
+      out.toggleAttribute('data-empty', !v);
+    }
+
+    /* the swap trades the two addresses; focus stays on the button, which is where the
+       user is, and each row keeps its own label — only what is written in them moves */
+    var swap = frame.querySelector('[data-swap]');
+    if (swap) {
+      swap.addEventListener('click', function () {
+        var v = addr.from; addr.from = addr.to; addr.to = v;
+        addrBtns.forEach(paintAddr);
+      });
+    }
+
+    /* ── the modal contract for the page's own two drawers ─────────────── */
+    var behind = [].slice.call(frame.children).filter(function (el) {
+      return !el.classList.contains('dr-sheet') && el !== scrim;
+    });
+    var up = null;   /* { sheet, opener, cancel } while a drawer of ours is open */
+
+    function raise(sheet, opener, cancel) {
+      up = { sheet: sheet, opener: opener, cancel: cancel };
+      opener.setAttribute('aria-expanded', 'true');
+      scrim.hidden = false;
+      sheet.hidden = false;
+      behind.forEach(function (el) { el.inert = true; });
+    }
+    function lower() {
+      if (!up) return;
+      var was = up;
+      up = null;
+      behind.forEach(function (el) { el.inert = false; });
+      was.sheet.hidden = true;
+      scrim.hidden = true;
+      was.opener.setAttribute('aria-expanded', 'false');
+      was.opener.focus();
+    }
+    function dismiss() { if (up) { up.cancel(); lower(); } }
+
+    scrim.addEventListener('click', dismiss);
+    document.addEventListener('keydown', function (e) {
+      if (!up) return;
+      if (e.key === 'Escape') {
+        /* with the keyboard up, Escape puts the keyboard away and leaves the drawer —
+           ui/kit.js's own reading, and its keyboard handler does that */
+        var keys = frame.querySelector('.dr-kb');
+        if (keys && !keys.hidden) return;
+        e.preventDefault(); dismiss(); return;
+      }
+      if (e.key !== 'Tab') return;
+      /* the trap: while the drawer is up it IS the tab order. An unchecked radio is not a tab
+         stop — the group is one stop, at its checked member — and a row the typed address has
+         ruled out is not there at all. */
+      var stops = [].slice.call(up.sheet.querySelectorAll('button, a[href], input, select'))
+        .filter(function (el) {
+          return !el.disabled && el.tabIndex !== -1 && !(el.type === 'radio' && !el.checked)
+            && !el.closest('[hidden]');
+        });
+      if (!stops.length) return;
+      var first = stops[0], last = stops[stops.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    /* ── 2 · the address drawer ────────────────────────────────────────── */
+    var addrSh    = document.getElementById('addrpick'),
+        addrTitle = addrSh.querySelector('[data-addr-title]'),
+        addrIn    = addrSh.querySelector('[data-addr-input]'),
+        addrRows  = [].slice.call(addrSh.querySelectorAll('[data-addr-pick]')),
+        addrCount = addrSh.querySelector('[data-addr-count]'),
+        addrFor   = null;   /* the row whose drawer is up */
+
+    /* words, not characters: «pod 21» finds Podil — Naberezhno-Khreshchatytska St, 21 */
+    function words(s) { return s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim(); }
+    function narrow() {
+      var q = words(addrIn.value), left = 0;
+      addrRows.forEach(function (row) {
+        if (!row.hasAttribute('data-q')) return;          /* Use my location always stays */
+        var hay = ' ' + words(row.dataset.q) + ' ',
+            hit = !q || q.split(' ').every(function (w) { return hay.indexOf(' ' + w) !== -1; });
+        row.hidden = !hit;
+        if (hit) left++;
+      });
+      /* spoken, not drawn: the list itself shows what is left (WCAG 4.1.3) */
+      addrCount.textContent = left === 0 ? 'No matching address'
+        : left === 1 ? '1 address' : left + ' addresses';
+    }
+    function takeAddr(v) {
+      if (!addrFor) return;
+      addr[addrFor.dataset.addr] = v.trim();
+      paintAddr(addrFor);
+      lower();
+    }
+
+    addrBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        addrFor = btn;
+        addrTitle.textContent = btn.dataset.title;
+        addrIn.value = addr[btn.dataset.addr];
+        addrRows.forEach(function (row) { row.hidden = false; });
+        addrCount.textContent = '';
+        /* nothing to put back on cancel: the row is only ever written by a pick or Done */
+        raise(addrSh, btn, function () {});
+        /* the drawer keeps the height it opened at while the list narrows (.dr-sheet--steady) */
+        addrSh.style.minHeight = '';
+        addrSh.style.minHeight = addrSh.getBoundingClientRect().height + 'px';
+        addrIn.focus();
+      });
+    });
+    addrIn.addEventListener('input', narrow);
+    addrIn.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); takeAddr(addrIn.value); }
+    });
+    addrRows.forEach(function (row) {
+      row.addEventListener('click', function () { takeAddr(row.dataset.addrPick); });
+    });
+    addrSh.querySelector('[data-done]').addEventListener('click', function () { takeAddr(addrIn.value); });
+    addrSh.querySelector('[data-close]').addEventListener('click', dismiss);
+    /* A TAP KEEPS THE FIELD'S FOCUS. With the keyboard up the drawer rides 335 above the bottom
+       edge; a press that moved focus to a row would put the keyboard away and drop the drawer
+       under the finger before the release, and the tap would land on nothing. So the press does
+       not take focus — the text field keeps it, as iOS keeps it when a suggestion is tapped.
+       The Tab key still reaches every row. */
+    [].forEach.call(addrSh.querySelectorAll('.dr-picker__item, .dr-sheet__actions .dr-btn'), function (b) {
+      b.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    });
+
+    /* ── 3 · the date drawer ───────────────────────────────────────────── */
+    var dateBtn  = frame.querySelector('[data-date-open]'),
+        dateVal  = frame.querySelector('[data-date-value]'),
+        dateSh   = document.getElementById('datepick'),
+        monthEl  = dateSh.querySelector('[data-month]'),
+        daysEl   = dateSh.querySelector('[data-days]'),
+        prevBt   = dateSh.querySelector('[data-prev]'),
+        nextBt   = dateSh.querySelector('[data-next]');
+
+    function startOfDay(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+    function same(a, b) { return a.getTime() === b.getTime(); }
+    /* the product's own short format — `Wed 16 Sep` — built from arrays, not from the locale,
+       which gives "Sept" for September on current ICU (listings-filters, rev 118) */
+    var DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+        MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function pretty(d) { return DOW[d.getDay()] + ' ' + d.getDate() + ' ' + MON[d.getMonth()]; }
+
+    var today = startOfDay(new Date()),
+        day   = new Date(today),      /* the day the search holds */
+        sel   = new Date(today),      /* the day the open drawer holds */
+        view  = { y: today.getFullYear(), m: today.getMonth() };
+
+    function render() {
+      var first = new Date(view.y, view.m, 1),
+          lead  = (first.getDay() + 6) % 7,               /* Monday first */
+          start = new Date(view.y, view.m, 1 - lead);
+      monthEl.textContent = first.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+      prevBt.disabled = (view.y === today.getFullYear() && view.m === today.getMonth());
+      daysEl.textContent = '';
+      for (var w = 0; w < 6; w++) {                         /* six rows, always */
+        var tr = document.createElement('tr');
+        tr.setAttribute('role', 'row');
+        for (var i = 0; i < 7; i++) {
+          var d  = new Date(start.getFullYear(), start.getMonth(), start.getDate() + w * 7 + i),
+              td = document.createElement('td');
+          td.setAttribute('role', 'gridcell');
+          if (d.getMonth() === view.m) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'dr-cal__day' + (same(d, today) ? ' dr-cal__day--today' : '');
+            b.textContent = d.getDate();
+            b.dataset.date = d.getTime();
+            b.disabled = d < today;
+            b.setAttribute('aria-label', pretty(d) + ' ' + d.getFullYear() + (same(d, today) ? ', today' : ''));
+            b.tabIndex = same(d, sel) ? 0 : -1;
+            if (same(d, sel)) td.setAttribute('aria-selected', 'true');
+            td.appendChild(b);
+          }
+          tr.appendChild(td);
+        }
+        daysEl.appendChild(tr);
+      }
+      if (!daysEl.querySelector('.dr-cal__day[tabindex="0"]')) {
+        var free = daysEl.querySelector('.dr-cal__day:not(:disabled)');
+        if (free) free.tabIndex = 0;
+      }
+    }
+    function choose(d, focus) {
+      if (d < today) return;
+      sel = startOfDay(d);
+      view = { y: sel.getFullYear(), m: sel.getMonth() };
+      render();
+      if (focus) {
+        var b = daysEl.querySelector('.dr-cal__day[tabindex="0"]');
+        if (b) b.focus();
+      }
+    }
+    daysEl.addEventListener('click', function (e) {
+      var b = e.target.closest('.dr-cal__day');
+      if (b && !b.disabled) choose(new Date(+b.dataset.date), false);
+    });
+    daysEl.addEventListener('keydown', function (e) {
+      var b = e.target.closest('.dr-cal__day');
+      if (!b) return;
+      var d = new Date(+b.dataset.date), step = null;
+      switch (e.key) {
+        case 'ArrowLeft':  step = -1; break;
+        case 'ArrowRight': step = 1;  break;
+        case 'ArrowUp':    step = -7; break;
+        case 'ArrowDown':  step = 7;  break;
+        case 'Home':       step = -((d.getDay() + 6) % 7);    break;
+        case 'End':        step = 6 - ((d.getDay() + 6) % 7); break;
+        case 'PageUp':     e.preventDefault(); choose(new Date(d.getFullYear(), d.getMonth() - 1, d.getDate()), true); return;
+        case 'PageDown':   e.preventDefault(); choose(new Date(d.getFullYear(), d.getMonth() + 1, d.getDate()), true); return;
+        case 'Enter':
+        case ' ':          e.preventDefault(); takeDate(); return;
+        default: return;
+      }
+      e.preventDefault();
+      choose(new Date(d.getFullYear(), d.getMonth(), d.getDate() + step), true);
+    });
+    prevBt.addEventListener('click', function () { view.m--; if (view.m < 0) { view.m = 11; view.y--; } render(); });
+    nextBt.addEventListener('click', function () { view.m++; if (view.m > 11) { view.m = 0; view.y++; } render(); });
+
+    function takeDate() {
+      day = new Date(sel);
+      dateVal.textContent = same(day, today) ? 'Today' : pretty(day);
+      fitTime();
+      lower();
+    }
+    dateBtn.addEventListener('click', function () {
+      sel = new Date(day);
+      view = { y: sel.getFullYear(), m: sel.getMonth() };
+      render();
+      raise(dateSh, dateBtn, function () { sel = new Date(day); });
+      var b = daysEl.querySelector('.dr-cal__day[tabindex="0"]');
+      if (b) b.focus();
+    });
+    dateSh.querySelector('[data-done]').addEventListener('click', takeDate);
+    dateSh.querySelector('[data-close]').addEventListener('click', dismiss);
+
+    /* ── 4 · the time drawer ───────────────────────────────────────────── */
+    var timeBtn = frame.querySelector('[data-time-open]'),
+        timeVal = frame.querySelector('[data-time-value]'),
+        timeSh  = document.getElementById('timepick'),
+        nowR    = timeSh.querySelector('[data-now]'),
+        atR     = timeSh.querySelector('[data-at]'),
+        hhEl    = timeSh.querySelector('[data-hh]'),
+        mmEl    = timeSh.querySelector('[data-mm]');
+
+    /* 24 hours and the quarter-hour, 24-hour on every machine — listings-filters' clock */
+    (function fill() {
+      var i, o;
+      for (i = 0; i < 24; i++) {
+        o = document.createElement('option');
+        o.value = o.textContent = ('0' + i).slice(-2);
+        hhEl.appendChild(o);
+      }
+      ['00', '15', '30', '45'].forEach(function (v) {
+        o = document.createElement('option');
+        o.value = o.textContent = v;
+        mmEl.appendChild(o);
+      });
+    }());
+
+    var time = { now: true, hh: '14', mm: '00' };   /* what the search holds */
+
+    function paintTime() {
+      timeVal.textContent = time.now ? 'Now' : time.hh + ':' + time.mm;
+    }
+    /* a later day cannot be "Now" — the search moves to the set time it already holds */
+    function fitTime() {
+      if (!same(day, today) && time.now) { time.now = false; paintTime(); }
+    }
+    function loadTime() {
+      nowR.disabled = !same(day, today);
+      nowR.checked = time.now && !nowR.disabled;
+      atR.checked = !nowR.checked;
+      hhEl.value = time.hh;
+      mmEl.value = time.mm;
+    }
+    /* touching the clock is choosing the set time */
+    [hhEl, mmEl].forEach(function (s) {
+      s.addEventListener('change', function () { atR.checked = true; });
+    });
+    timeBtn.addEventListener('click', function () {
+      loadTime();
+      raise(timeSh, timeBtn, loadTime);
+      (nowR.checked ? nowR : atR).focus();
+    });
+    timeSh.querySelector('[data-done]').addEventListener('click', function () {
+      time = { now: nowR.checked, hh: hhEl.value, mm: mmEl.value };
+      paintTime();
+      lower();
+    });
+    timeSh.querySelector('[data-close]').addEventListener('click', dismiss);
+
+    hhEl.value = time.hh; mmEl.value = time.mm;
+
+    /* ── 5 · the filters drawer ────────────────────────────────────────── */
+    var box = document.querySelector('[data-range]');
+    if (!box) return;
+    var lo = box.querySelector('[data-lo]'),
+        hi = box.querySelector('[data-hi]'),
+        loOut = box.querySelector('[data-lo-out]'),
+        hiOut = box.querySelector('[data-hi-out]'),
+        fill = box.querySelector('[data-fill]'),
+        bars = box.querySelectorAll('[data-bar]'),
+        MAX = +lo.max;
+
+    function money(v) { return '₴' + (+v).toLocaleString('en-US') + (+v === MAX ? '+' : ''); }
+    function paint() {
+      var a = +lo.value, b = +hi.value, n = bars.length;
+      fill.style.left = (a / MAX * 100) + '%';
+      fill.style.right = (100 - b / MAX * 100) + '%';
+      loOut.textContent = money(a);
+      hiOut.textContent = money(b);
+      lo.setAttribute('aria-valuetext', money(a));
+      hi.setAttribute('aria-valuetext', money(b));
+      Array.prototype.forEach.call(bars, function (bar, i) {
+        var mid = (i + 0.5) / n * MAX;
+        bar.classList.toggle('dr-range__bar--in', mid >= a && mid <= b);
+      });
+    }
+    lo.addEventListener('input', function () { if (+lo.value > +hi.value) lo.value = hi.value; paint(); });
+    hi.addEventListener('input', function () { if (+hi.value < +lo.value) hi.value = lo.value; paint(); });
+
+    var fBtn   = frame.querySelector('[data-filters-open]'),
+        fChips = frame.querySelector('[data-fchips]'),
+        fSheet = document.getElementById('sheet-filters'),
+        types  = [].slice.call(fSheet.querySelectorAll('[data-types] input[type="checkbox"]')),
+        applied = { lo: 0, hi: MAX, types: [] };
+
+    /* a drone type's chip says what its row in the drawer says */
+    var typeName = {};
+    types.forEach(function (c) {
+      typeName[c.value] = c.closest('.dr-pick').querySelector('.dr-pick__label').textContent;
+    });
+
+    function ticked() {
+      return types.filter(function (c) { return c.checked; }).map(function (c) { return c.value; });
+    }
+
+    /* the drawer always opens on what is APPLIED — a band dragged or a type ticked and then dismissed
+       is not kept. This listener is registered before ui/kit.js's (the script tag order), so the band
+       and the ticks are back in place before the drawer shows them. */
+    fBtn.addEventListener('click', function () {
+      lo.value = applied.lo; hi.value = applied.hi; paint();
+      types.forEach(function (c) { c.checked = applied.types.indexOf(c.value) !== -1; });
+    });
+    /* THE CHIPS — one per applied value, in the drawer's order: each ticked drone type, then the band.
+       Written from `applied` alone, so the row can never say something the drawer would not open on.
+       `focusAt` is the place a removed chip stood: focus goes to the chip that slides into it, or the
+       one before it, or to Filters when the row is empty — never lost to the page (WCAG 2.4.3). */
+    function paintChips(focusAt) {
+      var list = applied.types.map(function (v) { return { type: v, label: typeName[v] }; });
+      if (applied.lo > 0 || applied.hi < MAX) list.push({ band: true, label: money(applied.lo) + ' – ' + money(applied.hi) });
+
+      fChips.textContent = '';
+      list.forEach(function (f) {
+        var chip = document.createElement('button'),
+            x    = document.createElement('span');
+        chip.type = 'button';
+        chip.className = 'dr-fchip';
+        /* listings-filtered's name for the same control; the drawn value is inside it (WCAG 2.5.3) */
+        chip.setAttribute('aria-label', 'Remove filter: ' + f.label);
+        x.className = 'dr-fchip__x';
+        x.setAttribute('aria-hidden', 'true');
+        x.textContent = '×';
+        chip.append(f.label, x);
+        chip.addEventListener('click', function () {
+          var at = [].indexOf.call(fChips.children, chip);
+          if (f.band) { applied.lo = 0; applied.hi = MAX; }
+          else applied.types = applied.types.filter(function (v) { return v !== f.type; });
+          paintChips(at);
+        });
+        fChips.appendChild(chip);
+      });
+      fChips.hidden = !list.length;
+
+      if (focusAt == null) return;
+      var left = fChips.children;
+      (left[Math.min(focusAt, left.length - 1)] || fBtn).focus();
+    }
+    fSheet.querySelector('[data-apply]').addEventListener('click', function () {
+      applied = { lo: +lo.value, hi: +hi.value, types: ticked() };
+      paintChips();
+      scrim.click();    /* ui/kit.js's own close: inert lifted, focus back on Filters */
+    });
+    fSheet.querySelector('[data-clear]').addEventListener('click', function () {
+      lo.value = 0; hi.value = MAX; paint();
+      types.forEach(function (c) { c.checked = false; });
+      applied = { lo: 0, hi: MAX, types: [] };
+      paintChips();
+      scrim.click();
+    });
+
+    paint();
+    paintChips();
+  }());
+  </script>
+
+  <!-- shared wireframe shell: left nav tree + viewport switcher (same on every page) -->
+  <!--
+    ui/kit.js arrived here 2026-08-16 (rev 151) for the onscreen keyboard, when the search field stood
+    at the top of `main`. The field left with the service list on 2026-09-14, so the keyboard half now
+    finds nothing to rise for; the file stays for its OTHER half — the picker drawer's modal contract,
+    which opens and closes the Filters drawer (`.dr-btn[aria-controls]`). The page script above is
+    registered first on purpose: its Filters click puts the applied band back before kit.js shows it.
+  -->
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js?v=20b034c0"></script>
+</body>
+</html>

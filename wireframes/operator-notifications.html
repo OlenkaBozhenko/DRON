@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe &#183; Notifications (operator) &#183; base</title>
+<!--
+  SCREEN (_screens.md O8): "Notifications - the alert log", OPERATOR.
+  PERSONA: Operator O-1. JOBS: RJ-O1 (OE-6 dispatch), RJ-O3 (paid), EJ-3 (rating).
+  STATE: base. -empty is a separate page. NO loading and NO error page, matching wallet
+  and ratings - the operator's own two list screens, each base + empty (flows.md).
+  ENTRANCE: the bell in operator-listings.html's top bar. EXIT: back chevron, or any row.
+
+  WHY IT EXISTS (2026-08-31, the designer, against the built listings top bar):
+  "Add on the right side of the header on the home page, in front of the DRON button
+  icon, notification for both client and operator modes. And add wireframes by
+  clicking this button with notification history."
+
+  IT CLOSES THE SECOND HALF OF A HOLE, NOT A NEW IDEA. On 2026-08-24 account-edit
+  gained a Notifications card, and sitemap.md wrote down what that pass did NOT do:
+  the product has always SENT notifications - CE-4's push ("Operator is 2 min away"),
+  OE-6's dispatch alert - and until that card nobody could SET them. Nobody could see
+  them either. An alert lands on a lock screen and is gone; this is where it is kept.
+
+  A SCREEN, NOT A SUB-VIEW, AND THE TEST IS THE ENTRANCE. account-photo and
+  order-details are sub-views because each is reached from inside one parent and is
+  that parent's own record seen closer. This is reached from a CONTROL IN THE HOME
+  BAR, holds records from every part of the product, and exits into eight different
+  screens. sitemap.md 6.1 / 6.2 carry it as a screen for that reason - and 8's
+  traceability matrix gains NO column, because the log originates no record: every
+  row is a doorway into a screen that already holds one.
+
+  ROWS ARE .dr-choice - the kit's tappable list row - and the group names are .dr-sect,
+  a rung that had been DECLARED AND APPLIED ON 0 OF 80 PAGES until this screen spent it.
+
+  THE GROUPS ARE DAYS, NOT READ-STATE (2026-09-03, rev 218). They were New / Earlier
+  until the designer asked, against this page: "write today, yestaday and date if it
+  more than yesterday and fix the mergings and puddongs it should be viseal notised
+  differen dates etc". HIG - Lists and tables gives a recent date RELATIVELY and an
+  absolute date past that; the built log had no Yesterday at all and jumped Today to
+  28 Jun, so a two-day-old alert was formatted like a sixty-seven-day-old one.
+
+  THE MIRROR OF THE CLIENT'S SCREEN, AND THE ONE THING THAT IS NOT MIRRORED IS THE WORDS.
+  Same shape, same components, same spacing. What differs is the vocabulary, because
+  voice.md draws a wall down the middle of the product: client-side work is an ORDER,
+  operator-side work is a JOB, and the two are never crossed. So the zone label says "tap
+  a row to open the job", the rating row says "rated your job", and the payout rows use
+  the money words this side owns - "paid" for earnings landing, "withdrawal" for money
+  going out.
+
+  OE-6 IS IN THE LOG EVEN THOUGH IT IS NOT IN THE SETTINGS. sitemap.md is explicit that
+  the dispatch alert is NOT switchable - it is the mechanism RJ-O1 runs on, and OE-4
+  (Available / Busy / Offline) is already the control for "not now". That makes it a
+  notification the operator cannot silence, which is exactly why it must be one he can
+  find again: a job offer that expired while the phone was in a pocket is the single
+  highest-cost thing this screen holds.
+
+  THE ROW ORDER IS THE OPERATOR'S ECONOMY, NEWEST FIRST: money, then work, then standing.
+
+  UNREAD IS CARRIED BY A WORD AND THAT WORD MOVED TO THE ROW. New / Earlier WERE the
+  unread signal; dates cannot carry it, so it rides each row as a .dr-chip--unread
+  reading "New" - still copy, never a hue, so WCAG 1.4.1 stays un-engaged. THE MOVE IS
+  WHAT THE TWO AXES WERE ASKING FOR, and this page is where it shows: "Your documents
+  are approved" is UNREAD and sits under YESTERDAY. The old pair of headings could not
+  state both facts at once. The bell still says "Notifications, 3 unread" and the count
+  is still 3.
+
+  THE SPACING IS THE SECOND HALF OF THE SAME ASK. The groups sit in a .dr-log column
+  whose gap is --sp-list 28 against the rows' 8 - a 3.5:1 break, hers, taken against 20
+  and 24 drawn beside it - and the heading stands clear of its own list instead of
+  touching it at 0. That gap is on its THIRD value: 0 as first built, 4 at rev 214,
+  and 12 at rev 222, on her "improve spases between titles and cards". 4 was tighter
+  than the 8 the cards spend between themselves, and a card's top EDGE is a harder
+  boundary than the gap between two of them, so it read as crowding. 8 / 12 / keep-4
+  were drawn, all three conform, and she took 12: break 28 against bind 12 = 2.33:1,
+  1.83:1 at the narrow tier where --sp-list steps to 22 and --sp-snug does not.
+
+TWO STRINGS SHORTENED, AND THE BUDGET THEY WERE WRITTEN TO IS RECORDED SO THE NEXT ONE
+  CAN BE. A title that carries a chip does not get the row's 309: the pill and its gap
+  take 48.28, so it is written to 260.72 at the standard tier and to 236.72 at the narrow
+  one (<= 389px, where the frame is 351). Both tiers were measured, not one.
+
+  (1) "New job offer - Package delivery" -> "Job offer - Package delivery". TWO REASONS
+  AT ONCE: the row's own chip already says New, so the title was restating it - the same
+  duplication that took "Today," out of the meta lines - and at the 17px rev 217 restored
+  the old string crossed 260.72 and wrapped, taking its row to 101.78 beside a
+  neighbour's 77.98.
+
+  (2) "Your documents are approved" -> "Documents approved". 250.77 against the narrow
+  tier's 236.72, so it wrapped on a 375px phone and nowhere else. THE PRONOUN IS WHAT WAS
+  SPENT AND THAT IS SAID RATHER THAN SMOOTHED: voice.md addresses the operator as "you",
+  and three titles on this screen already carry no pronoun, so the set is not broken - but
+  "approved" was kept over "Your" deliberately, because operator-verification-loading
+  promises "We'll notify you when it's approved" and this row is that promise kept in the
+  same word. "Your documents cleared" fits too, at 203.33, if she would rather keep the
+  pronoun and spend the word.
+
+  BOTH REPHRASED, NEITHER TRUNCATED - the remedy rev 213 took on support.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=20b034c0">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Notifications (operator)</h1>
+    <p class="sub">Operator O-1 &#183; RJ-O1 &#183; RJ-O3 &#183; EJ-3 &#183; state: <b>base</b> &#183; file: operator-notifications.html</p>
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-notifications.html" class="cur" aria-current="page">base</a>
+      <a href="operator-notifications-empty.html">empty</a>
+    </nav>
+    <div class="flow"><b>Jobs (jtbd):</b> RJ-O1 - an offer that expired in a pocket is still findable; RJ-O3 - the payout says so where he looks.<br><b>flows.md:</b> Jobs &#8594; <span class="cur">Notifications</span> &#8594; the screen the alert names.<br><b>States:</b> empty &#10003; &#183; loading / error - traced, not drawn (matching <code>wallet</code> and <code>ratings</code>).<br><b>Exit:</b> back chevron &#8594; <b>Jobs</b>, or any row &#8594; its own screen.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Today</b> / <b>Yesterday</b> / <b>28 June</b> &#9656; one group per day, newest first</p><p><b>New</b> chip &#9656; unread &#8212; on the row, not the heading</p><p><b>Row</b> &#9656; what happened &#183; which job &#183; the time</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="operator-listings.html" aria-label="Back to Jobs"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Notifications</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Notifications <span class="dr-label__act">&#9656; what the app told you &#183; tap a row to open the job</span></p>
+      <div class="dr-log">
+        <section aria-labelledby="ntf-today">
+          <h2 class="dr-sect" id="ntf-today">Today</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="wallet.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">&#8372;720 paid to your balance</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Package delivery &#183; 11:20</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="dr-choice" href="job-offer.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">Job offer &#183; Package delivery</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Podil &#8594; Osokorky &#183; 10:45</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-yesterday">
+          <h2 class="dr-sect" id="ntf-yesterday">Yesterday</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="operator-verification.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">Documents approved</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Verification &#183; 09:02</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-jun28">
+          <h2 class="dr-sect" id="ntf-jun28">28 June</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="ratings.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__title">Olena H. rated your job 5 stars</span>
+                  <span class="dr-choice__desc">Package delivery &#183; 15:02</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-jun27">
+          <h2 class="dr-sect" id="ntf-jun27">27 June</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="wallet.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__title">Withdrawal sent to your card</span>
+                  <span class="dr-choice__desc">&#8372;1,240 &#183; 18:30</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="_wf-shell.js?v=20b034c0"></script>
+</body>
+</html>

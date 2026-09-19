@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON — Tone of Voice</title>
+<script>(function(){var t=localStorage.getItem('dron-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+<style>
+  :root{
+    --bg:#FFFFFF; --panel:#F7F7F7; --line:rgba(0,0,0,0.10); --line-2:rgba(0,0,0,0.16);
+    --ink:#111111; --text:#252525; --text-2:#5A5A5A; --muted:#909090; --fill:#EEEEEE; --code:#F0F0F0;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#111214; --panel:#17181B; --line:rgba(255,255,255,0.10); --line-2:rgba(255,255,255,0.18);
+      --ink:#F4F4F5; --text:#E6E6E8; --text-2:#B4B6BC; --muted:#8A8D95; --fill:#212327; --code:#22242A; }
+  }
+  :root[data-theme="dark"]{ --bg:#111214; --panel:#17181B; --line:rgba(255,255,255,0.10); --line-2:rgba(255,255,255,0.18);
+    --ink:#F4F4F5; --text:#E6E6E8; --text-2:#B4B6BC; --muted:#8A8D95; --fill:#212327; --code:#22242A; }
+  :root[data-theme="light"]{ --bg:#FFFFFF; --panel:#F7F7F7; --line:rgba(0,0,0,0.10); --line-2:rgba(0,0,0,0.16);
+    --ink:#111111; --text:#252525; --text-2:#5A5A5A; --muted:#909090; --fill:#EEEEEE; --code:#F0F0F0; }
+  *{ box-sizing:border-box; }
+  html{ -webkit-font-smoothing:antialiased; }
+  body{ margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,sans-serif;
+    font-size:15px; line-height:1.6; }
+  .wrap{ max-width:860px; margin:0 auto; padding:40px 28px 96px; }
+  h1{ font-size:30px; line-height:1.15; letter-spacing:-0.02em; color:var(--ink); margin:0 0 6px; font-weight:700; }
+  h2{ font-size:21px; letter-spacing:-0.01em; color:var(--ink); margin:40px 0 12px; padding-top:18px;
+      border-top:1px solid var(--line); font-weight:700; }
+  h3{ font-size:16px; color:var(--ink); margin:26px 0 8px; font-weight:600; }
+  h4{ font-size:14px; color:var(--text); margin:18px 0 6px; font-weight:600; }
+  p{ margin:10px 0; color:var(--text); }
+  a{ color:var(--ink); text-decoration:underline; text-underline-offset:2px; text-decoration-color:var(--line-2); }
+  a:hover{ text-decoration-color:var(--ink); }
+  strong{ color:var(--ink); font-weight:600; }
+  code{ font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace; font-size:.86em;
+    background:var(--code); border:1px solid var(--line); border-radius:5px; padding:1px 5px; color:var(--ink); }
+  ul,ol{ margin:10px 0; padding-left:22px; } li{ margin:4px 0; }
+  blockquote{ margin:12px 0; padding:8px 14px; border-left:3px solid var(--line-2); color:var(--text-2);
+    background:var(--panel); border-radius:0 6px 6px 0; }
+  hr{ border:0; border-top:1px solid var(--line); margin:28px 0; }
+  .tbl-wrap{ overflow-x:auto; margin:14px 0; border:1px solid var(--line); border-radius:8px; }
+  table{ border-collapse:collapse; width:100%; font-size:13.5px; }
+  th,td{ text-align:left; vertical-align:top; padding:9px 12px; border-bottom:1px solid var(--line); }
+  th{ background:var(--panel); color:var(--ink); font-weight:600; white-space:nowrap; }
+  tr:last-child td{ border-bottom:0; }
+  td code, th code{ white-space:nowrap; }
+  /* ── HUB SIDEBAR (shell) ── */
+  body{padding-left:240px;}
+  .sidebar{position:fixed;top:0;left:0;bottom:0;width:240px;z-index:100;display:flex;flex-direction:column;padding:24px 16px;background:var(--panel);border-right:1px solid var(--line);overflow-y:auto;}
+  .sidebar-brand{font-size:15px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:0 12px;margin-bottom:4px;}
+  .sidebar-tagline{font-size:11px;color:var(--muted);padding:0 12px;margin-bottom:24px;}
+  .sidebar-group{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:0 12px;margin:18px 0 8px;}
+  .sidebar a{display:block;text-decoration:none;color:var(--text-2);font-size:13px;padding:8px 12px;border-radius:7px;transition:color .15s,background .15s;}
+  .sidebar a:hover{color:var(--ink);background:var(--fill);text-decoration:none;}
+  .sidebar-spacer{flex:1;}
+  .nav-section{margin:1px 0;}
+  .nav-section>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--text);font-size:13px;padding:8px 12px;border-radius:7px;transition:color .15s,background .15s;}
+  .nav-section>summary::-webkit-details-marker{display:none;}
+  .nav-section>summary:hover{color:var(--ink);background:var(--fill);}
+  .nav-section[open]>summary{color:var(--ink);}
+  .nav-section>summary::after{content:"\203A";font-size:15px;line-height:1;color:var(--muted);transition:transform .18s ease;}
+  .nav-section[open]>summary::after{transform:rotate(90deg);}
+  .nav-children{display:flex;flex-direction:column;gap:1px;margin:2px 0 6px 26px;padding-left:10px;border-left:1px solid var(--line);}
+  .nav-children a{font-size:12.5px;padding:6px 12px;}
+  .nav-soon{display:flex;align-items:center;justify-content:space-between;font-size:13px;padding:8px 12px;border-radius:7px;color:var(--muted);cursor:default;}
+  .nav-soon::after{content:"Soon";font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line-2);border-radius:4px;padding:1px 5px;}
+  .theme-toggle{display:flex;align-items:center;gap:8px;background:none;border:0;cursor:pointer;color:var(--text-2);font:inherit;font-size:13px;padding:8px 12px;border-radius:7px;width:100%;transition:color .15s,background .15s;}
+  .theme-toggle:hover{color:var(--ink);background:var(--fill);}
+  .theme-toggle svg{width:16px;height:16px;flex:none;}
+  .icon-sun{display:none;} :root[data-theme="light"] .icon-sun{display:block;} :root[data-theme="light"] .icon-moon{display:none;}
+  .mobile-header{display:none;position:fixed;top:0;left:0;right:0;height:52px;z-index:200;background:var(--panel);border-bottom:1px solid var(--line);align-items:center;justify-content:space-between;padding:0 16px;}
+  .mobile-brand{font-size:14px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);}
+  .hamburger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;background:none;border:0;cursor:pointer;padding:8px;border-radius:8px;}
+  .hamburger span{display:block;width:20px;height:1.5px;background:var(--text);border-radius:2px;transition:transform .22s,opacity .22s;}
+  .hamburger.is-open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .hamburger.is-open span:nth-child(2){opacity:0;}
+  .hamburger.is-open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+  .nav-overlay{display:none;position:fixed;inset:0;z-index:150;background:rgba(0,0,0,.5);opacity:0;transition:opacity .25s;}
+  .nav-overlay.is-open{opacity:1;}
+  @media(max-width:768px){
+    .mobile-header{display:flex;} .nav-overlay{display:block;}
+    body{padding-left:0;padding-top:52px;}
+    .sidebar{width:min(280px,85vw);z-index:160;transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);}
+    .sidebar.is-open{transform:translateX(0);}
+  }
+  /* generated from voice.md — do not edit here; edit voice.md and regenerate */
+</style>
+</head>
+<body>
+
+<div class="mobile-header">
+  <span class="mobile-brand">DRON</span>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">DRON</div>
+  <div class="sidebar-tagline">Drone-as-a-service</div>
+  <div class="sidebar-group">Pages</div>
+  <details class="nav-section"><summary>Research</summary><div class="nav-children"><a href="research.html#competitors">Competitors</a><a href="research.html#benchmark">Benchmark</a><a href="research.html#patterns">Patterns</a><a href="research.html#conclusions">Conclusions</a></div></details>
+  <details class="nav-section"><summary>UX Research</summary><div class="nav-children"><a href="research.html#personas">User personas</a><a href="research.html#cjm">CJM</a></div></details>
+  <details class="nav-section"><summary>Target Audience</summary><div class="nav-children"><a href="target-audience.html#personas">Personas</a><a href="target-audience.html#conclusions">Conclusions</a><a href="target-audience.html#gaps">Knowledge gaps</a></div></details>
+  <details class="nav-section"><summary>JTBD</summary><div class="nav-children"><a href="target-audience.html#jobs">Jobs hierarchy</a><a href="target-audience.html#matrix">Matrix</a></div></details>
+  <details class="nav-section"><summary>Sitemap</summary><div class="nav-children"><a href="ia.html#screens">Screens</a><a href="ia.html#navigation">Navigation</a><a href="ia.html#traceability">Traceability</a></div></details>
+  <details class="nav-section"><summary>Flows</summary><div class="nav-children"><a href="ia.html#flows-client">Client flows</a><a href="ia.html#flows-operator">Operator flows</a></div></details>
+  <details class="nav-section"><summary>Wireframes</summary><div class="nav-children"><a href="wireframes/role-select.html">Start · role fork</a><a href="wireframes/listings.html">Client flow</a><a href="wireframes/operator-listings.html">Operator flow</a></div></details>
+  <details class="nav-section"><summary>Concept</summary><div class="nav-children"><a href="concept/concept.html">Design language · Studio</a><a href="concept/directions.html">Directions</a><a href="concept/concept-artifact.html">Concept board</a></div></details>
+  <details class="nav-section" open><summary>Tone of Voice</summary><div class="nav-children"><a href="#principles">Principles</a><a href="#vocabulary">Vocabulary</a><a href="#dont-use">Don&rsquo;t use</a><a href="#geo">GEO &amp; SEO</a><a href="#microcopy">Microcopy</a></div></details>
+  <details class="nav-section"><summary>UI Kit</summary><div class="nav-children"><a href="ui/kit.html">Kit &middot; components &amp; states</a><a href="ui/shell.html">Shell &middot; header &amp; tab bar</a><a href="ui/inventory.html">Inventory &middot; 53 components</a></div></details>
+
+  <div class="sidebar-group">Coming soon</div>
+  <span class="nav-soon">Design system</span>
+  <span class="nav-soon">Components</span>
+  <div class="sidebar-spacer"></div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Switch theme"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><span>Theme</span></button>
+  <a href="https://github.com/OlenkaBozhenko/DRON" target="_blank">GitHub &#8599;</a>
+</aside>
+
+  <main class="wrap">
+<h1>DRON — Voice</h1>
+<p>How the product speaks. One page. Every product string is checked against it (with <code>microcopy.md</code>).</p>
+<p><strong>Stance.</strong> DRON moves parcels, documents structures, and sends a stranger with a flying machine to your home — and takes your money online to do it. In that context <strong>trust beats wit, every line.</strong> The voice is calm, specific, and accountable. It states facts, not adjectives; outcomes, not equipment; and in trouble it tells you what happened and what it costs you — it never performs cheerfulness. Not advertising. Concrete.</p>
+<p><strong>Derived from:</strong> <code>CLAUDE.md</code> · <code>research/research.md</code> (incl. <em>Competitor Language</em>) · <code>research/target-audience.md</code> (personas) · <code>research/jtbd.md</code> · supporting: <code>ux-research/benchmarks.md</code>. Naming/tone cross-references point at <code>microcopy.md</code>.</p>
+<p>Rule: <strong>no principle without a line of data behind it.</strong> Better three honest than five pretty — these five each carry their source.</p>
+<hr>
+<h2 id="principles">Principles</h2>
+<h3>P1 — Name the outcome, not the drone</h3>
+<p><strong>Rule.</strong> The product speaks in the result the client gets — a parcel delivered, a roof documented, footage ready — and keeps the drone in the background; it never sells the flight as a spectacle.</p>
+<p><strong>Example (per the rule)</strong></p>
+<ul>
+<li><code>Package delivery — parcels, documents, small goods, across the city.</code></li>
+<li><code>Delivered. Your parcel arrived at 10:07.</code></li>
+</ul>
+<p><strong>Anti-example (breaks it)</strong></p>
+<ul>
+<li><code>Look up — your delivery is inbound from the sky! 🚁</code></li>
+<li><code>Experience the future of delivery. Watch it fly.</code></li>
+</ul>
+<p><strong>Why (from data).</strong> MJ-1 (<code>jtbd.md</code>): the client wants to <em>"get the outcome without ever thinking about the drone or the operator."</em> Persona C-1's own title (<code>target-audience.md</code>): <em>"I want it done. I don't want to think about it."</em> And the drone is the <strong>anxiety source, not the hook</strong> — <code>research.md</code> Finding 3: the top fears are the drone itself (privacy, safety, noise); <em>"more than half of US respondents reported little or no trust in drones."</em> Every competitor does the opposite (Competitor Language <strong>L-1</strong>: Wing <em>"Delivery, elevated"</em>, Zipline <em>"Look up"</em>, Manna <em>"From the sky. Seriously."</em>) — spotlighting the drone amplifies the exact fear that makes C-1 leave.</p>
+<hr>
+<h3>P2 — Show the proof, not the adjective</h3>
+<p><strong>Rule.</strong> DRON never calls itself or its operators <em>professional / trusted / expert / vetted</em> — it shows the specific, checkable credential (name, licence, insurance, job count) and lets the user draw the conclusion.</p>
+<p><strong>Example (per the rule)</strong></p>
+<ul>
+<li><code>Verified by DRON · CAA licence · Insured · 214 jobs</code></li>
+<li>New operator, honestly: <code>Kateryna O. — licence-checked and insured by DRON. Reviews build from here.</code></li>
+</ul>
+<p><strong>Anti-example (breaks it)</strong></p>
+<ul>
+<li><code>Our trusted, professional, hand-vetted expert pilots.</code></li>
+<li><code>The best drone team in Kyiv!</code></li>
+</ul>
+<p><strong>Why (from data).</strong> RJ-C1 (<code>jtbd.md</code>) — verified badge + insurance on the list card <em>without a tap</em> — is <em>"the highest single drop-off in the CJM."</em> C-1 trust triggers (<code>target-audience.md</code>): <em>"'Verified by DRON' + insurance badge visible before payment"</em> builds trust; <em>"a card with no photo or '0 reviews'"</em> triggers exit. Benchmark M-3 (<code>benchmarks.md</code>, Zocdoc): credentials precede the bio. And <code>research.md</code>'s common pattern: <em>"Quantified credibility over claims… Numbers do what 'trusted' and 'reliable' cannot."</em> The whole field asserts the adjective and hides the proof (Competitor Language <strong>L-2</strong>: <em>"vetted and proven"</em>, <em>"certified and experienced pilots"</em> — with, per Finding 1, no licence or insurance actually shown).</p>
+<p><strong>Vocabulary:</strong> one name for this person — <strong>operator</strong> (the term <code>jtbd.md</code>/<code>benchmarks.md</code>/product docs use), never <em>pilot</em> (the competitor-generic word). See <code>microcopy.md</code> <strong>O1</strong>.</p>
+<hr>
+<h3>P3 — State the price as a fact, before the tap</h3>
+<p><strong>Rule.</strong> The full price appears before any commitment, locked, with no <em>from</em>, <em>quote</em>, <em>negotiable</em>, or <em>plus fees</em>.</p>
+<p><strong>Example (per the rule)</strong></p>
+<ul>
+<li><code>Total · locked, no extra fees — ₴180</code></li>
+<li><code>This is the final price. Nothing is added at checkout.</code></li>
+</ul>
+<p><strong>Anti-example (breaks it)</strong></p>
+<ul>
+<li><code>From ₴180*</code> · <code>Get a quote</code></li>
+<li><code>Final price depends on the job — contact us.</code></li>
+</ul>
+<p><strong>Why (from data).</strong> RJ-C3 (<code>jtbd.md</code>): <em>"the full cost upfront — no estimates, no 'plus fees'."</em> CJM Drop-off #2: <em>"any 'plus fees' or surprise on the payment screen = abandonment"</em> (Whalen: hidden cost is a <em>rage-quit</em> trigger). C-1 exit trigger (<code>target-audience.md</code>): <em>"any 'plus fees' or line-item surprise."</em> The whole market gates price (Competitor Language <strong>L-3</strong>: <em>"Get a Quote"</em>, <em>"Custom"</em>, <em>"Договірна"</em> [negotiable], ABD Video <em>"Вартість роботи залежить від…"</em> [cost depends on…] + <em>"call this number"</em>; Findings 1 &amp; 5). Stating the number <em>is</em> the differentiator.</p>
+<hr>
+<h3>P4 — Speak the user's words, not the equipment</h3>
+<p><strong>Rule.</strong> Describe the job in plain outcomes the client already uses ("roof inspection", "aerial photo"), never in drone hardware or industry jargon (UAV, orthomosaic, VTOL, Mavic 3T, payload).</p>
+<p><strong>Example (per the rule)</strong></p>
+<ul>
+<li><code>Roofs, facades, hard-to-reach structures.</code></li>
+<li><code>We'll send you a photo the moment it's done.</code></li>
+</ul>
+<p><strong>Anti-example (breaks it)</strong></p>
+<ul>
+<li><code>6K UAV orthomosaic capture · DJI Mavic 3T thermal payload.</code></li>
+<li><code>Schedule your autonomous BVLOS sortie.</code></li>
+</ul>
+<p><strong>Why (from data).</strong> Persona C-1 (<code>target-audience.md</code>): <em>"They don't understand how drones work and don't intend to learn"</em> — with a Bolt/Glovo mental model; <em>"if the experience diverges from that model in the first 60 seconds, they leave."</em> Explicit C-1 exit trigger: <em>"Drone jargon (UAV, payload, LiPo) — creates distance."</em> <code>CLAUDE.md</code> sets the bar: Apple HIG (mobile) and WCAG AA (desktop) — plain, human language. The field talks hardware to non-technical buyers (Competitor Language <strong>L-4</strong>: <em>"unmanned platforms with 4K/6K cameras"</em>, <em>"orthomosaics"</em>, <em>"3D twins"</em>, <em>"тепловізійне обстеження DJI Mavic 3T"</em>). <em>(This also rules out keyword-stuffing — the OLX synonym pile — which P4 and the GEO section below both reject.)</em></p>
+<hr>
+<h3>P5 — In trouble, be plain and accountable — not cheery</h3>
+<p><strong>Rule.</strong> When something fails — money, delay, missing proof — the product states what happened, what it means for the user's money, and the next step; no "Oops", no exclamation marks, no forced optimism.</p>
+<p><strong>Example (per the rule)</strong></p>
+<ul>
+<li><code>Payment declined. Nothing was taken from your account. Try again or use another method.</code></li>
+<li><code>Running a few minutes late — traffic near the drop-off. Your operator is still on the way.</code></li>
+</ul>
+<p><strong>Anti-example (breaks it)</strong></p>
+<ul>
+<li><code>Oops! Something went wrong 😅 Don't worry, we're on it!</code></li>
+<li><code>You're all set! 🎉 Almost there — keep going!</code></li>
+</ul>
+<p><strong>Why (from data).</strong> EJ-2 (<code>jtbd.md</code>): the client needs <em>"a clear path to resolution — not just a rating I can leave"</em>; CJM Stage 3 flags <em>"one bad experience = permanent churn"</em> 🔴. Benchmarks (<code>benchmarks.md</code>): Airbnb AirCover scores first-use anxiety ★★★★★ precisely by being a calm, concrete guarantee; Glovo's <em>"no-questions refund"</em> is stated flatly, never celebrated. This is the <em>trust-over-wit</em> context in its sharpest form: at a money-or-safety moment, cheer reads as evasion. Our own copy already slips here — <code>microcopy.md</code> <strong>TONE</strong> flags <em>"You're all set"</em> and <em>"Almost there / KEEP GOING"</em> — this principle is the fix.</p>
+<hr>
+<h2 id="vocabulary">Vocabulary — one concept, one word</h2>
+<p>Every divergence flagged in <code>microcopy.md</code> (Step 01), resolved. <strong>One word per concept, the same on every screen.</strong> Terms are taken from the language of the personas and research — none invented. "Why" is written in the persona's own words, not office-speak.</p>
+<h3>Objects — what things are called</h3>
+<div class="tbl-wrap"><table>
+<thead><tr><th>#</th><th>Concept</th><th>We say</th><th>Not</th><th>Why (in persona language)</th></tr></thead>
+<tbody>
+<tr><td>O1</td><td>the person who does the job</td><td><strong>operator</strong></td><td>~~pilot~~</td><td>C-1 is trusting a <em>person to be accountable</em>, not admiring flying skill: their trust triggers are the "operator photo", the "Verified operator" badge, "Operator terms" (<code>target-audience.md</code>, <code>jtbd.md</code>). <em>Pilot</em> is the competitor-generic word (<code>research.md</code> L-2). One name; see <code>P2</code>.</td></tr>
+<tr><td>O2</td><td>operator's incoming work (before accepting)</td><td><strong>job</strong> (a new one = <strong>new job</strong>)</td><td>~~offer~~</td><td>O-1's own words: <em>"I want jobs, not a second job finding jobs"</em> (<code>target-audience.md</code>); MJ-2 is <em>"a steady stream of pre-qualified jobs"</em> (<code>jtbd.md</code>). The operator thinks in <em>jobs</em>, never "offers".</td></tr>
+<tr><td>O3</td><td>the work, per side</td><td>client side: <strong>order</strong> · operator side: <strong>job</strong></td><td>mixing them</td><td>Two words, each bound to one persona, never crossed. C-1 has a Bolt/Glovo head — you place an <em>order</em> (<code>jtbd.md</code> MJ-1, RJ-C5 "book again"). O-1 does <em>jobs</em> (<code>target-audience.md</code>). Keep the split; kill the leak — a client screen never says "job", an operator screen never says "order".</td></tr>
+<tr><td>—</td><td>the client's list of past orders</td><td><strong>Activity</strong> (the tab) holds <strong>orders</strong> (the items)</td><td>"Back to orders" as a destination</td><td>The section is named <strong>Activity</strong> in the nav; a back-button names the place by its nav label → <strong>Back to Activity</strong>, not "Back to orders" (fixes the <code>contact-support-error</code> leak, and A10).</td></tr>
+<tr><td>O4</td><td>the client's complaint</td><td><strong>issue</strong></td><td>~~problem~~, ~~went wrong~~ (as nouns)</td><td>CJM Stage 3 logs it as the <em>"issue/complaint"</em> (<code>jtbd.md</code> EJ-2). The client <em>reports an issue</em>. "Describe the problem" / "what went wrong" name the same thing three ways — collapse to <strong>issue</strong>. (The question prompt <em>"What happened?"</em> stays — it's a prompt, not a competing noun.)</td></tr>
+<tr><td>—</td><td>the contested case (operator side)</td><td><strong>dispute</strong></td><td>—</td><td>Deliberately distinct from <em>issue</em>, like order/job: the client <em>reports an issue</em> → when the operator's pay is held and they respond, that case is a <strong>dispute</strong> (<code>operator-dispute</code>). Two sides of one event, one word each.</td></tr>
+<tr><td>O5</td><td>what the operator hands over</td><td>the concrete per-service name: <strong>delivery photo</strong> · <strong>inspection report</strong> · <strong>photo/video set</strong></td><td>~~result~~, ~~proof~~ (as object labels)</td><td>RJ-C4 says it plainly — <em>"a photo, a report, a confirmation"</em> (<code>jtbd.md</code>); C-2's deliverable <em>is</em> the "inspection report" (<code>target-audience.md</code>). Name the real thing on both client and operator screens. "Proof" survives only as plain reassurance in a sentence ("your parcel arrived — here's the photo"), never as a screen object.</td></tr>
+<tr><td>O6</td><td>money moving</td><td>earnings landing in balance = <strong>paid / payment</strong> · balance → card/bank = <strong>withdraw / withdrawal</strong></td><td>~~cash out~~, ~~payout~~</td><td>Two real money-moves, not synonyms. RJ-O3 is <em>"get paid… on its own"</em> (<code>jtbd.md</code>); CLAUDE.md says <em>"Withdraw (card instant / bank 1-3 days)"</em>. "Cash out" and "payout" are finance-slang O-1 doesn't use — replace "Minimum payout" → "Minimum withdrawal", "Payout method" → "Withdrawal method".</td></tr>
+<tr><td>O7</td><td>entering the app</td><td><strong>Sign in</strong> (with Diia / BankID)</td><td>~~Sign up~~</td><td>One Diia/BankID verification does both — <code>signin.html</code>: <em>"One verification lets you order… or take jobs."</em> Both personas <strong>Sign in</strong>. "Confirm your identity" is the plain description of what Diia does, not a second button.</td></tr>
+<tr><td>—</td><td>the operator's licence/insurance check</td><td><strong>Verification</strong></td><td>using it for sign-in</td><td>Reserved strictly for the document review (<code>operator-verification</code>) — a different thing from signing in (<code>jtbd.md</code> O-2 flow). Don't let "verify" drift onto the auth screen.</td></tr>
+<tr><td>O8</td><td>who receives the delivery</td><td><strong>client</strong></td><td>~~recipient~~</td><td>Research has one researched actor — the <strong>client</strong> (C-1/C-2) — and no "recipient" persona. Default to <em>client</em> on operator screens too ("Confirm handover with the client"). Only introduce <strong>recipient</strong> if send-to-a-third-party becomes a real feature — not before (don't invent an actor the data doesn't have).</td></tr>
+</tbody></table></div>
+<h3>Actions — what buttons are called</h3>
+<div class="tbl-wrap"><table>
+<thead><tr><th>#</th><th>Action</th><th>We say</th><th>Not</th><th>Why (in persona language)</th></tr></thead>
+<tbody>
+<tr><td>A1</td><td>recover from an error</td><td><strong>Try again</strong> (+ method if needed: "Try again with Diia")</td><td>~~Refresh~~, ~~Retry~~</td><td>Plain and human — the Bolt/Glovo word. One recovery verb everywhere; see <code>P5</code>.</td></tr>
+<tr><td>A2</td><td>reach a person</td><td><strong>Contact support</strong></td><td>~~Talk to a human~~, ~~Get help~~, ~~Contact human support~~, ~~Escalate~~</td><td>EJ-2: the fear is <em>being abandoned</em> — one predictable label is the exit, always in the same place (<code>jtbd.md</code>). <em>(A phone-only action may say "Call support" — calling ≠ messaging.)</em></td></tr>
+<tr><td>A3</td><td>attach a file</td><td><strong>Add</strong> + object: <strong>Add photo / Add document / Add evidence</strong></td><td>~~Upload~~, ~~Attach~~</td><td>Apple HIG, mobile-native, shortest (<code>CLAUDE.md</code>). Same verb + the concrete object.</td></tr>
+<tr><td>A4</td><td>open the catalogue to order</td><td><strong>Browse services</strong></td><td>~~Start ordering~~, ~~Show services~~</td><td>Says exactly where the tap lands — the Bolt/Glovo "browse then tap" model (C-1). <em>("Get started" is allowed only as the final onboarding button — a different moment: finish the intro.)</em></td></tr>
+<tr><td>A5</td><td>order the same thing again</td><td><strong>Book again</strong> (free re-do = <strong>Book again — free</strong>)</td><td>~~re-do~~, ~~re-book~~</td><td>RJ-C5 / H-6 use it verbatim: the one-tap <em>"Book again"</em> shortcut (<code>jtbd.md</code>).</td></tr>
+<tr><td>A6</td><td>open an order's detail</td><td><strong>View details</strong></td><td>~~Delivery details~~</td><td>One label for any order, not a per-service variant.</td></tr>
+<tr><td>A7</td><td>operator goes to find work</td><td><strong>Find jobs</strong></td><td>~~See available jobs~~</td><td>O-1's word is <em>jobs</em> (<code>target-audience.md</code>). <em>(Distinct from <strong>Go Available</strong> — that toggles availability status, a different action, not "find work".)</em></td></tr>
+<tr><td>A8</td><td>ask to be told when a slot frees</td><td><strong>Notify me when available</strong></td><td>~~Notify me when one is free~~</td><td>Same request, one phrasing — the shorter.</td></tr>
+<tr><td>A9</td><td>commit text/files</td><td>to the platform: <strong>Submit</strong> (report / review / response) · to a person: <strong>Send</strong> (Send invite, Send message)</td><td>crossing them</td><td>You <em>submit</em> to DRON; you <em>send</em> to a human. A real distinction, kept — not a synonym.</td></tr>
+<tr><td>A10</td><td>go back to a section</td><td><strong>Back to {Section}</strong> using its nav label (<strong>Back to Activity / Back to Jobs</strong>)</td><td>~~Back to orders~~, mixed nouns</td><td>The button names the place by the same word that place is called in the nav (sitemap §7.1) — see O3.</td></tr>
+</tbody></table></div>
+<h3>Form of address — fixed, every screen</h3>
+<ul>
+<li><strong>English (primary):</strong> direct second person — <strong>"you"</strong>, always. Never third person ("the user"), never corporate ("customers should…"). <em>Why:</em> C-1 arrives from Bolt/Glovo, apps that talk <em>to you</em>, plainly — trust comes from a direct human register, not distance.</li>
+<li><strong>Ukrainian (secondary):</strong> informal singular — <strong>«ти»</strong>, the same on every screen; never «ви», never mixed. <em>Why:</em> it matches the Bolt/Glovo consumer register C-1 already lives in. <em>(Deliberate call: Diia itself uses formal «ви» — DRON does not follow it; we pick one register, «ти», and hold it everywhere.)</em></li>
+</ul>
+<h3>Anglicisms — what's allowed in the Ukrainian copy</h3>
+<ul>
+<li><strong>Allowed</strong> (users search and say these; no better native word): <strong>дрон</strong> (the actual search term — <code>research.md</code>: <em>"замовити дрон"</em>, OLX/Kabanchik <em>"дрон / квадрокоптер"</em>); brand &amp; ID names <strong>Diia, BankID, Apple Pay, Google Pay, Visa/Mastercard</strong>; <strong>онлайн</strong>.</li>
+<li><strong>Not allowed</strong> (say it in Ukrainian): ~~кешаут / пейаут~~ → <strong>вивести кошти / платіж</strong>; ~~сабмітити~~ → <strong>надіслати</strong>; ~~трекати~~ → <strong>відстежувати</strong>; and never the hardware jargon of <code>P4</code> (~~UAV, БПЛА, payload, orthomosaic~~) in consumer copy — say <strong>дрон</strong>, <strong>фото</strong>, <strong>звіт</strong>.</li>
+</ul>
+<hr>
+<h2 id="dont-use">Don't use — never write this</h2>
+<p>Each row: the pattern we ban, and a real fix. "Was" quotes come from our own <code>microcopy.md</code> <strong>TONE</strong> flags where we already slipped — this is the fix list, not a hypothetical one.</p>
+<h3>AI clichés (the reflex phrases)</h3>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Never write</th><th>Was → Should be</th></tr></thead>
+<tbody>
+<tr><td>"Oops, something went wrong" / «Ой, щось пішло не так»</td><td>~~"Oops! Something went wrong."~~ → <strong>"Payment declined. Nothing was taken from your account. Try again or use another method."</strong> (<code>P5</code>: name what happened + the money + the next step)</td></tr>
+<tr><td>"You're all set" (empty filler before the fact)</td><td>~~"You're all set"~~ <em>(order-confirmed)</em> → <strong>"Payment received. Your operator is on the way."</strong> (the fact was already the next line — lead with it)</td></tr>
+<tr><td>"Welcome!" / "Congratulations!" / «Ласкаво просимо» / «Вітаємо!»</td><td>~~"Welcome to DRON!"~~ → <strong>"You order, a pro handles it."</strong> (say what DRON does, not hello)</td></tr>
+<tr><td>chatty hedges — "let's sort it out", "no questions asked", "Hold on a moment"</td><td>~~"…the job can't be paid — let's sort it out."~~ <em>(inspection-report-error)</em> → <strong>"…the job can't be completed or paid. Contact support to resolve it."</strong></td></tr>
+</tbody></table></div>
+<h3>Motivational / journey tone</h3>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Never write</th><th>Was → Should be</th></tr></thead>
+<tbody>
+<tr><td>aspirational journey copy — "begin your journey to new possibilities" / «розпочни свій шлях до нової можливості»</td><td>~~"Start your journey with DRON"~~ → <strong>"Browse services"</strong> / <strong>"Order your first drone service."</strong> (a plain CTA, not a mood)</td></tr>
+<tr><td>cheerleading — "Almost there!", "Keep going!"</td><td>~~"Almost there / KEEP GOING"~~ <em>(wallet-empty)</em> → <strong>"₴500 needed to withdraw. One more job reaches it."</strong> (<code>P5</code>: the number, not a pep talk)</td></tr>
+<tr><td>filler headings — "The short version"</td><td>~~"The short version"~~ <em>(onboarding-client-empty)</em> → <strong>"How DRON works"</strong> (or just show the three facts)</td></tr>
+</tbody></table></div>
+<h3>Exclamations, emoji, and "successfully"</h3>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Never write</th><th>Was → Should be</th></tr></thead>
+<tbody>
+<tr><td>exclamation marks in system / status / error copy</td><td>~~"Payment failed!"~~ → <strong>"Payment declined. Nothing was taken from your account."</strong></td></tr>
+<tr><td>emoji in system messages (a rating ★ is data, not emoji)</td><td>~~"Order confirmed 🎉"~~ → <strong>"Order confirmed. Your operator is on the way."</strong></td></tr>
+<tr><td>the word <strong>"successfully"</strong> / «успішно»</td><td>~~"Payment completed successfully!"~~ → <strong>"Payment received. ₴180 charged to Visa ···· 4921."</strong> (a fact is proof; "successfully" adds nothing)</td></tr>
+<tr><td>"How was it?" and other cute prompts</td><td>~~"How was it?"~~ <em>(rate)</em> → <strong>"Rate this order."</strong></td></tr>
+</tbody></table></div>
+<p><strong>One line to remember:</strong> if a string cheers, hedges, or decorates, it is hiding the absence of a fact. Delete it and state the fact.</p>
+<hr>
+<h2 id="geo">GEO &amp; SEO — how this voice gets found</h2>
+<p>The discipline that builds trust here — <strong>specific facts, plain outcome words, one name per thing</strong> — is the same discipline that makes DRON the result a search engine ranks and the answer an LLM quotes. Voice and findability are one problem, not two.</p>
+<h3>How the user actually searches their pain</h3>
+<p>People do not search <em>"drone-as-a-service platform."</em> They search the <strong>outcome + place + worry</strong>, and increasingly they <em>ask an assistant</em> in a full sentence:</p>
+<ul>
+<li><strong>C-1 (urgent client):</strong> <em>"замовити дрон Київ"</em> [order a drone, Kyiv] (<code>target-audience.md</code>), <em>"drone delivery Kyiv"</em>, <em>"send documents across the city fast"</em> → and to an LLM: <em>"Can I get a parcel delivered by drone in Kyiv?"</em></li>
+<li><strong>C-2 (planning client):</strong> the mood-quote <em>is</em> the query — <em>"Is this actually available where I live?"</em> (<code>target-audience.md</code>); plus <em>"aerial photography Kyiv price"</em>, <em>"how much does a drone roof inspection cost"</em>.</li>
+<li><strong>The anxiety queries (<code>research.md</code> Finding 3):</strong> <em>"is drone delivery safe"</em>, <em>"are delivery drones noisy"</em>, <em>"drones and privacy"</em>. Whoever answers these <strong>calmly and specifically becomes the cited source.</strong></li>
+<li><strong>UA real search terms (Competitor Language):</strong> operators and buyers use <em>"аерозйомка"</em>, <em>"зйомка з дрона"</em>, <em>"квадрокоптер"</em> — DRON's plain service names must map to these intents in <strong>both</strong> EN and UK.</li>
+<li><strong>Operators (O-1):</strong> <em>"another platform that takes 30%?"</em> (<code>target-audience.md</code>) → <em>"drone operator jobs Ukraine"</em>, <em>"what commission does [platform] take"</em>.</li>
+</ul>
+<h3>What to do about it (GEO = being the answer, not just a blue link)</h3>
+<ol>
+<li><strong>Put the real question on the page, answered plainly.</strong> Build FAQ blocks that mirror the pain-queries verbatim — <em>"Is drone delivery safe?" · "Do I need to know anything about drones?" · "How much does it cost?" · "Is DRON available in my city?"</em> LLMs lift question→answer pairs; if the question is not on a page, DRON cannot be the answer.</li>
+<li><strong>Lead with quotable facts, not adjectives</strong> (this is P2/P3 and Competitor <strong>L-5</strong>, the field's one good habit). <em>"₴180, final price" · "covers Kyiv city" · "CAA-licensed, insured operators" · "photo proof within 15 min" · "auto-refund if no operator is found."</em> AI Overviews and chat assistants quote numbers and skip <em>"trusted, professional."</em> The trust sentence and the GEO payload are the same sentence.</li>
+<li><strong>Make the facts machine-readable</strong> — schema.org JSON-LD: <code>Service</code>, <code>Offer</code> (price + currency), <code>LocalBusiness</code>/<code>areaServed</code> (coverage cities), <code>FAQPage</code>, and <strong>real</strong> <code>AggregateRating</code>/<code>Review</code>. This is what Google AI Overviews and Gemini extract; keep every number honest (<code>research.md</code> already caught a <em>fabricated</em> insurance figure — same rule).</li>
+<li><strong>One name per entity</strong> (P2's vocabulary rule, <code>microcopy.md</code> O1/O3). Calling it <em>order</em> here and <em>job</em> there, <em>operator</em> here and <em>pilot</em> there, degrades retrieval and entity resolution — an assistant can't confidently attach the facts to one thing. Consistency is a voice rule <em>and</em> a ranking rule.</li>
+<li><strong>Mirror everything bilingually</strong> (EN primary, UK secondary — <code>CLAUDE.md</code>). The pain is searched in both languages; the Ukrainian pages must carry the real terms (<em>"аерозйомка"</em>, <em>"доставка дроном Київ"</em>) mapped to DRON's plain service names.</li>
+<li><strong>Headings = the intent the user typed.</strong> <code>H1: Order a drone delivery in Kyiv</code>, <code>H2: Roof inspection by a certified drone operator — from ₴X, photo report included</code> — not <em>"DRON: the future of autonomous aerial logistics."</em></li>
+</ol>
+<h3>Per-engine notes (different LLMs surface differently)</h3>
+<ul>
+<li><strong>Google AI Overviews / Gemini</strong> — reward schema + genuine E-E-A-T + real reviews. Never fabricate a rating or a coverage claim.</li>
+<li><strong>ChatGPT / Perplexity</strong> — crawl clean, self-contained text; each <strong>service page and each coverage-city page must answer fully on its own</strong> (several competitor sites were JS-gated and un-fetchable — do not be that page).</li>
+<li><strong>Claude / task assistants</strong> — answer the <em>"how do I / is it safe / how much"</em> questions in plain prose; that phrasing is what gets surfaced when someone asks the assistant to help.</li>
+<li><strong>Anti-pattern (all engines):</strong> the OLX keyword pile — <em>"зйомка з дрона, аерозйомка, квадрокоптер, відеозйомка, відео 4K"</em> — is penalized <em>and</em> breaks P4. Plain outcome phrasing wins on both trust and rank.</li>
+</ul>
+<p><strong>The convergence:</strong> say the specific true thing, in plain words, once, and name it the same way everywhere. That single sentence is simultaneously the most trustworthy form and the most quotable one — which is the whole reason voice and GEO are the same job for DRON.</p>
+<hr>
+<h2 id="microcopy">Microcopy — rules by element type</h2>
+<p>The last section. Rules for each kind of UI string, one real DRON example each. Every rule is checked against the <strong>Principles</strong> and the <strong>Vocabulary</strong> above — the "Checks" column names which. Screens and states referenced are the real ones in <code>wireframes/_screens.md</code>.</p>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Element</th><th>Rule</th><th>DRON example</th><th>Checks</th></tr></thead>
+<tbody>
+<tr><td><strong>Button</strong></td><td>An action verb whose result is visible in the label — never a bare noun; use the canonical verb from the Vocabulary.</td><td><code>View details</code> — not <code>Details</code>. And <code>Pay ₴180</code> / <code>Withdraw ₴3,240</code> — the verb carries the exact outcome.</td><td>A1–A10 · P3 · P4</td></tr>
+<tr><td><strong>Nav-bar back button</strong></td><td>Apple HIG: the chevron + the <strong>title of the screen you return to</strong> — <code>‹ {previous screen}</code>; never <code>Back to …</code> (the chevron already means "back"). Bare <code>‹ Back</code> only when the previous screen has no title. A <strong>tab-root</strong> screen has no back button (you reach it by switching tabs). <em>(In-content recovery buttons in empty/error blocks are a different element — content CTAs like <code>Back to Jobs</code> — and stay descriptive.)</em></td><td><code>‹ Order review</code> (on Payment) · <code>‹ Sign in</code> (on Verification) — not <code>‹ Back to Order review</code>, not a bare <code>‹ Back</code></td><td>HIG (mobile client) · P4 · <code>microcopy.md</code> D1</td></tr>
+<tr><td><strong>Screen heading</strong></td><td>Name the place in the dictionary word for it, bound to the persona — the outcome, not the drone.</td><td><code>Order confirmed</code> (client) · <code>New job</code> (operator) — not <code>Success!</code> or <code>Your drone is on its way</code>.</td><td>O1–O3 · P1</td></tr>
+<tr><td><strong>Form field — label</strong></td><td>Says exactly <em>what</em> to enter, as a noun from the dictionary.</td><td><code>Drop-off address</code> — not <code>Address 2</code>.</td><td>O-vocab · P4</td></tr>
+<tr><td><strong>Form field — hint</strong></td><td>Says <em>how</em> — the format, by real example; never just repeats the label.</td><td><code>e.g. UA-CAA-102938</code> (under <em>Licence number</em>) · <code>Floor, entrance code, what's inside…</code> (under <em>Notes for the operator</em>).</td><td>P4</td></tr>
+<tr><td><strong>Form field — validation error</strong></td><td>Names <em>exactly what to fix</em> and how; states the fact, never blames the user.</td><td><code>Outside the service zone. DRON delivers within Kyiv city — enter an address in the city.</code> — not <code>Invalid input</code>.</td><td>P5 · P3 · P4</td></tr>
+<tr><td><strong>Empty state</strong></td><td>Say <em>why</em> it's empty (the fact), then the one action out. No pep talk.</td><td><code>No orders yet. Your orders appear here, ready to re-book in a tap.</code> + button <code>Browse services</code>.</td><td>O3 · A4 · P5 · <em>Don't-use</em></td></tr>
+<tr><td><strong>Error</strong></td><td>What happened + what it means for the user's money/state + the next action. No apology, no joke, no <code>!</code>.</td><td><code>Payment declined. Nothing was taken from your account. Try again or use another method.</code> + <code>Try again</code>.</td><td>P5 · A1 · A2 · <em>Don't-use</em></td></tr>
+<tr><td><strong>Loading</strong></td><td>Name the specific thing being fetched — never a bare "Loading…".</td><td><code>Finding your operator…</code> — not <code>Loading…</code>. (<code>operator</code>, never <code>pilot</code>.)</td><td>O1 · P4</td></tr>
+<tr><td><strong>Success</strong></td><td>Lead with the fact (the number/time), then the next step. No "successfully", no celebration, no emoji. Only the five real success screens earn one.</td><td><code>Delivered. Your parcel arrived at 10:07.</code> + <code>Rate this order</code>.</td><td>P5 · <em>Don't-use</em> · <code>_screens.md</code> (success is deliberately few)</td></tr>
+<tr><td><strong>Dangerous action</strong></td><td><em>Before</em> the tap, name the exact consequence and what cannot be undone, in plain words; the confirm button repeats the verb, never "OK/Yes".</td><td><code>Decline this job? It goes to another operator and won't come back to you.</code> + <code>Decline</code> / <code>Keep job</code>.</td><td>O2 · P5 · <em>Don't-use</em></td></tr>
+</tbody></table></div>
+<p><strong>How to use the whole file.</strong> Read the string's job → pick the element rule here → write it in the Vocabulary word → check it against the five Principles → make sure it isn't on the Don't-use list. If it cheers, hedges, or decorates, cut it and state the fact.</p>
+<p><strong>voice.md is complete.</strong> From here, every product string — in <code>microcopy.md</code> and in the build — is written and checked against this file.</p>
+  </main>
+
+<script>
+(function(){
+  var sb=document.getElementById('sidebar'), ham=document.getElementById('hamburger'), ov=document.getElementById('navOverlay');
+  function toggle(o){ if(sb) sb.classList.toggle('is-open',o); if(ham) ham.classList.toggle('is-open',o); if(ov) ov.classList.toggle('is-open',o); }
+  if(ham) ham.addEventListener('click',function(){ toggle(!sb.classList.contains('is-open')); });
+  if(ov) ov.addEventListener('click',function(){ toggle(false); });
+  if(sb) sb.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ if(innerWidth<=768) toggle(false); }); });
+  var tt=document.getElementById('themeToggle');
+  function cur(){ var a=document.documentElement.getAttribute('data-theme'); if(a) return a; return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
+  if(tt) tt.addEventListener('click',function(){ var n=cur()==='dark'?'light':'dark'; document.documentElement.setAttribute('data-theme',n); try{localStorage.setItem('dron-theme',n);}catch(e){} });
+})();
+</script>
+</body>
+</html>

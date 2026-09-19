@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Job checklist (in progress) · success (base)</title>
+<!-- SCREEN: "Job checklist (in progress)" — STATE: success (base). JOB (jtbd): RJ-O2 · O-03 — a structured checklist so no required step is missed (large touch targets, gloves / sunlight). Flow: MJ-2 "Job checklist" → All steps + result captured? EXIT: Complete & add delivery photo → Result upload; Contact client → a drawer (Call client · Chat with the client), added 2026-08-21. -->
+<link rel="stylesheet" href="_wireframe.css?v=20b034c0">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="job-checklist.html" class="cur" aria-current="page">success</a>
+      <a href="job-checklist-error.html">error</a>
+    </nav>
+    <h1>Job checklist (in progress)</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>success (base)</b> · file: job-checklist.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O2 · O-03 — a structured checklist so no required step is missed.<br><b>Exit:</b> Complete &amp; add delivery photo → <b>Result upload</b>.<br><b>Contact client</b> (2026-08-21) opens a drawer — <b>Call client</b> (<code>call-client.html</code>) · <b>Chat with the client</b> (<code>chat-client.html</code>), the mirror of tracking's Contact operator drawer: two of this screen's own steps cannot be completed alone.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Checklist</b> ▸ done + remaining steps</p><p><b>Progress</b> ▸ 3 / 5 in the header</p><p><b>Action bar</b> ▸ contact the client · close the job</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <!-- THE PROGRESS COUNT MOVES TO THE BAR'S TRAILING EDGE, and that is the kit
+         winning: .dr-topbar__title is centred by absolute position, so a third child
+         written before the spacer lands on the LEFT, under the title's own column.
+         The kit already has one nav bar with a third child — listings-filters' "Clear
+         all" — and it sits after .dr-topbar__spacer, where `HIG · Navigation bars`
+         puts a trailing item. `3 / 5` takes .dr-chip, the kit's plain supporting-fact
+         pill (--media ground, --slate 5.51:1): the frame drew it as 15/600 #252525,
+         an ink outside the palette, and a second bare string at the title's own weight
+         reads as a second title. -->
+    <header class="topbar dr-topbar"><a class="dr-back" href="job-brief.html" aria-label="Back to Job brief"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Checklist</span><span class="dr-topbar__spacer"></span><span class="dr-chip">3 / 5</span></header>
+    <main class="dr-main">
+      <!-- REAL CHECKBOXES, NOT A PICTURE OF ONE — the kit's .dr-picks / .dr-pick rows
+           from order-setup (rev 92). The frame drew a ✓ character inside a bordered
+           span with no input at all: no name, no state, nothing to operate
+           (WCAG 4.1.2 / 2.1.1). Checked is --green behind an --on-green glyph at
+           9.46:1, which the green budget counts as a STATUS MARK and not as the
+           screen's one green control.
+           ONE DIVERGENCE LOGGED: the frame dimmed a done step's label to #5A5A5A.
+           .dr-pick__label has no checked variant and the kit keeps it --ink at
+           14.37:1 — the filled box is the carrier, and dimming what is finished
+           costs contrast for a state the box already states. -->
+      <p class="zlabel dr-label">Pre-flight &amp; job steps <span class="dr-label__act">▸ check every required step (RJ-O2)</span></p>
+      <ul class="dr-picks">
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Pre-flight safety check</span><input type="checkbox" class="sr-only" checked></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Battery ≥ 80%</span><input type="checkbox" class="sr-only" checked></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Parcel secured</span><input type="checkbox" class="sr-only" checked></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Capture delivery photo</span><input type="checkbox" class="sr-only"></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Confirm handover with the client</span><input type="checkbox" class="sr-only"></label></li>
+      </ul>
+    </main>
+    <!--
+      CONTACT CLIENT OPENS A DRAWER, added 2026-08-21 on the designer's word: «додай сюди ще
+      Contact with client, по кліку відкривай дровер як у клієнта: дзвінок, повідомлення; додай
+      wireframes яких не вистачає». It is the MIRROR of tracking's Contact operator drawer
+      (rev 151), on the same ui/kit.js contract — .dr-btn[aria-controls] already matches, so the
+      kit needs no widening; the page links kit.js for the first time.
+      IT IS RJ-O2 AND NOT A NEW JOB. Two of this screen's own five steps — Capture delivery photo
+      and Confirm handover with the client — cannot be completed alone: a locked courtyard gate, a
+      wrong entrance, nobody at the door. Until today the operator's only answer was to improvise
+      off-app, which is the exact thing RJ-O2 exists to remove. The channel already existed and ran
+      one way only: chat.html is the client typing "the code is 4471", and no frame let the operator
+      read it.
+      IT IS THE GREY SECONDARY, and that is the green budget rather than a ranking of the two acts:
+      concept.md §0 allows ONE green control per screen and this screen already spends it on
+      Complete & add delivery photo. Order follows tracking's own bar — the secondary above, the
+      primary at the thumb.
+      THE BLOCK BELOW IS BYTE-IDENTICAL ON job-checklist AND job-checklist-error — verified, not
+      asserted — the same rule the four tracking drawers hold to, and concept.md rev 26's "the same
+      control at the same weight in every state".
+    -->
+    <footer class="dr-actionbar">
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-contact">Contact client</button>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="result-upload.html">Complete &amp; add delivery photo</a>
+    </footer>
+
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <!--
+      TWO OPTIONS IS A DRAWER — the project's own rule (ui/kit.js): ≤ 6 options rise from the bottom
+      edge, ≥ 7 push a screen; `HIG · Action sheets` draws the same line. Text rows and no icons,
+      the shape the other eight pickers use. Nothing carries aria-current: these are two actions,
+      not one value with a pick. The rows are <a href>, so kit.js adds the modal contract and
+      Cancel and writes nothing back.
+      THERE IS NO THIRD ROW, AND THAT IS A FINDING, NOT A TRIM. The client's drawer ends in Contact
+      support → support.html, the Help hub. The OPERATOR HAS NO SUPPORT HUB in the product —
+      sitemap.md §6.2 gives the operator side no EJ-2 entry of its own, and operator-dispute is a
+      CLIENT-RAISED issue on a CLOSED job, not a channel to DRON. Inventing a target would have been
+      inventing a screen; pointing it at the client's hub would have crossed the two personas'
+      navigation. Two rows is the honest count; the gap is logged in _screens.md §15 as one decision
+      for the designer — the operator's support route — rather than as one row on one drawer.
+      THE MASKING SENTENCE CAME OFF ON 2026-08-24, on her instruction («delete this sentence»),
+      and what it was doing is recorded in microcopy.md rather than lost: it stated the masking
+      fact BEFORE the tap (voice.md P3's discipline applied to privacy instead of to price), and
+      it was true in this direction too — no frame has ever shown the operator the client's number.
+      THE STRUCTURE IT SUPPORTED IS UNCHANGED: Call client is still a row without a number anywhere
+      on the frame, and it still opens DRON's own call screen rather than a tel:. What the drawer
+      loses is the sentence that explained why. aria-describedby went with it — an IDREF pointing
+      at a removed element resolves to nothing (ARIA 1.2), and the drawer keeps its name from
+      aria-labelledby, which is what WCAG 4.1.2 actually requires of it.
+      CANCEL BY NAME, not an ×: `HIG · Action sheets` asks for it; the × belongs to a full modal
+      screen (rev 101's reading, unchanged).
+    -->
+    <section class="dr-sheet dr-sheet--picker" id="sheet-contact" role="dialog" aria-modal="true" aria-labelledby="sheet-contact-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-contact-title">Contact client</p>
+      <div class="dr-picker__list">
+        <a class="dr-picker__item" href="call-client.html"><span class="dr-picker__label">Call client</span></a>
+        <a class="dr-picker__item" href="chat-client.html"><span class="dr-picker__label">Chat with the client</span></a>
+      </div>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+    </section>
+  </div>
+
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js?v=20b034c0"></script>
+</body>
+</html>

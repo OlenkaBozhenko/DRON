@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Result upload / close job · success (base)</title>
+<!-- SCREEN (sitemap): "Result upload / close job". JOB (jtbd): RJ-O2 · O-04 — the checklist ends in a result; this upload GATES RJ-O3 payment (proof before pay, H-7). STATE: base. Flow step → Wallet. Sticky action footer (not tabs). -->
+<link rel="stylesheet" href="_wireframe.css?v=20b034c0">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="result-upload.html" class="cur" aria-current="page">success</a>
+      <a href="result-upload-error.html">error</a>
+      <a href="result-upload-loading.html">loading</a>
+    </nav>
+    <h1>Result upload / close job</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>success (base)</b> · file: result-upload.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O2 — capture the result (O-04); the upload is the gate on RJ-O3 pay — <b>proof before pay</b> (H-7). flows.md MJ-2: Job checklist → <b>Result upload</b> → Upload succeeded? → Wallet.<br><b>Exit:</b> Submit &amp; close → <b>Wallet / earnings</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Job</b> ▸ what's being closed</p><p><b>Result photo</b> ▸ the proof that gates payment</p><p><b>Notes</b> ▸ handover details</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="job-checklist.html" aria-label="Back to Checklist"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Close job</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Job <span class="dr-label__act">▸ what's being closed</span></p>
+      <div class="dr-rows" aria-label="Job summary">
+        <div class="dr-rows__row"><span class="dr-rows__key">Service</span><span class="dr-rows__val">Package delivery</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Client</span><span class="dr-rows__val">Olena H.</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Pay</span><span class="dr-rows__val">₴180</span></div>
+      </div>
+
+      <p class="zlabel dr-label">Result photo <span class="dr-label__act">▸ proof before pay (H-7)</span></p>
+      <section aria-label="Result photo">
+        <!-- THE TRAY IS EMPTY ON THE BASE FRAME, 2026-08-21 — the designer, reading the
+             built page: «тут має бути загрузити фото, кнопка "Replace photo" не активна
+             відповідно». This reverses the 2026-08-16 call that put the delivered-package
+             photograph on this frame, and `flows.md` is the reason rather than taste:
+             MJ-2 hands `Job checklist → Result upload` off BEFORE anything is uploaded,
+             so the frame you arrive on has no photograph to draw — and drawing one showed
+             the screen's own gate, proof before pay (H-7), as already met at the moment
+             you land, with no way left to perform the act the screen exists for.
+             THE ZONE IS THE CONTROL, with no button inside it — the shape kit rev 57/60
+             settled and `operator-dispute` / `operator-profile-setup` already carry. It
+             takes the WELL form (.dr-upload, --media #E4E1DA at --r-media 13) and not
+             --card, because the box it turns into when it fills is .dr-well--photo,
+             --media at --r-media as well: empty and filled are ONE box, not two
+             components. Height is the kit's own floor --sz-upload-min 140 against the
+             photo band's 180, so an attachment grows the page 40 — which is what an
+             attachment does (_conventions.md §8, where both states are governed).
+             MEASURED: 32px glyph --slate on --media 5.51:1; "Add photo" --ink on --media
+             13.33:1 (WCAG 1.4.3 ✓ both); focus ring --ink (2.4.7); accessible name via
+             aria-labelledby on the role="button" zone (4.1.2); the whole 341 × 140 zone
+             is the target (HIG · 44pt ✓).
+             REPLACE PHOTO STAYS AND GOES INACTIVE, her word. Built, not dimmed:
+             .dr-btn:disabled is --slate on --btn2 #D6D2C9, 4.77:1, so it clears 1.4.3
+             outright instead of leaning on 1.4.3's inactive-component exemption. The
+             control keeps its place, so nothing under the thumb moves when a photo
+             lands — only its state changes. -->
+        <div class="dr-stack">
+          <div class="dr-upload" role="button" tabindex="0" aria-labelledby="result-photo-act">
+            <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+            <span class="dr-upload__action" id="result-photo-act">Add photo</span>
+          </div>
+          <button type="button" class="dr-btn dr-btn--secondary dr-btn--block" disabled>Replace photo</button>
+        </div>
+      </section>
+
+      <p class="zlabel dr-label">Notes <span class="dr-label__act">▸ handover details</span></p>
+      <section aria-label="Handover notes">
+        <div class="dr-rows">
+          <div class="dr-field dr-field--area dr-field--area6">
+            <textarea class="dr-field__input" placeholder="Handover notes, client name…" aria-label="Handover notes"></textarea>
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="wallet.html">Submit &amp; close job</a>
+    </footer>
+  </div>
+
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js?v=20b034c0"></script>
+</body>
+</html>

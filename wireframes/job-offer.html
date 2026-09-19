@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Incoming job offer / accept-decline · success (base)</title>
+<!-- SCREEN: "Incoming job offer / accept-decline" — STATE: success (base). JOB (jtbd): RJ-O1 · O-01 — accept or pass without stopping to ask questions. Flow: MJ-2 "Incoming job offer" → Accept within 10s? EXIT: Accept → Job brief; Decline → Operator home. -->
+<link rel="stylesheet" href="_wireframe.css?v=20b034c0">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="job-offer.html" class="cur" aria-current="page">success</a>
+      <a href="job-offer-empty.html">empty</a>
+    </nav>
+    <h1>Incoming job offer / accept-decline</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>success (base)</b> · file: job-offer.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O1 · O-01 — accept or pass in seconds (flows.md MJ-2: "Accept within 10s?").<br><b>Exit:</b> Accept → <b>Job brief</b>; Decline → back to <b>Operator home</b>.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Offer</b> ▸ service · distance · pay</p><p><b>Route</b> ▸ pickup / drop-off</p><p><b>Countdown</b> ▸ decide before it expires</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">New job</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <!-- `card-top` NEEDS NO CLASS OF ITS OWN. It wrapped the well and the body so a
+           column card could hold one row; the kit already has that shape —
+           .dr-card--row turns the CARD into the row, which is what painted
+           listings.html does with the same three parts. So the wrapper goes and the
+           card is .dr-card .dr-card--row .dr-listing.
+           THE DRONE MOVED TO THE TRAILING EDGE — designer, 2026-09-03: «aligne text
+           on left side of the card move icon on right side». Both offer files carry
+           it, base and -inspection, because they are one screen. It is a DOM move,
+           not `row-reverse`: source order stays visual order, so the sequence is
+           still programmatically determinable (`WCAG 1.3.2`) and the row mirrors by
+           itself under RTL. Nothing an assistive tech hears moved — the render is
+           `alt=""` and never was in the accessibility tree. No CSS was added: the
+           well is already `flex:none` and `.dr-listing__body` `flex:1`, so the text
+           takes the slack and now starts at the card's own 20px padding.
+           NOTE THE DEPARTURE: an iOS list row conventionally leads with its image
+           (`HIG · Lists and tables`). This row leads with the fact the operator is
+           deciding on — service, distance, pay — and the render trails as the
+           picture of the job. Client `listings` still leads with the drone; that
+           divergence is the designer's open call, not an oversight. -->
+      <p class="zlabel dr-label">Offer <span class="dr-label__act">▸ service · distance · pay</span></p>
+      <article class="dr-card dr-card--row dr-listing">
+        <span class="dr-listing__body">
+          <span class="dr-listing__name">Package delivery</span>
+          <!-- ONE FACT ROW, NOT TWO — AND THE SECOND ROW LASTED EXACTLY ONE
+               REVISION, WHICH IS RECORDED SO THE SPLIT IS NOT RE-PROPOSED LATER
+               AS A NEW IDEA. Rev 220, against this card: «pickup near Podil it
+               is a second row» — the description was split in two and the
+               fragment capitalised. Rev 223, against the built result: «delete
+               "Pickup near Podil"». The row goes, and with it the only thing the
+               split existed for; what is left is the line the card started with,
+               `2.3 km · ~18 min`, one line of a 193px measure.
+               THE FACT IS NOT LOST — IT IS ONE ZONE DOWN AND MORE EXACT. The
+               Route rows below read `Pickup · Podil, 21`, a street number
+               against the card's «near Podil». So the card carries what the
+               operator decides on in 8s — service, distance-and-time, pay — and
+               where the job starts is read where the route is read.
+               MEASURED ON THE BUILD, 375 × 812, AND THE TWO NUMBERS DIFFER FOR
+               A REASON WORTH KNOWING: the body loses the row whole — **87.38 →
+               67.19**, −20.19, the 18.19 line box plus its 2px `--sp-2` step —
+               but the card loses only **135.38 → 120**, −15.38, BECAUSE THE
+               96 × 72 WELL IS NOW THE FLOOR: 72 against a 67.19 body inside a
+               24px inset. Rev 220 could say the well was not the floor here;
+               that stops being true with this row, and anything else taken off
+               this card costs no height at all until the well changes. `main`
+               did not scroll before and does not scroll now, 577 in a 577
+               window.
+               STANDARDS FIRST, AND NOTHING IS ENGAGED, WHICH IS AN ANSWER AND
+               NOT A GAP. `WCAG 1.4.3` — the row that goes was `--slate` on
+               `--card` 5.95:1, the same pair the surviving row carries, so no
+               ratio moves by losing an element. `WCAG 1.3.1` / `4.1.2` — no aria
+               attribute ever named either row, and the `sr-only` «Pay» stays
+               welded to ₴180 inside its own wrapper. `HIG · 44pt` and
+               `WCAG 2.5.8` are not engaged at all, nor is `2.4.4`: this card is
+               an `<article>` with no link and no control on it.
+               THE PAY LINE'S TAIL WENT AT REV 220 AND STAYS GONE — «remove» on
+               `· paid on completion` — and what that costs is unchanged: the
+               offer does not say WHEN the money lands. `operator-fee-terms`
+               still does (Payment ▸ «Auto-release ≤30 min after client
+               confirms»), one screen away and behind onboarding rather than on
+               the card the operator decides on. `voice.md` P3 is what that
+               spends. -->
+          <span class="dr-listing__desc">2.3 km · ~18 min</span>
+          <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴180</span></span></span>
+        </span>
+        <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
+      </article>
+
+      <p class="zlabel dr-label">Route <span class="dr-label__act">▸ pickup → drop-off</span></p>
+      <div class="dr-rows" aria-label="Route">
+        <div class="dr-rows__row"><span class="dr-rows__key">Pickup</span><span class="dr-rows__val">Podil, 21</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Drop-off</span><span class="dr-rows__val">Osokorky, 14</span></div>
+      </div>
+
+      <p class="zlabel dr-label">Decide fast <span class="dr-label__act">▸ offer auto-expires, reassigns</span></p>
+      <p class="dr-display">Expires in 8s</p>
+    </main>
+    <!--
+      Stacked, not split — the designer, 2026-08-16, on the whole product:
+      «пройдись по проекту і подивись щоб кругом у нижньому барі кнопрки були
+      одна під одною». This page was the last holder of `.row2`; the class and
+      its CSS stay in `_wireframe.css` but are now applied to nothing.
+      Accept over Decline: the DOM order does not move, and under an offer that
+      expires in 8s the thumb should not have to choose between two equal boxes.
+    -->
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="job-brief.html">Accept</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="operator-listings.html">Decline</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=20b034c0"></script>
+</body>
+</html>

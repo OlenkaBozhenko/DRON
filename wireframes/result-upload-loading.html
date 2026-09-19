@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Result upload / close job · loading</title>
+<!-- SCREEN: "Result upload / close job" — STATE: loading (uploading / saved offline; awaiting confirmation up to 2h). Grounded in flows.md MJ-2: "saved offline — uploads when online; payment held until proof" + "awaiting confirmation (up to 2h)". EXIT: transient — keep the app open. -->
+<link rel="stylesheet" href="_wireframe.css?v=20b034c0">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="result-upload.html">success</a>
+      <a href="result-upload-error.html">error</a>
+      <a href="result-upload-loading.html" class="cur" aria-current="page">loading</a>
+    </nav>
+    <h1>Result upload / close job</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>loading</b> · file: result-upload-loading.html</p>
+    <div class="flow"><b>Loading:</b> sending the result; if offline it queues and uploads when back online (flows.md MJ-2). Payment is held until the client confirms — auto-confirms after 2h.<br><b>Exit:</b> transient — no action; keep the app open.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Job</b> ▸ as built — the facts being submitted</p><p><b>Result photo</b> ▸ the tray becomes its own skeleton, arrow leaving it</p><p><b>Notes</b> ▸ as built</p><p><b>Action bar</b> ▸ the primary reads <i>Uploading…</i>, and the payment term stands above it as a <code>.dr-note</code> — the same place <code>result-upload-error</code> puts it (2026-08-24)</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="job-checklist.html" aria-label="Back to Checklist"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Close job</span><span class="dr-topbar__spacer"></span></header>
+    <!-- REBUILT 2026-08-21 ONTO THE SUCCESS FRAME, on the designer's word:
+         «цей wairframes не правильний бо він має показувати анімацію загрузки та
+         тій самій структурі сторінки що і success». What stood here was
+         delivery-loading's centred takeover — a status block, a 120px skeleton and a
+         hint — with all three of result-upload's zones gone. That is _conventions.md
+         §10 broken outright ("same DOM structure across states — only the content of
+         the affected zone changes; do not restructure the page per state"), and this
+         page's own sidebar legend already claimed the correct behaviour it did not have.
+         §10's ONE EXCEPTION — a system action with no layout to rehearse (payment-loading,
+         operator-verification-loading) — DOES NOT REACH HERE: the form is on screen at the
+         moment "Submit & close job" is tapped, and the tray is exactly the box the picture
+         lands in. So the layout is result-upload.html's, block for block, and ONE ZONE
+         CHANGES. Job and Notes stand as built — they are the facts being submitted, not
+         content that is arriving, so they do not pulse.
+         THE TRAY BECOMES ITS OWN SKELETON, SAME BOX — and since 2026-08-24 it is
+         literally the base frame's own class: .dr-upload + .dr-sk-tray, where .dr-upload
+         carries the kit's --sz-upload-min 140, --r-media 13, the column, the centring,
+         the --sp-snug 12 gap and the --sp-24 padding, and .dr-sk-tray adds only the
+         --media ground that .dr-upload paints for [role="button"] alone. It was
+         .dr-sk-block with an inline min-height restating 140 — the same box by two
+         numbers agreeing rather than by construction. Inside it the kit's .dr-sk-arrow —
+         the tray holds still and only the arrow leaves it: what the screen waits on is a
+         file going up. It rests visible at 0% and 100%, and kit.css's
+         prefers-reduced-motion block stops it, leaving a legible icon.
+         THE STATUS LINE SITS UNDER THE ICON, INSIDE THE TRAY (the designer, 2026-08-24:
+         «write this text under the loading upload icon»). It stood under the tray as a
+         fourth item in the stack, which was the frame's only delta against success: the
+         Result photo section drew 220 there against the base frame's 192. In the tray it
+         takes the slot "Add photo" holds on the base frame — glyph over words, one box —
+         and the section returns to 192, so the two states are now the same height to the
+         pixel. Re-measured on the page: --slate on --media 5.51:1 at 14px (WCAG 1.4.3 ✓,
+         and the pair the base frame's 32px glyph already stands on); the sentence is
+         centred by .dr-upload's own text-align, not by a new rule.
+         REPLACE PHOTO KEEPS ITS PLACE, disabled, exactly as on the base frame, so nothing
+         under the thumb moves between the two states. Built, not dimmed: --slate on --btn2
+         is 4.77:1 (WCAG 1.4.3 clear, without leaning on the inactive-component exemption).
+         THE role="status" IS RE-HOMED, NOT DROPPED (WCAG 4.1.3) — and the aria-hidden that
+         sat on the whole skeleton block moved onto the glyph alone, since a live region
+         inside an aria-hidden container is never announced. -->
+    <main class="dr-main">
+      <p class="zlabel dr-label">Job <span class="dr-label__act">▸ what's being closed</span></p>
+      <div class="dr-rows" aria-label="Job summary">
+        <div class="dr-rows__row"><span class="dr-rows__key">Service</span><span class="dr-rows__val">Package delivery</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Client</span><span class="dr-rows__val">Olena H.</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Pay</span><span class="dr-rows__val">₴180</span></div>
+      </div>
+
+      <p class="zlabel dr-label">Result photo <span class="dr-label__act">▸ uploading…</span></p>
+      <section aria-label="Result photo">
+        <div class="dr-stack">
+          <div class="dr-upload dr-sk-tray">
+            <span class="dr-sk-up" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><g class="dr-sk-arrow"><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></g></svg></span>
+            <!-- THE SECOND SENTENCE TAKES THE SECOND LINE (2026-08-24, the designer on
+                 the built line: «речення Keep the app open make in the second row»). It
+                 already ran to two lines — 276.63 wide, 39.16 tall at 19.6 of leading —
+                 but the break fell where the box ran out and split *Keep the / app open*.
+                 The <br> puts it at the full stop instead, so each line is one whole
+                 sentence: what is happening, then what you have to do about it.
+                 NOTHING MOVES AND NOTHING IS ADDED. Two lines before, two lines after —
+                 the tray keeps its 341 x 140 and the skeleton still measures the loaded
+                 tray exactly, which is the one contract this frame exists to keep. No CSS
+                 and no new string: `microcopy.md` still inventories one line.
+                 IT IS A BREAK, NOT A BARRIER. `WCAG 1.4.10 Reflow` and `1.4.12` are not
+                 engaged — a <br> ends a line, it does not stop the line before it from
+                 wrapping again, so at 200% text the sentences simply take two lines each.
+                 The live region reads the same two sentences it always did (`4.1.3`), and
+                 the break is announced as the pause the full stop already implies. -->
+            <p class="dr-status-line" role="status">Sending the delivery photo.<br>Keep the app open.</p>
+          </div>
+          <button type="button" class="dr-btn dr-btn--secondary dr-btn--block" disabled>Replace photo</button>
+        </div>
+      </section>
+
+      <p class="zlabel dr-label">Notes <span class="dr-label__act">▸ handover details</span></p>
+      <section aria-label="Handover notes">
+        <div class="dr-rows">
+          <div class="dr-field dr-field--area dr-field--area6">
+            <textarea class="dr-field__input" placeholder="Handover notes, client name…" aria-label="Handover notes"></textarea>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="dr-actionbar">
+      <!-- THE PAYMENT TERM MOVES INTO THE BAR, 2026-08-24 (the designer, asked which face it
+           should wear: «make as HIG do in this case»). It stood at the foot of .dr-main as
+           <p class="dr-hint"> — SF Mono 11px, leading 1.4, left, after Notes — and two things
+           were wrong with it.
+           THE FACE. .dr-hint is the kit's LOADING voice, and kit.css:699 states its own
+           reason in one line: "mono, because it names structure that is still arriving."
+           This sentence is true before the upload, during it and after it — nothing about it
+           is arriving. Its class is .dr-note, the kit's "explanatory caption under a block"
+           (kit.css:745), which is what the other 40 pages spend on a standing condition —
+           result-upload-error among them, where this same term already reads *Payment stays
+           held until the delivery photo uploads.* One screen was saying one thing in two
+           faces depending on which state you were in.
+           THE PLACE. The term is a condition of the submission, and HIG puts a term that
+           takes effect on tap with the control that carries it — the way a purchase sheet
+           sets its terms immediately above the button, not four blocks down a scroll below
+           the row they qualify. That shape is already built here: account-photo puts
+           .dr-note first in .dr-actionbar and has the buttons aria-describedby it, and
+           .dr-actionbar is a flex column made to stack exactly that. Moving it also closes
+           WCAG 1.3.1 — the sentence was a loose <p> tied to nothing, and now it names the
+           control it belongs to.
+           NOTHING UNDER THE THUMB MOVES. .dr-main is top-anchored and .dr-actionbar is
+           bottom-anchored, so the Job rows, the tray, Replace photo and the primary all keep
+           their y; the bar grows upward and main's scroll viewport gives back the same 44.
+           MEASURED. --slate #5A5751 on --page #F7F5F2 = 6.62:1, unchanged by the move
+           (WCAG 1.4.3 ✓ at >= 4.5:1, +47%). Size 11 -> 12: HIG's floor is 11pt and the built
+           line sat exactly on it with no headroom, while 12 is Caption 1 and the value all
+           nine action-bar notes already carry. Leading 1.4 -> 1.5. Face SF, not the
+           monospaced family Apple ships for coding environments.
+           HIG'S OWN COLOUR IS NOT TAKEN. Its footers and disclosures are secondaryLabel,
+           which over a light ground measures about 2.9:1 and fails 1.4.3 outright. --slate is
+           the reading that satisfies both standards, and it is a pair the kit already records.
+           NO NEW STRING, NO NEW CSS — one class, one id, one aria-describedby. microcopy.md
+           still inventories one line; its zone becomes "Action bar note", as on the error
+           state. STILL OPEN AND THE DESIGNER'S: the base frame carries no such line at all,
+           so the term is stated on loading and error but not before the tap that causes it. -->
+      <p class="dr-note" id="hold-terms">Payment is held until the client confirms — auto-confirms after 2h.</p>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="wallet.html" aria-describedby="hold-terms">Uploading…</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=20b034c0"></script>
+</body>
+</html>

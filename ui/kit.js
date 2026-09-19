@@ -1,0 +1,657 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   DRON — the kit's one script.
+
+   The kit is CSS. This file holds the few things in it that cannot be built
+   out of CSS alone, and each block below had to pass the same test to get in:
+   is this appearance, or is it behaviour? Four have passed — THE PICKER
+   DRAWER, THE ONSCREEN KEYBOARD, THE CARD NUMBER'S MARKS and THE PAGER, in
+   that order, each with its own header naming the instruction that asked for
+   it. A floating surface that opens, traps focus, makes the screen behind it
+   unreachable and gives the focus back on close is behaviour, not appearance —
+   and behaviour written four times in four pages is four chances to drift. So
+   each one is written once, here, and the pages that carry the component link
+   this file.
+
+   THE RULE IT SERVES (designer, 2026-08-16):
+     ≤ 6 options → the list rises as a DRAWER from the bottom edge — this file.
+     ≥ 7 options → the tap PUSHES A NEW SCREEN — an <a href>, no script at all.
+   A row that leads to a screen is `.dr-field--action` with an `href`; a row
+   that opens a drawer is `.dr-field--action` with `aria-controls`. The markup
+   says which, and this file only ever answers to the second.
+
+   WHAT IT DOES NOT DO: it does not open the row. The row is a real <button>,
+   so Enter, Space, the tab order and the accessible name come from the element
+   (`WCAG 4.1.2`). This adds the modal contract and lands the pick.
+
+   MARKUP CONTRACT — a page carrying a drawer holds, inside `.wf-frame`:
+     <button class="dr-field dr-field--action" aria-haspopup="dialog"
+             aria-expanded="false" aria-controls="ID"> … </button>
+     <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+     <section class="dr-sheet dr-sheet--picker" id="ID" role="dialog"
+              aria-modal="true" aria-labelledby="ID-title" hidden> … </section>
+   One scrim serves every drawer on the page: only one row was tapped.
+
+   AN OPTION IS A <button> WHEN IT IS A VALUE and an <a> when it is a route.
+   The mode picker's options leave the screen, so they navigate and nothing is
+   written back into the row; every other picker sets the row's value, moves
+   `aria-current`, and closes.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var frame = document.querySelector('.wf-frame');
+  if (!frame) return;
+
+  /* TWO SHAPES MAY OPEN A DRAWER, and the second arrived 2026-08-16 (rev 129):
+     the action bar's own CTA. The designer on `order-review`: «по кліку на pay
+     має відкриватись дровер а не сторінка». `.dr-btn[aria-controls]` is added
+     and NOT the obvious `[aria-haspopup="dialog"][aria-controls]` — that would
+     also catch `listings-filters`' date opener, which is a .sr-only RADIO with
+     both attributes and its own page script, and two handlers on one control is
+     a fight. `.dr-btn` matched nothing before this pass (swept: 0). */
+  var scrim = frame.querySelector('[data-scrim]'),
+      rows  = frame.querySelectorAll('.dr-field--action[aria-controls], .dr-btn[aria-controls]');
+  if (!scrim || !rows.length) return;
+
+  /* everything the drawer must switch off while it is up: the frame's own
+     children, minus the drawer layer itself */
+  var behind = [].slice.call(frame.children).filter(function (el) {
+    return !el.classList.contains('dr-sheet') && el !== scrim;
+  });
+
+  /* `openRow` is the control whose drawer is up; `origin` is the control ON THE
+     SCREEN that started it, and the one focus goes back to. They differ only
+     when a drawer was opened from inside another one. */
+  var openRow = null, origin = null;
+
+  /* THE MODALITY — which input opened the drawer, and the script needs it for
+     exactly one thing: a focus ring (2026-09-19, rev 271). The designer on the
+     built `operator-account` on an iPhone, the Mode drawer up: «на телефоні
+     обраний стейт кругом має чорну обводку а немає мати».
+     The ring is ours — `.dr-picker__item:focus-visible` — and it is drawn
+     because `open()` moves the focus onto the current option. Chromium does not
+     match `:focus-visible` on a programmatic focus that follows a pointer
+     (measured: `focusVisible false`, `outline-style: none`), WebKit does, so the
+     same line that is invisible on the desktop paints a 2.5px charcoal ring
+     around the chosen row on her phone.
+     IT IS READ FROM THE EVENT, NOT GUESSED FROM `click.detail`: a tap-
+     synthesised click does not report its origin the same way in every engine,
+     while `pointerdown` covers mouse, pen and finger alike and a keyboard
+     activation fires no pointer event at all. Capture phase, so the flag is
+     already right by the time the row's own handler runs. */
+  var byKey = false;
+  document.addEventListener('keydown', function () { byKey = true; }, true);
+  document.addEventListener('pointerdown', function () { byKey = false; }, true);
+
+  function sheetOf(row) {
+    return document.getElementById(row.getAttribute('aria-controls'));
+  }
+
+  /* everything focusable a drawer can hold, fields included — a drawer that
+     takes typing must keep its inputs inside the trap (`WCAG 2.1.1`) */
+  var STOPS = 'input:not([type="hidden"]), textarea, select, button, a[href]';
+
+  function open(row) {
+    var sheet = sheetOf(row);
+    if (!sheet) return;
+    /* A DRAWER OPENED FROM INSIDE A DRAWER TAKES ITS PLACE (2026-09-14, rev 249):
+       `account-edit`'s Add card, inside the Payment method picker. One drawer
+       stands on the frame at a time — the picker goes down, the scrim and the
+       inert screen stay, and closing the second returns focus to the row on the
+       screen that began it, since the drawer holding the button is gone. */
+    var from = openRow && sheetOf(openRow);
+    if (from && from !== sheet && from.contains(row)) {
+      from.hidden = true;
+    } else {
+      origin = row;
+      scrim.hidden = false;
+      /* aria-modal is a promise made to assistive tech; inert is what keeps it
+         for the pointer and the tab key too */
+      behind.forEach(function (el) { el.inert = true; });
+    }
+    openRow = row;
+    row.setAttribute('aria-expanded', 'true');
+    sheet.hidden = false;
+    /* FOCUS LANDS INSIDE THE DRAWER EITHER WAY (`WCAG 2.4.3`, `HIG · Action
+       sheets`) — what it lands ON is what rev 271 made depend on the modality.
+       A control the markup marks `autofocus` is focused whatever opened it:
+       that drawer exists to be typed into and the system raises the keyboard on
+       a tap too. Otherwise a KEY lands the focus on the current option, with its
+       ring — the behaviour `ui/inventory.md` has described since rev 111 — and a
+       FINGER lands it on the drawer itself, which wears none (`.dr-sheet:focus{
+       outline:none }`). The option order is unchanged: the current value first,
+       then the first option, then the first control — the pay drawer's options
+       are buttons, not .dr-picker__item rows. */
+    var current = sheet.querySelector('[autofocus]')
+               || (byKey && (sheet.querySelector('.dr-picker__item[aria-current="true"]')
+                          || sheet.querySelector('.dr-picker__item')
+                          || sheet.querySelector('button, a[href]')));
+    /* written by the script and never by a page: 25 files carry a drawer, and a
+       `tabindex` pasted 25 times is 25 chances to drift */
+    sheet.tabIndex = -1;
+    (current || sheet).focus();
+  }
+
+  function close() {
+    if (!openRow) return;
+    var row = openRow, back = origin || row, sheet = sheetOf(row);
+    openRow = null; origin = null;
+    behind.forEach(function (el) { el.inert = false; });
+    if (sheet) sheet.hidden = true;
+    scrim.hidden = true;
+    row.setAttribute('aria-expanded', 'false');
+    back.setAttribute('aria-expanded', 'false');
+    back.focus();
+  }
+
+  rows.forEach(function (row) {
+    var sheet = sheetOf(row);
+    if (!sheet) return;
+
+    row.addEventListener('click', function () { open(row); });
+
+    /* every [data-close], not the first: a drawer that takes entry closes on
+       its confirm as well as on Cancel */
+    var items = sheet.querySelectorAll('.dr-picker__item'),
+        value = row.querySelector('.dr-field__value'),
+        exits = sheet.querySelectorAll('[data-close]');
+
+    items.forEach(function (item) {
+      /* a route leaves the screen — nothing to write back, nothing to close */
+      if (item.tagName === 'A') return;
+      item.addEventListener('click', function () {
+        items.forEach(function (other) { other.removeAttribute('aria-current'); });
+        item.setAttribute('aria-current', 'true');
+        /* .dr-picker__label, never the item's own textContent: an option may
+           carry artwork, and a wordmark drawn with SVG <text> lands in
+           textContent — "VISAVisa •••• 4921" is what the naive read gives. */
+        if (value) value.textContent = (item.querySelector('.dr-picker__label') || item).textContent.trim();
+        close();
+      });
+    });
+
+    exits.forEach(function (exit) { exit.addEventListener('click', close); });
+  });
+
+  scrim.addEventListener('click', close);
+
+  document.addEventListener('keydown', function (e) {
+    if (!openRow) return;
+    if (e.key === 'Escape') {
+      /* with the keyboard up, Escape puts the keyboard away and leaves the
+         drawer — the keyboard's own handler below does that */
+      var keys = frame.querySelector('.dr-kb');
+      if (keys && !keys.hidden) return;
+      close(); return;
+    }
+    if (e.key !== 'Tab') return;
+    /* the trap: while the drawer is up it IS the tab order */
+    var sheet = sheetOf(openRow),
+        stops = sheet.querySelectorAll(STOPS),
+        first = stops[0], last = stops[stops.length - 1];
+    if (!stops.length) return;
+    /* THE DRAWER ITSELF MAY BE HOLDING THE FOCUS (rev 271) — a finger opened it
+       — and the container is not one of the stops, so the wrap is said for it
+       too: Shift+Tab off it would otherwise walk out of the document, and with
+       everything behind `inert` there would be nothing to walk back into. */
+    if (document.activeElement === sheet) { e.preventDefault(); (e.shiftKey ? last : first).focus(); return; }
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+}());
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE ONSCREEN KEYBOARD — the kit's second behaviour, and the first that is
+   not the product's own. The designer, 2026-08-16, on `rate`'s review field:
+   «коли юзер вводить текст показуй дровер з клавіатурою відповідно до HIG».
+
+   IT IS DRAWN BY THE SCRIPT AND NOT BY THE PAGE, deliberately. In a real
+   product the keyboard is not in the app's DOM at all — the system puts it
+   over the app. A page that had to carry 30-odd keys in its markup would be
+   claiming the app owns them, and 40 pages of that is 40 chances to drift.
+   So no page markup changes: any field, on any screen, gets the same picture.
+
+   WHAT IS REAL AND WHAT IS A PICTURE. The plane is `aria-hidden` and has no tab
+   stop, which is correct, because the system keyboard is not in the app's
+   accessibility tree either. The accessory bar's `Done` is a real <button>:
+   `HIG · Onscreen keyboards` notes a MULTILINE field's Return inserts a newline
+   and cannot dismiss, so the app owes the user a dismissal it can see.
+   THE NUMBER PAD TAKES A PRESS (2026-09-14, rev 255), the designer on
+   `account-edit`'s Add card: «не відпрацьовує коли вводю має залишитись лише
+   одне лого». A click on a drawn `5` wrote nothing, so the card mark never had a
+   number to read. The pad's digits and delete now write at the caret and fire
+   `input`; the letter plane, the blank cell and QuickType stay pictures — her
+   pick of three. Keys stay `aria-hidden` with no tab stop, so the computer
+   keyboard is still the keyboard path (`WCAG 2.1.1`); the pad key is 118.5 × 45,
+   clear of `2.5.8`'s 24 × 24.
+
+   WHAT HAPPENS TO THE BOTTOM BAR — the designer's call, put to her with the
+   measurement: with the keyboard up, `Submit review` and `Book again` sit
+   entirely behind drawn author content while still holding their place in the
+   tab order, and `WCAG 2.4.11 Focus Not Obscured (Minimum)` fails the moment
+   focus reaches one. `[hidden]` takes them out of the tree; `Done` brings them
+   back. A field that lives INSIDE the bar is the exception — a chat composer
+   is the field being typed into, so its bar rides above the keys instead.
+
+   THE TAB BAR LEAVES ON THE SAME RULE, ADDED 2026-08-16 (rev 151) WITH THE
+   SWEEP. It is not a second decision: the search field on the six `listings`
+   screens sits over a `.dr-tabbar`, and four tab links behind 335pt of drawn
+   keyboard fail `WCAG 2.4.11` exactly the way two buttons did. On iOS the
+   system keyboard covers the tab bar and the app does not redraw it, so the
+   picture is unchanged either way — what `[hidden]` buys is the tab order,
+   and `Done` gives the bar back. `.dr-tabbar` declares no `display` of its
+   own, so the UA's `[hidden]` rule lands without a kit.css counterpart —
+   `.dr-actionbar` needed one only because it declares `display:flex`.
+
+   Escape dismisses as well, which costs nothing and is what a desktop reader
+   of this prototype will try first.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var frame = document.querySelector('.wf-frame');
+  if (!frame) return;
+
+  var ROWS = [
+    ['q','w','e','r','t','y','u','i','o','p'],
+    ['a','s','d','f','g','h','j','k','l'],
+    ['⇧','z','x','c','v','b','n','m','⌫'],
+    ['123','☺','space','return']
+  ];
+
+  /* THE NUMBER PAD, 2026-08-16 (rev 152). `HIG · Onscreen keyboards`: the keyboard matches
+     the field, and the field already says which — `payment`'s card number, expiry and CVC
+     carry `inputmode="numeric"`, so drawing them QWERTY stated the wrong device. iOS's own
+     pad: three columns, and a bottom row of an empty cell, `0` and a delete with no key
+     face. Same plane, same 291 — a keyboard's frame is what an app reads and the frame does
+     not change with the layout inside it, so nothing measured downstream moves. */
+  var NUM = [['1','2','3'], ['4','5','6'], ['7','8','9'], ['', '0', '⌫']];
+
+  var kb = null, bar = null, tabs = null, main = null, field = null, barRides = false, layout = null, lift = null;
+
+  function planeFor(el) {
+    var im = (el.getAttribute('inputmode') || '').toLowerCase();
+    if (im === 'numeric' || im === 'decimal' || im === 'tel') return 'digits';
+    if (el.tagName === 'INPUT' && (el.type === 'number' || el.type === 'tel')) return 'digits';
+    return 'letters';
+  }
+
+  /* the rows are redrawn only when the field asks for a layout the plane is not showing */
+  function draw(kind) {
+    if (layout === kind) return;
+    layout = kind;
+    var rows = kb.querySelector('.dr-kb__rows');
+    rows.textContent = '';
+    (kind === 'digits' ? NUM : ROWS).forEach(function (keys, i) {
+      var row = document.createElement('div');
+      row.className = 'dr-kb__row' + (kind === 'letters' && i === 1 ? ' dr-kb__row--mid' : '');
+      keys.forEach(function (k) {
+        var key = document.createElement('span');
+        key.className = 'dr-kb__key'
+          + (k === 'space' ? ' dr-kb__key--space' : '')
+          + (k === 'return' ? ' dr-kb__key--return' : '')
+          + (kind === 'letters' && (k === '123' || k === '☺' || k === '⇧' || k === '⌫') ? ' dr-kb__key--mod' : '')
+          + (kind === 'digits' && (k === '' || k === '⌫') ? ' dr-kb__key--blank' : '')
+          + (kind === 'digits' && k !== '' ? ' dr-kb__key--press' : '');
+        if (kind === 'digits' && k !== '') key.setAttribute('data-key', k);
+        key.textContent = k === 'space' ? '' : k;
+        row.appendChild(key);
+      });
+      rows.appendChild(row);
+    });
+  }
+
+  function build() {
+    var el = document.createElement('div');
+    el.className = 'dr-kb';
+    el.hidden = true;
+
+    var acc = document.createElement('div');
+    acc.className = 'dr-kb__bar';
+    var done = document.createElement('button');
+    done.type = 'button';
+    done.className = 'dr-kb__done';
+    done.textContent = 'Done';
+    acc.appendChild(done);
+
+    var plane = document.createElement('div');
+    plane.className = 'dr-kb__plane';
+    plane.setAttribute('aria-hidden', 'true');
+
+    var quick = document.createElement('div');
+    quick.className = 'dr-kb__quick';
+    quick.appendChild(document.createElement('span'));
+    quick.appendChild(document.createElement('span'));
+    quick.appendChild(document.createElement('span'));
+    plane.appendChild(quick);
+
+    /* the rows are filled by draw(), which the focused field chooses */
+    var rows = document.createElement('div');
+    rows.className = 'dr-kb__rows';
+    plane.appendChild(rows);
+
+    el.appendChild(acc);
+    el.appendChild(plane);
+    frame.appendChild(el);
+
+    done.addEventListener('click', function () { dismiss(true); });
+
+    /* a pad key never takes focus — the press rule below keeps the field's, or
+       focusout would put the keys away under the press */
+    plane.addEventListener('click', function (e) {
+      var key = e.target.closest('.dr-kb__key--press');
+      if (key && field) press(key.getAttribute('data-key'));
+    });
+    return el;
+  }
+
+  /* writes one pad key into the focused field at the caret, the way the system
+     key would, and says so with `input` — rev 252's card mark listens for it */
+  function press(k) {
+    var v = field.value, del = k === '⌫',
+        start = field.selectionStart, end = field.selectionEnd;
+    if (start === null) {                  /* type="number" has no caret to write at */
+      field.value = del ? v.slice(0, -1) : v + k;
+    } else if (del) {
+      if (start === end) { if (!start) return; start -= 1; }
+      field.setRangeText('', start, end, 'end');
+    } else {
+      if (field.maxLength > -1 && v.length - (end - start) >= field.maxLength) return;
+      field.setRangeText(k, start, end, 'end');
+    }
+    field.dispatchEvent(new InputEvent('input', {
+      bubbles: true, inputType: del ? 'deleteContentBackward' : 'insertText', data: del ? null : k
+    }));
+  }
+
+  function isField(el) {
+    return !!el && (el.tagName === 'TEXTAREA'
+      || (el.tagName === 'INPUT' && /^(text|email|tel|search|url|number|password)$/.test(el.type)));
+  }
+
+  function show(el) {
+    if (!kb) kb = build();
+    draw(planeFor(el));
+    field = el;
+    /* A FIELD INSIDE A DRAWER LIFTS THE DRAWER (2026-09-14, rev 249) — the Add
+       card drawer on `account-edit` is the first drawer that takes typing. The
+       drawer and the keyboard both stand on the frame's bottom edge, so left
+       where it is the keyboard would sit on the very fields being typed into
+       (`WCAG 2.4.11`). The drawer rides on top of the whole keyboard instead,
+       the accessory bar included — the `chat` composer's rule of rev 151. The
+       screen behind is under the scrim and inert, so nothing on it moves. */
+    var sheet = el.closest && el.closest('.dr-sheet');
+    if (lift && lift !== sheet) { lift.style.bottom = ''; lift = null; }
+    if (sheet) {
+      lift = sheet;
+      lift.style.bottom = 'calc(var(--h-kb) + var(--h-control))';
+      kb.hidden = false;
+      return;
+    }
+    bar = frame.querySelector('.dr-actionbar');
+    tabs = frame.querySelector('.dr-tabbar');
+    main = frame.querySelector('.dr-main');
+    barRides = !!(bar && bar.contains(el));
+    if (bar && !barRides) bar.hidden = true;
+    /* A RIDING BAR CLEARS THE WHOLE KEYBOARD, NOT THE PLANE — corrected 2026-08-16 (rev 151)
+       when the sweep first put a field inside a bar. `--h-kb` is the 291 of keys; the drawn
+       keyboard is 335, the accessory bar's 44 on top of it, so a 291 ride left `chat`'s
+       composer 73 behind the keys and `WCAG 2.4.11` failed on the one field the exception
+       exists to protect — measured 0 of 18 visible before, 18 of 18 after. */
+    if (bar && barRides) bar.style.marginBottom = 'calc(var(--h-kb) + var(--h-control))';
+    /* the tab bar never rides: no tab root puts a field inside it */
+    if (tabs) tabs.hidden = true;
+    kb.hidden = false;
+    /* THE CONTENT AREA TAKES THE KEYBOARD'S FRAME, which is the whole of what
+       `HIG · Onscreen keyboards` asks an app to do: it does not draw over the
+       content, the content gets smaller. Without this the field is simply
+       overlaid — measured 180.2 of it behind the keys on `rate`.
+       WHAT IT BUYS, AND WHAT IT DOES NOT: the scrollport becomes 100.8 → 476.2
+       = 375.4 against a 382 field, so the field misses standing whole by 6.6.
+       The zone above it scrolls off and the last 6.6 scrolls inside the port;
+       nothing is hidden and nothing is unreachable. Reported rather than
+       fixed by shrinking the field, which is the designer's call to make.
+       AND IT ONLY TAKES IT WHEN NOTHING ELSE HAS (rev 151): a riding bar already spends the
+       keyboard's height inside the same column, so adding it to `main` as well spent it twice
+       — `chat`'s conversation measured a 32px port against 629. */
+    if (main && !barRides) main.style.marginBottom = 'calc(var(--h-kb) + var(--h-control))';
+    if (el.scrollIntoView) el.scrollIntoView({ block: 'nearest' });
+  }
+
+  function dismiss(blur) {
+    if (!kb || kb.hidden) return;
+    kb.hidden = true;
+    if (lift) { lift.style.bottom = ''; lift = null; }
+    if (bar) { bar.hidden = false; bar.style.marginBottom = ''; }
+    if (tabs) { tabs.hidden = false; tabs = null; }
+    if (main) { main.style.marginBottom = ''; main = null; }
+    if (blur && field) field.blur();
+    field = null; bar = null; barRides = false;
+  }
+
+  /* MOBILE ONLY, AND THE REASON IS THE NUMBER — her sweep is «для мобільної версії», and the
+     kit could not honour a wider one even if asked: `--h-kb` 291 is quoted from an iPhone's
+     375 × 812 portrait frame. The shell's tablet preset is an iPad at 768 × 1024, whose
+     keyboard is a different measurement, and a desktop at 1280 × 800 has a hardware one. So
+     the keys rise only while the viewport switcher says `mobile` — and its default, with no
+     attribute set at all, is mobile. Changing the switcher with the keys up puts them away. */
+  function onMobile() {
+    var k = document.documentElement.getAttribute('data-wf-viewport');
+    return !k || k === 'mobile';
+  }
+
+  new MutationObserver(function () {
+    if (!onMobile()) dismiss(false);
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-wf-viewport'] });
+
+  /* A PRESS THAT CANNOT TAKE FOCUS DOES NOT TAKE IT AWAY (2026-09-15, rev 257).
+     The designer on `account-edit`'s Add card: «зроби щоб клавіатура з цифрами
+     не пропадала щоразу … а не пригає туди сюди коли я вводю то одне то інше
+     поле». Moving input to input never dropped the keys; a press on anything
+     that is not a control did — the row's label, the 25.6 of a 44 row above and
+     below an input that measures 18.4 tall, the gaps between pad keys, the
+     blank cell, QuickType, the drawer's title. Focus fell to <body>, the keys
+     went, the drawer fell 335 under the pointer and the release landed on
+     something else, so the next field was not taken either.
+     The same fall took the drawer's own buttons: a press on Cancel moved focus
+     to it, the keys went, and the release missed Cancel by 335.
+     TWO RULES, and a field is outside both — a press on an input still puts
+     the caret where it lands:
+     (1) THE ROW IS ITS FIELD'S TARGET. A press anywhere on a `.dr-field` that
+         is not a control and holds one text field gives that field the focus,
+         caret at the end, the way a tap on an iOS form row does. On every
+         screen, because the row is one component: the field's 18.4 fails
+         `HIG · 44pt` by 25.6, the row's 44 clears it.
+     (2) WITH THE KEYS UP, A PRESS INSIDE THE KEYBOARD OR THE FIELD'S OWN DRAWER
+         KEEPS THE FIELD'S FOCUS — its buttons included, so Cancel, Add card
+         and Done land where they were pressed; `listings`' address drawer
+         made the same call for its rows and bar (rev 256). The keys go when
+         asked — Done, Escape, or a button that closes the drawer — not on a
+         stray tap. Tab still reaches every button (`WCAG 2.1.1`). On a
+         screen a press on blank content still dismisses, as before; only the
+         drawer, which the keys lift, changes. */
+  var TAKES_FOCUS = 'button, a[href], [tabindex], [contenteditable], summary';
+
+  frame.addEventListener('mousedown', function (e) {
+    if (e.button !== 0) return;
+    var t = e.target;
+    if (t.closest('input, textarea, select')) return;
+    var row = !t.closest(TAKES_FOCUS) && t.closest('.dr-field'),
+        own = row ? [].filter.call(row.querySelectorAll('input, textarea'), function (el) {
+          return isField(el) && !el.disabled;
+        }) : [];
+    if (own.length === 1) {
+      e.preventDefault();
+      var f = own[0];
+      if (document.activeElement !== f) {
+        f.focus();
+        try { f.setSelectionRange(f.value.length, f.value.length); } catch (err) { /* type="number" */ }
+      }
+      return;
+    }
+    if (!kb || kb.hidden || !field) return;
+    var sheet = field.closest('.dr-sheet');
+    if (kb.contains(t) || (sheet && sheet.contains(t))) e.preventDefault();
+  });
+
+  frame.addEventListener('focusin', function (e) {
+    if (isField(e.target) && onMobile()) show(e.target);
+    else if (kb && !kb.hidden && !kb.contains(e.target)) dismiss(false);
+  });
+
+  frame.addEventListener('focusout', function (e) {
+    /* leaving for anywhere that is neither another field nor the accessory bar */
+    setTimeout(function () {
+      var a = document.activeElement;
+      if (!isField(a) && (!kb || !kb.contains(a))) dismiss(false);
+    }, 0);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && kb && !kb.hidden) dismiss(true);
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE CARD NUMBER'S MARKS — the kit's third behaviour, 2026-09-14 (rev 252).
+   The designer, on `account-edit`'s Add card drawer, shown the number typed
+   beside both marks: «А лишається один логотип що відповідає картці».
+
+   WHY IT IS A BEHAVIOUR AND NOT A PICTURE: beside Visa and Mastercard the
+   number had 139px and 16 digits need 157, so the first two scrolled out of
+   the field. One mark gives it 166 (Visa) or 176 (Mastercard).
+
+   THE MARKUP SAYS WHICH, THE SCRIPT ONLY READS IT: the field is the input
+   carrying `autocomplete="cc-number"` — the `WCAG 1.3.5` token it already has —
+   and each mark in the same `.dr-field__group` names its brand in
+   `data-brand`. No product copy lives here.
+
+   THE RULE: 4 is Visa; 51–55 and 2221–2720 are Mastercard (22–27 decides on two
+   digits, the four-digit range once there are four). Empty, or a prefix that is
+   neither, keeps both marks — nothing has been identified, so nothing goes.
+   Swapping a mark as the person types is content, not context (`WCAG 3.2.2`),
+   and the field's description, *Visa or Mastercard*, stays: it names the cards
+   the product takes, which typing does not change.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  function brandOf(value) {
+    var d = value.replace(/\D/g, '');
+    if (/^4/.test(d)) return 'visa';
+    if (/^5[1-5]/.test(d)) return 'mastercard';
+    if (d.length >= 4) {
+      var n = +d.slice(0, 4);
+      if (n >= 2221 && n <= 2720) return 'mastercard';
+    } else if (/^2[2-7]/.test(d)) return 'mastercard';
+    return null;
+  }
+
+  [].forEach.call(document.querySelectorAll('input[autocomplete="cc-number"]'), function (input) {
+    var group = input.closest('.dr-field__group'),
+        marks = group ? group.querySelectorAll('.dr-field__marks [data-brand]') : [];
+    if (!marks.length) return;
+    function update() {
+      var brand = brandOf(input.value);
+      [].forEach.call(marks, function (mark) {
+        if (brand && mark.getAttribute('data-brand') !== brand) mark.setAttribute('hidden', '');
+        else mark.removeAttribute('hidden');
+      });
+    }
+    input.addEventListener('input', update);
+    update();
+  });
+}());
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE PAGER FOLLOWS THE SWIPE — the kit's fourth behaviour, 2026-09-19
+   (rev 270). The designer, on the built `onboarding-operator`: «коли я свайпаю
+   слайдер не показує на якому я скріні 1, 2 чи 3 зроби щоб коли я свайпаю
+   сторінку слайдер відповідно змінював колір кружочка залежно від того на якій
+   я сторінці».
+
+   IT CLOSES A COST NAMED IN REV 160 AND CARRIED SINCE, WITHOUT MOVING THE
+   ELEMENT SHE PLACED. `.on` was written into the markup on dot 1 and stayed
+   there on all three carousel screens, whichever slide was showing. rev 159
+   had fixed it as a side effect of giving every slide its own pager, and she
+   reverted that the same day — «слайдер має бути де і був». So the pager stays
+   one element under the slider and only the class moves.
+
+   WHY A SCRIPT, ON THE TEST THIS FILE ALREADY APPLIES. The three behaviours
+   above each earned their place by being behaviour and not appearance, and
+   reading a scroll offset is behaviour. CSS can express it — a `view-timeline`
+   per slide with `timeline-scope` on `.dr-main` — but scroll-driven animations
+   do not run in every engine, and they fail SILENTLY: the dot would simply
+   never move on the platform whose guidelines the client side is written to
+   (`HIG`, iOS Safari), with nothing on the page to say so. Twenty lines that
+   run everywhere beat a declaration that is right only where it is supported.
+
+   NOTHING IS ADDED TO THE MARKUP AND NOTHING NEW IS ANNOUNCED. `.dr-pager`
+   stays `aria-hidden`; each slide already carries "Slide n of 3", which is the
+   accessible statement of position and the reason `WCAG 1.4.11` was never
+   engaged by the dot row. This moves a decoration into agreement with what was
+   already announced — it does not make the decoration the carrier. No
+   `aria-live` either: a swipe is the user's own action and the slide it lands
+   on is read on arrival; announcing "2 of 3" on top of it would be a second
+   voice for one event.
+
+   THE NEAREST CENTRE WINS, IN VIEWPORT COORDINATES. Not
+   `Math.round(scrollLeft / clientWidth)`: `.dr-slider` carries
+   `padding: 8px 16px` and `.dr-slider--bleed` resets it to 0, so a rounded
+   quotient would be true of whichever modifier it was written against and
+   quietly wrong on the other. Comparing rects costs the same and is true of
+   both — and of any future slide that is not exactly one screen wide.
+
+   IT IS WATCHED WITH A ResizeObserver AND NOT ONLY window.resize, because the
+   shell's viewport switcher (mobile / tablet / desktop) changes the frame's
+   width without the window ever changing size.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var sliders = document.querySelectorAll('.dr-slider');
+  if (!sliders.length) return;
+
+  [].forEach.call(sliders, function (slider) {
+    /* the markup contract: the pager is the slider's next sibling. Three
+       screens carry it — welcome, onboarding-client, onboarding-operator. */
+    var pager = slider.nextElementSibling;
+    if (!pager || !pager.classList.contains('dr-pager')) return;
+
+    var slides = slider.querySelectorAll('.dr-slide'),
+        dots   = pager.children;
+    if (!slides.length || slides.length !== dots.length) return;
+
+    function paint() {
+      var box  = slider.getBoundingClientRect(),
+          mid  = box.left + box.width / 2,
+          best = 0,
+          gap  = Infinity;
+
+      [].forEach.call(slides, function (slide, i) {
+        var r = slide.getBoundingClientRect(),
+            d = Math.abs(r.left + r.width / 2 - mid);
+        if (d < gap) { gap = d; best = i; }
+      });
+
+      [].forEach.call(dots, function (dot, i) {
+        dot.classList.toggle('on', i === best);
+      });
+    }
+
+    /* one paint per frame: a swipe fires scroll far faster than the screen
+       redraws, and the dot has nothing to say between frames */
+    var queued = false;
+    function schedule() {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(function () { queued = false; paint(); });
+    }
+
+    slider.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    if (window.ResizeObserver) new ResizeObserver(schedule).observe(slider);
+
+    paint();
+  });
+}());

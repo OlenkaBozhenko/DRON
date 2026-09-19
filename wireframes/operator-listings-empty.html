@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Operator home + status toggle · empty</title>
+<!-- SCREEN: "Operator home + status toggle" — STATE: empty (idle / no offers). Grounded in flows.md MJ-2: "Idle: no offers while Offline / Busy" (Status = Available? → no). Structure copied from operator-listings.html; status set to Offline, job list replaced by an empty block. EXIT: Go Available. -->
+<link rel="stylesheet" href="_wireframe.css?v=20b034c0">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-listings.html">success</a>
+      <a href="operator-listings-empty.html" class="cur" aria-current="page">empty</a>
+    </nav>
+    <h1>Operator home + status toggle</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>empty (idle / no offers)</b> · file: operator-listings-empty.html</p>
+    <div class="flow"><b>Empty:</b> Offline, so no offers are dispatched (flows.md MJ-2: "Idle — no offers while Offline / Busy").<br><b>Exit (not a dead-end):</b> Go Available → start receiving pre-qualified jobs.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p><b>Status toggle</b> ▸ set to Offline (gates dispatch)</p><p><b>Offers</b> → empty notice + recover</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+
+    <header class="topbar dr-topbar">
+      <span class="dr-avatar-sm"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
+      <span class="dr-op__name">Ivan K.</span>
+      <span class="dr-topbar__spacer"></span>
+      <!-- THE AVAILABILITY BADGE — the base page's, at this state's value. The
+           base file and its -empty are one screen in two states, so the header
+           carries the same component on both; only the value differs, and here
+           it is the Offline the segment below is checked on. Its dot is HOLLOW
+           where Busy's is filled, so Offline is not grey-versus-grey. -->
+      <span class="dr-chip dr-chip--sm dr-avail-badge" data-avail-badge data-state="offline"><span class="dr-avail-badge__dot" aria-hidden="true"></span><span data-avail-word>Offline</span></span>
+    </header>
+
+    <main class="dr-main">
+      <p class="zlabel dr-label">Status <span class="dr-label__act">▸ set availability — gates dispatch (O-02)</span></p>
+      <!-- IT IS A SELECT NOW, AND IT WAS A SEGMENTED CONTROL UNTIL 2026-09-10
+           (the designer, against the built screen: «it shouldnt look like tab
+           make it like in slack where I select a status make like select»).
+
+           THE COMPONENT IS THE KIT'S OWN PICKER ROW, NOT A NEW SHAPE. `.dr-field
+           --action` + `.dr-sheet--picker` is what `order-setup` (Parcel size),
+           `operator-account` (Mode), `listings-filters` and five more rows already
+           are, so a ninth select on the ninth screen looks and answers like the
+           other eight (`WCAG 3.2.4 Consistent Identification`). Nothing was added
+           to `ui/kit.css` for this and no token was cut.
+
+           IT ALSO CLOSES AN OPEN WCAG FINDING RATHER THAN MOVING IT. The segment
+           carried its state as a `--page` plate on the `--media` track — 1.20:1,
+           against `WCAG 1.4.11 Non-text Contrast`'s 3:1 for a state indicator,
+           reported to her at rev 164 and still open. A select has no plate: the
+           state is the VALUE, `--ink` on `--page` at 15.99:1, so the criterion is
+           satisfied by text instead of waived. `HIG · Pop-up buttons` is the rule
+           the new shape answers to — a small set of mutually exclusive options
+           where the current choice matters more than seeing all of them at once,
+           which is what availability is.
+
+           THE TARGET IS UNCHANGED AT 44. `.dr-field` is `min-height: var(--h-control)`
+           = 44px, the same figure the three segments spent (`HIG · 44pt target`), and
+           the three options in the drawer are `.dr-picker__item` at 44 each.
+
+           THE COPY IS THE SEGMENT'S, WORD FOR WORD — Available / Busy / Offline —
+           so `microcopy.md` gains no string and loses none. -->
+      <section class="dr-stack" aria-label="Availability status">
+        <p class="dr-avail">
+          <span class="dr-avail__dot" aria-hidden="true"></span>
+          <b class="dr-avail__state">You are Offline</b><span class="dr-avail__note">· no jobs while offline</span>
+        </p>
+        <div class="dr-rows">
+          <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-avail">
+            <span class="dr-field__label">Availability</span>
+            <span class="dr-field__value">Offline</span>
+            <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+          </button>
+        </div>
+      </section>
+
+      <!-- THE ROW CAME DOWN WITH THE BASE PAGE'S (2026-09-03). This file and
+           `operator-listings` are one screen in two states, so the chrome and the
+           zone order are the same on both by `_conventions.md`'s rule — the row
+           could not stay in the chrome here while it sits in the page there. The
+           reason is the base page's and is written out there in full; what is
+           local is that this state's counts are `Incoming · 0` / `Active · 0`,
+           so the row filters two empty groups and the state mark below carries
+           the exit. No `data-groups` here: the base page's script is what moves
+           `aria-current`, and this page has none. -->
+      <!-- AND ON 2026-09-10 THIS ROW GOES BACK TO THE CHIP, ON A PICTURE — the
+           designer, pasting a shot of the row in its pre-rev-232 shape: «зроби UI
+           як тут, вибраний на зеленому бекграунді, тоненькі лінії зверху знизу».
+           So `.dr-groups--tabs` comes off HERE and nowhere else: the underline tab
+           stays the shape on `listings`, which is not what the picture showed and
+           was not asked about. The two home rows are deliberately two shapes now,
+           which is her call and is recorded rather than smoothed over.
+           WHAT THE PICTURE ASKS FOR, IN THE KIT'S OWN TERMS: the current group is
+           `--green-wash` behind `--ink` on a `--r-pill` chip (the base
+           `.dr-grouptab`, unchanged since 2026-08-02), and the row is closed by a
+           `--hair` rule above AND below — the second line is the new part, and it
+           is declared on `.dr-main > .dr-groups` because a row standing inside the
+           page has content on both sides of it, where the chrome row only ever had
+           content below.
+           THE ONE THING THAT GETS WORSE IS SAID OUT LOUD AND IS HERS. The chip
+           marks state with a tint that is 1.085:1 against the page — under
+           `WCAG 1.4.11`'s 3:1 — where the underline it replaces was `--ink` at
+           15.99:1. The label still moves --slate 6.62:1 → --ink 14.75:1 on the
+           wash, but text-against-text is not a pair WCAG measures, so this row
+           goes back to leaning on it. That is the known condition of the chip
+           shape, recorded in DESIGN.md since rev 232 and on the four `time-slot`
+           rows that never left it — not a new defect, and not a silent one. -->
+      <nav class="dr-groups" aria-label="Job groups">
+        <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming <span class="dr-grouptab__count">0</span></a>
+        <a class="dr-grouptab" href="#active">Active <span class="dr-grouptab__count">0</span></a>
+      </nav>
+
+      <p class="zlabel dr-label">Offers <span class="dr-label__act">▸ empty — idle while offline (exit)</span></p>
+      <section aria-label="No offers">
+        <!-- The OFFLINE text placeholder becomes the state mark. Base .dr-mark, the
+             NEUTRAL rung (--media ground, --slate glyph, 5.51:1): offline is a state
+             the operator chose, not a warning and not a failure, so neither the warn
+             nor the danger wash applies. The glyph is a slashed circle — two strokes
+             on the 24-grid, the set's own drawing rules. -->
+        <div class="dr-msg" role="status">
+          <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/></svg></span>
+          <span class="dr-msg__title">No jobs while you're offline</span>
+          <p class="dr-msg__body">Go Available to start receiving pre-qualified jobs near you.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="operator-listings.html">Go Available</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="operator-listings.html" aria-current="page"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="7.4" width="17.2" height="12.2" rx="2.2"/><path d="M9 7.4V6.1A1.7 1.7 0 0 1 10.7 4.4h2.6A1.7 1.7 0 0 1 15 6.1v1.3"/><path d="M3.4 12.6h17.2"/></svg>Jobs</a>
+        <a class="dr-tab" href="wallet.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="6.8" width="18.4" height="10.4" rx="2.2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.6v4.8M18 9.6v4.8"/></svg>Earnings</a>
+        <a class="dr-tab" href="ratings.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.79l2.84 5.75 6.36.93-4.6 4.48 1.09 6.33L12 17.29l-5.69 2.99 1.09-6.33-4.6-4.48 6.36-.93z"/></svg>Ratings</a>
+        <a class="dr-tab" href="operator-account.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+
+    <!-- THE AVAILABILITY DRAWER. Three options, under the six, so the list rises
+         from the bottom edge rather than pushing a screen — `ui/kit.js`'s standing
+         rule (≤ 6 → drawer, ≥ 7 → a screen). One scrim serves the page; only one
+         row can be tapped. `data-state` on each option is the badge's carrier and
+         nothing else — every colour and shape behind it stays in `ui/kit.css`. -->
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <section class="dr-sheet dr-sheet--picker" id="sheet-avail" role="dialog" aria-modal="true" aria-labelledby="sheet-avail-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-avail-title">Availability</p>
+      <div class="dr-picker__list">
+        <button class="dr-picker__item" type="button" data-state="available"><span class="dr-picker__label">Available</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+        <button class="dr-picker__item" type="button" data-state="busy"><span class="dr-picker__label">Busy</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+        <button class="dr-picker__item" type="button" data-state="offline" aria-current="true"><span class="dr-picker__label">Offline</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+      </div>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+    </section>
+
+  </div>
+
+  <!-- THE BADGE FOLLOWS THE SELECT — the base page's script verbatim, rewired
+       with it on 2026-09-10 when the segment became a picker row. The word is
+       read off the tapped option's own label, so the strings live in the markup
+       once and this file carries no product copy; only `data-state` is set from
+       here, every fill and shape behind it staying in `ui/kit.css`. It reads the
+       tapped option rather than `aria-current` because this listener is
+       registered before `ui/kit.js` and therefore fires before the mark moves.
+       The badge is not a live region: the row names its own value and the
+       current option carries `aria-current` (`WCAG 1.3.1` OK, `4.1.2` OK), and
+       announcing the same fact twice is what that would buy. -->
+  <script>
+  (function () {
+    'use strict';
+
+    var badge = document.querySelector('[data-avail-badge]');
+    var word  = document.querySelector('[data-avail-word]');
+    if (!badge || !word) return;
+
+    var items = document.querySelectorAll('#sheet-avail .dr-picker__item');
+    if (!items.length) return;
+
+    function sync(item) {
+      badge.setAttribute('data-state', item.getAttribute('data-state'));
+      word.textContent = item.querySelector('.dr-picker__label').textContent.trim();
+    }
+
+    items.forEach(function (item) {
+      item.addEventListener('click', function () { sync(item); });
+    });
+
+    var current = document.querySelector('#sheet-avail .dr-picker__item[aria-current="true"]');
+    if (current) sync(current);
+  }());
+  </script>
+
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js?v=20b034c0"></script>
+</body>
+</html>

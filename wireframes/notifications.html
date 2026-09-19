@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe &#183; Notifications (client) &#183; base</title>
+<!--
+  SCREEN (_screens.md C10): "Notifications - the alert log", CLIENT.
+  PERSONA: Client C-1. JOB: RJ-C2 - close the void between payment and arrival (CE-4 push).
+  STATE: base. -empty and -loading are separate pages; there is no error page, matching
+  order-history, the client's other fetched list (traced in flows.md, recorded as a decision).
+  ENTRANCE: the bell in listings.html's top bar. EXIT: the back chevron, or any row.
+
+  WHY IT EXISTS (2026-08-31, the designer, against the built listings top bar):
+  "Add on the right side of the header on the home page, in front of the DRON button
+  icon, notification for both client and operator modes. And add wireframes by
+  clicking this button with notification history."
+
+  IT CLOSES THE SECOND HALF OF A HOLE, NOT A NEW IDEA. On 2026-08-24 account-edit
+  gained a Notifications card, and sitemap.md wrote down what that pass did NOT do:
+  the product has always SENT notifications - CE-4's push ("Operator is 2 min away"),
+  OE-6's dispatch alert - and until that card nobody could SET them. Nobody could see
+  them either. An alert lands on a lock screen and is gone; this is where it is kept.
+
+  A SCREEN, NOT A SUB-VIEW, AND THE TEST IS THE ENTRANCE. account-photo and
+  order-details are sub-views because each is reached from inside one parent and is
+  that parent's own record seen closer. This is reached from a CONTROL IN THE HOME
+  BAR, holds records from every part of the product, and exits into eight different
+  screens. sitemap.md 6.1 / 6.2 carry it as a screen for that reason - and 8's
+  traceability matrix gains NO column, because the log originates no record: every
+  row is a doorway into a screen that already holds one.
+
+  NO NEW COMPONENT ON THIS PAGE. Rows are .dr-choice - the kit's tappable list row -
+  and the two group names are .dr-sect, a rung that has been DECLARED AND APPLIED ON
+  0 OF 80 PAGES since it was cut. This is its first spend.
+
+  A PUSHED SCREEN, SO IT TAKES THE PUSHED SHAPE - back chevron + one title, and NO TAB
+  BAR. That is order-details' shape, and D9 is why the chevron carries no words: one bar,
+  one name, and the only name in this bar is Notifications. The chevron is still NAMED for
+  assistive tech (aria-label="Back to Home"), because an icon-only control with no
+  accessible name fails WCAG 4.1.2.
+
+  THE GROUPS ARE DAYS, NOT READ-STATE (2026-09-03, rev 218). They were New / Earlier
+  until the designer asked, on the operator's mirror of this screen: "write today,
+  yestaday and date if it more than yesterday and fix the mergings and puddongs it
+  should be viseal notised differen dates etc". HIG - Lists and tables gives a recent
+  date RELATIVELY - Today, Yesterday - and an absolute date past that.
+
+  UNREAD IS STILL CARRIED BY A WORD AND NOT BY A COLOUR - it just moved off the heading
+  and onto the row, as a .dr-chip--unread reading "New". WCAG 1.4.1 stays un-engaged.
+
+  THE SPACING IS THE SECOND HALF OF THE SAME ASK. The groups sit in a .dr-log column
+  whose gap is --sp-list 28 against the rows' 8 - a 3.5:1 break, hers, taken against 20
+  and 24 drawn beside it - and the heading stands clear of its own list instead of
+  touching it at 0. That gap is on its THIRD value: 0 as first built, 4 at rev 214,
+  and 12 at rev 222, on her "improve spases between titles and cards". 4 was tighter
+  than the 8 the cards spend between themselves, and a card's top EDGE is a harder
+  boundary than the gap between two of them, so it read as crowding. 8 / 12 / keep-4
+  were drawn, all three conform, and she took 12: break 28 against bind 12 = 2.33:1,
+  1.83:1 at the narrow tier where --sp-list steps to 22 and --sp-snug does not.
+  WCAG 1.4.1 Use of Color is then not engaged at all: nothing on this screen depends on
+  seeing a hue. A green dot per unread row was the alternative and it conforms too (it
+  would need the same text somewhere); the group name was chosen because it also SORTS,
+  which a dot does not. One word moves it.
+
+  SPACING IS THE KIT'S OWN RATIO, NOT A NEW ONE: 8 within a group (.dr-list--snug) and
+  12 between them (.dr-main's zone gap) - siblings closer than strangers at 1.5:1, the
+  exact reading the --sp-list-snug comment in kit.css was written to hold.
+
+  EVERY ROW GOES SOMEWHERE THAT EXISTS. tracking / delivery / rate / order-details-aerial
+  / inspection-report / order-confirmed - a row that led nowhere would be a notification
+  the product could not act on, which is the thing this screen exists to end.
+
+  THE COPY IS CHECKED AGAINST voice.md BEFORE IT WAS WRITTEN. "operator", never "pilot";
+  "order", never "job", this being the client's side of the wall; the deliverables are
+  named "delivery photo" / "inspection report" / "photo and video set" (O5), never
+  "result"; the reader is "you"; no exclamation, no "successfully", no cheer.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=20b034c0">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Notifications (client)</h1>
+    <p class="sub">Client &#183; RJ-C2 &#183; state: <b>base</b> &#183; file: notifications.html</p>
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="notifications.html" class="cur" aria-current="page">base</a>
+      <a href="notifications-empty.html">empty</a>
+      <a href="notifications-loading.html">loading</a>
+    </nav>
+    <div class="flow"><b>Job (jtbd):</b> RJ-C2 - an alert that arrived while the app was closed is still findable.<br><b>flows.md:</b> Home &#8594; <span class="cur">Notifications</span> &#8594; the screen the alert names.<br><b>States:</b> empty &#10003; &#183; loading &#10003; &#183; error - traced, not drawn (matching <code>order-history</code>).<br><b>Exit:</b> back chevron &#8594; <b>Home</b>, or any row &#8594; its own screen.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Today</b> / <b>Yesterday</b> / <b>14 June</b> &#9656; one group per day, newest first</p><p><b>New</b> chip &#9656; unread &#8212; on the row, not the heading</p><p><b>Row</b> &#9656; what happened &#183; which order &#183; the time</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="listings.html" aria-label="Back to Home"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Notifications</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Notifications <span class="dr-label__act">&#9656; what the app told you &#183; tap a row to open the order</span></p>
+      <div class="dr-log">
+        <section aria-labelledby="ntf-today">
+          <h2 class="dr-sect" id="ntf-today">Today</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="delivery.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">Your delivery photo is ready</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Package delivery &#183; 10:12</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="dr-choice" href="tracking.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">Ivan is 2 minutes away</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Package delivery &#183; 10:03</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="dr-choice" href="order-confirmed.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">Ivan K. accepted your order</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Package delivery &#183; 09:41</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-yesterday">
+          <h2 class="dr-sect" id="ntf-yesterday">Yesterday</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="rate.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__title">Rate your order</span>
+                  <span class="dr-choice__desc">Package delivery &#183; 14:41</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-jun14">
+          <h2 class="dr-sect" id="ntf-jun14">14 June</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="order-details-aerial.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__title">Your photo and video set is ready</span>
+                  <span class="dr-choice__desc">Aerial photo &amp; video &#183; 11:30</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-jun2">
+          <h2 class="dr-sect" id="ntf-jun2">2 June</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="inspection-report.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__title">Your inspection report is ready</span>
+                  <span class="dr-choice__desc">Roof inspection &#183; 09:15</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="_wf-shell.js?v=20b034c0"></script>
+</body>
+</html>

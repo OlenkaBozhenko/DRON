@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){var t=localStorage.getItem('dron-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <title>DRON — Research</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #080808;
+      --bg-2:       #0f0f0f;
+      --bg-3:       #161616;
+      --bg-4:       #1c1c1c;
+      --border:     rgba(255,255,255,0.07);
+      --border-2:   rgba(255,255,255,0.12);
+      --text:       #d8d8d8;
+      --text-2:     #909090;
+      --text-3:     #555;
+      --white:      #f0f0f0;
+      --accent:     #ffffff;
+      --risk-hi:    #e05252;
+      --risk-mid:   #c4943a;
+      --risk-lo:    #4a9e6b;
+      --tag-bg:     rgba(255,255,255,0.06);
+      --client:     #5b8fde;
+      --operator:   #7ecb9e;
+    }
+
+    html[data-theme="light"] {
+      --bg:         #f4f4f4;
+      --bg-2:       #ffffff;
+      --bg-3:       #eeeeee;
+      --bg-4:       #e2e2e2;
+      --border:     rgba(0,0,0,0.09);
+      --border-2:   rgba(0,0,0,0.15);
+      --text:       #252525;
+      --text-2:     #5a5a5a;
+      --text-3:     #909090;
+      --white:      #111111;
+      --accent:     #000000;
+      --risk-hi:    #c43030;
+      --risk-mid:   #a86e10;
+      --risk-lo:    #267a4a;
+      --tag-bg:     rgba(0,0,0,0.05);
+      --client:     #3a6ec0;
+      --operator:   #27895a;
+    }
+    html[data-theme="light"] tbody tr:hover { background: rgba(0,0,0,0.03); }
+    html[data-theme="light"] .tag-accent { background: rgba(0,0,0,0.07); }
+    html[data-theme="light"] .nav-overlay { background: rgba(0,0,0,0.4); }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 240px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      padding: 24px 16px;
+      background: var(--bg-2);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+    }
+    .sidebar-brand {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      padding: 0 12px;
+      margin-bottom: 4px;
+    }
+    .sidebar-tagline {
+      font-size: 11px;
+      color: var(--text-3);
+      padding: 0 12px;
+      margin-bottom: 24px;
+    }
+    .sidebar-group {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      padding: 0 12px;
+      margin: 18px 0 8px;
+    }
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: var(--text-2);
+      font-size: 13px;
+      padding: 8px 12px;
+      border-radius: 7px;
+      border: none;
+      transition: color 0.15s, background 0.15s;
+    }
+    .sidebar a:hover { color: var(--white); background: var(--bg-4); }
+    .sidebar a.active { color: var(--white); background: var(--bg-3); }
+    .sidebar-spacer { flex: 1; }
+
+    /* collapsible page groups */
+    .nav-section { margin: 1px 0; }
+    .nav-section > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--text);
+      font-size: 13px;
+      padding: 8px 12px;
+      border-radius: 7px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-section > summary::-webkit-details-marker { display: none; }
+    .nav-section > summary:hover { color: var(--white); background: var(--bg-4); }
+    .nav-section[open] > summary { color: var(--white); }
+    .nav-section > summary::after {
+      content: "›";
+      font-size: 15px;
+      line-height: 1;
+      color: var(--text-3);
+      transition: transform 0.18s ease;
+    }
+    .nav-section[open] > summary::after { transform: rotate(90deg); }
+    .nav-children {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      margin: 2px 0 6px 26px;
+      padding-left: 10px;
+      border-left: 1px solid var(--border);
+    }
+    .nav-children a { font-size: 12.5px; padding: 6px 12px; }
+
+    /* coming-soon (non-clickable) pages */
+    .nav-soon {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 8px 12px;
+      border-radius: 7px;
+      color: var(--text-3);
+      cursor: default;
+    }
+    .nav-soon::after {
+      content: "Soon";
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      border: 1px solid var(--border-2);
+      border-radius: 4px;
+      padding: 1px 5px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn-white { background: var(--white); color: #0a0a0a; }
+    .btn-white:hover { opacity: 0.88; }
+    .btn-ghost { background: var(--tag-bg); color: var(--text); border: 1px solid var(--border-2); }
+    .btn-ghost:hover { background: var(--bg-4); }
+
+    /* ── LAYOUT ── */
+    body { padding-left: 240px; }
+    main { max-width: 1200px; margin: 0 auto; padding: 0 32px 80px; }
+
+    section { padding: 72px 0 0; }
+    section + section { border-top: 1px solid var(--border); margin-top: 64px; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .section-desc {
+      color: var(--text-2);
+      font-size: 14px;
+      max-width: 640px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      margin: 40px 0 16px;
+    }
+    h3:first-of-type { margin-top: 0; }
+
+    p { color: var(--text); line-height: 1.7; margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    a { color: var(--text-2); text-decoration: none; border-bottom: 1px solid var(--border-2); }
+    a:hover { color: var(--white); }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; margin: 0 -4px; scrollbar-width: thin; scrollbar-color: var(--border-2) transparent; }
+    .table-wrap::-webkit-scrollbar { height: 8px; -webkit-appearance: none; }
+    .table-wrap::-webkit-scrollbar-track { background: transparent; }
+    .table-wrap::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 4px; }
+    .table-wrap::-webkit-scrollbar-thumb:active { background: var(--text-3); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    thead tr {
+      border-bottom: 1px solid var(--border-2);
+    }
+    thead th {
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      white-space: nowrap;
+    }
+    thead th:first-child { padding-left: 0; }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,0.025); }
+    tbody td {
+      padding: 12px 14px;
+      vertical-align: top;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    tbody td:first-child { padding-left: 0; }
+    .td-label {
+      font-weight: 500;
+      color: var(--white);
+      white-space: nowrap;
+      font-size: 13px;
+    }
+    .td-dim { color: var(--text-2); font-size: 12px; }
+    .td-muted { color: var(--text-3); font-size: 12px; font-style: italic; }
+
+    /* score stars */
+    .stars { color: #c9a84c; letter-spacing: -1px; }
+    .stars-dim { color: var(--text-3); letter-spacing: -1px; }
+
+    /* total score */
+    .score {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
+      padding: 3px 10px;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    .score-hi { background: rgba(74,158,107,0.12); color: #5ec98a; }
+    .score-mid { background: rgba(196,148,58,0.12); color: #d4aa52; }
+    .score-lo { background: rgba(224,82,82,0.1); color: #e07070; }
+
+    /* ── TAGS / BADGES ── */
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--tag-bg);
+      color: var(--text-2);
+      border: 1px solid var(--border);
+      margin: 1px;
+      white-space: nowrap;
+    }
+    .tag-risk-hi { background: rgba(224,82,82,0.08); color: var(--risk-hi); border-color: rgba(224,82,82,0.2); }
+    .tag-risk-mid { background: rgba(196,148,58,0.08); color: var(--risk-mid); border-color: rgba(196,148,58,0.2); }
+    .tag-risk-lo { background: rgba(74,158,107,0.08); color: var(--risk-lo); border-color: rgba(74,158,107,0.2); }
+    .tag-accent { background: rgba(255,255,255,0.08); color: var(--white); border-color: var(--border-2); }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .card + .card { margin-top: 12px; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .card-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-3);
+      margin-bottom: 8px;
+      letter-spacing: 0.06em;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .card-body {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+    .card-body strong { color: var(--text); }
+    .card-footer {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--text-3);
+    }
+    .card-footer a { font-size: 11px; color: var(--text-3); }
+    .card-footer a:hover { color: var(--text-2); }
+
+    /* patterns */
+    .pattern-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 10px;
+    }
+    .pattern-card.selected {
+      border-color: rgba(255,255,255,0.2);
+      background: var(--bg-3);
+    }
+    .pattern-card.rejected {
+      opacity: 0.5;
+    }
+    .pattern-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .pattern-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-3);
+      min-width: 20px;
+    }
+    .pattern-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      flex: 1;
+    }
+    .pattern-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+      font-size: 12px;
+    }
+    .pattern-col-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 4px;
+    }
+    .pattern-col-body { color: var(--text-2); line-height: 1.6; }
+
+    /* hypothesis */
+    .hyp {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 10px;
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 0 16px;
+    }
+    .hyp-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-3);
+      padding-top: 2px;
+      letter-spacing: 0.06em;
+    }
+    .hyp-if { color: var(--text-2); font-size: 13px; margin-bottom: 4px; }
+    .hyp-if strong { color: var(--white); }
+    .hyp-then { color: var(--text-2); font-size: 13px; margin-bottom: 4px; }
+    .hyp-then strong { color: #6bca8f; }
+    .hyp-because { color: var(--text-3); font-size: 12px; }
+    .hyp-because a { font-size: 12px; }
+
+    /* gap table */
+    .gap-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+    }
+    .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-red { background: var(--risk-hi); }
+    .dot-gray { background: var(--text-3); }
+
+    /* ── SCREENSHOTS ── */
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .screen-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg-3);
+    }
+    .screen-item img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      transition: opacity 0.2s;
+    }
+    .screen-item:hover img { opacity: 0.85; }
+    .screen-label {
+      padding: 8px 12px;
+      font-size: 11px;
+      color: var(--text-3);
+      border-top: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    /* ── PATTERN HIGHLIGHT ── */
+    .highlight-box {
+      background: var(--bg-3);
+      border: 1px solid var(--border-2);
+      border-radius: 10px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+    .highlight-box .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-3);
+      margin-bottom: 8px;
+    }
+    .highlight-box h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    /* ── INLINE CODE ── */
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      background: var(--bg-4);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      color: var(--text-2);
+    }
+
+    /* ── COMMON PATTERN BLOCKS ── */
+    .pattern-list { list-style: none; margin-top: 12px; }
+    .pattern-list li {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+    .pattern-list li:last-child { border-bottom: none; }
+    .pattern-list li strong { color: var(--white); }
+    .li-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-3);
+      padding-top: 2px;
+    }
+
+    /* not-work card */
+    .not-work {
+      background: rgba(224,82,82,0.04);
+      border: 1px solid rgba(224,82,82,0.15);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-top: 20px;
+    }
+    .not-work .nw-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--risk-hi);
+      margin-bottom: 8px;
+    }
+    .not-work .nw-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .not-work p { font-size: 13px; color: var(--text-2); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px;
+      max-width: 1200px;
+      margin: 64px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-brand { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+    .footer-note { font-size: 12px; color: var(--text-3); }
+
+    /* ── MOBILE HEADER ── */
+    .mobile-header {
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0; height: 52px; z-index: 200;
+      background: var(--bg-2); border-bottom: 1px solid var(--border);
+      align-items: center; justify-content: space-between;
+      padding: 0 16px;
+    }
+    .mobile-brand {
+      font-size: 14px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--white);
+    }
+    .hamburger {
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 5px; width: 40px; height: 40px;
+      background: none; border: none; cursor: pointer;
+      padding: 8px; border-radius: 8px;
+      transition: background 0.15s;
+    }
+    .hamburger:hover { background: var(--bg-4); }
+    .hamburger-line {
+      display: block; width: 20px; height: 1.5px;
+      background: var(--text); border-radius: 2px;
+      transition: transform 0.22s ease, opacity 0.22s ease;
+      transform-origin: center;
+    }
+    .hamburger.is-open .hamburger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.is-open .hamburger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.is-open .hamburger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-actions { display: flex; align-items: center; gap: 4px; }
+    .theme-toggle {
+      width: 40px; height: 40px;
+      background: none; border: none; cursor: pointer;
+      padding: 8px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-2);
+      transition: background 0.15s, color 0.15s;
+    }
+    .theme-toggle:hover { background: var(--bg-4); color: var(--white); }
+    .icon-sun { display: none; }
+    html[data-theme="light"] .icon-sun { display: block; }
+    html[data-theme="light"] .icon-moon { display: none; }
+
+    /* ── NAV OVERLAY ── */
+    .nav-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 150;
+      background: rgba(0,0,0,0.55);
+      opacity: 0; transition: opacity 0.25s ease;
+    }
+    .nav-overlay.is-open { opacity: 1; }
+
+    /* ── SIDEBAR CLOSE (mobile only) ── */
+    .sidebar-close {
+      display: none;
+      position: absolute; top: 12px; right: 12px;
+      width: 32px; height: 32px;
+      background: var(--bg-4); border: 1px solid var(--border-2);
+      border-radius: 8px; color: var(--text-2);
+      font-size: 16px; cursor: pointer;
+      align-items: center; justify-content: center;
+      transition: background 0.15s, color 0.15s;
+    }
+    .sidebar-close:hover { background: var(--bg-3); color: var(--white); }
+
+    @media (max-width: 768px) {
+      .mobile-header { display: flex; }
+      .nav-overlay { display: block; }
+      .sidebar-close { display: flex; }
+
+      body { padding-left: 0; padding-top: 52px; }
+
+      .sidebar {
+        width: min(280px, 85vw); z-index: 160;
+        transform: translateX(-100%);
+        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        border-right: 1px solid var(--border-2);
+      }
+      .sidebar.is-open { transform: translateX(0); }
+
+      main { padding: 0 20px 60px; }
+      .screens-grid { grid-template-columns: repeat(2, 1fr); }
+      .pattern-grid { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: 1fr; }
+
+      /* Adaptive tables — each row becomes a labelled card (no horizontal scroll) */
+      .table-wrap { margin: 0; padding: 0; overflow-x: visible; }
+      .table-wrap table { min-width: 0; width: 100%; }
+      .table-wrap thead { display: none; }
+      .table-wrap tbody, .table-wrap tr, .table-wrap td { display: block; width: 100%; }
+      .table-wrap td { white-space: normal !important; }
+      .table-wrap tbody tr:not(.stage-row):not(.crit-row) {
+        background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px;
+        padding: 14px 16px; margin-bottom: 12px;
+      }
+      .table-wrap tbody tr:not(.stage-row):not(.crit-row):hover { background: var(--bg-2); }
+      .table-wrap tbody tr:not(.stage-row):not(.crit-row) td { padding: 7px 0; border: none; }
+      .table-wrap tbody tr:not(.stage-row):not(.crit-row) td:first-child {
+        font-size: 15px; font-weight: 600; color: var(--white);
+        padding: 0 0 9px; margin-bottom: 7px; border-bottom: 1px solid var(--border-2);
+      }
+      .table-wrap td[data-label]::before {
+        content: attr(data-label);
+        display: block; margin-bottom: 2px;
+        font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em;
+        color: var(--text-3);
+      }
+      .table-wrap td:empty { display: none; }
+      .table-wrap tr.stage-row td, .table-wrap tr.crit-row td { display: block; width: 100%; }
+    }
+  
+    /* ── UX RESEARCH: personas + CJM (ported from ux-research.html) ── */
+    .personas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 4px; }
+    .persona-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .persona-card.client { border-top: 2px solid var(--client); }
+    .persona-card.operator { border-top: 2px solid var(--operator); }
+    .persona-head { padding: 24px 24px 20px; display: flex; gap: 18px; align-items: flex-start; border-bottom: 1px solid var(--border); }
+    .persona-avatar { width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+    .avatar-client { background: rgba(91,143,222,0.12); border: 1px solid rgba(91,143,222,0.25); }
+    .avatar-operator { background: rgba(126,203,158,0.12); border: 1px solid rgba(126,203,158,0.25); }
+    .persona-meta { flex: 1; }
+    .persona-name { font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+    .persona-role { font-size: 12px; color: var(--text-2); margin-bottom: 8px; }
+    .persona-quote { font-size: 12px; color: var(--text-2); font-style: italic; line-height: 1.5; border-left: 2px solid var(--border-2); padding-left: 10px; margin-top: 4px; }
+    .persona-body { padding: 20px 24px; }
+    .persona-section-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-3); margin-bottom: 8px; margin-top: 16px; }
+    .persona-section-label:first-child { margin-top: 0; }
+    .traits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .trait { background: var(--bg-3); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+    .trait-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-3); margin-bottom: 3px; }
+    .trait-value { font-size: 12px; color: var(--text); }
+    .goals-list { list-style: none; }
+    .goals-list li { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-2); line-height: 1.5; }
+    .goals-list li:last-child { border-bottom: none; }
+    .goal-dot { width: 5px; height: 5px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+    .dot-client { background: var(--client); }
+    .dot-operator { background: var(--operator); }
+    .pain-list { list-style: none; }
+    .pain-list li { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-2); line-height: 1.5; }
+    .pain-list li:last-child { border-bottom: none; }
+    .pain-icon { font-size: 11px; margin-top: 2px; flex-shrink: 0; color: var(--risk-hi); }
+    .td-strong { font-weight: 500; color: var(--white); }
+    .risk { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; white-space: nowrap; padding: 2px 7px; border-radius: 4px; }
+    .risk-hi { background: rgba(224,82,82,0.08); color: var(--risk-hi); }
+    .risk-mid { background: rgba(196,148,58,0.08); color: var(--risk-mid); }
+    .risk-lo { background: rgba(74,158,107,0.08); color: var(--risk-lo); }
+    .mind { display: inline-block; padding: 1px 7px; border-radius: 4px; font-size: 11px; font-weight: 500; background: var(--tag-bg); border: 1px solid var(--border); color: var(--text-2); white-space: nowrap; }
+    .stage-row td { padding: 14px 0 6px !important; font-size: 11px !important; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-3) !important; font-weight: 500; border-bottom: 1px solid var(--border-2) !important; background: transparent !important; }
+    .stage-row:hover { background: transparent !important; }
+    .stage-badge { display: inline-flex; align-items: center; gap: 6px; }
+    .stage-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-3); }
+    .crit-row td { background: rgba(224,82,82,0.04) !important; color: var(--risk-hi) !important; font-size: 12px !important; font-style: italic; padding: 8px 0 8px !important; border-bottom: 1px solid rgba(224,82,82,0.1) !important; }
+    .crit-row:hover { background: rgba(224,82,82,0.04) !important; }
+    .dropoff-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin-bottom: 10px; display: grid; grid-template-columns: 28px 1fr auto; gap: 0 16px; align-items: start; }
+    .dropoff-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); padding-top: 2px; }
+    .dropoff-body { font-size: 13px; color: var(--text-2); }
+    .dropoff-body strong { color: var(--white); }
+    .dropoff-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+    .minds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 32px; }
+    .mind-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+    .mind-name { font-size: 12px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+    .mind-desc { font-size: 11px; color: var(--text-2); line-height: 1.5; margin-bottom: 6px; }
+    .mind-risk { font-size: 11px; color: var(--text-3); font-style: italic; }
+    @media (max-width: 768px) {
+      .personas-grid { grid-template-columns: 1fr; }
+      .traits-grid { grid-template-columns: 1fr; }
+      .minds-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE HEADER ─── -->
+<div class="mobile-header" id="mobileHeader">
+  <span class="mobile-brand">DRON</span>
+  <div class="mobile-actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </div>
+</div>
+
+<!-- ─── NAV OVERLAY ─── -->
+<div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
+<!-- ─── SIDEBAR ─── -->
+<aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="closeBtn" aria-label="Close navigation">✕</button>
+  <div class="sidebar-brand">DRON</div>
+  <div class="sidebar-tagline">Drone-as-a-service</div>
+
+  <div class="sidebar-group">Pages</div>
+
+  <details class="nav-section">
+    <summary>Research</summary>
+    <div class="nav-children">
+      <a href="#competitors">Competitors</a>
+      <a href="#benchmark">Benchmark</a>
+      <a href="#patterns">Patterns</a>
+      <a href="#conclusions">Conclusions</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>UX Research</summary>
+    <div class="nav-children">
+      <a href="#personas">User personas</a>
+      <a href="#cjm">CJM</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>Target Audience</summary>
+    <div class="nav-children">
+      <a href="target-audience.html#personas">Personas</a>
+      <a href="target-audience.html#conclusions">Conclusions</a>
+      <a href="target-audience.html#gaps">Knowledge gaps</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>JTBD</summary>
+    <div class="nav-children">
+      <a href="target-audience.html#jobs">Jobs hierarchy</a>
+      <a href="target-audience.html#matrix">Matrix</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>Sitemap</summary>
+    <div class="nav-children">
+      <a href="ia.html#screens">Screens</a>
+      <a href="ia.html#navigation">Navigation</a>
+      <a href="ia.html#traceability">Traceability</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>Flows</summary>
+    <div class="nav-children">
+      <a href="ia.html#flows-client">Client flows</a>
+      <a href="ia.html#flows-operator">Operator flows</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>Wireframes</summary>
+    <div class="nav-children">
+      <a href="wireframes/role-select.html">Start · role fork</a>
+      <a href="wireframes/listings.html">Client flow</a>
+      <a href="wireframes/operator-listings.html">Operator flow</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>Concept</summary>
+    <div class="nav-children">
+      <a href="concept/concept.html">Design language · Studio</a>
+      <a href="concept/directions.html">Directions</a>
+      <a href="concept/concept-artifact.html">Concept board</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>Tone of Voice</summary>
+    <div class="nav-children">
+      <a href="tone-of-voice.html#principles">Principles</a>
+      <a href="tone-of-voice.html#vocabulary">Vocabulary</a>
+      <a href="tone-of-voice.html#dont-use">Don&rsquo;t use</a>
+      <a href="tone-of-voice.html#geo">GEO &amp; SEO</a>
+      <a href="tone-of-voice.html#microcopy">Microcopy</a>
+    </div>
+  </details>
+
+  <details class="nav-section">
+    <summary>UI Kit</summary>
+    <div class="nav-children">
+      <a href="ui/kit.html">Kit &middot; components &amp; states</a>
+      <a href="ui/shell.html">Shell &middot; header &amp; tab bar</a>
+      <a href="ui/inventory.html">Inventory &middot; 73 components</a>
+    </div>
+  </details>
+
+  <div class="sidebar-group">Coming soon</div>
+  <span class="nav-soon">Design system</span>
+  <span class="nav-soon">Components</span>
+
+  <div class="sidebar-spacer"></div>
+  <a href="https://github.com/OlenkaBozhenko/DRON" target="_blank">GitHub ↗</a>
+</aside>
+
+<!-- ─── HERO ─── -->
+<main>
+<div style="padding: 64px 0 48px; border-bottom: 1px solid var(--border);">
+  <div class="section-label">Research · June 2026</div>
+  <h2 style="font-size: 28px; margin-bottom: 12px;">DRON Research</h2>
+  <p class="section-desc" style="margin-bottom: 24px;">
+    Competitive analysis, trust benchmarks, and UX pattern evaluation for a drone-as-a-service platform.
+    Company-owned operators · Ukraine + Europe · Mobile-first · Trust as primary value.
+  </p>
+  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+    <span class="tag tag-accent">Auto-Dispatch</span>
+    <span class="tag">8 competitors</span>
+    <span class="tag">5 benchmarks</span>
+    <span class="tag">7 hypotheses</span>
+    <span class="tag">5 UX patterns</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ COMPETITORS -->
+<section id="competitors">
+  <div class="section-label">Section 01</div>
+  <h2>Competitors</h2>
+  <p class="section-desc">8 products across Hard (UA market), Soft (same JTBD), and Aspirational (drone category) groups. Matrix across 5 axes.</p>
+
+  <h3>Competitor Matrix — 8 × 5</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="min-width:130px">Product</th>
+          <th style="min-width:160px">Audience</th>
+          <th style="min-width:180px">Product foundation</th>
+          <th style="min-width:200px">Key mechanism</th>
+          <th style="min-width:200px">Trust</th>
+          <th style="min-width:180px">Monetization</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://novaposhta.ua" target="_blank" class="td-label">Nova Poshta</a><br><span class="td-dim">Hard · UA</span></td>
+          <td>All UA, B2C + B2B, parcel senders</td>
+          <td>30-yr physical branch network + digital layer</td>
+          <td>Dense coverage + real-time parcel tracking</td>
+          <td>30-yr brand + physical presence + govt recognition</td>
+          <td>Per-delivery fee (weight/size) + COD</td>
+        </tr>
+        <tr>
+          <td><a href="https://droneua.com" target="_blank" class="td-label">DroneUA</a><br><span class="td-dim">Hard · UA</span></td>
+          <td>B2B — farmers, industrial, developers</td>
+          <td>Own drone fleet + training + software</td>
+          <td>Technical expertise + certifications</td>
+          <td>Certs + military track record</td>
+          <td>Project contracts + equipment sales + training</td>
+        </tr>
+        <tr>
+          <td><a href="https://glovoapp.com" target="_blank" class="td-label">Glovo</a><br><span class="td-dim">Soft · UA</span></td>
+          <td>Urban 18–35, smartphone-native</td>
+          <td>Gig courier network + merchant partnerships</td>
+          <td>Massive catalog + speed + live tracking</td>
+          <td>Ratings + no-questions refund + courier photo</td>
+          <td>Delivery fee + merchant commission + Prime sub</td>
+        </tr>
+        <tr>
+          <td><a href="https://novaposhta.ua/mobilnyj_dodatocok" target="_blank" class="td-label">Nova Poshta app</a><br><span class="td-dim">Soft · UA</span></td>
+          <td>UA mobile senders/receivers, active users</td>
+          <td>Digital interface over NP physical network</td>
+          <td>All shipments in one place + proactive push + QR</td>
+          <td>Brand trust + biometric auth + card security</td>
+          <td>Loyalty driver for NP core revenue</td>
+        </tr>
+        <tr>
+          <td><a href="https://wing.com" target="_blank" class="td-label">Wing</a><br><span class="td-dim">Aspirational</span></td>
+          <td>Suburban households, AU / US / FI</td>
+          <td>Alphabet-backed autonomous drone fleet + partner API</td>
+          <td>3-step flow + second-precise tracking</td>
+          <td>Google heritage + 1M+ deliveries + Walmart [<a href="https://wing.com" target="_blank">wing.com</a>]</td>
+          <td>Per-delivery + B2B API licensing</td>
+        </tr>
+        <tr>
+          <td><a href="https://zipline.com" target="_blank" class="td-label">Zipline</a><br><span class="td-dim">Aspirational</span></td>
+          <td>Consumers + B2B medical</td>
+          <td>Own VTOL Platform 2 drones</td>
+          <td>"Look up" — watch drone arrive; 86-sec record</td>
+          <td>"60K lives saved" + "reliable, every time" [<a href="https://zipline.com" target="_blank">zipline.com</a>]</td>
+          <td>Per-delivery + B2B medical contracts</td>
+        </tr>
+        <tr>
+          <td><a href="https://flytrex.com" target="_blank" class="td-label">Flytrex</a><br><span class="td-dim">Aspirational</span></td>
+          <td>Suburban US consumers, food delivery</td>
+          <td>Autonomous drones + DoorDash/Uber integration</td>
+          <td>Backyard delivery via existing app checkout</td>
+          <td>FAA-certified + 200K+ deliveries [search]</td>
+          <td>Delivery fee + DoorDash/Uber partnership fees</td>
+        </tr>
+        <tr>
+          <td><a href="https://dronedeploy.com" target="_blank" class="td-label">DroneDeploy</a><br><span class="td-dim">Aspirational</span></td>
+          <td>Enterprise B2B — construction, mining, utilities</td>
+          <td>SaaS + AI analysis, multi-modality capture</td>
+          <td>"One login for all data" — unifies drone + robotics</td>
+          <td>"3M sites, 180 countries" + Turner/BP [<a href="https://dronedeploy.com" target="_blank">dronedeploy.com</a>]</td>
+          <td>SaaS subscription + Data on Demand + robotics</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top:12px; font-size:12px; color:var(--text-3);">[?] Behind login, not captured: DroneUA operator dashboard · DroneDeploy project view · Flytrex order flow · any pricing pages.</p>
+
+  <!-- screenshots -->
+  <h3 style="margin-top:48px;">Screenshots — captured June 2026</h3>
+  <div class="screens-grid">
+    <div class="screen-item">
+      <img src="research/screens/novaposhta-home.png" alt="Nova Poshta homepage" loading="lazy">
+      <div class="screen-label">novaposhta.ua</div>
+    </div>
+    <div class="screen-item">
+      <img src="research/screens/novaposhta-app.png" alt="Nova Post app" loading="lazy">
+      <div class="screen-label">nova post app</div>
+    </div>
+    <div class="screen-item">
+      <img src="research/screens/droneua-home.png" alt="DroneUA" loading="lazy">
+      <div class="screen-label">droneua.com</div>
+    </div>
+    <div class="screen-item">
+      <img src="research/screens/glovo-home.png" alt="Glovo" loading="lazy">
+      <div class="screen-label">glovoapp.com</div>
+    </div>
+    <div class="screen-item">
+      <img src="research/screens/wing-home.png" alt="Wing" loading="lazy">
+      <div class="screen-label">wing.com</div>
+    </div>
+    <div class="screen-item">
+      <img src="research/screens/zipline-home.png" alt="Zipline" loading="lazy">
+      <div class="screen-label">zipline.com</div>
+    </div>
+    <div class="screen-item">
+      <img src="research/screens/flytrex-home.png" alt="Flytrex" loading="lazy">
+      <div class="screen-label">flytrex.com</div>
+    </div>
+    <div class="screen-item">
+      <img src="research/screens/dronedeploy-home.png" alt="DroneDeploy" loading="lazy">
+      <div class="screen-label">dronedeploy.com</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 3 common patterns -->
+  <h3>3 Common Market Patterns</h3>
+  <ul class="pattern-list">
+    <li>
+      <span class="li-num">P-1</span>
+      <span><strong>Live tracking is the baseline, not a feature.</strong> Every delivery product in the set shows real-time status. Users trained by Bolt and Glovo expect to see order location at every moment. No tracking = no trust. Source: screenshots + <a href="https://wing.com/technology" target="_blank">wing.com/technology</a> + <a href="https://cases.devlight.io/case/nova-poshta/" target="_blank">Devlight NP case</a>.</span>
+    </li>
+    <li>
+      <span class="li-num">P-2</span>
+      <span><strong>Maximum 3-step ordering flow across all mature products.</strong> Wing: shop → pick location → receive. Glovo: order → track → get. Zipline: pick → watch → get. Any product exceeding 3 primary steps loses mobile conversion. Source: <a href="https://wing.com" target="_blank">wing.com</a>, <a href="https://zipline.com" target="_blank">zipline.com</a> WebFetch.</span>
+    </li>
+    <li>
+      <span class="li-num">P-3</span>
+      <span><strong>Numbers, not adjectives, build credibility.</strong> Wing (1M+ deliveries, 12 years), Zipline (60K lives saved, 70M miles), DroneDeploy (3M sites, 180 countries), Flytrex (200K deliveries, FAA-certified). "Trusted" and "reliable" appear nowhere in hero copy. Source: WebFetch from each homepage.</span>
+    </li>
+  </ul>
+
+  <!-- 3 differences -->
+  <h3>3 Key Differences</h3>
+  <ul class="pattern-list">
+    <li>
+      <span class="li-num">D-1</span>
+      <span><strong>Trust anchor is origin-dependent — no universal model.</strong> UA players (Nova Poshta) use physical presence. Global tech (Wing, Zipline) use technology lineage. Drone platforms (Flytrex) use regulatory cert. DRON must build cold-start trust from zero — operator verification + insurance is the only available mechanism.</span>
+    </li>
+    <li>
+      <span class="li-num">D-2</span>
+      <span><strong>B2B vs B2C is a hard architectural split.</strong> DroneUA and DroneDeploy are purely B2B. Glovo and NP app are purely B2C. DRON's two-user-type model (client + operator SRM) has no direct reference in this set.</span>
+    </li>
+    <li>
+      <span class="li-num">D-3</span>
+      <span><strong>Every peer hides the operator. DRON won't — this is the differentiator.</strong> In Glovo, NP, Wing, and Flytrex the operator is invisible. DRON shows a named, photo-verified human operator. Closest reference: Bolt (driver card pre-arrival). Unfamiliar in the drone category — both a risk and a structural advantage.</span>
+    </li>
+  </ul>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ BENCHMARK -->
+<section id="benchmark">
+  <div class="section-label">Section 02</div>
+  <h2>Benchmark</h2>
+  <p class="section-desc">5 best-in-class products where "trust in a professional stranger" is the core mechanism. Evaluated across 7 criteria (35 pts max).</p>
+
+  <h3>Evaluation — 5 Products × 7 Criteria</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="min-width:160px">Criterion</th>
+          <th>Airbnb</th>
+          <th>TaskRabbit</th>
+          <th>Rover</th>
+          <th>Bolt / Uber</th>
+          <th>Zocdoc</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-label">1 · Identity verification</td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">Photo ID + selfie + address; 100% hosts verified since 2023</span></td>
+          <td><span class="stars">★★★★</span><span class="stars-dim">★</span><br><span class="td-dim">Background check + ID; "Tasker verified" badge</span></td>
+          <td><span class="stars">★★★★</span><span class="stars-dim">★</span><br><span class="td-dim">Background check + Star Sitter; not all sitters</span></td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">Continuous checks + real-time facial match per shift</span></td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">Medical license + NPI + board cert before listing</span></td>
+        </tr>
+        <tr>
+          <td class="td-label">2 · Booking simplicity</td>
+          <td><span class="stars">★★★</span><span class="stars-dim">★★</span><br><span class="td-dim">5–7 steps: search → dates → guests → checkout</span></td>
+          <td><span class="stars">★★★★</span><span class="stars-dim">★</span><br><span class="td-dim">4 steps: service → tasker → time → pay</span></td>
+          <td><span class="stars">★★★</span><span class="stars-dim">★★</span><br><span class="td-dim">Message → await reply → meet & greet → book</span></td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">1 screen → 1 tap → confirmed. Fastest in class</span></td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">Specialty → insurance → slot → confirm in 30s</span></td>
+        </tr>
+        <tr>
+          <td class="td-label">3 · Trust signal timing</td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">Superhost + Verified + reviews on listing card pre-booking</span></td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">Rating + Elite + bg-check badge on tasker card</span></td>
+          <td><span class="stars">★★★★</span><span class="stars-dim">★</span><br><span class="td-dim">Reviews visible; response rate not always shown</span></td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">Driver photo + name + rating + car at booking confirm</span></td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">License + certs + insurance on profile before booking</span></td>
+        </tr>
+        <tr>
+          <td class="td-label">4 · Real-time transparency</td>
+          <td><span class="stars">★★</span><span class="stars-dim">★★★</span><br><span class="td-dim">Check-in instructions only; no live tracking</span></td>
+          <td><span class="stars">★★★</span><span class="stars-dim">★★</span><br><span class="td-dim">Chat + status updates; no live location</span></td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">GPS walk map + photo updates + live video option</span></td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">Live map + ETA to second + share trip link</span></td>
+          <td><span class="stars">★★</span><span class="stars-dim">★★★</span><br><span class="td-dim">Reminder only; N/A for category</span></td>
+        </tr>
+        <tr>
+          <td class="td-label">5 · First-use anxiety</td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">AirCover up to $3M + 24/7 support + cancellation policy</span></td>
+          <td><span class="stars">★★★</span><span class="stars-dim">★★</span><br><span class="td-dim">"Happiness Pledge" exists but not prominent</span></td>
+          <td><span class="stars">★★★</span><span class="stars-dim">★★</span><br><span class="td-dim">Rover Guarantee; but "message first" = limbo anxiety</span></td>
+          <td><span class="stars">★★★★</span><span class="stars-dim">★</span><br><span class="td-dim">Driver info + safety features in-app</span></td>
+          <td><span class="stars">★★★★</span><span class="stars-dim">★</span><br><span class="td-dim">Insurance confirmation + free cancel up to 1h before</span></td>
+        </tr>
+        <tr>
+          <td class="td-label">6 · Drop-off recovery</td>
+          <td><span class="stars">★★★★</span><span class="stars-dim">★</span><br><span class="td-dim">Wishlists + email sequences + "Dates you saved"</span></td>
+          <td><span class="stars">★★★</span><span class="stars-dim">★★</span><br><span class="td-dim">Email reminders; weak in-app abandoned flow</span></td>
+          <td><span class="stars">★★</span><span class="stars-dim">★★★</span><br><span class="td-dim">Sitters ignore messages; owners feel ghosted [<a href="https://www.kinship.com/pet-lifestyle/rover-pet-sitting-apps-safe" target="_blank">Kinship</a>]</span></td>
+          <td><span class="stars">★★★★</span><span class="stars-dim">★</span><br><span class="td-dim">"Complete your ride" push; surge pricing re-nudge</span></td>
+          <td><span class="stars">★★★</span><span class="stars-dim">★★</span><br><span class="td-dim">Reminder system; weak abandoned-booking recovery</span></td>
+        </tr>
+        <tr>
+          <td class="td-label">7 · Provider profile depth</td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">Bio + calendar + response rate + verified photos + reviews</span></td>
+          <td><span class="stars">★★★★</span><span class="stars-dim">★</span><br><span class="td-dim">Skills + hourly rate + job count + Elite badge</span></td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">Photos + specialties + repeat-client % + Star Sitter</span></td>
+          <td><span class="stars">★★★</span><span class="stars-dim">★★</span><br><span class="td-dim">Name + photo + rating + car — intentionally minimal</span></td>
+          <td><span class="stars">★★★★★</span><br><span class="td-dim">License + board certs + education + insurance networks</span></td>
+        </tr>
+        <tr style="border-top: 1px solid var(--border-2);">
+          <td class="td-label" style="color:var(--white); padding-top:14px;">Total / 35</td>
+          <td style="padding-top:14px;"><span class="score score-mid">29</span></td>
+          <td style="padding-top:14px;"><span class="score score-mid">27</span></td>
+          <td style="padding-top:14px;"><span class="score score-lo">24</span></td>
+          <td style="padding-top:14px;"><span class="score score-hi">31</span></td>
+          <td style="padding-top:14px;"><span class="score score-mid">29</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <!-- top 3 -->
+  <h3>Top 3 Mechanisms for DRON MVP</h3>
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-num">M-01 · Bolt pattern</div>
+      <div class="card-title">Operator visible immediately after payment</div>
+      <div class="card-body">
+        Post-payment screen shows operator name, photo, rating, and <strong>"Certified by DRON / Insured"</strong> badge before the operator has moved. Converts the highest-anxiety moment — right after money leaves — from unknown to known.<br><br>
+        <strong>Apply in DRON:</strong> "Order confirmed" screen = operator card + live map + ETA. Never a generic "order received."
+      </div>
+      <div class="card-footer">Bolt/Uber · benchmark score 31/35 · general UX knowledge</div>
+    </div>
+    <div class="card">
+      <div class="card-num">M-02 · Airbnb pattern</div>
+      <div class="card-title">Trust signals on the list card — no extra tap</div>
+      <div class="card-body">
+        Airbnb's +25% booking increase came from surfacing Superhost/Verified badges at browse stage, visible on the card before any tap. If trust info requires an extra tap, most users won't look.<br><br>
+        <strong>Apply in DRON:</strong> Operator card must show without tapping — photo · rating · Verified badge · Insured badge · jobs count.
+      </div>
+      <div class="card-footer">Source: <a href="https://raw.studio/blog/how-airbnb-increased-bookings-by-25-with-3-trust-building-ux-changes/" target="_blank">Raw Studio — Airbnb +25% case study</a></div>
+    </div>
+    <div class="card">
+      <div class="card-num">M-03 · Zocdoc pattern</div>
+      <div class="card-title">Credential-first profile structure</div>
+      <div class="card-body">
+        Zocdoc leads every doctor profile with license, board certs, and NPI before bio or photos. Professional standing — not personality — is the primary trust signal for a first-time user.<br><br>
+        <strong>Apply in DRON:</strong> Profile opens with — "Certified operator · CAA/EASA license · Insured 500 000 UAH · 47 jobs." Bio comes after.
+      </div>
+      <div class="card-footer">Source: <a href="https://usabilitygeek.com/ux-case-study-zocdoc-mobile-app/" target="_blank">Usability Geek — Zocdoc UX case study</a></div>
+    </div>
+  </div>
+
+  <!-- won't work -->
+  <div class="not-work">
+    <div class="nw-label">Will NOT work</div>
+    <div class="nw-title">Rover — "Message first → meet & greet → then book"</div>
+    <p>Rover requires messaging a sitter, waiting for a reply (frequently ignored), arranging a pre-booking meeting, then booking. Appropriate for multi-day pet care. Fatal for DRON.</p>
+    <p style="margin-top:8px;">DRON's audience arrives with a Bolt/Glovo mental model: sub-60-second booking. Any async negotiation before confirmation makes the perceived value equal to Kabanchik.ua. Rover itself documented this failure: <em>"sitters frequently ignore messages without consequence, leaving owners feeling ghosted."</em> — <a href="https://www.kinship.com/pet-lifestyle/rover-pet-sitting-apps-safe" target="_blank">Kinship.com</a></p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ PATTERNS -->
+<section id="patterns">
+  <div class="section-label">Section 03</div>
+  <h2>UX Patterns</h2>
+  <p class="section-desc">5 fundamentally different interaction patterns for speed-first on-demand services. Evaluated against DRON's context from CLAUDE.md.</p>
+
+  <!-- pattern 1 — selected -->
+  <div class="pattern-card selected">
+    <div class="pattern-header">
+      <span class="pattern-num">01</span>
+      <span class="pattern-title">Auto-Dispatch — system decides</span>
+      <span class="tag tag-accent">Selected for DRON</span>
+    </div>
+    <p style="font-size:13px; color:var(--text-2);">Client specifies service type + location → system assigns nearest certified operator → booking confirmed. No selection step, only confirmation.</p>
+    <div class="pattern-grid">
+      <div>
+        <div class="pattern-col-label">Used in</div>
+        <div class="pattern-col-body">Bolt, Uber, Glovo (courier), Amazon Flex, emergency dispatch</div>
+      </div>
+      <div>
+        <div class="pattern-col-label">Fits when</div>
+        <div class="pattern-col-body">Operators are interchangeable · Speed is primary · Platform guarantees quality via standards</div>
+      </div>
+      <div>
+        <div class="pattern-col-label">Breaks when</div>
+        <div class="pattern-col-body">Operators are differentiated · Service needs pre-start coordination · Client doesn't trust the platform</div>
+      </div>
+      <div>
+        <div class="pattern-col-label">Why it fits DRON</div>
+        <div class="pattern-col-body"><strong>1.</strong> Company owns all operators — any = guaranteed quality<br><strong>2.</strong> Speed is the core product value<br><strong>3.</strong> Audience has no criteria to evaluate drone pilots — auto-dispatch removes the question</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- pattern 2 -->
+  <div class="pattern-card">
+    <div class="pattern-header">
+      <span class="pattern-num">02</span>
+      <span class="pattern-title">Marketplace Browse — client selects from a list</span>
+      <span class="tag tag-risk-mid">Secondary · Photo/Inspection only</span>
+    </div>
+    <p style="font-size:13px; color:var(--text-2);">Client sees list/grid of available operators with profiles → browses → selects → confirms. Decision is entirely the client's.</p>
+    <div class="pattern-grid">
+      <div>
+        <div class="pattern-col-label">Used in</div>
+        <div class="pattern-col-body">Airbnb, TaskRabbit, Rover, Upwork, Fiverr</div>
+      </div>
+      <div>
+        <div class="pattern-col-label">Breaks when</div>
+        <div class="pattern-col-body">Speed is critical → choice paralysis · First time, no evaluation criteria (Whalen: Decision mind)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- pattern 3 — rejected -->
+  <div class="pattern-card rejected">
+    <div class="pattern-header">
+      <span class="pattern-num">03</span>
+      <span class="pattern-title">Broadcast / Race to Accept</span>
+      <span class="tag tag-risk-hi">Not suitable for DRON</span>
+    </div>
+    <p style="font-size:13px; color:var(--text-2);">Client posts job → system broadcasts to multiple operators → first to confirm gets it. DRON has employed operators — broadcast has no architectural basis. Core failure: recreates the Kabanchik.ua anxiety this product replaces.</p>
+  </div>
+
+  <!-- pattern 4 -->
+  <div class="pattern-card">
+    <div class="pattern-header">
+      <span class="pattern-num">04</span>
+      <span class="pattern-title">Calendar-First / Slot Booking</span>
+      <span class="tag">Condition X: planned services</span>
+    </div>
+    <p style="font-size:13px; color:var(--text-2);">Client selects date + time → system shows available operators for that slot → confirm. Time is the primary axis.</p>
+    <div class="pattern-grid">
+      <div>
+        <div class="pattern-col-label">Used in</div>
+        <div class="pattern-col-body">Zocdoc, Treatwell, Calendly, barbershop apps</div>
+      </div>
+      <div>
+        <div class="pattern-col-label">When to use in DRON</div>
+        <div class="pattern-col-body">Aerial photography + inspection: weather-dependent, daylight-sensitive, client presence required. MVP: Delivery → auto-dispatch / Photo+Inspection → calendar-first.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- pattern 5 -->
+  <div class="pattern-card">
+    <div class="pattern-header">
+      <span class="pattern-num">05</span>
+      <span class="pattern-title">Guided Wizard / Progressive Disclosure</span>
+      <span class="tag">Not applicable — repeat use</span>
+    </div>
+    <p style="font-size:13px; color:var(--text-2);">System narrows options via sequential questions. Useful for first-time onboarding only. Breaks for repeat users who can't skip steps. Mobile context + multiple screens = drop-off by screen 3.</p>
+  </div>
+
+  <hr class="divider">
+
+  <h3>Chosen Architecture: Two-mode flow</h3>
+  <div class="highlight-box">
+    <div class="label">MVP interaction model</div>
+    <h4>Auto-Dispatch + Calendar-First depending on service type</h4>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:4px;">
+      <div>
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-3); margin-bottom:6px;">Delivery</div>
+        <code>Service → Location → Confirm → Operator assigned → Pay → Track</code>
+        <p style="font-size:12px; color:var(--text-2); margin-top:8px;">2 taps to confirmed booking. System decides. No selection step.</p>
+      </div>
+      <div>
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-3); margin-bottom:6px;">Photo / Inspection</div>
+        <code>Service → Details → Pick slot → Confirm → Operator assigned → Pay</code>
+        <p style="font-size:12px; color:var(--text-2); margin-top:8px;">Calendar-first. Client controls timing. Operator auto-assigned to slot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ CONCLUSIONS -->
+<section id="conclusions">
+  <div class="section-label">Section 04</div>
+  <h2>Conclusions</h2>
+  <p class="section-desc">Research gaps and testable hypotheses derived from competitor analysis, benchmarks, CJM, and pattern evaluation.</p>
+
+  <!-- gaps -->
+  <h3>Research Gaps</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Gap</th>
+          <th>Why it matters</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-label" style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-3);">G-1</td>
+          <td>How Ukrainians currently discover and evaluate drone operators on OLX / Kabanchik</td>
+          <td>This IS the current-state flow DRON replaces; designing blind without it</td>
+          <td><span class="gap-status"><span class="dot dot-red"></span> Not researched</span></td>
+        </tr>
+        <tr>
+          <td class="td-label" style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-3);">G-2</td>
+          <td>Consumer-service operator SRM dashboard — what it looks like</td>
+          <td>DroneDeploy is enterprise B2B; no UI reference for managing individual consumer jobs</td>
+          <td><span class="gap-status"><span class="dot dot-red"></span> No reference found</span></td>
+        </tr>
+        <tr>
+          <td class="td-label" style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-3);">G-3</td>
+          <td>Wing and Zipline first-use onboarding — do they have an anxiety-reduction flow?</td>
+          <td>Critical for DRON's first-order experience design</td>
+          <td><span class="gap-status"><span class="dot dot-gray"></span> Behind app login</span></td>
+        </tr>
+        <tr>
+          <td class="td-label" style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-3);">G-4</td>
+          <td>Drone service pricing benchmarks in Ukraine</td>
+          <td>Without price anchors, pricing screen design is speculative</td>
+          <td><span class="gap-status"><span class="dot dot-red"></span> No public data</span></td>
+        </tr>
+        <tr>
+          <td class="td-label" style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-3);">G-5</td>
+          <td>Diia and BankID mobile registration conversion rates</td>
+          <td>Activation depends on this; if low, fallback registration needed</td>
+          <td><span class="gap-status"><span class="dot dot-gray"></span> No public data</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <!-- hypotheses -->
+  <h3>Hypotheses — if / then / because [source]</h3>
+
+  <div class="hyp">
+    <div class="hyp-id">H-01</div>
+    <div>
+      <div class="hyp-if">If <strong>DRON shows operator photo + rating + "Verified by DRON" badge on the order confirmation screen</strong> (post-payment, not pre-selection),</div>
+      <div class="hyp-then">then <strong>first-order cancellation rate will decrease,</strong></div>
+      <div class="hyp-because">because Bolt's model of immediate operator identity disclosure converts the highest-anxiety post-payment moment from unknown to known. — <a href="ux-research/benchmarks.md">benchmarks.md M-1</a></div>
+    </div>
+  </div>
+
+  <div class="hyp">
+    <div class="hyp-id">H-02</div>
+    <div>
+      <div class="hyp-if">If <strong>DRON uses auto-dispatch for delivery and calendar-first for photo/inspection</strong> (two modes, one product),</div>
+      <div class="hyp-then">then <strong>booking completion rates will be higher than a single unified flow,</strong></div>
+      <div class="hyp-because">because delivery users are in urgency mode while photo/inspection users are in planning mode — one flow optimizes for neither. — <a href="ux-research/ux-patterns.md">ux-patterns.md</a>, <a href="CLAUDE.md">CLAUDE.md</a></div>
+    </div>
+  </div>
+
+  <div class="hyp">
+    <div class="hyp-id">H-03</div>
+    <div>
+      <div class="hyp-if">If <strong>Verified + Insured badges and job count are visible on the operator card in the list — without a tap into the profile —</strong></div>
+      <div class="hyp-then">then <strong>operator selection drop-off will decrease,</strong></div>
+      <div class="hyp-because">because Airbnb's +25% booking lift was driven by surfacing these signals at browse stage, before commitment. — <a href="https://raw.studio/blog/how-airbnb-increased-bookings-by-25-with-3-trust-building-ux-changes/" target="_blank">Raw Studio</a></div>
+    </div>
+  </div>
+
+  <div class="hyp">
+    <div class="hyp-id">H-04</div>
+    <div>
+      <div class="hyp-if">If <strong>first-time clients receive a 15-second in-app explainer before their first booking</strong> ("here's what happens after you confirm"),</div>
+      <div class="hyp-then">then <strong>activation drop-off at the operator selection screen will decrease,</strong></div>
+      <div class="hyp-because">because Whalen's Emotion mind identifies "stranger with a drone near my property" as the highest unresolved anxiety in activation, and CJM marks operator selection as the #1 drop-off point. — <a href="ux-research/user-stories-cjm.md">user-stories-cjm.md</a>, <a href="https://uxr.cl/en/learn/blog/book-review-design-for-how-people-think/" target="_blank">Whalen 6 Minds</a></div>
+    </div>
+  </div>
+
+  <div class="hyp">
+    <div class="hyp-id">H-05</div>
+    <div>
+      <div class="hyp-if">If <strong>operator payment is auto-released within 30 min of client confirmation</strong> (or auto-confirmed after 2 hours),</div>
+      <div class="hyp-then">then <strong>operator retention will improve,</strong></div>
+      <div class="hyp-because">because the primary operator churn risk is building direct client relationships to bypass the platform — payment friction is the fastest trigger for that exit. — <a href="ux-research/user-stories-cjm.md">CJM Operator Stage 4</a></div>
+    </div>
+  </div>
+
+  <div class="hyp">
+    <div class="hyp-id">H-06</div>
+    <div>
+      <div class="hyp-if">If <strong>DRON launches without a "Book again" one-tap shortcut</strong> for returning clients,</div>
+      <div class="hyp-then">then <strong>repeat order rate will underperform,</strong></div>
+      <div class="hyp-because">because Memory (Whalen) overload during re-booking is the #4 critical drop-off point in the CJM, and users trained by Bolt/Glovo expect zero re-entry effort. — <a href="ux-research/user-stories-cjm.md">CJM Drop-off #4</a></div>
+    </div>
+  </div>
+
+  <div class="hyp">
+    <div class="hyp-id">H-07</div>
+    <div>
+      <div class="hyp-if">If <strong>operators are required to upload a result photo before the job can be marked complete,</strong></div>
+      <div class="hyp-then">then <strong>client satisfaction on first use will be higher,</strong></div>
+      <div class="hyp-because">because users trained by Nova Poshta app (5M+ active users in UA) expect proactive visual evidence of completion, not just a status string. — <a href="https://cases.devlight.io/case/nova-poshta/" target="_blank">Devlight NP case study</a></div>
+    </div>
+  </div>
+
+</section>
+
+<section id="personas">
+  <div class="section-label">UX · Personas</div>
+  <h2>User Personas</h2>
+  <p class="section-desc">Derived from CLAUDE.md brief and competitive research. Two fundamentally different mental models and goals.</p>
+
+  <div class="personas-grid">
+
+    <!-- CLIENT -->
+    <div class="persona-card client">
+      <div class="persona-head">
+        <div class="persona-avatar avatar-client">👩‍💼</div>
+        <div class="persona-meta">
+          <div class="persona-name">Катерина, 31</div>
+          <div class="persona-role">Marketing manager · Kyiv · iPhone · never used a drone</div>
+          <div class="persona-quote">"Я хочу результат, не хочу розбиратись у дронах. Головне — що це надійно."</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        <div class="persona-section-label">Key characteristics</div>
+        <div class="traits-grid">
+          <div class="trait"><div class="trait-label">Tech savvy</div><div class="trait-value">High — uses apps daily</div></div>
+          <div class="trait"><div class="trait-label">Drone experience</div><div class="trait-value">None — never operated</div></div>
+          <div class="trait"><div class="trait-label">Primary driver</div><div class="trait-value">Trust, then speed</div></div>
+          <div class="trait"><div class="trait-label">Device</div><div class="trait-value">iPhone 14, mobile-first</div></div>
+          <div class="trait"><div class="trait-label">Payment</div><div class="trait-value">Apple Pay, card</div></div>
+          <div class="trait"><div class="trait-label">Auth</div><div class="trait-value">Diia / Bank ID</div></div>
+        </div>
+
+        <div class="persona-section-label" style="margin-top:18px;">Goals</div>
+        <ul class="goals-list">
+          <li><span class="goal-dot dot-client"></span>Get drone service done fast — without learning anything about drones</li>
+          <li><span class="goal-dot dot-client"></span>Know the operator is real, certified, and insured before confirming</li>
+          <li><span class="goal-dot dot-client"></span>See price upfront — no surprises at checkout</li>
+          <li><span class="goal-dot dot-client"></span>Track the job live and receive a proof of completion</li>
+        </ul>
+
+        <div class="persona-section-label" style="margin-top:18px;">Pain points (current market)</div>
+        <ul class="pain-list">
+          <li><span class="pain-icon">✕</span>OLX/Kabanchik: must message, wait, negotiate — no certainty</li>
+          <li><span class="pain-icon">✕</span>Can't verify if operators are licensed or insured</li>
+          <li><span class="pain-icon">✕</span>Price unclear until after conversation</li>
+          <li><span class="pain-icon">✕</span>No recourse if something goes wrong</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- OPERATOR -->
+    <div class="persona-card operator">
+      <div class="persona-head">
+        <div class="persona-avatar avatar-operator">🧑‍✈️</div>
+        <div class="persona-meta">
+          <div class="persona-name">Андрій, 26</div>
+          <div class="persona-role">Licensed drone pilot · Kyiv area · DJI Mavic 3 · CAA certified</div>
+          <div class="persona-quote">"Я хочу літати і заробляти. Паперова робота і пошук клієнтів — не моє."</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        <div class="persona-section-label">Key characteristics</div>
+        <div class="traits-grid">
+          <div class="trait"><div class="trait-label">Technical skill</div><div class="trait-value">Expert pilot</div></div>
+          <div class="trait"><div class="trait-label">Certification</div><div class="trait-value">CAA/EASA license</div></div>
+          <div class="trait"><div class="trait-label">Primary driver</div><div class="trait-value">Steady income + credibility</div></div>
+          <div class="trait"><div class="trait-label">Device</div><div class="trait-value">Android, field conditions</div></div>
+          <div class="trait"><div class="trait-label">Payment</div><div class="trait-value">Wants auto-transfer</div></div>
+          <div class="trait"><div class="trait-label">Insurance</div><div class="trait-value">Needs platform coverage</div></div>
+        </div>
+
+        <div class="persona-section-label" style="margin-top:18px;">Goals</div>
+        <ul class="goals-list">
+          <li><span class="goal-dot dot-operator"></span>Consistent, predictable job flow without self-marketing</li>
+          <li><span class="goal-dot dot-operator"></span>Accept jobs in &lt;10 seconds with all info upfront</li>
+          <li><span class="goal-dot dot-operator"></span>Automatic payment after job — no invoicing or cash</li>
+          <li><span class="goal-dot dot-operator"></span>Build verified reputation through transparent ratings</li>
+        </ul>
+
+        <div class="persona-section-label" style="margin-top:18px;">Pain points (current market)</div>
+        <ul class="pain-list">
+          <li><span class="pain-icon">✕</span>Kabanchik/Instagram: inconsistent demand, feast-or-famine</li>
+          <li><span class="pain-icon">✕</span>Manual payment collection — chasing clients</li>
+          <li><span class="pain-icon">✕</span>No legal/insurance backing when disputes arise</li>
+          <li><span class="pain-icon">✕</span>Reputation doesn't transfer across platforms</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="cjm">
+  <div class="section-label">UX · Customer Journey</div>
+  <h2>Customer Journey Maps</h2>
+  <p class="section-desc">4 stages: Attraction → Activation → Involvement → Retention. Drop-off risk rated 🔴 high / 🟡 medium / 🟢 low. Friction mapped to Whalen's 6 Minds.</p>
+
+  <!-- WHALEN REFERENCE -->
+  <h3 style="margin-top:0;">Whalen's 6 Minds — reference</h3>
+  <div class="minds-grid">
+    <div class="mind-card"><div class="mind-name">Vision</div><div class="mind-desc">What users see and attend to — hierarchy, contrast, scanning</div><div class="mind-risk">Critical CTA invisible; wrong visual hierarchy</div></div>
+    <div class="mind-card"><div class="mind-name">Wayfinding</div><div class="mind-desc">Navigation and spatial orientation within a system</div><div class="mind-risk">User lost in multi-step flow; can't go back</div></div>
+    <div class="mind-card"><div class="mind-name">Memory</div><div class="mind-desc">Working memory limits — 7±2 chunks max</div><div class="mind-risk">Too many fields/steps at once → overload</div></div>
+    <div class="mind-card"><div class="mind-name">Language</div><div class="mind-desc">Word processing and terminology comprehension</div><div class="mind-risk">Drone jargon ("UAV", "payload") alienates users</div></div>
+    <div class="mind-card"><div class="mind-name">Decision</div><div class="mind-desc">Choice under uncertainty; expert vs novice differences</div><div class="mind-risk">Too many operators to compare → paralysis</div></div>
+    <div class="mind-card"><div class="mind-name">Emotion</div><div class="mind-desc">Fear, trust, anxiety, delight — the deepest mind</div><div class="mind-risk">"Stranger with drone near my home" → abandonment</div></div>
+  </div>
+  <p style="font-size:12px; color:var(--text-3); margin-bottom:32px;">Source: John Whalen, <em>Design for How People Think</em> (O'Reilly, 2019) · <a href="https://uxr.cl/en/learn/blog/book-review-design-for-how-people-think/" target="_blank">uxr.cl review</a></p>
+
+  <!-- CLIENT CJM -->
+  <h3 style="color:var(--client); font-size:14px; letter-spacing:0.04em; text-transform:uppercase;">Client Journey — Катерина</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="min-width:160px;">Touchpoint</th>
+          <th style="min-width:180px;">Action</th>
+          <th style="min-width:140px;">Emotion</th>
+          <th style="min-width:160px;">Whalen friction</th>
+          <th style="min-width:140px;">Drop-off</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- stage 1 -->
+        <tr class="stage-row"><td colspan="5"><span class="stage-badge"><span class="stage-num">01</span> ATTRACTION — discovers DRON and understands what it is</span></td></tr>
+        <tr>
+          <td class="td-strong">Social media / TikTok</td>
+          <td>Sees video: drone delivers package to balcony</td>
+          <td class="td-dim">Curiosity + slight disbelief</td>
+          <td><span class="mind">Language</span> — "Is this available where I live?"</td>
+          <td><span class="risk risk-hi">🔴 Bounces in 8s if homepage unclear</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Word of mouth</td>
+          <td>Friend: "I used a drone service, it was wild"</td>
+          <td class="td-dim">Trust via social proof</td>
+          <td><span class="mind">Emotion</span> — "But would I trust it?"</td>
+          <td><span class="risk risk-mid">🟡 Interest, no immediate action</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">App Store search</td>
+          <td>Searches "drone delivery Kyiv"</td>
+          <td class="td-dim">Intent</td>
+          <td><span class="mind">Vision</span> — screenshot quality decides install</td>
+          <td><span class="risk risk-mid">🟡 Installs if screens show real service</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Google search</td>
+          <td>Searches "замовити дрон"</td>
+          <td class="td-dim">High intent</td>
+          <td><span class="mind">Language</span> — ad copy must match landing page</td>
+          <td><span class="risk risk-hi">🔴 Mismatch = instant back</span></td>
+        </tr>
+        <tr class="crit-row"><td colspan="5">↳ Critical: first 8 seconds. If Vision + Language don't answer "what / how fast / how much?" — user is gone.</td></tr>
+
+        <!-- stage 2 -->
+        <tr class="stage-row"><td colspan="5"><span class="stage-badge"><span class="stage-num">02</span> ACTIVATION — completes registration and places first order</span></td></tr>
+        <tr>
+          <td class="td-strong">App open → onboarding</td>
+          <td>Sees 1–3 onboarding screens</td>
+          <td class="td-dim">Anticipation</td>
+          <td><span class="mind">Memory</span> — 3+ slides = skipped</td>
+          <td><span class="risk risk-mid">🟡</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Registration</td>
+          <td>Taps "Sign in with Diia"</td>
+          <td class="td-dim">Mild anxiety about data</td>
+          <td><span class="mind">Emotion</span> — "Am I giving too much info?"</td>
+          <td><span class="risk risk-hi">🔴 Manual form → 60–70% drop</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Browse services</td>
+          <td>Sees Delivery / Photo / Inspection</td>
+          <td class="td-dim">Curiosity</td>
+          <td><span class="mind">Decision</span> — "which one is for me?"</td>
+          <td><span class="risk risk-lo">🟢 If tiles show clear use-case illustrations</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong" style="color:var(--risk-hi);">Operator selection</td>
+          <td>Views 2–3 available operators</td>
+          <td class="td-dim">Peak anxiety</td>
+          <td><span class="mind">Emotion</span> — "Who is this person? Do I trust them?"</td>
+          <td><span class="risk risk-hi">🔴 #1 drop-off if trust signals missing</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Pricing screen</td>
+          <td>Sees total cost</td>
+          <td class="td-dim">Decision tension</td>
+          <td><span class="mind">Decision</span> <span class="mind">Emotion</span> — hidden fees = rage quit</td>
+          <td><span class="risk risk-hi">🔴 Any surprise = abandonment</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Payment</td>
+          <td>Apple Pay one tap</td>
+          <td class="td-dim">Relief</td>
+          <td><span class="mind">Memory</span> — card entry is a barrier</td>
+          <td><span class="risk risk-lo">🟢 If Apple/Google Pay is primary CTA</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Post-booking</td>
+          <td>Sees tracking screen + operator photo + ETA</td>
+          <td class="td-dim">Anxiety → anticipation</td>
+          <td><span class="mind">Emotion</span> — first trust moment</td>
+          <td><span class="risk risk-lo">🟢</span></td>
+        </tr>
+        <tr class="crit-row"><td colspan="5">↳ Critical: operator selection screen. Every missing trust signal is a reason to close the app.</td></tr>
+
+        <!-- stage 3 -->
+        <tr class="stage-row"><td colspan="5"><span class="stage-badge"><span class="stage-num">03</span> INVOLVEMENT — forms habit of using DRON</span></td></tr>
+        <tr>
+          <td class="td-strong">Order history</td>
+          <td>Tries to find previous order</td>
+          <td class="td-dim">Mild frustration</td>
+          <td><span class="mind">Wayfinding</span> — where is my history?</td>
+          <td><span class="risk risk-mid">🟡 If buried 3+ taps deep</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Repeat booking</td>
+          <td>Wants to re-book same operator</td>
+          <td class="td-dim">Expects speed</td>
+          <td><span class="mind">Memory</span> — don't make me re-enter everything</td>
+          <td><span class="risk risk-hi">🔴 No "Book again" → goes to Kabanchik</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Issue / complaint</td>
+          <td>Job result unsatisfying</td>
+          <td class="td-dim">Anger + distrust</td>
+          <td><span class="mind">Emotion</span> — one bad experience taints platform</td>
+          <td><span class="risk risk-hi">🔴 No resolution path = permanent churn</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Rating prompt</td>
+          <td>Asked to rate after job</td>
+          <td class="td-dim">Mild friction</td>
+          <td><span class="mind">Decision</span> — takes effort</td>
+          <td><span class="risk risk-mid">🟡 One-tap star = higher completion</span></td>
+        </tr>
+
+        <!-- stage 4 -->
+        <tr class="stage-row"><td colspan="5"><span class="stage-badge"><span class="stage-num">04</span> RETENTION — becomes loyal, refers others</span></td></tr>
+        <tr>
+          <td class="td-strong">Push notification</td>
+          <td>"Your favorite operator is available"</td>
+          <td class="td-dim">Positive nudge</td>
+          <td><span class="mind">Emotion</span> — platform remembers me</td>
+          <td><span class="risk risk-lo">🟢</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Direct contact</td>
+          <td>Tries to reach operator outside app</td>
+          <td class="td-dim">Rational cost-saving</td>
+          <td><span class="mind">Emotion</span> vs. rational</td>
+          <td><span class="risk risk-hi">🔴 Direct channel = platform bypass</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Referral</td>
+          <td>Tells friend about service</td>
+          <td class="td-dim">Pride + advocate</td>
+          <td><span class="mind">Language</span> — needs simple share mechanism</td>
+          <td><span class="risk risk-lo">🟢 One-tap share link</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <!-- OPERATOR CJM -->
+  <h3 style="color:var(--operator); font-size:14px; letter-spacing:0.04em; text-transform:uppercase;">Operator Journey — Андрій</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="min-width:160px;">Touchpoint</th>
+          <th style="min-width:140px;">Emotion</th>
+          <th style="min-width:180px;">Whalen friction</th>
+          <th style="min-width:140px;">Drop-off</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- stage 1 -->
+        <tr class="stage-row"><td colspan="4"><span class="stage-badge"><span class="stage-num">01</span> ATTRACTION — discovers DRON as a job source</span></td></tr>
+        <tr>
+          <td class="td-strong">Drone community (Telegram / Facebook)</td>
+          <td class="td-dim">Curiosity + skepticism</td>
+          <td><span class="mind">Language</span> — "another platform taking 30%?"</td>
+          <td><span class="risk risk-hi">🔴 Fee must be visible immediately</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">LinkedIn / job boards</td>
+          <td class="td-dim">Professional interest</td>
+          <td><span class="mind">Decision</span> — compare with direct freelancing</td>
+          <td><span class="risk risk-mid">🟡</span></td>
+        </tr>
+
+        <!-- stage 2 -->
+        <tr class="stage-row"><td colspan="4"><span class="stage-badge"><span class="stage-num">02</span> ACTIVATION — completes verification and goes live</span></td></tr>
+        <tr>
+          <td class="td-strong">Document upload (license, insurance)</td>
+          <td class="td-dim">Effort + uncertainty</td>
+          <td><span class="mind">Memory</span> <span class="mind">Emotion</span> — "How long will review take?"</td>
+          <td><span class="risk risk-hi">🔴 No ETA for verification → goes silent</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Profile setup</td>
+          <td class="td-dim">Motivated but unsure</td>
+          <td><span class="mind">Language</span> — "what should I write about myself?"</td>
+          <td><span class="risk risk-mid">🟡 Templates reduce abandonment</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">First job offer received</td>
+          <td class="td-dim">Excitement + anxiety</td>
+          <td><span class="mind">Decision</span> — "accept? enough info?"</td>
+          <td><span class="risk risk-lo">🟢 If job card has full details</span></td>
+        </tr>
+        <tr class="crit-row"><td colspan="4">↳ Critical: if verification takes &gt;48h with no status update, operator loses interest and exits.</td></tr>
+
+        <!-- stage 3 -->
+        <tr class="stage-row"><td colspan="4"><span class="stage-badge"><span class="stage-num">03</span> INVOLVEMENT — manages jobs through SRM</span></td></tr>
+        <tr>
+          <td class="td-strong">Job checklist in field</td>
+          <td class="td-dim">Focused</td>
+          <td><span class="mind">Wayfinding</span> — app usable with gloves, in sunlight</td>
+          <td><span class="risk risk-mid">🟡 Large touch targets, high contrast required</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Photo upload on site</td>
+          <td class="td-dim">Task completion</td>
+          <td><span class="mind">Memory</span> — upload must be instant</td>
+          <td><span class="risk risk-hi">🔴 Slow upload → operator skips → client unhappy</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Payment received</td>
+          <td class="td-dim">Satisfaction</td>
+          <td><span class="mind">Emotion</span> — delay &gt;24h erodes platform trust</td>
+          <td><span class="risk risk-hi">🔴</span></td>
+        </tr>
+
+        <!-- stage 4 -->
+        <tr class="stage-row"><td colspan="4"><span class="stage-badge"><span class="stage-num">04</span> RETENTION — keeps DRON as primary income source</span></td></tr>
+        <tr>
+          <td class="td-strong">Direct client contact attempts</td>
+          <td class="td-dim">Rational bypass</td>
+          <td><span class="mind">Emotion</span> — "I built this relationship, why share revenue?"</td>
+          <td><span class="risk risk-hi">🔴 Platform must provide value beyond matching</span></td>
+        </tr>
+        <tr>
+          <td class="td-strong">Rating visibility</td>
+          <td class="td-dim">Pride or frustration</td>
+          <td><span class="mind">Emotion</span> — transparent, fair rating = loyalty</td>
+          <td><span class="risk risk-lo">🟢</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <!-- DROP-OFF SUMMARY -->
+  <h3>Top 5 Critical Drop-off Points</h3>
+  <div class="dropoff-card">
+    <div class="dropoff-num">#1</div>
+    <div class="dropoff-body"><strong>Client · Activation</strong> — sees operator selection screen, closes app. Trust signals absent or buried behind a tap.</div>
+    <div class="dropoff-meta"><span class="mind">Emotion</span></div>
+  </div>
+  <div class="dropoff-card">
+    <div class="dropoff-num">#2</div>
+    <div class="dropoff-body"><strong>Client · Activation</strong> — hits pricing screen, sees unexpected fee. Surprise = rage quit.</div>
+    <div class="dropoff-meta"><span class="mind">Emotion</span> <span class="mind">Decision</span></div>
+  </div>
+  <div class="dropoff-card">
+    <div class="dropoff-num">#3</div>
+    <div class="dropoff-body"><strong>Operator · Activation</strong> — uploads documents, hears nothing. No verification ETA = operator goes silent.</div>
+    <div class="dropoff-meta"><span class="mind">Emotion</span></div>
+  </div>
+  <div class="dropoff-card">
+    <div class="dropoff-num">#4</div>
+    <div class="dropoff-body"><strong>Client · Involvement</strong> — tries to re-book, no shortcut exists. High effort = goes to Kabanchik.</div>
+    <div class="dropoff-meta"><span class="mind">Memory</span></div>
+  </div>
+  <div class="dropoff-card">
+    <div class="dropoff-num">#5</div>
+    <div class="dropoff-body"><strong>Operator · Retention</strong> — builds direct client relationship to bypass platform. Platform value unclear beyond job matching.</div>
+    <div class="dropoff-meta"><span class="mind">Emotion</span></div>
+  </div>
+
+</section>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <span class="footer-brand">DRON</span>
+  <span class="footer-note">Research · June 2026 · <a href="https://github.com/OlenkaBozhenko/DRON" target="_blank" style="border:none;">github.com/OlenkaBozhenko/DRON</a></span>
+</footer>
+
+<script>
+  // ── Theme toggle ──
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('dron-theme', next);
+  });
+
+  // ── Nav drawer ──
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('navOverlay');
+  const hamburger = document.getElementById('hamburger');
+  const closeBtn  = document.getElementById('closeBtn');
+
+  function openNav() {
+    sidebar.classList.add('is-open');
+    overlay.classList.add('is-open');
+    hamburger.classList.add('is-open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    overlay.removeAttribute('aria-hidden');
+  }
+  function closeNav() {
+    sidebar.classList.remove('is-open');
+    overlay.classList.remove('is-open');
+    hamburger.classList.remove('is-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+  hamburger.addEventListener('click', () => sidebar.classList.contains('is-open') ? closeNav() : openNav());
+  overlay.addEventListener('click', closeNav);
+  closeBtn.addEventListener('click', closeNav);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+  sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+
+  // ── Adaptive tables: label each cell with its column header (used by the mobile card layout) ──
+  document.querySelectorAll('.table-wrap table').forEach(table => {
+    const heads = [...table.querySelectorAll('thead th')].map(th => th.textContent.trim());
+    if (!heads.length) return;
+    table.querySelectorAll('tbody tr').forEach(tr => {
+      const cells = [...tr.children];
+      // skip rows that span all columns (section / note rows)
+      if (cells.length === 1 && cells[0].hasAttribute('colspan')) return;
+      cells.forEach((cell, i) => {
+        if (i === 0 || cell.hasAttribute('colspan')) return; // first cell is the card title
+        if (heads[i]) cell.setAttribute('data-label', heads[i]);
+      });
+    });
+  });
+
+  // ── Horizontal table scrolling (desktop: wheel + mouse drag; touch: native) ──
+  document.querySelectorAll('.table-wrap').forEach(wrap => {
+    // Mouse wheel (incl. Shift+wheel) scrolls the table sideways
+    wrap.addEventListener('wheel', e => {
+      if (wrap.scrollWidth <= wrap.clientWidth) return;
+      const d = Math.abs(e.deltaX) >= Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (!d) return;
+      wrap.scrollLeft += d;
+      e.preventDefault();
+    }, { passive: false });
+    // Click-and-drag with a mouse (touch uses native momentum scroll)
+    let down = false, sx = 0, sl = 0;
+    wrap.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'mouse') return;
+      down = true; sx = e.clientX; sl = wrap.scrollLeft; wrap.style.cursor = 'grabbing';
+    });
+    window.addEventListener('pointermove', e => { if (down) wrap.scrollLeft = sl - (e.clientX - sx); });
+    window.addEventListener('pointerup', () => { if (down) { down = false; wrap.style.cursor = ''; } });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Operator account / profile · success (base)</title>
+<!-- SCREEN: "Operator account" — the Account tab in the OPERATOR global nav (Jobs · Earnings · Ratings · Account).
+     PERSONA: Operator O-1. JOB: identity / payout utility + switch persona (Operator ⇄ Client).
+     Fixes the flow leak where the operator's Account tab landed on the client account page (client bottom nav). -->
+<link rel="stylesheet" href="_wireframe.css?v=20b034c0">
+<style>
+  /* Edit icon button — top-right corner of the profile card (grayscale glyph placeholder, no real icon) */
+  .op-card{ position:relative; }
+  .op-edit{ position:absolute; top:12px; right:12px; width:32px; height:32px; display:inline-flex;
+    align-items:center; justify-content:center; border:1px solid var(--wf-border-2); border-radius:6px;
+    background:var(--wf-surface); color:var(--wf-text-2); text-decoration:none; }
+  .op-edit:hover{ background:var(--wf-recessed); color:var(--wf-text); }
+  .op-edit:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  .ic-edit{ position:relative; width:16px; height:16px; }
+  .ic-edit .pencil{ position:absolute; top:1px; left:50%; transform:translateX(-50%) rotate(45deg);
+    display:flex; flex-direction:column; align-items:center; }
+  .ic-edit .body{ width:5px; height:10px; background:currentColor; border-radius:1px 1px 0 0; }
+  .ic-edit .tip{ width:0; height:0; border-left:2.5px solid transparent; border-right:2.5px solid transparent;
+    border-top:4px solid currentColor; }
+</style>
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-account.html" class="cur" aria-current="page">success</a>
+      <a href="account-edit.html">edit</a>
+      <a href="operator-account-photo.html">photo</a>
+    </nav>
+    <h1>Operator account / profile</h1>
+    <p class="sub">Operator · Account utility · state: <b>base only</b> · file: operator-account.html</p>
+    <div class="flow"><b>Job (jtbd):</b> operator identity &amp; payout utility + <b>Switch role</b> (Operator ⇄ Client).<br><b>Exit:</b> Mode dropdown → Operator home (operator-listings) or Client home (listings).<br><b>Why this page exists:</b> the operator Account tab used to open the client <b>account.html</b> (client bottom nav) — dropping the operator into the client flow. This keeps the operator inside the operator flow.<br><b>Sub-view:</b> the pencil on the avatar → <b>operator-account-photo</b> (change the profile photo).<br><b>States:</b> none.</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Profile</b> ▸ who you are (Diia-verified operator)</p><p><b>Mode</b> ▸ switch Operator ⇄ Client (dropdown)</p><p><b>Account</b> ▸ payout · service area · language</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Account</span><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main dr-main--fab">
+      <p class="zlabel dr-label">Profile <span class="dr-label__act">▸ Diia-verified operator</span></p>
+      <section aria-label="Profile">
+        <!-- THE PROFILE HEAD IS A CENTRED COLUMN (2026-08-21, the designer, with a
+             frame of her own as the model: «аватарка по центру, на аватарці бейдж
+             з рейтингом, під низом ім'я, під ним словами оператор, під низом
+             кнопка редагувати, бекграунду немає»).
+
+             WHY THE ROW BECOMES A COLUMN. .dr-op is a row because it is a card in
+             somebody else's list — the client scanning an operator beside four
+             other things. This screen is the operator looking at himself: one
+             person, who is the subject of the screen, and a subject is centred.
+             So this is .dr-profile, a component of its own, and .dr-op is left
+             untouched for the eleven client screens that carry it.
+
+             AND THE CARD GOES WITH IT. Standing on --page instead of --card
+             improves every pair on the head rather than costing one: the name
+             14.37 -> 15.99:1 and the secondary button's fill 1.25 -> 1.39:1
+             against its ground. (The role line that gained by it too is gone —
+             see below.) -->
+        <div class="dr-profile">
+          <!-- ONE MARK ON THAT EDGE AGAIN, AND THE HEAD STOPS BEING A SPECIAL
+               CASE (2026-08-27: «delete rating badge»).
+
+               WHAT LEAVES IS THE PILL AND THE WRAPPER THAT EXISTED FOR IT.
+               `.dr-profile__rating` — `--warn` fill under `--ink` at 7.80:1,
+               56 x 24, hung on the circle's bottom centre line, reading
+               `Rating 4.9 ★` — is deleted from the one page that carried it.
+               The `<span class="dr-profile__photo">` around the anchor goes with
+               it: it was never a wrapper for the photograph, it was the
+               positioning context TWO marks needed to share one edge. With one
+               mark left, the mark's own `.dr-avatar-edit` is that context, and
+               the head collapses to the client's single element — the same
+               `<a class="dr-profile__photo dr-avatar-edit">` `account` has
+               carried since rev 182. THE STRUCTURE IS NOT REBUILT, IT IS THE
+               ONE THE OTHER HEAD ALREADY HAS.
+
+               THE A11Y REASON FOR THE SIBLING LEAVES WITH THE SIBLING. The pill
+               sat OUTSIDE the link because `aria-label="Change profile photo"`
+               replaces the anchor's content for the accessible name, and a
+               rating nested inside would have stopped being announced at all
+               (`WCAG 1.3.1`, `4.1.2`). Nothing needs to stay outside the link
+               now, so nothing needs to be outside it.
+
+               NO CRITERION IS ENGAGED BY THE REMOVAL, and that is stated rather
+               than assumed. The pill labelled no control (`4.1.2`), described no
+               group (`1.3.1`), instructed no input (`3.3.2`) and was never a
+               target — `HIG · 44pt` and `WCAG 2.5.8` are carried by the 120px
+               photograph, which is unchanged. Neither standard requires a fact
+               to be present; both govern how a present fact is drawn.
+
+               AND THE NUMBER IS NOT ORPHANED. 4.9 is the whole subject of
+               `ratings.html`, the operator's own tab in `Jobs · Earnings ·
+               Ratings · Account`, and it still rides Ivan's `.dr-op` card in
+               `tracking` and `order-confirmed`, where the CLIENT reads it —
+               which is the reader a rating was ever for. His own account head is
+               not where an operator learns his score.
+
+               THE PENCIL GOES BACK TO ITS OWN PLACE AND NOT ONE LINE OF CSS IS
+               WRITTEN. Every rule that put the disc beside the pill is scoped
+               `:has(.dr-profile__rating)` and every rule that puts it in the
+               corner is scoped `:not(:has(.dr-profile__rating))` — the kit has
+               known both heads since rev 199, so deleting the pill flips this
+               one to the client's arrangement by itself: the 44 disc leaves the
+               bottom centre line for the circle's bottom-right corner (−2/−2),
+               keeps `--sz-head-mark` 44 and its `--ic-22` glyph, and the photo's
+               `margin-bottom` falls from the 22 that paid back the deeper mark's
+               hang to the 0 the client's rule declares. That last number is the
+               reason the wrapper had to go: `.dr-profile__photo.dr-avatar-edit`
+               zeroes the margin only on an element carrying BOTH classes, so a
+               span left around the anchor would have kept the base `--sp-13` and
+               opened a 13px gap in a column that spends 8.
+
+               THE GREEN DOES NOT MOVE, because what left was yellow. The screen
+               still spends solid green on the floating `Edit profile` and on this
+               disc, in the proportion rev 199 measured. `--warn` loses one of its
+               three spends and keeps the two that are stars.
+
+               `.dr-profile__rating`, `--sz-rating-w`, `--sz-photo-mark` and the
+               whole `:has(.dr-profile__rating)` block stay DECLARED in the kit
+               and are now spent on no page — the terms `.dr-chip--sm` and
+               `.dr-profile__role` are already kept on. -->
+          <a class="dr-profile__photo dr-avatar-edit" href="operator-account-photo.html" aria-label="Change profile photo">
+            <span class="dr-avatar-lg"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
+            <span class="dr-avatar-edit__badge" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg></span>
+          </a>
+          <span class="dr-profile__name dr-display">Ivan K.</span>
+          <!-- THE ROLE LINE IS CUT (2026-08-21, «видали це з обох варіантів client
+               and operator»), and it took `· 214 jobs` with it. It read
+               `Operator · 214 jobs` at 15/400 --slate, 6.62:1, in an 18px line box
+               over an 8px gap — 26 of height off the column.
+
+               THE COUNT WAS PUT TO HER BEFORE THE LINE WENT, because she had
+               settled it that same morning: cut it with the line, keep it alone on
+               the line without the word, or move it into the Account panel as a
+               `Jobs done` row. She chose to cut it. Recorded as a decision, not as
+               a string that fell off.
+
+               NEITHER FACT IS ORPHANED. `Operator` is still on this screen as the
+               Mode row's value below, so it is stated once instead of twice; and
+               `4.9 ★ · 214 jobs` still rides on Ivan's .dr-op card in `tracking`
+               and `order-confirmed`, where the CLIENT reads it — which is the
+               reader the number was ever for. NO CRITERION IS ENGAGED: the span
+               labelled nothing (`WCAG 1.3.1`), named no control (`4.1.2`) and
+               instructed no input (`3.3.2`). `.dr-profile__role` stays declared in
+               the kit and is now spent on no page, the way `.dr-chip--sm` was kept
+               at rev 171. -->
+          <!-- THE TWO CHECKED DOCUMENTS, UNCHANGED IN MEANING AND IN COLOUR.
+               The rule set on 2026-08-18 — «оператор сірий, лайсенс і insurance
+               зелені» — still holds: GREEN MEANS DRON CONFIRMED THIS DOCUMENT.
+               Both take .dr-chip--claim, --green-wash behind --ink at 14.75:1,
+               and both wear the same shield with a trailing checkmark, because
+               two chips of one kind must not be told apart by drawing. Centred
+               now, and they CLOSE the column: the action that used to stand
+               under them has left the page flow for the tab bar's accessory
+               slot (see the floating button after </main>). -->
+          <span class="dr-chips dr-profile__badges"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>CAA licence<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
+          <!-- THE ACTION IS NOT HERE ANY MORE (2026-08-24, the designer on the
+               built button: «make edit profile button as a green float
+               button»). It stood at the foot of this column twice — as a
+               44 x 44 icon-only disc in the card's top-right corner until rev
+               171, then as the worded .dr-btn--outline of rev 181 — and it now
+               leaves the flow for the tab bar's bottom accessory. The markup
+               sits after </main>, which is where it sits on the screen
+               (`WCAG 1.3.2`); the reasoning is written there. -->
+        </div>
+      </section>
+
+      <p class="zlabel dr-label">Mode <span class="dr-label__act">▸ switch Operator ⇄ Client</span></p>
+      <!-- The mode picker takes the project-wide rule (2026-08-16): two options,
+           under the six, so the list rises as a drawer instead of unfolding in
+           flow — the same construction account.html carries, and .dr-disclosure
+           (the in-flow <details>) is applied to no page in the painted product.
+           Its options are the one kind that stays an <a>: they are ROUTES, not
+           values, so they navigate and nothing is written back into the row. -->
+      <section class="dr-stack" aria-label="User mode">
+        <div class="dr-rows">
+          <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-mode">
+            <span class="dr-field__label">Mode</span>
+            <span class="dr-field__value">Operator</span>
+            <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+          </button>
+        </div>
+        <!-- NO NOTICE UNDER THE ROW (2026-08-21, the designer: «видали опис цей»).
+             The 12/400 --slate line — «Switching changes what the app shows. Your Diia
+             identity stays the same.» — is cut. It was supplementary help, not a
+             label: WCAG 3.3.2 governs instructions an INPUT needs to be understood,
+             and this control is a picker whose visible label reads Mode, whose value
+             reads Operator, and whose drawer names both routes in full («Operator —
+             take jobs» / «Client — order services»). The name survives the cut, so
+             nothing accessible left with the sentence. -->
+      </section>
+
+      <p class="zlabel dr-label">Account <span class="dr-label__act">▸ payout &amp; preferences</span></p>
+      <div class="dr-rows" aria-label="Account details">
+        <div class="dr-rows__row"><span class="dr-rows__key">Withdrawal method</span><span class="dr-rows__val">Card •••• 4921</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Service area</span><span class="dr-rows__val">Podil · Obolon</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Drone</span><span class="dr-rows__val">DJI Mavic 3 · reg. verified</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Language</span><span class="dr-rows__val">English</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Operator since</span><span class="dr-rows__val">2026</span></div>
+      </div>
+    </main>
+
+    <!-- THE FLOATING ACTION (2026-08-24, the designer on the built Edit profile
+         button: «make edit profile button as a green float button»). It is the
+         kit's own .dr-fab, cut on 2026-08-21 for wallet's Withdraw and given its
+         second user here — no new class, no new value, no page CSS.
+
+         APPLE'S SHAPE AND NOT MATERIAL'S. `HIG · Tab bars` — "a tab bar…don't
+         use it to provide actions" — so a circular button planted IN or OVER the
+         bar is the one reading that would fail. iOS 26's tab-bar BOTTOM
+         ACCESSORY is a capsule that floats clear above a bar that stays four
+         tabs (Music's mini-player), and that is this: 11px of air over the bar's
+         top hairline.
+
+         IT IS THE ONE GREEN CONTROL ON THE SCREEN, which is what makes the fill
+         available. concept.md §0 allows one green control per screen at ~5% of
+         the frame, and this screen had spent none of it — the two credential
+         chips are --green-wash, a tint the budget does not count, and so is the
+         selected tab. The rating pill on the photograph stays solid green as a
+         status MARK, not a control, the case §0 admits beside the rule.
+
+         MEASURED: --on-green on --green 9.46:1 (`WCAG 1.4.3`) — green is never
+         the ink, here or anywhere, and the pencil is charcoal on the fill for
+         the same reason. min-height 44 (`HIG · 44pt target`), `WCAG 2.5.8`
+         cleared 1.8x on the short side. `WCAG 1.4.11` is carried by the label
+         and not by the fill, the kit's standing reading for this component.
+         The focus ring is .dr-btn's own --ink at 2px (`WCAG 2.4.11`).
+
+         IT LIFTS ON --sh-raised, WHICH IS THE FLAT RULE HOLDING RATHER THAN
+         BENDING: the rung .dr-sheet and .dr-toast spend, for the things that
+         genuinely float over the page instead of sitting in it. The column
+         takes .dr-main--fab's 72px floor so the last Account row scrolls clear
+         of the pill instead of parking under it (`HIG · Layout`).
+
+         THE LABEL IS UNCHANGED AND SO IS THE TARGET — Edit profile → account-edit,
+         the visible label still being the accessible name (`WCAG 4.1.2`), and
+         still a second name away from the photograph's own invisible «Change
+         profile photo» (`WCAG 2.4.6`). -->
+    <a class="dr-btn dr-btn--primary dr-fab" href="account-edit.html"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</a>
+
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="operator-listings.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="7.4" width="17.2" height="12.2" rx="2.2"/><path d="M9 7.4V6.1A1.7 1.7 0 0 1 10.7 4.4h2.6A1.7 1.7 0 0 1 15 6.1v1.3"/><path d="M3.4 12.6h17.2"/></svg>Jobs</a>
+        <a class="dr-tab" href="wallet.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="6.8" width="18.4" height="10.4" rx="2.2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.6v4.8M18 9.6v4.8"/></svg>Earnings</a>
+        <a class="dr-tab" href="ratings.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.79l2.84 5.75 6.36.93-4.6 4.48 1.09 6.33L12 17.29l-5.69 2.99 1.09-6.33-4.6-4.48 6.36-.93z"/></svg>Ratings</a>
+        <a class="dr-tab" href="operator-account.html" aria-current="page"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+
+    <!-- THE MODE DRAWER. Two routes, so the options are <a href> and kit.js
+         leaves them alone: they navigate, and the row is not rewritten. The
+         current mode keeps its checkmark and aria-current. -->
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <section class="dr-sheet dr-sheet--picker" id="sheet-mode" role="dialog" aria-modal="true" aria-labelledby="sheet-mode-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-mode-title">Mode</p>
+      <div class="dr-picker__list">
+        <a class="dr-picker__item" href="operator-listings.html" aria-current="true"><span class="dr-picker__label">Operator — take jobs</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="switch-role.html"><span class="dr-picker__label">Client — order services</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+      </div>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+    </section>
+  </div>
+
+  <script src="../ui/kit.js"></script>
+  <script src="_wf-shell.js?v=20b034c0"></script>
+</body>
+</html>

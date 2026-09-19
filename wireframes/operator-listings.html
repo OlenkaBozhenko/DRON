@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Operator home + status toggle · success (base)</title>
+<!--
+  SCREEN (name from _screens.md §12): "Operator home + status toggle" — the Operator job list.
+  PERSONA: Operator O-1 (primary).
+  MAIN JOB: MJ-2 + RJ-O3 — take the order, fulfil it, receive payment.
+  STATE: success / base. Other state (-empty = idle / no offers) is a separate page, next step.
+  MODEL NOTE (sitemap §4, RJ-O1): operators do NOT browse or pick jobs. Auto-dispatch pushes offers;
+    the operator accepts / declines in seconds. So there is no job "search" — only a status toggle
+    and the incoming-offer / active-job groups (sitemap §7.2). No SRM map (O-07 is post-MVP / deleted).
+  ZONES GROUNDED IN sitemap.md: status = OE-4; incoming offers = OE-6; active jobs = OE-5;
+    card entry → Job brief (MJ-2 flow); bottom bar = §7.2 global nav.
+  FIDELITY: grayscale only, system font, no colour, no icons (placeholders), no shadows, no brand lockup.
+-->
+<style>
+  /* ── tokens (from _conventions.md §4) ── */
+  :root{
+    --wf-surface:#FFFFFF; --wf-bg:#F4F4F4; --wf-recessed:#EEEEEE; --wf-fill:#E2E2E2;
+    --wf-skeleton:#D8D8D8; --wf-muted:#909090; --wf-text-2:#5A5A5A; --wf-text:#252525;
+    --wf-ink:#111111; --wf-ink-max:#000000;
+    --wf-border:rgba(0,0,0,0.09); --wf-border-2:rgba(0,0,0,0.15);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{ -webkit-font-smoothing:antialiased; }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,sans-serif;
+    background:var(--wf-recessed); color:var(--wf-text);
+    font-size:15px; line-height:1.4;
+    display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start; padding:24px;
+  }
+  .sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+
+  /* ── wireframe annotation (NOT part of the screen) ── */
+  .meta{ width:320px; font-size:13px; color:var(--wf-text-2); }
+  .meta h1{ font-size:17px; font-weight:600; color:var(--wf-text); margin-bottom:4px; }
+  .meta .sub{ color:var(--wf-muted); margin-bottom:16px; }
+  .meta dl{ display:grid; grid-template-columns:auto 1fr; gap:4px 8px; margin-bottom:16px; }
+  .meta dt{ color:var(--wf-muted); text-transform:uppercase; font-size:11px; letter-spacing:.06em; padding-top:1px; }
+  .meta dd{ color:var(--wf-text-2); }
+  .meta .flow{ border:1px dashed var(--wf-border-2); border-radius:6px; padding:12px; margin-bottom:16px; line-height:1.6; }
+  .meta .flow b{ color:var(--wf-text); font-weight:600; }
+  .meta .flow .cur{ background:var(--wf-ink); color:var(--wf-surface); padding:1px 6px; border-radius:4px; font-weight:600; }
+  .meta .legend{ border-top:1px solid var(--wf-border); padding-top:12px; }
+  .meta .legend p{ margin-bottom:6px; }
+  .meta .legend b{ color:var(--wf-text); font-weight:600; }
+
+  /* states of this screen — quick switch (top of aside) */
+  .state-switch{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+  .state-switch a{ font-size:12px; padding:5px 10px; border:1px solid var(--wf-border-2); border-radius:6px;
+    text-decoration:none; color:var(--wf-text-2); background:var(--wf-surface); }
+  .state-switch a:hover{ background:var(--wf-recessed); color:var(--wf-text); }
+  .state-switch a.cur{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+
+  /* ── phone frame 375 × 812 ── */
+  .wf-frame{
+    width:375px; height:812px; flex:none;
+    background:var(--wf-bg); border:1px solid var(--wf-border-2); border-radius:8px;
+    overflow:hidden; display:flex; flex-direction:column; position:relative;
+  }
+
+  /* status bar (system, safe area ~44) */
+  .statusbar{ height:44px; flex:none; display:flex; align-items:center; justify-content:space-between;
+    padding:0 16px; background:var(--wf-surface); color:var(--wf-text-2); font-size:13px; font-weight:600; }
+  .statusbar .sysph{ display:flex; gap:4px; }
+  .sq{ display:inline-block; border:1px solid var(--wf-border-2); border-radius:4px; }
+  .sq-16{ width:16px; height:16px; } .sq-20{ width:20px; height:20px; } .sq-24{ width:24px; height:24px; }
+
+  /* header / top bar */
+  header.topbar{ height:56px; flex:none; display:flex; align-items:center; gap:8px;
+    padding:0 16px; background:var(--wf-surface); border-bottom:1px solid var(--wf-border); }
+  /* The DRON mark (_conventions.md 8). A mask, not an embedded file, so it takes
+     the wireframe ink and stays grayscale. 60 x 20; #252525 on white is 15.33:1. */
+  .brand{ width:60px; height:20px; flex:none; background:var(--wf-text);
+    -webkit-mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat;
+    mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat; }
+  .avatar{ width:28px; height:28px; border-radius:999px;
+    display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; color:var(--wf-text-2); }
+  /* A real face replaces the initials. The portrait is a cutout with a
+     transparent ground, so the circle keeps a fill of its own — otherwise the
+     top bar shows through beside the shoulders and the head floats. */
+  .avatar:has(img){ background:var(--wf-recessed); overflow:hidden; padding:0;
+    font-size:0; line-height:0; color:transparent; }
+  .avatar img{ width:100%; height:100%; display:block; object-fit:cover; border-radius:999px; }
+  .who{ font-size:15px; font-weight:600; color:var(--wf-text); }
+  .topbar .spacer{ flex:1; }
+
+  /* nav — job groups */
+  nav.groups{ height:48px; flex:none; display:flex; align-items:center; gap:8px;
+    padding:0 16px; background:var(--wf-surface); border-bottom:1px solid var(--wf-border); }
+  .grouptab{ flex:none; height:32px; padding:0 12px; border-radius:6px; border:1px solid var(--wf-border-2);
+    background:var(--wf-surface); color:var(--wf-text-2); font-size:13px; font-weight:600; text-decoration:none;
+    display:flex; align-items:center; }
+  .grouptab[aria-current="true"]{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+
+  /* main scroll area */
+  main{ flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:16px; }
+
+  /* zone annotation label */
+  .zlabel{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--wf-muted);
+    display:flex; flex-wrap:wrap; gap:6px; align-items:baseline; border-left:2px solid var(--wf-border-2);
+    padding-left:8px; margin-bottom:-4px; }
+  .zlabel .act{ color:var(--wf-text-2); text-transform:none; letter-spacing:0; font-size:12px; }
+
+  /* status toggle (OE-4) — segmented radio group */
+  .status-head{ display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .dot{ width:10px; height:10px; border-radius:999px; background:var(--wf-ink); flex:none; }
+  .status-head b{ font-weight:600; } .status-head span{ color:var(--wf-muted); font-size:13px; }
+  .segment{ display:flex; border:1px solid var(--wf-border-2); border-radius:6px; overflow:hidden; }
+  .seg{ flex:1; height:44px; display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:600; color:var(--wf-text-2); background:var(--wf-surface);
+    border-right:1px solid var(--wf-border); cursor:pointer; }
+  .seg:last-child{ border-right:0; }
+  .seg input{ position:absolute; opacity:0; width:0; height:0; }
+  .seg:has(input:checked){ background:var(--wf-ink); color:var(--wf-surface); }
+  .seg:has(input:focus-visible){ outline:2px solid var(--wf-border-2); outline-offset:-2px; }
+
+  /* counter zone */
+  .counter{ display:flex; align-items:center; justify-content:space-between; }
+  .counter .count{ font-size:13px; color:var(--wf-text-2); }
+  .counter .count b{ color:var(--wf-text); font-weight:600; }
+
+  /* job lists / cards */
+  ul.list{ list-style:none; display:flex; flex-direction:column; gap:12px; }
+  article.card{ position:relative; display:flex; flex-direction:column; gap:12px; padding:16px;
+    background:var(--wf-surface); border:1px solid var(--wf-border); border-radius:8px; }
+  article.card:hover{ border-color:var(--wf-border-2); background:var(--wf-recessed); }
+  article.card:focus-within{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  .card-link{ position:absolute; inset:0; z-index:1; border-radius:8px; }
+  .card-top{ display:flex; align-items:center; gap:12px; }
+  .media-ph{ width:56px; height:56px; flex:none; border:1px dashed var(--wf-border-2); border-radius:6px;
+    display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.04em; color:var(--wf-muted);
+    background:var(--wf-recessed); text-align:center; }
+  .card .body{ flex:1; min-width:0; }
+  .card .name{ display:block; font-size:17px; font-weight:600; color:var(--wf-text); }
+  .card .desc{ display:block; font-size:13px; color:var(--wf-text-2); margin:2px 0 6px; }
+  .card .meta-row{ display:flex; align-items:baseline; gap:8px; }
+  .card .price{ font-size:15px; font-weight:600; color:var(--wf-text); }
+  .card .avail{ font-size:13px; color:var(--wf-muted); }
+  .card .chev{ flex:none; font-size:22px; line-height:1; color:var(--wf-muted); align-self:center; }
+  .card .actions{ display:flex; gap:8px; }
+  .card .actions .btn{ flex:1; position:relative; z-index:2; }
+
+  /* job-card anatomy (shared design with order-history): header band + route dots + status chip.
+     CTAs are unchanged (Accept / Decline / Continue). */
+  .oh-card{ padding:0; gap:0; overflow:hidden; }
+  .oh-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    padding:12px 16px; border-bottom:1px solid var(--wf-border); background:var(--wf-recessed); }
+  .oh-title{ font-size:16px; font-weight:700; color:var(--wf-text); min-width:0; }
+  .oh-head .oh-status{ margin-top:1px; }
+  .oh-body{ padding:14px 16px 16px; display:flex; flex-direction:column; gap:12px; }
+  .oh-top{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .oh-date{ font-size:13px; font-weight:600; color:var(--wf-text-2); }
+  .oh-more{ position:relative; z-index:2; width:28px; height:28px; flex:none; display:inline-flex;
+    align-items:center; justify-content:center; border:0; background:transparent; color:var(--wf-text-2);
+    border-radius:6px; cursor:pointer; }
+  .oh-more:hover{ background:var(--wf-recessed); color:var(--wf-text); }
+  .oh-more:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  .ic-kebab{ display:inline-flex; flex-direction:column; align-items:center; gap:2.5px; }
+  .ic-kebab i{ width:3px; height:3px; border-radius:999px; background:currentColor; }
+  .oh-route{ position:relative; display:flex; flex-direction:column; gap:12px; }
+  .oh-route.route-2::before{ content:""; position:absolute; left:4px; top:9px; bottom:9px; width:2px;
+    background:var(--wf-border-2); z-index:0; }
+  .oh-stop{ display:flex; align-items:flex-start; gap:10px; }
+  .oh-dot{ width:9px; height:9px; flex:none; margin-top:4px; position:relative; z-index:1; pointer-events:none;
+    border:1.5px solid var(--wf-text-2); border-radius:999px; background:var(--wf-surface); }
+  .oh-dot-end{ background:var(--wf-ink); border-color:var(--wf-ink); }
+  .oh-addr{ font-size:15px; color:var(--wf-text); line-height:1.3; }
+  .oh-addr .oh-addr-lbl{ display:block; font-size:11px; font-weight:600; letter-spacing:.04em;
+    text-transform:uppercase; color:var(--wf-muted); }
+  .oh-meta{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .oh-price{ font-size:17px; font-weight:600; color:var(--wf-text); }
+  .oh-eta{ font-size:13px; color:var(--wf-muted); }
+  .oh-status{ flex:none; display:inline-flex; align-items:center; font-size:12px; font-weight:600;
+    color:var(--wf-text-2); border:1px solid var(--wf-border-2); border-radius:999px; padding:4px 10px;
+    background:var(--wf-surface); white-space:nowrap; }
+  .oh-status.live{ color:var(--wf-surface); background:var(--wf-ink); border-color:var(--wf-ink); }
+
+  /* buttons (_conventions §11) — variants + all interaction states */
+  .btn{ min-height:44px; padding:0 16px; border-radius:6px; font-size:15px; font-weight:600;
+    border:1px solid transparent; background:transparent; color:var(--wf-text); cursor:pointer;
+    display:inline-flex; align-items:center; justify-content:center; text-decoration:none; }
+  .btn:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+  .btn:disabled{ background:var(--wf-fill); color:var(--wf-muted); border-color:transparent; cursor:not-allowed; }
+  .btn-primary{ background:var(--wf-ink); color:var(--wf-surface); }
+  .btn-primary:hover{ background:var(--wf-ink-max); }
+  .btn-primary:active{ background:var(--wf-ink-max); }
+  .btn-secondary{ background:var(--wf-surface); border-color:var(--wf-border-2); color:var(--wf-text); }
+  .btn-secondary:hover{ background:var(--wf-recessed); }
+  .btn-secondary:active{ background:var(--wf-fill); }
+  .btn-tertiary{ background:transparent; color:var(--wf-text-2); }
+  .btn-tertiary:hover{ color:var(--wf-text); }
+  .btn-sm{ min-height:32px; height:32px; padding:0 12px; font-size:13px; }
+
+  /* footer — bottom bar (§7.2 global nav) */
+  footer.tabbar{ flex:none; background:var(--wf-surface); border-top:1px solid var(--wf-border); }
+  footer .tabs{ height:56px; display:flex; }
+  footer .tab{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    text-decoration:none; color:var(--wf-muted); font-size:11px; }
+  footer .tab .sq{ border-radius:4px; }
+  footer .tab[aria-current="page"]{ color:var(--wf-ink); }
+  footer .tab[aria-current="page"] .sq{ border-color:var(--wf-ink); background:var(--wf-fill); }
+  footer .home-indicator{ height:34px; display:flex; align-items:center; justify-content:center; }
+  footer .home-indicator span{ width:134px; height:5px; border-radius:2px; background:var(--wf-skeleton); }
+</style>
+<!--
+  VISUAL LAYER (2026-08-18): the Studio layer from ui/kit.css. The block ABOVE is left in
+  place and the kit link comes AFTER it, so the kit wins every product surface — the same
+  situation painted listings.html is already in and already documented (DESIGN.md:
+  "the block precedes the kit.css link, so the kit wins every product surface"). What the
+  block still paints is the canvas AROUND the frame (body #EEEEEE) and the 28px top-bar
+  avatar's geometry; everything else in it is now dead weight for this page, and the
+  grayscale class names it keys on (.card, .oh-*, .btn, .segment, .seg, .grouptab,
+  .tabbar, .tab, .counter, .status-head) have left the markup so they cannot out-specify
+  the kit. `topbar` and `zlabel` stay: _wf-shell.js reads the first, the annotation
+  toggle reads the second.
+-->
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+
+  <!-- ── WIREFRAME ANNOTATION (not the screen) ── -->
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="operator-listings.html" class="cur" aria-current="page">success</a>
+      <a href="operator-listings-empty.html">empty</a>
+    </nav>
+    <h1>Operator home + status toggle</h1>
+    <p class="sub">Operator job list · state: <b>success (base)</b> · file: operator-listings.html</p>
+    <dl>
+      <dt>Persona</dt><dd>Operator O-1 (primary)</dd>
+      <dt>Main job</dt><dd>MJ-2 + RJ-O3 — take, fulfil, get paid</dd>
+      <dt>Screen job</dt><dd>MJ-2 hub · O-02 status gate · RJ-O1 quick decision</dd>
+    </dl>
+    <div class="flow">
+      <b>Closes MJ-2 · step 1 — go Available &amp; accept a job</b> (the decision point; depth-1, §7.3).<br>
+      flows.md MJ-2+RJ-O3: <span class="cur">Operator home + status toggle</span> → Incoming job offer / accept-decline → Job brief → Checklist → Result upload → Wallet → Withdraw.<br>
+      <b>Next:</b> Accept an offer → <b>Job brief / detail</b>.
+    </div>
+    <div class="legend">
+      <p><b>Zones &amp; main action</b> (labelled in the screen):</p>
+      <p><b>Status toggle</b> ▸ set availability (gates dispatch)</p>
+      <p><b>Job groups</b> (nav) ▸ switch incoming / active</p>
+      <p><b>Counter</b> ▸ show workload (offers are auto-dispatched, nearest first — no manual sort)</p>
+      <p><b>Incoming offers</b> (cards) ▸ accept / decline in seconds</p>
+      <p><b>Active jobs</b> (cards) ▸ continue a job</p>
+      <p><b>Job card (entry)</b> ▸ open the job brief</p>
+      <p><b>Bottom bar</b> ▸ switch global section</p>
+    </div>
+  </aside>
+
+  <!-- ── THE SCREEN · 375 × 812 ── -->
+  <div class="wf-frame dr dr-screen">
+
+    <!-- status bar (system, safe area) -->
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+
+    <!-- HEADER · top bar.
+         The operator's own face and name stand where a client root screen carries
+         .dr-brand — the frame's content, kept. The 28px circle keeps `class="avatar"`
+         and takes its geometry from this page's own block, which is exactly what
+         painted account.html / order-confirmed-empty.html do with `op-avatar`: the
+         kit cuts no small-avatar rung and inventing a size token was refused. The NAME
+         takes .dr-op__name — the kit's own 15/600 --ink at 15.99:1 on --page — because
+         the block's `.who` paints #252525, an ink outside the palette. -->
+    <header class="topbar dr-topbar">
+      <span class="dr-avatar-sm"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
+      <span class="dr-op__name">Ivan K.</span>
+      <span class="dr-topbar__spacer"></span>
+      <!-- THE AVAILABILITY BADGE (designer, 2026-08-21: «покажи індикатор
+           відповідно до обраного статусу»). The state the segment below sets,
+           mirrored in the bar so it stays on screen once the segment scrolls
+           away. It is `.dr-chip--sm` — the rung she cut the same day for a badge
+           beside a name on operator-account — plus a dot; the word is inside the
+           pill, which is what lets the dot be green (WCAG 1.4.1). Not a control:
+           nothing is tappable here, so no 44px target is owed. -->
+      <span class="dr-chip dr-chip--sm dr-avail-badge" data-avail-badge data-state="available"><span class="dr-avail-badge__dot" aria-hidden="true"></span><span data-avail-word>Available</span></span>
+      <!-- THE NOTIFICATION BELL - the operator's half of the same 2026-08-31 call
+           ("for both client and operator modes"). Identical component, identical
+           values; what differs is what the log holds, because the two sides hold
+           different records and speak different words (`voice.md`: his are JOBS).
+
+           IT STANDS AFTER THE AVAILABILITY BADGE, AND THAT IS A RULE, NOT A GUESS.
+           `HIG · Navigation bars` gives the bar's trailing edge to its CONTROLS; the
+           badge is not one - the block above already says so ("Not a control: nothing
+           is tappable here, so no 44px target is owed"). So the only tappable thing in
+           this bar takes the edge and the badge sits inboard of it. The badge's own
+           composition is untouched: same class, same dot, same word, same green. The
+           alternative - bell first, badge at the edge - conforms equally and is one
+           swap, so BOTH WERE DRAWN AND MEASURED FOR THE DESIGNER on 2026-09-01 and
+           she kept this one. The order is a decision taken, not a default left standing.
+
+           NO SECOND GREEN CONTROL IS CREATED. The pill is 324px2 (0.107% of the
+           frame), a status mark on the sec.0 count, standing beside the badge's own
+           dot; the screen's one green CONTROL is still the offer card's Accept. -->
+      <a class="dr-bell" href="operator-notifications.html" aria-label="Notifications, 3 unread">
+        <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4a5.9 5.9 0 0 0-5.9 5.9c0 4.1-1.5 5.3-1.5 5.3h14.8s-1.5-1.2-1.5-5.3A5.9 5.9 0 0 0 12 3.4Z"/><path d="M10.1 18a2.1 2.1 0 0 0 3.8 0"/></svg><span class="dr-count-badge" aria-hidden="true">3</span>
+      </a>
+    </header>
+
+    <!-- MAIN -->
+    <main class="dr-main">
+
+      <!-- ZONE · status toggle (OE-4) -->
+      <p class="zlabel dr-label">Status <span class="dr-label__act">▸ set availability — gates dispatch (O-02)</span></p>
+      <!-- IT IS A SELECT NOW, AND IT WAS A SEGMENTED CONTROL UNTIL 2026-09-10
+           (the designer, against the built screen: «it shouldnt look like tab
+           make it like in slack where I select a status make like select»).
+
+           THE COMPONENT IS THE KIT'S OWN PICKER ROW, NOT A NEW SHAPE. `.dr-field
+           --action` + `.dr-sheet--picker` is what `order-setup` (Parcel size),
+           `operator-account` (Mode), `listings-filters` and five more rows already
+           are, so a ninth select on the ninth screen looks and answers like the
+           other eight (`WCAG 3.2.4 Consistent Identification`). Nothing was added
+           to `ui/kit.css` for this and no token was cut.
+
+           IT ALSO CLOSES AN OPEN WCAG FINDING RATHER THAN MOVING IT. The segment
+           carried its state as a `--page` plate on the `--media` track — 1.20:1,
+           against `WCAG 1.4.11 Non-text Contrast`'s 3:1 for a state indicator,
+           reported to her at rev 164 and still open. A select has no plate: the
+           state is the VALUE, `--ink` on `--page` at 15.99:1, so the criterion is
+           satisfied by text instead of waived. `HIG · Pop-up buttons` is the rule
+           the new shape answers to — a small set of mutually exclusive options
+           where the current choice matters more than seeing all of them at once,
+           which is what availability is.
+
+           THE TARGET IS UNCHANGED AT 44. `.dr-field` is `min-height: var(--h-control)`
+           = 44px, the same figure the three segments spent (`HIG · 44pt target`), and
+           the three options in the drawer are `.dr-picker__item` at 44 each.
+
+           THE COPY IS THE SEGMENT'S, WORD FOR WORD — Available / Busy / Offline —
+           so `microcopy.md` gains no string and loses none. -->
+      <section class="dr-stack" aria-label="Availability status">
+        <div class="dr-rows">
+          <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-avail">
+            <span class="dr-field__label">Availability</span>
+            <span class="dr-field__value">Available</span>
+            <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+          </button>
+        </div>
+      </section>
+
+      <!-- THE ROW CAME DOWN INTO THE PAGE ON 2026-09-03 (designer, against the
+           built screen: «it is not logical that the toggle with operator status
+           is under the filters which need to be below please change the UX
+           design on this page»). It stood in the CHROME, between the top bar and
+           <main>, with the 44px availability segment sitting between it and the
+           list it filters — and HIG · Segmented Controls puts a segmented control
+           directly above the content it affects. With the shell's annotations off
+           the .zlabel naming that segment is hidden, so the segment stood bare
+           under this row and read as part of the filter.
+           THREE READINGS WENT TO HER WITH THE STANDARDS FIRST and she took this
+           one: the segment up into the chrome instead, the topbar badge made the
+           control with the segment deleted, or this row down. Availability is
+           first now because it gates dispatch for the whole screen; the filter is
+           last before the thing it filters.
+           TWO COSTS, HERS AND WRITTEN DOWN. The row scrolls away with the list
+           now, so `Active · 1` is off screen once the operator is down the offers
+           — the chrome used to hold it. And WCAG 3.2.3 Consistent Navigation no
+           longer holds between the two home screens: the client's listings keeps
+           this same component in the chrome. Nothing about the row itself moves —
+           44px target, 6.62:1, 14.75:1 selected — and the script at the foot is
+           unchanged, since it finds the row by [data-groups] and follows the
+           hash, never the DOM position. ui/kit.css carries the whole override in
+           `.dr-main > .dr-groups`, scoped so the ten other pages that draw this
+           row cannot be reached by it. -->
+      <!-- NAV · job groups — the painted in-page tab row from listings.html.
+           The state carrier is aria-current, which kit.css paints --green-wash behind
+           --ink at 14.75:1; the tint is not counted against the green budget (1.085:1
+           on the page). Links, not buttons: these are in-page anchors, as built.
+           THE TWO TARGETS ARE THE SECTIONS, NOT THE ZONE LABELS (designer, 2026-08-21,
+           on the built screen: «не клікабельний»). Until this rev the two ids sat on the
+           `.zlabel` paragraphs, which the shell hides outright — `_wf-shell.js:176`,
+           `body.wf-hide-anno .zlabel{ display:none !important }` — so with annotations
+           off the target had no box at all and the tap moved `.dr-main`'s scrollTop
+           0 → 0. A control that measures clean and answers to nothing: 44px target
+           (32 visible + the `--pill-bleed` −6/−6), `--slate` on `--page` 6.62:1,
+           selected `--ink` on `--green-wash` 14.75:1 — every value passing, the tap
+           dead. The ids now sit on the two `<section aria-label="…">`s, which are
+           named regions and are on the page in both annotation modes.
+           `aria-current` NOW MOVES WITH THE TAP (designer, 2026-08-21: «так якщо я
+           обрала активні то відповідно і таба міняє стан на обрану»), which turns
+           rev 174's reading (b) — the jump alone — into reading (c), the jump with
+           the state moving. That closes the `WCAG 4.1.2` gap rev 174 left open on
+           her word: the row now names the group you asked for instead of the one
+           you left. The script is at the foot of this page. Recorded in
+           `concept.md` rev 180. -->
+      <!-- AND ON 2026-09-10 THIS ROW GOES BACK TO THE CHIP, ON A PICTURE — the
+           designer, pasting a shot of the row in its pre-rev-232 shape: «зроби UI
+           як тут, вибраний на зеленому бекграунді, тоненькі лінії зверху знизу».
+           So `.dr-groups--tabs` comes off HERE and nowhere else: the underline tab
+           stays the shape on `listings`, which is not what the picture showed and
+           was not asked about. The two home rows are deliberately two shapes now,
+           which is her call and is recorded rather than smoothed over.
+           WHAT THE PICTURE ASKS FOR, IN THE KIT'S OWN TERMS: the current group is
+           `--green-wash` behind `--ink` on a `--r-pill` chip (the base
+           `.dr-grouptab`, unchanged since 2026-08-02), and the row is closed by a
+           `--hair` rule above AND below — the second line is the new part, and it
+           is declared on `.dr-main > .dr-groups` because a row standing inside the
+           page has content on both sides of it, where the chrome row only ever had
+           content below.
+           THE ONE THING THAT GETS WORSE IS SAID OUT LOUD AND IS HERS. The chip
+           marks state with a tint that is 1.085:1 against the page — under
+           `WCAG 1.4.11`'s 3:1 — where the underline it replaces was `--ink` at
+           15.99:1. The label still moves --slate 6.62:1 → --ink 14.75:1 on the
+           wash, but text-against-text is not a pair WCAG measures, so this row
+           goes back to leaning on it. That is the known condition of the chip
+           shape, recorded in DESIGN.md since rev 232 and on the four `time-slot`
+           rows that never left it — not a new defect, and not a silent one. -->
+      <nav class="dr-groups" aria-label="Job groups" data-groups>
+        <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming <span class="dr-grouptab__count">2</span></a>
+        <a class="dr-grouptab" href="#active">Active <span class="dr-grouptab__count">1</span></a>
+      </nav>
+
+      <!-- ZONE · incoming offers (OE-6).
+           THE JOB CARD IS order-history's CARD, PROMOTED. .dr-order__top / __head /
+           __title / __date / __fee / __price / __acts were documented as a one-off
+           bound to order-history; the operator's job card is the same object (a title,
+           a one-line fact, a route, a figure, actions) so it reuses them and they stop
+           being a one-off. THREE DIVERGENCES, all resolved toward the kit and logged:
+           · the frame's banded header (a --wf-recessed strip with a hairline under it)
+             goes. The kit's card is flat and one ground by rule; a band inside a card
+             is a second surface the system does not have. The service name and the
+             status pill move into .dr-order__top, which is where order-history puts
+             exactly those two facts.
+           · the frame's vertical stop list (dots on a connector) becomes the kit's
+             .dr-inset From ▸ To strip — one route component in the product.
+           · the frame's 28px transparent kebab CAME OFF ENTIRELY on the designer's
+             word, 2026-08-21: it opened nothing, and the row's two real answers are
+             the Accept / Decline buttons at the foot of the card. .dr-order__head is
+             flex:1, so the status chip takes the right edge on its own with no rule
+             added. (The kebab had been rebuilt here as .dr-btn--icon, a 44px --btn2
+             disc; that rung is still spent 26 times on nine other pages.) -->
+      <p class="zlabel dr-label">Incoming offers · cards <span class="dr-label__act">▸ accept / decline in seconds (RJ-O1)</span></p>
+      <section id="incoming" aria-label="Incoming offers">
+        <ul class="dr-list dr-list--snug">
+
+          <!-- EACH CARD NOW OPENS ITS OWN JOB (2026-08-21, _screens.md §§13–14). The two
+               offers shared job-offer.html and all three cards shared job-brief.html, so
+               tapping "Roof inspection · ₴650" opened "Package delivery · ₴180" — WCAG 2.4.4
+               Link Purpose (In Context), level A, against the card's own accessible name.
+               Delivery keeps the unsuffixed pair; inspection goes to job-offer-inspection /
+               job-brief-inspection; the active aerial job to job-brief-aerial. ONLY THE
+               hrefs MOVE on this page — no card, string, zone or value is touched.
+               STILL DIVERGING, REPORTED AT §14: Accept → brief → Start job lands on
+               job-checklist.html, which reads "Parcel secured" whatever the service. -->
+          <!-- offer card: header (service + status) · route · fee + expiry · Accept/Decline -->
+          <li>
+            <article class="dr-card">
+              <a class="dr-card__link" href="job-offer.html" aria-label="Package delivery job — open brief"></a>
+              <span class="dr-order__top">
+                <span class="dr-order__head">
+                  <span class="dr-order__title">Package delivery</span>
+                  <span class="dr-order__date">2.3 km · ~18 min</span>
+                </span>
+                <span class="dr-chip dr-chip--claim">New</span>
+              </span>
+              <span class="dr-inset">
+                <span class="dr-inset__stop"><span class="dr-inset__lbl">Pickup</span><span class="dr-inset__place">Podil</span></span>
+                <span class="dr-inset__dir" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+                <span class="dr-inset__stop dr-inset__stop--to"><span class="dr-inset__lbl">Drop-off</span><span class="dr-inset__place">Osokorky</span></span>
+              </span>
+              <span class="dr-order__fee">
+                <span><span class="sr-only">Pay</span><span class="dr-number dr-order__price">₴180</span></span>
+                <span class="dr-chip">expires in 8s</span>
+              </span>
+              <span class="dr-card__actions">
+                <a class="dr-btn dr-btn--primary" href="job-brief.html">Accept</a>
+                <a class="dr-btn dr-btn--secondary" href="operator-listings.html">Decline</a>
+              </span>
+            </article>
+          </li>
+
+          <li>
+            <article class="dr-card">
+              <a class="dr-card__link" href="job-offer-inspection.html" aria-label="Roof inspection job — open brief"></a>
+              <span class="dr-order__top">
+                <span class="dr-order__head">
+                  <span class="dr-order__title">Roof inspection</span>
+                  <span class="dr-order__date">5.1 km · ~35 min</span>
+                </span>
+                <span class="dr-chip dr-chip--claim">New</span>
+              </span>
+              <span class="dr-inset">
+                <span class="dr-inset__stop"><span class="dr-inset__lbl">Location</span><span class="dr-inset__place">Obolon district</span></span>
+              </span>
+              <span class="dr-order__fee">
+                <span><span class="sr-only">Pay</span><span class="dr-number dr-order__price">₴650</span></span>
+                <span class="dr-chip">expires in 6s</span>
+              </span>
+              <span class="dr-card__actions">
+                <a class="dr-btn dr-btn--primary" href="job-brief-inspection.html">Accept</a>
+                <a class="dr-btn dr-btn--secondary" href="operator-listings.html">Decline</a>
+              </span>
+            </article>
+          </li>
+
+        </ul>
+      </section>
+
+      <!-- ZONE · active jobs (OE-5) -->
+      <p class="zlabel dr-label">Active jobs · cards <span class="dr-label__act">▸ continue a job in progress</span></p>
+      <section id="active" aria-label="Active jobs">
+        <ul class="dr-list dr-list--snug">
+          <li>
+            <article class="dr-card">
+              <a class="dr-card__link" href="job-brief-aerial.html" aria-label="Aerial photo and video — open job"></a>
+              <span class="dr-order__top">
+                <span class="dr-order__head">
+                  <span class="dr-order__title">Aerial photo &amp; video</span>
+                  <span class="dr-order__date">Client · Olena H.</span>
+                </span>
+                <span class="dr-chip">In progress</span>
+              </span>
+              <span class="dr-inset">
+                <span class="dr-inset__stop"><span class="dr-inset__lbl">Location</span><span class="dr-inset__place">Trukhaniv Island</span></span>
+              </span>
+              <span class="dr-order__fee">
+                <span><span class="sr-only">Pay</span><span class="dr-number dr-order__price">₴800</span></span>
+                <span class="dr-chip">checklist 3 / 5</span>
+              </span>
+              <span class="dr-card__actions">
+                <a class="dr-btn dr-btn--primary" href="job-checklist.html">Continue</a>
+              </span>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- FOOTER · bottom bar (global nav — sitemap §7.2).
+         THE FOUR OPERATOR GLYPHS ARE DRAWN HERE FOR THE FIRST TIME, on the 24-grid at
+         stroke 1.7, fill:none, currentColor, round caps and joins — §5's one icon
+         system. Jobs is a briefcase (the work queue, and deliberately not the client
+         bar's 2x2 catalogue grid); Earnings is a banknote with its centre coin;
+         Ratings is a five-point star drawn as an OUTLINE, because .dr-star's filled
+         glyph is the rating input's own exception and a tab icon is not a quantity;
+         Account is QUOTED verbatim from the client tab bar — same tab, same glyph. -->
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="operator-listings.html" aria-current="page">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="7.4" width="17.2" height="12.2" rx="2.2"/><path d="M9 7.4V6.1A1.7 1.7 0 0 1 10.7 4.4h2.6A1.7 1.7 0 0 1 15 6.1v1.3"/><path d="M3.4 12.6h17.2"/></svg>Jobs
+        </a>
+        <a class="dr-tab" href="wallet.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="6.8" width="18.4" height="10.4" rx="2.2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.6v4.8M18 9.6v4.8"/></svg>Earnings
+        </a>
+        <a class="dr-tab" href="ratings.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.79l2.84 5.75 6.36.93-4.6 4.48 1.09 6.33L12 17.29l-5.69 2.99 1.09-6.33-4.6-4.48 6.36-.93z"/></svg>Ratings
+        </a>
+        <a class="dr-tab" href="operator-account.html">
+          <svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account
+        </a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+
+
+    <!-- THE AVAILABILITY DRAWER. Three options, under the six, so the list rises
+         from the bottom edge rather than pushing a screen — `ui/kit.js`'s standing
+         rule (≤ 6 → drawer, ≥ 7 → a screen). One scrim serves the page; only one
+         row can be tapped. `data-state` on each option is the badge's carrier and
+         nothing else — every colour and shape behind it stays in `ui/kit.css`. -->
+    <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
+
+    <section class="dr-sheet dr-sheet--picker" id="sheet-avail" role="dialog" aria-modal="true" aria-labelledby="sheet-avail-title" hidden>
+      <span class="dr-sheet__grip" aria-hidden="true"></span>
+      <p class="dr-sheet__title" id="sheet-avail-title">Availability</p>
+      <div class="dr-picker__list">
+        <button class="dr-picker__item" type="button" data-state="available" aria-current="true"><span class="dr-picker__label">Available</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+        <button class="dr-picker__item" type="button" data-state="busy"><span class="dr-picker__label">Busy</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+        <button class="dr-picker__item" type="button" data-state="offline"><span class="dr-picker__label">Offline</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+      </div>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+    </section>
+
+  </div>
+
+  <!--
+    THE GROUP ROW'S STATE. This page's one script, and it sits here for the reason
+    `listings`' filter does: the behaviour is not in `ui/kit.js` — that file is the
+    picker drawer and the keyboard, and says so at the top — and one page carries it
+    until a second page needs it.
+
+    WHAT THE MARKUP ALREADY GIVES, AND THIS DOES NOT RE-IMPLEMENT. The tabs are real
+    <a href="#…">, so Enter, the tab order, the 44px hit area (the ::after bleed on
+    .dr-grouptab) and the accessible name come from the element and from kit.css —
+    `WCAG 2.1.1` and the jump itself are answered before a line of this runs. THE
+    SCROLL IS STILL THE BROWSER'S: nothing here calls scrollIntoView or touches
+    scrollTop, so rev 174's four measured landings do not move. What is added is one
+    attribute moving.
+
+    IT FOLLOWS THE HASH, NOT THE CLICK, so there is one rule and not two. A tap sets
+    `location.hash`; back and forward set it too; a link from elsewhere can arrive at
+    `operator-listings.html#active` already. All four go through the same line, and
+    the row cannot disagree with the address bar. The click listener exists only for
+    the one case `hashchange` does not fire — tapping the group you are already on,
+    where the mark is right and nothing moves anyway.
+
+    AN UNKNOWN HASH LEAVES THE ROW ALONE. The markup rests with `Incoming` current;
+    a hash naming neither group is not a reason to strip that, so the row keeps what
+    the frame drew rather than briefly naming nothing.
+
+    WHAT IS STILL OPEN, AND IT IS THE DESIGNER'S: scrolling BY HAND does not move the
+    mark. Tap `Active`, scroll back up, and the row still says `Active` while you read
+    `Incoming`. Closing that is a scroll-linked observer — a second rule, a real
+    behaviour, and not what she asked for; the number is written into `concept.md`
+    rev 180 instead.
+  -->
+  <script>
+  (function () {
+    'use strict';
+
+    var row = document.querySelector('[data-groups]');
+    if (!row) return;
+
+    var tabs = row.querySelectorAll('.dr-grouptab');
+    if (!tabs.length) return;
+
+    function mark(hash) {
+      var known = false;
+      tabs.forEach(function (tab) { if (tab.getAttribute('href') === hash) known = true; });
+      if (!known) return;
+      tabs.forEach(function (tab) {
+        if (tab.getAttribute('href') === hash) tab.setAttribute('aria-current', 'true');
+        else tab.removeAttribute('aria-current');
+      });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { mark(tab.getAttribute('href')); });
+    });
+    window.addEventListener('hashchange', function () { mark(location.hash); });
+    mark(location.hash);
+  }());
+  </script>
+
+  <!--
+    THE BADGE FOLLOWS THE SELECT. It followed the SEGMENT's radios until
+    2026-09-10; the carrier moved with the component, the rule did not. The
+    behaviour belongs to this screen and not to `ui/kit.js`, which is the picker
+    drawer and the keyboard.
+
+    THE WORD COMES OFF THE OPTION'S OWN LABEL, so the three strings live in the
+    markup once — the drawer — and this file never carries product copy. Only
+    `data-state` is set from JS, read straight off the option that was tapped;
+    every colour, fill and shape behind it is in `ui/kit.css`, which is the kit's
+    standing rule that a design value never leaves the stylesheet.
+
+    IT READS THE TAPPED OPTION AND NOT `aria-current`, and that is not a
+    preference. This listener is registered while the page parses, before
+    `ui/kit.js` loads, so on a tap it runs FIRST — and at that moment the mark
+    has not moved yet, so asking the DOM which option is current would answer
+    with the one being left. The option that was clicked is the single fact true
+    in both handlers.
+
+    THE PROGRAMMATIC SIDE. The row is a real <button> whose contents name it —
+    *Availability, Available* — carrying `aria-haspopup="dialog"` and the
+    `aria-expanded` that `ui/kit.js` flips (`WCAG 4.1.2` OK); the current option
+    carries `aria-current="true"` beside a checkmark that is drawn, not coloured
+    (`WCAG 1.4.1` OK). The badge is a visual restatement of that, so it is NOT a
+    live region: `role="status"` here would announce the same fact a second time
+    on every change, and `microcopy.md`'s own rule for a selection — *it moves a
+    selection, visible either way* — is why the drawer gets no toast either.
+
+    IT SYNCS ON LOAD as well as on tap, so the badge cannot disagree with the
+    option the frame drew.
+  -->
+  <script>
+  (function () {
+    'use strict';
+
+    var badge = document.querySelector('[data-avail-badge]');
+    var word  = document.querySelector('[data-avail-word]');
+    if (!badge || !word) return;
+
+    var items = document.querySelectorAll('#sheet-avail .dr-picker__item');
+    if (!items.length) return;
+
+    function sync(item) {
+      badge.setAttribute('data-state', item.getAttribute('data-state'));
+      word.textContent = item.querySelector('.dr-picker__label').textContent.trim();
+    }
+
+    items.forEach(function (item) {
+      item.addEventListener('click', function () { sync(item); });
+    });
+
+    var current = document.querySelector('#sheet-avail .dr-picker__item[aria-current="true"]');
+    if (current) sync(current);
+  }());
+  </script>
+
+  <!-- ui/kit.js — the onscreen keyboard and the picker drawer. Until 2026-09-10 this
+       page linked it and drew nothing, because its only controls were three radios and
+       rev 151's rule says a radio raises no keyboard. The availability SELECT is a
+       picker, so the file is load-bearing here now: it opens the drawer, inerts the
+       frame behind it, traps the tab key, writes the pick back into the row and hands
+       focus back on close. Still no keyboard on this screen — nothing is typed. -->
+  <script src="../ui/kit.js"></script>
+  <!-- shared wireframe shell: left nav tree + viewport switcher (same on every page) -->
+  <script src="_wf-shell.js?v=20b034c0"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Results on the map · inspection · success (base)</title>
+<!--
+  SCREEN (_screens.md §3a): "Results on the map" — NEW 2026-09-14, what Find on Home opens.
+  PERSONA: Client C-1. JOB: MJ-1 — choose the result a drone delivers (CE-2), availability shown before
+  payment (C-01). STATE: success / base. SERVICE: Inspection — one file per service, the rule
+  order-setup set, so the rows are this service's; the siblings are listings-map, listings-map-aerial.
+  THE DESIGNER, 2026-09-14: «по кліку на "Find" має відкритись карта і дровер знизу з списком дронів часу
+  прибуття кількістю доступних і ціною знизу CTA "Order"», against Figma 145:8 for structure only.
+  ROWS ARE NAMED BY THE OUTCOME, NOT THE DRONE — her pick of the two readings put to her with voice.md
+  P1 / P4 first. The picture is the drone; the words say what you get.
+  THE PRICES RECONCILE: Up to 3 parts ₴650 is order-review-inspection's total (3 parts ₴480 + inspection report
+  ₴150 + fee ₴20); the other rows move only the parts, ₴160 each (_screens.md §3a). "Parts" is that page's word.
+  THE PICTURE IS ONE DRONE ON ALL THREE ROWS — drone-11, the inspection render listings and job-offer-inspection
+  already give this service.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=20b034c0">
+<link rel="stylesheet" href="../ui/kit.css">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="Services on this screen">
+      <a href="listings-map.html">delivery</a>
+      <a href="listings-map-aerial.html">aerial</a>
+      <a href="listings-map-inspection.html" class="cur" aria-current="page">inspection</a>
+    </nav>
+    <h1>Results on the map</h1>
+    <p class="sub">Client · MJ-1 · state: <b>success (base)</b> · service: <b>inspection</b> · file: listings-map-inspection.html</p>
+    <div class="flow"><b>Job:</b> MJ-1 — choose what you need, with the price, how many are available and when one arrives in front of you (CE-2 · C-01).<br><b>Entry:</b> <a href="listings.html">Home</a> → <b>Find</b> with <b>Inspection</b> chosen.<br><b>Exit:</b> <b>Order</b> → <a href="order-setup-inspection.html">Order setup</a> · back → Home.<br><b>Open:</b> Order setup still asks which parts, and then a time slot, and its back returns to Home, not here (<code>_screens.md</code> §3a).</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Live map</b> ▸ who is available near you</p><p><b>Choices</b> ▸ picture · what it carries · available · arrives in · price</p><p><b>Order</b> ▸ the chosen row → Order setup</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+
+    <!-- A PUSHED SCREEN'S BAR: the chevron alone (microcopy.md D9) named for where it goes — Home is
+         the Order tab, the name order-setup already gives the same control — and the service as the
+         title. The reference floats a back button over the map; the product's own bar is kept, so
+         every pushed screen has one navigation bar (WCAG 3.2.3). -->
+    <header class="topbar dr-topbar"><a class="dr-back" href="listings.html" aria-label="Back to Order"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Inspection</span><span class="dr-topbar__spacer"></span></header>
+
+    <main class="dr-mapscreen">
+      <div class="dr-mapview" style="background-image:url(../assets/map/live-map.jpg)" role="img" aria-label="Map · available near you"></div>
+
+      <!-- THE CHOICES — a docked drawer, not a modal: no scrim, no aria-modal, there when the screen
+           arrives. One row is always chosen (a radio group named by the drawn title); the first, the
+           lightest and nearest, is chosen at rest. -->
+      <section class="dr-sheet dr-sheet--dock">
+        <span class="dr-sheet__grip" aria-hidden="true"></span>
+        <p class="zlabel dr-label">Choices <span class="dr-label__act">▸ pick one · Order</span></p>
+        <p class="dr-sheet__title" id="offers-title">Parts to inspect</p>
+
+        <fieldset class="dr-offers" aria-labelledby="offers-title">
+          <label class="dr-offer">
+            <input type="radio" name="offer" value="1" checked class="sr-only">
+            <span class="dr-well"><img src="../assets/drones/thumbs/drone-11.png" alt="" loading="lazy" decoding="async"></span>
+            <span class="dr-offer__body">
+              <span class="dr-offer__name">1 part</span>
+              <span class="dr-offer__meta">3 available · arrives in 30 min</span>
+            </span>
+            <span class="dr-offer__price">₴330</span>
+          </label>
+          <label class="dr-offer">
+            <input type="radio" name="offer" value="3" class="sr-only">
+            <span class="dr-well"><img src="../assets/drones/thumbs/drone-11.png" alt="" loading="lazy" decoding="async"></span>
+            <span class="dr-offer__body">
+              <span class="dr-offer__name">Up to 3 parts</span>
+              <span class="dr-offer__meta">2 available · arrives in 30 min</span>
+            </span>
+            <span class="dr-offer__price">₴650</span>
+          </label>
+          <label class="dr-offer">
+            <input type="radio" name="offer" value="5" class="sr-only">
+            <span class="dr-well"><img src="../assets/drones/thumbs/drone-11.png" alt="" loading="lazy" decoding="async"></span>
+            <span class="dr-offer__body">
+              <span class="dr-offer__name">Up to 5 parts</span>
+              <span class="dr-offer__meta">1 available · arrives in 45 min</span>
+            </span>
+            <span class="dr-offer__price">₴970</span>
+          </label>
+        </fieldset>
+
+        <a class="dr-btn dr-btn--primary dr-btn--block" href="order-setup-inspection.html">Order</a>
+      </section>
+    </main>
+  </div>
+
+  <script src="_wf-shell.js?v=20b034c0"></script>
+</body>
+</html>
