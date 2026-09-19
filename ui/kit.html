@@ -55,7 +55,7 @@
     padding:18px; display:inline-flex; flex-direction:column; gap:10px; align-items:flex-start; }
   .plate.oncard{ background:var(--bg-surface); }
   .plate.wide{ width:341px; max-width:100%; }
-  .plate .st{ font-family:var(--font-mono); font-size:10px; letter-spacing:.08em;
+  .st{ font-family:var(--font-mono); font-size:10px; letter-spacing:.08em;
     text-transform:uppercase; color:var(--text-muted); }
   .notes{ font-size:12.5px; line-height:1.6; color:var(--text-muted); }
   .notes b{ color:var(--text-primary); font-weight:600; }
@@ -85,6 +85,18 @@
   .shape span{ display:block; font-family:var(--font-mono); font-size:10px; color:var(--text-muted); margin-top:6px; }
 
   @media (max-width:940px){ .row{ grid-template-columns:1fr; gap:16px; } }
+  /* ── NOT THE KIT, AND NOT THIS PAGE'S EITHER. These two rules are copied out
+     of wireframes/switch-role.html, the last painted screen still carrying CSS
+     of its own: .success-mark is declared in the grayscale layer
+     (wireframes/_wireframe.css) and the page finishes it with :has(img) so the
+     circle can hold the client's photograph. The kit has no 64px photo mark —
+     the avatar rungs are 28 / 56 / 120 — so that specimen cannot be drawn out
+     of kit classes. Copied verbatim with the two --wf-* values resolved, so the
+     frame reads as it is built. design-system/_critique.md §10b. ── */
+  .success-mark{ width:64px; height:64px; border:1px solid rgba(0,0,0,0.15);
+    border-radius:999px; background:#EEEEEE; overflow:hidden;
+    display:flex; align-items:center; justify-content:center; }
+  .success-mark img{ width:100%; height:100%; display:block; object-fit:cover; border-radius:999px; }
 </style>
 </head>
 <body>
@@ -1478,10 +1490,12 @@
   <div class="nm"><b>Onboarding slider</b><code>.dr-slider &#183; --bleed &#183; .dr-slide &#183; --floor &#183; __art &#183; .dr-pager</code>
     <p>Three screens open with it &#8212; <code>welcome</code>, <code>onboarding-client</code>,
        <code>onboarding-operator</code> &#8212; and it is the only place a picture is allowed to
-       run to the edge of the frame.</p></div>
+       run to the edge of the frame.</p>
+    <p>Two of the three are drawn whole, at the frame's own <b>375 &#215; 812</b>: the base, and
+       the screen carrying the one <code>--floor</code> slide in the nine.</p></div>
   <div class="spec col">
-    <div class="dr dr-screen" style="height:640px">
-      <div class="dr-statusbar"><span>9:41</span></div>
+    <div class="dr dr-screen">
+      <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
       <header class="dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__spacer"></span></header>
       <main class="dr-main">
         <div class="dr-slider dr-slider--bleed" aria-label="What to expect from DRON">
@@ -1490,10 +1504,15 @@
             <p class="dr-lead">Pick a service and pay. A certified DRON operator does the flying &#8212; you never touch the drone.</p>
             <span class="dr-slide__art"><img src="../assets/scenes/thumbs/handover.png" alt="" decoding="async"></span>
           </section>
-          <section class="dr-slide dr-slide--floor" aria-label="Slide 2 of 3">
+          <section class="dr-slide" aria-label="Slide 2 of 3">
             <p class="dr-display">A verified, insured operator</p>
-            <p class="dr-lead">The moment you pay you see their name, photo and live position.</p>
+            <p class="dr-lead">The moment you pay you see their name, photo and live position. Someone accountable is on the way.</p>
             <span class="dr-slide__art"><img src="../assets/people/thumbs/wide/operator.png" alt="" loading="lazy" decoding="async"></span>
+          </section>
+          <section class="dr-slide" aria-label="Slide 3 of 3">
+            <p class="dr-display">What the drone does &#8212; and doesn't</p>
+            <p class="dr-lead">It flies a set route, keeps its distance, and only records what your order needs. Brief low noise on take-off and landing; no filming of your neighbours.</p>
+            <span class="dr-slide__art"><img src="../assets/drones/thumbs/wide/drone-flight-clean.png" alt="" loading="lazy" decoding="async"></span>
           </section>
         </div>
         <div class="dr-pager" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
@@ -1503,7 +1522,36 @@
         <span class="dr-btn dr-btn--primary dr-btn--block">Get started</span>
       </footer>
     </div>
-    <span class="st">--bleed &#183; the art runs edge to edge, the words keep the 20px gutter &#183; slide 2 is --floor</span>
+    <span class="st">welcome, as built &#183; the art runs edge to edge, the words keep the 20px gutter &#183; no slide here takes --floor</span>
+    <div class="dr dr-screen">
+      <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+      <header class="dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__spacer"></span></header>
+      <main class="dr-main">
+        <div class="dr-slider dr-slider--bleed" aria-label="How operating on DRON works">
+          <section class="dr-slide dr-slide--floor" aria-label="Slide 1 of 3">
+            <p class="dr-display">Jobs come to you</p>
+            <p class="dr-lead">Auto-dispatch sends pre-qualified jobs. Accept or decline in seconds &#8212; no bidding.</p>
+            <span class="dr-slide__art"><img src="../assets/scenes/thumbs/onboarding-dispatch.png" alt="" loading="lazy" decoding="async"></span>
+          </section>
+          <section class="dr-slide" aria-label="Slide 2 of 3">
+            <p class="dr-display">Follow the checklist</p>
+            <p class="dr-lead">Every job has a step-by-step checklist so nothing is missed on site.</p>
+            <span class="dr-slide__art"><img src="../assets/scenes/thumbs/onboarding-checklist.png" alt="" loading="lazy" decoding="async"></span>
+          </section>
+          <section class="dr-slide" aria-label="Slide 3 of 3">
+            <p class="dr-display">Get paid automatically</p>
+            <p class="dr-lead">Earnings land within 30 min of client confirmation. Withdraw to card or bank.</p>
+            <span class="dr-slide__art"><img src="../assets/scenes/thumbs/onboarding-payout.png" alt="" loading="lazy" decoding="async"></span>
+          </section>
+        </div>
+        <div class="dr-pager" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+      </main>
+      <footer class="dr-actionbar">
+        <span class="dr-btn dr-btn--secondary dr-btn--block">Skip</span>
+        <span class="dr-btn dr-btn--primary dr-btn--block">Get started</span>
+      </footer>
+    </div>
+    <span class="st">onboarding-operator, as built &#183; slide 1 is the one --floor slide in the product</span>
   </div>
   <div class="notes">
     <p><b><code>--bleed</code> is the one place a picture reaches the frame,</b> and it buys it
@@ -1515,20 +1563,38 @@
        inside is <code>.dr-screen:has(.dr-slider--bleed) &gt; .dr-main</code> &#8212; the frame
        itself opts in. The same <code>:has()</code> lifts the status bar, the top bar and the
        action bar to <code>z-index:1</code>, so the chrome stays over the artwork.</p>
-    <p><b><code>--floor</code> is the slide whose subject stands on the bottom edge.</b> The art
-       keeps its 32px of top padding and drops the bottom one, then
-       <code>object-position: center calc(100% + 7px)</code> pushes the picture 7px past the floor
-       &#8212; so an operator standing in frame is cut at the shoe rather than floating over a band
-       of page. It is per-slide, not per-slider: the first slide is a handover in mid-air and keeps
-       its floor.</p>
+    <p><b>The frames are drawn at their own height, and that is why there are two of them.</b> The
+       art band is whatever the copy leaves &#8212; 48 of top padding, two text blocks, and
+       <code>.dr-slide__art</code> taking the rest as <code>flex:1 1 auto</code> &#8212; so the
+       frame's height is what decides how large a <code>contain</code> picture is drawn. A
+       shortened frame does not show the same slide smaller; it shows a different composition.
+       Both specimens are <b>375 &#215; 812</b>, the built size.</p>
+    <p><b><code>--floor</code> is the slide whose subject stands on the bottom edge, and exactly
+       one slide in the product takes it</b> &#8212; <code>onboarding-operator</code>'s first,
+       above. <code>onboarding-dispatch.png</code> is the one picture of the nine whose subject is
+       cut by its own canvas: the operator ends at the bottom edge of the file. Floated in air that
+       crop reads as a mistake in the drawing; standing on the floor it reads as a figure walking
+       out of frame. The art keeps its 32px of top padding, drops the bottom one, and
+       <code>object-position: center calc(100% + 7px)</code> spends back the 14 transparent rows
+       the file carries under the jacket. It is a modifier on the slide, not on the slider: the
+       other eight are composed with space under the subject and lose nothing by floating.</p>
     <p><b>The art is <code>contain</code>, never <code>cover</code>.</b> These are real photographs
-       of a real handover and a real operator; cropping them to fill a box would cut the subject.
-       <code>--floor</code> is the variant that lets one run to the bottom edge, and it pays for
-       that with <code>object-position: center calc(100% + 7px)</code> &#8212; measured, and the
-       3.1px it overshoots at 200% type is named in <code>kit.css</code> rather than hidden.</p>
+       and real cutouts; cropping one to fill a box would cut the subject. Where the width runs out
+       first the picture draws the frame's full 373.4 &#8212; seven of the nine &#8212; and where
+       the height runs out first it scales down rather than cropping, which is what makes
+       <code>welcome</code>'s second slide 289.1 &#215; 341.0 and not a clipped figure.</p>
     <p><b>The pager is one element for the whole slider,</b> under it, where the designer put it
        back after a per-slide pager was tried and reverted. The lit dot is
-       <code>--color-action</code>, the rest <code>--bg-muted</code>.</p>
+       <code>--color-action</code>, the rest <code>--bg-muted</code>. On the three frames
+       <code>ui/kit.js</code> moves <code>.on</code> to the slide nearest the centre as you swipe;
+       <b>this page runs no script, so the dot here stays on slide 1.</b></p>
+    <p><b>What this specimen drew until 2026-09-20.</b> One 640px frame with two of
+       <code>welcome</code>'s three slides and <code>--floor</code> on the second of them &#8212; a
+       pairing no frame builds, on a portrait cutout the modifier clips for nothing. Corrected on
+       the designer's &#171;&#1082;&#1072;&#1088;&#1090;&#1080;&#1085;&#1082;&#1080; &#1085;&#1072;
+       &#1086;&#1085;&#1073;&#1086;&#1088;&#1076;&#1080;&#1085;&#1075;&#1091; &#1074;&#1080;&#1075;&#1083;&#1103;&#1076;&#1072;&#1102;&#1090;&#1100;
+       &#1085;&#1077; &#1090;&#1072;&#1082; &#1103;&#1082; &#1085;&#1072; wairframes&#187;, and
+       recorded in <code>design-system/_critique.md</code> &#167;10a rather than quietly swapped.</p>
   </div>
 </div>
 
@@ -1723,21 +1789,23 @@
   <div class="nm"><b>Centred main</b><code>.dr-main--center &gt; .dr-center</code>
     <p>One screen spends it &#8212; <code>switch-role</code>, where the column is the only thing in
        the frame.</p></div>
-  <div class="spec">
-    <div class="plate" style="align-items:stretch;padding:0;width:341px;max-width:100%">
-      <div class="dr dr-screen" style="height:420px;width:auto">
-        <header class="dr-topbar"><span class="dr-topbar__title">Switch role</span><span class="dr-topbar__spacer"></span></header>
-        <main class="dr-main dr-main--center">
-          <div class="dr-center">
-            <span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5h13"/><path d="M13.5 5l3.5 3.5-3.5 3.5"/><path d="M20 15.5H7"/><path d="M10.5 12L7 15.5 10.5 19"/></svg></span>
-            <p class="dr-display dr-display--balance">Switch to operator</p>
-            <p class="dr-lead">Your client orders stay where they are.</p>
-          </div>
-        </main>
-        <footer class="dr-actionbar"><span class="dr-btn dr-btn--primary dr-btn--block">Switch</span></footer>
-      </div>
-      <span class="st">the column sits between the bars, not against the top</span>
+  <div class="spec col">
+    <div class="dr dr-screen">
+      <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+      <header class="dr-topbar"><a class="dr-back" href="#" aria-label="Back to Account"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Switch role</span><span class="dr-topbar__spacer"></span></header>
+      <main class="dr-main dr-main--center">
+        <section class="dr-center" aria-label="Switch role">
+          <span class="success-mark" aria-hidden="true"><img src="../assets/people/thumbs/person-client-olena.png" alt="" loading="lazy" decoding="async"></span>
+          <p class="dr-display">Switch to Operator?</p>
+          <p class="dr-lead">You're in Client mode. Switching shows the Operator app &#8212; jobs, earnings and ratings. Your Diia identity stays the same.</p>
+        </section>
+      </main>
+      <footer class="dr-actionbar">
+        <span class="dr-btn dr-btn--primary dr-btn--block">Switch to Operator</span>
+        <span class="dr-btn dr-btn--secondary dr-btn--block">Cancel</span>
+      </footer>
     </div>
+    <span class="st">switch-role, as built &#183; the column sits between the bars, not against the top</span>
   </div>
   <div class="notes">
     <p><b><code>margin-block: auto</code>, and deliberately not
@@ -1753,6 +1821,20 @@
        <code>.dr-main--center &gt; .dr-center</code>: main keeps its own padding and gap, and only
        a direct <code>.dr-center</code> is centred. A screen with two blocks in it is not affected
        by the class at all.</p>
+    <p><b>The circle is the page's own CSS, not the kit's.</b> <code>switch-role</code> puts the
+       client's own photograph in a 64px circle, using <code>.success-mark</code> from the
+       grayscale layer plus a <code>:has(img)</code> block written on the page &#8212; the last
+       live page-local rule in the painted set. The kit has no 64: <code>.dr-avatar-sm</code> 28,
+       <code>.dr-avatar-md</code> 56, <code>.dr-avatar-lg</code> 120. So the two rules are copied
+       into this page's chrome block, where they are marked as the page's. Whether the kit should
+       grow the rung instead is the designer's call &#8212;
+       <code>design-system/_critique.md</code> &#167;10b states both sides.</p>
+    <p><b>What this specimen drew until 2026-09-20.</b> A 341 &#215; 420 frame with no status bar,
+       no back control, a <code>.dr-mark--milestone</code> glyph circle in place of the photograph,
+       shortened copy, and one button where the frame has two. Corrected on the designer's
+       &#171;&#1094;&#1077; &#1074;&#1080;&#1075;&#1083;&#1103;&#1076;&#1072;&#1108; &#1085;&#1077;
+       &#1090;&#1072;&#1082; &#1103;&#1082; &#1085;&#1072; wairframes&#187;; &#167;10b of the
+       critique log carries the comparison.</p>
   </div>
 </div>
 

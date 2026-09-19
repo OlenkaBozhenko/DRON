@@ -608,3 +608,127 @@ word.
 | primitive colour read straight by a component | **0** — every colour goes through a semantic role |
 | `tokens.css` | 178 definitions · 170 distinct values · 1 marked duplicate |
 | `components/` | 30 files · 2 316 declarations |
+
+---
+
+## §10 — The screen portraits: the classes were right, the composition was not
+
+§08 asked *which classes* each side carries and came back clean in both directions. The designer,
+reading the built showcase, asked a third question about two of those same specimens — «це
+виглядає не так як на wairframes» on the centred main, «картинки на онбордингу виглядають не так
+як на wairframes» on the slider — and it is a question neither sweep could have answered: **a
+specimen that portrays one named screen can carry every one of that screen's classes and still
+not be that screen.**
+
+Same rule as §08, in her words: `wairframes не чіпати` — nothing in `wireframes/` was touched for
+anything below. Only `ui/kit.html` moved.
+
+### 10a — The onboarding slider drew a pairing no frame builds *(fixed)*
+
+**What was built.** The specimen named `welcome`, `onboarding-client` and `onboarding-operator`,
+and drew one frame **640px tall** holding **two** slides: `welcome`'s first two, with
+`.dr-slide--floor` on the second.
+
+**What the frames build:**
+
+| | showcase | frames |
+|---|---|---|
+| frame | 375 × **640** | 375 × **812** (`.dr-screen` = `--len-375` / `--len-812`; `.wf-frame` is 375 × 812 too) |
+| slides drawn | 2 | **3**, on each of the three screens |
+| `--floor` | `welcome` w2, `people/wide/operator.png` | `onboarding-operator` **oo1**, `scenes/onboarding-dispatch.png` — the only one of the nine |
+| w2's sub-line | ends at *…live position.* | *…live position. Someone accountable is on the way.* |
+
+**The height is the finding, not a detail.** The art band is whatever the copy leaves: the slide
+spends 48 on top padding and two text blocks, and `.dr-slide__art` is `flex: 1 1 auto` on the
+rest. The 172px came off the band alone — and because the picture is `object-fit: contain` inside
+it, the band's height is what decides how large the drawing is drawn. A short frame does not show
+the same picture smaller; it shows a different composition, which is what she was looking at.
+
+**`--floor` on w2 is `.dr-chip--live` (§08c) one level up.** The class is real, the frame that
+builds it is real, and no frame puts it on this slide. `kit.css` says why in the rule's own
+comment: `onboarding-dispatch` is the one picture of the nine whose subject is cut by its own
+canvas, so standing it on the floor reads as a figure walking out of frame; the other eight are
+composed with space under the subject and lose nothing by floating. On `operator.png` — a
+portrait cutout already height-led at 289.1 × 341.0 — the modifier pushes a whole figure 7px past
+the floor and clips it for nothing in the drawing.
+
+**Corrected to two frames, each one screen as built.** `welcome` with its three slides, none of
+them `--floor`; `onboarding-operator` with its three, the first of them `--floor`. Both 375 × 812,
+both with the frames' own status bar. The modifier keeps a specimen and the showcase stops
+inventing one.
+
+### 10b — The centred main drew a different screen's mark *(fixed)*
+
+**What was built.** A **341 × 420** frame; no status bar; no back control; a
+`.dr-mark--milestone` circle with a swap-arrows glyph; *Switch to operator*; the lead *Your client
+orders stay where they are.*; one button, *Switch*.
+
+**What `switch-role` builds.** 375 × 812; the status bar; a back chevron to Account, no visible
+word, `aria-label="Back to Account"` (`microcopy.md` **D9**); a 64px circle carrying the client's
+own photograph; `<h1 class="dr-display">Switch to Operator?</h1>`; the lead *You're in Client
+mode. Switching shows the Operator app — jobs, earnings and ratings. Your Diia identity stays the
+same.*; and an action bar of **two** — primary *Switch to Operator*, secondary *Cancel*.
+
+**The mark is the real finding.** `.dr-mark--milestone` is a true component — **15** pages build
+it — and `switch-role` is not one of them. Its circle is `.success-mark`, declared in
+`wireframes/_wireframe.css` (the grayscale layer) and finished by the page's own `:has(img)`
+block: the one live page-local CSS rule left in the painted set, which `CLAUDE.md` already
+records. So the specimen swapped a photograph for a green-tint glyph circle, and in doing so it
+hid the one painted screen whose mark the kit does not own.
+
+**The kit has no 64.** Measured in `components/avatar.css`: `.dr-avatar-sm` **28** ·
+`.dr-avatar-md` **56** · `.dr-avatar-lg` **120**. The frame therefore could not have been drawn
+out of kit classes at all. The showcase now carries the page's own two rules inside its chrome
+block, marked as the page's and not the kit's — the chrome block already claims exactly that
+honesty at the top of the file.
+
+**Open, and hers.** A screen builds a component the kit does not have. Two ways to end that, and
+keeping it as built is one of them:
+
+1. **Give the kit the rung** — a 64px photo mark beside the three avatar sizes — and
+   `switch-role`'s page-local block becomes unnecessary. It would leave the painted set with
+   **zero** live page-local CSS, which is the state `CLAUDE.md` describes as the goal of having
+   one shared `kit.css`.
+2. **Leave it page-local.** One screen spends it; a rung spent once is the thing the closed-ramp
+   rule argues against. The cost is that the last page-local block stays, and the showcase goes
+   on carrying a copy of it.
+
+Neither is a conformance question — the mark is `aria-hidden` decoration, so no contrast criterion
+is engaged either way. It is a system question, and it is not answered here.
+
+### 10c — One divergence left standing, also hers
+
+**The showcase's pager cannot follow a swipe.** `ui/kit.html` links no script; the three
+carousel frames link `ui/kit.js`, whose fourth behaviour (rev 270, on her word «коли я свайпаю
+слайдер не показує на якому я скріні 1, 2 чи 3») moves `.on` to the slide nearest the centre on
+every scroll frame. So in the showcase the lit dot stays on slide 1 — the exact thing she asked
+to have fixed on the frames.
+
+Adding `<script src="kit.js"></script>` to `ui/kit.html` would close it and change nothing else:
+of the file's four blocks, two return immediately without a `.wf-frame` and the third needs an
+`input[autocomplete="cc-number"]`, which the card specimen deliberately does not have
+(`autocomplete="off"`). Not done without her word, because a showcase page that has never run a
+script is a decision someone made.
+
+### 10d — After, read off both pages side by side
+
+Every number below was measured in a browser on `ui/kit.html` and then on the frame itself, the
+same property on each.
+
+| | frame | showcase |
+|---|---|---|
+| `welcome` frame | 375 × 812 | **375 × 812** |
+| `welcome` `.dr-main` | 373.7 × 578 | **373.7 × 578** |
+| `welcome` art wells | 341.5 / 341.5 / 287.4 | **341.5 / 341.5 / 287.4** |
+| `onboarding-operator` art wells | 396.7 / 364.7 / 364.7 | **396.7 / 364.7 / 364.7** |
+| `object-position` on oo1 | `50% calc(100% + 7px)` | **`50% calc(100% + 7px)`**, and on no other slide |
+| `switch-role` frame | 375 × 812 | **375 × 812** |
+| `switch-role` `.dr-center` | 341.7 × 188.5 | **341.7 × 188.5** |
+| the mark | 64 × 64, `#EEEEEE`, `rgba(0,0,0,.15)` hairline, photo 62.7 | **the same four** |
+| `--floor` in the showcase | — | **1**, on the slide that builds it |
+| elements wider than their frame · page scroll-x · console errors | — | **0 · 0 · 0** |
+
+One side effect, kept: the caption rule was written `.plate .st`, and the 24 captions that sit
+directly under a specimen rather than inside a plate had been rendering as body text since they
+were written. The selector is now `.st`, so every caption on the page reads as the mono label it
+was meant to be.
