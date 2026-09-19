@@ -1260,6 +1260,136 @@
 </div>
 
 <div class="row">
+  <div class="nm"><b>Price above the action</b><code>.dr-price &#183; __lbl &#183; __val</code>
+    <p>What the action bar carries on <code>time-slot</code> and
+       <code>time-slot-inspection</code>: the choice on the left, the money on the right, the
+       button under both.</p></div>
+  <div class="spec">
+    <div class="plate" style="align-items:stretch;padding:0;width:341px;max-width:100%">
+      <footer class="dr dr-actionbar" style="position:static">
+        <div class="dr-price"><span class="dr-price__lbl">Selected &#183; Wed 2 Jul, 09:00</span><span class="dr-price__val">&#8372;800</span></div>
+        <span class="dr-btn dr-btn--primary dr-btn--block">Confirm slot</span>
+      </footer>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>This is <code>voice.md</code> P3 built as a component:</b> <i>state the price as a fact,
+       before the tap</i>. The number is not on the screen you land on after confirming &#8212; it
+       is on the button&#8217;s own shelf, so the sum and the commitment are read in one glance.</p>
+    <p><b>Baseline, not centre.</b> <code>align-items: baseline</code> sits 13px label and 17px
+       value on one line of type rather than two boxes centred against each other. The value is
+       <code>font-variant-numeric: tabular-nums</code>, so a price does not jitter as it changes
+       &#8212; the same discipline <code>.dr-number</code> keeps on the balance.</p>
+    <p><b>The label is <code>--text-muted</code>, the value <code>--text-primary</code>.</b>
+       <b>4.77:1</b> and <b>14.75:1</b> on the bar&#8217;s <code>--bg-page</code> &#8212; both
+       clear <code>WCAG 1.4.3</code>&#8217;s 4.5:1 for body text, and the money is the one that
+       reads first.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>The card that is one link</b><code>.dr-card__link &#183; .dr-card:has(&gt; __link:focus-visible)</code>
+    <p>Four screens build a card this way &#8212; <code>order-history</code>,
+       <code>operator-listings</code>, <code>time-slot</code>, <code>time-slot-inspection</code>.</p></div>
+  <div class="spec">
+    <article class="dr dr-card" style="width:341px;max-width:100%">
+      <a class="dr-card__link" href="#" aria-label="Package delivery, in progress &#8212; view details"></a>
+      <span class="dr-order__top">
+        <span class="dr-order__head">
+          <span class="dr-order__title">Package delivery</span>
+          <span class="dr-order__date">Today &#183; 10:03</span>
+        </span>
+        <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
+      </span>
+      <span class="dr-chips"><span class="dr-chip dr-chip--live">In progress</span></span>
+    </article>
+    <span class="st">the whole card is the target &#183; tab to it and the ring is on the card</span>
+  </div>
+  <div class="notes">
+    <p><b>One anchor stretched over the card, and everything else is text.</b>
+       <code>position: absolute; inset: 0; z-index: 1</code>, empty, with the whole card&#8217;s
+       meaning in <code>aria-label</code>. That is one tab stop and one announcement instead of a
+       title link, a date link and a chip link that all go to the same place &#8212; and the target
+       is the card, far past <code>HIG &#183; 44pt</code>.</p>
+    <p><b>The ring goes on the card, not on the invisible anchor.</b>
+       <code>.dr-card:has(&gt; .dr-card__link:focus-visible)</code> draws
+       <code>2.5px</code> of <code>--text-primary</code> at <code>offset: 2</code> around the
+       card, and <code>.dr-card:focus-within</code> clears the default. A ring on a zero-content
+       anchor would trace the card&#8217;s inner edge and read as a glitch; this is
+       <code>WCAG 2.4.11</code> answered with the shape the user actually tapped.</p>
+    <p><b>It takes the card&#8217;s radius, 16.</b> Not its own number &#8212; the link has no
+       shape of its own, so it borrows the one it covers. A ring that rounded differently from the
+       card would announce a second element that is not there.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Card row</b><code>.dr-card__row</code>
+    <p>The earnings card on <code>wallet</code>: a line of text and a number, then the action
+       under it.</p></div>
+  <div class="spec">
+    <article class="dr dr-card" style="width:341px;max-width:100%">
+      <span class="dr-card__row">
+        <span class="dr-listing__body">
+          <span class="dr-listing__name">Package delivery</span>
+          <span class="dr-listing__meta"><span class="dr-listing__desc">Today, 10:07</span></span>
+        </span>
+        <span><span class="dr-sr">Earned </span><span class="dr-number">&#8372;180</span></span>
+      </span>
+      <span class="dr-card__actions">
+        <span class="dr-btn dr-btn--secondary">View details</span>
+      </span>
+    </article>
+  </div>
+  <div class="notes">
+    <p><b>Three declarations, and they are the ones a card needs most often.</b>
+       <code>display:flex; align-items:center; gap:12px</code> &#8212; the body takes the space,
+       the number sits beside it, and neither is given a width. It is not
+       <code>space-between</code>: <code>.dr-listing__body</code> is
+       <code>flex: 1</code> already, so the gap is a real 12 rather than whatever is left over.</p>
+    <p><b>The number is not the whole story, so it says so.</b> <i>&#8372;180</i> alone is a
+       figure; <code>.dr-sr</code> puts the word <i>Earned</i> in front of it for a screen reader,
+       which is the only thing that tells you whether money came in or went out
+       (<code>WCAG 1.3.1</code>). Sighted readers get it from the section heading above.</p>
+    <p><b>The action is its own row, under the line, not inside it.</b>
+       <code>.dr-card__actions</code> keeps the button at full
+       <code>HIG &#183; 44pt</code> across the card rather than squeezing a target in beside a
+       price.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Card number field</b><code>.dr-field__marks &#183; .dr-paymark--fit</code>
+    <p>The one field with a brand on it &#8212; <code>account-edit</code>&#8217;s
+       <i>Add card</i> drawer.</p></div>
+  <div class="spec col">
+    <div class="dr dr-field" style="width:341px;max-width:100%">
+      <label class="dr-field__label" for="kit-cc">Card number</label>
+      <span class="dr-field__group"><input class="dr-field__input" id="kit-cc" type="text" inputmode="numeric" autocomplete="off" value="4921 1122 3344" aria-describedby="kit-cc-brands"><span class="dr-field__marks" aria-hidden="true"><svg class="dr-paymark dr-paymark--fit" viewBox="0 0 31 20" aria-hidden="true" focusable="false"><text x="0" y="14.8" textLength="30" lengthAdjust="spacingAndGlyphs" font-size="14" font-weight="700" font-style="italic" fill="#1434CB">VISA</text></svg><svg class="dr-paymark dr-paymark--fit" viewBox="0 0 21 20" aria-hidden="true" focusable="false"><circle cx="7" cy="10" r="7" fill="#EB001B"/><circle cx="14" cy="10" r="7" fill="#F79E1B"/><path d="M10.5 3.94a7 7 0 0 1 0 12.12 7 7 0 0 1 0-12.12Z" fill="#FF5F00"/></svg></span><span class="dr-sr" id="kit-cc-brands">Visa or Mastercard</span></span>
+    </div>
+    <span class="st">both marks while the number is unknown &#183; the page hides one once the digits decide</span>
+  </div>
+  <div class="notes">
+    <p><b><code>--fit</code> exists because two brands are not one width.</b>
+       <code>.dr-paymark</code> is a fixed <code>40 &#215; 20</code> box, which is right in a list
+       where the marks stack in a column and must line up. In the field they sit side by side, so
+       <code>width: auto</code> lets each keep its own viewBox &#8212; <code>31 &#215; 20</code>
+       for Visa, <code>21 &#215; 20</code> for Mastercard &#8212; and the pair is as wide as the
+       two marks, not as wide as twice the larger.</p>
+    <p><b>The marks are <code>aria-hidden</code> and the words are not.</b> A logo is not an
+       accessible name, so <code>.dr-sr</code> carries <i>Visa or Mastercard</i> and the input
+       points at it with <code>aria-describedby</code>. The brand that survives as you type is
+       shown by hiding the other &#8212; <code>.dr-field__marks &gt; [hidden]</code> is
+       <code>display: none</code> &#8212; and the description still says what is accepted.</p>
+    <p><b>They are the palette&#8217;s second licensed exception,</b> after the pay buttons. Visa
+       <code>#1434CB</code> and Mastercard&#8217;s three discs are trademarks with fixed colours;
+       repainting them in the warm ramp would be wrong and, on a card form, would read as a
+       counterfeit. They are drawn once, as marks, and nothing else in the system borrows those
+       values.</p>
+  </div>
+</div>
+
+<div class="row">
   <div class="nm"><b>Profile head</b><code>.dr-profile &#183; __photo &#183; __name &#183; __badges &#183; .dr-avatar-edit &#183; __badge &#183; .dr-avatar-lg</code>
     <p>The top of <code>account</code> and <code>operator-account</code>: the face, the name, and
        what the platform has confirmed about it.</p></div>
