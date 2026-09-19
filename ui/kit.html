@@ -721,6 +721,125 @@
 </div>
 
 <div class="row">
+  <div class="nm"><b>Titled zone card</b><code>.dr-zone &#183; __title &#183; __sub</code>
+    <p>A card that names the question it is asking, then asks it. <b>Eight screens</b> use it &#8212;
+       <code>listings</code>, <code>listings-filters</code>, <code>account-edit</code>,
+       <code>operator-profile-setup</code> among them &#8212; and the showcase never had one.</p></div>
+  <div class="spec">
+    <fieldset class="dr dr-zone" style="width:341px;max-width:100%">
+      <p class="dr-zone__title">Drone type</p>
+      <p class="dr-zone__sub">Which drone does your order</p>
+      <ul class="dr-picks">
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="kitdrone" class="sr-only"></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="kitdrone" class="sr-only"></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="kitdrone" class="sr-only"></label></li>
+      </ul>
+    </fieldset>
+  </div>
+  <div class="notes">
+    <p><b>The title and the sub are the card&#8217;s own, not a zone label above it.</b>
+       <code>.dr-label</code> names a <i>region of the screen</i> and sits outside any surface;
+       these two sit <i>inside</i> the card because they name what this one control group decides.
+       Title <code>--t-title-size</code> 17/600, sub <code>--t-bodysm-size</code> 13 in
+       <code>--text-muted</code>.</p>
+    <p><b>It is a real <code>&lt;fieldset&gt;</code>.</b> The group of checkboxes below it is one
+       question, so the element that wraps them is the one the platform already has for that, and
+       the title is read as the group&#8217;s name without an <code>aria-label</code> being invented
+       for it.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>List &#183; and its snug rung</b><code>.dr-list &#183; --snug</code>
+    <p>The gap <i>between</i> cards, which is always larger than any gap inside one.
+       <b>Thirteen screens</b> stack their cards with it.</p></div>
+  <div class="spec col">
+    <ul class="dr-list" style="width:341px;max-width:100%">
+      <li><article class="dr-card dr-card--compact"><span class="dr-listing__body">Leave with the concierge, entrance code 4417.</span></article></li>
+      <li><article class="dr-card dr-card--compact"><span class="dr-listing__body">Ring twice; the gate is on the courtyard side.</span></article></li>
+    </ul>
+    <span class="st">.dr-list &#183; gap 28 &#183; order-history, ratings, notifications</span>
+    <ul class="dr-list dr-list--snug" style="width:341px;max-width:100%">
+      <li><article class="dr-card dr-card--compact"><span class="dr-listing__body">Leave with the concierge, entrance code 4417.</span></article></li>
+      <li><article class="dr-card dr-card--compact"><span class="dr-listing__body">Ring twice; the gate is on the courtyard side.</span></article></li>
+    </ul>
+    <span class="st">--snug &#183; gap 8 &#183; chat, wallet</span>
+  </div>
+  <div class="notes">
+    <p><b>Twenty-eight outside, twenty or less inside.</b> That is the whole rule:
+       <code>--sp-list</code> is the only step above <code>--sp-cta</code> in the scale, and it
+       exists so a reader can tell where one card ends and the next begins without a line being
+       drawn between them. Surfaces here are flat; the gap is the separator.</p>
+    <p><b><code>--snug</code> is 8, and it is not a smaller list &#8212; it is a different
+       relationship.</b> Chat messages and wallet rows are a <i>sequence</i>, not a set of separate
+       objects, so they sit at <code>--sp-within-lg</code>, the same step that separates parts
+       inside a card.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Chat thread</b><code>.dr-thread &#183; .dr-bubble &#183; --in &#183; --out &#183; __time</code>
+    <p>Two screens, <code>chat</code> and <code>chat-client</code>, and the one place in the product
+       where two people write to each other.</p></div>
+  <div class="spec">
+    <section class="dr dr-stack dr-thread" aria-label="Thread" style="width:341px;max-width:100%">
+      <p class="dr-note">Today</p>
+      <ul class="dr-list dr-list--snug" aria-label="Messages">
+        <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Andriy M.:</span>Your parcel is picked up from Podil, 21. On the way to Osokorky, 14.<time class="dr-bubble__time" datetime="2026-08-16T09:32">9:32</time></li>
+        <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>The courtyard gate is locked &#8212; the code is 4471.<time class="dr-bubble__time" datetime="2026-08-16T09:34">9:34</time></li>
+        <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Andriy M.:</span>Got it. I&#8217;ll land at the entrance and send the delivery photo.<time class="dr-bubble__time" datetime="2026-08-16T09:35">9:35</time></li>
+      </ul>
+    </section>
+  </div>
+  <div class="notes">
+    <p><b>Neither bubble is the accent.</b> Theirs is the surface ramp: the operator&#8217;s line
+       takes <code>--bg-surface</code>, yours takes <code>--bg-muted</code> &#8212; one step apart
+       and both under <code>--text-primary</code>. Green is never spent inside card UI, and a
+       message is not an action.</p>
+    <p><b>Who is speaking is said in words, not only by the side.</b> Each bubble opens with a
+       <code>.dr-sr</code> name that only a screen reader hears, so the thread reads correctly
+       without depending on which edge a bubble hugs (<code>WCAG 1.3.1</code>). The time is a real
+       <code>&lt;time datetime&gt;</code>.</p>
+    <p><b>Messages are a sequence, so they sit at <code>--snug</code></b> &#8212; 8, not the list&#8217;s
+       28. The date is a <code>.dr-note</code> above the run rather than a divider through it.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Card, the other three shapes</b><code>.dr-card--row &#183; --compact &#183; __link &#183; .dr-listing__meta</code>
+    <p>The order card is the full one. These are the rest: a row, a compact block, the link that
+       makes a whole card tappable, and the meta line a job carries.</p></div>
+  <div class="spec col">
+    <article class="dr dr-card dr-card--row dr-listing" style="width:341px;max-width:100%">
+      <span class="dr-listing__body">
+        <span class="dr-listing__name">Package delivery</span>
+        <span class="dr-listing__desc">2.3 km &#183; ~18 min</span>
+        <span class="dr-listing__meta"><span><span class="dr-sr">Pay</span><span class="dr-number">&#8372;180</span></span></span>
+      </span>
+      <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
+    </article>
+    <span class="st">--row &#183; body first, picture after &#183; job-offer</span>
+    <article class="dr dr-card dr-card--compact" style="width:341px;max-width:100%">
+      <span class="dr-listing__body">Leave with the concierge, entrance code 4417.</span>
+    </article>
+    <span class="st">--compact &#183; 20/16 instead of 24/20 &#183; job-brief</span>
+  </div>
+  <div class="notes">
+    <p><b>The row puts its picture last and the showcase used to put it first.</b> On
+       <code>job-offer</code> the body comes before the well, so the name is the first thing read
+       and the drone is the thing glanced at &#8212; which is the order a list is scanned in.</p>
+    <p><b><code>.dr-card__link</code> is how a whole card becomes one tap target</b> without
+       wrapping the card in an anchor: an empty <code>&lt;a&gt;</code> stretched over the card by
+       <code>inset:0</code>, carrying the accessible name, so the text inside stays selectable and
+       the focus ring is drawn on the card by
+       <code>.dr-card:has(&gt; .dr-card__link:focus-visible)</code>.</p>
+    <p><b><code>.dr-listing__meta</code> is the money line,</b> and the money is
+       <code>.dr-number</code> &#8212; 20/700 tabular, the same material as the balance and the
+       totals. The word <i>Pay</i> is there for a screen reader and printed for nobody.</p>
+  </div>
+</div>
+
+<div class="row">
   <div class="nm"><b>Operator card</b><code>.dr-op · __photo · __name · __rating · __badges</code>
     <p>The trust surface. It answers the highest drop-off in the CJM — confirm the operator is real
        and qualified — so it belongs exactly where the claim is made.</p></div>
