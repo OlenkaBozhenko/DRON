@@ -145,6 +145,23 @@ mechanism means a third kind of annotation added to that rule later disappears f
 without `ui/tape.js` learning anything. Runtime state only — no file in `wireframes/` is edited
 (§0), and the stored preference the designer browses the wireframes with is not touched.
 
+### 4.2a Nothing undressed is ever seen
+
+Layer A carries its `src` in the HTML, so that the section still works with JavaScript off. That
+has a cost: the browser paints the wireframe page — **the shell header and the state-switch row
+(`success · empty · error · loading`)** — in the moment before the stylesheet above reaches it. The
+designer saw it flicker through the first reel, 2026-09-19.
+
+**The layer is therefore held at `opacity: 0` until it has been dressed**, and the warm `.lp-phone`
+background stands in — `#F7F5F2`, the product's own page colour, so the placeholder is not a white
+hole. The inline value is *cleared* on dressing rather than set to `1`, or it would beat
+`.lp-view.is-back` when that layer is later swapped to the back and the crossfade would stop
+working.
+
+Every later step already loads into the hidden layer and is dressed **before** the crossfade, so
+the first paint was the only place the flash could happen. The one deliberate exception is §4.3:
+when the frame cannot be dressed at all, it is revealed as it is, with the note saying why.
+
 ### 4.3 It needs an http origin
 
 `file://` treats each file as its own opaque origin, so the parent cannot reach into the iframe and
@@ -315,6 +332,15 @@ either way: those pixels are the product's own and are not this file's to move (
 ---
 
 ## 7. Change log
+
+**Rev 4 — 2026-09-19.** *The designer: the project header and the status row still flash into the
+preview sometimes.* They did. Layer A is painted by the browser before the injected stylesheet
+reaches it, so the wireframe shell and the `state-switch` row were visible for the first frames of
+a page load. The layer is now invisible until dressed (§4.2a). Checked after the fix: the shell
+toolbar computes to `display:none`, the state-switch row to `none`, the stylesheet is present and
+the inline opacity has been cleared. **The flash window itself was not caught on camera** — it is
+shorter than a screenshot round-trip — so the fix is proven by construction and by the fact that
+nothing reveals a layer before `dress()` succeeds.
 
 **Rev 3 — 2026-09-19.** *The designer, on seeing the first reel: annotations are to appear
 nowhere.* Rev 1 hid the `.meta` panel and missed `.zlabel`, the zone label drawn inside the frame —

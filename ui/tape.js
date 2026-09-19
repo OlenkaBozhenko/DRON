@@ -70,6 +70,16 @@
     this.b.inert = true;
     this.phone.appendChild(this.b);
 
+    /* NOTHING UNDRESSED IS EVER SEEN. Layer A carries its src in the HTML, so
+       the browser paints the wireframe page — shell header, state-switch row,
+       annotations — in the moment before the stylesheet below reaches it. The
+       layer is held invisible until it has been dressed; the warm .lp-phone
+       background stands in, which is the product's own page colour. Every
+       later step loads into the hidden layer and is dressed before the
+       crossfade, so this is the only place the flash could occur.
+       Set after the clone so layer B does not inherit the inline value. */
+    this.a.style.opacity = "0";
+
     this.pulse = document.createElement("span");
     this.pulse.className = "lp-pulse";
     this.pulse.setAttribute("aria-hidden", "true");
@@ -143,10 +153,18 @@
         self.show(href.split("#")[0]);
       }, true);
     }
+
+    /* Dressed — this layer may now be shown. The inline value is cleared
+       rather than set to "1", or it would beat .lp-view.is-back when the
+       layer is swapped to the back and the crossfade would stop working. */
+    fr.style.opacity = "";
     return true;
   };
 
   Player.prototype.blocked = function () {
+    /* The frame cannot be dressed, so it is shown as it is rather than left
+       blank — the note explains why it looks like the wireframe shell. */
+    this.a.style.opacity = "";
     if (!this.note) return;
     this.note.hidden = false;
     this.root.classList.add("is-blocked");
