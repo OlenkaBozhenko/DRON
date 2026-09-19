@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The service row on the listings states &mdash; two readings</title>
+<link rel="stylesheet" href="wireframes/_wireframe.css">
+<link rel="stylesheet" href="ui/kit.css">
+<style>
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--page); color:var(--ink); margin:0; padding:28px 24px 56px;
+        font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,sans-serif; }
+  .cmp-wrap{ max-width:1320px; margin:0 auto; }
+  .cmp-title{ font-size:22px; font-weight:600; letter-spacing:-.2px; margin:0 0 8px; }
+  .cmp-lede{ font-size:14px; line-height:20px; color:var(--slate); margin:0 0 4px; max-width:96ch; }
+  .cmp-lede b{ color:var(--ink); font-weight:600; }
+  .cmp-row{ display:flex; gap:30px; align-items:flex-start; margin-top:26px; }
+  .cmp-col{ width:375px; flex:none; }
+  .cmp-h{ font-size:15px; font-weight:600; margin:0 0 3px; }
+  .cmp-sub{ font-size:12.5px; line-height:17px; color:var(--slate); margin:0 0 12px; min-height:52px; }
+  .cmp-read{ font-size:11px; line-height:16px; color:var(--slate); margin:10px 0 0;
+             font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+  .cmp-read b{ color:var(--ink); font-weight:600; }
+  /* the frame is cut under the search field — this compares one row, not a page */
+  .cmp-col .wf-frame{ height:auto; }
+</style>
+</head>
+<body>
+<div class="cmp-wrap">
+  <h1 class="cmp-title">The service row on <code>listings-empty</code> / <code>-error</code> / <code>-loading</code> / <code>-filtered</code></h1>
+  <p class="cmp-lede">Real <code>ui/kit.css</code>, the real top of the state screen at 375, cut under the search field. The only thing that differs between the three is the row.</p>
+
+  <div class="cmp-row">
+
+    <!-- NOW -->
+    <div class="cmp-col">
+      <p class="cmp-h">Now, on all four state pages</p>
+      <p class="cmp-sub">Underline tabs, four equal quarters, <i>Aerial photo &amp; video</i> cut to its share &mdash; your pick, 2026&#8209;09&#8209;10.</p>
+      <div class="wf-frame dr">
+        <header class="topbar dr-topbar">
+          <span class="dr-brand" role="img" aria-label="DRON"></span>
+          <span class="dr-topbar__spacer"></span>
+        </header>
+        <nav class="dr-groups dr-groups--tabs" aria-label="Service categories">
+          <button class="dr-grouptab" aria-current="true">All</button>
+          <button class="dr-grouptab">Delivery</button>
+          <button class="dr-grouptab">Aerial photo &amp; video</button>
+          <button class="dr-grouptab">Inspection</button>
+        </nav>
+        <main class="dr-main">
+          <section aria-label="Search and filters">
+            <form class="dr-search-row" role="search" action="#">
+              <span class="dr-search">
+                <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="search" name="q" placeholder="Search services" aria-label="Search services">
+              </span>
+              <button type="button" class="dr-btn dr-btn--secondary">Filters</button>
+            </form>
+          </section>
+        </main>
+      </div>
+      <p class="cmp-read">row <b>48</b> high, full bleed, hairline under &middot; tab <b>87.6 &times; 47.2</b><br>chosen: <b>--ink</b> label + 2px rule &middot; <b>15.99:1</b><br>idle: <b>--slate</b> on <b>--page</b> &middot; <b>6.62:1</b></p>
+    </div>
+
+    <!-- A -->
+    <div class="cmp-col">
+      <p class="cmp-h">A &middot; Home's row, copied as it is</p>
+      <p class="cmp-sub">The three badges from <code>listings.html</code>, one radio group, <i>Delivery</i> chosen at rest. <b>No <i>All</i></b>: the row stops being the list's filter and becomes a chooser.</p>
+      <div class="wf-frame dr">
+        <header class="topbar dr-topbar">
+          <span class="dr-brand" role="img" aria-label="DRON"></span>
+          <span class="dr-topbar__spacer"></span>
+        </header>
+        <main class="dr-main">
+          <fieldset class="dr-finder__services" aria-label="Service">
+            <label class="dr-grouptab dr-grouptab--icon">
+              <input type="radio" name="service-a" value="delivery" checked class="sr-only">
+              <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.6l7.6 4.2v8.4L12 20.4l-7.6-4.2V7.8z"/><path d="M4.6 7.9L12 12l7.4-4.1"/><path d="M12 12v8.3"/></svg>Delivery
+            </label>
+            <label class="dr-grouptab dr-grouptab--icon">
+              <input type="radio" name="service-a" value="aerial" class="sr-only">
+              <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="7" width="17" height="12.5" rx="2.6"/><path d="M8.6 7l1.3-2.4h4.2L15.4 7"/><circle cx="12" cy="13.2" r="3.2"/></svg>Photo
+            </label>
+            <label class="dr-grouptab dr-grouptab--icon">
+              <input type="radio" name="service-a" value="inspection" class="sr-only">
+              <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5v-3A1.5 1.5 0 0 1 5.5 4h3M15.5 4h3A1.5 1.5 0 0 1 20 5.5v3M20 15.5v3a1.5 1.5 0 0 1-1.5 1.5h-3M8.5 20h-3A1.5 1.5 0 0 1 4 18.5v-3"/><path d="M8 12.6L12 9l4 3.6V16H8z"/></svg>Inspection
+            </label>
+          </fieldset>
+          <section aria-label="Search and filters">
+            <form class="dr-search-row" role="search" action="#">
+              <span class="dr-search">
+                <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="search" name="q" placeholder="Search services" aria-label="Search services">
+              </span>
+              <button type="button" class="dr-btn dr-btn--secondary">Filters</button>
+            </form>
+          </section>
+        </main>
+      </div>
+      <p class="cmp-read">chip <b>32</b> visible, target <b>44</b> (&minus;6 bleed)<br>chosen: <b>--ink</b> on <b>--green</b> &middot; <b>9.46:1</b><br>idle: <b>--slate</b> on <b>--media</b> &middot; <b>5.51:1</b></p>
+    </div>
+
+    <!-- B -->
+    <div class="cmp-col">
+      <p class="cmp-h">B &middot; the same badges, keeping <i>All</i></p>
+      <p class="cmp-sub">Same chip, with <i>All</i> in front and chosen at rest &mdash; the row stays the list's filter and keeps its way back to the whole list. <i>All</i> is not a service, so it carries no icon.</p>
+      <div class="wf-frame dr">
+        <header class="topbar dr-topbar">
+          <span class="dr-brand" role="img" aria-label="DRON"></span>
+          <span class="dr-topbar__spacer"></span>
+        </header>
+        <main class="dr-main">
+          <fieldset class="dr-finder__services" aria-label="Service">
+            <label class="dr-grouptab">
+              <input type="radio" name="service-b" value="all" checked class="sr-only">All
+            </label>
+            <label class="dr-grouptab dr-grouptab--icon">
+              <input type="radio" name="service-b" value="delivery" class="sr-only">
+              <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.6l7.6 4.2v8.4L12 20.4l-7.6-4.2V7.8z"/><path d="M4.6 7.9L12 12l7.4-4.1"/><path d="M12 12v8.3"/></svg>Delivery
+            </label>
+            <label class="dr-grouptab dr-grouptab--icon">
+              <input type="radio" name="service-b" value="aerial" class="sr-only">
+              <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="7" width="17" height="12.5" rx="2.6"/><path d="M8.6 7l1.3-2.4h4.2L15.4 7"/><circle cx="12" cy="13.2" r="3.2"/></svg>Photo
+            </label>
+            <label class="dr-grouptab dr-grouptab--icon">
+              <input type="radio" name="service-b" value="inspection" class="sr-only">
+              <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5v-3A1.5 1.5 0 0 1 5.5 4h3M15.5 4h3A1.5 1.5 0 0 1 20 5.5v3M20 15.5v3a1.5 1.5 0 0 1-1.5 1.5h-3M8.5 20h-3A1.5 1.5 0 0 1 4 18.5v-3"/><path d="M8 12.6L12 9l4 3.6V16H8z"/></svg>Inspection
+            </label>
+          </fieldset>
+          <section aria-label="Search and filters">
+            <form class="dr-search-row" role="search" action="#">
+              <span class="dr-search">
+                <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="search" name="q" placeholder="Search services" aria-label="Search services">
+              </span>
+              <button type="button" class="dr-btn dr-btn--secondary">Filters</button>
+            </form>
+          </section>
+        </main>
+      </div>
+      <p class="cmp-read">same chip, same pairs as A<br>four badges do not fit 343 &mdash; the row <b>wraps</b> to two lines<br>chosen: <b>--ink</b> on <b>--green</b> &middot; <b>9.46:1</b></p>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
