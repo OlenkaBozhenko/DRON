@@ -353,11 +353,29 @@ new token names. Six specimens in it now render **unstyled**, because the produc
 them: `.dr-chip--trust`, `.dr-stars`, `.dr-disclosure`, `.dr-segment`, `.dr-track`,
 `.dr-field__clear`.
 
-That is the wireframes-as-truth rule made visible, and it is the designer's call:
+**Settled: option 3 — the six left the showcase.** The designer's rule, in her words: if the
+wireframes do not have it, it does not belong on the page.
 
-1. **Leave them bare** (as built). The showcase then shows exactly what the product has, and the
-   six gaps are the finding.
-2. **Port the six anyway.** The showcase reads whole again, and the component layer carries six
-   components with no surface — which is what §06 exists to avoid.
-3. **Cut the six specimens from the showcase.** Honest, but the record of them disappears from the
-   one page where a reader would meet them.
+| Specimen | What was done |
+|---|---|
+| Disclosure | the whole row removed — every part of it was the dead component |
+| Segmented control | the whole row removed, same reason |
+| `.dr-field__clear` | the one `<span>` cut out; `.dr-field` and `.dr-search` are alive and stayed |
+| `.dr-track` | its plate cut; the `.dr-rail` plate beside it is alive and stayed, and the caption and lede were rewritten so neither names the vertical track |
+| `.dr-stars` | its plate cut. `.dr-listing__score` is alive, so the row survives as **Earned score**, retitled to the surviving thing, with notes rewritten to be true of it |
+| `.dr-chip--trust` | the blue chip cut. `--claim` is alive, so the row survives as **The credential chip**, and the notes now state the product's one rule instead of a two-wash comparison |
+
+One more was found by the same test and removed with them: **`.dr-ic--26`**, a modifier in no
+wireframe. It was redundant anyway — every use sat inside `.dr-mark`, whose own
+`.dr-mark .dr-ic` rule already sets the 26, so nothing changed size.
+
+**The reasoning was not lost, it moved to where this project keeps records.** `ui/kit.css` still
+holds every one of these rules with its full commentary; `DESIGN.md` documents the trust pair's
+retirement; §06 and §07 here carry the measurements. The chip's note now ends with one line saying
+the blue chip stood there until rev 157 and where to read why — so a rejected idea still cannot
+come back as a new one.
+
+**Checked after the cut:** 189 `.dr-*` classes remain in the showcase, **every one of them has a
+rule** in `components/` or in the page's own chrome, and **not one of them is absent from the
+wireframes**. 464 elements carry a `dr-` class and **none has a zero box**. HTML nesting validates
+with no unclosed tag.

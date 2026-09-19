@@ -180,9 +180,9 @@
     <p>A state is a pale wash carrying its own darkened ink. The saturated hue is declared for
        reference and drawn nowhere.</p></div>
   <div class="spec">
-    <div class="plate"><span class="dr-mark" aria-hidden="true"><svg class="dr-ic dr-ic--26" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9"/><path d="M12 13.5l3.4 2"/><path d="M9.5 3.2h5"/></svg></span><span class="st">neutral · 5.51:1</span></div>
-    <div class="plate"><span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic dr-ic--26" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg></span><span class="st">warn · 5.65:1</span></div>
-    <div class="plate"><span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic dr-ic--26" viewBox="0 0 24 24"><g opacity=".55"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g></svg></span><span class="st">danger · 5.49:1</span></div>
+    <div class="plate"><span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9"/><path d="M12 13.5l3.4 2"/><path d="M9.5 3.2h5"/></svg></span><span class="st">neutral · 5.51:1</span></div>
+    <div class="plate"><span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg></span><span class="st">warn · 5.65:1</span></div>
+    <div class="plate"><span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24"><g opacity=".55"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g></svg></span><span class="st">danger · 5.49:1</span></div>
     <div class="plate"><span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><span class="st">milestone · 14.75:1</span></div>
   </div>
   <div class="notes">
@@ -821,49 +821,43 @@
 </div>
 
 <div class="row">
-  <div class="nm"><b>Trust chips</b><code>.dr-chip &#183; --claim &#183; --trust &#183; .dr-chips &#183; --stack</code>
-    <p>The credential row: what makes an operator safe to hand a job to, on the card and before any tap.</p></div>
+  <div class="nm"><b>The credential chip</b><code>.dr-chip &#183; --claim &#183; .dr-chips &#183; --stack</code>
+    <p>What makes an operator safe to hand a job to, on the card and before any tap.</p></div>
   <div class="spec">
     <div class="plate oncard">
       <span class="dr-chips dr-op__badges dr-chips--stack">
         <span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
-        <span class="dr-chip dr-chip--trust"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
       </span>
-      <span class="st">claim 164.1 &#215; 26.8 &#183; trust 105.8 &#215; 26.8 &#183; order-confirmed</span>
+      <span class="st">claim 164.1 &#215; 26.8 &#183; order-confirmed</span>
     </div>
   </div>
   <div class="notes">
-    <p><b>Two chips, two washes, and each one is a different kind of claim.</b>
-       <b><code>--claim</code> is the green one</b> &#8212; <i>Verified by DRON</i>, the platform
-       vouching for its own operator: <code>--green-wash</code> <code>#E7F0D2</code> with an
-       <code>--ink</code> label at <b>14.75:1</b>. <b><code>--trust</code> is the blue one</b> &#8212;
-       <i>Insured</i>, a credential a third party confirmed: <code>--trust-wash</code>
-       <code>#D8E6F2</code> with <code>--trust-ink</code> <code>#2A5C7D</code> at <b>5.65:1</b>, the
-       same rung <code>--warn-ink</code> stands at. Both clear <code>WCAG 1.4.3</code>&#8217;s 4.5 floor.</p>
-    <p><b>Both chips carry a mark and a checkmark &#8212; a leading glyph and a trailing tick.</b> The
-       green chip&#8217;s shield has the check <i>inside</i> it and the blue chip&#8217;s shield is plain,
-       so the two are told apart by drawing and not by colour alone; the trailing tick is the same
-       glyph on both, and it is what says <i>confirmed</i> rather than merely stated. Measured:
-       <b>claim 164.1 &#215; 26.8</b>, <b>trust 105.8 &#215; 26.8</b>, both 12/600 at
-       <code>--r-pill</code>, padding <b>5 / 10</b>, gap <b>6</b>, glyphs <b>14px</b>.</p>
-    <p><b>The green chip does not break the fill-only rule &#8212; it is the rule.</b> Signal Green is a
-       fill or a tint and never a word: here it is the tint and the label is charcoal. The wash sits
-       <b>1.03:1</b> against the card, so it is not counted against the green budget, and no solid
-       <code>--trust</code> is declared at all because nothing draws one.</p>
-    <p><b><code>.dr-chips--stack</code> stacks the pair vertically</b> &#8212;
-       <code>flex-direction: column; align-items: flex-start</code>, measured
-       <b>196.4 &#215; 59.6</b> on the frame &#8212; because a credential that runs off the side of a
-       card is a credential the client did not read. <b>This is <code>RJ-C1</code>, the highest single
-       drop-off in the CJM:</b> confirm the operator is real and qualified. So the credential sits on
-       the card, before any tap, beside the operator&#8217;s name and job count &#8212; never on a
-       profile page behind a click. <b>Blue is the system&#8217;s first cool colour</b> (rev 58) and the
-       one hue the warm ramp cannot absorb, which is exactly why a third party&#8217;s confirmation
-       wears it.</p>
-    <p><i>This row drew two blue chips reading &#8220;Insured&#8221; and &#8220;Verified&#8221;, with one
-       glyph each and the ratio printed as 4.72:1, until 2026-08-16 (rev 156) &#8212; the designer read
-       it off the published kit. Everything about it was wrong: the wrong wash on the wrong chip, the
-       wrong label, a missing checkmark on both, and a contrast figure that
-       <code>DESIGN.md</code> has had right all along.</i></p>
+    <p><b>One wash, and it is the platform vouching for its own operator.</b>
+       <i>Verified by DRON</i> takes <code>--bg-accent-tint</code> <code>#E7F0D2</code> with a
+       <code>--text-primary</code> label at <b>14.75:1</b> &#8212; comfortably past
+       <code>WCAG 1.4.3</code>&#8217;s 4.5 floor. A plain supporting fact keeps the base chip,
+       <code>--bg-well</code> under <code>--text-muted</code> at <b>5.51:1</b>. The product&#8217;s
+       rule reads in one line: <b>green means DRON confirmed this document, grey means a plain
+       supporting fact.</b></p>
+    <p><b>The chip carries a mark and a checkmark &#8212; a leading glyph and a trailing tick.</b>
+       The shield has the check <i>inside</i> it and the trailing tick is what says <i>confirmed</i>
+       rather than merely stated, so the chip is never reduced to its colour. Measured:
+       <b>164.1 &#215; 26.8</b>, 12/600 at <code>--len-999</code>, padding <b>5 / 10</b>, gap
+       <b>6</b>, glyphs <b>14px</b>.</p>
+    <p><b>The green chip does not break the fill-only rule &#8212; it is the rule.</b> Signal Green
+       is a fill or a tint and never a word: here it is the tint and the label is charcoal. The wash
+       sits <b>1.03:1</b> against the card, so it is not counted against the green budget.</p>
+    <p><b><code>.dr-chips--stack</code> stacks the credentials vertically</b> &#8212;
+       <code>flex-direction: column; align-items: flex-start</code> &#8212; because a credential
+       that runs off the side of a card is a credential the client did not read. <b>This is
+       <code>RJ-C1</code>, the highest single drop-off in the CJM:</b> confirm the operator is real
+       and qualified. So the credential sits on the card, before any tap, beside the
+       operator&#8217;s name and job count &#8212; never on a profile page behind a click.</p>
+    <p><i>A blue chip stood here for the third-party confirmation until rev 157, when the designer
+       said the same green everywhere. The blue pair is retired and drawn on no page, so it has
+       left this showcase; the reasoning for it is kept in <code>ui/kit.css</code>,
+       <code>DESIGN.md</code> and <code>design-system/_critique.md</code> &#167;06.2, where a
+       rejected idea cannot be re-proposed as a new one.</i></p>
   </div>
 </div>
 
@@ -944,42 +938,27 @@
 </div>
 
 <div class="row">
-  <div class="nm"><b>Earned score</b><code>.dr-stars &#183; __fill &#183; .dr-listing__score</code>
-    <p>A score somebody else <i>gave</i>, not a score being given. One screen &#8212; ratings &#8212;
-       so it is a one-off on the watch-list, drawn here for the rule it carries.</p></div>
+  <div class="nm"><b>Earned score</b><code>.dr-listing__score</code>
+    <p>A score somebody else <i>gave</i>, not a score being given &#8212; written as a suffix on the
+       name it belongs to, so it cannot be read as a control.</p></div>
   <div class="spec">
-    <div class="plate oncard">
-      <span class="dr dr-stars" style="--dr-full:4; --dr-part:.8" aria-hidden="true">
-        <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <span class="dr-stars__fill"><svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> <svg class="dr-ic" viewBox="0 0 24 24"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg> </span>
-      </span>
-      <span class="st">4.8 &#183; fill 150.96 of 160</span>
-    </div>
     <div class="plate oncard">
       <span class="dr-listing__name">Olena H.<span class="dr-listing__score">&#183; 5.0</span></span>
       <span class="st">the inline suffix &#183; 12.5 --slate 5.95:1</span>
     </div>
   </div>
   <div class="notes">
-    <p><b>Why not <code>.dr-rating</code>.</b> That class is an <i>input</i>: five
-       <code>&lt;button&gt;</code>s, each a 44pt target carrying <code>aria-pressed</code>, built for
-       <code>rate</code> where the client awards a score. A read-only display must not be a row of
-       buttons announcing a pressed state it cannot change (<code>WCAG 4.1.2</code>), nor put five
-       stops in a dashboard's tab order. Same star path, same <code>--sz-star</code> 32, same two
-       colours, <b>no tab stop</b>: the row is <code>aria-hidden</code> and the figure beside it
-       states the value in <code>--ink</code> at <b>15.99:1</b>. That is what lets
-       <code>--warn</code>'s <b>1.84:1</b> and <code>--btn2</code>'s <b>1.39:1</b> carry a shape and
-       never a meaning.</p>
-    <p><b>The clip lands on the ink, not on the box &#8212; and this is the part worth keeping.</b>
-       The star path spans x 3.3 &#8594; 20.7 of its 24-grid, so only <b>72.5%</b> of a box is ink.
-       Clipping the row at score/5 &#8212; 96% for 4.8 &#8212; removes just the tip of the fifth arm
-       and the display renders <b>five full stars</b>. That was built, measured and rejected. Derived
-       from the path's own coordinates instead: 4.8 covers exactly <b>0.800</b> of the fifth
-       silhouette, fill <b>150.96</b> of a 160 row, and the fifth star visibly keeps a grey point. A
-       whole-star floor was the other candidate and renders 4.8 and 4.0 alike.</p>
-    <p><code>--sz-star-ink</code> and <code>--sz-star-inset</code> are the only <code>:root</code>
-       additions of the whole operator pass, and both are <b>arithmetic</b> on
-       <code>--sz-star</code> and the glyph's own grid coordinates &#8212; the habit
-       <code>--node-centre</code> and <code>--pick-indent</code> already keep.</p>
+    <p><b>A read-only score is a number, not a row of stars.</b> <code>.dr-rating</code> is an
+       <i>input</i>: five <code>&lt;button&gt;</code>s, each a 44pt target carrying
+       <code>aria-pressed</code>, built for <code>rate</code> where the client awards a score. A
+       display must not be a row of buttons announcing a pressed state it cannot change
+       (<code>WCAG 4.1.2</code>), nor put five stops in a dashboard&#8217;s tab order. So the value
+       is written: <code>--weight-regular</code> at <code>--t-meta-size</code>, in
+       <code>--text-muted</code> at <b>5.95:1</b> against the card, riding the name&#8217;s own
+       line.</p>
+    <p><b>It is a suffix, not a column.</b> The score sits inside
+       <code>.dr-listing__name</code> rather than beside it, so a long name pushes the number along
+       instead of colliding with it, and a card with no score leaves no empty slot behind.</p>
   </div>
 </div>
 
@@ -1072,19 +1051,10 @@
 
 <h2 class="sec">Progress</h2>
 <div class="row">
-  <div class="nm"><b>One node, two axes</b><code>.dr-node &#183; --done &#183; --now &#183; .dr-rail &#183; --at2 &#183; --zone &#183; .dr-track</code>
+  <div class="nm"><b>One node, two axes</b><code>.dr-node &#183; --done &#183; --now &#183; .dr-rail &#183; --at2 &#183; --zone</code>
     <p>The order card's rail and the tracking timeline drew the same 22px circle under two class
        names — <code>.nd</code> and <code>.tl-dot</code>. That is the drift this closes.</p></div>
   <div class="spec">
-    <div class="plate">
-      <ul class="dr-track" style="width:220px">
-        <li class="dr-track__item dr-track__item--done"><span class="dr-node dr-node--done"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-track__text">Accepted</span></li>
-        <li class="dr-track__item dr-track__item--now"><span class="dr-node dr-node--now"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-track__text">En route</span></li>
-        <li class="dr-track__item"><span class="dr-node"></span><span class="dr-track__text">On-site</span></li>
-        <li class="dr-track__item"><span class="dr-node"></span><span class="dr-track__text">Done</span></li>
-      </ul>
-      <span class="st">vertical · tracking</span>
-    </div>
     <div class="plate">
       <ul class="dr-rail dr-rail--at2" style="width:260px">
         <li class="dr-rail__step"><span class="dr-node dr-node--done" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-rail__lbl">Accepted</span></li>
@@ -1153,14 +1123,14 @@
        <code>microcopy.md</code>.</p></div>
   <div class="spec col">
     <div class="dr-msg" style="width:341px;max-width:100%" role="status">
-      <span class="dr-mark" aria-hidden="true"><svg class="dr-ic dr-ic--26" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg></span>
+      <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg></span>
       <span class="dr-msg__title">No orders yet</span>
       <span class="dr-msg__body">Your orders appear here, ready to re-book in a tap.</span>
       <span class="dr-msg__actions"><button class="dr-btn dr-btn--primary" type="button">Browse services</button></span>
     </div>
 
     <div class="dr-msg" style="width:341px;max-width:100%" role="alert">
-      <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic dr-ic--26" viewBox="0 0 24 24"><g opacity=".55"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g></svg></span>
+      <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24"><g opacity=".55"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g></svg></span>
       <span class="dr-msg__title">Live tracking lost</span>
       <span class="dr-msg__body">We’ve lost the live signal from the operator’s device. Your order is still active.</span>
       <span class="dr-msg__actions">
@@ -1170,7 +1140,7 @@
     </div>
 
     <div class="dr-msg" style="width:341px;max-width:100%" role="status">
-      <span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic dr-ic--26" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg></span>
+      <span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg></span>
       <span class="dr-msg__title">Running a few minutes late</span>
       <span class="dr-msg__body">Traffic near the drop-off is slowing your operator. They’re still on the way.</span>
       <span class="dr-msg__actions">
@@ -1402,7 +1372,7 @@
     <div class="plate">
       <div class="dr-rows" style="width:250px;padding:0">
         <label class="dr-field"><input class="dr-field__input" type="text" placeholder="Drop-off address"></label>
-        <label class="dr-field"><input class="dr-field__input" type="text" value="Osokorky, 14"><span class="dr-field__clear" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" stroke-width="2"><path d="M7 7l10 10M17 7L7 17"/></svg></span></label>
+        <label class="dr-field"><input class="dr-field__input" type="text" value="Osokorky, 14"></label>
         <div class="dr-field"><span class="dr-field__label">Service</span><span class="dr-field__value">Delivery</span><span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span></div>
         <div class="dr-field"><span class="dr-field__label">When</span><span class="dr-field__value">Now</span><span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span></div>
       </div>
@@ -1536,45 +1506,6 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="nm"><b>Segmented control</b><code>.dr-segment · __seg</code>
-    <p>Mutually exclusive modes in one track. A real <code>&lt;fieldset&gt;</code> of radios, so
-       <code>4.1.2</code> needs no ARIA patch.</p></div>
-  <div class="spec">
-    <div class="plate">
-      <fieldset class="dr-segment" style="width:250px">
-        <legend class="dr-sr">Availability</legend>
-        <label class="dr-segment__seg"><input type="radio" name="avail" checked>Available</label>
-        <label class="dr-segment__seg"><input type="radio" name="avail">Busy</label>
-        <label class="dr-segment__seg"><input type="radio" name="avail">Offline</label>
-      </fieldset>
-      <span class="st">track --media · plate --page · 1.20:1</span>
-    </div>
-  </div>
-  <div class="notes">
-    <p><b>HIG's own structure in DRON's tokens.</b> Track <code>--media</code> at <code>--r-btn</code>
-       12, reading <b>1.20:1</b> below the page; selected a <code>--page</code> plate inset 2px at
-       <code>--r-input</code> 10, standing <b>1.20:1</b> above the track — the largest tone step the
-       palette holds, and the ramp's own arithmetic, <b>12 − 2 = 10</b>.</p>
-    <p>Label <code>--ink</code> <b>15.99:1</b> selected, <code>--slate</code> <b>5.51:1</b> at rest.
-       Height <b>44px exactly</b>.</p>
-    <p><b>No border and no dividers.</b> The 1.21:1 boundary is removed rather than darkened — a
-       surface is a card and not a frame, and a boundary that is absent cannot fail 1.4.11. The plate
-       carries the state.</p>
-    <p>iOS lifts its plate with a shadow; this one is lifted by <b>tone</b> &#8212; the system spends its
-       two shadow rungs on the green primary and on the two surfaces that float, and a segmented control
-       is neither.</p>
-    <p><b>The 2px inset is real again, and it was not for a while.</b> The reset&#8217;s
-       <code>.dr fieldset{ padding:0 }</code> is 0-1-1 and out-specifies a bare class, so
-       <code>.dr-segment</code> at 0-1-0 rendered with <b>computed padding 0</b> and the plate sat flush
-       to the track&#8217;s edge &#8212; the arithmetic printed above described a shape the build was not
-       drawing. Rewritten at <b>0-2-0</b> on 2026-08-16 (rev 155), the answer this stylesheet already
-       gives beside <code>.dr-zone</code> and <code>.dr-range</code>, which are fieldsets too. Measured
-       after: padding <b>2px</b>, plate inset <b>2</b> left and top, plate radius <b>10</b> inside a track
-       radius of <b>12</b>. Nothing shipped wrong &#8212; <code>operator-listings</code> still carries the
-       grayscale <code>.segment</code>, so the component had no painted user to break.</p>
-  </div>
-</div>
 
 <div class="row">
   <div class="nm"><b>In-page tabs · filter chip</b><code>.dr-groups · .dr-grouptab · .dr-chip</code>
@@ -1670,42 +1601,6 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="nm"><b>Disclosure</b> <span class="tag">on the bench</span><code>.dr-disclosure · __item</code>
-    <p><b>No page carries it since 2026-08-16 (rev 111).</b> Its one user was <code>account</code>'s
-       mode picker, and the project-wide picker sweep gave that a drawer like every other dropdown.
-       Kept, not retired — it still names a real shape, a list that unfolds in flow — and its
-       <code>__item</code> block is still live under the picker's options.</p>
-    <p>A native <code>&lt;details&gt;</code>. It opens <b>in flow</b> and pushes the page down.</p></div>
-  <div class="spec">
-    <div class="plate" style="padding:0;width:280px;overflow:visible;border:0;background:none">
-      <details class="dr-disclosure" style="width:280px">
-        <summary>Client<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></summary>
-        <a class="dr-disclosure__item" href="#" aria-current="true">Client<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
-        <a class="dr-disclosure__item" href="#">Operator</a>
-      </details>
-    </div>
-  </div>
-  <div class="notes">
-    <p><b>This one does not float, and that is now a choice rather than a description.</b> The line
-       used to read <i>nothing in this product floats</i>, counted across 40 screens. It has been
-       overtaken twice: <code>share</code> raised the first sheet, and <code>account-edit</code>'s
-       picker drawer raised the second (rev 102). The disclosure stays in flow because it reveals a
-       section of the page you are on; a floating surface is spent where rev 43 said it belongs —
-       <i>a modal, popover, drawer or dropdown menu</i>.</p>
-    <p><b>Only the current row carries the mark, and the mark is a bare Signal-Green checkmark</b> —
-       settled 2026-08-12 by the designer in three calls: no disc and no fill (this is neither a
-       checkbox nor a radio — it is iOS's current-item-in-a-list mark), and the brand hex itself,
-       chosen with the number named: <b>1.52:1</b> on the card against 1.4.11's 3:1. It stands the
-       way the live disc and the pager dot stand — colour is not the carrier: the mark's
-       <i>presence</i> is, and <code>aria-current</code> speaks the state. Recorded in
-       <code>DESIGN.md</code>'s below-3:1 table. The other rows answer with hover alone
-       (<code>--media</code>). A <i>form</i> asking a question takes the circle instead.</p>
-    <p><b>The chevron turns 180° on open.</b> It joins the button's <code>transform .12s</code> rather
-       than becoming a fifth motion loop. Under reduced motion the glyph still turns — it just does
-       not travel: the direction is information, the animation is only how it gets there.</p>
-  </div>
-</div>
 
 <div class="row">
   <div class="nm"><b>Picker row</b><code>.dr-field--action · .dr-picker__list · __item</code>
