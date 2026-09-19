@@ -2090,7 +2090,9 @@ two Figma references used for structure only. Every value is an existing rung.
   on the designer's word.
 - **Results on the map** — `.dr-mapview` fills the column under the nav bar and runs `--r-panel` under a
   **docked** `.dr-sheet--dock` (no scrim, no `aria-modal`). Map **373 × 375.2**, drawer **340.8** (rev 263; **383.2** / **332.8** at rev 253's 4 gap, **371.2** / **344.8** with rev 250's ringed rows).
-- **A choice row** (`.dr-offer`) is a radio label: 56 × 44 well · name 17/400 · meta 13/400 `--slate` ·
+- **A choice row** (`.dr-offer`) is a radio label: 56 × 44 well · name **17/600** (rev 266, the designer,
+  shown 400 / 600 / 700 drawn — `--weight-medium`, the weight the price beside it carries; it departs from the
+  17/400 title rev 247 / 248 gave the choice and service cards) · meta 13/400 `--slate` ·
   price 17/600 tabular — **341 × 60**, no border, **radius 12** (`--r-btn`, the radius of *Order* under the rows at
   the same 341 width), **8 apart** (`--sp-within-lg`, against the sheet's 12 out to the title and *Order*).
   **The unchosen rows are `--card` cards; the chosen row is solid `--green`** (rev 265, the designer: *«ту що

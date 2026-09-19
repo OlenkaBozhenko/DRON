@@ -6313,8 +6313,22 @@ header.dr-topbar,
    ANATOMY, THE REFERENCE'S: the picture, the name over one meta line, the price
    at the end. The picture is the `--sz-well-*-xs` 56 × 44 well `.dr-choice`
    uses, cutout contained, `alt=""` — the name says what the row is. The name is
-   17/400, the service card's title (rev 248); the price is 17/600 tabular, the
+   17/600 (rev 266, her call, shown 400 / 600 / 700 drawn on this drawer) — the
+   ramp's own pair at 17, `--weight-medium` = `--t-title-weight`, and the weight
+   the price beside it already carries; the price is 17/600 tabular, the
    `.dr-price__val` pair; the meta is 13/400 `--slate`.
+   THE NAME DEPARTS FROM THE 17/400 TITLE rev 247 gave the choice card and rev
+   248 the service card, and that is written here rather than smoothed: this row
+   carries a price on its own line, and 600 pairs the name with it.
+   `HIG · Typography`: 17/600 is iOS **Headline**, a named text style, where
+   17/400 is **Body** — both are named, so the pick was hers, not the guideline's.
+   700 was drawn beside them and refused: the ramp holds 700 only at 22 (display)
+   and 20 (number), and iOS keeps Bold for Title and above.
+   NO PAIR MOVES WITH THE WEIGHT — `--ink` on `--card` 14.37:1 and `--on-green`
+   on `--green` 9.46:1, unchanged; at 17px even Bold is still normal text to
+   `WCAG 1.4.3` (large text starts at 18.66px bold), so the threshold stays 4.5.
+   AND NO BOX MOVES — the name's line is 195.3 wide inside a 195.6 column and the
+   row stays 341 × 60 at every one of the three weights, measured.
    THE ROWS ARE GREY CARDS, THE CHOSEN ONE SOLID GREEN — the designer,
    2026-09-15 (rev 265): «ту що обрала роби зелену». Rev 250 ringed the chosen
    row 2px `--ink`; rev 253 put it on `--green-wash` (1.026:1); rev 263 made
@@ -6353,7 +6367,7 @@ header.dr-topbar,
 .dr-offer > .dr-well{ width: var(--sz-well-w-xs); height: var(--sz-well-h-xs); }
 .dr-offer__body{ flex: 1; min-width: 0; }
 .dr-offer__name{
-  display: block; font-size: var(--t-title-size); font-weight: var(--weight-regular);
+  display: block; font-size: var(--t-title-size); font-weight: var(--weight-medium);
   line-height: var(--t-heading-line); color: var(--ink);
 }
 .dr-offer__meta{
