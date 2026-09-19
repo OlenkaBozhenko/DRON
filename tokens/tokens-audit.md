@@ -18,16 +18,25 @@
 | **Where used — pages** | Pages whose **markup** carries every class the selector needs. This is a static count of `class="…"` tokens. |
 | **Role** | Read off the property + selector pair. Where the same variable lands on two unlike properties, both roles are named. |
 
-**Seventeen classes are built by script and therefore show 0 pages although they are drawn:**
-the eleven `.dr-kb*` (keyboard — `ui/kit.js`), `.dr-toast` + `.dr-toast--over-sheet` and
-`.dr-lang` (`wireframes/_wf-shell.js`), `.dr-cal__day` + `.dr-cal__day--today` and
-`.dr-range__bar--in` (page scripts in `listings.html` / `listings-filters.html`). Everything
-else showing 0 pages is declared in the kit and drawn on no surface — that is a finding, not
-an artefact, and it is listed in §3.
+**A 0 in the pages column is not automatically a finding.** Twenty-four variables score 0, and
+ten of them are drawn — the count simply cannot see them:
 
-**Load order on every painted page** is `_wireframe.css` → per-page `<style>` (where present) →
-`ui/kit.css`. At equal specificity the kit wins, which is what makes the duplicated layer
-below mostly invisible rather than absent.
+- **Seventeen classes are built by script**, so no `class="…"` token exists to count: the eleven
+  `.dr-kb*` (keyboard — `ui/kit.js`), `.dr-toast` + `.dr-toast--over-sheet` and `.dr-lang`
+  (`wireframes/_wf-shell.js`), and `.dr-cal__day` + `.dr-cal__day--today` +
+  `.dr-range__bar--in` (page scripts in `listings.html` / `listings-filters.html`). This is what
+  zeroes `--h-kb`, `--h-kb-quick`, `--r-key` and `--sz-today-dot`.
+- **Four are spent only inside `@keyframes`**, which has no selector to match:
+  `--pulse-floor`, `--ping-reach`, `--up-out`, `--up-in`. The animations run.
+- **Two redefine another token inside a media query** rather than landing on a class:
+  `--sz-well-w-sm`, `--sz-well-h-sm`. They are live below 389px.
+
+**The remaining fourteen are the finding** — declared in the kit, spent in the kit, and landing
+on a class no page carries. They are listed in §3.
+
+**Load order on every painted page** is `_wireframe.css` (where linked) → per-page `<style>`
+(where present) → `ui/kit.css`. The kit is always last. What that is worth, measured selector by
+selector, is §A1.
 
 ---
 
@@ -42,7 +51,7 @@ below mostly invisible rather than absent.
 | `--media` | `#E4E1DA` | 117 pages · 32 uses | **background** on `.dr-chip`, `.dr-grouptab`, `.dr-mark`, `.dr-well--photo/--shot/--acquiring`, `.dr-stack__shot`, `.dr-avatar-lg/-sm/-md`, `.dr-field--area .dr-field__input`, `.dr-search`, `.dr-range__val`, `.dr-segment`, `.dr-sk-well/-block/-tray`, `.dr-cal__clock`, `.dr-slide__art`, `.dr-mapview` → media wells, muted chips, inert fields; **background on hover** for `.dr-btn--secondary`, `.dr-btn--icon`, `.dr-lang button`, `.dr-disclosure__item`, `.dr-picker__item`, `.dr-channel`, `.dr-cal__nav`, `.dr-cal__day`, `.dr-avatar-edit__badge` → the hover step of the secondary pair. |
 | `--btn2` | `#D6D2C9` | 121 pages · 24 uses | **background** on `.dr-btn--secondary`, `.dr-btn:disabled`, `.dr-btn--icon`, `.dr-status`, `.dr-bubble--out`, `.dr-avatar-edit__badge`, `.dr-field__clear`, `.dr-switch`, `.dr-range__bar`, `.dr-range__rail::before`, `.dr-lang button`, `.dr-fchip--all`, `.dr-channel`, `.dr-pager > *`, `.dr-sk-line/-btn/-dir/-route`, `.dr-kb__plane` → secondary ground, disabled ground, switch track, skeleton bar; **colour (ink)** on `.dr-call .dr-label`, `.dr-call__time`, `.dr-star`, `.dr-stars` → the secondary ink on the night surface (`--slate` is barred there at 2.42:1) and the unfilled star. |
 | `--inset` | `#F2F0EC` | 3 pages (`order-history`, `-loading`, `operator-listings`) · 1 use | **background** on `.dr-inset` — the only plane declared to sit *inside* a card. |
-| `--ink` | `#1A1A1A` | 133 pages · 128 uses | **colour** on ~80 selectors — every title, value, label, button label, tab-current, number; **background** on `.dr-brand`, `.dr-home span`, `.dr-switch__knob`, `.dr-range__bar--in`, `.dr-range__fill`, range thumbs, `.dr-toast`, `.dr-avail__dot`, `.dr-btn--pay:hover/:active`, `.dr-channel[pressed]`, `.dr-groups--tabs .dr-grouptab[selected]::after` → ink as a fill and as the selected-tab underline; **border** on `.dr-box`; **border-color** on `.dr-btn--outline:hover/:active`; **caret-color** on three inputs; **outline** on 30 `:focus-visible` rules → the focus ring's colour; **`--scrim`** source at 40 %. |
+| `--ink` | `#1A1A1A` | 133 pages · 128 uses | **colour** on 79 selectors — every title, value, label, button label, tab-current, number; **background** on `.dr-brand`, `.dr-home span`, `.dr-switch__knob`, `.dr-range__bar--in`, `.dr-range__fill`, range thumbs, `.dr-toast`, `.dr-avail__dot`, `.dr-btn--pay:hover/:active`, `.dr-channel[pressed]`, `.dr-groups--tabs .dr-grouptab[selected]::after` → ink as a fill and as the selected-tab underline; **border** on `.dr-box`; **border-color** on `.dr-btn--outline:hover/:active`; **caret-color** on three inputs; **outline** on 28 of the 30 `:focus-visible` rules → the focus ring's colour, the other two being `--page` on the night surface; **`--scrim`** source at 40 %. |
 | `--slate` | `#5A5751` | 133 pages · 60 uses | **colour** on `.dr-tab`, `.dr-lead`, `.dr-label`, `.dr-hint`, `.dr-note`, `.dr-sect`, `.dr-rows__key`, `.dr-chip`, `.dr-grouptab`, `.dr-node`, `.dr-track__text`, `.dr-msg__body`, `.dr-order__date`, `.dr-listing__desc`, `.dr-choice__desc`, `.dr-op__rating`, `.dr-field__label`, every `::placeholder`, `.dr-price__lbl`, `.dr-cal__grid th`, `.dr-picker__sub`, `.dr-offer__meta`, `.dr-btn:disabled`, `.dr-btn--tertiary` → the secondary ink, and the disabled ink; **border-color** on `.dr-btn--outline` → the same value carrying an edge rather than a word. |
 | `--line` | `#D9D5CE` | 133 pages · 25 uses | **border-top / -bottom / -left** on `.dr-topbar`, `.dr-tabbar`, `.dr-actionbar`, `.dr-rows__row`, `.dr-groups`, `.dr-label`, `.dr-disclosure`, `.dr-picker__item`, `.dr-kb__bar`, `.dr-kb__quick span+span` → every hairline; **border** on `.dr-screen`, `.dr-node`; **background** on nine separator pseudo-elements *and* on `.dr-sheet__grip` → a line colour filling the drawer's grabber, which is a shape, not a rule. |
 | `--green` | `#9BCF4A` | 132 pages · 30 uses | **background** on `.dr-btn--primary` (+ `--icon`), `.dr-grouptab[selected]`, `.dr-status--live`, `.dr-node--done`, `.dr-rail::after`, `.dr-track__item--done::before`, `.dr-label::after`, `.dr-profile .dr-avatar-edit__badge`, `.dr-box:checked`, `.dr-switch:checked`, `.dr-lang button[pressed]`, `.dr-fchip__x`, `.dr-count-badge`, `.dr-pager .on`, `.dr-cal__grid td[selected] .dr-cal__day`, `.dr-avail-badge__dot`, `.dr-balance--card/--banner`, `.dr-offer:checked` → action, selection, live state, done state, count badge, balance card, selected day — **all one token**; **border-color** on `.dr-node--done/--now`, checked `.dr-box`; **box-shadow** in `@keyframes dr-ping`; **`--halo-now`** source at 20 %. |
@@ -199,7 +208,7 @@ below mostly invisible rather than absent.
 | `--sz-rail` | `4px` | 2 · 3 | `height` of `.dr-range__rail::before` and `.dr-range__fill`; a term of `--hist-seat`. |
 | `--sz-hist` | `48px` | 2 · 1 | `height` of `.dr-range__hist` — the price chart. |
 | `--sz-rowkey` | `96px` | 58 · 4 | `flex` basis of `.dr-rows__key` and `.dr-field__label`; `grid-template-columns` of `.dr-rows`. The label column's **floor**, not its width. |
-| `--sk-title-h` `--sk-date-h` `--sk-lbl-h` `--sk-lbl-w` `--sk-lbl-w-sm` `--sk-place-h` `--sk-price-h` `--sk-price-w` `--sk-stop-gap` `--sk-head-gap` | `14` `10` `12` `38` `22` `16` `18` `84` `7` `8` px | 1–6 pages each | Each is one skeleton bar's `height` or `width`, sized to the element it stands in for, on `order-history-loading` and `notifications-loading`. `--sk-lbl-w` and `--sk-lbl-w-sm` reach no page: `.dr-sk-lbl` is in no markup. |
+| `--sk-title-h` `--sk-date-h` `--sk-lbl-h` `--sk-lbl-w` `--sk-lbl-w-sm` `--sk-place-h` `--sk-price-h` `--sk-price-w` `--sk-stop-gap` `--sk-head-gap` | `14` `10` `12` `38` `22` `16` `18` `84` `7` `8` px | 0–6 pages each | Each is one skeleton bar's `height` or `width`, sized to the element it stands in for, on `order-history-loading` and `notifications-loading`. `--sk-lbl-w` and `--sk-lbl-w-sm` reach no page: `.dr-sk-lbl` is in no markup. |
 | `--sz-brand-w` / `--sz-brand-h` | `60px` / `20px` | 48 · 1 each | `width` / `height` of `.dr-brand`. |
 | `--node-centre` | `calc((22−2)/2)` | 10 · 2 | `left` / `top` of the rail and connector — derived so the arithmetic cannot drift. |
 | `--pick-indent` | `calc(24+12)` | **0 uses** | Declared; the row it indented lost its own inset at rev 91. |
@@ -276,9 +285,9 @@ below mostly invisible rather than absent.
 
 ## 2. Finding A — value drift
 
-### A1 · Two complete palettes are loaded on the same 123 pages, and they name the same seven roles at different values
+### A1 · Two complete palettes are loaded on the same 122 pages, and they name the same seven roles at different values
 
-`_wireframe.css` is linked before `ui/kit.css` on 123 of the 134 pages. It declares its own
+`_wireframe.css` is linked before `ui/kit.css` on 122 of the 134 pages. It declares its own
 `:root`. Both sets are live; the kit wins by source order, not by intent.
 
 | Role | Kit | Grayscale sheet | Distance |
@@ -291,23 +300,43 @@ below mostly invisible rather than absent.
 | secondary ink | `--slate #5A5751` | `--wf-text-2 #5A5A5A` (+ `--wf-muted #909090`) | `#5A5751` vs. `#5A5A5A` — 3 points apart on two channels |
 | hairline | `--line #D9D5CE` | `--wf-border rgba(0,0,0,.09)`, `--wf-border-2 rgba(0,0,0,.15)` | a warm solid vs. two black alphas |
 
-Painted pages carry **both class names on one element** — `class="topbar dr-topbar"`,
-`class="zlabel dr-label"` (124 pages). Each of those elements is addressed by two sheets at
-equal specificity. What they render is decided by the link order.
+Painted pages carry **both class names on one element** — `class="topbar dr-topbar"` (124 pages,
+124 elements), `class="zlabel dr-label"` (124 pages, 227 elements), `class="wf-frame dr-screen"`
+(131 pages). Each of those elements is addressed by two sheets at once.
+
+**The kit wins, and it wins on purpose rather than by luck.** Counted on the elements that carry
+both classes, there are eight contests where a grayscale rule and a kit rule set the same property
+on the same element:
+
+- **Five are ties on specificity**, and the kit takes them as the later sheet — `.wf-frame` vs
+  `.dr-screen` (10 properties), `.zlabel` vs `.dr-label` (10 properties), `header.topbar` vs
+  `header.dr-topbar` (9), and two more.
+- **Three are cases where the grayscale rule outranks the kit**, and each is neutralised by a
+  second kit selector written at matching specificity: `header.topbar` (0,1,1) beats `.dr-topbar`
+  (0,1,0), which is exactly why `kit.css` writes `header.dr-topbar, .dr-topbar` rather than the
+  class alone; and `.wf-frame:has(.slider.is-bleed) > .topbar` (0,2,0) is mirrored rung for rung by
+  `.dr-screen:has(.dr-slider--bleed) > .dr-topbar` (0,2,0).
+
+**So the kit's defence against the grayscale sheet is specificity-matching, and it is
+load-bearing.** Drop `header.` from that one selector list and 124 nav bars go from `--page`
+`#F7F5F2` to `--wf-surface` `#FFFFFF`. The second pair never fires either way: the grayscale class
+`is-bleed` appears in no page's markup, while `dr-slider--bleed` is on three.
+
+*Verified statically, by specificity and source order — not by computed style in a browser.*
 
 ### A2 · The same `--wf-*` palette is declared eleven more times, inline
 
-Eleven pages restate all twelve `--wf-*` definitions inside their own `<style>` block:
+**Twelve pages do not link `_wireframe.css` at all**, and every one of them carries the palette
+inline instead. Eleven restate all twelve `--wf-*` definitions inside their own `<style>` block —
 `listings`, `-empty`, `-error`, `-filtered`, `-filters`, `-loading`,
-`listings-filter-city` / `-country` / `-district` / `-region`, and `operator-listings`.
+`listings-filter-city` / `-country` / `-district` / `-region`, and `operator-listings` — and
 `_navbar-options.html` restates seven of them.
 
-Ten of the eleven are exactly the pages that do **not** link `_wireframe.css` — the sheet was
-pasted in instead of linked. The eleventh, `listings.html`, **does both**: it links the sheet
-and re-declares the same twelve tokens above it.
+The split is clean: **no page both links the sheet and re-declares it.** It is linked, or it is
+pasted, never both.
 
-All values match today. There are **twelve places** to edit if one moves, plus the partial
-seven in `_navbar-options.html`.
+All values match today. There are **twelve places** to edit if one moves — the shared sheet plus
+the eleven full copies — and a thirteenth holding seven of the twelve.
 
 ### A3 · One role, two values, inside the kit
 
@@ -346,7 +375,7 @@ makes drift hard to see. Counted off `:root`:
 | `15px` | 3 | `--t-heading-size` · `--t-lead-size` · `--t-base-size` |
 | `96px` | 3 | `--sz-well-w` · `--sz-well-h` · `--sz-rowkey` |
 
-(Full list: 37 values carry more than one name.)
+(Full list: **36** `:root` values carry more than one name.)
 
 ---
 
@@ -357,11 +386,11 @@ Ordered by how far apart the roles are.
 | Variable | Roles it carries at once | Sites |
 |---|---|---|
 | **`--green`** | **action** (primary CTA) · **selection** (chosen tab, checked box, checked radio, selected day, selected offer, language toggle) · **live state** (status disc, ping ring) · **done state** (node, rail, checklist line, tick under a zone label) · **count** (`.dr-count-badge`, `.dr-grouptab__count`'s ground) · **identity/edit affordance** (`.dr-profile .dr-avatar-edit__badge`) · **money** (`.dr-balance--card/--banner`) · **removal** (`.dr-fchip__x`) | 23 background sites + 3 borders |
-| **`--ink`** | **primary text** (≈80 selectors) · **a fill** (brand mark, home indicator, switch knob, range fill, toast ground, selected-tab underline) · **the focus ring's colour** (30 outlines) · **a caret** · **a border** (`.dr-box`) · **the scrim's source** | 128 uses |
+| **`--ink`** | **primary text** (79 selectors) · **a fill** (brand mark, home indicator, switch knob, range fill, toast ground, selected-tab underline) · **the focus ring's colour** (28 of the 30 outlines) · **a caret** · **a border** (`.dr-box`) · **the scrim's source** | 128 uses |
 | **`--btn2`** | **a surface** (secondary button, disabled button, icon button, switch track, skeleton bar, pager dot, keyboard plane) · **an ink** (`.dr-call .dr-label`, `.dr-call__time`, `.dr-star`, `.dr-stars` — light text on the night ground) | 20 backgrounds + 4 colours |
 | **`--page`** | **the screen's ground** · **an ink** (on `--night` and on `--danger`) · **a border** (the photo-pile cut-out) · **a focus ring** on dark | 14 + 9 + 2 + 2 |
-| **`--media`** | **a resting surface** (well, chip, avatar ground, textarea, search field) · **the hover state** of the secondary pair (9 `:hover` rules) | 32 uses |
-| **`--slate`** | **secondary text** (58 sites) · **the disabled ink** · **a border** (`.dr-btn--outline`) | 60 uses |
+| **`--media`** | **a resting surface** (well, chip, avatar ground, textarea, search field) · **the hover state** of the secondary pair (8 `:hover` declarations, plus `.dr-btn--secondary:active`) | 32 uses |
+| **`--slate`** | **secondary text** (59 sites) · **the disabled ink** · **a border** (`.dr-btn--outline`) | 60 uses |
 | **`--line`** | **every hairline border** · **the background of nine separator pseudo-elements** · **the fill of `.dr-sheet__grip`**, which is a shape and not a rule | 25 uses |
 | **`--card`** | **the card plane** · **a ring** (`box-shadow` on `.dr-status`) · **a border** (`.dr-avatar-edit__badge`) | 24 uses |
 | **`--h-control` (44)** | **the HIG touch target** (12 `min-height`) · **a row height** (rail, segment, calendar row) · **a width** (`.dr-star`, `.dr-cal__nav/__day`) · **arithmetic** inside `--pill-bleed` and `--hist-seat` | 25 uses |
@@ -459,7 +488,7 @@ The most repeated literals inside these blocks: `font-weight: 600` (106×),
 `_field-options.html` holds two literal hexes that exist nowhere else in the project —
 `#6C6963` and `#86827A`, two placeholder shades under comparison.
 
-### C3 · Inline `style="…"` attributes — 40 occurrences carrying a design value
+### C3 · Inline `style="…"` attributes — 45 of 164 carry a design value
 
 | Value | Where |
 |---|---|
@@ -472,7 +501,7 @@ The most repeated literals inside these blocks: `font-weight: 600` (106×),
 | `opacity: .55` | `time-slot.html`, `time-slot-inspection.html` — a dimmed state, where the kit's rule is that disabled is a built pair, never an opacity |
 | `margin-top: 34px` | `_field-options.html` |
 | `font-size:17px; font-weight:600; color:var(--wf-text)` | `report-issue-loading.html` — the type step restated as literals **and** the grayscale ink named directly on a painted page |
-| ~60 `height: N%` bars | `listings.html`, `listings-filters.html` — the price histogram's data, which is content rather than a design value |
+| 93 `height: N%` bars | `listings.html`, `listings-filters.html` — the price histogram's data, which is content rather than a design value |
 
 ### C4 · Literal hexes in markup — brand artwork
 
@@ -507,13 +536,13 @@ on the dark ground). **This is a four-rung surface ramp, not one role** — the 
 `.dr-card > .dr-inset > …` stacks them.
 
 ### Text primary
-**Seen in:** `--ink #1A1A1A` as `color` on ≈80 selectors — every title, value, button label,
+**Seen in:** `--ink #1A1A1A` as `color` on 79 selectors — every title, value, button label,
 row value, current tab. The role is unambiguous. What muddies it is that the same token is
-also 14 fills, 30 focus rings and a border, so "text primary" cannot simply be read off the
+also 14 fills, 28 focus rings and a border, so "text primary" cannot simply be read off the
 name. On the night surface the role is carried by `--page`.
 
 ### Text secondary
-**Seen in:** `--slate #5A5751` as `color` on 58 selectors — every `__desc`, `__sub`, `__label`,
+**Seen in:** `--slate #5A5751` as `color` on 59 selectors — every `__desc`, `__sub`, `__label`,
 `__hint`, `__key`, `__date`, `__meta`, `__note`, and every `::placeholder`. Two further things
 sit inside this role today: the **disabled** ink (`.dr-btn:disabled` — same token, different
 meaning) and `--btn2` used as the secondary ink on the call screen, because `--slate` fails
