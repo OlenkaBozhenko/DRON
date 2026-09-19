@@ -1588,14 +1588,21 @@
         <div class="dr-route" role="group" aria-label="Route">
           <div class="dr-route__row">
             <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6"/></svg></span>
-            <span class="dr-route__label">From</span>
-            <span class="dr-route__value">Podil, Kyiv</span>
+            <button class="dr-route__open" type="button" aria-haspopup="dialog" aria-expanded="false">
+              <span class="dr-route__label">From</span>
+              <span class="dr-route__value">Podil, Kyiv</span>
+            </button>
           </div>
           <div class="dr-route__row">
-            <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
-            <span class="dr-route__label">To</span>
-            <span class="dr-route__value" data-empty>Where to?</span>
+            <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg></span>
+            <button class="dr-route__open" type="button" aria-haspopup="dialog" aria-expanded="false">
+              <span class="dr-route__label">To</span>
+              <span class="dr-route__value" data-empty>Drop-off address</span>
+            </button>
           </div>
+          <button class="dr-btn dr-btn--icon dr-route__swap" type="button" aria-label="Swap pickup and drop-off">
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 19.5v-15"/><path d="M4.5 8L8 4.5 11.5 8"/><path d="M16 4.5v15"/><path d="M12.5 16l3.5 3.5 3.5-3.5"/></svg>
+          </button>
         </div>
         <div class="dr-when">
           <span class="dr-when__cell">
@@ -1614,6 +1621,16 @@
       </div>
     </form>
     <span class="st">service &#183; route &#183; when &#183; two actions &#183; this is what listings offers now</span>
+    <div class="dr dr-route dr-route--single" role="group" aria-label="Where" style="width:341px;max-width:100%">
+      <div class="dr-route__row">
+        <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg></span>
+        <button class="dr-route__open" type="button" aria-haspopup="dialog" aria-expanded="false">
+          <span class="dr-route__label">Where</span>
+          <span class="dr-route__value" data-empty>Address</span>
+        </button>
+      </div>
+    </div>
+    <span class="st">--single &#183; one address, no swap &#183; photo and inspection swap to this</span>
     
   </div>
   <div class="notes">
@@ -1627,6 +1644,18 @@
        <code>.dr-finder__card</code>,</b> so the three questions read as one answer being assembled
        rather than three settings. The route rows are parted by a hairline that starts past the mark
        rather than by a box each; the two when-cells are split by a single vertical rule.</p>
+    <p><b>A row is a button, not a field, and that is a <code>WCAG 4.1.2</code> decision.</b> The
+       typing moved into a drawer, so the row only <i>looks</i> the way the field did &#8212; it is
+       a <code>&lt;button aria-haspopup="dialog"&gt;</code>, it opens on a tap and never on focus
+       (<code>WCAG 3.2.1</code>), and the name and the value are announced as one control. The
+       empty value carries <code>data-empty</code>, which is <code>--text-muted</code> at 400
+       rather than <code>--text-primary</code> at 600: the placeholder is a weight and a tone,
+       never a different element.</p>
+    <p><b><code>--single</code> is the same component with the swap taken out.</b> Delivery is the
+       only service with two ends; photo and inspection have one place, so the route swaps to a
+       single row and the right padding drops from <code>16 + 44 + 8</code> back to
+       <code>16</code> &#8212; the reserve that was holding the swap button. Both routes live in
+       the frame at once and one is <code>hidden</code>; the service tabs choose between them.</p>
     <p><b>The service card is not here, because it is not in the frames either.</b>
        The showcase drew one &#8212; <i>Package delivery</i>, a <code>.dr-well</code> on the left
        &#8212; and no wireframe builds that. <code>.dr-listing--service</code> survives on
@@ -1637,6 +1666,106 @@
        <code>components/</code>. That is <code>tokens-audit.md</code> &#167;A3, still open: the same
        well at <b>96 &#215; 72</b> against the kit&#8217;s <b>96 &#215; 96</b>. Until it is a kit
        class again there is nothing here to show.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Address picker</b><code>.dr-sheet--steady &#183; .dr-search &#183; .dr-picker__list &#183; __item &#183; __lead &#183; __label &#183; __sub</code>
+    <p>What a route row opens. <code>listings</code> and <code>listings-filters</code> &#8212; the
+       drawer where the address is actually typed.</p></div>
+  <div class="spec">
+    <div class="plate" style="align-items:stretch;padding:0;width:341px;max-width:100%">
+      <section class="dr dr-sheet dr-sheet--picker dr-sheet--steady" aria-label="Pickup address" style="animation:none;position:static;min-height:460px">
+        <span class="dr-sheet__grip" aria-hidden="true"></span>
+        <p class="dr-sheet__title">Pickup address</p>
+        <span class="dr-search">
+          <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="text" placeholder="Search address" aria-label="Search address">
+        </span>
+        <div class="dr-picker__list">
+          <button class="dr-picker__item" type="button">
+            <svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 4.5L4.5 11l6.4 2.1 2.1 6.4z"/></svg>
+            <span class="dr-picker__label">Use my location</span>
+          </button>
+          <button class="dr-picker__item" type="button">
+            <svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11L12 4.5l7.5 6.5"/><path d="M6.5 9.3v10.2h11V9.3"/><path d="M10.2 19.5v-4.8h3.6v4.8"/></svg>
+            <span class="dr-picker__label">Podil, 21 <span class="dr-picker__sub">Saved address</span></span>
+          </button>
+          <button class="dr-picker__item" type="button">
+            <svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+            <span class="dr-picker__label">Osokorky, 14 <span class="dr-picker__sub">Recent</span></span>
+          </button>
+        </div>
+        <div class="dr-sheet__actions">
+          <span class="dr-btn dr-btn--secondary">Cancel</span>
+          <span class="dr-btn dr-btn--primary">Done</span>
+        </div>
+      </section>
+      <span class="st">held at the height it opened at &#183; the actions stay on the floor as the list narrows</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b><code>--steady</code> is one declaration against one real annoyance.</b>
+       <code>margin-top: auto</code> on <code>.dr-sheet__actions</code>, and the page pins the
+       drawer&#8217;s <code>min-height</code> to the height it opened at. As you type and the list
+       narrows from three rows to one, <i>Cancel</i> and <i>Done</i> stay where your thumb left
+       them instead of marching up the screen &#8212; the target does not move under the finger.</p>
+    <p><b><code>__lead</code> is a leading glyph, and it is the one place <code>.dr-ic</code> is
+       made visible again.</b> <code>.dr-picker__item &gt; .dr-ic</code> is hidden by default
+       &#8212; the trailing tick only shows on the current row &#8212; so the lead re-declares
+       <code>visibility: visible</code> and takes <code>--text-muted</code> at 20px. It never
+       carries meaning on its own: <i>Saved address</i> and <i>Recent</i> are written out in
+       <code>__sub</code>, so the pin, the house and the clock are <code>aria-hidden</code>
+       (<code>WCAG 1.4.1</code>).</p>
+    <p><b>Two lines make the row taller, by rule rather than by accident.</b>
+       <code>.dr-picker__item:has(.dr-picker__sub)</code> pads to 12 top and bottom, so a
+       two-line row clears <code>HIG &#183; 44pt</code> the same way a one-line row does. The sub
+       is 12.5/1.2 in <code>--text-muted</code> &#8212; the meta step, not a second label.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Filters drawer</b><code>.dr-sheet--tall &#183; .dr-sheet__scroll</code>
+    <p>The second drawer <code>listings</code> opens, and the only one with more in it than
+       fits.</p></div>
+  <div class="spec">
+    <div class="plate" style="align-items:stretch;padding:0;width:341px;max-width:100%">
+      <section class="dr dr-sheet dr-sheet--picker dr-sheet--tall" aria-label="Filters" style="animation:none;position:static;height:300px">
+        <span class="dr-sheet__grip" aria-hidden="true"></span>
+        <p class="dr-sheet__title">Filters</p>
+        <div class="dr-sheet__scroll">
+          <fieldset class="dr-zone">
+            <p class="dr-zone__title">Drone type</p>
+            <p class="dr-zone__sub">Which drone does your order</p>
+            <ul class="dr-picks" style="list-style:none">
+              <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="kitdrone" class="sr-only"></label></li>
+              <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="kitdrone" class="sr-only"></label></li>
+              <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="kitdrone" class="sr-only"></label></li>
+              <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Fixed-wing</span><input type="checkbox" name="kitdrone" class="sr-only"></label></li>
+            </ul>
+          </fieldset>
+        </div>
+        <div class="dr-sheet__actions">
+          <span class="dr-btn dr-btn--secondary">Clear all</span>
+          <span class="dr-btn dr-btn--primary">Show results</span>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b><code>--tall</code> stops 44px short of the top, on purpose.</b>
+       <code>max-height: calc(100% &#8722; 44px)</code> leaves a strip of the screen behind it
+       showing &#8212; <code>HIG &#183; Sheets</code>&#8217; own rule, and the thing that says
+       <i>this is a layer over the page</i> rather than a new screen. It is also where you tap to
+       dismiss.</p>
+    <p><b>Only the middle scrolls, and that is the whole point of <code>__scroll</code>.</b>
+       <code>flex: 1 1 auto; min-height: 0; overflow-y: auto</code>, so the grip, the title and
+       the two actions stay put while the zones move under them. Without
+       <code>min-height: 0</code> a flex child refuses to shrink below its content, and the drawer
+       would grow instead of scrolling.</p>
+    <p><b>It bleeds its own gutter back.</b> <code>margin-inline: -16px</code> with
+       <code>padding: 4px 16px</code>, so the scroll edge and the focus ring of a row at the
+       boundary are not clipped by the sheet&#8217;s padding &#8212; the rows keep the
+       sheet&#8217;s measure while the scroll box is wider than they are.</p>
   </div>
 </div>
 
