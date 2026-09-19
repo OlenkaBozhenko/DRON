@@ -81,8 +81,9 @@ colour is not what carries it.
 
 **Where the role actually lives today** — and this is the finding worth keeping: verified is
 carried by `--green-100` under `--text-primary`, on `.dr-chip--claim`, 17 pages. `tokens.css`
-names that as `--color-verified`. So the role has a semantic token; it simply does not point at
-the blue.
+names that ground `--bg-accent-tint` (see §06c). So the role is carried — it simply is not
+carried by the blue, and it is not carried by a colour of its own at all: the word *Insured* is
+what says which, exactly as the kit's chip block prescribes.
 
 **Options.**
 1. **Leave both primitive** (as built). The pair stays declared so a rejected idea is not
@@ -90,10 +91,11 @@ the blue.
    the reasoning.
 2. **Delete them.** Honest about the build, but loses the record of a decision already made
    and reversed. `--sh-card` and `--sh-onphoto` are kept on exactly this principle.
-3. **Bring blue back for a distinction green cannot make.** There is one in the product today:
-   `--color-verified` and `--bg-selected` are **the same primitive**, so a confirmed credential
-   and a chosen filter are the same colour. A cool hue would separate them. This is a design
-   decision, not a token one, and it is the designer's.
+3. **Bring blue back for a distinction green cannot make.** A confirmed credential and a chosen
+   filter share one ground today (§06c). A cool hue would separate them by colour instead of by
+   word. Note what that would cost: the frames' rule is that a chip is never reduced to a colour,
+   and blue against grey is **1.03:1**, which is why the blue chip had to keep a checkmark. This
+   is a design decision, not a token one, and it is the designer's.
 
 ---
 
@@ -139,25 +141,94 @@ exempt from it, is a question for the design system and not for the token file.
 
 ---
 
-## §06c · Two roles, one primitive — recorded, not resolved
+## §06c · Two roles, one primitive — **resolved, by reading the frames**
 
-`tokens.css` declares `--bg-selected` and `--color-verified` and both point at `--green-100`.
+`tokens.css` was first drafted with **two** semantic tokens, `--bg-selected` and
+`--color-verified`, both pointing at `--green-100`, on the reading that *chosen* and *confirmed*
+are two roles that happen to share a value. That was left open rather than decided.
 
-That is deliberate. The audit's §5 finds **"Selection / state"** and **"Trust"** landing on the
-same wash: `.dr-tab[aria-current]` and `.dr-fchip` on one side, `.dr-chip--claim` on the other.
-So in the built product **a chosen thing and a confirmed thing are the same colour**, and each
-relies on an ink change or a glyph to be told apart — which is what keeps `WCAG 1.4.1` satisfied.
+**The frames had already decided it**, and they say so four times, in four separate rules, in
+their own words. The wireframes are the design, so this is not an opinion to weigh against
+others — it is the answer.
 
-Two names are declared so that the day the two roles part, only one of them has to move.
+| Rule in `ui/kit.css` | What it says |
+|---|---|
+| `.dr-tab[aria-current]` | *"HIG tints the selected label with the accent. Raw green as a label is 1.69:1, so the accent moves into the **FILL** and **the ink darkens with it** — two signals where the convention gives one."* |
+| `.dr-chip--claim` | *"A chip is **never reduced to a colour** — each keeps its words… Same word, same geometry, two jobs, and **the word is what carries it**."* |
+| `.dr-mark--milestone` | *"Delivered and waiting **share ONE well**… **The difference is the glyph and the title**."* |
+| `.dr-grouptab__count` | *"**the hue carries it, not the luminance**."* |
 
-The same pattern, for the same reason, applies to `--bg-muted` / `--bg-disabled` and
-`--text-muted` / `--text-disabled`: disabled has no colour of its own and borrows the secondary
-pair at **4.77:1**. `concept.md` §4 names `--disabled-bg` / `--disabled-ink` and **neither name
-exists in `kit.css`** — 0 occurrences. `tokens.css` gives that pair its names at last.
+And where three of these selectors — `.dr-chip--claim`, `.dr-avail-badge[data-state="available"]`
+and `.dr-chip--unread` — sit in a **single declaration**, the kit states the governing rule out
+loud: *"the kit's own rule is that **a value is stated once** — so the badge is named here beside
+the claim rung rather than repeating `--green-wash` / `--ink` in its own block further down.
+**Same pair, two roles**: a CRITERION being claimed, and a state that is LIVE right now."*
+
+### The resolution
+
+**One token: `--bg-accent-tint`.** The tint is a **ground**. It never carries the meaning. The
+word, the glyph or the title carries it, and the tint only agrees.
+
+Eight selectors, six declarations, 48 pages, and every one of them is a case of the same thing:
+
+| Selector | What the tint agrees with | What actually carries the meaning |
+|---|---|---|
+| `.dr-tab[aria-current="page"]` | this tab is the one you are on | the ink darkens to `--text-primary` — a second signal |
+| `.dr-chip--claim` | this criterion is claimed | the word (*Insured*, *Verified*) |
+| `.dr-avail-badge[data-state="available"]` | this operator is live now | the word *Available* |
+| `.dr-chip--unread` | this alert is unread | the word *Unread* |
+| `.dr-fchip` | this filter is applied | the filter's own text, plus its ✕ |
+| `.dr-grouptab__count` | this tab has a count | the digit — it is the tab's accessible name |
+| `.dr-mark--milestone` | this step is reached | the glyph and the title |
+| `.dr-balance__glyph` | — | a plate behind an icon; no state at all |
+
+### Why two names would have been wrong
+
+1. **It would claim a distinction the build does not make.** Naming *selected* and *verified*
+   separately asserts that they can be told apart by colour. They cannot: they are the same
+   `#E7F0D2` under the same `--ink`, and in every case something else does the telling.
+2. **It is the same defect the audit is about.** `tokens-audit.md` §A5 counts **36 values
+   carrying more than one name** in `kit.css`, and this file exists to collapse exactly that.
+   Minting a second name for `--green-100` would re-open it in the semantic tier.
+3. **`WCAG 1.4.1` is satisfied by the word, not by the tint** — which is the frames' whole
+   argument. A token named for a state would suggest the colour is the state.
+
+### What the tint's ink is, and why it matters
+
+`--text-primary` at **14.75:1**, never `--on-action`. Charcoal here is the plain primary ink,
+which is what makes the tab's second signal a **darkening** rather than a swap — `--slate`
+5.51:1 → `--ink` 14.75:1 as the tab becomes current.
+
+### What would make it two
+
+A place where the tint means *confirmed* and nothing else says so — no word, no glyph, no
+checkmark. That has not happened, and the chip block forbids it in advance. If the designer
+ever wants confirmed separated from chosen **by colour**, §06.2 option 3 is that decision, and
+it brings the blue back rather than splitting the green.
 
 ---
 
-## §06d · One naming decision that departs from the brief, and why
+## §06d · The same shape elsewhere — and why none of it collapses
+
+Four more groups of semantic tokens share a primitive. **None is the tint's case**, and the
+test that separates them is the one the frames gave: *do the two names describe the same job on
+the same surface?* For the tint they did. For these they do not.
+
+| Primitive | Names on it | Why they stay apart |
+|---|---|---|
+| `--charcoal-900` | `--text-primary` · `--on-action` · `--bg-night` | Different surfaces and different jobs — ink on light, the only colour allowed on a green fill, and a ground. **`kit.css` itself already declares this value three times**, as `--ink`, `--on-green` and `--night`, for exactly this reason: *"--night IS --ink, declared again under the name of the role it plays here, which is the palette's own habit."* |
+| `--cream-50` | `--bg-page` · `--text-on-night` | A ground on the light screen; an **ink** on the one dark screen. Inverted pair, same value. |
+| `--cream-500` | `--bg-muted` · `--text-on-night-muted` · `--bg-disabled` | A ground, an ink on dark (because `--slate` is barred there at **2.42:1**), and the disabled ground. |
+| `--cream-700` | `--text-muted` · `--text-disabled` | Disabled has no colour of its own; it borrows the secondary ink at **4.77:1**. |
+
+The last one is worth its own note. `concept.md` §4 **already names that pair** —
+`--disabled-bg` / `--disabled-ink` — and **neither name exists in `kit.css`**, 0 occurrences,
+which the audit records as a gap. So the second name there is not a claim about colour; it is a
+name the design system was asked for and never got. `tokens.css` gives it at last.
+
+---
+
+## §06e · One naming decision that departs from the brief, and why
 
 The brief asked for primitive families named `--space-4`, `--radius-md`, `--size-control`.
 `tokens.css` uses **one length ramp named by value** — `--len-4`, `--len-16`, `--len-44` — instead

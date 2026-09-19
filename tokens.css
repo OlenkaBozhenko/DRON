@@ -282,19 +282,56 @@
                                                fill - 17 colour sites - and the fill of
                                                .dr-switch__knob:checked and .dr-rating-arc. */
 
-  /* -- SELECTED / VERIFIED: one primitive, two roles, and that is the point --
-     Audit §5 "Selection / state" and "Trust" both land on --green-wash. The
-     product currently cannot tell "chosen" from "confirmed" by colour alone;
-     both carry an ink change or a glyph instead. Two names, so that the day
-     they part, only one of them has to move. */
-  --bg-selected:      var(--green-100);     /* §1.1 --green-wash: .dr-tab[aria-current],
-                                               .dr-fchip (applied filter), .dr-grouptab__count,
-                                               .dr-mark--milestone, .dr-balance__glyph. 48 pages. */
-  --color-verified:   var(--green-100);     /* §5 "Trust": the blue pair was RETIRED at rev 157 and
-                                               .dr-chip--trust became .dr-chip--claim on 17 pages.
-                                               DESIGN.md states the rule in one line: green means
+  /* -- THE ONE TINT / resolved the way the frames resolve it ----------------
+     This was drafted as two tokens - --bg-selected and --color-verified - both
+     pointing here, on the reading that "chosen" and "confirmed" are two roles
+     sharing a value. THE FRAMES SAY OTHERWISE, in four separate rules, and the
+     frames are the design:
+
+       .dr-tab[aria-current]   "HIG tints the selected label with the accent.
+                                Raw green as a label is 1.69:1, so the accent
+                                moves into the FILL and THE INK DARKENS WITH IT
+                                - two signals where the convention gives one."
+       .dr-chip--claim         "A chip is NEVER REDUCED TO A COLOUR - each keeps
+                                its words... Same word, same geometry, two jobs,
+                                and THE WORD IS WHAT CARRIES IT."
+       .dr-mark--milestone     "Delivered and waiting SHARE ONE WELL... THE
+                                DIFFERENCE IS THE GLYPH AND THE TITLE."
+       .dr-grouptab__count     "THE HUE CARRIES IT, NOT THE LUMINANCE."
+
+     And the kit states the governing rule out loud where three of these
+     selectors share a single declaration: "the kit's own rule is that A VALUE
+     IS STATED ONCE - so the badge is named here beside the claim rung rather
+     than repeating --green-wash / --ink in its own block further down."
+
+     So there is ONE role here, not two. The tint is a GROUND that never carries
+     the meaning; the word, the glyph or the title carries it and the tint only
+     agrees. Naming it twice would claim a distinction the build does not make -
+     and would be the same second name for one value that §A5 of the audit is
+     about. DESIGN.md and kit.css both call it, in those words, "the one tint".
+
+     Its ink is --text-primary at 14.75:1, never --on-action: charcoal here is
+     the plain primary ink, which is what makes the second signal a DARKENING
+     rather than a swap. */
+  --bg-accent-tint:   var(--green-100);     /* §1.1 --green-wash - 6 declarations, 8 selectors,
+                                               48 pages. The current bottom tab
+                                               (.dr-tab[aria-current]); the claimed criterion,
+                                               the live-now availability badge and the unread
+                                               alert mark (.dr-chip--claim, .dr-avail-badge
+                                               [data-state="available"], .dr-chip--unread - one
+                                               declaration between them); the applied filter
+                                               (.dr-fchip); the count on an in-page tab
+                                               (.dr-grouptab__count); the reached milestone
+                                               (.dr-mark--milestone); the balance glyph's plate
+                                               (.dr-balance__glyph).
+
+                                               VERIFIED LIVES HERE TOO, and that is not a second
+                                               role: the blue pair was retired at rev 157 and
+                                               .dr-chip--trust became .dr-chip--claim on 17 pages,
+                                               so DESIGN.md's rule reads in one line - green means
                                                DRON confirmed this document, grey means a plain
-                                               supporting fact. So the verified ground is the wash. */
+                                               supporting fact. The word Insured is what says
+                                               which, exactly as the chip block prescribes. */
 
   /* -- TROUBLE / each family is a wash carrying its own ink (DESIGN.md) ----- */
   --color-danger:     var(--rust-700);      /* §1.1 --danger-ink: .dr-btn--danger, .dr-mark--danger,
