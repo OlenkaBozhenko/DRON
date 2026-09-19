@@ -96,8 +96,15 @@
     this.taken = false;
     this.timer = null;
 
+    /* A STANDING listener on BOTH layers. The one-shot listener in show()
+       only covers the step it was attached for — after the first crossfade
+       the visible layer had no handler at all, so any document that arrived
+       by another route was never dressed and came up wearing the wireframe
+       shell. Dressing is idempotent, so both may fire. */
     this.dress(this.a);
-    this.a.addEventListener("load", function () { self.dress(self.a); });
+    [this.a, this.b].forEach(function (fr) {
+      fr.addEventListener("load", function () { self.dress(fr); });
+    });
 
     if (this.mode === "reel") this.setupReel();
     if (this.toggle) {
@@ -122,6 +129,9 @@
     var self = this;
     var d = this.doc(fr);
     if (!d) { this.blocked(); return false; }
+    /* Dropping the src off a spent back layer navigates it to about:blank and
+       fires load. There is nothing to dress and nothing is wrong. */
+    if (d.location && d.location.href === "about:blank") return false;
 
     if (!d.getElementById("lp-injected")) {
       var s = d.createElement("style");
@@ -139,18 +149,20 @@
        the wireframes is left alone. */
     d.body.classList.add("wf-hide-anno");
 
-    /* Take-over by keyboard is the Pause button's job; this is only the
-       pointer path, and only in live mode — while a reel plays, the veil in
-       the parent document catches the pointer instead. */
-    if (this.mode === "live" && !d.__lpLinked) {
-      d.__lpLinked = true;
+    /* THE LANDING IS A CLOSED EXHIBIT (landing.md §4.6, designer 2026-09-19).
+       No link inside the phone goes anywhere. A visitor who has taken the
+       screen over may scroll it and work its in-page controls — sheets,
+       toggles, the tab bar's own behaviour — but a tap on a link does not
+       leave the reel, and so cannot walk out into the wireframe project,
+       whose shell would arrive with it. Swallowed in the capture phase,
+       before the page's own handlers, and for every mode. */
+    if (!d.__lpSealed) {
+      d.__lpSealed = true;
       d.addEventListener("click", function (ev) {
         var a = ev.target.closest && ev.target.closest("a[href]");
         if (!a) return;
-        var href = a.getAttribute("href") || "";
-        if (!/^[a-z0-9._-]+\.html(#.*)?$/i.test(href)) return;  /* leave anything else native */
         ev.preventDefault();
-        self.show(href.split("#")[0]);
+        ev.stopPropagation();
       }, true);
     }
 

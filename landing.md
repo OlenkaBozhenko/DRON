@@ -64,7 +64,7 @@ is **per block**, not per page — the designer's call, 2026-09-19.
 
 | Mode | Where it is used | What the visitor sees | Interactive |
 |---|---|---|---|
-| **`live`** | the "try it" block, at the end | nothing moves until touched; the real prototype from its first screen, plus **Start over** | yes, fully |
+| **`live`** | the "try it" block, at the end | nothing moves until touched; the real prototype from its first screen, plus **Start over** | yes — within §4.6 |
 | **`reel`** | every feature section | the flow plays itself on a loop; **touch it and it stops and hands over** | on take-over |
 | **`video`** | held in reserve, not built | a recording, for motion the DOM cannot produce | no |
 
@@ -192,12 +192,33 @@ In `reel`, the first `pointerdown` inside the phone pauses the tape and hands co
 visitor. The button then reads **Play** — pressing it reloads the current step's screen and resumes,
 so the reel is always deterministic and never resumes into a screen the visitor wandered into.
 
-### 4.6 Links inside the frame
+### 4.6 The landing is a closed exhibit
 
-In `live` mode, clicks on `<a href="….html">` inside the frame are intercepted by the **parent** and
-routed through the crossfade, so browsing the prototype has no white flashes either. Anything that
-is not a same-directory `.html` link behaves natively. In-page behaviour — drawers, sheets, toggles,
-the language switch — is the page's own `ui/kit.js` and is never intercepted.
+Designer's rule, **2026-09-19**: *«в лендингу я не хочу юзера переправляти на деталі усього
+проекту»* — the landing does not hand a visitor into the project.
+
+**No link inside the phone goes anywhere.** Every `a[href]` click is swallowed in the capture
+phase, before the page's own handlers, in every mode. What still works after a take-over: scrolling
+the screen, and the page's own in-page controls — sheets, drawers, toggles, the language switch,
+anything `ui/kit.js` drives without changing the document. What does not: leaving the screen.
+
+**Why it is a rule and not a preference.** The wireframes are a walkable prototype of the whole
+project — every state, every operator screen, the screen-map tree, the annotations. One tap on a
+link used to be enough to walk out of the reel and into that, and the shell arrived with it: the
+project header, the state-switch row, `Show annotations`. A landing that leaks its own workshop
+stops being a landing.
+
+**How it failed before (rev 5).** Two holes, and both are shut:
+
+1. `show()` attached a **one-shot** load listener for the step it was running. After the first
+   crossfade the visible layer had no handler at all, so a document that arrived by any other
+   route — a real click on a real link — was never dressed and came up wearing the shell. Both
+   layers now carry a **standing** load listener; dressing is idempotent.
+2. Link clicks were intercepted only in `live` mode, which is not the mode any built section uses.
+   Now sealed in all modes.
+
+Belt and braces again: hole 1 means nothing undressed is ever displayed even if a document does
+arrive; hole 2 means one cannot arrive.
 
 ---
 
@@ -266,6 +287,17 @@ client confirmation; the fastest churn trigger if absent.
 `data-mode="live"`, opening on `welcome.html` or `listings.html`, with **Start over**. It sits last:
 the visitor has been shown four things and is then handed the controls.
 
+**Open, and it is the designer's:** §4.6 seals every link in every mode, which makes a "try it"
+block a single screen you can poke rather than a prototype you can walk. Three readings, all of
+which keep the project out of reach:
+
+1. **Leave it sealed** — the block is one screen, fully alive in place. Simplest, and consistent
+   with every other block. A visitor who taps a link gets nothing, which may read as broken.
+2. **Open a named route** — the block carries its own short list of pages a visitor may reach
+   (say `listings` → `listings-map` → `order-setup` → `order-review`), and only those. The landing
+   stays closed; the demo walks. Costs a list per block, maintained here.
+3. **Drop §5.5** — the four reels are the landing, and there is no interactive block at all.
+
 ---
 
 ## 6. Files, and what is still open
@@ -332,6 +364,16 @@ either way: those pixels are the product's own and are not this file's to move (
 ---
 
 ## 7. Change log
+
+**Rev 5 — 2026-09-19.** *The designer, on the wireframe header appearing inside the phone mid-scroll:
+she does not want a visitor routed into the project's own detail.* That is now a rule, §4.6 — the
+landing is a closed exhibit and no link inside the phone goes anywhere. It also explains the
+symptom: a real click on a real link navigated the frame to a document that nothing dressed,
+because `show()`'s load listener was one-shot and the interception was `live`-mode only. Both shut.
+Verified: after taking the screen over, tapping **Track live** leaves the page on
+`order-confirmed`, the shell toolbar computes to `none` and no annotation is visible; the contact
+sheet still opens, so in-page life is untouched; the reel resumes and keeps running. §5.5's
+boundary is now an open question, recorded there.
 
 **Rev 4 — 2026-09-19.** *The designer: the project header and the status row still flash into the
 preview sometimes.* They did. Layer A is painted by the browser before the injected stylesheet
