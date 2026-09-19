@@ -430,26 +430,39 @@
 </div>
 
 <div class="row">
-  <div class="nm"><b>Nav-bar avatar</b><code>.dr-avatar-sm &#183; --sz-avatar-sm</code>
-    <p>The operator's own face in the nav bar. Two screens: operator-listings and its empty state.</p></div>
+  <div class="nm"><b>Nav bar &#183; operator home</b><code>.dr-avatar-sm &#183; .dr-op__name &#183; .dr-avail-badge &#183; .dr-bell &#183; .dr-count-badge</code>
+    <p>The operator&#8217;s own bar, whole. His face, his name, the state he is in, and the bell &#8212;
+       four things the wireframe puts in one 56px row on <code>operator-listings</code>.</p></div>
   <div class="spec">
-    <div class="plate">
-      <span class="dr dr-avatar-sm"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" decoding="async"></span>
-      <span class="st">28 &#215; 28 &#183; --media ground &#183; --r-pill</span>
+    <div class="plate wide" style="align-items:stretch;padding:0">
+      <header class="dr dr-topbar" style="width:100%">
+        <span class="dr-avatar-sm"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
+        <span class="dr-op__name">Ivan K.</span>
+        <span class="dr-topbar__spacer"></span>
+        <span class="dr-chip dr-chip--sm dr-avail-badge" data-state="available"><span class="dr-avail-badge__dot" aria-hidden="true"></span><span>Available</span></span>
+        <a class="dr-bell" href="#" aria-label="Notifications, 3 unread">
+          <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4a5.9 5.9 0 0 0-5.9 5.9c0 4.1-1.5 5.3-1.5 5.3h14.8s-1.5-1.2-1.5-5.3A5.9 5.9 0 0 0 12 3.4Z"/><path d="M10.1 18a2.1 2.1 0 0 0 3.8 0"/></svg><span class="dr-count-badge" aria-hidden="true">3</span>
+        </a>
+      </header>
+      <span class="st">56 tall &#183; avatar 28 &#183; badge chip &#183; bell 44 &#215; 44 &#183; operator-listings</span>
     </div>
   </div>
   <div class="notes">
     <p><b>28 is derived, not picked.</b> <code>--h-topbar</code> is 56, so the disc is exactly half
-       the bar it stands in and centres with 14 above and below &#8212; measured 13.6 / 14.4, the 0.8
-       being the bar's own hairline. None of the four existing rungs could be borrowed:
-       <code>--sz-avatar</code> 117 is the operator panel's <i>width</i> from an asset ratio,
-       <code>--sz-avatar-xl</code> 120 is a subject, <code>--sz-avatar-call</code> 176 is a screen's
-       middle, and <code>--sz-avatar-badge</code> 20 is a badge <i>on</i> an avatar.</p>
-    <p><b>It exists to close a leak rather than to add a look.</b> The disc was drawn with
-       <code>_wireframe.css</code>'s own <code>.avatar</code>, whose ground is <b>#EEEEEE</b> &#8212; a
-       colour in no palette in this project &#8212; showing through the cutout's transparent corners.
-       It was <b>the last place a painted page read a colour from the grayscale sheet</b>.
-       <code>--media</code> here, the ground every other photo in the kit loads onto.</p>
+       the bar it stands in and centres with 14 above and below. None of the other rungs could be
+       borrowed: <code>--sz-avatar</code> 117 is the operator panel&#8217;s <i>width</i> from an asset
+       ratio, <code>--sz-avatar-xl</code> 120 is a subject, <code>--sz-avatar-call</code> 176 is a
+       screen&#8217;s middle, and <code>--sz-avatar-badge</code> 20 is a badge <i>on</i> an avatar.</p>
+    <p><b>The state rides in the bar as a chip, not as a sentence under it.</b>
+       <code>.dr-avail-badge</code> is <code>.dr-chip--sm</code> with a dot in front, and it shares one
+       declaration with the claim chip: <code>--bg-accent-tint</code> under
+       <code>--text-primary</code> at <b>14.75:1</b>. The word <i>Available</i> is what carries the
+       state &#8212; the dot agrees with it and never stands alone (<code>WCAG 1.4.1</code>).</p>
+    <p><b>The bell is <code>.dr-back</code> mirrored</b> &#8212; the same 44 &#215; 44 box, the same
+       22px glyph rung, the same ring, and <code>margin-right:-10px</code> where the back control
+       spends <code>margin-left</code>. Its count sits at <code>--sp-within</code> 4 from the top and
+       right, not the badge&#8217;s usual &#8722;2: that &#8722;2 was derived on a 44px <i>circle</i>,
+       and this box is a square.</p>
   </div>
 </div>
 
@@ -489,6 +502,38 @@
        <code>translateY</code> the other two take — there is no fill to change.</p>
     <p>Hover <code>brightness(1.03)</code>; active <code>translateY(1px) scale(.99)</code>. Focus is
        <code>2.5px --ink</code>, <b>15.99:1</b>, never green.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Floating action</b><code>.dr-fab &#183; .dr-main--fab</code>
+    <p>The one control that leaves the column and sits over the page. Five screens:
+       <code>account</code>, <code>operator-account</code>, <code>account-edit</code> and the two
+       profile photos.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch;padding:0">
+      <div class="dr" style="position:relative;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
+        <div class="dr-main dr-main--fab" style="padding-top:var(--len-16)">
+          <div class="dr-rows"><div class="dr-field"><span class="dr-field__label">Name</span><span class="dr-field__value">Olena H.</span></div></div>
+        </div>
+        <span class="dr-btn dr-btn--primary dr-fab"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</span>
+      </div>
+      <span class="st">pinned bottom &#183; --sh-raised &#183; the main pays it back in padding</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>It floats, so it takes a shadow &#8212; and it is one of only three things that do.</b>
+       Surfaces in this system are flat: separation is warm tone plus the 16px radius. A card sitting
+       <i>in</i> the page casts nothing. This control is not in the page, it is over it, so
+       <code>--shadow-raised</code> is the same rung the drawer and the toast take.</p>
+    <p><b><code>.dr-main--fab</code> is the other half of the component.</b> A control pinned over a
+       scrolling column will sit on the last row of that column unless the column gives the space
+       back, so the main pays <code>--len-44</code> plus the gutter in
+       <code>padding-bottom</code>. Without it the last field is unreachable behind the button
+       &#8212; which is a <code>WCAG 2.4.11 Focus Not Obscured</code> failure, not a cosmetic one.</p>
+    <p><b>It is still <code>.dr-btn--primary</code>.</b> The floating class adds position, the shadow
+       and the bottom offset; the fill, the ink, the height and the press all stay the primary
+       button&#8217;s, so there is one action colour on the screen and it is this.</p>
   </div>
 </div>
 
@@ -766,22 +811,29 @@
 </div>
 
 <div class="row">
-  <div class="nm"><b>Sheet &#183; scrim &#183; grip</b><code>.dr-sheet &#183; --picker &#183; __grip &#183; .dr-scrim</code>
-    <p>The product&#8217;s floating surface, and one of only two things in the system that takes a shadow.
-       Built by ui/kit.js, so no page carries its markup.</p></div>
+  <div class="nm"><b>Sheet &#183; scrim &#183; grip</b><code>.dr-sheet &#183; --picker &#183; __grip &#183; __actions &#183; --row &#183; .dr-scrim</code>
+    <p>The product&#8217;s floating surface, and one of only three things in the system that takes a
+       shadow. <b>29 pages carry its markup</b>; <code>ui/kit.js</code> only opens and closes it.</p></div>
   <div class="spec">
     <div class="plate wide" style="align-items:stretch">
-      <div class="dr" style="position:relative;height:236px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
+      <div class="dr" style="position:relative;height:312px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
         <div class="dr-scrim dr-scrim--picker" aria-hidden="true" style="animation:none"></div>
         <section class="dr-sheet dr-sheet--picker" aria-hidden="true" style="animation:none">
           <span class="dr-sheet__grip" aria-hidden="true"></span>
           <p class="dr-label">Contact operator</p>
           <span class="dr-btn dr-btn--secondary dr-btn--block">Call operator</span>
           <span class="dr-btn dr-btn--secondary dr-btn--block">Chat with the operator</span>
-          <span class="dr-btn dr-btn--tertiary dr-btn--block">Cancel</span>
+          <div class="dr-sheet__actions">
+            <span class="dr-btn dr-btn--secondary">Cancel</span>
+            <span class="dr-btn dr-btn--primary">Done</span>
+          </div>
+          <div class="dr-sheet__actions dr-sheet__actions--row">
+            <span class="dr-btn dr-btn--secondary">Cancel</span>
+            <span class="dr-btn dr-btn--primary">Apply</span>
+          </div>
         </section>
       </div>
-      <span class="st">--r-panel 22 top &#183; grip 36 &#215; 5 &#183; --sh-raised</span>
+      <span class="st">--r-panel 22 top &#183; grip 36 &#215; 5 &#183; --shadow-raised &#183; actions stacked, then --row</span>
     </div>
   </div>
   <div class="notes">
@@ -862,78 +914,76 @@
 </div>
 
 <div class="row">
-  <div class="nm"><b>Balance block</b><code>.dr-balance &#183; .dr-note--flush</code>
-    <p>A figure and the line that names it. Four screens: wallet, wallet-empty, withdraw, ratings.</p></div>
-  <div class="spec">
-    <div class="plate wide" style="align-items:stretch">
-      <section class="dr dr-balance" aria-label="Balance">
+  <div class="nm"><b>Balance block</b><code>.dr-balance &#183; --card &#183; --banner &#183; __glyph &#183; __body &#183; .dr-rating-arc</code>
+    <p>A figure and the line that names it &#8212; and since <code>wallet</code> and
+       <code>ratings</code> were painted, a <b>filled card carrying artwork</b> rather than two
+       loose lines on the page.</p></div>
+  <div class="spec col">
+    <section class="dr dr-balance dr-balance--card" aria-label="Balance" style="width:341px;max-width:100%">
+      <span class="dr-balance__glyph" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6.6" rx="6.8" ry="2.9"/><path d="M5.2 6.6v4.5c0 1.6 3 2.9 6.8 2.9s6.8-1.3 6.8-2.9V6.6"/><path d="M5.2 11.1v4.5c0 1.6 3 2.9 6.8 2.9s6.8-1.3 6.8-2.9v-4.5"/></svg></span>
+      <div class="dr-balance__body">
         <p class="dr-number">&#8372;3,240</p>
         <p class="dr-note dr-note--flush">Available to withdraw</p>
-      </section>
-      <span class="st">341 &#215; 42 &#183; figure 20 + gap 4 + caption 18 &#183; wallet</span>
-    </div>
-    <div class="plate wide" style="align-items:stretch">
-      <section class="dr dr-balance" aria-label="Balance" style="--x:1">
-        <p class="dr-number" style="font-size:var(--len-22)">&#8372;3,240</p>
-        <p class="dr-note dr-note--flush">Available to withdraw</p>
-      </section>
-      <span class="st">the display step, 22 &#183; withdraw</span>
-    </div>
+      </div>
+    </section>
+    <span class="st">--card &#183; glyph plate 44 &#183; figure 20/700 tabular &#183; wallet</span>
+    <section class="dr dr-balance dr-balance--banner" aria-label="Overall rating" style="width:341px;max-width:100%">
+      <span class="dr-rating-arc" aria-hidden="true"></span>
+      <p class="dr-number">4.8</p>
+    </section>
+    <span class="st">--banner &#183; the arc above the figure, both centred &#183; ratings</span>
   </div>
   <div class="notes">
-    <p><b>Why the block exists at all.</b> <code>_wireframe.css</code> draws this as
-       <code>.amount</code> at <b>34px / 600 / #252525</b> &#8212; a size outside the ten-step scale,
-       which tops out at 22, and an ink in no palette here. <i>The painted client page
-       <code>payment.html</code> still leaks it, and that is an open defect rather than a sanctioned
-       exception.</i></p>
-    <p><b>On withdraw the figure takes the display step, 22</b>, on the designer's call of
-       2026-08-18 &#8212; and it is spent through <code>.dr-number</code> rather than by swapping in
-       <code>.dr-display</code>, because <code>.dr-display</code> is <b>not tabular</b> and money must
-       line up digit under digit. The figure gets the display <i>size</i> and the number <i>role</i>.
-       Measured: <b>15.99:1</b> on the page, caption <code>--slate</code> <b>6.62:1</b>.</p>
-    <p><b><code>.dr-note--flush</code> is one keyword and no more.</b> <code>.dr-note</code> is
-       <code>text-align:center</code> by construction &#8212; the right default under a centred mark
-       inside <code>.dr-msg</code> &#8212; so a caption standing beside a left-aligned figure has to
-       say so. Nothing else about <code>.dr-note</code> changes. Spent 7 times across four packs.</p>
-    <p><b><code>.dr-note--balance</code> is one keyword and no more either</b> &#8212;
-       <code>text-wrap:balance</code>, the kit&#8217;s <b>third</b> spend of that property after
-       <code>.dr-display--balance</code> (rate, 2026-08-13) and <code>.dr-upload--card .dr-note</code>
-       (upload, 2026-08-15), on the same terms those two set: <b>a property, never a
-       <code>&lt;br&gt;</code></b>, so the string stays one text node and a translation re-balances
-       itself instead of inheriting an English break. Two spends, both photo screens (2026-08-27, the
-       designer on both built frames). Left to the default, the file rule broke <code>&#8230;until
-       you</code> / <code>save.</code> in the card&#8217;s 301 measure; balanced it breaks on the
-       <b>sentence boundary</b> &#8212; <b>JPG or PNG, up to 5&nbsp;MB.</b> <b>139.05</b> /
-       <b>Nothing changes until you save.</b> <b>180.14</b>, the second row 41.09px longer. Same
-       <b>301 &#215; 36</b> box before and after: it changes <i>where</i> rows break, never <i>how
-       many</i> &#8212; measured with and without at 12px (2 rows) and at a 2&#215; text step
-       (3 rows), 0px overrun both ways, so <code>WCAG 1.4.4</code> is unmoved.</p>
+    <p><b>The glyph stands on a plate, and the plate is what makes the centring read.</b> A bare 32
+       glyph beside a 44 body <i>is</i> centred &#8212; but two blocks of different height centred on
+       one axis do not look centred, they look adrift. The plate is
+       <code>--len-glyph-plate</code>, and that 44 is <b>arithmetic on the body beside it</b>:
+       figure 22 + step 4 + caption 18. Change the figure&#8217;s step and the plate follows it.</p>
+    <p><b>Both fills carry <code>rating-pattern.png</code> over <code>--color-action</code>,</b> and
+       the ink on them is <code>--on-action</code> throughout &#8212; figure, caption and star arc
+       alike &#8212; at <b>9.46:1</b>. The arc is a <b>mask</b>, not an image: one SVG filled with
+       the ink token and sized <code>--sz-star &#215; 3.34</code>, so the taper
+       (.44 &#183; .73 &#183; 1 &#183; .73 &#183; .44 of the middle star) is arithmetic on a rung the
+       ramp already has and no new size enters it.</p>
+    <p><b>Money is <code>.dr-number</code>, 20/700 tabular.</b> Not the grayscale
+       <code>.amount</code>&#8217;s 34/600 &#8212; a size outside the ten steps and an ink outside the
+       palette. The Tabular Rule wants tabular figures for anything a user verifies, and a balance
+       is the definition of that.</p>
   </div>
 </div>
 
 <div class="row">
-  <div class="nm"><b>Availability head</b><code>.dr-avail &#183; __dot &#183; __state &#183; __note</code>
-    <p>A dot, the state, and one supporting clause, standing above the segmented control that sets
-       it. Two screens: operator-listings and its empty state.</p></div>
+  <div class="nm"><b>Availability &#183; head and badge</b><code>.dr-avail &#183; __dot &#183; __state &#183; __note &#183; .dr-avail-badge &#183; __dot</code>
+    <p>The same fact said twice on one screen, at two sizes: a sentence in the page and a chip in the
+       bar. <code>operator-listings</code> carries both.</p></div>
   <div class="spec">
     <div class="plate wide" style="align-items:stretch">
       <p class="dr dr-avail">
         <span class="dr-avail__dot" aria-hidden="true"></span>
         <b class="dr-avail__state">You are Available</b><span class="dr-avail__note">&#183; receiving jobs near Podil</span>
       </p>
-      <span class="st">326.2 &#215; 19 &#183; gap 8 &#183; dot 10 &#183; operator-listings</span>
+      <span class="st">326.2 &#215; 19 &#183; gap 8 &#183; dot 10</span>
+    </div>
+    <div class="plate">
+      <span class="dr dr-chip dr-chip--sm dr-avail-badge" data-state="available"><span class="dr-avail-badge__dot" aria-hidden="true"></span><span>Available</span></span>
+      <span class="st">in the bar &#183; tint ground</span>
+    </div>
+    <div class="plate">
+      <span class="dr dr-chip dr-chip--sm dr-avail-badge" data-state="offline"><span class="dr-avail-badge__dot" aria-hidden="true"></span><span>Offline</span></span>
+      <span class="st">offline &#183; ringed dot, no fill</span>
     </div>
   </div>
   <div class="notes">
-    <p><b>The dot is <code>--ink</code> and not <code>--green</code>, and that is
+    <p><b>The sentence&#8217;s dot is <code>--text-primary</code> and not the accent, and that is
        <code>WCAG 1.4.1</code> rather than taste.</b> A dot that is green when Available and grey when
-       Offline would rest on colour alone. The sentence beside it says the state in words and the
-       segment below says it a third time, so <b>the dot is a bullet, not a signal</b>. It also keeps
-       the accent off a screen whose card CTAs already spend it.</p>
-    <p>Measured: dot <b>10 &#215; 10</b> &#8212; <code>--sz-dot</code>, the checked radio's own
-       centre, so no new size was cut; state 15/600 <code>--ink</code> <b>15.99:1</b>; note 13
-       <code>--slate</code> <b>6.62:1</b>. The wrapping section takes <code>.dr-stack</code>, so the
-       head needs no margin of its own.</p>
+       Offline would rest on colour alone. The sentence beside it says the state in words, so
+       <b>the dot is a bullet, not a signal</b>.</p>
+    <p><b>The badge in the bar carries the same rule differently.</b> Available takes
+       <code>--bg-accent-tint</code> with a solid <code>--color-action</code> dot; Offline keeps the
+       chip&#8217;s own <code>--bg-well</code> and the dot becomes a ring &#8212;
+       <code>--sz-status-ring</code> 2 of border, no fill. <b>Shape, not just hue</b>, so the two
+       states differ for a reader who cannot tell the colours apart, and the word is printed either
+       way.</p>
   </div>
 </div>
 
@@ -964,36 +1014,80 @@
 
 <!-- ═══ PROGRESS ══════════════════════════════════════════════════════════ -->
 <div class="row">
-  <div class="nm"><b>Listing card</b>
-    <code>.dr-card--row · .dr-listing__name · __desc · .dr-well</code>
-    <p><b>Approved 2026-08-03.</b> Three elements, as the hand-edited wireframe settled it: the
-       drone doing the job, the name, one line of description. The whole card is the tap target —
-       no price row and no chevron, because the frame has neither.</p></div>
+  <div class="nm"><b>The finder</b><code>.dr-finder &#183; __services &#183; __card &#183; __actions &#183; .dr-route &#183; .dr-when</code>
+    <p><b>This replaced the list.</b> <code>listings</code> no longer offers cards to pick from
+       &#8212; it asks three questions in one form: <i>what</i>, <i>from where to where</i>, and
+       <i>when</i>. The card below survived only on the filtered results.</p></div>
   <div class="spec col">
+    <form class="dr dr-finder" role="search" aria-label="Find a service" action="#" style="width:341px;max-width:100%">
+      <fieldset class="dr-finder__services" aria-label="Service">
+        <label class="dr-grouptab dr-grouptab--icon">
+          <input type="radio" name="kitservice" value="delivery" checked class="sr-only">
+          <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.6l7.6 4.2v8.4L12 20.4l-7.6-4.2V7.8z"/><path d="M4.6 7.9L12 12l7.4-4.1"/><path d="M12 12v8.3"/></svg>Delivery
+        </label>
+        <label class="dr-grouptab dr-grouptab--icon">
+          <input type="radio" name="kitservice" value="aerial" class="sr-only">
+          <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="7" width="17" height="12.5" rx="2.6"/><path d="M8.6 7l1.3-2.4h4.2L15.4 7"/><circle cx="12" cy="13.2" r="3.2"/></svg>Photo
+        </label>
+        <label class="dr-grouptab dr-grouptab--icon">
+          <input type="radio" name="kitservice" value="inspection" class="sr-only">
+          <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5v-3A1.5 1.5 0 0 1 5.5 4h3M15.5 4h3A1.5 1.5 0 0 1 20 5.5v3M20 15.5v3a1.5 1.5 0 0 1-1.5 1.5h-3M8.5 20h-3A1.5 1.5 0 0 1 4 18.5v-3"/><path d="M8 12.6L12 9l4 3.6V16H8z"/></svg>Inspection
+        </label>
+      </fieldset>
+      <div class="dr-finder__card">
+        <div class="dr-route" role="group" aria-label="Route">
+          <div class="dr-route__row">
+            <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6"/></svg></span>
+            <span class="dr-route__label">From</span>
+            <span class="dr-route__value">Podil, Kyiv</span>
+          </div>
+          <div class="dr-route__row">
+            <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+            <span class="dr-route__label">To</span>
+            <span class="dr-route__value" data-empty>Where to?</span>
+          </div>
+        </div>
+        <div class="dr-when">
+          <span class="dr-when__cell">
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14.5" rx="2.4"/><path d="M4 10h16"/><path d="M8.5 3.5v4M15.5 3.5v4"/></svg>
+            <span class="dr-when__text"><span class="dr-when__label">Date</span><span class="dr-when__value">Today</span></span>
+          </span>
+          <span class="dr-when__cell">
+            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+            <span class="dr-when__text"><span class="dr-when__label">Time</span><span class="dr-when__value">Now</span></span>
+          </span>
+        </div>
+      </div>
+      <div class="dr-finder__actions">
+        <span class="dr-btn dr-btn--secondary"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5h9"/><circle cx="17" cy="7.5" r="2.4"/><path d="M20 16.5h-9"/><circle cx="7" cy="16.5" r="2.4"/></svg>Filters</span>
+        <span class="dr-btn dr-btn--primary">Find</span>
+      </div>
+    </form>
+    <span class="st">service &#183; route &#183; when &#183; two actions &#183; listings</span>
     <article class="dr dr-card dr-card--row dr-listing dr-listing--service" style="width:341px;max-width:100%">
-      <a class="dr-card__link" href="#" aria-label="Package delivery — start an order"></a>
-      <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt=""></span>
+      <a class="dr-card__link" href="#" aria-label="Package delivery"></a>
+      <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
       <span class="dr-listing__body">
         <span class="dr-listing__name">Package delivery</span>
-        <span class="dr-listing__desc">Parcels, documents, small goods — across the city</span>
+        <span class="dr-listing__desc">Parcels, documents, small goods &#8212; across the city</span>
       </span>
     </article>
-    <article class="dr dr-card dr-card--row dr-listing dr-listing--service" style="width:341px;max-width:100%">
-      <a class="dr-card__link" href="#" aria-label="Aerial photo and video — start an order"></a>
-      <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt=""></span>
-      <span class="dr-listing__body">
-        <span class="dr-listing__name">Aerial photo &amp; video</span>
-        <span class="dr-listing__desc">Events, real-estate listings, personal occasions</span>
-      </span>
-    </article>
+    <span class="st">the card that survived &#183; listings-filtered only</span>
   </div>
   <div class="notes">
-    <p>Name <code>--ink</code> 15/600, <b>14.37:1</b> · description <code>--slate</code> 13/400,
-       <b>5.95:1</b> · well <b>96 × 72</b>, cutout straight on the card, no ground.</p>
-    <p>Card inset 20, gap 12 — the list card's own numbers. The whole-card link keeps the
-       keyboard-only ring.</p>
-    <p><b>One correction against the proposal:</b> it offered a price row and a chevron; the
-       hand-edited frame has neither, and the frame wins.</p>
+    <p><b>The service tabs are the in-page tab, wearing a radio.</b> Each is a
+       <code>&lt;label class="dr-grouptab dr-grouptab--icon"&gt;</code> around an
+       <code>.sr-only</code> radio, so the group is one tab stop with arrow keys inside it and the
+       chosen one is announced by the control rather than by an attribute a script has to keep true.
+       The chosen tab takes <code>--color-action</code> under <code>--on-action</code> at
+       <b>9.46:1</b>; the idle ones keep <code>--bg-well</code>.</p>
+    <p><b><code>.dr-route</code> and <code>.dr-when</code> share one
+       <code>.dr-finder__card</code>,</b> so the three questions read as one answer being assembled
+       rather than three settings. The route rows are parted by a hairline that starts past the mark
+       rather than by a box each; the two when-cells are split by a single vertical rule.</p>
+    <p><b>The card is not gone, it moved.</b> <code>.dr-listing--service</code> now draws only on
+       <code>listings-filtered</code> &#8212; the <i>results</i> of the finder, not the way into it.
+       The whole card is still the tap target: no price row, no chevron.</p>
   </div>
 </div>
 
@@ -1365,41 +1459,54 @@
 <!-- ═══ FORMS ═════════════════════════════════════════════════════════════ -->
 <h2 class="sec">Forms</h2>
 <div class="row">
-  <div class="nm"><b>Field · select · search</b><code>.dr-field · .dr-search</code>
-    <p><b>Grayscale in the wireframes.</b> Structure taken from the wireframe, look from the
-       language — nothing invented.</p></div>
-  <div class="spec">
-    <div class="plate">
-      <div class="dr-rows" style="width:250px;padding:0">
-        <label class="dr-field"><input class="dr-field__input" type="text" placeholder="Drop-off address"></label>
-        <label class="dr-field"><input class="dr-field__input" type="text" value="Osokorky, 14"></label>
-        <div class="dr-field"><span class="dr-field__label">Service</span><span class="dr-field__value">Delivery</span><span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span></div>
-        <div class="dr-field"><span class="dr-field__label">When</span><span class="dr-field__value">Now</span><span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></span></div>
+  <div class="nm"><b>Field &#183; label &#183; select &#183; search</b><code>.dr-field &#183; __label &#183; __group &#183; __input &#183; __value &#183; __chev &#183; .dr-search &#183; .dr-search-row</code>
+    <p>Four shapes of one row. <b>A labelled field puts its input in a
+       <code>__group</code></b> &#8212; which is what <code>account-edit</code>,
+       <code>operator-profile-setup</code> and ten other screens actually build.</p></div>
+  <div class="spec col">
+    <div class="dr-rows dr-rows--card" style="width:341px;max-width:100%">
+      <div class="dr-field">
+        <span class="dr-field__label">Full name</span>
+        <span class="dr-field__group"><input class="dr-field__input" value="Olena B." aria-label="Full name"></span>
       </div>
-      <span class="st">field &amp; select · no border</span>
-    </div>
-    <div class="plate">
-      <div class="dr-search" style="width:250px">
-        <svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
-        <input type="search" placeholder="Search services">
+      <div class="dr-field">
+        <span class="dr-field__label">Phone</span>
+        <span class="dr-field__group"><input class="dr-field__input" type="tel" value="+380 67 000 4417" aria-label="Phone"></span>
       </div>
-      <span class="st">the one field with a ground</span>
     </div>
+    <span class="st">label above, input in a __group &#183; account-edit</span>
+    <div class="dr-rows" style="width:341px;max-width:100%">
+      <label class="dr-field"><input class="dr-field__input" type="text" placeholder="Drop-off address"></label>
+      <span class="dr-field dr-field--action">
+        <span class="dr-field__label">Payment method</span>
+        <span class="dr-field__value">Visa &#8226;&#8226;&#8226;&#8226; 4921</span>
+        <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+      </span>
+    </div>
+    <span class="st">bare input &#183; and the row whose value is chosen, not typed</span>
+    <div class="dr-search-row" style="width:341px;max-width:100%">
+      <div class="dr-search" style="flex:1">
+        <svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+        <input type="search" placeholder="Search messages" aria-label="Search messages">
+      </div>
+    </div>
+    <span class="st">.dr-search-row &#183; the one field with a ground &#183; chat, listings-empty</span>
   </div>
   <div class="notes">
-    <p><b>A field has no border.</b> <code>WCAG 1.4.11</code> governs a boundary that is <i>drawn</i>,
-       not one that is absent — so the failure was the grayscale <code>1px --line</code> at
-       <b>1.21:1</b>, which does not survive painting. HIG got there first: the native form row is
-       label, value, separator, no box.</p>
-    <p>So <b>a field lives in a row panel and <i>is</i> the row that accepts typing</b>. Value
-       <code>--ink</code> <b>14.37:1</b> · label and placeholder <code>--slate</code> <b>5.95:1</b> ·
-       focus <code>2.5px --ink</code> <b>14.37:1</b> · error <code>--danger-ink</code> <b>6.14:1</b>,
-       carried by words or a glyph, never by a boundary alone.</p>
-    <p><b>The search field is the one exception</b> and keeps a ground — it is not in a grouped list.
-       A filled rounded rect on the page, <code>--media</code> at <code>--r-input</code> 10px, which
-       is the iOS search bar. That finally gives <code>--r-input</code> its only home.</p>
-    <p>Every row measures exactly <b>44.0px</b>, so HIG's target is met by the panel's existing
-       rhythm with no change.</p>
+    <p><b><code>__group</code> is not decoration, it is what lets the label sit above the input.</b>
+       The plain row is a two-column grid &#8212; key beside value. A labelled field stacks instead,
+       and the group is the box the input is measured in, so the input fills the row&#8217;s width
+       rather than the grid&#8217;s second column. Without it the label and the field share a line and
+       a long label squeezes the input.</p>
+    <p><b>No field has a border.</b> Separation is the hairline between rows and the panel&#8217;s own
+       ground &#8212; <code>--bg-surface</code> under <code>--border-hairline</code>. The one field
+       with a ground of its own is <code>.dr-search</code>, on <code>--bg-well</code> at
+       <code>--len-10</code>, because a search box has to read as a place to type before it is
+       tapped.</p>
+    <p><b><code>.dr-field--action</code> is the row whose value is chosen rather than typed</b>
+       &#8212; a real <code>&lt;button&gt;</code> with <code>aria-haspopup="dialog"</code>, its
+       chevron a third grid column that only exists where a chevron does, so the 26 cards without one
+       do not pay a gap for an empty column.</p>
   </div>
 </div>
 
@@ -1508,38 +1615,53 @@
 
 
 <div class="row">
-  <div class="nm"><b>In-page tabs · filter chip</b><code>.dr-groups · .dr-grouptab · .dr-chip</code>
-    <p>A row of places with one current — the tab bar's problem, so the tab bar's values.</p></div>
+  <div class="nm"><b>In-page tabs &#183; count &#183; filter chip</b><code>.dr-groups &#183; --tabs &#183; .dr-grouptab &#183; __count &#183; .dr-fchips &#183; .dr-fchip &#183; --all &#183; __x</code>
+    <p>Three rows that all say <i>which of these</i>: the pill row with a count, the underline row,
+       and the chips that report what the filter sheet did.</p></div>
   <div class="spec col">
     <div class="plate" style="padding:0;width:341px;max-width:100%;overflow:hidden">
-      <nav class="dr-groups" role="tablist" aria-label="Job groups" style="width:100%">
-        <button class="dr-grouptab" role="tab" aria-selected="true" type="button">Incoming · 2</button>
-        <button class="dr-grouptab" role="tab" aria-selected="false" type="button">Active · 1</button>
+      <nav class="dr-groups" aria-label="Job groups" style="width:100%">
+        <span class="dr-grouptab" aria-current="true">Incoming <span class="dr-grouptab__count">2</span></span>
+        <span class="dr-grouptab">Active <span class="dr-grouptab__count">1</span></span>
       </nav>
     </div>
+    <span class="st">pill row &#183; the count is a badge, not a middot &#183; operator-listings</span>
     <div class="plate" style="padding:0;width:341px;max-width:100%;overflow:hidden">
-      <nav class="dr-groups" aria-label="Categories" style="width:100%">
-        <button class="dr-grouptab" aria-current="true" type="button">All</button>
-        <button class="dr-grouptab" type="button">Delivery</button>
-        <button class="dr-grouptab" type="button">Aerial photo &amp; video</button>
-        <button class="dr-grouptab" type="button">Inspection</button>
+      <nav class="dr-groups dr-groups--tabs" aria-label="Service categories" style="width:100%">
+        <span class="dr-grouptab" aria-current="true">All</span>
+        <span class="dr-grouptab">Delivery</span>
+        <span class="dr-grouptab">Aerial photo &amp; video</span>
+        <span class="dr-grouptab">Inspection</span>
       </nav>
+    </div>
+    <span class="st">--tabs &#183; underline, full-bleed hairline &#183; listings-empty</span>
+    <div class="plate" style="width:341px;max-width:100%;align-items:stretch">
+      <section class="dr-fchips" aria-label="Applied filters">
+        <span class="dr-fchip dr-fchip--all">All <span class="dr-fchip__x" aria-hidden="true">&times;</span></span>
+        <span class="dr-fchip">Today <span class="dr-fchip__x" aria-hidden="true">&times;</span></span>
+        <span class="dr-fchip">Podilskyi <span class="dr-fchip__x" aria-hidden="true">&times;</span></span>
+      </section>
+      <span class="st">applied filters &#183; the leading All clears them &#183; listings-filtered</span>
     </div>
   </div>
   <div class="notes">
-    <p>At rest transparent with a <code>--slate</code> label, <b>6.62:1</b>. Selected
-       <code>--green-wash</code> with an <code>--ink</code> label, <b>14.75:1</b>, at
-       <code>--r-pill</code>. The fill step is only <b>1.085:1</b>; the ink going
-       <code>--slate</code> → <code>--ink</code> is the second signal.</p>
-    <p><b>The 44pt fault is fixed without thickening the row.</b> The pill stays <b>32px visible</b>
-       and the hit area extends to <b>44</b> with a transparent <code>::after</code> — the same thing
-       iOS does with its own 32pt controls.</p>
-    <p><b>4.1.2 fixed too:</b> the wireframe's <code>&lt;a href="#" aria-current&gt;</code> is a link,
-       not a tab, and exposes no tab set. Here it is <code>role="tab"</code> in a
-       <code>role="tablist"</code> with <code>aria-selected</code>.</p>
-    <p><b>Left open, deliberately.</b> <code>operator-listings</code> runs the tab bar, these tabs
-       <i>and</i> a segmented control at once, where <code>HIG · Tab bars</code> assigns those roles
-       differently. Painting does not fix a structural call; it belongs to that screen's rework.</p>
+    <p><b>The count is a badge and not a separator.</b> It was <code>Incoming &#183; 2</code>; it is
+       now <code>.dr-grouptab__count</code> &#8212; an 18px pill on
+       <code>--bg-accent-tint</code> with the digit in <code>--text-primary</code> at
+       <b>14.75:1</b>. It is the tab&#8217;s own text, so <i>Incoming 2</i> is the accessible name and
+       <code>WCAG 4.1.2</code> needs nothing added. The badge&#8217;s edge is <b>1.56:1</b> on the
+       chosen pill, which is fine: it is a shape around text, not a state, so
+       <code>1.4.11</code> does not bind on it.</p>
+    <p><b><code>--tabs</code> is the same row with the pill taken off.</b> The chosen tab is a
+       2px underline in <code>--text-primary</code> and the row carries a full-bleed hairline under
+       it. The hit area stops being a bleed and becomes the rule &#8212; the tab is the row&#8217;s
+       full 47px height, so <code>HIG &#183; 44pt</code> is cleared by the box itself with 3 to
+       spare, and the focus ring turns inward so it cannot paint over the card below.</p>
+    <p><b>The applied filter sits on the tint with no boundary, and its remove control is solid.</b>
+       <code>.dr-fchip__x</code> is an 18px <code>--color-action</code> pill carrying a charcoal
+       cross at <b>9.46:1</b> &#8212; a status-mark spend, like the checked box. The leading
+       <code>--all</code> chip is the exit to the full list rather than an applied filter, so it
+       sits on <code>--bg-muted</code> instead of the wash and wears the same &#215;.</p>
   </div>
 </div>
 
