@@ -1079,54 +1079,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | listings-filtered | Service list · cards | Activity | Button |  |
 | listings-filtered | Service list · cards | Help | Button |  |
 | listings-filtered | Service list · cards | Account | Button |  |
-| listings-filters | — | Filters | Heading |  |
-| listings-filters | — | Clear all | Body |  |
-| listings-filters | Location | Location | Heading | first zone on the panel from 2026-08-16, the designer's call — it stood second, under Time, until then. From rev 125 the same word is the **card's own title** as well as the `.zlabel` above it: the label is the wireframe's structure annotation and goes with the shell's toggle, the title is content and stays |
-| listings-filters | Location | Where you need the service | Body | the card's subtitle, new 2026-08-16 (rev 125) — `aria-describedby` on the group, whose name is now the drawn title (`WCAG 1.3.1`, `4.1.2`). Pairs with the Date & time card's *When you need the service*; P1 — it names the outcome, not the drone, and P4 — *service* is the word the product uses on every screen |
-| listings-filters | Location | Country | Field label | added 2026-08-16 on the designer's word — the geography is Ukraine AND European countries, and the filter stated the country nowhere |
-| listings-filters | Location | Ukraine | Field value | DATA |
-| listings-filters | Location | Region | Field label |  |
-| listings-filters | Location | Kyiv City | Field value | DATA |
-| listings-filters | Location | City | Field label |  |
-| listings-filters | Location | Kyiv | Field value | DATA |
-| listings-filters | Location | District | Field label |  |
-| listings-filters | Location | All districts | Field value | DATA |
-| listings-filters | Time | Time | Heading | the `.zlabel` only, from rev 125 — the wireframe's structure annotation, which the shell's toggle hides. The card's own title is *Date & time* below |
-| listings-filters | Time | Date & time | Heading | the card's title, new 2026-08-16 (rev 125) — the group's accessible name by `aria-labelledby`, so the drawn line **is** the name. Two words and not the `.zlabel`'s one: the zone sets a **day** and a time within it, *Time* alone reads as a time of day, and the product already writes it this way on the option (*Pick a date & time…*) and on the drawer's title. Her word for the filter was *available date* |
-| listings-filters | Time | When you need the service | Body | the card's subtitle, new 2026-08-16 (rev 125) — `aria-describedby` on the fieldset. The Location card's *Where…* and this *When…* are one sentence shape, so the two zones read as one pair |
-| listings-filters | Time | Available now | Body |  |
-| listings-filters | Time | now | Field value | DATA |
-| listings-filters | Time | Today | Body |  |
-| listings-filters | Time | today | Field value | DATA |
-| listings-filters | Time | This week | Body |  |
-| listings-filters | Time | week | Field value | DATA |
-| listings-filters | Time | Pick a date & time… | Body |  |
-| listings-filters | Time | calendar | Body |  |
-| listings-filters | Time | pick | Field value | DATA |
-| listings-filters | Date picker | Pick a date & time | Heading | the drawer's title — the option's own label keeps the `…`, the drawer's does not: the ellipsis promises more input, and inside the drawer the input has arrived |
-| listings-filters | Date picker | Previous month | Icon label |  |
-| listings-filters | Date picker | Next month | Icon label |  |
-| listings-filters | Date picker | August 2026 | Field value | DATA — month + year, locale-formatted, `aria-live="polite"` |
-| listings-filters | Date picker | Mo Tu We Th Fr Sa Su | Field label | DATA — weekday initials, Monday first; each `<th>` carries the full name as its accessible name |
-| listings-filters | Date picker | Sat 22 Aug 2026, today | Field value | DATA — a day cell's accessible name; the `, today` suffix is what keeps today off colour alone |
-| listings-filters | Date picker | Time | Field label |  |
-| listings-filters | Date picker | Hour | Field label | accessible name only |
-| listings-filters | Date picker | Minute | Field label | accessible name only |
-| listings-filters | Date picker | Cancel | Body | `HIG · Action sheets` asks for the cancel by name; a drawer never takes the `×` |
-| listings-filters | Date picker | Done | Body |  |
-| listings-filters | Time | Sat 22 Aug, 17:30 | Field value | DATA — what the option reads once a date is taken, replacing *Pick a date & time…*; the product's own format, `time-slot`'s `Wed 2 Jul, 09:00` |
-| listings-filters | Price | Price | Heading |  |
-| listings-filters | Price | Price range | Heading | the card's own title. **Corrected 2026-08-16 (rev 125): this row said `<legend>`, and the built frame says `<p>` named by `aria-labelledby`.** The legend was built first and measured out — rendered, it sits in the fieldset's block-start border region, outside the padding box, and took the card's whole 16px inset with it — which rev 119's own note in `kit.css` records. The frame is the source; the row is corrected to it, not the other way round. The visible line is still the group's accessible name |
-| listings-filters | Price | Service price, all fees included | Body | the subtitle; `aria-describedby` on the group. P3 — the number is the whole price, which the `order-setup` breakdown proves line by line |
-| listings-filters | Price | How services are priced: most cost ₴200 – ₴350 | Icon label | DATA — the histogram's text alternative (`role="img"`), `WCAG 1.1.1`; it describes the drawn distribution, not the chosen band |
-| listings-filters | Price | Minimum price | Field label | accessible name of the lower thumb — it contains the visible word *Minimum* (`WCAG 2.5.3`) |
-| listings-filters | Price | Maximum price | Field label | accessible name of the upper thumb |
-| listings-filters | Price | Minimum | Field label |  |
-| listings-filters | Price | Maximum | Field label |  |
-| listings-filters | Price | ₴0 | Field value | DATA |
-| listings-filters | Price | ₴1,000+ | Field value | DATA |
-| listings-filters | Location | Clear all | Button |  |
-| listings-filters | Location | Apply filters | Button |  |
+| listings-filters | — | *the page is `listings.html`, with its Filters drawer up* | — | **REBUILT 2026-09-19** (*«я переробила сторінку на таку»*, with the drawer's own frame beside it). ~~The full-screen panel — *Location* over *Date &amp; time* over *Price*, with *Country · Region · City · District* rows into four place-pick screens~~ is gone: the filter has been a **drawer on the search** since 2026-09-14, and *Location* left that drawer on 2026-09-15 (the address is on the search card). **Every string on this page is the base's own row above** — *Filters*, *Drone type*, *Which drone does your order*, the four drone names, *Price range*, *Service price, all fees included*, *Minimum* / *Maximum*, *₴0* / *₴1,000+*, *Clear all*, *Apply filters* — and none is repeated here. **The panel's own strings are retired with it:** *Location*, *Where you need the service*, *Country* / *Region* / *City* / *District*, *Ukraine*, *Kyiv City*, *Kyiv*, *All districts*, *Date &amp; time*, and the four place-pick screens' rows, which stand until the designer says whether those files are kept, re-pointed or retired |
 | listings-loading | — | *the page is `listings.html`* | — | **REBUILT ON THE SEARCH 2026-09-19.** Every string but the one below is the base's own row above; the card's four values are skeleton bars, which are not strings |
 | listings-loading | Search | Loading your saved address… | State message | **new 2026-09-19**, replacing ~~*Browse services*~~ and the counter's *Loading services…*. `voice.md`: a loading state names the thing being fetched. `role="status"` on `notifications-loading`'s own `.dr-status-line`, so it is spoken once (`WCAG 4.1.3`). What loads is the search's **pre-fill** — the saved address (`account`) and the last order (`order-history`) — which is the personalisation `flows.md` RJ-C5 already puts on this node |
 | listings | — | Notifications, 3 unread | Accessible name (`aria-label`) | the bell, unchanged |

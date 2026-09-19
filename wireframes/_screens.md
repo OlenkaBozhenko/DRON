@@ -100,39 +100,7 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     every nav title, every record and the operator side now say it (`WCAG 3.2.4` ✓). `voice.md` carries the rule.
 - **Filter sub-views (added July 2026, build decision):** because *Service catalogue* is merged into Home,
   browsing needs to be narrowable. Two named sub-views (not data states):
-  - **`listings-filters`** — the filter panel open, **three titled cards of one kind, in this order**:
-    **Location** (*Where you need the service* — four picker rows, Country ▸ Region ▸ City ▸ District, each
-    opening its own screen; it was a flat district radio list until
-    2026-08-16), **Date &amp; time** (*When you need the service* — Available now / Today / This week / Pick a
-    date &amp; time), **Price** (a titled range
-    card: *Price range* over a bar chart of how services are priced, two draggable bullets on the rail, and the
-    chosen ends printed below as **Minimum** / **Maximum**). **The first two zones were given their title and
-    subtitle on 2026-08-16** (*«добав заголовок і підзаголовок у два фільта вище Location & available date»*),
-    the day after the Price zone got its own: until then the only word standing over either was the mono
-    `.zlabel`, which is the **wireframe's** structure annotation and vanishes with the shell's annotation
-    toggle, so with annotations off the panel showed two unnamed cards under one named one. The card title is
-    **Date &amp; time** where the annotation still reads **Time** — the zone sets a day *and* a time within it,
-    and it is the wording the option and the drawer already use. **The Price zone lost its three preset bands on
-    2026-08-16** — *Low / Medium / High*, and the *Insured* chip that rode on *High* — on the designer's call
-    against a Figma reference (*«зроби такий вю»*, node `94:6`): the reference has no preset rows, and she was
-    asked which way to take it before it was built. The band is the whole control now, and the figures it states
-    are the only price words in the zone. **Location leads the panel from 2026-08-16**, the designer's call on the built page
-    (*«помісти картку самою першою на сторінці»*); it had stood second, under Time, since the panel was built.
-    **The Time zone's fourth option opens a date picker** — *Pick a date & time…* raises a **calendar
-    drawer** (`.dr-cal`, added 2026-08-16 on the designer's call *«при кліку відкрий дата пікер як у IOS»*):
-    month grid with `‹ ›` paging, no date before today, a 24-hour time below it, *Cancel* over *Done* (rev 260). **Done
-    writes the value into the option itself** — the row then reads `Sat 22 Aug, 17:30` — and **Cancel puts
-    back whichever option was checked before the drawer rose.** Not a state and not a sub-view: it is a
-    control on this page, so it takes no row in the matrix.
-    *Apply* → filtered;
-    *Close / Clear all* → Home. *(The **Price** dimension was here once before as
-    Recommended / Low→High / High→Low — **a sort by another name**, and it went when **sorting was removed
-    across the product, designer's call 2026-08-13**: the counter's Sort button left all five listings states
-    with it, and the counter row itself came off the same day on her word on the built error page — the count
-    was the list restating its own length. The operator side had its sort removed earlier for the same model —
-    see `_critique.md` fix 4. **What returned 2026-08-15 is not that.** An ordering rearranges the whole list
-    and removes nothing; a band **narrows** it, which is what a filter is for. The rejected idea stays
-    rejected: there is no Recommended / Low→High / High→Low control anywhere.)*
+  - **`listings-filters`** — ~~the filter panel open, three titled cards of one kind (*Location* · *Date &amp; time* · *Price*)~~ (the full-screen reading, to 2026-09-19). **REBUILT AS THE DRAWER, 2026-09-19** — the designer, with the drawer's own frame beside the page: *«я переробила сторінку на таку»*. The file is now **`listings.html` with its Filters drawer up**: *Drone type* (four checkbox rows, none ticked = any drone) over *Price range* (the two-handle band on the price histogram, ₴0 – ₴1,000+), with *Clear all* and *Apply filters* side by side at its foot. **The drawer is opened by the kit, not drawn open by hand** — one line at the foot of the page taps the real *Filters* button on `load`, so `ui/kit.js` owns the scrim, the `inert` behind, the focus trap and both ways out; written open in the markup it would have been a dead end, because `close()` returns early on a drawer it did not open. Measured on the build: sheet **373.7 × 693.8**, `main` inert, focus inside, scrim closes and the button re-opens it. **Why the panel went:** the filter has been a drawer on the search since 2026-09-14, and *Location* left that drawer on 2026-09-15 (the address is set on the search card), so the panel's first card had nothing to do and its other two are in the drawer.
   - **`listings-filtered`** — ~~filters applied: the leading *All* chip + the removable applied-filter chips, the
     filtered result list, and the Filters button showing its active count~~ (the service-list reading, to 2026-09-19).
     **REBUILT ON THE SEARCH, 2026-09-19 — the designer:** *«фльтра я ж змінила … решту стейтів потрібно змінити
@@ -145,7 +113,10 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
     **No *All* chip and no count on the button:** both left with the rebuild (rev 264, `_screens.md` §3 above) —
     *Clear all* is in the drawer and the chips say what is applied. No dead-end: every chip ✕ removes its own
     filter and *Clear all* empties the row, which makes the page `listings` again.
-  - **`listings-filter-country` · `listings-filter-region` · `listings-filter-city` · `listings-filter-district`**
+  - **`listings-filter-country` · `listings-filter-region` · `listings-filter-city` · `listings-filter-district`** **— OUTSIDE THE FLOW SINCE 2026-09-15 AND REPORTED, NOT TOUCHED.**
+    The drawer they were reached from lost its *Location* card on 2026-09-15 (rev 261) and the panel that
+    held them was rebuilt as that drawer on 2026-09-19, so nothing in the product links to them. Four
+    files: kept, re-pointed or retired on the designer's word — nothing is deleted here.
     *(added 2026-08-16, designer's call)* — the **place pick**, four dependent levels of one filter dimension:
     **Country → Region → City → District of the city**. The designer, on the built `listings` top bar:
     *«помісти вибір міста у фільтр де юзер обирає регіон, спочатку він має обрати місто область потім вже

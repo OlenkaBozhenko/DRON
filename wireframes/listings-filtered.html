@@ -228,12 +228,12 @@
       <b>MJ-1 · step 1, with filters on — the same search, narrowed.</b><br>
       flows.md MJ-1: … → <span class="cur">Home / start an order</span> → <a href="listings-map.html">Results on the map</a> → Order setup → Order review → Payment → Order confirmed.<br>
       <b>Next:</b> <b>Find</b> → the map for the chosen service (<a href="listings-map.html">delivery</a> · <a href="listings-map-aerial.html">photo</a> · <a href="listings-map-inspection.html">inspection</a>).<br>
-      <b>Applied:</b> <i>Quadcopter</i>, <i>FPV</i> and <i>₴200 – ₴600</i> — one chip each, in the drawer's order. A chip ✕ removes that one filter; <b>Filters</b> re-opens the drawer on exactly what is applied.
+      <b>Applied:</b> <i>Hexacopter</i> and <i>₴600 – ₴1,000+</i> — her own set, from the frame she drew (2026-09-19) — one chip each, in the drawer's order. A chip ✕ removes that one filter; <b>Filters</b> re-opens the drawer on exactly what is applied.
     </div>
     <div class="legend">
       <p><b>Zones &amp; main action</b> (labelled in the screen):</p>
       <p><b>Search</b> ▸ service badges · one card: From / To with swap (Delivery) or Where (Photo, Inspection), each opening the address drawer, then Date (calendar drawer) · Time (time drawer)</p>
-      <p><b>Applied filters</b> ▸ three chips — the two ticked drone types, then the price band · the row is drawn because something is applied</p>
+      <p><b>Applied filters</b> ▸ two chips — the ticked drone type, then the price band · the row is drawn because something is applied</p>
       <p><b>Filters · Find</b> ▸ full width, one under the other · Filters drawer (Drone type · Price) · Find opens the map</p>
       <p><b>Bottom bar</b> ▸ switch between the global sections</p>
     </div>
@@ -545,9 +545,9 @@
           <p class="dr-zone__title" id="type-title">Drone type</p>
           <p class="dr-zone__sub" id="type-sub">Which drone does your order</p>
           <ul class="dr-picks">
-            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="drone-type" value="quadcopter" class="sr-only" checked></label></li>
-            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="drone-type" value="hexacopter" class="sr-only"></label></li>
-            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="drone-type" value="fpv" class="sr-only" checked></label></li>
+            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="drone-type" value="quadcopter" class="sr-only"></label></li>
+            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="drone-type" value="hexacopter" class="sr-only" checked></label></li>
+            <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="drone-type" value="fpv" class="sr-only"></label></li>
             <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Fixed-wing</span><input type="checkbox" name="drone-type" value="fixed-wing" class="sr-only"></label></li>
           </ul>
         </fieldset>
@@ -570,20 +570,20 @@
             </div>
             <div class="dr-range__rail">
               <span class="dr-range__fill" data-fill></span>
-              <input class="dr-range__input" type="range" id="pmin" min="0" max="1000" step="50" value="200"
-                     aria-label="Minimum price" aria-valuetext="₴200" data-lo>
-              <input class="dr-range__input" type="range" id="pmax" min="0" max="1000" step="50" value="600"
-                     aria-label="Maximum price" aria-valuetext="₴600" data-hi>
+              <input class="dr-range__input" type="range" id="pmin" min="0" max="1000" step="50" value="600"
+                     aria-label="Minimum price" aria-valuetext="₴600" data-lo>
+              <input class="dr-range__input" type="range" id="pmax" min="0" max="1000" step="50" value="1000"
+                     aria-label="Maximum price" aria-valuetext="₴1,000+" data-hi>
             </div>
           </div>
           <div class="dr-range__fields">
             <p class="dr-range__field">
               <span class="dr-range__cap">Minimum</span>
-              <output class="dr-range__val" for="pmin" data-lo-out>₴200</output>
+              <output class="dr-range__val" for="pmin" data-lo-out>₴600</output>
             </p>
             <p class="dr-range__field">
               <span class="dr-range__cap">Maximum</span>
-              <output class="dr-range__val" for="pmax" data-hi-out>₴600</output>
+              <output class="dr-range__val" for="pmax" data-hi-out>₴1,000+</output>
             </p>
           </div>
         </fieldset>
@@ -994,10 +994,10 @@
         fSheet = document.getElementById('sheet-filters'),
         types  = [].slice.call(fSheet.querySelectorAll('[data-types] input[type="checkbox"]')),
         /* THIS PAGE OPENS WITH FILTERS ON — the sub-view's whole difference, in one value.
-           The chips are not hand-written: `paintChips()` at the foot draws them from `applied`,
+           The chips are not hand-written: `paintChips()` draws them from `applied` — the set is hers, off the frame —
            the same call `Apply filters` makes, so the row can never say something the drawer
            would not open on. Clear all empties both and the page becomes `listings`. */
-        applied = { lo: 200, hi: 600, types: ['quadcopter', 'fpv'] };
+        applied = { lo: 600, hi: 1000, types: ['hexacopter'] };
 
     /* a drone type's chip says what its row in the drawer says */
     var typeName = {};
