@@ -149,20 +149,37 @@
        the wireframes is left alone. */
     d.body.classList.add("wf-hide-anno");
 
-    /* THE LANDING IS A CLOSED EXHIBIT (landing.md §4.6, designer 2026-09-19).
-       No link inside the phone goes anywhere. A visitor who has taken the
-       screen over may scroll it and work its in-page controls — sheets,
-       toggles, the tab bar's own behaviour — but a tap on a link does not
-       leave the reel, and so cannot walk out into the wireframe project,
-       whose shell would arrive with it. Swallowed in the capture phase,
-       before the page's own handlers, and for every mode. */
+    /* THE HORIZON (landing.md §4.6). A visitor who has taken the screen over
+       taps the product's real controls, and half of those are links — Track
+       live, View details, the tab bar. So links work, but they can only ever
+       reach another screen in wireframes/, and they are routed through the
+       parent so the arriving document is dressed before it is shown.
+
+       What that shuts out is the project around the screens: `../research.html`,
+       the tone-of-voice drawer, anything with a path in it, anything off-site.
+       Sealing every link instead — the first cut of this rule — made the
+       paused screen read as broken, which is worse than the leak it prevented.
+
+       Capture phase, before the page's own handlers, every mode. */
     if (!d.__lpSealed) {
       d.__lpSealed = true;
       d.addEventListener("click", function (ev) {
         var a = ev.target.closest && ev.target.closest("a[href]");
         if (!a) return;
+        var href = a.getAttribute("href") || "";
+        if (href.charAt(0) === "#") return;                    /* in-page anchor: the page's own */
         ev.preventDefault();
         ev.stopPropagation();
+        /* A bare filename in the same directory, and nothing else. A path
+           separator, a scheme or a ".." is a way out and is refused. */
+        if (!/^[a-z0-9._-]+\.html(#.*)?$/i.test(href)) return;
+        /* The visitor has walked off the tape. The reel does not try to pick
+           up where it was — the button becomes Replay and the next press
+           starts it from the top (landing.md §4.5). */
+        self.taken = true;
+        self.idx = 0;
+        self.setToggle();
+        self.show(href.split("#")[0]);
       }, true);
     }
 
