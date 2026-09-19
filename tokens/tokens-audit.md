@@ -199,7 +199,7 @@ below mostly invisible rather than absent.
 | `--sz-rail` | `4px` | 2 · 3 | `height` of `.dr-range__rail::before` and `.dr-range__fill`; a term of `--hist-seat`. |
 | `--sz-hist` | `48px` | 2 · 1 | `height` of `.dr-range__hist` — the price chart. |
 | `--sz-rowkey` | `96px` | 58 · 4 | `flex` basis of `.dr-rows__key` and `.dr-field__label`; `grid-template-columns` of `.dr-rows`. The label column's **floor**, not its width. |
-| `--sk-title-h` `--sk-date-h` `--sk-lbl-h` `--sk-lbl-w` `--sk-lbl-w-sm` `--sk-place-h` `--sk-price-h` `--sk-price-w` `--sk-stop-gap` `--sk-head-gap` | `14` `10` `12` `38` `22` `16` `18` `84` `7` `8` px | 1–6 pages each | Each is one skeleton bar's `height` or `width`, sized to the element it stands in for, on `order-history-loading` and `notifications-loading`. `--sk-lbl-w` reaches no page: `.dr-sk-lbl` is in no markup. |
+| `--sk-title-h` `--sk-date-h` `--sk-lbl-h` `--sk-lbl-w` `--sk-lbl-w-sm` `--sk-place-h` `--sk-price-h` `--sk-price-w` `--sk-stop-gap` `--sk-head-gap` | `14` `10` `12` `38` `22` `16` `18` `84` `7` `8` px | 1–6 pages each | Each is one skeleton bar's `height` or `width`, sized to the element it stands in for, on `order-history-loading` and `notifications-loading`. `--sk-lbl-w` and `--sk-lbl-w-sm` reach no page: `.dr-sk-lbl` is in no markup. |
 | `--sz-brand-w` / `--sz-brand-h` | `60px` / `20px` | 48 · 1 each | `width` / `height` of `.dr-brand`. |
 | `--node-centre` | `calc((22−2)/2)` | 10 · 2 | `left` / `top` of the rail and connector — derived so the arithmetic cannot drift. |
 | `--pick-indent` | `calc(24+12)` | **0 uses** | Declared; the row it indented lost its own inset at rev 91. |
@@ -268,7 +268,7 @@ below mostly invisible rather than absent.
 | `--pulse-floor` | `.5` | keyframe only · 1 | `opacity` at 50 % of `@keyframes dr-pulse`. |
 | `--ping-reach` | `8px` | keyframe only · 1 | the ring's spread at 70 % of `@keyframes dr-ping`. |
 | `--up-out` / `--up-in` | `−3.2px` / `2.6px` | keyframe only · 1 each | the arrow's travel out of and back into the upload tray. |
-| `--turn-open` | `180deg` | script-free, 0 pages · 1 | `rotate` of the disclosure chevron — `.dr-disclosure` is in no markup. |
+| `--turn-open` | `180deg` | **0 pages** · 1 | `rotate` of the disclosure chevron — `.dr-disclosure` is in no markup. |
 | `--tilt-1/-2/-3` | `3deg` `−3.5deg` `2deg` | 1 (`delivery-aerial`) · 1 each | static `rotate` of the three photographs in the pile. |
 | `--scrim` | `ink @ 40 %` | 26 · 1 | `background` of `.dr-scrim` — warm, never black. |
 
@@ -377,10 +377,15 @@ Ordered by how far apart the roles are.
 | **`--screen-h` (812)** | **the frame's height** · **a term of a field's `min-height`** | 3 uses |
 | **`--h-statusbar` (44)** | **the status bar's height** · **the tall sheet's top inset** | 2 uses |
 
-**Declared with no page to play a role on** — 20 variables. `--green-soft`, `--trust-ink`,
-`--trust-wash`, `--sh-card`, `--sh-onphoto`, `--pick-indent`, `--sz-node-glyph`,
-`--t-body-weight`, `--t-bodysm-weight`, `--ic-grid`, `--ic-13`, `--sk-lbl-w`,
-`--sz-photo-mark`, `--sz-head-mark`, `--sz-rating-w`, `--mark-shift`, `--sz-star-ink`,
+**Declared with no page to play a role on** — 22 variables, in two kinds.
+
+**Eight have zero uses in the kit at all:** `--green-soft`, `--t-body-weight`,
+`--t-bodysm-weight`, `--sz-node-glyph`, `--pick-indent`, `--ic-grid`, `--sh-card`,
+`--sh-onphoto`.
+
+**Fourteen are spent in the kit but land on a class no page carries:** `--trust-ink`,
+`--trust-wash`, `--ic-13`, `--sk-lbl-w`, `--sk-lbl-w-sm`, `--sz-photo-mark`,
+`--sz-head-mark`, `--sz-rating-w`, `--mark-shift`, `--turn-open`, `--sz-star-ink`,
 `--sz-star-inset`, `--sz-star-mid`, `--sz-star-out`.
 
 Behind them sit **38 kit classes styled but present in no markup and built by no script** —
