@@ -101,40 +101,8 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
 - **Filter sub-views (added July 2026, build decision):** because *Service catalogue* is merged into Home,
   browsing needs to be narrowable. Two named sub-views (not data states):
   - **`listings-filters`** — ~~the filter panel open, three titled cards of one kind (*Location* · *Date &amp; time* · *Price*)~~ (the full-screen reading, to 2026-09-19). **REBUILT AS THE DRAWER, 2026-09-19** — the designer, with the drawer's own frame beside the page: *«я переробила сторінку на таку»*. The file is now **`listings.html` with its Filters drawer up**: *Drone type* (four checkbox rows, none ticked = any drone) over *Price range* (the two-handle band on the price histogram, ₴0 – ₴1,000+), with *Clear all* and *Apply filters* side by side at its foot. **The drawer is opened by the kit, not drawn open by hand** — one line at the foot of the page taps the real *Filters* button on `load`, so `ui/kit.js` owns the scrim, the `inert` behind, the focus trap and both ways out; written open in the markup it would have been a dead end, because `close()` returns early on a drawer it did not open. Measured on the build: sheet **373.7 × 693.8**, `main` inert, focus inside, scrim closes and the button re-opens it. **Why the panel went:** the filter has been a drawer on the search since 2026-09-14, and *Location* left that drawer on 2026-09-15 (the address is set on the search card), so the panel's first card had nothing to do and its other two are in the drawer.
-  - **`listings-filtered`** — ~~filters applied: the leading *All* chip + the removable applied-filter chips, the
-    filtered result list, and the Filters button showing its active count~~ (the service-list reading, to 2026-09-19).
-    **REBUILT ON THE SEARCH, 2026-09-19 — the designer:** *«фльтра я ж змінила … решту стейтів потрібно змінити
-    відповідно до цієї сторінки»*. It is now **`listings.html` with two drone types and a price band already
-    applied** — the same badges, the same where-and-when card, the same drawers — and the whole of its difference
-    is one value in the page script (`applied = { lo: 200, hi: 600, types: ['quadcopter','fpv'] }`). **The chips are
-    not hand-written:** `paintChips()` draws them from that value, the same call *Apply filters* makes, so the row
-    cannot say something the drawer would not open on — verified on the build: *Quadcopter* (112.5), *FPV* (64.9),
-    *₴200 – ₴600* (119.6) on one 341.7 row, and the drawer opens with both boxes ticked and the band at 200/600.
-    **No *All* chip and no count on the button:** both left with the rebuild (rev 264, `_screens.md` §3 above) —
-    *Clear all* is in the drawer and the chips say what is applied. No dead-end: every chip ✕ removes its own
-    filter and *Clear all* empties the row, which makes the page `listings` again.
-  - **`listings-filter-country` · `listings-filter-region` · `listings-filter-city` · `listings-filter-district`** **— OUTSIDE THE FLOW SINCE 2026-09-15 AND REPORTED, NOT TOUCHED.**
-    The drawer they were reached from lost its *Location* card on 2026-09-15 (rev 261) and the panel that
-    held them was rebuilt as that drawer on 2026-09-19, so nothing in the product links to them. Four
-    files: kept, re-pointed or retired on the designer's word — nothing is deleted here.
-    *(added 2026-08-16, designer's call)* — the **place pick**, four dependent levels of one filter dimension:
-    **Country → Region → City → District of the city**. The designer, on the built `listings` top bar:
-    *«помісти вибір міста у фільтр де юзер обирає регіон, спочатку він має обрати місто область потім вже
-    район міста»*, and the depth settled at **three** when she was shown the two-step and three-step rows
-    side by side. **`Country` was added the same day**, on her word on the built filter panel: *«добав ще
-    Cauntry»*. It is the level the product's own geography asked for and the filter did not have —
-    `CLAUDE.md §Geography` is *Ukraine and European countries*, so the country was a standing fact the
-    client could see nowhere and change nowhere. **Its list is a coverage list, not an atlas**, the same
-    reading as Region's 25 (*where DRON operates*): **8 rows**, Ukraine current, and picking one resets the
-    region, the city and the district. At 8 × 44 = **352px** in a 710 area it fits whole, so it takes **no
-    search field** — the same measured rule that gives Region one and District none. Each level is its
-    own **pushed screen**, not a drawer, because `_conventions.md`'s picker rule is a count and every list
-    here clears it — 8 countries, 25 regions, 11 districts. This is the **first page the `≥ 7` half of that
-    rule has ever had**; it was written 2026-08-16 (rev 102) and stood empty until now. Back (`‹`) returns to
-    `listings-filters` with the pick made; picking a country resets the region, the city and the district,
-    picking a region resets the city and the district, picking a
-    city resets the district. **Not data states** — four named sub-views, like `listings-filters` itself,
-    so they take no row in the state matrix and no column in `sitemap.md §8`.
+  - **`listings-filtered`** — **OUT OF THE WALK FROM 2026-09-19, KEPT ON DISK.** The designer, pointing at the file and at a frame of the base with two chips on it: *«цієї ж сторінки вже немає … натомість маємо таке вю»*, and, asked, she chose **hide, not delete**. The applied row is **a state the base page draws itself** — tap *Filters*, tick, *Apply filters*, and `paintChips()` writes the chips — so a second file for it says nothing the walk does not already show. It is in no state switch and no tree; the file stands where it is, rebuilt on the search (rev 275/277) so that whoever opens it by URL sees the current page.
+  - **`listings-filter-country` · `listings-filter-region` · `listings-filter-city` · `listings-filter-district`** — **OUT OF THE WALK FROM 2026-09-19, KEPT ON DISK** (*«і region sity district»*; **hide, not delete**, her call). The four dependent levels — *Country → Region → City → District* — were pushed from the **Location** card, and that card left the Filters drawer on 2026-09-15 (rev 261) because the address is set on the search card. With no entrance in the product they are in no tree and no state switch. The reasoning that built them (the three-level depth, the reset chain, `Kyiv City`'s single row) stays recorded below and in `concept.md`, so nothing is lost if place ever returns to the filter.
   - Grounded in the merged-catalogue model (`sitemap.md §7.3`) and the existing `listings-empty` *"loosen filters"* recovery.
 - **HOME BECOMES A SEARCH — 2026-09-14, the designer's call on the built `listings`** (*«треба змінити вигляд цієї
   сторінки бо це стартова пошукова сторінка»*), against two Figma references used for structure only

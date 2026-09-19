@@ -100,31 +100,15 @@ flowchart TD
   DT -->|"done / cancel"| SRV
   SRV -->|"tap Time"| TM["Time drawer — Now or a set time"]
   TM -->|"done / cancel"| SRV
-  SRV -->|"tap Filters"| FDR["Filters drawer (Location / Price)"]
+  SRV -->|"tap Filters"| FDR["Filters drawer (Drone type / Price)"]
   FDR -->|"apply / clear / close"| SRV
-  FDR -->|"tap a Location row"| PN
-  SRV -->|"tap Find"| MAP["Results on the map — choose what you need (price · available · arrives in)"]
+  SRV -->|"tap Find"| SRCH(["Loading: searching — Find disabled, status line"]):::state
+  SRCH --> DRN{"Any drone free for this search?"}
+  DRN -->|no| NF(["Empty: nothing found — loosen the time or the filters"]):::state
+  NF --> SRV
+  DRN -->|yes| MAP["Results on the map — choose what you need (price · available · arrives in)"]
   MAP -->|back| SRV
   MAP -->|"tap Order"| F
-  C --> FLT{"Narrow the list? (service-list pages, before 2026-09-14)"}
-  FLT -->|"tap Filters"| FP["Home — filters open (Time / Location / Price)"]
-  FP -->|"tap Country"| PN["Place pick — Country"]
-  PN -->|"pick (region + city + district reset)"| FP
-  PN -->|back| FP
-  FP -->|"tap Region"| PR["Place pick — Region in the country"]
-  PR -->|"pick (city + district reset)"| FP
-  PR -->|back| FP
-  FP -->|"tap City"| PC["Place pick — City in the region"]
-  PC -->|"pick (district resets)"| FP
-  PC -->|back| FP
-  FP -->|"tap District"| PD["Place pick — District in the city"]
-  PD -->|pick| FP
-  PD -->|back| FP
-  FP -->|apply| FD["Home — filters applied (All + removable chips)"]
-  FP -->|"close / clear"| C
-  FD -->|"clear all / remove chip"| C
-  FD --> E
-  FLT -->|no| E
   C --> E["Service catalogue"]
   E --> DR{"Service available in your region?"}
   DR -->|no| NR(["Empty: not in your region yet"]):::state
@@ -168,7 +152,7 @@ flowchart TD
 ```
 
 **Decisions**
-- *Home is a search (2026-09-14, designer's call)* — the service, the date and the time are chosen on Home; *Find* opens **Results on the map**, where the client picks one option (price, how many are available, when one arrives) and *Order* hands off to that service's Order setup. The *Service catalogue* node is that screen. The older *Narrow the list?* branch below is what the service-list pages (`listings-filters`, `-filtered`, `-empty`, `-error`, `-loading`) still draw.
+- *Home is a search (2026-09-14, designer's call)* — the service, the date and the time are chosen on Home; *Find* opens **Results on the map**, where the client picks one option (price, how many are available, when one arrives) and *Order* hands off to that service's Order setup. The *Service catalogue* node is that screen. **The older *Narrow the list?* branch — the full-screen filter panel and the four place picks — left this diagram on 2026-09-19**, when the designer rebuilt Home's states on the search and put those pages out of the walk (*«цих … вже немає»*; hide, not delete). The filter is a **drawer** on the page, and the applied row is a state the page draws itself. **Two nodes arrived with the same call, in her words:** *«loading коли шукаємо»* and *«error коли нічого не знайдено»* — `listings-loading` and `listings-error` are those two, and each now has the node `_conventions.md` requires before a state page may exist.
 - *Signed in?* — no → one-tap Diia / BankID (`C-02`); yes → straight to Home.
 - *Client or Operator?* — first-time only, straight after registration (`sitemap.md §6.0`), then **Client onboarding** before Home; returning clients skip both. Choosing Operator leaves this flow for the operator side. Persona is switchable later from **Account → Switch role** (`sitemap.md §7.4`; see *CHANGE PERSONA* flow above).
 - *Service available in your region? / Address within service zone?* — coverage gates (geography rollout UA + EU).
