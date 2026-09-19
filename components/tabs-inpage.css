@@ -1,0 +1,117 @@
+/* tabs-inpage.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-groups{
+  height: var(--len-48);
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--len-8);
+  padding: 0 var(--len-16);
+  background: var(--bg-page);
+  border-bottom: var(--len-1) solid var(--border-hairline);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.dr-groups::-webkit-scrollbar{
+  display: none;
+}
+.dr-grouptab{
+  position: relative;
+  flex: none;
+  height: var(--len-32);
+  padding: 0 var(--len-12);
+  border: 0;
+  border-radius: var(--len-999);
+  background: var(--bg-well);
+  font-family: var(--font-ui);
+  font-size: var(--len-13);
+  font-weight: var(--num-600);
+  color: var(--text-muted);
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.dr-grouptab::after{
+  content: "";
+  position: absolute;
+  inset: var(--len-pill-bleed) 0;
+}
+.dr-grouptab[aria-selected="true"], .dr-grouptab[aria-current="true"]{
+  background: var(--color-action);
+  color: var(--on-action);
+}
+.dr-grouptab:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-grouptab__count{
+  margin-left: var(--len-6);
+  min-width: var(--len-18);
+  height: var(--len-18);
+  padding: 0 var(--len-2);
+  border-radius: var(--len-999);
+  background: var(--bg-accent-tint);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--len-10-5);
+  font-weight: var(--num-600);
+}
+.dr-groups--tabs{
+  gap: 0;
+  padding-inline: calc(var(--len-16) - var(--len-12));
+  border-bottom: var(--len-1) solid var(--border-hairline);
+}
+.dr-groups--tabs .dr-grouptab{
+  flex: 1 1 0;
+  min-width: 0;
+  display: block;
+  height: 100%;
+  background: transparent;
+  line-height: calc(var(--len-48) - var(--len-1));
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 0;
+}
+.dr-groups--tabs .dr-grouptab::after{
+  inset: auto 0 0 0;
+  height: var(--len-2);
+  background: transparent;
+}
+.dr-groups--tabs .dr-grouptab[aria-selected="true"], .dr-groups--tabs .dr-grouptab[aria-current="true"]{
+  background: transparent;
+  color: var(--text-primary);
+}
+.dr-groups--tabs .dr-grouptab[aria-selected="true"]::after, .dr-groups--tabs .dr-grouptab[aria-current="true"]::after{
+  background: var(--text-primary);
+}
+.dr-groups--tabs .dr-grouptab:focus-visible{
+  outline-offset: calc(var(--len-2) * -1);
+}
+.dr-grouptab--icon{
+  gap: var(--len-6);
+}
+.dr-grouptab--icon .dr-ic{
+  width: var(--len-16);
+  height: var(--len-16);
+}
+.dr-grouptab:has(> input:checked){
+  background: var(--color-action);
+  color: var(--on-action);
+}
+.dr-grouptab:has(> input:focus-visible){
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}

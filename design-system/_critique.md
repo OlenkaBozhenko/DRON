@@ -248,3 +248,116 @@ four jobs and hide the other three.
 
 **This is the designer's call to reverse.** If the families are wanted back, the cost is stated
 plainly above, and the change is mechanical.
+
+## §07 · The port into `components/` — what the wireframes settled
+
+`components/` holds **29 files plus `index.css`**, ported out of `ui/kit.css`. `ui/kit.css` is
+not deleted: it stays the archive of *why* every value is what it is, and the component files
+carry a pointer to it rather than a copy of the reasoning, so the two cannot drift from each
+other.
+
+### 07.1 · The wireframes decided what exists, and it was not what the showcase shows
+
+`ui/kit.html` was the named reference for "the same classes and structure". Measured, it is not
+the product:
+
+| | families | classes |
+|---|---|---|
+| **`wireframes/` markup** | **86** | **319** |
+| `ui/kit.html` | 62 | 203 |
+| declared in `ui/kit.css` | 94 | 377 |
+
+The showcase is missing **30 families and 144 classes** the product draws — `dr-call`, `dr-cal`,
+`dr-mapview`, `dr-route`, `dr-price`, `dr-profile`, `dr-range`, `dr-offer`, `dr-finder`, `dr-fab`,
+`dr-fchip`, `dr-bell`, `dr-zone`, `dr-star`, `dr-slider` among them — and it shows **six** the
+product does not. Built from the showcase, the component layer would have been two thirds of the
+product plus four dead components.
+
+**608 of kit.css's 705 component rules are ported.** The 97 that are not are the rules whose
+selector needs one of the **41** classes that appear in no page's markup and are built by no
+script (`tokens-audit.md` §3).
+
+### 07.2 · The colour rule and the one-place rule collided, and the frames broke the tie
+
+`components/` may read colour only through a semantic token. Five colours had none. **The
+wireframes resolved three of them by not drawing them at all**: `.dr-chip--trust` (the blue pair)
+and `.dr-stars` / `.dr-profile__rating` are in no page's markup, so they are not ported and the
+question does not arise.
+
+Three colours the wireframes **do** draw had to be named. §06 had held two of them back:
+
+| Primitive | Where the wireframes draw it | Name given | Source of the name |
+|---|---|---|---|
+| `--amber-500` | `rate.html` × `.dr-star[aria-pressed]` | `--color-rating` | §06.1 named it in advance as the name the evidence would support |
+| `--cream-500` | `.dr-star` at rest | `--color-rating-empty` | kit.css: *"a filled star is yellow… an unfilled star is grey with no outline"* |
+| `--rust-500` | `.dr-btn--danger-solid`, 3 call pages | `--bg-danger-solid` | the audit: *"a fill, and its only site is the end-call button"* |
+| `--green-700` | `.dr-btn--text`, 2 pages | `--text-action` | kit.css: *"the green that may SPEAK"* |
+
+**§06.1 is superseded for `--amber-500`, and the reasoning there is kept rather than deleted.**
+It still stands in one file and one class; what changed is that a component may not write a
+literal, so the colour had to be named or the star could not be drawn.
+
+### 07.3 · Two defects this pass found in work already committed
+
+1. **Five tokens in `tokens.css` were dead.** Five section headers opened `/*` and never closed
+   it, so the first declaration in each section was swallowed by the comment: `--num-0-5`,
+   `--track-n0-02`, `--time-0-12`, `--font-ui` and `--ratio-stack` were not being declared at all.
+   Found because the component mapper could not resolve them. Fixed; re-checked at **zero** dead
+   declarations.
+2. **The `:root` move had left the class literals behind.** The brief said every value in
+   `kit.css` moves to PRIMITIVE, and the first pass moved only the `:root` tokens — the **20
+   literals `tokens-audit.md` §C1 lists** stayed inside classes. Six of them had no primitive at
+   all (`23px`, `40px`, `46px`, `.04em`, `#000`, `#FFF`); they are tokens now, each commented with
+   the class it came from. **This closes §C1** instead of carrying it into the component layer.
+
+`--black` and `--white` are the palette's one licensed exception — Apple Pay and Google Pay ship
+their own black button and neither brand permits it recoloured. kit.css line 55 reads *"No
+#FFFFFF and no #000000 anywhere"*; naming the exception is how it stops being invisible.
+
+### 07.4 · The cascade was measured, not assumed
+
+Splitting one stylesheet into 29 can change what wins at equal specificity. Two things were done
+about it:
+
+- **Import order is kit.css's order.** Each file holds a contiguous run of kit.css's rules, and
+  the files are imported by the position of their first rule.
+- **Every `@media` block was pulled out**, because scattering them by component put five
+  `prefers-reduced-motion` overrides *before* the animations they silence — animations would have
+  played with reduced motion on. `responsive.css` and `reduced-motion.css` are imported last, in
+  that order.
+
+Checked afterwards for pairs where source order decides — same subject, same ancestors, equal
+specificity, a shared property, and the order reversed: **one**, and it is a false positive,
+because `:has()` raises specificity and specificity decides it.
+
+### 07.5 · The result, measured in a browser
+
+`ui/kit.html` rendered against `kit.css`, and again against `tokens.css` + `components/index.css`.
+Computed style read for 45 properties on every element in `<body>`, animations paused at time 0.
+
+**2 549 elements. 2 414 compared. Zero real differences.**
+
+The 135 excluded elements are the dropped components, their subtrees and their siblings. Six
+differences survived the exclusion and all six trace to `.dr-field__clear`, a class the wireframes
+never draw: it is 20px wide, and without it the one `.dr-rows` panel that contains it re-solves
+its `max-content` column — 194px → 197.333px — which moves the two labels and two values in that
+panel. The panels without it did not move. The seventh, `.dr-sk-arrow`'s
+`matrix(1, 0, 0, 1, 0, 0)` against `none`, is the same transform written two ways.
+
+**So: for every component the wireframes draw, the ported CSS computes identically.**
+
+### 07.6 · What the showcase now shows, and the decision it needs
+
+`ui/kit.html` links `tokens.css` and `components/index.css`, and its own chrome was moved onto the
+new token names. Six specimens in it now render **unstyled**, because the product does not use
+them: `.dr-chip--trust`, `.dr-stars`, `.dr-disclosure`, `.dr-segment`, `.dr-track`,
+`.dr-field__clear`.
+
+That is the wireframes-as-truth rule made visible, and it is the designer's call:
+
+1. **Leave them bare** (as built). The showcase then shows exactly what the product has, and the
+   six gaps are the finding.
+2. **Port the six anyway.** The showcase reads whole again, and the component layer carries six
+   components with no surface — which is what §06 exists to avoid.
+3. **Cut the six specimens from the showcase.** Honest, but the record of them disappears from the
+   one page where a reader would meet them.

@@ -1,0 +1,188 @@
+/* badge.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-status-line{
+  font-size: var(--len-14);
+  color: var(--text-muted);
+}
+.dr-chip{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--len-6);
+  padding: var(--len-5) var(--len-10);
+  border: 0;
+  border-radius: var(--len-999);
+  font-size: var(--len-12);
+  font-weight: var(--num-600);
+  line-height: var(--num-1-4);
+  white-space: nowrap;
+  background: var(--bg-well);
+  color: var(--text-muted);
+}
+.dr-chip--claim, .dr-avail-badge[data-state="available"], .dr-chip--unread{
+  background: var(--bg-accent-tint);
+  color: var(--text-primary);
+}
+.dr-chip--sm{
+  padding: var(--len-3) var(--len-8);
+  font-size: var(--len-11);
+  line-height: var(--num-1-4);
+}
+.dr-chip .dr-ic{
+  width: var(--len-14);
+  height: var(--len-14);
+}
+.dr-chips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--len-6);
+}
+.dr-chips--stack{
+  flex-direction: column;
+  align-items: flex-start;
+}
+.dr-status{
+  position: absolute;
+  top: var(--len-6);
+  right: var(--len-6);
+  z-index: 1;
+  width: var(--len-20);
+  height: var(--len-20);
+  border-radius: var(--pct-50);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-muted);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 var(--len-2) var(--bg-surface);
+}
+.dr-status .dr-ic{
+  width: var(--len-12);
+  height: var(--len-12);
+}
+.dr-status--live{
+  background: var(--color-action);
+}
+.dr-status--live::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--pct-50);
+  animation: dr-ping var(--time-1-8) var(--ease-out) infinite;
+}
+.dr-fchips{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--len-8);
+}
+.dr-fchip{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--len-6);
+  padding: var(--len-5) var(--len-5) var(--len-5) var(--len-12);
+  border: 0;
+  border-radius: var(--len-999);
+  background: var(--bg-accent-tint);
+  color: var(--text-primary);
+  font-size: var(--len-12);
+  font-weight: var(--num-600);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.dr-fchip{
+  font-family: inherit;
+  line-height: inherit;
+  cursor: pointer;
+}
+.dr-fchip:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-fchips[hidden]{
+  display: none;
+}
+.dr-fchip__x{
+  width: var(--len-18);
+  height: var(--len-18);
+  flex: none;
+  border-radius: var(--len-999);
+  background: var(--color-action);
+  color: var(--on-action);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--len-12);
+  line-height: 1;
+}
+.dr-fchip--all{
+  background: var(--bg-muted);
+}
+.dr-count-badge{
+  position: absolute;
+  top: calc(var(--len-2) * -1);
+  right: calc(var(--len-2) * -1);
+  min-width: var(--len-18);
+  height: var(--len-18);
+  padding: 0 var(--len-2);
+  border-radius: var(--len-999);
+  background: var(--color-action);
+  color: var(--on-action);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--len-10-5);
+  font-weight: var(--num-600);
+}
+.dr-avail{
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--len-8);
+}
+.dr-avail__dot{
+  width: var(--len-10);
+  height: var(--len-10);
+  flex: none;
+  align-self: center;
+  border-radius: var(--len-999);
+  background: var(--text-primary);
+}
+.dr-avail__state{
+  font-size: var(--len-15);
+  font-weight: var(--num-600);
+  line-height: var(--num-1-2);
+  color: var(--text-primary);
+}
+.dr-avail__note{
+  font-size: var(--len-13);
+  line-height: var(--num-1-4);
+  color: var(--text-muted);
+}
+.dr-avail-badge{
+  flex: none;
+}
+.dr-avail-badge__dot{
+  width: var(--len-8);
+  height: var(--len-8);
+  flex: none;
+  border-radius: var(--len-999);
+  background: currentColor;
+}
+.dr-avail-badge[data-state="available"] .dr-avail-badge__dot{
+  background: var(--color-action);
+}
+.dr-avail-badge[data-state="offline"] .dr-avail-badge__dot{
+  background: transparent;
+  border: var(--len-2) solid currentColor;
+}
+.dr-count-badge[hidden]{
+  display: none;
+}

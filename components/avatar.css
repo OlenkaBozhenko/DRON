@@ -1,0 +1,126 @@
+/* avatar.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--len-8);
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.dr-profile__photo{
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  margin-bottom: var(--len-13);
+}
+.dr-profile__badges{
+  justify-content: center;
+  margin-top: var(--len-4);
+}
+.dr-profile__photo.dr-avatar-edit{
+  align-self: center;
+  margin-bottom: 0;
+}
+.dr-profile .dr-avatar-edit__badge{
+  border-color: var(--text-on-night);
+  background: var(--color-action);
+  color: var(--on-action);
+}
+.dr-profile .dr-avatar-edit:hover .dr-avatar-edit__badge{
+  background: var(--color-action);
+  filter: brightness(var(--num-1-03));
+}
+.dr-avatar-edit{
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-self: flex-start;
+  border-radius: var(--len-999);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.dr-avatar-edit:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-avatar-edit__badge{
+  position: absolute;
+  right: calc(var(--len-2) * -1);
+  bottom: calc(var(--len-2) * -1);
+  width: var(--len-20);
+  height: var(--len-20);
+  border: var(--len-2) solid var(--bg-surface);
+  border-radius: var(--len-999);
+  background: var(--bg-muted);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.dr-avatar-edit__badge .dr-ic{
+  width: var(--len-12);
+  height: var(--len-12);
+}
+.dr-avatar-edit:hover .dr-avatar-edit__badge{
+  background: var(--bg-well);
+}
+.dr-avatar-lg{
+  width: var(--len-120);
+  height: var(--len-120);
+  flex: none;
+  margin: 0 auto;
+  display: block;
+  border-radius: var(--len-999);
+  overflow: hidden;
+  background: var(--bg-well);
+}
+.dr-avatar-lg img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+.dr-avatar-sm{
+  width: var(--len-28);
+  height: var(--len-28);
+  flex: none;
+  display: block;
+  border-radius: var(--len-999);
+  overflow: hidden;
+  background: var(--bg-well);
+}
+.dr-avatar-sm img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+.dr-avatar-md{
+  width: var(--len-56);
+  height: var(--len-56);
+  flex: none;
+  display: block;
+  border-radius: var(--len-999);
+  overflow: hidden;
+  background: var(--bg-well);
+}
+.dr-avatar-md img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}

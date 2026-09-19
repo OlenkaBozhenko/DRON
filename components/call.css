@@ -1,0 +1,106 @@
+/* call.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-call{
+  background: var(--bg-night);
+  color: var(--text-on-night);
+}
+.dr-call .dr-statusbar{
+  background: var(--bg-night);
+  color: var(--text-on-night);
+}
+.dr-call .dr-main{
+  gap: var(--len-20);
+}
+.dr-call .dr-label{
+  color: var(--text-on-night-muted);
+}
+.dr-call .dr-home span{
+  background: var(--bg-page);
+}
+.dr-call .dr-actionbar{
+  background: var(--bg-night);
+  border-top: 0;
+  padding-bottom: 0;
+}
+.dr-call__top{
+  display: flex;
+  align-items: flex-start;
+  gap: var(--len-12);
+}
+.dr-call__who{
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+.dr-call__name{
+  display: block;
+  font-size: var(--len-22);
+  font-weight: var(--num-700);
+  line-height: var(--num-1-4);
+  letter-spacing: var(--track-n0-02);
+  color: var(--text-on-night);
+}
+.dr-call__time{
+  display: block;
+  margin-top: var(--len-2);
+  font-size: var(--len-15);
+  font-weight: var(--num-400);
+  line-height: var(--num-1-4);
+  color: var(--text-on-night-muted);
+  font-variant-numeric: tabular-nums;
+}
+.dr-call__side{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+  flex: none;
+}
+.dr-call__side--empty{
+  width: var(--len-44);
+}
+.dr-call__stage{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dr-call__avatar{
+  width: var(--len-176);
+  height: var(--len-176);
+  flex: none;
+  border-radius: var(--pct-50);
+  overflow: hidden;
+  background: var(--bg-night-raised);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-on-night);
+}
+.dr-call__avatar img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.dr-call__avatar .dr-ic{
+  width: 50%;
+  height: 50%;
+}
+.dr-call__bar{
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: var(--len-14);
+  padding: var(--len-8);
+  border-radius: var(--len-999);
+  background: var(--bg-night-raised);
+}

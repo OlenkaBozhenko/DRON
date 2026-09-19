@@ -1,0 +1,246 @@
+/* media.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-stack{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-8);
+}
+.dr-stack--zones{
+  gap: var(--len-12);
+}
+.dr-well > .dr-btn--onphoto{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.dr-well > .dr-btn--onphoto:active{
+  transform: translate(-50%, -50%) scale(var(--num-0-99));
+}
+.dr-well{
+  position: relative;
+  width: var(--len-96);
+  height: var(--len-96);
+  flex: none;
+  border: 0;
+  border-radius: var(--len-13);
+  padding: var(--len-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+}
+.dr-well img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.dr-well--photo{
+  width: auto;
+  height: auto;
+  background: var(--bg-well);
+  overflow: hidden;
+  padding: 0;
+}
+.dr-well--map{
+  padding: 0;
+}
+.dr-well--photo img{
+  object-fit: cover;
+}
+.dr-well--map{
+  width: auto;
+  height: auto;
+  aspect-ratio: var(--ratio-map);
+  border-radius: var(--len-16);
+  overflow: hidden;
+  background-color: var(--bg-well);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.dr-well--map img{
+  object-fit: cover;
+}
+.dr-well--acquiring{
+  background: var(--bg-well);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--len-11);
+  letter-spacing: var(--track-0-09);
+  line-height: var(--num-1-5);
+}
+.dr-stack:has(> .dr-stack__shot){
+  padding: var(--len-8) var(--len-4);
+}
+.dr-stack__shot{
+  position: relative;
+  width: var(--pct-62);
+  aspect-ratio: var(--ratio-stack);
+  border: var(--len-3) solid var(--text-on-night);
+  border-radius: var(--len-13);
+  overflow: hidden;
+  background: var(--bg-well);
+}
+.dr-stack__shot img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.dr-stack__shot + .dr-stack__shot{
+  margin-top: var(--pct-n14);
+}
+.dr-stack__shot:nth-child(1){
+  align-self: flex-end;
+  transform: rotate(var(--deg-3));
+  z-index: 1;
+}
+.dr-stack__shot:nth-child(2){
+  align-self: flex-start;
+  transform: rotate(var(--deg-n3-5));
+  z-index: 2;
+}
+.dr-stack__shot:nth-child(3){
+  align-self: flex-end;
+  margin-right: var(--pct-6);
+  transform: rotate(var(--deg-2));
+  z-index: 3;
+}
+.dr-pager{
+  display: flex;
+  gap: var(--len-8);
+  justify-content: center;
+  margin-top: var(--len-12);
+}
+.dr-pager > *{
+  width: var(--len-8);
+  height: var(--len-8);
+  flex: none;
+  border: 0;
+  border-radius: var(--len-999);
+  background: var(--bg-muted);
+  transition: background-color var(--time-0-12) var(--ease-out);
+}
+.dr-pager .on{
+  background: var(--color-action);
+}
+.dr-slider{
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  margin: 0 calc(var(--len-16) * -1);
+  padding: var(--len-8) var(--len-16);
+  scrollbar-width: none;
+}
+.dr-slider::-webkit-scrollbar{
+  display: none;
+}
+.dr-slide{
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--len-16);
+  padding: var(--len-8) var(--len-4);
+}
+.dr-slide__art{
+  width: 100%;
+  flex: none;
+  border: 0;
+  border-radius: var(--len-13);
+  background: var(--bg-well);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--len-11);
+  font-weight: var(--num-600);
+  letter-spacing: var(--track-0-09);
+  line-height: var(--num-1-5);
+}
+.dr-slide__art:has(img){
+  background: none;
+}
+.dr-slide__art img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.dr-slider--bleed{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  align-items: stretch;
+}
+.dr-slider--bleed .dr-slide{
+  height: 100%;
+  position: relative;
+  justify-content: flex-start;
+  padding: calc(var(--len-16) + var(--len-32)) var(--len-20) 0;
+  gap: var(--len-12);
+}
+.dr-slider--bleed .dr-slide__art{
+  position: static;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  width: auto;
+  align-self: stretch;
+  margin: 0 calc(var(--len-20) * -1);
+  padding-block: var(--len-32);
+  align-items: center;
+  z-index: 0;
+}
+.dr-slider--bleed .dr-slide__art img{
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+}
+.dr-slider--bleed .dr-slide--floor .dr-slide__art{
+  padding-bottom: 0;
+}
+.dr-slider--bleed .dr-slide--floor .dr-slide__art img{
+  object-position: center calc(100% + var(--len-7));
+}
+.dr-slider--bleed + .dr-pager{
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+}
+.dr-slider--bleed .dr-display, .dr-slider--bleed .dr-lead{
+  position: relative;
+  z-index: 1;
+}
+.dr-mapview{
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-bottom: calc(var(--len-22) * -1);
+  background-color: var(--bg-well);
+  background-size: cover;
+  background-position: 25% 50%;
+  background-repeat: no-repeat;
+}
+.dr-mapscreen{
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}

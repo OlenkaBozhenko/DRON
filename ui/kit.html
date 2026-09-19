@@ -4,12 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DRON — kit</title>
-<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../components/index.css">
 <style>
   /* ── Showcase chrome. NOTHING here is part of the kit. Every specimen below
      is drawn with kit.css classes only; this block styles the page around
      them — the grid, the captions, the ratio tables. ── */
-  body{ margin:0; background:var(--media); font-family:var(--font-ui); color:var(--ink); }
+  body{ margin:0; background:var(--bg-well); font-family:var(--font-ui); color:var(--text-primary); }
   .page{ max-width:1180px; margin:0 auto; padding:40px 24px 96px; }
 
   /* Back to DRON — the same escape the wireframe shell gives every screen.
@@ -17,71 +18,71 @@
   .dr-backlink{
     display:inline-flex; align-items:center; gap:8px;
     min-height:44px; padding:0 16px; margin-bottom:20px;
-    border-radius:12px; background:var(--btn2); color:var(--ink);
+    border-radius:12px; background:var(--bg-muted); color:var(--text-primary);
     font-size:15px; font-weight:600; text-decoration:none;
     transition:background .15s, transform .12s;
   }
-  .dr-backlink:hover{ background:var(--media); }
+  .dr-backlink:hover{ background:var(--bg-well); }
   .dr-backlink:active{ transform:translateY(1px) scale(.99); }
-  .dr-backlink:focus-visible{ outline:2.5px solid var(--ink); outline-offset:2px; }
+  .dr-backlink:focus-visible{ outline:2.5px solid var(--text-primary); outline-offset:2px; }
   .lede{ margin-bottom:40px; }
-  .lede h1{ font-size:var(--t-display-size); font-weight:var(--t-display-weight);
-    letter-spacing:var(--t-display-track); line-height:var(--t-display-line); margin:0 0 10px; }
-  .lede p{ font-size:15px; line-height:1.6; color:var(--slate); max-width:62ch; margin:0 0 10px; }
-  .lede a{ color:var(--ink); }
+  .lede h1{ font-size:var(--len-22); font-weight:var(--num-700);
+    letter-spacing:var(--track-n0-02); line-height:var(--num-1-4); margin:0 0 10px; }
+  .lede p{ font-size:15px; line-height:1.6; color:var(--text-muted); max-width:62ch; margin:0 0 10px; }
+  .lede a{ color:var(--text-primary); }
   .figs{ display:flex; flex-wrap:wrap; gap:28px; margin-top:22px; }
-  .fig b{ display:block; font-size:var(--t-number-size); font-weight:var(--t-number-weight);
-    letter-spacing:var(--t-number-track); line-height:var(--t-number-line);
+  .fig b{ display:block; font-size:var(--len-20); font-weight:var(--num-700);
+    letter-spacing:var(--track-n0-02); line-height:var(--num-1);
     font-variant-numeric:tabular-nums; }
   .fig span{ display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.09em;
-    text-transform:uppercase; color:var(--slate); margin-top:6px; }
+    text-transform:uppercase; color:var(--text-muted); margin-top:6px; }
 
   h2.sec{ font-size:12px; font-family:var(--font-mono); font-weight:600; letter-spacing:.12em;
-    text-transform:uppercase; color:var(--slate); margin:56px 0 4px;
-    padding-bottom:9px; border-bottom:1px solid var(--line); position:relative; }
-  h2.sec::after{ content:""; position:absolute; left:0; bottom:-1px; width:30px; height:2px; background:var(--green); }
+    text-transform:uppercase; color:var(--text-muted); margin:56px 0 4px;
+    padding-bottom:9px; border-bottom:1px solid var(--border-hairline); position:relative; }
+  h2.sec::after{ content:""; position:absolute; left:0; bottom:-1px; width:30px; height:2px; background:var(--color-action); }
   h2.sec:first-of-type{ margin-top:0; }
 
   .row{ display:grid; grid-template-columns:200px minmax(0,1fr) minmax(0,300px);
-    gap:28px; padding:26px 0; border-bottom:1px solid var(--line); align-items:start; }
+    gap:28px; padding:26px 0; border-bottom:1px solid var(--border-hairline); align-items:start; }
   .row > .nm b{ display:block; font-size:15px; font-weight:600; }
   .row > .nm code{ display:block; font-family:var(--font-mono); font-size:11px;
-    color:var(--slate); margin-top:5px; line-height:1.6; word-break:break-all; }
-  .row > .nm p{ font-size:12.5px; line-height:1.5; color:var(--slate); margin:9px 0 0; }
+    color:var(--text-muted); margin-top:5px; line-height:1.6; word-break:break-all; }
+  .row > .nm p{ font-size:12.5px; line-height:1.5; color:var(--text-muted); margin:9px 0 0; }
   .spec{ display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start; }
   .spec.col{ flex-direction:column; align-items:stretch; }
-  .plate{ background:var(--page); border:1px solid var(--line); border-radius:16px;
+  .plate{ background:var(--bg-page); border:1px solid var(--border-hairline); border-radius:16px;
     padding:18px; display:inline-flex; flex-direction:column; gap:10px; align-items:flex-start; }
-  .plate.oncard{ background:var(--card); }
+  .plate.oncard{ background:var(--bg-surface); }
   .plate.wide{ width:341px; max-width:100%; }
   .plate .st{ font-family:var(--font-mono); font-size:10px; letter-spacing:.08em;
-    text-transform:uppercase; color:var(--slate); }
-  .notes{ font-size:12.5px; line-height:1.6; color:var(--slate); }
-  .notes b{ color:var(--ink); font-weight:600; }
-  .notes code{ font-family:var(--font-mono); font-size:11px; color:var(--ink); }
+    text-transform:uppercase; color:var(--text-muted); }
+  .notes{ font-size:12.5px; line-height:1.6; color:var(--text-muted); }
+  .notes b{ color:var(--text-primary); font-weight:600; }
+  .notes code{ font-family:var(--font-mono); font-size:11px; color:var(--text-primary); }
   .notes p + p{ margin-top:9px; }
 
   table.t{ width:100%; border-collapse:collapse; font-size:12.5px; }
   table.t th{ font-family:var(--font-mono); font-size:10px; letter-spacing:.09em;
-    text-transform:uppercase; color:var(--slate); font-weight:600; text-align:left;
-    padding:0 12px 8px 0; border-bottom:1px solid var(--line); }
-  table.t td{ padding:8px 12px 8px 0; border-bottom:1px solid var(--line); vertical-align:middle; }
+    text-transform:uppercase; color:var(--text-muted); font-weight:600; text-align:left;
+    padding:0 12px 8px 0; border-bottom:1px solid var(--border-hairline); }
+  table.t td{ padding:8px 12px 8px 0; border-bottom:1px solid var(--border-hairline); vertical-align:middle; }
   table.t code{ font-family:var(--font-mono); font-size:11px; }
-  .sw{ display:inline-block; width:34px; height:20px; border-radius:var(--r-detail); vertical-align:-5px;
-    margin-right:9px; border:1px solid var(--line); }
+  .sw{ display:inline-block; width:34px; height:20px; border-radius:var(--len-4); vertical-align:-5px;
+    margin-right:9px; border:1px solid var(--border-hairline); }
   .ratio{ font-variant-numeric:tabular-nums; font-weight:600; }
 
   .scale li{ display:flex; align-items:baseline; gap:18px; padding:9px 0;
-    border-bottom:1px solid var(--line); list-style:none; }
+    border-bottom:1px solid var(--border-hairline); list-style:none; }
   .scale .tk{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em;
-    text-transform:uppercase; color:var(--slate); width:86px; flex:none; }
-  .scale .vv{ font-family:var(--font-mono); font-size:10.5px; color:var(--slate);
+    text-transform:uppercase; color:var(--text-muted); width:86px; flex:none; }
+  .scale .vv{ font-family:var(--font-mono); font-size:10.5px; color:var(--text-muted);
     width:150px; flex:none; font-variant-numeric:tabular-nums; }
 
   .shapes{ display:flex; flex-wrap:wrap; gap:16px; }
   .shape{ text-align:center; }
-  .shape i{ display:block; width:64px; height:44px; background:var(--card); border:1px solid var(--line); }
-  .shape span{ display:block; font-family:var(--font-mono); font-size:10px; color:var(--slate); margin-top:6px; }
+  .shape i{ display:block; width:64px; height:44px; background:var(--bg-surface); border:1px solid var(--border-hairline); }
+  .shape span{ display:block; font-family:var(--font-mono); font-size:10px; color:var(--text-muted); margin-top:6px; }
 
   @media (max-width:940px){ .row{ grid-template-columns:1fr; gap:16px; } }
 </style>
@@ -206,13 +207,13 @@
       <li><span class="tk">number</span><span class="vv">20 / 700 / 1.0 / tabular</span><span style="font-size:20px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums">₴180</span></li>
       <li><span class="tk">title</span><span class="vv">17 / 600 / 1.4 / −.01em</span><span style="font-size:17px;font-weight:600;letter-spacing:-.01em">Live tracking lost</span></li>
       <li><span class="tk">heading</span><span class="vv">15 / 600 / 1.2</span><span style="font-size:15px;font-weight:600">Package delivery</span></li>
-      <li><span class="tk">lead</span><span class="vv">15 / 400 / 1.55</span><span style="font-size:15px;color:var(--slate)">Your parcel arrived at 10:07.</span></li>
+      <li><span class="tk">lead</span><span class="vv">15 / 400 / 1.55</span><span style="font-size:15px;color:var(--text-muted)">Your parcel arrived at 10:07.</span></li>
       <li><span class="tk">body</span><span class="vv">14 / 400 / 1.3</span><span style="font-size:14px">Osokorky</span></li>
-      <li><span class="tk">body-sm</span><span class="vv">13 / 400 / 1.4</span><span style="font-size:13px;color:var(--slate)">Delivered to</span></li>
-      <li><span class="tk">meta</span><span class="vv">12.5 / 400 / 1.2</span><span style="font-size:12.5px;color:var(--slate);font-variant-numeric:tabular-nums">4.9 ★ · 214 jobs</span></li>
+      <li><span class="tk">body-sm</span><span class="vv">13 / 400 / 1.4</span><span style="font-size:13px;color:var(--text-muted)">Delivered to</span></li>
+      <li><span class="tk">meta</span><span class="vv">12.5 / 400 / 1.2</span><span style="font-size:12.5px;color:var(--text-muted);font-variant-numeric:tabular-nums">4.9 ★ · 214 jobs</span></li>
       <li><span class="tk">caption</span><span class="vv">12 / 600 / 1.4</span><span style="font-size:12px;font-weight:600">Verified by DRON</span></li>
-      <li><span class="tk">micro</span><span class="vv">11 / 600 / 1.4 / .09em</span><span style="font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.09em;color:var(--slate)">ORDER HISTORY</span></li>
-      <li><span class="tk">micro-sm</span><span class="vv">10.5 / 400 / 1.4</span><span style="font-size:10.5px;color:var(--slate)">En route</span></li>
+      <li><span class="tk">micro</span><span class="vv">11 / 600 / 1.4 / .09em</span><span style="font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.09em;color:var(--text-muted)">ORDER HISTORY</span></li>
+      <li><span class="tk">micro-sm</span><span class="vv">10.5 / 400 / 1.4</span><span style="font-size:10.5px;color:var(--text-muted)">En route</span></li>
     </ul>
   </div>
   <div class="notes">
@@ -234,14 +235,14 @@
        detail may use the 2 / 4 / 8 floor.</p></div>
   <div class="spec col">
     <div class="shapes">
-      <div class="shape"><i style="border-radius:var(--r-detail)"></i><span>detail 4</span></div>
-      <div class="shape"><i style="border-radius:var(--r-input)"></i><span>input 10</span></div>
-      <div class="shape"><i style="border-radius:var(--r-btn)"></i><span>btn 12</span></div>
-      <div class="shape"><i style="border-radius:var(--r-media)"></i><span>media 13</span></div>
-      <div class="shape"><i style="border-radius:var(--r-card)"></i><span>card 16</span></div>
-      <div class="shape"><i style="border-radius:var(--r-panel)"></i><span>panel 22</span></div>
-      <div class="shape"><i style="border-radius:var(--r-pill)"></i><span>pill 999</span></div>
-      <div class="shape"><i style="border-radius:var(--r-circle);width:44px"></i><span>circle 50%</span></div>
+      <div class="shape"><i style="border-radius:var(--len-4)"></i><span>detail 4</span></div>
+      <div class="shape"><i style="border-radius:var(--len-10)"></i><span>input 10</span></div>
+      <div class="shape"><i style="border-radius:var(--len-12)"></i><span>btn 12</span></div>
+      <div class="shape"><i style="border-radius:var(--len-13)"></i><span>media 13</span></div>
+      <div class="shape"><i style="border-radius:var(--len-16)"></i><span>card 16</span></div>
+      <div class="shape"><i style="border-radius:var(--len-22)"></i><span>panel 22</span></div>
+      <div class="shape"><i style="border-radius:var(--len-999)"></i><span>pill 999</span></div>
+      <div class="shape"><i style="border-radius:var(--pct-50);width:44px"></i><span>circle 50%</span></div>
     </div>
     <table class="t" style="margin-top:20px">
       <tr><th>Space</th><th>Value</th><th>Use</th></tr>
@@ -366,7 +367,7 @@
        the plane is aria-hidden, with no tab stop and no pointer target on any key. Built by
        ui/kit.js — no page carries markup for it.</p></div>
   <div class="spec">
-    <div class="dr" style="position:relative;width:260px;height:300px;background:var(--page);border-radius:var(--r-panel);overflow:hidden;border:1px solid var(--line)">
+    <div class="dr" style="position:relative;width:260px;height:300px;background:var(--bg-page);border-radius:var(--len-22);overflow:hidden;border:1px solid var(--border-hairline)">
       <div class="dr-kb" style="animation:none">
         <div class="dr-kb__bar"><button type="button" class="dr-kb__done">Done</button></div>
         <div class="dr-kb__plane" style="height:190px" aria-hidden="true">
@@ -381,7 +382,7 @@
       </div>
       <span class="st" style="position:absolute;top:8px;left:8px">letters · scaled to fit the plate</span>
     </div>
-    <div class="dr" style="position:relative;width:200px;height:300px;background:var(--page);border-radius:var(--r-panel);overflow:hidden;border:1px solid var(--line)">
+    <div class="dr" style="position:relative;width:200px;height:300px;background:var(--bg-page);border-radius:var(--len-22);overflow:hidden;border:1px solid var(--border-hairline)">
       <div class="dr-kb" style="animation:none">
         <div class="dr-kb__bar"><button type="button" class="dr-kb__done">Done</button></div>
         <div class="dr-kb__plane" style="height:190px" aria-hidden="true">
@@ -770,7 +771,7 @@
        Built by ui/kit.js, so no page carries its markup.</p></div>
   <div class="spec">
     <div class="plate wide" style="align-items:stretch">
-      <div class="dr" style="position:relative;height:236px;border-radius:var(--r-panel);overflow:hidden;background:var(--page)">
+      <div class="dr" style="position:relative;height:236px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
         <div class="dr-scrim dr-scrim--picker" aria-hidden="true" style="animation:none"></div>
         <section class="dr-sheet dr-sheet--picker" aria-hidden="true" style="animation:none">
           <span class="dr-sheet__grip" aria-hidden="true"></span>
@@ -798,7 +799,7 @@
        on her call &#8212; its accessible name stays behind on the sheet element.</p>
     <p><b>The markup contract, which is what to copy</b> &#8212; a page carrying a drawer holds, inside
        <code>.wf-frame</code>:</p>
-    <pre style="margin:0;font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--slate);white-space:pre-wrap;overflow-x:auto">&lt;button class="dr-field dr-field--action" aria-haspopup="dialog"
+    <pre style="margin:0;font-family:var(--font-mono);font-size:11px;line-height:1.6;color:var(--text-muted);white-space:pre-wrap;overflow-x:auto">&lt;button class="dr-field dr-field--action" aria-haspopup="dialog"
         aria-expanded="false" aria-controls="ID"&gt; &#8230; &lt;/button&gt;
 &lt;div class="dr-scrim dr-scrim--picker" data-scrim hidden&gt;&lt;/div&gt;
 &lt;section class="dr-sheet dr-sheet--picker" id="ID" role="dialog"
@@ -879,7 +880,7 @@
     </div>
     <div class="plate wide" style="align-items:stretch">
       <section class="dr dr-balance" aria-label="Balance" style="--x:1">
-        <p class="dr-number" style="font-size:var(--t-display-size)">&#8372;3,240</p>
+        <p class="dr-number" style="font-size:var(--len-22)">&#8372;3,240</p>
         <p class="dr-note dr-note--flush">Available to withdraw</p>
       </section>
       <span class="st">the display step, 22 &#183; withdraw</span>
@@ -1101,7 +1102,7 @@
        <code>color-mix(green 20%)</code> halo.</p>
     <p>Milestones are the canonical four everywhere: <b>Accepted · En route · On-site · Done</b>.</p>
     <p><b>Two modifiers, and neither makes a second component.</b> <code>--at2</code> is <i>the fill</i>,
-       not a step count: <code>--dr-fill: var(--fill-2of4)</code>, the track coloured as far as the order
+       not a step count: <code>--dr-fill: var(--pct-25)</code>, the track coloured as far as the order
        has walked &#8212; step 1 &#8594; 2 of 4, computed <b>25%</b>. <code>--zone</code> adds the
        <b>12px</b> block margin the rail needs when it stands under a zone label.
        <code>aria-current="step"</code> marks the live step programmatically, so the state is carried by
@@ -1351,7 +1352,7 @@
        rule about tilt.</p></div>
   <div class="spec">
     <div class="plate" style="width:260px">
-      <div class="dr" style="width:220px;background:var(--page);border-radius:var(--r-card);padding:4px">
+      <div class="dr" style="width:220px;background:var(--bg-page);border-radius:var(--len-16);padding:4px">
         <div class="dr-stack">
           <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-crew.jpg" alt="Photo 1 of 3 — the crew head-on in white water, helmets up and both blades in the air." loading="lazy" decoding="async"></span>
           <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-drop.jpg" alt="Photo 2 of 3 — the raft airborne off the waterfall, the whole crew's arms raised." loading="lazy" decoding="async"></span>
@@ -1725,7 +1726,7 @@
           <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
         </button>
       </div>
-      <div style="margin-top:16px;background:var(--page);border-radius:22px 22px 0 0;box-shadow:var(--sh-raised);padding:12px 16px 24px;display:flex;flex-direction:column;gap:12px">
+      <div style="margin-top:16px;background:var(--bg-page);border-radius:22px 22px 0 0;box-shadow:var(--shadow-raised);padding:12px 16px 24px;display:flex;flex-direction:column;gap:12px">
         <span class="dr-sheet__grip" aria-hidden="true"></span>
         <p class="dr-sheet__title">Payment method</p>
         <div class="dr-picker__list">

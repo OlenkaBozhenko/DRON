@@ -1,0 +1,108 @@
+/* skeleton.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-sk-line{
+  height: var(--len-13);
+  border-radius: var(--len-4);
+  background: var(--bg-muted);
+}
+.dr-sk-line--pill{
+  border-radius: var(--len-999);
+}
+.dr-sk-title{
+  height: var(--len-14);
+}
+.dr-sk-date{
+  height: var(--len-10);
+}
+.dr-sk-w90{
+  width: var(--pct-90);
+}
+.dr-sk-w70{
+  width: var(--pct-70);
+}
+.dr-sk-w50{
+  width: var(--pct-50);
+}
+.dr-sk-w40{
+  width: var(--pct-40);
+}
+.dr-sk-w30{
+  width: var(--pct-30);
+}
+.dr-sk-well{
+  width: var(--len-96);
+  height: var(--len-96);
+  flex: none;
+  border-radius: var(--len-13);
+  background: var(--bg-well);
+}
+.dr-sk-block{
+  background: var(--bg-well);
+  border-radius: var(--len-13);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+.dr-sk-btn{
+  width: var(--len-44);
+  height: var(--len-44);
+  border-radius: var(--pct-50);
+  background: var(--bg-muted);
+}
+.dr-sk-head{
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-8);
+}
+.dr-sk-route{
+  flex: 1;
+  min-width: 0;
+  height: calc(var(--len-12) + var(--len-7) + var(--len-16));
+  border-radius: var(--len-4);
+  background: var(--bg-muted);
+}
+.dr-sk-money{
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.dr-sk-price{
+  height: var(--len-18);
+  width: var(--len-84);
+  border-radius: var(--len-4);
+}
+.dr-sk-line, .dr-sk-well, .dr-sk-btn, .dr-sk-dir, .dr-sk-route{
+  animation: dr-pulse var(--time-1-4) ease-in-out infinite;
+}
+.dr-sk-d1 *{
+  animation-delay: -.47s;
+}
+.dr-sk-d2 *{
+  animation-delay: -.93s;
+}
+.dr-sk-tray{
+  background: var(--bg-well);
+}
+.dr-sk-up .dr-ic{
+  width: var(--len-32);
+  height: var(--len-32);
+}
+.dr-sk-arrow{
+  animation: dr-up var(--time-1-6) var(--ease-out) infinite;
+}
+.dr-spin{
+  animation: dr-spin var(--time-1-1) linear infinite;
+  transform-origin: 50% 50%;
+}

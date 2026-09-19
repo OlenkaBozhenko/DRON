@@ -1,0 +1,118 @@
+/* keyboard.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-kb{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+  animation: dr-kb-rise var(--time-0-32, .28s) var(--ease-out, cubic-bezier(.2,.8,.2,1));
+}
+.dr-kb[hidden]{
+  display: none;
+}
+.dr-kb__bar{
+  flex: none;
+  height: var(--len-44);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 var(--len-16);
+  background: var(--bg-surface);
+  border-top: var(--len-1) solid var(--border-hairline);
+}
+.dr-kb__done{
+  min-height: var(--len-44);
+  padding: 0 var(--len-12);
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: var(--len-15);
+  font-weight: var(--num-600);
+  color: var(--text-primary);
+  border-radius: var(--len-12);
+}
+.dr-kb__done:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-kb__plane{
+  flex: none;
+  height: var(--len-291);
+  background: var(--bg-muted);
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--len-3) var(--len-30);
+  pointer-events: none;
+  user-select: none;
+}
+.dr-kb__quick{
+  flex: none;
+  height: var(--len-45);
+  display: flex;
+  align-items: center;
+}
+.dr-kb__quick span{
+  flex: 1;
+  height: var(--len-18);
+}
+.dr-kb__quick span + span{
+  border-left: var(--len-1) solid var(--border-hairline);
+}
+.dr-kb__rows{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+}
+.dr-kb__row{
+  flex: 1;
+  display: flex;
+  gap: var(--len-6);
+}
+.dr-kb__row--mid{
+  padding: 0 var(--len-18);
+}
+.dr-kb__key{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-page);
+  border-radius: var(--len-5);
+  font-size: var(--len-22);
+  color: var(--text-primary);
+}
+.dr-kb__key--mod{
+  flex: 1.5;
+  background: var(--bg-surface);
+  font-size: var(--len-12);
+}
+.dr-kb__key--space{
+  flex: 5;
+}
+.dr-kb__key--return{
+  flex: 2.2;
+  background: var(--bg-surface);
+  font-size: var(--len-12);
+}
+.dr-kb__key--blank{
+  background: transparent;
+}
+.dr-kb__key--press{
+  pointer-events: auto;
+  cursor: pointer;
+}

@@ -1,0 +1,31 @@
+/* reduced-motion.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce){
+  .dr-switch__knob{
+    transition: none;
+  }
+  .dr-pager > *{
+    transition: none;
+  }
+  .dr-toast{
+    transition: none;
+    transform: none;
+  }
+  .dr-btn, .dr-card, .dr-disclosure > summary .dr-ic{
+    transition: none;
+  }
+  .dr-status--live::after, .dr-sk-line, .dr-sk-well, .dr-sk-btn, .dr-sk-dir, .dr-sk-route, .dr-sk-arrow, .dr-spin, .dr-sheet--picker, .dr-scrim--picker{
+    animation: none;
+  }
+  .dr-kb{
+    animation: none;
+  }
+}

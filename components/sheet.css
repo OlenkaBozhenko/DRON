@@ -1,0 +1,186 @@
+/* sheet.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-picker__list{
+  background: var(--bg-surface);
+  border-radius: var(--len-16);
+  overflow: hidden;
+}
+.dr-picker__item{
+  width: 100%;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-weight: var(--num-400);
+  text-align: left;
+}
+.dr-picker__item .dr-ic{
+  visibility: hidden;
+}
+.dr-picker__item[aria-current="true"] .dr-ic{
+  visibility: visible;
+}
+.dr-picker__label{
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.dr-sheet[hidden], .dr-scrim[hidden]{
+  display: none;
+}
+.dr-sheet--picker{
+  animation: dr-sheet-rise var(--time-0-32) var(--ease-out);
+}
+.dr-sheet--picker ~ .dr-scrim, .dr-scrim--picker{
+  animation: dr-scrim-in var(--time-0-32) var(--ease-out);
+}
+.dr-scrim{
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: var(--scrim);
+}
+.dr-sheet{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 6;
+  background: var(--bg-page);
+  border-radius: var(--len-22) var(--len-22) 0 0;
+  box-shadow: var(--shadow-raised);
+  padding: var(--len-12) var(--len-16) var(--len-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+}
+.dr-sheet:focus{
+  outline: none;
+}
+.dr-sheet__grip{
+  width: var(--len-36);
+  height: var(--len-5);
+  flex: none;
+  margin: 0 auto;
+  border-radius: var(--len-999);
+  background: var(--border-hairline);
+}
+.dr-sheet__title{
+  font-size: var(--len-17);
+  font-weight: var(--num-600);
+  letter-spacing: var(--track-n0-01);
+  color: var(--text-primary);
+  text-align: center;
+}
+.dr-paylist{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-8);
+}
+.dr-sheet__channels{
+  display: flex;
+  gap: var(--len-8);
+}
+.dr-channel{
+  flex: 1;
+  min-height: var(--len-44);
+  border: 0;
+  border-radius: var(--len-12);
+  cursor: pointer;
+  background: var(--bg-muted);
+  color: var(--text-primary);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--len-6);
+  padding: var(--len-12) var(--len-8);
+  font-family: var(--font-ui);
+  font-size: var(--len-12);
+  font-weight: var(--num-600);
+  text-decoration: none;
+}
+.dr-channel .dr-ic{
+  width: var(--len-22);
+  height: var(--len-22);
+}
+.dr-channel:hover{
+  background: var(--bg-well);
+}
+.dr-channel:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-channel[aria-pressed="true"]{
+  background: var(--text-primary);
+  color: var(--text-on-night);
+}
+.dr-channel[aria-pressed="true"]:hover{
+  background: var(--text-primary);
+  filter: brightness(var(--num-1-03));
+}
+.dr-sheet__actions{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-8);
+}
+.dr-picker__item:has(> .dr-picker__lead){
+  justify-content: flex-start;
+  gap: var(--len-12);
+}
+.dr-picker__item > .dr-ic.dr-picker__lead{
+  visibility: visible;
+  flex: none;
+  width: var(--len-20);
+  height: var(--len-20);
+  color: var(--text-muted);
+}
+.dr-picker__item:has(.dr-picker__sub){
+  padding-block: var(--len-12);
+}
+.dr-picker__sub{
+  display: block;
+  font-size: var(--len-12-5);
+  line-height: var(--num-1-2);
+  color: var(--text-muted);
+}
+.dr-picker__item[hidden]{
+  display: none;
+}
+.dr-sheet--steady > .dr-sheet__actions{
+  margin-top: auto;
+}
+.dr-sheet--tall{
+  max-height: calc(100% - var(--len-44));
+}
+.dr-sheet__scroll{
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+  margin-inline: calc(var(--len-16) * -1);
+  padding: var(--len-4) var(--len-16);
+}
+.dr-sheet__actions--row{
+  flex-direction: row;
+}
+.dr-sheet__actions--row .dr-btn{
+  flex: 1 1 0;
+}
+.dr-sheet--dock{
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  z-index: 1;
+  flex: none;
+}

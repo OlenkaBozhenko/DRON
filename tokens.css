@@ -130,7 +130,7 @@
   --pct-78:          78%;   /* --banner-art */
   --pct-90:          90%;   /* --sk-w90 */
 
-  /* -- PRIMITIVE / UNITLESS  (leading, weight, factor) ---------------------
+  /* -- PRIMITIVE / UNITLESS  (leading, weight, factor) --------------------- */
   --num-0-5:         .5;   /* --pulse-floor */
   --num-0-99:        .99;   /* --scale-active */
   --num-1:           1;   /* --t-number-line */
@@ -146,7 +146,7 @@
   --num-600:         600;   /* --t-title-weight + --t-heading-weight + --t-caption-weight + --t-micro-weight + --weight-medium   COLLAPSED 5 names */
   --num-700:         700;   /* --t-display-weight + --t-number-weight   COLLAPSED 2 names */
 
-  /* -- PRIMITIVE / TRACKING, MEASURE, ANGLE --------------------------------
+  /* -- PRIMITIVE / TRACKING, MEASURE, ANGLE -------------------------------- */
   --track-n0-02:     -.02em;   /* --t-display-track + --t-number-track   COLLAPSED 2 names */
   --track-n0-01:     -.01em;   /* --t-title-track */
   --track-0-02:      .02em;   /* --t-act-track */
@@ -159,7 +159,7 @@
   --deg-3:           3deg;   /* --tilt-1 */
   --deg-180:         180deg;   /* --turn-open */
 
-  /* -- PRIMITIVE / TIME and EASING -----------------------------------------
+  /* -- PRIMITIVE / TIME and EASING ----------------------------------------- */
   --time-0-12:       .12s;   /* --dur-fast */
   --time-0-15:       .15s;   /* --dur-base */
   --time-0-32:       .32s;   /* --dur-sheet */
@@ -177,7 +177,7 @@
   --shadow-raised: 0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34);   /* --sh-raised */
   --shadow-onphoto: 0 2px 8px rgba(20,18,15,.18);   /* --sh-onphoto */
 
-  /* -- PRIMITIVE / TYPEFACE ------------------------------------------------
+  /* -- PRIMITIVE / TYPEFACE ------------------------------------------------ */
   --font-ui:   -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;   /* --font-ui */
   --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;   /* --font-mono */
 
@@ -194,10 +194,25 @@
   --len-star-mid: calc(var(--len-32) * .73);   /* --sz-star-mid */
   --len-star-out: calc(var(--len-32) * .44);   /* --sz-star-out */
 
-  /* -- PRIMITIVE / NEITHER LENGTH NOR COLOUR -------------------------------
+  /* -- PRIMITIVE / NEITHER LENGTH NOR COLOUR ------------------------------- */
   --ratio-stack: 3 / 2;   /* --stack-aspect - the shoot's own ratio, uncropped */
   --ratio-map:   1.99;     /* --map-aspect - the live map's native ratio */
   --icon-grid:   0 0 24 24;   /* --ic-grid - declared in kit.css, spent nowhere */
+
+  /* -- PRIMITIVE / PROMOTED FROM A CLASS ------------------------------------
+     Six values that were in ui/kit.css all along, but as LITERALS inside a
+     component class instead of in :root - the twenty that tokens-audit.md
+     §C1 lists. A component may not write a literal, so each is a token now.
+     Nothing is invented: every one is the number kit.css already draws. */
+  --len-23:          23px;   /* .dr-paymark--pay height - the 40x20 mark scaled 15/13 */
+  --len-40:          40px;   /* .dr-paymark width - the payment mark's fixed box */
+  --len-46:          46px;   /* .dr-paymark--pay width */
+  --track-0-04:      .04em;  /* .dr-lang button - off the tracking scale, and kit.css says so */
+  --black:           #000;   /* .dr-btn--pay only. The palette's rule at kit.css line 55 reads
+                                "No #FFFFFF and no #000000 anywhere"; Apple's and Google's brand
+                                requirement is the one exception, and naming it is how the
+                                exception stops being invisible. */
+  --white:           #FFF;   /* the same button's label, the same exception */
 
   /* == SEMANTIC ===============================================================
      A role, and the primitive it points at. Colour only: geometry gets no
@@ -341,6 +356,37 @@
   --color-warning:    var(--amber-800);     /* §1.1 --warn-ink: .dr-mark--warn. 7 pages. */
   --bg-warning:       var(--amber-100);     /* §1.1 --warn-wash: .dr-mark--warn's ground. The pair
                                                is only ever used together. */
+
+  /* -- FOUR THE COMPONENT RULE FORCED ---------------------------------------
+     `components/` may read colour only through a semantic token. These four
+     colours are drawn by the wireframes, so they had to be given a name or the
+     component could not be written. Each name is the sources' own word.
+
+     THIS SUPERSEDES §06.1 OF design-system/_critique.md for --amber-500. That
+     section held the rating's yellow at PRIMITIVE because it stands in one file
+     and one class. It still does - rate.html x .dr-star - and the component
+     rule outranks that, because the frames draw it. The reasoning is kept
+     there rather than deleted, and the promotion is recorded, not silent. */
+  --color-rating:       var(--amber-500);   /* .dr-star[aria-pressed="true"]. kit.css: "a filled
+                                               star is yellow - the palette's own --warn". The
+                                               state is never colour alone: the fill pairs with
+                                               aria-pressed, 1.84:1 being under 1.4.11's 3:1. */
+  --color-rating-empty: var(--cream-500);   /* .dr-star at rest. The same sentence names it:
+                                               "an unfilled star is grey with no outline". */
+  --bg-danger-solid:    var(--rust-500);    /* .dr-btn--danger-solid - the end-call button, the
+                                               only place the danger hue is a FILL rather than a
+                                               word. 3 call pages. */
+  --text-action:        var(--green-700);   /* .dr-btn--text. kit.css: "the green that may SPEAK
+                                               ... where green must stand alone as a word or a
+                                               lone glyph, it is this one". */
+
+  /* -- THE PAY BUTTON / the palette's one licensed exception ----------------
+     Apple Pay and Google Pay ship their own black button and neither brand
+     permits it recoloured, so this pair leaves the warm palette on purpose.
+     kit.css: hover "lifts to --ink because filter:brightness multiplies black
+     by nothing". At handoff both brands' supplied buttons replace it outright. */
+  --bg-pay:           var(--black);
+  --on-pay:           var(--white);
 
   /* -- OVERLAY --------------------------------------------------------------- */
   --scrim:            color-mix(in srgb, var(--charcoal-900) 40%, transparent);

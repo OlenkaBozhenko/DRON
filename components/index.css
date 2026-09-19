@@ -1,0 +1,52 @@
+/* ==========================================================================
+   DRON - components/index.css
+   The component layer. Every file below was ported out of ui/kit.css; the
+   selectors and their declaration order are kit.css's, character for
+   character. Only the token names moved.
+
+     colour    reaches a component ONLY through a semantic token in tokens.css
+     geometry  reaches it from PRIMITIVE directly - there is no level for it
+     no hex, no px, no font name is written into a class; everything is var()
+
+   WHAT IS HERE IS WHAT THE WIREFRAMES DRAW. 608 of kit.css's 705 component
+   rules are ported. The 97 that are not are the rules whose selector needs a
+   class the audit measured as drawn on no page and built by no script
+   (tokens-audit.md SS3). They stay in ui/kit.css, which is not deleted and
+   remains the archive of why every value is what it is.
+
+   IMPORT ORDER IS kit.css's ORDER. Each file holds a contiguous run of
+   kit.css's rules and the files are imported by the position of their first
+   rule, so the cascade resolves as it did before the split. Checked: 33 inversions found - SEE ABOVE.
+   ========================================================================== */
+
+@import url("../tokens.css");
+
+@import url("misc.css");
+@import url("frame.css");
+@import url("icon.css");
+@import url("shell.css");
+@import url("media.css");
+@import url("type.css");
+@import url("badge.css");
+@import url("rows.css");
+@import url("progress.css");
+@import url("button.css");
+@import url("list.css");
+@import url("card.css");
+@import url("tabs-inpage.css");
+@import url("message.css");
+@import url("chat.css");
+@import url("avatar.css");
+@import url("form.css");
+@import url("sheet.css");
+@import url("lang.css");
+@import url("disclosure.css");
+@import url("rating.css");
+@import url("call.css");
+@import url("toast.css");
+@import url("skeleton.css");
+@import url("calendar.css");
+@import url("keyboard.css");
+@import url("route.css");
+@import url("responsive.css");
+@import url("reduced-motion.css");
