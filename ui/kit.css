@@ -2500,10 +2500,47 @@ header.dr-topbar,
    row was Headline and matched the nav bar's «Help». Only the weight moves:
    the line box is 17 × 1.4 = 23.8 at either weight, so no row changes height,
    and a regular glyph is narrower, so nothing new wraps. WCAG 1.4.3 — 14.37:1,
-   normal text at both weights, 4.5:1 floor. Scope is the component, all 16. */
+   normal text at both weights, 4.5:1 floor. Scope is the component, all 16.
+   THE WEIGHT GOES BACK TO THE TITLE STEP'S 600 — designer, 2026-09-19, rev 268,
+   on the built role-select: «make weith medium 600». THIS REVERSES REV 247,
+   five days old and hers, and that is said rather than smoothed. Rev 247's
+   recorded objection was that at 600 the row is Headline and MATCHES THE NAV
+   BAR'S TITLE, itself 17/600. role-select HAS NO NAV-BAR TITLE — on the screen
+   she pointed at there is nothing at 17/600 to collide with; on support and the
+   two logs there is, and she took the component anyway, the same scope answer
+   she gave at revs 213, 221 and 247.
+   BOTH WEIGHTS CONFORM, AND THAT WENT FIRST. HIG · Typography names Body 17
+   Regular AND Headline 17 Semibold — two real text styles at one size, so the
+   guideline picks neither for her. HIG · Lists and tables sets a plain row
+   label in Body, which is rev 247's reading; but iOS sets a NOTIFICATION's
+   title in Semibold over a regular body, and 11 of these 16 rows are alert
+   rows, so on those eleven 600 is the platform's own pattern rather than a
+   departure from it. WCAG 1.4.3 — --ink on --card 14.37:1, and 17px is normal
+   text at either weight (bold turns large at 18.66px), so the floor is 4.5:1
+   and it passes by 9.87 both ways; weight is not a contrast factor here.
+   WCAG 1.4.4 holds. HIG · 44pt / WCAG 2.5.8 — no target moves.
+   THE DECLARATION TAKES --t-title-weight, NOT --weight-medium. They are the
+   same 600; naming the step CLOSES the one-off pairing rev 247 minted, so the
+   choice title is the title step whole again — 17/600/1.4/-.01em — the way the
+   nav bar, the message title and (rev 266) the map's offer name carry it.
+   MEASURED ON THE BUILD, 375 × 812, ALL 16 INSTANCES, BEFORE THE CHANGE WAS
+   WRITTEN. Nothing wraps, no row grows, no page starts scrolling:
+     role-select    76.00 × 2; titles 167.13 → 176.44 and 137.56 → 147.55 of a
+                    197.00 column — 241 until rev 244 put the chevron back;
+     support        55.80 × 3; widest 233.13 → 249.38 of 273.00, slack 23.62;
+     notifications  77.98 × 6; TIGHTEST OF ALL 16 — «Your delivery photo is
+                    ready» 218.09 → 233.34 of 245.72, 12.38 of slack;
+     operator-notifications  77.98 × 5; widest 239.67 → 254.66 of 309.00.
+   Every .dr-main reports the same scrollHeight at 600 as at 400 — notifications
+   791 against a 710 client at both, the other three flush.
+   WHAT IS LEFT AT 17/400 IS SAID RATHER THAN LEFT TO BE FOUND:
+   `.dr-listing--service .dr-listing__name` (rev 248), the five service cards on
+   listings — the question rev 266 left open. And on the alert rows the
+   title/description hierarchy rests on size, weight and colour together again,
+   not on size and colour alone. */
 .dr-choice__title{
   display: block;
-  font-size: var(--t-title-size); font-weight: var(--weight-regular);
+  font-size: var(--t-title-size); font-weight: var(--t-title-weight);
   line-height: var(--t-title-line); letter-spacing: var(--t-title-track);
   color: var(--ink);
 }

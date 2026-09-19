@@ -479,14 +479,14 @@ at unless it declares otherwise. Measured departures, and their reason:
 **One size, several roles.** 15px is `heading` at 600/1.2, the button label at 600/1.4, the `.kv`
 value at 600/1.4 tabular, and `.lead` at 400/1.55. **14px joined it on 2026-09-03** with the route
 strip's place name at 400/1.3 — and for two revisions with the choice card's title at
-600/1.4/−0.01em as well, until **rev 221 returned that title to 17**. **17px has three roles since rev
-248:** the `title` step at 600 on the nav bar and the message title; the choice card's title at
-**400** with the same 1.4 leading and −0.01em track — `HIG · Lists and tables`' Body row label (rev
-247); and **the service card's title at 400 / 1.2 / no track** (rev 248), `.dr-listing--service` on
-the five `listings` cards and the two `ui/kit.html` specimens — iOS **Body**, 17pt Regular. **The two
-17/400 titles differ in leading (1.4 against 1.2) and tracking (−0.01em against none)**, recorded
-rather than aligned: the service card took the reading she was shown drawn, and one line makes them
-one treatment. 11px is mono-600 for zone and route labels,
+600/1.4/−0.01em as well, until **rev 221 returned that title to 17**. **17px has two roles since rev
+268:** the `title` step at **600 / 1.4 / −0.01em** on the nav bar, the message title, the map's offer
+name (rev 266) and — **since rev 268** — the choice card's title, which rev 247 had stepped to 400
+and which now takes `--t-title-weight` again; and **the service card's title at 400 / 1.2 / no
+track** (rev 248), `.dr-listing--service` on the five `listings` cards and the two `ui/kit.html`
+specimens — iOS **Body**, 17pt Regular. **That service card is now the only 17/400 in the product**,
+and rev 247's 17/400 pairing is closed rather than carried; whether the service card follows the
+choice card up to 600 is the question rev 266 left open and is hers. 11px is mono-600 for zone and route labels,
 SF-600 for tab labels, and SF-400 for the fee caption **until 2026-08-02, when the designer removed
 that caption** — 11px now carries the mono zone and route labels and the tab label, and the fee
 figure stands alone.
@@ -3262,6 +3262,56 @@ body **273 → 309** in the shell's 375 frame (1138 window), **258 → 290** at 
 at a 375 viewport — returns **101.78 → 77.98**; `main`'s overflow goes **137 → 65** on
 `notifications` and **3 → 0** on `operator-notifications`. **Every title on both logs is one line at
 all three widths, and every row is 77.98.**
+
+### The choice card's title goes back to the title step's 600 (`.dr-choice__title`, rev 268)
+
+**The value is 17/600, leading 1.4, tracking −0.01em, `--ink` on `--card` 14.37:1** — the `title`
+step whole, declared as `--t-title-weight` rather than as a literal 600. The designer, on the built
+`role-select`: *«make weith medium 600»*.
+
+**This reverses rev 247, five days old and hers, and that is reported rather than smoothed.** Rev
+247's recorded objection was that at 600 the row is Headline and *matches the nav-bar title*, itself
+17/600. **`role-select` has no nav-bar title** — on the screen she pointed at there is nothing at
+17/600 to collide with; `support`, `notifications` and `operator-notifications` all have one, and she
+took the component anyway. Scope is the component, the same answer as revs 213, 221 and 247 — all
+**16** instances.
+
+**Both weights conform, and that went to her first.** `HIG · Typography` names **Body 17 Regular**
+*and* **Headline 17 Semibold** — two real text styles at one size, so the guideline picks neither.
+`HIG · Lists and tables` sets a plain row label in Body, which is rev 247's reading; but iOS sets a
+**notification's** title in Semibold over a regular body, and **11 of these 16 rows are alert rows**,
+so on those eleven 600 is the platform's own pattern rather than a departure from it.
+
+**The one-off pairing rev 247 minted is closed, not re-minted.** Rev 247 recorded 17 + 400 as a new
+pairing on the scale; taking `--t-title-weight` puts the component back on the step the nav bar, the
+message title and (rev 266) the map's offer name already carry.
+
+**Measured on the build, 375 × 812, all 16 instances, before the change was written.** Nothing wraps,
+no row grows, no page starts scrolling:
+
+| instance | column | 400 | 600 | slack |
+|---|---|---|---|---|
+| `role-select` · *I need a service done* | 197.00 | 167.13 | **176.44** | 20.56 |
+| `role-select` · *I provide services* | 197.00 | 137.56 | 147.55 | 49.45 |
+| `support` · *The photo or report isn't right* | 273.00 | 233.13 | 249.38 | 23.62 |
+| `notifications` · *Your delivery photo is ready* | 245.72 | 218.09 | 233.34 | **12.38** — tightest of the 16 |
+| `notifications` · *Your photo and video set is ready* | 294.00 | 262.00 | 277.89 | 16.11 |
+| `operator-notifications` · *Olena H. rated your job 5 stars* | 309.00 | 239.67 | 254.66 | 54.34 |
+
+Row heights identical at both weights — `support` **55.80**, `role-select` **76.00**, both logs
+**77.98** — the line box being `17 × 1.4` = **23.8** either way. Every `.dr-main` reports the same
+scrollHeight at 600 as at 400: `notifications` **791** against a **710** client at both, the other
+three flush. The `role-select` column reads **197.00**, not the **241** rev 221 measured, because rev
+244 put the chevron back.
+
+**Standards.** `WCAG 1.4.3` — **14.37:1**; a 17px line is normal text at both weights (bold turns
+large at 18.66px), so the floor is **4.5:1** either way and it passes by **9.87**. Weight is not a
+contrast factor here. `WCAG 1.4.4` holds. `HIG · 44pt` / `WCAG 2.5.8` — no target moves.
+
+**What is left at 17/400, said rather than left to be found:** `.dr-listing--service
+.dr-listing__name` (rev 248), the five service cards on `listings` — the question rev 266 left open.
+On the alert rows the title/description hierarchy rests on size, weight and colour together again
+rather than on size and colour alone: 17/600 `--ink` **14.37:1** over 13/400 `--slate` **5.95:1**.
 
 ### The choice card's title is set at the row weight (`.dr-choice__title`, rev 247)
 
