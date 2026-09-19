@@ -1044,7 +1044,12 @@ opened the drawer, and on the drawer itself — which wears none — when a FING
 WebKit matches `:focus-visible` on a programmatic focus where Chromium does not, so the ring was
 painting a charcoal box round the chosen row on the phone and nothing on the desktop; the sheet
 takes a script-written `tabindex="-1"` and `outline:none`, and `WCAG 2.4.7` does not bind on a
-container that is not in the tab order, so the option's own 2.5px `--ink` ring is untouched); Tab cycles
+container that is not in the tab order, so the option's own 2.5px `--ink` ring is untouched); **the
+hand-back on close is quiet the same way** (rev 272) — focus must return to the opener, which is a
+real control, so it is focused and marked, `[data-quiet]:focus-visible{ outline:none }`, the mark
+removed by the next keydown or the next focus move, measured with `:focus-visible` forced: **0**
+rings painted at open or close over 28 kit drawer instances, the ring back on **28 of 28** after one
+key; Tab cycles
 inside the drawer only; and it closes three ways — **Esc**, the **scrim**, and a **`Cancel`** button
 (`HIG · Action sheets` asks for the cancel by name) — each returning focus to the row that opened
 it. A drawer takes Cancel, not the `×` a full modal sheet screen takes.

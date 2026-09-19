@@ -4444,6 +4444,14 @@ header.dr-topbar,
   padding: var(--sp-snug) var(--sp-screen) var(--sp-24);
   display: flex; flex-direction: column; gap: var(--sp-snug);
 }
+/* AND THE HAND-BACK IS QUIET TOO (2026-09-19, rev 272). Closing the drawer
+   returns the focus to the control that opened it — `WCAG 2.4.3`, and there is
+   nowhere better for it to go — so that control cannot be spared a ring by
+   choosing a different target the way the drawer was. It is marked instead, by
+   `ui/kit.js`, for exactly as long as no key has been pressed: the next keydown
+   or the next focus move takes the mark off, so `WCAG 2.4.7` keeps the ring
+   wherever a keyboard can reach. */
+[data-quiet]:focus-visible{ outline: none; }
 /* THE DRAWER ITSELF TAKES THE FOCUS WHEN A FINGER OPENED IT (2026-09-19, rev
    271), and a surface that is only ever focused by script wears no ring. The
    `tabindex="-1"` is written by `ui/kit.js`, never by a page, so the drawer is

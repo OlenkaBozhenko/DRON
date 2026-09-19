@@ -80,8 +80,33 @@
      activation fires no pointer event at all. Capture phase, so the flag is
      already right by the time the row's own handler runs. */
   var byKey = false;
-  document.addEventListener('keydown', function () { byKey = true; }, true);
+  document.addEventListener('keydown', function () {
+    byKey = true;
+    /* the first key press takes the quiet mark off, so the ring is back before
+       the key it was pressed with can do anything — see quiet() below */
+    var q = document.querySelector('[data-quiet]');
+    if (q) q.removeAttribute('data-quiet');
+  }, true);
   document.addEventListener('pointerdown', function () { byKey = false; }, true);
+  document.addEventListener('focusout', function (e) {
+    if (e.target && e.target.removeAttribute) e.target.removeAttribute('data-quiet');
+  }, true);
+
+  /* A FOCUS THE SCRIPT HANDS BACK AFTER A TAP WEARS NO RING (rev 272). close()
+     must return the focus to the control that opened the drawer — `WCAG 2.4.3`
+     and `HIG · Action sheets` both ask for it, and there is nowhere better for
+     it to go, which is why this is not rev 271's answer twice. So the control
+     is focused and MARKED: `[data-quiet]:focus-visible{ outline: none }` in
+     `ui/kit.css`, and the mark is taken off by the very next keydown or as soon
+     as the focus leaves, so `WCAG 2.4.7` is owed nothing — the ring is back the
+     instant a key is used. `focusVisible: false` is the option the HTML spec
+     gives for exactly this and Firefox already honours it; the mark is what
+     carries the other engines. */
+  function quiet(el) {
+    if (byKey) { el.focus(); return; }
+    el.setAttribute('data-quiet', '');
+    el.focus({ focusVisible: false });
+  }
 
   function sheetOf(row) {
     return document.getElementById(row.getAttribute('aria-controls'));
@@ -141,7 +166,7 @@
     scrim.hidden = true;
     row.setAttribute('aria-expanded', 'false');
     back.setAttribute('aria-expanded', 'false');
-    back.focus();
+    quiet(back);
   }
 
   rows.forEach(function (row) {
