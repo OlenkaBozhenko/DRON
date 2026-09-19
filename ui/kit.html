@@ -329,6 +329,7 @@
         <button class="dr-btn dr-btn--primary dr-btn--block" type="button">View details</button>
       </footer>
     </div>
+    <span class="st">--bleed &#183; the art runs edge to edge, the words keep the 20px gutter &#183; welcome</span>
   </div>
   <div class="notes">
     <p>Status bar <b>44</b> · nav bar <b>56</b> · tabs <b>60</b> + home <b>30</b>. Tab target
@@ -1286,6 +1287,145 @@
     <p><b>The credential sits here, before any tap.</b> That is <code>RJ-C1</code>, the highest
        single drop-off in the CJM: confirm the operator is real and qualified. So the claim chip is
        on the head, not on a page behind a click.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Onboarding slider</b><code>.dr-slider &#183; --bleed &#183; .dr-slide &#183; --floor &#183; __art &#183; .dr-pager</code>
+    <p>Three screens open with it &#8212; <code>welcome</code>, <code>onboarding-client</code>,
+       <code>onboarding-operator</code> &#8212; and it is the only place a picture is allowed to
+       run to the edge of the frame.</p></div>
+  <div class="spec col">
+    <div class="dr dr-screen" style="height:640px">
+      <div class="dr-statusbar"><span>9:41</span></div>
+      <header class="dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__spacer"></span></header>
+      <main class="dr-main">
+        <div class="dr-slider dr-slider--bleed" aria-label="What to expect from DRON">
+          <section class="dr-slide" aria-label="Slide 1 of 3">
+            <p class="dr-display">You order, a pro handles it</p>
+            <p class="dr-lead">Pick a service and pay. A certified DRON operator does the flying &#8212; you never touch the drone.</p>
+            <span class="dr-slide__art"><img src="../assets/scenes/thumbs/handover.png" alt="" decoding="async"></span>
+          </section>
+          <section class="dr-slide" aria-label="Slide 2 of 3">
+            <p class="dr-display">A verified, insured operator</p>
+            <p class="dr-lead">The moment you pay you see their name, photo and live position.</p>
+            <span class="dr-slide__art"><img src="../assets/people/thumbs/wide/operator.png" alt="" loading="lazy" decoding="async"></span>
+          </section>
+        </div>
+        <div class="dr-pager" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+      </main>
+      <footer class="dr-actionbar">
+        <span class="dr-btn dr-btn--secondary dr-btn--block">Skip</span>
+        <span class="dr-btn dr-btn--primary dr-btn--block">Get started</span>
+      </footer>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b><code>--bleed</code> is the one place a picture reaches the frame,</b> and it buys it
+       back: the slide pads its text by <code>--len-20</code> and the art takes a negative margin
+       of exactly that, so the words stay on their own measure while the picture runs edge to edge.
+       Nothing else in the product does this.</p>
+    <p><b>It only works inside a screen, and that is deliberate.</b> The slider is
+       <code>position:absolute; inset:0</code>, and the rule that gives it something to be absolute
+       inside is <code>.dr-screen:has(.dr-slider--bleed) &gt; .dr-main</code> &#8212; the frame
+       itself opts in. The same <code>:has()</code> lifts the status bar, the top bar and the
+       action bar to <code>z-index:1</code>, so the chrome stays over the artwork.</p>
+    <p><b>The art is <code>contain</code>, never <code>cover</code>.</b> These are real photographs
+       of a real handover and a real operator; cropping them to fill a box would cut the subject.
+       <code>--floor</code> is the variant that lets one run to the bottom edge, and it pays for
+       that with <code>object-position: center calc(100% + 7px)</code> &#8212; measured, and the
+       3.1px it overshoots at 200% type is named in <code>kit.css</code> rather than hidden.</p>
+    <p><b>The pager is one element for the whole slider,</b> under it, where the designer put it
+       back after a per-slide pager was tried and reverted. The lit dot is
+       <code>--color-action</code>, the rest <code>--bg-muted</code>.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Alerts log</b><code>.dr-log &#183; .dr-sect &#183; .dr-choice__head &#183; __desc &#183; .dr-chip--unread</code>
+    <p>Days as headings, alerts under them, and a word on the ones you have not read.
+       <code>notifications</code> and <code>operator-notifications</code>.</p></div>
+  <div class="spec">
+    <div class="dr dr-log" style="width:341px;max-width:100%">
+      <section>
+        <h2 class="dr-sect">Today</h2>
+        <ul class="dr-list dr-list--snug" style="list-style:none">
+        <li><a class="dr-choice" href="#">
+          <span class="dr-choice__body">
+            <span class="dr-choice__head">
+              <span class="dr-choice__title">Your delivery photo is ready</span><span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+            </span>
+            <span class="dr-choice__desc">Package delivery &#183; 10:12</span>
+          </span>
+        </a></li>
+        <li><a class="dr-choice" href="#">
+          <span class="dr-choice__body">
+            <span class="dr-choice__head">
+              <span class="dr-choice__title">Ivan is 2 minutes away</span><span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+            </span>
+            <span class="dr-choice__desc">Package delivery &#183; 10:03</span>
+          </span>
+        </a></li>
+        </ul>
+      </section>
+      <section>
+        <h2 class="dr-sect">Yesterday</h2>
+        <ul class="dr-list dr-list--snug" style="list-style:none">
+        <li><a class="dr-choice" href="#">
+          <span class="dr-choice__body">
+            <span class="dr-choice__head">
+              <span class="dr-choice__title">Order completed</span>
+            </span>
+            <span class="dr-choice__desc">Inspection &#183; 17:40</span>
+          </span>
+        </a></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>The date heading took the job <i>New</i> / <i>Earlier</i> used to do,</b> and that is why
+       <code>--unread</code> exists at all: once a group is a <i>day</i>, an alert still unread
+       from yesterday has no heading left to sit under. So unread came off the heading and rode the
+       row.</p>
+    <p><b>It is a word, so <code>WCAG 1.4.1</code> is no more engaged than before.</b> The chip
+       reads <i>New</i>; the tint is decoration the word does not depend on. It shares one
+       declaration with the claim chip and the availability badge &#8212;
+       <code>--bg-accent-tint</code> under <code>--text-primary</code> at <b>14.75:1</b> &#8212;
+       because the kit states a value once.</p>
+    <p><b><code>.dr-sect</code> is a real <code>&lt;h2&gt;</code></b>, 13/600 in
+       <code>--text-muted</code>, so the log has an outline a screen reader can jump through
+       instead of a run of visually-grouped rows.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Pay list &#183; share channels</b><code>.dr-paylist &#183; .dr-paymark--pay &#183; .dr-sheet__channels &#183; .dr-channel</code>
+    <p>Two rows of ways out: how you pay, on <code>order-review</code>, and where you send it, on
+       <code>share</code>.</p></div>
+  <div class="spec col">
+    <div class="dr dr-paylist" style="width:341px;max-width:100%">
+      <span class="dr-btn dr-btn--pay dr-btn--block" role="img" aria-label="Pay with Apple Pay">Apple&#8201;Pay</span>
+      <span class="dr-btn dr-btn--primary dr-btn--block"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.4"/><path d="M3 10.4h18"/><path d="M6.5 14.4h3.5"/></svg>Pay with card</span>
+    </div>
+    <span class="st">the brand buttons first, ours last &#183; order-review</span>
+    <div class="dr-sheet__channels" style="width:341px;max-width:100%">
+      <span class="dr-channel"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.6a8.5 8.5 0 0 1-8.5 8.4c-1.6 0-3.1-.4-4.4-1.2L3 20l1.2-5.1A8.5 8.5 0 1 1 21 11.6z"/></svg>Message</span>
+      <span class="dr-channel"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7.5l9 6 9-6"/></svg>Email</span>
+      <span class="dr-channel"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>More</span>
+    </div>
+    <span class="st">a glyph over its label, on the secondary pair &#183; share</span>
+  </div>
+  <div class="notes">
+    <p><b>The pay buttons are the palette&#8217;s one licensed exception.</b> Apple and Google each
+       permit a host three fills on a button that <i>initiates</i> their payment &#8212; black,
+       white, white-with-outline &#8212; and forbid the rest, so
+       <code>--bg-pay</code> / <code>--on-pay</code> leave the warm ramp on purpose. Our own
+       <i>Pay with card</i> keeps <code>--color-action</code> and comes last.</p>
+    <p><b>A channel is not a button with an icon, it is a glyph over a label.</b> Column layout,
+       22px glyph, 12/600 caption, on the secondary pair <code>--bg-muted</code> under
+       <code>--text-primary</code> at <b>11.54:1</b>, each one filling an equal share of the row
+       and each at least <code>--h-control</code> tall.</p>
   </div>
 </div>
 
