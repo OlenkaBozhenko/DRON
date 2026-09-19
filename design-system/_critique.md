@@ -375,7 +375,99 @@ retirement; §06 and §07 here carry the measurements. The chip's note now ends 
 the blue chip stood there until rev 157 and where to read why — so a rejected idea still cannot
 come back as a new one.
 
-**Checked after the cut:** 189 `.dr-*` classes remain in the showcase, **every one of them has a
-rule** in `components/` or in the page's own chrome, and **not one of them is absent from the
-wireframes**. 464 elements carry a `dr-` class and **none has a zero box**. HTML nesting validates
-with no unclosed tag.
+**Checked after the cut:** 189 `.dr-*` classes remained in the showcase, **every one of them with
+a rule** in `components/` or in the page's own chrome, and **not one absent from the wireframes**.
+464 elements carried a `dr-` class and **none had a zero box**. HTML nesting validated with no
+unclosed tag. (Those figures are the state at that cut; §08 re-counts after the sweep that
+followed.)
+
+---
+
+## §08 — The two-way sweep against the frames
+
+The cut above answered one question: *does the showcase draw something the product does not?* It
+did not answer the other one: *does the product draw something the showcase does not?* This sweep
+asks both, in both directions, off the filesystem.
+
+**The rule it is run under, in the designer's words:** `wairframes не чіпати якщо знаходиш
+розбіжності робиш так як у wairframes` — touch nothing in `wireframes/`; where a divergence is
+found, the other file moves. Nothing in `wireframes/` was edited for any finding below.
+
+### 08a — Base frames are the design; state frames have fallen behind
+
+`CLAUDE.md` sets it: *base file = normal/success; `-empty` / `-error` / `-loading` are separate
+files with the same structure.* A page self-labels its state in the shell header, and the label is
+written four ways — `success (base)`, `base only`, `base`, or the state's own name. Matching only
+`(base)` in parentheses mis-files `account`, `call`, `chat`, `switch-role` and `notifications` as
+states, which is the error that made this sweep wrong on its first run.
+
+Counted correctly: **72 base pages, 53 state pages, 3 option partials.**
+
+**Where a base and its states disagree, the base wins and the states are stale.** `listings.html`
+(edited 15 Sep) draws the finder; its four state files (edited 10 Sep) still draw the
+`.dr-groups--tabs` underline row the finder replaced. The showcase was twice corrected off those
+state files before the rule was applied. Nothing was changed in either — the state pages keep their
+own history, and the showcase now reads the base.
+
+### 08b — What the base frames draw and the showcase did not (closed)
+
+**24 classes**, all now in `ui/kit.html`, added across four passes and measured in the browser:
+
+| Group | Classes | Where it came from |
+|---|---|---|
+| The finder's route | `.dr-route__open` `__swap` `--single` | the frame builds each row as a `<button aria-haspopup="dialog">`; the showcase drew static `<span>`s |
+| The drawers it opens | `.dr-sheet--steady` `--tall` `__scroll` `.dr-picker__lead` `__sub` | `listings`, `listings-filters` |
+| The price shelf | `.dr-price` `__lbl` `__val` | `time-slot`, `time-slot-inspection` |
+| Cards | `.dr-card__link` `.dr-card__row` | `order-history`, `wallet` |
+| The card field | `.dr-field__marks` `.dr-paymark--fit` | `account-edit` |
+| Zone rungs | `.dr-main--zones` `--center` `.dr-stack--zones` `.dr-center--tight` `.dr-rail--zone` `.dr-rows__row--stack` | `rate`, `support`, `role-select`, `switch-role`, `account-edit`, `tracking`, `inspection-report` |
+| Leftovers | `.dr-slide--floor` `.dr-call__side--empty` `.dr-note--balance` | `onboarding-operator`, `call-support`, `account-photo` |
+
+**Re-run after the last pass: 0 classes in the base frames are missing from the showcase.**
+
+### 08c — What the showcase drew and no frame does (two findings)
+
+The reverse run turns up **52** classes in the showcase that no *base* frame carries — **50**
+after the two findings below were removed. Thirty of them are correct and stay: `.dr-sk-*`, `.dr-msg*`, `.dr-mark--danger` / `--warn`, `.dr-hint`,
+`.dr-inset--sk`, `.dr-well--acquiring`, `.dr-avail*` — these are the empty / error / loading
+components, and a state component by definition lives only on a state page. Twenty are built by a
+script rather than written in markup, so a source grep cannot see them: **twelve** `.dr-kb*`
+(`ui/kit.js`), three `.dr-cal__day` / `--today` / `.dr-cal__time`, `.dr-fchip` / `__x` and
+`.dr-range__bar--in` (the four `listings` pages) — **nineteen**. The twentieth,
+`.dr-backlink`, is the showcase's own chrome, not a product class at all.
+
+That leaves two real ones.
+
+**1. `.dr-chip--live` was invented in the showcase.** It stood on the *card that is one link*
+specimen, reading *In progress*. It is in **no frame, no page script and no stylesheet** — not in
+`components/`, not even in `ui/kit.css`. It had no rule, so it rendered as a bare `.dr-chip` and
+looked plausible.
+
+*Corrected as the frame builds it.* `order-history` marks a live order two ways and neither is a
+chip: a `.dr-status .dr-status--live` dot on the `.dr-well` over the drone, with
+`role="img" aria-label="In progress"`, and a plain `.dr-chip` in the fee row carrying a clock and
+*ETA ~6 min*. The specimen now draws both.
+
+**2. `.dr-fchip--all` is a rule with no surface.** `components/badge.css` declares
+`.dr-fchip--all{ background: var(--bg-muted) }` — ported faithfully out of `ui/kit.css`, which
+declares it too. Nothing applies it: not one of the 125 wireframes, not the partials, and not the
+chip-building script, which sets `chip.className = 'dr-fchip'` and nothing else.
+
+*Removed from the showcase, kept in the stylesheet.* Drawing it implies the product has an *All*
+chip, and it does not. The rule stays in `badge.css` because the port is a port and this file is
+where the finding belongs — it joins the 22 variables and 38 dead classes `tokens-audit.md`
+already records as declared-with-no-surface. **If it is still unused when `components/` is
+trimmed, it goes with them.**
+
+The same pass corrected the chips' element: the script builds a `<button type="button">` with
+`aria-label="Remove filter: {label}"`, and the showcase drew `<span>`s. A removable filter that is
+not a button is not operable by keyboard — `WCAG 2.1.1` — and the name it is given puts the drawn
+text inside the accessible name, which is what `WCAG 2.5.3` asks.
+
+### 08d — After the sweep
+
+**324** `.dr-*` classes in the showcase, **0** absent from the wireframes once script-built and
+state-only classes are traced to the page or script that builds them, **0** with a zero box, **0**
+console errors, and no element in a specimen wider than its frame. **66** specimen rows. Every
+figure here was read off the rendered page, not the source.
+
