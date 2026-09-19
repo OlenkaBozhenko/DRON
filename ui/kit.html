@@ -1040,6 +1040,98 @@
 </div>
 
 <div class="row">
+  <div class="nm"><b>The call screen</b><code>.dr-call &#183; __top &#183; __who &#183; __name &#183; __time &#183; __side &#183; __stage &#183; __avatar &#183; __bar</code>
+    <p><b>The product&#8217;s one dark surface</b>, and the only screen the <i>platform</i> owns
+       rather than the product. Three files: <code>call</code>, <code>call-client</code>,
+       <code>call-support</code>.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:stretch;padding:0">
+      <div class="dr dr-call" style="width:100%;border-radius:var(--len-22);overflow:hidden">
+        <div class="dr-statusbar"><span>9:41</span></div>
+        <div class="dr-main" style="padding-block:var(--len-12)">
+          <div class="dr-call__top">
+            <span class="dr-btn dr-btn--icon dr-btn--night" role="img" aria-label="Minimise the call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 3.5l6 6"/><path d="M4.5 9.5h5v-5"/><path d="M20.5 20.5l-6-6"/><path d="M19.5 14.5h-5v5"/></svg></span>
+            <span class="dr-call__who">
+              <span class="dr-call__name">Andriy M.</span>
+              <span class="dr-call__time"><span class="dr-sr">Call duration </span><time datetime="PT2M14S">02:14</time></span>
+            </span>
+            <span class="dr-call__side">
+              <span class="dr-btn dr-btn--icon dr-btn--night" role="img" aria-label="Add support to the call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="8" r="3.4"/><path d="M3.5 20c0-3.4 2.9-5.8 6.5-5.8 1.1 0 2.1.2 3 .6"/><path d="M18 14.6v5.8"/><path d="M15.1 17.5h5.8"/></svg></span>
+            </span>
+          </div>
+          <div class="dr-call__stage">
+            <span class="dr-call__avatar" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.4" r="4"/><path d="M4.4 20.6c0-4.2 3.4-7 7.6-7s7.6 2.8 7.6 7"/></svg></span>
+          </div>
+        </div>
+        <div class="dr-actionbar">
+          <div class="dr-call__bar">
+            <span class="dr-btn dr-btn--icon dr-btn--night" role="img" aria-label="Video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6.6" width="12.4" height="10.8" rx="2.4"/><path d="M15.4 10.6l5.1-2.9v8.6l-5.1-2.9z"/></svg></span>
+            <span class="dr-btn dr-btn--icon dr-btn--night" role="img" aria-label="Speaker"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.4h3.3L12 5.4v13.2l-4.7-4H4z"/><path d="M16.1 9.6a3.6 3.6 0 0 1 0 4.8"/><path d="M18.7 7a7.2 7.2 0 0 1 0 10"/></svg></span>
+            <span class="dr-btn dr-btn--icon dr-btn--night" role="img" aria-label="Mute"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9.2" y="3.4" width="5.6" height="11" rx="2.8"/><path d="M5.5 11.4a6.5 6.5 0 0 0 13 0"/><path d="M12 17.9v2.7"/></svg></span>
+            <span class="dr-btn dr-btn--icon dr-btn--danger-solid" role="img" aria-label="End call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 14.3a12 12 0 0 1 17.2 0"/><path d="M3.4 14.3l1.7 1.7a1.5 1.5 0 0 0 2.1 0l1.1-1.1a1.5 1.5 0 0 0 0-2.1l-.7-.7"/><path d="M20.6 14.3l-1.7 1.7a1.5 1.5 0 0 1-2.1 0l-1.1-1.1a1.5 1.5 0 0 1 0-2.1l.7-.7"/></svg></span>
+          </div>
+          <div class="dr-home"><span></span></div>
+        </div>
+      </div>
+      <span class="st">--bg-night ground &#183; avatar disc 176 &#183; four controls, one of them red</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>It is not a second theme and it is not a dark mode.</b> It is the one surface a call
+       takes over the screen for, the way CallKit, FaceTime, WhatsApp and Telegram all do whatever
+       the app&#8217;s theme is. <code>--bg-page</code> stays the ground on every other screen in
+       the product.</p>
+    <p><b>One new colour, not two.</b> <code>--bg-night</code> is <code>--text-primary</code>&#8217;s
+       own <code>#1A1A1A</code> under the name of the role it plays here; only
+       <code>--bg-night-raised</code> <code>#2E2E2E</code> is a value the system did not have. The
+       step between them is <b>1.28:1</b> &#8212; between the card-on-page 1.11 and the
+       muted-on-card 1.25.</p>
+    <p><b><code>--text-muted</code> is barred on this ground and the number is why:</b>
+       <b>2.42:1</b>, a real <code>WCAG 1.4.3</code> failure. The dimmer ink here is
+       <code>--text-on-night-muted</code> at <b>11.54:1</b>, and the bright one is
+       <code>--text-on-night</code> at <b>15.99:1</b> &#8212; the toast&#8217;s own pair, inverted.</p>
+    <p><b>The red is the one fill the danger hue takes.</b> End call is
+       <code>--bg-danger-solid</code>; everywhere else in the product danger is a <i>word</i> in
+       <code>--color-danger</code>. Each control is a 44 circle, and the label is on the button,
+       not under it.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="nm"><b>Rating input</b><code>.dr-rating &#183; .dr-star &#183; .dr-display--balance &#183; .dr-center--tight &#183; .dr-main--zones</code>
+    <p>Five buttons, one screen &#8212; <code>rate</code> &#8212; and the only place in the product
+       where a score is <i>given</i> rather than reported.</p></div>
+  <div class="spec">
+    <div class="plate wide" style="align-items:center">
+      <p class="dr-display dr-display--balance" style="text-align:center">How did Andriy do?</p>
+      <div class="dr dr-rating" role="group" aria-label="Rating">
+        <button class="dr-star" aria-pressed="true" type="button" aria-label="1 star"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
+        <button class="dr-star" aria-pressed="true" type="button" aria-label="2 stars"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
+        <button class="dr-star" aria-pressed="true" type="button" aria-label="3 stars"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
+        <button class="dr-star" aria-pressed="true" type="button" aria-label="4 stars"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
+        <button class="dr-star" aria-pressed="false" type="button" aria-label="5 stars"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
+      </div>
+      <span class="st">star 32 in a 44 target &#183; filled --color-rating &#183; empty --color-rating-empty</span>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>An input, and that is what separates it from the score on a card.</b> Five real
+       <code>&lt;button&gt;</code>s, each a <code>HIG &#183; 44pt</code> target carrying
+       <code>aria-pressed</code>. A read-only score must never be a row of buttons announcing a
+       pressed state it cannot change (<code>WCAG 4.1.2</code>) &#8212; that one is written as a
+       number instead.</p>
+    <p><b>The colour is never the carrier.</b> The filled star is <code>--color-rating</code>
+       <code>#E4A11B</code>, which is <b>2.05:1</b> on the page &#8212; under
+       <code>1.4.11</code>&#8217;s 3:1 if it stood alone. It does not: the fill pairs with
+       <code>aria-pressed</code>, and the empty star is
+       <code>--color-rating-empty</code> &#8212; grey, with no outline. Shape and state, not hue.</p>
+    <p><b>The star is the one glyph in the system that fills instead of stroking</b> &#8212; a
+       rating is a quantity, not an icon. Everything else on the 24-grid is
+       <code>--ic-stroke</code> 1.7 in <code>currentColor</code> with no fill.</p>
+  </div>
+</div>
+
+<div class="row">
   <div class="nm"><b>Balance block</b><code>.dr-balance &#183; --card &#183; --banner &#183; __glyph &#183; __body &#183; .dr-rating-arc</code>
     <p>A figure and the line that names it &#8212; and since <code>wallet</code> and
        <code>ratings</code> were painted, a <b>filled card carrying artwork</b> rather than two
