@@ -1621,9 +1621,9 @@
 
 
 <div class="row">
-  <div class="nm"><b>In-page tabs &#183; count &#183; filter chip</b><code>.dr-groups &#183; --tabs &#183; .dr-grouptab &#183; __count &#183; .dr-fchips &#183; .dr-fchip &#183; --all &#183; __x</code>
-    <p>Three rows that all say <i>which of these</i>: the pill row with a count, the underline row,
-       and the chips that report what the filter sheet did.</p></div>
+  <div class="nm"><b>In-page tabs &#183; count &#183; filter chip</b><code>.dr-groups &#183; .dr-grouptab &#183; __count &#183; .dr-fchips &#183; .dr-fchip &#183; --all &#183; __x</code>
+    <p>Two rows that say <i>which of these</i>: the pill row with a count, and the chips that
+       report what the filter sheet did.</p></div>
   <div class="spec col">
     <div class="plate" style="padding:0;width:375px;max-width:100%;overflow:hidden">
       <div class="dr dr-main" style="width:100%;padding-block:0;background:var(--bg-page)">
@@ -1634,17 +1634,7 @@
       </div>
     </div>
     <span class="st">pill row, inside .dr-main &#183; 374 &#215; 48, bled &#8722;16 &#183; pills 108 and 89 &#215; 32 &#183; operator-listings</span>
-    <div class="plate" style="padding:0;width:375px;max-width:100%;overflow:hidden">
-      <div class="dr" style="width:100%;background:var(--bg-page)">
-        <nav class="dr-groups dr-groups--tabs" aria-label="Service categories">
-        <span class="dr-grouptab" aria-current="true">All</span>
-        <span class="dr-grouptab">Delivery</span>
-        <span class="dr-grouptab">Aerial photo &amp; video</span>
-        <span class="dr-grouptab">Inspection</span>
-      </nav>
-      </div>
-    </div>
-    <span class="st">--tabs, on the screen &#183; four equal shares, 91 &#215; 47, cut to fit &#183; listings-empty, -error, -filtered, -loading</span>
+    
     <div class="plate" style="width:341px;max-width:100%;align-items:stretch">
       <section class="dr-fchips" aria-label="Applied filters">
         <span class="dr-fchip dr-fchip--all">All <span class="dr-fchip__x" aria-hidden="true">&times;</span></span>
@@ -1655,13 +1645,7 @@
     </div>
   </div>
   <div class="notes">
-        <p><b>Where the underline row sits changes how it divides.</b> On the screen it is
-       <code>flex: 1 1 0</code> &#8212; <b>four equal shares of 91</b>, each label cut to its share
-       with an ellipsis, which is what <code>listings-empty</code> draws. Put the same row inside
-       <code>.dr-main</code> and <code>kit.css</code> switches it to
-       <code>flex: 0 0 auto; min-width: max-content</code>: content-sized and scrollable instead.
-       Two behaviours, one class, and the parent is the switch &#8212; so the specimen above puts
-       each row in the parent its own screen gives it.</p>
+        
     <p><b>The count is a badge and not a separator.</b> It was <code>Incoming &#183; 2</code>; it is
        now <code>.dr-grouptab__count</code> &#8212; an 18px pill on
        <code>--bg-accent-tint</code> with the digit in <code>--text-primary</code> at
@@ -1669,11 +1653,7 @@
        <code>WCAG 4.1.2</code> needs nothing added. The badge&#8217;s edge is <b>1.56:1</b> on the
        chosen pill, which is fine: it is a shape around text, not a state, so
        <code>1.4.11</code> does not bind on it.</p>
-    <p><b><code>--tabs</code> is the same row with the pill taken off.</b> The chosen tab is a
-       2px underline in <code>--text-primary</code> and the row carries a full-bleed hairline under
-       it. The hit area stops being a bleed and becomes the rule &#8212; the tab is the row&#8217;s
-       full 47px height, so <code>HIG &#183; 44pt</code> is cleared by the box itself with 3 to
-       spare, and the focus ring turns inward so it cannot paint over the card below.</p>
+    
     <p><b>The applied filter sits on the tint with no boundary, and its remove control is solid.</b>
        <code>.dr-fchip__x</code> is an 18px <code>--color-action</code> pill carrying a charcoal
        cross at <b>9.46:1</b> &#8212; a status-mark spend, like the checked box. The leading
