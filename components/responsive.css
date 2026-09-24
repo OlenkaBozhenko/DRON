@@ -54,6 +54,20 @@
     gap: var(--len-18);
     padding: var(--len-24) var(--len-16);
   }
+
+  /* THE COVER CARD KEEPS ITS OWN NOTHING. kit.css's narrow block writes only
+     .dr-card{gap} and gets the padding from the --sp-group re-binding, which
+     .dr-card--cover escapes by declaring padding:0 later at equal weight. Here
+     the padding IS written on .dr-card, inside a media block that cascades after
+     card.css, so the cover card would take the 24/16 it was built to refuse.
+     ONLY THE PADDING. The gap is not the same case: kit.css's narrow block
+     writes a literal .dr-card{gap} that beats --cover there too, so 18 at this
+     width is kit's own outcome and restating gap:0 here would be a change, not
+     a restoration - measured at 380 on order-details-aerial, which is the one
+     page that draws the cover card. */
+  .dr-card--cover{
+    padding: 0;
+  }
   .dr-card--compact{
     padding: var(--len-16) var(--len-16);
   }
@@ -79,6 +93,16 @@
     bottom: var(--len-16);
     padding: var(--len-12) var(--len-16);
   }
+
+  /* AND THE TOAST THAT FLOATS ABOVE A DRAWER KEEPS ITS OWN FLOOR. Same shape,
+     found by reading the cascade rather than by rendering: --over-sheet is
+     script-raised, so no page shows it at rest and no sweep can reach it. Its
+     bottom is calc(100% + 12) off the sheet's top edge, not a distance from the
+     frame floor, and the narrow .dr-toast{bottom} would have dropped it onto
+     the sheet it is meant to clear. */
+  .dr-toast--over-sheet{
+    bottom: calc(var(--pct-100) + var(--len-12));
+  }
   .dr-slider--bleed .dr-slide{
     padding: calc(var(--len-16) + var(--len-32)) var(--len-16) 0;
   }
@@ -97,6 +121,18 @@
   .dr-well{
     width: var(--len-68);
     height: var(--len-68);
+  }
+
+  /* AND THE TWO WELLS THAT SIZE THEMSELVES HAVE TO SAY SO AGAIN. Same trap as
+     --snug above, and this one was live: kit.css re-binds --sz-well-w/h, which
+     .dr-well--map and .dr-well--photo never read - they set width/height to auto
+     and take their box from an aspect-ratio or from the picture. Written out as a
+     literal on .dr-well, the narrow tier out-cascaded both and squared them to 68.
+     Measured on job-brief at 380: the map well fell from 322 x 161.80 to 68 x 68
+     and everything under it rose 93.80px. */
+  .dr-well--map, .dr-well--photo{
+    width: auto;
+    height: auto;
   }
   .dr-sk-well{
     width: var(--len-68);
