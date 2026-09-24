@@ -36,6 +36,17 @@
     gap: var(--len-22);
   }
 
+  /* AND THE MODIFIER HAS TO BE RE-ASSERTED, WHICH THE RE-BINDING DID NOT NEED.
+     kit.css re-binds --sp-list on :root, so .dr-list--snug's own gap (8) simply
+     kept winning by being a later rule of equal weight. Written out as a rule on
+     .dr-list, the narrow tier lands INSIDE a media block that cascades after
+     list.css - so it beat the modifier and every snug list opened from 8 to 22
+     below 389px. Measured on notifications at 380: the log grew 28px.
+     Re-stating --snug here restores kit's own outcome: base 22, snug 8. */
+  .dr-list--snug{
+    gap: var(--len-8);
+  }
+
   /* --sp-group 20 -> 16 */
   /* gap is --sp-18 here, not --sp-group's 16: kit.css's narrow rule lands
      after the re-binding and wins. Padding still follows --sp-group. */
