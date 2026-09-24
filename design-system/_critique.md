@@ -732,3 +732,134 @@ One side effect, kept: the caption rule was written `.plate .st`, and the 24 cap
 directly under a specimen rather than inside a plate had been rendering as body text since they
 were written. The selector is now `.st`, so every caption on the page reads as the mono label it
 was meant to be.
+---
+
+## §11 — The frames move off `ui/kit.css`, and what that cost
+
+The designer, 2026-09-24: `Переведи всі екрани wireframes/*.html зі сторінками станів з ui/kit.css
+на tokens.css і components/index.css … Це рефакторинг: вигляд не має змінитися ні на піксель. Якщо
+чогось не вистачає або протирічить добавляй в компоненти не у Wireframes … Знайшов різницю —
+лагодиться tokens.css чи components/, не екран.`
+
+**127 pages moved, one line each** — 127 files, 127 insertions, 127 deletions, and the only line
+that moved is the last `<link>`. `_navbar-options.html` is the 128th file in the directory and is
+not in the count: it links no stylesheet at all. `ui/kit.css` is not deleted; it stays as the
+archive, and as the thing every comparison below is run against.
+
+Split by role across four passes — **Спільне 18 · Оператор 36 · Клієнт 58 · Взаємодія 15** — each
+of which swapped its own pages and then had to prove the swap changed nothing.
+
+### 11a — How "not a pixel" was made checkable
+
+A claim that two stylesheets agree is worth exactly what the method behind it is worth, so the
+method is written down.
+
+A page is loaded **once**. The `<link>` is replaced in place — same cascade position — with
+`ui/kit.css`, and every element is fingerprinted: its box, its `scrollWidth`/`scrollHeight`, **151
+computed properties**, and the same 151 again for `::before` and `::after` wherever they exist. The
+link is then replaced with `components/index.css` and the page is fingerprinted again. Only
+differences are reported. The DOM is never reloaded between the two passes, so element identity is
+exact rather than matched by guesswork.
+
+**Three things had to be got right before any of its answers meant anything**, and each was found
+by the harness disagreeing with itself:
+
+1. **The sheet loads before its imports apply.** `components/index.css` is 31 `@import`s; the
+   link's own `load` event fires before they land. The wait now walks every nested import and then
+   waits for the total reachable rule count to stop moving.
+2. **Chrome resolves `var()`-driven computed values a tick after a link is replaced.** Measured:
+   the primary button read `rgba(0,0,0,0)` immediately after the swap and `rgb(155,207,74)` 800ms
+   later. The harness now waits for the rendered result to stop changing, not for the sheet to load.
+3. **A stylesheet swap restarts every animation and transition the new sheet declares.** Freezing
+   them all at frame 0 froze a risen drawer back down and a settled button colour back to its
+   pre-swap value. Finite ones are now jumped to their end; only the infinite loops — skeleton
+   pulse, live ring — are frozen at 0, where both passes agree.
+
+**The self-test is the licence.** Run with `kit.css` on *both* sides, the harness reports **0
+differences** on every page tried, including a loading page full of skeleton animation. Until that
+was true, every finding was suspect — and the first three "findings" it produced were its own.
+
+### 11b — Four gaps, and none of them was visible in a stylesheet
+
+**1 · The prototype layer still speaks kit.css's names.** `_wf-shell.js` reads nine token names and
+the two option partials read six more; `tokens.css` defines **none** of them. Eight of the nine
+shell fallbacks happen to equal kit's value, so they hid — but `var(--r-btn, 6px)` against kit's
+**12px** did not, and the language toggle rendered at 6 on **124 pages**. The partials lost their
+ground and their ink outright. `components/wireframe-compat.css` declares the fourteen names, each
+bound to the token that already carries the value; no hex and no px is written into it.
+
+**2 · `ui/kit.js` writes two more of them into *inline styles*.** When the onscreen keyboard rises,
+the lifted drawer's `bottom` and the bar's or main's `margin` are all
+`calc(var(--h-kb) + var(--h-control))`. An undefined var makes the whole `calc()` invalid at
+computed-value time, so the property falls back to `auto` — and the open drawer jumped **62.20px**
+to the top of the frame. **This exists only with the drawer open.** No default-state sweep of any
+size would have found it; the harness learned to drive a state open first, and found it on the
+designer's own control screen.
+
+**3 · Two rules the port left behind.** `kit.css:2979–2984` sizes the edit disc on a head with no
+rating pill at **44** with a **22** glyph. `account` and `operator-account` both match it — the
+rating pill was cut at rev 204 — and both rendered at **20/12**. §09d had reported the unported
+rules as "drawn on no page"; that reading was taken off **class names**, and both classes here do
+exist. It was the *compound* selector that was never ported. A class-level audit cannot see that.
+
+**4 · The narrow tier beats modifiers the token re-binding never could.** This is the deepest one
+and it is structural. `kit.css` spends the `≤389px` breakpoint by **re-binding four tokens on
+`:root`** — a change that reaches only the rules that *read* those tokens. `components/` cannot do
+that (its lengths are named by their value: `--len-20` **is** 20), so the tier is **written out per
+selector** — and a written-out rule sits inside a media block that cascades *after* the component
+file, where it beats any modifier that was escaping the token by declaring its own value.
+
+Four modifiers were losing:
+
+| Modifier | What it declares | What it was getting below 389px | Live? |
+|---|---|---|---|
+| `.dr-list--snug` | `gap: 8` | **22** | yes — notifications, +28px of log |
+| `.dr-well--map` · `--photo` | `width/height: auto`, box from an aspect-ratio | **68 × 68** | yes — 10 pages; the map well fell from **322 × 161.80** and everything under it rose **93.80px** |
+| `.dr-card--cover` | `padding: 0` | **24 / 16** | yes — `order-details-aerial` |
+| `.dr-toast--over-sheet` | `bottom: calc(100% + 12)` off the sheet's top edge | the frame floor, under the sheet it clears | no page shows it at rest |
+
+The last one is the one worth keeping in mind: `_wf-shell.js` builds it when a toast fires over an
+open drawer, so **no sweep at any viewport could have reached it**. It was found by reading the
+cascade after the other three had taught what to look for.
+
+And the third one taught its own lesson: re-stating `gap: 0` alongside `padding: 0` was *wrong*,
+because `kit.css`'s narrow block writes a literal `.dr-card{gap}` that beats `--cover` there too.
+18 at that width is kit's own outcome; restating it would have been a change, not a restoration.
+`order-details-aerial` — the one page that draws the card — is what said so.
+
+**The rule this leaves behind:** any modifier that overrides a property the narrow tier writes out
+has to be re-stated inside that media block. It is now written at the top of `responsive.css` and
+in `index.css`'s header, where the next person will meet it.
+
+### 11c — What was measured, and what each check covers
+
+| Check | Scope | Result |
+|---|---|---|
+| Harness self-test (`kit.css` against itself) | 8 pages incl. a loading page | **0** |
+| `kit.css` vs `components/` per page | **127** pages @ 1280 | **0** |
+| `kit.css` vs `components/` per page | **127** pages @ 380 | **0** |
+| Pre-migration build vs migrated build, end to end | **127** pages @ 1280 | **0** |
+| Same, narrow tier | 4 control screens @ 380 | **0** |
+| Open states — drawers, nested drawers, keyboards, checked radios, toggles, pickers, the availability switch, forced `aria-pressed` | ~40 surfaces across the four groups | **0** |
+| `prefers-reduced-motion: reduce` | 5 animated pages | **0** |
+| Showcase `ui/kit.html` under both sheets | whole page | **30 → 0** |
+| Behaviour (drawer + focus return, keyboard lift, pager, shell tree) | old build vs new build | identical |
+| Unported selectors matched by any page | 78 selectors × 127 pages | **0** |
+
+**The showcase's 30 is the one that is not a zero**, and it is the useful one. `ui/kit.html` has
+read `components/` since the port, so it was never rendering what the frames render: its
+edit-disc specimen drew **20 × 20** where `kit.css` draws **44 × 44**. The showcase had been
+carrying the defect that finding 3 fixed. It now agrees with `kit.css` across the whole page.
+
+### 11d — Left standing, and named rather than swept
+
+- **`ui/shell.html`** still links `kit.css`. It is outside `wireframes/` and outside what was
+  asked; it is the grayscale shell reference and it is the last page on the archive.
+- **`wireframes/_conventions.md`** names `ui/kit.css` as the painted layer in five places, and
+  `.claude/prompts/operator-paint.md` tells a new page to link it. Both are contracts for work
+  that has not happened yet, and both would put the next page on the archive. Not edited —
+  `_conventions.md` is in `wireframes/`, and the standing rule is that nothing there moves without
+  the designer's word.
+- **The comparison harness** lives in a session scratchpad, not in the repo. Every number in this
+  section is reproducible only while it does.
+
