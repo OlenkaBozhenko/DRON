@@ -270,8 +270,14 @@ client side, from [`listings`](wireframes/listings.html) through
 [`order-history`](wireframes/order-history.html), [`tracking`](wireframes/tracking.html),
 [`delivery`](wireframes/delivery.html) and their states. The remaining **19 screens** — every
 operator screen plus client entry — are still grayscale. **The per-page `<style>` block is gone:**
-every painted page links one shared [`ui/kit.css`](ui/kit.css), so a component cannot drift between
-two screens by being pasted twice. Three pages keep CSS of their own and only one is alive
+every page links one shared stylesheet, so a component cannot drift between two screens by being
+pasted twice. **Since 2026-09-24 that stylesheet is [`components/index.css`](components/index.css)
+and not `ui/kit.css`** — all 127 pages were moved onto the token + component layer
+(`tokens.css` + 31 component files). `ui/kit.css` is kept, unlinked, as the archive of why every
+value is what it is. The move was a refactor and is measured as one: every page computes
+identically under both stylesheets — every box and 151 properties per element, at 1280 and at 380,
+with drawers, keyboards and pressed states open. Four gaps were found that way and all four were
+closed in `components/`, never in a frame. Three pages keep CSS of their own and only one is alive
 (`switch-role`'s `.success-mark:has(img)`); the blocks on `account` and the `listings` files are
 dead grayscale left over from before they were painted, and the kit wins every product surface —
 measured. The set is audited against `concept.md` and the findings are closed in the change log,
