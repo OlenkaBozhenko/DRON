@@ -1,0 +1,51 @@
+/* wireframe-compat.css
+   DRON component layer - the one file here that is NOT a component.
+
+   The prototype layer around the frames still speaks kit.css's token names:
+   the shell script that injects the screen tree, the toolbar and the language
+   toggle (wireframes/_wf-shell.js), and the page <style> blocks of the two
+   option partials. Those files are wireframes/, which is the source of truth
+   and is not edited, so the names they read are declared here instead.
+
+   Every alias is bound to the token that already carries the value - no hex,
+   no px is written into this file, and nothing under .dr reads any of these
+   names. Measured before and after: the values are identical to kit.css's.
+
+   WHEN THE PROTOTYPE LAYER IS TAUGHT THE NEW NAMES, THIS FILE GOES. It is
+   imported last so it can be cut in one line.
+
+     --r-btn   was the one mismatch that showed on the page: _wf-shell.js reads
+               var(--r-btn, 6px) for .wf-lang, so without this file the language
+               toggle rendered at 6px instead of 12px on 124 pages.
+   ------------------------------------------------------------------------ */
+
+:root{
+  /* read by wireframes/_wf-shell.js */
+  --ink:           var(--text-primary);
+  --green:         var(--color-action);
+  --on-green:      var(--on-action);
+  --btn2:          var(--bg-muted);
+  --media:         var(--bg-well);
+  --sh-sm:         var(--shadow-sm);
+  --focus-w:       var(--len-2-5);
+  --focus-offset:  var(--len-2);
+
+  /* read by _wf-shell.js and by the option partials' page CSS */
+  --r-btn:         var(--len-12);
+
+  /* read by wireframes/_checkbox-options.html and _field-options.html */
+  --page:          var(--bg-page);
+  --card:          var(--bg-surface);
+  --slate:         var(--text-muted);
+  --r-card:        var(--len-16);
+  --danger-ink:    var(--color-danger);
+
+  /* read by ui/kit.js, which writes them into INLINE styles when the onscreen
+     keyboard rises: the lifted drawer's bottom, and the action bar's or main's
+     margin, are all calc(var(--h-kb) + var(--h-control)). An undefined var makes
+     the whole calc() invalid at computed-value time, so without these two the
+     property falls back to auto and the open drawer jumps to the top of the
+     frame - measured at 62.20px of travel on listings' region picker. */
+  --h-kb:          var(--len-291);
+  --h-control:     var(--len-44);
+}

@@ -75,6 +75,25 @@
 .dr-avatar-edit:hover .dr-avatar-edit__badge{
   background: var(--bg-well);
 }
+
+/* THE HEAD WITH NO RATING PILL GROWS ITS DISC - ported 2026-09-24, the one pair
+   of rules the port left behind. kit.css:2979-2984 (rev of 2026-08-24, the
+   designer: «зроби більшу іконку кнопку»): the client's edit disc is 44,
+   not the component's 20, and its pencil is 22, not 12. Both `account` and
+   `operator-account` match it - the rating pill was cut at rev 204, so neither
+   head carries one - and without these two rules both discs rendered at 20 with
+   a 12 glyph. Measured on the built page: 44.00 x 44.00 with kit.css, 20 x 20
+   without, which is what put it here.
+   The `:has()` pair that sizes a head WITH a rating pill is not ported: no page
+   builds one, and the port does not carry rules with no surface. */
+.dr-profile__photo:not(:has(.dr-profile__rating)) .dr-avatar-edit__badge{
+  width: var(--len-44);
+  height: var(--len-44);
+}
+.dr-profile__photo:not(:has(.dr-profile__rating)) .dr-avatar-edit__badge .dr-ic{
+  width: var(--len-22);
+  height: var(--len-22);
+}
 .dr-avatar-lg{
   width: var(--len-120);
   height: var(--len-120);
