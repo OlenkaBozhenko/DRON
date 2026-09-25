@@ -260,6 +260,28 @@
   --bg-night-raised:  var(--charcoal-800);  /* §1.1 --night-raised: .dr-call__avatar, .dr-call__bar,
                                                .dr-btn--night:hover. One tone step above it. */
 
+  /* -- RAISED / a surface that FLOATS over the page ------------------------
+     Added 2026-09-25, and the dark theme is what found it. .dr-sheet was
+     painted with --bg-page, the same role as the screen it floats over, and
+     in light nothing showed because the scrim carries the separation: the
+     page behind resolves to #9F9D9C and the drawer stands at 2.48:1 over it.
+     On a dark page there is nothing left to darken into - at 66% black the
+     page behind is #090909 and the drawer stands at 1.15:1. The role, not the
+     scrim, was the problem: one name was doing two jobs. In light this is the
+     page's own value, so the light build does not move by a pixel. */
+  --bg-raised:        var(--cream-50);
+
+  /* -- INVERSE / the surface that is the OPPOSITE of the page ---------------
+     Added 2026-09-25, and this one was live: .dr-toast painted its GROUND
+     with --text-primary (an ink role) and its INK with --text-on-night (a
+     different surface's ink). In light the two happen to land on the right
+     colours; in dark both resolve to #F7F5F2 and the toast measured 1:1 -
+     the text was invisible. A toast is an inverse surface, so it is named as
+     one and flips with the theme. Light values are identical to what the
+     misused roles resolved to, so nothing moves in the light build. */
+  --bg-inverse:       var(--charcoal-900);  /* the pill under a toast */
+  --text-on-inverse:  var(--cream-50);      /* 15.99:1 on it, either theme */
+
   /* -- INK ------------------------------------------------------------------
      Audit §5 "Text primary" / "Text secondary". The secondary ink has TWO
      values by surface, because --slate fails on the night ground at 2.42:1. */
@@ -421,4 +443,157 @@
      are given a role above because the audit names the family shape they
      belong to; all six are listed in the critique so that a second spend is
      noticed when it arrives. */
+}
+
+/* ==========================================================================
+   DARK - A STRESS TEST OF THE SEMANTIC TIER, NOT A PRODUCT DECISION.
+   Added 2026-09-25 on the designer's word, to answer one question: does the
+   semantic layer actually hold, or does colour leak past it? A theme is the
+   only honest way to ask, because anything that does NOT flip here is
+   something reading below the role it should be reading.
+
+   THE RULE IT OBEYS: this block redefines SEMANTIC roles only. Not one
+   PRIMITIVE moves, and every value below is built out of primitives that
+   already existed - charcoal, cream, green, rust, amber - lifted with
+   color-mix(), the same mechanism --scrim and --halo-action already use. No
+   new hex enters the file.
+
+   WHETHER DARK STAYS IN THE PRODUCT IS A SEPARATE DECISION AND IT IS HERS.
+   Nothing here turns it on: it costs a data-theme="dark" on <html> and
+   otherwise sits inert.
+
+   THE RAMP INVERTS AND THE RELATIONSHIPS ARE KEPT. Light stacks
+   page > inset > card > well > muted downwards in lightness; dark stacks them
+   upwards from the page, so a raised plane is still lighter than what holds it
+   and a recessed well is still darker than the card it sits in.
+
+   EVERY PAIR IS MEASURED, as the standing rule requires - computed in a
+   browser with the browser resolving the color-mix(), never asserted. The
+   number after each is the DARK ratio, with the light one beside it so the two
+   builds can be compared at a glance.
+   ========================================================================== */
+
+[data-theme="dark"]{
+
+  /* -- SURFACE -------------------------------------------------------------
+     --bg-page is the product's own night ground, so the dark theme opens on a
+     colour the palette already owns rather than a new one. */
+  --bg-page:            var(--charcoal-900);                                             /* #1A1A1A */
+  --bg-well:            color-mix(in srgb, var(--cream-50) 5%,  var(--charcoal-900));    /* #252525 - recessed: 1.13:1 under the card, light 1.08:1 */
+  --bg-surface:         var(--charcoal-800);                                             /* #2E2E2E - card on page 1.28:1, light 1.11:1 */
+  --bg-inset:           color-mix(in srgb, var(--cream-50) 8%,  var(--charcoal-800));    /* #3E3E3E - raised inside a card 1.27:1, light 1.06:1 */
+  --bg-muted:           color-mix(in srgb, var(--cream-50) 16%, var(--charcoal-800));    /* #4E4E4D - secondary button, 1.63:1 on the card, light 1.25:1 */
+
+  /* -- RAISED / what the scrim could not buy back -------------------------
+     The drawer is lifted off the page instead of being darkened away from it.
+     Measured: 1.60:1 over the page, and 1.84:1 over the SCRIMMED page behind
+     it, against light's 2.48:1 - so dark gets three quarters of the light
+     build's separation, and gets it from a real tone step where light has
+     none at all (its drawer and its page are the same colour, 1:1).
+     THE LIFT IS CAPPED BY WHAT SITS ON THE DRAWER, not by the page under it:
+     at 24% the separation reaches 2.42:1 and matches light exactly, but the
+     surface lands on --bg-muted and a secondary button standing on the drawer
+     disappears into it. At 16% that button reads 1.28:1 on the drawer, which
+     is the light build's own 1.34:1. The primary ink holds 9.97:1. */
+  --bg-raised:          color-mix(in srgb, var(--cream-50) 16%, var(--charcoal-900));   /* #3D3D3D */
+
+  /* -- INVERSE / it flips, which is the whole point ------------------------
+     The toast becomes a light pill with charcoal text - 15.99:1, the same
+     ratio it has in light, and 15.99:1 against the page so it cannot be lost
+     in it. */
+  --bg-inverse:         var(--cream-50);      /* #F7F5F2 */
+  --text-on-inverse:    var(--charcoal-900);  /* #1A1A1A */
+
+  /* -- INK ------------------------------------------------------------------
+     WCAG 1.4.3 asks 4.5:1 for body text. Measured dark / light:
+       --text-primary  on page  15.99 / 15.99   on card  12.48 / 14.37
+                       on inset  9.84 / 15.29   on well  14.09 / 13.33
+                       on muted  7.66 / 11.54
+       --text-muted    on page  11.54 /  6.62   on card   9.00 /  5.95
+                       on well  10.17 /  5.51   on muted  5.53 /  4.77
+     Every one clears AA, and the secondary ink clears it by more than it does
+     in light. */
+  --text-primary:       var(--cream-50);      /* #F7F5F2 */
+  --text-muted:         var(--cream-500);     /* #D6D2C9 - the value the night surface already uses for its
+                                                 secondary ink, because --slate is barred there at 2.42:1 */
+
+  /* -- DISABLED / still built, not dimmed -----------------------------------
+     WCAG exempts an inactive control from 1.4.3, and the project does not take
+     the exemption: light holds this pair at 4.77:1. Dark holds it at 4.52:1. */
+  --bg-disabled:        color-mix(in srgb, var(--cream-50) 16%, var(--charcoal-800));    /* #4E4E4D - the muted ground, as in light */
+  --text-disabled:      color-mix(in srgb, var(--cream-50) 78%, var(--charcoal-800));    /* #CBC9C7 */
+
+  /* -- LINE -----------------------------------------------------------------
+     A separator, not a boundary: 1.4.11's 3:1 governs a control's edge and this
+     draws none. It is stronger than its light counterpart all the same -
+     1.96:1 on a card against light's 1.21:1 - because a hairline loses more on
+     a dark ground than on a pale one. */
+  --border-hairline:    color-mix(in srgb, var(--cream-50) 22%, var(--charcoal-800));    /* #5A5A59 */
+
+  /* -- ACTION / DELIBERATELY NOT REDEFINED ----------------------------------
+     Signal Green is the brand's one accent and it does not owe the theme a
+     second value. It gets BETTER in the dark, which is the point: the fill
+     stands at 9.46:1 against the page where in light it stands at 1.69:1, so
+     the "one green control per screen" rule reads louder, not weaker. Charcoal
+     stays the only ink allowed on it - 9.46:1, unmoved, because neither side of
+     that pair changes. */
+
+  /* -- THE GREEN THAT MAY SPEAK --------------------------------------------
+     --text-action is the exception where green stands alone as a word. Its
+     light value is the dark olive --green-700, which on a charcoal page is
+     2.03:1 and fails outright. Dark takes the ramp's other end: --green-300,
+     11.05:1 on the page and 8.62:1 on a card, against light's 5.58 / 5.01. It
+     is the one primitive in the palette with no other spend, so nothing is
+     borrowed from a live role. */
+  --text-action:        var(--green-300);     /* #B7DA7C */
+
+  /* -- THE ONE TINT ---------------------------------------------------------
+     The tint is a GROUND that never carries the meaning, and its ink is
+     --text-primary. Light's --green-100 is a pale wash; under cream ink it
+     would be unreadable, so dark mixes the accent into the page instead and
+     keeps the relationship: 9.84:1 under the primary ink (light 14.75:1), and
+     1.62:1 against the page so the selected tab still reads as a fill
+     (light 1.08:1). */
+  --bg-accent-tint:     color-mix(in srgb, var(--green-500) 22%, var(--charcoal-900));   /* #364225 */
+
+  /* -- TROUBLE --------------------------------------------------------------
+     Both inks are dark on purpose in the light build and both fail on a dark
+     ground - --danger-ink at 2.61:1, --warn-ink at 1.72:1 - so each takes the
+     lighter member of its own family and each wash is mixed into the page.
+     Measured: danger 6.39 on page / 4.99 on card / 5.09 on its own wash;
+     warning 7.80 on page / 5.35 on its own wash. All clear AA. */
+  --color-danger:       color-mix(in srgb, var(--rust-500) 62%, var(--cream-50));        /* #D78876 */
+  --bg-danger:          color-mix(in srgb, var(--rust-500) 24%, var(--charcoal-900));    /* #43251E */
+  --color-warning:      var(--amber-500);                                                /* #E4A11B */
+  --bg-warning:         color-mix(in srgb, var(--amber-500) 20%, var(--charcoal-900));   /* #42351A */
+
+  /* -- RATING ---------------------------------------------------------------
+     The filled star keeps --amber-500 and gains contrast: 7.80:1 on the page
+     against light's 2.05:1, well past 1.4.11's 3:1 for a graphic. The EMPTY
+     star has to move: its light value is a pale grey that would read as filled
+     on a dark page, so it becomes the same distance below the card that light
+     puts it above - 1.65:1, light 1.25:1. */
+  --color-rating-empty: color-mix(in srgb, var(--cream-50) 24%, var(--charcoal-900));    /* #4F4F4E */
+
+  /* -- OVERLAY / AND THE ONE THING A TOKEN COULD NOT FIX --------------------
+     The scrim is what separates an open drawer from the screen behind it,
+     because .dr-sheet is painted with --bg-page - the same role as the page it
+     floats over. In light the scrim carries that separation: the page behind
+     resolves to #9F9D9C and the sheet stands at 2.48:1 over it. In dark there
+     is no room left below the page to darken into. At 66% black the page
+     behind resolves to #090909 and the sheet stands at 1.15:1 - less than half
+     the separation, and the strongest scrim available cannot buy it back.
+     THAT IS A FINDING ABOUT THE ROLES, NOT ABOUT THIS VALUE; it is written up
+     in design-system/_critique.md. */
+  --scrim:              color-mix(in srgb, var(--black) 66%, transparent);
+
+  /* -- NOT REDEFINED, EACH FOR A STATED REASON ------------------------------
+     --bg-night / --bg-night-raised / --text-on-night / --text-on-night-muted
+       the call screen is a platform takeover that was already dark. The pair is
+       unchanged and still measures 15.99:1 and 11.54:1.
+     --bg-danger-solid   the end-call fill; its label holds 4.53:1 either way.
+     --bg-pay / --on-pay Apple and Google ship these and neither brand permits a
+       recolour. A theme does not get to override a licence.
+     --color-action / --on-action  see ACTION above.
+     --halo-action       the accent at 20%, which reads on both grounds. */
 }

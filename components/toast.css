@@ -19,8 +19,11 @@
   max-width: calc(100% - var(--len-24) * 2);
   padding: var(--len-12) var(--len-20);
   border-radius: var(--len-999);
-  background: var(--text-primary);
-  color: var(--text-on-night);
+  /* the inverse pair, not --text-primary as a GROUND and another surface's ink
+     on top of it: in dark both of those resolved to #F7F5F2 and the toast
+     measured 1:1. Identical values in light. */
+  background: var(--bg-inverse);
+  color: var(--text-on-inverse);
   font-size: var(--len-14);
   font-weight: var(--num-600);
   line-height: var(--num-1-4);

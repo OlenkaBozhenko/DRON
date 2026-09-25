@@ -170,12 +170,16 @@
   outline: var(--len-2-5) solid var(--text-on-night);
   outline-offset: var(--len-2);
 }
+/* The pressed half inverts the NIGHT pair - the call screen is a fixed dark
+   surface, so its light half is that surface's own ink, not the page role.
+   --bg-page and --bg-night are the same colour in dark, which made this
+   control disappear; both values are unchanged in light. */
 .dr-btn--night[aria-pressed="true"]{
-  background: var(--bg-page);
+  background: var(--text-on-night);
   color: var(--bg-night);
 }
 .dr-btn--night[aria-pressed="true"]:hover{
-  background: var(--bg-page);
+  background: var(--text-on-night);
   filter: brightness(.97);
 }
 .dr-btn--danger-solid.dr-btn--icon{

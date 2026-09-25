@@ -53,7 +53,9 @@
   right: 0;
   bottom: 0;
   z-index: 6;
-  background: var(--bg-page);
+  /* --bg-raised, not --bg-page: this surface FLOATS over the page, and a role
+     that names the page cannot say so. Identical value in light. */
+  background: var(--bg-raised);
   border-radius: var(--len-22) var(--len-22) 0 0;
   box-shadow: var(--shadow-raised);
   padding: var(--len-12) var(--len-16) var(--len-24);
