@@ -434,6 +434,21 @@
      like everything else. `none` in light - the asset is drawn as shot. */
   --img-render-filter: none;
 
+  /* -- A THEMED PICTURE ----------------------------------------------------
+     Added 2026-09-25. Where a real dark-theme asset exists, the theme swaps the
+     FILE rather than filtering the light one - the designer, on the filtered
+     render: it looked awful, and she supplied the white version from Figma
+     (My-projects, node 155:59104). `normal` is the CSS-wide value that leaves a
+     replaced element showing its own src, so the light build is untouched.
+     THE PATH IS RELATIVE TO components/, NOT TO THIS FILE, and that is measured
+     rather than assumed: a relative url() inside a custom property resolves
+     against the stylesheet where the variable is SUBSTITUTED, not where it is
+     declared. Written as `assets/...` from this file it resolved to
+     /components/assets/... and 404'd. Every component file sits at the same
+     depth and card.css already writes `../assets/...` for the wallet pattern, so
+     this matches what the layer does. */
+  --img-drone-front:   normal;
+
   /* -- OVERLAY --------------------------------------------------------------- */
   --scrim:            color-mix(in srgb, var(--charcoal-900) 40%, transparent);
                                             /* §1.7 --scrim: .dr-scrim on 26 pages. Warm, never
@@ -615,14 +630,16 @@
      and using black there is the departure.
      Measured: the label holds 15.99:1 on the white button (light: 21:1 on the
      black one), and the button against the page is 15.99:1.
-     ON HOVER IT TAKES THE SECONDARY BUTTON'S OWN GROUND, her call: white is the
-     top of the ramp and has nowhere to lift to, so the press reads as a step
-     DOWN onto --bg-muted, which is the colour every other secondary control in
-     the product rests on. The label goes with it - --text-primary on --bg-muted
-     is the kit's own 7.66:1 pair. */
+     ON HOVER IT TAKES THE SECONDARY BUTTON'S HOVER, her call, corrected the
+     same day: white is the top of the ramp and has nowhere to lift to, so the
+     press reads as a step DOWN. The first reading put it on --bg-muted, the
+     secondary button at REST; she meant the secondary button ON HOVER, which is
+     --bg-well - a deeper step, and the one a hand actually sees when it moves
+     across the two controls in the same drawer. The label goes with it:
+     --text-primary on --bg-well is 14.09:1. */
   --bg-pay:             var(--white);       /* #F7F5F2 is the page; the button is true #FFF, as shipped */
   --on-pay:             var(--black);
-  --bg-pay-hover:       var(--bg-muted);    /* the secondary button's ground */
+  --bg-pay-hover:       var(--bg-well);     /* the secondary button's HOVER ground, her correction 2026-09-25 */
   --on-pay-hover:       var(--text-primary);
 
   /* -- THE GLYPH PLATE'S MARK / A DEPARTURE, RECORDED ------------------------
@@ -652,6 +669,13 @@
      It reaches ONLY /drones/ renders. People are photographs: inverting a face
      is never right, and the operator's photo on the same screens is untouched. */
   --img-render-filter:  invert(1) hue-rotate(180deg);
+
+  /* THE ONE RENDER THAT HAS A REAL DARK ASSET, so it does not need the filter
+     at all: the white drone from her Figma, cropped to the light thumb's own
+     aspect so the box on the card is identical in both themes (48 x 36,
+     object-fit: contain, unmoved). The seven other drone renders in the product
+     have no white variant yet and keep the filter until they do. */
+  --img-drone-front:    url("../assets/drones/thumbs/drone-flight-front-dark.png");
 
   /* -- NOT REDEFINED, EACH FOR A STATED REASON ------------------------------
      --bg-night / --bg-night-raised / --text-on-night / --text-on-night-muted

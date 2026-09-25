@@ -258,3 +258,11 @@
 .dr img[src*="/drones/"]{
   filter: var(--img-render-filter);
 }
+/* ...except the one that has a real dark asset. `content` replaces the picture
+   itself, so the file changes rather than the light file being tinted, and the
+   filter has to come off it or the new asset would be inverted in turn. Both
+   values come from tokens.css; this rule names no file and no theme. */
+.dr img[src*="drone-flight-front"]{
+  content: var(--img-drone-front);
+  filter: none;
+}
