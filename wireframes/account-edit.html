@@ -170,7 +170,11 @@
         <div class="dr-zone" role="group" aria-labelledby="acc-theme-title" aria-describedby="acc-theme-sub">
         <p class="dr-zone__title" id="acc-theme-title">Appearance</p>
         <p class="dr-zone__sub" id="acc-theme-sub">The theme you see</p>
-        <div class="dr-rows">
+        <!-- .dr-rows--card, the class the Notifications card below already carries:
+             a .dr-rows holding a field that is NOT .dr-field--action has its ground
+             stripped and its row padding zeroed (rows.css:136-143), so without the
+             modifier the label runs to the card edge while the title keeps its inset. -->
+        <div class="dr-rows dr-rows--card">
           <label class="dr-field dr-field--toggle">
             <span class="dr-field__label">Dark theme</span>
             <input type="checkbox" role="switch" name="theme-dark" data-theme-toggle>
