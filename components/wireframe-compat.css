@@ -4,7 +4,8 @@
    The prototype layer around the frames still speaks kit.css's token names:
    the shell script that injects the screen tree, the toolbar and the language
    toggle (wireframes/_wf-shell.js), and the page <style> blocks of the two
-   option partials. Those files are wireframes/, which is the source of truth
+   option partials, and ui/shell.html's own page chrome. Most of those files are
+   wireframes/, which is the source of truth
    and is not edited, so the names they read are declared here instead.
 
    Every alias is bound to the token that already carries the value - no hex,
@@ -33,12 +34,13 @@
   /* read by _wf-shell.js and by the option partials' page CSS */
   --r-btn:         var(--len-12);
 
-  /* read by wireframes/_checkbox-options.html and _field-options.html */
+  /* read by the option partials and by ui/shell.html's page chrome */
   --page:          var(--bg-page);
   --card:          var(--bg-surface);
   --slate:         var(--text-muted);
   --r-card:        var(--len-16);
   --danger-ink:    var(--color-danger);
+  --line:          var(--border-hairline);
 
   /* read by ui/kit.js, which writes them into INLINE styles when the onscreen
      keyboard rises: the lifted drawer's bottom, and the action bar's or main's
