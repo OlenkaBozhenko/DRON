@@ -274,6 +274,10 @@
   color: var(--on-action);
 }
 .dr-balance__glyph{
+  /* the mark has its own role rather than inheriting the card's ink: the plate
+     is a tint on a green card, and what reads on it changes with the theme.
+     Light resolves to --on-action, which is what it inherited before. */
+  color: var(--on-glyph-plate);
   flex: none;
   display: flex;
   align-items: center;

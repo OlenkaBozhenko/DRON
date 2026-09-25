@@ -244,3 +244,17 @@
   display: flex;
   flex-direction: column;
 }
+/* RENDER IMAGERY AND THE THEME. A drone render is a dark object on a
+   transparent ground, so on a charcoal page it sinks into it - on role-select
+   the drone was all but invisible on its own card. The lift is a token, not a
+   value written here: --img-render-filter is `none` in the light build, so this
+   rule draws nothing there, and inverts the luminance while putting the hue back
+   in the dark one, which lifts the object without turning its green cargo
+   magenta.
+   IT IS SCOPED BY WHAT THE PICTURE IS, not by where it hangs. /drones/ holds
+   renders of an object; /people/ holds photographs of faces, and inverting a
+   face is never right - the operator's photo on these same screens is untouched.
+   The designer's word, 2026-09-25. */
+.dr img[src*="/drones/"]{
+  filter: var(--img-render-filter);
+}

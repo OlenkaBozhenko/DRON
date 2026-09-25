@@ -415,6 +415,24 @@
      by nothing". At handoff both brands' supplied buttons replace it outright. */
   --bg-pay:           var(--black);
   --on-pay:           var(--white);
+  --bg-pay-hover:     var(--text-primary);  /* kit.css: hover "lifts to --ink because filter:brightness
+                                               multiplies black by nothing" - the same value it has always had */
+  --on-pay-hover:     var(--white);         /* the label does not move on hover in the light build */
+
+  /* -- THE GLYPH PLATE'S MARK ------------------------------------------------
+     Added 2026-09-25. .dr-balance__glyph is a --bg-accent-tint plate sitting on
+     a --color-action card, and its mark took the card's ink by inheritance. That
+     is right in light and wrong in dark, where the tint darkens under a green
+     card, so the mark needs a name of its own to be themed. Light value is the
+     inherited one, so nothing moves. */
+  --on-glyph-plate:   var(--on-action);
+
+  /* -- RENDER IMAGERY -------------------------------------------------------
+     Added 2026-09-25. A drone render is a dark object on a transparent ground:
+     on the cream page it reads, on a charcoal one it disappears into it. This is
+     the one place a theme has to touch a PICTURE, and it does it through a token
+     like everything else. `none` in light - the asset is drawn as shot. */
+  --img-render-filter: none;
 
   /* -- OVERLAY --------------------------------------------------------------- */
   --scrim:            color-mix(in srgb, var(--charcoal-900) 40%, transparent);
@@ -587,13 +605,59 @@
      in design-system/_critique.md. */
   --scrim:              color-mix(in srgb, var(--black) 66%, transparent);
 
+  /* -- THE PAY BUTTON / THE BRANDS' OWN DARK VARIANT ------------------------
+     Corrected 2026-09-25 on the designer's word. The first version of this block
+     left the pay pair alone and said "a theme does not get to override a
+     licence" - which was too broad, and wrong here. `HIG - Apple Pay Buttons`
+     ships THREE variants and says which to use: black on a light background,
+     WHITE on a dark one. Google Pay's brand kit ships the same pair. So white on
+     a charcoal page is not a recolour, it is the variant the brand prescribes,
+     and using black there is the departure.
+     Measured: the label holds 15.99:1 on the white button (light: 21:1 on the
+     black one), and the button against the page is 15.99:1.
+     ON HOVER IT TAKES THE SECONDARY BUTTON'S OWN GROUND, her call: white is the
+     top of the ramp and has nowhere to lift to, so the press reads as a step
+     DOWN onto --bg-muted, which is the colour every other secondary control in
+     the product rests on. The label goes with it - --text-primary on --bg-muted
+     is the kit's own 7.66:1 pair. */
+  --bg-pay:             var(--white);       /* #F7F5F2 is the page; the button is true #FFF, as shipped */
+  --on-pay:             var(--black);
+  --bg-pay-hover:       var(--bg-muted);    /* the secondary button's ground */
+  --on-pay-hover:       var(--text-primary);
+
+  /* -- THE GLYPH PLATE'S MARK / A DEPARTURE, RECORDED ------------------------
+     The designer, 2026-09-25, on the built wallet in dark: make the mark on
+     `Available to withdraw` green.
+     WHAT IT DEPARTS FROM, said plainly: concept.md SS0's fill-only rule -
+     "Signal Green is a fill or a tint, NEVER text and never an icon stroke".
+     That rule exists because green as a STROKE on a light surface is 1.52:1 and
+     fails `WCAG 1.4.11`'s 3:1 for a graphic. The reason does not carry into the
+     dark build: on the tint plate the same green measures 5.82:1, and the plate
+     itself sits on the green card. So the departure is scoped to dark, where the
+     failure the rule prevents cannot happen, and light keeps charcoal.
+     The mark is aria-hidden and the words `Available to withdraw` carry the
+     meaning, so `1.4.1` is not engaged either way. */
+  --on-glyph-plate:     var(--color-action);
+
+  /* -- RENDER IMAGERY -------------------------------------------------------
+     The designer, 2026-09-25: the drone renders on the cards and in onboarding
+     have to be white in the dark build. They are dark objects on a transparent
+     ground - on role-select the drone was all but invisible on its card.
+     invert() ALONE WOULD HAVE BROKEN THE PALETTE: it turns the green cargo on a
+     render magenta. Inverting the luminance and putting the hue back is what
+     keeps a green drone green and only lifts it off the dark ground, so the
+     picture stays a render rather than becoming a silhouette - which is the
+     `Imagery is real, never decoration` rule. A flat white silhouette
+     (brightness(0) invert(1)) was the alternative and is the designer's to take.
+     It reaches ONLY /drones/ renders. People are photographs: inverting a face
+     is never right, and the operator's photo on the same screens is untouched. */
+  --img-render-filter:  invert(1) hue-rotate(180deg);
+
   /* -- NOT REDEFINED, EACH FOR A STATED REASON ------------------------------
      --bg-night / --bg-night-raised / --text-on-night / --text-on-night-muted
        the call screen is a platform takeover that was already dark. The pair is
        unchanged and still measures 15.99:1 and 11.54:1.
      --bg-danger-solid   the end-call fill; its label holds 4.53:1 either way.
-     --bg-pay / --on-pay Apple and Google ship these and neither brand permits a
-       recolour. A theme does not get to override a licence.
      --color-action / --on-action  see ACTION above.
      --halo-action       the accent at 20%, which reads on both grounds. */
 }

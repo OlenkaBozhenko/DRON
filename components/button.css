@@ -147,11 +147,30 @@
   background: var(--bg-pay);
   color: var(--on-pay);
 }
+/* THE MARKS ARE THE BUTTON'S INK AND HAVE TO TURN WITH IT. The artwork carries
+   fill="#FFF" as a presentation attribute - right while the button was black in
+   both themes, and invisible the moment it went white. CSS `fill` outranks a
+   presentation attribute, so the white parts are re-pointed at --on-pay and
+   nothing in the frames is edited. It resolves to the same #FFF in light, so the
+   light build does not move; in dark the marks go black, which is exactly the
+   variant Apple ships for its white button.
+   THE GOOGLE `G` IS UNTOUCHED: its four brand fills are named colours, not
+   #FFF, so the selector does not reach them and the logo stays as supplied. */
+.dr-btn--pay .dr-paymark [fill="#FFF"],
+.dr-btn--pay .dr-paymark[fill="#FFF"]{
+  fill: var(--on-pay);
+}
+/* The hover/press pair is themed, not hard-coded: black lifts to --ink in the
+   light build (which is what it always did) and white steps DOWN onto the
+   secondary button's ground in the dark one, because white has nowhere to lift
+   to. Both live in tokens.css. */
 .dr-btn--pay:hover{
-  background: var(--text-primary);
+  background: var(--bg-pay-hover);
+  color: var(--on-pay-hover);
 }
 .dr-btn--pay:active{
-  background: var(--text-primary);
+  background: var(--bg-pay-hover);
+  color: var(--on-pay-hover);
   transform: translateY(var(--len-1)) scale(var(--num-0-99));
 }
 .dr-paymark--pay{

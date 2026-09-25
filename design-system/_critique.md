@@ -997,3 +997,48 @@ ships, the control becomes a product component and that block goes.**
 | light build, 127 pages against `ui/kit.css` | **0 differences** |
 | broken text in dark | **0** |
 | frozen surfaces with no reason | **0** |
+
+### 12g — Four changes she made on the built dark theme
+
+Read on the running prototype, 2026-09-25, and all four are **dark-only**: the light build is
+measured unchanged at 127 pages / 0 differences after every one of them.
+
+**1 · The pay buttons take the brands' own dark variant.** `.dr-btn--pay` was black in both
+themes. `HIG · Apple Pay Buttons` ships three variants and says which to use — black on a light
+background, **white on a dark one** — and Google Pay's brand kit ships the same pair. So white on
+a charcoal page is not a recolour, it is the prescribed variant, and black there is the departure.
+**My earlier note in `tokens.css` said "a theme does not get to override a licence" and that was
+too broad; it is corrected in the file.** Measured: black #000 / white ink at 21:1 in light,
+white #FFF / black ink at 21:1 in dark.
+
+**On hover it takes the secondary button's own ground, her call.** White is the top of the ramp and
+has nowhere to lift to, so the press reads as a step DOWN. Measured in dark: hover resolves to
+**#4E4E4D / #F7F5F2**, which is byte-identical to `.dr-btn--secondary` at rest. Light's hover is
+unchanged at #1A1A1A.
+
+**2 · The balance plate's mark goes green — a departure from the fill-only rule, scoped and
+recorded.** `concept.md` §0 says Signal Green is a fill or a tint, *never an icon stroke*. That rule
+exists for a measured reason: green as a stroke on a light card is **1.52:1** and fails
+`WCAG 1.4.11`'s 3:1 for a graphic. On the dark tint plate the same green measures **5.82:1**, so
+the failure the rule prevents cannot occur there. The departure is therefore scoped to dark and
+light keeps charcoal at 14.75:1. The mark is `aria-hidden` and the words *Available to withdraw*
+carry the meaning, so `1.4.1` is not engaged either way. `CLAUDE.md`'s rule row now carries it.
+
+**3 · The drone renders are lifted off the dark ground.** A render is a dark object on a transparent
+ground: on `role-select` the drone was all but invisible on its own card. **`invert()` alone would
+have broken the palette** — it turns a render's green cargo magenta — so the filter inverts the
+luminance and puts the hue back, which lifts the object and keeps green green. The picture stays a
+render rather than becoming a silhouette, which is the *Imagery is real* rule; a flat white
+silhouette was the alternative and is hers to take.
+
+**It is scoped by what the picture IS, not by where it hangs:** `/drones/` renders only. `/people/`
+holds photographs of faces, and inverting a face is never right — verified on `welcome`, where the
+operator's photo computes `filter: none` in both themes while the drone on the same set computes
+the inversion.
+
+**4 · The Appearance card moved under Language, where it was asked for.** It had landed between
+Payment and Language because the anchor I matched — a row with a chevron — occurs first in the
+Payment zone. Moving it also had to not break the comment that opens the Notifications zone, which
+the first attempt did: the block landed inside it and the whole card was commented out. Checked
+after: 14 comment openers, 14 closers, and the card outside all of them.
+
