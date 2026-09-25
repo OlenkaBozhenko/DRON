@@ -151,6 +151,33 @@
         </button>
 </div>
         </div>
+        <!--
+          ZONE - appearance, 2026-09-25, on the designer's word: the theme has to
+          be reachable on a real screen and not only on the showcase, which on
+          mobile means the profile settings. It takes the shape the screen
+          already has - .dr-zone titled card, .dr-rows, .dr-field--toggle with
+          the kit switch - so no component is invented for it, and it sits beside
+          Language because HIG - Settings puts both in the same place and because
+          the desktop half of this control is injected next to the language
+          switch in the top bar, by the same rule.
+          The input carries data-theme-toggle; _wf-shell.js is what listens, sets
+          data-theme on <html>, remembers the choice and keeps this row and the
+          desktop control saying the same thing.
+          WHETHER DARK SHIPS IS NOT SETTLED HERE. The row proves the token layer
+           carries a theme; keeping it is the designer's separate call.
+        -->
+        <p class="zlabel dr-label">Appearance <span class="dr-label__act">&#9656; light or dark</span></p>
+        <div class="dr-zone" role="group" aria-labelledby="acc-theme-title" aria-describedby="acc-theme-sub">
+        <p class="dr-zone__title" id="acc-theme-title">Appearance</p>
+        <p class="dr-zone__sub" id="acc-theme-sub">The theme you see</p>
+        <div class="dr-rows">
+          <label class="dr-field dr-field--toggle">
+            <span class="dr-field__label">Dark theme</span>
+            <input type="checkbox" role="switch" name="theme-dark" data-theme-toggle>
+            <span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span>
+          </label>
+        </div>
+        </div>
         <p class="zlabel dr-label">Language <span class="dr-label__act">▸ the interface language</span></p>
         <div class="dr-zone" role="group" aria-labelledby="acc-lang-title" aria-describedby="acc-lang-sub">
         <p class="dr-zone__title" id="acc-lang-title">Language</p>

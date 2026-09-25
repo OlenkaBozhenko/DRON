@@ -253,6 +253,27 @@
     + '.wf-frame header.topbar .wf-lang button:focus-visible{'
     + '  outline:var(--focus-w,2.5px) solid var(--ink,#1A1A1A);'
     + '  outline-offset:calc(-1 * var(--focus-offset,2px)); }'
+    /* THEME SWITCH - the desktop half of the control, 2026-09-25. It takes the
+       language switcher's shape, its placement and its visibility rule, because
+       it is the same kind of thing: a setting that lives in the bar on a wide
+       screen and in the profile settings on a narrow one. The mobile half is the
+       Appearance row on account-edit.html. Chrome, like .wf-lang - the product
+       bar carries neither. */
+    + '.wf-frame header.topbar .wf-theme{ display:none; flex:none; margin-left:12px;'
+    + '  height:32px; border:0; border-radius:var(--r-btn,6px); overflow:hidden; }'
+    + 'html[data-wf-viewport="desktop"] .wf-frame header.topbar .wf-theme{ display:inline-flex; }'
+    + '.wf-frame header.topbar .wf-theme button{ position:relative; display:flex;'
+    + '  align-items:center; justify-content:center; min-width:44px; padding:0 8px;'
+    + '  border:0; cursor:pointer; font:inherit; font-size:12px; font-weight:600;'
+    + '  letter-spacing:.04em;'
+    + '  background:var(--btn2,#D6D2C9); color:var(--ink,#1A1A1A); }'
+    + '.wf-frame header.topbar .wf-theme button::after{ content:""; position:absolute; inset:-8px 0; }'
+    + '.wf-frame header.topbar .wf-theme button.on{ background:var(--green,#9BCF4A);'
+    + '  color:var(--on-green,#1A1A1A); box-shadow:var(--sh-sm,0 1px 2px rgba(20,18,15,.05)); }'
+    + '.wf-frame header.topbar .wf-theme button:hover:not(.on){ background:var(--media,#E4E1DA); }'
+    + '.wf-frame header.topbar .wf-theme button:focus-visible{'
+    + '  outline:var(--focus-w,2.5px) solid var(--ink,#1A1A1A);'
+    + '  outline-offset:calc(-1 * var(--focus-offset,2px)); }'
 
     /* ── mobile / narrow: collapse the tree into the burger drawer ── */
     + '@media (max-width:899px){'
@@ -467,6 +488,62 @@
       try { savedLang = localStorage.getItem("wf-lang") || "en"; } catch(e){}
       applyLang(savedLang);
     }
+    /* THEME SWITCH - 2026-09-25, on the designer's word, so the dark theme can
+       be seen on a real screen and not only on ui/kit.html.
+
+       TWO CONTROLS, ONE STATE. The desktop half is injected here beside the
+       language switcher and shows only in the desktop preview; the mobile half
+       is the Appearance row on account-edit.html, which carries
+       data-theme-toggle and is wired below. Both write the same key and both
+       are repainted from it, so they cannot disagree.
+
+       WHAT IT ACTUALLY DOES is set data-theme="dark" on <html>. Everything
+       after that is tokens.css: the semantic roles are redefined under that
+       selector and nothing in components/ is asked to know about it.
+
+       IT LIVES IN THE SHELL, NOT IN ui/kit.js, for one reason: the shell is
+       injected into all 127 pages and kit.js is linked by 43, and a theme that
+       works on a third of the prototype proves nothing. If dark ships, the
+       control becomes a product component and this block goes.
+
+       WHETHER DARK SHIPS IS NOT SETTLED HERE. Default is light, and a page
+       with no stored choice renders exactly as it did before this was added. */
+    var themeBtns = null, themeRow = document.querySelector("[data-theme-toggle]");
+    if (topbar){
+      var theme = document.createElement("div");
+      theme.className = "wf-theme";
+      theme.setAttribute("role", "group");
+      theme.setAttribute("aria-label", "Theme");
+      theme.innerHTML = '<button type="button" data-theme-set="light">Light</button>'
+                      + '<button type="button" data-theme-set="dark">Dark</button>';
+      topbar.appendChild(theme);
+      themeBtns = theme.querySelectorAll("button");
+    }
+    function applyTheme(mode){
+      if (mode !== "dark") mode = "light";
+      if (mode === "dark") document.documentElement.setAttribute("data-theme", "dark");
+      else document.documentElement.removeAttribute("data-theme");
+      if (themeBtns){
+        for (var t=0;t<themeBtns.length;t++){
+          var onT = themeBtns[t].getAttribute("data-theme-set") === mode;
+          themeBtns[t].classList.toggle("on", onT);
+          themeBtns[t].setAttribute("aria-pressed", onT ? "true" : "false");
+        }
+      }
+      if (themeRow) themeRow.checked = (mode === "dark");
+      try { localStorage.setItem("wf-theme", mode); } catch(e){}
+    }
+    if (themeBtns){
+      for (var t=0;t<themeBtns.length;t++){
+        (function(b){ b.addEventListener("click", function(){ applyTheme(b.getAttribute("data-theme-set")); }); })(themeBtns[t]);
+      }
+    }
+    if (themeRow){
+      themeRow.addEventListener("change", function(){ applyTheme(themeRow.checked ? "dark" : "light"); });
+    }
+    var savedTheme = "light";
+    try { savedTheme = localStorage.getItem("wf-theme") || "light"; } catch(e){}
+    applyTheme(savedTheme);
 
     /* back controls — make them work in the walkable prototype.
        Many screens use <button class="back"> with no href (inert on click);
