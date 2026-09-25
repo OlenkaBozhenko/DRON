@@ -15,7 +15,7 @@ Wireframes prove **structure, hierarchy, and zones** — not looks. If a decisio
 4. **One page per state.** Success/normal = the base file; `-empty` / `-error` / `-loading` are separate files with the **same structure, different content** (§10, §11).
 5. **8px grid.** Every spacing value is a multiple of 8 (4 allowed as the half-step). Radii are multiples of 2 (§6).
 6. **Mobile frame 375 × 812.** Every page is built inside it (§6).
-7. **No icons, no shadows, no colour, no final font** — deferred (§3, §8). **Three carve-outs, each decided by the designer, and all three are grayscale:** **real imagery** where a frame needs a picture to be judged; the **DRON logo** in the reserved brand slot (§8); and the **back chevron** (§11.1), a real 24-grid icon on both layers, because an icon-only control cannot fall back to §8's text label. **A fourth is retired, and it was the only one that was not grayscale.** The **language switch** carried the kit's colours on every screen, painted or not (2026-08-02) — green for the chosen language, warm grey for the other — because one control injected into all 84 files should not change appearance depending on whether the screen behind it had been painted yet. The designer took it out of the mobile bar on **2026-08-16 (rev 94)**, leaving it in the desktop preview while desktop navigation was redrawn, and out of the topbar **entirely** later the same day — **rev 117**, on `listings`: *«видали звідси місто та мову»*. **Language is now set where `HIG · Settings` puts it**, not in a navigation bar: the *Language* field on `account-edit.html`, which opens the `#sheet-language` picker (English / Ukrainian). `ui/kit.css` `.dr-lang` stays declared and is applied to nothing — a held rung, the way `--sh-onphoto` is held — and `ui/inventory.md` carries the row. With the switch gone, **no colour enters a wireframe before its screen is painted.**
+7. **No icons, no shadows, no colour, no final font** — deferred (§3, §8). **Three carve-outs, each decided by the designer, and all three are grayscale:** **real imagery** where a frame needs a picture to be judged; the **DRON logo** in the reserved brand slot (§8); and the **back chevron** (§11.1), a real 24-grid icon on both layers, because an icon-only control cannot fall back to §8's text label. **A fourth is retired, and it was the only one that was not grayscale.** The **language switch** carried the kit's colours on every screen, painted or not (2026-08-02) — green for the chosen language, warm grey for the other — because one control injected into all 84 files should not change appearance depending on whether the screen behind it had been painted yet. The designer took it out of the mobile bar on **2026-08-16 (rev 94)**, leaving it in the desktop preview while desktop navigation was redrawn, and out of the topbar **entirely** later the same day — **rev 117**, on `listings`: *«видали звідси місто та мову»*. **Language is now set where `HIG · Settings` puts it**, not in a navigation bar: the *Language* field on `account-edit.html`, which opens the `#sheet-language` picker (English / Ukrainian). `components/lang.css` `.dr-lang` stays declared and is applied to nothing — a held rung, the way `--sh-onphoto` is held — and `ui/inventory.md` carries the row. With the switch gone, **no colour enters a wireframe before its screen is painted.**
 
 ---
 
@@ -340,7 +340,8 @@ multi-button bars stack, every button **341px** at the 375 frame, **no label wra
 The split row is what broke labels: at the 375 frame *Зберегти зміни* rendered on **two lines** in a
 154.5px half, and at a 320pt phone even English *Save changes* wrapped in a 127px half — the stack
 gives 341 / 262 and one line in both languages. The two classes that drew the split row,
-`.dr-actionbar__row` (`ui/kit.css:481–482`) and `.row2` (`_wireframe.css:443`), are **left in place
+`.dr-actionbar__row` (`ui/kit.css:481–482`, and not ported into `components/` because nothing
+draws it) and `.row2` (`_wireframe.css:443`), are **left in place
 and applied to nothing** — nothing is deleted here without the designer's word.
 
 **The tab bar is not the action bar and stays horizontal.** `footer.tabbar` / `footer.dr-tabbar` (27
@@ -473,7 +474,7 @@ person to rediscover:
 designer's call for `listings-filters`' *Pick a date & time…* row: *«при кліку відкрий дата пікер як у
 IOS»*. Counting a date would give 365 options and send it to a pushed screen, which is the wrong answer —
 `HIG · Pickers` gives a date its own control and asks for it *in a popover or a sheet when space is
-limited*. **So a date takes a calendar drawer** (`.dr-cal` in `ui/kit.css`), which is the shape Apple's own
+limited*. **So a date takes a calendar drawer** (`.dr-cal` in `components/calendar.css`), which is the shape Apple's own
 Calendar and Reminders open, and iOS's other two date styles are ruled out by measurement, not taste: a
 **wheel** row is 34pt and fails `HIG · 44pt target` by 10 (Apple's own drum is exempt because the column
 scrolls rather than being tapped; a web build inherits the fail, not the exemption), and **unfolding in
@@ -592,10 +593,10 @@ in the block, per §10.
 `order-history`'s three `Delete order` buttons have neither a confirm nor an undo; that is an open item, not
 something a toast closes.
 
-**Which layer.** The toast is a **painted-layer component** — it is declared in `ui/kit.css` and it animates.
+**Which layer.** The toast is a **painted-layer component** — it is declared in `components/toast.css` and it animates.
 §3 defers **motion** and **shadow** in the grayscale wireframe, so a grayscale page gets no toast: the
 operator screens, which are still unpainted, take theirs when they are painted. A `data-toast` on a page that
-does not link `../ui/kit.css` renders an unstyled `<div>`, so the attribute and the stylesheet travel together.
+does not link `../components/index.css` renders an unstyled `<div>`, so the attribute and the stylesheet travel together.
 
 **Behaviour lives in the shell, never on the page** (§13). The message is the only thing the page declares.
 `_wf-shell.js` builds the element on demand, gives it `role="status"`, measures the screen's real bottom
@@ -614,6 +615,15 @@ chrome so the toast cannot cover the control that raised it, and — where the r
   also have **named interaction sub-views** beyond the four data states (e.g. `listings-filters` = the filter **drawer** open); these use a descriptive suffix and are documented in the map row. ~~`listings-filtered` = filters applied~~ was one until 2026-09-19, when the applied row became a state the base page draws itself and the file was deleted.
   open, `listings-filtered` = filters applied); these use a descriptive suffix and are documented in the map row.
 - Shared assets: `_wireframe.css` (tokens + components), this file, `_screens.md`. Leading `_` = not a screen.
+- **Stylesheets a page links, in this order** (set 2026-09-24, when all 127 pages moved off `ui/kit.css`):
+  `_wireframe.css` first — the grayscale layer and the `--wf-*` tokens the shell and the annotations read —
+  then `../components/index.css`, which pulls `../tokens.css` and the 31 component files behind it.
+  **`ui/kit.css` is the archive and no page links it.** It is not deleted: it holds the reasoning for every
+  value, and it is what any “did this change the rendering” check is run against.
+- A page whose `<style>` block reads a kit token name (`--ink`, `--page`, `--r-btn` …) resolves it through
+  `components/wireframe-compat.css`, which aliases the seventeen names the prototype layer still speaks to the
+  tokens that carry the same value. A name that is in neither file fails **silently** — the declaration is
+  dropped at computed-value time — so a new name goes into the compat file, never into the page.
 
 **Map** — every base file and the exact state pages to create (derived from the `_screens.md` state matrix; `base = success` marked where the base screen is a milestone):
 
