@@ -24,7 +24,21 @@
   }
   .dr-backlink:hover{ background:var(--bg-well); }
   .dr-backlink:active{ transform:translateY(1px) scale(.99); }
-  .dr-backlink:focus-visible{ outline:2.5px solid var(--text-primary); outline-offset:2px; }
+  .dr-backlink:focus-visible{ outline:2.5px solid var(--text-primary); outline-offset:2px; }
+  /* Theme switch. Showcase chrome, not a kit component - but the showcase is the
+     one page whose whole job is looking at the system, so it has to be able to
+     show both builds. It writes data-theme on <html> and nothing else; every
+     colour on this page then resolves through tokens.css exactly as a screen
+     does. Same shape as the control the prototype shell injects. */
+  .kit-theme{ display:inline-flex; margin-left:12px; height:44px; border-radius:12px;
+    overflow:hidden; vertical-align:top; }
+  .kit-theme button{ min-width:64px; padding:0 14px; border:0; cursor:pointer;
+    font:inherit; font-size:13px; font-weight:600;
+    background:var(--bg-muted); color:var(--text-primary); }
+  .kit-theme button.on{ background:var(--color-action); color:var(--on-action);
+    box-shadow:var(--shadow-sm); }
+  .kit-theme button:hover:not(.on){ background:var(--bg-well); }
+  .kit-theme button:focus-visible{ outline:2.5px solid var(--text-primary); outline-offset:-2px; }
   .lede{ margin-bottom:40px; }
   .lede h1{ font-size:var(--len-22); font-weight:var(--num-700);
     letter-spacing:var(--track-n0-02); line-height:var(--num-1-4); margin:0 0 10px; }
@@ -104,6 +118,10 @@
 
 <div class="lede">
   <a class="dr-backlink" href="../research.html"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M11 6L5 12l6 6"/></svg>Back to DRON</a>
+  <span class="kit-theme" role="group" aria-label="Theme">
+    <button type="button" data-kit-theme="light">Light</button>
+    <button type="button" data-kit-theme="dark">Dark</button>
+  </span>
   <h1>DRON kit</h1>
   <p><b>Extracted, not authored.</b> Every value here was read off the painted surfaces by
      computed style in a browser, then cross-checked against <code>DESIGN.md</code>,
@@ -3008,6 +3026,36 @@
   </div>
 </div>
 
-</div>
+</div>
+
+<script>
+/* The showcase's own theme switch. It sets data-theme on <html> and remembers the
+   choice, which is all the dark build needs - tokens.css does the rest. It also
+   honours ?theme=dark in the URL, so a link can open the page already dark.
+   Separate from the prototype shell on purpose: the showcase links no shell. */
+(function () {
+  'use strict';
+  var btns = document.querySelectorAll('[data-kit-theme]');
+  function apply(mode){
+    if (mode !== 'dark') mode = 'light';
+    if (mode === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else document.documentElement.removeAttribute('data-theme');
+    for (var i = 0; i < btns.length; i++){
+      var on = btns[i].getAttribute('data-kit-theme') === mode;
+      btns[i].classList.toggle('on', on);
+      btns[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+    try { localStorage.setItem('kit-theme', mode); } catch (e) {}
+  }
+  for (var i = 0; i < btns.length; i++){
+    (function (b) { b.addEventListener('click', function () { apply(b.getAttribute('data-kit-theme')); }); })(btns[i]);
+  }
+  var start = 'light';
+  try { start = localStorage.getItem('kit-theme') || 'light'; } catch (e) {}
+  if (/[?&]theme=dark/.test(location.search)) start = 'dark';
+  if (/[?&]theme=light/.test(location.search)) start = 'light';
+  apply(start);
+}());
+</script>
 </body>
 </html>

@@ -488,62 +488,6 @@
       try { savedLang = localStorage.getItem("wf-lang") || "en"; } catch(e){}
       applyLang(savedLang);
     }
-    /* THEME SWITCH - 2026-09-25, on the designer's word, so the dark theme can
-       be seen on a real screen and not only on ui/kit.html.
-
-       TWO CONTROLS, ONE STATE. The desktop half is injected here beside the
-       language switcher and shows only in the desktop preview; the mobile half
-       is the Appearance row on account-edit.html, which carries
-       data-theme-toggle and is wired below. Both write the same key and both
-       are repainted from it, so they cannot disagree.
-
-       WHAT IT ACTUALLY DOES is set data-theme="dark" on <html>. Everything
-       after that is tokens.css: the semantic roles are redefined under that
-       selector and nothing in components/ is asked to know about it.
-
-       IT LIVES IN THE SHELL, NOT IN ui/kit.js, for one reason: the shell is
-       injected into all 127 pages and kit.js is linked by 43, and a theme that
-       works on a third of the prototype proves nothing. If dark ships, the
-       control becomes a product component and this block goes.
-
-       WHETHER DARK SHIPS IS NOT SETTLED HERE. Default is light, and a page
-       with no stored choice renders exactly as it did before this was added. */
-    var themeBtns = null, themeRow = document.querySelector("[data-theme-toggle]");
-    if (topbar){
-      var theme = document.createElement("div");
-      theme.className = "wf-theme";
-      theme.setAttribute("role", "group");
-      theme.setAttribute("aria-label", "Theme");
-      theme.innerHTML = '<button type="button" data-theme-set="light">Light</button>'
-                      + '<button type="button" data-theme-set="dark">Dark</button>';
-      topbar.appendChild(theme);
-      themeBtns = theme.querySelectorAll("button");
-    }
-    function applyTheme(mode){
-      if (mode !== "dark") mode = "light";
-      if (mode === "dark") document.documentElement.setAttribute("data-theme", "dark");
-      else document.documentElement.removeAttribute("data-theme");
-      if (themeBtns){
-        for (var t=0;t<themeBtns.length;t++){
-          var onT = themeBtns[t].getAttribute("data-theme-set") === mode;
-          themeBtns[t].classList.toggle("on", onT);
-          themeBtns[t].setAttribute("aria-pressed", onT ? "true" : "false");
-        }
-      }
-      if (themeRow) themeRow.checked = (mode === "dark");
-      try { localStorage.setItem("wf-theme", mode); } catch(e){}
-    }
-    if (themeBtns){
-      for (var t=0;t<themeBtns.length;t++){
-        (function(b){ b.addEventListener("click", function(){ applyTheme(b.getAttribute("data-theme-set")); }); })(themeBtns[t]);
-      }
-    }
-    if (themeRow){
-      themeRow.addEventListener("change", function(){ applyTheme(themeRow.checked ? "dark" : "light"); });
-    }
-    var savedTheme = "light";
-    try { savedTheme = localStorage.getItem("wf-theme") || "light"; } catch(e){}
-    applyTheme(savedTheme);
 
     /* back controls — make them work in the walkable prototype.
        Many screens use <button class="back"> with no href (inert on click);
@@ -623,3 +567,98 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE THEME SWITCH — its own block, on purpose (2026-09-25).
+
+   It was written inside init() first, and that was wrong: init() builds the
+   screen tree, the toolbar, the viewport switcher and the language control, and
+   ANY of those throwing takes the theme down with it — the row would still
+   toggle, because a checkbox and its CSS need no script, and nothing would
+   happen to the page. That is exactly the failure the designer hit and I could
+   not reproduce: switch on, screen still light.
+
+   So it runs on its own, first, and depends on nothing the shell builds:
+
+     · THE ATTRIBUTE IS SET BEFORE THE DOM IS PARSED. The stored choice is read
+       and applied to <html> the moment this file executes, so a dark page never
+       paints light first and flips.
+     · THE ROW IS HEARD BY DELEGATION on document, not by a listener bound to an
+       element that has to exist yet. Any [data-theme-toggle] anywhere, added at
+       any time, works.
+     · ?theme=dark / ?theme=light IN THE URL wins over the stored value, so a
+       link can open the prototype already dark — which is also the one way to
+       see it that survives a stale cached copy of this file.
+
+   WHAT IT DOES is set data-theme on <html>. Everything after that is
+   tokens.css: the semantic roles are redefined under that selector, and nothing
+   in components/ is asked to know a theme exists.
+
+   Default is light. A page with no stored choice and no parameter renders
+   exactly as it did before this was written.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var KEY = 'wf-theme';
+
+  function read(){
+    var m = /[?&]theme=(dark|light)/.exec(location.search);
+    if (m) return m[1];
+    try { return localStorage.getItem(KEY) || 'light'; } catch (e) { return 'light'; }
+  }
+
+  function paint(mode){
+    if (mode === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else document.documentElement.removeAttribute('data-theme');
+  }
+
+  function sync(mode){
+    var rows = document.querySelectorAll('[data-theme-toggle]');
+    for (var i = 0; i < rows.length; i++) rows[i].checked = (mode === 'dark');
+    var btns = document.querySelectorAll('[data-theme-set]');
+    for (var j = 0; j < btns.length; j++){
+      var on = btns[j].getAttribute('data-theme-set') === mode;
+      btns[j].classList.toggle('on', on);
+      btns[j].setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+  }
+
+  function apply(mode){
+    if (mode !== 'dark') mode = 'light';
+    paint(mode);
+    sync(mode);
+    try { localStorage.setItem(KEY, mode); } catch (e) {}
+  }
+
+  /* before anything is parsed */
+  paint(read());
+
+  /* the settings row, heard wherever and whenever it appears */
+  document.addEventListener('change', function (e) {
+    var t = e.target;
+    if (t && t.hasAttribute && t.hasAttribute('data-theme-toggle')) apply(t.checked ? 'dark' : 'light');
+  });
+
+  /* the desktop control, beside the language switcher, on the same rule */
+  function build(){
+    apply(read());
+    var topbar = document.querySelector('.wf-frame header.topbar');
+    if (!topbar || topbar.querySelector('.wf-theme')) return;
+    var g = document.createElement('div');
+    g.className = 'wf-theme';
+    g.setAttribute('role', 'group');
+    g.setAttribute('aria-label', 'Theme');
+    g.innerHTML = '<button type="button" data-theme-set="light">Light</button>'
+                + '<button type="button" data-theme-set="dark">Dark</button>';
+    topbar.appendChild(g);
+    g.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('[data-theme-set]') : null;
+      if (b) apply(b.getAttribute('data-theme-set'));
+    });
+    sync(read());
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+}());
