@@ -862,4 +862,138 @@ carrying the defect that finding 3 fixed. It now agrees with `kit.css` across th
   the designer's word.
 - **The comparison harness** lives in a session scratchpad, not in the repo. Every number in this
   section is reproducible only while it does.
+---
 
+## §12 — A dark theme as a stress test, and the three holes it found
+
+The designer, 2026-09-25: `Семантичний шар готовий — стрес-тестуємо його доказом, не фічею
+продукту … Якщо для теми довелося лізти в components/ — це діра: компонент десь читає primitive
+напряму. Знайди і виправ.`
+
+The premise is the interesting part. A theme is not asked for as a feature; it is asked for as a
+**probe**. If colour really reaches a component only through a semantic role, then redefining the
+roles should repaint the whole product and nothing else should have to move. Anything that does
+*not* flip is reading below the tier it should be reading from — and that is a defect the light
+build cannot show, because in one theme a wrong role and a right role can resolve to the same
+colour.
+
+**Whether dark ships is not settled here. It is inert** — no page sets `data-theme` at rest, and a
+build with no stored choice renders exactly as it did before.
+
+### 12a — What the block is allowed to do
+
+`[data-theme="dark"]` in `tokens.css` redefines **semantic roles only**. No PRIMITIVE moves. Every
+dark value is built from primitives that already existed — charcoal, cream, green, rust, amber —
+lifted with `color-mix()`, which is the mechanism `--scrim` and `--halo-action` already used. **No
+new hex enters the file.**
+
+Five roles are deliberately *not* redefined, each for a stated reason: the action pair (green gets
+*better* in the dark — the fill stands at 9.46:1 against the page where in light it stands at
+1.69:1), the night pair (the call screen was already dark), `--bg-danger-solid`, and `--bg-pay` /
+`--on-pay`, because Apple and Google ship those and a theme does not override a licence.
+
+### 12b — Measured, not asserted
+
+Thirty-nine pairs, computed in a browser with the browser resolving the `color-mix()`. **0 failing.**
+A selection, dark against light:
+
+| | dark | light | needs |
+|---|---|---|---|
+| primary ink on the page | 15.99 | 15.99 | 4.5 |
+| primary ink on a card | 12.48 | 14.37 | 4.5 |
+| secondary ink on a card | 9.00 | 5.95 | 4.5 |
+| secondary ink on the secondary button | 5.53 | 4.77 | 4.5 |
+| the only ink allowed on green | 9.46 | 9.46 | 4.5 |
+| the tint under the primary ink | 9.84 | 14.75 | 4.5 |
+| the danger word on a card | 4.99 | 6.14 | 4.5 |
+| disabled, built not dimmed | 4.52 | 4.77 | 4.5 |
+| a filled star (graphic) | 7.80 | 2.05 | 3 |
+| the green fill against the page (graphic) | 9.46 | 1.69 | 3 |
+
+Two roles had to take the other end of their own family, and both are named in the block: the dark
+inks `--danger-ink` (2.61:1 on charcoal) and `--warn-ink` (1.72:1) fail outright on a dark ground,
+and `--text-action`'s dark olive is 2.03:1. Each takes the lighter member of its family instead.
+
+**One correction on the way, recorded because the standing rule is that numbers are measured:** the
+first version of the `--bg-raised` comment carried ratios of 1.86 and 2.14 that I had *predicted*
+and not yet measured. Measured, they were **1.60 and 1.84**. The comment now carries the measured
+pair and the value was re-chosen against it.
+
+### 12c — Three holes, and not one of them was what the brief expected
+
+The brief predicted a component reading a **primitive**. A scan found none — `components/` reads no
+primitive colour and contains no raw hex. The layer is clean by that test.
+
+What the theme found instead is one level subtler and worse: **components painting one kind of
+thing with the role for another kind of thing.** In light every one of them resolves to the right
+colour by luck, so nothing is visible until the roles move apart.
+
+**1 · `.dr-toast` — an ink role used as a ground.** It was
+`background: var(--text-primary); color: var(--text-on-night)`. In light that is charcoal under
+cream and reads 15.99:1. In dark `--text-primary` becomes cream and `--text-on-night` stays cream:
+measured live on `share`, by firing the real toast, **background #F7F5F2, ink #F7F5F2, ratio 1:1 —
+the text was invisible.** A toast is an *inverse* surface, so it is named as one:
+`--bg-inverse` / `--text-on-inverse`, whose light values are exactly what the misused roles
+resolved to. Light does not move; dark flips to a light pill with charcoal text at 15.99:1.
+
+**2 · `.dr-btn--night[aria-pressed="true"]` — a page role used as a fill on a fixed-dark surface.**
+It was `background: var(--bg-page); color: var(--bg-night)`. The call screen is a platform takeover
+that is dark in *both* themes, so its pressed control must invert within the night pair, not borrow
+the page. In dark `--bg-page` and `--bg-night` are the same colour and the control vanished into
+its own bar. Now `background: var(--text-on-night)` — that surface's own ink — with the night
+ground as the label. Identical in light, correct in dark.
+
+**3 · `.dr-sheet` — the page role used for a surface that floats over the page.** In light the
+drawer and the page are the same colour and the *scrim* carries the separation: the page behind
+resolves to #9F9D9C and the drawer stands at **2.48:1** over it. On a dark page there is nothing
+left to darken into — at 66% black the page behind is #090909 and the drawer stood at **1.15:1**.
+No scrim value fixes that; the role does. `--bg-raised` is the page's own value in light (so the
+light build does not move) and a lifted charcoal in dark, giving **1.84:1** over the scrimmed page.
+
+That last one has a ceiling worth writing down. At a 24% lift the separation reaches 2.42:1 and
+matches light almost exactly — but the surface lands on `--bg-muted`, and a secondary button
+standing *on* the drawer disappears into it. At 16% that button reads 1.28:1 on the drawer, which
+is the light build's own 1.34:1. **The lift is capped by what sits on the drawer, not by the page
+under it**, and 16% is the value that keeps the internal relationship the light build has.
+
+### 12d — What the audit could and could not see
+
+Every page was rendered twice, light then dark, and every element compared: text whose contrast
+clears AA in light and falls below it in dark, and painted surfaces whose colour did not move at
+all.
+
+**0 broken text** across the sample, and **0 unexplained frozen surfaces**: everything that stayed
+put is either the prototype's own grayscale chrome (`wf-*`, which correctly does not follow a
+product theme) or one of the roles deliberately left alone — the green accent, the night pair, the
+end-call fill.
+
+**The audit could not have found hole 1.** A toast is script-built and `opacity: 0` at rest, so no
+static sweep reaches it; it was found by reading the roles and then confirmed by firing the real
+toast in both themes. The same is true of hole 3, which needs an *open* drawer. A sweep finds what
+is on the screen; a theme finds what is in the roles.
+
+### 12e — The control
+
+Two halves, one state, matching how Language is already split in this product: a segmented
+**Light / Dark** control injected into the screen's top bar and shown only in the desktop preview,
+and an **Appearance** row with the kit's own switch in the profile settings on `account-edit`. Both
+write one key and both repaint from it, so they cannot disagree — verified by setting the theme on
+one screen and finding it carried, with the desktop control's `aria-pressed` already correct, on
+another.
+
+It lives in `_wf-shell.js` for one reason: the shell is injected into all 127 pages and `ui/kit.js`
+is linked by 43, and a theme that works on a third of the prototype proves nothing. **If dark
+ships, the control becomes a product component and that block goes.**
+
+### 12f — The state after
+
+| Check | Result |
+|---|---|
+| dark pairs measured | **39**, 0 failing AA |
+| primitives moved | **0** |
+| components reading a primitive colour | **0** (before and after) |
+| components painting with the wrong *kind* of role | **3 found, 3 fixed** |
+| semantic roles added | **3** — `--bg-raised`, `--bg-inverse`, `--text-on-inverse` |
+| light build, 127 pages against `ui/kit.css` | **0 differences** |
+| broken text in dark | **0** |
+| frozen surfaces with no reason | **0** |

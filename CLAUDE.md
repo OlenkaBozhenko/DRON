@@ -250,6 +250,35 @@ frames by hand, and where a document disagrees with a frame, the document is cor
 carries the reasoning and the history; `DESIGN.md` carries the values. A machine-readable copy for
 tooling sits at `.impeccable/design.json`.
 
+### Where a change goes (revised 2026-09-25 — the values moved)
+
+**A value now lives in [`tokens.css`](tokens.css), and it is edited at the tier that owns it.**
+Two tiers and one rule each:
+
+- **PRIMITIVE** — a raw value that knows no job (`--cream-200`, `--len-16`). Edit here only to
+  change the value itself, everywhere it is spent at once. A new primitive is a new value in the
+  palette and is the designer's call, not a side effect of a component needing one.
+- **SEMANTIC** — a role pointing at a primitive (`--bg-surface`, `--text-muted`, `--color-action`).
+  Edit here to change what a *job* looks like. **Colour reaches a component only through this
+  tier** — a component that reads a primitive, or paints a ground with an ink role, is a defect,
+  and the `[data-theme="dark"]` block exists to make that kind of defect visible.
+- **Geometry gets no semantic tier on purpose.** A component reads `--len-*` / `--pct-*` / `--num-*`
+  directly, because space, radius and size share their numbers and a second name for one number is
+  the drift `tokens.css` closes.
+
+**A change of MARKUP goes to two places and both are required:** the specimen in
+[`ui/kit.html`](ui/kit.html), and every screen in `wireframes/` where the component actually
+stands. A component that changes shape in the showcase and not on the screens is a showcase that
+lies; a component that changes on one screen and not in the showcase is a component nobody can
+find. `design-system/_critique.md` §10 is what that costs when it is skipped.
+
+**`components/*.css` is where a RULE goes** — one file per component, no second home for a class,
+and no hex, no px and no font name written into it. If a value is needed that no token carries,
+the token comes first.
+
+**`ui/kit.css` is the archive.** No page links it. It holds the reasoning for every value, and it
+is the reference every "did this change the rendering" check is measured against.
+
 **Direction 02 «Studio»** is the chosen tuning of the Fauna Robotics language: warm `#F7F5F2` page,
 `#ECE9E4` grey cards, SF Pro, flat outline icons on a 24-grid at 1.7px, rounded-rect buttons.
 
