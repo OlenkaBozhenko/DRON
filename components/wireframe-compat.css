@@ -75,6 +75,6 @@
 .dr [role="status"]{
   --wf-text: var(--text-primary);
 }
-.dr .success-mark:has(img){
-  background: var(--bg-well);
-}
+/* The .success-mark patch that stood here is gone: the rule moved to
+   _wireframe.css beside the class it belongs to, carrying --bg-well with it,
+   so there is nothing left to alias. */

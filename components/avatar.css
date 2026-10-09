@@ -143,3 +143,35 @@
   object-fit: cover;
   object-position: center;
 }
+
+/* THE CONFIRM MARK WHEN IT CARRIES A PHOTOGRAPH. .success-mark itself is a
+   chrome class, declared in wireframes/_wireframe.css as a 64px labelled
+   circle; on switch-role it holds the client's own face instead, and a face
+   is product content, so the treatment belongs on this side of the line and
+   reads product tokens. Same handling as .dr-avatar: cover-fit in a circle
+   that keeps a ground of its own.
+
+   It lived in switch-role.html's own <style> until 2026-10-09. Two things
+   were wrong with it there: a page cannot be the home of a rule, nobody
+   looks for it; and its ground was var(--wf-recessed), the chrome greyscale
+   #EEEEEE, which has no theme and showed as a near-white plate on a dark
+   page. --bg-well is the product's own well and follows the theme.
+
+   One note for anyone re-running the kit-versus-components check: this rule
+   has no counterpart in ui/kit.css, so that comparison reports one
+   difference here by construction. It is the rule arriving, not drifting. */
+.dr .success-mark:has(img){
+  background: var(--bg-well);
+  overflow: hidden;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+}
+.dr .success-mark img{
+  width: var(--pct-100);
+  height: var(--pct-100);
+  display: block;
+  object-fit: cover;
+  border-radius: var(--len-999);
+}
