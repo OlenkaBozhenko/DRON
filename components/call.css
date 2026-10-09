@@ -95,15 +95,15 @@
   color: var(--text-on-night);
 }
 .dr-call__avatar img{
-  width: 100%;
-  height: 100%;
+  width: var(--pct-100);
+  height: var(--pct-100);
   object-fit: cover;
   object-position: center;
   display: block;
 }
 .dr-call__avatar .dr-ic{
-  width: 50%;
-  height: 50%;
+  width: var(--pct-50);
+  height: var(--pct-50);
 }
 .dr-call__bar{
   align-self: center;

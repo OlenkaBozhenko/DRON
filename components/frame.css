@@ -19,7 +19,7 @@
   width: var(--len-375);
   height: var(--len-812);
   flex: none;
-  max-width: 100%;
+  max-width: var(--pct-100);
   background: var(--bg-page);
   border: var(--len-1) solid var(--border-hairline);
   border-radius: var(--len-22);

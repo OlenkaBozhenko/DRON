@@ -55,7 +55,7 @@
   border-radius: var(--len-16);
 }
 .dr-msg > *{
-  max-width: 100%;
+  max-width: var(--pct-100);
 }
 .dr-msg__title{
   font-size: var(--len-17);
@@ -74,11 +74,11 @@
   display: flex;
   flex-direction: column;
   gap: var(--len-10);
-  width: 100%;
+  width: var(--pct-100);
   margin-top: var(--len-6);
 }
 .dr-msg__actions .dr-btn{
-  width: 100%;
+  width: var(--pct-100);
 }
 .dr-msg--banner{
   padding: var(--len-16) var(--len-16) var(--len-32);
@@ -92,7 +92,7 @@
   margin-top: var(--len-4);
 }
 .dr-msg__banner{
-  width: 100%;
+  width: var(--pct-100);
   height: var(--len-150);
   flex: none;
   border: 0;

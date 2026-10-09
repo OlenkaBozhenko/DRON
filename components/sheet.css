@@ -14,7 +14,7 @@
   overflow: hidden;
 }
 .dr-picker__item{
-  width: 100%;
+  width: var(--pct-100);
   border: 0;
   background: none;
   cursor: pointer;
@@ -160,7 +160,7 @@
   margin-top: auto;
 }
 .dr-sheet--tall{
-  max-height: calc(100% - var(--len-44));
+  max-height: calc(var(--pct-100) - var(--len-44));
 }
 .dr-sheet__scroll{
   flex: 1 1 auto;

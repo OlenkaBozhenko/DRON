@@ -16,7 +16,7 @@
   z-index: 5;
   margin: 0 auto;
   width: max-content;
-  max-width: calc(100% - var(--len-24) * 2);
+  max-width: calc(var(--pct-100) - var(--len-24) * 2);
   padding: var(--len-12) var(--len-20);
   border-radius: var(--len-999);
   /* the inverse pair, not --text-primary as a GROUND and another surface's ink
@@ -43,6 +43,6 @@
 .dr-toast--over-sheet{
   left: 0;
   right: 0;
-  bottom: calc(100% + var(--len-12));
-  max-width: 100%;
+  bottom: calc(var(--pct-100) + var(--len-12));
+  max-width: var(--pct-100);
 }

@@ -86,7 +86,7 @@
   transform: translateY(var(--len-1)) scale(var(--num-0-99));
 }
 .dr-btn--block{
-  width: 100%;
+  width: var(--pct-100);
 }
 .dr-btn:disabled, .dr-btn[aria-disabled="true"]{
   background: var(--bg-disabled);
@@ -216,13 +216,13 @@
 .dr-fab{
   position: absolute;
   z-index: 3;
-  left: 50%;
-  transform: translateX(-50%);
+  left: var(--pct-50);
+  transform: translateX(calc(var(--pct-50) * -1));
   bottom: calc(var(--len-60) + var(--len-30) + var(--len-12));
   border-radius: var(--len-999);
   padding: 0 var(--len-20);
   box-shadow: var(--shadow-raised);
 }
 .dr-fab:active{
-  transform: translateX(-50%) translateY(var(--len-1)) scale(var(--num-0-99));
+  transform: translateX(calc(var(--pct-50) * -1)) translateY(var(--len-1)) scale(var(--num-0-99));
 }

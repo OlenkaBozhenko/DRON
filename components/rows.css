@@ -58,7 +58,7 @@
   flex-wrap: wrap;
 }
 .dr-rows__row--stack > *{
-  flex-basis: 100%;
+  flex-basis: var(--pct-100);
 }
 .dr-rows__row:has(> .dr-sk-line){
   justify-content: space-between;

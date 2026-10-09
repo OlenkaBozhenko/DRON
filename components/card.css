@@ -35,7 +35,7 @@
   overflow: hidden;
 }
 .dr-card--cover > .dr-well{
-  width: 100%;
+  width: var(--pct-100);
   border-radius: 0;
 }
 .dr-card--cover > .dr-listing__foot{
@@ -216,8 +216,8 @@
   justify-content: center;
 }
 .dr-op__photo img{
-  width: 100%;
-  height: 100%;
+  width: var(--pct-100);
+  height: var(--pct-100);
   object-fit: cover;
   object-position: center;
   display: block;
@@ -369,7 +369,7 @@
   gap: var(--len-8);
 }
 .dr-finder__actions .dr-btn{
-  width: 100%;
+  width: var(--pct-100);
   position: relative;
 }
 .dr-finder__actions .dr-btn:has(> .dr-count-badge){

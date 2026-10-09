@@ -76,7 +76,7 @@
   flex: 1 1 0;
   min-width: 0;
   display: block;
-  height: 100%;
+  height: var(--pct-100);
   background: transparent;
   line-height: calc(var(--len-48) - var(--len-1));
   text-align: center;

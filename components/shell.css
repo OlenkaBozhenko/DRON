@@ -42,9 +42,9 @@ header.dr-topbar, .dr-topbar{
 }
 .dr-topbar__title{
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: calc(100% - 2 * (var(--len-44) + var(--len-16)));
+  left: var(--pct-50);
+  transform: translateX(calc(var(--pct-50) * -1));
+  max-width: calc(var(--pct-100) - 2 * (var(--len-44) + var(--len-16)));
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

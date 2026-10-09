@@ -59,7 +59,7 @@
   cursor: not-allowed;
 }
 .dr-cal__grid{
-  width: calc(100% - var(--len-8) * 2);
+  width: calc(var(--pct-100) - var(--len-8) * 2);
   margin: 0 var(--len-8);
   border-collapse: collapse;
   table-layout: fixed;
@@ -116,7 +116,7 @@
   content: "";
   position: absolute;
   bottom: var(--len-6);
-  left: 50%;
+  left: var(--pct-50);
   width: var(--len-4);
   height: var(--len-4);
   margin-left: calc(var(--len-4) / -2);

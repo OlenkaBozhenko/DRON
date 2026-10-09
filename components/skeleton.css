@@ -86,6 +86,12 @@
 .dr-sk-line, .dr-sk-well, .dr-sk-btn, .dr-sk-dir, .dr-sk-route{
   animation: dr-pulse var(--time-1-4) ease-in-out infinite;
 }
+/* THE TWO NEGATIVE DELAYS BELOW STAY AS NUMBERS, and that is a decision, not
+   a miss. -.47s and -.93s are not lengths and not a scale: they are offsets
+   into a running shimmer, picked so three skeleton rows never pulse in step.
+   A primitive for each would be a token with one spend and no second reader,
+   and the audit of 2026-10-09 left them deliberately. They and one colour-mix
+   ratio are all that is left of the literal values in components/. */
 .dr-sk-d1 *{
   animation-delay: -.47s;
 }
@@ -104,7 +110,7 @@
 }
 .dr-spin{
   animation: dr-spin var(--time-1-1) linear infinite;
-  transform-origin: 50% 50%;
+  transform-origin: var(--pct-50) var(--pct-50);
 }
 
 /* The loop this file's rule names. kit.css keeps the reasoning; only the
