@@ -1042,3 +1042,80 @@ Payment zone. Moving it also had to not break the comment that opens the Notific
 the first attempt did: the block landed inside it and the whole card was commented out. Checked
 after: 14 comment openers, 14 closers, and the card outside all of them.
 
+
+---
+
+## §13 The dark theme swept over every page (2026-10-09)
+
+The theme was built as a stress test of the semantic tier, and a stress test that is only ever
+looked at on four screens has not been run. This is the sweep: **125 pages, each loaded twice —
+once with no `data-theme`, once with `data-theme="dark"` — and every visible element inside `.dr`
+measured in both.** Two questions, both answered with a number rather than a look:
+
+**A. Does any text in dark fall below WCAG AA for its size?** Every element with its own text is
+measured against its effective background — the first ancestor-or-self that actually paints one —
+and held to `WCAG 1.4.3`: 4.5:1, or 3:1 where the type is large (≥24px, or ≥18.66px at 700).
+Translucent pairs and text over a photograph are skipped rather than guessed at.
+
+**B. Does any product surface or ink NOT move between the two themes?** This is the question that
+finds the holes. A component that reads a **primitive** instead of a semantic role cannot respond
+to a theme, so it paints the same colour in both — and that sameness is visible to a sweep even
+when the colour looks perfectly reasonable in each theme on its own.
+
+### What it found
+
+**Two leaks, both the same defect: a PRODUCT element painted with the PROTOTYPE CHROME's palette.**
+`--wf-*` is the grayscale of the shell around the frame. It has no theme and is not meant to have
+one, so anything in the product that reads it is frozen at a light-build value.
+
+| Where | What it read | Light | Dark | Verdict |
+|---|---|---|---|---|
+| `report-issue-loading.html:34` — `<p role="status">` inline style | `--wf-text` | #252525 on #F7F5F2 = **14.09:1** | #252525 on #1A1A1A = **1.14:1** | fails `WCAG 1.4.3` (needs 4.5:1) by a factor of four — the string "Issue under review…" is not dim, it is invisible |
+| `switch-role.html` page `<style>` — `.success-mark:has(img)` | `--wf-recessed` | #EEEEEE | #EEEEEE | a near-white plate on a dark page; no text, so no 1.4.3 failure, but it is the same leak |
+
+Neither can be fixed where it is written — one is an inline style, the other a page block, and
+`wireframes/` is the source of truth and is not edited. So both names are **re-bound under `.dr`**
+in `components/wireframe-compat.css`, which is the file whose own header had claimed "nothing under
+`.dr` reads any of these names". That sentence was false when it was written; the sweep is what
+made it false out loud.
+
+**The cost in light, measured, not estimated** — the two fixes move exactly two elements on two
+pages, and nothing else on any of the other 123:
+
+- `report-issue-loading` — that one `<p>`: ink #252525 → #1A1A1A, i.e. **14.09:1 → 15.99:1** on the
+  cream page. The chrome ink and the product ink were always near-identical in light, which is
+  precisely why the leak survived unseen for so long.
+- `switch-role` — that one photo well: #EEEEEE → `--bg-well` #E4E1DA, **1.066:1 → 1.200:1** against
+  the page. It is a ground behind a photograph, carrying no text.
+
+### What it found and did NOT file as a defect
+
+**The call screen is dark in both themes on purpose.** `call`, `call-client` and `call-support` read
+`--bg-night`, `--bg-night-raised`, `--text-on-night` and `--text-on-night-muted` — dedicated
+semantic roles for a surface that is dark whatever the theme is, the way a system call screen is.
+Eight of the sweep's "did not move" rows are these, and they are a decision, not a hole: the test is
+whether a component reads a **primitive**, and these read roles.
+
+**The danger-solid red `#C4462A` is also constant** across themes, on the end-call control. Left as
+built; whether danger should shift with the theme is the designer's, and it is listed with the other
+open questions rather than answered here.
+
+### The result
+
+**0 WCAG AA text failures in dark, across 125 pages.** Every remaining cross-theme constant is
+accounted for above.
+
+### Two corrections to the harness, recorded because they each produced a false accusation
+
+1. **`color(srgb 0..1)` read as bytes.** Chrome serialises a `color-mix()` result in that form, and
+   the parser treated the components as 0–255. It called a disabled button's **4.96:1** pair
+   **1:1** and reported four failures that do not exist. Same bug as the one closed in the
+   contrast harness earlier; it had not been carried into this one.
+2. **Probing before the `@import`s applied.** `components/index.css` is 31 imports, and an
+   `@import` takes effect *after* the linking sheet's load event. The first run read the UA
+   defaults on `tracking.html` and accused it of browser-blue links and a `buttonface` primary —
+   on a page that is one of the four fully painted surfaces. The sweep now waits for the total
+   rule count to stop moving before it measures anything.
+
+Both are worth keeping in writing for the same reason: a measurement harness that is wrong is more
+expensive than no harness, because it is believed.

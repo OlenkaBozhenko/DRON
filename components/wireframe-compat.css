@@ -51,3 +51,30 @@
   --h-kb:          var(--len-291);
   --h-control:     var(--len-44);
 }
+
+/* ----------------------------------------------------------------------- */
+/* THE LEAK THIS FILE'S OWN HEADER SAYS CANNOT HAPPEN.
+   It said "nothing under .dr reads any of these names", and the dark sweep of
+   2026-10-09 proved that false in exactly two places. Both are the same
+   defect: a PRODUCT element painted with the PROTOTYPE CHROME's grayscale,
+   which has no theme and never will, so in dark it keeps a light-build value.
+
+     report-issue-loading.html:34   <p role="status" style="...color:var(--wf-text)">
+                                    #252525 on #1A1A1A = 1.14:1, against the
+                                    4.5:1 that WCAG 1.4.3 asks of 17px text.
+                                    Invisible, not merely dim.
+     switch-role.html <style>       .success-mark:has(img){background:var(--wf-recessed)}
+                                    #EEEEEE, a near-white plate on a dark page.
+
+   Neither can be fixed where it is written: one is an inline style and the
+   other is a page block, and wireframes/ is the source of truth and is not
+   edited. So the names are re-bound HERE, scoped under .dr, which is the only
+   place the leak exists. The chrome outside the frame keeps its own palette
+   untouched - that question (should the prototype shell follow the theme) is
+   still the designer's, and this does not answer it. */
+.dr [role="status"]{
+  --wf-text: var(--text-primary);
+}
+.dr .success-mark:has(img){
+  background: var(--bg-well);
+}
