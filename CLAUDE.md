@@ -250,7 +250,7 @@ frames by hand, and where a document disagrees with a frame, the document is cor
 carries the reasoning and the history; `DESIGN.md` carries the values. A machine-readable copy for
 tooling sits at `.impeccable/design.json`.
 
-### Where a change goes (revised 2026-09-25 — the values moved)
+### Tokens — where a value lives and where a change goes (revised 2026-10-09)
 
 **A value now lives in [`tokens.css`](tokens.css), and it is edited at the tier that owns it.**
 Two tiers and one rule each:
@@ -265,6 +265,17 @@ Two tiers and one rule each:
 - **Geometry gets no semantic tier on purpose.** A component reads `--len-*` / `--pct-*` / `--num-*`
   directly, because space, radius and size share their numbers and a second name for one number is
   the drift `tokens.css` closes.
+
+- **Shadow follows geometry, not colour.** A shadow holds an `rgba` and so looks like colour, but
+  here it is *depth*: there are four declared rungs, two are spent, and a component picks the one
+  its elevation calls for the way it picks a `--len-*`. There is **no semantic shadow tier and
+  that is the rule** — the seven components reading `--shadow-sm` / `--shadow-raised` directly are
+  correct. Written down 2026-10-09 because the audit had to infer it from an absence.
+
+- **A percentage is a length and comes from `--pct-*`.** Two exceptions, both deliberate: a
+  **keyframe stop** (`0%`, `55%`) is a selector naming a moment, and a **`color-mix()` ratio** is a
+  proportion — neither is a length and neither takes a token. 70 literal percentages were
+  converted on 2026-10-09 and 24 of 24 page snapshots stayed identical.
 
 **A change of MARKUP goes to two places and both are required:** the specimen in
 [`ui/kit.html`](ui/kit.html), and every screen in `wireframes/` where the component actually
@@ -306,10 +317,15 @@ and not `ui/kit.css`** — all 127 pages were moved onto the token + component l
 value is what it is. The move was a refactor and is measured as one: every page computes
 identically under both stylesheets — every box and 151 properties per element, at 1280 and at 380,
 with drawers, keyboards and pressed states open. Four gaps were found that way and all four were
-closed in `components/`, never in a frame. Three pages keep CSS of their own and only one is alive
-(`switch-role`'s `.success-mark:has(img)`); the blocks on `account` and the `listings` files are
-dead grayscale left over from before they were painted, and the kit wins every product surface —
-measured. The set is audited against `concept.md` and the findings are closed in the change log,
+closed in `components/`, never in a frame. **No screen carries CSS of its own any more**
+(2026-10-09 audit): the three option partials `_checkbox-options`, `_field-options` and
+`_navbar-options` keep a `<style>` block, and they are specimens rather than screens. The claim
+this line used to make — *three pages, only one alive* — was measured false. Eleven pages held a
+block; `account` and `operator-account` were genuinely dead (0 computed differences when disabled)
+and were deleted; `switch-role`'s two live rules moved to `components/avatar.css`; and the four
+`listings*` pages plus `operator-listings` were not leftovers at all — **they did not link
+`_wireframe.css` and carried ~11.7KB of it inline instead**, which is why one rule in each, the
+universal reset, still bit. They link the shared file now. The set is audited against `concept.md` and the findings are closed in the change log,
 most recently **rev 153** — the sweep that read the built frames back into `concept.md`,
 `DESIGN.md` and the UI kit, and found a whole component (`delivery-aerial`'s photo pile) that had
 been built into a page without ever reaching a document.

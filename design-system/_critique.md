@@ -1213,3 +1213,100 @@ with a pixel-identical phone frame and only the shell differing — is **deleted
 been used**. Its candidate ramp and every measured pair are in the commit that added it
 (`83ec139`), so the work is recoverable without the file standing around pretending to be part of
 the prototype.
+
+---
+
+## §16 The full audit of tokens, components and screens (2026-10-09)
+
+Her seven checks, run over `tokens.css`, the 31 files in `components/` and all 128 pages, plus
+`/impeccable audit` and its detector. **Then fixed.** What follows is what was found, what it cost
+to confirm, and what was deliberately left.
+
+### What passed, which is also an answer
+
+**0** hex colours in a component declaration · **0** literal font names (every `font-family` reads
+`var(--font-ui)`) · **0** components reading a colour primitive past the semantic tier · **0**
+duplicate roles — all five candidate pairs **diverge in dark**, so they are genuinely two jobs ·
+**0** semantic tokens without a provenance comment · **0** pages linking `ui/kit.css` · **0**
+images without `alt` · **0** horizontal overflow at 380px · **0** icons under 3:1 in dark.
+
+### Fixed
+
+| What | Measured | Where it was fixed |
+|---|---|---|
+| `.dr-star` — five buttons with **no accessible name**, and `aria-pressed` describing a single rating as five independent toggles | `WCAG 4.1.2`, **level A**. The tree read `button, pressed` ×5 | `role="radiogroup"` + `role="radio"` + `aria-checked` + names, on 15 buttons across 3 screens; `rating.css` repointed from `aria-pressed` to `data-on` |
+| `.dr-label__act` on the call screen | #5A5751 on #1A1A1A = **2.42:1**, needs 4.5 (`WCAG 1.4.3`). Failed in **both** themes | one rule in `call.css`; now **11.54:1** |
+| Inline type on `report-issue-loading` — the only inline type in 128 pages, painted with the chrome's ink | 1.14:1 in dark | the `title` step (17/600) got a class, `.dr-title` in `type.css` |
+| 19,804-byte JPEG as a base64 data URI | **83%** of that page's bytes | `assets/drones/drone-cargo-banner.jpg`; page 31,896 → 5,504 bytes |
+| 11 pages carrying a `<style>` block | see below | 8 removed; 3 specimens keep theirs |
+| **81 literal lengths** in `components/`, all percentages | the geometry check had looked for px/rem/em and missed `%` entirely | 70 converted to `--pct-*`; **24 of 24 page snapshots identical** |
+| Shadows had no semantic tier and no statement either way | 7 components read the primitive | stated in `tokens.css` and in `CLAUDE.md`: shadow follows geometry |
+
+### The page-CSS finding, which was not what the documents said
+
+`CLAUDE.md` said *three pages keep CSS of their own and only one is alive*. Measured: **eleven**
+pages held a block, and five of them were alive inside `.dr`.
+
+The reason was worth the digging. On `listings.html`, of **86 rules only five match anything inside
+the frame and exactly one changes a pixel** — the universal reset. Same shape on
+`operator-listings`: 114 rules, 6 matching, 1 biting. The one live rule was the reset because
+**these five pages do not link `_wireframe.css` at all** — they carry ~11.7KB of it inline. The
+block was never a leftover; it was the chrome stylesheet, duplicated five times. They link the
+shared file now, and each page was checked against **its own earlier rendering** at 420 and 1280:
+the only difference in any of the ten snapshots is that one head element is a `LINK` where it was
+a `STYLE`.
+
+`account` and `operator-account` were genuinely dead — 0 computed differences with the block
+disabled — and are deleted. `switch-role`'s two live rules moved to `components/avatar.css`, which
+also fixed what they did in dark: their ground was `--wf-recessed`, #EEEEEE, a near-white plate.
+
+### Left as built, each with its reason
+
+- **The filter chip's touch target.** 28px tall where `HIG` asks 44. The designer's word:
+  *«чипи не міняй, я хочу щоб візуально все було як є»*. The fix was built and measured first so
+  the decision was made against a real thing: an unpainted `::before` at 44px, **0 layout
+  differences**, a tap 16px off-centre landing instead of missing. Recorded as a departure from
+  HIG, not as a defect — and note `WCAG 2.1 AA`, the project's other standard, has **no**
+  target-size criterion at all (2.5.5 is AAA), while WCAG 2.2's 2.5.8 asks 24×24, which it passes.
+- **`.dr-grouptab` and `.dr-route__open`** looked like the same problem at 32px and 35px and are
+  not: their real hit areas measure **44px and 59px**, already extended by an existing
+  pseudo-element. A blanket fix would have **shrunk** the address row by 15px. They pass HIG today
+  and nothing said so anywhere.
+- **`.dr-field__input`'s focus** — `outline: none` with no parent ring, on 18 pages, identical in
+  both themes (§14). Borderline under 2.1 AA, which accepts the caret for a text field.
+- **`[fill="#FFF"]`** in `button.css` — a hex in a *selector*, matching an SVG attribute. Fixing it
+  means the frames must carry a class; left as the cheaper truth.
+- **Two negative animation delays** in `skeleton.css`, `-.47s` and `-.93s` — offsets that keep
+  three shimmer rows out of step. A token each would have one spend and no second reader.
+- **`@media (max-width: 389px)`** — not fixable: CSS does not allow `var()` in a media query.
+
+### Four false accusations, all mine, all recorded
+
+The first pass reported 98 findings. **Thirty-nine survived contact with the evidence**, and the
+corrections are the useful part:
+
+1. **20 "font-family in a component"** — every one was `font-family: var(--font-ui)`, which is the
+   rule being followed. The check flagged the property, not the value.
+2. **13 "semantic token with no comment"** — the detector did not track multi-line comments, so it
+   stopped at the previous declaration. Re-run with real comment spans: **0**.
+3. **5 "duplicate roles"** — each pair shares a value in light and **diverges in dark**. The dark
+   block is what proves they are two roles, not one.
+4. **A `broken-image`** reported by the detector on `operator-account-photo.html:71` — the literal
+   `<img>` sits **inside an HTML comment**, so no element is created. I had checked that it was
+   unescaped and not that it was commented out.
+
+And one that was not a false positive but a trap I had already named and then walked into: these
+pages carry the literal string `"<style>"` inside a head comment. The first removal cut from that
+one, destroying the comment's terminator and leaving the stylesheet links inside an unterminated
+comment — the page rendered with no CSS at all. Reverted; redone with a comment-aware scan.
+
+### `/impeccable audit` score
+
+| Dimension | Before | After |
+|---|---|---|
+| Accessibility | 3 | **4** — the 1.4.3 failure and the 4.1.2 level-A failure are both closed |
+| Performance | 4 | **4** — the 19KB data URI is out of the markup |
+| Theming | 4 | **4** — the shadow tier is declared rather than inferred |
+| Responsive | 3 | **3** — unchanged on her word; the chip stays as built |
+| Implementation integrity | 3 | **4** — no screen carries CSS of its own |
+| **Total** | **17/20** | **19/20** |
