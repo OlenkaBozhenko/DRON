@@ -72,9 +72,10 @@
    place the leak exists. The chrome outside the frame keeps its own palette
    untouched - that question (should the prototype shell follow the theme) is
    still the designer's, and this does not answer it. */
-.dr [role="status"]{
-  --wf-text: var(--text-primary);
-}
+/* The [role="status"] patch that stood here is gone too. The element that
+   needed it - report-issue-loading's loading title - carries .dr-title now,
+   a real member of the type scale, so it reads product tokens by belonging
+   to the system rather than by being patched into it. */
 /* The .success-mark patch that stood here is gone: the rule moved to
    _wireframe.css beside the class it belongs to, carrying --bg-well with it,
    so there is nothing left to alias. */

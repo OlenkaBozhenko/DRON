@@ -19,6 +19,21 @@
   max-width: var(--ch-18);
   text-wrap: balance;
 }
+/* THE `title` STEP, 17/600, WHICH THE SCALE NAMED AND NOTHING CLAIMED.
+   DESIGN.md lists it between `number` 20 and `heading` 15 and it is spent all
+   over the kit inside other components - a card's name, a row's value - but it
+   had no class of its own, so the one page that needed it as a paragraph wrote
+   it inline instead: report-issue-loading.html carried
+   style="font-size:17px;font-weight:600;color:var(--wf-text)" - the only inline
+   type in 128 pages, and painted with the prototype chrome's ink at that.
+   Added 2026-10-09 so the step has a home and the page can stop inventing. */
+.dr-title{
+  font-size: var(--len-17);
+  font-weight: var(--num-600);
+  line-height: var(--num-1-4);
+  letter-spacing: var(--track-n0-01);
+  color: var(--text-primary);
+}
 .dr-lead{
   font-size: var(--len-15);
   font-weight: var(--num-400);
