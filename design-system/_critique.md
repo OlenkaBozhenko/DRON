@@ -1119,3 +1119,71 @@ accounted for above.
 
 Both are worth keeping in writing for the same reason: a measurement harness that is wrong is more
 expensive than no harness, because it is believed.
+
+---
+
+## §14 The other half of the check: non-text contrast and focus, in dark (2026-10-09)
+
+§13 measured text. `WCAG 1.4.3` is only half of what this project holds itself to, and the half it
+leaves out is the one a theme flip is most likely to break: an icon stroke and a focus ring were
+both chosen against a cream page. So the same ten painted screens were swept again for
+**`WCAG 1.4.11` non-text contrast (3:1)** — every `.dr-ic` against the ground it sits on, and the
+**real `:focus-visible` ring** the browser paints on every focusable, read by actually focusing it.
+
+### Icons
+
+**0 under 3:1, in dark.** The icon system is `currentColor` on a 24-grid, so an icon inherits the
+ink of whatever it stands in, and the ink is a semantic role. It follows the theme for free. This
+is the payoff of the rule, and it is worth recording as a pass rather than a silence.
+
+### Focus — and three accusations the harness got wrong
+
+The sweep first reported five failures. **Three of them were mine, and all three have the same
+cause: I measured the ring against the element's own background, when `outline-offset` means the
+ring does not touch it.**
+
+| Reported | Why it is not a failure |
+|---|---|
+| `.dr-btn--primary` ring cream on green = 1.69:1, 9 pages | `.dr-btn:focus-visible` is `2.5px solid var(--text-primary)` at **`outline-offset: 2px`**. The ring sits two pixels clear of the fill, on the page or the card — cream on #1A1A1A is **15.99:1**. The green is not an adjacent colour. |
+| `.dr-card__link` ring #101010 on #2E2E2E = 1.40:1 | The link never carries the indicator. `.dr-card:has(> .dr-card__link:focus-visible)` puts a 2.5px `--text-primary` outline **on the card**. I measured the UA default on a child that is covered by a parent rule. |
+| `.dr-route__open` — "no ring" | Same shape: `.dr-route__row:has(.dr-route__open:focus-visible)` outlines **the row**, inset by 2px. |
+
+This is the second time in two days a harness has accused the build of something it does not do —
+after `color(srgb)` read as bytes, and probing before the `@import`s landed. The lesson is
+cumulative and belongs in writing: **a focus check must follow the indicator, not the element**,
+because a design system of any maturity moves the ring to the parent.
+
+### The one that is real — and it is not the dark theme's
+
+**`.dr-field__input:focus-visible{ outline: none; }`** — `components/form.css:59`. The outline is
+removed explicitly and **no parent rule replaces it**: `form.css` has `:has(input:focus-visible)`
+treatments for `.dr-pick` and for `.dr-field--toggle`'s switch, but nothing for the text field. The
+only remaining signal that the field has focus is the caret, `caret-color: var(--text-primary)`.
+
+**It stands on 18 pages**, and it measures the same in both themes — **light fails it exactly as
+dark does**. So it is a pre-existing defect in the approved build that the dark sweep merely walked
+past, not a regression the theme introduced. It is reported here and **left as built**, because
+changing it changes the light build and that is the designer's call:
+
+1. **What is built** — a text input whose focus outline is set to `none`, with a tinted caret and
+   no parent indicator, on 18 pages.
+2. **What the guideline prescribes** — `WCAG 2.4.7 Focus Visible` (AA, which this project targets):
+   a keyboard-operable interface must have a mode where the focus indicator is **visible**. Its
+   Understanding document does accept the text cursor as the indicator *for a text field*, which is
+   why this is genuinely borderline rather than plainly broken. `WCAG 2.4.11 Focus Appearance`
+   would not be met by a caret alone — but 2.4.11 is WCAG **2.2**, and the project standard in
+   `CLAUDE.md` is **2.1 AA**, where it does not exist.
+3. **Whether it passes** — under 2.1 AA, for a text field, arguably yes, on the caret. For anything
+   `.dr-field__input` is used on that is **not** a text field, no. The caret is also the one signal
+   that disappears for a user who navigates by keyboard and does not type.
+4. **The options** — (a) keep as built, and record it as a deliberate reading of 2.4.7; (b) give
+   the field the same parent ring the route row already has — `.dr-field:has(.dr-field__input:focus-visible)`
+   with the 2.5px inset outline, which is one rule in `form.css`, costs nothing in dark, and
+   changes the light build only while a field is focused; (c) hold it until the project moves to
+   WCAG 2.2, where the answer stops being arguable.
+
+### The result
+
+**Dark introduces no non-text contrast failure and no focus regression.** Icons pass at 3:1 on
+every painted screen; every focus indicator that exists follows `--text-primary` and therefore
+follows the theme. The single open item predates the theme and is listed above for decision.
