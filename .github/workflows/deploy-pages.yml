@@ -116,7 +116,8 @@ jobs:
           import os, re, sys
           from urllib.parse import urlsplit, unquote
           ROOT = '_site'
-          REF = re.compile(r'(?:href|src)=["']([^"']+)["']')
+          Q = chr(34) + chr(39)          # the two quote characters
+          REF = re.compile('(?:href|src)=[' + Q + ']([^' + Q + ']+)')
           missing, notes, checked = [], [], 0
           for dirpath, _, files in os.walk(ROOT):
               for f in files:
