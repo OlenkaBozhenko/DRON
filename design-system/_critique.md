@@ -1187,3 +1187,29 @@ changing it changes the light build and that is the designer's call:
 **Dark introduces no non-text contrast failure and no focus regression.** Icons pass at 3:1 on
 every painted screen; every focus indicator that exists follows `--text-primary` and therefore
 follows the theme. The single open item predates the theme and is listed above for decision.
+
+---
+
+## §15 The shell does not follow the theme — decided, not left open (2026-10-09)
+
+Closing the one question §13 and §14 left standing. **The prototype chrome stays light in dark
+mode, on the designer's word.** Only the screen inside the frame darkens.
+
+**Both options conform**, which is why this was a question of taste and not a defect. The shell is
+measured separately from the product, and it holds `WCAG 1.4.3` either way — with one asymmetry
+worth recording: the **light** shell's `--wf-muted` is **#909090 on #F4F4F4 = 2.90:1**, already
+under 4.5:1 for body text today, while the dark candidate measured 5.43:1 and passed everywhere.
+So the decision was not made to avoid a failure; it was made in spite of one that already exists
+in the shell, and that failure is now written down rather than discovered again later.
+
+**The reason given:** the chrome is scaffolding, not product. No user ever sees it, and a light
+shell around a dark screen states plainly where the mock ends and the tool begins.
+
+**What this does NOT decide:** whether the dark theme ships at all; `prefers-color-scheme`; and
+whether the danger-solid `#C4462A` should shift with the theme. Those stay open.
+
+The side-by-side that produced the decision — `preview-chrome.html`, two panes of the same page
+with a pixel-identical phone frame and only the shell differing — is **deleted now that it has
+been used**. Its candidate ramp and every measured pair are in the commit that added it
+(`83ec139`), so the work is recoverable without the file standing around pretending to be part of
+the prototype.
