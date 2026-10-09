@@ -266,3 +266,26 @@
   content: var(--img-drone-front);
   filter: none;
 }
+/* THE ONBOARDING SCENES SWAP THEIR FILE, THEY ARE NOT FILTERED. A scene is a
+   composition - a drone, a person, UI cards with their own surfaces - and a
+   theme changes what those surfaces are, which no filter can do. Each slide
+   therefore has a second artwork, and the token decides which one is drawn.
+   `normal` in light means the element keeps its own src and nothing moves. */
+.dr img[src*="onboarding-dispatch."]{
+  content: var(--img-onb-dispatch);
+}
+.dr img[src*="onboarding-checklist."]{
+  content: var(--img-onb-checklist);
+}
+.dr img[src*="onboarding-payout."]{
+  content: var(--img-onb-payout);
+}
+.dr img[src*="onboarding-verified-operator."]{
+  content: var(--img-onb-verified-operator);
+}
+.dr img[src*="onboarding-live-tracking."]{
+  content: var(--img-onb-live-tracking);
+}
+.dr img[src*="onboarding-report."]{
+  content: var(--img-onb-report);
+}

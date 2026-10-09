@@ -449,6 +449,17 @@
      this matches what the layer does. */
   --img-drone-front:   normal;
 
+  /* The six onboarding illustrations. Each is a whole SCENE drawn for its
+     theme, not a cut-out tinted by a filter: the dark ones are painted on
+     #1A1A1A edge to edge, so there is no alpha edge to fringe. `normal` here
+     leaves every slide showing its own src, so the light build is untouched. */
+  --img-onb-dispatch:             normal;
+  --img-onb-checklist:            normal;
+  --img-onb-payout:               normal;
+  --img-onb-verified-operator:    normal;
+  --img-onb-live-tracking:        normal;
+  --img-onb-report:               normal;
+
   /* -- OVERLAY --------------------------------------------------------------- */
   --scrim:            color-mix(in srgb, var(--charcoal-900) 40%, transparent);
                                             /* §1.7 --scrim: .dr-scrim on 26 pages. Warm, never
@@ -676,6 +687,19 @@
      object-fit: contain, unmoved). The seven other drone renders in the product
      have no white variant yet and keep the filter until they do. */
   --img-drone-front:    url("../assets/drones/thumbs/drone-flight-front-dark.png");
+
+  /* THE SIX ONBOARDING SCENES, painted for this theme rather than filtered.
+     The light artwork is a cut-out matted against the cream page, so on a dark
+     ground every silhouette carried a pale fringe and the white UI cards inside
+     the scene stayed white - neither is fixable with a filter. These are drawn
+     on the dark ground instead, which is why they are opaque and why there is
+     no edge at all. Paths are relative to components/, see --img-drone-front. */
+  --img-onb-dispatch:             url("../assets/scenes/thumbs/onboarding-dispatch-dark.png");
+  --img-onb-checklist:            url("../assets/scenes/thumbs/onboarding-checklist-dark.png");
+  --img-onb-payout:               url("../assets/scenes/thumbs/onboarding-payout-dark.png");
+  --img-onb-verified-operator:    url("../assets/scenes/thumbs/onboarding-verified-operator-dark.png");
+  --img-onb-live-tracking:        url("../assets/scenes/thumbs/onboarding-live-tracking-dark.png");
+  --img-onb-report:               url("../assets/scenes/thumbs/onboarding-report-dark.png");
 
   /* -- NOT REDEFINED, EACH FOR A STATED REASON ------------------------------
      --bg-night / --bg-night-raised / --text-on-night / --text-on-night-muted
