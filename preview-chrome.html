@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DRON — should the prototype chrome follow the theme?</title>
+<!--
+  A DECISION PREVIEW, not part of the build. It changes nothing: both panes
+  load the real wireframe page unmodified and the right-hand one is given the
+  candidate chrome palette at runtime, in its own document only. Delete this
+  file once the question is answered.
+-->
+<style>
+  :root{
+    --ink:#E8E8E8; --ink-2:#A8A8A8; --bg:#141414; --panel:#1D1D1D; --line:rgba(255,255,255,.14);
+    --accent:#9BCF4A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{ background:var(--bg); color:var(--ink); font:14px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif; padding:20px 20px 40px; }
+  h1{ font-size:19px; font-weight:600; margin-bottom:6px; }
+  p.sub{ color:var(--ink-2); font-size:13px; max-width:78ch; margin-bottom:16px; }
+  .bar{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:16px; }
+  .bar label{ color:var(--ink-2); font-size:12px; margin-right:4px; }
+  select{ background:var(--panel); color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:7px 10px; font:inherit; }
+  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start; }
+  .col{ border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--panel); }
+  .cap{ display:flex; align-items:baseline; gap:10px; padding:11px 14px; border-bottom:1px solid var(--line); }
+  .cap b{ font-size:14px; font-weight:600; }
+  .cap span{ color:var(--ink-2); font-size:12px; }
+  .tag{ font-size:11px; font-weight:600; padding:2px 7px; border-radius:999px; background:rgba(155,207,74,.18); color:var(--accent); }
+  iframe{ display:block; width:100%; height:1180px; border:0; background:#fff; }
+  table{ border-collapse:collapse; margin-top:22px; font-size:12.5px; }
+  th,td{ text-align:left; padding:6px 14px 6px 0; border-bottom:1px solid var(--line); }
+  th{ color:var(--ink-2); font-weight:500; }
+  td b{ font-weight:600; }
+  .pass{ color:var(--accent); }
+  .fail{ color:#E8886A; }
+  @media (max-width:1100px){ .grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+  <h1>Should the prototype chrome follow the dark theme?</h1>
+  <p class="sub">Both panes load the same wireframe page, untouched, with <code>data-theme="dark"</code> on it.
+     The only difference is on the right: the <code>--wf-*</code> greyscale that paints the shell around the
+     frame — the screen tree, the toolbar, the viewport switcher — is given a mirrored dark ramp, in that
+     document only. Nothing here is committed to the build.</p>
+
+  <div class="bar">
+    <label for="pick">Screen</label>
+    <select id="pick">
+      <option value="listings.html">listings</option>
+      <option value="order-history.html">order-history</option>
+      <option value="delivery.html">delivery</option>
+      <option value="wallet.html">wallet</option>
+      <option value="account.html">account</option>
+      <option value="onboarding-operator.html">onboarding-operator</option>
+      <option value="job-offer.html">job-offer</option>
+      <option value="tracking.html">tracking</option>
+    </select>
+  </div>
+
+  <div class="grid">
+    <div class="col">
+      <div class="cap"><b>1 · As built</b><span class="tag">current</span><span>frame dark, shell stays light</span></div>
+      <iframe id="a" title="As built"></iframe>
+    </div>
+    <div class="col">
+      <div class="cap"><b>2 · Shell follows the theme</b><span>the whole page goes dark</span></div>
+      <iframe id="b" title="Shell follows the theme"></iframe>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>Chrome ink</th><th>light, as built</th><th>dark, proposed</th></tr>
+    <tr><td><code>--wf-muted</code></td><td class="fail">2.90:1 — under WCAG 1.4.3</td><td class="pass">5.43:1</td></tr>
+    <tr><td><code>--wf-text-2</code></td><td>6.27:1</td><td class="pass">9.04:1</td></tr>
+    <tr><td><code>--wf-text</code></td><td>13.94:1</td><td class="pass">14.73:1</td></tr>
+    <tr><td>annotation link</td><td>8.54:1</td><td class="pass">8.74:1 — matched on purpose</td></tr>
+    <tr><td>surface over page</td><td>1.100:1</td><td>1.099:1 — the same step</td></tr>
+  </table>
+
+<script>
+// The candidate ramp. Mirrors the light one rung for rung: the shell keeps its
+// own relationships, it is only turned over. Measured values are in the table.
+var CHROME_DARK = ':root{' +
+  '--wf-surface:#1C1C1C;--wf-bg:#121212;--wf-recessed:#222222;--wf-fill:#2C2C2C;' +
+  '--wf-skeleton:#383838;--wf-muted:#8A8A8A;--wf-text-2:#B4B4B4;--wf-text:#E4E4E4;' +
+  '--wf-ink:#F2F2F2;--wf-ink-max:#FFFFFF;' +
+  '--wf-border:rgba(255,255,255,0.10);--wf-border-2:rgba(255,255,255,0.18);}' +
+  'body{background:#121212;color:#E4E4E4;}' +
+  // the annotation links fall back to the UA blue, which is 8.54:1 on the
+  // light shell and unreadable on a dark one. #7FB3FF is 8.74:1 here -
+  // the same readability the light build already has, not a new choice.
+  // scoped OUT of .dr: the first pass painted the product's own buttons and
+  // tab labels blue, which is the preview lying about the thing it previews.
+  'a:link:not(.dr a){color:#7FB3FF;} a:visited:not(.dr a){color:#C2A8F0;}';
+
+function dress(frame, withChrome){
+  var d = frame.contentDocument;
+  if (!d) return;
+  d.documentElement.setAttribute('data-theme','dark');
+  var old = d.getElementById('chrome-dark');
+  if (old) old.remove();
+  if (withChrome){
+    var s = d.createElement('style');
+    s.id = 'chrome-dark';
+    s.textContent = CHROME_DARK;
+    d.head.appendChild(s);
+  }
+}
+
+function load(){
+  var page = document.getElementById('pick').value;
+  [['a', false], ['b', true]].forEach(function(pair){
+    var f = document.getElementById(pair[0]);
+    f.onload = function(){ dress(f, pair[1]); };
+    f.src = 'wireframes/' + page + '?theme=dark';
+  });
+}
+document.getElementById('pick').addEventListener('change', load);
+load();
+</script>
+</body>
+</html>
