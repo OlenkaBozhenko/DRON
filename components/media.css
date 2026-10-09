@@ -321,3 +321,9 @@
   content: var(--img-drone-clean-wide);
   filter: none;
 }
+/* role-select's operator card (2026-10-10): the camera drone cropped to its own
+   ink, so in the 48x36 well it draws as large as the cargo box beside it. */
+.dr img[src$="tight/drone-flight-camera.png"]{
+  content: var(--img-drone-camera-tight);
+  filter: none;
+}

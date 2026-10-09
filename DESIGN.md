@@ -2177,7 +2177,7 @@ two Figma references used for structure only. Every value is an existing rung.
   **What was wrong was an asymmetry, not a small number:** the card's 16 inset plus the well's own 4
   put the ink **20** from the card edge, while the 12 gap plus that same 4 put it **16** from the
   title — the cutout read stuck to the words. At 20 the pair reads **20 against 24** and the text is
-  the further of the two. **One departure since 2026-10-10 (`concept.md` rev 285), her call:** the drone row takes `.dr-well--wide` — the render spills 14px past the well's content box on each side, **48 × 13.69 → 76 × 21.7** light (dark, its empty margins trimmed to match the light framing, **76 × 27.4**), against the box's 48 × 33.75. The well and the title column do not move; the drone's ink now stands **10** from the title, not 20, on that row only. She was shown both readings — a wider well on both rows keeping 20, or this — and chose this. Decorative image, card target 76pt: no HIG or WCAG criterion engaged.
+  the further of the two. **Since 2026-10-10 (`concept.md` rev 286) the operator card carries `drone-flight-camera`, cropped to its ink** (`thumbs/tight/`, 1.35:1) in place of the 3.5:1 front view: it draws **48 × 35.6** beside the box's **48 × 33.75**, and the 20px picture-to-text gap holds on both rows. (Rev 285's spill past the well was tried and reverted the same day — it cost the gap.)
   **Only `role-select` moves:** 2 of the 16 `.dr-choice` instances carry a
   `.dr-well`, the other 14 hold a single child and a flex gap with one child is nothing — measured
   after the change, `support` **55.80 × 3** and both alert logs **77.98 × 11**, unchanged. The card

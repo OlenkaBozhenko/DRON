@@ -158,19 +158,6 @@
   width: var(--len-56);
   height: var(--len-44);
 }
-/* A WIDE RENDER MAY SPILL ITS WELL SIDEWAYS (2026-10-10). The designer, on
-   role-select: the drone is far smaller than the cargo box beside it. Both sit
-   in the same 56x44 well, but the front-view drone is 3.5:1, so `contain` gave
-   it 48x14 against the box's 48x34. The picture now runs 14px past the well's
-   content box on each side - 76px wide, ~22px tall - while the well itself, and
-   so the title column of both rows, does not move. 6px stays to the card edge
-   and 10px to the title. Decorative (alt=""), so no WCAG criterion is engaged. */
-.dr-choice > .dr-well--wide img{
-  width: calc(100% + 2 * var(--len-14));
-  max-width: none;
-  margin-inline: calc(-1 * var(--len-14));
-  flex: none;
-}
 .dr-choice__body{
   flex: 1;
   min-width: 0;

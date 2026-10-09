@@ -459,6 +459,7 @@
   --img-drone-camera:     normal;
   --img-drone-clean:      normal;
   --img-drone-clean-wide:  normal;
+  --img-drone-camera-tight: normal;
 
   /* The six onboarding illustrations. Each is a whole SCENE drawn for its
      theme, not a cut-out tinted by a filter: the dark ones are painted on
@@ -714,6 +715,7 @@
   --img-drone-camera:     url("../assets/drones/thumbs/drone-flight-camera-dark.png");
   --img-drone-clean:      url("../assets/drones/thumbs/drone-flight-clean-dark.png");
   --img-drone-clean-wide:  url("../assets/drones/thumbs/wide/drone-flight-clean-dark.png");
+  --img-drone-camera-tight: url("../assets/drones/thumbs/tight/drone-flight-camera-dark.png");
 
   /* THE SIX ONBOARDING SCENES, painted for this theme rather than filtered.
      The light artwork is a cut-out matted against the cream page, so on a dark
