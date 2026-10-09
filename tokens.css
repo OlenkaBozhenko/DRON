@@ -186,7 +186,7 @@
      way it picks a --len-*. Giving them roles would mean a name per surface
      (--shadow-sheet, --shadow-toast) when the job is already the component's
      own name. So the seven components that read --shadow-sm / --shadow-raised
-     read them DIRECTLY and correctly. Written down because the 2026-10-09
+     read them DIRECTLY and correctly. Written down because the 2026-10-10
      audit had to infer it from the absence of roles instead of reading it. */
   --shadow-sm: 0 1px 2px rgba(20,18,15,.05);   /* --sh-sm */
   --shadow-card: 0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30);   /* --sh-card */

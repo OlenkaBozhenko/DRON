@@ -151,15 +151,20 @@
    reads product tokens. Same handling as .dr-avatar: cover-fit in a circle
    that keeps a ground of its own.
 
-   It lived in switch-role.html's own <style> until 2026-10-09. Two things
+   It lived in switch-role.html's own <style> until 2026-10-10. Two things
    were wrong with it there: a page cannot be the home of a rule, nobody
    looks for it; and its ground was var(--wf-recessed), the chrome greyscale
    #EEEEEE, which has no theme and showed as a near-white plate on a dark
    page. --bg-well is the product's own well and follows the theme.
 
-   One note for anyone re-running the kit-versus-components check: this rule
-   has no counterpart in ui/kit.css, so that comparison reports one
-   difference here by construction. It is the rule arriving, not drifting. */
+   One note for anyone re-running the kit-versus-components check: these rules
+   have no counterpart in ui/kit.css, so that comparison reports 28 differences
+   on switch-role by construction - all of them on the two elements below, the
+   mark and its image, and all of them the rule arriving rather than drifting.
+   Measured 2026-10-10: 28 differences across exactly 2 elements, nothing else
+   on the page. (An earlier draft of this note said "one difference", which was
+   the count while a single background declaration was still being carried in
+   wireframe-compat.css; the whole rule set is here now.) */
 .dr .success-mark:has(img){
   background: var(--bg-well);
   overflow: hidden;

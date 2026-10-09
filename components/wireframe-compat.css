@@ -55,7 +55,7 @@
 /* ----------------------------------------------------------------------- */
 /* THE LEAK THIS FILE'S OWN HEADER SAYS CANNOT HAPPEN.
    It said "nothing under .dr reads any of these names", and the dark sweep of
-   2026-10-09 proved that false in exactly two places. Both are the same
+   2026-10-10 proved that false in exactly two places. Both are the same
    defect: a PRODUCT element painted with the PROTOTYPE CHROME's grayscale,
    which has no theme and never will, so in dark it keeps a light-build value.
 

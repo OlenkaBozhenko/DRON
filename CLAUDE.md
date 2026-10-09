@@ -250,7 +250,7 @@ frames by hand, and where a document disagrees with a frame, the document is cor
 carries the reasoning and the history; `DESIGN.md` carries the values. A machine-readable copy for
 tooling sits at `.impeccable/design.json`.
 
-### Tokens — where a value lives and where a change goes (revised 2026-10-09)
+### Tokens — where a value lives and where a change goes (revised 2026-10-10)
 
 **A value now lives in [`tokens.css`](tokens.css), and it is edited at the tier that owns it.**
 Two tiers and one rule each:
@@ -270,12 +270,12 @@ Two tiers and one rule each:
   here it is *depth*: there are four declared rungs, two are spent, and a component picks the one
   its elevation calls for the way it picks a `--len-*`. There is **no semantic shadow tier and
   that is the rule** — the seven components reading `--shadow-sm` / `--shadow-raised` directly are
-  correct. Written down 2026-10-09 because the audit had to infer it from an absence.
+  correct. Written down 2026-10-10 because the audit had to infer it from an absence.
 
 - **A percentage is a length and comes from `--pct-*`.** Two exceptions, both deliberate: a
   **keyframe stop** (`0%`, `55%`) is a selector naming a moment, and a **`color-mix()` ratio** is a
   proportion — neither is a length and neither takes a token. 70 literal percentages were
-  converted on 2026-10-09 and 24 of 24 page snapshots stayed identical.
+  converted on 2026-10-10 and 24 of 24 page snapshots stayed identical.
 
 **A change of MARKUP goes to two places and both are required:** the specimen in
 [`ui/kit.html`](ui/kit.html), and every screen in `wireframes/` where the component actually
@@ -318,7 +318,7 @@ value is what it is. The move was a refactor and is measured as one: every page 
 identically under both stylesheets — every box and 151 properties per element, at 1280 and at 380,
 with drawers, keyboards and pressed states open. Four gaps were found that way and all four were
 closed in `components/`, never in a frame. **No screen carries CSS of its own any more**
-(2026-10-09 audit): the three option partials `_checkbox-options`, `_field-options` and
+(2026-10-10 audit): the three option partials `_checkbox-options`, `_field-options` and
 `_navbar-options` keep a `<style>` block, and they are specimens rather than screens. The claim
 this line used to make — *three pages, only one alive* — was measured false. Eleven pages held a
 block; `account` and `operator-account` were genuinely dead (0 computed differences when disabled)

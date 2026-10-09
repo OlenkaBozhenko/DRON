@@ -29,7 +29,7 @@
 /* THE FILL AND THE VALUE ARE TWO DIFFERENT FACTS, so they have two hooks.
    aria-checked marks the value and lands on ONE star; data-on marks the fill
    and runs up to it. Painting on aria-checked would light a single star on a
-   rating of four. This replaced aria-pressed on 2026-10-09: five pressed
+   rating of four. This replaced aria-pressed on 2026-10-10: five pressed
    toggles described a rating as five independent switches, and the buttons
    carried no accessible name at all - WCAG 4.1.2, level A. */
 .dr-star[data-on]{

@@ -90,7 +90,7 @@
    a miss. -.47s and -.93s are not lengths and not a scale: they are offsets
    into a running shimmer, picked so three skeleton rows never pulse in step.
    A primitive for each would be a token with one spend and no second reader,
-   and the audit of 2026-10-09 left them deliberately. They and one colour-mix
+   and the audit of 2026-10-10 left them deliberately. They and one colour-mix
    ratio are all that is left of the literal values in components/. */
 .dr-sk-d1 *{
   animation-delay: -.47s;

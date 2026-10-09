@@ -1216,7 +1216,7 @@ the prototype.
 
 ---
 
-## §16 The full audit of tokens, components and screens (2026-10-09)
+## §16 The full audit of tokens, components and screens (2026-10-10)
 
 Her seven checks, run over `tokens.css`, the 31 files in `components/` and all 128 pages, plus
 `/impeccable audit` and its detector. **Then fixed.** What follows is what was found, what it cost
