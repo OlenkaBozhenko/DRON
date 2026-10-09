@@ -14,6 +14,8 @@ on:
       - 'ui/*.html'
       - 'ui/*.css'
       - 'ui/*.js'
+      - 'tokens.css'
+      - 'components/**'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
@@ -58,6 +60,15 @@ jobs:
           mkdir -p _site/wireframes
           cp wireframes/*.html _site/wireframes/
           cp wireframes/_wireframe.css wireframes/_wf-shell.js _site/wireframes/
+          # THE TOKEN + COMPONENT LAYER, which every page has linked since the
+          # 2026-09-24 move off ui/kit.css. Leaving it out is how the live site
+          # came up on 2026-10-10 with only the prototype chrome styled: every
+          # product rule 404'd, so each SVG drew at its intrinsic size and the
+          # status bar filled the screen. Local looked right the whole time,
+          # because a local server hands over the whole repo.
+          cp tokens.css _site/
+          mkdir -p _site/components
+          cp components/*.css _site/components/
           # Publish the concept design-direction pages (HTML only).
           # The .md sources stay on master and are not published.
           mkdir -p _site/concept
@@ -65,6 +76,13 @@ jobs:
           # Publish the imagery set (drones, people, scenes). The concept pages and
           # the wireframes reference these by root-relative path, so the folder has
           # to exist on gh-pages verbatim or every <img> 404s.
+          # The reference screenshots research.html draws. research/ is a source
+          # folder and stays unpublished, but these eight PNGs are rendered by a
+          # published page, so the page shipped with eight broken images until
+          # the self-check below started looking. Only the screens ship, not the
+          # .md notes beside them.
+          mkdir -p _site/research/screens
+          cp research/screens/*.png _site/research/screens/
           cp -r assets _site/assets
 
       - name: Cache-bust shared assets
@@ -78,9 +96,71 @@ jobs:
           STAMP="${GITHUB_SHA::8}"
           find _site/wireframes -name '*.html' -print0 | xargs -0 sed -i \
             -e "s#\"_wireframe.css\"#\"_wireframe.css?v=${STAMP}\"#g" \
-            -e "s#\"_wf-shell.js\"#\"_wf-shell.js?v=${STAMP}\"#g"
+            -e "s#\"_wf-shell.js\"#\"_wf-shell.js?v=${STAMP}\"#g" \
+            -e "s#\"../components/index.css\"#\"../components/index.css?v=${STAMP}\"#g"
           echo "Stamped shared-asset URLs with v=${STAMP}"
 
+      - name: Fail if a published page links something that is not published
+        run: |
+          # THE GUARD THIS WORKFLOW HAS NEEDED THREE TIMES. The publish step
+          # names its files one by one, which is correct - the .md sources must
+          # not ship - but it means the list goes stale every time the build
+          # changes shape, and nothing notices. It has now happened three times:
+          # ui/kit.css (the painted screens came up unpainted), ui/kit.js (every
+          # drawer on the live prototype was a dead tap), and on 2026-10-10 the
+          # whole token + component layer. Each one worked locally the entire
+          # time, because a local server hands over the repo and gh-pages hands
+          # over this folder. So from here the build CHECKS ITSELF: every local
+          # href and src in every published page must resolve inside _site.
+          python3 - <<'CHECK'
+          import os, re, sys
+          from urllib.parse import urlsplit, unquote
+          ROOT = '_site'
+          REF = re.compile(r'(?:href|src)=["']([^"']+)["']')
+          missing, notes, checked = [], [], 0
+          for dirpath, _, files in os.walk(ROOT):
+              for f in files:
+                  if not f.endswith('.html'):
+                      continue
+                  page = os.path.join(dirpath, f)
+                  with open(page, encoding='utf-8', errors='replace') as fh:
+                      html = fh.read()
+                  for raw in REF.findall(html):
+                      if raw.startswith(('http://', 'https://', '//', 'mailto:', 'tel:', 'data:', '#')):
+                          continue
+                      path = unquote(urlsplit(raw).path)
+                      if not path:
+                          continue
+                      target = (os.path.join(ROOT, path.lstrip('/')) if path.startswith('/')
+                                else os.path.normpath(os.path.join(dirpath, path)))
+                      checked += 1
+                      if os.path.exists(target):
+                          continue
+                      # A .md link is EXPECTED to be missing: the sources stay on
+                      # master by design. It is still a dead link for a visitor, so
+                      # it is listed - but it must not block a deploy.
+                      (notes if target.endswith('.md') else missing).append(
+                          (os.path.relpath(page, ROOT), raw))
+          print('checked %d local references across the published site' % checked)
+          if missing:
+              seen = sorted({m[1] for m in missing})
+              print('')
+              print('%d reference(s) point at something that is NOT published:' % len(missing))
+              for ref in seen:
+                  pages = [p for p, r in missing if r == ref]
+                  print('  %-44s  %d page(s), e.g. %s' % (ref, len(pages), pages[0]))
+              print('')
+              print('Add the file to the Assemble publish directory step, or stop linking it.')
+              sys.exit(1)
+          if notes:
+              print('')
+              print('%d link(s) point at an .md source, which is never published by design:' % len(notes))
+              for page, ref in sorted(set(notes)):
+                  print('  %-44s  on %s' % (ref, page))
+              print('Not fatal. Point them at the GitHub blob URL if you want them to work.')
+          print('')
+          print('every local reference that should resolve, resolves inside _site')
+          CHECK
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
