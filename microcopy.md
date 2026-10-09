@@ -37,7 +37,7 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 
 **Screens already compliant (no change):** `onboarding-operator`, `signin`.
 
-**123 strings changed across 34 screens.**
+**128 strings changed across 34 screens.**
 
 
 | Screen | File | Zone | Type | Before | After |
@@ -128,6 +128,12 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | rate | rate.html | Rating | heading | Rate this order | How would you rate this order? |
 | rate | rate.html | Review | placeholder | What went well? Anything to improve? | What the operator did well, and anything to improve |
 | rate | rate.html | Review | field label | Your review | Share your review of this order |
+| rate | rate.html | Rating | accessible name | *(none — the button had no name at all)* | aria-label="1 star" |
+| rate | rate.html | Rating | accessible name | *(none — the button had no name at all)* | aria-label="2 stars" |
+| rate | rate.html | Rating | accessible name | *(none — the button had no name at all)* | aria-label="3 stars" |
+| rate | rate.html | Rating | accessible name | *(none — the button had no name at all)* | aria-label="4 stars" |
+| rate | rate.html | Rating | accessible name | *(none — the button had no name at all)* | aria-label="5 stars" |
+| rate | rate.html | Rating | note | — | `rate-aerial.html` and `rate-inspection.html` carry the same five names; the rating is 4 of 5 on all three |
 | rate | rate.html | Review | field label | Share your review of this order | Your review — screen-reader only (designer, 2026-08-13: the compose card is one surface; the visible line comes off and the placeholder is the one sentence of help text) |
 | contact-support | contact-support.html | Message | field label | Your message | Your message — screen-reader only (designer, 2026-08-15: *remove “your message text”*; the visible line comes off and the placeholder carries the naming, the pattern `rate` took on 2026-08-13) |
 | order-setup | order-setup.html | Details form · Notes | field label | Notes for the operator | Notes for the operator — screen-reader only (designer, 2026-08-16: *забери цей текст*; the visible line comes off, the name stays on the control. Third compose card to take the `rate` pattern — and the first where the placeholder does **not** carry the naming, since *Floor, entrance code, what's inside…* is examples only. Open: whether the placeholder should name the field) |

@@ -4380,7 +4380,7 @@ header.dr-topbar,
   display: inline-flex; align-items: center; justify-content: center;
   color: var(--btn2);
 }
-.dr-star[aria-pressed="true"]{ color: var(--warn); }
+.dr-star[aria-pressed="true"], .dr-star[data-on]{ color: var(--warn); }
 .dr-star .dr-ic{ width: var(--sz-star); height: var(--sz-star); fill: currentColor; stroke: none; }
 .dr-star:focus-visible{ outline: var(--focus-w) solid var(--ink); outline-offset: var(--focus-offset); }
 

@@ -177,7 +177,17 @@
 
   /* -- PRIMITIVE / SHADOW --------------------------------------------------
      Four declared rungs. Two are spent in the build, two are not; that is
-     recorded in tokens-audit.md §1.7 and not decided here. */
+     recorded in tokens-audit.md §1.7 and not decided here.
+
+     NO SEMANTIC TIER, AND THAT IS THE RULE, NOT AN OVERSIGHT. A shadow holds
+     an rgba, so it looks like colour and the two-tier rule would seem to bind
+     it. It does not. A shadow here is DEPTH, and depth is geometry: there are
+     two spent rungs, and a component picks the one its elevation calls for the
+     way it picks a --len-*. Giving them roles would mean a name per surface
+     (--shadow-sheet, --shadow-toast) when the job is already the component's
+     own name. So the seven components that read --shadow-sm / --shadow-raised
+     read them DIRECTLY and correctly. Written down because the 2026-10-09
+     audit had to infer it from the absence of roles instead of reading it. */
   --shadow-sm: 0 1px 2px rgba(20,18,15,.05);   /* --sh-sm */
   --shadow-card: 0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30);   /* --sh-card */
   --shadow-raised: 0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34);   /* --sh-raised */
