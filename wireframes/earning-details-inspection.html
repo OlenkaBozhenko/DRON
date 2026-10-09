@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DRON wireframe · Earning details — Roof inspection</title>
+<title>DRON wireframe · Earning details — Inspection</title>
 <!-- SCREEN (_screens.md §17b): "Earning details" — sub-view of Wallet / earnings, one file per service.
      PERSONA: Operator O-1. JOB: RJ-O3 · O-05 — the wallet says how much; the record says what for.
      THIS INSTANCE: the roof inspection. Third of the three service files.
@@ -42,22 +42,22 @@
 </head>
 <body>
   <aside class="meta">
-    <h1>Earning details — Roof inspection</h1>
+    <h1>Earning details — Inspection</h1>
     <p class="sub">Operator · RJ-O3 · state: <b>base</b> · file: earning-details-inspection.html</p>
-    <div class="flow"><b>Job (jtbd):</b> RJ-O3 — the payout landed on its own; this is the record that says which job produced it and how the money moved. This instance: the roof inspection.<br><b>flows.md:</b> Wallet / earnings → <span class="cur">Earning details</span> → back to Earnings.<br><b>States:</b> none — a settled payout is a record (per <code>_screens.md</code> §17b).<br><b>Exit:</b> the back chevron → <b>Wallet / earnings</b>.</div>
+    <div class="flow"><b>Job (jtbd):</b> RJ-O3 — the payout landed on its own; this is the record that says which job produced it and how the money moved. This instance: the inspection.<br><b>flows.md:</b> Wallet / earnings → <span class="cur">Earning details</span> → back to Earnings.<br><b>States:</b> none — a settled payout is a record (per <code>_screens.md</code> §17b).<br><b>Exit:</b> the back chevron → <b>Wallet / earnings</b>.</div>
     <div class="legend"><p><b>Zones:</b></p><p><b>Summary</b> ▸ what the job was · where it ran · when it closed · what it paid</p><p><b>Payout</b> ▸ how the money reached the balance (RJ-O3's promise, stated as fact)</p></div>
     <div class="flow"><b>One of three record files</b> (2026-08-21) — the same screen, one instance per service: <a href="earning-details.html">earning-details</a>, <a href="earning-details-aerial.html">earning-details-aerial</a> and this one. Only the heading and the summary strings differ; the Payout zone is byte-identical across the three.</div>
   </aside>
 
   <div class="wf-frame dr dr-screen">
     <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
-    <header class="topbar dr-topbar"><a class="dr-back" href="wallet.html" aria-label="Back to Earnings"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Roof inspection</span><span class="dr-topbar__spacer"></span></header>
+    <header class="topbar dr-topbar"><a class="dr-back" href="wallet.html" aria-label="Back to Earnings"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Inspection</span><span class="dr-topbar__spacer"></span></header>
     <main class="dr-main">
       <p class="zlabel dr-label">Summary <span class="dr-label__act">&#9656; what was done &#183; where &#183; when &#183; what it paid</span></p>
       <div class="dr-rows" aria-label="Job summary">
-        <div class="dr-rows__row"><span class="dr-rows__key">Service</span><span class="dr-rows__val">Roof inspection</span></div>
-        <div class="dr-rows__row"><span class="dr-rows__key">Location</span><span class="dr-rows__val">Osokorky, 14</span></div>
-        <div class="dr-rows__row"><span class="dr-rows__key">Structure</span><span class="dr-rows__val">Roof &#183; gutters &#183; chimney</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Service</span><span class="dr-rows__val">Inspection</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Location</span><span class="dr-rows__val">Hlevakha, field 3</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Subject</span><span class="dr-rows__val">Field &#183; sunflowers</span></div>
         <div class="dr-rows__row"><span class="dr-rows__key">Done</span><span class="dr-rows__val">Yesterday</span></div>
         <!-- EARNED, NOT PAID. `voice.md` keeps one word per concept and the client's own record
              already spends "Paid" for what the CLIENT paid (order-details). On the operator side the

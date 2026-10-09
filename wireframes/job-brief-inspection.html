@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DRON wireframe · Job brief / detail — Roof inspection · base</title>
+<title>DRON wireframe · Job brief / detail — Inspection · base</title>
 <!-- SCREEN: "Job brief / detail" — INSTANCE: inspection (base). JOB (jtbd): RJ-O1 · MJ-2 — see everything needed in one glance (location, service, duration, pay). Flow: MJ-2 "Job brief" → Details sufficient? → Able to fly? EXIT: Start job → Checklist.
      ONE OF THREE BRIEF FILES (2026-08-21, _screens.md §14) — §13's split carried one screen down,
      because Accept on an offer AND the tap on an active card both land here. All three of
@@ -13,7 +13,7 @@
 </head>
 <body>
   <aside class="meta">
-    <h1>Job brief / detail — Roof inspection</h1>
+    <h1>Job brief / detail — Inspection</h1>
     <p class="sub">Operator · MJ-2 · state: <b>base</b> · file: job-brief-inspection.html</p>
     <div class="flow"><b>One of three brief files</b> (2026-08-21) — the same screen, one instance per service: <a href="job-brief.html">job-brief</a> (delivery), <a href="job-brief-aerial.html">job-brief-aerial</a> and this one. The well, the details rows and the Notes zone carry that job's facts; the structure is identical.<br><b>Job (jtbd):</b> RJ-O1 · MJ-2 — location, service, duration, pay in one glance.<br><b>States:</b> none of its own — <code>job-brief-error</code> (stand down: airspace / weather) is service-neutral and stays on the delivery file.<br><b>Exit:</b> Start job → <b>Job checklist</b>.</div>
     <div class="legend"><p><b>Zones:</b></p><p><b>Site</b> ▸ map placeholder</p><p><b>Details</b> ▸ service · client · structure · pay · time</p><p><b>Notes</b> ▸ client instructions</p></div>
@@ -27,14 +27,14 @@
            place instead of a leg between two of them; the image and the well are
            the delivery file's, byte for byte. -->
       <p class="zlabel dr-label">Site <span class="dr-label__act">▸ where the inspection runs</span></p>
-      <div class="dr-well dr-well--map" role="img" aria-label="Site · Obolon district"><img src="../assets/map/thumbs/live-map.jpg" alt="" loading="lazy" decoding="async"></div>
+      <div class="dr-well dr-well--map" role="img" aria-label="Site · Vasylkiv district"><img src="../assets/map/thumbs/live-map.jpg" alt="" loading="lazy" decoding="async"></div>
 
       <p class="zlabel dr-label">Details <span class="dr-label__act">▸ everything in one glance (RJ-O1)</span></p>
       <div class="dr-rows" aria-label="Job details">
-        <div class="dr-rows__row"><span class="dr-rows__key">Service</span><span class="dr-rows__val">Roof inspection</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Service</span><span class="dr-rows__val">Inspection</span></div>
         <div class="dr-rows__row"><span class="dr-rows__key">Client</span><span class="dr-rows__val">Maria D.</span></div>
-        <div class="dr-rows__row"><span class="dr-rows__key">Location</span><span class="dr-rows__val">Obolon district</span></div>
-        <div class="dr-rows__row"><span class="dr-rows__key">Structure</span><span class="dr-rows__val">Roof · gutters · chimney</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Location</span><span class="dr-rows__val">Vasylkiv district</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Subject</span><span class="dr-rows__val">Field · sunflowers</span></div>
         <div class="dr-rows__row"><span class="dr-rows__key">Pay</span><span class="dr-rows__val">₴650</span></div>
         <div class="dr-rows__row"><span class="dr-rows__key">Est. time</span><span class="dr-rows__val">~35 min</span></div>
       </div>
@@ -47,7 +47,7 @@
            roof, what you want checked…». The field is optional there, so a brief
            can also arrive with nothing in it: job-brief-aerial is that instance. -->
       <p class="zlabel dr-label">Notes <span class="dr-label__act">▸ client instructions</span></p>
-      <article class="dr-card dr-card--compact"><span class="dr-listing__body">Two storeys. Ladder access from the yard, gate code 22B. The north slope is where the water comes in.</span></article>
+      <article class="dr-card dr-card--compact"><span class="dr-listing__body">Sunflowers, 12 ha. Access by the dirt road from the south. The east half dried out, and cattle got into the north edge last week — the damage needs to be on record.</span></article>
     </main>
     <footer class="dr-actionbar">
       <a class="dr-btn dr-btn--primary dr-btn--block" href="job-checklist.html">Start job</a>

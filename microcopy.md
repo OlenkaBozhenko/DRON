@@ -95,7 +95,7 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | operator-listings | operator-listings.html | Status | state message | · receiving offers near Podil | · receiving jobs near Podil |
 | operator-listings | operator-listings.html | Counter | state message | 2 new offers · 1 active job · nearest first | 2 new jobs · 1 active job · nearest first |
 | operator-listings | operator-listings.html | Incoming offers | placeholder | Package delivery offer — open brief | Package delivery job — open brief |
-| operator-listings | operator-listings.html | Incoming offers | placeholder | Roof inspection offer — open brief | Roof inspection job — open brief |
+| operator-listings | operator-listings.html | Incoming offers | placeholder | Roof inspection offer — open brief | Inspection job — open brief |
 | operator-listings | operator-listings-empty.html | Status | state message | · no offers while offline | · no jobs while offline |
 | operator-listings | operator-listings-empty.html | Offers (empty state) | state message | No offers while you're offline | No jobs while you're offline |
 | operator-profile-setup | operator-profile-setup.html | Topbar | button | ‹ Back | ‹ Back to Verification |
@@ -348,12 +348,12 @@ _All rows below were the Step-01 finding; **all resolved** in the voice rewrite 
 | Screen | Zone | String |
 |---|---|---|
 | job-brief | Notes | Leave with the concierge, entrance code 4417. |
-| job-brief-inspection · job-offer-inspection | Notes | Two storeys. Ladder access from the yard, gate code 22B. The north slope is where the water comes in. |
+| job-brief-inspection · job-offer-inspection | Notes | Sunflowers, 12 ha. Access by the dirt road from the south. The east half dried out, and cattle got into the north edge last week — the damage needs to be on record. |
 | operator-dispute | Client claim | “The photos are blurry — I can't use them for the listing.” |
 | operator-profile-setup | Profile photo | Certified operator since 2023. Fast, careful deliveries across Kyiv… |
 | ratings | Recent reviews | “Fast and careful — package arrived sealed and on time.” |
 | ratings | Recent reviews | “Good shots overall, a couple came out a bit dark.” |
-| ratings | Recent reviews | “Clear roof footage, spotted the leak we couldn't see.” |
+| ratings | Recent reviews | “Clear field footage, showed exactly where the cattle got in.” |
 
 ## Audit — voice-compliance pass (Step 03)
 
@@ -696,6 +696,14 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **NOT TOUCHED, ON PURPOSE.** Dated history is not rewritten: the Batch-1/2 rewrite logs, the rev-164 and rev-223 audit notes, and the `listings` row at **1151** all keep the old name because they record what was true when they were written. **One stale row is found and reported rather than corrected:** `wallet | Balance | ₴800 paid for 'Aerial photo & video', added to your balance 12 min ago.` is still in the master table although the string was **deleted on 2026-08-21** (row 176) and is in no build — it is a drift that predates this pass, and removing a row is not mine to do.
 
 
+**Sync — 2026-10-10 (Inspection takes one name, and the example order becomes a field — `concept.md` rev 284)**
+
+- **The designer's call:** *Roof inspection* → **Inspection** everywhere, and the broken roof replaced by a sunflower field — half in bloom, half dried out, part of it trampled by cows and horses. On the scope question: Roof stays as an option, **Field is added first** and is the priority inside the Inspection category.
+- **Renamed (visible + accessible names):** nav titles on `order-details-inspection` / `earning-details-inspection`; card titles on `order-history`, `operator-listings`, `wallet`, `job-offer-inspection`; the `notifications` row meta; `job-brief-inspection`'s Service row; the link names *Inspection job — open brief*, *Inspection, 2 Jun 2026, delivered — open order*, *View details — Inspection, yesterday*. `WCAG 3.2.4` is the reason, as for *Photo & video*.
+- **Authored for the field record:** **Subject** (replaces *Structure*, which cannot name a field) · **Field · sunflowers** · **Hlevakha, field 3** / *Hlevakha — field 3, by the Kyiv road* · **Vasylkiv district** · **Field · 12 ha** (₴480, total still ₴650) · the three findings and their lines · the operator note · four `alt` texts · the setup placeholder *Field size, access road, what you want checked…* · the `report-issue` example · the `ratings` review (USER text, re-staged so it describes the same kind of job).
+- **`voice.md` checked:** P1 holds — the finding names the outcome (*Drought · east half*), not the drone; P5 — the findings state the damage in hectares without adjectives; A-rules — no exclamation, no *successfully*. `voice.md`'s own examples move from *roof* to *field* (P1 rule line, P4 rule and listing example, the GEO query and H2).
+- **Not touched:** the Batch-1/2 rewrite logs and every dated row keep *roof*, because they record what was true then.
+
 ## Master table — every string
 
 _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string, in document order. Regenerated from the current wireframes after the voice rewrite (Step 03 audit)._
@@ -904,16 +912,16 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | inspection-report | — | Inspection report | Heading |  |
 | inspection-report | — | DONE | Body | WF-PH |
 | inspection-report | — | Report ready | Body |  |
-| inspection-report | — | Roof inspection · Osokorky, 14 · completed 15:42. | Body | DATA |
+| inspection-report | — | Inspection · Hlevakha, field 3 · completed 15:42. | Body | DATA |
 | inspection-report | Cover | COVER PHOTO | Body | WF-PH |
-| inspection-report | Findings | Roof · north slope | Heading |  |
-| inspection-report | Findings | 2 cracked tiles near the ridge — water ingress risk. | Body |  |
+| inspection-report | Findings | Drought · east half | Heading |  |
+| inspection-report | Findings | Plants withered across ~6 ha, soil dry and cracked. | Body |  |
 | inspection-report | Findings | Severity · High | Body |  |
-| inspection-report | Findings | Gutter · east run | Heading |  |
-| inspection-report | Findings | Leaf blockage over ~1.5 m, standing water. | Body | DATA |
+| inspection-report | Findings | Livestock · north edge | Heading |  |
+| inspection-report | Findings | Cows and horses got in — ~1.5 ha trampled flat. | Body | DATA |
 | inspection-report | Findings | Severity · Medium | Body |  |
-| inspection-report | Findings | Chimney flashing | Heading |  |
-| inspection-report | Findings | Sealed and intact — no action needed. | Body |  |
+| inspection-report | Findings | Sunflowers · west half | Heading |  |
+| inspection-report | Findings | In full bloom — no action needed. | Body |  |
 | inspection-report | Findings | Severity · None | Body |  |
 | inspection-report | Photo set | INSPECTION IMAGE | Body | WF-PH |
 | inspection-report | Photo set | INSPECTION IMAGE | Body | WF-PH |
@@ -1278,7 +1286,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-listings | Incoming offers · cards | expires in 8s | Body |  |
 | operator-listings | Incoming offers · cards | Accept | Button |  |
 | operator-listings | Incoming offers · cards | Decline | Button |  |
-| operator-listings | Incoming offers · cards | Roof inspection | Body |  |
+| operator-listings | Incoming offers · cards | Inspection | Body |  |
 | operator-listings | Incoming offers · cards | New | Body |  |
 | operator-listings | Incoming offers · cards | 5.1 km · ~35 min | Body | DATA |
 | operator-listings | Incoming offers · cards | Location | Body |  |
@@ -1434,11 +1442,11 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-details | Action bar | Book again | Button | the vocabulary's own re-order verb (A3), the same string `resolution` carries as `Book again — free` |
 | order-details | Delivery photo | A ribboned cardboard parcel left on the wooden entrance steps beside the door and its intercom panel, the way the operator photographed it on arrival. | Alt text | **Written against the rendered frame, not from the filename.** The first draft said *"upright on a doormat outside a flat door"* — `delivered-at-door.jpg` actually shows a house entrance: wooden steps, planting either side, an intercom panel by the door. An alt guessed from a file stem is the same failure as no alt, and it was caught by looking at the screen rather than at the markup. | **WCAG 1.1.1 Non-text Content.** The well used to carry `role="img" aria-label="Delivery photo"` with an empty `alt`, so a screen-reader user was told the *category* of the picture and never its content — the sighted client can see the parcel arrived, and that is the whole point of the zone (`RJ-C4`). The alt now says what is in the frame; the zone keeps its name on the `<section>`, where a name belongs. Same construction `inspection-report` has used since it was built |
 | order-details-inspection | — | ‹ Activity | Button | new file 2026-08-16, same chevron and same accessible name as `order-details` |
-| order-details-inspection | — | Roof inspection | Heading | copied from the card that opens it |
+| order-details-inspection | — | Inspection | Heading | copied from the card that opens it |
 | order-details-inspection | Summary | Location · Structure · Delivered · Operator · Paid | Field labels | **Location**, not *From ▸ To* — an inspection has one stop, and the card it opens from already shows a single `Location` row. **Structure** is the inspection's analogue of `Parcel`: the thing the order was about. **Delivered** is the same word the delivery record uses, and for the same reason — `voice.md` keeps one word per concept, and the concept is *the deliverable landed*, not *a parcel landed*; all three cards already carry `Delivered` as the accessible name of their settled check |
-| order-details-inspection | Summary | Osokorky, 14 · Roof · gutters · chimney · 2 Jun · 09:15 · Andriy M. | Values | DATA — every value is read off what is already built: the address and date/time from the `order-history` card, and `Roof · gutters · chimney` from the three findings `inspection-report` actually carries (north slope, east gutter run, chimney flashing), so the record names the same scope the report documents |
+| order-details-inspection | Summary | Hlevakha, field 3 · Field · sunflowers · 2 Jun · 09:15 · Andriy M. | Values | DATA — every value is read off what is already built: the address and date/time from the `order-history` card, and `Roof · gutters · chimney` from the three findings `inspection-report` actually carries (north slope, east gutter run, chimney flashing), so the record names the same scope the report documents |
 | order-details-inspection | Inspection report | Inspection report | Section name | `voice.md` **O5** — the per-service name of what the operator hands over. Not *proof*, not *result* |
-| order-details-inspection | Inspection report | Cracked roof tiles near the ridge — the cover of this order's report. | Alt text | the same frame `inspection-report` opens with, so the record and the report agree on what the job found; the alt is that page's wording with *report* pointed back at this order |
+| order-details-inspection | Inspection report | A sunflower field split in two — half in full bloom, half dried out — the cover of this order's report. | Alt text | the same frame `inspection-report` opens with, so the record and the report agree on what the job found; the alt is that page's wording with *report* pointed back at this order |
 | order-details-inspection | Summary | Paid | Field label | the one string, no breakdown — rev 132's rule holds for every record file, and from rev 136 so does its place: the summary card's last row, not a `Payment` zone |
 | order-details-inspection | Summary | ₴650 | Values | DATA — the sum on the card that opens it |
 | order-details-inspection | Action bar | Book again · Delete order | Buttons | identical to `order-details`, including the grey secondary rung (rev 131) |
@@ -1481,7 +1489,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-history | Order history | Location | Body |  |
 | order-history | Order history | Trukhaniv Island | Body |  |
 | order-history | Order history | Delete order | Button |  |
-| order-history | Order history | Roof inspection | Body |  |
+| order-history | Order history | Inspection | Body |  |
 | order-history | Order history | Delivered | Label | status indicator — accessible name, not visible text |
 | order-history | Order history | 2 Jun · 09:15 | Body | DATA |
 | order-history | Order history | Location | Body |  |
@@ -1530,15 +1538,15 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-review-inspection | — | ‹ Pick a time | Button | new file 2026-08-16, same reading as the aerial file |
 | order-review-inspection | — | Order review | Heading |  |
 | order-review-inspection | Summary | Service · Location · Structure · When | Field labels | **four rows, not five** — a report is fixed, so there is no *What you get* to state (`voice.md` **O5** is unchanged for this service). Stated rather than padded to match |
-| order-review-inspection | Summary | Inspection · Osokorky, 14 · Roof · gutters · chimney · Wed 2 Jul · 09:00–10:00 | Values | DATA. **`Structure` is the record's own string** — the three boxes ticked on the setup form, joined by the middot; review and record read identically, which is what makes *Book again* a promise the next screen keeps. The address takes the review's short form, as the delivery file writes *Podil, 21* for a field that holds the whole street line |
-| order-review-inspection | Price breakdown | Inspection · 3 parts · Inspection report · Service fee · Total | Field labels | the deliverable on its own line, as on the aerial file, so the two calendar-first services do not disagree about what a breakdown is. **Here the line is the report** — `target-audience.md` makes it the thing C-2 is actually buying, not the flight. **The variable row is the structure count, not distance**: three parts ticked, three parts charged, and a fourth would move this line (`voice.md` **P3**) |
+| order-review-inspection | Summary | Inspection · Hlevakha, field 3 · Field · sunflowers · Wed 2 Jul · 09:00–10:00 | Values | DATA. **`Structure` is the record's own string** — the three boxes ticked on the setup form, joined by the middot; review and record read identically, which is what makes *Book again* a promise the next screen keeps. The address takes the review's short form, as the delivery file writes *Podil, 21* for a field that holds the whole street line |
+| order-review-inspection | Price breakdown | Field · 12 ha · Inspection report · Service fee · Total | Field labels | the deliverable on its own line, as on the aerial file, so the two calendar-first services do not disagree about what a breakdown is. **Here the line is the report** — `target-audience.md` makes it the thing C-2 is actually buying, not the flight. **The variable row is the structure count, not distance**: three parts ticked, three parts charged, and a fourth would move this line (`voice.md` **P3**) |
 | order-review-inspection | Price breakdown | ₴480 · ₴150 · ₴20 · ₴650 | Values | DATA. **Reconciles exactly — 480 + 150 + 20 = 650**, and ₴650 is what the inspection record was paid |
 | order-review-inspection | Action bar | Pay ₴650 | Button | as the aerial file, with its own figure |
 | order-review-inspection | Pay drawer | Pay ₴650 | Accessible name | as the aerial file |
 | payment-aerial | Amount | ₴800 | Values | DATA — **the figure the previous screen locked.** The delivery file said ₴180 here regardless of what was ordered, which is `voice.md` **P3** / `RJ-C3` broken at the sharpest point in the flow: the screen where the card goes in. Nothing else on the screen moves — the `cc-*` tokens (`WCAG 1.3.5`), the drawn labels (`3.3.2`), the 44pt rows and the save-card contract are the delivery file's |
 | payment-aerial | Amount | Photo &amp; video · Trukhaniv Island | Body | what the money is for, in the service's own name and the order's own place. The delivery file writes the route (*Podil → Osokorky*) because a delivery has two ends; a shoot has one |
 | payment-aerial | Action bar | Pay ₴800 | Button | the same string and element as the delivery file, with its own figure |
-| payment-inspection | Amount | ₴650 · Inspection · Osokorky, 14 | Values | DATA, as the aerial file |
+| payment-inspection | Amount | ₴650 · Inspection · Hlevakha, field 3 | Values | DATA, as the aerial file |
 | payment-inspection | Action bar | Pay ₴650 | Button | as the aerial file |
 | order-confirmed-aerial | Confirmation | Your shoot is booked for Wed 2 Jul, 09:00. | Body | **replaces *Your operator is on the way*, which is false for a service booked for Wednesday.** `RJ-C2` — close the void after payment — is answered by stating **when**, not by asserting motion that is not happening. *Payment received* above it is unchanged: that part did happen |
 | order-confirmed-aerial | Booking | When · Wed 2 Jul · 09:00–10:00 | Field label + value | replaces `ETA · ~8 min`. A booked hour is not an estimate, so the key is not *ETA* |
@@ -1626,11 +1634,11 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-setup-inspection | — | Inspection | Heading | the listings card's name for the service. **Not *Roof inspection***, which is what the record is headed: the record names the job that was done, the form is opened before the client has said which structure |
 | order-setup-inspection | Details form | enter location, what to inspect | Zone label | two things asked, so two named |
 | order-setup-inspection | Details form | Location: | Field label | one place, as on the aerial file — a building does not travel |
-| order-setup-inspection | Details form | Osokorky — Dniprovska Naberezhna, 14 | Field value | DATA — **the inspection record's address written out.** The record's card shortens it to *Osokorky, 14* because a summary row has one line; a field the client is about to edit shows the whole address, exactly as the delivery form's two fields do. Same place, two renderings |
-| order-setup-inspection | Details form | Structure | Field label | **the record's own word**, this service's analogue of `Parcel` / `Shoot` |
+| order-setup-inspection | Details form | Hlevakha — field 3, by the Kyiv road | Field value | DATA — **the inspection record's address written out.** The record's card shortens it to *Osokorky, 14* because a summary row has one line; a field the client is about to edit shows the whole address, exactly as the delivery form's two fields do. Same place, two renderings |
+| order-setup-inspection | Details form | Subject | Field label | **the record's own word**, this service's analogue of `Parcel` / `Shoot` |
 | order-setup-inspection | Details form | What the operator should inspect — pick as many as apply | Zone sub | **states that the group takes more than one answer, before the tap** (`voice.md` **P3**'s discipline: say the rule as a fact, not as an error afterwards). `WCAG 3.3.2 Labels or Instructions` |
-| order-setup-inspection | Details form | Roof · Facade · Gutters · Chimney | Checkbox labels | **a group, not a picker — read off the built record**, whose `Structure` row says *Roof · gutters · chimney*: three things, so the control that produces it takes more than one. **The four options are the ones the product has already named and no fifth is invented** — the listings card offers *Roofs, facades, hard-to-reach structures*, the record adds gutters and chimney. Roof, Gutters and Chimney are ticked, which is exactly the record this screen books again |
-| order-setup-inspection | Details form | Height, access to the roof, what you want checked… | Field placeholder | examples only, as on the other two files |
+| order-setup-inspection | Details form | Field · Roof · Facade · Gutters · Chimney | Checkbox labels | **2026-10-10: Field is added first and is the one ticked — the designer's priority inside the Inspection category; Roof stays as an option.** Before that: **a group, not a picker — read off the built record**, whose `Structure` row says *Roof · gutters · chimney*: three things, so the control that produces it takes more than one. **The four options are the ones the product has already named and no fifth is invented** — the listings card offers *Roofs, facades, hard-to-reach structures*, the record adds gutters and chimney. Roof, Gutters and Chimney are ticked, which is exactly the record this screen books again |
+| order-setup-inspection | Details form | Field size, access road, what you want checked… | Field placeholder | examples only, as on the other two files |
 | order-setup-inspection | Details form | Notes for the operator | Field label | SR-ONLY, as on the delivery file |
 | order-setup-inspection | Details form | Save this address for next time | Field label | identical to `order-setup` |
 | order-setup-inspection | Action bar | Pick a time | Button | calendar-first, as aerial (`sitemap.md` CE-2) |
@@ -1686,7 +1694,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | ratings | Recent reviews | Photo & video | Body |  |
 | ratings | Recent reviews | Yesterday | Body |  |
 | ratings | Recent reviews | Maria D. | Heading | DATA |
-| ratings | Recent reviews | “Clear roof footage, spotted the leak we couldn't see.” | Body | USER |
+| ratings | Recent reviews | “Clear field footage, showed exactly where the cattle got in.” | Body | USER |
 | ratings | Recent reviews | Inspection | Body |  |
 | ratings | Recent reviews | 2 days ago | Body |  |
 | ratings | Recent reviews | Jobs | Button |  |
@@ -1714,7 +1722,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | report-issue | Report form | Cancel | Button | the drawer's dismissal (rev 111) |
 | ~~report-issue~~ | ~~Report form~~ | ~~Also: Damaged item · Wrong location~~ | ~~Body~~ | **RETIRED 2026-08-16 (rev 111).** It existed because the picker did not open — the only place the other two types could be shown. A caption that lists a control's own options is a caption for a control that does not work |
 | report-issue | Report form | What happened? | Field label |  |
-| report-issue | Report form | Describe the issue — e.g. the roof photos were blurry and missed the north side. | Field placeholder |  |
+| report-issue | Report form | Describe the issue — e.g. the field photos were blurry and missed the east half. | Field placeholder |  |
 | report-issue | Report form | ADD PHOTO / NOTE | Body | WF-PH |
 | report-issue | Report form | A photo makes your claim stronger. Order #DR-4821. | Body |  |
 | report-issue | Report form | Submit report | Button |  |
@@ -1954,7 +1962,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | wallet | Recent | Today, 10:07 | Body | DATA |
 | wallet | Recent | Photo & video | Heading |  |
 | wallet | Recent | Today, 08:20 | Body | DATA |
-| wallet | Recent | Roof inspection | Heading |  |
+| wallet | Recent | Inspection | Heading |  |
 | wallet | Recent | Yesterday | Body |  |
 | wallet | Recent | Jobs | Button |  |
 | wallet | Recent | Earnings | Button |  |

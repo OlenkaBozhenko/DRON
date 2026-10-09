@@ -640,7 +640,7 @@ destination does not carry.
 | File | Nav bar | Offer card | Second zone | Client note | Countdown | Accept → |
 |---|---|---|---|---|---|---|
 | `job-offer.html` | New job | Package delivery · 2.3 km · ~18 min · **₴180** | **Route** — Pickup *Podil, 21* → Drop-off *Osokorky, 14* | **not built** — see the open question below | Expires in 8s | `job-brief.html` |
-| `job-offer-inspection.html` | New job | Roof inspection · 5.1 km · ~35 min · **₴650** | **Site** — Location *Obolon district* · Structure *Roof · gutters · chimney* | **Notes** — *Two storeys. Ladder access from the yard, gate code 22B. The north slope is where the water comes in.* | Expires in 6s | `job-brief-inspection.html` |
+| `job-offer-inspection.html` | New job | Inspection · 5.1 km · ~35 min · **₴650** | **Site** — Location *Vasylkiv district* · Subject *Field · sunflowers* | **Notes** — *Sunflowers, 12 ha. Access by the dirt road from the south. The east half dried out, and cattle got into the north edge last week — the damage needs to be on record.* | Expires in 6s | `job-brief-inspection.html` |
 
 **The second zone changes name with the service, because the shape of the trip does.** A delivery has
 two stops and reads `Route ▸ pickup → drop-off`; an inspection has one site and reads `Site ▸ where it
@@ -693,7 +693,7 @@ because **Accept** on an offer *and* the tap on an active card both land here. A
 |---|---|---|---|---|
 | `job-brief.html` | Route · Podil → Osokorky | Service · Client *Olena H.* · Pickup · Drop-off · **Pay ₴180** · ~18 min | *Leave with the concierge, entrance code 4417.* | **Start job** → `job-checklist.html` |
 | `job-brief-aerial.html` | Site · Trukhaniv Island | Service · Client *Olena H.* · Location · Shoot *Event · 30 min* · **Pay ₴800** · ~30 min | **none left** — *The client left no notes.* | **Continue** → `job-checklist.html` |
-| `job-brief-inspection.html` | Site · Obolon district | Service · Client *Maria D.* · Location · Structure *Roof · gutters · chimney* · **Pay ₴650** · ~35 min | *Two storeys. Ladder access from the yard, gate code 22B. The north slope is where the water comes in.* | **Start job** → `job-checklist.html` |
+| `job-brief-inspection.html` | Site · Vasylkiv district | Service · Client *Maria D.* · Location · Subject *Field · sunflowers* · **Pay ₴650** · ~35 min | *Sunflowers, 12 ha. Access by the dirt road from the south. The east half dried out, and cattle got into the north edge last week — the damage needs to be on record.* | **Start job** → `job-checklist.html` |
 
 **The aerial file says `Continue`, not `Start job`, and that is the card's own verb.** It is the only
 one of the three reached from an **active** job — *In progress · checklist 3 / 5* — so the work has
@@ -893,7 +893,7 @@ word: the base frame on her instruction, the other ten on her answer.
 |---|---|---|---|
 | `earning-details.html` | Package delivery | Service · From · To · Done · **Earned ₴180** | Status · Released · To |
 | `earning-details-aerial.html` | Photo &amp; video | Service · Location · Shoot · Done · **Earned ₴800** | Status · Released · To |
-| `earning-details-inspection.html` | Roof inspection | Service · Location · Structure · Done · **Earned ₴650** | Status · Released · To |
+| `earning-details-inspection.html` | Inspection | Service · Location · Subject · Done · **Earned ₴650** | Status · Released · To |
 
 **Nothing on the three is invented.** The delivery's stops and pay are `job-brief.html`'s own rows
 (*Podil, 21 → Osokorky, 14*, Pay ₴180); the aerial and inspection facts are the ones the client's records
@@ -1113,7 +1113,7 @@ are exactly the two she named — **the heading** and **the deliverable in the w
 | File | Heading (nav bar) | Summary rows | Deliverable zone | Frame |
 |---|---|---|---|---|
 | `order-details.html` | Package delivery | From · To · Parcel · Delivered · Operator · **Paid** | **Delivery photo** | `scenes/delivered-at-door.jpg` |
-| `order-details-inspection.html` | Roof inspection | Location · Structure · Delivered · Operator · **Paid** | **Inspection report** | `scenes/inspection-roof-cracked-tiles.jpg` |
+| `order-details-inspection.html` | Inspection | Location · Subject · Delivered · Operator · **Paid** | **Inspection report** | `scenes/inspection-field-split.jpg` |
 | `order-details-aerial.html` | Photo &amp; video | Location · Shoot · Delivered · Operator · **Paid** | **Photo &amp; video set** — **two cards**: the photograph, then the video. *The zone is named for **what that order asked for**, from 2026-08-16: with `order-setup-aerial` letting the client pick Photo / Video / Photo &amp; video (`voice.md` **O5**), a photo-only order is headed **Photo set** and holds one card, a video-only order **Video**. **This record is a Photo &amp; video order**, so the built frame is correct as it stands and is not touched.* | `scenes/aerial-rafting-run.jpg` + `scenes/aerial-rafting-boulders.jpg` |
 
 The three zone names are not invented for this screen — `voice.md` **O5** already fixes one name per

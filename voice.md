@@ -12,7 +12,7 @@ Rule: **no principle without a line of data behind it.** Better three honest tha
 ## Principles
 
 ### P1 — Name the outcome, not the drone
-**Rule.** The product speaks in the result the client gets — a parcel delivered, a roof documented, footage ready — and keeps the drone in the background; it never sells the flight as a spectacle.
+**Rule.** The product speaks in the result the client gets — a parcel delivered, a field documented, footage ready — and keeps the drone in the background; it never sells the flight as a spectacle.
 
 **Example (per the rule)**
 - `Package delivery — parcels, documents, small goods, across the city.`
@@ -58,10 +58,10 @@ Rule: **no principle without a line of data behind it.** Better three honest tha
 ---
 
 ### P4 — Speak the user's words, not the equipment
-**Rule.** Describe the job in plain outcomes the client already uses ("roof inspection", "aerial photo"), never in drone hardware or industry jargon (UAV, orthomosaic, VTOL, Mavic 3T, payload).
+**Rule.** Describe the job in plain outcomes the client already uses ("field inspection", "aerial photo"), never in drone hardware or industry jargon (UAV, orthomosaic, VTOL, Mavic 3T, payload).
 
 **Example (per the rule)**
-- `Roofs, facades, hard-to-reach structures.`
+- `Fields, roofs, facades, hard-to-reach structures.`
 - `We'll send you a photo the moment it's done.`
 
 **Anti-example (breaks it)**
@@ -179,7 +179,7 @@ The discipline that builds trust here — **specific facts, plain outcome words,
 ### How the user actually searches their pain
 People do not search *"drone-as-a-service platform."* They search the **outcome + place + worry**, and increasingly they *ask an assistant* in a full sentence:
 - **C-1 (urgent client):** *"замовити дрон Київ"* [order a drone, Kyiv] (`target-audience.md`), *"drone delivery Kyiv"*, *"send documents across the city fast"* → and to an LLM: *"Can I get a parcel delivered by drone in Kyiv?"*
-- **C-2 (planning client):** the mood-quote *is* the query — *"Is this actually available where I live?"* (`target-audience.md`); plus *"aerial photography Kyiv price"*, *"how much does a drone roof inspection cost"*.
+- **C-2 (planning client):** the mood-quote *is* the query — *"Is this actually available where I live?"* (`target-audience.md`); plus *"aerial photography Kyiv price"*, *"how much does a drone field inspection cost"*.
 - **The anxiety queries (`research.md` Finding 3):** *"is drone delivery safe"*, *"are delivery drones noisy"*, *"drones and privacy"*. Whoever answers these **calmly and specifically becomes the cited source.**
 - **UA real search terms (Competitor Language):** operators and buyers use *"аерозйомка"*, *"зйомка з дрона"*, *"квадрокоптер"* — DRON's plain service names must map to these intents in **both** EN and UK.
 - **Operators (O-1):** *"another platform that takes 30%?"* (`target-audience.md`) → *"drone operator jobs Ukraine"*, *"what commission does [platform] take"*.
@@ -190,7 +190,7 @@ People do not search *"drone-as-a-service platform."* They search the **outcome 
 3. **Make the facts machine-readable** — schema.org JSON-LD: `Service`, `Offer` (price + currency), `LocalBusiness`/`areaServed` (coverage cities), `FAQPage`, and **real** `AggregateRating`/`Review`. This is what Google AI Overviews and Gemini extract; keep every number honest (`research.md` already caught a *fabricated* insurance figure — same rule).
 4. **One name per entity** (P2's vocabulary rule, `microcopy.md` O1/O3). Calling it *order* here and *job* there, *operator* here and *pilot* there, degrades retrieval and entity resolution — an assistant can't confidently attach the facts to one thing. Consistency is a voice rule *and* a ranking rule.
 5. **Mirror everything bilingually** (EN primary, UK secondary — `CLAUDE.md`). The pain is searched in both languages; the Ukrainian pages must carry the real terms (*"аерозйомка"*, *"доставка дроном Київ"*) mapped to DRON's plain service names.
-6. **Headings = the intent the user typed.** `H1: Order a drone delivery in Kyiv`, `H2: Roof inspection by a certified drone operator — from ₴X, photo report included` — not *"DRON: the future of autonomous aerial logistics."*
+6. **Headings = the intent the user typed.** `H1: Order a drone delivery in Kyiv`, `H2: Field inspection by a certified drone operator — from ₴X, photo report included` — not *"DRON: the future of autonomous aerial logistics."*
 
 ### Per-engine notes (different LLMs surface differently)
 - **Google AI Overviews / Gemini** — reward schema + genuine E-E-A-T + real reviews. Never fabricate a rating or a coverage claim.

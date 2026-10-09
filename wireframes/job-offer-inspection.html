@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DRON wireframe · Incoming job offer / accept-decline — Roof inspection · base</title>
+<title>DRON wireframe · Incoming job offer / accept-decline — Inspection · base</title>
 <!-- SCREEN: "Incoming job offer / accept-decline" — INSTANCE: inspection (base). JOB (jtbd): RJ-O1 · O-01 — accept or pass without stopping to ask questions. Flow: MJ-2 "Incoming job offer" → Accept within 10s? EXIT: Accept → Job brief (inspection); Decline → Operator home.
      ONE OF TWO OFFER FILES (2026-08-21, _screens.md §13). operator-listings carries two incoming
      offers and both sent their tap AND their Accept to the delivery file, so tapping
@@ -20,9 +20,9 @@
 </head>
 <body>
   <aside class="meta">
-    <h1>Incoming job offer / accept-decline — Roof inspection</h1>
+    <h1>Incoming job offer / accept-decline — Inspection</h1>
     <p class="sub">Operator · MJ-2 · state: <b>base</b> · file: job-offer-inspection.html</p>
-    <div class="flow"><b>One of two offer files</b> (2026-08-21) — the same screen, one instance per service: <a href="job-offer.html">job-offer</a> (delivery) and this one. There is no <code>-aerial</code> offer: that job is already <b>In progress</b> on the list, so it was accepted before the frame opens.<br><b>Job (jtbd):</b> RJ-O1 · O-01 — accept or pass in seconds (flows.md MJ-2: "Accept within 10s?").<br><b>States:</b> none of its own — <code>job-offer-empty</code> (offer expired, reassigned) is service-neutral and stays on the delivery file.<br><b>Exit:</b> Accept → <b>Job brief — Roof inspection</b>; Decline → back to <b>Operator home</b>.</div>
+    <div class="flow"><b>One of two offer files</b> (2026-08-21) — the same screen, one instance per service: <a href="job-offer.html">job-offer</a> (delivery) and this one. There is no <code>-aerial</code> offer: that job is already <b>In progress</b> on the list, so it was accepted before the frame opens.<br><b>Job (jtbd):</b> RJ-O1 · O-01 — accept or pass in seconds (flows.md MJ-2: "Accept within 10s?").<br><b>States:</b> none of its own — <code>job-offer-empty</code> (offer expired, reassigned) is service-neutral and stays on the delivery file.<br><b>Exit:</b> Accept → <b>Job brief — Inspection</b>; Decline → back to <b>Operator home</b>.</div>
     <div class="legend"><p><b>Zones:</b></p><p><b>Offer</b> ▸ service · distance · pay</p><p><b>Site</b> ▸ where it is · what is checked</p><p><b>Notes</b> ▸ client instructions</p><p><b>Countdown</b> ▸ decide before it expires</p></div>
   </aside>
 
@@ -36,7 +36,7 @@
       <p class="zlabel dr-label">Offer <span class="dr-label__act">▸ service · distance · pay</span></p>
       <article class="dr-card dr-card--row dr-listing">
         <span class="dr-listing__body">
-          <span class="dr-listing__name">Roof inspection</span>
+          <span class="dr-listing__name">Inspection</span>
           <!-- ONE FACT ROW, NOT TWO — as on the delivery offer: one screen, one
                arrangement. Rev 220 split the description in two here as well;
                rev 223 deleted that second row on the delivery card («delete
@@ -77,8 +77,8 @@
            what tells the operator whether the job is one roof or three parts. -->
       <p class="zlabel dr-label">Site <span class="dr-label__act">▸ where it is · what is checked</span></p>
       <div class="dr-rows" aria-label="Site">
-        <div class="dr-rows__row"><span class="dr-rows__key">Location</span><span class="dr-rows__val">Obolon district</span></div>
-        <div class="dr-rows__row"><span class="dr-rows__key">Structure</span><span class="dr-rows__val">Roof · gutters · chimney</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Location</span><span class="dr-rows__val">Vasylkiv district</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Subject</span><span class="dr-rows__val">Field · sunflowers</span></div>
       </div>
 
       <!-- THE CLIENT'S NOTE IS ON THE OFFER FROM 2026-08-24, on her own instruction:
@@ -91,7 +91,7 @@
            the order the decision is made in: what the job is → where it is → what
            the client asks for → how long is left. -->
       <p class="zlabel dr-label">Notes <span class="dr-label__act">▸ client instructions</span></p>
-      <article class="dr-card dr-card--compact"><span class="dr-listing__body">Two storeys. Ladder access from the yard, gate code 22B. The north slope is where the water comes in.</span></article>
+      <article class="dr-card dr-card--compact"><span class="dr-listing__body">Sunflowers, 12 ha. Access by the dirt road from the south. The east half dried out, and cattle got into the north edge last week — the damage needs to be on record.</span></article>
 
       <p class="zlabel dr-label">Decide fast <span class="dr-label__act">▸ offer auto-expires, reassigns</span></p>
       <p class="dr-display">Expires in 6s</p>

@@ -256,6 +256,10 @@ mean *DRON*.
 
 - `[DEFECT]` — `two cracked clay tiles near the ridge` · `a gutter run blocked with leaves and standing water` · `intact sealed chimney flashing`
 
+> **Block B — field inspection frame (since 2026-10-10, `concept.md` rev 284 — Field is the first Inspection option):** `A documentary drone photograph of [FINDING] in a sunflower field in rural Ukraine, natural late-summer daylight, warm 5200K, realistic colours, no people, no text, not stylised.`
+
+- `[FINDING]` — `one field split in half, the west half in bloom and the east half dried out` (cover) · `the drought-damaged half: withered plants on cracked soil` · `cows and horses that got in and trampled part of the field flat` · `healthy sunflowers in full bloom`
+
 > **Block B — aerial deliverable:** `An aerial photograph of [SUBJECT] from about 60 metres, straight-down or shallow oblique, late-afternoon light, sharp throughout.`
 
 These carry **no transparency** and **no lime** — a real user photo would not contain the brand.

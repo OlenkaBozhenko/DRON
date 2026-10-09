@@ -37,7 +37,7 @@ Ukraine and European countries.
 |---|---|---|
 | 1 | Aerial photo/video | Events, real estate listings, personal occasions |
 | 2 | Package delivery | Parcels, documents, small goods |
-| 3 | Inspection | Roofs, facades, hard-to-reach structures |
+| 3 | Inspection | Fields (first, by priority), roofs, facades, hard-to-reach structures |
 
 ---
 

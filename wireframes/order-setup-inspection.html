@@ -40,7 +40,7 @@
         <div class="dr-rows">
           <div class="dr-field">
             <label class="dr-field__label" for="lc">Location:</label>
-            <span class="dr-field__group"><input class="dr-field__input" id="lc" value="Osokorky — Dniprovska Naberezhna, 14"></span>
+            <span class="dr-field__group"><input class="dr-field__input" id="lc" value="Hlevakha — field 3, by the Kyiv road"></span>
           </div>
         </div>
 
@@ -57,14 +57,20 @@
      WCAG 1.3.1 / 3.3.2: a fieldset with a programmatic name, one visible label per box; the group
      is the same one listings-filters ships, so no new control enters the form vocabulary. -->
         <fieldset class="dr-zone" aria-labelledby="struct-title" aria-describedby="struct-sub">
-          <p class="dr-zone__title" id="struct-title">Structure</p>
+          <p class="dr-zone__title" id="struct-title">Subject</p>
           <p class="dr-zone__sub" id="struct-sub">What the operator should inspect — pick as many as apply</p>
 
           <ul class="dr-picks">
+            <!-- FIELD COMES FIRST AND IS THE ONE TICKED (2026-10-10) — the designer: «add field inspection as one of the options, put it first everywhere, it is the priority for the Inspection category». Roof stays as an option, unticked; the record this form produces reads "Field · sunflowers". -->
+            <li><label class="dr-pick">
+              <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+              <span class="dr-pick__label">Field</span>
+              <input type="checkbox" name="structure" value="field" checked class="sr-only">
+            </label></li>
             <li><label class="dr-pick">
               <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
               <span class="dr-pick__label">Roof</span>
-              <input type="checkbox" name="structure" value="roof" checked class="sr-only">
+              <input type="checkbox" name="structure" value="roof" class="sr-only">
             </label></li>
             <li><label class="dr-pick">
               <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
@@ -74,12 +80,12 @@
             <li><label class="dr-pick">
               <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
               <span class="dr-pick__label">Gutters</span>
-              <input type="checkbox" name="structure" value="gutters" checked class="sr-only">
+              <input type="checkbox" name="structure" value="gutters" class="sr-only">
             </label></li>
             <li><label class="dr-pick">
               <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
               <span class="dr-pick__label">Chimney</span>
-              <input type="checkbox" name="structure" value="chimney" checked class="sr-only">
+              <input type="checkbox" name="structure" value="chimney" class="sr-only">
             </label></li>
           </ul>
         </fieldset>
@@ -87,7 +93,7 @@
         <div class="dr-rows">
           <div class="dr-field dr-field--area dr-field--area6">
             <label class="sr-only" for="nt">Notes for the operator</label>
-            <textarea class="dr-field__input" id="nt" placeholder="Height, access to the roof, what you want checked…"></textarea>
+            <textarea class="dr-field__input" id="nt" placeholder="Field size, access road, what you want checked…"></textarea>
           </div>
         </div>
       </form>
