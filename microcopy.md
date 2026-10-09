@@ -704,6 +704,12 @@ Rigorous re-check of every screen against `voice.md`. Kept here as source of tru
 - **`voice.md` checked:** P1 holds — the finding names the outcome (*Drought · east half*), not the drone; P5 — the findings state the damage in hectares without adjectives; A-rules — no exclamation, no *successfully*. `voice.md`'s own examples move from *roof* to *field* (P1 rule line, P4 rule and listing example, the GEO query and H2).
 - **Not touched:** the Batch-1/2 rewrite logs and every dated row keep *roof*, because they record what was true then.
 
+**Sync — 2026-10-10 b (each flow keeps its own chat — `_screens.md` "Per-service walk")**
+
+- `chat-inspection` (USER/DATA): *I'm at Hlevakha, field 3. Starting from the south side.* · *The gate on the dirt road is open — park by the haystacks.* · *Got it. I'll fly the east half first, then the north edge, and send the inspection report.* · *Will you cover where the cattle got in?* · *Yes, the whole north edge. About 30 minutes.*
+- `chat-aerial` (USER/DATA): *I'm at Trukhaniv Island, setting up by the main stage.* · *We start at 10:00 — the toast is the shot that matters.* · *Got it. I'll be in the air before 10:00 and send the photo & video set after.* · *Can you get the whole group from above?* · *Yes, right after the toast. About 5 minutes to set up.*
+- **`voice.md` checked:** O5 — the operator names the deliverable (*inspection report*, *photo & video set*), never *result*; no exclamation marks. Every other string on the eight new per-service files is the shared file's own.
+
 ## Master table — every string
 
 _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string, in document order. Regenerated from the current wireframes after the voice rewrite (Step 03 audit)._

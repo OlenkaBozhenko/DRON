@@ -1270,3 +1270,22 @@ and it is `aria-hidden` with the count spoken by the control's own name (`WCAG 4
 
 **Milestone (success = base) in Step 8:** only **Inspection report** (the `C-2` outcome, mirror of *Delivery
 confirmation*). Every other Step-8 base is a normal/entry view, not an "it worked" screen.
+
+---
+
+## Per-service walk — every flow ends on its own outcome (2026-10-10)
+
+**The designer:** *«якщо в прототипі я йду по флов "Inspection" і обираю поле, то по кліку "View details" маю потрапити на сторінку "Inspection", а не delivery.html — і так у всіх флоу: доставка закінчується доставленим пакунком, фото й відео — фото й відео».*
+
+**Walked tap by tap.** The base chain was already per service (setup → review → payment → confirmed → tracking → outcome). The leaks were in the screens the three flows share:
+
+| Leak | Was | Now |
+|---|---|---|
+| Apple Pay / Google Pay in the Pay drawer (`order-review-aerial`, `order-review-inspection`) | `payment-loading` → `order-confirmed` → `tracking` → **`delivery`** | `payment-loading-aerial` / `payment-loading-inspection` → `order-confirmed-aerial` / `-inspection` |
+| Back on `inspection-report` · `-error` · `-loading` | `tracking` (the delivery tracking) | `tracking-inspection` |
+| Back on `order-review-inspection` · `order-review-loading-inspection` | `time-slot` (the aerial calendar) | `time-slot-inspection` |
+| Call / Chat in the Contact operator drawer (`tracking-aerial` · `tracking-inspection`, all three states) | `call` / `chat` → back to **`tracking`** (delivery), and the chat was about a parcel | `call-aerial` · `chat-aerial` · `call-inspection` · `chat-inspection` → back to that service's tracking; the chat is about that job (the field at Hlevakha, the event on Trukhaniv Island) |
+| `rate` after the inspection report or the aerial set — back and Book again | back → **`delivery`**, Book again → `order-setup` | `rate-inspection` (back → `inspection-report`, Book again → `order-setup-inspection`) · `rate-aerial` (back → `delivery-aerial`, Book again → `order-setup-aerial`) |
+
+**New files, no new screens:** `payment-loading-aerial`, `payment-loading-inspection`, `rate-aerial`, `rate-inspection`, `call-aerial`, `call-inspection`, `chat-aerial`, `chat-inspection` are per-service instances of existing screens, the same pattern as `payment-aerial` / `payment-inspection`. Nothing on them changes but the links — except the two chats, whose five messages are written for the job (inventoried in `microcopy.md`, Sync 2026-10-10 b). The state tabs on the service pages that still point to a shared state (`tracking-loading`, `delivery-error` / `-loading`, `payment-error`) are annotation links outside the frame, not taps in the walk; they are left as they are.
+
