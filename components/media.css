@@ -289,3 +289,35 @@
 .dr img[src*="onboarding-report."]{
   content: var(--img-onb-report);
 }
+/* The remaining drone renders take their own white colourway in dark, the same
+   way the front render does. The selectors end-match the LIGHT file so a -dark
+   file can never match one of them, and the two drone-flight-clean crops are
+   told apart by their folder. */
+.dr img[src$="thumbs/drone-01.png"]{
+  content: var(--img-drone-01);
+  filter: none;
+}
+.dr img[src$="thumbs/drone-02.png"]{
+  content: var(--img-drone-02);
+  filter: none;
+}
+.dr img[src$="thumbs/drone-08.png"]{
+  content: var(--img-drone-08);
+  filter: none;
+}
+.dr img[src$="thumbs/drone-11.png"]{
+  content: var(--img-drone-11);
+  filter: none;
+}
+.dr img[src$="thumbs/drone-flight-camera.png"]{
+  content: var(--img-drone-camera);
+  filter: none;
+}
+.dr img[src$="thumbs/drone-flight-clean.png"]{
+  content: var(--img-drone-clean);
+  filter: none;
+}
+.dr img[src$="wide/drone-flight-clean.png"]{
+  content: var(--img-drone-clean-wide);
+  filter: none;
+}

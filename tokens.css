@@ -449,6 +449,17 @@
      this matches what the layer does. */
   --img-drone-front:   normal;
 
+  /* The other seven drone renders. Same story as --img-drone-front: a white
+     colourway of the same object, not a filtered negative. `normal` leaves each
+     one showing its own src, so the light build is untouched. */
+  --img-drone-01:         normal;
+  --img-drone-02:         normal;
+  --img-drone-08:         normal;
+  --img-drone-11:         normal;
+  --img-drone-camera:     normal;
+  --img-drone-clean:      normal;
+  --img-drone-clean-wide:  normal;
+
   /* The six onboarding illustrations. Each is a whole SCENE drawn for its
      theme, not a cut-out tinted by a filter: the dark ones are painted on
      #1A1A1A edge to edge, so there is no alpha edge to fringe. `normal` here
@@ -687,6 +698,22 @@
      object-fit: contain, unmoved). The seven other drone renders in the product
      have no white variant yet and keep the filter until they do. */
   --img-drone-front:    url("../assets/drones/thumbs/drone-flight-front-dark.png");
+
+  /* THE OTHER SEVEN, DERIVED RATHER THAN DRAWN, and the derivation was checked
+     against the one render she supplied. Measured on that pair, a white shell is
+     not an inversion: the deep blacks STAY black (p5 21 -> 17) while the mid
+     tones lift hard (p50 52 -> 174, p25 40 -> 104). So the curve holds the darks
+     and lifts the shell, and it is gated by saturation, which is why the lime
+     cargo boxes and drone-11's yellow shell move by 0.00 rgb units. Applied to
+     the light render it lands at p25/p50/p75/p95 of 104/187/214/236 against the
+     reference's 104/174/208/237. */
+  --img-drone-01:         url("../assets/drones/thumbs/drone-01-dark.png");
+  --img-drone-02:         url("../assets/drones/thumbs/drone-02-dark.png");
+  --img-drone-08:         url("../assets/drones/thumbs/drone-08-dark.png");
+  --img-drone-11:         url("../assets/drones/thumbs/drone-11-dark.png");
+  --img-drone-camera:     url("../assets/drones/thumbs/drone-flight-camera-dark.png");
+  --img-drone-clean:      url("../assets/drones/thumbs/drone-flight-clean-dark.png");
+  --img-drone-clean-wide:  url("../assets/drones/thumbs/wide/drone-flight-clean-dark.png");
 
   /* THE SIX ONBOARDING SCENES, painted for this theme rather than filtered.
      The light artwork is a cut-out matted against the cream page, so on a dark
