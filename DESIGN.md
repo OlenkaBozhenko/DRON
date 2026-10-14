@@ -85,7 +85,7 @@ spacing:
   screen: "16px"
   group: "20px"
   list: "28px"          # .dr-list — the list is the screen
-  list-snug: "12px"     # .dr-list--snug — the list is one zone among several
+  list-snug: "8px"      # .dr-list--snug — the list is one zone among several
   cta-clearance: "32px"
 components:
   button-primary:
@@ -214,8 +214,11 @@ to read if you want to know whether this is a design system or a folder of scree
 
 **There is no per-page `<style>` block any more, and that is the single largest structural change
 since this document was written.** The ten families that each carried their own byte-identical copy
-now link one shared `ui/kit.css`, so a component cannot drift between two screens by being pasted
-twice. Three exceptions are recorded rather than tidied away:
+now link one shared stylesheet — `ui/kit.css` until 2026-09-24, and since 2026-10-14
+`design-system/index.css` (tokens + components); `ui/kit.css` is now an unlinked archive — so a
+component cannot drift between two screens by being pasted twice. **Re-checked 2026-10-14: the only
+`<style>` blocks left in `wireframes/` are the three option partials**, so the three exceptions below
+are closed and kept as the record of what they were:
 
 - `switch-role` carries **live** one-page CSS — `.success-mark:has(img)`, the confirm mark wearing
   the client's own photograph. One screen, so by the kit's own inclusion rule it is a one-off and
@@ -257,7 +260,8 @@ border). The wireframe annotation sidebar keeps its own chrome and is not part o
   are not are the third-party payment and identity marks — Apple Pay, Google Pay, Diia — which come
   on their own boxes (`0 0 40 20`, `0 0 46 23`, `0 0 814 1000`, `2 2 43.12 44`) and are filled
   artwork, not members of this set. They are quoted, not drawn, and are not exempted glyphs.
-- **One font stack**, declared once in `_wireframe.css`. No page declares a second UI family.
+- **One font stack**, declared once — `--family-sf` in `design-system/tokens.css`, read through
+  `--font-ui`. No page declares a second UI family.
 - **Ten type steps**, all in use: 22 · 20 · 17 · 15 · 14 · 13 · 12.5 · 12 · 11 · 11 (micro-sm was 10.5 until 2026-10-14 and was raised to HIG's 11pt floor; it now differs from micro by weight and case, not size).
 - **Six radii plus circles.** `10` · `12` · `13` · `16` · `22` · `999`, and `50%`. Two values sit
   off the ramp on purpose and are recorded as quotations rather than rungs: the home indicator's
@@ -265,14 +269,16 @@ border). The wireframe annotation sidebar keeps its own chrome and is not part o
 - **`--warn`, `--danger` and `--r-input` are live now.** This document said they were "declared and
   applied to nothing"; that was true of the ten pages and is no longer true of the kit. `--warn`
   paints `.dr-star[aria-pressed="true"]` and `--warn-wash`/`--warn-ink` the warning mark (5.65:1);
-  `--danger` paints `.dr-btn--danger-solid` (4.53:1 against `--page`); `--r-input` is spent 5 times.
+  `--danger` paints `.dr-btn--danger-solid` (4.53:1 against `--page`); `--r-input` is spent 4 times (text area, search field, range values, `.dr-cal__clock`).
 - **Zero text-contrast failures.** Lowest measured text pair is 4.77:1 (AA needs 4.5:1).
 
 ## Colors
 
-Declared as custom properties on `.wf-frame`. `--warn`, `--danger` and `--r-input` are declared
-and applied to nothing — they are recorded rungs, not live values (`var(--warn)` and
-`var(--danger)` each appear 0 times across the ten pages).
+Declared as custom properties in `design-system/tokens.css` — a primitive per value
+(`--cream-*`, `--green-*`, …) and a semantic role per job (`--bg-*`, `--text-*`, `--color-*`); the
+names below are the roles' original kit names, and the token file's comments map each one. `--warn`,
+`--danger` and `--r-input` are live (see Overview): `--warn` on the filled star, `--danger` on the
+hang-up disc, `--r-input` on the text area, the search field, the range values and the time chip.
 
 ### Primary
 
@@ -346,10 +352,11 @@ can carry a mark on its own.
   drawn in **one** place again: the filled star (`.dr-star[aria-pressed="true"]`, `.dr-stars`,
   2026-08-03). Its second spend — the operator's rating pill on his photograph, added
   **2026-08-24 (rev 190)**, `--ink` on it at **7.80:1** (`WCAG 1.4.3` ✓, 1.73× the 4.5 an 11px
-  line needs) — was deleted on the designer's *«delete rating badge»*. The declaration survives
-  in `.dr-profile__rating` and is spent on no page. The fill was 2.05:1 on the page and was never
-  the identifier; the number was. `--danger`
-  is still declared and drawn nowhere.
+  line needs) — was deleted on the designer's *«delete rating badge»*. The `.dr-profile__rating`
+  rule survives only in the `ui/kit.css` archive: `design-system/` does not carry it, and no page
+  builds the pill. The fill was 2.05:1 on the page and was never the identifier; the number was.
+  `--danger` is drawn in one place, the hang-up disc `.dr-btn--danger-solid` on `call` /
+  `call-support`.
 - **`--warn-wash` / `--warn-ink`** (`#F6E7C4` / `#7A5200`) — ETA slipping. `tracking-empty`.
 - **`--danger-wash` / `--danger-ink`** (`#F2D8CF` / `#9A3115`) — signal lost, upload missing.
   `tracking-error`, `delivery-error`.
@@ -395,7 +402,7 @@ Every pair carried on a product surface, verified in the browser.
 | `--slate` | `--inset` | 6.33:1 | From / To labels |
 | `--danger-ink` | `--card` | 6.14:1 | field error text; the destructive action if it ever stands on a card |
 | `--slate` | `--card` | 5.95:1 | keys, dates, ratings, body |
-| `--ink` | `--warn` | 7.80:1 | the operator's rating pill on his photograph (rev 190) — **deleted rev 204**; the pair stays declared on `.dr-profile__rating` and is spent on no page |
+| `--ink` | `--warn` | 7.80:1 | the operator's rating pill on his photograph (rev 190) — **deleted rev 204**; `.dr-profile__rating` survives only in the `ui/kit.css` archive and no page builds it |
 | `--warn-ink` | `--card` | 5.72:1 | — |
 | `--warn-ink` | `--warn-wash` | 5.65:1 | late-notice mark |
 | `--trust-ink` | `--trust-wash` | 5.65:1 | ~~Insured badge~~ — **retired rev 157, spent nowhere** |
@@ -438,7 +445,8 @@ are warm — every one is `rgba(20, 18, 15, …)`.
 
 ## Typography
 
-**UI font:** one stack, declared once in `_wireframe.css` and never overridden —
+**UI font:** one stack, declared once (`--family-sf` in `design-system/tokens.css`, spent as
+`--font-ui`) and never overridden —
 `-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif`.
 There is no separate display family. On Apple hardware `-apple-system` applies SF's own optical
 sizing, so the Display/Text split happens automatically by size rather than by a second
@@ -456,7 +464,7 @@ Ten sizes, every one in use on a shipped surface.
 |---|---|---|---|---|---|
 | `display` | 22 | 700 | 30.8 (1.4) | −0.02em | outcome screen title — *Delivered* |
 | `number` | 20 | 700 | 20 (1.0) | −0.02em | money — `₴180`, tabular |
-| `title` | 17 | 600 | 23.8 (1.4) | −0.01em | nav-bar title, alert title; **choice-card title at 400** since 2026-09-14 (rev 247); **service-card title at 400 / 20.4 (1.2) / no track** since 2026-09-14 (rev 248) — see *One size, several roles* below |
+| `title` | 17 | 600 | 23.8 (1.4) | −0.01em | nav-bar title, alert title; the choice-card title (at 400 from rev 247, **back at 600 since rev 268**); **service-card title at 400 / 20.4 (1.2) / no track** since 2026-09-14 (rev 248) — see *One size, several roles* below |
 | `heading` | 15 | 600 | 18 (1.2) | — | card title (every `.dr-listing` except the service card, since rev 248), operator name |
 | `body` | 14 | 400 | 18.2 (1.3) | — | place names |
 | `body-sm` | 13 | 400 | 18.2 (1.4) | — | keys |
@@ -561,16 +569,17 @@ neither `--sp-24` nor `--sp-within-lg` steps at the narrow tier, so the ratio ho
 message block is `22px 18px` on `tracking` and `delivery`, and `16px 16px 32px` on
 `order-history-empty`, whose last element is a CTA.
 
-**Two card insets, both documented.** 20px on `order-history` list cards, 16px on the operator,
-details and message cards. Unifying them is deferred: the operator card's trust-chip row cannot
-pay the extra 4px.
+**Two card insets, both documented.** 20px horizontal (24 vertical) on list cards (`.dr-card`),
+16px horizontal (20 vertical) on the operator card and the compact card; the row panel takes
+`8px 16px` and the message block `22px 18px`. Unifying them is deferred: the operator card's
+trust-chip row cannot pay the extra 4px.
 
 **Responsive.** One breakpoint, `max-width: 389px`, tuned for `order-history` — the family with a
 fixed-width media box to protect — but declared on `:root`, so it reaches every page that uses the
 stepped tokens. Card inset 20 → 16, group gap 20 → 18, list gap 28 → 22 (`--sp-list` only:
 neither `--sp-within-lg` nor `--sp-snug` steps, so a `.dr-list--snug` list holds 8 and the zone gap
 holds 12 at both tiers),
-card-top gap 16 → 12, drone box 96 × 72 → 68 × 52, route padding 16 → 14. The skeleton page steps
+card-top gap 16 → 12, drone box 96 × 96 → 68 × 68, route padding 16 → 14. The skeleton page steps
 identically, so the loading and loaded lists stay the same height at both tiers.
 
 **The onscreen keyboard is system chrome, and it quotes two numbers the product does not own.**
@@ -671,12 +680,12 @@ image is its own edge.
 
 ### Shadow vocabulary
 
-- **`--sh-sm`** (`0 1px 2px rgba(20,18,15,.05)`) — **the only shadow spent in the system.** It sits
-  under the green primary, the one control the screen is steering toward.
-- **`--sh-card`** (`0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30)`) — declared
-  on all ten pages, applied to nothing. `var(--sh-card)` appears 0 times.
-- **`--sh-raised`** (`0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34)`) —
-  declared, applied to nothing.
+- **`--sh-sm`** (`0 1px 2px rgba(20,18,15,.05)`, `--shadow-sm`) — the shadow of a control lying
+  flat. It sits under the green primary (block and circular) and the pressed language toggle.
+- **`--sh-card`** (`0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30)`,
+  `--shadow-card`) — declared, applied to nothing.
+- **`--sh-raised`** (`0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34)`,
+  `--shadow-raised`) — spent on the three surfaces that float: `.dr-sheet`, `.dr-toast`, `.dr-fab`.
 
 **Rings are not shadows.** Three `box-shadow` declarations carry geometry rather than depth: the
 2px `--card` cutout ring around a status disc, the 4px `color-mix(green 20%)` halo on the current
@@ -684,8 +693,9 @@ milestone node, and the ping keyframe on a live disc.
 
 ### Named rules
 
-**The One-Shadow Rule.** Exactly one shadow is spent, and it is under the primary button. A card
-that casts no shadow at rest cannot grow one on hover.
+**The One-Shadow Rule.** Exactly one shadow is spent on a control lying in the page, and it is
+under the primary button; `--sh-raised` goes only under the sheet, the toast and the floating action.
+A card that casts no shadow at rest cannot grow one on hover.
 
 **The Tone-Step Rule.** Separation between two surfaces is a warm tone step plus a radius, and the
 step is measured before it is used. A surface boundary is a decorative edge — not text (1.4.3),
@@ -698,7 +708,7 @@ not a control or state indicator (1.4.11) — so no contrast minimum applies to 
 | Token | Value | Applied to |
 |---|---|---|
 | `detail` | 4px | internal details only — skeleton bars. Not a token; the 2/4/8 floor below the ramp |
-| `--r-input` | 10px | declared, applied to nothing on these ten pages |
+| `--r-input` | 10px | the text area, the search field, the range value boxes, the time chip (`.dr-cal__clock`) |
 | `--r-btn` | 12px | buttons; the From ▸ To inset strip |
 | `--r-media` | 13px | media wells, state marks, the delivery photo, the balance glyph plate |
 | `--r-card` | 16px | cards, panels, the map, the tab pill |
@@ -738,14 +748,16 @@ gives it the corner. It never restates the parent's radius.
   `--r-pill`, cut to the badges it stands under on `operator-account`. The ramp is not widened —
   999 is a rung it already owns — and the other four fills keep 12, so the sentence above still
   describes every **filled** button in the system. **The rung is now DECLARED AND SPENT NOWHERE
-  (2026-08-24, rev 195).** Its two users left in the same week: `operator-account`'s Edit profile
+  (2026-08-24, rev 195)** — and since the move to `design-system/` it is not declared there either:
+  `.dr-btn--outline` survives only in the `ui/kit.css` archive. Its two users left in the same week: `operator-account`'s Edit profile
   for the floating accessory at rev 187, and the client `account`'s at rev 195 on her word
   (*«make edit profile as floating button… as on the operator's profile wireframes»*). It is kept,
   not cut — the way `.dr-chip--sm` and `.dr-profile__role` are kept — because it is a rung she
   asked for by name and the reversal above is its reason for existing. **The §Buttons reversal is
   therefore scoped to a variant nothing draws today**, which is stated here rather than quietly
   left reading as if a live button carried it.
-- **Height:** `min-height:44px`, never a fixed height. Padding `0 16px` on every variant.
+- **Height:** `min-height:44px`, never a fixed height. Padding `0 16px` on every variant (the
+  `.dr-fab` capsule takes `0 20px`).
 - **Type:** 15/600, gap 8 to a leading glyph.
 - **Primary:** `--green` fill, `--on-green` label (9.46:1), `--sh-sm`. Hover
   `filter: brightness(1.03)`; active `translateY(1px) scale(.99)`.
@@ -756,7 +768,8 @@ gives it the corner. It never restates the parent's radius.
   краями як бейджі»*. **The edge colour is `WCAG 1.4.11`, not taste** — with the fill gone the border
   is the only visual information identifying the control, so 3:1 against `--page` is the floor;
   `--line` (the hairline every separator takes) is **1.34:1** and fails it 2.2×, `--slate` is
-  **6.62:1** and clears it 2.2×, the same answer the unchecked checkbox already records. **No fill in
+  **6.62:1** and clears it 2.2× — the floor the unchecked checkbox's edge also answers, though the
+  box's edge is `--ink` at 1.7px, **15.99:1**, not `--slate`. **No fill in
   any state:** hover and press darken edge and label to `--ink` (**15.99:1**) with the kit's 1px dip —
   the tertiary's grammar, not the secondary's, because a rest state with no ground must not grow one
   under the cursor. Geometry is unchanged by the swap — **144.69 × 44** measured after, against the
@@ -782,7 +795,9 @@ gives it the corner. It never restates the parent's radius.
   the action bar as *Delete*, and a bar takes filled buttons only (rev 112), so the destructive choice
   there is `--secondary` grey at **11.54:1** — the same answer rev 131 gave `Delete order`. The verb
   carries the warning in both places, which is why the colour could leave without `WCAG 1.4.1`
-  noticing. The rung stays declared for the first destructive action that stands **inside** `main`.
+  noticing. The rung was kept for the first destructive action that stands **inside** `main`; since
+  the move to `design-system/` the text `.dr-btn--danger` is not declared there (only
+  `.dr-btn--danger-solid` is) and survives in the `ui/kit.css` archive.
 - **Pay:** `#000` fill, mark-as-label, no shadow — the one rung whose colour the product does not
   choose. `HIG · Apple Pay Marks and Buttons` and Google Pay's brand guidelines each permit exactly
   three fills on a button that *initiates* their payment — **black**, **white**, **white with
@@ -799,8 +814,8 @@ gives it the corner. It never restates the parent's radius.
 - **Block:** `width:100%`. The default in an action bar and at the foot of a card.
 - **One action per row in the action bar** (designer, 2026-08-16, rev 120). Every button in a
   `.dr-actionbar` is `--block`, one per line, `gap:8` — **341px** at the 375 frame. The bar never
-  splits two buttons across a row; `.dr-actionbar__row` (`ui/kit.css:481–482`) survives in the kit
-  and is applied to **nothing**. Measured across `wireframes/`: 27 of 27 multi-button bars stack, no
+  splits two buttons across a row; `.dr-actionbar__row` (`ui/kit.css:481–482`) survives only in the
+  `ui/kit.css` archive — `design-system/` does not declare it — and is applied to **nothing**. Measured across `wireframes/`: 27 of 27 multi-button bars stack, no
   label wraps. The split row was what wrapped them — *Зберегти зміни* took two lines in a 154.5px
   half at the 375 frame, and *Save changes* took two in a 127px half at 320pt. The tab bar is a
   different component and stays horizontal (`HIG · Tab bars`).
@@ -812,10 +827,9 @@ gives it the corner. It never restates the parent's radius.
   outside the action bar: the top-bar action (`listings-filters` · *Clear all*, `--tertiary` at 6.62:1)
   and links inside a card.
 - **Disabled:** `--btn2` fill with a `--slate` label — **4.77:1**, the secondary button's own pair.
-  It is built, not dimmed: blanket opacity would take charcoal-on-green to 2.35:1. No
-  `--disabled-*` token is declared on these ten pages; the pair arrives through the token remap,
-  where `_wireframe.css`'s `.btn:disabled` reads `--wf-fill` and `--wf-muted` and the frame points
-  those at `--btn2` and `--slate`.
+  It is built, not dimmed: blanket opacity would take charcoal-on-green to 2.35:1. The pair is
+  declared as its own semantic tokens, `--bg-disabled` (→ `--btn2`) and `--text-disabled`
+  (→ `--slate`), read by `.dr-btn:disabled, .dr-btn[aria-disabled="true"]`.
 - **Focus:** `2.5px solid var(--ink)`, `outline-offset:2px`.
 
 ### Toast
@@ -853,7 +867,8 @@ the field giving up its own 16 so typed text stands at the screen's own margin. 
 had a border** — what read as one was the panel.
 
 Measured: typed `--ink` **14.37:1 → 15.99:1** moving off the card onto the page; label and separator
-stand at the frame's own 16; placeholder stays `--slate` at **5.95:1**, the designer's call when shown
+stand at the frame's own 16; placeholder stays `--slate` — **6.62:1** on the page, **5.95:1** where a
+group keeps its card — the designer's call when shown
 that `WCAG 1.4.3` floors a placeholder at 4.5:1 and the lightest passing warm grey is 4.52:1.
 
 **And an input group can take the card back, per group, by name.** `.dr-rows--card` (2026-08-16,
@@ -1241,7 +1256,9 @@ all, a `--slate` ring at **5.95:1** on the card and **3.92:1** on the green whic
 the *edge* carrying the criterion, and keeping it as built. Measured on the built frame, all five
 rows of `account-edit`: track **36 × 22**, `border` **none**, knob **18 × 18**, knob left edge
 **2 → 16** (a 14px travel), off-track `rgb(214,210,201)`, on-track `rgb(155,207,74)`, knob
-`rgb(26,26,26)` throughout, row **44**. State is **knob position as well as fill**, so `WCAG 1.4.1`
+`rgb(26,26,26)` throughout, row **44**. **Keyboard focus is the kit's ring on the track** —
+`.dr-field--toggle:has(input:focus-visible) .dr-switch` draws `2.5px solid --ink` at `outline-offset:2px`,
+**14.37:1** on the card; a pointer press draws none. State is **knob position as well as fill**, so `WCAG 1.4.1`
 never rests on colour — which it could not here in any case: the two tracks are **1.22:1** against
 each other, separating by hue, and the 14px travel is what actually carries the state.
 
@@ -1278,7 +1295,8 @@ the modifier is **position only**. Added 2026-08-16 for the play mark on a video
   floored the silhouette at **3.40:1** for any pixel value (crossover **L 0.1549**). Kept here so the
   trade is legible; not to be re-proposed.
 - **No shadow either.** `--sh-onphoto` stays declared and unspent — a shadow gives no ratio. The one
-  product shadow is still `--sh-sm` under the green primary.
+  shadow on a control in the page is still `--sh-sm` under the green primary (`--sh-raised` goes
+  only under the sheet, the toast and the floating action).
 - **Centring:** `left/top 50%` with `translate(-50%,-50%)`, repeated on `:active` so the press dip
   composes with the centring instead of replacing it.
 
@@ -1291,7 +1309,9 @@ badge is `aria-hidden`; the link carries the name.
 
 - **Badge:** `--sz-avatar-badge` 20 × 20 at `right/bottom: −2px` — `.dr-count-badge`'s own offset,
   which puts the disc's centre **28.28** from a 28px radius, i.e. on the circle's edge at 45°. That
-  derivation is a **56px** avatar's; see the next bullet for the 120px profile heads.
+  derivation is a **56px** avatar's. On the 120px profile heads the disc is **44 × 44** with a
+  **22px** glyph since rev 198 (`.dr-profile__photo:not(:has(.dr-profile__rating))`); the bullets
+  below record how it got there — 24, then 32, then 44.
 - **Badge on a profile head — 24 × 24 (2026-08-24, rev 195).** `.dr-profile .dr-avatar-edit__badge`
   takes `--sz-photo-mark`, the rung the operator's pencil already stood at from being paired with his
   rating pill: *«edit photo on the avatar bigger a bit, as on the operator's profile wireframes»*.
@@ -1426,7 +1446,7 @@ badge is `aria-hidden`; the link carries the name.
   action.
 - **Ring:** `--w-badge-ring` 2px in `--card`, a **border and not a shadow** — it cuts the badge out of
   the photograph, whose pixels cannot be measured, and the flat-surface rule holds with `--sh-sm`
-  under the green primary still the only shadow in the product.
+  under the green primary still the only shadow on a control in the page.
 - **Glyph:** 12px, rendered stroke **0.85** — the scale's own value at that box; no compensation.
 - **Layout:** `align-self:flex-start` is load-bearing. `.dr-op` stretches its children and the wrapper
   measured 56 × 73.3 without it, which hung the badge below the circle instead of on its edge.
@@ -1458,6 +1478,16 @@ and not a modifier of `.dr-op`**, because every value disagrees: `.dr-op` is a r
 in somebody else's list, and this is a column since there is one person on the screen and he is its
 subject. `.dr-op` is untouched on the eleven client screens that carry it.
 
+**As built today — both heads, `account` and `operator-account`, identical since rev 204:** a single
+`<a class="dr-profile__photo dr-avatar-edit">` wrapping the **120 × 120** photo and the pencil disc;
+the disc **44 × 44**, `--green` under an `--on-green` **22px** pencil (**9.46:1**), cut out by a **2px
+`--page`** border, at the corner `right/bottom −2px`; photo `margin-bottom` **0**, so photo-to-name is
+the column's **8**; name `.dr-display` 22/700; one `.dr-chips` credential row with `margin-top` **4**
+(**12** under the name). **No rating pill, no role line and no action in the column** — the pill was
+deleted at rev 204, the role line cut on 2026-08-21, and *Edit profile* is the `.dr-fab` on both
+screens. Several bullets below describe those removed parts and are kept as their record; each says
+so.
+
 - **No card.** `background:none`, no padding, no radius — the head stands on `--page`. Every pair
   improves rather than costing: name `--ink` **14.37 → 15.99:1**, role `--slate` **5.95 → 6.62:1**,
   and the secondary button's own fill **1.25 → 1.39:1** against its ground. `WCAG 1.4.3` wants 4.5
@@ -1465,11 +1495,11 @@ subject. `.dr-op` is untouched on the eleven client screens that carry it.
 - **Photo:** `.dr-avatar-lg` at **120 × 120** — `--sz-avatar-xl`, the rung `account-photo` already
   spends. The model draws its circle at ~25% of the frame; 120 is **32%** of 375, larger on purpose,
   because 96 is not a size this system owns and a seventh avatar rung would widen a closed ramp.
-- **Rating badge (`.dr-profile__rating`):** `--r-pill`, centred on the circle's bottom edge by
+- **Rating badge (`.dr-profile__rating`) — DELETED rev 204; the record follows:** `--r-pill`, centred on the circle's bottom edge by
   `translate(-50%, 50%)` — the same rule `.dr-avatar-edit__badge` states, the disc's centre on the
   edge. `--w-badge-ring` 2px in **`--page`** (not `--card`, there is no card) cuts it out of the
   photograph; it is a **border, not a shadow**, so the flat rule holds.
-- **The two marks are one pair (2026-08-24, rev 192).** They had been **52.9 × 25.4** and
+- **The two marks are one pair (2026-08-24, rev 192) — undone at rev 199 and ended at rev 204 (record).** They had been **52.9 × 25.4** and
   **20 × 20** on two centre lines **15.54** apart; the designer asked for one height and a 2–4px
   gap. Both are **24 high** now — the 8-grid step between 25.4 and 20, and `WCAG 2.5.8`'s target
   floor, which the pencil had been meeting only through the 120px photograph it sits inside and now
@@ -1480,7 +1510,7 @@ subject. `.dr-op` is untouched on the eleven client screens that carry it.
   24 as `height`; the pill takes it as `min-height` over a 23.4 natural box, so enlarged text grows
   it instead of clipping (`WCAG 1.4.4`). Scoped `:has(.dr-profile__rating)` — the operator's head
   and only his; the client's pencil keeps its corner and its 20.
-- **The badge is YELLOW (2026-08-24, rev 190), and it went yellow so the pencil beside it could be
+- **The badge WAS YELLOW from rev 190 until its deletion at rev 204 (record), and it went yellow so the pencil beside it could be
   green:** *«зроби кнопку редагувати фото зеленою біля бейджу з рейтингом а бейдж з рейтингом жовтого
   кольору»*. It was solid `--green` from rev 171 to that day, as a status **mark** rather than a
   control — the case G-5 admits beside its one-control clause. **`--ink` on `--warn` `#E4A11B` is
@@ -1491,13 +1521,14 @@ subject. `.dr-op` is untouched on the eleven client screens that carry it.
   a rule (*the only colour allowed on green*), yellow needs no such rule, and a fourth alias for
   `#1A1A1A` would be read against `--warn-ink` `#7A5200`, which belongs to the wash. `--ink`,
   plainly — the star included, so the accent stays a fill and never an ink.
-- **The pill's ground reads 2.05:1 on the page** (up from green's 1.69:1) and is **not** the
+- **The pill's ground read 2.05:1 on the page (record — pill deleted rev 204)** (up from green's 1.69:1) and was **not** the
   identifier; the number is, at 7.80:1 — this kit's standing `WCAG 1.4.11` reading. Against the green
   pencil **15.93** away it is **1.21:1**: the two marks separate by **hue, not luminance**, and
   nothing rests on telling them apart — each is cut out by its own 2px `--page` ring, they never
   touch, and neither states its meaning in its colour (`WCAG 1.4.1`).
 - **Name:** `.dr-display` 22/700, `--ink`, **15.99:1**.
-- **The pencil joins the pill on that bottom edge (2026-08-21):** *«додай для оператора біля бейджу з
+- **The pencil joins the pill on that bottom edge (2026-08-21) — record: the disc is 44 since rev 198
+  and the pill was deleted at rev 204:** *«додай для оператора біля бейджу з
   рейтингом редагувати фото»*. It is the client's own `.dr-avatar-edit` — same class, same 20px disc,
   the ring `--page` — pointing at `operator-account-photo`. **Its ground took the green the pill gave
   up on 2026-08-24 (rev 190):** `--on-green` glyph on `--green` at **9.46:1**, where it read `--ink`
@@ -1506,8 +1537,9 @@ subject. `.dr-op` is untouched on the eleven client screens that carry it.
   centre line exactly on the circle's bottom edge (y 236.8 = circle bottom), disc **20 × 20** at the
   box's corner, **15.93 apart**, overlapping 14.3 of vertical band so the two read as one pair.
 - **The link wraps the picture, not the disc** — **120 × 120**, `HIG · 44pt target` at **273%**,
-  `WCAG 2.5.8` at **5×**; the 20px disc alone would have to be padded out to a target it does not
-  look like. **And the rating stays outside that link**, deliberately: the `<a>` carries
+  `WCAG 2.5.8` at **5×**; the disc — 20px when this was written, **44 × 44** since rev 198 — is not
+  what the target rests on. **And the rating stayed outside that link** until the pill was deleted
+  (rev 204), deliberately: the `<a>` carries
   `aria-label="Change profile photo"`, which replaces its content for the accessible name, so a
   rating nested inside would stop being announced. Sibling, not child — the pill keeps its own
   `Rating 4.9 ★` (`WCAG 1.3.1`, `4.1.2`) and the anchor keeps a name that says what it does.
@@ -1518,11 +1550,12 @@ subject. `.dr-op` is untouched on the eleven client screens that carry it.
   put to the designer before the line went (cut, kept alone, or moved to the Account panel; she cut
   it) and still rides Ivan's `.dr-op` card on `tracking` and `order-confirmed`, where the **client**
   reads it. No criterion is engaged: the span labelled nothing (`1.3.1`), named no control (`4.1.2`)
-  and instructed no input (`3.3.2`). `.dr-profile__role` **stays declared and is spent on no page**,
-  the terms `.dr-chip--sm` was kept on.
-- **Rhythm:** 8 between siblings, **12** before the credential row and before the action — the group
-  boundary reads larger than the space inside it (`HIG · Layout`). The photo carries `--sp-13` of
-  margin to pay back the badge's 12.7 of overhang, so badge-to-name measures **8.3**.
+  and instructed no input (`3.3.2`). `.dr-profile__role` is spent on no page, and since the move to
+  `design-system/` it is not declared there either — it survives in the `ui/kit.css` archive.
+- **Rhythm:** 8 between siblings, **12** before the credential row (the column's 8 plus the row's
+  `margin-top` 4) — the group boundary reads larger than the space inside it (`HIG · Layout`). The
+  action left the column at rev 187. The photo's `margin-bottom` is **0** on both heads since rev 204
+  (it was `--sp-13`, paying back the rating pill's 12.7 of overhang), so photo-to-name is **8**.
 - **Action — not in the column any more (2026-08-24, rev 187):** *«make edit profile button as a
   green float button»*. **Edit profile** leaves the head for the tab bar's bottom accessory and
   becomes `.dr-btn--primary .dr-fab`, **152.29 × 44**, `--on-green` on `--green` at **9.46:1** — see
@@ -1570,17 +1603,19 @@ ten client screens that meet an operator.
   credential, and a chip row mixing the two kinds stops saying one thing; `account-edit` already
   carries Phone as a field beside Full name and Saved address. The fact leaves the card, not the
   screen.
-- **No solid green on this screen at all,** where the operator's head carries one. The rating badge
-  was his only green mark; §0's one-control budget is spent at **0%** here. The claim chip and the
-  selected tab are both `--green-wash`, 1.085:1 against the page — a tint the budget does not count.
-- Action **144.29 × 44**, unchanged.
+- **No solid green on this screen at all** — true at rev 182 and no longer: the pencil disc went
+  `--green` at rev 189 and *Edit profile* became the green `.dr-fab` at rev 195, the same two green
+  marks `operator-account` carries. The claim chip and the selected tab are both `--green-wash`,
+  1.085:1 against the page — a tint the budget does not count.
+- Action: **144.29 × 44** at rev 182; since rev 195 it is not in the column — *Edit profile* is the
+  `.dr-fab`.
 
 ### Cards
 
 - **Surface:** `--card`, `--r-card` 16px, no border, no shadow.
 - **Inset:** since 2026-08-15 (rev 88) the vertical inset is one rung above the horizontal on every
-  card ground — **24 / 20** on a list card, **20 / 16** on operator and message cards, **8 / 16** on a
-  row panel, and **8 / 0** on `.dr-disclosure`, the remaining full-bleed list, whose rows keep their
+  card ground — **24 / 20** on a list card, **20 / 16** on the operator card and the compact card
+  (`.dr-card--compact`), **22 / 18** on the message block, **8 / 16** on a row panel, and **8 / 0** on `.dr-disclosure`, the remaining full-bleed list, whose rows keep their
   own 16. 32px still at the bottom where the last element is a primary button.
 - **`.dr-picks` is the one card with a single inset on all four sides — `16`** (rev 91). The 16 moved
   off the row and onto the card, so the row carries **no horizontal** padding of its own — since
@@ -1697,9 +1732,10 @@ Added 2026-08-21 (rev 163) on the built `wallet`, against the designer's own ref
 ### The floating action (`.dr-fab`, `.dr-main--fab`)
 
 Added 2026-08-21 (rev 163): *«додай floating button посередині біля ботом бару відповідно до HIG»*.
-**Two users**, and both left a column for this place: `wallet`'s **Withdraw ₴3,240**, and — since
-2026-08-24 (rev 187), *«make edit profile button as a green float button»* — `operator-account`'s
-**Edit profile**. The second one added no class, no token and no page CSS.
+**Three users**, and all left a column for this place: `wallet`'s **Withdraw ₴3,240**; since
+2026-08-24 (rev 187), *«make edit profile button as a green float button»*, `operator-account`'s
+**Edit profile**; and since rev 195 the client `account`'s **Edit profile**. The later two added no
+class, no token and no page CSS.
 
 - **Apple's shape, not Material's.** `HIG · Tab bars` asks a tab bar to carry navigation and not
   actions, so a circular button planted in or over the bar is the one reading that would fail.
@@ -1707,10 +1743,10 @@ Added 2026-08-21 (rev 163): *«додай floating button посередині �
   capsule floating clear above a bar that stays four tabs. That is this.
 - **Measured:** `wallet` **173.1 × 44**, `operator-account` **152.29 × 44** (`--h-control`, so
   `HIG · 44pt` is met by construction, and `WCAG 2.5.8`'s 24 × 24 is cleared 1.8× on the short
-  side), `--r-pill`, centred with `left:50%` + `translateX(-50%)` — **0px** off the frame's centre
+  side), `--r-pill`, padding `0 20` (`0 16` at ≤ 389px), centred with `left:50%` + `translateX(-50%)` — **0px** off the frame's centre
   line and **0px** of overrun on both — `bottom: calc(--h-tabs + --h-home + --sp-snug)` = **11.2px**
   clear of the bar's top hairline. Label `--on-green` on `--green` **9.46:1** (`WCAG 1.4.3`); focus
-  ring `--ink` at 2px (`WCAG 2.4.11`). `WCAG 1.4.11` is satisfied by the label, not the fill — green
+  ring `--ink` at 2.5px, offset 2 — the `.dr-btn` ring (`WCAG 2.4.11`). `WCAG 1.4.11` is satisfied by the label, not the fill — green
   on the page is 1.69:1, and the criterion exempts a boundary not required to identify a control
   whose text already does. **A leading glyph inherits the label's charcoal** — the `operator-account`
   pencil is `currentColor` at 20px, so green is never the ink and never the stroke.
@@ -1729,9 +1765,10 @@ Added 2026-08-21 (rev 163): *«додай floating button посередині �
 - **The green budget it spends, per screen.** On `operator-account` the pill is **6,285px² = 2.06%**
   of the 375 × 812 frame and is the screen's **only green control** — the head had spent none of
   §0's ~5%, since the two `.dr-chip--claim` credentials and the selected tab are all `--green-wash`
-  at 1.085:1, a tint the budget does not count. The rating badge on the photograph stays solid green
-  as a **status mark**, **1,153px² = 0.38%**; screen green totals **2.44%** and the control is
-  **84.5%** of it. On `wallet` the same component takes the screen to **11.32%** with the balance
+  at 1.085:1, a tint the budget does not count. The rating badge on the photograph stayed solid green
+  as a **status mark**, **1,153px² = 0.38%**; screen green totalled **2.44%** and the control
+  **84.5%** of it — rev 187 figures: the badge went yellow at rev 190 and was deleted at rev 204, and
+  the photo's pencil disc is now the head's green mark (see *Avatar edit*). On `wallet` the same component takes the screen to **11.32%** with the balance
   card — a departure she was shown with the numbers and chose to keep.
 - **The `:active` re-declaration is load-bearing.** `.dr-btn--primary:active` sets a bare
   `transform`, which would drop the centring `-50%`; the modifier restates both, and being later in
@@ -1858,8 +1895,10 @@ The designer's call is **14 everywhere**.
 drawn **65.7 × 21.4** against the base chip's **74.2 × 26.8**. It exists for one position: a chip
 that sits **beside a name** rather than in a row under it, where the base size out-weighs the 15px
 name it is standing next to. Colour is untouched, so the pair is still 5.51:1 — and 11px is a
-normal-text size under `WCAG 1.4.3`, which is the 4.5:1 threshold the pair already clears. Used on
-`operator-account`'s *Operator*. It is **not** an escape hatch for a row that will not fit; a row
+normal-text size under `WCAG 1.4.3`, which is the 4.5:1 threshold the pair already clears. Built
+for `operator-account`'s *Operator* (cut with the role line); it now stands on the availability badge
+(`operator-listings`, `-empty`) and the unread **New** chip (`notifications`,
+`operator-notifications`). It is **not** an escape hatch for a row that will not fit; a row
 that will not fit gets more width, not smaller type.
 
 ### Status indicator
@@ -2094,8 +2133,8 @@ two Figma references used for structure only. Every value is an existing rung.
   drawer's bottom edge, **68** above the keyboard accessory's *Done*. With the keyboard up: **412.8** tall,
   top **63.2**, bottom on the keyboard's **476**, overlap **0**. *Done* is **4.93%** of the frame, the only green
   above the scrim. **The buttons stood in a top bar for one revision** (rev 256, `.dr-sheet__bar`, `HIG · Sheets`'
-  iOS placement); shown the options drawn, the designer put them back under the list — the bar stays declared
-  and is spent nowhere. A tapped
+  iOS placement); shown the options drawn, the designer put them back under the list — the bar is spent nowhere,
+  and since the move to `design-system/` it survives only in the `ui/kit.css` archive. A tapped
   row is taken at once; *Done* takes what was typed; *Cancel*, the scrim and Escape change nothing.
   `.dr-sheet--steady` keeps the height it opened at while typing narrows the list, so nothing above the
   keyboard moves.
@@ -2151,7 +2190,7 @@ two Figma references used for structure only. Every value is an existing rung.
   215 and 230). `--sz-well-w/h` **96 × 96** wherever a render sits in a **list** row —
   `.dr-card--row` on `order-history`, the job and tracking cards; `--sz-well-w/h-sm` **68 × 68** is
   the narrow tier's remap of that box; `--sz-well-w/h-xs` **56 × 44** inside `.dr-choice`, which is
-  `role-select`'s two cards and nothing else. **The third rung is minted, and it is minted because nothing was left to land on:** rev 212
+  `role-select`'s two cards — and, since rev 250, the `.dr-offer` rows on the three `listings-map` files. **The third rung is minted, and it is minted because nothing was left to land on:** rev 212
   got the first step down for free by taking `-sm` at every tier, and she asked for one step
   further. **No derivation is claimed** — 56 and 44 already exist in the file as `--sz-avatar-md`
   and `--sz-action`, and neither is the source; 56 is 7 steps of the 8-grid and 44 is not on it.
@@ -2287,9 +2326,10 @@ one-off, not a kit row — recorded here because it introduces six tokens and a 
 
 A figure and the line that names it. **`wallet`, `wallet-empty`, `withdraw`, `ratings`.**
 
-Measured: block **341 × 42** — figure 20 + gap 4 (`--sp-within`) + caption 18; figure `--ink` on
-`--page` **15.99:1**, caption `--slate` **6.62:1**. On `withdraw` the figure takes the **display
-step, 22**, on the designer's call of 2026-08-18 — spent through `.dr-number` rather than by
+Block **341 × 44** — figure 22 + gap 4 (`--sp-within`) + caption 18; figure `--ink` on
+`--page` **15.99:1**, caption `--slate` **6.62:1**. On every balance block (`.dr-balance .dr-number`)
+the figure takes the **display step, 22**, on the designer's call of 2026-08-18 on the built
+`wallet` — spent through `.dr-number` rather than by
 swapping in `.dr-display`, because `.dr-display` is not tabular and money must line up digit under
 digit, so the figure gets the display **size** and the number **role**.
 
@@ -2418,7 +2458,7 @@ which is what lets it survive a **row**: plate, figure and caption hold the left
 `background: var(--green) url(../assets/marks/thumbs/wallet-pattern.png) center/cover no-repeat`. **No markup changed**, and
 `wallet` is the only page that spends this modifier — `wallet-empty` and `withdraw` keep the bare `.dr-balance` and take no
 picture. **Measured at 4× over `--green`: the glyph-plate box, the figure box and the caption box each contain exactly ONE
-colour, `rgb(155,207,74)`**, so `--on-green` under every glyph is **9.46:1** flat against `WCAG 1.4.3`'s 4.5 at 20px and 12px
+colour, `rgb(155,207,74)`**, so `--on-green` under every glyph is **9.46:1** flat against `WCAG 1.4.3`'s 4.5 at 22px and 12px
 — **2.10×**, the number this card has had since rev 163. Artwork at **x 223.8–340.8**; leftmost pixel on the figure's row
 **x 278**, on the caption's row **x 252.8**, against a caption ending near 190. Coverage **7.10%** of the card, **0%** under
 type; the 44 plate is opaque `--green-wash` and keeps its **14.75:1**. **It is not a watermark and never pretended to be:**
@@ -2518,7 +2558,8 @@ open alternative, not the built one.
 **And the read-only star display is now benched entirely, which is larger than the arc.** `.dr-stars`,
 `.dr-stars__fill`, `.dr-stars--arc`, `--sz-star-out` and `--sz-star-mid` have **no product page at all** —
 this banner was the last, and the only instance left in the repo is the specimen in `ui/kit.html`, a gallery
-and not a surface. All stay **declared**, the terms `.dr-chip--sm` and `.dr-profile__role` were kept on.
+and not a surface. They were kept declared in `ui/kit.css`; the move to `design-system/` did not
+carry them (the port leaves out rules with no surface), so they survive in that archive only.
 **`.dr-star` — singular, the rating *input* on `rate` — is a different component and is untouched.**
 
 **Every ink on either fill is `--on-green` at 9.46:1**, stated rather than inherited, because
@@ -3052,7 +3093,7 @@ Active / done is a **green shape behind a charcoal glyph**, never a recoloured s
 
 `--btn2` bars, 13px tall, on the real layout. **Chrome stays solid, content pulses** — a surface
 the loaded card also draws is painted at full strength; a block the load replaces animates.
-`skPulse` 1.4s ease-in-out, opacity 1 → .5, with `−.47s` / `−.93s` offsets per card so the list
+`dr-pulse` 1.4s ease-in-out, opacity 1 → .5, with `−.47s` / `−.93s` offsets per card so the list
 does not blink as one.
 
 The rule produces opposite answers by design: on `order-history-loading` the drone well pulses
@@ -3063,7 +3104,7 @@ what loads replace this surface, or sit inside it"**.
 **`.dr-sk-tray`** — the one-declaration modifier (`background: var(--media)`) that turns the
 loaded `.dr-upload` tray into its own waiting state on `result-upload-loading`. It inherits the
 component's `min-height` 140, `--r-media` 13, column, centring, `--sp-snug` 12 gap and `--sp-24`
-padding, so the tray does not pulse and does not move: only the arrow inside it leaves (`skUp`).
+padding, so the tray does not pulse and does not move: only the arrow inside it leaves (`dr-up`).
 The status sentence stands under the glyph as `.dr-status-line` — 14px `--slate` on `--media`,
 **5.51:1** — where the loaded frame stands `Add photo` as `.dr-upload__action`. The `role="status"`
 lives on that sentence and the `aria-hidden` on the glyph alone, never on the tray: a live region
@@ -3074,12 +3115,12 @@ inside an `aria-hidden` container is never announced (`WCAG 4.1.3`).
 | Name | Duration | Easing | What moves |
 |---|---|---|---|
 | button | .15s / .12s | default | `filter`, `background`, `transform` |
-| `oh-ping` | 1.8s | `cubic-bezier(.22,.61,.36,1)` | a ring leaving a live status disc |
-| `skPulse` | 1.4s | `ease-in-out` | skeleton opacity 1 → .5 |
-| `skUp` | 1.6s | `cubic-bezier(.22,.61,.36,1)` | the arrow leaving an upload tray |
+| `dr-ping` | 1.8s | `cubic-bezier(.22,.61,.36,1)` | a ring leaving a live status disc |
+| `dr-pulse` | 1.4s | `ease-in-out` | skeleton opacity 1 → .5 |
+| `dr-up` | 1.6s | `cubic-bezier(.22,.61,.36,1)` | the arrow leaving an upload tray |
 | `dr-spin` | 1.1s | `linear` | a 270° arc turning inside the milestone mark |
 
-`skUp` moves the arrow only — the tray holds still, because what the screen waits on is a file
+`dr-up` moves the arrow only — the tray holds still, because what the screen waits on is a file
 going *up*. It rests **visible** at 0% and 100%, so a dropped animation leaves a legible icon.
 
 `dr-spin` is the only loop that describes no object — just system work, so it keeps its own
@@ -3115,9 +3156,9 @@ all. Each image, with what it is doing there:
 
 | Asset | Surface | Native | Served | Box | Treatment |
 |---|---|---|---|---|---|
-| `drones/thumbs/drone-08.png` | `order-history` — the **live** package-delivery card **and the 28 Jun delivered card** (twice on the page) | 1024² | 256² | 96 × 72 frame, drawn 64 × 64 | cutout, `contain`, no ground |
+| `drones/thumbs/drone-08.png` | `order-history` — the **live** package-delivery card **and the 28 Jun delivered card** (twice on the page) | 1024² | 256² | 96 × 96 frame, drawn 88 × 88 | cutout, `contain`, no ground |
 | `drones/thumbs/drone-flight-camera.png` | `order-history` — aerial photo & video | 392 × 291 | 256² | same | same |
-| `drones/thumbs/drone-flight-clean.png` | `order-history` — the roof-inspection card. **This row read “drawn nowhere since 2026-08-16” and was wrong** (corrected rev 153): the well was given a photograph that day and the designer reversed it the same day, so the render never left. The `wide/` cut of it is also `welcome`'s third slide | 409 × 174 | 256² | 96 × 72 frame | cutout, `contain`, no ground |
+| `drones/thumbs/drone-flight-clean.png` | `order-history` — the roof-inspection card. **This row read “drawn nowhere since 2026-08-16” and was wrong** (corrected rev 153): the well was given a photograph that day and the designer reversed it the same day, so the render never left. The `wide/` cut of it is also `welcome`'s third slide | 409 × 174 | 256² | 96 × 96 frame | cutout, `contain`, no ground |
 | `people/thumbs/operator.png` | `tracking` · `-empty` · `-error` — operator card | 595 × 702 | 300 × 354 | 117 × 138.1 | cutout, `cover`, full-bleed left panel, no ground |
 | `scenes/thumbs/delivered-at-door.jpg` | `delivery` — proof of delivery. **Not on `order-history`** — this row said “the 28 Jun delivered card” until rev 153; that card carries `drone-08` | 1100 × 880 | 652 × 522 | 341 × 180 | photograph, `cover`, edge to edge |
 | `scenes/thumbs/inspection-field-split.jpg` | `inspection-report` — cover · `order-details-inspection` — report card. **Since 2026-10-10** (`concept.md` rev 284): one sunflower field split down the middle, the west half in bloom and the east half dried out | 1200 × 896 | 652 × 487 | 341 × 200 / 341 × 180 | photograph, `cover`, edge to edge |
@@ -3212,8 +3253,9 @@ drop the 26 KB base64 blob out of the HTML.
 - **Don't** mint new darkened greens. Where green must speak — a lone glyph, a word — it is
   `--green-ink #4F6B22` (rev 48) and nothing else; `--green` itself is never text. One ink rung
   exists, not a family: the ad-hoc `#3F5B18` that predated the rung was deleted for this.
-- **Don't** add a shadow to a card, a panel, a well, a map or a photograph. One shadow exists and
-  it is under the primary button.
+- **Don't** add a shadow to a card, a panel, a well, a map or a photograph. One shadow sits on a
+  control in the page, under the primary button; `--sh-raised` goes only under the sheet, the toast
+  and the floating action.
 - **Don't** spend green inside card UI — the direction chip, the route strip and card actions are
   neutral.
 - **Don't** give a surface, control, well or chip a radius outside the six, and don't restate a
@@ -3392,8 +3434,8 @@ rather than on size and colour alone: 17/600 `--ink` **14.37:1** over 13/400 `--
 
 ### The choice card's title is set at the row weight (`.dr-choice__title`, rev 247)
 
-**The value is 17/400, leading 1.4, tracking −0.01em, `--ink` on `--card` 14.37:1** — the `title`
-step's size, leading and track at `--weight-regular`. The designer, on the built `support`: *«перевір
+**The value was 17/400, leading 1.4, tracking −0.01em, `--ink` on `--card` 14.37:1** — the `title`
+step's size, leading and track at `--weight-regular`, until rev 268 took it back to 600 (section above). The designer, on the built `support`: *«перевір
 шрифт чи не дуже великий що каже HIG»*.
 
 **The size was not too big, and that was the answer first.** `HIG · Typography`'s default (Large)
@@ -3516,9 +3558,10 @@ automatically / Earnings land within 30 min of client confirmation.*
 
 **No new component.** The log's rows are `.dr-choice` — the kit's tappable list row — with the
 `__title` / `__desc` pair. Since rev 216 these eleven rows are the **only** place `__desc` is drawn:
-`role-select` and `support` are title-only. Measured on the build: row **73.78px** tall
-(`HIG · 44pt` ✓ **177%**, `WCAG 2.5.8` ✓ **3.25×**), `--card` ground at `--r-card` **16px**, title
-17/400 (600 until rev 247) `--ink` on `--card` **14.37:1**, description 13 `--slate` on `--card` **5.95:1**.
+`role-select` and `support` are title-only. Row **77.98px** tall since rev 221 (**73.78** at 14px,
+when the `HIG · 44pt` / `WCAG 2.5.8` figures — **177%** / **3.25×** — were taken; both only grew),
+`--card` ground at `--r-card` **16px**, title 17/600 (400 from rev 247 until rev 268) `--ink` on
+`--card` **14.37:1**, description 13 `--slate` on `--card` **5.95:1**.
 **The row made a round trip on 2026-09-03**: rev 213 stepped the shared `__title` 17 → 14 and every
 line box under it lost **4.2px** (**77.98 → 73.78**, lists of six / five **249.95 → 237.34**), and
 rev 221 put both back. No title on either log wrapped at either size — the widest,
