@@ -762,17 +762,18 @@
 
 <div class="row">
   <div class="nm"><b>Titled zone card</b><code>.dr-zone &#183; __title &#183; __sub</code>
-    <p>A card that names the question it is asking, then asks it. <b>Eight screens</b> use it &#8212;
+    <p>A card that names the question it is asking, then asks it. <b>Ten files</b> use it &#8212;
        <code>listings</code>, <code>listings-filters</code>, <code>account-edit</code>,
        <code>operator-profile-setup</code> among them &#8212; and the showcase never had one.</p></div>
   <div class="spec">
-    <fieldset class="dr dr-zone" style="width:341px;max-width:100%">
-      <p class="dr-zone__title">Drone type</p>
-      <p class="dr-zone__sub">Which drone does your order</p>
+    <fieldset class="dr dr-zone" aria-labelledby="kit-ztype-title" aria-describedby="kit-ztype-sub" style="width:341px;max-width:100%">
+      <p class="dr-zone__title" id="kit-ztype-title">Drone type</p>
+      <p class="dr-zone__sub" id="kit-ztype-sub">Which drone does your order</p>
       <ul class="dr-picks">
-        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="kitdrone" class="sr-only"></label></li>
-        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="kitdrone" class="sr-only"></label></li>
-        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="kitdrone" class="sr-only"></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="kitzone" value="quadcopter" class="sr-only"></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="kitzone" value="hexacopter" class="sr-only"></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="kitzone" value="fpv" class="sr-only"></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Fixed-wing</span><input type="checkbox" name="kitzone" value="fixed-wing" class="sr-only"></label></li>
       </ul>
     </fieldset>
   </div>
@@ -783,27 +784,29 @@
        Title <code>--t-title-size</code> 17/600, sub <code>--t-bodysm-size</code> 13 in
        <code>--text-muted</code>.</p>
     <p><b>It is a real <code>&lt;fieldset&gt;</code>.</b> The group of checkboxes below it is one
-       question, so the element that wraps them is the one the platform already has for that, and
-       the title is read as the group&#8217;s name without an <code>aria-label</code> being invented
-       for it.</p>
+       question, so the element that wraps them is the one the platform already has for that. Its drawn title
+       is a <code>&lt;p&gt;</code>, not a <code>&lt;legend&gt;</code>, so the screens name the group
+       with <code>aria-labelledby</code> on the title and describe it with
+       <code>aria-describedby</code> on the sub &#8212; the name is the words on the card, not an
+       <code>aria-label</code> invented for it.</p>
   </div>
 </div>
 
 <div class="row">
   <div class="nm"><b>List &#183; and its snug rung</b><code>.dr-list &#183; --snug</code>
     <p>The gap <i>between</i> cards, which is always larger than any gap inside one.
-       <b>Thirteen screens</b> stack their cards with it.</p></div>
+       <b>Eighteen files</b> stack their cards with it.</p></div>
   <div class="spec col">
     <ul class="dr-list" style="width:341px;max-width:100%">
       <li><article class="dr-card dr-card--compact"><span class="dr-listing__body">Leave with the concierge, entrance code 4417.</span></article></li>
       <li><article class="dr-card dr-card--compact"><span class="dr-listing__body">Ring twice; the gate is on the courtyard side.</span></article></li>
     </ul>
-    <span class="st">.dr-list &#183; gap 28 &#183; order-history, ratings, notifications</span>
+    <span class="st">.dr-list &#183; gap 28 &#183; order-history, time-slot</span>
     <ul class="dr-list dr-list--snug" style="width:341px;max-width:100%">
       <li><article class="dr-card dr-card--compact"><span class="dr-listing__body">Leave with the concierge, entrance code 4417.</span></article></li>
       <li><article class="dr-card dr-card--compact"><span class="dr-listing__body">Ring twice; the gate is on the courtyard side.</span></article></li>
     </ul>
-    <span class="st">--snug &#183; gap 8 &#183; chat, wallet</span>
+    <span class="st">--snug &#183; gap 8 &#183; chat, wallet, ratings, notifications</span>
   </div>
   <div class="notes">
     <p><b>Twenty-eight outside, twenty or less inside.</b> That is the whole rule:
@@ -819,7 +822,8 @@
 
 <div class="row">
   <div class="nm"><b>Chat thread</b><code>.dr-thread &#183; .dr-bubble &#183; --in &#183; --out &#183; __time</code>
-    <p>Two screens, <code>chat</code> and <code>chat-client</code>, and the one place in the product
+    <p>Four screens, <code>chat</code>, <code>chat-aerial</code>, <code>chat-inspection</code> and
+       <code>chat-client</code>, and the one place in the product
        where two people write to each other.</p></div>
   <div class="spec">
     <section class="dr dr-stack dr-thread" aria-label="Thread" style="width:341px;max-width:100%">
@@ -880,30 +884,28 @@
 </div>
 
 <div class="row">
-  <div class="nm"><b>Operator card</b><code>.dr-op · __photo · __name · __rating · __badges</code>
+  <div class="nm"><b>Operator card</b><code>.dr-op · __photo · __info · __name · __rating · __badges</code>
     <p>The trust surface. It answers the highest drop-off in the CJM — confirm the operator is real
        and qualified — so it belongs exactly where the claim is made.</p></div>
   <div class="spec">
-    <div class="dr-op" style="width:341px;max-width:100%">
-      <span class="dr-op__photo"><img src="../assets/people/thumbs/operator.png" alt=""></span>
+    <article class="dr-op" style="width:341px;max-width:100%">
+      <span class="dr-op__photo"><img src="../assets/people/thumbs/operator.png" alt="" loading="lazy" decoding="async"></span>
       <span class="dr-op__info">
         <span class="dr-op__name">Andriy M.</span>
         <span class="dr-op__rating">4.9 ★ · 214 jobs</span>
-        <span class="dr-chips dr-op__badges">
-          <span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON</span>
-          <span class="dr-chip"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured</span>
-        </span>
+        <span class="dr-chips dr-op__badges"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
       </span>
-    </div>
+    </article>
   </div>
   <div class="notes">
     <p>The photograph is a <b>full-height panel on the left edge at 117 × 138.1</b> — the asset's own
        595 × 702 ratio at the height the card resolves to, so the operator is shown whole, uncropped
        and undistorted. Negative margins push it back out over the card's own inset;
        <code>overflow:hidden</code> cuts its two outer corners to <code>--r-card</code>.</p>
-    <p><b>Claim vs fact.</b> The green tint carries a claim being made (<i>Verified by DRON</i>,
-       14.75:1); the warm grey carries a supporting fact (<i>Insured</i>, 5.51:1). A chip is never
-       reduced to a colour — each keeps its wording.</p>
+    <p><b>Both credentials are claims.</b> <i>Verified by DRON</i> and <i>Insured</i> each take the
+       green tint under charcoal at 14.75:1 and end on the confirming tick &#8212; the platform
+       vouches for both. The warm-grey base chip (5.51:1) is kept for a plain supporting fact. A
+       chip is never reduced to a colour &#8212; each keeps its wording.</p>
   </div>
 </div>
 
@@ -1479,7 +1481,7 @@
   <div class="spec col">
     <div class="dr dr-field" style="width:341px;max-width:100%">
       <label class="dr-field__label" for="kit-cc">Card number</label>
-      <span class="dr-field__group"><input class="dr-field__input" id="kit-cc" type="text" inputmode="numeric" autocomplete="off" value="4921 1122 3344" aria-describedby="kit-cc-brands"><span class="dr-field__marks" aria-hidden="true"><svg class="dr-paymark dr-paymark--fit" viewBox="0 0 31 20" aria-hidden="true" focusable="false"><text x="0" y="14.8" textLength="30" lengthAdjust="spacingAndGlyphs" font-size="14" font-weight="700" font-style="italic" fill="#1434CB">VISA</text></svg><svg class="dr-paymark dr-paymark--fit" viewBox="0 0 21 20" aria-hidden="true" focusable="false"><circle cx="7" cy="10" r="7" fill="#EB001B"/><circle cx="14" cy="10" r="7" fill="#F79E1B"/><path d="M10.5 3.94a7 7 0 0 1 0 12.12 7 7 0 0 1 0-12.12Z" fill="#FF5F00"/></svg></span><span class="dr-sr" id="kit-cc-brands">Visa or Mastercard</span></span>
+      <span class="dr-field__group"><input class="dr-field__input" id="kit-cc" name="cc-number" type="text" inputmode="numeric" autocomplete="cc-number" value="4921 1122 3344" aria-describedby="kit-cc-brands"><span class="dr-field__marks" aria-hidden="true"><svg class="dr-paymark dr-paymark--fit" viewBox="0 0 31 20" focusable="false"><text x="0" y="14.8" textLength="30" lengthAdjust="spacingAndGlyphs" font-size="14" font-weight="700" font-style="italic" fill="#1434CB">VISA</text></svg><svg class="dr-paymark dr-paymark--fit" viewBox="0 0 21 20" focusable="false"><circle cx="7" cy="10" r="7" fill="#EB001B"/><circle cx="14" cy="10" r="7" fill="#F79E1B"/><path d="M10.5 3.94a7 7 0 0 1 0 12.12 7 7 0 0 1 0-12.12Z" fill="#FF5F00"/></svg></span><span class="sr-only" id="kit-cc-brands">Visa or Mastercard</span></span>
     </div>
     <span class="st">both marks while the number is unknown &#183; the page hides one once the digits decide</span>
   </div>
@@ -1491,7 +1493,7 @@
        for Visa, <code>21 &#215; 20</code> for Mastercard &#8212; and the pair is as wide as the
        two marks, not as wide as twice the larger.</p>
     <p><b>The marks are <code>aria-hidden</code> and the words are not.</b> A logo is not an
-       accessible name, so <code>.dr-sr</code> carries <i>Visa or Mastercard</i> and the input
+       accessible name, so <code>.sr-only</code> carries <i>Visa or Mastercard</i> and the input
        points at it with <code>aria-describedby</code>. The brand that survives as you type is
        shown by hiding the other &#8212; <code>.dr-field__marks &gt; [hidden]</code> is
        <code>display: none</code> &#8212; and the description still says what is accepted.</p>
@@ -1652,38 +1654,44 @@
        <code>notifications</code> and <code>operator-notifications</code>.</p></div>
   <div class="spec">
     <div class="dr dr-log" style="width:341px;max-width:100%">
-      <section>
-        <h2 class="dr-sect">Today</h2>
-        <ul class="dr-list dr-list--snug" style="list-style:none">
-        <li><a class="dr-choice" href="#">
-          <span class="dr-choice__body">
-            <span class="dr-choice__head">
-              <span class="dr-choice__title">Your delivery photo is ready</span><span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
-            </span>
-            <span class="dr-choice__desc">Package delivery &#183; 10:12</span>
-          </span>
-        </a></li>
-        <li><a class="dr-choice" href="#">
-          <span class="dr-choice__body">
-            <span class="dr-choice__head">
-              <span class="dr-choice__title">Ivan is 2 minutes away</span><span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
-            </span>
-            <span class="dr-choice__desc">Package delivery &#183; 10:03</span>
-          </span>
-        </a></li>
+      <section aria-labelledby="kit-ntf-today">
+        <h2 class="dr-sect" id="kit-ntf-today">Today</h2>
+        <ul class="dr-list dr-list--snug" style="list-style:none;">
+          <li>
+            <a class="dr-choice" href="#">
+              <span class="dr-choice__body">
+                <span class="dr-choice__head">
+                  <span class="dr-choice__title">Your delivery photo is ready</span>
+                  <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                </span>
+                <span class="dr-choice__desc">Package delivery &#183; 10:12</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="dr-choice" href="#">
+              <span class="dr-choice__body">
+                <span class="dr-choice__head">
+                  <span class="dr-choice__title">Ivan is 2 minutes away</span>
+                  <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                </span>
+                <span class="dr-choice__desc">Package delivery &#183; 10:03</span>
+              </span>
+            </a>
+          </li>
         </ul>
       </section>
-      <section>
-        <h2 class="dr-sect">Yesterday</h2>
-        <ul class="dr-list dr-list--snug" style="list-style:none">
-        <li><a class="dr-choice" href="#">
-          <span class="dr-choice__body">
-            <span class="dr-choice__head">
-              <span class="dr-choice__title">Order completed</span>
-            </span>
-            <span class="dr-choice__desc">Inspection &#183; 17:40</span>
-          </span>
-        </a></li>
+      <section aria-labelledby="kit-ntf-yesterday">
+        <h2 class="dr-sect" id="kit-ntf-yesterday">Yesterday</h2>
+        <ul class="dr-list dr-list--snug" style="list-style:none;">
+          <li>
+            <a class="dr-choice" href="#">
+              <span class="dr-choice__body">
+                <span class="dr-choice__title">Rate your order</span>
+                <span class="dr-choice__desc">Package delivery &#183; 14:41</span>
+              </span>
+            </a>
+          </li>
         </ul>
       </section>
     </div>
@@ -1700,7 +1708,11 @@
        because the kit states a value once.</p>
     <p><b><code>.dr-sect</code> is a real <code>&lt;h2&gt;</code></b>, 13/600 in
        <code>--text-muted</code>, so the log has an outline a screen reader can jump through
-       instead of a run of visually-grouped rows.</p>
+       instead of a run of visually-grouped rows. Each day&#8217;s <code>&lt;section&gt;</code> is
+       named by its own heading (<code>aria-labelledby</code>).</p>
+    <p><b><code>__head</code> exists only to hold the chip.</b> An unread row wraps its title and
+       <i>New</i> in <code>.dr-choice__head</code>; a read row has no chip, so its title sits
+       straight in <code>__body</code>.</p>
   </div>
 </div>
 
