@@ -2264,6 +2264,10 @@
        the two actions stay put while the zones move under them. Without
        <code>min-height: 0</code> a flex child refuses to shrink below its content, and the drawer
        would grow instead of scrolling.</p>
+    <p><b>The two actions stand side by side, <code>--row</code>, because neither is a cancel.</b>
+       <i>Clear all</i> and <i>Apply filters</i> are two outcomes, so
+       <code>HIG &#183; Action sheets</code>&#8217; stacked-cancel rule does not reach them; the
+       scrim and Escape close without applying.</p>
     <p><b>It bleeds its own gutter back.</b> <code>margin-inline: -16px</code> with
        <code>padding: 4px 16px</code>, so the scroll edge and the focus ring of a row at the
        boundary are not clipped by the sheet&#8217;s padding &#8212; the rows keep the
