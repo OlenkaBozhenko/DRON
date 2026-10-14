@@ -60,7 +60,7 @@
   background: var(--border-hairline);
 }
 .dr-rail::after{
-  width: var(--pct-25, 0);
+  width: var(--dr-fill, 0);
   background: var(--color-action);
 }
 .dr-rail--at2{
