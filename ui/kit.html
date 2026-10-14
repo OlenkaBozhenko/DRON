@@ -1025,7 +1025,9 @@
     <p><i>The plate above carries the shape and the class names but deliberately <b>not</b>
        <code>role="dialog"</code>, <code>aria-modal</code> or the <code>id</code> wiring: an inert
        specimen announcing itself as a modal dialog would be a lie to assistive tech, and it traps no
-       focus. Its buttons are <code>&lt;span&gt;</code>s and the rise animation is stopped for the same
+       focus. Its options and its Cancel are <code>&lt;span&gt;</code>s &#8212; on
+       <code>tracking</code> the three options are <code>&lt;a&gt;</code> routes and Cancel is a
+       <code>&lt;button data-close&gt;</code> &#8212; and the rise animation is stopped for the same
        reason &#8212; the page must not claim behaviour it is not running. The contract above is the
        copyable truth.</i></p>
   </div>
