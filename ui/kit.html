@@ -2401,8 +2401,13 @@
   <div class="notes">
     <p><b>The named number:</b> <code>--green</code> on the page is <b>1.69:1</b> against
        <code>WCAG 1.4.11</code>&rsquo;s 3:1. Accepted on the live-disc precedent — the dot is never
-       the sole carrier: the slide itself shows position, and each dot keeps its accessible name
-       (<code>aria-label="Go to slide 1"</code>).</p>
+       the sole carrier: each slide announces its own position
+       (<code>aria-label="Slide 1 of 3"</code>).</p>
+    <p><b>An indicator, not a control</b> (designer, 2026-08-18): swipe moves the slider, so the
+       dots are <code>&lt;span&gt;</code>s in an <code>aria-hidden</code> <code>&lt;div&gt;</code>
+       &#8212; no tab stop and no target to size against <code>WCAG 2.5.8</code> or
+       <code>HIG &#183; 44pt</code>. <code>.on</code> is the first paint; <code>ui/kit.js</code>
+       moves it to the slide nearest the centre as the slider scrolls.</p>
     <p>iOS dims its resting dots; here they are <code>--btn2</code> discs — built, not dimmed.</p>
   </div>
 </div>
