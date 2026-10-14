@@ -2190,7 +2190,7 @@
 </div>
 
 <div class="row">
-  <div class="nm"><b>Filters drawer</b><code>.dr-sheet--tall &#183; .dr-sheet__scroll</code>
+  <div class="nm"><b>Filters drawer</b><code>.dr-sheet--tall &#183; .dr-sheet__scroll &#183; .dr-sheet__actions--row</code>
     <p>The second drawer <code>listings</code> opens, and the only one with more in it than
        fits.</p></div>
   <div class="spec">
@@ -2199,20 +2199,56 @@
         <span class="dr-sheet__grip" aria-hidden="true"></span>
         <p class="dr-sheet__title">Filters</p>
         <div class="dr-sheet__scroll">
-          <fieldset class="dr-zone">
-            <p class="dr-zone__title">Drone type</p>
-            <p class="dr-zone__sub">Which drone does your order</p>
-            <ul class="dr-picks" style="list-style:none">
-              <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="kitdrone" class="sr-only"></label></li>
-              <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="kitdrone" class="sr-only"></label></li>
-              <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="kitdrone" class="sr-only"></label></li>
-              <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Fixed-wing</span><input type="checkbox" name="kitdrone" class="sr-only"></label></li>
+          <fieldset class="dr-zone" aria-labelledby="kit-ftype-title" aria-describedby="kit-ftype-sub">
+            <p class="dr-zone__title" id="kit-ftype-title">Drone type</p>
+            <p class="dr-zone__sub" id="kit-ftype-sub">Which drone does your order</p>
+            <ul class="dr-picks">
+              <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="drone-type" value="quadcopter" class="sr-only"></label></li>
+              <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="drone-type" value="hexacopter" class="sr-only"></label></li>
+              <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="drone-type" value="fpv" class="sr-only"></label></li>
+              <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Fixed-wing</span><input type="checkbox" name="drone-type" value="fixed-wing" class="sr-only"></label></li>
             </ul>
           </fieldset>
+
+          <fieldset class="dr-range" aria-labelledby="kit-fprice-title" aria-describedby="kit-fprice-sub">
+            <p class="dr-range__title" id="kit-fprice-title">Price range</p>
+            <p class="dr-range__sub" id="kit-fprice-sub">Service price, all fees included</p>
+            <div class="dr-range__band">
+              <div class="dr-range__hist" role="img" aria-label="How services are priced: most cost ₴200 – ₴350">
+                <i class="dr-range__bar dr-range__bar--in" style="height:6%"></i><i class="dr-range__bar dr-range__bar--in" style="height:8%"></i><i class="dr-range__bar dr-range__bar--in" style="height:10%"></i><i class="dr-range__bar dr-range__bar--in" style="height:14%"></i>
+                <i class="dr-range__bar dr-range__bar--in" style="height:22%"></i><i class="dr-range__bar dr-range__bar--in" style="height:30%"></i><i class="dr-range__bar dr-range__bar--in" style="height:44%"></i><i class="dr-range__bar dr-range__bar--in" style="height:58%"></i>
+                <i class="dr-range__bar dr-range__bar--in" style="height:72%"></i><i class="dr-range__bar dr-range__bar--in" style="height:86%"></i><i class="dr-range__bar dr-range__bar--in" style="height:100%"></i><i class="dr-range__bar dr-range__bar--in" style="height:92%"></i>
+                <i class="dr-range__bar dr-range__bar--in" style="height:78%"></i><i class="dr-range__bar dr-range__bar--in" style="height:70%"></i><i class="dr-range__bar dr-range__bar--in" style="height:62%"></i><i class="dr-range__bar dr-range__bar--in" style="height:66%"></i>
+                <i class="dr-range__bar dr-range__bar--in" style="height:54%"></i><i class="dr-range__bar dr-range__bar--in" style="height:46%"></i><i class="dr-range__bar dr-range__bar--in" style="height:40%"></i><i class="dr-range__bar dr-range__bar--in" style="height:44%"></i>
+                <i class="dr-range__bar dr-range__bar--in" style="height:38%"></i><i class="dr-range__bar dr-range__bar--in" style="height:32%"></i><i class="dr-range__bar dr-range__bar--in" style="height:36%"></i><i class="dr-range__bar dr-range__bar--in" style="height:28%"></i>
+                <i class="dr-range__bar dr-range__bar--in" style="height:30%"></i><i class="dr-range__bar dr-range__bar--in" style="height:24%"></i><i class="dr-range__bar dr-range__bar--in" style="height:20%"></i><i class="dr-range__bar dr-range__bar--in" style="height:22%"></i>
+                <i class="dr-range__bar dr-range__bar--in" style="height:16%"></i><i class="dr-range__bar dr-range__bar--in" style="height:14%"></i><i class="dr-range__bar dr-range__bar--in" style="height:12%"></i><i class="dr-range__bar dr-range__bar--in" style="height:14%"></i>
+                <i class="dr-range__bar dr-range__bar--in" style="height:10%"></i><i class="dr-range__bar dr-range__bar--in" style="height:8%"></i><i class="dr-range__bar dr-range__bar--in" style="height:9%"></i><i class="dr-range__bar dr-range__bar--in" style="height:7%"></i>
+                <i class="dr-range__bar dr-range__bar--in" style="height:6%"></i><i class="dr-range__bar dr-range__bar--in" style="height:8%"></i><i class="dr-range__bar dr-range__bar--in" style="height:12%"></i><i class="dr-range__bar dr-range__bar--in" style="height:26%"></i>
+              </div>
+              <div class="dr-range__rail">
+                <span class="dr-range__fill" style="left:0;right:0"></span>
+                <input class="dr-range__input" type="range" id="kit-fpmin" min="0" max="1000" step="50" value="0"
+                       aria-label="Minimum price" aria-valuetext="₴0">
+                <input class="dr-range__input" type="range" id="kit-fpmax" min="0" max="1000" step="50" value="1000"
+                       aria-label="Maximum price" aria-valuetext="₴1,000+">
+              </div>
+            </div>
+            <div class="dr-range__fields">
+              <p class="dr-range__field">
+                <span class="dr-range__cap">Minimum</span>
+                <output class="dr-range__val" for="kit-fpmin">₴0</output>
+              </p>
+              <p class="dr-range__field">
+                <span class="dr-range__cap">Maximum</span>
+                <output class="dr-range__val" for="kit-fpmax">₴1,000+</output>
+              </p>
+            </div>
+          </fieldset>
         </div>
-        <div class="dr-sheet__actions">
-          <span class="dr-btn dr-btn--secondary">Clear all</span>
-          <span class="dr-btn dr-btn--primary">Show results</span>
+        <div class="dr-sheet__actions dr-sheet__actions--row">
+          <button class="dr-btn dr-btn--secondary" type="button">Clear all</button>
+          <button class="dr-btn dr-btn--primary" type="button">Apply filters</button>
         </div>
       </section>
     </div>
