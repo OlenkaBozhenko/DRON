@@ -24,6 +24,7 @@ Design repository — research, wireframes, tokens, components, and handoff mate
 | [`wireframes/`](wireframes/) | Grayscale clickable wireframe prototype — every sitemap screen + its real states | ✅ Clickable prototype |
 | [`concept/`](concept/) | The chosen visual language — `concept.md` is the source of truth, `concept.html` the live testbed | ✅ Done |
 | [`design-system/`](design-system/) | **The design system as one package.** [`index.css`](design-system/index.css) is the one entry point every page links; it imports `tokens.css` and `components/index.css`. `patterns/`, `docs/`, `examples/` are empty for now. Shown live at [`design-system.html`](design-system.html) | 🔄 In progress |
+| [`design-system/docs/`](design-system/docs/) | Component docs: 61 live component pages, a showcase `index.html`, and `why.html`. Generated from `docs/src/*.md` by `build.py` | ✅ Done |
 | [`design-system/tokens.css`](design-system/tokens.css) | **Every value in the product** — 149 primitives, 99 semantic roles (51 colour and surface, 48 type), a `[data-theme="dark"]` block of 42 | ✅ Done |
 | [`tokens/`](tokens/) | [`tokens-audit.md`](tokens/tokens-audit.md) — how each token was derived and what it is spent on | ✅ Done |
 | [`design-system/components/`](design-system/components/) | 31 component stylesheets, one per component, imported in cascade order by `components/index.css` | ✅ Done |

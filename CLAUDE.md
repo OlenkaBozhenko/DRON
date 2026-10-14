@@ -275,6 +275,18 @@ there on the next load. A new file reaches the page by being imported from `inde
 The move was measured as a refactor: every page computes identically before and after, light and
 dark, at 1280 and at 380. Asset `url()`s in the package went one level deeper (`../../assets/`).
 
+**Component docs — `design-system/docs/` (2026-10-14).** One page per component (61) plus
+`index.html` (the showcase) and `why.html` (where the visual language came from — the first page for
+a new developer). Each component page has four parts: anatomy (the live component with numbered
+pins measured onto its parts), variants and sizes, when to use, and rule / anti-rule. **The source is
+`docs/src/<slug>.md`; the HTML is generated** by `python design-system/docs/build.py` and is never
+edited by hand. Every specimen is live markup under `design-system/index.css` — the same link the
+product uses — and the build refuses a `dr-*` class no component declares, so the showcase cannot
+show a component the system does not have. `src/_PAGES.md` is the fixed page list, including which
+inventory rows are deliberately not pages (grayscale-only, or retired like the segmented control).
+When a component changes, edit its `src/*.md` specimen alongside `ui/kit.html` and the screens, then
+rebuild.
+
 ### Tokens — where a value lives and where a change goes (revised 2026-10-10)
 
 **A value now lives in [`design-system/tokens.css`](design-system/tokens.css), and it is edited at the tier that owns it.**
