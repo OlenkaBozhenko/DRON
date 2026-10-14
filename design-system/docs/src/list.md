@@ -14,7 +14,7 @@ kit: 803
 ```html
 <ul class="dr-list" style="width:341px;max-width:100%">
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <a class="dr-card__link" href="#" aria-label="Book 09:00 to 10:00, operator free"></a>
       <span class="dr-listing__body">
         <span class="dr-listing__name">09:00 – 10:00</span>
@@ -23,7 +23,7 @@ kit: 803
     </article>
   </li>
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <a class="dr-card__link" href="#" aria-label="Book 11:00 to 12:00, operator free"></a>
       <span class="dr-listing__body">
         <span class="dr-listing__name">11:00 – 12:00</span>
@@ -44,7 +44,7 @@ kit: 803
 ```html
 <ul class="dr-list" style="width:341px;max-width:100%">
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <a class="dr-card__link" href="#" aria-label="Book 09:00 to 10:00, operator free"></a>
       <span class="dr-listing__body">
         <span class="dr-listing__name">09:00 – 10:00</span>
@@ -53,7 +53,7 @@ kit: 803
     </article>
   </li>
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <a class="dr-card__link" href="#" aria-label="Book 11:00 to 12:00, operator free"></a>
       <span class="dr-listing__body">
         <span class="dr-listing__name">11:00 – 12:00</span>
@@ -71,7 +71,7 @@ Gap 28, the one step above any gap inside a card. For a list that is the screen:
 ```html
 <ul class="dr-list dr-list--snug" style="width:341px;max-width:100%">
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <div class="dr-listing__body">
         <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
         <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
@@ -80,7 +80,7 @@ Gap 28, the one step above any gap inside a card. For a list that is the screen:
     </article>
   </li>
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <div class="dr-listing__body">
         <span class="dr-listing__name">Andriy P.<span class="dr-listing__score">· 4.0</span></span>
         <p class="dr-listing__desc">“Good shots overall, a couple came out a bit dark.”</p>
@@ -99,7 +99,7 @@ The list sets the gap between cards, and that gap is always greater than any gap
 
 The rung is chosen by what surrounds the list, not by taste. Where the list is the screen and has nothing to be confused with, 28 is right and still clears the 20 inside a card. Where it is one zone among several, `main` separates zones by 12, so 28 would put siblings further apart than strangers; the snug rung, 8, clusters the group and lets the zones separate. Chat messages and wallet rows are a sequence rather than a set of separate objects, so they take 8 as well, the same step that separates parts inside a card.
 
-The screens also write `.dr-listing` on each card. No component declares that class, so it is left out of the blocks here.
+Each card also carries `.dr-listing`, as on the screens. It has no rule of its own.
 
 The list carries no words of its own. An empty list is a [message block](message-block.html) that says why it is empty and gives one way out.
 
@@ -110,7 +110,7 @@ Sources: DESIGN.md § Layout (Two list rungs) · inventory.md § 1.3 (List conta
 ```html
 <ul class="dr-list dr-list--snug" style="width:341px;max-width:100%">
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <div class="dr-listing__body">
         <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
         <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
@@ -119,7 +119,7 @@ Sources: DESIGN.md § Layout (Two list rungs) · inventory.md § 1.3 (List conta
     </article>
   </li>
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <div class="dr-listing__body">
         <span class="dr-listing__name">Andriy P.<span class="dr-listing__score">· 4.0</span></span>
         <p class="dr-listing__desc">“Good shots overall, a couple came out a bit dark.”</p>

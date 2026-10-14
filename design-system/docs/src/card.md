@@ -12,7 +12,7 @@ kit: 859
 ## Anatomy
 
 ```html
-<article class="dr-card dr-card--row" style="width:341px;max-width:100%">
+<article class="dr-card dr-card--row dr-listing" style="width:341px;max-width:100%">
         <span class="dr-listing__body">
           <span class="dr-listing__name">Package delivery</span>
           <span class="dr-listing__desc">2.3 km · ~18 min</span>
@@ -28,7 +28,7 @@ kit: 859
 - `.dr-listing__meta` — The money line, 6 under the description, items 8 apart: the figure is a `.dr-number`, 20/700 tabular, with its word (*Pay*) in `.sr-only` for a screen reader only.
 - `.dr-well` — The drone doing the job, a 96 × 96 cutout with no ground, radius 13, padding 4, after the body. 68 × 68 below 390 wide.
 
-The markup is `job-offer`'s. Every row card on the screens also carries a bare `dr-listing` class on the article; no rule in `components/` reads it and the docs build refuses an undeclared class, so the specimens leave it out.
+The markup is `job-offer`'s. Every row card also carries `dr-listing`, as on the screens. It is a namespace with no rule of its own; the look comes from `dr-card--row`.
 
 ## Variants
 
@@ -54,7 +54,7 @@ A column: inset 24 / 20, 20 between groups. Its parts are the [card row](card-ro
 ### Row
 
 ```html
-<article class="dr-card dr-card--row" style="width:341px;max-width:100%">
+<article class="dr-card dr-card--row dr-listing" style="width:341px;max-width:100%">
         <span class="dr-listing__body">
           <span class="dr-listing__name">Package delivery</span>
           <span class="dr-listing__desc">2.3 km · ~18 min</span>
@@ -69,7 +69,7 @@ A column: inset 24 / 20, 20 between groups. Its parts are the [card row](card-ro
 ### Row without a picture
 
 ```html
-<article class="dr-card dr-card--row" style="width:341px;max-width:100%">
+<article class="dr-card dr-card--row dr-listing" style="width:341px;max-width:100%">
               <div class="dr-listing__body">
                 <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
                 <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
@@ -101,13 +101,13 @@ Sources: DESIGN.md § Cards · § Do's and Don'ts · inventory.md § 1.3 (Card, 
 ## Rule
 
 ```html
-<ul class="dr-list dr-list--snug" style="width:341px;max-width:100%"><li><article class="dr-card dr-card--row">
+<ul class="dr-list dr-list--snug" style="width:341px;max-width:100%"><li><article class="dr-card dr-card--row dr-listing">
               <div class="dr-listing__body">
                 <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
                 <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
                 <span class="dr-listing__meta"><span class="dr-chip">Package delivery</span><span class="dr-chip">Today</span></span>
               </div>
-            </article></li><li><article class="dr-card dr-card--row">
+            </article></li><li><article class="dr-card dr-card--row dr-listing">
               <div class="dr-listing__body">
                 <span class="dr-listing__name">Andriy P.<span class="dr-listing__score">· 4.0</span></span>
                 <p class="dr-listing__desc">“Good shots overall, a couple came out a bit dark.”</p>
@@ -121,7 +121,7 @@ Flat cards of one shape, set apart by the list's gap and the tone step alone, as
 ## Anti-rule
 
 ```html
-<article class="dr-card dr-card--row" style="width:341px;max-width:100%">
+<article class="dr-card dr-card--row dr-listing" style="width:341px;max-width:100%">
       <span class="dr-listing__body">
         <span class="dr-listing__name">Package delivery</span>
         <span class="dr-listing__desc">2.3 km &#183; ~18 min</span>

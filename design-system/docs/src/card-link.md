@@ -113,7 +113,7 @@ The job offer on `operator-listings`, three cards. The buttons in `.dr-card__act
 ### Row card as one link
 
 ```html
-<article class="dr-card dr-card--row" style="width:341px;max-width:100%">
+<article class="dr-card dr-card--row dr-listing" style="width:341px;max-width:100%">
   <a class="dr-card__link" href="#" aria-label="Book 09:00 to 10:00, operator free"></a>
   <span class="dr-listing__body">
     <span class="dr-listing__name">09:00 – 10:00</span>

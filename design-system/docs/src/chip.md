@@ -62,7 +62,7 @@ The credential chip answers RJ-C1, the highest single drop-off in the CJM: confi
 
 The rule reads in one line: green means DRON confirmed this document, grey means a plain supporting fact. Green is the tint behind a charcoal label, never the letters, so the chip does not break the fill-only rule; it is the rule. The shield with a check, the plain shield and the trailing tick make the difference legible in drawing as well as in colour (`WCAG 1.4.1`). A `--trust` blue rung for third-party confirmation is declared in the `ui/kit.css` archive and drawn nowhere; it was not ported into `components/`.
 
-The words are facts, not adjectives: *Verified by DRON*, *Insured*, *CAA licence*, *Verified with Diia*. On `order-confirmed-empty` alone the claim is shortened to *Verified* so the pair fits one row.
+The words are facts, not adjectives: *Verified by DRON*, *Insured*, *CAA licence*, *Verified with Diia*. On `order-confirmed-empty` the claim is shortened to *Verified* so the pair fits one row. Both wordings are allowed (rev 292).
 
 Sources: DESIGN.md § Chips and badges · § Named rules (One Accent) · inventory.md § 1 (Verification badge) · microcopy.md § order-confirmed, tracking · voice.md P2
 

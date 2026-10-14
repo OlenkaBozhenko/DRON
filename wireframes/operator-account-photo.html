@@ -59,7 +59,7 @@
       in more than position. The title centres absolutely against the bar and clears
       both labels.
     -->
-    <header class="topbar dr-topbar"><a class="dr-btn dr-btn--tertiary" href="operator-account.html">Cancel</a><span class="dr-topbar__title">Profile photo</span><span class="dr-topbar__spacer"></span><a class="dr-btn dr-btn--text" href="operator-account.html">Save</a></header>
+    <header class="topbar dr-topbar"><a class="dr-btn dr-btn--tertiary" href="operator-account.html">Cancel</a><h1 class="dr-topbar__title">Profile photo</h1><span class="dr-topbar__spacer"></span><a class="dr-btn dr-btn--text" href="operator-account.html">Save</a></header>
 
     <main class="dr-main">
 
@@ -109,7 +109,10 @@
       the rule (`WCAG 1.3.1`, `4.1.2`) and `3.3.2` is met earlier in reading order
       than it was.
 
-      THE FILLS ARE HER CALL, 2026-08-16: «дві зерені delete сіра». Take a photo and
+      SUPERSEDED 2026-10-14 (rev 292): «Take a photo зелена інші сірі» -
+      Choose a picture is now .dr-btn--secondary; one green control again.
+
+      THE FILLS WERE HER CALL, 2026-08-16: «дві зерені delete сіра». Take a photo and
       Choose a picture are both `.dr-btn--primary`; Delete is the secondary rung, the
       same answer rev 131 gave `Delete order`, so the product's destructive controls
       read alike. Every button is FILLED, which is rev 112's rule for a bar.
@@ -128,7 +131,7 @@
     -->
     <footer class="dr-actionbar">
       <button class="dr-btn dr-btn--primary dr-btn--block" type="button" aria-describedby="photo-rules">Take a photo</button>
-      <button class="dr-btn dr-btn--primary dr-btn--block" type="button" aria-describedby="photo-rules">Choose a picture</button>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" aria-describedby="photo-rules">Choose a picture</button>
       <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" aria-describedby="photo-rules">Delete</button>
     </footer>
   </div>

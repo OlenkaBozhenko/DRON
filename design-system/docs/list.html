@@ -27,7 +27,7 @@
     &middot; <a href="../../ui/kit.html">kit specimen</a></p>
   <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><ul class="dr-list" style="width:341px;max-width:100%">
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <a class="dr-card__link" href="#" aria-label="Book 09:00 to 10:00, operator free"></a>
       <span class="dr-listing__body">
         <span class="dr-listing__name">09:00 – 10:00</span>
@@ -36,7 +36,7 @@
     </article>
   </li>
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <a class="dr-card__link" href="#" aria-label="Book 11:00 to 12:00, operator free"></a>
       <span class="dr-listing__body">
         <span class="dr-listing__name">11:00 – 12:00</span>
@@ -48,7 +48,7 @@
   <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
     <p class="dsd-lede">Inventory rows: List container.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-default"><figcaption><h3>Default</h3></figcaption><div class="dsd-plate dr "><ul class="dr-list" style="width:341px;max-width:100%">
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <a class="dr-card__link" href="#" aria-label="Book 09:00 to 10:00, operator free"></a>
       <span class="dr-listing__body">
         <span class="dr-listing__name">09:00 – 10:00</span>
@@ -57,7 +57,7 @@
     </article>
   </li>
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <a class="dr-card__link" href="#" aria-label="Book 11:00 to 12:00, operator free"></a>
       <span class="dr-listing__body">
         <span class="dr-listing__name">11:00 – 12:00</span>
@@ -68,7 +68,7 @@
 </ul></div>
 <p>Gap 28, the one step above any gap inside a card. For a list that is the screen: <code>order-history</code> and <code>time-slot</code>, in 4 files (<code>order-history</code>, <code>order-history-loading</code>, <code>time-slot</code>, <code>time-slot-inspection</code>).</p></figure><figure class="dsd-variant" id="variant-snug"><figcaption><h3>Snug</h3></figcaption><div class="dsd-plate dr "><ul class="dr-list dr-list--snug" style="width:341px;max-width:100%">
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <div class="dr-listing__body">
         <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
         <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
@@ -77,7 +77,7 @@
     </article>
   </li>
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <div class="dr-listing__body">
         <span class="dr-listing__name">Andriy P.<span class="dr-listing__score">· 4.0</span></span>
         <p class="dr-listing__desc">“Good shots overall, a couple came out a bit dark.”</p>
@@ -89,14 +89,14 @@
 <p>Gap 8 at every width. For a list that is one zone among several, or a sequence, in 14 files: <code>chat</code> (and <code>chat-aerial</code>, <code>chat-client</code>, <code>chat-inspection</code>), <code>inspection-report</code> (and <code>-loading</code>), <code>notifications</code> (and <code>-loading</code>), <code>operator-notifications</code>, <code>operator-listings</code>, <code>ratings</code>, <code>role-select</code>, <code>support</code> and <code>wallet</code>. The specimen is <code>ratings</code>.</p></figure></div></section>
   <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>The list sets the gap between cards, and that gap is always greater than any gap inside one, so proximity groups in the right direction without a border or a shadow. 18 files stack their cards with it: 4 at the default gap and 14 snug.</p>
 <p>The rung is chosen by what surrounds the list, not by taste. Where the list is the screen and has nothing to be confused with, 28 is right and still clears the 20 inside a card. Where it is one zone among several, <code>main</code> separates zones by 12, so 28 would put siblings further apart than strangers; the snug rung, 8, clusters the group and lets the zones separate. Chat messages and wallet rows are a sequence rather than a set of separate objects, so they take 8 as well, the same step that separates parts inside a card.</p>
-<p>The screens also write <code>.dr-listing</code> on each card. No component declares that class, so it is left out of the blocks here.</p>
+<p>Each card also carries <code>.dr-listing</code>, as on the screens. It has no rule of its own.</p>
 <p>The list carries no words of its own. An empty list is a <a href="message-block.html">message block</a> that says why it is empty and gives one way out.</p>
 <p class="dsd-sources">Sources: DESIGN.md § Layout (Two list rungs) · inventory.md § 1.3 (List container) · ui/kit.html List and its snug rung</p></section>
   <section aria-labelledby="s-rule"><h2 id="s-rule">Rule and anti-rule</h2>
     <div class="dsd-rules">
       <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><ul class="dr-list dr-list--snug" style="width:341px;max-width:100%">
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <div class="dr-listing__body">
         <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
         <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
@@ -105,7 +105,7 @@
     </article>
   </li>
   <li>
-    <article class="dr-card dr-card--row">
+    <article class="dr-card dr-card--row dr-listing">
       <div class="dr-listing__body">
         <span class="dr-listing__name">Andriy P.<span class="dr-listing__score">· 4.0</span></span>
         <p class="dr-listing__desc">“Good shots overall, a couple came out a bit dark.”</p>

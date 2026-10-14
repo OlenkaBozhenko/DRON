@@ -45,7 +45,7 @@ kit: 893
 
 The operator who will do the job, with a photo on 13 files: `order-confirmed`, `-aerial`, `-inspection`, and `tracking`, `-aerial`, `-inspection` with their `-empty` and `-error` states. On the three `order-confirmed` files the chips stack (`.dr-chips--stack`), because the full-bleed photo leaves 196px; the nine `tracking` files keep them in a row, as the anatomy shows.
 
-One file builds the card differently. `order-confirmed-empty` (a new operator, *Kateryna O.*, *New operator · no reviews yet*) puts a small `.dr-avatar-md` in place of `.dr-op__photo`, and its first chip reads *Verified* instead of *Verified by DRON*. The other 13 photo cards use `.dr-op__photo`.
+Both shapes are allowed (designer, rev 292). The full photo `.dr-op__photo` with *Verified by DRON* is the usual card, on 13 files. The compact one, a small `.dr-avatar-md` with the shorter *Verified*, stands on `order-confirmed-empty` (a new operator, *Kateryna O.*, *New operator · no reviews yet*). Pick by the room the card has.
 
 ### Text-led
 

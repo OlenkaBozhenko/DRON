@@ -73,7 +73,7 @@ Sources: DESIGN.md § Media · § Imagery · inventory.md § 1.3 Media well, Map
 ## Rule
 
 ```html
-<article class="dr-card dr-card--row" style="width:341px;max-width:100%">
+<article class="dr-card dr-card--row dr-listing" style="width:341px;max-width:100%">
   <span class="dr-listing__body">
     <span class="dr-listing__name">Package delivery</span>
     <span class="dr-listing__desc">2.3 km · ~18 min</span>
@@ -83,7 +83,7 @@ Sources: DESIGN.md § Media · § Imagery · inventory.md § 1.3 Media well, Map
 </article>
 ```
 
-The `job-offer` row: the body first, the cutout after it, sitting straight on the card in its 96 box with no ground of its own. The screen also carries `dr-listing` on the `article`; no component declares that class, so the build drops it here.
+The `job-offer` row: the body first, the cutout after it, sitting straight on the card in its 96 box with no ground of its own.
 
 ## Anti-rule
 

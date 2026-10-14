@@ -45,7 +45,7 @@ kit: —
 
 `tracking`: the primary on top, one button per row, never two split across one row. All 38 multi-button bars in the build stack (34 with two buttons, 4 with three), and no label wraps at 320pt.
 
-Two pages break the one-green rule inside the stack: `account-photo` and `operator-account-photo` stack two primaries, *Take a photo* and *Choose a picture*, over a secondary *Delete*. Every other bar holds at most one primary.
+Every bar holds at most one primary. `account-photo` and `operator-account-photo` stack *Take a photo* (primary) over *Choose a picture* and *Delete* (both secondary); they carried two primaries until rev 292.
 
 ### Composer
 

@@ -12,7 +12,7 @@ kit: 949
 ## Anatomy
 
 ```html
-<article class="dr-card dr-card--cover" style="width:341px;max-width:100%">
+<article class="dr-card dr-card--cover dr-listing" style="width:341px;max-width:100%">
   <div class="dr-well dr-well--photo" style="height:180px;">
     <img src="../assets/scenes/thumbs/aerial-rafting-boulders.jpg" alt="A grey raft with a crew in red helmets and life jackets running a rapid between dark boulders, white water breaking around it, shot from above." loading="lazy" decoding="async">
     <button class="dr-btn dr-btn--icon dr-btn--onphoto" type="button" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></button>
@@ -39,7 +39,7 @@ kit: 949
 ### Video
 
 ```html
-<article class="dr-card dr-card--cover" style="width:341px;max-width:100%">
+<article class="dr-card dr-card--cover dr-listing" style="width:341px;max-width:100%">
   <div class="dr-well dr-well--photo" style="height:180px;">
     <img src="../assets/scenes/thumbs/aerial-rafting-boulders.jpg" alt="A grey raft with a crew in red helmets and life jackets running a rapid between dark boulders, white water breaking around it, shot from above." loading="lazy" decoding="async">
     <button class="dr-btn dr-btn--icon dr-btn--onphoto" type="button" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></button>
@@ -67,7 +67,7 @@ Sources: DESIGN.md § Cards (`.dr-card--cover`) · § Imagery · inventory.md §
 ## Rule
 
 ```html
-<article class="dr-card dr-card--cover" style="width:341px;max-width:100%">
+<article class="dr-card dr-card--cover dr-listing" style="width:341px;max-width:100%">
   <div class="dr-well dr-well--photo" style="height:180px;">
     <img src="../assets/scenes/thumbs/aerial-rafting-boulders.jpg" alt="A grey raft with a crew in red helmets and life jackets running a rapid between dark boulders, white water breaking around it, shot from above." loading="lazy" decoding="async">
     <button class="dr-btn dr-btn--icon dr-btn--onphoto" type="button" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></button>

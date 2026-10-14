@@ -38,7 +38,13 @@ def declared_classes():
             text = open(os.path.join(COMPONENTS, f), encoding='utf-8').read()
             text = re.sub(r'/\*.*?\*/', '', text, flags=re.S)
             names.update(re.findall(r'\.(-?[a-zA-Z_][\w-]*)', text))
-    return names
+    return names | NAMESPACES
+
+
+# Classes the screens carry on purpose with no rule of their own: the look comes
+# from a co-class (design-system/_critique.md 09d). A specimen copied from a screen
+# keeps them, so the docs match the screens. Nothing else is let through.
+NAMESPACES = {'dr-listing', 'dr-profile__name'}
 
 
 def front_matter(text):

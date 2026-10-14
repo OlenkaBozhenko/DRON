@@ -14,7 +14,7 @@ kit: 321
 ```html
 <div class="dr dr-screen" style="height:520px">
   <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
-  <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Help</span><span class="dr-topbar__spacer"></span></header>
+  <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><h1 class="dr-topbar__title">Help</h1><span class="dr-topbar__spacer"></span></header>
   <main class="dr-main dr-main--zones">
     <section aria-label="Support intro">
       <h2 class="dr-display">What happened?</h2>
@@ -45,7 +45,7 @@ kit: 321
 ### Root screen
 
 ```html
-<header class="topbar dr-topbar" style="width:375px;max-width:100%"><span class="dr-brand" role="img" aria-label="DRON"></span><span class="dr-topbar__title">Help</span><span class="dr-topbar__spacer"></span></header>
+<header class="topbar dr-topbar" style="width:375px;max-width:100%"><span class="dr-brand" role="img" aria-label="DRON"></span><h1 class="dr-topbar__title">Help</h1><span class="dr-topbar__spacer"></span></header>
 ```
 
 A tab root carries the brand at the leading edge and the screen's title centred, and no back control. Here `support`. The brand stands alone with no title on 13 pages: the 9 entry pages (`welcome`, `welcome-empty`, `role-select`, `signin`, `signin-error`, `signin-loading`, `onboarding-client`, `onboarding-client-empty`, `onboarding-operator`) and the 4 `listings` pages, where the [notification bell](notification-bell.html) stands at the trailing edge. `operator-listings` leads with the operator's [avatar and name](nav-bar-avatar.html) instead of the brand.
@@ -55,7 +55,7 @@ A tab root carries the brand at the leading edge and the screen's title centred,
 ```html
 <div class="dr dr-screen" style="height:520px">
   <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
-  <header class="topbar dr-topbar"><a class="dr-back" href="../../wireframes/tracking-inspection.html" aria-label="Back to On the way"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Inspection report</span><span class="dr-topbar__spacer"></span></header>
+  <header class="topbar dr-topbar"><a class="dr-back" href="../../wireframes/tracking-inspection.html" aria-label="Back to On the way"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><h1 class="dr-topbar__title">Inspection report</h1><span class="dr-topbar__spacer"></span></header>
   <main class="dr-main">
     <p class="zlabel dr-label">Cover <span class="dr-label__act">▸ hero shot (RJ-C4)</span></p>
     <section aria-label="Cover photo">
@@ -74,7 +74,7 @@ A pushed screen leads with the back chevron alone, 22px glyph in a 44 × 44 targ
 ### Back button
 
 ```html
-<header class="topbar dr-topbar" style="width:375px;max-width:100%"><a class="dr-back" href="../../wireframes/order-review.html" aria-label="Back to Order review"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Card details</span><span class="dr-topbar__spacer"></span></header>
+<header class="topbar dr-topbar" style="width:375px;max-width:100%"><a class="dr-back" href="../../wireframes/order-review.html" aria-label="Back to Order review"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><h1 class="dr-topbar__title">Card details</h1><span class="dr-topbar__spacer"></span></header>
 ```
 
 No visible words. `aria-label="Back to {destination}"` names it (`WCAG 4.1.2`); `margin-left: -10px` puts the glyph back on the 16px gutter. 44 × 44 is `HIG · 44pt` and 1.83× `WCAG 2.5.8`. Here `payment`. All 75 back controls are this same `<a class="dr-back">` with an `aria-label`.
@@ -103,14 +103,14 @@ Every product screen stands in this frame: status bar 44, nav bar 56, then eithe
 
 The selected tab carries the accent as a fill, not as a tinted label. HIG tints the label with the accent, but raw green as text is 1.69:1, so the accent moves into the pill and the ink darkens with it: two signals where the convention gives one.
 
-The nav bar holds one name: the title of the screen you are on, in sentence case. Every nav bar is `<header class="topbar dr-topbar">` (128 pages). The title element splits: a `<span>` on 98 pages and an `<h1>` on 15: `delivery`, `delivery-aerial`, `delivery-error`, `delivery-loading`, `order-history`, `tracking`, `tracking-aerial`, `tracking-aerial-empty`, `tracking-aerial-error`, `tracking-empty`, `tracking-error`, `tracking-inspection`, `tracking-inspection-empty`, `tracking-inspection-error`, `tracking-loading`. The status bar glyphs split the same quiet way: 21 pages write `width="17" height="17"` on them and 112 leave it to the CSS, which draws both at 17. The back control carries no words (`microcopy.md` D9); *Back to…* is right as an accessible name and forbidden as visible copy. A tab root has no back. No nav bar draws a close `×`: drawers end in their own Done and Cancel pair.
+The nav bar holds one name: the title of the screen you are on, in sentence case. Every nav bar is `<header class="topbar dr-topbar">` (128 pages). The title is an `<h1>` on every page (rev 292), so a screen reader lands on the screen's name as its heading (`WCAG 1.3.1`, `2.4.6`). It draws exactly as the `<span>` it replaced. The status bar glyphs split the same quiet way: 21 pages write `width="17" height="17"` on them and 112 leave it to the CSS, which draws both at 17. The back control carries no words (`microcopy.md` D9); *Back to…* is right as an accessible name and forbidden as visible copy. A tab root has no back. No nav bar draws a close `×`: drawers end in their own Done and Cancel pair.
 
 Sources: DESIGN.md § Navigation · voice.md § Nav-bar back button · microcopy.md D9 · inventory.md § 1 (Nav bar, Status bar, Tab bar, Home indicator, Brand slot, Back button)
 
 ## Rule
 
 ```html
-<header class="topbar dr-topbar" style="width:375px;max-width:100%"><a class="dr-back" href="../../wireframes/delivery.html" aria-label="Back to Delivered"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="dr-topbar__title">Rate the order</span><span class="dr-topbar__spacer"></span></header>
+<header class="topbar dr-topbar" style="width:375px;max-width:100%"><a class="dr-back" href="../../wireframes/delivery.html" aria-label="Back to Delivered"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><h1 class="dr-topbar__title">Rate the order</h1><span class="dr-topbar__spacer"></span></header>
 ```
 
 The nav bar of `rate`: the chevron alone, named for assistive tech by where it goes, and one title in the centre.
@@ -120,7 +120,7 @@ The nav bar of `rate`: the chevron alone, named for assistive tech by where it g
 ```html
 <header class="topbar dr-topbar" style="width:375px;max-width:100%">
   <a class="dr-btn dr-btn--tertiary" href="../../wireframes/delivery.html">‹ Delivered</a>
-  <span class="dr-topbar__title">Rate the order</span>
+  <h1 class="dr-topbar__title">Rate the order</h1>
   <span class="dr-topbar__spacer"></span>
 </header>
 ```

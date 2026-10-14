@@ -79,7 +79,7 @@ The one rung whose colour the product does not choose. Apple and Google allow bl
 
 ## When to use
 
-A button is a verb the user commits to. The system spends one green control per screen. Two screens stack two primaries in one action bar: `account-photo` and `operator-account-photo` (*Take a photo* over *Choose a picture*, then *Delete* as secondary). The primary button carries the screen's main job and covers 81–100% of that screen's green, while everything else that can be tapped is warm grey. In the action bar every button is filled and stacks one per row at full width, primary first, so no label wraps at 320pt. Text-only rungs (tertiary, text) live in navigation bars and inside cards, never on the bottom edge.
+A button is a verb the user commits to. The system spends one green control per screen. Every action bar holds one primary at most; `account-photo` and `operator-account-photo` gave up their second one at rev 292. The primary button carries the screen's main job and covers 81–100% of that screen's green, while everything else that can be tapped is warm grey. In the action bar every button is filled and stacks one per row at full width, primary first, so no label wraps at 320pt. Text-only rungs (tertiary, text) live in navigation bars and inside cards, never on the bottom edge.
 
 Two rungs in DESIGN.md are not in the live system. *Outline* (pill, slate edge) and *destructive text* are declared in the `ui/kit.css` archive, but no screen draws them, so they were never ported into `components/`. The first screen that needs one brings it in, and this page follows.
 

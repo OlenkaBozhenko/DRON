@@ -325,7 +325,7 @@ other painted page holds, and the frame carries **two** `--sh-sm` shadows where 
 Contrast is untouched — charcoal on green **9.46:1**, charcoal on `--btn2` **11.54:1** — and `HIG · 44pt`
 is met at **341 × 44** three times, so nothing here fails a standard; what is spent is the product's own
 scarcity. Recorded as her call with the number, not as conformance. **One green returns the screen to
-the band** whenever she wants it: `Choose a picture` to `--secondary` puts it at 15,004px² · 4.93%.
+the band** whenever she wants it: `Choose a picture` to `--secondary` puts it at 15,004px² · 4.93%. **Closed 2026-10-14 (rev 292), her word:** *«Take a photo зелена інші сірі»* — *Choose a picture* and *Delete* are `--secondary` on both screens, one green control again.
 **`operator-account-photo` inherits the departure whole** (2026-08-21) — same three buttons, same two
 fills, the same 9.85% — because it is the same bar built for the same job on the other persona, and
 splitting the two would put one rule on the client's photo and another on the operator's. It is one

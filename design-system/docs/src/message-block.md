@@ -60,7 +60,7 @@ Neutral mark, `--media` under slate, 5.51:1. `role="status"`, and one way out. F
 </div>
 ```
 
-`--danger`: `--danger-wash` under `--danger-ink`, 5.49:1. `role="alert"`, with *Try again* on top and a second exit below. From `withdraw-error`. Not every error takes the danger mark: `contact-support-error`, `inspection-report-error`, `operator-signup-error`, `order-confirmed-error` and `payment-error` carry the neutral mark under `role="alert"`.
+`--danger`: `--danger-wash` under `--danger-ink`, 5.49:1. `role="alert"`, with *Try again* on top and a second exit below. From `withdraw-error`. Not every error takes the danger mark: `contact-support-error`, `inspection-report-error`, `operator-signup-error`, and `order-confirmed-error` carry the neutral mark under `role="alert"`. `payment-error` took the danger mark at rev 292.
 
 ### Notice
 
