@@ -93,7 +93,7 @@ Sources: DESIGN.md § Buttons · § Named rules (One Accent, Built Not Dimmed) �
 <div style="display:flex;flex-direction:column;gap:8px;width:341px;max-width:100%"><button class="dr-btn dr-btn--primary dr-btn--block" type="button">Pay 1,450 UAH</button><button class="dr-btn dr-btn--secondary dr-btn--block" type="button">Change time</button></div>
 ```
 
-An action bar with two actions: one primary for the screen's job and a secondary for the way out, both full width, one per row. (Which of the two leads is not settled across the screens yet; inventory.md records both orders.)
+An action bar with two actions: one primary for the screen's job and a secondary for the way out, both full width, one per row. The primary is on top in every action bar (rev 290).
 
 ## Anti-rule
 
