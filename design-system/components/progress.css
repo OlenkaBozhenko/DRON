@@ -1,0 +1,90 @@
+/* progress.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   type     -> semantic tokens only (--font-*, --type-*), since 2026-10-14
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-log{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-28);
+}
+.dr-log .dr-sect{
+  margin-bottom: var(--len-12);
+}
+.dr-node{
+  width: var(--len-22);
+  height: var(--len-22);
+  flex: none;
+  border-radius: var(--pct-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--len-2) solid var(--border-hairline);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+}
+.dr-node .dr-ic{
+  width: var(--len-12);
+  height: var(--len-12);
+}
+.dr-node--done{
+  background: var(--color-action);
+  border-color: var(--color-action);
+  color: var(--on-action);
+}
+.dr-node--now{
+  border-color: var(--color-action);
+  color: var(--text-primary);
+  box-shadow: var(--halo-action);
+}
+.dr-rail{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+}
+.dr-rail::before, .dr-rail::after{
+  content: "";
+  position: absolute;
+  top: var(--len-node-centre);
+  height: var(--len-2);
+  left: var(--pct-12-5);
+}
+.dr-rail::before{
+  width: var(--pct-75);
+  background: var(--border-hairline);
+}
+.dr-rail::after{
+  width: var(--pct-25, 0);
+  background: var(--color-action);
+}
+.dr-rail--at2{
+  --dr-fill: var(--pct-25);
+}
+.dr-rail--zone{
+  margin-block: var(--len-12);
+}
+.dr-rail__step{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--len-9);
+}
+.dr-rail__lbl{
+  font-size: var(--type-micro-sm-size);
+  font-weight: var(--type-micro-sm-weight);
+  line-height: var(--type-micro-sm-line);
+  color: var(--text-muted);
+  text-align: center;
+}
+.dr-rail__lbl--now{
+  color: var(--text-primary);
+  font-weight: var(--type-weight-medium);
+}

@@ -17,8 +17,8 @@
   html, body { margin: 0; background: var(--bg-page); color: var(--text-primary); }
   body {
     font-family: var(--font-ui);
-    font-size: var(--len-15);
-    line-height: var(--num-1-4);
+    font-size: var(--type-base-size);
+    line-height: var(--type-base-line);
     -webkit-font-smoothing: antialiased;
   }
   a { color: var(--text-primary); text-underline-offset: var(--len-3); }
@@ -26,53 +26,58 @@
   .ds-skip { position: absolute; left: var(--len-16); top: calc(-1 * var(--len-48)); }
   .ds-skip:focus { top: var(--len-16); }
 
-  .ds-wrap { max-width: var(--len-1120, 1120px); margin: 0 auto; padding: var(--len-24) var(--len-16) var(--len-64, 64px); }
+  .ds-wrap { max-width: calc(var(--len-140) * 8); margin: 0 auto; padding: var(--len-24) var(--len-16) var(--len-64); }
   .ds-top { display: flex; flex-wrap: wrap; gap: var(--len-12); align-items: center; justify-content: space-between; }
-  .ds-top a { font-size: var(--len-13); }
-  .ds-h1 { font-size: var(--len-22); font-weight: 600; margin: var(--len-24) 0 var(--len-8); }
+  .ds-top a { font-size: var(--type-body-sm-size); }
+  .ds-h1 { font-size: var(--type-display-size); font-weight: var(--type-display-weight); letter-spacing: var(--type-display-track); margin: var(--len-24) 0 var(--len-8); }
   .ds-lede { color: var(--text-muted); max-width: 64ch; margin: 0; }
-  .ds-h2 { font-size: var(--len-17); font-weight: 600; margin: var(--len-40, 40px) 0 var(--len-8); }
-  .ds-h3 { font-size: var(--len-15); font-weight: 600; margin: var(--len-24) 0 var(--len-4); }
-  .ds-note { color: var(--text-muted); font-size: var(--len-13); margin: 0 0 var(--len-12); max-width: 72ch; }
-  code, .ds-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: var(--len-12-5, 12.5px); }
+  .ds-h2 { font-size: var(--type-title-size); font-weight: var(--type-title-weight); letter-spacing: var(--type-title-track); margin: var(--len-40) 0 var(--len-8); }
+  .ds-h3 { font-size: var(--type-heading-size); font-weight: var(--type-heading-weight); margin: var(--len-24) 0 var(--len-4); }
+  .ds-note { color: var(--text-muted); font-size: var(--type-body-sm-size); margin: 0 0 var(--len-12); max-width: 72ch; }
+  code, .ds-mono { font-family: var(--font-mono); font-size: var(--type-meta-size); }
 
   .ds-bar { display: flex; flex-wrap: wrap; gap: var(--len-8); align-items: center; margin-top: var(--len-16); }
   .ds-btn {
-    font: inherit; font-size: var(--len-13); min-height: var(--len-44); padding: 0 var(--len-16);
+    font: inherit; font-size: var(--type-body-sm-size); min-height: var(--len-44); padding: 0 var(--len-16);
     border-radius: var(--len-12); border: 0; background: var(--bg-muted); color: var(--text-primary); cursor: pointer;
   }
-  .ds-btn[aria-pressed="true"] { background: var(--color-action); color: var(--text-on-action, var(--text-primary)); }
+  .ds-btn[aria-pressed="true"] { background: var(--color-action); color: var(--on-action); }
   .ds-search {
-    font: inherit; font-size: var(--len-15); min-height: var(--len-44); padding: 0 var(--len-12);
-    border-radius: var(--len-10); border: var(--len-1) solid var(--border-strong, var(--text-muted));
-    background: var(--bg-raised); color: var(--text-primary); min-width: 0; flex: 1 1 var(--len-200, 200px);
+    font: inherit; font-size: var(--type-base-size); min-height: var(--len-44); padding: 0 var(--len-12);
+    border-radius: var(--len-10); border: var(--len-1) solid var(--text-muted);
+    background: var(--bg-raised); color: var(--text-primary); min-width: 0; flex: 1 1 var(--len-176);
   }
 
   .ds-card { background: var(--bg-surface); border-radius: var(--len-16); padding: var(--len-16); margin-top: var(--len-12); }
   .ds-tree { margin: 0; padding-left: var(--len-16); list-style: none; }
   .ds-tree li { margin: var(--len-2) 0; }
   .ds-tree .ds-tree { border-left: var(--len-1) solid var(--text-muted); margin-left: var(--len-4); }
-  .ds-count { color: var(--text-muted); font-size: var(--len-12); }
+  .ds-count { color: var(--text-muted); font-size: var(--type-caption-size); }
 
   .ds-table-wrap { overflow-x: auto; margin-top: var(--len-8); }
-  table { border-collapse: collapse; width: 100%; font-size: var(--len-13); }
+  table { border-collapse: collapse; width: 100%; font-size: var(--type-body-sm-size); }
   th, td { text-align: left; vertical-align: top; padding: var(--len-8); border-bottom: var(--len-1) solid var(--bg-muted); }
-  th { font-weight: 600; color: var(--text-muted); font-size: var(--len-12); }
+  th { font-weight: var(--type-weight-medium); color: var(--text-muted); font-size: var(--type-caption-size); }
   td.ds-val { word-break: break-word; max-width: 28ch; }
   td.ds-why { color: var(--text-muted); max-width: 44ch; }
 
-  .ds-sw { display: inline-block; width: var(--len-32); height: var(--len-24); border-radius: var(--len-6, 6px);
+  .ds-sw { display: inline-block; width: var(--len-32); height: var(--len-24); border-radius: var(--len-10);
     border: var(--len-1) solid var(--text-muted); vertical-align: middle; }
   .ds-len { display: inline-block; height: var(--len-8); background: var(--text-primary); border-radius: var(--len-2); vertical-align: middle; max-width: 100%; }
   .ds-shadow { display: inline-block; width: var(--len-48); height: var(--len-32); border-radius: var(--len-10); background: var(--bg-raised); }
-  .ds-pass { font-weight: 600; }
-  .ds-fail { font-weight: 600; text-decoration: underline; }
+  .ds-step { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--len-4) var(--len-16); align-items: baseline;
+    padding: var(--len-12) 0; border-bottom: var(--len-1) solid var(--bg-muted); }
+  .ds-step:last-child { border-bottom: 0; }
+  .ds-step__spec { font-family: var(--font-ui); overflow-wrap: anywhere; }
+  .ds-step__meta { color: var(--text-muted); font-size: var(--type-caption-size); text-align: right; }
+  .ds-pass { font-weight: var(--type-weight-medium); }
+  .ds-fail { font-weight: var(--type-weight-medium); text-decoration: underline; }
 
-  .ds-comp { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--len-240, 240px), 1fr)); gap: var(--len-12); margin-top: var(--len-12); }
+  .ds-comp { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--len-260), 1fr)); gap: var(--len-12); margin-top: var(--len-12); }
   .ds-comp .ds-card { margin: 0; }
-  .ds-comp h3 { margin: 0 0 var(--len-4); font-size: var(--len-15); }
+  .ds-comp h3 { margin: 0 0 var(--len-4); font-size: var(--type-heading-size); font-weight: var(--type-heading-weight); }
   .ds-tags { display: flex; flex-wrap: wrap; gap: var(--len-4); margin-top: var(--len-8); }
-  .ds-tag { background: var(--bg-page); border-radius: 999px; padding: var(--len-2) var(--len-8); font-size: var(--len-12); }
+  .ds-tag { background: var(--bg-page); border-radius: var(--len-999); padding: var(--len-2) var(--len-8); font-size: var(--type-caption-size); }
   [hidden] { display: none !important; }
 </style>
 </head>
@@ -93,7 +98,6 @@
     <div class="ds-bar" role="group" aria-label="Theme">
       <button class="ds-btn" type="button" data-theme-btn="light" aria-pressed="true">Light</button>
       <button class="ds-btn" type="button" data-theme-btn="dark" aria-pressed="false">Dark</button>
-      <label class="ds-search-label" for="q" hidden>Filter tokens and components</label>
       <input class="ds-search" id="q" type="search" placeholder="Filter tokens and components" aria-label="Filter tokens and components">
     </div>
     <p class="ds-note" id="status" role="status" aria-live="polite">Reading design-system/&hellip;</p>
@@ -114,6 +118,15 @@
         contrast against <code>--bg-page</code> and <code>--bg-surface</code>, measured on this page
         (<code>WCAG 1.4.3</code>: 4.5:1 for body text, 3:1 for large text and UI).</p>
       <div id="tokens"></div>
+    </section>
+
+    <section aria-labelledby="h-type">
+      <h2 class="ds-h2" id="h-type">Type</h2>
+      <p class="ds-note">Every step the components may use, drawn from its semantic tokens
+        (<code>--type-{step}-size</code>, <code>-weight</code>, <code>-line</code>, <code>-track</code>) in
+        <code>--font-ui</code>. A component never writes a font value of its own. <code>HIG &middot; Typography</code>:
+        iOS's smallest default style is 11pt, and a step below it is marked.</p>
+      <div class="ds-card" id="type"></div>
     </section>
 
     <section aria-labelledby="h-components">
@@ -261,6 +274,22 @@
     }).join('');
     filter();
   }
+  function renderType() {
+    const all = model.groups.flatMap(g => g.tokens.map(t => t.name));
+    const steps = all.filter(n => /^--type-.+-size$/.test(n)).map(n => n.slice(7, -5));
+    $('#type').innerHTML = steps.map(st => {
+      const has = p => all.includes('--type-' + st + '-' + p);
+      const style = ['size:font-size', 'weight:font-weight', 'line:line-height', 'track:letter-spacing']
+        .filter(x => has(x.split(':')[0])).map(x => x.split(':')[1] + ':var(--type-' + st + '-' + x.split(':')[0] + ')').join(';');
+      const v = p => has(p) ? resolved('--type-' + st + '-' + p) : '';
+      const px = parseFloat(v('size'));
+      const meta = [v('size'), v('weight'), v('line') && v('line') + ' leading', v('track')].filter(Boolean).join(' &middot; ');
+      return '<div class="ds-step" data-q="' + esc(('type ' + st).toLowerCase()) + '">' +
+        '<div class="ds-step__spec" style="' + style + '">Your operator is on the way</div>' +
+        '<div class="ds-step__meta"><code>' + esc(st) + '</code><br>' + meta +
+        (px < 11 ? '<br><strong>below HIG 11pt</strong>' : '') + '</div></div>';
+    }).join('');
+  }
   function renderComponents() {
     $('#components').innerHTML = model.components.map(c => {
       const body = c.text.replace(/\/\*[\s\S]*?\*\//g, '');
@@ -288,7 +317,7 @@
       const tokens = all.find(n => /(^|\/)tokens\.css$/.test(n.path));
       const components = all.filter(n => /\/components\//.test(n.path) && !/\/index\.css$/.test(n.path));
       model = { tree, groups: tokens ? parseTokens(tokens.text) : [], components };
-      renderTree(); renderComponents(); setTheme(t);
+      renderTree(); renderType(); renderComponents(); setTheme(t);
       const n = model.groups.reduce((s, g) => s + g.tokens.length, 0);
       status.textContent = all.length + ' files, ' + n + ' tokens in ' + model.groups.length + ' sections, ' + components.length + ' component files.';
     } catch (e) {

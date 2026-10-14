@@ -1,0 +1,206 @@
+/* rows.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   type     -> semantic tokens only (--font-*, --type-*), since 2026-10-14
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-sect{
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-weight-medium);
+  line-height: var(--type-body-sm-line);
+  color: var(--text-muted);
+  margin-top: var(--len-12);
+}
+.dr-sect:first-child{
+  margin-top: 0;
+}
+.dr-rows{
+  background: var(--bg-surface);
+  border: 0;
+  border-radius: var(--len-16);
+  padding: var(--len-8) var(--len-16);
+}
+.dr-rows__row{
+  display: flex;
+  gap: var(--len-10);
+  padding: var(--len-13) 0;
+  border-bottom: var(--len-1) solid var(--border-hairline);
+}
+.dr-rows__row:last-child{
+  border-bottom: 0;
+}
+.dr-rows__key{
+  flex: 0 0 var(--len-96);
+  min-width: 0;
+  color: var(--text-muted);
+  font-size: var(--type-body-sm-size);
+}
+.dr-rows__val{
+  flex: 1;
+  min-width: 0;
+  color: var(--text-primary);
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-weight-medium);
+  font-variant-numeric: var(--type-numeric);
+}
+.dr-rows--money .dr-rows__key{
+  flex: 1;
+}
+.dr-rows--money .dr-rows__val{
+  flex: none;
+  text-align: right;
+}
+.dr-rows__row--stack{
+  flex-wrap: wrap;
+}
+.dr-rows__row--stack > *{
+  flex-basis: var(--pct-100);
+}
+.dr-rows__row:has(> .dr-sk-line){
+  justify-content: space-between;
+}
+.dr-rows:not(.dr-rows--money){
+  display: grid;
+  grid-template-columns: minmax(var(--len-96), max-content) 1fr;
+  column-gap: var(--len-10);
+}
+.dr-rows:not(.dr-rows--money) > .dr-rows__row, .dr-rows:not(.dr-rows--money) > .dr-field{
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+.dr-rows:not(.dr-rows--money):has(> .dr-field > .dr-field__chev){
+  grid-template-columns: minmax(var(--len-96), max-content) 1fr auto;
+}
+.dr-rows:not(.dr-rows--money) > .dr-rows__row--stack, .dr-rows:not(.dr-rows--money) > .dr-rows__row:has(> .dr-sk-line), .dr-rows:not(.dr-rows--money) > .dr-field--area, .dr-rows:not(.dr-rows--money) > .dr-field--toggle, .dr-rows:not(.dr-rows--money) > .dr-field:has(> .dr-upload){
+  display: flex;
+}
+.dr-rows:not(.dr-rows--money) > .dr-field > .dr-field__hint{
+  grid-column: 1 / -1;
+}
+.dr-inset{
+  display: flex;
+  align-items: center;
+  gap: var(--len-12);
+  padding: var(--len-16);
+  border-radius: var(--len-12);
+  background: var(--bg-inset);
+}
+.dr-inset__stop{
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-2);
+}
+.dr-inset__stop--to{
+  align-items: flex-end;
+  text-align: right;
+}
+.dr-inset__lbl{
+  font-family: var(--font-mono);
+  font-size: var(--type-micro-size);
+  font-weight: var(--type-micro-weight);
+  letter-spacing: var(--type-micro-track-tight);
+  text-transform: var(--type-micro-case);
+  color: var(--text-muted);
+}
+.dr-inset__place{
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+  color: var(--text-primary);
+}
+.dr-inset__dir{
+  width: var(--len-26);
+  height: var(--len-26);
+  flex: none;
+  border-radius: var(--len-999);
+  background: var(--bg-well);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dr-inset__dir .dr-ic{
+  width: var(--len-14);
+  height: var(--len-14);
+}
+.dr-rows:has(> .dr-field){
+  padding-left: 0;
+  padding-right: 0;
+}
+.dr-rows:has(> .dr-field:not(.dr-field--action)):not(.dr-rows--card){
+  background: none;
+  border-radius: 0;
+}
+.dr-rows:has(> .dr-field:not(.dr-field--action)):not(.dr-rows--card) > .dr-field{
+  padding-left: 0;
+  padding-right: 0;
+}
+.dr-rows:has(> .dr-field:not(.dr-field--action)):not(.dr-rows--card) > .dr-field + .dr-field::before{
+  left: 0;
+  right: 0;
+}
+.dr .dr-zone{
+  display: block;
+  background: var(--bg-surface);
+  border-radius: var(--len-16);
+  padding: var(--len-16);
+}
+.dr-zone > .dr-picks, .dr-zone > .dr-rows{
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  margin-top: var(--len-20);
+}
+.dr-zone > .dr-rows{
+  margin-left: calc(var(--len-16) * -1);
+  margin-right: calc(var(--len-16) * -1);
+}
+.dr-zone__title, .dr-range__title{
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+  line-height: var(--type-title-line);
+  letter-spacing: var(--type-title-track);
+  color: var(--text-primary);
+}
+.dr-zone__sub, .dr-range__sub{
+  margin-top: var(--len-4);
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-line);
+  color: var(--text-muted);
+}
+.dr-price{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--len-12);
+}
+.dr-price__lbl{
+  font-size: var(--type-body-sm-size);
+  color: var(--text-muted);
+}
+.dr-price__val{
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+  color: var(--text-primary);
+  font-variant-numeric: var(--type-numeric);
+}
+.dr-rows__row--total .dr-rows__key{
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-weight-medium);
+  color: var(--text-primary);
+}
+.dr-rows__row--total .dr-rows__val{
+  font-size: var(--type-number-size);
+  font-weight: var(--type-number-weight);
+  letter-spacing: var(--type-number-track);
+}
+.dr-inset--sk{
+  background: none;
+}

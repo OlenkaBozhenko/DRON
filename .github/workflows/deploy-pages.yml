@@ -14,8 +14,7 @@ on:
       - 'ui/*.html'
       - 'ui/*.css'
       - 'ui/*.js'
-      - 'tokens.css'
-      - 'components/**'
+      - 'design-system/**'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
@@ -36,7 +35,7 @@ jobs:
       - name: Assemble publish directory
         run: |
           mkdir -p _site
-          cp ia.html research.html target-audience.html ux-research.html tone-of-voice.html _site/
+          cp ia.html research.html target-audience.html ux-research.html tone-of-voice.html design-system.html _site/
           # The index lives at the repo root, not in .github/pages, so that a
           # local `python -m http.server` opens it instead of a directory
           # listing of .git/ and .claude/. One file serves both.
@@ -66,9 +65,13 @@ jobs:
           # product rule 404'd, so each SVG drew at its intrinsic size and the
           # status bar filled the screen. Local looked right the whole time,
           # because a local server hands over the whole repo.
-          cp tokens.css _site/
-          mkdir -p _site/components
-          cp components/*.css _site/components/
+          # Since 2026-10-14 the layer is ONE PACKAGE, design-system/, reached
+          # through one entry point, design-system/index.css. Its CSS ships with
+          # its folder structure intact, because index.css imports by relative
+          # path; the .md notes beside it stay on master.
+          mkdir -p _site/design-system/components
+          cp design-system/*.css _site/design-system/
+          cp design-system/components/*.css _site/design-system/components/
           # Publish the concept design-direction pages (HTML only).
           # The .md sources stay on master and are not published.
           mkdir -p _site/concept
@@ -97,7 +100,7 @@ jobs:
           find _site/wireframes -name '*.html' -print0 | xargs -0 sed -i \
             -e "s#\"_wireframe.css\"#\"_wireframe.css?v=${STAMP}\"#g" \
             -e "s#\"_wf-shell.js\"#\"_wf-shell.js?v=${STAMP}\"#g" \
-            -e "s#\"../components/index.css\"#\"../components/index.css?v=${STAMP}\"#g"
+            -e "s#\"../design-system/index.css\"#\"../design-system/index.css?v=${STAMP}\"#g"
           echo "Stamped shared-asset URLs with v=${STAMP}"
 
       - name: Fail if a published page links something that is not published

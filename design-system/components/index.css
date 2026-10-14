@@ -1,0 +1,86 @@
+/* ==========================================================================
+   DRON - design-system/components/index.css
+   The component layer. Every file below was ported out of ui/kit.css; the
+   selectors and their declaration order are kit.css's, character for
+   character. Only the token names moved.
+
+     colour    reaches a component ONLY through a semantic token in tokens.css
+     geometry  reaches it from PRIMITIVE directly - there is no level for it
+     type      reaches it ONLY through --font-* / --type-* (2026-10-14)
+     no hex, no px, no font name is written into a class; everything is var()
+
+   WHAT IS HERE IS WHAT THE WIREFRAMES DRAW, AND SINCE 2026-09-24 IT IS WHAT
+   THEY READ: all 127 pages link this file, not ui/kit.css. kit.css is not
+   deleted and remains the archive of why every value is what it is.
+
+   THE COVERAGE FIGURE IS MEASURED, NOT ASSERTED. kit.css declares 700 rules
+   over 692 distinct selectors; this layer declares 636 over 630. The 78
+   selectors kit.css has and this one does not were each tested against every
+   one of the 127 built pages, and NONE of them matches anything - which is a
+   different statement from the one this header used to make. It said the
+   unported rules were the ones 'the audit measured as drawn on no page', and
+   that was read off CLASS names: two rules whose classes both exist but whose
+   COMPOUND selector was never ported
+   (.dr-profile__photo:not(:has(.dr-profile__rating)) .dr-avatar-edit__badge)
+   were drawn on account and operator-account all along, at 20px where kit.css
+   draws 44. They are in avatar.css now. A class-level audit cannot see that;
+   only rendering both sheets and comparing can.
+
+   17 SELECTORS GO THE OTHER WAY and all of them are the narrow tier, which
+   kit.css spends by re-binding four tokens on :root and this layer has to
+   write out per selector (see responsive.css). That trade has a sharp edge,
+   and it drew blood once: a re-binding is scoped by inheritance, a written-out
+   rule by the cascade, so .dr-list{gap} inside the media block beat
+   .dr-list--snug where the token never did. Any modifier over a narrow-tier
+   property has to be re-stated there.
+
+   IMPORT ORDER IS kit.css's ORDER. Each file holds a contiguous run of
+   kit.css's rules and the files are imported by the position of their first
+   rule, so the cascade resolves as it did before the split. The 33 order
+   inversions this header used to flag are now answered by measurement rather
+   than by argument: every one of the 127 pages computes identically under
+   kit.css and under this file - every box and 151 properties per element,
+   at 1280 and at 380, with drawers and keyboards open.
+
+   ONE FILE HERE IS NOT A COMPONENT. wireframe-compat.css declares the kit.css
+   token names the prototype layer still reads (_wf-shell.js, ui/kit.js and the
+   option partials). It is imported last so it can be cut in one line when they
+   are taught the new names.
+
+   TOKENS ARE NOT IMPORTED HERE. Since 2026-10-14 the package's entry point,
+   design-system/index.css, imports tokens.css and then this file, so the
+   order is the one this file used to produce by importing ../tokens.css as its
+   first line. Linking this file on its own gives components with no values.
+   ========================================================================== */
+
+@import url("misc.css");
+@import url("frame.css");
+@import url("icon.css");
+@import url("shell.css");
+@import url("media.css");
+@import url("type.css");
+@import url("badge.css");
+@import url("rows.css");
+@import url("progress.css");
+@import url("button.css");
+@import url("list.css");
+@import url("card.css");
+@import url("tabs-inpage.css");
+@import url("message.css");
+@import url("chat.css");
+@import url("avatar.css");
+@import url("form.css");
+@import url("sheet.css");
+@import url("lang.css");
+@import url("disclosure.css");
+@import url("rating.css");
+@import url("call.css");
+@import url("toast.css");
+@import url("skeleton.css");
+@import url("calendar.css");
+@import url("keyboard.css");
+@import url("route.css");
+@import url("responsive.css");
+@import url("reduced-motion.css");
+
+@import url("wireframe-compat.css");

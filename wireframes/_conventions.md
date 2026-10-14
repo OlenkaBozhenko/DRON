@@ -593,10 +593,10 @@ in the block, per §10.
 `order-history`'s three `Delete order` buttons have neither a confirm nor an undo; that is an open item, not
 something a toast closes.
 
-**Which layer.** The toast is a **painted-layer component** — it is declared in `components/toast.css` and it animates.
+**Which layer.** The toast is a **painted-layer component** — it is declared in `design-system/components/toast.css` and it animates.
 §3 defers **motion** and **shadow** in the grayscale wireframe, so a grayscale page gets no toast: the
 operator screens, which are still unpainted, take theirs when they are painted. A `data-toast` on a page that
-does not link `../components/index.css` renders an unstyled `<div>`, so the attribute and the stylesheet travel together.
+does not link `../design-system/index.css` renders an unstyled `<div>`, so the attribute and the stylesheet travel together.
 
 **Behaviour lives in the shell, never on the page** (§13). The message is the only thing the page declares.
 `_wf-shell.js` builds the element on demand, gives it `role="status"`, measures the screen's real bottom
@@ -617,11 +617,12 @@ chrome so the toast cannot cover the control that raised it, and — where the r
 - Shared assets: `_wireframe.css` (tokens + components), this file, `_screens.md`. Leading `_` = not a screen.
 - **Stylesheets a page links, in this order** (set 2026-09-24, when all 127 pages moved off `ui/kit.css`):
   `_wireframe.css` first — the grayscale layer and the `--wf-*` tokens the shell and the annotations read —
-  then `../components/index.css`, which pulls `../tokens.css` and the 31 component files behind it.
+  then `../design-system/index.css` — the design system as one package (since 2026-10-14), which imports
+  `tokens.css` and then `components/index.css` with the 31 component files behind it.
   **`ui/kit.css` is the archive and no page links it.** It is not deleted: it holds the reasoning for every
   value, and it is what any “did this change the rendering” check is run against.
 - A page whose `<style>` block reads a kit token name (`--ink`, `--page`, `--r-btn` …) resolves it through
-  `components/wireframe-compat.css`, which aliases the seventeen names the prototype layer still speaks to the
+  `design-system/components/wireframe-compat.css`, which aliases the seventeen names the prototype layer still speaks to the
   tokens that carry the same value. A name that is in neither file fails **silently** — the declaration is
   dropped at computed-value time — so a new name goes into the compat file, never into the page.
 

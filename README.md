@@ -23,10 +23,10 @@ Design repository — research, wireframes, tokens, components, and handoff mate
 | [`research/screens/`](research/screens/) | Reference screenshots and visual inspiration | 🔄 In progress |
 | [`wireframes/`](wireframes/) | Grayscale clickable wireframe prototype — every sitemap screen + its real states | ✅ Clickable prototype |
 | [`concept/`](concept/) | The chosen visual language — `concept.md` is the source of truth, `concept.html` the live testbed | ✅ Done |
-| [`tokens.css`](tokens.css) | **Every value in the product** — 149 primitives, 51 semantic roles, a `[data-theme="dark"]` block of 42. One file, at the repo root | ✅ Done |
+| [`design-system/`](design-system/) | **The design system as one package.** [`index.css`](design-system/index.css) is the one entry point every page links; it imports `tokens.css` and `components/index.css`. `patterns/`, `docs/`, `examples/` are empty for now. Shown live at [`design-system.html`](design-system.html) | 🔄 In progress |
+| [`design-system/tokens.css`](design-system/tokens.css) | **Every value in the product** — 149 primitives, 99 semantic roles (51 colour and surface, 48 type), a `[data-theme="dark"]` block of 42 | ✅ Done |
 | [`tokens/`](tokens/) | [`tokens-audit.md`](tokens/tokens-audit.md) — how each token was derived and what it is spent on | ✅ Done |
-| [`components/`](components/) | 31 component stylesheets, one per component; `index.css` is the sheet every page links | ✅ Done |
-| [`design-system/`](design-system/) | Design system guidelines and structure | ⬜ Not started |
+| [`design-system/components/`](design-system/components/) | 31 component stylesheets, one per component, imported in cascade order by `components/index.css` | ✅ Done |
 | [`handoff/`](handoff/) | Dev-ready specs, redlines, exported assets | ⬜ Not started |
 
 **Status legend:** ✅ Done · 🔄 In progress · ⬜ Not started
@@ -102,7 +102,7 @@ production size with its contrast measured on the page.
 | **Every pair is measured** | A new colour/background pair is not used until its ratio is computed and written down. §07 of `concept.html` is the standing contrast table. Zero text-contrast failures across the four painted surfaces. |
 | **Surfaces are flat** | No card, no media well and no photograph casts a shadow — separation is warm tone plus the 16px radius (`#ECE9E4` on `#F7F5F2` is a real 1.11:1 step). **Two rungs are spent, and only on things that genuinely float:** `--sh-sm` under the green primary, and `--sh-raised` under the drawer and the toast. The flat rule is about cards sitting *in* the page, which is why a drawer and a toast do not break it. `--sh-card` and `--sh-onphoto` are declared and spent nowhere. |
 | **A closed ramp of six radii** | `10` input · `12` button · `13` media · `16` card · `22` panel · `999` pill. A shape that is none of these is a shape nobody chose. |
-| **Ten type steps, all in use** | The scale describes the product rather than preceding it: `22` display · `20` number · `17` title · `15` heading · `14` body · `13` body-sm · `12.5` meta · `12` caption · `11` micro · `10.5` micro-sm. |
+| **Ten type steps, all in use** | The scale describes the product rather than preceding it: `22` display · `20` number · `17` title · `15` heading · `14` body · `13` body-sm · `12.5` meta · `12` caption · `11` micro · `11` micro-sm (10.5 until 2026-10-14, raised to HIG's 11pt floor; every step is a `--type-*` token). |
 | **Imagery is real, never decoration** | Drone renders (`assets/drones/`), people (`assets/people/`), scenes and the live map (`assets/scenes/`, `assets/map/`). A transparent cutout sits *in* a well and is contained; a photograph *is* the surface and covers it. In the product a cutout has no well at all — it sits straight on the card. Pages serve a `thumbs/` copy at ~2× the CSS box; the master stays in the repo. |
 | **Icons are one system** | Flat outline, 24-grid, `stroke-width:1.7` declared **once**, `currentColor`, no fill. The rendered line follows the box — 0.85 at 12px, 2.27 at 32px — the way SF Symbols scales weight; no glyph compensates its stroke. Active / done is a green shape *behind* a charcoal glyph. |
 | **States are built, not dimmed** | Disabled is `--disabled-bg` / `--disabled-ink` — the secondary button's own pair at 4.77:1 — never a blanket opacity, which silently drops charcoal-on-green to 2.35:1. |
@@ -125,26 +125,30 @@ so a rejected idea is not re-proposed later as a new one.
 
 ## Tokens
 
-**Every value in the product lives in [`tokens.css`](tokens.css)** — 751 lines, two tiers, and one
+**Every value in the product lives in [`design-system/tokens.css`](design-system/tokens.css)** — 838 lines, two tiers, and one
 rule about which tier you are allowed to edit. Nothing else in the repo may write a hex, a font
 name or a number that a token could carry.
 
 | Tier | Count | What it is | When you edit it |
 |---|---|---|---|
 | **PRIMITIVE** | **149** | A raw value that knows no job — `--cream-200`, `--len-16`, `--pct-50`. | To change the value itself, everywhere it is spent at once. A *new* primitive is a new value in the palette, and that is the designer's call — never a side effect of one component wanting one. |
-| **SEMANTIC** | **51** | A role pointing at a primitive — `--bg-surface`, `--text-muted`, `--color-action`. | To change what a *job* looks like. **Colour reaches a component only through this tier.** A component that reads a colour primitive, or paints a ground with an ink role, is a defect. |
+| **SEMANTIC** | **99** | A role pointing at a primitive — `--bg-surface`, `--text-muted`, `--color-action`, and since 2026-10-14 every type role: `--font-ui`, `--type-title-size`, `--type-meta-line` … | To change what a *job* looks like. **Colour reaches a component only through this tier.** A component that reads a colour primitive, or paints a ground with an ink role, is a defect. |
 
-**Geometry has no semantic tier, on purpose.** A component reads `--len-*` / `--pct-*` / `--num-*`
+**Type has a semantic tier (2026-10-14, the designer's call):** every font property a component
+writes — family, size, weight, leading, tracking — reads a `--font-*` / `--type-*` role. The roles
+are kit.css's own (`--t-title-size` …), restored per selector from the archive, so nothing was
+guessed and every page computes as before. **Other geometry has no semantic tier, on purpose.** A component reads `--len-*` / `--pct-*` / `--num-*`
 directly, because space, radius and size share their numbers, and a second name for one number is
 exactly the drift `tokens.css` exists to close. **Shadow follows the same rule**: it holds an
 `rgba` and so looks like colour, but it is depth — four declared rungs, two spent, picked the way
 a length is picked. **A percentage is a length** and comes from `--pct-*`; the two things that are
 not lengths are a keyframe stop (a selector naming a moment) and a `color-mix()` ratio.
 
-**[`components/`](components/) is where a rule goes** — 31 files, one per component, no second home
+**[`design-system/components/`](design-system/components/) is where a rule goes** — 31 files, one per component, no second home
 for a class, and no hex, no px and no font name written into any of them. If a value is needed that
-no token carries, the token comes first. [`components/index.css`](components/index.css) imports
-them in order and is the one stylesheet every page links.
+no token carries, the token comes first. `components/index.css` imports them in order, and
+[`design-system/index.css`](design-system/index.css) — tokens, then components — is the one
+stylesheet every page links.
 
 **The dark theme is a stress test of the semantic tier, not a product decision.** A
 `[data-theme="dark"]` block redefines **42 semantic roles** and not one primitive. It is how you

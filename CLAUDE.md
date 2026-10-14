@@ -250,9 +250,34 @@ frames by hand, and where a document disagrees with a frame, the document is cor
 carries the reasoning and the history; `DESIGN.md` carries the values. A machine-readable copy for
 tooling sits at `.impeccable/design.json`.
 
+### The design system is one package (2026-10-14)
+
+**`design-system/` is the package, and [`design-system/index.css`](design-system/index.css) is its one
+entry point.** It imports `tokens.css` and then `components/index.css`, in that order, which is the
+cascade every page resolved before the move. Every consumer links that single file: all wireframes,
+`ui/shell.html`, `ui/kit.html` and `design-system.html`. Nothing outside `design-system/` links a
+token or component file directly.
+
+```
+design-system/
+  index.css            the entry point
+  tokens.css           every value (moved from the repo root with git mv)
+  components/          one file per component (moved from the repo root with git mv)
+  patterns/ docs/ examples/   part of the package, empty for now
+```
+
+**[`design-system.html`](design-system.html) is the design system's page**, linked from the sidebar of
+`research.html` and the other hub pages. It holds no copy of anything: on load it follows the
+`@import` tree from `index.css`, reads the token sections and comments from `tokens.css`, resolves
+every value in the selected theme and measures ink contrast live. A change in `design-system/` shows
+there on the next load. A new file reaches the page by being imported from `index.css`.
+
+The move was measured as a refactor: every page computes identically before and after, light and
+dark, at 1280 and at 380. Asset `url()`s in the package went one level deeper (`../../assets/`).
+
 ### Tokens — where a value lives and where a change goes (revised 2026-10-10)
 
-**A value now lives in [`tokens.css`](tokens.css), and it is edited at the tier that owns it.**
+**A value now lives in [`design-system/tokens.css`](design-system/tokens.css), and it is edited at the tier that owns it.**
 Two tiers and one rule each:
 
 - **PRIMITIVE** — a raw value that knows no job (`--cream-200`, `--len-16`). Edit here only to
@@ -262,7 +287,18 @@ Two tiers and one rule each:
   Edit here to change what a *job* looks like. **Colour reaches a component only through this
   tier** — a component that reads a primitive, or paints a ground with an ink role, is a defect,
   and the `[data-theme="dark"]` block exists to make that kind of defect visible.
-- **Geometry gets no semantic tier on purpose.** A component reads `--len-*` / `--pct-*` / `--num-*`
+- **Type is semantic (designer's rule, 2026-10-14).** Every font property in a component — family,
+  size, weight, leading, tracking — reads a role: `--font-ui` / `--font-mono` and
+  `--type-{step}-{size|weight|line|track}` for the ten steps plus `lead`, `base`, `para`, `act`,
+  `lang` and `--type-weight-regular|medium`. The roles are kit.css's own `--t-*` names, restored per
+  selector from the archive; the raw stacks are the primitives `--family-sf` / `--family-mono`. A
+  component that writes `font-size: var(--len-15)` is now a defect, and so is a literal case,
+  figure style or line box: `--type-micro-case`, `--type-numeric`, `--type-glyph-line`,
+  `--type-tab-line`, `--type-hidden-*` carry those. The one exception is the keyword `inherit`
+  (`.dr-fchip`): a custom property set to `inherit` inherits the parent's *variable*, not its
+  line-height, so it cannot be tokenised without changing the result. No step is below HIG's 11pt
+  since micro-sm went 10.5 → 11 (2026-10-14). `design-system.html` draws every step live.
+- **Other geometry gets no semantic tier on purpose.** A component reads `--len-*` / `--pct-*` / `--num-*`
   directly, because space, radius and size share their numbers and a second name for one number is
   the drift `tokens.css` closes.
 
@@ -283,7 +319,7 @@ stands. A component that changes shape in the showcase and not on the screens is
 lies; a component that changes on one screen and not in the showcase is a component nobody can
 find. `design-system/_critique.md` §10 is what that costs when it is skipped.
 
-**`components/*.css` is where a RULE goes** — one file per component, no second home for a class,
+**`design-system/components/*.css` is where a RULE goes** — one file per component, no second home for a class,
 and no hex, no px and no font name written into it. If a value is needed that no token carries,
 the token comes first.
 
@@ -300,7 +336,7 @@ is the reference every "did this change the rendering" check is measured against
 | **Every pair is measured** | A new colour/background pair is not used until its ratio is computed and written down. §07 of `concept.html` is the standing contrast table. Zero text-contrast failures across the four painted surfaces. |
 | **Surfaces are flat** | No card, no media well and no photograph casts a shadow — separation is warm tone plus the 16px radius (`#ECE9E4` on `#F7F5F2` is a real 1.11:1 step). **Two rungs are spent, and only on things that genuinely float** (re-counted 2026-08-16 by reading every `box-shadow` in `ui/kit.css`, `concept.md` rev 153): `--sh-sm` under the green primary — block primary, circular primary, pressed language toggle — and `--sh-raised` under `.dr-sheet` and `.dr-toast`. The flat rule is about cards sitting *in* the page, which is why a drawer and a toast do not break it. `--sh-card` and `--sh-onphoto` are still declared rungs applied to nothing — `--sh-onphoto` is held for the first chip that actually floats over a photograph, and is spent nowhere. |
 | **A closed ramp of six radii** | `10` input · `12` button · `13` media · `16` card · `22` panel · `999` pill. A shape that is none of these is a shape nobody chose. |
-| **Ten type steps, all in use** | The scale describes the product rather than preceding it: `22` display · `20` number · `17` title · `15` heading · `14` body · `13` body-sm · `12.5` meta · `12` caption · `11` micro · `10.5` micro-sm. |
+| **Ten type steps, all in use** | The scale describes the product rather than preceding it: `22` display · `20` number · `17` title · `15` heading · `14` body · `13` body-sm · `12.5` meta · `12` caption · `11` micro · `11` micro-sm (10.5 until 2026-10-14, raised to HIG's 11pt floor; every step is a `--type-*` token). |
 | **Imagery is real, never decoration** | Drone renders (`assets/drones/`), people (`assets/people/`), scenes and the live map (`assets/scenes/`, `assets/map/`). A transparent cutout sits *in* a well and is contained; a photograph *is* the surface and covers it. In the product a cutout has no well at all — it sits straight on the card. Pages serve a `thumbs/` copy at ~2× the CSS box; the master stays in the repo. |
 | **Icons are one system** | Flat outline, 24-grid, `stroke-width:1.7` declared **once**, `currentColor`, no fill. The rendered line follows the box — 0.85 at 12px, 2.27 at 32px — the way SF Symbols scales weight; no glyph compensates its stroke. Active / done is a green shape *behind* a charcoal glyph. |
 | **States are built, not dimmed** | Disabled is `--disabled-bg` / `--disabled-ink` — the secondary button's own pair at 4.77:1 — never a blanket opacity, which silently drops charcoal-on-green to 2.35:1. |
@@ -311,8 +347,8 @@ client side, from [`listings`](wireframes/listings.html) through
 [`delivery`](wireframes/delivery.html) and their states. The remaining **19 screens** — every
 operator screen plus client entry — are still grayscale. **The per-page `<style>` block is gone:**
 every page links one shared stylesheet, so a component cannot drift between two screens by being
-pasted twice. **Since 2026-09-24 that stylesheet is [`components/index.css`](components/index.css)
-and not `ui/kit.css`** — all 127 pages were moved onto the token + component layer
+pasted twice. **Since 2026-09-24 that stylesheet is the token + component layer and not `ui/kit.css`;
+since 2026-10-14 pages reach it through [`design-system/index.css`](design-system/index.css)** — all 127 pages were moved onto the token + component layer
 (`tokens.css` + 31 component files). `ui/kit.css` is kept, unlinked, as the archive of why every
 value is what it is. The move was a refactor and is measured as one: every page computes
 identically under both stylesheets — every box and 151 properties per element, at 1280 and at 380,

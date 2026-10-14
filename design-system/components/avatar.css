@@ -1,0 +1,183 @@
+/* avatar.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   type     -> semantic tokens only (--font-*, --type-*), since 2026-10-14
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--len-8);
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.dr-profile__photo{
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  margin-bottom: var(--len-13);
+}
+.dr-profile__badges{
+  justify-content: center;
+  margin-top: var(--len-4);
+}
+.dr-profile__photo.dr-avatar-edit{
+  align-self: center;
+  margin-bottom: 0;
+}
+.dr-profile .dr-avatar-edit__badge{
+  border-color: var(--text-on-night);
+  background: var(--color-action);
+  color: var(--on-action);
+}
+.dr-profile .dr-avatar-edit:hover .dr-avatar-edit__badge{
+  background: var(--color-action);
+  filter: brightness(var(--num-1-03));
+}
+.dr-avatar-edit{
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-self: flex-start;
+  border-radius: var(--len-999);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.dr-avatar-edit:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-avatar-edit__badge{
+  position: absolute;
+  right: calc(var(--len-2) * -1);
+  bottom: calc(var(--len-2) * -1);
+  width: var(--len-20);
+  height: var(--len-20);
+  border: var(--len-2) solid var(--bg-surface);
+  border-radius: var(--len-999);
+  background: var(--bg-muted);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.dr-avatar-edit__badge .dr-ic{
+  width: var(--len-12);
+  height: var(--len-12);
+}
+.dr-avatar-edit:hover .dr-avatar-edit__badge{
+  background: var(--bg-well);
+}
+
+/* THE HEAD WITH NO RATING PILL GROWS ITS DISC - ported 2026-09-24, the one pair
+   of rules the port left behind. kit.css:2979-2984 (rev of 2026-08-24, the
+   designer: «зроби більшу іконку кнопку»): the client's edit disc is 44,
+   not the component's 20, and its pencil is 22, not 12. Both `account` and
+   `operator-account` match it - the rating pill was cut at rev 204, so neither
+   head carries one - and without these two rules both discs rendered at 20 with
+   a 12 glyph. Measured on the built page: 44.00 x 44.00 with kit.css, 20 x 20
+   without, which is what put it here.
+   The `:has()` pair that sizes a head WITH a rating pill is not ported: no page
+   builds one, and the port does not carry rules with no surface. */
+.dr-profile__photo:not(:has(.dr-profile__rating)) .dr-avatar-edit__badge{
+  width: var(--len-44);
+  height: var(--len-44);
+}
+.dr-profile__photo:not(:has(.dr-profile__rating)) .dr-avatar-edit__badge .dr-ic{
+  width: var(--len-22);
+  height: var(--len-22);
+}
+.dr-avatar-lg{
+  width: var(--len-120);
+  height: var(--len-120);
+  flex: none;
+  margin: 0 auto;
+  display: block;
+  border-radius: var(--len-999);
+  overflow: hidden;
+  background: var(--bg-well);
+}
+.dr-avatar-lg img{
+  width: var(--pct-100);
+  height: var(--pct-100);
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+.dr-avatar-sm{
+  width: var(--len-28);
+  height: var(--len-28);
+  flex: none;
+  display: block;
+  border-radius: var(--len-999);
+  overflow: hidden;
+  background: var(--bg-well);
+}
+.dr-avatar-sm img{
+  width: var(--pct-100);
+  height: var(--pct-100);
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+.dr-avatar-md{
+  width: var(--len-56);
+  height: var(--len-56);
+  flex: none;
+  display: block;
+  border-radius: var(--len-999);
+  overflow: hidden;
+  background: var(--bg-well);
+}
+.dr-avatar-md img{
+  width: var(--pct-100);
+  height: var(--pct-100);
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* THE CONFIRM MARK WHEN IT CARRIES A PHOTOGRAPH. .success-mark itself is a
+   chrome class, declared in wireframes/_wireframe.css as a 64px labelled
+   circle; on switch-role it holds the client's own face instead, and a face
+   is product content, so the treatment belongs on this side of the line and
+   reads product tokens. Same handling as .dr-avatar: cover-fit in a circle
+   that keeps a ground of its own.
+
+   It lived in switch-role.html's own <style> until 2026-10-10. Two things
+   were wrong with it there: a page cannot be the home of a rule, nobody
+   looks for it; and its ground was var(--wf-recessed), the chrome greyscale
+   #EEEEEE, which has no theme and showed as a near-white plate on a dark
+   page. --bg-well is the product's own well and follows the theme.
+
+   One note for anyone re-running the kit-versus-components check: these rules
+   have no counterpart in ui/kit.css, so that comparison reports 28 differences
+   on switch-role by construction - all of them on the two elements below, the
+   mark and its image, and all of them the rule arriving rather than drifting.
+   Measured 2026-10-10: 28 differences across exactly 2 elements, nothing else
+   on the page. (An earlier draft of this note said "one difference", which was
+   the count while a single background declaration was still being carried in
+   wireframe-compat.css; the whole rule set is here now.) */
+.dr .success-mark:has(img){
+  background: var(--bg-well);
+  overflow: hidden;
+  padding: 0;
+  font-size: var(--type-hidden-size);
+  line-height: var(--type-hidden-line);
+  color: transparent;
+}
+.dr .success-mark img{
+  width: var(--pct-100);
+  height: var(--pct-100);
+  display: block;
+  object-fit: cover;
+  border-radius: var(--len-999);
+}

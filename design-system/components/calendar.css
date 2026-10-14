@@ -1,0 +1,229 @@
+/* calendar.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   type     -> semantic tokens only (--font-*, --type-*), since 2026-10-14
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-cal{
+  background: var(--bg-surface);
+  border-radius: var(--len-16);
+  padding: var(--len-8) 0;
+  display: flex;
+  flex-direction: column;
+}
+.dr-cal__bar{
+  display: flex;
+  align-items: center;
+  min-height: var(--len-44);
+  padding: 0 var(--len-8);
+}
+.dr-cal__month{
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-heading-weight);
+  color: var(--text-primary);
+}
+.dr-cal__nav{
+  width: var(--len-44);
+  height: var(--len-44);
+  flex: none;
+  padding: 0;
+  border: 0;
+  border-radius: var(--pct-50);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.dr-cal__nav:hover{
+  background: var(--bg-well);
+}
+.dr-cal__nav:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: calc(var(--len-2) * -1);
+}
+.dr-cal__nav .dr-ic{
+  width: var(--len-20);
+  height: var(--len-20);
+}
+.dr-cal__nav:disabled{
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+.dr-cal__grid{
+  width: calc(var(--pct-100) - var(--len-8) * 2);
+  margin: 0 var(--len-8);
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.dr-cal__grid th{
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+  color: var(--text-muted);
+  padding-bottom: var(--len-4);
+}
+.dr-cal__grid td{
+  padding: 0;
+  text-align: center;
+}
+.dr-cal__grid tbody tr{
+  height: var(--len-44);
+}
+.dr-cal__day{
+  width: var(--len-44);
+  height: var(--len-44);
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--pct-50);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  font-size: var(--type-heading-size);
+}
+.dr-cal__day:hover{
+  background: var(--bg-well);
+}
+.dr-cal__day:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: calc(var(--len-2) * -1);
+}
+.dr-cal__grid td[aria-selected="true"] .dr-cal__day{
+  background: var(--color-action);
+  color: var(--on-action);
+}
+.dr-cal__day:disabled{
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+.dr-cal__day:disabled:hover{
+  background: transparent;
+}
+.dr-cal__day--today::after{
+  content: "";
+  position: absolute;
+  bottom: var(--len-6);
+  left: var(--pct-50);
+  width: var(--len-4);
+  height: var(--len-4);
+  margin-left: calc(var(--len-4) / -2);
+  border-radius: var(--len-999);
+  background: currentColor;
+}
+.dr-cal__time{
+  position: relative;
+  margin-top: var(--len-8);
+}
+.dr-cal__time::before{
+  content: "";
+  position: absolute;
+  left: var(--len-16);
+  right: var(--len-16);
+  top: 0;
+  height: var(--len-1);
+  background: var(--border-hairline);
+}
+.dr-cal__clock{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--len-2);
+  padding: var(--len-4) var(--len-10);
+  border-radius: var(--len-10);
+  background: var(--bg-well);
+}
+.dr-cal__unit{
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-weight-medium);
+  color: var(--text-primary);
+  text-align: center;
+}
+.dr-cal__unit:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+  border-radius: var(--len-4);
+}
+.dr-cal__colon{
+  color: var(--text-primary);
+}
+.dr-when{
+  display: flex;
+  background: var(--bg-surface);
+  border-radius: var(--len-16);
+}
+.dr-when__cell{
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--len-44);
+  display: flex;
+  align-items: center;
+  gap: var(--len-10);
+  padding: var(--len-12) var(--len-16);
+  border: 0;
+  border-radius: var(--len-16);
+  background: transparent;
+  font-family: var(--font-ui);
+  text-align: left;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.dr-when__cell + .dr-when__cell::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: var(--len-12);
+  bottom: var(--len-12);
+  width: var(--len-1);
+  background: var(--border-hairline);
+}
+.dr-when__cell > .dr-ic{
+  width: var(--len-20);
+  height: var(--len-20);
+  color: var(--text-muted);
+}
+.dr-when__text{
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.dr-when__label{
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-weight-regular);
+  line-height: var(--type-caption-line);
+  color: var(--text-muted);
+}
+.dr-when__value{
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-weight-medium);
+  line-height: var(--type-heading-line);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-variant-numeric: var(--type-numeric);
+}
+.dr-when__cell:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: calc(var(--len-2) * -1);
+}

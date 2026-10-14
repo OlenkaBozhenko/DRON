@@ -67,9 +67,9 @@ typography:
     lineHeight: "15.4px"
     letterSpacing: "0.09em"
   micro-sm:
-    fontSize: "10.5px"
+    fontSize: "11px"
     fontWeight: 400
-    lineHeight: "14.7px"
+    lineHeight: "15.4px"
 rounded:
   detail: "4px"
   input: "10px"
@@ -258,7 +258,7 @@ border). The wireframe annotation sidebar keeps its own chrome and is not part o
   on their own boxes (`0 0 40 20`, `0 0 46 23`, `0 0 814 1000`, `2 2 43.12 44`) and are filled
   artwork, not members of this set. They are quoted, not drawn, and are not exempted glyphs.
 - **One font stack**, declared once in `_wireframe.css`. No page declares a second UI family.
-- **Ten type sizes**, all in use: 22 · 20 · 17 · 15 · 14 · 13 · 12.5 · 12 · 11 · 10.5.
+- **Ten type steps**, all in use: 22 · 20 · 17 · 15 · 14 · 13 · 12.5 · 12 · 11 · 11 (micro-sm was 10.5 until 2026-10-14 and was raised to HIG's 11pt floor; it now differs from micro by weight and case, not size).
 - **Six radii plus circles.** `10` · `12` · `13` · `16` · `22` · `999`, and `50%`. Two values sit
   off the ramp on purpose and are recorded as quotations rather than rungs: the home indicator's
   `2` and the onscreen keyboard's key at `5`, both quoted from iOS (see the keyboard's own section).
@@ -463,7 +463,7 @@ Ten sizes, every one in use on a shipped surface.
 | `meta` | 12.5 | 400 | 15 (1.2) | — | dates |
 | `caption` | 12 | 600 | 16.8 (1.4) | — | chips, badges |
 | `micro` | 11 | 600 | 15.4 (1.4) | .09em | mono zone labels; `.dr-chip--sm`, the chip that rides beside a name (no tracking) |
-| `micro-sm` | 10.5 | 400 | 14.7 (1.4) | — | milestone labels under a rail |
+| `micro-sm` | 11 (10.5 until 2026-10-14) | 400 | 15.4 (1.4) | — | milestone labels under a rail, count badges |
 
 **Leading is 1.4 by inheritance; a step overrides it only where the box demands it.** The frame
 inherits `font-size:15px / line-height:1.4` from `_wireframe.css`, and that is what a step renders
@@ -2954,7 +2954,7 @@ floor, and the reading that would clear it — `--ink` selected on `--media` idl
 pasted picture literally — was drawn and refused in favour of the accent.
 
 **The count on a tab (`.dr-grouptab__count`, rev 269).** *Incoming · 2* becomes *Incoming* + a badge:
-`--sz-fchip-x` **18** square, `--r-pill`, `--sp-2` inline, 10.5/500, `--green-wash` behind `--ink`
+`--sz-fchip-x` **18** square, `--r-pill`, `--sp-2` inline, 11/600 (10.5 until 2026-10-14), `--green-wash` behind `--ink`
 (**14.75:1**) — `.dr-chip--unread`'s pair in `.dr-count-badge`'s box, so nothing is minted. The badge
 is a shape around text and not a state, so `1.4.11` does not bind on its edge — **1.56:1** on the
 chosen pill, **1.11:1** on the idle one, the same hue-not-luminance reading `notifications` has run

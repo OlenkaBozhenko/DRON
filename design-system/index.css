@@ -1,0 +1,20 @@
+/* ==========================================================================
+   DRON - design-system/index.css
+   THE ONE ENTRY POINT. Everything that consumes the system - every wireframe,
+   ui/shell.html, ui/kit.html, design-system.html - links this file and nothing
+   else from design-system/. What sits behind it can be split, moved or renamed
+   without a single page changing its <link>.
+
+     tokens.css             every value, PRIMITIVE and SEMANTIC, light and dark
+     components/index.css   the 31 component files, in kit.css's cascade order
+
+   ORDER IS THE CASCADE. Tokens first, components after, exactly as before the
+   move: components/index.css used to pull ../tokens.css itself as its first
+   line, so the order every page resolved is unchanged.
+
+   patterns/, docs/ and examples/ are part of the package and empty for now. A
+   pattern that ships CSS gets its own @import here, after components.
+   ========================================================================== */
+
+@import url("tokens.css");
+@import url("components/index.css");

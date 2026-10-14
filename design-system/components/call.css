@@ -1,0 +1,117 @@
+/* call.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   type     -> semantic tokens only (--font-*, --type-*), since 2026-10-14
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-call{
+  background: var(--bg-night);
+  color: var(--text-on-night);
+}
+.dr-call .dr-statusbar{
+  background: var(--bg-night);
+  color: var(--text-on-night);
+}
+.dr-call .dr-main{
+  gap: var(--len-20);
+}
+.dr-call .dr-label{
+  color: var(--text-on-night-muted);
+}
+/* THE SECOND HALF OF THE SAME LINE HAD TO BE NAMED TOO. The line above themes
+   the annotation label for the night surface, but `.dr-label__act` - the part
+   after the marker, which carries what the zone actually does - is painted by
+   type.css at the same specificity and kept --text-muted. On this surface that
+   is #5A5751 on #1A1A1A = 2.42:1 at 11px, against the 4.5:1 WCAG 1.4.3 asks.
+   Not dim: barely there. Found by the dark sweep of 2026-10-09, which measures
+   both themes, and it failed in BOTH - this screen is dark either way. */
+.dr-call .dr-label .dr-label__act{
+  color: var(--text-on-night-muted);
+}
+.dr-call .dr-home span{
+  background: var(--bg-page);
+}
+.dr-call .dr-actionbar{
+  background: var(--bg-night);
+  border-top: 0;
+  padding-bottom: 0;
+}
+.dr-call__top{
+  display: flex;
+  align-items: flex-start;
+  gap: var(--len-12);
+}
+.dr-call__who{
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+.dr-call__name{
+  display: block;
+  font-size: var(--type-display-size);
+  font-weight: var(--type-display-weight);
+  line-height: var(--type-display-line);
+  letter-spacing: var(--type-display-track);
+  color: var(--text-on-night);
+}
+.dr-call__time{
+  display: block;
+  margin-top: var(--len-2);
+  font-size: var(--type-lead-size);
+  font-weight: var(--type-weight-regular);
+  line-height: var(--type-title-line);
+  color: var(--text-on-night-muted);
+  font-variant-numeric: var(--type-numeric);
+}
+.dr-call__side{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+  flex: none;
+}
+.dr-call__side--empty{
+  width: var(--len-44);
+}
+.dr-call__stage{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dr-call__avatar{
+  width: var(--len-176);
+  height: var(--len-176);
+  flex: none;
+  border-radius: var(--pct-50);
+  overflow: hidden;
+  background: var(--bg-night-raised);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-on-night);
+}
+.dr-call__avatar img{
+  width: var(--pct-100);
+  height: var(--pct-100);
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.dr-call__avatar .dr-ic{
+  width: var(--pct-50);
+  height: var(--pct-50);
+}
+.dr-call__bar{
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: var(--len-14);
+  padding: var(--len-8);
+  border-radius: var(--len-999);
+  background: var(--bg-night-raised);
+}
