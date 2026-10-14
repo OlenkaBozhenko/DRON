@@ -2043,7 +2043,7 @@
         </label>
         <label class="dr-grouptab dr-grouptab--icon">
           <input type="radio" name="kitservice" value="aerial" class="sr-only">
-          <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="7" width="17" height="12.5" rx="2.6"/><path d="M8.6 7l1.3-2.4h4.2L15.4 7"/><circle cx="12" cy="13.2" r="3.2"/></svg>Photo
+          <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="7" width="17" height="12.5" rx="2.6"/><path d="M8.6 7l1.3-2.4h4.2L15.4 7"/><circle cx="12" cy="13.2" r="3.2"/></svg>Photo &amp; video
         </label>
         <label class="dr-grouptab dr-grouptab--icon">
           <input type="radio" name="kitservice" value="inspection" class="sr-only">
@@ -2051,43 +2051,55 @@
         </label>
       </fieldset>
       <div class="dr-finder__card">
-        <div class="dr-route" role="group" aria-label="Route">
-          <div class="dr-route__row">
-            <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6"/></svg></span>
-            <button class="dr-route__open" type="button" aria-haspopup="dialog" aria-expanded="false">
-              <span class="dr-route__label">From</span>
-              <span class="dr-route__value">Podil, Kyiv</span>
-            </button>
-          </div>
-          <div class="dr-route__row">
-            <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg></span>
-            <button class="dr-route__open" type="button" aria-haspopup="dialog" aria-expanded="false">
-              <span class="dr-route__label">To</span>
-              <span class="dr-route__value" data-empty>Drop-off address</span>
-            </button>
-          </div>
-          <button class="dr-btn dr-btn--icon dr-route__swap" type="button" aria-label="Swap pickup and drop-off">
-            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 19.5v-15"/><path d="M4.5 8L8 4.5 11.5 8"/><path d="M16 4.5v15"/><path d="M12.5 16l3.5 3.5 3.5-3.5"/></svg>
+      <div class="dr-route" role="group" aria-label="Route">
+        <div class="dr-route__row">
+          <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6"/></svg></span>
+          <button class="dr-route__open" type="button" aria-haspopup="dialog" aria-expanded="false">
+            <span class="dr-route__label">From</span>
+            <span class="dr-route__value" data-empty>Pickup address</span>
           </button>
         </div>
-        <div class="dr-when">
-          <span class="dr-when__cell">
-            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14.5" rx="2.4"/><path d="M4 10h16"/><path d="M8.5 3.5v4M15.5 3.5v4"/></svg>
-            <span class="dr-when__text"><span class="dr-when__label">Date</span><span class="dr-when__value">Today</span></span>
-          </span>
-          <span class="dr-when__cell">
-            <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
-            <span class="dr-when__text"><span class="dr-when__label">Time</span><span class="dr-when__value">Now</span></span>
-          </span>
+        <div class="dr-route__row">
+          <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg></span>
+          <button class="dr-route__open" type="button" aria-haspopup="dialog" aria-expanded="false">
+            <span class="dr-route__label">To</span>
+            <span class="dr-route__value" data-empty>Drop-off address</span>
+          </button>
+        </div>
+        <button class="dr-btn dr-btn--icon dr-route__swap" type="button" aria-label="Swap pickup and drop-off">
+          <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 19.5v-15"/><path d="M4.5 8L8 4.5 11.5 8"/><path d="M16 4.5v15"/><path d="M12.5 16l3.5 3.5 3.5-3.5"/></svg>
+        </button>
+      </div>
+      <div class="dr-route dr-route--single" hidden>
+        <div class="dr-route__row">
+          <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg></span>
+          <button class="dr-route__open" type="button" aria-haspopup="dialog" aria-expanded="false">
+            <span class="dr-route__label">Where</span>
+            <span class="dr-route__value" data-empty>Address</span>
+          </button>
         </div>
       </div>
+      <div class="dr-when">
+        <button class="dr-when__cell" type="button" aria-haspopup="dialog" aria-expanded="false">
+          <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14.5" rx="2.4"/><path d="M4 10h16"/><path d="M8.5 3.5v4M15.5 3.5v4"/></svg>
+          <span class="dr-when__text"><span class="dr-when__label">Date</span><span class="dr-when__value">Today</span></span>
+        </button>
+        <button class="dr-when__cell" type="button" aria-haspopup="dialog" aria-expanded="false">
+          <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+          <span class="dr-when__text"><span class="dr-when__label">Time</span><span class="dr-when__value">Now</span></span>
+        </button>
+      </div>
+      </div>
+      <div class="dr-fchips" role="group" aria-label="Applied filters" hidden></div>
       <div class="dr-finder__actions">
-        <span class="dr-btn dr-btn--secondary"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5h9"/><circle cx="17" cy="7.5" r="2.4"/><path d="M20 16.5h-9"/><circle cx="7" cy="16.5" r="2.4"/></svg>Filters</span>
-        <span class="dr-btn dr-btn--primary">Find</span>
+        <button class="dr-btn dr-btn--secondary" type="button" aria-haspopup="dialog" aria-expanded="false">
+          <svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5h9"/><circle cx="17" cy="7.5" r="2.4"/><path d="M20 16.5h-9"/><circle cx="7" cy="16.5" r="2.4"/></svg>Filters
+        </button>
+        <a class="dr-btn dr-btn--primary" href="#">Find</a>
       </div>
     </form>
     <span class="st">service &#183; route &#183; when &#183; two actions &#183; this is what listings offers now</span>
-    <div class="dr dr-route dr-route--single" role="group" aria-label="Where" style="width:341px;max-width:100%">
+    <div class="dr dr-route dr-route--single" style="width:341px;max-width:100%">
       <div class="dr-route__row">
         <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg></span>
         <button class="dr-route__open" type="button" aria-haspopup="dialog" aria-expanded="false">
@@ -2109,7 +2121,12 @@
     <p><b><code>.dr-route</code> and <code>.dr-when</code> share one
        <code>.dr-finder__card</code>,</b> so the three questions read as one answer being assembled
        rather than three settings. The route rows are parted by a hairline that starts past the mark
-       rather than by a box each; the two when-cells are split by a single vertical rule.</p>
+       rather than by a box each; the two when-cells are split by a single vertical rule, and each
+       is a <code>&lt;button aria-haspopup="dialog"&gt;</code> that owns its own drawer.</p>
+    <p><b>Filters over Find, and the applied filters above both.</b> <i>Filters</i> is a secondary
+       <code>&lt;button&gt;</code> that opens the filters drawer; <i>Find</i> is the screen&#8217;s
+       one green control and a link. The <code>.dr-fchips</code> group between the card and the
+       actions is empty and <code>hidden</code> until a filter is applied.</p>
     <p><b>A row is a button, not a field, and that is a <code>WCAG 4.1.2</code> decision.</b> The
        typing moved into a drawer, so the row only <i>looks</i> the way the field did &#8212; it is
        a <code>&lt;button aria-haspopup="dialog"&gt;</code>, it opens on a tap and never on focus
