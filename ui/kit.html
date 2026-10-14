@@ -23,20 +23,20 @@
   }
   .dr-backlink:hover{ background:var(--bg-well); }
   .dr-backlink:active{ transform:translateY(1px) scale(.99); }
-  .dr-backlink:focus-visible{ outline:2.5px solid var(--text-primary); outline-offset:2px; }
-  /* Theme switch. Showcase chrome, not a kit component - but the showcase is the
-     one page whose whole job is looking at the system, so it has to be able to
-     show both builds. It writes data-theme on <html> and nothing else; every
-     colour on this page then resolves through tokens.css exactly as a screen
-     does. Same shape as the control the prototype shell injects. */
-  .kit-theme{ display:inline-flex; margin-left:12px; height:44px; border-radius:12px;
-    overflow:hidden; vertical-align:top; }
-  .kit-theme button{ min-width:64px; padding:0 14px; border:0; cursor:pointer;
-    font:inherit; font-size:13px; font-weight:600;
-    background:var(--bg-muted); color:var(--text-primary); }
-  .kit-theme button.on{ background:var(--color-action); color:var(--on-action);
-    box-shadow:var(--shadow-sm); }
-  .kit-theme button:hover:not(.on){ background:var(--bg-well); }
+  .dr-backlink:focus-visible{ outline:2.5px solid var(--text-primary); outline-offset:2px; }
+  /* Theme switch. Showcase chrome, not a kit component - but the showcase is the
+     one page whose whole job is looking at the system, so it has to be able to
+     show both builds. It writes data-theme on <html> and nothing else; every
+     colour on this page then resolves through tokens.css exactly as a screen
+     does. Same shape as the control the prototype shell injects. */
+  .kit-theme{ display:inline-flex; margin-left:12px; height:44px; border-radius:12px;
+    overflow:hidden; vertical-align:top; }
+  .kit-theme button{ min-width:64px; padding:0 14px; border:0; cursor:pointer;
+    font:inherit; font-size:13px; font-weight:600;
+    background:var(--bg-muted); color:var(--text-primary); }
+  .kit-theme button.on{ background:var(--color-action); color:var(--on-action);
+    box-shadow:var(--shadow-sm); }
+  .kit-theme button:hover:not(.on){ background:var(--bg-well); }
   .kit-theme button:focus-visible{ outline:2.5px solid var(--text-primary); outline-offset:-2px; }
   .lede{ margin-bottom:40px; }
   .lede h1{ font-size:var(--len-22); font-weight:var(--num-700);
@@ -1710,9 +1710,9 @@
   <div class="spec">
     <div class="plate wide" style="align-items:center">
       <section class="dr dr-center dr-center--tight" aria-label="Rating" style="width:100%">
-      <p class="dr-display dr-display--balance" style="text-align:center">How did Andriy do?</p>
-      <div class="dr-rating" role="group" aria-label="Rating">
-        <button class="dr-star" aria-pressed="true" type="button" aria-label="1 star"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
+      <p class="dr-display dr-display--balance">How would you rate this order?</p>
+      <div class="dr-rating" role="radiogroup" aria-label="Rating">
+        <button class="dr-star" role="radio" aria-checked="false" aria-label="1 star" data-on><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
         <button class="dr-star" aria-pressed="true" type="button" aria-label="2 stars"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
         <button class="dr-star" aria-pressed="true" type="button" aria-label="3 stars"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
         <button class="dr-star" aria-pressed="true" type="button" aria-label="4 stars"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
@@ -3025,36 +3025,36 @@
   </div>
 </div>
 
-</div>
-
-<script>
-/* The showcase's own theme switch. It sets data-theme on <html> and remembers the
-   choice, which is all the dark build needs - tokens.css does the rest. It also
-   honours ?theme=dark in the URL, so a link can open the page already dark.
-   Separate from the prototype shell on purpose: the showcase links no shell. */
-(function () {
-  'use strict';
-  var btns = document.querySelectorAll('[data-kit-theme]');
-  function apply(mode){
-    if (mode !== 'dark') mode = 'light';
-    if (mode === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
-    else document.documentElement.removeAttribute('data-theme');
-    for (var i = 0; i < btns.length; i++){
-      var on = btns[i].getAttribute('data-kit-theme') === mode;
-      btns[i].classList.toggle('on', on);
-      btns[i].setAttribute('aria-pressed', on ? 'true' : 'false');
-    }
-    try { localStorage.setItem('kit-theme', mode); } catch (e) {}
-  }
-  for (var i = 0; i < btns.length; i++){
-    (function (b) { b.addEventListener('click', function () { apply(b.getAttribute('data-kit-theme')); }); })(btns[i]);
-  }
-  var start = 'light';
-  try { start = localStorage.getItem('kit-theme') || 'light'; } catch (e) {}
-  if (/[?&]theme=dark/.test(location.search)) start = 'dark';
-  if (/[?&]theme=light/.test(location.search)) start = 'light';
-  apply(start);
-}());
-</script>
+</div>
+
+<script>
+/* The showcase's own theme switch. It sets data-theme on <html> and remembers the
+   choice, which is all the dark build needs - tokens.css does the rest. It also
+   honours ?theme=dark in the URL, so a link can open the page already dark.
+   Separate from the prototype shell on purpose: the showcase links no shell. */
+(function () {
+  'use strict';
+  var btns = document.querySelectorAll('[data-kit-theme]');
+  function apply(mode){
+    if (mode !== 'dark') mode = 'light';
+    if (mode === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else document.documentElement.removeAttribute('data-theme');
+    for (var i = 0; i < btns.length; i++){
+      var on = btns[i].getAttribute('data-kit-theme') === mode;
+      btns[i].classList.toggle('on', on);
+      btns[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+    try { localStorage.setItem('kit-theme', mode); } catch (e) {}
+  }
+  for (var i = 0; i < btns.length; i++){
+    (function (b) { b.addEventListener('click', function () { apply(b.getAttribute('data-kit-theme')); }); })(btns[i]);
+  }
+  var start = 'light';
+  try { start = localStorage.getItem('kit-theme') || 'light'; } catch (e) {}
+  if (/[?&]theme=dark/.test(location.search)) start = 'dark';
+  if (/[?&]theme=light/.test(location.search)) start = 'light';
+  apply(start);
+}());
+</script>
 </body>
 </html>
