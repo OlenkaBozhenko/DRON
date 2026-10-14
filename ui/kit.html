@@ -650,61 +650,63 @@
 <!-- ═══ SURFACES ══════════════════════════════════════════════════════════ -->
 <h2 class="sec">Surfaces</h2>
 <div class="row">
-  <div class="nm"><b>Order card</b><code>.dr-card · .dr-order__* · .dr-status · .dr-rail · .dr-inset</code>
+  <div class="nm"><b>Order card</b><code>.dr-card · .dr-card__link · .dr-order__* · .dr-status · .dr-rail · .dr-inset · .dr-card__actions</code>
     <p>The most measured component in the product: name-over-date with the drone well closing
        the row, a progress rail, the From ▸ To strip, fee and actions.</p></div>
   <div class="spec col">
     <article class="dr-card" style="width:341px;max-width:100%">
-      <div class="dr-order__top">
-        <span class="dr-order__head">
-          <span class="dr-order__title">Package delivery</span>
-          <span class="dr-order__date">Today · 10:03</span>
+      <a class="dr-card__link" href="#" aria-label="Package delivery, in progress — view details"></a>
+        <span class="dr-order__top">
+          <span class="dr-order__head">
+            <span class="dr-order__title">Package delivery</span>
+            <span class="dr-order__date">Today · 10:03</span>
+          </span>
+          <span class="dr-well">
+            <img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async">
+            <span class="dr-status dr-status--live" role="img" aria-label="In progress"></span>
+          </span>
         </span>
-        <span class="dr-well">
-          <img src="../assets/drones/thumbs/drone-08.png" alt="">
-          <span class="dr-status dr-status--live" role="img" aria-label="In progress"></span>
+        <span class="dr-rail dr-rail--at2">
+          <span class="dr-rail__step"><span class="dr-node dr-node--done" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-rail__lbl">Accepted</span></span>
+          <span class="dr-rail__step" aria-current="step"><span class="dr-node dr-node--now" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-rail__lbl dr-rail__lbl--now">En route</span></span>
+          <span class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">On&#8209;site</span></span>
+          <span class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">Done</span></span>
         </span>
-      </div>
-      <div class="dr-rail" style="--dr-fill:25%">
-        <div class="dr-rail__step"><span class="dr-node dr-node--done"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-rail__lbl">Accepted</span></div>
-        <div class="dr-rail__step"><span class="dr-node dr-node--now"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-rail__lbl dr-rail__lbl--now">En route</span></div>
-        <div class="dr-rail__step"><span class="dr-node"></span><span class="dr-rail__lbl">On-site</span></div>
-        <div class="dr-rail__step"><span class="dr-node"></span><span class="dr-rail__lbl">Done</span></div>
-      </div>
-      <div class="dr-inset">
-        <span class="dr-inset__stop"><span class="dr-inset__lbl">From</span><span class="dr-inset__place">Podil</span></span>
-        <span class="dr-inset__dir" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
-        <span class="dr-inset__stop dr-inset__stop--to"><span class="dr-inset__lbl">To</span><span class="dr-inset__place">Osokorky</span></span>
-      </div>
-      <div class="dr-order__fee">
-        <span><span class="dr-sr">Delivery fee</span><span class="dr-number dr-order__price">₴180</span></span>
-        <span class="dr-chip"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9"/><path d="M12 13.5l3.4 2"/><path d="M9.5 3.2h5"/></svg>ETA ~6 min</span>
-      </div>
-      <button class="dr-btn dr-btn--primary dr-btn--block" type="button">View details</button>
+        <span class="dr-inset">
+          <span class="dr-inset__stop"><span class="dr-inset__lbl">From</span><span class="dr-inset__place">Podil</span></span>
+          <span class="dr-inset__dir" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+          <span class="dr-inset__stop dr-inset__stop--to"><span class="dr-inset__lbl">To</span><span class="dr-inset__place">Osokorky</span></span>
+        </span>
+        <span class="dr-order__fee">
+          <span><span class="sr-only">Delivery fee</span><span class="dr-number dr-order__price">&#8372;180</span></span>
+          <span class="dr-chip"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg>ETA ~6 min</span>
+        </span>
+        <span class="dr-card__actions">
+          <a class="dr-btn dr-btn--primary" href="#">View details</a>
+        </span>
     </article>
 
     <article class="dr-card" style="width:341px;max-width:100%">
-      <div class="dr-order__top">
-        <span class="dr-order__head">
-          <span class="dr-order__title">Package delivery</span>
-          <span class="dr-order__date">28 Jun · 14:20</span>
+      <a class="dr-card__link" href="#" aria-label="Package delivery, 28 Jun 2026, delivered — open order"></a>
+        <span class="dr-order__top">
+          <span class="dr-order__head">
+            <span class="dr-order__title">Package delivery</span>
+            <span class="dr-order__date">28 Jun · 14:20</span>
+          </span>
+          <span class="dr-well">
+            <img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async">
+            <span class="dr-status" role="img" aria-label="Delivered"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+          </span>
         </span>
-        <span class="dr-well">
-          <img src="../assets/drones/thumbs/drone-08.png" alt="">
-          <span class="dr-status" role="img" aria-label="Delivered"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+        <span class="dr-inset">
+          <span class="dr-inset__stop"><span class="dr-inset__lbl">From</span><span class="dr-inset__place">Podil</span></span>
+          <span class="dr-inset__dir" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+          <span class="dr-inset__stop dr-inset__stop--to"><span class="dr-inset__lbl">To</span><span class="dr-inset__place">Osokorky</span></span>
         </span>
-      </div>
-      <div class="dr-inset">
-        <span class="dr-inset__stop"><span class="dr-inset__lbl">From</span><span class="dr-inset__place">Podil</span></span>
-        <span class="dr-inset__dir" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
-        <span class="dr-inset__stop dr-inset__stop--to"><span class="dr-inset__lbl">To</span><span class="dr-inset__place">Osokorky</span></span>
-      </div>
-      <div class="dr-order__fee">
-        <span><span class="dr-sr">Delivery fee</span><span class="dr-number dr-order__price">₴180</span></span>
-        <span class="dr-order__acts">
-          <button class="dr-btn dr-btn--icon" type="button" aria-label="Delete order"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button>
+        <span class="dr-order__fee">
+          <span><span class="sr-only">Delivery fee</span><span class="dr-number dr-order__price">&#8372;180</span></span>
+          <span class="dr-order__acts"><button class="dr-btn dr-btn--icon" type="button" aria-label="Delete order"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="dr-btn dr-btn--icon" href="#" aria-label="View details"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
         </span>
-      </div>
     </article>
   </div>
   <div class="notes">
@@ -1040,6 +1042,7 @@
     <div class="plate oncard">
       <span class="dr-chips dr-op__badges dr-chips--stack">
         <span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+        <span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
       </span>
       <span class="st">claim 164.1 &#215; 26.8 &#183; order-confirmed</span>
     </div>
@@ -1053,9 +1056,10 @@
        rule reads in one line: <b>green means DRON confirmed this document, grey means a plain
        supporting fact.</b></p>
     <p><b>The chip carries a mark and a checkmark &#8212; a leading glyph and a trailing tick.</b>
-       The shield has the check <i>inside</i> it and the trailing tick is what says <i>confirmed</i>
-       rather than merely stated, so the chip is never reduced to its colour. Measured:
-       <b>164.1 &#215; 26.8</b>, 12/600 at <code>--len-999</code>, padding <b>5 / 10</b>, gap
+       On <i>Verified by DRON</i> the shield has the check <i>inside</i> it; on <i>Insured</i>,
+       the second chip <code>order-confirmed</code> stacks under it, the shield is plain. The trailing tick is what says <i>confirmed</i>
+       rather than merely stated, so the chip is never reduced to its colour. Measured
+       on the first chip: <b>164.1 &#215; 26.8</b>, 12/600 at <code>--len-999</code>, padding <b>5 / 10</b>, gap
        <b>6</b>, glyphs <b>14px</b>.</p>
     <p><b>The green chip does not break the fill-only rule &#8212; it is the rule.</b> Signal Green
        is a fill or a tint and never a word: here it is the tint and the label is charcoal. The wash
@@ -1077,13 +1081,13 @@
 <div class="row">
   <div class="nm"><b>The call screen</b><code>.dr-call &#183; __top &#183; __who &#183; __name &#183; __time &#183; __side &#183; __stage &#183; __avatar &#183; __bar</code>
     <p><b>The product&#8217;s one dark surface</b>, and the only screen the <i>platform</i> owns
-       rather than the product. Three files: <code>call</code>, <code>call-client</code>,
-       <code>call-support</code>.</p></div>
+       rather than the product. Five files: <code>call</code>, <code>call-aerial</code>,
+       <code>call-inspection</code>, <code>call-client</code>, <code>call-support</code>.</p></div>
   <div class="spec">
     <div class="plate wide" style="align-items:stretch;padding:0">
       <div class="dr dr-call" style="width:100%;border-radius:var(--len-22);overflow:hidden">
-        <div class="dr-statusbar"><span>9:41</span></div>
-        <div class="dr-main" style="padding-block:var(--len-12)">
+        <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+        <main class="dr-main" style="padding-block:var(--len-12)">
           <div class="dr-call__top">
             <span class="dr-btn dr-btn--icon dr-btn--night" role="img" aria-label="Minimise the call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 3.5l6 6"/><path d="M4.5 9.5h5v-5"/><path d="M20.5 20.5l-6-6"/><path d="M19.5 14.5h-5v5"/></svg></span>
             <span class="dr-call__who">
@@ -1092,21 +1096,22 @@
             </span>
             <span class="dr-call__side">
               <span class="dr-btn dr-btn--icon dr-btn--night" role="img" aria-label="Add support to the call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="8" r="3.4"/><path d="M3.5 20c0-3.4 2.9-5.8 6.5-5.8 1.1 0 2.1.2 3 .6"/><path d="M18 14.6v5.8"/><path d="M15.1 17.5h5.8"/></svg></span>
+              <span class="dr-btn dr-btn--icon dr-btn--night" role="img" aria-label="Chat with the operator"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.7c0 3.9-3.8 7.1-8.5 7.1-1 0-2-.15-2.9-.42L4.2 20.3l1.5-3.3a6.8 6.8 0 0 1-2.2-5.3c0-3.9 3.8-7.1 8.5-7.1s8.5 3.2 8.5 7.1z"/></svg></span>
             </span>
           </div>
           <div class="dr-call__stage">
             <span class="dr-call__avatar" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.4" r="4"/><path d="M4.4 20.6c0-4.2 3.4-7 7.6-7s7.6 2.8 7.6 7"/></svg></span>
           </div>
-        </div>
-        <div class="dr-actionbar">
+        </main>
+        <footer class="dr-actionbar">
           <div class="dr-call__bar">
-            <span class="dr-btn dr-btn--icon dr-btn--night" role="img" aria-label="Video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6.6" width="12.4" height="10.8" rx="2.4"/><path d="M15.4 10.6l5.1-2.9v8.6l-5.1-2.9z"/></svg></span>
-            <span class="dr-btn dr-btn--icon dr-btn--night" role="img" aria-label="Speaker"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.4h3.3L12 5.4v13.2l-4.7-4H4z"/><path d="M16.1 9.6a3.6 3.6 0 0 1 0 4.8"/><path d="M18.7 7a7.2 7.2 0 0 1 0 10"/></svg></span>
-            <span class="dr-btn dr-btn--icon dr-btn--night" role="img" aria-label="Mute"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9.2" y="3.4" width="5.6" height="11" rx="2.8"/><path d="M5.5 11.4a6.5 6.5 0 0 0 13 0"/><path d="M12 17.9v2.7"/></svg></span>
+            <button class="dr-btn dr-btn--icon dr-btn--night" type="button" aria-pressed="false" aria-label="Video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6.6" width="12.4" height="10.8" rx="2.4"/><path d="M15.4 10.6l5.1-2.9v8.6l-5.1-2.9z"/></svg></button>
+            <button class="dr-btn dr-btn--icon dr-btn--night" type="button" aria-pressed="false" aria-label="Speaker"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.4h3.3L12 5.4v13.2l-4.7-4H4z"/><path d="M16.1 9.6a3.6 3.6 0 0 1 0 4.8"/><path d="M18.7 7a7.2 7.2 0 0 1 0 10"/></svg></button>
+            <button class="dr-btn dr-btn--icon dr-btn--night" type="button" aria-pressed="false" aria-label="Mute"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9.2" y="3.4" width="5.6" height="11" rx="2.8"/><path d="M5.5 11.4a6.5 6.5 0 0 0 13 0"/><path d="M12 17.9v2.7"/></svg></button>
             <span class="dr-btn dr-btn--icon dr-btn--danger-solid" role="img" aria-label="End call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 14.3a12 12 0 0 1 17.2 0"/><path d="M3.4 14.3l1.7 1.7a1.5 1.5 0 0 0 2.1 0l1.1-1.1a1.5 1.5 0 0 0 0-2.1l-.7-.7"/><path d="M20.6 14.3l-1.7 1.7a1.5 1.5 0 0 1-2.1 0l-1.1-1.1a1.5 1.5 0 0 1 0-2.1l.7-.7"/></svg></span>
           </div>
           <div class="dr-home"><span></span></div>
-        </div>
+        </footer>
       </div>
       <span class="st">--bg-night ground &#183; avatar disc 176 &#183; four controls, one of them red</span>
     </div>
@@ -1115,10 +1120,10 @@
         <div class="dr-call__top">
           <span class="dr-btn dr-btn--icon dr-btn--night" role="img" aria-label="Minimise the call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 3.5l6 6"/><path d="M4.5 9.5h5v-5"/><path d="M20.5 20.5l-6-6"/><path d="M19.5 14.5h-5v5"/></svg></span>
           <span class="dr-call__who">
-            <span class="dr-call__name">DRON support</span>
-            <span class="dr-call__time"><span class="dr-sr">Call duration </span><time datetime="PT0M42S">00:42</time></span>
+            <span class="dr-call__name">DRON Support</span>
+            <span class="dr-call__time"><span class="dr-sr">Call duration </span><time datetime="PT1M7S">01:07</time></span>
           </span>
-          <span class="dr-call__side dr-call__side--empty"></span>
+          <span class="dr-call__side dr-call__side--empty" aria-hidden="true"></span>
         </div>
       </div>
       <span class="st">--empty &#183; nothing to add support to, so the 44 stays and the name stays centred</span>
@@ -1159,30 +1164,39 @@
   <div class="spec">
     <div class="plate wide" style="align-items:stretch;padding:0">
       <div class="dr" style="width:100%;border-radius:var(--len-22);overflow:hidden">
-        <main class="dr-mapscreen" style="height:420px">
+        <main class="dr-mapscreen" style="height:500px">
           <div class="dr-mapview" style="background-image:url(../assets/map/live-map.jpg)" role="img" aria-label="Map &#183; available near you"></div>
           <section class="dr-sheet dr-sheet--dock">
             <span class="dr-sheet__grip" aria-hidden="true"></span>
-            <p class="dr-sheet__title">Parcel size</p>
-            <fieldset class="dr-offers">
-        <label class="dr-offer">
-          <input type="radio" name="kitoffer" class="sr-only" checked>
-          <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
-          <span class="dr-offer__body">
-            <span class="dr-offer__name">Up to 2 kg</span>
-            <span class="dr-offer__meta">4 available &#183; arrives in 6 min</span>
-          </span>
-          <span class="dr-offer__price">&#8372;180</span>
-        </label>
-        <label class="dr-offer">
-          <input type="radio" name="kitoffer" class="sr-only">
-          <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
-          <span class="dr-offer__body">
-            <span class="dr-offer__name">Up to 5 kg</span>
-            <span class="dr-offer__meta">2 available &#183; arrives in 9 min</span>
-          </span>
-          <span class="dr-offer__price">&#8372;240</span>
-        </label>
+            <p class="dr-sheet__title" id="kit-offers-title">Parcel size</p>
+            <fieldset class="dr-offers" aria-labelledby="kit-offers-title">
+              <label class="dr-offer">
+                <input type="radio" name="kitoffer" value="2kg" checked class="sr-only">
+                <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
+                <span class="dr-offer__body">
+                  <span class="dr-offer__name">Up to 2 kg</span>
+                  <span class="dr-offer__meta">4 available · arrives in 6 min</span>
+                </span>
+                <span class="dr-offer__price">₴180</span>
+              </label>
+              <label class="dr-offer">
+                <input type="radio" name="kitoffer" value="5kg" class="sr-only">
+                <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
+                <span class="dr-offer__body">
+                  <span class="dr-offer__name">Up to 5 kg</span>
+                  <span class="dr-offer__meta">2 available · arrives in 9 min</span>
+                </span>
+                <span class="dr-offer__price">₴240</span>
+              </label>
+              <label class="dr-offer">
+                <input type="radio" name="kitoffer" value="10kg" class="sr-only">
+                <span class="dr-well"><img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async"></span>
+                <span class="dr-offer__body">
+                  <span class="dr-offer__name">Up to 10 kg</span>
+                  <span class="dr-offer__meta">1 available · arrives in 14 min</span>
+                </span>
+                <span class="dr-offer__price">₴320</span>
+              </label>
             </fieldset>
             <span class="dr-btn dr-btn--primary dr-btn--block">Order</span>
           </section>
@@ -1213,22 +1227,24 @@
   <div class="nm"><b>Date picker &#183; and its clock</b><code>.dr-cal &#183; __bar &#183; __nav &#183; __month &#183; __grid &#183; __day &#183; --today &#183; .dr-picks &#183; .dr-pick &#183; __clock &#183; __unit &#183; __colon</code>
     <p><b>Two drawers, not one.</b> <i>Date</i> opens the calendar, <i>Time</i> opens a pair of
        picks. <code>listings</code> and <code>listings-filters</code> build the day cells with a
-       page script; the classes and attributes here are the ones that script writes.</p></div>
+       page script; the classes and attributes here are the ones that script writes &#8212; six rows always,
+       Monday first, no day before today, one day in the tab order.</p></div>
   <div class="spec col">
     <div class="dr dr-cal" style="width:341px;max-width:100%">
       <div class="dr-cal__bar">
         <button class="dr-cal__nav" type="button" aria-label="Previous month"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <span class="dr-cal__month">September 2026</span>
+        <span class="dr-cal__month" aria-live="polite">September 2026</span>
         <button class="dr-cal__nav" type="button" aria-label="Next month"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
-      <table class="dr-cal__grid" role="grid">
+      <table class="dr-cal__grid" role="grid" aria-label="Pick a date">
         <thead><tr><th scope="col" aria-label="Monday">Mo</th><th scope="col" aria-label="Tuesday">Tu</th><th scope="col" aria-label="Wednesday">We</th><th scope="col" aria-label="Thursday">Th</th><th scope="col" aria-label="Friday">Fr</th><th scope="col" aria-label="Saturday">Sa</th><th scope="col" aria-label="Sunday">Su</th></tr></thead>
         <tbody>
-            <tr><td></td><td><button class="dr-cal__day" type="button" disabled>1</button></td><td><button class="dr-cal__day" type="button" disabled>2</button></td><td><button class="dr-cal__day" type="button" disabled>3</button></td><td><button class="dr-cal__day" type="button" disabled>4</button></td><td><button class="dr-cal__day" type="button" disabled>5</button></td><td><button class="dr-cal__day" type="button" disabled>6</button></td></tr>
-            <tr><td><button class="dr-cal__day" type="button" disabled>7</button></td><td><button class="dr-cal__day" type="button" disabled>8</button></td><td><button class="dr-cal__day" type="button" disabled>9</button></td><td><button class="dr-cal__day" type="button" disabled>10</button></td><td><button class="dr-cal__day" type="button" disabled>11</button></td><td><button class="dr-cal__day" type="button" disabled>12</button></td><td><button class="dr-cal__day" type="button" disabled>13</button></td></tr>
-            <tr><td><button class="dr-cal__day" type="button" disabled>14</button></td><td><button class="dr-cal__day" type="button" disabled>15</button></td><td><button class="dr-cal__day" type="button" disabled>16</button></td><td><button class="dr-cal__day" type="button" disabled>17</button></td><td><button class="dr-cal__day" type="button">18</button></td><td><button class="dr-cal__day" type="button">19</button></td><td><button class="dr-cal__day dr-cal__day--today" type="button">20</button></td></tr>
-            <tr><td><button class="dr-cal__day" type="button">21</button></td><td><button class="dr-cal__day" type="button">22</button></td><td><button class="dr-cal__day" type="button">23</button></td><td aria-selected="true"><button class="dr-cal__day" type="button">24</button></td><td><button class="dr-cal__day" type="button">25</button></td><td><button class="dr-cal__day" type="button">26</button></td><td><button class="dr-cal__day" type="button">27</button></td></tr>
-            <tr><td><button class="dr-cal__day" type="button">28</button></td><td><button class="dr-cal__day" type="button">29</button></td><td><button class="dr-cal__day" type="button">30</button></td><td></td><td></td><td></td><td></td></tr>
+            <tr role="row"><td role="gridcell"></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Tue 1 Sep 2026" tabindex="-1">1</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Wed 2 Sep 2026" tabindex="-1">2</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Thu 3 Sep 2026" tabindex="-1">3</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Fri 4 Sep 2026" tabindex="-1">4</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Sat 5 Sep 2026" tabindex="-1">5</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Sun 6 Sep 2026" tabindex="-1">6</button></td></tr>
+            <tr role="row"><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Mon 7 Sep 2026" tabindex="-1">7</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Tue 8 Sep 2026" tabindex="-1">8</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Wed 9 Sep 2026" tabindex="-1">9</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Thu 10 Sep 2026" tabindex="-1">10</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Fri 11 Sep 2026" tabindex="-1">11</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Sat 12 Sep 2026" tabindex="-1">12</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Sun 13 Sep 2026" tabindex="-1">13</button></td></tr>
+            <tr role="row"><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Mon 14 Sep 2026" tabindex="-1">14</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Tue 15 Sep 2026" tabindex="-1">15</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Wed 16 Sep 2026" tabindex="-1">16</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Thu 17 Sep 2026" tabindex="-1">17</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Fri 18 Sep 2026" tabindex="-1">18</button></td><td role="gridcell"><button class="dr-cal__day" type="button" disabled aria-label="Sat 19 Sep 2026" tabindex="-1">19</button></td><td role="gridcell"><button class="dr-cal__day dr-cal__day--today" type="button" aria-label="Sun 20 Sep 2026, today" tabindex="-1">20</button></td></tr>
+            <tr role="row"><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Mon 21 Sep 2026" tabindex="-1">21</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Tue 22 Sep 2026" tabindex="-1">22</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Wed 23 Sep 2026" tabindex="-1">23</button></td><td role="gridcell" aria-selected="true"><button class="dr-cal__day" type="button" aria-label="Thu 24 Sep 2026" tabindex="0">24</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Fri 25 Sep 2026" tabindex="-1">25</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Sat 26 Sep 2026" tabindex="-1">26</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Sun 27 Sep 2026" tabindex="-1">27</button></td></tr>
+            <tr role="row"><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Mon 28 Sep 2026" tabindex="-1">28</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Tue 29 Sep 2026" tabindex="-1">29</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Wed 30 Sep 2026" tabindex="-1">30</button></td><td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td></tr>
+            <tr role="row"><td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td></tr>
         </tbody>
       </table>
     </div>
@@ -1244,7 +1260,7 @@
         <span class="dr-pick__label">At a set time</span>
         <input type="radio" name="kitwhen" value="at" class="sr-only">
         <span class="dr-cal__clock">
-          <select class="dr-cal__unit" aria-label="Hour"><option>09</option><option>10</option><option>11</option><option>12</option><option>13</option><option selected>14</option><option>15</option><option>16</option><option>17</option><option>18</option></select>
+          <select class="dr-cal__unit" aria-label="Hour"><option>00</option><option>01</option><option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option><option>09</option><option>10</option><option>11</option><option>12</option><option>13</option><option selected>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option></select>
           <span class="dr-cal__colon" aria-hidden="true">:</span>
           <select class="dr-cal__unit" aria-label="Minute"><option>00</option><option>15</option><option selected>30</option><option>45</option></select>
         </span>
@@ -1286,25 +1302,25 @@
     <p>Two thumbs on one rail, standing on a picture of what things actually cost.
        <code>listings</code> and <code>listings-filters</code>.</p></div>
   <div class="spec">
-    <fieldset class="dr dr-range" style="width:341px;max-width:100%">
-      <p class="dr-range__title">Price range</p>
-      <p class="dr-range__sub">Service price, all fees included</p>
+    <fieldset class="dr dr-range" aria-labelledby="kit-price-title" aria-describedby="kit-price-sub" style="width:341px;max-width:100%">
+      <p class="dr-range__title" id="kit-price-title">Price range</p>
+      <p class="dr-range__sub" id="kit-price-sub">Service price, all fees included</p>
       <div class="dr-range__band">
         <div class="dr-range__hist" role="img" aria-label="How services are priced: most cost &#8372;200 &#8211; &#8372;350"><i class="dr-range__bar" style="height:6%"></i><i class="dr-range__bar" style="height:8%"></i><i class="dr-range__bar" style="height:10%"></i><i class="dr-range__bar" style="height:14%"></i><i class="dr-range__bar" style="height:22%"></i><i class="dr-range__bar" style="height:30%"></i><i class="dr-range__bar" style="height:44%"></i><i class="dr-range__bar" style="height:58%"></i><i class="dr-range__bar" style="height:72%"></i><i class="dr-range__bar" style="height:86%"></i><i class="dr-range__bar" style="height:100%"></i><i class="dr-range__bar" style="height:92%"></i><i class="dr-range__bar" style="height:78%"></i><i class="dr-range__bar" style="height:70%"></i><i class="dr-range__bar" style="height:62%"></i><i class="dr-range__bar" style="height:66%"></i><i class="dr-range__bar" style="height:54%"></i><i class="dr-range__bar" style="height:46%"></i><i class="dr-range__bar" style="height:40%"></i><i class="dr-range__bar" style="height:44%"></i><i class="dr-range__bar" style="height:38%"></i><i class="dr-range__bar" style="height:32%"></i><i class="dr-range__bar" style="height:36%"></i><i class="dr-range__bar" style="height:28%"></i><i class="dr-range__bar dr-range__bar--in" style="height:30%"></i><i class="dr-range__bar dr-range__bar--in" style="height:24%"></i><i class="dr-range__bar dr-range__bar--in" style="height:20%"></i><i class="dr-range__bar dr-range__bar--in" style="height:22%"></i><i class="dr-range__bar dr-range__bar--in" style="height:16%"></i><i class="dr-range__bar dr-range__bar--in" style="height:14%"></i><i class="dr-range__bar dr-range__bar--in" style="height:12%"></i><i class="dr-range__bar dr-range__bar--in" style="height:14%"></i><i class="dr-range__bar dr-range__bar--in" style="height:10%"></i><i class="dr-range__bar dr-range__bar--in" style="height:8%"></i><i class="dr-range__bar dr-range__bar--in" style="height:9%"></i><i class="dr-range__bar dr-range__bar--in" style="height:7%"></i><i class="dr-range__bar dr-range__bar--in" style="height:6%"></i><i class="dr-range__bar dr-range__bar--in" style="height:8%"></i><i class="dr-range__bar dr-range__bar--in" style="height:12%"></i><i class="dr-range__bar dr-range__bar--in" style="height:26%"></i></div>
         <div class="dr-range__rail">
           <span class="dr-range__fill" style="left:60%;right:0"></span>
-          <input class="dr-range__input" type="range" min="0" max="1000" step="50" value="600" aria-label="Minimum price" aria-valuetext="&#8372;600">
-          <input class="dr-range__input" type="range" min="0" max="1000" step="50" value="1000" aria-label="Maximum price" aria-valuetext="&#8372;1,000+">
+          <input class="dr-range__input" type="range" id="kit-pmin" min="0" max="1000" step="50" value="600" aria-label="Minimum price" aria-valuetext="&#8372;600">
+          <input class="dr-range__input" type="range" id="kit-pmax" min="0" max="1000" step="50" value="1000" aria-label="Maximum price" aria-valuetext="&#8372;1,000+">
         </div>
       </div>
       <div class="dr-range__fields">
         <p class="dr-range__field">
           <span class="dr-range__cap">Minimum</span>
-          <output class="dr-range__val">&#8372;600</output>
+          <output class="dr-range__val" for="kit-pmin">&#8372;600</output>
         </p>
         <p class="dr-range__field">
           <span class="dr-range__cap">Maximum</span>
-          <output class="dr-range__val">&#8372;1,000+</output>
+          <output class="dr-range__val" for="kit-pmax">&#8372;1,000+</output>
         </p>
       </div>
     </fieldset>
@@ -1368,21 +1384,35 @@
        <code>operator-listings</code>, <code>time-slot</code>, <code>time-slot-inspection</code>.</p></div>
   <div class="spec">
     <article class="dr dr-card" style="width:341px;max-width:100%">
-      <a class="dr-card__link" href="#" aria-label="Package delivery, in progress &#8212; view details"></a>
-      <span class="dr-order__top">
-        <span class="dr-order__head">
-          <span class="dr-order__title">Package delivery</span>
-          <span class="dr-order__date">Today &#183; 10:03</span>
+      <a class="dr-card__link" href="#" aria-label="Package delivery, in progress — view details"></a>
+        <span class="dr-order__top">
+          <span class="dr-order__head">
+            <span class="dr-order__title">Package delivery</span>
+            <span class="dr-order__date">Today · 10:03</span>
+          </span>
+          <span class="dr-well">
+            <img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async">
+            <span class="dr-status dr-status--live" role="img" aria-label="In progress"></span>
+          </span>
         </span>
-        <span class="dr-well">
-          <img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async">
-          <span class="dr-status dr-status--live" role="img" aria-label="In progress"></span>
+        <span class="dr-rail dr-rail--at2">
+          <span class="dr-rail__step"><span class="dr-node dr-node--done" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-rail__lbl">Accepted</span></span>
+          <span class="dr-rail__step" aria-current="step"><span class="dr-node dr-node--now" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-rail__lbl dr-rail__lbl--now">En route</span></span>
+          <span class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">On&#8209;site</span></span>
+          <span class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">Done</span></span>
         </span>
-      </span>
-      <span class="dr-order__fee">
-        <span><span class="dr-sr">Delivery fee </span><span class="dr-number dr-order__price">&#8372;180</span></span>
-        <span class="dr-chip"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg>ETA ~6 min</span>
-      </span>
+        <span class="dr-inset">
+          <span class="dr-inset__stop"><span class="dr-inset__lbl">From</span><span class="dr-inset__place">Podil</span></span>
+          <span class="dr-inset__dir" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h13"/><path d="M13 7.5l4.5 4.5-4.5 4.5"/></svg></span>
+          <span class="dr-inset__stop dr-inset__stop--to"><span class="dr-inset__lbl">To</span><span class="dr-inset__place">Osokorky</span></span>
+        </span>
+        <span class="dr-order__fee">
+          <span><span class="sr-only">Delivery fee</span><span class="dr-number dr-order__price">&#8372;180</span></span>
+          <span class="dr-chip"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg>ETA ~6 min</span>
+        </span>
+        <span class="dr-card__actions">
+          <a class="dr-btn dr-btn--primary" href="#">View details</a>
+        </span>
     </article>
     <span class="st">the whole card is the target &#183; tab to it and the ring is on the card</span>
   </div>
@@ -1391,7 +1421,9 @@
        <code>position: absolute; inset: 0; z-index: 1</code>, empty, with the whole card&#8217;s
        meaning in <code>aria-label</code>. That is one tab stop and one announcement instead of a
        title link, a date link and a chip link that all go to the same place &#8212; and the target
-       is the card, far past <code>HIG &#183; 44pt</code>.</p>
+       is the card, far past <code>HIG &#183; 44pt</code>. The one thing that rises above it is a
+       real action: <code>.dr-card__actions .dr-btn</code> sits at <code>z-index: 2</code>, so
+       the live card&#8217;s <i>View details</i> stays its own control and its own tab stop.</p>
     <p><b>The ring goes on the card, not on the invisible anchor.</b>
        <code>.dr-card:has(&gt; .dr-card__link:focus-visible)</code> draws
        <code>2.5px</code> of <code>--text-primary</code> at <code>offset: 2</code> around the
@@ -1890,42 +1922,67 @@
        kind of control rather than by the order the fields were thought of.</p></div>
   <div class="spec">
     <form class="dr dr-stack dr-stack--zones" action="#" aria-label="Edit account" style="width:341px;max-width:100%">
-      <div class="dr-rows">
-        <div class="dr-field">
-          <label class="dr-field__label" for="kit-nm">Name</label>
-          <span class="dr-field__group"><input class="dr-field__input" id="kit-nm" type="text" value="Olena B."></span>
-        </div>
-        <div class="dr-field">
-          <label class="dr-field__label" for="kit-ph">Phone</label>
-          <span class="dr-field__group"><input class="dr-field__input" id="kit-ph" type="tel" value="+380 67 123 4567"></span>
+      <div class="dr-zone" role="group" aria-labelledby="kit-acc-personal-title" aria-describedby="kit-acc-personal-sub">
+        <p class="dr-zone__title" id="kit-acc-personal-title">Personal details</p>
+        <p class="dr-zone__sub" id="kit-acc-personal-sub">What the operator needs to reach you</p>
+        <div class="dr-rows dr-rows--card">
+          <div class="dr-field">
+            <label class="dr-field__label" for="kit-nm">Full name</label>
+            <span class="dr-field__group"><input class="dr-field__input" id="kit-nm" name="name" value="Olena B."></span>
+          </div>
+          <div class="dr-field">
+            <label class="dr-field__label" for="kit-ph">Phone</label>
+            <span class="dr-field__group"><input class="dr-field__input" id="kit-ph" name="phone" type="tel" value="+380 67 000 4417"></span>
+          </div>
+          <div class="dr-field">
+            <label class="dr-field__label" for="kit-addr">Saved address</label>
+            <span class="dr-field__group"><input class="dr-field__input" id="kit-addr" name="addr" value="Podil, 21"></span>
+          </div>
         </div>
       </div>
-      <div class="dr-rows">
-        <span class="dr-field dr-field--action">
-          <span class="dr-field__label">Payment method</span>
-          <span class="dr-field__group"><span class="dr-field__value">Visa &#8226;&#8226;&#8226;&#8226; 4921</span><svg class="dr-ic dr-field__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
-        </span>
-        <span class="dr-field dr-field--action">
-          <span class="dr-field__label">Language</span>
-          <span class="dr-field__group"><span class="dr-field__value">English</span><svg class="dr-ic dr-field__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
-        </span>
+      <div class="dr-zone" role="group" aria-labelledby="kit-acc-pay-title" aria-describedby="kit-acc-pay-sub">
+        <p class="dr-zone__title" id="kit-acc-pay-title">Payment method</p>
+        <p class="dr-zone__sub" id="kit-acc-pay-sub">How you pay</p>
+        <div class="dr-rows">
+          <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false">
+            <span class="dr-field__label">Payment method</span>
+            <span class="dr-field__value">Visa &#8226;&#8226;&#8226;&#8226; 4921</span>
+            <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+          </button>
+        </div>
+      </div>
+      <div class="dr-zone" role="group" aria-labelledby="kit-acc-lang-title" aria-describedby="kit-acc-lang-sub">
+        <p class="dr-zone__title" id="kit-acc-lang-title">Language</p>
+        <p class="dr-zone__sub" id="kit-acc-lang-sub">The language you see</p>
+        <div class="dr-rows">
+          <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false">
+            <span class="dr-field__label">Language</span>
+            <span class="dr-field__value">English</span>
+            <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+          </button>
+        </div>
       </div>
     </form>
   </div>
   <div class="notes">
-    <p><b>Two groups, and the split is by control, not by topic.</b> Three things you type sit in
-       the first panel; two things that open a drawer sit in the second. A typed row wedged
-       between two chevrons reads as a chevron that does not work, which is the mistake this
-       arrangement was made to fix.</p>
+    <p><b>Titled zones, and the typed rows stay together.</b> Each group is a
+       <code>.dr-zone</code> with <code>role="group"</code>, named by its drawn
+       <code>__title</code> and described by its <code>__sub</code>. The three things you type sit
+       in one card, <code>.dr-rows--card</code>; each thing that opens a drawer is a
+       <code>&lt;button class="dr-field dr-field--action"&gt;</code> in a zone of its own. A typed
+       row wedged between two chevrons reads as a chevron that does not work, which is the mistake
+       this arrangement was made to fix. <code>account-edit</code> goes on with Appearance,
+       Notifications and two upload cards in the same shape.</p>
     <p><b><code>--zones</code> here is 12, not 24 &#8212; and the difference is the container.</b>
-       <code>.dr-stack</code>&#8217;s own gap is 8, so 12 is already a 1.5:1 step, and the two
+       <code>.dr-stack</code>&#8217;s own gap is 8, so 12 is already a 1.5:1 step, and the
        groups are <i>panels</i> with their own surface and radius: the card edge does most of the
        separating and the gap only has to keep them from touching. On <code>.dr-main</code>,
        where the blocks are bare text and a list, there is no edge to help, so the same job costs
        24.</p>
-    <p><b>No heading between the groups, on purpose.</b> Labelling them <i>Personal</i> and
-       <i>Preferences</i> would put two more lines of type on a screen where every row already
-       names itself. The boundary is spatial, and the form keeps one accessible name.</p>
+    <p><b>Every zone names itself.</b> The title and subtitle are drawn, and the same two lines
+       are the group&#8217;s accessible name and description (<code>aria-labelledby</code> /
+       <code>aria-describedby</code>), so what the eye reads and what a screen reader announces
+       are one thing (<code>WCAG 1.3.1</code>).</p>
   </div>
 </div>
 
@@ -2158,11 +2215,11 @@
        drawer where the address is actually typed.</p></div>
   <div class="spec">
     <div class="plate" style="align-items:stretch;padding:0;width:341px;max-width:100%">
-      <section class="dr dr-sheet dr-sheet--picker dr-sheet--steady" aria-label="Pickup address" style="animation:none;position:static;min-height:460px">
+      <section class="dr dr-sheet dr-sheet--picker dr-sheet--steady" aria-labelledby="kit-addrpick-title" style="animation:none;position:static;min-height:460px">
         <span class="dr-sheet__grip" aria-hidden="true"></span>
-        <p class="dr-sheet__title">Pickup address</p>
+        <p class="dr-sheet__title" id="kit-addrpick-title">Pickup address</p>
         <span class="dr-search">
-          <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="text" placeholder="Search address" aria-label="Search address">
+          <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="text" placeholder="Search address" autocomplete="street-address" aria-labelledby="kit-addrpick-title">
         </span>
         <div class="dr-picker__list">
           <button class="dr-picker__item" type="button">
@@ -2178,9 +2235,10 @@
             <span class="dr-picker__label">Osokorky, 14 <span class="dr-picker__sub">Recent</span></span>
           </button>
         </div>
+        <p class="sr-only" role="status"></p>
         <div class="dr-sheet__actions">
-          <span class="dr-btn dr-btn--secondary">Cancel</span>
-          <span class="dr-btn dr-btn--primary">Done</span>
+          <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
+          <button class="dr-btn dr-btn--primary" type="button">Done</button>
         </div>
       </section>
       <span class="st">held at the height it opened at &#183; the actions stay on the floor as the list narrows</span>
@@ -2352,8 +2410,8 @@
   <div class="spec">
     <div class="plate">
       <ul class="dr-rail dr-rail--at2 dr-rail--zone" style="width:260px">
-        <li class="dr-rail__step"><span class="dr-node dr-node--done" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-rail__lbl">Accepted</span></li>
-        <li class="dr-rail__step" aria-current="step"><span class="dr-node dr-node--now" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-rail__lbl dr-rail__lbl--now">En route</span></li>
+        <li class="dr-rail__step"><span class="dr-node dr-node--done" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-rail__lbl">Accepted</span></li>
+        <li class="dr-rail__step" aria-current="step"><span class="dr-node dr-node--now" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-rail__lbl dr-rail__lbl--now">En route</span></li>
         <li class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">On&#8209;site</span></li>
         <li class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">Done</span></li>
       </ul>
