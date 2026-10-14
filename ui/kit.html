@@ -1724,8 +1724,11 @@
   </div>
   <div class="notes">
     <p><b>An input, and that is what separates it from the score on a card.</b> Five real
-       <code>&lt;button&gt;</code>s, each a <code>HIG &#183; 44pt</code> target carrying
-       <code>aria-pressed</code>. A read-only score must never be a row of buttons announcing a
+       <code>&lt;button&gt;</code>s in a <code>role="radiogroup"</code>, each a
+       <code>HIG &#183; 44pt</code> target with <code>role="radio"</code>. The value and the fill
+       are two facts with two hooks: <code>aria-checked="true"</code> lands on <i>one</i> star
+       &#8212; the score &#8212; and <code>data-on</code> runs up to it and paints the fill. A
+       read-only score must never be a row of buttons announcing a
        pressed state it cannot change (<code>WCAG 4.1.2</code>) &#8212; that one is written as a
        number instead.</p>
     <p><b>The colour is never the carrier.</b> The filled star is <code>--color-rating</code>
