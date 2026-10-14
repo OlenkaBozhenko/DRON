@@ -25,61 +25,65 @@
   <h1>Message block</h1>
   <p class="dsd-meta"><code>.dr-msg · __title · __body · __actions · .dr-mark · --warn · --danger</code> &middot; <a href="../components/message.css"><code>components/message.css</code></a>
     &middot; <a href="../../ui/kit.html">kit specimen</a></p>
-  <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><div class="dr-msg" style="width:341px;max-width:100%" role="alert">
-  <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24"><g opacity=".55"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g></svg></span>
-  <span class="dr-msg__title">Live tracking lost</span>
-  <span class="dr-msg__body">We’ve lost the live signal from the operator’s device. Your order is still active.</span>
-  <span class="dr-msg__actions">
-    <button class="dr-btn dr-btn--primary" type="button">Try again</button>
-    <button class="dr-btn dr-btn--secondary" type="button">Contact support</button>
-  </span>
-</div></div></div><ol class="dsd-parts"><li data-sel=".dr-msg"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-msg</code><span class="dsd-part__txt">The block: <code>--card</code> at the 16 radius, padding 22 / 18, gap 12, centred, no shadow.</span></li><li data-sel=".dr-mark"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-mark</code><span class="dsd-part__txt">The state mark: 52 × 52 at the 13 media radius, 26px glyph, <code>aria-hidden</code>.</span></li><li data-sel=".dr-msg__title"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-msg__title</code><span class="dsd-part__txt">What happened, at the title step 17/600.</span></li><li data-sel=".dr-msg__body"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-msg__body</code><span class="dsd-part__txt">What it means for the user, 13/400 in slate, capped at 260px.</span></li><li data-sel=".dr-msg__actions"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-msg__actions</code><span class="dsd-part__txt">The way out: full-width buttons stacked with gap 10, primary first.</span></li></ol></div></section>
+  <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><div class="dr-msg" role="alert" style="width:341px;max-width:100%">
+  <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2.4"/><path d="M3 10.4h18"/><path d="M4 4l16 16"/></svg></span>
+  <span class="dr-msg__title">Withdrawal didn't go through</span>
+  <p class="dr-msg__body">The transfer to your card failed and the &#8372;1,500 is back in your balance. Check the card details, or try a bank transfer instead.</p>
+  <div class="dr-msg__actions">
+    <a class="dr-btn dr-btn--primary" href="#">Try again</a>
+    <a class="dr-btn dr-btn--secondary" href="#">Use bank transfer</a>
+  </div>
+</div></div></div><ol class="dsd-parts"><li data-sel=".dr-msg"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-msg</code><span class="dsd-part__txt">The block: <code>--card</code> at the 16 radius, padding 22 / 18, gap 12, centred, no shadow.</span></li><li data-sel=".dr-mark"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-mark</code><span class="dsd-part__txt">The state mark: 52 × 52 at the 13 media radius, 26px glyph, <code>aria-hidden</code>.</span></li><li data-sel=".dr-msg__title"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-msg__title</code><span class="dsd-part__txt">What happened, at the title step 17/600, line 1.4.</span></li><li data-sel=".dr-msg__body"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-msg__body</code><span class="dsd-part__txt">What it means for the user, 13/400 at line 1.5 in slate, capped at 260px.</span></li><li data-sel=".dr-msg__actions"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-msg__actions</code><span class="dsd-part__txt">The way out: full-width buttons stacked with gap 10, 6 below the body, primary on top.</span></li></ol></div></section>
   <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
-    <p class="dsd-lede">Inventory rows: Message block; Empty-state banner.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-empty"><figcaption><h3>Empty</h3></figcaption><div class="dsd-plate dr "><div class="dr-msg" style="width:341px;max-width:100%" role="status">
-  <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg></span>
-  <span class="dr-msg__title">No orders yet</span>
-  <span class="dr-msg__body">Your orders appear here, ready to re-book in a tap.</span>
-  <span class="dr-msg__actions"><button class="dr-btn dr-btn--primary" type="button">Browse services</button></span>
+    <p class="dsd-lede">Inventory rows: Message block; Empty-state banner.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-empty"><figcaption><h3>Empty</h3></figcaption><div class="dsd-plate dr "><div class="dr-msg" role="status" style="width:341px;max-width:100%">
+  <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.4a5.9 5.9 0 0 0-5.9 5.9c0 4.1-1.5 5.3-1.5 5.3h14.8s-1.5-1.2-1.5-5.3A5.9 5.9 0 0 0 12 3.4Z"/><path d="M10.1 18a2.1 2.1 0 0 0 3.8 0"/></svg></span>
+  <span class="dr-msg__title">No notifications yet</span>
+  <p class="dr-msg__body">Nothing has been sent to you yet. Start an order and its updates land here.</p>
+  <div class="dr-msg__actions">
+    <a class="dr-btn dr-btn--primary" href="#">Browse services</a>
+  </div>
 </div></div>
-<p>Neutral mark, <code>--media</code> under slate, 5.51:1. <code>role="status"</code>, and one way out.</p></figure><figure class="dsd-variant" id="variant-error"><figcaption><h3>Error</h3></figcaption><div class="dsd-plate dr "><div class="dr-msg" style="width:341px;max-width:100%" role="alert">
-  <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24"><g opacity=".55"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g></svg></span>
-  <span class="dr-msg__title">Live tracking lost</span>
-  <span class="dr-msg__body">We’ve lost the live signal from the operator’s device. Your order is still active.</span>
-  <span class="dr-msg__actions">
-    <button class="dr-btn dr-btn--primary" type="button">Try again</button>
-    <button class="dr-btn dr-btn--secondary" type="button">Contact support</button>
-  </span>
+<p>Neutral mark, <code>--media</code> under slate, 5.51:1. <code>role="status"</code>, and one way out. From <code>notifications-empty</code>.</p></figure><figure class="dsd-variant" id="variant-error"><figcaption><h3>Error</h3></figcaption><div class="dsd-plate dr "><div class="dr-msg" role="alert" style="width:341px;max-width:100%">
+  <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2.4"/><path d="M3 10.4h18"/><path d="M4 4l16 16"/></svg></span>
+  <span class="dr-msg__title">Withdrawal didn't go through</span>
+  <p class="dr-msg__body">The transfer to your card failed and the &#8372;1,500 is back in your balance. Check the card details, or try a bank transfer instead.</p>
+  <div class="dr-msg__actions">
+    <a class="dr-btn dr-btn--primary" href="#">Try again</a>
+    <a class="dr-btn dr-btn--secondary" href="#">Use bank transfer</a>
+  </div>
 </div></div>
-<p><code>--danger</code>: <code>--danger-wash</code> under <code>--danger-ink</code>, 5.49:1. <code>role="alert"</code>, with <em>Try again</em> and <em>Contact support</em> as the exits.</p></figure><figure class="dsd-variant" id="variant-notice"><figcaption><h3>Notice</h3></figcaption><div class="dsd-plate dr "><div class="dr-msg" style="width:341px;max-width:100%" role="status">
-  <span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5"/><path d="M9.5 3.2h5"/><path d="M12 6.5v-3.3"/></svg></span>
-  <span class="dr-msg__title">Running a few minutes late</span>
-  <span class="dr-msg__body">Traffic near the drop-off is slowing your operator. They’re still on the way.</span>
-  <span class="dr-msg__actions">
-    <button class="dr-btn dr-btn--primary" type="button">Keep waiting</button>
-    <button class="dr-btn dr-btn--secondary" type="button">Contact support</button>
-  </span>
+<p><code>--danger</code>: <code>--danger-wash</code> under <code>--danger-ink</code>, 5.49:1. <code>role="alert"</code>, with <em>Try again</em> on top and a second exit below. From <code>withdraw-error</code>. Not every error takes the danger mark: <code>contact-support-error</code>, <code>inspection-report-error</code>, <code>operator-signup-error</code>, <code>order-confirmed-error</code> and <code>payment-error</code> carry the neutral mark under <code>role="alert"</code>.</p></figure><figure class="dsd-variant" id="variant-notice"><figcaption><h3>Notice</h3></figcaption><div class="dsd-plate dr "><div class="dr-msg" role="status" style="width:341px;max-width:100%">
+  <span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.3 2"/></svg></span>
+  <span class="dr-msg__title">Job expired</span>
+  <p class="dr-msg__body">You didn't respond in time, so this job was reassigned to another operator. New jobs will appear here.</p>
+  <div class="dr-msg__actions">
+    <a class="dr-btn dr-btn--primary" href="#">Back to Jobs</a>
+  </div>
 </div></div>
-<p><code>--warn</code>: <code>--warn-wash</code> under <code>--warn-ink</code>, 5.65:1. Something changed, nothing failed.</p></figure></div></section>
-  <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>One component doing three jobs: the empty state, the error and the notice. It stands on every <code>-empty</code> and <code>-error</code> screen in the set and on the screens that report a delay, from <code>order-history-empty</code> to <code>tracking-error</code>. No empty or error screen is a dead end, so the block always ends on at least one action. The state is told by the mark's glyph and the title, with the wash as a second carrier, never by colour alone. When the empty state carries a picture, it is the <a href="banner-message.html">banner message</a>.</p>
+<p><code>--warn</code>: <code>--warn-wash</code> under <code>--warn-ink</code>, 5.65:1. Something changed, nothing failed. From <code>job-offer-empty</code>. The warn mark stands on 7 screens: <code>job-brief-error</code>, <code>job-checklist-error</code>, <code>job-offer-empty</code>, <code>operator-dispute-error</code> and the three <code>tracking*-empty</code> late notices.</p></figure></div></section>
+  <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>One component doing three jobs: the empty state, the error and the notice. It stands on 32 screen files, every one an <code>-empty</code> or <code>-error</code> state, from <code>listings-error</code> to <code>withdraw-error</code>; the 33rd, <code>order-history-empty</code>, carries the <a href="banner-message.html">banner message</a>. No empty or error screen is a dead end. On 25 of the 32 the exits sit in the block's own <code>__actions</code>; on the other 7 (<code>contact-support-error</code>, <code>onboarding-client-empty</code>, <code>operator-signup-error</code>, <code>operator-verification-error</code>, <code>payment-error</code>, <code>report-issue-empty</code>, <code>signin-error</code>) the block ends on its body and the exits stand in the screen's action bar. The state is told by the mark's glyph and the title, with the wash as a second carrier, never by colour alone.</p>
+<p>The screens build the title two ways: a <code>span</code> in 25 files and a <code>p</code> in 7 (<code>order-confirmed-error</code>, <code>tracking-empty</code>, <code>tracking-error</code>, <code>tracking-aerial-empty</code>, <code>tracking-aerial-error</code>, <code>tracking-inspection-empty</code>, <code>tracking-inspection-error</code>). The body is a <code>p</code> and the actions a <code>div</code> everywhere. The live role is <code>alert</code> on 15 blocks and <code>status</code> on 12; five carry none (<code>onboarding-client-empty</code>, <code>tracking-empty</code>, <code>tracking-aerial-empty</code>, <code>tracking-inspection-empty</code>, <code>wallet-empty</code>).</p>
 <p>The copy follows voice.md's state tone. Empty: why it is empty, then one way out. Error: what happened, what it means for the user's order or money, and what to do, with no apology and no joke. The verbs are fixed: <em>Try again</em> to recover, <em>Contact support</em> to reach a person. No <em>Oops</em>, no exclamation marks.</p>
 <p class="dsd-sources">Sources: DESIGN.md § Message block · § State marks · voice.md § Microcopy (Empty state, Error) · P5 · inventory.md § 1.3</p></section>
   <section aria-labelledby="s-rule"><h2 id="s-rule">Rule and anti-rule</h2>
     <div class="dsd-rules">
-      <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><div class="dr-msg" style="width:341px;max-width:100%" role="alert">
-  <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24"><g opacity=".55"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g></svg></span>
-  <span class="dr-msg__title">Live tracking lost</span>
-  <span class="dr-msg__body">We’ve lost the live signal from the operator’s device. Your order is still active.</span>
-  <span class="dr-msg__actions">
-    <button class="dr-btn dr-btn--primary" type="button">Try again</button>
-    <button class="dr-btn dr-btn--secondary" type="button">Contact support</button>
-  </span>
+      <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><div class="dr-msg" role="alert" style="width:341px;max-width:100%">
+  <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity=".55"><path d="M3.2 10.6a13 13 0 0 1 17.6 0"/><path d="M6.8 14.8a8 8 0 0 1 10.4 0"/><path d="M10.4 19a3 3 0 0 1 3.2 0"/></g></svg></span>
+  <p class="dr-msg__title">Live tracking lost</p>
+  <p class="dr-msg__body">We've lost the live signal from the operator's device. Your order is still active.</p>
+  <div class="dr-msg__actions">
+    <a class="dr-btn dr-btn--primary" href="#">Try again</a>
+    <a class="dr-btn dr-btn--secondary" href="#">Contact support</a>
+  </div>
 </div></div>
 <p><code>tracking-error</code>: the fact, what it costs (nothing; the order is still active) and two exits. It stays on screen until the user acts, which is why an error lives here and not in a toast.</p></div>
-      <div class="dsd-rule dsd-rule--dont"><h3>Don&rsquo;t</h3><div class="dsd-plate dr dsd-plate--anti"><div class="dr-msg" style="width:341px;max-width:100%" role="status">
-  <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+      <div class="dsd-rule dsd-rule--dont"><h3>Don&rsquo;t</h3><div class="dsd-plate dr dsd-plate--anti"><div class="dr-msg" role="status" style="width:341px;max-width:100%">
+  <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
   <span class="dr-msg__title">Delivered</span>
-  <span class="dr-msg__body">Your parcel arrived at 10:07.</span>
-  <span class="dr-msg__actions"><button class="dr-btn dr-btn--primary" type="button">Rate this order</button></span>
+  <p class="dr-msg__body">Your parcel arrived at 10:07.</p>
+  <div class="dr-msg__actions">
+    <a class="dr-btn dr-btn--primary" href="#">Rate this order</a>
+  </div>
 </div></div>
 <p>A success drawn as a message block. Success is a screen of its own, with the milestone well and the display title: use the <a href="outcome.html">outcome</a>. For a confirmation of an action that leaves no other trace, use a <a href="toast.html">toast</a>.</p></div>
     </div></section>

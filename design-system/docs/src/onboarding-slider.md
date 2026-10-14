@@ -36,8 +36,8 @@ kit: 1520
     <div class="dr-pager" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
   </main>
   <footer class="dr-actionbar">
-    <a class="dr-btn dr-btn--secondary dr-btn--block" href="#">Skip</a>
     <a class="dr-btn dr-btn--primary dr-btn--block" href="#">Get started</a>
+    <a class="dr-btn dr-btn--secondary dr-btn--block" href="#">Skip</a>
   </footer>
 </div>
 ```
@@ -48,7 +48,7 @@ kit: 1520
 - `.dr-lead` — The sub-line under the heading. No type class was made for slides.
 - `.dr-slide__art` — The picture in what is left of the slide, with 32 of air above and below. `object-fit: contain`, never `cover`, so a real photograph or cutout is never cropped.
 - `.dr-pager` — One pager for the whole slider, under it. The lit dot is `--color-action` and the rest are `--bg-muted`. `ui/kit.js` moves `.on` as the user swipes, and this page runs no script.
-- `.dr-actionbar` — *Skip* as a secondary and *Get started* as the primary, one per row.
+- `.dr-actionbar` — *Get started*, the primary, on top, and *Skip*, a secondary, under it, one per row. The primary is on top in every action bar (rev 290).
 
 ## Variants
 
@@ -79,8 +79,8 @@ kit: 1520
     <div class="dr-pager" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
   </main>
   <footer class="dr-actionbar">
-    <a class="dr-btn dr-btn--secondary dr-btn--block" href="#">Skip</a>
     <a class="dr-btn dr-btn--primary dr-btn--block" href="#">Get started</a>
+    <a class="dr-btn dr-btn--secondary dr-btn--block" href="#">Skip</a>
   </footer>
 </div>
 ```
@@ -122,8 +122,8 @@ Sources: DESIGN.md § The onboarding carousel · inventory.md § 1 Onboarding ca
     <div class="dr-pager" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
   </main>
   <footer class="dr-actionbar">
-    <a class="dr-btn dr-btn--secondary dr-btn--block" href="#">Skip</a>
     <a class="dr-btn dr-btn--primary dr-btn--block" href="#">Get started</a>
+    <a class="dr-btn dr-btn--secondary dr-btn--block" href="#">Skip</a>
   </footer>
 </div>
 ```
@@ -133,7 +133,7 @@ Sources: DESIGN.md § The onboarding carousel · inventory.md § 1 Onboarding ca
 ## Anti-rule
 
 ```html
-<footer class="dr dr-actionbar" style="width:375px;max-width:100%"><a class="dr-btn dr-btn--tertiary" href="#">Skip</a><a class="dr-btn dr-btn--primary dr-btn--block" href="#">Get started</a></footer>
+<footer class="dr dr-actionbar" style="width:375px;max-width:100%"><a class="dr-btn dr-btn--primary dr-btn--block" href="#">Get started</a><a class="dr-btn dr-btn--tertiary" href="#">Skip</a></footer>
 ```
 
 *Skip* drawn as a borderless tertiary on the bottom edge. In the action bar every button is filled. Make it a [secondary](button.html#variant-secondary). Do not use `--bleed` or the slider anywhere outside these three screens. To show progress through steps that ask for input, use the [pager](pager.html) or the [progress rail](progress-rail.html).

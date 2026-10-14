@@ -23,15 +23,15 @@
 <main id="main" class="dsd-main">
   <p class="dsd-crumb"><a href="index.html">Components</a> / Shell</p>
   <h1>Nav-bar avatar</h1>
-  <p class="dsd-meta"><code>.dr-avatar-sm · .dr-op__name</code> &middot; <a href="../components/avatar.css · card.css"><code>components/avatar.css · card.css</code></a>
+  <p class="dsd-meta"><code>.dr-avatar-sm · .dr-op__name</code> &middot; <a href="../components/avatar.css"><code>components/avatar.css</code></a> &middot; <a href="../components/card.css"><code>components/card.css</code></a>
     &middot; <a href="../../ui/kit.html">kit specimen</a></p>
-  <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><header class="dr dr-topbar" style="width:375px;max-width:100%">
+  <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><header class="topbar dr-topbar" style="width:375px;max-width:100%">
   <span class="dr-avatar-sm"><img src="../../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
   <span class="dr-op__name">Ivan K.</span>
   <span class="dr-topbar__spacer"></span>
-</header></div></div><ol class="dsd-parts"><li data-sel=".dr-avatar-sm"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-avatar-sm</code><span class="dsd-part__txt">The disc: 28px, <code>--media</code> ground, radius 999, <code>overflow: hidden</code>.</span></li><li data-sel=".dr-avatar-sm img"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-avatar-sm img</code><span class="dsd-part__txt">The operator's photograph, <code>object-fit: cover</code>, <code>alt=""</code> because the name beside it says who it is.</span></li><li data-sel=".dr-op__name"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-op__name</code><span class="dsd-part__txt">The operator's name, 8 after the disc, at the heading step in <code>--ink</code>.</span></li></ol></div></section>
+</header></div></div><ol class="dsd-parts"><li data-sel=".dr-avatar-sm"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-avatar-sm</code><span class="dsd-part__txt">The disc: 28px, <code>--bg-well</code> ground, radius 999, <code>overflow: hidden</code>.</span></li><li data-sel=".dr-avatar-sm img"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-avatar-sm img</code><span class="dsd-part__txt">The operator's photograph, <code>object-fit: cover</code>, <code>alt=""</code> because the name beside it says who it is.</span></li><li data-sel=".dr-op__name"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-op__name</code><span class="dsd-part__txt">The operator's name, 8 after the disc (the bar's gap), at the heading step, 15/600, in <code>--text-primary</code>.</span></li></ol></div></section>
   <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
-    <p class="dsd-lede">Inventory rows: Nav-bar avatar.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-operator-s-bar"><figcaption><h3>Operator's bar</h3></figcaption><div class="dsd-plate dr "><header class="dr dr-topbar" style="width:375px;max-width:100%">
+    <p class="dsd-lede">Inventory rows: Nav-bar avatar.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-operator-s-bar"><figcaption><h3>Operator's bar</h3></figcaption><div class="dsd-plate dr "><header class="topbar dr-topbar" style="width:375px;max-width:100%">
   <span class="dr-avatar-sm"><img src="../../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
   <span class="dr-op__name">Ivan K.</span>
   <span class="dr-topbar__spacer"></span>
@@ -40,20 +40,20 @@
     <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4a5.9 5.9 0 0 0-5.9 5.9c0 4.1-1.5 5.3-1.5 5.3h14.8s-1.5-1.2-1.5-5.3A5.9 5.9 0 0 0 12 3.4Z"/><path d="M10.1 18a2.1 2.1 0 0 0 3.8 0"/></svg><span class="dr-count-badge" aria-hidden="true">3</span>
   </a>
 </header></div>
-<p>The whole bar of <code>operator-listings</code>: face, name, the <a href="availability.html">availability badge</a> and the <a href="notification-bell.html">notification bell</a>, in one 56px row. The one size the component has.</p></figure></div></section>
+<p>The whole bar of <code>operator-listings</code>: face, name, the <a href="availability.html">availability badge</a> and the <a href="notification-bell.html">notification bell</a>, in one 56px row, 8 apart. The one size the component has. The screens split on the bell: <code>operator-listings</code> draws it, <code>operator-listings-empty</code> draws the same bar with the badge at <em>Offline</em> and no bell.</p></figure></div></section>
   <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>The nav-bar avatar puts the operator's own face at the leading edge of his home bar, where the client's bar carries the DRON mark. It stands on <code>operator-listings</code> and <code>operator-listings-empty</code> only.</p>
-<p>28 is derived, not picked: the nav bar is 56, so the disc is exactly half the bar and centres with 14 above and below (measured 13.6 / 14.4, the 0.8 being the bar's hairline). None of the other avatar rungs fits a bar: 117 is the operator panel's width, 120 is a subject, 176 is a call screen's middle, and 20 is a badge on an avatar. The disc's <code>--media</code> ground closed the last place a painted page read a colour from the grayscale sheet.</p>
+<p>28 is derived, not picked: the nav bar is 56, so the disc is exactly half the bar and centres with 14 above and below (measured 13.6 / 14.4, the 0.8 being the bar's hairline). None of the other avatar rungs fits a bar: 117 is the operator panel's width, 120 is a subject, 176 is a call screen's middle, and 20 is a badge on an avatar. The disc's <code>--bg-well</code> ground closed the last place a painted page read a colour from the grayscale sheet.</p>
 <p>The name is the operator's own short form: first name and initial, <em>Ivan K.</em></p>
 <p class="dsd-sources">Sources: DESIGN.md § The nav-bar avatar · ui/kit.html § Nav bar · operator home · inventory.md § 1 (Nav-bar avatar)</p></section>
   <section aria-labelledby="s-rule"><h2 id="s-rule">Rule and anti-rule</h2>
     <div class="dsd-rules">
-      <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><header class="dr dr-topbar" style="width:375px;max-width:100%">
+      <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><header class="topbar dr-topbar" style="width:375px;max-width:100%">
   <span class="dr-avatar-sm"><img src="../../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
   <span class="dr-op__name">Ivan K.</span>
   <span class="dr-topbar__spacer"></span>
 </header></div>
 <p>On the operator's home: who is signed in, at the leading edge, half the bar's height.</p></div>
-      <div class="dsd-rule dsd-rule--dont"><h3>Don&rsquo;t</h3><div class="dsd-plate dr dsd-plate--anti"><header class="dr dr-topbar" style="width:375px;max-width:100%">
+      <div class="dsd-rule dsd-rule--dont"><h3>Don&rsquo;t</h3><div class="dsd-plate dr dsd-plate--anti"><header class="topbar dr-topbar" style="width:375px;max-width:100%">
   <span class="dr-avatar-md"><img src="../../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
   <span class="dr-op__name">Ivan K.</span>
   <span class="dr-topbar__spacer"></span>

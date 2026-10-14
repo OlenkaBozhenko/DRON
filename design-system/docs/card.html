@@ -25,47 +25,45 @@
   <h1>Card shapes</h1>
   <p class="dsd-meta"><code>.dr-card · --row · --compact · .dr-listing__body · __name · __desc · __meta</code> &middot; <a href="../components/card.css"><code>components/card.css</code></a>
     &middot; <a href="../../ui/kit.html">kit specimen</a></p>
-  <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><article class="dr dr-card dr-card--row" style="width:341px;max-width:100%">
-      <span class="dr-listing__body">
-        <span class="dr-listing__name">Package delivery</span>
-        <span class="dr-listing__desc">2.3 km &#183; ~18 min</span>
-        <span class="dr-listing__meta"><span><span class="dr-sr">Pay</span><span class="dr-number">&#8372;180</span></span></span>
-      </span>
-      <span class="dr-well"><img src="../../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
-    </article></div></div><ol class="dsd-parts"><li data-sel=".dr-card"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-card</code><span class="dsd-part__txt">The surface: <code>--bg-surface</code> on the page, a 1.11:1 tone step, radius 16, no border, no shadow. Inset 24 / 20 on a list card.</span></li><li data-sel=".dr-listing__name"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-listing__name</code><span class="dsd-part__txt">The name, 15/600 in <code>--text-primary</code>, 14.37:1.</span></li><li data-sel=".dr-listing__desc"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-listing__desc</code><span class="dsd-part__txt">One line of description, 13/400 in <code>--text-muted</code>, 5.95:1, 2 under the name.</span></li><li data-sel=".dr-listing__meta"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-listing__meta</code><span class="dsd-part__txt">The money line: the figure is a <code>.dr-number</code>, 20/700 tabular, with its word (<em>Pay</em>) in <code>.dr-sr</code> for a screen reader only.</span></li><li data-sel=".dr-well"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-well</code><span class="dsd-part__txt">The drone doing the job, a 96 × 96 cutout with no ground, after the body.</span></li></ol></div></section>
-  <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
-    <p class="dsd-lede">Inventory rows: Card; Listing card.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-default"><figcaption><h3>Default</h3></figcaption><div class="dsd-plate dr "><article class="dr dr-card" style="width:341px;max-width:100%">
-      <span class="dr-card__row">
+  <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><article class="dr-card dr-card--row" style="width:341px;max-width:100%">
         <span class="dr-listing__body">
           <span class="dr-listing__name">Package delivery</span>
-          <span class="dr-listing__meta"><span class="dr-listing__desc">Today, 10:07</span></span>
+          <span class="dr-listing__desc">2.3 km · ~18 min</span>
+          <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴180</span></span></span>
         </span>
-        <span><span class="dr-sr">Earned </span><span class="dr-number">&#8372;180</span></span>
-      </span>
-      <span class="dr-card__actions">
-        <span class="dr-btn dr-btn--secondary">View details</span>
-      </span>
-    </article></div>
-<p>A column: inset 24 / 20, 20 between groups. Its parts are the <a href="card-row.html">card row</a>, the <a href="card-actions.html">card action slot</a> and the <a href="order-card.html">order card</a>'s blocks.</p></figure><figure class="dsd-variant" id="variant-row"><figcaption><h3>Row</h3></figcaption><div class="dsd-plate dr "><article class="dr dr-card dr-card--row" style="width:341px;max-width:100%">
-      <span class="dr-listing__body">
-        <span class="dr-listing__name">Package delivery</span>
-        <span class="dr-listing__desc">2.3 km &#183; ~18 min</span>
-        <span class="dr-listing__meta"><span><span class="dr-sr">Pay</span><span class="dr-number">&#8372;180</span></span></span>
-      </span>
-      <span class="dr-well"><img src="../../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
-    </article></div>
-<p><code>--row</code> turns the card itself into a row, gap 12. Body first, picture after, so the name is read first and the drone is glanced at. On <code>job-offer</code>.</p></figure><figure class="dsd-variant" id="variant-row-without-a-picture"><figcaption><h3>Row without a picture</h3></figcaption><div class="dsd-plate dr "><article class="dr-card dr-card--row" style="width:341px;max-width:100%">
+        <span class="dr-well"><img src="../../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
+      </article></div></div><ol class="dsd-parts"><li data-sel=".dr-card"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-card</code><span class="dsd-part__txt">The surface: <code>--bg-surface</code> on the page, a 1.11:1 tone step, radius 16, no border, no shadow. Inset 24 / 20. Below 390 wide the inset is 24 / 16 and the gap 18.</span></li><li data-sel=".dr-listing__name"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-listing__name</code><span class="dsd-part__txt">The name, 15/600 at line-height 1.2, in <code>--text-primary</code>, 14.37:1.</span></li><li data-sel=".dr-listing__desc"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-listing__desc</code><span class="dsd-part__txt">One line of description, 13/400 at line-height 1.4, in <code>--text-muted</code>, 5.95:1, 2 under the name.</span></li><li data-sel=".dr-listing__meta"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-listing__meta</code><span class="dsd-part__txt">The money line, 6 under the description, items 8 apart: the figure is a <code>.dr-number</code>, 20/700 tabular, with its word (<em>Pay</em>) in <code>.sr-only</code> for a screen reader only.</span></li><li data-sel=".dr-well"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-well</code><span class="dsd-part__txt">The drone doing the job, a 96 × 96 cutout with no ground, radius 13, padding 4, after the body. 68 × 68 below 390 wide.</span></li></ol></div></section>
+  <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
+    <p class="dsd-lede">Inventory rows: Card; Listing card.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-default"><figcaption><h3>Default</h3></figcaption><div class="dsd-plate dr "><article class="dr-card" style="width:341px;max-width:100%">
+              <span class="dr-card__row">
+                <span class="dr-listing__body">
+                  <span class="dr-listing__name">Package delivery</span>
+                  <span class="dr-listing__meta"><span class="dr-listing__desc">Today, 10:07</span></span>
+                </span>
+                <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;180</span></span>
+              </span>
+              <span class="dr-card__actions">
+                <a class="dr-btn dr-btn--secondary" href="#" aria-label="View details &#8212; Package delivery, today at 10:07">View details</a>
+              </span>
+            </article></div>
+<p>A column: inset 24 / 20, 20 between groups. Its parts are the <a href="card-row.html">card row</a>, the <a href="card-actions.html">card action slot</a> and the <a href="order-card.html">order card</a>'s blocks. This one is an earning on <code>wallet</code>. Six screens build the plain card: <code>wallet</code>, <code>order-history</code>, <code>order-history-loading</code>, <code>operator-listings</code>, <code>account-photo</code> and <code>operator-account-photo</code>.</p></figure><figure class="dsd-variant" id="variant-row"><figcaption><h3>Row</h3></figcaption><div class="dsd-plate dr "><article class="dr-card dr-card--row" style="width:341px;max-width:100%">
+        <span class="dr-listing__body">
+          <span class="dr-listing__name">Package delivery</span>
+          <span class="dr-listing__desc">2.3 km · ~18 min</span>
+          <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴180</span></span></span>
+        </span>
+        <span class="dr-well"><img src="../../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
+      </article></div>
+<p><code>--row</code> turns the card itself into a row, items centred, gap 12. Body first, picture after, so the name is read first and the drone is glanced at. On <code>job-offer</code>, <code>job-offer-inspection</code>, <code>operator-dispute</code> and <code>operator-dispute-error</code>.</p></figure><figure class="dsd-variant" id="variant-row-without-a-picture"><figcaption><h3>Row without a picture</h3></figcaption><div class="dsd-plate dr "><article class="dr-card dr-card--row" style="width:341px;max-width:100%">
               <div class="dr-listing__body">
                 <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
                 <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
                 <span class="dr-listing__meta"><span class="dr-chip">Package delivery</span><span class="dr-chip">Today</span></span>
               </div>
             </article></div>
-<p>The same row with the well left out and chips on the meta line. A review on <code>ratings</code>; the score is the <a href="earned-score.html">earned score</a>.</p></figure><figure class="dsd-variant" id="variant-compact"><figcaption><h3>Compact</h3></figcaption><div class="dsd-plate dr "><article class="dr dr-card dr-card--compact" style="width:341px;max-width:100%">
-      <span class="dr-listing__body">Leave with the concierge, entrance code 4417.</span>
-    </article></div>
-<p>Inset 20 / 16 and gap 12 instead of 24 / 20 and 20. Holds one note, as on <code>job-brief</code>.</p></figure></div></section>
-  <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>A card is one object on a flat page: separated by a warm tone step and the 16 radius, never by a border or a shadow, and with no hover lift. Inside it the rhythm is 20 between groups and 4 or 8 within one; between cards it is the <a href="list.html">list</a>'s gap, which is always larger. The listing card has three elements and no more: the drone doing the job, the name, one line of description. It carries no chevron.</p>
+<p>The same row with the well left out and chips on the meta line. A review on <code>ratings</code>; the score is the <a href="earned-score.html">earned score</a>. <code>inspection-report</code> builds the same shape for its three findings.</p></figure><figure class="dsd-variant" id="variant-compact"><figcaption><h3>Compact</h3></figcaption><div class="dsd-plate dr "><article class="dr-card dr-card--compact" style="width:341px;max-width:100%"><span class="dr-listing__body">Leave with the concierge, entrance code 4417.</span></article></div>
+<p>Inset 20 / 16 and gap 12 instead of 24 / 20 and 20; below 390 wide the inset is 16 / 16 and the gap 18. Holds one note, as on <code>job-brief</code>. Five screens build it. Three hold the client's note as <code>.dr-listing__body</code> (<code>job-brief</code>, <code>job-brief-inspection</code>, <code>job-offer-inspection</code>); <code>job-brief-aerial</code> holds its empty note as <code>.dr-listing__desc</code>; <code>operator-dispute</code> holds the client's issue as a caption, a <code>.dr-lead</code> quote and a chip.</p></figure></div></section>
+  <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>A card is one object on a flat page: separated by a warm tone step and the 16 radius, never by a border or a shadow, and with no hover lift. Inside it the rhythm is 20 between groups and 4 or 8 within one; between cards it is the <a href="list.html">list</a>'s gap, which is always larger. The listing card holds the drone doing the job, the name, one line of description and, on <code>job-offer</code>, the money line. It carries no chevron.</p>
 <p>The cover card is a shape of its own with no inset; see <a href="cover-card.html">Cover card</a>. A card that is one tap target takes an empty stretched anchor; see <a href="card-link.html">Card that is one link</a>. The service-card modifier <code>.dr-listing--service</code> (title 17/400) is declared in <code>components/card.css</code> but no wireframe draws it any more, so it has no live block here.</p>
 <p>The name is the dictionary word for the thing (<em>Package delivery</em>, a reviewer's name), the description is a fact with a number in it (<em>2.3 km · ~18 min</em>), and money is a figure with its meaning given to a screen reader in <code>.dr-sr</code>.</p>
 <p class="dsd-sources">Sources: DESIGN.md § Cards · § Do's and Don'ts · inventory.md § 1.3 (Card, Listing card) · ui/kit.html Card, the other three shapes</p></section>
@@ -85,7 +83,7 @@
               </div>
             </article></li></ul></div>
 <p>Flat cards of one shape, set apart by the list's gap and the tone step alone, as <code>ratings</code> draws them.</p></div>
-      <div class="dsd-rule dsd-rule--dont"><h3>Don&rsquo;t</h3><div class="dsd-plate dr dsd-plate--anti"><article class="dr dr-card dr-card--row" style="width:341px;max-width:100%">
+      <div class="dsd-rule dsd-rule--dont"><h3>Don&rsquo;t</h3><div class="dsd-plate dr dsd-plate--anti"><article class="dr-card dr-card--row" style="width:341px;max-width:100%">
       <span class="dr-listing__body">
         <span class="dr-listing__name">Package delivery</span>
         <span class="dr-listing__desc">2.3 km &#183; ~18 min</span>

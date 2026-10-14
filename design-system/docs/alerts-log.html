@@ -26,92 +26,114 @@
   <p class="dsd-meta"><code>.dr-log · .dr-sect · .dr-choice · __head · __title · __desc · .dr-chip--unread</code> &middot; <a href="../components/progress.css"><code>components/progress.css</code></a>
     &middot; <a href="../../ui/kit.html">kit specimen</a></p>
   <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><div class="dr dr-log" style="width:341px;max-width:100%">
-  <section>
-    <h2 class="dr-sect">Today</h2>
-    <ul class="dr-list dr-list--snug" style="list-style:none">
-      <li><a class="dr-choice" href="#">
-        <span class="dr-choice__body">
-          <span class="dr-choice__head">
-            <span class="dr-choice__title">Your delivery photo is ready</span><span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+  <section aria-labelledby="al-today">
+    <h2 class="dr-sect" id="al-today">Today</h2>
+    <ul class="dr-list dr-list--snug" style="list-style:none;">
+      <li>
+        <a class="dr-choice" href="#">
+          <span class="dr-choice__body">
+            <span class="dr-choice__head">
+              <span class="dr-choice__title">Your delivery photo is ready</span>
+              <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+            </span>
+            <span class="dr-choice__desc">Package delivery &#183; 10:12</span>
           </span>
-          <span class="dr-choice__desc">Package delivery · 10:12</span>
-        </span>
-      </a></li>
-      <li><a class="dr-choice" href="#">
-        <span class="dr-choice__body">
-          <span class="dr-choice__head">
-            <span class="dr-choice__title">Ivan is 2 minutes away</span><span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+        </a>
+      </li>
+      <li>
+        <a class="dr-choice" href="#">
+          <span class="dr-choice__body">
+            <span class="dr-choice__head">
+              <span class="dr-choice__title">Ivan is 2 minutes away</span>
+              <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+            </span>
+            <span class="dr-choice__desc">Package delivery &#183; 10:03</span>
           </span>
-          <span class="dr-choice__desc">Package delivery · 10:03</span>
-        </span>
-      </a></li>
+        </a>
+      </li>
     </ul>
   </section>
-  <section>
-    <h2 class="dr-sect">Yesterday</h2>
-    <ul class="dr-list dr-list--snug" style="list-style:none">
-      <li><a class="dr-choice" href="#">
-        <span class="dr-choice__body">
-          <span class="dr-choice__head">
-            <span class="dr-choice__title">Order completed</span>
+  <section aria-labelledby="al-yesterday">
+    <h2 class="dr-sect" id="al-yesterday">Yesterday</h2>
+    <ul class="dr-list dr-list--snug" style="list-style:none;">
+      <li>
+        <a class="dr-choice" href="#">
+          <span class="dr-choice__body">
+            <span class="dr-choice__title">Rate your order</span>
+            <span class="dr-choice__desc">Package delivery &#183; 14:41</span>
           </span>
-          <span class="dr-choice__desc">Inspection · 17:40</span>
-        </span>
-      </a></li>
+        </a>
+      </li>
     </ul>
   </section>
-</div></div></div><ol class="dsd-parts"><li data-sel=".dr-log"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-log</code><span class="dsd-part__txt">The column of day groups, 28 apart. Rows inside a group are 8 apart (<code>.dr-list--snug</code>).</span></li><li data-sel=".dr-sect"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-sect</code><span class="dsd-part__txt">The day heading, a real <code>&lt;h2&gt;</code>: 13/600 <code>--text-muted</code> on the page at 6.62:1, with 12 below it. A screen reader can jump through the days.</span></li><li data-sel=".dr-choice"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-choice</code><span class="dsd-part__txt">The row: the kit's tappable list row on <code>--card</code> at radius 16, 73.78 tall (<code>HIG · 44pt</code> 177%). It has no arrow.</span></li><li data-sel=".dr-choice__title"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-choice__title</code><span class="dsd-part__txt">What happened, 17/400 <code>--ink</code> at 14.37:1.</span></li><li data-sel=".dr-chip--unread"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-chip--unread</code><span class="dsd-part__txt"><em>New</em>, a word on the row: <code>--bg-accent-tint</code> behind <code>--text-primary</code>, 14.75:1 at 11/600. It has no dot.</span></li><li data-sel=".dr-choice__desc"><span class="dsd-pin-n" aria-hidden="true">6</span><code>.dr-choice__desc</code><span class="dsd-part__txt">The order it belongs to and the time it arrived, 13 <code>--text-muted</code> at 5.95:1. It is the row's proof (voice P2).</span></li></ol></div></section>
+</div></div></div><ol class="dsd-parts"><li data-sel=".dr-log"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-log</code><span class="dsd-part__txt">The column of day groups, 28 apart. Each group is a <code>&lt;section&gt;</code> named by its heading (<code>aria-labelledby</code>). Rows inside a group are 8 apart (<code>.dr-list--snug</code>).</span></li><li data-sel=".dr-sect"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-sect</code><span class="dsd-part__txt">The day heading, a real <code>&lt;h2&gt;</code>: 13/600 <code>--text-muted</code> on the page at 6.62:1, with 12 below it. A screen reader can jump through the days.</span></li><li data-sel=".dr-choice"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-choice</code><span class="dsd-part__txt">The row: the kit's tappable list row on <code>--bg-surface</code> at radius 16, padding 16, 78 tall (<code>HIG · 44pt</code> 177%). It has no arrow.</span></li><li data-sel=".dr-choice__title"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-choice__title</code><span class="dsd-part__txt">What happened, 17/600 <code>--text-primary</code> at 14.37:1.</span></li><li data-sel=".dr-chip--unread"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-chip--unread</code><span class="dsd-part__txt"><em>New</em>, a word on the row: <code>--bg-accent-tint</code> behind <code>--text-primary</code>, 14.75:1 at 11/600. It has no dot.</span></li><li data-sel=".dr-choice__desc"><span class="dsd-pin-n" aria-hidden="true">6</span><code>.dr-choice__desc</code><span class="dsd-part__txt">The order it belongs to and the time it arrived, 13 <code>--text-muted</code> at 5.95:1, 4 below the title. It is the row's proof (voice P2).</span></li></ol></div></section>
   <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
     <p class="dsd-lede">Inventory rows: (.dr-log).</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-unread"><figcaption><h3>Unread</h3></figcaption><div class="dsd-plate dr "><a class="dr dr-choice" href="#" style="width:341px;max-width:100%">
   <span class="dr-choice__body">
     <span class="dr-choice__head">
-      <span class="dr-choice__title">Your delivery photo is ready</span><span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+      <span class="dr-choice__title">Your delivery photo is ready</span>
+      <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
     </span>
-    <span class="dr-choice__desc">Package delivery · 10:12</span>
+    <span class="dr-choice__desc">Package delivery &#183; 10:12</span>
   </span>
 </a></div>
 <p>The <em>New</em> chip rides the title line in <code>.dr-choice__head</code>. Unread is carried by a word, so <code>WCAG 1.4.1</code> is not engaged. The tint is decoration that the word does not depend on.</p></figure><figure class="dsd-variant" id="variant-read"><figcaption><h3>Read</h3></figcaption><div class="dsd-plate dr "><a class="dr dr-choice" href="#" style="width:341px;max-width:100%">
   <span class="dr-choice__body">
-    <span class="dr-choice__head">
-      <span class="dr-choice__title">Order completed</span>
-    </span>
-    <span class="dr-choice__desc">Inspection · 17:40</span>
+    <span class="dr-choice__title">Rate your order</span>
+    <span class="dr-choice__desc">Package delivery &#183; 14:41</span>
   </span>
 </a></div>
-<p>The same row without the chip. Nothing else changes, so a row's box does not move when it is read.</p></figure></div></section>
+<p>The same row without the chip. The screens drop the <code>__head</code> wrapper too, so the title sits straight in <code>__body</code>. The title's 23.8 line box is taller than the 21.4 chip, so the row stays 78 tall and does not move when it is read.</p></figure></div></section>
   <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>The alerts log is the screen <code>notifications</code> for the client and <code>operator-notifications</code> for the operator. Alerts are grouped under days and the unread ones carry a word. Headings are relative and then absolute: <em>Today</em>, <em>Yesterday</em>, then <code>d MMMM</code>, day first for Ukraine and Europe with the month spelled out (<code>HIG · Lists and tables</code>). Read state and recency are two separate facts. An alert can be unread under <em>Yesterday</em>, which the old <em>New</em> / <em>Earlier</em> headings could not say.</p>
 <p>The log is not a new component. It is <code>.dr-choice</code> rows in day sections. These alert rows are the only <code>.dr-choice</code> rows that carry <code>__desc</code>, and they carry no chevron. Each row links to the screen the alert is about. It adds no solid green.</p>
-<p>The title states the fact in plain words: <em>Your delivery photo is ready</em>, <em>Ivan is 2 minutes away</em>, <em>Order completed</em>. No exclamation marks and no celebration. The second line is the service and the time: <em>Package delivery · 10:12</em>. With no alerts the screen says <em>No notifications yet</em>, the same title on both sides.</p>
+<p>The title states the fact in plain words: <em>Your delivery photo is ready</em>, <em>Ivan is 2 minutes away</em>, <em>Order completed</em>. No exclamation marks and no celebration. The second line is the service and the time: <em>Package delivery · 10:12</em>. With no alerts the screen says <em>No notifications yet</em>, the same title on both sides (<code>notifications-empty</code>, <code>operator-notifications-empty</code>). The operator log says the same kind of fact: <em>₴720 paid to your balance</em>, <em>Documents approved</em>.</p>
 <p class="dsd-sources">Sources: DESIGN.md § The alert log's list row · § The alert rows carry no arrow · inventory.md § 1 Section heading · microcopy.md § notifications-empty · voice.md P2 · ui/kit.html § Alerts log</p></section>
   <section aria-labelledby="s-rule"><h2 id="s-rule">Rule and anti-rule</h2>
     <div class="dsd-rules">
       <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><div class="dr dr-log" style="width:341px;max-width:100%">
-  <section>
-    <h2 class="dr-sect">Today</h2>
-    <ul class="dr-list dr-list--snug" style="list-style:none">
-      <li><a class="dr-choice" href="#">
-        <span class="dr-choice__body">
-          <span class="dr-choice__head">
-            <span class="dr-choice__title">Ivan is 2 minutes away</span><span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+  <section aria-labelledby="al-r-today">
+    <h2 class="dr-sect" id="al-r-today">Today</h2>
+    <ul class="dr-list dr-list--snug" style="list-style:none;">
+      <li>
+        <a class="dr-choice" href="#">
+          <span class="dr-choice__body">
+            <span class="dr-choice__head">
+              <span class="dr-choice__title">Ivan is 2 minutes away</span>
+              <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+            </span>
+            <span class="dr-choice__desc">Package delivery &#183; 10:03</span>
           </span>
-          <span class="dr-choice__desc">Package delivery · 10:03</span>
-        </span>
-      </a></li>
+        </a>
+      </li>
     </ul>
   </section>
 </div></div>
 <p>One day heading over its alerts, each row naming what happened, which order it belongs to, and when.</p></div>
       <div class="dsd-rule dsd-rule--dont"><h3>Don&rsquo;t</h3><div class="dsd-plate dr dsd-plate--anti"><div class="dr dr-log" style="width:341px;max-width:100%">
-  <section>
-    <h2 class="dr-sect">New</h2>
-    <ul class="dr-list dr-list--snug" style="list-style:none">
-      <li><a class="dr-choice" href="#"><span class="dr-choice__body"><span class="dr-choice__head"><span class="dr-choice__title">Your delivery photo is ready</span></span><span class="dr-choice__desc">Package delivery · 10:12</span></span></a></li>
+  <section aria-labelledby="al-x-new">
+    <h2 class="dr-sect" id="al-x-new">New</h2>
+    <ul class="dr-list dr-list--snug" style="list-style:none;">
+      <li>
+        <a class="dr-choice" href="#">
+          <span class="dr-choice__body">
+            <span class="dr-choice__title">Your delivery photo is ready</span>
+            <span class="dr-choice__desc">Package delivery &#183; 10:12</span>
+          </span>
+        </a>
+      </li>
     </ul>
   </section>
-  <section>
-    <h2 class="dr-sect">Earlier</h2>
-    <ul class="dr-list dr-list--snug" style="list-style:none">
-      <li><a class="dr-choice" href="#"><span class="dr-choice__body"><span class="dr-choice__head"><span class="dr-choice__title">Order completed</span></span><span class="dr-choice__desc">Inspection · 17:40</span></span></a></li>
+  <section aria-labelledby="al-x-earlier">
+    <h2 class="dr-sect" id="al-x-earlier">Earlier</h2>
+    <ul class="dr-list dr-list--snug" style="list-style:none;">
+      <li>
+        <a class="dr-choice" href="#">
+          <span class="dr-choice__body">
+            <span class="dr-choice__title">Rate your order</span>
+            <span class="dr-choice__desc">Package delivery &#183; 14:41</span>
+          </span>
+        </a>
+      </li>
     </ul>
   </section>
 </div></div>

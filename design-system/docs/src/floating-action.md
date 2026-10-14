@@ -14,15 +14,16 @@ kit: 558
 ```html
 <div class="dr" style="position:relative;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
   <div class="dr-main dr-main--fab" style="padding-top:var(--len-16)">
-    <div class="dr-rows"><div class="dr-field"><span class="dr-field__label">Name</span><span class="dr-field__value">Olena H.</span></div></div>
+    <div class="dr-rows" aria-label="Account details"><div class="dr-rows__row"><span class="dr-rows__key">Language</span><span class="dr-rows__val">English</span></div><div class="dr-rows__row"><span class="dr-rows__key">Member since</span><span class="dr-rows__val">2026</span></div></div>
   </div>
-  <span class="dr-btn dr-btn--primary dr-fab"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</span>
+  <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/account-edit.html"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</a>
 </div>
 ```
 
-- `.dr-fab` — The capsule. A [primary button](button.html#variant-primary) with position, `--r-pill`, 20px side padding and `--shadow-raised` added; centred on the frame with `left:50%` and `translateX(-50%)`, 11.2px clear of the tab bar's hairline.
+- `.dr-fab` — The capsule. A [primary button](button.html#variant-primary) with position, the 999 pill radius (`--len-999`), 20px side padding and `--shadow-raised` added; centred on the frame with `left:50%` and `translateX(-50%)`. Its bottom sits at 102 (60 + 30 + 12): the tab bar's 60 row and the 30 home strip, then 12 of air, which leaves it 11px clear of the tab bar's 1px hairline.
 - `.dr-ic` — An optional leading glyph, 20px, drawn in the label's charcoal. Green is never the ink and never the stroke.
-- `.dr-main--fab` — The other half of the component: the scrolling column gives back 72px of `padding-bottom` (44 + 12 + 16) so its last row scrolls clear of the capsule.
+- `.dr-rows` — Copied from `account`: the column the capsule floats over.
+- `.dr-main--fab` — The other half of the component: the scrolling column gives back 72px of `padding-bottom` (44 + 12 + 16) so its last row scrolls clear of the capsule. All three screens that draw the capsule put it on their `<main>`.
 
 ## Variants
 
@@ -31,7 +32,7 @@ kit: 558
 ```html
 <div class="dr" style="position:relative;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
   <div class="dr-main dr-main--fab" style="padding-top:var(--len-16)"></div>
-  <a class="dr-btn dr-btn--primary dr-fab" href="#">Withdraw &#8372;3,240</a>
+  <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/withdraw.html">Withdraw &#8372;3,240</a>
 </div>
 ```
 
@@ -42,7 +43,7 @@ kit: 558
 ```html
 <div class="dr" style="position:relative;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
   <div class="dr-main dr-main--fab" style="padding-top:var(--len-16)"></div>
-  <a class="dr-btn dr-btn--primary dr-fab" href="#"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</a>
+  <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/account-edit.html"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</a>
 </div>
 ```
 
@@ -63,9 +64,9 @@ Sources: DESIGN.md § The floating action · § Elevation & Depth · inventory.m
 ```html
 <div class="dr" style="position:relative;height:240px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
   <div class="dr-main dr-main--fab" style="padding-top:var(--len-16)">
-    <div class="dr-rows"><div class="dr-field"><span class="dr-field__label">Name</span><span class="dr-field__value">Olena H.</span></div></div>
+    <div class="dr-rows" aria-label="Account details"><div class="dr-rows__row"><span class="dr-rows__key">Language</span><span class="dr-rows__val">English</span></div><div class="dr-rows__row"><span class="dr-rows__key">Member since</span><span class="dr-rows__val">2026</span></div></div>
   </div>
-  <a class="dr-btn dr-btn--primary dr-fab" href="#">Withdraw &#8372;3,240</a>
+  <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/withdraw.html">Withdraw &#8372;3,240</a>
 </div>
 ```
 
@@ -76,7 +77,7 @@ One capsule per screen, over a column that wears `.dr-main--fab`, on a tab-root 
 ```html
 <div class="dr" style="position:relative;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
   <div class="dr-main" style="padding-top:var(--len-16)">
-    <div class="dr-rows"><div class="dr-field"><span class="dr-field__label">Name</span><span class="dr-field__value">Olena H.</span></div></div>
+    <div class="dr-rows" aria-label="Account details"><div class="dr-rows__row"><span class="dr-rows__key">Language</span><span class="dr-rows__val">English</span></div><div class="dr-rows__row"><span class="dr-rows__key">Member since</span><span class="dr-rows__val">2026</span></div></div>
   </div>
   <span class="dr-btn dr-btn--primary dr-fab">Contact support</span>
 </div>

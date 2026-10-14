@@ -25,17 +25,29 @@
   <h1>Earned score</h1>
   <p class="dsd-meta"><code>.dr-listing__score</code> &middot; <a href="../components/card.css"><code>components/card.css</code></a>
     &middot; <a href="../../ui/kit.html">kit specimen</a></p>
-  <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><article class="dr-card dr-card--row" style="width:341px;max-width:100%"><div class="dr-listing__body"><span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span><p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p></div></article></div></div><ol class="dsd-parts"><li data-sel=".dr-listing__name"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-listing__name</code><span class="dsd-part__txt">The name the score belongs to; the score rides inside it, on its line.</span></li><li data-sel=".dr-listing__score"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-listing__score</code><span class="dsd-part__txt">The suffix: 12.5/400 in <code>--text-muted</code>, 5.95:1 on the card, tabular figures, 8 from the name.</span></li></ol></div></section>
+  <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><article class="dr-card dr-card--row" style="width:341px;max-width:100%">
+  <div class="dr-listing__body">
+    <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
+    <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
+    <span class="dr-listing__meta"><span class="dr-chip">Package delivery</span><span class="dr-chip">Today</span></span>
+  </div>
+</article></div></div><ol class="dsd-parts"><li data-sel=".dr-listing__name"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-listing__name</code><span class="dsd-part__txt">The name the score belongs to; the score rides inside it, on its line.</span></li><li data-sel=".dr-listing__score"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-listing__score</code><span class="dsd-part__txt">The suffix: 12.5/400 in <code>--text-muted</code>, 5.95:1 on the card, tabular figures, 8 from the name.</span></li><li data-sel=".dr-listing__meta"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-listing__meta</code><span class="dsd-part__txt">The review's service and date, as chips under the quote.</span></li></ol></div></section>
   <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
     <p class="dsd-lede">Inventory rows: (.dr-listing__score, .dr-stars).</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-inline-suffix"><figcaption><h3>Inline suffix</h3></figcaption><div class="dsd-plate dr "><span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span></div>
-<p>The only variant in <code>components/</code>. A long name pushes the number along instead of colliding with it, and a card with no score leaves no empty slot.</p></figure></div></section>
+<p>The only variant in <code>components/</code>. One screen builds it: <code>ratings</code>, on all three review cards. A long name pushes the number along instead of colliding with it, and a card with no score leaves no empty slot.</p></figure></div></section>
   <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>The earned score is a score somebody else gave, not a score being given. On <code>ratings</code> it sits beside each reviewer's name as <code>· 5.0</code>, written as a number rather than drawn as stars, so it cannot be read as a control. <code>.dr-rating</code> is an input: five buttons, each a 44pt target with <code>aria-pressed</code>, for <code>rate</code>, where the client awards a score. A display must not be a row of buttons announcing a pressed state it cannot change (<code>WCAG 4.1.2</code>), nor put five stops in a dashboard's tab order.</p>
 <p>The read-only star row DESIGN.md names <code>.dr-stars</code> is not declared in <code>components/</code>. The overall rating on <code>ratings</code> is drawn instead by the <a href="balance-block.html#variant-banner">balance block</a>: the <code>.dr-rating-arc</code> mask over the figure, <code>aria-hidden</code>, with the figure stating the value.</p>
 <p>The value is written with one decimal and a middle dot, <em>· 4.0</em>, never as a sentence and never with a star glyph the user might tap.</p>
 <p class="dsd-sources">Sources: DESIGN.md § The earned score · inventory.md § 1 · ui/kit.html § Earned score</p></section>
   <section aria-labelledby="s-rule"><h2 id="s-rule">Rule and anti-rule</h2>
     <div class="dsd-rules">
-      <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><article class="dr-card dr-card--row" style="width:341px;max-width:100%"><div class="dr-listing__body"><span class="dr-listing__name">Andriy P.<span class="dr-listing__score">· 4.0</span></span><p class="dr-listing__desc">“Good shots overall, a couple came out a bit dark.”</p><span class="dr-listing__meta"><span class="dr-chip">Photo &amp; video</span><span class="dr-chip">Yesterday</span></span></div></article></div>
+      <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><article class="dr-card dr-card--row" style="width:341px;max-width:100%">
+  <div class="dr-listing__body">
+    <span class="dr-listing__name">Andriy P.<span class="dr-listing__score">· 4.0</span></span>
+    <p class="dr-listing__desc">“Good shots overall, a couple came out a bit dark.”</p>
+    <span class="dr-listing__meta"><span class="dr-chip">Photo &amp; video</span><span class="dr-chip">Yesterday</span></span>
+  </div>
+</article></div>
 <p>A review card on <code>ratings</code>: the score as a muted suffix on the reviewer's name, the review under it.</p></div>
       <div class="dsd-rule dsd-rule--dont"><h3>Don&rsquo;t</h3><div class="dsd-plate dr dsd-plate--anti"><div class="dr-rating" role="group" aria-label="Rating" style="width:341px;max-width:100%">
   <button class="dr-star" aria-pressed="true" type="button" aria-label="1 star"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>

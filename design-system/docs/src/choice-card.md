@@ -30,13 +30,15 @@ kit: 2251
 
 A title and a chevron, with or without the well: the five cards on `role-select` and `support`. With one line of text the smallest card is 341.4 × 76, 173% of `HIG · 44pt`.
 
+The screens wrap the title two ways. 13 of 16 cards use `.dr-choice__body` (`role-select`, `notifications`, `operator-notifications`); the 3 cards on `support` use `.dr-listing__body`. Both rules are `flex: 1; min-width: 0`, so the two render the same.
+
 ### Alert row
 
 ```html
 <a class="dr-choice" href="#" style="width:341px;max-width:100%"><span class="dr-choice__body"><span class="dr-choice__head"><span class="dr-choice__title">Your delivery photo is ready</span><span class="dr-chip dr-chip--sm dr-chip--unread">New</span></span><span class="dr-choice__desc">Package delivery · 10:12</span></span></a>
 ```
 
-The eleven rows on `notifications` and `operator-notifications`. `__desc` (13 `--slate`, 5.95:1) says which order and when, and there is no chevron. The row measures 73.78 tall.
+The eleven rows on `notifications` (6) and `operator-notifications` (5). Six of them carry a `.dr-choice__head` with the `New` chip; the rest are a title over `__desc`. `notifications-loading` draws the same box as a `<div class="dr-choice">` around a skeleton. `__desc` (13 `--slate`, 5.95:1) says which order and when, and there is no chevron. The row measures 73.78 tall.
 
 ## When to use
 
@@ -49,10 +51,10 @@ Sources: DESIGN.md § The choice card carries the arrow again · § The choice c
 ## Rule
 
 ```html
-<div style="display:flex;flex-direction:column;gap:8px;width:341px;max-width:100%"><a class="dr-choice" href="#"><span class="dr-choice__body"><span class="dr-choice__title">My order didn't arrive</span></span><span class="dr-choice__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span></a><a class="dr-choice" href="#"><span class="dr-choice__body"><span class="dr-choice__title">The photo or report isn't right</span></span><span class="dr-choice__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span></a></div>
+<ul class="dr-list dr-list--snug" style="list-style:none;width:341px;max-width:100%"><li><a class="dr-choice" href="#"><span class="dr-listing__body"><span class="dr-choice__title">My order didn't arrive</span></span><span class="dr-choice__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span></a></li><li><a class="dr-choice" href="#"><span class="dr-listing__body"><span class="dr-choice__title">The photo or report isn't right</span></span><span class="dr-choice__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span></a></li></ul>
 ```
 
-`support`'s triage: each card is a different route, and the title is the whole of what the user needs to read to pick one.
+`support`'s triage, as the screen builds it: a `<ul>` of cards, each a different route, and the title is the whole of what the user needs to read to pick one.
 
 ## Anti-rule
 

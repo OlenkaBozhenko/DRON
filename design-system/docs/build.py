@@ -229,7 +229,7 @@ def component_page(meta, body, known, errors, pages):
             '''<main id="main" class="dsd-main">
   <p class="dsd-crumb"><a href="index.html">Components</a> / %s</p>
   <h1>%s</h1>
-  <p class="dsd-meta"><code>%s</code> &middot; <a href="../components/%s"><code>components/%s</code></a>
+  <p class="dsd-meta"><code>%s</code> &middot; %s
     &middot; <a href="../../ui/kit.html">kit specimen</a></p>
   <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2>%s</section>
   <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
@@ -242,8 +242,15 @@ def component_page(meta, body, known, errors, pages):
     </div></section>
 </main>
 ''' % (html.escape(meta.get('group', '')), html.escape(name), html.escape(meta.get('classes', '')),
-       html.escape(meta.get('file', '')), html.escape(meta.get('file', '')), anatomy,
+       file_links(meta.get('file', '')), anatomy,
        html.escape(meta.get('inventory', '')), variants, when, rule, anti) + FOOT)
+
+
+def file_links(spec):
+    """One link per component file; the front matter lists several with ';' or a middle dot."""
+    names = [n.strip() for n in re.split(r'[;·,]', spec) if n.strip()]
+    return ' &middot; '.join('<a href="../components/%s"><code>components/%s</code></a>'
+                             % (html.escape(n), html.escape(n)) for n in names)
 
 
 def index_page(pages):

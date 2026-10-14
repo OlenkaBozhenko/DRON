@@ -22,10 +22,10 @@ kit: 2568
 ```
 
 - `.dr-stack` — The vertical stack the pile is built on; with shots inside it takes 8 / 4 padding and keeps its 8px gap.
-- `.dr-stack__shot:first-child` — The first frame: right-aligned, tilted 3deg, at the back.
-- `.dr-stack__shot:nth-child(2)` — The second: left-aligned, −3.5deg, overlapping the first by −14% of the column's width.
-- `.dr-stack__shot:last-child` — The third: right-aligned with a 6% inset, 2deg, on top. The later frame sits on top, so the pile reads front-to-back downward.
-- `img` — The photograph: `cover` inside a 62%-wide 3 / 2 frame with a 3px `--page` edge and the 13 media radius. A border, never a shadow.
+- `.dr-stack__shot:nth-child(1)` — The first frame: right-aligned, tilted 3deg, at the back (z-index 1).
+- `.dr-stack__shot:nth-child(2)` — The second: left-aligned, −3.5deg, pulled up by −14% of the column's width (z-index 2).
+- `.dr-stack__shot:nth-child(3)` — The third: right-aligned with a 6% inset, 2deg, on top (z-index 3). The later frame sits on top, so the pile reads front-to-back downward.
+- `img` — The photograph: `cover` inside a 62%-wide 3 / 2 frame with a 3px `--text-on-night` edge (the page cream, `--cream-50`), the 13 media radius and a `--bg-well` ground while it loads. A border, never a shadow.
 
 ## Variants
 
@@ -41,7 +41,7 @@ kit: 2568
 </div>
 ```
 
-The only shape: the tilts are set on the first three children. Measured on the build at 375: frame 206.7 × 137.8, overlap 38.7 of 137.8 = 28.1%, block 341.4 × 352.1, horizontal overflow 0. This plate is narrower than the phone column, so its pixels differ; the proportions hold, being percentages.
+The only shape, copied from `delivery-aerial`: the tilts are set on the first three children. Measured on the build at 375: frame 206.7 × 137.8, overlap 38.7 of 137.8 = 28.1%, block 341.4 × 352.1, horizontal overflow 0. This plate is narrower than the phone column, so its pixels differ; the proportions hold, being percentages.
 
 ## When to use
 

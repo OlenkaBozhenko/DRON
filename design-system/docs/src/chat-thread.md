@@ -12,7 +12,7 @@ kit: 831
 ## Anatomy
 
 ```html
-<section class="dr dr-stack dr-thread" aria-label="Thread" style="width:341px;max-width:100%">
+<section class="dr-stack dr-thread" aria-label="Thread" style="width:341px;max-width:100%">
   <p class="dr-note">Today</p>
   <ul class="dr-list dr-list--snug" aria-label="Messages">
     <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Andriy M.:</span>Your parcel is picked up from Podil, 21. On the way to Osokorky, 14.<time class="dr-bubble__time" datetime="2026-08-16T09:32">9:32</time></li>
@@ -34,7 +34,7 @@ kit: 831
 ### Incoming and outgoing
 
 ```html
-<ul class="dr dr-list dr-list--snug" aria-label="Messages" style="width:341px;max-width:100%">
+<ul class="dr-list dr-list--snug" aria-label="Messages" style="width:341px;max-width:100%">
   <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>Which entrance?<time class="dr-bubble__time" datetime="2026-08-16T09:36">9:36</time></li>
   <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Andriy M.:</span>The one facing the playground. About 6 minutes out.<time class="dr-bubble__time" datetime="2026-08-16T09:38">9:38</time></li>
 </ul>
@@ -45,7 +45,7 @@ The two grounds are 1.25:1 apart, which reads as one tone. *Who said it* is carr
 ### Composer
 
 ```html
-<footer class="dr dr-actionbar" style="width:375px;max-width:100%">
+<footer class="dr-actionbar" style="width:375px;max-width:100%">
   <div class="dr-search-row">
     <label class="dr-search">
       <span class="dr-sr">Message</span>
@@ -64,14 +64,14 @@ The chat thread is the one place in the product where two people write to each o
 
 No bubble is green. A messaging UI normally spends its accent on the outgoing side. Here green is never spent inside card UI, and a thread repeats, so the ~5% budget would be gone by the fourth message. Messages are a sequence, so they sit at `--snug`: 8 apart, not the list's 28.
 
-The messages are what the client and the operator write. The system's own words are the field's placeholder, *Message*, and the Send button's accessible name, *Send message*. The hidden speaker names are *You:* and the operator's name, *Andriy M.:*. In system copy he is always the *operator*, never the pilot.
+The messages are what the client and the operator write. The system's own words are the field's placeholder, *Message*, and the Send button's accessible name, *Send message*. The hidden speaker names are *You:* and the other person's name: the operator's, *Andriy M.:*, on `chat`, `chat-aerial` and `chat-inspection`, and the client's, *Olena H.:*, on `chat-client`, where the operator is the outgoing side. In system copy he is always the *operator*, never the pilot.
 
 Sources: DESIGN.md § Message bubble and thread · inventory.md § 1 Message thread · microcopy.md § call (A12) · ui/kit.html § Chat thread
 
 ## Rule
 
 ```html
-<section class="dr dr-stack dr-thread" aria-label="Thread" style="width:341px;max-width:100%">
+<section class="dr-stack dr-thread" aria-label="Thread" style="width:341px;max-width:100%">
   <p class="dr-note">Today</p>
   <ul class="dr-list dr-list--snug" aria-label="Messages">
     <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>The courtyard gate is locked — the code is 4471.<time class="dr-bubble__time" datetime="2026-08-16T09:34">9:34</time></li>
@@ -80,12 +80,12 @@ Sources: DESIGN.md § Message bubble and thread · inventory.md § 1 Message thr
 </section>
 ```
 
-A conversation between the client and the operator about one order, with each speaker named for assistive tech and each message timed.
+A conversation between the client and the operator about one order, as `chat` builds it, with each speaker named for assistive tech and each message timed.
 
 ## Anti-rule
 
 ```html
-<ul class="dr dr-list dr-list--snug" aria-label="Messages" style="width:341px;max-width:100%">
+<ul class="dr-list dr-list--snug" aria-label="Messages" style="width:341px;max-width:100%">
   <li class="dr-bubble dr-bubble--in"><span class="dr-sr">DRON:</span>Your delivery photo is ready.<time class="dr-bubble__time" datetime="2026-08-16T10:12">10:12</time></li>
 </ul>
 ```

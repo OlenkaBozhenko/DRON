@@ -25,52 +25,52 @@
   <h1>Cover card</h1>
   <p class="dsd-meta"><code>.dr-card--cover · .dr-well--photo · .dr-listing__foot · __body · __name · __desc · .dr-btn--onphoto</code> &middot; <a href="../components/card.css"><code>components/card.css</code></a>
     &middot; <a href="../../ui/kit.html">kit specimen</a></p>
-  <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><article class="dr dr-card dr-card--cover" style="width:341px;max-width:100%">
-        <div class="dr-well dr-well--photo" style="height:180px;">
-          <img src="../../assets/scenes/thumbs/aerial-rafting-boulders.jpg" alt="A grey raft with a crew in red helmets and life jackets running a rapid between dark boulders, white water breaking around it, shot from above." loading="lazy" decoding="async">
-          <span class="dr-btn dr-btn--icon dr-btn--onphoto" role="img" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></span>
-        </div>
-        <div class="dr-listing__foot">
-          <span class="dr-listing__body">
-            <span class="dr-listing__name">Video</span>
-            <span class="dr-listing__desc">0:38 &#183; 46 MB</span>
-          </span>
-          <span class="dr-btn dr-btn--icon" role="img" aria-label="Download video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M8 11l4 4 4-4"/><path d="M5 19.5h14"/></svg></span>
-        </div>
-      </article></div></div><ol class="dsd-parts"><li data-sel=".dr-card--cover"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-card--cover</code><span class="dsd-part__txt">The card with no inset: padding 0, gap 0, <code>overflow:hidden</code>, clipped by its own radius 16. No shadow.</span></li><li data-sel=".dr-well--photo"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-well--photo</code><span class="dsd-part__txt">The cover, 180 tall, flush to three edges. The media's 13 radius is switched off, so one corner carries one radius.</span></li><li data-sel=".dr-btn--onphoto"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-btn--onphoto</code><span class="dsd-part__txt">The play mark on the photograph, a 44 × 44 icon with its name in <code>aria-label</code>; see <a href="circular-action.html">Circular action</a>.</span></li><li data-sel=".dr-listing__foot"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-listing__foot</code><span class="dsd-part__txt">The file's line, 68 tall at padding 12 / 16, gap 12.</span></li><li data-sel=".dr-listing__name"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-listing__name</code><span class="dsd-part__txt">The file's kind, <em>Video</em>, 15/600 in <code>--text-primary</code>, 14.37:1. The size and length under it are 13/400 in <code>--text-muted</code>, 5.95:1.</span></li><li data-sel=".dr-listing__foot .dr-btn--icon"><span class="dsd-pin-n" aria-hidden="true">6</span><code>.dr-listing__foot .dr-btn--icon</code><span class="dsd-part__txt">The file's action, <em>Download video</em>, a grey 44 × 44 icon.</span></li></ol></div></section>
+  <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><article class="dr-card dr-card--cover" style="width:341px;max-width:100%">
+  <div class="dr-well dr-well--photo" style="height:180px;">
+    <img src="../../assets/scenes/thumbs/aerial-rafting-boulders.jpg" alt="A grey raft with a crew in red helmets and life jackets running a rapid between dark boulders, white water breaking around it, shot from above." loading="lazy" decoding="async">
+    <button class="dr-btn dr-btn--icon dr-btn--onphoto" type="button" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></button>
+  </div>
+  <div class="dr-listing__foot">
+    <span class="dr-listing__body">
+      <span class="dr-listing__name">Video</span>
+      <span class="dr-listing__desc">0:38 &#183; 46 MB</span>
+    </span>
+    <button class="dr-btn dr-btn--icon" type="button" aria-label="Download video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.8v10.4"/><path d="M7.6 9.8 12 14.2 16.4 9.8"/><path d="M5 19.2h14"/></svg></button>
+  </div>
+</article></div></div><ol class="dsd-parts"><li data-sel=".dr-card--cover"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-card--cover</code><span class="dsd-part__txt">The card with no inset: padding 0, gap 0, <code>overflow:hidden</code>, clipped by its own radius 16. No shadow.</span></li><li data-sel=".dr-well--photo"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-well--photo</code><span class="dsd-part__txt">The cover, 180 tall, flush to three edges. The media's 13 radius is switched off, so one corner carries one radius.</span></li><li data-sel=".dr-btn--onphoto"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-btn--onphoto</code><span class="dsd-part__txt">The play button on the photograph, a 44 × 44 grey disc centred on the cover, its name in <code>aria-label</code>; see <a href="circular-action.html">Circular action</a>.</span></li><li data-sel=".dr-listing__foot"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-listing__foot</code><span class="dsd-part__txt">The file's line, 68 tall at padding 12 / 16, gap 12.</span></li><li data-sel=".dr-listing__name"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-listing__name</code><span class="dsd-part__txt">The file's kind, <em>Video</em>, 15/600 in <code>--text-primary</code>, 14.37:1. The size and length under it are 13/400 in <code>--text-muted</code>, 5.95:1.</span></li><li data-sel=".dr-listing__foot .dr-btn--icon"><span class="dsd-pin-n" aria-hidden="true">6</span><code>.dr-listing__foot .dr-btn--icon</code><span class="dsd-part__txt">The file's action, <em>Download video</em>, a grey 44 × 44 icon button with its name in <code>aria-label</code>.</span></li></ol></div></section>
   <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
-    <p class="dsd-lede">Inventory rows: Cover card.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-video"><figcaption><h3>Video</h3></figcaption><div class="dsd-plate dr "><article class="dr dr-card dr-card--cover" style="width:341px;max-width:100%">
-        <div class="dr-well dr-well--photo" style="height:180px;">
-          <img src="../../assets/scenes/thumbs/aerial-rafting-boulders.jpg" alt="A grey raft with a crew in red helmets and life jackets running a rapid between dark boulders, white water breaking around it, shot from above." loading="lazy" decoding="async">
-          <span class="dr-btn dr-btn--icon dr-btn--onphoto" role="img" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></span>
-        </div>
-        <div class="dr-listing__foot">
-          <span class="dr-listing__body">
-            <span class="dr-listing__name">Video</span>
-            <span class="dr-listing__desc">0:38 &#183; 46 MB</span>
-          </span>
-          <span class="dr-btn dr-btn--icon" role="img" aria-label="Download video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M8 11l4 4 4-4"/><path d="M5 19.5h14"/></svg></span>
-        </div>
-      </article></div>
+    <p class="dsd-lede">Inventory rows: Cover card.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-video"><figcaption><h3>Video</h3></figcaption><div class="dsd-plate dr "><article class="dr-card dr-card--cover" style="width:341px;max-width:100%">
+  <div class="dr-well dr-well--photo" style="height:180px;">
+    <img src="../../assets/scenes/thumbs/aerial-rafting-boulders.jpg" alt="A grey raft with a crew in red helmets and life jackets running a rapid between dark boulders, white water breaking around it, shot from above." loading="lazy" decoding="async">
+    <button class="dr-btn dr-btn--icon dr-btn--onphoto" type="button" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></button>
+  </div>
+  <div class="dr-listing__foot">
+    <span class="dr-listing__body">
+      <span class="dr-listing__name">Video</span>
+      <span class="dr-listing__desc">0:38 &#183; 46 MB</span>
+    </span>
+    <button class="dr-btn dr-btn--icon" type="button" aria-label="Download video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.8v10.4"/><path d="M7.6 9.8 12 14.2 16.4 9.8"/><path d="M5 19.2h14"/></svg></button>
+  </div>
+</article></div>
 <p>The only shape in use: the video card on <code>order-details-aerial</code>, cover 180 plus line 68, 248 tall in all.</p></figure></div></section>
   <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>The cover card holds one file of an aerial delivery where the picture is the content: one user, the video card on <code>order-details-aerial</code>. A cover is never inset, and that is the imagery rule winning where it meets the inset rule: a photograph <em>is</em> the surface, and a picture floated inside a padded card is the sticker the rule forbids. The padding moves onto the line below, 12 vertical against 16 horizontal, because that line already carries a 44px control and its height is set by the target.</p>
-<p>Both actions are icons, not pills, 44 × 44 with an <code>aria-label</code> each. <code>WCAG 2.5.3 Label in Name</code> stops applying rather than failing, since there is no visible label to contain. They are grey, not green: <em>Book again</em> is that screen's one green control. Two files in one zone are told apart by what they show, not by a badge, and the <code>alt</code> describes the frame and only the frame. The action word is still <em>Download</em>, spoken instead of printed.</p>
+<p>Both actions are icon buttons, not pills, 44 × 44 with an <code>aria-label</code> each. <code>WCAG 2.5.3 Label in Name</code> stops applying rather than failing, since there is no visible label to contain. They are grey, not green: <em>Book again</em> is that screen's one green control. Two files in one zone are told apart by what they show, not by a badge, and the <code>alt</code> describes the frame and only the frame. The action word is still <em>Download</em>, spoken instead of printed.</p>
 <p class="dsd-sources">Sources: DESIGN.md § Cards (<code>.dr-card--cover</code>) · § Imagery · inventory.md § 1.3 (Cover card) · voice.md Vocabulary · ui/kit.html Cover card</p></section>
   <section aria-labelledby="s-rule"><h2 id="s-rule">Rule and anti-rule</h2>
     <div class="dsd-rules">
-      <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><article class="dr dr-card dr-card--cover" style="width:341px;max-width:100%">
-        <div class="dr-well dr-well--photo" style="height:180px;">
-          <img src="../../assets/scenes/thumbs/aerial-rafting-boulders.jpg" alt="A grey raft with a crew in red helmets and life jackets running a rapid between dark boulders, white water breaking around it, shot from above." loading="lazy" decoding="async">
-          <span class="dr-btn dr-btn--icon dr-btn--onphoto" role="img" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></span>
-        </div>
-        <div class="dr-listing__foot">
-          <span class="dr-listing__body">
-            <span class="dr-listing__name">Video</span>
-            <span class="dr-listing__desc">0:38 &#183; 46 MB</span>
-          </span>
-          <span class="dr-btn dr-btn--icon" role="img" aria-label="Download video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M8 11l4 4 4-4"/><path d="M5 19.5h14"/></svg></span>
-        </div>
-      </article></div>
+      <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><article class="dr-card dr-card--cover" style="width:341px;max-width:100%">
+  <div class="dr-well dr-well--photo" style="height:180px;">
+    <img src="../../assets/scenes/thumbs/aerial-rafting-boulders.jpg" alt="A grey raft with a crew in red helmets and life jackets running a rapid between dark boulders, white water breaking around it, shot from above." loading="lazy" decoding="async">
+    <button class="dr-btn dr-btn--icon dr-btn--onphoto" type="button" aria-label="Play video &#183; 0:38"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.8 18 12 9.5 17.2Z"/></svg></button>
+  </div>
+  <div class="dr-listing__foot">
+    <span class="dr-listing__body">
+      <span class="dr-listing__name">Video</span>
+      <span class="dr-listing__desc">0:38 &#183; 46 MB</span>
+    </span>
+    <button class="dr-btn dr-btn--icon" type="button" aria-label="Download video"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.8v10.4"/><path d="M7.6 9.8 12 14.2 16.4 9.8"/><path d="M5 19.2h14"/></svg></button>
+  </div>
+</article></div>
 <p>A photograph that is the deliverable runs to the card's edges, and the file's facts and action sit on the line beneath it.</p></div>
       <div class="dsd-rule dsd-rule--dont"><h3>Don&rsquo;t</h3><div class="dsd-plate dr dsd-plate--anti"><article class="dr dr-card" style="width:341px;max-width:100%">
         <div class="dr-well dr-well--photo" style="height:180px;width:100%">

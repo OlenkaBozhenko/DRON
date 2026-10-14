@@ -12,11 +12,18 @@ kit: 2019
 ## Anatomy
 
 ```html
-<article class="dr-card dr-card--row" style="width:341px;max-width:100%"><div class="dr-listing__body"><span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span><p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p></div></article>
+<article class="dr-card dr-card--row" style="width:341px;max-width:100%">
+  <div class="dr-listing__body">
+    <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
+    <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
+    <span class="dr-listing__meta"><span class="dr-chip">Package delivery</span><span class="dr-chip">Today</span></span>
+  </div>
+</article>
 ```
 
 - `.dr-listing__name` — The name the score belongs to; the score rides inside it, on its line.
 - `.dr-listing__score` — The suffix: 12.5/400 in `--text-muted`, 5.95:1 on the card, tabular figures, 8 from the name.
+- `.dr-listing__meta` — The review's service and date, as chips under the quote.
 
 ## Variants
 
@@ -26,7 +33,7 @@ kit: 2019
 <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
 ```
 
-The only variant in `components/`. A long name pushes the number along instead of colliding with it, and a card with no score leaves no empty slot.
+The only variant in `components/`. One screen builds it: `ratings`, on all three review cards. A long name pushes the number along instead of colliding with it, and a card with no score leaves no empty slot.
 
 ## When to use
 
@@ -41,7 +48,13 @@ Sources: DESIGN.md § The earned score · inventory.md § 1 · ui/kit.html § Ea
 ## Rule
 
 ```html
-<article class="dr-card dr-card--row" style="width:341px;max-width:100%"><div class="dr-listing__body"><span class="dr-listing__name">Andriy P.<span class="dr-listing__score">· 4.0</span></span><p class="dr-listing__desc">“Good shots overall, a couple came out a bit dark.”</p><span class="dr-listing__meta"><span class="dr-chip">Photo &amp; video</span><span class="dr-chip">Yesterday</span></span></div></article>
+<article class="dr-card dr-card--row" style="width:341px;max-width:100%">
+  <div class="dr-listing__body">
+    <span class="dr-listing__name">Andriy P.<span class="dr-listing__score">· 4.0</span></span>
+    <p class="dr-listing__desc">“Good shots overall, a couple came out a bit dark.”</p>
+    <span class="dr-listing__meta"><span class="dr-chip">Photo &amp; video</span><span class="dr-chip">Yesterday</span></span>
+  </div>
+</article>
 ```
 
 A review card on `ratings`: the score as a muted suffix on the reviewer's name, the review under it.

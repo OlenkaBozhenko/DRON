@@ -13,14 +13,14 @@ kit: 1170
 
 ```html
 <div class="dr" style="width:375px;max-width:100%;border-radius:var(--len-22);overflow:hidden">
-  <main class="dr-mapscreen" style="height:500px">
+  <main class="dr-mapscreen" style="height:540px">
     <div class="dr-mapview" style="background-image:url(../assets/map/live-map.jpg)" role="img" aria-label="Map · available near you"></div>
     <section class="dr-sheet dr-sheet--dock">
       <span class="dr-sheet__grip" aria-hidden="true"></span>
-      <p class="dr-sheet__title">Parcel size</p>
-      <fieldset class="dr-offers">
+      <p class="dr-sheet__title" id="doc-offers-title">Parcel size</p>
+      <fieldset class="dr-offers" aria-labelledby="doc-offers-title">
         <label class="dr-offer">
-          <input type="radio" name="docoffer" class="sr-only" checked>
+          <input type="radio" name="docoffer" value="2kg" checked class="sr-only">
           <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
           <span class="dr-offer__body">
             <span class="dr-offer__name">Up to 2 kg</span>
@@ -29,13 +29,22 @@ kit: 1170
           <span class="dr-offer__price">₴180</span>
         </label>
         <label class="dr-offer">
-          <input type="radio" name="docoffer" class="sr-only">
+          <input type="radio" name="docoffer" value="5kg" class="sr-only">
           <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
           <span class="dr-offer__body">
             <span class="dr-offer__name">Up to 5 kg</span>
             <span class="dr-offer__meta">2 available · arrives in 9 min</span>
           </span>
           <span class="dr-offer__price">₴240</span>
+        </label>
+        <label class="dr-offer">
+          <input type="radio" name="docoffer" value="10kg" class="sr-only">
+          <span class="dr-well"><img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="dr-offer__body">
+            <span class="dr-offer__name">Up to 10 kg</span>
+            <span class="dr-offer__meta">1 available · arrives in 14 min</span>
+          </span>
+          <span class="dr-offer__price">₴320</span>
         </label>
       </fieldset>
       <a class="dr-btn dr-btn--primary dr-btn--block" href="#">Order</a>
@@ -46,7 +55,7 @@ kit: 1170
 
 - `.dr-mapview` — The live map, a background image on a `<div>` with `role="img"` and its own label, so a screen reader meets one object. It fills the column under the nav bar, 373 × 375.2 at the 375 frame.
 - `.dr-sheet--dock` — The sheet that does not float. It has no scrim, no `aria-modal` and no exit, because there is nothing behind it to go back to. It keeps the grip and `--shadow-raised`. Measured 340.8 tall.
-- `.dr-offers` — A fieldset of radios: one tab stop, with the arrow keys moving inside it.
+- `.dr-offers` — A fieldset of radios named by the sheet's title: one tab stop, with the arrow keys moving inside it. Three offers on every service.
 - `.dr-offer` — A radio label: 56 × 44 well, name 17/600, meta 13/400, price. It measures 341 × 60 at radius 12, with rows 8 apart. An unchosen row is a `--card` card: name and price 14.37:1, meta 5.95:1.
 - `.dr-offer__price` — 17/600 with tabular figures. It is the size of a title, because the price is what is being chosen.
 - `.dr-btn--primary` — *Order*, 341 × 44.
@@ -58,7 +67,7 @@ kit: 1170
 ```html
 <fieldset class="dr-offers" style="width:341px;max-width:100%">
   <label class="dr-offer">
-    <input type="radio" name="docpair" class="sr-only" checked>
+    <input type="radio" name="docpair" value="2kg" checked class="sr-only">
     <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
     <span class="dr-offer__body">
       <span class="dr-offer__name">Up to 2 kg</span>
@@ -67,8 +76,8 @@ kit: 1170
     <span class="dr-offer__price">₴180</span>
   </label>
   <label class="dr-offer">
-    <input type="radio" name="docpair" class="sr-only">
-    <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
+    <input type="radio" name="docpair" value="10kg" class="sr-only">
+    <span class="dr-well"><img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async"></span>
     <span class="dr-offer__body">
       <span class="dr-offer__name">Up to 10 kg</span>
       <span class="dr-offer__meta">1 available · arrives in 14 min</span>
@@ -78,14 +87,14 @@ kit: 1170
 </fieldset>
 ```
 
-The chosen row is solid `--color-action`, and name, meta and price all move to `--on-action` at 9.46:1. The meta moves too, because `--slate` on green is 3.91:1. Choosing a row moves no box. Rows stay 341 × 60.
+The chosen row is solid `--color-action`, and name, meta and price all move to `--on-action` at 9.46:1. The meta moves too, because `--slate` on green is 3.91:1. Choosing a row moves no box. Rows stay 341 × 60. The specimen is the first and third row of `listings-map`.
 
 ### Photo and video
 
 ```html
 <fieldset class="dr-offers" style="width:341px;max-width:100%">
   <label class="dr-offer">
-    <input type="radio" name="docaerial" class="sr-only" checked>
+    <input type="radio" name="docaerial" value="photo" checked class="sr-only">
     <span class="dr-well"><img src="../assets/drones/thumbs/drone-flight-camera.png" alt="" loading="lazy" decoding="async"></span>
     <span class="dr-offer__body">
       <span class="dr-offer__name">Photo</span>
@@ -94,7 +103,16 @@ The chosen row is solid `--color-action`, and name, meta and price all move to `
     <span class="dr-offer__price">₴640</span>
   </label>
   <label class="dr-offer">
-    <input type="radio" name="docaerial" class="sr-only">
+    <input type="radio" name="docaerial" value="video" class="sr-only">
+    <span class="dr-well"><img src="../assets/drones/thumbs/drone-flight-camera.png" alt="" loading="lazy" decoding="async"></span>
+    <span class="dr-offer__body">
+      <span class="dr-offer__name">Video</span>
+      <span class="dr-offer__meta">2 available · arrives in 25 min</span>
+    </span>
+    <span class="dr-offer__price">₴720</span>
+  </label>
+  <label class="dr-offer">
+    <input type="radio" name="docaerial" value="photo-video" class="sr-only">
     <span class="dr-well"><img src="../assets/drones/thumbs/drone-flight-camera.png" alt="" loading="lazy" decoding="async"></span>
     <span class="dr-offer__body">
       <span class="dr-offer__name">Photo &amp; video</span>
@@ -105,7 +123,7 @@ The chosen row is solid `--color-action`, and name, meta and price all move to `
 </fieldset>
 ```
 
-One file per service, with the same parts. The sheet's title names what is being chosen: *Parcel size* for delivery, *What you get* for photo and video, *Parts to inspect* for inspection.
+One file per service, with the same parts and three offers each. The sheet's title names what is being chosen and labels the fieldset (`aria-labelledby`): *Parcel size* for delivery, *What you get* for photo and video (*Photo*, *Video*, *Photo & video*, from `listings-map-aerial`), *Parts to inspect* for inspection (*1 part*, *Up to 3 parts*, *Up to 5 parts*).
 
 ## When to use
 
@@ -122,10 +140,10 @@ Sources: DESIGN.md § The search home (Results on the map, A choice row) · inve
 ```html
 <section class="dr-sheet dr-sheet--dock" style="width:375px;max-width:100%">
   <span class="dr-sheet__grip" aria-hidden="true"></span>
-  <p class="dr-sheet__title">Parcel size</p>
-  <fieldset class="dr-offers">
+  <p class="dr-sheet__title" id="doc-rule-title">Parcel size</p>
+  <fieldset class="dr-offers" aria-labelledby="doc-rule-title">
     <label class="dr-offer">
-      <input type="radio" name="docrule" class="sr-only" checked>
+      <input type="radio" name="docrule" value="2kg" checked class="sr-only">
       <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
       <span class="dr-offer__body">
         <span class="dr-offer__name">Up to 2 kg</span>
@@ -134,13 +152,22 @@ Sources: DESIGN.md § The search home (Results on the map, A choice row) · inve
       <span class="dr-offer__price">₴180</span>
     </label>
     <label class="dr-offer">
-      <input type="radio" name="docrule" class="sr-only">
+      <input type="radio" name="docrule" value="5kg" class="sr-only">
       <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
       <span class="dr-offer__body">
         <span class="dr-offer__name">Up to 5 kg</span>
         <span class="dr-offer__meta">2 available · arrives in 9 min</span>
       </span>
       <span class="dr-offer__price">₴240</span>
+    </label>
+    <label class="dr-offer">
+      <input type="radio" name="docrule" value="10kg" class="sr-only">
+      <span class="dr-well"><img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async"></span>
+      <span class="dr-offer__body">
+        <span class="dr-offer__name">Up to 10 kg</span>
+        <span class="dr-offer__meta">1 available · arrives in 14 min</span>
+      </span>
+      <span class="dr-offer__price">₴320</span>
     </label>
   </fieldset>
   <a class="dr-btn dr-btn--primary dr-btn--block" href="#">Order</a>

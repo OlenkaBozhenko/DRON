@@ -21,10 +21,10 @@ kit: 1945
 </section>
 ```
 
-- `.dr-balance` — The block: a figure over the line that names it, 4 apart. As `--card` it turns on its side inside a green card, 341 × 84, padding 20 / 16, radius 16, no shadow.
+- `.dr-balance` — The block: a figure over the line that names it, 4 apart. As `--card` it turns on its side inside a green card, 341 × 84, padding 20 / 16 (16 / 16 below 390 wide), radius 16, no shadow; glyph and body are 12 apart.
 - `.dr-balance__glyph` — A 44 × 44 square plate, radius 13, `--bg-accent-tint`, with a 22px coin stack inside it. Its 44 is the body's own height (22 + 4 + 18), so glyph and text share a top and a bottom edge.
-- `.dr-number` — The figure, 700 with tabular figures, so money lines up digit under digit. Inside `.dr-balance` it takes the display size, 22.
-- `.dr-note--flush` — The caption with its top margin removed, so the 4px step is the block's gap and nothing else.
+- `.dr-number` — The figure, 700 with tabular figures and line-height 1, so money lines up digit under digit. Inside `.dr-balance` it takes the display size, 22, in place of the number step's 20.
+- `.dr-note--flush` — The caption, 12 regular at line-height 1.5 (18), set left instead of the note's default centre.
 
 ## Variants
 
@@ -37,7 +37,7 @@ kit: 1945
 </section>
 ```
 
-On the page ground: figure charcoal at 15.99:1, caption `--text-muted` at 6.62:1. At the top of `payment` and its service variants.
+On the page ground: figure charcoal at 15.99:1, caption `--text-muted` at 6.62:1. Five screens build it: `payment`, `payment-aerial`, `payment-inspection`, `withdraw` and `wallet-empty`.
 
 ### Card
 
@@ -56,17 +56,17 @@ On the page ground: figure charcoal at 15.99:1, caption `--text-muted` at 6.62:1
 ### Banner
 
 ```html
-<section class="dr-balance dr-balance--banner" aria-label="Overall rating" style="width:341px;max-width:100%">
+<section aria-label="Overall rating" class="dr-balance dr-balance--banner" style="width:341px;max-width:100%">
   <span class="dr-rating-arc" aria-hidden="true"></span>
   <p class="dr-number">4.8</p>
 </section>
 ```
 
-`ratings`' overall score, centred, on green with `rating-pattern.png`. The star arc is a mask filled with the ink token, `aria-hidden`; the figure states the value at 9.46:1.
+`ratings`' overall score, centred, on green with `rating-pattern.png`, padding 20 / 16, radius 16. The star arc is one mask, 106.88 × 32, filled with `--on-action` and `aria-hidden`; the figure states the value at 9.46:1. There is no caption under the figure.
 
 ## When to use
 
-A balance block is the headline figure of a screen and the line that names it: the amount being paid on `payment`, the money available on `wallet`, the overall rating on `ratings`. It replaces the grayscale `.amount` at 34/600, a size outside the ten steps and an ink outside the palette. A balance is the definition of a figure the user verifies, so it is always `.dr-number`, tabular.
+A balance block is the headline figure of a screen and the line that names it: the amount being paid on `payment`, the money available on `wallet` and `withdraw`, the balance below the minimum on `wallet-empty`, the overall rating on `ratings`. It replaces the grayscale `.amount` at 34/600, a size outside the ten steps and an ink outside the palette. A balance is the definition of a figure the user verifies, so it is always `.dr-number`, tabular.
 
 The two filled versions are green cards that sit in the page like any other card, with no shadow. Their cost is recorded: on `wallet` the card alone is 8.82% of the frame and, with the [floating action](floating-action.html), the screen's solid green reaches 11.32% against the ~5% ceiling, a departure the designer was shown and kept. The patterns are the product's one decoration, taken on her word.
 

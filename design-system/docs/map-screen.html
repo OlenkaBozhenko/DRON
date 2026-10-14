@@ -26,14 +26,14 @@
   <p class="dsd-meta"><code>.dr-mapscreen · .dr-mapview · .dr-sheet--dock · .dr-offers · .dr-offer · __body · __name · __meta · __price</code> &middot; <a href="../components/card.css"><code>components/card.css</code></a>
     &middot; <a href="../../ui/kit.html">kit specimen</a></p>
   <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><div class="dr" style="width:375px;max-width:100%;border-radius:var(--len-22);overflow:hidden">
-  <main class="dr-mapscreen" style="height:500px">
+  <main class="dr-mapscreen" style="height:540px">
     <div class="dr-mapview" style="background-image:url(../../assets/map/live-map.jpg)" role="img" aria-label="Map · available near you"></div>
     <section class="dr-sheet dr-sheet--dock">
       <span class="dr-sheet__grip" aria-hidden="true"></span>
-      <p class="dr-sheet__title">Parcel size</p>
-      <fieldset class="dr-offers">
+      <p class="dr-sheet__title" id="doc-offers-title">Parcel size</p>
+      <fieldset class="dr-offers" aria-labelledby="doc-offers-title">
         <label class="dr-offer">
-          <input type="radio" name="docoffer" class="sr-only" checked>
+          <input type="radio" name="docoffer" value="2kg" checked class="sr-only">
           <span class="dr-well"><img src="../../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
           <span class="dr-offer__body">
             <span class="dr-offer__name">Up to 2 kg</span>
@@ -42,7 +42,7 @@
           <span class="dr-offer__price">₴180</span>
         </label>
         <label class="dr-offer">
-          <input type="radio" name="docoffer" class="sr-only">
+          <input type="radio" name="docoffer" value="5kg" class="sr-only">
           <span class="dr-well"><img src="../../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
           <span class="dr-offer__body">
             <span class="dr-offer__name">Up to 5 kg</span>
@@ -50,15 +50,24 @@
           </span>
           <span class="dr-offer__price">₴240</span>
         </label>
+        <label class="dr-offer">
+          <input type="radio" name="docoffer" value="10kg" class="sr-only">
+          <span class="dr-well"><img src="../../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="dr-offer__body">
+            <span class="dr-offer__name">Up to 10 kg</span>
+            <span class="dr-offer__meta">1 available · arrives in 14 min</span>
+          </span>
+          <span class="dr-offer__price">₴320</span>
+        </label>
       </fieldset>
       <a class="dr-btn dr-btn--primary dr-btn--block" href="#">Order</a>
     </section>
   </main>
-</div></div></div><ol class="dsd-parts"><li data-sel=".dr-mapview"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-mapview</code><span class="dsd-part__txt">The live map, a background image on a <code>&lt;div&gt;</code> with <code>role="img"</code> and its own label, so a screen reader meets one object. It fills the column under the nav bar, 373 × 375.2 at the 375 frame.</span></li><li data-sel=".dr-sheet--dock"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-sheet--dock</code><span class="dsd-part__txt">The sheet that does not float. It has no scrim, no <code>aria-modal</code> and no exit, because there is nothing behind it to go back to. It keeps the grip and <code>--shadow-raised</code>. Measured 340.8 tall.</span></li><li data-sel=".dr-offers"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-offers</code><span class="dsd-part__txt">A fieldset of radios: one tab stop, with the arrow keys moving inside it.</span></li><li data-sel=".dr-offer"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-offer</code><span class="dsd-part__txt">A radio label: 56 × 44 well, name 17/600, meta 13/400, price. It measures 341 × 60 at radius 12, with rows 8 apart. An unchosen row is a <code>--card</code> card: name and price 14.37:1, meta 5.95:1.</span></li><li data-sel=".dr-offer__price"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-offer__price</code><span class="dsd-part__txt">17/600 with tabular figures. It is the size of a title, because the price is what is being chosen.</span></li><li data-sel=".dr-btn--primary"><span class="dsd-pin-n" aria-hidden="true">6</span><code>.dr-btn--primary</code><span class="dsd-part__txt"><em>Order</em>, 341 × 44.</span></li></ol></div></section>
+</div></div></div><ol class="dsd-parts"><li data-sel=".dr-mapview"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-mapview</code><span class="dsd-part__txt">The live map, a background image on a <code>&lt;div&gt;</code> with <code>role="img"</code> and its own label, so a screen reader meets one object. It fills the column under the nav bar, 373 × 375.2 at the 375 frame.</span></li><li data-sel=".dr-sheet--dock"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-sheet--dock</code><span class="dsd-part__txt">The sheet that does not float. It has no scrim, no <code>aria-modal</code> and no exit, because there is nothing behind it to go back to. It keeps the grip and <code>--shadow-raised</code>. Measured 340.8 tall.</span></li><li data-sel=".dr-offers"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-offers</code><span class="dsd-part__txt">A fieldset of radios named by the sheet's title: one tab stop, with the arrow keys moving inside it. Three offers on every service.</span></li><li data-sel=".dr-offer"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-offer</code><span class="dsd-part__txt">A radio label: 56 × 44 well, name 17/600, meta 13/400, price. It measures 341 × 60 at radius 12, with rows 8 apart. An unchosen row is a <code>--card</code> card: name and price 14.37:1, meta 5.95:1.</span></li><li data-sel=".dr-offer__price"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-offer__price</code><span class="dsd-part__txt">17/600 with tabular figures. It is the size of a title, because the price is what is being chosen.</span></li><li data-sel=".dr-btn--primary"><span class="dsd-pin-n" aria-hidden="true">6</span><code>.dr-btn--primary</code><span class="dsd-part__txt"><em>Order</em>, 341 × 44.</span></li></ol></div></section>
   <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
     <p class="dsd-lede">Inventory rows: Results on the map.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-chosen-and-unchosen"><figcaption><h3>Chosen and unchosen</h3></figcaption><div class="dsd-plate dr "><fieldset class="dr-offers" style="width:341px;max-width:100%">
   <label class="dr-offer">
-    <input type="radio" name="docpair" class="sr-only" checked>
+    <input type="radio" name="docpair" value="2kg" checked class="sr-only">
     <span class="dr-well"><img src="../../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
     <span class="dr-offer__body">
       <span class="dr-offer__name">Up to 2 kg</span>
@@ -67,8 +76,8 @@
     <span class="dr-offer__price">₴180</span>
   </label>
   <label class="dr-offer">
-    <input type="radio" name="docpair" class="sr-only">
-    <span class="dr-well"><img src="../../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
+    <input type="radio" name="docpair" value="10kg" class="sr-only">
+    <span class="dr-well"><img src="../../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async"></span>
     <span class="dr-offer__body">
       <span class="dr-offer__name">Up to 10 kg</span>
       <span class="dr-offer__meta">1 available · arrives in 14 min</span>
@@ -76,9 +85,9 @@
     <span class="dr-offer__price">₴320</span>
   </label>
 </fieldset></div>
-<p>The chosen row is solid <code>--color-action</code>, and name, meta and price all move to <code>--on-action</code> at 9.46:1. The meta moves too, because <code>--slate</code> on green is 3.91:1. Choosing a row moves no box. Rows stay 341 × 60.</p></figure><figure class="dsd-variant" id="variant-photo-and-video"><figcaption><h3>Photo and video</h3></figcaption><div class="dsd-plate dr "><fieldset class="dr-offers" style="width:341px;max-width:100%">
+<p>The chosen row is solid <code>--color-action</code>, and name, meta and price all move to <code>--on-action</code> at 9.46:1. The meta moves too, because <code>--slate</code> on green is 3.91:1. Choosing a row moves no box. Rows stay 341 × 60. The specimen is the first and third row of <code>listings-map</code>.</p></figure><figure class="dsd-variant" id="variant-photo-and-video"><figcaption><h3>Photo and video</h3></figcaption><div class="dsd-plate dr "><fieldset class="dr-offers" style="width:341px;max-width:100%">
   <label class="dr-offer">
-    <input type="radio" name="docaerial" class="sr-only" checked>
+    <input type="radio" name="docaerial" value="photo" checked class="sr-only">
     <span class="dr-well"><img src="../../assets/drones/thumbs/drone-flight-camera.png" alt="" loading="lazy" decoding="async"></span>
     <span class="dr-offer__body">
       <span class="dr-offer__name">Photo</span>
@@ -87,7 +96,16 @@
     <span class="dr-offer__price">₴640</span>
   </label>
   <label class="dr-offer">
-    <input type="radio" name="docaerial" class="sr-only">
+    <input type="radio" name="docaerial" value="video" class="sr-only">
+    <span class="dr-well"><img src="../../assets/drones/thumbs/drone-flight-camera.png" alt="" loading="lazy" decoding="async"></span>
+    <span class="dr-offer__body">
+      <span class="dr-offer__name">Video</span>
+      <span class="dr-offer__meta">2 available · arrives in 25 min</span>
+    </span>
+    <span class="dr-offer__price">₴720</span>
+  </label>
+  <label class="dr-offer">
+    <input type="radio" name="docaerial" value="photo-video" class="sr-only">
     <span class="dr-well"><img src="../../assets/drones/thumbs/drone-flight-camera.png" alt="" loading="lazy" decoding="async"></span>
     <span class="dr-offer__body">
       <span class="dr-offer__name">Photo &amp; video</span>
@@ -96,7 +114,7 @@
     <span class="dr-offer__price">₴800</span>
   </label>
 </fieldset></div>
-<p>One file per service, with the same parts. The sheet's title names what is being chosen: <em>Parcel size</em> for delivery, <em>What you get</em> for photo and video, <em>Parts to inspect</em> for inspection.</p></figure></div></section>
+<p>One file per service, with the same parts and three offers each. The sheet's title names what is being chosen and labels the fieldset (<code>aria-labelledby</code>): <em>Parcel size</em> for delivery, <em>What you get</em> for photo and video (<em>Photo</em>, <em>Video</em>, <em>Photo &amp; video</em>, from <code>listings-map-aerial</code>), <em>Parts to inspect</em> for inspection (<em>1 part</em>, <em>Up to 3 parts</em>, <em>Up to 5 parts</em>).</p></figure></div></section>
   <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>This is what <em>Find</em> on the <a href="finder.html">finder</a> opens: the live map, with a sheet docked to the bottom carrying the offers to choose between. It stands on <code>listings-map</code>, <code>listings-map-aerial</code> and <code>listings-map-inspection</code>. An offer is a radio wearing a card. The whole row is the target, and the checked state belongs to the control, not to an attribute a script has to keep true.</p>
 <p>The chosen row's green has three recorded departures, all the designer's decision. The fill is 1.52:1 against the grey rows, under the 3:1 of <code>WCAG 1.4.11</code>; the radio keeps the state programmatic (<code>4.1.2</code>). There is no checkmark, which <code>HIG · Lists and tables</code> would draw. And the screen has two green controls: by pixel <em>Order</em> is 4.77%, the chosen row 5.94–6.01%, and the frame 10.71–10.78% against the ~5% ceiling. The <code>--ink</code> focus ring stands outside the green at 15.99:1 on the drawer.</p>
 <p>Copy is a fact per row: the size or deliverable in the name, availability and arrival time in the meta (<em>4 available · arrives in 6 min</em>), and the price on the row, before the tap (voice P3). The action is <em>Order</em>.</p>
@@ -105,10 +123,10 @@
     <div class="dsd-rules">
       <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><section class="dr-sheet dr-sheet--dock" style="width:375px;max-width:100%">
   <span class="dr-sheet__grip" aria-hidden="true"></span>
-  <p class="dr-sheet__title">Parcel size</p>
-  <fieldset class="dr-offers">
+  <p class="dr-sheet__title" id="doc-rule-title">Parcel size</p>
+  <fieldset class="dr-offers" aria-labelledby="doc-rule-title">
     <label class="dr-offer">
-      <input type="radio" name="docrule" class="sr-only" checked>
+      <input type="radio" name="docrule" value="2kg" checked class="sr-only">
       <span class="dr-well"><img src="../../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
       <span class="dr-offer__body">
         <span class="dr-offer__name">Up to 2 kg</span>
@@ -117,13 +135,22 @@
       <span class="dr-offer__price">₴180</span>
     </label>
     <label class="dr-offer">
-      <input type="radio" name="docrule" class="sr-only">
+      <input type="radio" name="docrule" value="5kg" class="sr-only">
       <span class="dr-well"><img src="../../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
       <span class="dr-offer__body">
         <span class="dr-offer__name">Up to 5 kg</span>
         <span class="dr-offer__meta">2 available · arrives in 9 min</span>
       </span>
       <span class="dr-offer__price">₴240</span>
+    </label>
+    <label class="dr-offer">
+      <input type="radio" name="docrule" value="10kg" class="sr-only">
+      <span class="dr-well"><img src="../../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async"></span>
+      <span class="dr-offer__body">
+        <span class="dr-offer__name">Up to 10 kg</span>
+        <span class="dr-offer__meta">1 available · arrives in 14 min</span>
+      </span>
+      <span class="dr-offer__price">₴320</span>
     </label>
   </fieldset>
   <a class="dr-btn dr-btn--primary dr-btn--block" href="#">Order</a>

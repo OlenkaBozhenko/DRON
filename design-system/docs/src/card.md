@@ -12,57 +12,59 @@ kit: 859
 ## Anatomy
 
 ```html
-<article class="dr dr-card dr-card--row" style="width:341px;max-width:100%">
-      <span class="dr-listing__body">
-        <span class="dr-listing__name">Package delivery</span>
-        <span class="dr-listing__desc">2.3 km &#183; ~18 min</span>
-        <span class="dr-listing__meta"><span><span class="dr-sr">Pay</span><span class="dr-number">&#8372;180</span></span></span>
-      </span>
-      <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
-    </article>
+<article class="dr-card dr-card--row" style="width:341px;max-width:100%">
+        <span class="dr-listing__body">
+          <span class="dr-listing__name">Package delivery</span>
+          <span class="dr-listing__desc">2.3 km · ~18 min</span>
+          <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴180</span></span></span>
+        </span>
+        <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
+      </article>
 ```
 
-- `.dr-card` — The surface: `--bg-surface` on the page, a 1.11:1 tone step, radius 16, no border, no shadow. Inset 24 / 20 on a list card.
-- `.dr-listing__name` — The name, 15/600 in `--text-primary`, 14.37:1.
-- `.dr-listing__desc` — One line of description, 13/400 in `--text-muted`, 5.95:1, 2 under the name.
-- `.dr-listing__meta` — The money line: the figure is a `.dr-number`, 20/700 tabular, with its word (*Pay*) in `.dr-sr` for a screen reader only.
-- `.dr-well` — The drone doing the job, a 96 × 96 cutout with no ground, after the body.
+- `.dr-card` — The surface: `--bg-surface` on the page, a 1.11:1 tone step, radius 16, no border, no shadow. Inset 24 / 20. Below 390 wide the inset is 24 / 16 and the gap 18.
+- `.dr-listing__name` — The name, 15/600 at line-height 1.2, in `--text-primary`, 14.37:1.
+- `.dr-listing__desc` — One line of description, 13/400 at line-height 1.4, in `--text-muted`, 5.95:1, 2 under the name.
+- `.dr-listing__meta` — The money line, 6 under the description, items 8 apart: the figure is a `.dr-number`, 20/700 tabular, with its word (*Pay*) in `.sr-only` for a screen reader only.
+- `.dr-well` — The drone doing the job, a 96 × 96 cutout with no ground, radius 13, padding 4, after the body. 68 × 68 below 390 wide.
+
+The markup is `job-offer`'s. Every row card on the screens also carries a bare `dr-listing` class on the article; no rule in `components/` reads it and the docs build refuses an undeclared class, so the specimens leave it out.
 
 ## Variants
 
 ### Default
 
 ```html
-<article class="dr dr-card" style="width:341px;max-width:100%">
-      <span class="dr-card__row">
-        <span class="dr-listing__body">
-          <span class="dr-listing__name">Package delivery</span>
-          <span class="dr-listing__meta"><span class="dr-listing__desc">Today, 10:07</span></span>
-        </span>
-        <span><span class="dr-sr">Earned </span><span class="dr-number">&#8372;180</span></span>
-      </span>
-      <span class="dr-card__actions">
-        <span class="dr-btn dr-btn--secondary">View details</span>
-      </span>
-    </article>
+<article class="dr-card" style="width:341px;max-width:100%">
+              <span class="dr-card__row">
+                <span class="dr-listing__body">
+                  <span class="dr-listing__name">Package delivery</span>
+                  <span class="dr-listing__meta"><span class="dr-listing__desc">Today, 10:07</span></span>
+                </span>
+                <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;180</span></span>
+              </span>
+              <span class="dr-card__actions">
+                <a class="dr-btn dr-btn--secondary" href="#" aria-label="View details &#8212; Package delivery, today at 10:07">View details</a>
+              </span>
+            </article>
 ```
 
-A column: inset 24 / 20, 20 between groups. Its parts are the [card row](card-row.html), the [card action slot](card-actions.html) and the [order card](order-card.html)'s blocks.
+A column: inset 24 / 20, 20 between groups. Its parts are the [card row](card-row.html), the [card action slot](card-actions.html) and the [order card](order-card.html)'s blocks. This one is an earning on `wallet`. Six screens build the plain card: `wallet`, `order-history`, `order-history-loading`, `operator-listings`, `account-photo` and `operator-account-photo`.
 
 ### Row
 
 ```html
-<article class="dr dr-card dr-card--row" style="width:341px;max-width:100%">
-      <span class="dr-listing__body">
-        <span class="dr-listing__name">Package delivery</span>
-        <span class="dr-listing__desc">2.3 km &#183; ~18 min</span>
-        <span class="dr-listing__meta"><span><span class="dr-sr">Pay</span><span class="dr-number">&#8372;180</span></span></span>
-      </span>
-      <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
-    </article>
+<article class="dr-card dr-card--row" style="width:341px;max-width:100%">
+        <span class="dr-listing__body">
+          <span class="dr-listing__name">Package delivery</span>
+          <span class="dr-listing__desc">2.3 km · ~18 min</span>
+          <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴180</span></span></span>
+        </span>
+        <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
+      </article>
 ```
 
-`--row` turns the card itself into a row, gap 12. Body first, picture after, so the name is read first and the drone is glanced at. On `job-offer`.
+`--row` turns the card itself into a row, items centred, gap 12. Body first, picture after, so the name is read first and the drone is glanced at. On `job-offer`, `job-offer-inspection`, `operator-dispute` and `operator-dispute-error`.
 
 ### Row without a picture
 
@@ -76,21 +78,19 @@ A column: inset 24 / 20, 20 between groups. Its parts are the [card row](card-ro
             </article>
 ```
 
-The same row with the well left out and chips on the meta line. A review on `ratings`; the score is the [earned score](earned-score.html).
+The same row with the well left out and chips on the meta line. A review on `ratings`; the score is the [earned score](earned-score.html). `inspection-report` builds the same shape for its three findings.
 
 ### Compact
 
 ```html
-<article class="dr dr-card dr-card--compact" style="width:341px;max-width:100%">
-      <span class="dr-listing__body">Leave with the concierge, entrance code 4417.</span>
-    </article>
+<article class="dr-card dr-card--compact" style="width:341px;max-width:100%"><span class="dr-listing__body">Leave with the concierge, entrance code 4417.</span></article>
 ```
 
-Inset 20 / 16 and gap 12 instead of 24 / 20 and 20. Holds one note, as on `job-brief`.
+Inset 20 / 16 and gap 12 instead of 24 / 20 and 20; below 390 wide the inset is 16 / 16 and the gap 18. Holds one note, as on `job-brief`. Five screens build it. Three hold the client's note as `.dr-listing__body` (`job-brief`, `job-brief-inspection`, `job-offer-inspection`); `job-brief-aerial` holds its empty note as `.dr-listing__desc`; `operator-dispute` holds the client's issue as a caption, a `.dr-lead` quote and a chip.
 
 ## When to use
 
-A card is one object on a flat page: separated by a warm tone step and the 16 radius, never by a border or a shadow, and with no hover lift. Inside it the rhythm is 20 between groups and 4 or 8 within one; between cards it is the [list](list.html)'s gap, which is always larger. The listing card has three elements and no more: the drone doing the job, the name, one line of description. It carries no chevron.
+A card is one object on a flat page: separated by a warm tone step and the 16 radius, never by a border or a shadow, and with no hover lift. Inside it the rhythm is 20 between groups and 4 or 8 within one; between cards it is the [list](list.html)'s gap, which is always larger. The listing card holds the drone doing the job, the name, one line of description and, on `job-offer`, the money line. It carries no chevron.
 
 The cover card is a shape of its own with no inset; see [Cover card](cover-card.html). A card that is one tap target takes an empty stretched anchor; see [Card that is one link](card-link.html). The service-card modifier `.dr-listing--service` (title 17/400) is declared in `components/card.css` but no wireframe draws it any more, so it has no live block here.
 
@@ -121,7 +121,7 @@ Flat cards of one shape, set apart by the list's gap and the tone step alone, as
 ## Anti-rule
 
 ```html
-<article class="dr dr-card dr-card--row" style="width:341px;max-width:100%">
+<article class="dr-card dr-card--row" style="width:341px;max-width:100%">
       <span class="dr-listing__body">
         <span class="dr-listing__name">Package delivery</span>
         <span class="dr-listing__desc">2.3 km &#183; ~18 min</span>

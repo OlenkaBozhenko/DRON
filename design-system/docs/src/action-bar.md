@@ -18,7 +18,7 @@ kit: —
 </footer>
 ```
 
-- `.dr-actionbar` — The bar: `--page` ground, 1px `--line` hairline on top, padding 12 16 24, a column with gap 8.
+- `.dr-actionbar` — The bar: `--bg-page` ground, 1px `--border-hairline` on top, padding 12 16 24, a column with gap 8.
 - `.dr-btn--primary` — The screen's one green control, full width: 341 at the 375 frame.
 - `.dr-btn--secondary` — Every other action, on its own row, the same width.
 
@@ -38,12 +38,14 @@ kit: —
 
 ```html
 <footer class="dr-actionbar" style="width:375px;max-width:100%">
+  <button class="dr-btn dr-btn--primary dr-btn--block" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-contact">Contact operator</button>
   <a class="dr-btn dr-btn--secondary dr-btn--block" href="#">View details</a>
-  <button class="dr-btn dr-btn--primary dr-btn--block" type="button">Contact operator</button>
 </footer>
 ```
 
-`tracking`: one button per row, never two split across one row. All 27 multi-button bars in the build stack, and no label wraps at 320pt.
+`tracking`: the primary on top, one button per row, never two split across one row. All 38 multi-button bars in the build stack (34 with two buttons, 4 with three), and no label wraps at 320pt.
+
+Two pages break the one-green rule inside the stack: `account-photo` and `operator-account-photo` stack two primaries, *Take a photo* and *Choose a picture*, over a secondary *Delete*. Every other bar holds at most one primary.
 
 ### Composer
 
@@ -59,13 +61,23 @@ kit: —
 </footer>
 ```
 
-`chat`: the bar holds the message field and Send, the screen's one green control at 44 × 44. This is the one bar that rides above the [onscreen keyboard](onscreen-keyboard.html) instead of leaving.
+`chat`: the bar holds the message field and Send, the screen's one green control at 44 × 44. Built on `chat`, `chat-client`, `chat-aerial` and `chat-inspection`. This is the one bar that rides above the [onscreen keyboard](onscreen-keyboard.html) instead of leaving.
+
+### Note only
+
+```html
+<footer class="dr-actionbar" style="width:375px;max-width:100%">
+  <p class="dr-note">Payment stays held until the delivery photo uploads.</p>
+</footer>
+```
+
+`result-upload-error`: a bar that holds one note and no button. Five state pages build it: `job-brief-error`, `job-offer-empty`, `order-setup-empty`, `result-upload-error` and `withdraw-error`. Their way out sits in the column above.
 
 ## When to use
 
-The action bar is the bottom edge of a pushed screen: where the screen's job is committed. It replaces the tab bar of the [screen shell](screen-shell.html); 87 pages in `wireframes/` draw it. Every button in it is filled and full width, stacked one per row. Text-only rungs (tertiary, text) live in the nav bar, never here.
+The action bar is the bottom edge of a pushed screen: where the screen's job is committed. It replaces the tab bar of the [screen shell](screen-shell.html); 87 of the 133 pages in `wireframes/` draw it. Of those, 35 hold one button, 38 a stack, 4 the chat composer, 5 a note only, and 5 the call controls of the [call surface](call-surface.html) (`call`, `call-aerial`, `call-client`, `call-inspection`, `call-support`). Every button in it is filled and full width, stacked one per row. Text-only rungs (tertiary, text) live in the nav bar, never here.
 
-While the onscreen keyboard is up the bar takes `[hidden]` and leaves; buttons drawn behind the keys while still in the tab order would fail `WCAG 2.4.11 Focus Not Obscured`. A screen with nothing to commit ends at `</main>` and draws no bar: `earning-details`, `notifications`, `role-select` and the four filter screens.
+While the onscreen keyboard is up the bar takes `[hidden]` and leaves; buttons drawn behind the keys while still in the tab order would fail `WCAG 2.4.11 Focus Not Obscured`. A screen with nothing to commit ends at `</main>` and draws no bar: `earning-details`, `notifications`, `role-select` and `listings-filters`, for example. The tab roots draw no bar either; they carry the tab bar.
 
 The primary is on top in every action bar (designer, rev 290): the screen's job first, the way out under it, in the markup as well as on screen. Drawers stack *Done* over *Cancel* the same way (rev 291); the finder keeps *Filters* over *Find*, her own call. Labels name the outcome and state a price before the tap: *Pay ₴180*, *Submit review*, *Contact support*, *Try again*.
 
@@ -86,8 +98,9 @@ Sources: DESIGN.md § Navigation · voice.md P1, P3 · microcopy.md § Master ta
 
 ```html
 <footer class="dr-actionbar" style="width:375px;max-width:100%">
-  <p class="dr-note">You can change this later in Account → Switch role.</p>
+  <a class="dr-btn dr-btn--primary dr-btn--block" href="#">Submit report</a>
+  <button class="dr-btn dr-btn--tertiary" type="button">Cancel</button>
 </footer>
 ```
 
-A bar that holds no button. `role-select`'s bar carried only this note until the designer removed it; a fact belongs in the column as a [message](message-block.html) or a lead line, and a screen with no action ends at `</main>`. For a choice between routes rather than a commitment, use [choice cards](choice-card.html) in the column, not a stack of buttons in the bar.
+A text-only rung in the bar. No screen builds this: every button in an action bar is filled and full width. *Cancel* belongs in the nav bar as a [tertiary button](button.html#variant-tertiary), or in the bar as a [secondary](button.html#variant-secondary) under the primary. For a choice between routes rather than a commitment, use [choice cards](choice-card.html) in the column, not a stack of buttons in the bar.

@@ -26,43 +26,43 @@
   <p class="dsd-meta"><code>.dr-msg--banner · __banner · __title · __body · __actions</code> &middot; <a href="../components/message.css"><code>components/message.css</code></a>
     &middot; <a href="../../ui/kit.html">kit specimen</a></p>
   <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><div class="dr-msg dr-msg--banner" role="status" style="width:341px;max-width:100%;margin-top:0">
-  <span class="dr-msg__banner" aria-hidden="true" style="background-image:url(../../assets/drones/thumbs/drone-flight-front.png)"></span>
+  <span class="dr-msg__banner" aria-hidden="true" style="background-image:url(../../assets/drones/drone-cargo-banner.jpg)"></span>
   <span class="dr-msg__title">No orders yet</span>
   <p class="dr-msg__body">Your orders appear here, ready to re-book in a tap.</p>
   <div class="dr-msg__actions">
-    <span class="dr-btn dr-btn--primary">Browse services</span>
+    <a class="dr-btn dr-btn--primary" href="#">Browse services</a>
   </div>
-</div></div></div><ol class="dsd-parts"><li data-sel=".dr-msg--banner"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-msg--banner</code><span class="dsd-part__txt">The block: <code>--card</code> at 16, padding 16 / 16 / 32, gap 12, no shadow. The deeper floor is because the block ends on a button and the button needs its own air.</span></li><li data-sel=".dr-msg__banner"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-msg__banner</code><span class="dsd-part__txt">The art: 100% × 150 at the 13 media radius, no ground, <code>multiply</code> blend, the render placed at 78% of the box, 16 from the top. <code>aria-hidden</code>.</span></li><li data-sel=".dr-msg__title"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-msg__title</code><span class="dsd-part__txt">The fact, 17/600.</span></li><li data-sel=".dr-msg__body"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-msg__body</code><span class="dsd-part__txt">The reason to come back, at body 14 instead of the plain block's 13.</span></li><li data-sel=".dr-msg__actions"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-msg__actions</code><span class="dsd-part__txt">The one way out.</span></li></ol></div></section>
+</div></div></div><ol class="dsd-parts"><li data-sel=".dr-msg--banner"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-msg--banner</code><span class="dsd-part__txt">The block: <code>--card</code> at 16, padding 16 / 16 / 32, gap 12, no shadow. The deeper floor is because the block ends on a button and the button needs its own air.</span></li><li data-sel=".dr-msg__banner"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-msg__banner</code><span class="dsd-part__txt">The art: 100% × 150 at the 13 media radius on the block's own <code>--card</code> ground, <code>multiply</code> blend, the image sized to 78% of the box's height and placed 16 from the top. <code>aria-hidden</code>. On the screen it is <code>drones/drone-cargo-banner.jpg</code>.</span></li><li data-sel=".dr-msg__title"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-msg__title</code><span class="dsd-part__txt">The fact, 17/600, line 1.4.</span></li><li data-sel=".dr-msg__body"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-msg__body</code><span class="dsd-part__txt">The reason to come back, at body 14 / line 1.5 instead of the plain block's 13.</span></li><li data-sel=".dr-msg__actions"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-msg__actions</code><span class="dsd-part__txt">The one way out, 4 below the body instead of the plain block's 6.</span></li></ol></div></section>
   <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
     <p class="dsd-lede">Inventory rows: Empty-state banner (.dr-msg--banner).</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-banner"><figcaption><h3>Banner</h3></figcaption><div class="dsd-plate dr "><div class="dr-msg dr-msg--banner" role="status" style="width:341px;max-width:100%;margin-top:0">
-  <span class="dr-msg__banner" aria-hidden="true" style="background-image:url(../../assets/drones/thumbs/drone-flight-front.png)"></span>
+  <span class="dr-msg__banner" aria-hidden="true" style="background-image:url(../../assets/drones/drone-cargo-banner.jpg)"></span>
   <span class="dr-msg__title">No orders yet</span>
   <p class="dr-msg__body">Your orders appear here, ready to re-book in a tap.</p>
   <div class="dr-msg__actions">
-    <span class="dr-btn dr-btn--primary">Browse services</span>
+    <a class="dr-btn dr-btn--primary" href="#">Browse services</a>
   </div>
 </div></div>
-<p>The only shape. Measured on the build at 341.4 × 347.8. On a screen it is offset 56 from the content above (<code>margin-top</code>), switched off in this plate.</p></figure></div></section>
-  <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>The banner message is the empty state that carries a picture: an illustrated top, the sentence, and one way out. It stands on <code>order-history-empty</code>. It is a <a href="message-block.html">message block</a> with a render in place of the 52px mark, and it is the one decorative image in the product: the art is <code>aria-hidden</code> because it says nothing the sentence does not (<code>WCAG 1.1.1</code>). <code>role="status"</code> announces the state without taking focus (<code>WCAG 4.1.3</code>).</p>
+<p>The only shape, and one screen builds it: <code>order-history-empty</code>. Measured on the build at 341.4 × 347.8. On a screen it is offset 56 from the content above (<code>margin-top</code>), switched off in this plate.</p></figure></div></section>
+  <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>The banner message is the empty state that carries a picture: an illustrated top, the sentence, and one way out. It stands on one screen, <code>order-history-empty</code>. It is a <a href="message-block.html">message block</a> with a render in place of the 52px mark, and it is the one decorative image in the product: the art is <code>aria-hidden</code> because it says nothing the sentence does not (<code>WCAG 1.1.1</code>). <code>role="status"</code> announces the state without taking focus (<code>WCAG 4.1.3</code>).</p>
 <p>The copy is the empty-state tone from voice.md: <em>No orders yet</em> states the fact, <em>ready to re-book in a tap</em> is the reason to come back, <em>Browse services</em> is the exit. No apology, no cheer, no <em>Oops</em>.</p>
 <p class="dsd-sources">Sources: kit.html Banner message · inventory.md § 1.3 Empty-state banner · voice.md § Microcopy (Empty state) · microcopy.md order-history-empty</p></section>
   <section aria-labelledby="s-rule"><h2 id="s-rule">Rule and anti-rule</h2>
     <div class="dsd-rules">
       <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><div class="dr-msg dr-msg--banner" role="status" style="width:341px;max-width:100%;margin-top:0">
-  <span class="dr-msg__banner" aria-hidden="true" style="background-image:url(../../assets/drones/thumbs/drone-flight-front.png)"></span>
+  <span class="dr-msg__banner" aria-hidden="true" style="background-image:url(../../assets/drones/drone-cargo-banner.jpg)"></span>
   <span class="dr-msg__title">No orders yet</span>
   <p class="dr-msg__body">Your orders appear here, ready to re-book in a tap.</p>
   <div class="dr-msg__actions">
-    <span class="dr-btn dr-btn--primary">Browse services</span>
+    <a class="dr-btn dr-btn--primary" href="#">Browse services</a>
   </div>
 </div></div>
 <p>A first-time empty screen: nothing has gone wrong, so the block can open with a picture of the service before the one action.</p></div>
       <div class="dsd-rule dsd-rule--dont"><h3>Don&rsquo;t</h3><div class="dsd-plate dr dsd-plate--anti"><div class="dr-msg dr-msg--banner" role="alert" style="width:341px;max-width:100%;margin-top:0">
-  <span class="dr-msg__banner" aria-hidden="true" style="background-image:url(../../assets/drones/thumbs/drone-flight-front.png)"></span>
+  <span class="dr-msg__banner" aria-hidden="true" style="background-image:url(../../assets/drones/drone-cargo-banner.jpg)"></span>
   <span class="dr-msg__title">Live tracking lost</span>
-  <p class="dr-msg__body">We’ve lost the live signal from the operator’s device. Your order is still active.</p>
+  <p class="dr-msg__body">We've lost the live signal from the operator's device. Your order is still active.</p>
   <div class="dr-msg__actions">
-    <span class="dr-btn dr-btn--primary">Try again</span>
+    <a class="dr-btn dr-btn--primary" href="#">Try again</a>
   </div>
 </div></div>
 <p>An error with a picture on top. In trouble the product is plain and accountable, and a drone render over a lost signal reads as decoration where the user needs the facts. Use the <a href="message-block.html#variant-error">message block</a> with the danger mark.</p></div>

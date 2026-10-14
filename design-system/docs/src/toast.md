@@ -15,9 +15,9 @@ kit: —
 <div style="padding:8px 0"><div class="dr-toast is-on" role="status" style="position:static;animation:none">Link copied.</div></div>
 ```
 
-- `.dr-toast` — The surface: a pill with 12 / 20 padding, body type at medium, `--page` on `--ink` at 15.99:1. It floats, so it spends `--shadow-raised`.
+- `.dr-toast` — The surface: a pill with 12 / 20 padding, body 14 at weight 600 and line 1.4, `--text-on-inverse` on `--bg-inverse` at 15.99:1. It floats, so it spends `--shadow-raised`.
 - `.is-on` — The shown state: opacity 1, no offset. Without it the toast sits 8px low at opacity 0 and takes no clicks; the rise is 0.15s.
-- `[role="status"]` — Announced without taking focus (`WCAG 4.1.3`).
+- `[role="status"]` — Announced without taking focus (`WCAG 4.1.3`). No screen writes this markup: the shell (`_wf-shell.js`) builds this one `div` the first time a `data-toast` control is tapped.
 
 ## Variants
 
@@ -29,22 +29,21 @@ kit: —
 </div>
 ```
 
-The default. It floats 20px above whatever bottom chrome the screen has; the shell measures the action bar or tab bar rather than assuming, so the toast never covers the button that raised it.
+The default. It floats 20px above whatever bottom chrome the screen has, set inline by the shell as the measured height of the action bar or tab bar plus 20, so the toast never covers the button that raised it.
 
 ### Over a sheet
 
 ```html
 <div style="position:relative;height:250px;width:341px;max-width:100%;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
-  <section class="dr-sheet dr-sheet--picker" aria-hidden="true" style="animation:none">
+  <section class="dr-sheet" role="dialog" aria-label="Share DRON" style="animation:none">
     <span class="dr-sheet__grip" aria-hidden="true"></span>
-    <p class="dr-sheet__title">Invite a friend</p>
-    <span class="dr-btn dr-btn--primary dr-btn--block">Copy link</span>
-    <div class="dr-toast dr-toast--over-sheet is-on" style="animation:none">Link copied.</div>
+    <button type="button" class="dr-btn dr-btn--primary dr-btn--block">Copy link</button>
+    <div class="dr-toast dr-toast--over-sheet is-on" role="status" style="animation:none">Link copied.</div>
   </section>
 </div>
 ```
 
-`--over-sheet`: when the raising control sits inside a `[role="dialog"]`, the toast is parented inside that dialog and floats 12px above the sheet's top edge. Outside the dialog it would be hidden by `aria-modal` and announced to nobody. Measured on `share`: 125.55 × 43.60, exactly 12px above the sheet.
+`--over-sheet`: when the raising control sits inside a `[role="dialog"]`, the toast is parented inside that dialog and floats 12px above the sheet's top edge. Outside the dialog it would be hidden by `aria-modal` and announced to nobody. Measured on `share`: 125.55 × 43.60, exactly 12px above the sheet. On the screen the sheet also carries `aria-modal="true"`, left off this plate so the docs page stays readable to assistive technology.
 
 ## When to use
 

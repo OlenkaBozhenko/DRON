@@ -25,11 +25,12 @@
   <h1>Address picker</h1>
   <p class="dsd-meta"><code>.dr-sheet--steady · .dr-search · .dr-picker__list · __item · __lead · __label · __sub</code> &middot; <a href="../components/sheet.css"><code>components/sheet.css</code></a>
     &middot; <a href="../../ui/kit.html">kit specimen</a></p>
-  <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><section class="dr dr-sheet dr-sheet--picker dr-sheet--steady" aria-label="Pickup address" style="animation:none;position:static;min-height:460px;width:375px;max-width:100%">
+  <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><section class="dr dr-sheet dr-sheet--picker dr-sheet--steady" role="dialog"
+         aria-modal="true" aria-labelledby="ap1-title" style="animation:none;position:static;min-height:460px;width:375px;max-width:100%">
   <span class="dr-sheet__grip" aria-hidden="true"></span>
-  <p class="dr-sheet__title">Pickup address</p>
+  <p class="dr-sheet__title" id="ap1-title">Pickup address</p>
   <span class="dr-search">
-    <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="text" placeholder="Search address" aria-label="Search address">
+    <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="text" placeholder="Search address" autocomplete="street-address" aria-labelledby="ap1-title">
   </span>
   <div class="dr-picker__list">
     <button class="dr-picker__item" type="button">
@@ -45,19 +46,22 @@
       <span class="dr-picker__label">Osokorky, 14 <span class="dr-picker__sub">Recent</span></span>
     </button>
   </div>
+  <p class="sr-only" role="status"></p>
+
   <div class="dr-sheet__actions">
     <button class="dr-btn dr-btn--primary" type="button">Done</button>
     <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
   </div>
-</section></div></div><ol class="dsd-parts"><li data-sel=".dr-sheet__title"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-sheet__title</code><span class="dsd-part__txt">Named after the row that opened the sheet: <em>Pickup address</em>, <em>Drop-off address</em> or <em>Address</em>.</span></li><li data-sel=".dr-search"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-search</code><span class="dsd-part__txt">The field, 341 × 44, <code>--ink</code> on <code>--media</code> at 13.33:1. The placeholder <em>Search address</em> is 5.51:1. It takes focus when the sheet opens, so the keyboard rises and the sheet rides on it.</span></li><li data-sel=".dr-picker__lead"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-picker__lead</code><span class="dsd-part__txt">A 20px leading glyph in <code>--text-muted</code>, 5.95:1. It is the one place a picker row shows a <code>.dr-ic</code> other than the current-item tick. It is <code>aria-hidden</code> and never carries meaning on its own.</span></li><li data-sel=".dr-picker__sub"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-picker__sub</code><span class="dsd-part__txt">The sub-line, 12.5/400 in <code>--text-muted</code>, 5.95:1. It says in words what the glyph shows.</span></li><li data-sel=".dr-sheet__actions"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-sheet__actions</code><span class="dsd-part__txt"><em>Done</em> over <em>Cancel</em>, 341 × 44 each. With <code>--steady</code> they take <code>margin-top: auto</code> and stay on the floor of the sheet.</span></li></ol></div></section>
+</section></div></div><ol class="dsd-parts"><li data-sel=".dr-sheet__title"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-sheet__title</code><span class="dsd-part__txt">Named after the row that opened the sheet: <em>Pickup address</em>, <em>Drop-off address</em> or <em>Address</em>.</span></li><li data-sel=".dr-search"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-search</code><span class="dsd-part__txt">The field, 341 × 44, radius 10. Typed text is 15px <code>--text-primary</code> on <code>--bg-well</code>, 13.33:1; the placeholder <em>Search address</em> is <code>--text-muted</code>, 5.51:1. The field has no label of its own: it is named by the sheet's title (<code>aria-labelledby</code>). It opens holding the row's current address and takes focus, so the keyboard rises and the sheet rides on it.</span></li><li data-sel=".dr-picker__lead"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-picker__lead</code><span class="dsd-part__txt">A 20px leading glyph in <code>--text-muted</code> on the <code>--bg-surface</code> list, 5.95:1, 12px before the label. It is the one place a picker row shows a <code>.dr-ic</code> other than the current-item tick. It is <code>aria-hidden</code> and never carries meaning on its own.</span></li><li data-sel=".dr-picker__sub"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-picker__sub</code><span class="dsd-part__txt">The sub-line, 12.5/400 in <code>--text-muted</code>, 5.95:1. It says in words what the glyph shows.</span></li><li data-sel=".dr-sheet__actions"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-sheet__actions</code><span class="dsd-part__txt"><em>Done</em> over <em>Cancel</em>, 341 × 44 each. With <code>--steady</code> they take <code>margin-top: auto</code> and stay on the floor of the sheet.</span></li></ol></div></section>
   <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
     <p class="dsd-lede">Inventory rows: Address drawer.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-one-line-row"><figcaption><h3>One-line row</h3></figcaption><div class="dsd-plate dr "><div class="dr-picker__list" style="width:341px;max-width:100%"><button class="dr-picker__item" type="button"><svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 4.5L4.5 11l6.4 2.1 2.1 6.4z"/></svg><span class="dr-picker__label">Use my location</span></button></div></div>
 <p>A lead and a label, 44 tall. <em>Use my location</em> is always the first row and is never filtered out.</p></figure><figure class="dsd-variant" id="variant-two-line-row"><figcaption><h3>Two-line row</h3></figcaption><div class="dsd-plate dr "><div class="dr-picker__list" style="width:341px;max-width:100%"><button class="dr-picker__item" type="button"><svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11L12 4.5l7.5 6.5"/><path d="M6.5 9.3v10.2h11V9.3"/><path d="M10.2 19.5v-4.8h3.6v4.8"/></svg><span class="dr-picker__label">Podil, 21 <span class="dr-picker__sub">Saved address</span></span></button></div></div>
-<p><code>.dr-picker__item:has(.dr-picker__sub)</code> pads to 12 top and bottom, so the row measures 58. It clears <code>HIG · 44pt</code> the same way a one-line row does.</p></figure><figure class="dsd-variant" id="variant-steady-list-narrowed"><figcaption><h3>Steady, list narrowed</h3></figcaption><div class="dsd-plate dr "><section class="dr dr-sheet dr-sheet--picker dr-sheet--steady" aria-label="Pickup address" style="animation:none;position:static;min-height:460px;width:375px;max-width:100%">
+<p><code>.dr-picker__item:has(.dr-picker__sub)</code> pads to 12 top and bottom, so the row measures 58. It clears <code>HIG · 44pt</code> the same way a one-line row does.</p></figure><figure class="dsd-variant" id="variant-steady-list-narrowed"><figcaption><h3>Steady, list narrowed</h3></figcaption><div class="dsd-plate dr "><section class="dr dr-sheet dr-sheet--picker dr-sheet--steady" role="dialog"
+         aria-modal="true" aria-labelledby="ap2-title" style="animation:none;position:static;min-height:460px;width:375px;max-width:100%">
   <span class="dr-sheet__grip" aria-hidden="true"></span>
-  <p class="dr-sheet__title">Pickup address</p>
+  <p class="dr-sheet__title" id="ap2-title">Pickup address</p>
   <span class="dr-search">
-    <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="text" placeholder="Search address" aria-label="Search address" value="Osok">
+    <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="text" placeholder="Search address" autocomplete="street-address" aria-labelledby="ap2-title" value="Osok">
   </span>
   <div class="dr-picker__list">
     <button class="dr-picker__item" type="button">
@@ -73,23 +77,26 @@
       <span class="dr-picker__label">Osokorky, 14 <span class="dr-picker__sub">Recent</span></span>
     </button>
   </div>
+  <p class="sr-only" role="status">1 address</p>
+
   <div class="dr-sheet__actions">
     <button class="dr-btn dr-btn--primary" type="button">Done</button>
     <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
   </div>
 </section></div>
-<p>Typing narrows the list by word prefix and hides rows with <code>[hidden]</code>. The page pins the sheet's <code>min-height</code> to the height it opened at, so the title, the field and both buttons do not move under the thumb. The number of rows left is announced through <code>role="status"</code>.</p></figure></div></section>
+<p>Typing narrows the list by word prefix and hides rows with <code>[hidden]</code>. The page pins the sheet's <code>min-height</code> to the height it opened at, so the title, the field and both buttons do not move under the thumb. The number of rows left is announced through an <code>sr-only</code> line with <code>role="status"</code>: <em>1 address</em>, <em>2 addresses</em> or <em>No matching address</em>. <em>Use my location</em> is never hidden.</p></figure></div></section>
   <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>The address picker is the sheet where an address is typed or chosen. One sheet serves <em>From</em>, <em>To</em> and <em>Where</em> on the <a href="finder.html">finder</a>. A tap on a route row opens it, never focus on the row. With the keyboard up at the 375 frame it measures 412.8 tall, top at 63.2, bottom on the keyboard's 476, overlap 0. <em>Done</em> is 4.93% of the frame, the only green above the scrim.</p>
 <p>A tapped row is taken at once. <em>Done</em> takes what was typed. <em>Cancel</em>, the scrim and Escape change nothing. A tap does not move focus off the field, so the keyboard stays up until the tap lands.</p>
-<p>The first row uses the user's words, <em>Use my location</em>, not GPS or geolocation (voice P4). Addresses are written in the product's short form, <em>Podil, 21</em>, and the sub-line says why a row is there: <em>Saved address</em>, <em>Recent</em>. The status line counts results, <em>1 address</em> or <em>2 addresses</em>, and does not count <em>Use my location</em>.</p>
+<p>The first row uses the user's words, <em>Use my location</em>, not GPS or geolocation (voice P4). Addresses are written in the product's short form, <em>Podil, 21</em>, and the sub-line says why a row is there: <em>Saved address</em>, <em>Recent</em>. The status line counts results, <em>1 address</em>, <em>2 addresses</em> or <em>No matching address</em>, and does not count <em>Use my location</em>.</p>
 <p class="dsd-sources">Sources: DESIGN.md § The search home (Address drawer) · inventory.md § 1 Address drawer · microcopy.md § listings, Address drawer · voice.md P4 · ui/kit.html § Address picker</p></section>
   <section aria-labelledby="s-rule"><h2 id="s-rule">Rule and anti-rule</h2>
     <div class="dsd-rules">
-      <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><section class="dr dr-sheet dr-sheet--picker dr-sheet--steady" aria-label="Address" style="animation:none;position:static;width:375px;max-width:100%">
+      <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><section class="dr dr-sheet dr-sheet--picker dr-sheet--steady" role="dialog"
+         aria-modal="true" aria-labelledby="ap3-title" style="animation:none;position:static;width:375px;max-width:100%">
   <span class="dr-sheet__grip" aria-hidden="true"></span>
-  <p class="dr-sheet__title">Address</p>
+  <p class="dr-sheet__title" id="ap3-title">Address</p>
   <span class="dr-search">
-    <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="text" placeholder="Search address" aria-label="Search address">
+    <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="text" placeholder="Search address" autocomplete="street-address" aria-labelledby="ap3-title">
   </span>
   <div class="dr-picker__list">
     <button class="dr-picker__item" type="button">
@@ -100,13 +107,19 @@
       <svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11L12 4.5l7.5 6.5"/><path d="M6.5 9.3v10.2h11V9.3"/><path d="M10.2 19.5v-4.8h3.6v4.8"/></svg>
       <span class="dr-picker__label">Podil, 21 <span class="dr-picker__sub">Saved address</span></span>
     </button>
+    <button class="dr-picker__item" type="button">
+      <svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+      <span class="dr-picker__label">Osokorky, 14 <span class="dr-picker__sub">Recent</span></span>
+    </button>
   </div>
+  <p class="sr-only" role="status"></p>
+
   <div class="dr-sheet__actions">
     <button class="dr-btn dr-btn--primary" type="button">Done</button>
     <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
   </div>
 </section></div>
-<p>Photo and inspection have one place, so the <em>Where</em> row opens the same sheet titled <em>Address</em>. The search field, the list and the <em>Cancel</em> / <em>Done</em> pair are the same.</p></div>
+<p>Photo and inspection have one place, so the <em>Where</em> row opens the same sheet titled <em>Address</em>. The search field, the list and <em>Done</em> over <em>Cancel</em> are the same. Only <code>listings</code> and its three states (<code>listings-error</code>, <code>listings-filters</code>, <code>listings-loading</code>) build this sheet, and all four build it identically.</p></div>
       <div class="dsd-rule dsd-rule--dont"><h3>Don&rsquo;t</h3><div class="dsd-plate dr dsd-plate--anti"><span class="dr-search" style="width:341px;max-width:100%"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="text" placeholder="Drop-off address" aria-label="Drop-off address"></span></div>
 <p>A bare search field on the home screen in place of the route row. The typing belongs in this sheet. On the finder the row is a <code>&lt;button aria-haspopup="dialog"&gt;</code> that opens on a tap (<code>WCAG 3.2.1</code>, <code>4.1.2</code>); see the <a href="finder.html">finder</a>. For a value chosen from a short fixed list, with nothing to type, use the plain <a href="sheet.html#variant-picker">sheet</a> picker without a search field.</p></div>
     </div></section>

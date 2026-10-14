@@ -25,42 +25,116 @@
   <h1>Filters drawer</h1>
   <p class="dsd-meta"><code>.dr-sheet--tall · .dr-sheet__scroll · .dr-sheet__actions--row</code> &middot; <a href="../components/sheet.css"><code>components/sheet.css</code></a>
     &middot; <a href="../../ui/kit.html">kit specimen</a></p>
-  <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><section class="dr dr-sheet dr-sheet--picker dr-sheet--tall" aria-label="Filters" style="animation:none;position:static;height:300px;width:375px;max-width:100%">
+  <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><section class="dr-sheet dr-sheet--picker dr-sheet--tall" style="animation:none;position:static;height:300px;width:375px;max-width:100%" role="dialog" aria-modal="true" aria-labelledby="fd-sheet-filters-title">
   <span class="dr-sheet__grip" aria-hidden="true"></span>
-  <p class="dr-sheet__title">Filters</p>
+  <p class="dr-sheet__title" id="fd-sheet-filters-title">Filters</p>
   <div class="dr-sheet__scroll">
-    <fieldset class="dr-zone">
-      <p class="dr-zone__title">Drone type</p>
-      <p class="dr-zone__sub">Which drone does your order</p>
-      <ul class="dr-picks" style="list-style:none">
-        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="docdrone" class="sr-only"></label></li>
-        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="docdrone" class="sr-only"></label></li>
-        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="docdrone" class="sr-only"></label></li>
-        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Fixed-wing</span><input type="checkbox" name="docdrone" class="sr-only"></label></li>
+    <fieldset class="dr-zone" aria-labelledby="fd-type-title" aria-describedby="fd-type-sub">
+      <p class="dr-zone__title" id="fd-type-title">Drone type</p>
+      <p class="dr-zone__sub" id="fd-type-sub">Which drone does your order</p>
+      <ul class="dr-picks">
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="fd-drone-type" value="quadcopter" class="sr-only"></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="fd-drone-type" value="hexacopter" class="sr-only"></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="fd-drone-type" value="fpv" class="sr-only"></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Fixed-wing</span><input type="checkbox" name="fd-drone-type" value="fixed-wing" class="sr-only"></label></li>
       </ul>
+    </fieldset>
+    <fieldset class="dr-range" aria-labelledby="fd-price-title" aria-describedby="fd-price-sub">
+      <p class="dr-range__title" id="fd-price-title">Price range</p>
+      <p class="dr-range__sub" id="fd-price-sub">Service price, all fees included</p>
+      <div class="dr-range__band">
+        <div class="dr-range__hist" role="img" aria-label="How services are priced: most cost ₴200 – ₴350">
+          <i class="dr-range__bar" style="height:6%"></i><i class="dr-range__bar" style="height:8%"></i><i class="dr-range__bar" style="height:10%"></i><i class="dr-range__bar" style="height:14%"></i>
+          <i class="dr-range__bar" style="height:22%"></i><i class="dr-range__bar" style="height:30%"></i><i class="dr-range__bar" style="height:44%"></i><i class="dr-range__bar" style="height:58%"></i>
+          <i class="dr-range__bar" style="height:72%"></i><i class="dr-range__bar" style="height:86%"></i><i class="dr-range__bar" style="height:100%"></i><i class="dr-range__bar" style="height:92%"></i>
+          <i class="dr-range__bar" style="height:78%"></i><i class="dr-range__bar" style="height:70%"></i><i class="dr-range__bar" style="height:62%"></i><i class="dr-range__bar" style="height:66%"></i>
+          <i class="dr-range__bar" style="height:54%"></i><i class="dr-range__bar" style="height:46%"></i><i class="dr-range__bar" style="height:40%"></i><i class="dr-range__bar" style="height:44%"></i>
+          <i class="dr-range__bar" style="height:38%"></i><i class="dr-range__bar" style="height:32%"></i><i class="dr-range__bar" style="height:36%"></i><i class="dr-range__bar" style="height:28%"></i>
+          <i class="dr-range__bar" style="height:30%"></i><i class="dr-range__bar" style="height:24%"></i><i class="dr-range__bar" style="height:20%"></i><i class="dr-range__bar" style="height:22%"></i>
+          <i class="dr-range__bar" style="height:16%"></i><i class="dr-range__bar" style="height:14%"></i><i class="dr-range__bar" style="height:12%"></i><i class="dr-range__bar" style="height:14%"></i>
+          <i class="dr-range__bar" style="height:10%"></i><i class="dr-range__bar" style="height:8%"></i><i class="dr-range__bar" style="height:9%"></i><i class="dr-range__bar" style="height:7%"></i>
+          <i class="dr-range__bar" style="height:6%"></i><i class="dr-range__bar" style="height:8%"></i><i class="dr-range__bar" style="height:12%"></i><i class="dr-range__bar" style="height:26%"></i>
+        </div>
+        <div class="dr-range__rail">
+          <span class="dr-range__fill"></span>
+          <input class="dr-range__input" type="range" id="fd-pmin" min="0" max="1000" step="50" value="0" aria-label="Minimum price" aria-valuetext="₴0">
+          <input class="dr-range__input" type="range" id="fd-pmax" min="0" max="1000" step="50" value="1000" aria-label="Maximum price" aria-valuetext="₴1,000+">
+        </div>
+      </div>
+      <div class="dr-range__fields">
+        <p class="dr-range__field">
+          <span class="dr-range__cap">Minimum</span>
+          <output class="dr-range__val" for="fd-pmin">₴0</output>
+        </p>
+        <p class="dr-range__field">
+          <span class="dr-range__cap">Maximum</span>
+          <output class="dr-range__val" for="fd-pmax">₴1,000+</output>
+        </p>
+      </div>
     </fieldset>
   </div>
   <div class="dr-sheet__actions dr-sheet__actions--row">
     <button class="dr-btn dr-btn--secondary" type="button">Clear all</button>
     <button class="dr-btn dr-btn--primary" type="button">Apply filters</button>
   </div>
-</section></div></div><ol class="dsd-parts"><li data-sel=".dr-sheet--tall"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-sheet--tall</code><span class="dsd-part__txt"><code>max-height: calc(100% − 44px)</code>. A strip of the screen behind stays visible (<code>HIG · Sheets</code>), which shows the drawer is a layer over the page and not a new screen. Tapping the strip dismisses it. Measured 693.77 tall at the 375 × 812 frame.</span></li><li data-sel=".dr-sheet__title"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-sheet__title</code><span class="dsd-part__txt"><em>Filters</em>, the name of the button that opened it.</span></li><li data-sel=".dr-sheet__scroll"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-sheet__scroll</code><span class="dsd-part__txt">Only the middle scrolls: <code>flex: 1 1 auto; min-height: 0; overflow-y: auto</code>. It bleeds the sheet's 16px gutter back with <code>margin-inline: -16px</code> and pads 4 / 16, so a focus ring at the edge is not clipped.</span></li><li data-sel=".dr-zone"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-zone</code><span class="dsd-part__txt">One question per titled zone. <em>Drone type</em> is a fieldset of four checkbox rows, 341 × 274.</span></li><li data-sel=".dr-sheet__actions--row"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-sheet__actions--row</code><span class="dsd-part__txt"><em>Clear all</em> and <em>Apply filters</em> side by side at equal widths. Neither of them is a cancel.</span></li></ol></div></section>
+</section></div></div><ol class="dsd-parts"><li data-sel=".dr-sheet--tall"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-sheet--tall</code><span class="dsd-part__txt"><code>max-height: calc(100% − 44px)</code>. A strip of the screen behind stays visible (<code>HIG · Sheets</code>), which shows the drawer is a layer over the page and not a new screen. Tapping the strip dismisses it. Measured 693.77 tall at the 375 × 812 frame.</span></li><li data-sel=".dr-sheet__title"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-sheet__title</code><span class="dsd-part__txt"><em>Filters</em>, the name of the button that opened it.</span></li><li data-sel=".dr-sheet__scroll"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-sheet__scroll</code><span class="dsd-part__txt">Only the middle scrolls: <code>flex: 1 1 auto; min-height: 0; overflow-y: auto</code>. It bleeds the sheet's 16px gutter back with <code>margin-inline: -16px</code> and pads 4 / 16, so a focus ring at the edge is not clipped. The zones inside it stand 12 apart.</span></li><li data-sel=".dr-zone"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-zone</code><span class="dsd-part__txt">One question per titled zone. <em>Drone type</em> is a fieldset of four checkbox rows, 341 × 274.</span></li><li data-sel=".dr-range"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-range</code><span class="dsd-part__txt">The second zone, <em>Price range</em>, drawn by <a href="price-range.html">price range</a>.</span></li><li data-sel=".dr-sheet__actions--row"><span class="dsd-pin-n" aria-hidden="true">6</span><code>.dr-sheet__actions--row</code><span class="dsd-part__txt"><em>Clear all</em> and <em>Apply filters</em> side by side at equal widths. Neither of them is a cancel.</span></li></ol></div></section>
   <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
-    <p class="dsd-lede">Inventory rows: Tall drawer.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-picked-rows"><figcaption><h3>Picked rows</h3></figcaption><div class="dsd-plate dr "><ul class="dr-picks" style="list-style:none;width:341px;max-width:100%">
-  <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="docpicked" class="sr-only" checked></label></li>
-  <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="docpicked" class="sr-only"></label></li>
-</ul></div>
-<p>A ticked row and an empty one. The state belongs to the <code>.sr-only</code> checkbox inside the label, so the whole row is the target. The box and the tick are drawn by <a href="checkbox-radio.html">checkbox and radio</a>.</p></figure><figure class="dsd-variant" id="variant-fixed-pane-scrolling-middle"><figcaption><h3>Fixed pane, scrolling middle</h3></figcaption><div class="dsd-plate dr "><section class="dr dr-sheet dr-sheet--picker dr-sheet--tall" aria-label="Filters" style="animation:none;position:static;height:220px;width:375px;max-width:100%">
+    <p class="dsd-lede">Inventory rows: Tall drawer.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-picked-rows"><figcaption><h3>Picked rows</h3></figcaption><div class="dsd-plate dr "><fieldset class="dr-zone" style="width:341px;max-width:100%" aria-labelledby="fp-type-title" aria-describedby="fp-type-sub">
+  <p class="dr-zone__title" id="fp-type-title">Drone type</p>
+  <p class="dr-zone__sub" id="fp-type-sub">Which drone does your order</p>
+  <ul class="dr-picks">
+    <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="fp-drone-type" value="quadcopter" class="sr-only"></label></li>
+    <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="fp-drone-type" value="hexacopter" class="sr-only" checked></label></li>
+    <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="fp-drone-type" value="fpv" class="sr-only"></label></li>
+    <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Fixed-wing</span><input type="checkbox" name="fp-drone-type" value="fixed-wing" class="sr-only"></label></li>
+  </ul>
+</fieldset></div>
+<p>The zone as <code>listings-filters</code> and <code>listings-error</code> build it, with <em>Hexacopter</em> ticked. The state belongs to the <code>.sr-only</code> checkbox inside the label, so the whole row is the target. The box and the tick are drawn by <a href="checkbox-radio.html">checkbox and radio</a>.</p></figure><figure class="dsd-variant" id="variant-fixed-pane-scrolling-middle"><figcaption><h3>Fixed pane, scrolling middle</h3></figcaption><div class="dsd-plate dr "><section class="dr-sheet dr-sheet--picker dr-sheet--tall" style="animation:none;position:static;height:220px;width:375px;max-width:100%" role="dialog" aria-modal="true" aria-labelledby="fs-sheet-filters-title">
   <span class="dr-sheet__grip" aria-hidden="true"></span>
-  <p class="dr-sheet__title">Filters</p>
+  <p class="dr-sheet__title" id="fs-sheet-filters-title">Filters</p>
   <div class="dr-sheet__scroll">
-    <fieldset class="dr-zone">
-      <p class="dr-zone__title">Drone type</p>
-      <p class="dr-zone__sub">Which drone does your order</p>
-      <ul class="dr-picks" style="list-style:none">
-        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="docshort" class="sr-only"></label></li>
-        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="docshort" class="sr-only"></label></li>
+    <fieldset class="dr-zone" aria-labelledby="fs-type-title" aria-describedby="fs-type-sub">
+      <p class="dr-zone__title" id="fs-type-title">Drone type</p>
+      <p class="dr-zone__sub" id="fs-type-sub">Which drone does your order</p>
+      <ul class="dr-picks">
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Quadcopter</span><input type="checkbox" name="fs-drone-type" value="quadcopter" class="sr-only"></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Hexacopter</span><input type="checkbox" name="fs-drone-type" value="hexacopter" class="sr-only"></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">FPV</span><input type="checkbox" name="fs-drone-type" value="fpv" class="sr-only"></label></li>
+        <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Fixed-wing</span><input type="checkbox" name="fs-drone-type" value="fixed-wing" class="sr-only"></label></li>
       </ul>
+    </fieldset>
+    <fieldset class="dr-range" aria-labelledby="fs-price-title" aria-describedby="fs-price-sub">
+      <p class="dr-range__title" id="fs-price-title">Price range</p>
+      <p class="dr-range__sub" id="fs-price-sub">Service price, all fees included</p>
+      <div class="dr-range__band">
+        <div class="dr-range__hist" role="img" aria-label="How services are priced: most cost ₴200 – ₴350">
+          <i class="dr-range__bar" style="height:6%"></i><i class="dr-range__bar" style="height:8%"></i><i class="dr-range__bar" style="height:10%"></i><i class="dr-range__bar" style="height:14%"></i>
+          <i class="dr-range__bar" style="height:22%"></i><i class="dr-range__bar" style="height:30%"></i><i class="dr-range__bar" style="height:44%"></i><i class="dr-range__bar" style="height:58%"></i>
+          <i class="dr-range__bar" style="height:72%"></i><i class="dr-range__bar" style="height:86%"></i><i class="dr-range__bar" style="height:100%"></i><i class="dr-range__bar" style="height:92%"></i>
+          <i class="dr-range__bar" style="height:78%"></i><i class="dr-range__bar" style="height:70%"></i><i class="dr-range__bar" style="height:62%"></i><i class="dr-range__bar" style="height:66%"></i>
+          <i class="dr-range__bar" style="height:54%"></i><i class="dr-range__bar" style="height:46%"></i><i class="dr-range__bar" style="height:40%"></i><i class="dr-range__bar" style="height:44%"></i>
+          <i class="dr-range__bar" style="height:38%"></i><i class="dr-range__bar" style="height:32%"></i><i class="dr-range__bar" style="height:36%"></i><i class="dr-range__bar" style="height:28%"></i>
+          <i class="dr-range__bar" style="height:30%"></i><i class="dr-range__bar" style="height:24%"></i><i class="dr-range__bar" style="height:20%"></i><i class="dr-range__bar" style="height:22%"></i>
+          <i class="dr-range__bar" style="height:16%"></i><i class="dr-range__bar" style="height:14%"></i><i class="dr-range__bar" style="height:12%"></i><i class="dr-range__bar" style="height:14%"></i>
+          <i class="dr-range__bar" style="height:10%"></i><i class="dr-range__bar" style="height:8%"></i><i class="dr-range__bar" style="height:9%"></i><i class="dr-range__bar" style="height:7%"></i>
+          <i class="dr-range__bar" style="height:6%"></i><i class="dr-range__bar" style="height:8%"></i><i class="dr-range__bar" style="height:12%"></i><i class="dr-range__bar" style="height:26%"></i>
+        </div>
+        <div class="dr-range__rail">
+          <span class="dr-range__fill"></span>
+          <input class="dr-range__input" type="range" id="fs-pmin" min="0" max="1000" step="50" value="0" aria-label="Minimum price" aria-valuetext="₴0">
+          <input class="dr-range__input" type="range" id="fs-pmax" min="0" max="1000" step="50" value="1000" aria-label="Maximum price" aria-valuetext="₴1,000+">
+        </div>
+      </div>
+      <div class="dr-range__fields">
+        <p class="dr-range__field">
+          <span class="dr-range__cap">Minimum</span>
+          <output class="dr-range__val" for="fs-pmin">₴0</output>
+        </p>
+        <p class="dr-range__field">
+          <span class="dr-range__cap">Maximum</span>
+          <output class="dr-range__val" for="fs-pmax">₴1,000+</output>
+        </p>
+      </div>
     </fieldset>
   </div>
   <div class="dr-sheet__actions dr-sheet__actions--row">
@@ -71,6 +145,7 @@
 <p>When the zones are taller than the drawer, the grip, the title and the two actions stay where they are and only <code>.dr-sheet__scroll</code> moves. Without <code>min-height: 0</code> the flex child would refuse to shrink, and the drawer would grow instead of scrolling.</p></figure></div></section>
   <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>The filters drawer is the second drawer <code>listings</code> opens and the only one that holds more than fits. The <em>Filters</em> button on the <a href="finder.html">finder</a> raises it. It holds <em>Drone type</em> and the <a href="price-range.html">price range</a>, and at the built frame it has 0px to scroll. The scroll body exists for when zones are added later. Applied values come back to the home screen as filter chips above <em>Filters</em> (see <a href="in-page-tabs.html">in-page tabs</a>), and a tap on a chip removes that filter.</p>
 <p><em>Apply filters</em> writes the chips and closes. <em>Clear all</em> empties every zone and closes. The scrim and Escape close without applying. The two actions sit side by side because neither is a cancel. The stacked-cancel rule from <code>HIG · Action sheets</code> applies to a <em>Cancel</em> / <em>Done</em> pair, and this is not one. The four drone type names (<em>Quadcopter · Hexacopter · FPV · Fixed-wing</em>) are equipment words. They depart from voice P4 and P1 on the designer's decision.</p>
+<p>Four screens build it with the same markup: <code>listings</code>, <code>listings-loading</code>, <code>listings-filters</code> and <code>listings-error</code>. On <code>listings</code> and <code>listings-loading</code> nothing is picked and the band is ₴0 – ₴1,000+. On <code>listings-filters</code> and <code>listings-error</code> <em>Hexacopter</em> is ticked and the minimum is ₴600. Only the values differ.</p>
 <p class="dsd-sources">Sources: DESIGN.md § The search home (Drawers) · inventory.md § 1 Tall drawer · microcopy.md § listings, Filters drawer · ui/kit.html § Filters drawer</p></section>
   <section aria-labelledby="s-rule"><h2 id="s-rule">Rule and anti-rule</h2>
     <div class="dsd-rules">

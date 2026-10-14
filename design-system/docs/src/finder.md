@@ -33,7 +33,7 @@ kit: 2045
         <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6"/></svg></span>
         <button class="dr-route__open" type="button" aria-haspopup="dialog" aria-expanded="false">
           <span class="dr-route__label">From</span>
-          <span class="dr-route__value">Podil, Kyiv</span>
+          <span class="dr-route__value" data-empty>Pickup address</span>
         </button>
       </div>
       <div class="dr-route__row">
@@ -47,6 +47,15 @@ kit: 2045
         <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 19.5v-15"/><path d="M4.5 8L8 4.5 11.5 8"/><path d="M16 4.5v15"/><path d="M12.5 16l3.5 3.5 3.5-3.5"/></svg>
       </button>
     </div>
+    <div class="dr-route dr-route--single" hidden>
+      <div class="dr-route__row">
+        <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg></span>
+        <button class="dr-route__open" type="button" aria-haspopup="dialog" aria-expanded="false">
+          <span class="dr-route__label">Where</span>
+          <span class="dr-route__value" data-empty>Address</span>
+        </button>
+      </div>
+    </div>
     <div class="dr-when">
       <button class="dr-when__cell" type="button" aria-haspopup="dialog" aria-expanded="false">
         <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14.5" rx="2.4"/><path d="M4 10h16"/><path d="M8.5 3.5v4M15.5 3.5v4"/></svg>
@@ -58,6 +67,7 @@ kit: 2045
       </button>
     </div>
   </div>
+  <div class="dr-fchips" role="group" aria-label="Applied filters" hidden></div>
   <div class="dr-finder__actions">
     <button class="dr-btn dr-btn--secondary" type="button" aria-haspopup="dialog" aria-expanded="false"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5h9"/><circle cx="17" cy="7.5" r="2.4"/><path d="M20 16.5h-9"/><circle cx="7" cy="16.5" r="2.4"/></svg>Filters</button>
     <a class="dr-btn dr-btn--primary" href="#">Find</a>
@@ -77,7 +87,7 @@ kit: 2045
 ### One address
 
 ```html
-<div class="dr dr-route dr-route--single" role="group" aria-label="Where" style="width:341px;max-width:100%">
+<div class="dr dr-route dr-route--single" style="width:341px;max-width:100%">
   <div class="dr-route__row">
     <span class="dr-route__mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg></span>
     <button class="dr-route__open" type="button" aria-haspopup="dialog" aria-expanded="false">
@@ -113,9 +123,9 @@ kit: 2045
 
 ## When to use
 
-The finder is the home screen, `listings`. It replaced the list of cards with one form that asks three questions: *what*, *from where to where*, and *when*. Each row is a button that opens a drawer: the [address picker](address-picker.html), the [date picker](date-picker.html), or the time drawer. *Filters* opens the [filters drawer](filters-drawer.html), and applied filters stand as chips above it. *Find* opens [results on the map](map-screen.html) for the chosen service. The same service badges stand on `listings-empty`, `-error`, `-loading` and `-filtered`, with a fourth badge, *All*, chosen at rest.
+The finder is the home screen, `listings`. It replaced the list of cards with one form that asks three questions: *what*, *from where to where*, and *when*. Each row is a button that opens a drawer: the [address picker](address-picker.html), the [date picker](date-picker.html), or the time drawer. *Filters* opens the [filters drawer](filters-drawer.html), and applied filters stand as chips above it. *Find* opens [results on the map](map-screen.html) for the chosen service. The finder stands on four files: `listings`, `listings-filters` (the filters drawer open over it), `listings-error` and `listings-loading`. All four build the same three badges, with *Delivery* chosen at rest. On `-error` and `-loading` the route is filled in (*Podil, 21* to *Osokorky, 14*). On `-loading`, *Find* becomes a disabled *Searching…* button and a status line names the place.
 
-Home's solid green measures 6.08%: *Find* 4.93%, the chosen badge 1.05%, and the bell's count 0.11%. That is over the ~5% ceiling and breaks the one-green-control rule, and it is recorded as the designer's decision. The badge's mark is 1.41:1 against the idle fill, short of the 3:1 in `WCAG 1.4.11`. The label changing colour carries the state. The count badge on *Filters* (`.dr-finder__actions … .dr-count-badge`) is still declared and applies to nothing. The count moved off the button into the chips.
+Home's solid green measures 6.08%: *Find* 4.93%, the chosen badge 1.05%, and the bell's count 0.11%. The solid green service badge beside *Find* is the designer's deliberate choice. It takes home over the ~5% guide, and that is how she wants it. The badge's mark is 1.41:1 against the idle fill, short of the 3:1 in `WCAG 1.4.11`. The label changing colour carries the state. The count badge on *Filters* (`.dr-finder__actions … .dr-count-badge`) is still declared and applies to nothing. The count moved off the button into the applied-filter chips (`.dr-fchips`), which stand between the card and *Filters*, hidden while nothing is applied.
 
 Labels name the question in one word: *From*, *To*, *Where*, *Date*, *Time*. Placeholders name what goes there: *Pickup address*, *Drop-off address*, *Address*. Defaults are facts: *Today*, *Now*. The services are *Delivery*, *Photo & video* and *Inspection*. The two actions are *Filters* and *Find*.
 

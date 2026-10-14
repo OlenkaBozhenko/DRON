@@ -26,26 +26,29 @@
   <p class="dsd-meta"><code>.dr-price · __lbl · __val</code> &middot; <a href="../components/rows.css"><code>components/rows.css</code></a>
     &middot; <a href="../../ui/kit.html">kit specimen</a></p>
   <section aria-labelledby="s-anatomy"><h2 id="s-anatomy">Anatomy</h2><div class="dsd-anatomy"><div class="dsd-stage"><div class="dsd-plate dr dsd-plate--anatomy"><footer class="dr dr-actionbar" style="position:static;width:341px;max-width:100%">
-        <div class="dr-price"><span class="dr-price__lbl">Selected &#183; Wed 2 Jul, 09:00</span><span class="dr-price__val">&#8372;800</span></div>
-        <span class="dr-btn dr-btn--primary dr-btn--block">Confirm slot</span>
-      </footer></div></div><ol class="dsd-parts"><li data-sel=".dr-price"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-price</code><span class="dsd-part__txt">The line: <code>display:flex</code>, <code>align-items: baseline</code>, <code>space-between</code>, gap 12. It sits on the <a href="action-bar.html">action bar</a>'s shelf above the button.</span></li><li data-sel=".dr-price__lbl"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-price__lbl</code><span class="dsd-part__txt">What the price is for, 13 in <code>--text-muted</code>, 4.77:1 on <code>--bg-page</code>.</span></li><li data-sel=".dr-price__val"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-price__val</code><span class="dsd-part__txt">The price, 17/600 in <code>--text-primary</code>, tabular, 14.75:1 on <code>--bg-page</code>.</span></li></ol></div></section>
+  <div class="dr-price"><span class="dr-price__lbl">Selected · Wed 2 Jul, 09:00</span><span class="dr-price__val">₴800</span></div>
+  <a class="dr-btn dr-btn--primary dr-btn--block" href="#">Confirm slot</a>
+</footer></div></div><ol class="dsd-parts"><li data-sel=".dr-price"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-price</code><span class="dsd-part__txt">The line: <code>display:flex</code>, <code>align-items: baseline</code>, <code>space-between</code>, gap 12. It sits on the <a href="action-bar.html">action bar</a>'s shelf above the button.</span></li><li data-sel=".dr-price__lbl"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-price__lbl</code><span class="dsd-part__txt">What the price is for, 13/400 in <code>--text-muted</code>, 6.62:1 on the action bar's <code>--bg-page</code>.</span></li><li data-sel=".dr-price__val"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-price__val</code><span class="dsd-part__txt">The price, 17/600 in <code>--text-primary</code>, tabular, 15.99:1 on <code>--bg-page</code>.</span></li></ol></div></section>
   <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
     <p class="dsd-lede">Inventory rows: Price line.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-selected"><figcaption><h3>Selected</h3></figcaption><div class="dsd-plate dr "><footer class="dr dr-actionbar" style="position:static;width:341px;max-width:100%">
-        <div class="dr-price"><span class="dr-price__lbl">Selected &#183; Wed 2 Jul, 09:00</span><span class="dr-price__val">&#8372;800</span></div>
-        <span class="dr-btn dr-btn--primary dr-btn--block">Confirm slot</span>
-      </footer></div>
-<p>A slot is chosen: the label names it and the price stands beside it. <code>time-slot</code>.</p></figure><figure class="dsd-variant" id="variant-nothing-selected-yet"><figcaption><h3>Nothing selected yet</h3></figcaption><div class="dsd-plate dr "><div class="dr dr-price" style="width:341px;max-width:100%"><span class="dr-price__lbl">No slot selected</span><span class="dr-price__val">₴800</span></div></div>
-<p>The label says what is missing and the price is still stated. <code>time-slot-empty</code>.</p></figure></div></section>
-  <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>The price line puts the sum on the button's own shelf, so the price and the commitment are read in one glance. It stands on one screen: <code>time-slot</code> (and <code>time-slot-inspection</code>), base and empty, where it is the only place the price is stated at all. Every other screen states its price in a <a href="money-rows.html">money rows</a> breakdown and in the CTA's verb.</p>
+  <div class="dr-price"><span class="dr-price__lbl">Selected · Wed 2 Jul, 09:00</span><span class="dr-price__val">₴800</span></div>
+  <a class="dr-btn dr-btn--primary dr-btn--block" href="#">Confirm slot</a>
+</footer></div>
+<p>A slot is chosen: the label names it and the price stands beside it. <code>time-slot</code> (₴800) and <code>time-slot-inspection</code> (₴650).</p></figure><figure class="dsd-variant" id="variant-nothing-selected-yet"><figcaption><h3>Nothing selected yet</h3></figcaption><div class="dsd-plate dr "><footer class="dr dr-actionbar" style="position:static;width:341px;max-width:100%">
+  <div class="dr-price"><span class="dr-price__lbl">No slot selected</span><span class="dr-price__val">₴800</span></div>
+  <a class="dr-btn dr-btn--primary dr-btn--block" href="#" aria-disabled="true">Confirm slot</a>
+</footer></div>
+<p>The label says what is missing and the price is still stated. <em>Confirm slot</em> stays in place with <code>aria-disabled="true"</code>. <code>time-slot-empty</code> (₴800) and <code>time-slot-inspection-empty</code> (₴650).</p></figure></div></section>
+  <section aria-labelledby="s-when"><h2 id="s-when">When to use</h2><p>The price line puts the sum on the button's own shelf, so the price and the commitment are read in one glance. It stands on one screen in 4 files: <code>time-slot</code>, <code>time-slot-empty</code>, <code>time-slot-inspection</code> and <code>time-slot-inspection-empty</code>, where it is the only place the price is stated at all. Every other screen states its price in a <a href="money-rows.html">money rows</a> breakdown and in the CTA's verb.</p>
 <p>This is <code>voice.md</code> P3 built as a component: state the price as a fact, before the tap. Baseline, not centre: <code>align-items: baseline</code> sets the 13px label and 17px value on one line of type. The value is <code>tabular-nums</code>, so a price does not jitter as it changes. Both pairs clear <code>WCAG 1.4.3</code>'s 4.5:1, and the money is the one that reads first.</p>
 <p>The label names what is being paid for, as a fact (<em>Selected · Wed 2 Jul, 09:00</em>); the value is the full price with no <em>from</em> and no asterisk.</p>
 <p class="dsd-sources">Sources: ui/kit.html Price above the action · voice.md P3 · inventory.md § 1.6 (Price line, Total)</p></section>
   <section aria-labelledby="s-rule"><h2 id="s-rule">Rule and anti-rule</h2>
     <div class="dsd-rules">
       <div class="dsd-rule dsd-rule--do"><h3>Do</h3><div class="dsd-plate dr "><footer class="dr dr-actionbar" style="position:static;width:341px;max-width:100%">
-        <div class="dr-price"><span class="dr-price__lbl">Selected &#183; Wed 2 Jul, 09:00</span><span class="dr-price__val">&#8372;800</span></div>
-        <span class="dr-btn dr-btn--primary dr-btn--block">Confirm slot</span>
-      </footer></div>
+  <div class="dr-price"><span class="dr-price__lbl">Selected · Wed 2 Jul, 09:00</span><span class="dr-price__val">₴800</span></div>
+  <a class="dr-btn dr-btn--primary dr-btn--block" href="#">Confirm slot</a>
+</footer></div>
 <p>A choice whose price is otherwise nowhere on the screen: the line stands directly above the button that commits to it.</p></div>
       <div class="dsd-rule dsd-rule--dont"><h3>Don&rsquo;t</h3><div class="dsd-plate dr dsd-plate--anti"><footer class="dr dr-actionbar" style="position:static;width:341px;max-width:100%">
         <div class="dr-price"><span class="dr-price__lbl">Total</span><span class="dr-price__val">&#8372;180</span></div>
