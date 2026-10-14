@@ -2128,9 +2128,8 @@ two Figma references used for structure only. Every value is an existing rung.
   **13.33:1**, placeholder *Search address* **5.51:1**) that takes focus, so the keyboard rises and the drawer
   rides on it; the picker list with a **20px leading glyph** (`--slate` **5.95:1**) and a 12.5/400 `--slate`
   sub-line — *Use my location* **44**, *Podil, 21 · Saved address* **58**, *Osokorky, 14 · Recent* **58**; then
-  *Cancel* over *Done*, **341 × 44** each, the stack every Done/Cancel drawer carries — turned at rev 260 on the
-  designer's word, a recorded departure from `HIG · Alerts`' default-on-top stack; *Done* now stands on the
-  drawer's bottom edge, **68** above the keyboard accessory's *Done*. With the keyboard up: **412.8** tall,
+  *Done* over *Cancel*, **341 × 44** each, the stack every Done/Cancel drawer carries — `HIG · Alerts`'
+  default-on-top order, restored at rev 291 on the designer's word (rev 260 had put *Cancel* on top). With the keyboard up: **412.8** tall,
   top **63.2**, bottom on the keyboard's **476**, overlap **0**. *Done* is **4.93%** of the frame, the only green
   above the scrim. **The buttons stood in a top bar for one revision** (rev 256, `.dr-sheet__bar`, `HIG · Sheets`'
   iOS placement); shown the options drawn, the designer put them back under the list — the bar is spent nowhere,

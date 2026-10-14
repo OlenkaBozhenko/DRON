@@ -73,10 +73,10 @@ The sheet offers ways out. Each option is an `<a>`, because it leaves the screen
 ### Stacked actions
 
 ```html
-<div class="dr-sheet__actions" style="width:341px;max-width:100%"><button class="dr-btn dr-btn--secondary" type="button">Cancel</button><button class="dr-btn dr-btn--primary" type="button">Done</button></div>
+<div class="dr-sheet__actions" style="width:341px;max-width:100%"><button class="dr-btn dr-btn--primary" type="button">Done</button><button class="dr-btn dr-btn--secondary" type="button">Cancel</button></div>
 ```
 
-*Cancel* over *Done*, one per row, 8 apart. This is the stack every Done/Cancel drawer carries. Putting *Done* at the bottom is a recorded departure from the default-on-top order in `HIG · Alerts`.
+*Done* over *Cancel*, one per row, 8 apart. This is the stack every Done/Cancel drawer carries, in the default-on-top order of `HIG · Alerts` (rev 291).
 
 ### Side-by-side actions
 

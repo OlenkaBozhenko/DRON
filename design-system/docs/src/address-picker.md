@@ -33,8 +33,8 @@ kit: 2151
     </button>
   </div>
   <div class="dr-sheet__actions">
-    <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
     <button class="dr-btn dr-btn--primary" type="button">Done</button>
+    <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
   </div>
 </section>
 ```
@@ -43,7 +43,7 @@ kit: 2151
 - `.dr-search` — The field, 341 × 44, `--ink` on `--media` at 13.33:1. The placeholder *Search address* is 5.51:1. It takes focus when the sheet opens, so the keyboard rises and the sheet rides on it.
 - `.dr-picker__lead` — A 20px leading glyph in `--text-muted`, 5.95:1. It is the one place a picker row shows a `.dr-ic` other than the current-item tick. It is `aria-hidden` and never carries meaning on its own.
 - `.dr-picker__sub` — The sub-line, 12.5/400 in `--text-muted`, 5.95:1. It says in words what the glyph shows.
-- `.dr-sheet__actions` — *Cancel* over *Done*, 341 × 44 each. With `--steady` they take `margin-top: auto` and stay on the floor of the sheet.
+- `.dr-sheet__actions` — *Done* over *Cancel*, 341 × 44 each. With `--steady` they take `margin-top: auto` and stay on the floor of the sheet.
 
 ## Variants
 
@@ -87,8 +87,8 @@ A lead and a label, 44 tall. *Use my location* is always the first row and is ne
     </button>
   </div>
   <div class="dr-sheet__actions">
-    <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
     <button class="dr-btn dr-btn--primary" type="button">Done</button>
+    <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
   </div>
 </section>
 ```
@@ -125,8 +125,8 @@ Sources: DESIGN.md § The search home (Address drawer) · inventory.md § 1 Addr
     </button>
   </div>
   <div class="dr-sheet__actions">
-    <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
     <button class="dr-btn dr-btn--primary" type="button">Done</button>
+    <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
   </div>
 </section>
 ```

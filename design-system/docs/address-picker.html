@@ -46,10 +46,10 @@
     </button>
   </div>
   <div class="dr-sheet__actions">
-    <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
     <button class="dr-btn dr-btn--primary" type="button">Done</button>
+    <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
   </div>
-</section></div></div><ol class="dsd-parts"><li data-sel=".dr-sheet__title"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-sheet__title</code><span class="dsd-part__txt">Named after the row that opened the sheet: <em>Pickup address</em>, <em>Drop-off address</em> or <em>Address</em>.</span></li><li data-sel=".dr-search"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-search</code><span class="dsd-part__txt">The field, 341 × 44, <code>--ink</code> on <code>--media</code> at 13.33:1. The placeholder <em>Search address</em> is 5.51:1. It takes focus when the sheet opens, so the keyboard rises and the sheet rides on it.</span></li><li data-sel=".dr-picker__lead"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-picker__lead</code><span class="dsd-part__txt">A 20px leading glyph in <code>--text-muted</code>, 5.95:1. It is the one place a picker row shows a <code>.dr-ic</code> other than the current-item tick. It is <code>aria-hidden</code> and never carries meaning on its own.</span></li><li data-sel=".dr-picker__sub"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-picker__sub</code><span class="dsd-part__txt">The sub-line, 12.5/400 in <code>--text-muted</code>, 5.95:1. It says in words what the glyph shows.</span></li><li data-sel=".dr-sheet__actions"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-sheet__actions</code><span class="dsd-part__txt"><em>Cancel</em> over <em>Done</em>, 341 × 44 each. With <code>--steady</code> they take <code>margin-top: auto</code> and stay on the floor of the sheet.</span></li></ol></div></section>
+</section></div></div><ol class="dsd-parts"><li data-sel=".dr-sheet__title"><span class="dsd-pin-n" aria-hidden="true">1</span><code>.dr-sheet__title</code><span class="dsd-part__txt">Named after the row that opened the sheet: <em>Pickup address</em>, <em>Drop-off address</em> or <em>Address</em>.</span></li><li data-sel=".dr-search"><span class="dsd-pin-n" aria-hidden="true">2</span><code>.dr-search</code><span class="dsd-part__txt">The field, 341 × 44, <code>--ink</code> on <code>--media</code> at 13.33:1. The placeholder <em>Search address</em> is 5.51:1. It takes focus when the sheet opens, so the keyboard rises and the sheet rides on it.</span></li><li data-sel=".dr-picker__lead"><span class="dsd-pin-n" aria-hidden="true">3</span><code>.dr-picker__lead</code><span class="dsd-part__txt">A 20px leading glyph in <code>--text-muted</code>, 5.95:1. It is the one place a picker row shows a <code>.dr-ic</code> other than the current-item tick. It is <code>aria-hidden</code> and never carries meaning on its own.</span></li><li data-sel=".dr-picker__sub"><span class="dsd-pin-n" aria-hidden="true">4</span><code>.dr-picker__sub</code><span class="dsd-part__txt">The sub-line, 12.5/400 in <code>--text-muted</code>, 5.95:1. It says in words what the glyph shows.</span></li><li data-sel=".dr-sheet__actions"><span class="dsd-pin-n" aria-hidden="true">5</span><code>.dr-sheet__actions</code><span class="dsd-part__txt"><em>Done</em> over <em>Cancel</em>, 341 × 44 each. With <code>--steady</code> they take <code>margin-top: auto</code> and stay on the floor of the sheet.</span></li></ol></div></section>
   <section aria-labelledby="s-variants"><h2 id="s-variants">Variants and sizes</h2>
     <p class="dsd-lede">Inventory rows: Address drawer.</p><div class="dsd-variants"><figure class="dsd-variant" id="variant-one-line-row"><figcaption><h3>One-line row</h3></figcaption><div class="dsd-plate dr "><div class="dr-picker__list" style="width:341px;max-width:100%"><button class="dr-picker__item" type="button"><svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 4.5L4.5 11l6.4 2.1 2.1 6.4z"/></svg><span class="dr-picker__label">Use my location</span></button></div></div>
 <p>A lead and a label, 44 tall. <em>Use my location</em> is always the first row and is never filtered out.</p></figure><figure class="dsd-variant" id="variant-two-line-row"><figcaption><h3>Two-line row</h3></figcaption><div class="dsd-plate dr "><div class="dr-picker__list" style="width:341px;max-width:100%"><button class="dr-picker__item" type="button"><svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11L12 4.5l7.5 6.5"/><path d="M6.5 9.3v10.2h11V9.3"/><path d="M10.2 19.5v-4.8h3.6v4.8"/></svg><span class="dr-picker__label">Podil, 21 <span class="dr-picker__sub">Saved address</span></span></button></div></div>
@@ -74,8 +74,8 @@
     </button>
   </div>
   <div class="dr-sheet__actions">
-    <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
     <button class="dr-btn dr-btn--primary" type="button">Done</button>
+    <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
   </div>
 </section></div>
 <p>Typing narrows the list by word prefix and hides rows with <code>[hidden]</code>. The page pins the sheet's <code>min-height</code> to the height it opened at, so the title, the field and both buttons do not move under the thumb. The number of rows left is announced through <code>role="status"</code>.</p></figure></div></section>
@@ -102,8 +102,8 @@
     </button>
   </div>
   <div class="dr-sheet__actions">
-    <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
     <button class="dr-btn dr-btn--primary" type="button">Done</button>
+    <button class="dr-btn dr-btn--secondary" type="button">Cancel</button>
   </div>
 </section></div>
 <p>Photo and inspection have one place, so the <em>Where</em> row opens the same sheet titled <em>Address</em>. The search field, the list and the <em>Cancel</em> / <em>Done</em> pair are the same.</p></div>

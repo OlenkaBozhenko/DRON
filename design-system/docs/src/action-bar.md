@@ -67,7 +67,7 @@ The action bar is the bottom edge of a pushed screen: where the screen's job is 
 
 While the onscreen keyboard is up the bar takes `[hidden]` and leaves; buttons drawn behind the keys while still in the tab order would fail `WCAG 2.4.11 Focus Not Obscured`. A screen with nothing to commit ends at `</main>` and draws no bar: `earning-details`, `notifications`, `role-select` and the four filter screens.
 
-The primary is on top in every action bar (designer, rev 290): the screen's job first, the way out under it, in the markup as well as on screen. Drawers keep *Cancel* over *Done* (rev 260) and the finder *Filters* over *Find*; those are her own calls and are not bars. Labels name the outcome and state a price before the tap: *Pay ₴180*, *Submit review*, *Contact support*, *Try again*.
+The primary is on top in every action bar (designer, rev 290): the screen's job first, the way out under it, in the markup as well as on screen. Drawers stack *Done* over *Cancel* the same way (rev 291); the finder keeps *Filters* over *Find*, her own call. Labels name the outcome and state a price before the tap: *Pay ₴180*, *Submit review*, *Contact support*, *Try again*.
 
 Sources: DESIGN.md § Navigation · voice.md P1, P3 · microcopy.md § Master table · inventory.md § 1 (Action bar)
 

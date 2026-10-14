@@ -100,4 +100,4 @@ Two actions that each change the result, *Clear all* and *Apply filters*, side b
 <div class="dr-sheet__actions dr-sheet__actions--row" style="width:341px;max-width:100%"><button class="dr-btn dr-btn--secondary" type="button">Cancel</button><button class="dr-btn dr-btn--primary" type="button">Done</button></div>
 ```
 
-*Cancel* and *Done* split across one row. A pair that includes a cancel stacks one per row, *Cancel* over *Done*, the way every Done/Cancel drawer does; see [stacked actions](sheet.html#variant-stacked-actions). A drawer whose content fits without scrolling does not need `--tall`. Use the plain [sheet](sheet.html).
+*Cancel* and *Done* split across one row. A pair that includes a cancel stacks one per row, *Done* over *Cancel*, the way every Done/Cancel drawer does; see [stacked actions](sheet.html#variant-stacked-actions). A drawer whose content fits without scrolling does not need `--tall`. Use the plain [sheet](sheet.html).
