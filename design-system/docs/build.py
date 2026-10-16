@@ -24,6 +24,10 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, 'src')
 COMPONENTS = os.path.join(HERE, '..', 'components')
+PATTERNS = os.path.join(HERE, '..', 'patterns')
+WIREFRAMES = os.path.join(HERE, '..', '..', 'wireframes')
+# a screen's state and service files are the same screen
+SCREEN_SUFFIX = re.compile(r'(-(empty|error|loading|aerial|inspection|filters))+$')
 GROUPS = ['Shell', 'Actions', 'Surfaces', 'Progress', 'States', 'Media', 'Forms']
 SECTIONS = ['Anatomy', 'Variants', 'States', 'When to use', 'Rule', 'Anti-rule']
 STATES = [('rest', 'Rest'), ('hover', 'Hover'), ('active', 'Pressed'), ('focus', 'Focus'), ('disabled', 'Disabled')]
@@ -259,7 +263,7 @@ def head(title, desc):
 
 
 def topbar(current):
-    links = [('index.html', 'Components'), ('why.html', 'Why it looks like this'),
+    links = [('index.html', 'Components'), ('patterns.html', 'Patterns'), ('why.html', 'Why it looks like this'),
              ('../../design-system.html', 'Tokens'), ('../../ui/kit.html', 'UI kit')]
     nav = ''.join('<a href="%s"%s>%s</a>' % (h, ' aria-current="page"' if h == current else '', t)
                   for h, t in links)
@@ -385,11 +389,110 @@ def index_page(pages):
   <h1>Components</h1>
   <p class="dsd-lede">%d components, each drawn live by <code>design-system/index.css</code> &mdash; the
     stylesheet every screen links &mdash; so nothing here is a picture of the product. Each page has
-    four parts: anatomy, variants, when to use, and the rule with its anti-rule.
+    five parts: anatomy, variants, states, when to use, and the rule with its anti-rule. The
+    compositions that repeat across screens are on <a href="patterns.html">Patterns</a>.
     New here? Start with <a href="why.html">why the system looks like this</a>.</p>
   %s
 </main>
 ''' % (len(pages), '\n'.join(groups)) + FOOT)
+
+
+# --- patterns ----------------------------------------------------------------
+# A pattern is a fixed composition of components that already stands on three or
+# more screens. It has no CSS and no class of its own. The build holds it to the
+# screens: every screen it names must exist and must still carry every class in
+# `requires`, and the names must come to three screens once states and service
+# variants are folded into their screen. A composition that cannot name three
+# screens is not a pattern, and the page will not draw it.
+
+def screen_classes(name):
+    path = os.path.join(WIREFRAMES, name + '.html')
+    if not os.path.exists(path):
+        return None
+    text = re.sub(r'<!--.*?-->', '', open(path, encoding='utf-8').read(), flags=re.S)
+    return {c for cls in re.findall(r'class="([^"]*)"', text) for c in cls.split()}
+
+
+def check_screens(where, names, requires, errors):
+    for n in names:
+        cs = screen_classes(n)
+        if cs is None:
+            errors.append('%s: names %s, which is not a screen in wireframes/' % (where, n))
+            continue
+        lost = [r for r in requires if r not in cs]
+        if lost:
+            errors.append('%s: %s no longer carries %s' % (where, n, ', '.join(lost)))
+    if len({SCREEN_SUFFIX.sub('', n) for n in names}) < 3:
+        errors.append('%s: stands on fewer than three screens' % where)
+
+
+def screen_links(names):
+    return ', '.join('<a href="../../wireframes/%s.html"><code>%s</code></a>' % (n, n) for n in names)
+
+
+def pattern_section(meta, body, known, errors):
+    slug_ = meta['slug']
+    names = [n.strip() for n in meta.get('screens', '').split(',') if n.strip()]
+    requires = meta.get('requires', '').split()
+    check_screens(slug_, names, requires, errors)
+
+    def check(markup):
+        if '<style' in markup:
+            errors.append('%s: a pattern carries no style of its own' % slug_)
+        for cls in re.findall(r'class="([^"]*)"', markup):
+            for c in cls.split():
+                if c.startswith('dr-') and c not in known:
+                    errors.append('%s: class .%s is declared by no component' % (slug_, c))
+        return markup
+
+    def figure(text):
+        # the text's one specimen on the left, everything else on the right
+        m = re.search(r'```html\n(.*?)\n```', text, re.S)
+        rest = re.sub(r'```html\n.*?\n```', '', text, flags=re.S)
+        rest = re.sub(r'(?m)^Stands on: (.+?)\.$', lambda mm: '', rest)
+        prose = blocks(rest, lambda mk: '')
+        if not m:
+            return '<div class="dsd-prose">%s</div>' % prose
+        stage = '<div class="dsd-stage">%s</div>' % plate(check(m.group(1).strip()))
+        return '<div class="dsd-anatomy">%s<div class="dsd-prose">%s</div></div>' % (stage, prose)
+
+    secs = split_sections(body, 2)
+    lede = blocks(secs[0][1], lambda mk: '')
+    out = ['<section class="dsd-pattern" id="%s" aria-labelledby="h-%s"><h2 id="h-%s">%s</h2>%s'
+           % (slug_, slug_, slug_, html.escape(meta['name']), lede),
+           '<p class="dsd-meta">Built from: %s</p>' % inline(meta.get('built', '')),
+           '<p class="dsd-meta">Stands on %d screens: %s</p>'
+           % (len({SCREEN_SUFFIX.sub('', n) for n in names}), screen_links(names))]
+    for name, text in secs[1:]:
+        subs = split_sections(text, 3)
+        out.append('<h3>%s</h3>%s' % (inline(name), figure(subs[0][1])))
+        for vname, vtext in subs[1:]:
+            vm = re.search(r'(?m)^Stands on: (.+?)\.$', vtext)
+            vnames = [n.strip() for n in vm.group(1).split(',')] if vm else []
+            check_screens('%s / %s' % (slug_, vname), vnames, requires, errors)
+            out.append('<h4>%s</h4><p class="dsd-meta">Stands on: %s</p>%s'
+                       % (inline(vname), screen_links(vnames), figure(vtext)))
+    out.append('</section>')
+    return '\n'.join(out)
+
+
+def patterns_page(known, errors):
+    items = []
+    for f in sorted(os.listdir(PATTERNS)):
+        if f.endswith('.md'):
+            meta, body = front_matter(open(os.path.join(PATTERNS, f), encoding='utf-8').read())
+            if meta.get('slug', '') + '.md' != f:
+                errors.append('patterns/%s: slug does not match the file name' % f)
+                continue
+            items.append((int(meta.get('order', 99)), meta, body))
+    items.sort(key=lambda t: t[0])
+    intro_meta, intro = front_matter(open(os.path.join(SRC, 'patterns.md'), encoding='utf-8').read())
+    toc = ''.join('<li><a href="#%s">%s</a></li>' % (m['slug'], html.escape(m['name'])) for _, m, _ in items)
+    sections = ''.join(pattern_section(m, b, known, errors) for _, m, b in items)
+    return (head(intro_meta.get('title', 'Patterns'), intro_meta.get('description', ''))
+            + topbar('patterns.html') +
+            '<main id="main" class="dsd-main"><div class="dsd-prose">%s</div><ol>%s</ol>%s</main>\n'
+            % (blocks(intro, lambda mk: ''), toc, sections) + FOOT), len(items)
 
 
 def free_page(path, current, title):
@@ -404,7 +507,7 @@ def main():
     known = declared_classes()
     errors, pages, out = [], [], {}
     for f in sorted(os.listdir(SRC)):
-        if not f.endswith('.md') or f.startswith('_') or f == 'why.md':
+        if not f.endswith('.md') or f.startswith('_') or f in ('why.md', 'patterns.md'):
             continue
         meta, body = front_matter(open(os.path.join(SRC, f), encoding='utf-8').read())
         for k in ('name', 'slug', 'group'):
@@ -418,11 +521,15 @@ def main():
     slugs = {p['slug'] for p in pages}
     for name, page in out.items():
         for ref in re.findall(r'href="([a-z0-9-]+)\.html', page):
-            if ref not in slugs and ref not in ('index', 'why'):
+            if ref not in slugs and ref not in ('index', 'why', 'patterns'):
                 errors.append('%s: links %s.html, which has no source' % (name, ref))
     out['index.html'] = index_page(pages)
     if os.path.exists(os.path.join(SRC, 'why.md')):
         out['why.html'] = free_page(os.path.join(SRC, 'why.md'), 'why.html', 'Why it looks like this')
+    out['patterns.html'], n_patterns = patterns_page(known, errors)
+    for ref in re.findall(r'href="([a-z0-9-]+)\.html', out['patterns.html']):
+        if ref not in slugs and ref not in ('index', 'why', 'patterns'):
+            errors.append('patterns.html: links %s.html, which has no source' % ref)
     out['states.css'] = forced_css()
     for e in errors:
         print('ERROR', e)
@@ -430,7 +537,8 @@ def main():
         for name, page in out.items():
             with open(os.path.join(HERE, name), 'w', encoding='utf-8', newline='\n') as fh:
                 fh.write(page)
-    print('%d component pages, %d errors%s' % (len(pages), len(errors), '' if not check_only else ' (check only)'))
+    print('%d component pages, %d patterns, %d errors%s' % (len(pages), n_patterns, len(errors),
+                                                          '' if not check_only else ' (check only)'))
     return 1 if errors else 0
 
 

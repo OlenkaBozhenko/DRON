@@ -43,18 +43,20 @@ code { font-family: var(--font-mono); font-size: var(--type-meta-size); }
 .dsd-theme button[aria-pressed="true"] { background: var(--color-action); color: var(--on-action); }
 
 /* -- page ---------------------------------------------------------------- */
+/* The page's own headings and measure stop at a plate: a specimen copied from a
+   screen keeps the type the screen gives it (patterns put whole screens here). */
 .dsd-main { max-width: calc(var(--len-140) * 8); margin: 0 auto; padding: var(--len-24) var(--len-16) var(--len-80); }
-.dsd-main h1 {
+.dsd-main h1:not(.dsd-plate *) {
   font-size: var(--type-display-size); font-weight: var(--type-display-weight);
   line-height: var(--type-display-line); letter-spacing: var(--type-display-track); margin: var(--len-8) 0;
 }
-.dsd-main h2 {
+.dsd-main h2:not(.dsd-plate *) {
   font-size: var(--type-title-size); font-weight: var(--type-title-weight);
   letter-spacing: var(--type-title-track); margin: var(--len-48) 0 var(--len-12);
   padding-bottom: var(--len-8); border-bottom: var(--len-1) solid var(--border-hairline);
 }
-.dsd-main h3 { font-size: var(--type-heading-size); font-weight: var(--type-heading-weight); line-height: var(--type-heading-line); margin: 0 0 var(--len-8); }
-.dsd-main p, .dsd-main li { max-width: 70ch; }
+.dsd-main h3:not(.dsd-plate *) { font-size: var(--type-heading-size); font-weight: var(--type-heading-weight); line-height: var(--type-heading-line); margin: 0 0 var(--len-8); }
+.dsd-main p:not(.dsd-plate *), .dsd-main li:not(.dsd-plate *) { max-width: 70ch; }
 .dsd-crumb, .dsd-meta, .dsd-lede, .dsd-sources, .dsd-count, .dsd-foot {
   color: var(--text-muted); font-size: var(--type-body-sm-size);
 }
@@ -135,7 +137,7 @@ code { font-family: var(--font-mono); font-size: var(--type-meta-size); }
 
 /* -- prose (why.html) ------------------------------------------------------- */
 .dsd-prose { max-width: calc(var(--len-140) * 6); }
-.dsd-prose p, .dsd-prose li { line-height: var(--type-lead-line); }
+.dsd-prose p:not(.dsd-plate *), .dsd-prose li:not(.dsd-plate *) { line-height: var(--type-lead-line); }
 .dsd-prose blockquote {
   margin: var(--len-16) 0; padding: var(--len-12) var(--len-16); border-left: var(--len-4) solid var(--color-action);
   background: var(--bg-surface); border-radius: 0 var(--len-12) var(--len-12) 0;
