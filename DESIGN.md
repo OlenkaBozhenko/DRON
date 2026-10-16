@@ -1214,8 +1214,8 @@ answer, *«для телефону … як на iPhone а на десктоп �
 - **A text area** (`.dr-field--area`): its own box, `outline-offset:2px`, radius 10.
 - **Search** (`.dr-search`): its box, `outline-offset:2px`, radius 10.
 - **A field that shares its card or has no card** (`payment`'s five-field card, `account-edit`,
-  `order-setup`'s address rows): **no ring yet, the caret only** — the row has no edge of its own
-  for a ring to follow. Open, and the designer's to decide.
+  `order-setup`'s address rows): **the caret only, on every platform** — the row has no edge of its
+  own for a ring to follow. The designer's call, rev 299: *«лише курсор»*.
 
 `caret-color` stays **declared** `--ink`, **13.33:1** on the area's ground. Every control without a
 caret keeps the `--ink` ring.
@@ -2930,6 +2930,16 @@ gives its picture away rather than let a type size put text under artwork.
 dot nobody taps; it was to stop calling the dot a control. They are `<span>`s in an `aria-hidden`
 container, and nothing is lost: the slider is a scrollable region, each slide announces *Slide n of
 3*, and the position the dots draw is the position the slide states.
+
+**Recorded, not corrected: the slider takes no keyboard focus (rev 299, the designer's call).**
+It is a scrollable region with no `tabindex`, and the dots are not controls, so with no mouse and
+no swipe slides 2 and 3 cannot be reached. Chromium makes a scroller with no focusable content
+keyboard-reachable on its own, other engines do not, so this is a `WCAG 2.1.1` gap. Making it
+focusable was built and shown: Tab landed on it, the arrow keys turned one slide, and focused it
+took the `--ink` ring inside its edge. The designer, seeing the ring around the whole slide:
+*«не треба на онбордингу ніяких обводок»*, then *«верни як було онбординг»*. Reverted the same day;
+nothing on the three slider screens changed. A focus mark that is not a frame (on the pager, for
+example) was not shown and stays open.
 
 ### The identity mark (`.dr-idmark`)
 
