@@ -202,7 +202,7 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
 
   | File | Title | Drawer title | Rows (price · available · arrives in) | Order → |
   |---|---|---|---|---|
-  | `listings-map.html` | Package delivery | Parcel size | Up to 2 kg ₴180 · 4 · 6 min — Up to 5 kg ₴240 · 2 · 9 min — Up to 10 kg ₴320 · 1 · 14 min | `order-setup` |
+  | `listings-map.html` | Package delivery | Parcel size | Up to 2 kg ₴180 · 4 · 6 min — Up to 5 kg ₴240 · 2 · 9 min — Up to 10 kg ₴320 · 1 · 14 min | **`operators`** (*Choose operator*, rev 312) |
   | `listings-map-aerial.html` | Photo &amp; video | What you get | Photo ₴640 · 3 · 20 min — Video ₴720 · 2 · 25 min — Photo &amp; video ₴800 · 2 · 25 min | `order-setup-aerial` |
   | `listings-map-inspection.html` | Inspection | Parts to inspect | 1 part ₴330 · 3 · 30 min — Up to 3 parts ₴650 · 2 · 30 min — Up to 5 parts ₴970 · 1 · 45 min | `order-setup-inspection` |
 
@@ -217,6 +217,30 @@ Flow spine (`flows.md` MJ-1): **Sign in → Choose role → Home → Service cat
   not to the map. **Closed for aerial's time slot, 2026-09-15:** `order-setup-aerial`'s action bar now reads
   *Confirm order* and goes to `order-review-aerial` (the designer's call; `microcopy.md` row). Inspection still ends
   at `time-slot-inspection`, and `order-review-aerial`'s back still names *Pick a time* — neither decided yet.
+
+### 3b. Available operators  *(NEW · 2026-10-17 · the designer's call)*
+- **The designer:** *«зроби цю сторінку де користувач баче 4 оператора а потім може обрати одного з них тож кнопки "Order" на цьому екрані ще не буде а на наступному… там має бути інфа про доступних операторів»*
+- **Job:** `RJ-C1` — confirm the person coming is real and qualified — made into a choice: `HJ-3`.
+- **Place in flow:** Results on the map → *Choose operator* → here → an operator → **Operator profile** → *Order*.
+  Delivery only; photo and inspection still go from the map to setup.
+- **Shape:** the **Pushed screen** pattern without an action bar — *Back to Package delivery*, title *Operators*.
+  One zone, *Up to 2 kg* with the price and the count, then a **Labelled card list** of the four operators, nearest
+  first. Each card is the **operator card as one link** (`design-system/docs/src/operator-card.md` *As one link*, rev
+  312): photo, name, rating · jobs · how far, *Verified by DRON* and *Insured*. **No *Order* on this screen.**
+- **The four:** Andriy M. 4.9 · 214 jobs · 6 min; Kateryna O. 4.8 · 96 jobs · 8 min; Ivan K. 4.9 · 152 jobs · 11 min;
+  Dmytro S. 4.7 · 41 jobs · 14 min, **text-led, no photo** — the repo holds three operator photographs (backlog B-5).
+- **States:** none built.
+- **Recorded against the research, the designer's call (2026-10-17):** `jtbd.md` files operator choice as **HJ-3**, a hypothesis that *conflicts with auto-dispatch*, and lists the operator selection screen as a *feature candidate for removal* (a first-time client cannot evaluate drone operators, `ux-patterns.md` Reason 3). It also adds two taps to the client's main path (`sitemap.md` §7, 3 taps → 5 for delivery). Built on her word; the hypothesis is not confirmed by it.
+
+### 3c. Operator profile — read for trust  *(NEW · 2026-10-17 · the designer's call)*
+- **Job:** `RJ-C1` and `EJ-1`, `sitemap.md` CE-5 *Operator profile (read for trust)*.
+- **Place in flow:** Available operators → here → **Order** → Order setup.
+- **Shape:** the **Pushed screen** pattern with an action bar — *Back to Operators*, title *Operator*. The
+  **read-only profile head** (`profile-head.md` *Read-only*, rev 312: the photo is not a link, no edit disc), then
+  **Labelled detail rows** — *Record* (rating, jobs done, identity, licence, insurance, with DRON since) and *By
+  service* — and a **Labelled card list** of recent reviews. The action bar holds the price and **Order** (primary).
+- **Built from the system only**, the same build as `design-system/examples/operator-profile.html`.
+- **States:** none built.
 
 ### 4. Service catalogue
 - **Job:** `MJ-1` — *"choose the result a drone delivers"* (`CE-2` Service).

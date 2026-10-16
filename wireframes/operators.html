@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Available operators · base</title>
+<!--
+  SCREEN (_screens.md §3b): "Available operators" - new 2026-10-17, the designer's call.
+  PERSONA: Client C-1. JOB: RJ-C1 — see who is free and that each one is real and qualified; HJ-3 — choose one..
+  BUILT FROM THE SYSTEM ONLY (CLAUDE.md, Contributing to the system): the Pushed screen pattern,
+  Labelled card list, operator card as one link. No <style>, no style attribute, every class declared by a component.
+  RECORDED AGAINST THE RESEARCH: operator choice is jtbd.md HJ-3, a hypothesis that conflicts with
+  auto-dispatch, listed as a removal candidate. Built on the designer's word (concept.md rev 312).
+-->
+<link rel="stylesheet" href="_wireframe.css">
+<link rel="stylesheet" href="../design-system/index.css">
+</head>
+<body>
+  <aside class="meta">
+    <h1>Available operators</h1>
+    <p class="sub">Client · RJ-C1 · HJ-3 · state: <b>base</b> · file: operators.html</p>
+    <div class="flow"><b>Job (jtbd):</b> RJ-C1 — see who is free and that each one is real and qualified; HJ-3 — choose one.<br><b>flows.md:</b> Results on the map → <span class="cur">Available operators</span> → Operator profile → Order</div>
+    <div class="legend"><p><b>Zones:</b></p><p><b>Up to 2 kg</b> ▸ the option picked, its price, how many are free</p><p><b>Operators</b> ▸ one card each, nearest first; a card opens the profile. No Order here.</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="listings-map.html" aria-label="Back to Package delivery"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><h1 class="dr-topbar__title">Operators</h1><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Up to 2 kg · &#8372;180 <span class="dr-label__act">&#9656; 4 available, nearest first</span></p>
+      <section aria-label="Available operators">
+        <ul class="dr-list dr-list--snug">
+          <li>
+            <article class="dr-op">
+              <a class="dr-card__link" href="operator-profile.html" aria-label="Andriy M., 4.9 stars, 214 jobs, 6 min away. View profile"></a>
+              <span class="dr-op__photo"><img src="../assets/people/thumbs/operator.png" alt="" loading="lazy" decoding="async"></span>
+              <span class="dr-op__info">
+                <span class="dr-op__name">Andriy M.</span>
+                <span class="dr-op__rating">4.9 ★ · 214 jobs · 6 min away</span>
+                <span class="dr-chips dr-op__badges dr-chips--stack"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
+              </span>
+            </article>
+          </li>
+          <li>
+            <article class="dr-op">
+              <a class="dr-card__link" href="operator-profile.html" aria-label="Kateryna O., 4.8 stars, 96 jobs, 8 min away. View profile"></a>
+              <span class="dr-op__photo"><img src="../assets/people/thumbs/person-operator-kateryna.png" alt="" loading="lazy" decoding="async"></span>
+              <span class="dr-op__info">
+                <span class="dr-op__name">Kateryna O.</span>
+                <span class="dr-op__rating">4.8 ★ · 96 jobs · 8 min away</span>
+                <span class="dr-chips dr-op__badges dr-chips--stack"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
+              </span>
+            </article>
+          </li>
+          <li>
+            <article class="dr-op">
+              <a class="dr-card__link" href="operator-profile.html" aria-label="Ivan K., 4.9 stars, 152 jobs, 11 min away. View profile"></a>
+              <span class="dr-op__photo"><img src="../assets/people/thumbs/person-operator-ivan.png" alt="" loading="lazy" decoding="async"></span>
+              <span class="dr-op__info">
+                <span class="dr-op__name">Ivan K.</span>
+                <span class="dr-op__rating">4.9 ★ · 152 jobs · 11 min away</span>
+                <span class="dr-chips dr-op__badges dr-chips--stack"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
+              </span>
+            </article>
+          </li>
+          <li>
+            <article class="dr-op">
+              <a class="dr-card__link" href="operator-profile.html" aria-label="Dmytro S., 4.7 stars, 41 jobs, 14 min away. View profile"></a>
+              <span class="dr-op__info">
+                <span class="dr-op__name">Dmytro S.</span>
+                <span class="dr-op__rating">4.7 ★ · 41 jobs · 14 min away</span>
+                <span class="dr-chips dr-op__badges dr-chips--stack"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
+              </span>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <script src="_wf-shell.js"></script>
+</body>
+</html>

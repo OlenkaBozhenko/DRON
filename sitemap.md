@@ -238,6 +238,8 @@ CLIENT
 │   ├─ Home / start an order .................. (MJ-1 · RJ-C5 entry)  [ C-1 · C-2 ]
 │   │     └─ Place pick (Region ▸ City ▸ District) (MJ-1 narrow)      [ C-1 · C-2 ]
 │   ├─ Service catalogue ..................... (MJ-1)                [ C-1 · C-2 ]
+│   ├─ Available operators ................... (RJ-C1 · HJ-3 [?])    [ C-1 ]   delivery, 2026-10-17
+│   ├─ Operator profile (read for trust) ..... (RJ-C1 · EJ-1 · CE-5) [ C-1 ]   delivery, 2026-10-17
 │   ├─ Order setup / details ................. (MJ-1 · RJ-C3 price)  [ C-1 · C-2 ]
 │   │     └─ Time-slot pick (calendar-first) .. (MJ-1 planning mode)  [ C-2 ]
 │   ├─ Order review & price .................. (RJ-C3)               [ C-1 · C-2 ]
