@@ -582,7 +582,8 @@ KEYS = {}   # href -> the words the sidebar filter also searches: a page's descr
 
 def side_html(current):
     groups = [
-        ('Getting started', [('Overview', 'overview.html'), ('Why it looks like this', 'why.html')]),
+        ('Getting started', [('Overview', 'overview.html'), ('Why it looks like this', 'why.html'),
+                             ('Example screen', '../examples/operator-profile.html'), ('Backlog', 'backlog.html')]),
         ('Tone of voice', NAV.get('voice', [])),
         ('Tokens', NAV.get('tokens', [])),
         ('Components', [('All components', 'index.html')] + NAV.get('components', [])),
@@ -774,6 +775,13 @@ def main():
             errors.append('%s: slug %s does not match the file name' % (f, meta['slug']))
         out[meta['slug'] + '.html'] = component_page(meta, body, known, errors, pages)
     out.update(voice_pages())
+    # the backlog: what a screen built from the system alone found missing (design-system/backlog.md)
+    bl = open(os.path.join(HERE, '..', 'backlog.md'), encoding='utf-8').read()
+    bl = re.sub(r'^# .+\n', '', bl, count=1)
+    out['backlog.html'] = site_page('backlog.html', 'Backlog', 'What the system could not supply yet.', 'Backlog',
+                                    '<h1>Backlog</h1>' + blocks(bl, lambda mk: '') +
+                                    '<p class="dsd-sources">Source: <code>design-system/backlog.md</code>. Found by '
+                                    '<a href="../examples/operator-profile.html">the example screen</a>.</p>')
     out.update(token_pages())
     out['index.html'] = index_page(pages)
     if os.path.exists(os.path.join(SRC, 'why.md')):
