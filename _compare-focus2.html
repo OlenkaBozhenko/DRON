@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field focus placement</title>
+<link rel="stylesheet" href="design-system/index.css">
+<style>
+  body{ margin:0; padding:24px 16px 48px; background:#F7F5F2; color:#1d1d1f;
+        font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif; }
+  .w{ max-width:1100px; margin:0 auto; }
+  h1{ font-size:22px; margin:0 0 6px; }
+  .lede{ font-size:14px; color:#55534f; margin:0 0 20px; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr)); gap:16px; }
+  .opt{ border-radius:16px; padding:16px; background:#ECE9E4; }
+  .opt h2{ font-size:17px; margin:0 0 4px; }
+  .opt > p{ font-size:14px; margin:0 0 8px; color:#55534f; }
+  .pane{ border-radius:12px; padding:16px; background:var(--bg-page); margin-top:8px; display:grid; gap:10px; }
+  .k{ font-size:12px; color:var(--text-muted); margin:4px 0 0; }
+
+  /* switch the built rule off, then draw each option */
+  .opt .dr-field:has(.dr-field__input:focus-visible){ outline:none; }
+  .now .dr-field.on{ outline:2.5px solid var(--text-muted); outline-offset:-2px; border-radius:inherit; }
+  .card .dr-rows--card.on, .card .dr-rows--card:has(.dr-field__input:focus-visible){
+    outline:2.5px solid var(--text-muted); outline-offset:0; }
+  .now .dr-rows--card:has(.dr-field__input:focus-visible) .dr-field{ outline:2.5px solid var(--text-muted); outline-offset:-2px; border-radius:inherit; }
+</style>
+</head>
+<body>
+<div class="w">
+  <h1>Where the field's focus goes</h1>
+  <p class="lede">Each card shows the field while you are typing in it. Click the bottom field to try it live.</p>
+  <div class="grid">
+
+    <section class="opt now">
+      <h2>Now</h2>
+      <p>The ring sits inside the card with a gap. It looks like a second box.</p>
+      <div class="pane dr"><span class="k">Light</span>
+        <div class="dr-rows dr-rows--card"><div class="dr-field on"><span class="dr-field__label">Amount</span><span class="dr-field__value">₴1,500</span></div></div>
+        <span class="k">Try it</span>
+        <div class="dr-rows dr-rows--card"><div class="dr-field"><label class="dr-field__label" for="a1">Amount</label><input class="dr-field__input" id="a1" value="₴1,500"></div></div>
+      </div>
+      <div class="pane dr" data-theme="dark"><span class="k">Dark</span>
+        <div class="dr-rows dr-rows--card"><div class="dr-field on"><span class="dr-field__label">Amount</span><span class="dr-field__value">₴1,500</span></div></div>
+      </div>
+    </section>
+
+    <section class="opt card">
+      <h2>A · Ring on the card's own edge</h2>
+      <p>One shape, no gap. Like a focused field on macOS.</p>
+      <div class="pane dr"><span class="k">Light</span>
+        <div class="dr-rows dr-rows--card on"><div class="dr-field"><span class="dr-field__label">Amount</span><span class="dr-field__value">₴1,500</span></div></div>
+        <span class="k">Try it</span>
+        <div class="dr-rows dr-rows--card"><div class="dr-field"><label class="dr-field__label" for="a2">Amount</label><input class="dr-field__input" id="a2" value="₴1,500"></div></div>
+      </div>
+      <div class="pane dr" data-theme="dark"><span class="k">Dark</span>
+        <div class="dr-rows dr-rows--card on"><div class="dr-field"><span class="dr-field__label">Amount</span><span class="dr-field__value">₴1,500</span></div></div>
+      </div>
+    </section>
+
+    <section class="opt none">
+      <h2>B · No ring, like iPhone</h2>
+      <p>Only the blinking cursor and the keyboard show where you are.</p>
+      <div class="pane dr"><span class="k">Light</span>
+        <div class="dr-rows dr-rows--card"><div class="dr-field"><span class="dr-field__label">Amount</span><span class="dr-field__value">₴1,5<span style="border-left:2px solid var(--text-primary);margin:0 1px"></span>00</span></div></div>
+        <span class="k">Try it</span>
+        <div class="dr-rows dr-rows--card"><div class="dr-field"><label class="dr-field__label" for="a3">Amount</label><input class="dr-field__input" id="a3" value="₴1,500"></div></div>
+      </div>
+      <div class="pane dr" data-theme="dark"><span class="k">Dark</span>
+        <div class="dr-rows dr-rows--card"><div class="dr-field"><span class="dr-field__label">Amount</span><span class="dr-field__value">₴1,5<span style="border-left:2px solid var(--text-primary);margin:0 1px"></span>00</span></div></div>
+      </div>
+    </section>
+
+  </div>
+</div>
+</body>
+</html>
