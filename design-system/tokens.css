@@ -315,14 +315,17 @@
                                                ink on the dark surface, because --slate is barred
                                                there - 2.42:1, a real 1.4.3 failure. */
 
-  /* -- DISABLED / built, not dimmed ----------------------------------------
-     Audit §5 "Disabled": .dr-btn:disabled is --slate on --btn2 at 4.77:1. It
-     has no colour of its own; it borrows the secondary pair. concept.md §4
-     names --disabled-bg / --disabled-ink and NEITHER NAME EXISTS in kit.css -
-     0 occurrences. These two are that pair, named at last, pointing at the
-     same primitives the rule already spells out. */
-  --bg-disabled:      var(--cream-500);
-  --text-disabled:    var(--cream-700);
+  /* -- DISABLED / the faded look, painted solid (designer, rev 294) ---------
+     She chose the look of the control at 40% opacity over the page, and asked
+     for it as a real colour rather than as opacity. Each value is that blend,
+     computed once: the control's own ground or ink 40%, the page 60%. A
+     colour-mix ratio is a proportion, not a length, so it takes no token.
+     WCAG 1.4.3 / 1.4.11 exempt an inactive control; the pairs are recorded:
+     action #9F9D9C on #D2E6AF 2.01:1, secondary #9F9D9C on #EAE7E2 2.18:1. */
+  --bg-disabled:        color-mix(in srgb, var(--cream-500) 40%, var(--cream-50));     /* #EAE7E2 */
+  --text-disabled:      color-mix(in srgb, var(--charcoal-900) 40%, var(--cream-50));  /* #9F9D9C */
+  --bg-disabled-action: color-mix(in srgb, var(--green-500) 40%, var(--cream-50));     /* #D2E6AF - pale green */
+  --on-disabled-action: color-mix(in srgb, var(--charcoal-900) 40%, var(--cream-50));  /* #9F9D9C */
 
   /* -- LINE -----------------------------------------------------------------
      Audit §5 "Line": 25 sites, of which 10 are not borders at all but the fill
@@ -690,11 +693,15 @@
   --text-muted:         var(--cream-500);     /* #D6D2C9 - the value the night surface already uses for its
                                                  secondary ink, because --slate is barred there at 2.42:1 */
 
-  /* -- DISABLED / still built, not dimmed -----------------------------------
-     WCAG exempts an inactive control from 1.4.3, and the project does not take
-     the exemption: light holds this pair at 4.77:1. Dark holds it at 4.52:1. */
-  --bg-disabled:        color-mix(in srgb, var(--cream-50) 16%, var(--charcoal-800));    /* #4E4E4D - the muted ground, as in light */
-  --text-disabled:      color-mix(in srgb, var(--cream-50) 78%, var(--charcoal-800));    /* #CBC9C7 */
+  /* -- DISABLED / the faded look, painted solid (designer, rev 294) ---------
+     The same 40/60 blend over the dark page. Charcoal on the green stays
+     charcoal, because the page it blends into is charcoal. Recorded, exempt
+     under 1.4.3: action #1A1A1A on #4E622D 2.59:1, secondary #727270 on
+     #2F2F2F 2.78:1. */
+  --bg-disabled:        color-mix(in srgb, color-mix(in srgb, var(--cream-50) 16%, var(--charcoal-800)) 40%, var(--charcoal-900));  /* #2F2F2F */
+  --text-disabled:      color-mix(in srgb, var(--cream-50) 40%, var(--charcoal-900));    /* #727270 */
+  --bg-disabled-action: color-mix(in srgb, var(--green-500) 40%, var(--charcoal-900));   /* #4E622D */
+  --on-disabled-action: var(--charcoal-900);                                             /* #1A1A1A */
 
   /* -- LINE -----------------------------------------------------------------
      A separator, not a boundary: 1.4.11's 3:1 governs a control's edge and this

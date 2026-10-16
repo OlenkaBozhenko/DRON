@@ -270,7 +270,7 @@ border). The wireframe annotation sidebar keeps its own chrome and is not part o
   applied to nothing"; that was true of the ten pages and is no longer true of the kit. `--warn`
   paints `.dr-star[aria-pressed="true"]` and `--warn-wash`/`--warn-ink` the warning mark (5.65:1);
   `--danger` paints `.dr-btn--danger-solid` (4.53:1 against `--page`); `--r-input` is spent 4 times (text area, search field, range values, `.dr-cal__clock`).
-- **Zero text-contrast failures.** Lowest measured text pair is 4.77:1 (AA needs 4.5:1).
+- **Zero text-contrast failures.** Lowest measured text pair is 4.77:1 (AA needs 4.5:1). Disabled labels (2.01–2.78:1, rev 294) are inactive controls, which `WCAG 1.4.3` exempts.
 
 ## Colors
 
@@ -411,7 +411,7 @@ Every pair carried on a product surface, verified in the browser.
 | `--slate` | `--media` | 5.51:1 | muted chips, upload glyph |
 | `--danger-ink` | `--danger-wash` | 5.49:1 | tracking-lost, photo-missing marks |
 | `--green-ink` | `--card` | 5.01:1 | text button, card ground (declared) |
-| `--slate` | `--btn2` | 4.77:1 | disabled label |
+| `--slate` | `--btn2` | 4.77:1 | secondary button's muted label (disabled moved to its own faded pair, rev 294, exempt under 1.4.3) |
 
 **Non-text, below 3:1, each accepted for a stated reason:**
 
@@ -826,10 +826,13 @@ gives it the corner. It never restates the parent's radius.
   a second control; the fill is what says *tappable* on a 44px target. `--tertiary` and `--text` stay
   outside the action bar: the top-bar action (`listings-filters` · *Clear all*, `--tertiary` at 6.62:1)
   and links inside a card.
-- **Disabled:** `--btn2` fill with a `--slate` label — **4.77:1**, the secondary button's own pair.
-  It is built, not dimmed: blanket opacity would take charcoal-on-green to 2.35:1. The pair is
-  declared as its own semantic tokens, `--bg-disabled` (→ `--btn2`) and `--text-disabled`
-  (→ `--slate`), read by `.dr-btn:disabled, .dr-btn[aria-disabled="true"]`.
+- **Disabled (rev 294, the designer's call):** the button looks faded, but in solid colour, not
+  opacity. Each value is the control's own colour at 40% over the page. The primary is pale green
+  `--bg-disabled-action` #D2E6AF with `--on-disabled-action` #9F9D9C (2.01:1); every other button
+  is `--bg-disabled` #EAE7E2 with `--text-disabled` #9F9D9C (2.18:1). Dark: #4E622D under charcoal
+  (2.59:1), #2F2F2F under #727270 (2.78:1). WCAG 1.4.3 and 1.4.11 exempt an inactive control, so
+  these pass by exemption and are recorded, not hidden. Read by `.dr-btn:disabled,
+  .dr-btn[aria-disabled="true"]` and its `--primary` pair.
 - **Focus:** `2.5px solid var(--ink)`, `outline-offset:2px`.
 
 ### Toast

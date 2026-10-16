@@ -78,7 +78,7 @@ The operator's photograph, the delivery photo and the live map are the proof the
 
 ### States are built, not dimmed
 
-A disabled button gets its own colour pair at 4.77:1. Blanket opacity would silently drop charcoal-on-green to 2.35:1, a ratio nobody measured.
+A disabled button gets its own colour, never opacity. Since rev 294 that colour is the faded look the designer chose, painted solid: pale green for the primary, pale grey for the rest, each ratio measured and written down (2.01–2.78:1, exempt under WCAG 1.4.3).
 
 Sources: concept.md § 0.2 Icons · § 5 Studio · § 6 Imagery · DESIGN.md § Named rules · § Do's and Don'ts
 

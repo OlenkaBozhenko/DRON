@@ -97,6 +97,10 @@
   filter: none;
   transform: none;
 }
+.dr-btn--primary:disabled, .dr-btn--primary[aria-disabled="true"]{
+  background: var(--bg-disabled-action);
+  color: var(--on-disabled-action);
+}
 .dr-btn--icon{
   width: var(--len-44);
   height: var(--len-44);

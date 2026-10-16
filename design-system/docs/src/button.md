@@ -59,7 +59,7 @@ No fill; the green ink that may be text, 5.58:1 on the page. The right-hand comm
 <button type="button" class="dr-btn dr-btn--primary dr-btn--block" disabled>Complete all steps to continue</button>
 ```
 
-Built, not dimmed: the secondary's own grey with a slate label, 4.77:1. Blanket opacity would take charcoal-on-green to 2.35:1. A `<button>` takes `disabled` (`job-checklist-error`, `listings-loading`, `result-upload`, `result-upload-loading`); a link takes `aria-disabled="true"` (`inspection-report-loading`, `time-slot-empty`, `time-slot-inspection-empty`). The same rule draws both.
+Faded, in solid colour (designer, rev 294): the button's own colour at 40% over the page, painted as a real colour rather than opacity. The primary goes pale green #D2E6AF with a #9F9D9C label (2.01:1); other buttons go #EAE7E2 (2.18:1). WCAG 1.4.3 exempts an inactive control. A `<button>` takes `disabled` (`job-checklist-error`, `listings-loading`, `result-upload`, `result-upload-loading`); a link takes `aria-disabled="true"` (`inspection-report-loading`, `time-slot-empty`, `time-slot-inspection-empty`). The same rule draws both.
 
 ### Pay
 
