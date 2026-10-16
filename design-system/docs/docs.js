@@ -128,17 +128,38 @@
     if (window.matchMedia('(max-width: 900px)').matches) {
       groups.forEach(function (g) { g.removeAttribute('open'); });
     }
+    // A word matches the start of a word in the entry's name or in its search
+    // words (description, classes, token names, sub-headings), and a plural
+    // matches its singular: "buttons" finds Button, "green" finds Colour.
+    function stem(w) { return w.length > 3 ? w.replace(/(es|s)$/, '') : w; }
+    function words(t) { return t.toLowerCase().replace(/[^a-z0-9.-]+/g, ' ').split(' ').filter(Boolean); }
+    function matches(li, qs) {
+      var hay = words(li.textContent + ' ' + (li.getAttribute('data-keys') || ''));
+      return qs.every(function (q) {
+        return hay.some(function (w) { return w.indexOf(q) === 0 || w.replace(/^[.-]+/, '').indexOf(q) === 0 || stem(w) === q; });
+      });
+    }
     input.addEventListener('input', function () {
-      var q = input.value.trim().toLowerCase(), any = false;
+      var raw = input.value.trim(), any = false;
+      var qs = words(raw).map(stem);
       groups.forEach(function (g) {
-        var hit = false;
-        g.querySelectorAll('li').forEach(function (li) {
-          var ok = !q || li.textContent.toLowerCase().indexOf(q) > -1;
+        var hit = false, ul = g.querySelector('ul');
+        var lis = [].slice.call(ul.children);
+        lis.forEach(function (li, i) { if (!li.hasAttribute('data-i')) li.setAttribute('data-i', i); });
+        lis.forEach(function (li) {
+          var ok = !qs.length || matches(li, qs);
           li.hidden = !ok;
+          // a word in the name itself ranks above a word found only in the description
+          li.setAttribute('data-rank', qs.length && ok && words(li.textContent).some(function (w) {
+            return qs.some(function (q) { return w.indexOf(q) === 0; }); }) ? 0 : 1);
           if (ok) hit = true;
         });
+        lis.sort(function (a, b) {
+          return qs.length ? (a.getAttribute('data-rank') - b.getAttribute('data-rank')) || (a.getAttribute('data-i') - b.getAttribute('data-i'))
+                           : a.getAttribute('data-i') - b.getAttribute('data-i');
+        }).forEach(function (li) { ul.appendChild(li); });
         g.hidden = !hit;
-        if (q && hit) g.setAttribute('open', '');
+        if (qs.length && hit) g.setAttribute('open', '');
         if (hit) any = true;
       });
       none.hidden = any;

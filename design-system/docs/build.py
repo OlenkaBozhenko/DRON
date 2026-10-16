@@ -577,6 +577,7 @@ def overview_page(pages, patterns, errors):
 VOICE = os.path.join(HERE, '..', '..', 'voice.md')
 TOKENS = os.path.join(HERE, '..', 'tokens.css')
 NAV = {}
+KEYS = {}   # href -> the words the sidebar filter also searches: a page's description, classes, tokens
 
 
 def side_html(current):
@@ -591,8 +592,9 @@ def side_html(current):
     for name, items in groups:
         here = any(h.split('#')[0] == current for _, h in items)
         open_ = here or (current == 'overview.html' and name != 'Components')
-        lis = ''.join('<li><a href="%s"%s>%s</a></li>'
-                      % (h, ' aria-current="page"' if h == current else '', inline(t)) for t, h in items)
+        lis = ''.join('<li data-keys="%s"><a href="%s"%s>%s</a></li>'
+                      % (html.escape(KEYS.get(h, ''), quote=True), h,
+                         ' aria-current="page"' if h == current else '', inline(t)) for t, h in items)
         out.append('<details class="dsd-side__grp"%s><summary>%s</summary><ul role="list">%s</ul></details>'
                    % (' open' if open_ else '', html.escape(name), lis))
     return '''<nav class="dsd-side" aria-label="Design system sections">
@@ -630,6 +632,7 @@ def voice_pages():
         short = re.split(r' — ', name)[0]
         f = 'voice-%s.html' % slug(short)
         nav.append((short, f))
+        KEYS[f] = name + ' ' + ' '.join(re.findall(r'(?m)^###? (.+)$', body))
         out[f] = site_page(f, short, 'Tone of voice: %s.' % short,
                            '<a href="voice.html">Tone of voice</a> / %s' % html.escape(short),
                            '<h1>%s</h1>%s<p class="dsd-sources">Source: <code>voice.md</code>, section <em>%s</em>.</p>'
@@ -717,6 +720,7 @@ def token_pages():
             continue
         f = 'tokens-%s.html' % slug(b)
         nav.append((b, f))
+        KEYS[f] = ' '.join(g['name'] + ' ' + ' '.join(n for n, _, _ in g['tokens']) for g in buckets[b])
         extra = ''
         if b == 'Typography':
             steps = sorted({m.group(1) for g in groups for n, _, _ in g['tokens']
@@ -783,6 +787,10 @@ def main():
     pats.sort(key=lambda m: int(m.get('order', 99)))
     out['overview.html'] = overview_page(pages, pats, errors)
     NAV['components'] = [(pg['name'], pg['slug'] + '.html') for pg in sorted(pages, key=lambda pg: pg['name'])]
+    for pg in pages:
+        KEYS[pg['slug'] + '.html'] = ' '.join(pg.get(k, '') for k in ('slug', 'group', 'classes', 'inventory', 'summary'))
+    for m in pats:
+        KEYS['patterns.html#' + m['slug']] = re.sub(r'[\[\]()]|[a-z-]+\.html', ' ', m.get('built', '')) + ' ' + m.get('requires', '')
     NAV['patterns'] = [(m['name'], 'patterns.html#' + m['slug']) for m in pats]
     for name in list(out):
         out[name] = wrap(out[name], name)
