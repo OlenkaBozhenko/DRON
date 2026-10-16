@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Disabled state compare</title>
+<link rel="stylesheet" href="design-system/index.css">
+<style>
+  body{ margin:0; padding:24px 16px 48px; background:#F7F5F2; color:#1d1d1f;
+        font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif; }
+  .w{ max-width:880px; margin:0 auto; }
+  h1{ font-size:22px; margin:0 0 24px; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr)); gap:16px; }
+  .opt{ border-radius:16px; padding:16px; background:#ECE9E4; }
+  .opt h2{ font-size:17px; margin:0 0 4px; }
+  .opt p{ font-size:14px; margin:0 0 12px; color:#55534f; }
+  .pane{ border-radius:12px; padding:16px; display:grid; gap:8px; background:var(--bg-page); margin-top:8px; }
+  .tag{ font-size:12px; color:var(--text-muted); }
+  .dim{ opacity:.4; cursor:default; }
+</style>
+</head>
+<body>
+<div class="w">
+  <h1>Disabled button: two ways</h1>
+  <div class="grid">
+    <section class="opt">
+      <h2>1 · Opacity (your new rule)</h2>
+      <p>The normal button, just faded.</p>
+      <div class="pane dr"><span class="tag">Light</span>
+        <button class="dr-btn dr-btn--primary dr-btn--block dim" type="button">Pay ₴180</button>
+        <button class="dr-btn dr-btn--secondary dr-btn--block dim" type="button">View details</button>
+      </div>
+      <div class="pane dr" data-theme="dark"><span class="tag">Dark</span>
+        <button class="dr-btn dr-btn--primary dr-btn--block dim" type="button">Pay ₴180</button>
+        <button class="dr-btn dr-btn--secondary dr-btn--block dim" type="button">View details</button>
+      </div>
+    </section>
+    <section class="opt">
+      <h2>2 · Grey (as built now)</h2>
+      <p>Its own grey colour. Easier to read.</p>
+      <div class="pane dr"><span class="tag">Light</span>
+        <button class="dr-btn dr-btn--primary dr-btn--block" type="button" disabled>Pay ₴180</button>
+        <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" disabled>View details</button>
+      </div>
+      <div class="pane dr" data-theme="dark"><span class="tag">Dark</span>
+        <button class="dr-btn dr-btn--primary dr-btn--block" type="button" disabled>Pay ₴180</button>
+        <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" disabled>View details</button>
+      </div>
+    </section>
+  </div>
+</div>
+</body>
+</html>
