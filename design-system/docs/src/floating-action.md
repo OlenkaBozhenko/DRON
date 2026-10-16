@@ -20,7 +20,7 @@ kit: 558
 </div>
 ```
 
-- `.dr-fab` — The capsule. A [primary button](button.html#variant-primary) with position, the 999 pill radius (`--len-999`), 20px side padding and `--shadow-raised` added; centred on the frame with `left:50%` and `translateX(-50%)`. Its bottom sits at 102 (60 + 30 + 12): the tab bar's 60 row and the 30 home strip, then 12 of air, which leaves it 11px clear of the tab bar's 1px hairline.
+- `.dr-fab` — The capsule. A [primary button](button.html#variant-primary) with position, the 999 pill radius (`--len-999`), 20px side padding and `--shadow-raised` added; centred on the frame with `left:50%` and `translateX(-50%)`, which its pressed and disabled states restate so it never leaves the centre. Disabled, it is the primary's pale green. Its bottom sits at 102 (60 + 30 + 12): the tab bar's 60 row and the 30 home strip, then 12 of air, which leaves it 11px clear of the tab bar's 1px hairline.
 - `.dr-ic` — An optional leading glyph, 20px, drawn in the label's charcoal. Green is never the ink and never the stroke.
 - `.dr-rows` — Copied from `account`: the column the capsule floats over.
 - `.dr-main--fab` — The other half of the component: the scrolling column gives back 72px of `padding-bottom` (44 + 12 + 16) so its last row scrolls clear of the capsule. All three screens that draw the capsule put it on their `<main>`.

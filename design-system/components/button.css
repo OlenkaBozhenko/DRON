@@ -231,3 +231,6 @@
 .dr-fab:active{
   transform: translateX(calc(var(--pct-50) * -1)) translateY(var(--len-1)) scale(var(--num-0-99));
 }
+.dr-fab:disabled, .dr-fab[aria-disabled="true"]{
+  transform: translateX(calc(var(--pct-50) * -1));
+}

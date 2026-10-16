@@ -26,6 +26,9 @@
 .dr-well > .dr-btn--onphoto:active{
   transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1)) scale(var(--num-0-99));
 }
+.dr-well > .dr-btn--onphoto:disabled, .dr-well > .dr-btn--onphoto[aria-disabled="true"]{
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
+}
 .dr-well{
   position: relative;
   width: var(--len-96);

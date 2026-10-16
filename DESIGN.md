@@ -1795,6 +1795,15 @@ class, no token and no page CSS.
 - **The `:active` re-declaration is load-bearing.** `.dr-btn--primary:active` sets a bare
   `transform`, which would drop the centring `-50%`; the modifier restates both, and being later in
   the sheet at equal specificity it wins. `.dr-fab` must stay below the button pack.
+- **Disabled, it stays centred and goes pale green (rev 300, the designer's call).** `.dr-btn:disabled`
+  sets `transform:none`, which dropped the same `-50%` and moved a disabled capsule half its width to
+  the right. `HIG · Buttons` has no floating button (iOS has none), and for every button it asks that
+  an unavailable one keep its place and look dimmed; nothing moves. `.dr-fab:disabled,
+  .dr-fab[aria-disabled="true"]` restates `translateX(-50%)`, below `.dr-fab:active`, and takes the
+  primary's disabled colours unchanged: `--bg-disabled-action` #D2E6AF with `--on-disabled-action`
+  #9F9D9C, **2.01:1**, exempt under `WCAG 1.4.3`. The camera disc on a photo well
+  (`.dr-well > .dr-btn--onphoto`) had the same drift on both axes and takes the same fix. No screen
+  builds a disabled capsule today; the rule is there for the first that does.
 
 ### Titled zone card (`.dr-zone`)
 
