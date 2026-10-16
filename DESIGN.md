@@ -3690,6 +3690,54 @@ re-cut — and each group grows exactly **8px**, four groups per log, **+32** a 
 prescribes the direction and not a number; no WCAG criterion is engaged, `1.3.1` being carried by
 `<section aria-labelledby>` + `<h2>` throughout.
 
+## Contributing to the system
+
+**The designer's rule, 2026-10-17. Read this before adding or changing anything that shows on a
+screen; it is written so that nobody has to ask in chat.**
+
+**One rule: new things appear in `design-system/` first, then on a screen — never the other way
+round.** A screen is a consumer of the system. It never introduces a value, a class, a style or a
+composition of its own; it takes them from `design-system/`. If a screen needs something the system
+does not have, the system gets it first, and the screen takes it second, in the same change.
+
+### Where each kind of new thing goes
+
+| What is new | Where it goes | What has to come with it | Done when |
+|---|---|---|---|
+| **A value** (colour, length, type, shadow, time) | `design-system/tokens.css`, at the tier that owns it. A **semantic** role for a new job (`--bg-*`, `--text-*`, `--border-*`, `--color-*`, `--on-*`, `--type-*`), pointing at an existing primitive. A new **primitive** only if the raw value itself is new — and a new primitive is the designer's call. A colour role is also redefined in the `[data-theme="dark"]` block, or the block says why not. | The pair measured (`WCAG 1.4.3` / `1.4.11`) and written into `DESIGN.md` § Colors; the `tokens-*.html` pages regenerate from the file. | `python design-system/docs/build.py` passes; the token page shows it in both themes. |
+| **A component** | `design-system/components/<name>.css`, imported from `components/index.css`. No hex, no px, no font name: every value is a token. | `design-system/docs/src/<slug>.md` with all five sections — Anatomy, Variants, States, When to use, Rule and Anti-rule — a row in `docs/src/_PAGES.md`, and a specimen in `ui/kit.html`. **States in both themes:** the build draws Rest, Hover, Pressed, Focus and Disabled in light and dark from the component's own CSS; a control that can be unavailable gets a disabled rule (rev 304), one that cannot says so. | The build passes (it refuses a missing section and a `dr-*` class no component declares); the States grid differs where it should; then the screens. |
+| **A change to a component** | Its file in `design-system/components/` and its page `docs/src/<slug>.md`. | `ui/kit.html` specimen updated; rebuild. | The docs page shows it; **then** every screen in `wireframes/` where the component stands. |
+| **A composition** | `design-system/patterns/<slug>.md`, built only from components, no CSS of its own. | The screens it stands on, in `screens:`, and the classes it is made of, in `requires:`. | **It already stands on three screens** — the build fails a pattern that cannot name three. One or two screens: it stays built from components on those screens, and is not a pattern yet. |
+| **Words** | `voice.md` for a rule, `microcopy.md` for a string. | The string checked against `voice.md`. | Then the screen. |
+
+### The order of a change, every time
+
+1. **Source first.** The `.md` that owns it (`_screens.md`, `_conventions.md`, `voice.md`, a
+   `docs/src/*.md`), then the CSS or token in `design-system/`.
+2. **Build.** `python design-system/docs/build.py` must report `0 errors`. Never hand-edit a
+   generated file in `design-system/docs/` (every `*.html`, `states.css`).
+3. **Screens.** Only now does a screen take the new thing. A screen never carries a `<style>` block,
+   an inline style that is not layout, or a class no component declares.
+4. **Record.** A line in the `concept/concept.md` change log with the designer's own words and the
+   measurements; the values in `DESIGN.md`. Declined options are recorded as declined.
+5. **Commit** at once; push only on her word.
+
+### «Залишаємо» — keep it — leads into the system
+
+When the designer is shown something — a compare page, a preview, a fix on a screen — and says
+**«залишаємо»**, that is the go-ahead, and the change goes **into the system**, not into the place
+it was shown:
+
+- **a value** → its token in `tokens.css` (the semantic tier, unless the value itself is new);
+- **a component change** → `design-system/components/<file>.css` **and** its page in
+  `design-system/docs/src/` (rebuild), plus `ui/kit.html`;
+- **a new composition** → `design-system/patterns/`, if it stands on three screens;
+- **then** the screens that use it, and the change-log line.
+
+A «залишаємо» never ends as a screen-only edit, a value left in a compare page, or a note in a doc
+with nothing built. Compare pages (`_compare-*.html`) and previews (`_proposed-*.css`) are
+scaffolding: once the choice is made they are not linked from anything and nothing reads them.
+
 ## Sources
 
 - **[`concept/concept.md`](concept/concept.md)** — the single source of truth for the visual
