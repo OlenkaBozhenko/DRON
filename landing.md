@@ -186,6 +186,35 @@ The frame is 375 CSS px. The landing is read on phones narrower than that.
 landing, which fails worse (`WCAG 1.4.10` Reflow). A scaled phone is a picture of a phone; a phone
 you must scroll sideways is a broken page. Say the word and it flips.
 
+### 4.2b A text field shows no focus ring inside the phone
+
+Designer's rule, **2026-10-16**: *«при створенні … програвача мобільної версії коли буде вводитись
+щось щоб у такому форматі полі не було рамки»*. The phone on the landing is the mobile build, so
+while a reel types into a field, or a visitor clicks into one, the field shows **only the caret**,
+the way iOS does.
+
+**Why the player has to say so.** Since `concept.md` rev 298, `form.css` draws a 2.5px `--slate`
+ring on a focused text field under `@media (hover: hover) and (pointer: fine)`, which is the macOS
+reading. That media query answers for the **device**, not for the frame: on a laptop the iframe
+matches it, so without an override the phone would show the desktop ring. The landing is read on
+laptops, so it would show there.
+
+**The rule.** The injected stylesheet (§4.2) carries one more block, so the phone always reads as a
+phone:
+
+```css
+.dr-rows--card:has(.dr-field__input:focus-visible),
+.dr-field--area .dr-field__input:focus-visible,
+.dr-search:has(input:focus-visible) { outline: none !important; }
+```
+
+It is the same mechanism as §4.2, so `wireframes/` stays untouched (§0). **Only text fields lose
+the ring.** Buttons, rows and every other control keep their `--ink` ring, because a keyboard
+visitor to the landing still needs it (`WCAG 2.4.7`), and on those the ring is the only indicator.
+On a text field the caret remains, which is what `WCAG 2.4.7` accepts and what `HIG · iOS` shows.
+
+**Status: rule written, not yet built in `ui/tape.js`.**
+
 ### 4.5 Taking over
 
 In `reel`, the first `pointerdown` inside the phone pauses the tape and hands control to the
@@ -370,6 +399,11 @@ either way: those pixels are the product's own and are not this file's to move (
 ---
 
 ## 7. Change log
+
+**Rev 7 — 2026-10-16.** *«щоб у такому форматі полі не було рамки»*. A text field in the phone shows
+the caret only, never the desktop focus ring that `form.css` draws with a mouse since `concept.md`
+rev 298. Written as §4.2b: one more block in the injected stylesheet, text fields only, every other
+control keeps its ring. Rule recorded, not yet built in `ui/tape.js`.
 
 **Rev 6 — 2026-09-19.** *«тепер коли я зупиняю і клацаю сама щось не працює».* Rev 5's seal was
 too blunt: half the product's controls are links, so a paused screen did nothing when tapped.
