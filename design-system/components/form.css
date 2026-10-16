@@ -60,11 +60,6 @@
 .dr-field__input:focus-visible{
   outline: none;
 }
-.dr-field:not(.dr-field--area):has(.dr-field__input:focus-visible){
-  outline: var(--len-2-5) solid var(--text-muted);
-  outline-offset: calc(var(--len-2) * -1);
-  border-radius: inherit;
-}
 .dr-field__value{
   font-size: var(--type-heading-size);
   font-weight: var(--type-weight-medium);
@@ -114,10 +109,6 @@
   border-radius: var(--len-10);
   padding: var(--len-12);
   line-height: var(--type-para-line);
-}
-.dr-field--area .dr-field__input:focus-visible{
-  outline: var(--len-2-5) solid var(--text-muted);
-  outline-offset: var(--len-2);
 }
 .dr-field--area6 .dr-field__input{
   min-height: calc(6 * var(--len-15) * var(--num-1-5) + 2 * var(--len-12));
@@ -190,9 +181,21 @@
 .dr-search input::placeholder{
   color: var(--text-muted);
 }
-.dr-search:has(input:focus-visible){
-  outline: var(--len-2-5) solid var(--text-muted);
-  outline-offset: var(--len-2);
+/* A text field's focus: the caret alone on a phone, as on iPhone; a ring on the
+   field's own edge with a mouse, as on a Mac (rev 298). */
+@media (hover: hover) and (pointer: fine){
+  .dr-rows--card:has(> .dr-field:only-child .dr-field__input:focus-visible){
+    outline: var(--len-2-5) solid var(--text-muted);
+    outline-offset: 0;
+  }
+  .dr-field--area .dr-field__input:focus-visible{
+    outline: var(--len-2-5) solid var(--text-muted);
+    outline-offset: var(--len-2);
+  }
+  .dr-search:has(input:focus-visible){
+    outline: var(--len-2-5) solid var(--text-muted);
+    outline-offset: var(--len-2);
+  }
 }
 .dr-picks{
   list-style: none;

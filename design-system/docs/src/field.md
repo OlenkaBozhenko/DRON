@@ -19,7 +19,7 @@ kit: 2618
 - `.dr-field` — One row: `min-height` 44, padding 0 16, no border. The row, not the input, is the target.
 - `.dr-field__label` — The key, `--slate` 15/400, 5.95:1 on the card. The column is sized by the widest key in the group, floored at 96, with a 10 gap.
 - `.dr-field__group` — The box the input is measured in, so the input fills the row's second column.
-- `.dr-field__input` — The typed value, `--ink` 15/400, 14.37:1 on the card. No border. Focused, the row takes a 2.5px `--slate` ring inside its edge, 5.95:1 on the card; the caret is declared `--ink`.
+- `.dr-field__input` — The typed value, `--ink` 15/400, 14.37:1 on the card. No border. Focused, a phone shows the caret only, as iOS does; with a mouse a card holding this one field takes a 2.5px `--slate` ring on its own edge, 5.95:1, as a Mac does. The caret is declared `--ink`.
 
 ## Variants
 

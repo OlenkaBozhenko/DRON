@@ -17,7 +17,7 @@ kit: 2947
 
 - `.dr-field--area` — The row, stacked: `min-height` 80, padding 12 top and bottom. It stays out of the group's label grid.
 - `.sr-only` — The label. On most screens the section title already asks the question, so the `<label>` is kept for assistive tech and hidden from view.
-- `.dr-field__input` — The box: `--media` at radius 10 with a 12px inset, 15px type on a 1.5 leading. Typed `--ink` 13.33:1, placeholder `--slate` 5.51:1. No resize handle. Focused, the box takes a 2.5px `--slate` ring 2px outside it, 6.62:1 on the page.
+- `.dr-field__input` — The box: `--media` at radius 10 with a 12px inset, 15px type on a 1.5 leading. Typed `--ink` 13.33:1, placeholder `--slate` 5.51:1. No resize handle. Focused, a phone shows the caret only; with a mouse the box takes a 2.5px `--slate` ring 2px outside it, 6.62:1 on the page.
 
 ## Variants
 
