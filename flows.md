@@ -108,12 +108,7 @@ flowchart TD
   NF --> SRV
   DRN -->|yes| MAP["Results on the map — choose what you need (price · available · arrives in)"]
   MAP -->|back| SRV
-  MAP -->|"tap Order (photo · inspection)"| F
-  MAP -->|"tap Choose operator (delivery)"| OPS["Available operators — who is free for that option"]
-  OPS -->|back| MAP
-  OPS -->|"tap an operator"| OPP["Operator profile — read for trust"]
-  OPP -->|back| OPS
-  OPP -->|"tap Order"| F
+  MAP -->|"tap Order"| F
   C --> E["Service catalogue"]
   E --> DR{"Service available in your region?"}
   DR -->|no| NR(["Empty: not in your region yet"]):::state
@@ -158,7 +153,6 @@ flowchart TD
 
 **Decisions**
 - *Home is a search (2026-09-14, designer's call)* — the service, the date and the time are chosen on Home; *Find* opens **Results on the map**, where the client picks one option (price, how many are available, when one arrives) and *Order* hands off to that service's Order setup. The *Service catalogue* node is that screen. **The older *Narrow the list?* branch — the full-screen filter panel and the four place picks — left this diagram on 2026-09-19**, when the designer rebuilt Home's states on the search and those pages were deleted (*«цих … вже немає»*, then *«все що сховала тепер зітри»*). The filter is a **drawer** on the page, and the applied row is a state the page draws itself. **Two nodes arrived with the same call, in her words:** *«loading коли шукаємо»* and *«error коли нічого не знайдено»* — `listings-loading` and `listings-error` are those two, and each now has the node `_conventions.md` requires before a state page may exist. **And one node lost its page the same day:** the region empty (*Service available in your region?* → no → *notify me when DRON launches here*) was drawn by `listings-empty`, which was deleted on 2026-09-19 because on a search form it said what *nothing found* already says. The node stands — it hangs off **Service catalogue**, which is now **Results on the map**, so that is where the state belongs if it is drawn again.
-- *Choose the operator (delivery, 2026-10-17, designer's call)* — on *Results on the map* the delivery option leads to **Available operators** (the operators free for it, no *Order* there) and a tapped operator to **Operator profile**, where *Order* hands off to Order setup. Photo and inspection still go from the map straight to setup. **Recorded against the research, the designer's call (2026-10-17):** `jtbd.md` files operator choice as **HJ-3**, a hypothesis that *conflicts with auto-dispatch*, and lists the operator selection screen as a *feature candidate for removal* (a first-time client cannot evaluate drone operators, `ux-patterns.md` Reason 3). It also adds two taps to the client's main path (`sitemap.md` §7, 3 taps → 5 for delivery). Built on her word; the hypothesis is not confirmed by it.
 - *Signed in?* — no → one-tap Diia / BankID (`C-02`); yes → straight to Home.
 - *Client or Operator?* — first-time only, straight after registration (`sitemap.md §6.0`), then **Client onboarding** before Home; returning clients skip both. Choosing Operator leaves this flow for the operator side. Persona is switchable later from **Account → Switch role** (`sitemap.md §7.4`; see *CHANGE PERSONA* flow above).
 - *Service available in your region? / Address within service zone?* — coverage gates (geography rollout UA + EU).

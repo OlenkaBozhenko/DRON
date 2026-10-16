@@ -62,37 +62,9 @@ Both shapes are allowed (designer, rev 292). The full photo `.dr-op__photo` with
 
 On `contact-support` the leading element is the 60 × 20 DRON mark instead of a photo, placed on the right: text left, mark right, card 341 × 105.3. The chips are plain facts, so they keep the grey pair.
 
-### As one link
-
-```html
-<article class="dr-op" style="width:341px;max-width:100%">
-  <a class="dr-card__link" href="#" aria-label="Andriy M., 4.9 stars, 214 jobs, 6 min away. View profile"></a>
-  <span class="dr-op__photo"><img src="../assets/people/thumbs/operator.png" alt="" loading="lazy" decoding="async"></span>
-  <span class="dr-op__info">
-    <span class="dr-op__name">Andriy M.</span>
-    <span class="dr-op__rating">4.9 ★ · 214 jobs · 6 min away</span>
-    <span class="dr-chips dr-op__badges dr-chips--stack"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
-  </span>
-</article>
-```
-
-On `operators`, the operators available for the option the client picked: the whole card is one [card link](card-link.html) to that operator's profile, named *Andriy M., 4.9 stars, 214 jobs, 6 min away. View profile*. The rating line adds the distance. Pick an operator here; *Order* waits on the profile (rev 312).
-
 ## States
 
-```html
-<article class="dr-op" style="width:341px;max-width:100%">
-  <a class="dr-card__link" href="#" aria-label="Andriy M., 4.9 stars, 214 jobs, 6 min away. View profile"></a>
-  <span class="dr-op__photo"><img src="../assets/people/thumbs/operator.png" alt="" loading="lazy" decoding="async"></span>
-  <span class="dr-op__info">
-    <span class="dr-op__name">Andriy M.</span>
-    <span class="dr-op__rating">4.9 ★ · 214 jobs · 6 min away</span>
-    <span class="dr-chips dr-op__badges dr-chips--stack"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
-  </span>
-</article>
-```
-
-The linked card from `operators`. The read card on `order-confirmed` and `tracking` takes no state: nothing in it takes focus, and its [credential chips](chip.html) are facts, not controls.
+No state of its own: the card is read, not pressed, and nothing in it takes focus. Its [credential chips](chip.html) are facts, not controls.
 
 ## When to use
 

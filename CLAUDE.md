@@ -204,9 +204,7 @@ Sources: `sitemap.md`, `flows.md`, `ia.html`
 **Location:** `wireframes/`. A **grayscale, clickable wireframe prototype** — the step-2 deliverable of the
 working process. It proves **structure, hierarchy, zones and flow**, never looks.
 
-**Scope (built):** **138 HTML pages** — 135 screen-and-state pages plus 3 option partials; **55 screens** (re-counted
-off the filesystem 2026-10-17 with *Available operators* and *Operator profile*, `concept.md` rev 312; the figures that follow
-are the history of the count) — before that, 134 pages and 53 screens
+**Scope (built):** **134 HTML pages** — 131 screen-and-state pages plus 3 option partials; **53 screens**
 once states and the `-aerial` / `-inspection` per-service variants are collapsed (re-counted off the
 filesystem 2026-09-14 with *Results on the map*, `listings-map` + its two service files, `concept.md` rev 250;
 before that 2026-09-01 with the two `notifications` alert logs, `concept.md` rev 211. **The 120 / 117 / 50 this line carried had already

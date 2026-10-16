@@ -60,8 +60,6 @@
   outline-offset: var(--len-2);}
 .dsd-st--focus .dr-offer:has(> input){outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: var(--len-2);}
-.dsd-st--focus .dr-op:has(> .dr-card__link){outline: var(--len-2-5) solid var(--text-primary);
-  outline-offset: var(--len-2);}
 .dsd-st--hover .dr-disclosure__item,
 .dsd-st--hover .dr-picker__item{background: var(--bg-well);}
 .dsd-st--focus .dr-disclosure__item,

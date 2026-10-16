@@ -465,16 +465,3 @@
 .dr-card:has(> .dr-card__link[aria-disabled="true"]) .dr-status{
   display: none;
 }
-
-/* THE OPERATOR CARD AS ONE LINK (rev 312, the designer: the client picks one of
-   the operators available for an option). The card takes the same stretched
-   .dr-card__link as .dr-card - one link over the whole card, named for the
-   operator, the photo and the chips staying plain text under it - and the
-   same keyboard ring. Nothing else about the card changes. */
-.dr-op:has(> .dr-card__link){
-  position: relative;
-}
-.dr-op:has(> .dr-card__link:focus-visible){
-  outline: var(--len-2-5) solid var(--text-primary);
-  outline-offset: var(--len-2);
-}
