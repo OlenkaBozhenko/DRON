@@ -201,6 +201,19 @@ code { font-family: var(--font-mono); font-size: var(--type-meta-size); }
 .dsd-tile a:hover .dsd-tile__name { text-decoration: underline; }
 .dsd-tile a:focus-visible { outline: var(--len-2-5) solid var(--text-primary); outline-offset: var(--len-4); }
 .dsd-tile__cap { display: block; margin-top: var(--len-4); color: var(--text-muted); font-size: var(--type-body-sm-size); line-height: var(--type-lead-line); }
+/* every page of the site sits in the same grid as the overview */
+.dsd-home > .dsd-main { max-width: none; margin: 0; padding: 0; min-width: 0; }
+.dsd-side li a[aria-current="page"] { background: var(--bg-accent-tint); color: var(--text-primary); font-weight: var(--type-weight-medium); }
+.dsd-table-wrap { overflow-x: auto; margin: var(--len-12) 0 var(--len-24); }
+.dsd-table { width: 100%; border-collapse: collapse; font-size: var(--type-body-size); }
+.dsd-table th, .dsd-table td { text-align: left; vertical-align: top; padding: var(--len-8) var(--len-12) var(--len-8) 0; border-bottom: var(--len-1) solid var(--border-hairline); }
+.dsd-table th { color: var(--text-muted); font-weight: var(--type-weight-medium); white-space: nowrap; }
+.dsd-tok td:first-child { white-space: nowrap; }
+.dsd-tok td:last-child { color: var(--text-muted); min-width: calc(var(--len-140) * 2); }
+.dsd-sw { display: inline-block; width: var(--len-20); height: var(--len-20); border-radius: var(--len-6); vertical-align: middle; margin-right: var(--len-8); border: var(--len-1) solid var(--border-hairline); }
+.dsd-tok__dark { display: inline-block; font-size: var(--type-caption-size); padding: 0 var(--len-6); border-radius: var(--len-999); background: var(--bg-inverse); color: var(--text-on-inverse); }
+.dsd-tok__val, .dsd-tok__ratio { white-space: nowrap; font-family: var(--font-mono); font-size: var(--type-caption-size); }
+
 @media (max-width: 900px) {
   .dsd-home { grid-template-columns: minmax(0, 1fr); gap: var(--len-24); }
   .dsd-side { position: static; max-height: none; }

@@ -115,6 +115,24 @@ def blocks(text, specimen):
             out.append(specimen('\n'.join(lines[i + 1:j]).strip()))
             i = j + 1
             continue
+        if line.startswith('|'):
+            flush()
+            j = i
+            rows = []
+            while j < len(lines) and lines[j].startswith('|'):
+                rows.append([c.strip() for c in lines[j].strip().strip('|').split('|')])
+                j += 1
+            body = [r for r in rows[1:] if not all(re.fullmatch(r':?-{3,}:?', c) for c in r)]
+            out.append('<div class="dsd-table-wrap"><table class="dsd-table"><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>'
+                       % (''.join('<th scope="col">%s</th>' % inline(c) for c in rows[0]),
+                          ''.join('<tr>%s</tr>' % ''.join('<td>%s</td>' % inline(c) for c in r) for r in body)))
+            i = j
+            continue
+        if re.fullmatch(r'\s*-{3,}\s*', line):
+            flush()
+            out.append('<hr>')
+            i += 1
+            continue
         h = re.match(r'(#{1,4}) (.+)', line)
         if h:
             flush()
@@ -265,9 +283,10 @@ def head(title, desc):
 
 def topbar(current):
     links = [('overview.html', 'Overview'), ('index.html', 'Components'), ('patterns.html', 'Patterns'),
-             ('../../tone-of-voice.html', 'Tone of voice'), ('why.html', 'Why it looks like this'),
-             ('../../design-system.html', 'Tokens'), ('../../ui/kit.html', 'UI kit')]
-    nav = ''.join('<a href="%s"%s>%s</a>' % (h, ' aria-current="page"' if h == current else '', t)
+             ('voice.html', 'Tone of voice'), ('tokens.html', 'Tokens'), ('why.html', 'Why it looks like this'),
+             ('../../ui/kit.html', 'UI kit')]
+    sec = current.split('-')[0] + '.html' if current.startswith(('voice-', 'tokens-')) else current
+    nav = ''.join('<a href="%s"%s>%s</a>' % (h, ' aria-current="page"' if h in (current, sec) else '', t)
                   for h, t in links)
     return '''<header class="dsd-top">
   <a class="dsd-brand" href="../../research.html">DRON</a>
@@ -541,20 +560,189 @@ def overview_page(pages, patterns, errors):
     hero = blocks(secs[0][1], lambda mk: '')
     return (head(meta.get('title', 'Overview'), meta.get('description', ''))
             + topbar('overview.html') +
-            '''<div class="dsd-home">
-  <nav class="dsd-side" aria-label="Design system sections">
+            '''<main id="main" class="dsd-main dsd-home__main">
+    <header class="dsd-hero">%s</header>
+    %s
+  </main>
+''' % (hero, ''.join(content)) + FOOT)
+
+
+# --- the site: one sidebar on every page ---------------------------------------
+# The docs are one small site (the designer, 2026-10-17): every page carries the
+# same sidebar, and whatever is chosen in it opens on the right, the sidebar
+# staying where it is - the way the HIG works. Tone of voice and Tokens are pages
+# of this site like the components: one page per sidebar entry. The sidebar is
+# built once from what the pages are, and wrap() puts it beside each page's main.
+
+VOICE = os.path.join(HERE, '..', '..', 'voice.md')
+TOKENS = os.path.join(HERE, '..', 'tokens.css')
+NAV = {}
+
+
+def side_html(current):
+    groups = [
+        ('Getting started', [('Overview', 'overview.html'), ('Why it looks like this', 'why.html')]),
+        ('Tone of voice', NAV.get('voice', [])),
+        ('Tokens', NAV.get('tokens', [])),
+        ('Components', [('All components', 'index.html')] + NAV.get('components', [])),
+        ('Patterns', [('All patterns', 'patterns.html')] + NAV.get('patterns', [])),
+    ]
+    out = []
+    for name, items in groups:
+        here = any(h.split('#')[0] == current for _, h in items)
+        open_ = here or (current == 'overview.html' and name != 'Components')
+        lis = ''.join('<li><a href="%s"%s>%s</a></li>'
+                      % (h, ' aria-current="page"' if h == current else '', inline(t)) for t, h in items)
+        out.append('<details class="dsd-side__grp"%s><summary>%s</summary><ul role="list">%s</ul></details>'
+                   % (' open' if open_ else '', html.escape(name), lis))
+    return '''<nav class="dsd-side" aria-label="Design system sections">
     <label class="dsd-side__filter"><span class="sr-only">Filter</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
       <input type="search" placeholder="Filter" autocomplete="off" data-filter></label>
     <p class="dsd-side__none" hidden>Nothing matches.</p>
     %s
-  </nav>
-  <main id="main" class="dsd-home__main">
-    <header class="dsd-hero">%s</header>
-    %s
-  </main>
-</div>
-''' % (''.join(side), hero, ''.join(content)) + FOOT)
+  </nav>''' % ''.join(out)
+
+
+def wrap(page, current):
+    """Put the sidebar beside the page's <main>, inside one grid."""
+    i = page.index('<main id="main"')
+    j = page.index('</main>', i) + len('</main>')
+    return page[:i] + '<div class="dsd-home">\n  %s\n  %s\n</div>' % (side_html(current), page[i:j]) + page[j:]
+
+
+def site_page(file, title, desc, crumb, body):
+    return (head('%s · DRON Design System' % title, desc) + topbar(file) +
+            '<main id="main" class="dsd-main dsd-prose"><p class="dsd-crumb"><a href="overview.html">Overview</a>'
+            ' / %s</p>%s</main>\n' % (crumb, body) + FOOT)
+
+
+# --- Tone of voice: voice.md, one page per section --------------------------------
+
+def voice_pages():
+    text = open(VOICE, encoding='utf-8').read()
+    text = re.sub(r'^# .+\n', '', text, count=1)
+    secs = split_sections(text, 2)
+    out, nav = {}, []
+    intro = blocks(secs[0][1], lambda mk: '')
+    for name, body in secs[1:]:
+        short = re.split(r' — ', name)[0]
+        f = 'voice-%s.html' % slug(short)
+        nav.append((short, f))
+        out[f] = site_page(f, short, 'Tone of voice: %s.' % short,
+                           '<a href="voice.html">Tone of voice</a> / %s' % html.escape(short),
+                           '<h1>%s</h1>%s<p class="dsd-sources">Source: <code>voice.md</code>, section <em>%s</em>.</p>'
+                           % (inline(name), blocks(body, lambda mk: ''), html.escape(name)))
+    toc = ''.join('<li><a href="%s">%s</a></li>' % (f, inline(n)) for n, f in nav)
+    out['voice.html'] = site_page('voice.html', 'Tone of voice', 'How DRON speaks.', 'Tone of voice',
+                                  '<h1>Tone of voice</h1>%s<h2>Sections</h2><ul>%s</ul>'
+                                  '<p class="dsd-sources">Source: <code>voice.md</code> at the repo root; every product '
+                                  'string is inventoried in <code>microcopy.md</code>.</p>' % (intro, toc))
+    NAV['voice'] = [('About the voice', 'voice.html')] + nav
+    return out
+
+
+# --- Tokens: tokens.css, one page per kind ------------------------------------------
+# Built from the file, so it opens with no server. The browser fills the resolved
+# value and each ink's contrast live, in the theme chosen in the top bar.
+
+BUCKETS = [('Colour', ('COLOUR', 'SURFACE', 'RAISED', 'INVERSE', 'INK', 'DISABLED', 'LINE', 'ACTION', 'TINT',
+                       'TROUBLE', 'COMPONENT RULE', 'PAY BUTTON', 'GLYPH', 'RENDER', 'THEMED', 'OVERLAY')),
+           ('Typography', ('TYPE',)),
+           ('Length', ('LENGTH', 'PERCENTAGE', 'TRACKING')),
+           ('Shadow and elevation', ('SHADOW',)),
+           ('Motion', ('TIME',)),
+           ('Other values', ('',))]
+
+
+def token_groups():
+    text = open(TOKENS, encoding='utf-8').read()
+    root = text[text.index(':root, [data-theme="light"]{'):text.index('[data-theme="dark"]{')]
+    dark = text[text.index('[data-theme="dark"]{'):]
+    groups, cur = [], None
+    for line in root.split('\n'):
+        h = re.match(r'\s*/\*\s*--\s*(.+?)\s*-*\s*(\*/)?\s*$', line)
+        if h:
+            cur = {'name': h.group(1).rstrip('-').strip(), 'tokens': []}
+            groups.append(cur)
+            continue
+        d = re.match(r'\s*(--[a-z0-9-]+)\s*:\s*([^;]+);\s*(?:/\*\s*(.*?)(?:\*/|$))?', line, re.I)
+        if d and cur is not None:
+            cur['tokens'].append((d.group(1), d.group(2).strip(), (d.group(3) or '').strip()))
+    redefined = set(re.findall(r'(?m)^\s*(--[a-z0-9-]+)\s*:', dark))
+    return [g for g in groups if g['tokens']], redefined
+
+
+def token_table(g, raw, redefined):
+    def final(v, seen=0):
+        m = re.fullmatch(r'var\((--[a-z0-9-]+)\)', v.strip())
+        return final(raw.get(m.group(1), ''), seen + 1) if m and seen < 20 else v
+    rows = []
+    for n, v, why in g['tokens']:
+        colour = bool(re.match(r'(#|rgba?\(|color-mix\(|hsl)', final(v).strip()))
+        ink = colour and re.match(r'--(text|on)-', n)
+        sw = ('<span class="dsd-sw" style="background:var(%s)" data-sw></span>' % n) if colour else ''
+        rows.append('<tr data-tok="%s"%s%s><td>%s<code>%s</code>%s</td><td><code>%s</code></td>'
+                    '<td class="dsd-tok__val" data-val></td><td class="dsd-tok__ratio" data-ratio></td><td>%s</td></tr>'
+                    % (n, ' data-colour' if colour else '', ' data-ink' if ink else '', sw, n,
+                       ' <span class="dsd-tok__dark">dark</span>' if n in redefined else '',
+                       html.escape(v), inline(why)))
+    return ('<h2 id="%s">%s</h2><div class="dsd-table-wrap"><table class="dsd-table dsd-tok">'
+            '<thead><tr><th scope="col">Token</th><th scope="col">Declared</th><th scope="col">Resolved</th>'
+            '<th scope="col">Contrast</th><th scope="col">Why</th></tr></thead><tbody>%s</tbody></table></div>'
+            % (slug(g['name']), html.escape(g['name']), ''.join(rows)))
+
+
+LEDE = ('<p class="dsd-lede">From <code>design-system/tokens.css</code>. <strong>Primitive</strong> is a raw value; '
+        '<strong>semantic</strong> names a job and points at one. The resolved value, and each ink\'s contrast against '
+        '<code>--bg-page</code> / <code>--bg-surface</code>, are read by the browser in the theme chosen in the top bar '
+        '(<code>WCAG 1.4.3</code>: 4.5:1 body text, 3:1 large text and UI). <span class="dsd-tok__dark">dark</span> marks '
+        'a token the dark build redraws.</p>')
+
+
+def token_pages():
+    groups, redefined = token_groups()
+    raw = {n: v for g in groups for n, v, _ in g['tokens']}
+    buckets = {b: [] for b, _ in BUCKETS}
+    for g in groups:
+        up = g['name'].upper()
+        for b, keys in BUCKETS:
+            if any(k in up for k in keys):
+                buckets[b].append(g)
+                break
+    out, nav = {}, []
+    for b, _ in BUCKETS:
+        if not buckets[b]:
+            continue
+        f = 'tokens-%s.html' % slug(b)
+        nav.append((b, f))
+        extra = ''
+        if b == 'Typography':
+            steps = sorted({m.group(1) for g in groups for n, _, _ in g['tokens']
+                            for m in [re.match(r'--type-([a-z-]+)-size$', n)] if m and m.group(1) != 'hidden'})
+            extra = ('<h2 id="steps">The steps, drawn</h2><div class="dsd-table-wrap"><table class="dsd-table">'
+                     '<thead><tr><th scope="col">Step</th><th scope="col">Sample</th></tr></thead><tbody>%s</tbody></table></div>'
+                     % ''.join('<tr><td><code>%s</code></td><td><span style="font-family:var(--font-ui);'
+                               'font-size:var(--type-%s-size);font-weight:var(--type-%s-weight, var(--type-weight-regular));'
+                               'line-height:var(--type-%s-line, normal);letter-spacing:var(--type-%s-track, normal)">'
+                               'Order a certified operator</span></td></tr>' % (s, s, s, s, s) for s in steps))
+        body = '<h1>%s</h1>%s%s%s' % (b, LEDE, extra, ''.join(token_table(g, raw, redefined) for g in buckets[b]))
+        out[f] = site_page(f, b, 'Tokens: %s.' % b, '<a href="tokens.html">Tokens</a> / %s' % b, body)
+    nav.append(('Light and dark', 'tokens-light-and-dark.html'))
+    dark_rows = [g for g in groups if any(n in redefined for n, _, _ in g['tokens'])]
+    dark_tables = ''.join(token_table({'name': g['name'], 'tokens': [t for t in g['tokens'] if t[0] in redefined]},
+                                      raw, redefined) for g in dark_rows)
+    out['tokens-light-and-dark.html'] = site_page(
+        'tokens-light-and-dark.html', 'Light and dark', 'Tokens: what the dark build redraws.',
+        '<a href="tokens.html">Tokens</a> / Light and dark',
+        '<h1>Light and dark</h1><p class="dsd-lede">The dark build redraws %d semantic tokens and no primitive. '
+        'Switch the theme in the top bar: every value and contrast below is read again.</p>%s'
+        % (len(redefined), dark_tables))
+    toc = ''.join('<li><a href="%s">%s</a></li>' % (f, n) for n, f in nav)
+    out['tokens.html'] = site_page('tokens.html', 'Tokens', 'Every value in tokens.css.', 'Tokens',
+                                   '<h1>Tokens</h1>%s<h2>Kinds</h2><ul>%s</ul>' % (LEDE, toc))
+    NAV['tokens'] = [('About tokens', 'tokens.html')] + nav
+    return out
 
 
 def free_page(path, current, title):
@@ -580,11 +768,8 @@ def main():
         if meta['slug'] + '.md' != f:
             errors.append('%s: slug %s does not match the file name' % (f, meta['slug']))
         out[meta['slug'] + '.html'] = component_page(meta, body, known, errors, pages)
-    slugs = {p['slug'] for p in pages}
-    for name, page in out.items():
-        for ref in re.findall(r'href="([a-z0-9-]+)\.html', page):
-            if ref not in slugs and ref not in ('index', 'why', 'patterns', 'overview'):
-                errors.append('%s: links %s.html, which has no source' % (name, ref))
+    out.update(voice_pages())
+    out.update(token_pages())
     out['index.html'] = index_page(pages)
     if os.path.exists(os.path.join(SRC, 'why.md')):
         out['why.html'] = free_page(os.path.join(SRC, 'why.md'), 'why.html', 'Why it looks like this')
@@ -596,9 +781,14 @@ def main():
             pats.append(pm)
     pats.sort(key=lambda m: int(m.get('order', 99)))
     out['overview.html'] = overview_page(pages, pats, errors)
-    for ref in re.findall(r'href="([a-z0-9-]+)\.html', out['patterns.html']):
-        if ref not in slugs and ref not in ('index', 'why', 'patterns', 'overview'):
-            errors.append('patterns.html: links %s.html, which has no source' % ref)
+    NAV['components'] = [(pg['name'], pg['slug'] + '.html') for pg in sorted(pages, key=lambda pg: pg['name'])]
+    NAV['patterns'] = [(m['name'], 'patterns.html#' + m['slug']) for m in pats]
+    for name in list(out):
+        out[name] = wrap(out[name], name)
+    for name, page in out.items():
+        for ref in re.findall(r'href="([a-z0-9-]+)\.html', page):
+            if ref + '.html' not in out:
+                errors.append('%s: links %s.html, which has no source' % (name, ref))
     out['states.css'] = forced_css()
     for e in errors:
         print('ERROR', e)

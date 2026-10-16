@@ -17,7 +17,7 @@
       b.setAttribute('aria-pressed', String(b.getAttribute('data-theme-btn') === t));
     });
     try { localStorage.setItem('dsd-theme', t); } catch (e) {}
-    requestAnimationFrame(pinAll);
+    requestAnimationFrame(function () { pinAll(); resolveTokens(); });
   }
 
   function pinAll() {
@@ -67,7 +67,54 @@
     document.querySelectorAll('.dsd-card__view a, .dsd-card__view button, .dsd-card__view input, .dsd-card__view [tabindex]')
       .forEach(function (n) { n.setAttribute('tabindex', '-1'); });
     filterSide();
+    resolveTokens();
   });
+
+  // Token pages: the browser reads each value in the theme now showing, so the
+  // table needs no server and follows the theme switch. A colour is read off its
+  // own swatch (color-mix included) and an ink also gets its contrast against
+  // the page and the card, by the WCAG luminance formula.
+  function rgbOf(str) {
+    var m = str.match(/color\(srgb ([\d.]+) ([\d.]+) ([\d.]+)/);
+    if (m) return [m[1] * 255, m[2] * 255, m[3] * 255];
+    m = str.match(/rgba?\(([\d.]+),?\s*([\d.]+),?\s*([\d.]+)/);
+    return m ? [+m[1], +m[2], +m[3]] : null;
+  }
+  function hex(c) {
+    return '#' + c.map(function (v) { return ('0' + Math.round(v).toString(16)).slice(-2); }).join('').toUpperCase();
+  }
+  function lum(c) {
+    var a = c.map(function (v) { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+    return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
+  }
+  function ratio(a, b) {
+    var x = lum(a), y = lum(b);
+    return ((Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05)).toFixed(2) + ':1';
+  }
+  function probe(name) {
+    var s = document.createElement('span');
+    s.style.background = 'var(' + name + ')';
+    document.body.appendChild(s);
+    var c = rgbOf(getComputedStyle(s).backgroundColor);
+    s.remove();
+    return c;
+  }
+  function resolveTokens() {
+    var rows = document.querySelectorAll('tr[data-tok]');
+    if (!rows.length) return;
+    var page = probe('--bg-page'), card = probe('--bg-surface');
+    var root = getComputedStyle(document.documentElement);
+    rows.forEach(function (tr) {
+      var name = tr.getAttribute('data-tok'), val = tr.querySelector('[data-val]'), r = tr.querySelector('[data-ratio]');
+      if (tr.hasAttribute('data-colour')) {
+        var c = rgbOf(getComputedStyle(tr.querySelector('[data-sw]')).backgroundColor);
+        val.textContent = c ? hex(c) : root.getPropertyValue(name).trim();
+        if (tr.hasAttribute('data-ink') && c && page && card) r.textContent = ratio(c, page) + ' / ' + ratio(c, card);
+      } else {
+        val.textContent = root.getPropertyValue(name).trim();
+      }
+    });
+  }
 
   // Overview sidebar: the filter narrows every group to the links whose name
   // holds the typed text, opens the groups that still match, and says so when

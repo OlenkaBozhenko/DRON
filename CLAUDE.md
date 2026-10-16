@@ -310,6 +310,14 @@ system; its source stays `voice.md`), **Tokens**, **Components**, **Patterns**. 
 `assets/design-system/cards/*.webp`, drawn in Figma (*DRON design system — card art*,
 `hyqXavjJY7H7hUzhgpPobt`) as a DRON gradient behind a product outline icon, and the build fails on a missing one.
 
+**The docs are one small site (rev 306).** Every generated page carries the same sidebar — Getting started,
+Tone of voice, Tokens, Components, Patterns — and whatever is chosen opens on the right with the sidebar kept,
+the way the HIG works; `build.py`'s `wrap()` puts it beside each page's `<main>`. **Tone of voice** is one page per
+`voice.md` section (`voice-*.html`) and **Tokens** one page per kind (`tokens-*.html`), listed from `tokens.css` at build
+time, so both open from a file with no server; the browser fills each resolved value and each ink's contrast in the
+theme shown. The root `tone-of-voice.html` stays as the wireframe toolbar's drawer; the root `design-system.html`
+still needs a server.
+
 ### Tokens — where a value lives and where a change goes (revised 2026-10-10)
 
 **A value now lives in [`design-system/tokens.css`](design-system/tokens.css), and it is edited at the tier that owns it.**

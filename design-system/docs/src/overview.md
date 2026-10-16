@@ -13,24 +13,24 @@ starts from what is already decided and measured against HIG and WCAG.
 ## Tone of voice
 
 How the product speaks. Every string is written and checked against these rules, and in trouble the
-product is plain and accountable, never cheery. For more, see [Tone of voice](../../tone-of-voice.html).
+product is plain and accountable, never cheery. For more, see [Tone of voice](voice.html).
 
-- card: [Principles](../../tone-of-voice.html#principles) · voice-principles · Five rules every string is checked against.
-- card: [Vocabulary](../../tone-of-voice.html#vocabulary) · voice-vocabulary · One concept, one word: order, job, operator, issue.
-- card: [Don't use](../../tone-of-voice.html#dont-use) · voice-dont · Clichés, cheer, exclamation marks and "successfully".
-- card: [Microcopy](../../tone-of-voice.html#microcopy) · voice-microcopy · Rules by element: buttons, errors, empty states, hints.
+- card: [Principles](voice-principles.html) · voice-principles · Five rules every string is checked against.
+- card: [Vocabulary](voice-vocabulary.html) · voice-vocabulary · One concept, one word: order, job, operator, issue.
+- card: [Don't use](voice-don-t-use.html) · voice-dont · Clichés, cheer, exclamation marks and "successfully".
+- card: [Microcopy](voice-microcopy.html) · voice-microcopy · Rules by element: buttons, errors, empty states, hints.
 
 ## Tokens
 
 The values every component reads: colour, type, length, depth, motion, each named for its job and
-measured in both themes. For more, see [Tokens](../../design-system.html).
+measured in both themes. For more, see [Tokens](tokens.html).
 
-- card: [Colour](../../design-system.html#tokens) · tokens-colour · Warm surfaces, one green accent as a fill, every pair measured.
-- card: [Typography](../../design-system.html#type) · tokens-type · Ten steps in SF Pro, none below HIG's 11pt.
-- card: [Length](../../design-system.html#tokens) · tokens-length · One ramp for space, radius and size, on an 8px grid.
-- card: [Shadow and elevation](../../design-system.html#tokens) · tokens-shadow · Flat surfaces; depth only on what floats.
-- card: [Motion](../../design-system.html#tokens) · tokens-motion · The times and easings, and what reduced motion keeps.
-- card: [Light and dark](../../design-system.html#tokens) · tokens-themes · The semantic tier redrawn for the dark build.
+- card: [Colour](tokens-colour.html) · tokens-colour · Warm surfaces, one green accent as a fill, every pair measured.
+- card: [Typography](tokens-typography.html) · tokens-type · Ten steps in SF Pro, none below HIG's 11pt.
+- card: [Length](tokens-length.html) · tokens-length · One ramp for space, radius and size, on an 8px grid.
+- card: [Shadow and elevation](tokens-shadow-and-elevation.html) · tokens-shadow · Flat surfaces; depth only on what floats.
+- card: [Motion](tokens-motion.html) · tokens-motion · The times and easings, and what reduced motion keeps.
+- card: [Light and dark](tokens-light-and-dark.html) · tokens-themes · The semantic tier redrawn for the dark build.
 
 ## Components
 

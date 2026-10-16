@@ -97,4 +97,4 @@ Sources: concept.md § 0.2 Icons · § 5 Studio · § 6 Imagery · DESIGN.md § 
 - **Every pair is measured.** A colour pair is not used until its ratio is computed and written down. Every rule above was checked against `HIG` and `WCAG` before it was built.
 - **The reasons are kept.** `concept.md` records every revision, including the ones that were tried and reverted, so a rejected idea is not proposed again as a new one.
 
-Next: the [components](index.html), each drawn live, or the [tokens](../../design-system.html) as the browser resolves them.
+Next: the [components](index.html), each drawn live, or the [tokens](tokens.html) as the browser resolves them.
