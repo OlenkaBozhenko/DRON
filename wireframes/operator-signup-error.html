@@ -34,13 +34,11 @@
       <p class="zlabel dr-label">Sign up <span class="dr-label__act">▸ error — retry (exit)</span></p>
       <section aria-label="Sign up">
         <div class="dr-msg" role="alert">
-          <!-- THE NEUTRAL MARK, NOT THE DANGER WASH. `payment-error` is the exact
-               analogue and takes plain .dr-mark: a provider declined and nothing
-               was lost or spoiled. --danger-wash is the kit's rung for a thing
-               LOST or MISSING (tracking-error, delivery-error, listings-error).
+          <!-- THE DANGER MARK (designer, rev 293): every error screen takes
+               .dr-mark--danger, as payment-error does since rev 292.
                Glyph: the shield-with-check the product already draws for a
-               confirmed identity, struck out — --slate on --media, 5.51:1. -->
-          <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M5.2 18.8L18.8 5.2"/></svg></span>
+               confirmed identity, struck out. -->
+          <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M5.2 18.8L18.8 5.2"/></svg></span>
           <span class="dr-msg__title">Identity couldn't be verified</span>
           <p class="dr-msg__body">Diia declined the request or the details didn't match. You're not verified yet. Try again, or contact support if this keeps happening.</p>
         </div>
