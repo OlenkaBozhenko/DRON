@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Button states compare</title>
+<link rel="stylesheet" href="design-system/index.css">
+<style>
+  body{ margin:0; padding:24px 16px 48px; background:#F7F5F2; color:#1d1d1f;
+        font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif; }
+  .w{ max-width:960px; margin:0 auto; }
+  h1{ font-size:22px; margin:0 0 6px; }
+  .lede{ font-size:14px; color:#55534f; margin:0 0 20px; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr)); gap:16px; }
+  .opt{ border-radius:16px; padding:16px; background:#ECE9E4; }
+  .opt h2{ font-size:17px; margin:0 0 4px; }
+  .opt > p{ font-size:14px; margin:0 0 8px; color:#55534f; }
+  .pane{ border-radius:12px; padding:16px; background:var(--bg-page); margin-top:8px; }
+  .row{ display:grid; grid-template-columns:72px 1fr 1fr; gap:10px; align-items:center; margin-bottom:10px; }
+  .k{ font-size:12px; color:var(--text-muted); }
+  .theme{ font-size:12px; color:var(--text-muted); margin:0 0 10px; }
+  .try{ font-size:12px; color:var(--text-muted); margin:12px 0 6px; }
+  .opt .dr-btn{ width:100%; }
+
+  /* --- frozen states, CURRENT (copied from button.css) --- */
+  .now .s-hover.dr-btn--primary{ filter:brightness(1.03); }
+  .now .s-hover.dr-btn--secondary{ background:var(--bg-well); }
+  .now .s-press.dr-btn--primary{ transform:translateY(1px) scale(.99); }
+  .now .s-press.dr-btn--secondary{ background:var(--bg-well); transform:translateY(1px) scale(.99); }
+  .now .s-focus{ outline:2.5px solid var(--text-primary); outline-offset:2px; }
+
+  /* --- PROPOSED: colour only, nothing moves --- */
+  .new .dr-btn:active{ transform:none; }
+  .new .dr-btn--primary:active, .new .s-press.dr-btn--primary{ background:color-mix(in srgb, var(--color-action) 85%, var(--charcoal-900)); filter:none; }
+  .new .dr-btn--secondary:active, .new .s-press.dr-btn--secondary{ background:color-mix(in srgb, var(--bg-muted) 85%, var(--charcoal-900)); }
+  .new .s-hover.dr-btn--primary{ filter:brightness(1.03); }
+  .new .s-hover.dr-btn--secondary{ background:var(--bg-well); }
+  .new .s-focus{ outline:2.5px solid var(--text-primary); outline-offset:2px; }
+</style>
+</head>
+<body>
+<div class="w">
+  <h1>Button states: now vs new</h1>
+  <p class="lede">Only one thing differs: <b>Pressed</b>. Now the button moves down and shrinks a little. New: it does not move, it just gets darker.</p>
+  <div class="grid">
+    <section class="opt now">
+      <h2>Now</h2>
+      <p>Pressed = moves 1px down, 1% smaller.</p>
+      <div class="pane dr"><p class="theme">Light</p>
+        <div class="row"><span class="k">Rest</span><span class="dr-btn dr-btn--primary">Pay ₴180</span><span class="dr-btn dr-btn--secondary">Details</span></div>
+        <div class="row"><span class="k">Hover</span><span class="dr-btn dr-btn--primary s-hover">Pay ₴180</span><span class="dr-btn dr-btn--secondary s-hover">Details</span></div>
+        <div class="row"><span class="k">Pressed</span><span class="dr-btn dr-btn--primary s-press">Pay ₴180</span><span class="dr-btn dr-btn--secondary s-press">Details</span></div>
+        <div class="row"><span class="k">Focus</span><span class="dr-btn dr-btn--primary s-focus">Pay ₴180</span><span class="dr-btn dr-btn--secondary s-focus">Details</span></div>
+        <div class="row"><span class="k">Disabled</span><button class="dr-btn dr-btn--primary" disabled>Pay ₴180</button><button class="dr-btn dr-btn--secondary" disabled>Details</button></div>
+        <p class="try">Try it: mouse, click, Tab</p>
+        <div class="row"><span class="k">Live</span><button class="dr-btn dr-btn--primary" type="button">Pay ₴180</button><button class="dr-btn dr-btn--secondary" type="button">Details</button></div>
+      </div>
+      <div class="pane dr" data-theme="dark"><p class="theme">Dark</p>
+        <div class="row"><span class="k">Rest</span><span class="dr-btn dr-btn--primary">Pay ₴180</span><span class="dr-btn dr-btn--secondary">Details</span></div>
+        <div class="row"><span class="k">Hover</span><span class="dr-btn dr-btn--primary s-hover">Pay ₴180</span><span class="dr-btn dr-btn--secondary s-hover">Details</span></div>
+        <div class="row"><span class="k">Pressed</span><span class="dr-btn dr-btn--primary s-press">Pay ₴180</span><span class="dr-btn dr-btn--secondary s-press">Details</span></div>
+        <div class="row"><span class="k">Focus</span><span class="dr-btn dr-btn--primary s-focus">Pay ₴180</span><span class="dr-btn dr-btn--secondary s-focus">Details</span></div>
+        <div class="row"><span class="k">Disabled</span><button class="dr-btn dr-btn--primary" disabled>Pay ₴180</button><button class="dr-btn dr-btn--secondary" disabled>Details</button></div>
+        <p class="try">Try it: mouse, click, Tab</p>
+        <div class="row"><span class="k">Live</span><button class="dr-btn dr-btn--primary" type="button">Pay ₴180</button><button class="dr-btn dr-btn--secondary" type="button">Details</button></div>
+      </div>
+    </section>
+    <section class="opt new">
+      <h2>New</h2>
+      <p>Pressed = stays in place, gets darker.</p>
+      <div class="pane dr"><p class="theme">Light</p>
+        <div class="row"><span class="k">Rest</span><span class="dr-btn dr-btn--primary">Pay ₴180</span><span class="dr-btn dr-btn--secondary">Details</span></div>
+        <div class="row"><span class="k">Hover</span><span class="dr-btn dr-btn--primary s-hover">Pay ₴180</span><span class="dr-btn dr-btn--secondary s-hover">Details</span></div>
+        <div class="row"><span class="k">Pressed</span><span class="dr-btn dr-btn--primary s-press">Pay ₴180</span><span class="dr-btn dr-btn--secondary s-press">Details</span></div>
+        <div class="row"><span class="k">Focus</span><span class="dr-btn dr-btn--primary s-focus">Pay ₴180</span><span class="dr-btn dr-btn--secondary s-focus">Details</span></div>
+        <div class="row"><span class="k">Disabled</span><button class="dr-btn dr-btn--primary" disabled>Pay ₴180</button><button class="dr-btn dr-btn--secondary" disabled>Details</button></div>
+        <p class="try">Try it: mouse, click, Tab</p>
+        <div class="row"><span class="k">Live</span><button class="dr-btn dr-btn--primary" type="button">Pay ₴180</button><button class="dr-btn dr-btn--secondary" type="button">Details</button></div>
+      </div>
+      <div class="pane dr" data-theme="dark"><p class="theme">Dark</p>
+        <div class="row"><span class="k">Rest</span><span class="dr-btn dr-btn--primary">Pay ₴180</span><span class="dr-btn dr-btn--secondary">Details</span></div>
+        <div class="row"><span class="k">Hover</span><span class="dr-btn dr-btn--primary s-hover">Pay ₴180</span><span class="dr-btn dr-btn--secondary s-hover">Details</span></div>
+        <div class="row"><span class="k">Pressed</span><span class="dr-btn dr-btn--primary s-press">Pay ₴180</span><span class="dr-btn dr-btn--secondary s-press">Details</span></div>
+        <div class="row"><span class="k">Focus</span><span class="dr-btn dr-btn--primary s-focus">Pay ₴180</span><span class="dr-btn dr-btn--secondary s-focus">Details</span></div>
+        <div class="row"><span class="k">Disabled</span><button class="dr-btn dr-btn--primary" disabled>Pay ₴180</button><button class="dr-btn dr-btn--secondary" disabled>Details</button></div>
+        <p class="try">Try it: mouse, click, Tab</p>
+        <div class="row"><span class="k">Live</span><button class="dr-btn dr-btn--primary" type="button">Pay ₴180</button><button class="dr-btn dr-btn--secondary" type="button">Details</button></div>
+      </div>
+    </section>
+  </div>
+</div>
+</body>
+</html>
