@@ -607,7 +607,8 @@ def side_html(current):
 def wrap(page, current):
     """Put the sidebar beside the page's <main>, inside one grid."""
     i = page.index('<main id="main"')
-    j = page.index('</main>', i) + len('</main>')
+    # the page's own </main> is its last one: a specimen copied from a screen carries a <main> of its own
+    j = page.rindex('</main>') + len('</main>')
     return page[:i] + '<div class="dsd-home">\n  %s\n  %s\n</div>' % (side_html(current), page[i:j]) + page[j:]
 
 
