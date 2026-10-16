@@ -12,7 +12,7 @@ kit: 558
 ## Anatomy
 
 ```html
-<div class="dr" style="position:relative;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
+<div class="dr" style="position:relative;width:375px;max-width:100%;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
   <div class="dr-main dr-main--fab" style="padding-top:var(--len-16)">
     <div class="dr-rows" aria-label="Account details"><div class="dr-rows__row"><span class="dr-rows__key">Language</span><span class="dr-rows__val">English</span></div><div class="dr-rows__row"><span class="dr-rows__key">Member since</span><span class="dr-rows__val">2026</span></div></div>
   </div>
@@ -30,7 +30,7 @@ kit: 558
 ### Label only
 
 ```html
-<div class="dr" style="position:relative;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
+<div class="dr" style="position:relative;width:375px;max-width:100%;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
   <div class="dr-main dr-main--fab" style="padding-top:var(--len-16)"></div>
   <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/withdraw.html">Withdraw &#8372;3,240</a>
 </div>
@@ -41,7 +41,7 @@ kit: 558
 ### With a leading glyph
 
 ```html
-<div class="dr" style="position:relative;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
+<div class="dr" style="position:relative;width:375px;max-width:100%;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
   <div class="dr-main dr-main--fab" style="padding-top:var(--len-16)"></div>
   <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/account-edit.html"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</a>
 </div>
@@ -62,7 +62,7 @@ Sources: DESIGN.md § The floating action · § Elevation & Depth · inventory.m
 ## Rule
 
 ```html
-<div class="dr" style="position:relative;height:240px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
+<div class="dr" style="position:relative;width:375px;max-width:100%;height:240px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
   <div class="dr-main dr-main--fab" style="padding-top:var(--len-16)">
     <div class="dr-rows" aria-label="Account details"><div class="dr-rows__row"><span class="dr-rows__key">Language</span><span class="dr-rows__val">English</span></div><div class="dr-rows__row"><span class="dr-rows__key">Member since</span><span class="dr-rows__val">2026</span></div></div>
   </div>
@@ -75,7 +75,7 @@ One capsule per screen, over a column that wears `.dr-main--fab`, on a tab-root 
 ## Anti-rule
 
 ```html
-<div class="dr" style="position:relative;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
+<div class="dr" style="position:relative;width:375px;max-width:100%;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
   <div class="dr-main" style="padding-top:var(--len-16)">
     <div class="dr-rows" aria-label="Account details"><div class="dr-rows__row"><span class="dr-rows__key">Language</span><span class="dr-rows__val">English</span></div><div class="dr-rows__row"><span class="dr-rows__key">Member since</span><span class="dr-rows__val">2026</span></div></div>
   </div>
