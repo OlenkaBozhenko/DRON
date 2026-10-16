@@ -145,6 +145,68 @@ code { font-family: var(--font-mono); font-size: var(--type-meta-size); }
 
 /* A media query cannot read a custom property, so the breakpoint is the one
    literal here: it is where the two-column anatomy stops fitting its legend. */
+/* -- overview: the front page, laid out the way the HIG opens --------------- */
+.dsd-home {
+  display: grid; grid-template-columns: var(--len-260) minmax(0, 1fr); gap: var(--len-48);
+  max-width: calc(var(--len-140) * 9); margin: 0 auto; padding: var(--len-32) var(--len-16) var(--len-80);
+}
+.dsd-side { position: sticky; top: var(--len-80); align-self: start; max-height: calc(100vh - var(--len-96)); overflow: auto; }
+.dsd-side__filter {
+  display: flex; align-items: center; gap: var(--len-8); min-height: var(--len-44); padding: 0 var(--len-12);
+  border: var(--len-1) solid var(--border-hairline); border-radius: var(--len-10); background: var(--bg-page);
+  color: var(--text-muted); margin-bottom: var(--len-16);
+}
+.dsd-side__filter svg { width: var(--len-20); height: var(--len-20); flex: none; }
+.dsd-side__filter input {
+  flex: 1; min-width: 0; border: 0; background: transparent; color: var(--text-primary);
+  font: inherit; font-size: var(--type-heading-size); outline: none;
+}
+.dsd-side__filter:focus-within { outline: var(--len-2-5) solid var(--text-muted); outline-offset: var(--len-2); }
+.dsd-side__grp summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; gap: var(--len-8);
+  min-height: var(--len-44); color: var(--text-primary); font-weight: var(--type-weight-medium);
+}
+.dsd-side__grp summary::-webkit-details-marker { display: none; }
+.dsd-side__grp summary::before {
+  content: ""; width: var(--len-6); height: var(--len-6); flex: none;
+  border-right: var(--len-1-7) solid currentColor; border-bottom: var(--len-1-7) solid currentColor;
+  transform: rotate(-45deg); transition: transform var(--time-0-15);
+}
+.dsd-side__grp[open] summary::before { transform: rotate(45deg); }
+.dsd-side__grp summary:focus-visible { outline: var(--len-2-5) solid var(--text-primary); outline-offset: var(--len-2); border-radius: var(--len-10); }
+.dsd-side ul { list-style: none; margin: 0 0 var(--len-8); padding: 0 0 0 var(--len-16); }
+.dsd-side li a {
+  display: block; padding: var(--len-6) var(--len-8); border-radius: var(--len-10);
+  color: var(--text-muted); text-decoration: none;
+}
+.dsd-side li a:hover { background: var(--bg-surface); color: var(--text-primary); }
+.dsd-side li a:focus-visible { outline: var(--len-2-5) solid var(--text-primary); outline-offset: var(--len-2); }
+.dsd-side__none { color: var(--text-muted); }
+.dsd-hero h1 {
+  font-size: calc(var(--type-display-size) * 2); line-height: var(--num-1-2); font-weight: var(--type-display-weight);
+  letter-spacing: var(--type-display-track); margin: 0 0 var(--len-24);
+}
+.dsd-hero p { font-size: calc(var(--type-display-size) * 1.05); line-height: var(--type-lead-line); max-width: 52ch; margin: 0; }
+.dsd-home__sec { margin-top: var(--len-80); }
+.dsd-home__sec h2 { font-size: calc(var(--type-display-size) * 1.45); font-weight: var(--type-display-weight); margin: 0 0 var(--len-12); }
+.dsd-home__sec > p { font-size: var(--type-heading-size); line-height: var(--type-lead-line); max-width: 70ch; margin: 0 0 var(--len-24); }
+.dsd-home__sec > p a, .dsd-hero a { color: var(--text-primary); }
+.dsd-tiles {
+  list-style: none; margin: 0; padding: 0; display: grid; gap: var(--len-32) var(--len-24);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--len-260)), 1fr));
+}
+.dsd-tile a { display: block; color: var(--text-primary); text-decoration: none; border-radius: var(--len-16); }
+.dsd-tile img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--len-16); }
+.dsd-tile__name { display: block; margin-top: var(--len-12); font-size: var(--type-title-size); font-weight: var(--type-title-weight); }
+.dsd-tile a:hover .dsd-tile__name { text-decoration: underline; }
+.dsd-tile a:focus-visible { outline: var(--len-2-5) solid var(--text-primary); outline-offset: var(--len-4); }
+.dsd-tile__cap { display: block; margin-top: var(--len-4); color: var(--text-muted); font-size: var(--type-body-sm-size); line-height: var(--type-lead-line); }
+@media (max-width: 900px) {
+  .dsd-home { grid-template-columns: minmax(0, 1fr); gap: var(--len-24); }
+  .dsd-side { position: static; max-height: none; }
+  .dsd-side__grp { border-bottom: var(--len-1) solid var(--border-hairline); }
+}
+
 @media (max-width: 760px) {
   .dsd-anatomy { grid-template-columns: minmax(0, 1fr); }
 }

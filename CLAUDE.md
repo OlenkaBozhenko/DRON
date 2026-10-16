@@ -301,6 +301,14 @@ holds the three-screen rule:** every screen a pattern names must exist and still
 `requires`, and the names must reach three screens once state and service files are folded into their
 screen. Do not add a pattern that cannot name three screens.
 
+**Overview — `docs/overview.html` (2026-10-17), the design system's front page.** Laid out the way
+Apple's HIG opens, at the designer's request: a filterable sidebar of every section, the title *DRON design
+system and guidelines*, then one row of picture cards per section — **Tone of voice** (made part of the design
+system; its source stays `voice.md`), **Tokens**, **Components**, **Patterns**. Text and cards are
+`docs/src/overview.md` (a card is `- card: [Title](href) · image · caption`); the 25 pictures are
+`assets/design-system/cards/*.webp`, drawn in Figma (*DRON design system — card art*,
+`hyqXavjJY7H7hUzhgpPobt`) as a DRON gradient behind a product outline icon, and the build fails on a missing one.
+
 ### Tokens — where a value lives and where a change goes (revised 2026-10-10)
 
 **A value now lives in [`design-system/tokens.css`](design-system/tokens.css), and it is edited at the tier that owns it.**

@@ -66,7 +66,37 @@
     // Specimens in the index are previews: keep them out of the tab order.
     document.querySelectorAll('.dsd-card__view a, .dsd-card__view button, .dsd-card__view input, .dsd-card__view [tabindex]')
       .forEach(function (n) { n.setAttribute('tabindex', '-1'); });
+    filterSide();
   });
+
+  // Overview sidebar: the filter narrows every group to the links whose name
+  // holds the typed text, opens the groups that still match, and says so when
+  // nothing does. On a narrow screen the groups start closed, so the sidebar
+  // does not push the page below the fold.
+  function filterSide() {
+    var input = document.querySelector('[data-filter]');
+    if (!input) return;
+    var groups = document.querySelectorAll('.dsd-side__grp');
+    var none = document.querySelector('.dsd-side__none');
+    if (window.matchMedia('(max-width: 900px)').matches) {
+      groups.forEach(function (g) { g.removeAttribute('open'); });
+    }
+    input.addEventListener('input', function () {
+      var q = input.value.trim().toLowerCase(), any = false;
+      groups.forEach(function (g) {
+        var hit = false;
+        g.querySelectorAll('li').forEach(function (li) {
+          var ok = !q || li.textContent.toLowerCase().indexOf(q) > -1;
+          li.hidden = !ok;
+          if (ok) hit = true;
+        });
+        g.hidden = !hit;
+        if (q && hit) g.setAttribute('open', '');
+        if (hit) any = true;
+      });
+      none.hidden = any;
+    });
+  }
   window.addEventListener('load', pinAll);
   window.addEventListener('resize', function () { requestAnimationFrame(pinAll); });
 }());

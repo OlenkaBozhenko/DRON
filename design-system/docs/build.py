@@ -263,7 +263,8 @@ def head(title, desc):
 
 
 def topbar(current):
-    links = [('index.html', 'Components'), ('patterns.html', 'Patterns'), ('why.html', 'Why it looks like this'),
+    links = [('overview.html', 'Overview'), ('index.html', 'Components'), ('patterns.html', 'Patterns'),
+             ('why.html', 'Why it looks like this'),
              ('../../design-system.html', 'Tokens'), ('../../ui/kit.html', 'UI kit')]
     nav = ''.join('<a href="%s"%s>%s</a>' % (h, ' aria-current="page"' if h == current else '', t)
                   for h, t in links)
@@ -495,6 +496,66 @@ def patterns_page(known, errors):
             % (blocks(intro, lambda mk: ''), toc, sections) + FOOT), len(items)
 
 
+# --- overview ----------------------------------------------------------------
+# The front page, laid out the way Apple's HIG opens: a filterable sidebar of
+# every section, a title, then one row of picture cards per section. The text
+# and the cards are src/overview.md; the pictures are assets/design-system/cards/,
+# drawn in Figma ("DRON design system - card art"). A card is a line
+#   - card: [Title](href) · image-name · one-line caption
+
+CARD = re.compile(r'^- card: \[([^\]]+)\]\(([^)\s]+)\) · ([a-z0-9-]+) · (.+)$')
+
+
+def overview_page(pages, patterns, errors):
+    meta, body = front_matter(open(os.path.join(SRC, 'overview.md'), encoding='utf-8').read())
+    secs = split_sections(body, 2)
+    side, content = [], []
+    for name, text in secs[1:]:
+        cards = [CARD.match(l.strip()) for l in text.splitlines() if l.strip().startswith('- card:')]
+        intro = '\n'.join(l for l in text.splitlines() if not l.strip().startswith('- card:'))
+        tiles = []
+        for m in cards:
+            if not m:
+                errors.append('overview.md: a card line in %s does not read [Title](href) · image · caption' % name)
+                continue
+            title, href, img, cap = m.groups()
+            if not os.path.exists(os.path.join(HERE, '..', '..', 'assets', 'design-system', 'cards', img + '.webp')):
+                errors.append('overview.md: card image %s.webp does not exist' % img)
+            tiles.append('<li class="dsd-tile"><a href="%s"><img src="../../assets/design-system/cards/%s.webp" '
+                         'alt="" width="560" height="315"><span class="dsd-tile__name">%s</span></a>'
+                         '<span class="dsd-tile__cap">%s</span></li>' % (href, img, inline(title), inline(cap)))
+        sid = slug(name)
+        content.append('<section class="dsd-home__sec" aria-labelledby="%s"><h2 id="%s">%s</h2>%s'
+                       '<ul class="dsd-tiles" role="list">%s</ul></section>'
+                       % (sid, sid, inline(name), blocks(intro, lambda mk: ''), ''.join(tiles)))
+        # the sidebar lists every page the section holds, not only its cards
+        if name == 'Components':
+            items = [(p['name'], '%s.html' % p['slug']) for p in sorted(pages, key=lambda p: p['name'])]
+        elif name == 'Patterns':
+            items = [(m['name'], 'patterns.html#%s' % m['slug']) for m in patterns]
+        else:
+            items = [(m.group(1), m.group(2)) for m in cards if m]
+        side.append('<details class="dsd-side__grp" open><summary>%s</summary><ul role="list">%s</ul></details>'
+                    % (inline(name), ''.join('<li><a href="%s">%s</a></li>' % (h, inline(t)) for t, h in items)))
+    hero = blocks(secs[0][1], lambda mk: '')
+    return (head(meta.get('title', 'Overview'), meta.get('description', ''))
+            + topbar('overview.html') +
+            '''<div class="dsd-home">
+  <nav class="dsd-side" aria-label="Design system sections">
+    <label class="dsd-side__filter"><span class="sr-only">Filter</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+      <input type="search" placeholder="Filter" autocomplete="off" data-filter></label>
+    <p class="dsd-side__none" hidden>Nothing matches.</p>
+    %s
+  </nav>
+  <main id="main" class="dsd-home__main">
+    <header class="dsd-hero">%s</header>
+    %s
+  </main>
+</div>
+''' % (''.join(side), hero, ''.join(content)) + FOOT)
+
+
 def free_page(path, current, title):
     meta, body = front_matter(open(path, encoding='utf-8').read())
     content = blocks(body, lambda mk: plate(mk))
@@ -507,7 +568,7 @@ def main():
     known = declared_classes()
     errors, pages, out = [], [], {}
     for f in sorted(os.listdir(SRC)):
-        if not f.endswith('.md') or f.startswith('_') or f in ('why.md', 'patterns.md'):
+        if not f.endswith('.md') or f.startswith('_') or f in ('why.md', 'patterns.md', 'overview.md'):
             continue
         meta, body = front_matter(open(os.path.join(SRC, f), encoding='utf-8').read())
         for k in ('name', 'slug', 'group'):
@@ -521,14 +582,21 @@ def main():
     slugs = {p['slug'] for p in pages}
     for name, page in out.items():
         for ref in re.findall(r'href="([a-z0-9-]+)\.html', page):
-            if ref not in slugs and ref not in ('index', 'why', 'patterns'):
+            if ref not in slugs and ref not in ('index', 'why', 'patterns', 'overview'):
                 errors.append('%s: links %s.html, which has no source' % (name, ref))
     out['index.html'] = index_page(pages)
     if os.path.exists(os.path.join(SRC, 'why.md')):
         out['why.html'] = free_page(os.path.join(SRC, 'why.md'), 'why.html', 'Why it looks like this')
     out['patterns.html'], n_patterns = patterns_page(known, errors)
+    pats = []
+    for f in sorted(os.listdir(PATTERNS)):
+        if f.endswith('.md'):
+            pm, _ = front_matter(open(os.path.join(PATTERNS, f), encoding='utf-8').read())
+            pats.append(pm)
+    pats.sort(key=lambda m: int(m.get('order', 99)))
+    out['overview.html'] = overview_page(pages, pats, errors)
     for ref in re.findall(r'href="([a-z0-9-]+)\.html', out['patterns.html']):
-        if ref not in slugs and ref not in ('index', 'why', 'patterns'):
+        if ref not in slugs and ref not in ('index', 'why', 'patterns', 'overview'):
             errors.append('patterns.html: links %s.html, which has no source' % ref)
     out['states.css'] = forced_css()
     for e in errors:
