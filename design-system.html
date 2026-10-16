@@ -188,7 +188,8 @@
     const lines = text.split('\n');
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
-      const open = line.match(/^\s*(:root|\[data-theme="dark"\])\s*\{/);
+      /* the light block opens as ":root, [data-theme="light"]{" since rev 296 */
+      const open = line.match(/^\s*(:root|\[data-theme="dark"\])(?:\s*,\s*\[data-theme="light"\])?\s*\{/);
       if (open) { scope = open[1]; continue; }
       if (/^\}/.test(line)) { scope = null; continue; }
       if (scope !== ':root') continue;
