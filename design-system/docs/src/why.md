@@ -1,6 +1,6 @@
 ---
 title: Why it looks like this · DRON Design System
-description: Where DRON's visual language came from, what was chosen and rejected, and the rules that follow from it. The first page for a new developer.
+description: What DRON's visual language is for, the direction chosen, and the rules that follow from it. The first page for a new developer.
 ---
 
 # Why the system looks like this
@@ -11,7 +11,7 @@ This page explains where each rule came from, so that when one gets in your way 
 
 ## The problem the visuals solve
 
-DRON sells a service, not a drone. Clients are 18–50, have never flown a drone and never will, and they arrive with the Bolt and Glovo model in their heads. If the experience leaves that model in the first 60 seconds, they leave. Research puts **trust** first, and the anxiety comes in two parts: the machine itself (noise, privacy, safety) comes before the stranger operating it.
+DRON sells a service, not a drone. Clients are 18–50, have never flown a drone and never will, and they arrive expecting an order to work like the delivery apps they already use. If the experience breaks that expectation in the first 60 seconds, they leave. Research puts **trust** first, and the anxiety comes in two parts: the machine itself (noise, privacy, safety) comes before the stranger operating it.
 
 So the interface has two jobs:
 
@@ -20,37 +20,9 @@ So the interface has two jobs:
 
 Sources: research/target-audience.md · research/jtbd.md · CLAUDE.md § Design Focus
 
-## Where the language came from
+## The visual direction
 
-### The designer's taste came first
-
-Every later choice had to agree with three references from the designer's own board, and with three anti-references.
-
-- **Fauna Robotics** — the closest match to DRON's job of trusting a machine. Light ground, charcoal text, a muted accent, real photographs of the robot at work, a flat monochrome icon per capability. **This is the language DRON is a tuning of.**
-- **CoffeeTech** — the strong like: real product photography instead of illustration, one warm accent used sparingly, a lot of whitespace. Taken: the restraint. Not taken: its dark default and its orange.
-- **Boiler Lab** — taken only for one move: hard numbers as credibility (*20M+ users*), which became voice principle P2.
-
-The anti-references are just as binding: **no cream-and-terracotta** (the AI cliché), **no gradients standing in for photographs**, and **no screens without icons**.
-
-### Four styles and three screens, each giving one move
-
-The concept was built from live references (the Refero library) by one rule: **copy no source whole**. One style is the base, and every other source gives one named move, never a vibe.
-
-- **Monarch** (base) — warm and classic and trustworthy at once: a warm canvas, charcoal ink, one confident accent kept for functional components.
-- **N26** — the discipline of a single brand colour.
-- **Perplexity** — the accent used only for active states.
-- **Operate** — the precise half of the brief, done in structure: hairlines instead of shadows. Its green family is where Signal Green comes from.
-- **Airbnb** — the verified badge sits on the avatar, and the stat trio (jobs, rating, insured) sits beside the name.
-- **PayPal** — the order's progress as one rounded card with a four-node line, where only the completed nodes take colour.
-- **Klarna** — segmented status tabs, the parcel-app model C-1 already knows.
-
-The brand brief adds three more for maturity and air: the FlowTune dashboard (density), DJI Express (drone-native visual language) and Solva Air (the confidence of an air brand).
-
-Sources: concept.md § 0 Designer's Taste · § 1 Styles · § 2 Screens · § 3 Composition · CLAUDE.md § Brand & Visual Direction
-
-### Three directions, one chosen
-
-Three tunings of the Fauna language were drawn on the same green: **Daylight** (pure white, the airiest), **Studio** (a warm page with grey cards, more structure) and **Nocturne** (graphite, where the green glows). **Studio was chosen.** It is the register of a company you can call, not a consumer toy. Daylight and Nocturne are kept on record as directions to return to. Nocturne's mood survives as the dark theme, which follows the device setting (`HIG`).
+Three directions were drawn on the same green: **Daylight** (pure white, the airiest), **Studio** (a warm page with grey cards, more structure) and **Nocturne** (graphite, where the green glows). **Studio was chosen.** It is the register of a company you can call, not a consumer toy: a warm off-white page, warm grey cards, charcoal ink, one green accent, real photographs and one flat outline icon per capability. Daylight and Nocturne are kept on record as directions to return to. Nocturne's mood survives as the dark theme, which follows the device setting (`HIG`).
 
 Sources: concept.md § 5 Directions
 
@@ -81,14 +53,6 @@ The operator's photograph, the delivery photo and the live map are the proof the
 A disabled button gets its own colour, never opacity. Since rev 294 that colour is the faded look the designer chose, painted solid: pale green for the primary, pale grey for the rest, each ratio measured and written down (2.01–2.78:1, exempt under WCAG 1.4.3).
 
 Sources: concept.md § 0.2 Icons · § 5 Studio · § 6 Imagery · DESIGN.md § Named rules · § Do's and Don'ts
-
-## What was deliberately not copied
-
-- Monarch's orange, and its white-on-accent button, which fails AA.
-- Monarch's pill buttons: Fauna is a rounded-rectangle language, so a button is 12px.
-- Airbnb's pink and its whole profile layout. Only the badge position and the stat trio were taken.
-- N26's teal and 4px cards. Only the single-accent discipline was taken.
-- CoffeeTech's dark default and its soft card shadow.
 
 ## How the system stays honest
 
