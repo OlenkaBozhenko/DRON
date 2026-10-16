@@ -265,7 +265,7 @@ def head(title, desc):
 
 def topbar(current):
     links = [('overview.html', 'Overview'), ('index.html', 'Components'), ('patterns.html', 'Patterns'),
-             ('why.html', 'Why it looks like this'),
+             ('../../tone-of-voice.html', 'Tone of voice'), ('why.html', 'Why it looks like this'),
              ('../../design-system.html', 'Tokens'), ('../../ui/kit.html', 'UI kit')]
     nav = ''.join('<a href="%s"%s>%s</a>' % (h, ' aria-current="page"' if h == current else '', t)
                   for h, t in links)

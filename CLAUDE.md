@@ -268,8 +268,9 @@ design-system/
   examples/            part of the package, empty for now
 ```
 
-**[`design-system.html`](design-system.html) is the design system's page**, linked from the sidebar of
-`research.html` and the other hub pages. It holds no copy of anything: on load it follows the
+**[`design-system.html`](design-system.html) is the design system's tokens page.** Since rev 305 the
+*Design System* group in the sidebar of `research.html` and the other hub pages opens on the front page,
+`design-system/docs/overview.html`, and links Tone of voice, Tokens, Type, Components, Patterns and Why from there. It holds no copy of anything: on load it follows the
 `@import` tree from `index.css`, reads the token sections and comments from `tokens.css`, resolves
 every value in the selected theme and measures ink contrast live. A change in `design-system/` shows
 there on the next load. A new file reaches the page by being imported from `index.css`.

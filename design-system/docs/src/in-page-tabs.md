@@ -14,8 +14,8 @@ kit: 2774
 ```html
 <div class="dr dr-main" style="width:375px;max-width:100%;padding-block:0;background:var(--bg-page)">
   <nav class="dr-groups" aria-label="Job groups">
-    <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming <span class="dr-grouptab__count">2</span></a>
-    <a class="dr-grouptab" href="#active">Active <span class="dr-grouptab__count">1</span></a>
+    <a class="dr-grouptab" href="../../wireframes/operator-listings.html#incoming" aria-current="true">Incoming <span class="dr-grouptab__count">2</span></a>
+    <a class="dr-grouptab" href="../../wireframes/operator-listings.html#active">Active <span class="dr-grouptab__count">1</span></a>
   </nav>
 </div>
 ```
@@ -31,8 +31,8 @@ kit: 2774
 ```html
 <div class="dr dr-main" style="width:375px;max-width:100%;padding-block:0;background:var(--bg-page)">
   <nav class="dr-groups" aria-label="Job groups">
-    <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming <span class="dr-grouptab__count">2</span></a>
-    <a class="dr-grouptab" href="#active">Active <span class="dr-grouptab__count">1</span></a>
+    <a class="dr-grouptab" href="../../wireframes/operator-listings.html#incoming" aria-current="true">Incoming <span class="dr-grouptab__count">2</span></a>
+    <a class="dr-grouptab" href="../../wireframes/operator-listings.html#active">Active <span class="dr-grouptab__count">1</span></a>
   </nav>
 </div>
 ```
@@ -90,8 +90,8 @@ The four `listings` pages: the row stands empty and `hidden` in the markup, and 
 ```html
 <div style="display:grid;gap:8px;width:341px;max-width:100%">
   <nav class="dr-groups" aria-label="Job groups">
-    <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming <span class="dr-grouptab__count">2</span></a>
-    <a class="dr-grouptab" href="#active">Active <span class="dr-grouptab__count">1</span></a>
+    <a class="dr-grouptab" href="../../wireframes/operator-listings.html#incoming" aria-current="true">Incoming <span class="dr-grouptab__count">2</span></a>
+    <a class="dr-grouptab" href="../../wireframes/operator-listings.html#active">Active <span class="dr-grouptab__count">1</span></a>
   </nav>
   <div class="dr-fchips" role="group" aria-label="Applied filters">
     <button class="dr-fchip" type="button" aria-label="Remove filter: Quadcopter">Quadcopter<span class="dr-fchip__x" aria-hidden="true">&times;</span></button>
