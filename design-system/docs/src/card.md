@@ -88,6 +88,10 @@ The same row with the well left out and chips on the meta line. A review on `rat
 
 Inset 20 / 16 and gap 12 instead of 24 / 20 and 20; below 390 wide the inset is 16 / 16 and the gap 18. Holds one note, as on `job-brief`. Five screens build it. Three hold the client's note as `.dr-listing__body` (`job-brief`, `job-brief-inspection`, `job-offer-inspection`); `job-brief-aerial` holds its empty note as `.dr-listing__desc`; `operator-dispute` holds the client's issue as a caption, a `.dr-lead` quote and a chip.
 
+## States
+
+No state of its own: the card is a surface, and nothing in it takes focus. A card that is one link takes the [card link](card-link.html#s-states) states, and its buttons take the [button](button.html#s-states) states.
+
 ## When to use
 
 A card is one object on a flat page: separated by a warm tone step and the 16 radius, never by a border or a shadow, and with no hover lift. Inside it the rhythm is 20 between groups and 4 or 8 within one; between cards it is the [list](list.html)'s gap, which is always larger. The listing card holds the drone doing the job, the name, one line of description and, on `job-offer`, the money line. It carries no chevron.

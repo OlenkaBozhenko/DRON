@@ -60,6 +60,23 @@ A second line in `.dr-note` says what is accepted, slate 5.95:1, tied by `aria-d
 
 The base zone with the role takes the `--bg-well` ground (#E4E1DA) at radius 13; glyph 5.51:1, verb 14.09:1. From `result-upload`, where the empty well and the filled photo are one box; `operator-dispute` builds the same, *Add evidence*. Screens split here: two of three well zones carry a `.dr-upload__action` verb line named by `aria-labelledby`; `report-issue` instead puts a `.dr-field__hint` line (*A photo makes your claim stronger. Order #DR-4821.*) in the zone and names it with `aria-label="Add a photo or note"`. `result-upload-loading` reuses the box with no role as its skeleton tray, `.dr-upload .dr-sk-tray`.
 
+## States
+
+```html
+<div style="display:grid;gap:8px;width:341px;max-width:100%">
+  <div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="uz-s-card-title">
+    <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+    <span class="dr-upload__action" id="uz-s-card-title">Add licence</span>
+  </div>
+  <div class="dr-upload" role="button" tabindex="0" aria-labelledby="uz-s-well-act">
+    <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+    <span class="dr-upload__action" id="uz-s-well-act">Add photo</span>
+  </div>
+</div>
+```
+
+The card zone from `operator-verification` and the well zone from `result-upload`.
+
 ## When to use
 
 An upload zone is where the user adds a file to DRON. Six screens build it: drone documents and insurance on `account-edit`, licence and insurance on `operator-verification`, the profile photo on `operator-profile-setup`, the delivery photo on `result-upload`, evidence on `operator-dispute`, and the claim's photo on `report-issue`. The whole zone is the target and the control, with no nested button. A keyboard focus draws the system's 2.5px charcoal ring at a 2px offset (`WCAG 2.4.7`). There is no dashed boundary. An interactive zone keeps a visible ground, while the identifier is the glyph, the verb and the ring. The ground is 1.08:1 and is never read as one.

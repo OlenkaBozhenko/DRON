@@ -38,6 +38,17 @@ kit: 2884
 
 What `account-edit`'s Payment method row opens. Options are `.dr-picker__item`, `min-height` 44, the full width of the list, 15/400 `--ink` 14.37:1 on a `--card` list at radius 16. Every option holds the checkmark and only the current one shows it, with `aria-current="true"`. Payment options carry the brand mark in full colour, 40 × 20, with the name beside it. This drawer ends in the stacked pair *Add card* (primary) over *Cancel*; every other picker drawer ends in *Cancel* alone.
 
+## States
+
+```html
+<div style="display:flex;flex-direction:column;gap:16px;width:341px;max-width:100%">
+<div class="dr-rows" style="width:341px;max-width:100%"><button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="pr-sheet-payment"><span class="dr-field__label">Payment method</span><span class="dr-field__value">Visa •••• 4921</span><span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span></button></div>
+<div class="dr-picker__list"><button class="dr-picker__item" type="button" aria-current="true"><svg class="dr-paymark" viewBox="0 0 40 20" aria-hidden="true" focusable="false"><text x="0" y="14.8" textLength="30" lengthAdjust="spacingAndGlyphs" font-size="14" font-weight="700" font-style="italic" fill="#1434CB">VISA</text></svg><span class="dr-picker__label">Visa •••• 4921</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button><button class="dr-picker__item" type="button"><svg class="dr-paymark" viewBox="0 0 40 20" aria-hidden="true" focusable="false"><circle cx="7" cy="10" r="7" fill="#EB001B"/><circle cx="14" cy="10" r="7" fill="#F79E1B"/><path d="M10.5 3.94a7 7 0 0 1 0 12.12 7 7 0 0 1 0-12.12Z" fill="#FF5F00"/></svg><span class="dr-picker__label">Mastercard •••• 8830</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button></div>
+</div>
+```
+
+The row and two of the options it opens, selected and not. From `account-edit`.
+
 ## When to use
 
 A picker row is a form row whose value is chosen, not typed. Where the list appears is a count: up to six options rise as a drawer from the bottom edge, and seven or more push a new screen in from the right. No list in the product reaches seven, so every picker is a drawer. Picker rows stand on 9 files: payment (4) and language (2) on `account-edit`; parcel size (3) on `order-setup` and `order-setup-error`; shoot, duration and what you get (3 each) on `order-setup-aerial`; issue type (3) on `report-issue`; mode (2) on `account` and `operator-account`; availability (3) on `operator-listings` and `operator-listings-empty`. The same `.dr-picker__list` also fills drawers that no picker row opens: *Contact operator* (3) on the nine `tracking` files, *Contact client* (2) on `job-checklist` and `job-checklist-error`, and *Pickup address* (3) on the four `listings` files.

@@ -77,6 +77,10 @@ Neutral mark, `--media` under slate, 5.51:1. `role="status"`, and one way out. F
 
 `--warn`: `--warn-wash` under `--warn-ink`, 5.65:1. Something changed, nothing failed. From `job-offer-empty`. The warn mark stands on 7 screens: `job-brief-error`, `job-checklist-error`, `job-offer-empty`, `operator-dispute-error` and the three `tracking*-empty` late notices.
 
+## States
+
+No state of its own: nothing in the block takes focus but its buttons. They take the [button](button.html#s-states) states.
+
 ## When to use
 
 One component doing three jobs: the empty state, the error and the notice. It stands on 32 screen files, every one an `-empty` or `-error` state, from `listings-error` to `withdraw-error`; the 33rd, `order-history-empty`, carries the [banner message](banner-message.html). No empty or error screen is a dead end. On 25 of the 32 the exits sit in the block's own `__actions`; on the other 7 (`contact-support-error`, `onboarding-client-empty`, `operator-signup-error`, `operator-verification-error`, `payment-error`, `report-issue-empty`, `signin-error`) the block ends on its body and the exits stand in the screen's action bar. The state is told by the mark's glyph and the title, with the wash as a second carrier, never by colour alone.

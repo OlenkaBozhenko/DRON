@@ -101,6 +101,14 @@ A lead and a label, 44 tall. *Use my location* is always the first row and is ne
 
 Typing narrows the list by word prefix and hides rows with `[hidden]`. The page pins the sheet's `min-height` to the height it opened at, so the title, the field and both buttons do not move under the thumb. The number of rows left is announced through an `sr-only` line with `role="status"`: *1 address*, *2 addresses* or *No matching address*. *Use my location* is never hidden.
 
+## States
+
+```html
+<div class="dr-picker__list" style="width:341px;max-width:100%"><button class="dr-picker__item" type="button"><svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 4.5L4.5 11l6.4 2.1 2.1 6.4z"/></svg><span class="dr-picker__label">Use my location</span></button><button class="dr-picker__item" type="button"><svg class="dr-ic dr-picker__lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11L12 4.5l7.5 6.5"/><path d="M6.5 9.3v10.2h11V9.3"/><path d="M10.2 19.5v-4.8h3.6v4.8"/></svg><span class="dr-picker__label">Podil, 21 <span class="dr-picker__sub">Saved address</span></span></button></div>
+```
+
+Two rows of the list, from the *Pickup address* sheet on `listings`. The sheet's *Done* and *Cancel* take the [button](button.html#s-states) states.
+
 ## When to use
 
 The address picker is the sheet where an address is typed or chosen. One sheet serves *From*, *To* and *Where* on the [finder](finder.html). A tap on a route row opens it, never focus on the row. With the keyboard up at the 375 frame it measures 412.8 tall, top at 63.2, bottom on the keyboard's 476, overlap 0. *Done* is 4.93% of the frame, the only green above the scrim.

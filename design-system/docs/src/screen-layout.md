@@ -149,6 +149,10 @@ One declaration, `text-wrap: balance`: the lower note evens its lines instead of
 
 `account-edit` and `operator-profile-setup`: each group is a titled zone under its zone label, typed rows in one, a row that opens a drawer in the next. `.dr-stack`'s own gap is 8, so 12 is already 1.5:1, and the panel edges do the rest. `account-edit` goes on to Language, Appearance, Notifications and the two upload cards in the same column.
 
+## States
+
+No state of its own: these are layout helpers that place blocks in the column, and nothing in them takes focus. The controls they hold carry their own states, for example the [choice card](choice-card.html#s-states).
+
 ## When to use
 
 These classes are the column's spacing, not components with a surface. None mints a value: 24, 12 and 8 are `--len-24`, `--len-12` and `--len-8`. The argument is the ratio — a gap between two different questions has to be clearly larger than the gaps inside either one. `--zones` is spent on five pages: `rate`, `rate-aerial`, `rate-inspection`, `support` and `role-select`. `.dr-stack--zones` is on `account-edit` and `operator-profile-setup`; `.dr-main--center` on `switch-role` alone. A sixth modifier, `.dr-main--fab` on `account`, `operator-account` and `wallet`, pads the column's foot for the [floating action](floating-action.html). The fifth rung, `.dr-rail--zone` (margin-block 12 around the progress rail), is documented with the [progress rail](progress-rail.html).

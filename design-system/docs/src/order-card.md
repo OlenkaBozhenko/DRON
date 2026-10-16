@@ -143,6 +143,26 @@ Live is a solid green disc with one ring leaving it on a 1.8s cycle, off under `
 
 From-stop left, To-stop right-aligned. The direction chip is neutral, not green: green is not spent inside card UI.
 
+## States
+
+```html
+<article class="dr-card" style="width:341px;max-width:100%">
+  <a class="dr-card__link" href="#" aria-label="Package delivery, in progress — view details"></a>
+    <span class="dr-order__top">
+      <span class="dr-order__head">
+        <span class="dr-order__title">Package delivery</span>
+        <span class="dr-order__date">Today · 10:03</span>
+      </span>
+      <span class="dr-well">
+        <img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async">
+        <span class="dr-status dr-status--live" role="img" aria-label="In progress"></span>
+      </span>
+    </span>
+</article>
+```
+
+The card's stretched `.dr-card__link`, cut to the head and well. From `order-history`.
+
 ## When to use
 
 The order card is the record of one order in a list: `order-history` (one live card and three delivered) and `order-history-loading` (three skeleton cards) on the client side, and `operator-listings` on the operator side, where the same card is a job. There the top row closes with a chip (*New*, *In progress*) instead of a well, the strip reads *Pickup* ▸ *Drop-off*, and the actions are *Accept* and *Decline* side by side, or *Continue*. It is the most measured component in the product. The name leads and the well closes the row, so the reading order and the screen-reader order are the same sequence (`WCAG 1.3.2`): *Package delivery · Today 10:03 · In progress*.

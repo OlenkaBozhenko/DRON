@@ -23,9 +23,13 @@
    which is the drift this file closes. A component reads the number it needs
    - border-radius: var(--len-16) - which is what the brief asks: geometry
    gets no token of its own above PRIMITIVE.
+
+   [data-theme="light"] carries the same block, so a light plate can stand
+   inside a page that is in the dark build (the docs' States grid shows both
+   side by side). No screen sets it; :root alone is what every page resolves.
    ========================================================================== */
 
-:root{
+:root, [data-theme="light"]{
 
   /* -- PRIMITIVE / COLOUR --------------------------------------------------
      Five hue families read off the painted surfaces. Named by hue and step,

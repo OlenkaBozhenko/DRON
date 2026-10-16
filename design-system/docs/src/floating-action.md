@@ -49,6 +49,16 @@ kit: 558
 
 *Edit profile* on `account` and `operator-account`: 152.29 × 44. The pencil inherits the label's charcoal at 20px. No class, token or page CSS was added for the second user.
 
+## States
+
+```html
+<div class="dr" style="position:relative;width:375px;max-width:100%;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
+  <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/withdraw.html">Withdraw &#8372;3,240</a>
+</div>
+```
+
+From `wallet`.
+
 ## When to use
 
 The floating action is the screen's primary action when that screen is a tab root and has no action bar. It floats clear above the tab bar in the iOS 26 bottom-accessory slot, the capsule the Music mini-player rides in. `HIG · Tab bars` keeps actions out of the bar, so a circular button planted in or over it is the reading that fails. It stands on `wallet`, `account` and `operator-account`, and it is still `.dr-btn--primary`: the fill, ink, 44 height and press are the primary button's, so it is the screen's one green control.

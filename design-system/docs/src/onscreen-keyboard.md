@@ -78,6 +78,16 @@ QWERTY for every field that is not numeric. Four rows divide the 216 evenly at 4
 
 `inputmode` of `numeric · decimal · tel`, or `type` of `number · tel`, draws the pad: 14 fields. Card number, expiry and CVC on each of `payment`, `payment-aerial` and `payment-inspection` (9); card number, expiry, CVC and phone on `account-edit` (4); the amount on `withdraw` (1). Pad keys measure 118.3 × 45. The plane keeps its 291 either way. Its ten digits and delete take `--press` and write at the caret; the empty cell does not.
 
+## States
+
+```html
+<div class="dr" style="width:260px;max-width:100%">
+  <div class="dr-kb__bar"><button type="button" class="dr-kb__done">Done</button></div>
+</div>
+```
+
+The accessory bar's *Done*, the one real control; the keys are `aria-hidden`.
+
 ## When to use
 
 The keyboard is the frame's third piece of system chrome, beside the status bar and the home indicator. It depicts what iOS draws over an app; the product does not own it. `ui/kit.js` builds it on the pages that carry a field, so no page writes its markup: 26 pages, every one that loads `ui/kit.js` and holds a text field or text area. The specimens on this page are the markup it builds. It rises only while the viewport switcher says *mobile*: 291 is quoted from a phone in portrait, a tablet is an iPad and a desktop has a hardware keyboard.

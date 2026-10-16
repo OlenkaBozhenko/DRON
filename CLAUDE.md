@@ -277,8 +277,10 @@ dark, at 1280 and at 380. Asset `url()`s in the package went one level deeper (`
 
 **Component docs — `design-system/docs/` (2026-10-14).** One page per component (61) plus
 `index.html` (the showcase) and `why.html` (where the visual language came from — the first page for
-a new developer). Each component page has four parts: anatomy (the live component with numbered
-pins measured onto its parts), variants and sizes, when to use, and rule / anti-rule. **The source is
+a new developer). Each component page has five parts: anatomy (the live component with numbered
+pins measured onto its parts), variants and sizes, states (rest, hover, pressed, focus and disabled,
+light beside dark, forced from the components' own CSS by a generated `docs/states.css`; a
+component that takes no focus carries a note instead), when to use, and rule / anti-rule. **The source is
 `docs/src/<slug>.md`; the HTML is generated** by `python design-system/docs/build.py` and is never
 edited by hand. Every specimen is live markup under `design-system/index.css` — the same link the
 product uses — and the build refuses a `dr-*` class no component declares, so the showcase cannot

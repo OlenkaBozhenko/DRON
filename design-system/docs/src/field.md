@@ -63,6 +63,17 @@ The one field with a ground of its own: `--media` at radius 10, `min-height` 44,
 
 `.dr-search-row` puts the same field beside a 44 icon button, 8 apart. It has no glyph, and its name is a hidden *Message* label. The composer on `chat`, `chat-aerial`, `chat-client` and `chat-inspection`.
 
+## States
+
+```html
+<div style="display:grid;gap:8px;width:341px;max-width:100%">
+  <div class="dr-rows dr-rows--card"><div class="dr-field"><label class="dr-field__label" for="field-st-amount">Amount</label><span class="dr-field__group"><input class="dr-field__input" id="field-st-amount" name="amount" type="text" inputmode="numeric" value="&#8372;1,500"></span></div></div>
+  <span class="dr-search"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="text" placeholder="Search address" autocomplete="street-address" aria-label="Pickup address"></span>
+</div>
+```
+
+From `withdraw` and `listings`.
+
 ## When to use
 
 A field is the row that accepts typing. It has never had a border: what separates it is the hairline between rows and, where the group keeps one, the card. iOS ships two form styles and the product uses both, keyed by what the panel holds. A group that composes something (`order-setup`, `operator-profile-setup`, `operator-verification`) is a plain list. A group that configures or pays (`account-edit`, `payment`, `withdraw`) keeps its card. Every row holds 44, so `HIG · 44pt` and `WCAG 2.5.8` are met by the row.

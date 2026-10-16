@@ -45,6 +45,10 @@ kit: 2482
 
 The only shape, and one screen builds it: `order-history-empty`. Measured on the build at 341.4 × 347.8. On a screen it is offset 56 from the content above (`margin-top`), switched off in this plate.
 
+## States
+
+No state of its own: the art, title and body are read, not used. Its one way out takes the [button](button.html#s-states) states.
+
 ## When to use
 
 The banner message is the empty state that carries a picture: an illustrated top, the sentence, and one way out. It stands on one screen, `order-history-empty`. It is a [message block](message-block.html) with a render in place of the 52px mark, and it is the one decorative image in the product: the art is `aria-hidden` because it says nothing the sentence does not (`WCAG 1.1.1`). `role="status"` announces the state without taking focus (`WCAG 4.1.3`).

@@ -46,6 +46,10 @@ A slot is chosen: the label names it and the price stands beside it. `time-slot`
 
 The label says what is missing and the price is still stated. *Confirm slot* stays in place with `aria-disabled="true"`. `time-slot-empty` (₴800) and `time-slot-inspection-empty` (₴650).
 
+## States
+
+No state of its own: the line is read, never pressed. The button under it takes the [button](button.html#s-states) states.
+
 ## When to use
 
 The price line puts the sum on the button's own shelf, so the price and the commitment are read in one glance. It stands on one screen in 4 files: `time-slot`, `time-slot-empty`, `time-slot-inspection` and `time-slot-inspection-empty`, where it is the only place the price is stated at all. Every other screen states its price in a [money rows](money-rows.html) breakdown and in the CTA's verb.

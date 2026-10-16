@@ -36,6 +36,10 @@ Diia's black squircle on the screen's primary button.
 
 BankID's `#94C11F` plate with a white *id*, on the secondary button. The badge, not the wordmark, so the brand's name is not printed twice beside a label that already says it.
 
+## States
+
+No state of its own: the mark is an image inside a button, and nothing in it takes focus. The button that carries it takes the [button](button.html#s-states) states.
+
 ## When to use
 
 Identity marks put the two sign-in providers, Diia and BankID, on the buttons of `signin`, and that is the only screen that draws them. The screens split here: `operator-signup` carries the same two labels on the same `dr-btn--primary` and `dr-btn--secondary` block buttons with no mark, and `signin-error`'s recovery pair (*Try again with Diia*, *Use BankID*) draws none either. They are square at 20 × 20 where the payment mark is 40 × 20, because these are badges and a 1:1 mark in a 2:1 box would letterbox; 20 matches the payment marks' height, so the two families share one optical line.

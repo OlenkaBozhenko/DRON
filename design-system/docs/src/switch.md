@@ -38,6 +38,14 @@ State is the knob's position as well as the fill (`WCAG 1.4.1`): the two tracks 
 
 The same row on its own in the Appearance card: *Dark theme*, off by default. The shell listens to this input and sets the theme on the page.
 
+## States
+
+```html
+<div class="dr-rows dr-rows--card" style="width:341px;max-width:100%"><label class="dr-field dr-field--toggle"><span class="dr-field__label">Operator on the way</span><input type="checkbox" role="switch" name="notify-eta" checked><span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span></label><label class="dr-field dr-field--toggle"><span class="dr-field__label">Offers and news</span><input type="checkbox" role="switch" name="notify-offers"><span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span></label></div>
+```
+
+On and off, from `account-edit`'s *Notifications*.
+
 ## When to use
 
 A switch is one independent setting, on or off, that takes effect the moment it moves. There is no separate Save. Where a checkbox sits in a list of several, a switch sits alone on its own row. It stands on one screen, `account-edit`: in the Notifications card (*Order updates*, *Operator on the way*, *Offers and news*, *Push*, *SMS*, all on except *Offers and news*) and in the Appearance card (*Dark theme*). Both cards are `.dr-rows--card` inside a titled zone. It announces "on" and "off" rather than "checked" (`WCAG 4.1.2`). The knob moves in 0.12s on `transform`, and does not animate under reduced motion.

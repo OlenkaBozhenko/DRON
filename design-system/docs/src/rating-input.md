@@ -47,6 +47,20 @@ kit: 1720
 
 The one state every screen builds: the fourth star checked and the first four filled. `rate`, `rate-aerial` and `rate-inspection` carry the same group, byte for byte. The empty and five-star states are not built on any screen and `ui/kit.html` does not show them, so they have no block here.
 
+## States
+
+```html
+<div class="dr dr-rating" role="radiogroup" aria-label="Rating" style="width:341px;max-width:100%">
+  <button class="dr-star" role="radio" aria-checked="false" aria-label="1 star" data-on><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
+  <button class="dr-star" role="radio" aria-checked="false" aria-label="2 stars" data-on><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
+  <button class="dr-star" role="radio" aria-checked="false" aria-label="3 stars" data-on><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
+  <button class="dr-star" role="radio" aria-checked="true" aria-label="4 stars" data-on><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
+  <button class="dr-star" role="radio" aria-checked="false" aria-label="5 stars"><svg class="dr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.8l6-.9z"/></svg></button>
+</div>
+```
+
+The five stars as `rate` builds them, the fourth checked.
+
 ## When to use
 
 The rating input stands on one screen, `rate`, in 3 files: `rate`, `rate-aerial` and `rate-inspection`. It is the only place in the product where a score is *given* rather than reported. It is an input: five real buttons in a radio group, each a 44pt target with an accessible name. The radio group replaced five `aria-pressed` toggles, which described one rating as five independent switches (`WCAG 4.1.2`).

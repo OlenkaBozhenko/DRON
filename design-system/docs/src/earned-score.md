@@ -35,6 +35,10 @@ kit: 2019
 
 The only variant in `components/`. One screen builds it: `ratings`, on all three review cards. A long name pushes the number along instead of colliding with it, and a card with no score leaves no empty slot.
 
+## States
+
+No state of its own: the score is text riding inside the name, and nothing in it takes focus.
+
 ## When to use
 
 The earned score is a score somebody else gave, not a score being given. On `ratings` it sits beside each reviewer's name as `· 5.0`, written as a number rather than drawn as stars, so it cannot be read as a control. `.dr-rating` is an input: five buttons, each a 44pt target with `aria-pressed`, for `rate`, where the client awards a score. A display must not be a row of buttons announcing a pressed state it cannot change (`WCAG 4.1.2`), nor put five stops in a dashboard's tab order.

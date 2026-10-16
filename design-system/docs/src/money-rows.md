@@ -40,6 +40,10 @@ kit: 921
 
 Measured on `order-review`: the panel is 341.4 × 213.4; the total row is 309.4 × 54, taller than a plain row, and that extra air is the emphasis.
 
+## States
+
+No state of its own: the rows are read, never pressed, and nothing in them takes focus.
+
 ## When to use
 
 Money rows state a price as a set of parts and a total before the user commits. They stand on 6 files: `order-review`, `order-review-aerial` and `order-review-inspection`, each twice (on the screen and again inside the pay drawer, since rev 138), and the three `order-review-loading` files, where the rows hold skeleton lines under `aria-busy` and no total row. In the drawer the rows are the same; the panel loses its `aria-label` and takes the id the sheet's `aria-describedby` points at. This is `voice.md` P3 built as a component: the full price appears before the tap, locked, with no *from*, *quote* or *plus fees*, and the breakdown sits on the screen rather than behind a disclosure.

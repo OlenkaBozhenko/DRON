@@ -153,6 +153,10 @@ The zone as `listings-filters` and `listings-error` build it, with *Hexacopter* 
 
 When the zones are taller than the drawer, the grip, the title and the two actions stay where they are and only `.dr-sheet__scroll` moves. Without `min-height: 0` the flex child would refuse to shrink, and the drawer would grow instead of scrolling.
 
+## States
+
+No state of its own: the drawer is a container, and its controls are other components. The rows take the [checkbox and radio](checkbox-radio.html#s-states) states, the two thumbs the [price range](price-range.html#s-states) states, and *Clear all* and *Apply filters* the [button](button.html#s-states) states.
+
 ## When to use
 
 The filters drawer is the second drawer `listings` opens and the only one that holds more than fits. The *Filters* button on the [finder](finder.html) raises it. It holds *Drone type* and the [price range](price-range.html), and at the built frame it has 0px to scroll. The scroll body exists for when zones are added later. Applied values come back to the home screen as filter chips above *Filters* (see [in-page tabs](in-page-tabs.html)), and a tap on a chip removes that filter.

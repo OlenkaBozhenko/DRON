@@ -62,6 +62,10 @@ The same well with a clock, from `delivery-loading`. The clock also stands on `o
 
 `payment-loading`: the well holds a turning arc on the 1.1s `dr-spin` loop, stopped under `prefers-reduced-motion`. The title names what is in progress. The arc stands on 6 screens: the three `payment-loading` files, `signin-loading`, `operator-signup-loading` and `withdraw-loading`.
 
+## States
+
+No state of its own: the mark, the fact and the next step are read, and nothing in them takes focus.
+
 ## When to use
 
 The outcome is the success screen, and success is deliberately rare: only the screens where the job has a result earn one, such as `order-confirmed` (*Payment received*), `inspection-report` (*Report ready*) and `resolution` (*Refund issued*), plus the loading screens while the money or the check moves. It stands at the top of the screen's main column. 17 screen files build the milestone well; 16 of them as an outcome, and `share` puts the well over a drawer title instead. Success and waiting share one well; the difference is the glyph and the words, never the colour, under the Shape-And-Behaviour Rule: a clock is not a check, and each keeps a text name.

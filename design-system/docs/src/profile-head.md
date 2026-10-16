@@ -61,6 +61,19 @@ kit: 1489
 
 `operator-account`: two credentials, both drawn the same way, because two chips of one kind must not be told apart by their drawing. The chips close the column. On both heads *Edit profile* is a [floating action](floating-action.html) above the tab bar, not a button in the head.
 
+## States
+
+```html
+<div class="dr dr-profile" style="width:160px;max-width:100%">
+  <a class="dr-profile__photo dr-avatar-edit" href="#" aria-label="Change profile photo">
+    <span class="dr-avatar-lg"><img src="../assets/people/thumbs/person-client-olena.png" alt="" loading="lazy" decoding="async"></span>
+    <span class="dr-avatar-edit__badge" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg></span>
+  </a>
+</div>
+```
+
+The photo link alone, from `account`. The name and the credential chips take no state.
+
 ## When to use
 
 The profile head is the top of `account` and `operator-account`: the face, the name, and what the platform has confirmed. It is a component of its own and not a modifier of the [operator card](operator-card.html). That card is a row in somebody else's list, while this column is the subject of the frame. The two heads are the same element with the same classes. Only the credentials differ. The credential sits on the head, before any tap. That is `RJ-C1`, the highest single drop-off in the CJM.

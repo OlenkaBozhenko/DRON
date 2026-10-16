@@ -93,6 +93,10 @@ Gap 28, the one step above any gap inside a card. For a list that is the screen:
 
 Gap 8 at every width. For a list that is one zone among several, or a sequence, in 14 files: `chat` (and `chat-aerial`, `chat-client`, `chat-inspection`), `inspection-report` (and `-loading`), `notifications` (and `-loading`), `operator-notifications`, `operator-listings`, `ratings`, `role-select`, `support` and `wallet`. The specimen is `ratings`.
 
+## States
+
+No state of its own: the list is a container, and only its items take focus. A card that is one link takes the [card link](card-link.html#s-states) states.
+
 ## When to use
 
 The list sets the gap between cards, and that gap is always greater than any gap inside one, so proximity groups in the right direction without a border or a shadow. 18 files stack their cards with it: 4 at the default gap and 14 snug.

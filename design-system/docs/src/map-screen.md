@@ -125,6 +125,33 @@ The chosen row is solid `--color-action`, and name, meta and price all move to `
 
 One file per service, with the same parts and three offers each. The sheet's title names what is being chosen and labels the fieldset (`aria-labelledby`): *Parcel size* for delivery, *What you get* for photo and video (*Photo*, *Video*, *Photo & video*, from `listings-map-aerial`), *Parts to inspect* for inspection (*1 part*, *Up to 3 parts*, *Up to 5 parts*).
 
+## States
+
+```html
+<fieldset class="dr-offers" style="width:341px;max-width:100%">
+  <label class="dr-offer">
+    <input type="radio" name="docst" value="2kg" checked class="sr-only">
+    <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
+    <span class="dr-offer__body">
+      <span class="dr-offer__name">Up to 2 kg</span>
+      <span class="dr-offer__meta">4 available · arrives in 6 min</span>
+    </span>
+    <span class="dr-offer__price">₴180</span>
+  </label>
+  <label class="dr-offer">
+    <input type="radio" name="docst" value="10kg" class="sr-only">
+    <span class="dr-well"><img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async"></span>
+    <span class="dr-offer__body">
+      <span class="dr-offer__name">Up to 10 kg</span>
+      <span class="dr-offer__meta">1 available · arrives in 14 min</span>
+    </span>
+    <span class="dr-offer__price">₴320</span>
+  </label>
+</fieldset>
+```
+
+The offer rows from `listings-map`, chosen and unchosen.
+
 ## When to use
 
 This is what *Find* on the [finder](finder.html) opens: the live map, with a sheet docked to the bottom carrying the offers to choose between. It stands on `listings-map`, `listings-map-aerial` and `listings-map-inspection`. An offer is a radio wearing a card. The whole row is the target, and the checked state belongs to the control, not to an attribute a script has to keep true.

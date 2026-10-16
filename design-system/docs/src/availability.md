@@ -64,6 +64,10 @@ The chip's own `--bg-well` under `--text-muted`, 5.51:1, with a dot filled in th
 
 The same grey pair as Busy, and the dot becomes a 2px ring round a 4px hole. Busy and Offline share a fill, so shape separates them. 67.61 × 21.39. `operator-listings-empty` draws this state in its bar.
 
+## States
+
+No state of its own: the head is a sentence and the badge is a [chip](chip.html), and neither takes focus. The state is changed in the drawer that the *Availability* row opens, not on the badge.
+
 ## When to use
 
 Availability is the operator's own state, said twice on one screen at two sizes: a sentence in the page and a chip in the bar. The badge stands in the nav bar of `operator-listings` and `operator-listings-empty`, so the state stays on screen after the control that sets it has scrolled away; the head stands only on `operator-listings-empty`. Neither is a control and neither is a live region. The control is the *Availability* field row (`.dr-field--action`), which opens a drawer of three picker rows; the badge restates its value visually.

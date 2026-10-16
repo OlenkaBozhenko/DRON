@@ -52,6 +52,10 @@ kit: 1423
 
 The one shape it has: the earnings card on `wallet`, a line of text and a number, then the action under it. `wallet` is the only screen that builds it, three cards in a `.dr-list--snug`; each *View details* link carries an accessible name that says which record it opens (`WCAG 2.4.4`).
 
+## States
+
+No state of its own: the band is structure only, and nothing in it takes focus. The action under it takes the [button](button.html#s-states) states.
+
 ## When to use
 
 The card row is the third member of the `.dr-card__*` family, beside `__actions` and `__link`. It exists because `.dr-card--row` turns the whole card into a row, while `wallet`'s earnings card is a column whose first child is one. `.dr-listing__foot` declares the same gap, but its name says *foot* and it cannot serve a band that leads.

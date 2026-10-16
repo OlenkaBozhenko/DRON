@@ -45,6 +45,14 @@ No height modifier: the box's floor is 56 and the row's 80. A `<textarea>` defau
 
 `--half` gives the review half the 812 frame: the input 382, the row 406, because a review is the one place the product asks for prose. It stands on `rate`, `rate-aerial` and `rate-inspection`.
 
+## States
+
+```html
+<div class="dr-field dr-field--area" style="width:341px;max-width:100%"><label class="dr-field__label" for="text-area-st">Short bio</label><textarea class="dr-field__input" id="text-area-st" placeholder="Certified operator since 2023. Fast, careful deliveries across Kyiv…"></textarea></div>
+```
+
+The base box, from `operator-profile-setup`.
+
 ## When to use
 
 A text area collects prose the user writes in their own words: a message to support, notes for the operator, the description of an issue, a review, a reply to a dispute, handover notes. Its height is the promise. It tells the user how much to write before they start, so the modifier is chosen by what the screen is asking for, not by the space left over. It stands on 12 screens: `contact-support`, `order-setup` and its two service files, `report-issue`, `rate` and its two service files, `operator-profile-setup`, `operator-dispute`, `result-upload` and `result-upload-loading`.

@@ -92,6 +92,10 @@ The sheet offers ways out. Each option is an `<a>`, because it leaves the screen
 
 `--row` puts the two actions side by side at equal widths. It is only for a pair where neither action is a cancel, such as the [filters drawer](filters-drawer.html) on the four `listings` files: *Clear all* left, *Apply filters* right.
 
+## States
+
+No state of its own: the sheet is a surface that holds other components. Its rows take the [picker row](picker-row.html#s-states) states and its *Cancel* takes the [button](button.html#s-states) states.
+
 ## When to use
 
 The sheet is the product's floating surface. It is one of two components that take `--shadow-raised`; the other is the [toast](toast.html). The flat rule covers cards that sit *in* the page, and a drawer floats over it. Up to about six options rise from the bottom edge. More than that is a screen. The picker variant brings the modal contract from `ui/kit.js`: focus is trapped, the screen behind goes `inert`, Escape closes the sheet, and focus returns to the control that opened it. A field row (`.dr-field--action`) or a CTA (`.dr-btn[aria-controls]`) opens it. It stands on 31 files: the four `listings` files, `order-setup` (and `-aerial`, `-error`), `order-review` (all three services), `report-issue`, `account`, `account-edit`, `operator-account`, `operator-listings` (and `-empty`), `job-checklist` (and `-error`), `share`, the nine `tracking` files, and the three `listings-map` files as `--dock`.

@@ -124,6 +124,20 @@ The job offer on `operator-listings`, three cards. The buttons in `.dr-card__act
 
 A free hour on `time-slot` and `time-slot-inspection`, four cards on each. The same stretched link on a `--row` card with no picture and no controls: the whole row books that hour.
 
+## States
+
+```html
+<article class="dr-card dr-card--row dr-listing" style="width:341px;max-width:100%">
+  <a class="dr-card__link" href="#" aria-label="Book 09:00 to 10:00, operator free"></a>
+  <span class="dr-listing__body">
+    <span class="dr-listing__name">09:00 – 10:00</span>
+    <span class="dr-listing__desc">Operator free · Andriy M. nearby</span>
+  </span>
+</article>
+```
+
+A free hour, from `time-slot`.
+
 ## When to use
 
 Four screens build a card this way: `order-history`, `operator-listings`, `time-slot` and `time-slot-inspection`. Use it when the whole card goes to one place. The card is not wrapped in an anchor; the stretched link keeps the text inside selectable and gives the card one accessible name.

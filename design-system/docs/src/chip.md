@@ -56,6 +56,10 @@ The base chip: `--bg-well` under `--text-muted`, 5.51:1. A plain supporting fact
 
 `--stack` sets `flex-direction: column` and `align-items: flex-start`: the pair stacks rather than wraps, because a credential that runs off the side of a card is one the client did not read. Used on `order-confirmed`, `order-confirmed-aerial` and `order-confirmed-inspection`, beside the full-bleed operator photo. `order-confirmed-empty` does not stack: it keeps the wrapping row and shortens the claim to *Verified*.
 
+## States
+
+No state of its own: a chip states a fact and is never a control, so nothing in it takes focus.
+
 ## When to use
 
 The credential chip answers RJ-C1, the highest single drop-off in the CJM: confirm the operator is real and qualified. So the credentials sit on the [operator card](operator-card.html), beside the name and job count and before any tap, never on a profile page behind a click. Claim chips stand on the six `tracking*` files, the four `order-confirmed*` files, `account` (*Verified with Diia*), `operator-account` (*Insured*, *CAA licence*) and `inspection-report` (*Verified by DRON* on the signature row). The same chip family also carries plain facts on review cards, job offers and reports, and, at `--sm`, the *New* mark and the availability badge.

@@ -64,6 +64,10 @@ On the page ground: figure charcoal at 15.99:1, caption `--text-muted` at 6.62:1
 
 `ratings`' overall score, centred, on green with `rating-pattern.png`, padding 20 / 16, radius 16. The star arc is one mask, 106.88 × 32, filled with `--on-action` and `aria-hidden`; the figure states the value at 9.46:1. There is no caption under the figure.
 
+## States
+
+No state of its own: the block shows a figure and the line that names it, and nothing in it takes focus.
+
 ## When to use
 
 A balance block is the headline figure of a screen and the line that names it: the amount being paid on `payment`, the money available on `wallet` and `withdraw`, the balance below the minimum on `wallet-empty`, the overall rating on `ratings`. It replaces the grayscale `.amount` at 34/600, a size outside the ten steps and an ink outside the palette. A balance is the definition of a figure the user verifies, so it is always `.dr-number`, tabular.

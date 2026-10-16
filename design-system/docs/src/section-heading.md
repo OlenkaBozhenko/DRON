@@ -85,6 +85,10 @@ The product's own group name, from `notifications`. On the alert log each day is
 
 The wireframe's annotation, here from `tracking`: mono 11/600 uppercase in `--slate`, 6.62:1, over a 1px `--line` rule with a 30 × 2px green tick at its left end. `__act` adds what the zone does, after a `▸`, in its own case. Every screen writes it as `<p class="zlabel dr-label">`: 223 labels on 124 files, each file with at least one `__act`.
 
+## States
+
+No state of its own: it is a heading, and nothing in it takes focus. The group it names carries the states, for example the [choice card](choice-card.html#s-states).
+
 ## When to use
 
 Two headings with two jobs. `.dr-sect` labels content: a quiet product heading above a group of cards, in the text face and sentence case. It stands on `notifications` and `operator-notifications` only, four headings each, where the days (*Today*, *Yesterday*, then dates) group the alerts and unread rides each row as a *New* chip. `HIG · inset grouped lists` indents such a header to the row content; here the cards' content is centred, so the heading stands flush with the card edge — a recorded departure.

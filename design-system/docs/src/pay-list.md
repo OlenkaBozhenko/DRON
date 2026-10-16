@@ -49,6 +49,19 @@ The three ways to pay in the drawer on `order-review`, each 341 × 44. The expre
 
 A channel is a glyph over a label, not a button with an icon: 22px glyph, 12/600 caption, on the secondary pair at 11.54:1, each an equal share of the row and at least 44 tall. Used on `share`, where the channels are the send action.
 
+## States
+
+```html
+<div style="display:grid;gap:8px;width:341px;max-width:100%">
+<a class="dr-btn dr-btn--pay dr-btn--block" href="#" aria-label="Pay with Apple Pay"><svg class="dr-paymark dr-paymark--pay" viewBox="0 0 46 23" aria-hidden="true" focusable="false"><svg x="3.1" y="5.19" width="10.33" height="12.69" viewBox="0 0 814 1000" preserveAspectRatio="xMidYMid meet"><path fill="#FFF" d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57-155.5-127C46.7 790.7 0 663 0 541.8c0-194.4 126.4-297.5 250.8-297.5 66.1 0 121.2 43.4 162.7 43.4 39.5 0 101.1-46 176.3-46 28.5 0 130.9 2.6 198.3 99.2zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z"/></svg><text x="16.37" y="16.85" textLength="26.54" lengthAdjust="spacingAndGlyphs" font-size="15" font-weight="600" fill="#FFF">Pay</text></svg></a>
+<div class="dr-sheet__channels">
+<button type="button" class="dr-channel"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.6a8.5 8.5 0 0 1-8.5 8.4c-1.6 0-3.1-.4-4.4-1.2L3 20l1.2-5.1A8.5 8.5 0 1 1 21 11.6z"/></svg>Message</button>
+</div>
+</div>
+```
+
+An express option from `order-review` and a channel from `share`.
+
 ## When to use
 
 Both rows are lists of ways out. The pay list is the content of the pay drawer that the action bar of `order-review` (and its aerial and inspection variants) opens: three ways to pay is under the picker's count rule, so a list rises instead of a page. The brand buttons come first and DRON's own *Pay with card* comes last. *Pay with card* pushes `payment`, while Apple Pay and Google Pay go straight to `payment-loading`, because the method is already chosen.

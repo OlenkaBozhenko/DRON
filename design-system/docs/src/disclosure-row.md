@@ -24,6 +24,14 @@ No screen builds this now, and `ui/kit.html` does not show it. The specimen is d
 
 No screen builds a disclosure row now, and `ui/kit.html` shows none, so no variant is documented. The *Option list* variant this page used to show was removed for that reason. The row's rules are shared, selector for selector, with `.dr-picker__item`, which every screen does build: see [Picker row](picker-row.html).
 
+## States
+
+```html
+<div class="dr-picker__list" style="width:341px;max-width:100%"><a class="dr-disclosure__item" href="#" aria-current="true">Client — order services<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a><a class="dr-disclosure__item" href="#">Operator — take jobs</a></div>
+```
+
+The Anatomy specimen: no screen builds the row now.
+
 ## When to use
 
 The disclosure row is the option row of an in-flow list: a native `<details>` that opens in place and pushes the page down instead of floating. It was built on `account` as the mode picker. In the project-wide picker sweep (2026-08-16) that picker became a row with a drawer, like every other dropdown, so the component has no page left in the product. `operator-account` records the same in a comment: `.dr-disclosure` is applied to no page in the painted product. It is kept on the bench, recorded rather than deleted.

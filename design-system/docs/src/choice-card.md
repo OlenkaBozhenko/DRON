@@ -40,6 +40,14 @@ The screens wrap the title two ways. 13 of 16 cards use `.dr-choice__body` (`rol
 
 The eleven rows on `notifications` (6) and `operator-notifications` (5). Six of them carry a `.dr-choice__head` with the `New` chip; the rest are a title over `__desc`. `notifications-loading` draws the same box as a `<div class="dr-choice">` around a skeleton. `__desc` (13 `--slate`, 5.95:1) says which order and when, and there is no chevron. The row measures 73.78 tall.
 
+## States
+
+```html
+<a class="dr-choice" href="#" style="width:341px;max-width:100%"><span class="dr-well"><img src="../assets/objects/thumbs/cargo-box.png" alt=""></span><span class="dr-choice__body"><span class="dr-choice__title">I need a service done</span></span><span class="dr-choice__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span></a>
+```
+
+From `role-select`.
+
 ## When to use
 
 A choice card is navigation, not a picker: every instance is a link that leaves the screen. It is the fork at the start of a path. On `role-select` the user says who they are, and on `support` they name what went wrong. On the two alert logs it is the row that opens the order an alert is about.

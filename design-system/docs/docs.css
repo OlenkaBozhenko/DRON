@@ -98,6 +98,15 @@ code { font-family: var(--font-mono); font-size: var(--type-meta-size); }
 .dsd-variant p { font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-line); color: var(--text-muted); margin: var(--len-8) 0 0; }
 .dsd-variant code { color: var(--text-primary); }
 
+/* -- states: every state, light over dark ---------------------------------- */
+.dsd-states__row { background: var(--bg-page); color: var(--text-primary); border-radius: var(--len-16); padding: var(--len-16); margin: var(--len-8) 0; border: var(--len-1) solid var(--border-hairline); }
+.dsd-states__theme { font-size: var(--type-caption-size); line-height: var(--type-caption-line); color: var(--text-muted); margin: 0 0 var(--len-8); }
+.dsd-states__cells { display: flex; flex-wrap: wrap; gap: var(--len-12); }
+.dsd-state { margin: 0; flex: 0 1 auto; min-width: var(--len-140); max-width: var(--pct-100); }
+.dsd-state figcaption { font-size: var(--type-caption-size); line-height: var(--type-caption-line); color: var(--text-muted); margin: 0 0 var(--len-4); }
+.dsd-state .dsd-plate { margin: 0; padding: var(--len-12); }
+.dsd-states__live { margin-top: var(--len-8); }
+
 /* -- rule / anti-rule ------------------------------------------------------- */
 .dsd-rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--len-375)), 1fr)); gap: var(--len-16); }
 .dsd-rule { background: var(--bg-surface); border-radius: var(--len-16); padding: var(--len-16); border-top: var(--len-4) solid var(--color-action); }

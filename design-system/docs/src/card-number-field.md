@@ -38,6 +38,14 @@ Empty, or a prefix that is neither brand: both marks show. This is how `account-
 
 Once the first digits decide, the script on the screen sets `hidden` on the other mark (it reads `data-brand`). The number then gets 166 (Visa) or 176 (Mastercard), with all 16 digits in view. No file draws this state as markup; it is the same screen after typing.
 
+## States
+
+```html
+<div class="dr-rows dr-rows--card" style="width:341px;max-width:100%"><div class="dr-field"><label class="dr-field__label" for="card-num-s">Card number</label><span class="dr-field__group"><input class="dr-field__input" id="card-num-s" name="cc-number" type="text" inputmode="numeric" autocomplete="cc-number" aria-describedby="card-num-s-brands"><span class="dr-field__marks" aria-hidden="true"><svg class="dr-paymark dr-paymark--fit" viewBox="0 0 31 20" focusable="false" data-brand="visa"><text x="0" y="14.8" textLength="30" lengthAdjust="spacingAndGlyphs" font-size="14" font-weight="700" font-style="italic" fill="#1434CB">VISA</text></svg><svg class="dr-paymark dr-paymark--fit" viewBox="0 0 21 20" focusable="false" data-brand="mastercard"><circle cx="7" cy="10" r="7" fill="#EB001B"/><circle cx="14" cy="10" r="7" fill="#F79E1B"/><path d="M10.5 3.94a7 7 0 0 1 0 12.12 7 7 0 0 1 0-12.12Z" fill="#FF5F00"/></svg></span><span class="sr-only" id="card-num-s-brands">Visa or Mastercard</span></span></div></div>
+```
+
+The empty row, from the *Add card* drawer on `account-edit`.
+
 ## When to use
 
 The card number field is the one field with a brand on it. It is the first row of `account-edit`'s *Add card* drawer, above *Expiry* and *CVV*, opened from the payment method picker. The marks carry information there that no name beside them repeats, so they are hidden from assistive tech and the input is described by *Visa or Mastercard* in words. Only the two cards the product accepts are drawn.

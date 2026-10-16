@@ -29,6 +29,10 @@ kit: 2346
 
 The only shape. Lit green against resting `--bg-muted` is a 1.22:1 step, and green on the page is 1.69:1 against `WCAG 1.4.11`'s 3:1; both are accepted because the dot is never the sole carrier: the slide itself shows position. The fill fades over 0.12s (`--time-0-12`, ease-out) on `background-color` only, and stops under `prefers-reduced-motion`.
 
+## States
+
+No state of its own: the dots are `aria-hidden` and take no pointer or focus. `.on` follows the slide; it is position, not a state of interaction.
+
 ## When to use
 
 The pager is the dot row under the onboarding carousel. Three screens build it, all with the same markup: `welcome`, `onboarding-client` and `onboarding-operator`. It is an indicator, not a control: the slides change by swipe, so the dots are `<span>`s and carry no target. That is the designer's call of 2026-08-18. As links they were 8 × 8 targets, three times under `WCAG 2.5.8`'s 24 × 24 and five times under `HIG`'s 44pt; with no target, `2.5.8` no longer applies, and the scroll container gives the keyboard what the links gave (`2.1.1`).

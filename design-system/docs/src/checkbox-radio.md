@@ -47,6 +47,17 @@ A circle: one of a mutually exclusive set. Checked is a green disc carrying a 10
 
 One `.dr-pick` on its own, with no panel: *Save this card for next time* in `payment`'s action bar, *Save this address for next time* on `order-setup`. The screens give the row an inline `border-radius:6px`.
 
+## States
+
+```html
+<div style="display:grid;gap:8px;width:341px;max-width:100%">
+  <div class="dr-picks" role="radiogroup" aria-label="Pick a time"><label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><span class="dr-pick__label">Now</span><input type="radio" name="checkbox-radio-st" value="now" checked class="sr-only"></label><label class="dr-pick"><span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span><span class="dr-pick__label">At a set time</span><input type="radio" name="checkbox-radio-st" value="at" class="sr-only"></label></div>
+  <label class="dr-pick" style="border-radius:6px;"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Save this card for next time</span><input type="checkbox" name="save-card-st" class="sr-only"></label>
+</div>
+```
+
+A checked and an unchecked radio from the *Pick a time* drawer on `listings`, and the single checkbox from `payment`.
+
 ## When to use
 
 Shape says how many. A square is an independent on/off inside a list of several, and a circle is exactly one of a set. That is `HIG · Radio Buttons / Checkboxes` read directly, and it keeps one shape from meaning two functions (`WCAG 3.2.4`). The control is a real `<input>` inside the `<label>` that is the row, so the label is the accessible name. The focus ring is drawn on the box, 2.5px `--ink` at a 2px offset, keyboard only.

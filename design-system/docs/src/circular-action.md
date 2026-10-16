@@ -60,6 +60,18 @@ The secondary pair as a disc: warm grey fill, charcoal glyph, 11.54:1. Hover tak
 
 `--primary` and `--icon` worn at once: green disc, charcoal glyph at 9.46:1, `--shadow-sm`. On `chat` it is the screen's one green control at 0.64% of the frame. The same markup stands on all four chat screens.
 
+## States
+
+```html
+<div style="display:flex;gap:16px">
+  <button class="dr-btn dr-btn--icon" type="button" aria-label="Delete order"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button>
+  <a class="dr-btn dr-btn--icon dr-btn--danger-solid" href="../../wireframes/tracking.html" aria-label="End call"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 14.3a12 12 0 0 1 17.2 0"/><path d="M3.4 14.3l1.7 1.7a1.5 1.5 0 0 0 2.1 0l1.1-1.1a1.5 1.5 0 0 0 0-2.1l-.7-.7"/><path d="M20.6 14.3l-1.7 1.7a1.5 1.5 0 0 1-2.1 0l-1.1-1.1a1.5 1.5 0 0 1 0-2.1l.7-.7"/></svg></a>
+  <button class="dr-btn dr-btn--primary dr-btn--icon" type="button" aria-label="Send message"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19.5V5"/><path d="M5.5 11.5L12 5l6.5 6.5"/></svg></button>
+</div>
+```
+
+From `order-history`, `call` and `chat`.
+
 ## When to use
 
 A circular action is an icon-only command: one glyph whose meaning is unambiguous where it stands, so the label can be dropped. It is the shape of every icon-only button in the product, one 44 disc on different grounds for different jobs. The default stands on light surfaces: *Delete order*, *View details* and *View the photo and video set* on `order-history`, *Download video* on `order-details-aerial`, and *Swap pickup and drop-off* in the route card of `listings`, `listings-filters`, `listings-loading` and `listings-error`. `--night` and `--danger-solid` stand on the [call surface](call-surface.html) (`call`, `call-aerial`, `call-inspection`, `call-client`, `call-support`). `--onphoto` stands on the video cover of `order-details-aerial`, and the green Send in the composer of `chat`, `chat-aerial`, `chat-inspection` and `chat-client`.

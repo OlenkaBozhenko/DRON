@@ -94,6 +94,10 @@ A row card: a pulsing well, then a column of bars. From `order-confirmed-loading
 
 A media placeholder sized to what it waits for: 180 tall on `delivery-loading`, against the delivery photo's 180 on `delivery`. Radius 13, `--bg-well`. The block holds still; only the 32px arrow leaves, on a 1.6s cadence, resting visible at 0% and 100% so a dropped animation leaves a legible icon. `inspection-report-loading` builds an empty block 200 tall for the cover photo, and `report-issue-loading` an empty block with no height set.
 
+## States
+
+No state of its own: a skeleton stands in for content that is loading, and nothing in it takes focus.
+
 ## When to use
 
 A skeleton is a claim about the loaded screen: it rehearses that screen's layout at its exact size, so nothing moves when the content arrives. It stands on 18 `-loading` screens, among them `order-history-loading`, `notifications-loading`, `tracking-loading`, `delivery-loading`, the three `order-review-loading` and the three `payment-loading` files. The question is never "should this pulse" but "does what loads replace this surface, or sit inside it": on `order-history-loading` the drone well pulses, and on `result-upload-loading` the tray (`.dr-upload.dr-sk-tray`) holds still and only the arrow moves. A skeleton never shows more detail than the loaded state rewards.

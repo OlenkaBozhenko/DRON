@@ -121,6 +121,10 @@ kit: 2045
 
 `.dr-grouptab--icon` adds a 16px glyph before the word: a package, a camera, and a viewfinder around a house. The group is one tab stop with the arrow keys moving inside it. The chosen badge is announced by the radio, not by an attribute.
 
+## States
+
+No state of its own: the finder is a container, and its controls are other components. The service badges take the [in-page tabs](in-page-tabs.html#s-states) states, and *Filters*, *Find* and the swap disc the [button](button.html#s-states) states. The route rows and the Date · Time cells carry only the keyboard ring: no hover, pressed or disabled look is declared for them.
+
 ## When to use
 
 The finder is the home screen, `listings`. It replaced the list of cards with one form that asks three questions: *what*, *from where to where*, and *when*. Each row is a button that opens a drawer: the [address picker](address-picker.html), the [date picker](date-picker.html), or the time drawer. *Filters* opens the [filters drawer](filters-drawer.html), and applied filters stand as chips above it. *Find* opens [results on the map](map-screen.html) for the chosen service. The finder stands on four files: `listings`, `listings-filters` (the filters drawer open over it), `listings-error` and `listings-loading`. All four build the same three badges, with *Delivery* chosen at rest. On `-error` and `-loading` the route is filled in (*Podil, 21* to *Osokorky, 14*). On `-loading`, *Find* becomes a disabled *Searching…* button and a status line names the place.

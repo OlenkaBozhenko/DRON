@@ -138,6 +138,20 @@ The screens write no `--in` class and no fill position into the markup. The page
 
 ₴0 to ₴1,000+: all forty bars carry `--in` and the fill spans the whole rail. This is the band `listings` and `listings-loading` open on, before any price is chosen. The slider steps by ₴50, exactly two bars, so the shading can never land half a bar out.
 
+## States
+
+```html
+<div style="width:341px;max-width:100%">
+    <div class="dr-range__rail">
+      <span class="dr-range__fill" style="left:60%;right:0%"></span>
+      <input class="dr-range__input" type="range" id="b-pmin" min="0" max="1000" step="50" value="600" aria-label="Minimum price" aria-valuetext="₴600">
+      <input class="dr-range__input" type="range" id="b-pmax" min="0" max="1000" step="50" value="1000" aria-label="Maximum price" aria-valuetext="₴1,000+">
+    </div>
+</div>
+```
+
+The rail and its two thumbs at ₴600 – ₴1,000+. From `listings-filters`.
+
 ## When to use
 
 The price range is the price control in the filters drawer, and the whole of that zone. Four screens build it: `listings`, `listings-error`, `listings-filters` and `listings-loading`. A price slider with no distribution behind it asks the client to guess what is normal; the forty bars say it instead, and the bars inside the chosen band darken, so the control shows how much of the market the band actually covers. The chart is a picture of supply and never the carrier of the choice: the band is said by the thumbs, by the filled span and by the two printed values before the picture is read. The two native sliders take the arrow keys with no script (`WCAG 2.1.1`) and expose role, min, max and value with no ARIA patch (`4.1.2`).

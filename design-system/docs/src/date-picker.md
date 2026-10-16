@@ -105,6 +105,14 @@ The second drawer, *Pick a time*, as it opens: *Now* chosen, and *At a set time*
 
 *Now* is offered only while the chosen day is today; on any other day it is disabled, slate on `--card` 5.95:1, and the time becomes a set one. The search never says *Now* about next Tuesday.
 
+## States
+
+```html
+<div class="dr-cal" style="width:160px;max-width:100%"><table class="dr-cal__grid" role="grid" aria-label="Pick a date"><tbody><tr role="row"><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Wed 16 Sep 2026" tabindex="-1" disabled>16</button></td><td role="gridcell" aria-selected="true"><button class="dr-cal__day dr-cal__day--today" type="button" aria-label="Thu 17 Sep 2026, today" tabindex="0">17</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Fri 18 Sep 2026" tabindex="-1">18</button></td></tr></tbody></table></div>
+```
+
+Three day buttons from the *Day states* week above: a past day, today chosen, a later day.
+
 ## When to use
 
 The date picker is how the client says when the service should happen. It opens from the date and time cells of the search card (`.dr-when`) on `listings`, `listings-filters`, `listings-error` and `listings-loading`; the four build the two drawers identically. The date opens as a calendar grid in a drawer, the shape iOS Calendar opens and the one `HIG · Pickers` puts in a sheet when space is short; the time is a second drawer. The grid follows WAI-ARIA APG's Date Picker Dialog with one documented variant: selection follows focus, so an arrow both moves and picks, and what is focused is always what is chosen. The grid always draws six week rows, so the drawer keeps one height from month to month.

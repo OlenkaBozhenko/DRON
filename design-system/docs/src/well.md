@@ -60,6 +60,10 @@ The card radius 16, not the media 13: the map is a surface in the layout, not a 
 
 The map before its first fix: `--bg-well` ground, `--text-muted` mono micro type naming what is loading. Only `tracking-loading` builds it.
 
+## States
+
+No state of its own: the well is a picture box, and nothing in it takes focus.
+
 ## When to use
 
 The well holds the product's real imagery: drone renders, scenes, the operator's delivery photo and the live map, never illustration and never a gradient. A cutout stands in list rows at 96 × 96: `job-offer`, `job-offer-inspection`, `operator-dispute`, `operator-dispute-error` and the four `order-history` cards. It stands at 56 × 44 in the `role-select` and `listings-map` choices. A photograph stands on `delivery`, `inspection-report`, the three `order-details` files and the cover card on `order-details-aerial`. The map stands on the `tracking` and `job-brief` files. Two treatments, one rule: a cutout sits in the layout and is contained, a photograph is the surface and covers it. A photo floated inside a well reads as a sticker, so the two never swap.

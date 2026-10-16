@@ -58,6 +58,10 @@ The two grounds are 1.25:1 apart, which reads as one tone. *Who said it* is carr
 
 The composer is built from parts that already exist: the action bar, a search row, a field (289.4 × 44, `--ink` on `--media` at 13.33:1) and the 44px Send disc. Send is the screen's one green control. The field takes no focus ring, because the caret carries `WCAG 2.4.7`.
 
+## States
+
+No state of its own: the bubbles are read, not used, and nothing in them takes focus. The composer is an [action bar](action-bar.html): its field takes the [field](field.html#s-states) states and Send the [button](button.html#s-states) states.
+
 ## When to use
 
 The chat thread is the one place in the product where two people write to each other. It stands on `chat`, the client's thread with the operator, opened from *Chat with the operator* in the tracking screen's contact [sheet](sheet.html#variant-action-sheet), and on `chat-client` and the per-service chat files. It is not a variant of the [message block](message-block.html). That one is a centred state notice with a mark, a title and actions, and it shares only the word *message* with this one.

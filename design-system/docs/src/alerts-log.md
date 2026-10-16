@@ -94,6 +94,30 @@ The *New* chip rides the title line in `.dr-choice__head`. Unread is carried by 
 
 The same row without the chip. The screens drop the `__head` wrapper too, so the title sits straight in `__body`. The title's 23.8 line box is taller than the 21.4 chip, so the row stays 78 tall and does not move when it is read.
 
+## States
+
+```html
+<div style="display:grid;gap:8px;width:341px;max-width:100%">
+  <a class="dr dr-choice" href="#">
+    <span class="dr-choice__body">
+      <span class="dr-choice__head">
+        <span class="dr-choice__title">Your delivery photo is ready</span>
+        <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+      </span>
+      <span class="dr-choice__desc">Package delivery &#183; 10:12</span>
+    </span>
+  </a>
+  <a class="dr dr-choice" href="#">
+    <span class="dr-choice__body">
+      <span class="dr-choice__title">Rate your order</span>
+      <span class="dr-choice__desc">Package delivery &#183; 14:41</span>
+    </span>
+  </a>
+</div>
+```
+
+An unread and a read row, from `notifications`.
+
 ## When to use
 
 The alerts log is the screen `notifications` for the client and `operator-notifications` for the operator. Alerts are grouped under days and the unread ones carry a word. Headings are relative and then absolute: *Today*, *Yesterday*, then `d MMMM`, day first for Ukraine and Europe with the month spelled out (`HIG · Lists and tables`). Read state and recency are two separate facts. An alert can be unread under *Yesterday*, which the old *New* / *Earlier* headings could not say.

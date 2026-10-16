@@ -41,6 +41,10 @@ kit: 475
 
 The whole bar of `operator-listings`: face, name, the [availability badge](availability.html) and the [notification bell](notification-bell.html), in one 56px row, 8 apart. The one size the component has. The screens split on the bell: `operator-listings` draws it, `operator-listings-empty` draws the same bar with the badge at *Offline* and no bell.
 
+## States
+
+No state of its own: the disc and the name are a label, not a control. The bar's [notification bell](notification-bell.html#s-states) carries its own states; the [availability badge](availability.html) is not a control.
+
 ## When to use
 
 The nav-bar avatar puts the operator's own face at the leading edge of his home bar, where the client's bar carries the DRON mark. It stands on `operator-listings` and `operator-listings-empty` only.

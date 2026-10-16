@@ -97,6 +97,20 @@ No visible words. `aria-label="Back to {destination}"` names it (`WCAG 4.1.2`); 
 
 60px of tabs over the 30px home indicator, from `support`. Unselected tabs are transparent with a `--text-muted` label, 6.62:1; icons stay outline in both states, a recorded departure from the iOS filled-symbol convention. 33 pages carry the tab bar. The tab glyph is 22px on every one, but the markup splits: 19 pages write `class="dr-ic dr-ic--22"` and 14 write `class="dr-ic"`, and `.dr-tab .dr-ic` draws both at 22. The 14 are `delivery`, `delivery-aerial`, `delivery-error`, `delivery-loading`, `order-history`, `order-history-empty`, `order-history-loading`, `tracking-loading`, `tracking-empty`, `tracking-error`, `tracking-aerial-empty`, `tracking-aerial-error`, `tracking-inspection-empty`, `tracking-inspection-error`.
 
+## States
+
+```html
+<div style="width:375px;max-width:100%">
+  <header class="topbar dr-topbar"><a class="dr-back" href="#" aria-label="Back to Order review"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><h1 class="dr-topbar__title">Card details</h1><span class="dr-topbar__spacer"></span></header>
+  <nav class="dr-tabs" aria-label="Primary">
+    <a class="dr-tab" href="#"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+    <a class="dr-tab" href="#" aria-current="page"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+  </nav>
+</div>
+```
+
+The shell's two controls: the back chevron from `payment` and two tabs from `support`, one selected. The status bar, brand and home indicator take no state.
+
 ## When to use
 
 Every product screen stands in this frame: status bar 44, nav bar 56, then either a tab bar (60 + 30) on a tab root or an [action bar](action-bar.html) on a pushed screen. Every bar takes the page ground `--bg-page` and only a 1px `--border-hairline` separates it from the content. The five call pages keep the status bar and home indicator but draw neither nav bar nor tab bar. The client's tabs are Order · Activity · Help · Account; the operator's are Jobs · Earnings · Ratings · Account.

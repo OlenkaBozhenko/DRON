@@ -29,6 +29,14 @@ kit: —
 
 One shape, two states. The two fills are only 1.22:1 apart and carry the same ink, so the shadow on the chosen half is the second signal that keeps the state off hue alone (`WCAG 1.4.1`). `aria-pressed` carries it to assistive tech. Each half is 32 visible and 44 to the touch: a transparent `::after` reaches 8 above and below.
 
+## States
+
+```html
+<div class="dr-lang" role="group" aria-label="Language"><button type="button" aria-pressed="true">EN</button><button type="button" aria-pressed="false">UA</button></div>
+```
+
+The Anatomy specimen, EN chosen.
+
 ## When to use
 
 The language switch sets the interface language, English (primary) or Ukrainian. It is the shell's control: the wireframe shell (`_wf-shell.js`) injects it into the top bar opposite the brand, and it shows only in the desktop preview. The shell builds it as `<div class="wf-lang" role="group" aria-label="Language">` with two `<button>`s and `aria-pressed`, and paints it with its own copy of these values: 32 high, 36 minimum width, 12/600, the same fills and shadow. No screen in `wireframes/` and no specimen in `ui/kit.html` uses the `.dr-lang` class itself; the specimens here are the shell's markup under that class. The mobile nav bar carries the back control and one name, so a second control on its right is a desktop question. It is coloured as the buttons are, primary and secondary, which makes it a second green control on the screens it stands on, about 0.3% of the frame. That is recorded rather than argued.

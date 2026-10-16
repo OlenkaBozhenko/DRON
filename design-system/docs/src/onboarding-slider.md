@@ -87,6 +87,10 @@ kit: 1520
 
 `--floor` is for a slide whose subject stands on the bottom edge. Exactly one slide in the product takes it: the first slide of `onboarding-operator`, whose picture is cut by its own canvas. The art keeps its top padding, drops the bottom one, and uses `object-position: center calc(100% + 7px)` to make up for the transparent rows at the bottom of the file. It is a modifier on the slide, not on the slider.
 
+## States
+
+No state of its own: the slides are read and swiped, and nothing in them takes focus. Its buttons take the [button](button.html#s-states) states, and the [pager](pager.html) under it is `aria-hidden`.
+
 ## When to use
 
 The onboarding slider opens three screens: `welcome`, `onboarding-client` and `onboarding-operator`. It is the only place where a picture runs to the edge of the frame. It only works inside a [screen shell](screen-shell.html), because the frame opts in. The specimens are drawn at the built 375 × 812, because the art takes whatever height the copy leaves. A shorter frame would show a different composition, not the same slide smaller. A slide whose picture has not been supplied keeps a `--media` ground and a mono label at 5.51:1, so it reads as *picture pending*. No artwork is invented to fill it.

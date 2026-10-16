@@ -85,6 +85,22 @@ The service badges on the [finder](finder.html), on `listings`, `listings-error`
 
 The four `listings` pages: the row stands empty and `hidden` in the markup, and the page's script writes one chip per value the filter drawer applied, each drone type and then the price band. 12/600 on `--bg-accent-tint` under `--text-primary`, 14.75:1, with no edge; padding 5 5 5 12, gap 6, chips 8 apart. The remove mark is an 18px `--color-action` pill with a charcoal cross, 9.46:1. The name is *Remove filter: {label}*, which contains the visible text (`WCAG 2.5.3`).
 
+## States
+
+```html
+<div style="display:grid;gap:8px;width:341px;max-width:100%">
+  <nav class="dr-groups" aria-label="Job groups">
+    <a class="dr-grouptab" href="#incoming" aria-current="true">Incoming <span class="dr-grouptab__count">2</span></a>
+    <a class="dr-grouptab" href="#active">Active <span class="dr-grouptab__count">1</span></a>
+  </nav>
+  <div class="dr-fchips" role="group" aria-label="Applied filters">
+    <button class="dr-fchip" type="button" aria-label="Remove filter: Quadcopter">Quadcopter<span class="dr-fchip__x" aria-hidden="true">&times;</span></button>
+  </div>
+</div>
+```
+
+From `operator-listings` and `listings`.
+
 ## When to use
 
 In-page tabs say *which of these* inside one screen: a row of places with one current. The pill row switches the operator's job list between Incoming and Active (2 pages) and the time-slot list between days (4 pages); the radio form picks a service on the finder (4 pages). The tab bar of the [screen shell](screen-shell.html) is the top-level navigation; this row never is.

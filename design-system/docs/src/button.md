@@ -77,6 +77,15 @@ The one rung whose colour the product does not choose. Apple and Google allow bl
 
 `--block` takes the column's width: the default in an action bar and at the foot of a card (179 uses on 99 files). `--icon` is a 44 × 44 circle on the secondary's grey, with a 20px glyph and its accessible name in `aria-label`. Here the pair on an `order-history` card: *Delete order* and *View details*. It is built on 16 files.
 
+## States
+
+```html
+<div style="display:grid;gap:8px">
+  <button class="dr-btn dr-btn--primary" type="button">Pay ₴180</button>
+  <button class="dr-btn dr-btn--secondary" type="button">Details</button>
+</div>
+```
+
 ## When to use
 
 A button is a verb the user commits to. The system spends one green control per screen. Every action bar holds one primary at most; `account-photo` and `operator-account-photo` gave up their second one at rev 292. The primary button carries the screen's main job and covers 81–100% of that screen's green, while everything else that can be tapped is warm grey. In the action bar every button is filled and stacks one per row at full width, primary first, so no label wraps at 320pt. Text-only rungs (tertiary, text) live in navigation bars and inside cards, never on the bottom edge.

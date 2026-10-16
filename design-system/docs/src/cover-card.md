@@ -56,6 +56,10 @@ kit: 949
 
 The only shape in use: the video card on `order-details-aerial`, cover 180 plus line 68, 248 tall in all.
 
+## States
+
+No state of its own: the card is a surface and not a link, so nothing in it takes focus but its two discs. *Play* and *Download* take the [circular action](circular-action.html#s-states) states.
+
 ## When to use
 
 The cover card holds one file of an aerial delivery where the picture is the content: one user, the video card on `order-details-aerial`. A cover is never inset, and that is the imagery rule winning where it meets the inset rule: a photograph *is* the surface, and a picture floated inside a padded card is the sticker the rule forbids. The padding moves onto the line below, 12 vertical against 16 horizontal, because that line already carries a 44px control and its height is set by the target.

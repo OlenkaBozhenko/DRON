@@ -63,6 +63,10 @@ Facts read in pairs: label column, then value, both reading from the left. The t
 
 Figures, not facts, keep a trailing column so the digits line up. This is `order-review`'s breakdown. It has its own page: [Money rows](money-rows.html).
 
+## States
+
+No state of its own: its rows are facts to read, and nothing in it takes focus.
+
 ## When to use
 
 The row panel is the system's universal container for a fact: read, opened, or typed into. It stands on 61 files, among them `tracking`, `delivery`, `order-confirmed`, `order-review`, `inspection-report`, `job-brief`, `earning-details` and `account-edit`, where the same grid holds [fields](field.html) and [picker rows](picker-row.html). The same component on two screens carries the same numbers.

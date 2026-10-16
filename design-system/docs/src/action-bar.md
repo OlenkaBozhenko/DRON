@@ -73,6 +73,10 @@ Every bar holds at most one primary. `account-photo` and `operator-account-photo
 
 `result-upload-error`: a bar that holds one note and no button. Five state pages build it: `job-brief-error`, `job-offer-empty`, `order-setup-empty`, `result-upload-error` and `withdraw-error`. Their way out sits in the column above.
 
+## States
+
+No state of its own: the bar is a container and nothing in it takes focus but the controls it holds. Its buttons take the [button](button.html#s-states) states, and the composer's message field takes the [field](field.html#s-states) states.
+
 ## When to use
 
 The action bar is the bottom edge of a pushed screen: where the screen's job is committed. It replaces the tab bar of the [screen shell](screen-shell.html); 87 of the 133 pages in `wireframes/` draw it. Of those, 35 hold one button, 38 a stack, 4 the chat composer, 5 a note only, and 5 the call controls of the [call surface](call-surface.html) (`call`, `call-aerial`, `call-client`, `call-inspection`, `call-support`). Every button in it is filled and full width, stacked one per row. Text-only rungs (tertiary, text) live in the nav bar, never here.

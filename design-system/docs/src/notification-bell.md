@@ -57,6 +57,18 @@ kit: 475
 
 `operator-listings`: the bell stands after the availability badge, 8 apart, and links to `operator-notifications`. `HIG · Navigation bars` gives the trailing edge to controls, and the badge is not one.
 
+## States
+
+```html
+<div style="display:flex;padding-right:10px">
+  <a class="dr-bell" href="#" aria-label="Notifications, 3 unread">
+    <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4a5.9 5.9 0 0 0-5.9 5.9c0 4.1-1.5 5.3-1.5 5.3h14.8s-1.5-1.2-1.5-5.3A5.9 5.9 0 0 0 12 3.4Z"/><path d="M10.1 18a2.1 2.1 0 0 0 3.8 0"/></svg><span class="dr-count-badge" aria-hidden="true">3</span>
+  </a>
+</div>
+```
+
+From `listings`.
+
 ## When to use
 
 The bell is the whole entrance to the alert log (`notifications`, `operator-notifications`), and it stands on the two home screens and nowhere else: 5 pages, the four `listings` pages and `operator-listings`. The screens split on the operator side: `operator-listings` draws the bell, and its empty state `operator-listings-empty` draws the same bar without it. It is `.dr-back` mirrored and not one number in it is new: the same 44 × 44 box, 22px glyph, focus ring and 10px pull to the gutter. `HIG · 44pt` 100%, `WCAG 2.5.8` 1.83×.

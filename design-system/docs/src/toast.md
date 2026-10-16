@@ -45,6 +45,10 @@ The default. It floats 20px above whatever bottom chrome the screen has, set inl
 
 `--over-sheet`: when the raising control sits inside a `[role="dialog"]`, the toast is parented inside that dialog and floats 12px above the sheet's top edge. Outside the dialog it would be hidden by `aria-modal` and announced to nobody. Measured on `share`: 125.55 × 43.60, exactly 12px above the sheet. On the screen the sheet also carries `aria-modal="true"`, left off this plate so the docs page stays readable to assistive technology.
 
+## States
+
+No state of its own: the toast announces through `role="status"` without taking focus, and it takes no clicks.
+
 ## When to use
 
 A toast is a transient confirmation for an action that finishes on the screen you are standing on and leaves no other trace. It is the product's one inverted surface and one of two that float, with the [sheet](sheet.html). Any control carrying `data-toast` raises it; it dismisses itself after 4s and on click, and nothing depends on reading it in time (`WCAG 2.2.1`), because it states the action just taken. Three controls raise one today: *Copy link* on `share`, *Mark resolved* on `contact-support`, and *Notify me when available* on `order-setup-empty`.

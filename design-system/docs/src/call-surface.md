@@ -110,6 +110,10 @@ On `call-client` (the operator calls the client) the side column holds one actio
 
 On `call-support` there is nobody left to add. `__side--empty` keeps a 44px hole, hidden from assistive technology, so the name stays on the same centred axis on every call screen.
 
+## States
+
+No state of its own: the surface is a ground and a layout. Every control on it is a [call control](circular-action.html#s-states) or a [button](button.html#s-states), and carries their states.
+
 ## When to use
 
 The call surface is the product's one dark surface and the only screen the platform, rather than the product, owns. It is not a second theme and not a dark mode: a call is a full-screen takeover that has to recede, the way CallKit, FaceTime, WhatsApp and Telegram all do whatever the app's theme is. `--bg-page` stays the ground on every other screen. It stands on five screens: `call`, `call-aerial` and `call-inspection` (the client calls the operator, from `tracking`), `call-client` (the operator calls the client, from `job-checklist`) and `call-support` (the support agent, from `contact-support`).

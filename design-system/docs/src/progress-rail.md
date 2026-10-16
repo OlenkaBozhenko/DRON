@@ -64,6 +64,10 @@ Pending, done, now: one 22px circle with a 2px border and a 12px glyph, 9 above 
 
 `--zone` adds a 12px block margin above and below when the rail stands under a zone label. Node 22, gap 9 and an 11 × 1.4 label make it 46.4 tall. Built on `tracking`, `tracking-aerial`, `tracking-inspection` and their `-empty` and `-error` states, nine files.
 
+## States
+
+No state of its own: the rail reports where the order is, and nothing in it takes focus. In the order card it stands inside the card's link, which carries the states: see [order card](order-card.html#s-states).
+
 ## When to use
 
 The rail answers the question the client asks most between payment and arrival: where is my order now. It closes the void RJ-C2 names, so it stands wherever a live order is shown: the active card on `order-history` and the Progress zone of `tracking`, its `-aerial` / `-inspection` variants and their empty and error states. `tracking-loading` draws no rail. One node component serves both places.

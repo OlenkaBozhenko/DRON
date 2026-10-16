@@ -73,6 +73,10 @@ A real `<fieldset>` around [checkboxes](checkbox-radio.html): one question, so t
 
 A `role="group"` holding a [row panel](row-panel.html) of typed [fields](field.html). The panel bleeds −16 either side, so its rows keep their own 16 and its separators run 16 / 16 from the card's edges. `account-edit`, where all five zones are built this way: *Personal details*, *Payment method*, *Language*, *Appearance* and *Notifications*.
 
+## States
+
+No state of its own: the card names a group and holds other components. Its choices take the [checkbox](checkbox-radio.html#s-states) states and its fields take the [field](field.html#s-states) states.
+
 ## When to use
 
 The titled zone card is the card a group of entered data opens with: every card in the product that holds data the user enters, sorted into categories. It stands on 10 files, 14 cards: the filters drawer on the four `listings` files (*Drone type*), `account-edit` (*Personal details* · *Payment method* · *Language* · *Appearance* · *Notifications*), `payment`, `payment-aerial` and `payment-inspection` (*Card*), `order-setup-inspection` (*Subject*) and `operator-profile-setup` (*Service specializations*). 13 of the 14 cards carry a subtitle; the one on `operator-profile-setup` has a title only and no `aria-describedby`. The title and subtitle are the card's own, inside its surface: a [zone label](section-heading.html) names a region of the screen and sits outside any surface.

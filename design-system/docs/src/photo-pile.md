@@ -43,6 +43,10 @@ kit: 2568
 
 The only shape, copied from `delivery-aerial`: the tilts are set on the first three children. Measured on the build at 375: frame 206.7 × 137.8, overlap 38.7 of 137.8 = 28.1%, block 341.4 × 352.1, horizontal overflow 0. This plate is narrower than the phone column, so its pixels differ; the proportions hold, being percentages.
 
+## States
+
+No state of its own: the photographs are read, and nothing in the pile takes focus.
+
 ## When to use
 
 Several photographs from one order, shown the way a phone shows several photographs: a loose pile, not a grid. One screen carries it, `delivery-aerial`, where the client's deliverable is a set rather than a single file. The alternating tilt is the whole trick: one shared angle reads as a skewed grid, opposed angles read as a pile somebody set down. No green anywhere near it; the pile is photographs and page ground.

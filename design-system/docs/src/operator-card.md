@@ -62,6 +62,10 @@ Both shapes are allowed (designer, rev 292). The full photo `.dr-op__photo` with
 
 On `contact-support` the leading element is the 60 × 20 DRON mark instead of a photo, placed on the right: text left, mark right, card 341 × 105.3. The chips are plain facts, so they keep the grey pair.
 
+## States
+
+No state of its own: the card is read, not pressed, and nothing in it takes focus. Its [credential chips](chip.html) are facts, not controls.
+
 ## When to use
 
 The operator card is the trust surface. It answers RJ-C1, the highest single drop-off in the CJM: confirm the operator is real and qualified, before any tap. It also closes RJ-C2, the void between payment and arrival, by putting the operator's name and photo on the confirmation screen instead of a generic *order received* state. It stands on 14 files: `order-confirmed` and its aerial, inspection and empty variants, `tracking` and its aerial, inspection, empty and error variants, and in its text-led form on `contact-support`.

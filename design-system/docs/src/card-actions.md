@@ -46,6 +46,10 @@ A single button fills the slot. On `wallet` each earning card closes on a second
 
 Two buttons share the row on the same rhythm, primary first. `operator-listings` uses it for *Accept* and *Decline* on its two incoming offers.
 
+## States
+
+No state of its own: the slot is a flex row with no ground. Its buttons take the [button](button.html#s-states) states.
+
 ## When to use
 
 The slot is where a card's own actions sit, so a card never lays out buttons ad hoc. It closes the card at its foot and holds one action or two on the same row and the same 8 gap. It stands on 7 cards on three screens: `order-history` (one card, *View details*), `operator-listings` (*Accept* · *Decline* on two offers, *Continue* on the job in progress) and `wallet` (three earning cards, *View details*). The buttons are links (`<a>`) on every one of them. The buttons in it are ordinary [buttons](button.html); the slot adds only the row and the stacking above the card's link.
