@@ -46,7 +46,8 @@
 .dsd-st--hover .dr-cal__day{background: var(--bg-well);}
 .dsd-st--focus .dr-cal__day{outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: calc(var(--len-2) * -1);}
-.dsd-st--hover .dr-cal__day:disabled{background: transparent;}
+.dsd-st--hover .dr-cal__day:disabled,
+.dsd-st--hover .dr-cal__day[aria-disabled="true"]{background: transparent;}
 .dsd-st--focus .dr-cal__unit{outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: var(--len-2);
   border-radius: var(--len-4);}
@@ -86,6 +87,10 @@
 .dsd-st--hover .dr-upload[role="button"]{background: var(--bg-muted);}
 .dsd-st--focus .dr-upload[role="button"]{outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: var(--len-2);}
+.dsd-st--hover .dr-upload[role="button"][aria-disabled="true"]{background: color-mix(in srgb, var(--bg-well) 40%, var(--bg-page));
+  color: color-mix(in srgb, var(--text-muted) 40%, var(--bg-page));
+  cursor: not-allowed;}
+.dsd-st--hover .dr-upload--card[role="button"][aria-disabled="true"]{background: color-mix(in srgb, var(--bg-surface) 40%, var(--bg-page));}
 .dsd-st--focus .dr-kb__done{outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: var(--len-2);}
 .dsd-st--hover .dr-lang button:not([aria-pressed="true"]){background: var(--bg-well);}

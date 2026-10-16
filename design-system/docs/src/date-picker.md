@@ -108,10 +108,10 @@ The second drawer, *Pick a time*, as it opens: *Now* chosen, and *At a set time*
 ## States
 
 ```html
-<div class="dr-cal" style="width:160px;max-width:100%"><table class="dr-cal__grid" role="grid" aria-label="Pick a date"><tbody><tr role="row"><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Wed 16 Sep 2026" tabindex="-1" disabled>16</button></td><td role="gridcell" aria-selected="true"><button class="dr-cal__day dr-cal__day--today" type="button" aria-label="Thu 17 Sep 2026, today" tabindex="0">17</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Fri 18 Sep 2026" tabindex="-1">18</button></td></tr></tbody></table></div>
+<div class="dr-cal" style="width:160px;max-width:100%"><table class="dr-cal__grid" role="grid" aria-label="Pick a date"><tbody><tr role="row"><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Wed 16 Sep 2026" tabindex="-1" disabled>16</button></td><td role="gridcell" aria-selected="true"><button class="dr-cal__day dr-cal__day--today" data-st-enabled type="button" aria-label="Thu 17 Sep 2026, today" tabindex="0">17</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Fri 18 Sep 2026" tabindex="-1">18</button></td></tr></tbody></table></div>
 ```
 
-Three day buttons from the *Day states* week above: a past day, today chosen, a later day.
+Three day buttons from the *Day states* week above: a past day, today chosen, a later day. In the Disabled cell the chosen day stays as it is, because a day you cannot pick is never the chosen one; the other two take the faded ink.
 
 ## When to use
 

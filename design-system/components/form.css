@@ -499,3 +499,67 @@
   color: var(--text-muted);
   cursor: not-allowed;
 }
+
+/* DISABLED (rev 304, the designer's call on the preview): the control's own
+   colours at 40% over the ground it stands on, painted solid, never an
+   opacity. Switch: only the switch fades, over the card it stands on, and its
+   label stays. Upload zone: aria-disabled, being a div with role=button.
+   Fields and search: the value, the placeholder and the label all fade. */
+.dr-field--toggle:has(input:disabled){
+  cursor: not-allowed;
+}
+.dr-field--toggle:has(input:disabled) .dr-switch{
+  background: color-mix(in srgb, var(--bg-muted) 40%, var(--bg-surface));
+}
+.dr-field--toggle:has(input:disabled) .dr-switch__knob{
+  background: var(--text-disabled);
+}
+.dr-field--toggle:has(input:disabled:checked) .dr-switch{
+  background: var(--bg-disabled-action);
+}
+.dr-field--toggle:has(input:disabled:checked) .dr-switch__knob{
+  background: var(--on-disabled-action);
+}
+
+.dr-upload[role="button"][aria-disabled="true"],
+.dr-upload[role="button"][aria-disabled="true"]:hover{
+  background: color-mix(in srgb, var(--bg-well) 40%, var(--bg-page));
+  color: color-mix(in srgb, var(--text-muted) 40%, var(--bg-page));
+  cursor: not-allowed;
+}
+.dr-upload--card[role="button"][aria-disabled="true"],
+.dr-upload--card[role="button"][aria-disabled="true"]:hover{
+  background: color-mix(in srgb, var(--bg-surface) 40%, var(--bg-page));
+}
+.dr-upload[role="button"][aria-disabled="true"] .dr-upload__action{
+  color: var(--text-disabled);
+}
+
+.dr-field__input:disabled{
+  color: var(--text-disabled);
+  -webkit-text-fill-color: var(--text-disabled);
+  cursor: not-allowed;
+}
+.dr-field__input:disabled::placeholder{
+  color: color-mix(in srgb, var(--text-muted) 40%, var(--bg-page));
+  -webkit-text-fill-color: color-mix(in srgb, var(--text-muted) 40%, var(--bg-page));
+}
+.dr-field:has(.dr-field__input:disabled) .dr-field__label{
+  color: color-mix(in srgb, var(--text-muted) 40%, var(--bg-page));
+}
+.dr-field--area .dr-field__input:disabled{
+  background: color-mix(in srgb, var(--bg-well) 40%, var(--bg-page));
+}
+.dr-search:has(input:disabled){
+  background: color-mix(in srgb, var(--bg-well) 40%, var(--bg-page));
+  color: color-mix(in srgb, var(--text-muted) 40%, var(--bg-page));
+}
+.dr-search input:disabled{
+  color: var(--text-disabled);
+  -webkit-text-fill-color: var(--text-disabled);
+  cursor: not-allowed;
+}
+.dr-search input:disabled::placeholder{
+  color: color-mix(in srgb, var(--text-muted) 40%, var(--bg-page));
+  -webkit-text-fill-color: color-mix(in srgb, var(--text-muted) 40%, var(--bg-page));
+}

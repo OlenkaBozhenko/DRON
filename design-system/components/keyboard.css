@@ -128,3 +128,11 @@
     transform: translateY(0);
   }
 }
+
+/* DISABLED (rev 304, the designer's call on the preview): the control's own
+   colours at 40% over the ground it stands on, painted solid, never an
+   opacity. Done, until what is typed can be done; the keys stay. */
+.dr-kb__done:disabled, .dr-kb__done[aria-disabled="true"]{
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}

@@ -209,8 +209,9 @@ def forced_css():
 
 
 def disable(markup):
-    """The disabled cell, written the way a screen writes it: disabled on a control, aria-disabled on a link."""
-    markup = re.sub(r'<(button|input|select|textarea)(?![^>]*\sdisabled)', r'<\1 disabled', markup)
+    """The disabled cell, written the way a screen writes it: disabled on a control, aria-disabled on a link.
+    A control marked data-st-enabled stays enabled: a calendar's chosen day is never one you cannot pick."""
+    markup = re.sub(r'<(button|input|select|textarea)(?![^>]*\s(?:disabled|data-st-enabled))', r'<\1 disabled', markup)
     return re.sub(r'<a (?![^>]*aria-disabled)', '<a aria-disabled="true" ', markup)
 
 

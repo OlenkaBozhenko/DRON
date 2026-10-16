@@ -834,6 +834,17 @@ gives it the corner. It never restates the parent's radius.
   (2.59:1), #2F2F2F under #727270 (2.78:1). WCAG 1.4.3 and 1.4.11 exempt an inactive control, so
   these pass by exemption and are recorded, not hidden. Read by `.dr-btn:disabled,
   .dr-btn[aria-disabled="true"]` and its `--primary` pair.
+- **Disabled beyond the button (rev 304, the designer's calls on a preview).** The same recipe — the
+  control's own colours at 40% over its ground, solid — reaches ten more controls, and only where a
+  screen can really be unavailable: a **field**, the **card number**, the **text area** and **search** (value,
+  placeholder and label fade); a **switch** (only the switch, over the card it stands on; its label stays);
+  a **date** you cannot pick (`--text-disabled`, lighter than an open day, never the chosen day, so no green
+  version — it was `--slate` and barely differed); an **upload zone** (`aria-disabled`); the keyboard's
+  **Done**; a **card** whose link is unavailable (its live status is absent, not faded); an applied **filter
+  chip** (only its remove mark). **No disabled state, on purpose:** picker and disclosure rows, choice
+  cards, the alerts log, in-page tabs, the language switch, the notification bell (HIG lets a bar item dim,
+  but the list always opens, empty or not), the price range, the profile photo and the stars — each is
+  always available, and an empty result is an empty state. Ratios 2.0–3.6:1, exempt under `WCAG 1.4.3`.
 - **Focus:** `2.5px solid var(--ink)`, `outline-offset:2px`.
 
 ### Toast

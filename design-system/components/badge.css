@@ -201,3 +201,12 @@
     box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-action) 0%, transparent);
   }
 }
+
+/* DISABLED (rev 304, the designer's call on the preview): the control's own
+   colours at 40% over the ground it stands on, painted solid, never an
+   opacity. An applied filter chip keeps its label; only its remove mark fades. */
+.dr-fchip__x:disabled, .dr-fchip__x[aria-disabled="true"],
+.dr-fchip:disabled .dr-fchip__x, .dr-fchip[aria-disabled="true"] .dr-fchip__x{
+  background: var(--bg-disabled-action);
+  color: var(--on-disabled-action);
+}

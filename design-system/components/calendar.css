@@ -55,8 +55,8 @@
   width: var(--len-20);
   height: var(--len-20);
 }
-.dr-cal__nav:disabled{
-  color: var(--text-muted);
+.dr-cal__nav:disabled, .dr-cal__nav[aria-disabled="true"]{
+  color: var(--text-disabled);
   cursor: not-allowed;
 }
 .dr-cal__grid{
@@ -106,11 +106,14 @@
   background: var(--color-action);
   color: var(--on-action);
 }
-.dr-cal__day:disabled{
-  color: var(--text-muted);
+/* rev 304, the designer: a day you cannot pick is lighter than one you can,
+   and it is never the chosen day, so it has no green version. It was
+   --text-muted, which barely differed from an open day. */
+.dr-cal__day:disabled, .dr-cal__day[aria-disabled="true"]{
+  color: var(--text-disabled);
   cursor: not-allowed;
 }
-.dr-cal__day:disabled:hover{
+.dr-cal__day:disabled:hover, .dr-cal__day[aria-disabled="true"]:hover{
   background: transparent;
 }
 .dr-cal__day--today::after{
