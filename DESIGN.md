@@ -339,7 +339,7 @@ hang-up disc, `--r-input` on the text area, the search field, the range values a
 ### Neutral — ink
 
 - **`--ink`** (`#1A1A1A`) — titles, values, card names, button labels, every icon glyph, and the
-  focus ring.
+  focus ring. A text field's ring is `--slate` (rev 297).
 - **`--slate`** (`#5A5751`) — labels, dates, keys, body copy, unselected tabs, pending milestones.
 
 ### Semantic
@@ -390,6 +390,7 @@ Every pair carried on a product surface, verified in the browser.
 | Foreground | Ground | Ratio | Where |
 |---|---|---|---|
 | `--ink` | `--page` | 15.99:1 | nav-bar title, focus ring |
+| `--slate` | `--card` | 5.95:1 | focus ring on a text field row (rev 297); 6.62:1 on the page for a text area and search |
 | `--ink` | `--inset` | 15.29:1 | route place names |
 | `--ink` | `--green-wash` | 14.75:1 | selected bottom tab, verified badge, milestone marks, the count badge on an in-page tab (rev 269) |
 | `--ink` | `--card` | 14.37:1 | card titles, values |
@@ -1195,11 +1196,24 @@ measures **159 × 341.4** on all three. **The row is not the same number, becaus
 the last block and `main`'s bottom inset is **165.3 / 210.6 / 87.8px** on the 375 × 812 frame. Only
 `rate` sits outside, on `--half`, which is taller still.
 
-**A text field shows no focus ring.** `WCAG 2.4.7`'s Understanding names the text cursor in a text
-field as a visible focus indicator, so on a field with a caret the caret carries the criterion and
-the outline is redundant. `caret-color` is therefore **declared** rather than inherited — `--ink`,
-**13.33:1** on the area's ground. **This does not generalise:** the rule is keyed to
-`.dr-field__input`, and every control without a caret keeps its 2.5px ring, having nothing else.
+**A text field takes a grey focus ring (rev 297, the designer's call).** Until rev 296 a text field
+had no ring and the caret alone carried `WCAG 2.4.7`; the docs' States grid showed that a focused
+field and a resting one looked the same apart from a blinking line. Shown three colours side by
+side (`_compare-focus.html`): one tone darker than the card, `--slate`, and `--ink` as on buttons,
+she chose `--slate`. One tone darker measured **1.25:1** light / **1.97:1** dark and fails the 3:1 a
+focus indicator needs under `WCAG 1.4.11`; `--slate` measures **5.95:1** on the card, **6.62:1** on
+the page, **9.0:1** on the dark card and **11.54:1** on the dark page. The ring is **2.5px**, the
+same weight as every other ring; only its colour is softer, because a field already shows its
+caret. Where it sits:
+- **A field row** (`.dr-field` holding a focused `.dr-field__input`): inside the row,
+  `outline-offset:-2px`, the way `.dr-field--action` already draws its ring, with the row taking the
+  card's radius so the ring follows the card's corners. The ring is on the row and not the card,
+  because one card holds up to five fields (`payment`'s card form) and the ring must say which.
+- **A text area** (`.dr-field--area`): around the area's own box, `outline-offset:2px`, radius 10.
+- **Search** (`.dr-search`): around the box, `outline-offset:2px`, radius 10.
+
+`caret-color` stays **declared** `--ink`, **13.33:1** on the area's ground. Every control without a
+caret keeps the `--ink` ring.
 
 ### Selection controls (checkbox &amp; radio)
 

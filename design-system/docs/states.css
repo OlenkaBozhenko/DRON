@@ -65,8 +65,15 @@
 .dsd-st--focus .dr-picker__item{outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: calc(var(--len-2) * -1);}
 .dsd-st--focus .dr-field__input{outline: none;}
+.dsd-st--focus .dr-field:not(.dr-field--area):has(.dr-field__input){outline: var(--len-2-5) solid var(--text-muted);
+  outline-offset: calc(var(--len-2) * -1);
+  border-radius: inherit;}
+.dsd-st--focus .dr-field--area .dr-field__input{outline: var(--len-2-5) solid var(--text-muted);
+  outline-offset: var(--len-2);}
 .dsd-st--focus .dr-field--action{outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: calc(var(--len-2) * -1);}
+.dsd-st--focus .dr-search:has(input){outline: var(--len-2-5) solid var(--text-muted);
+  outline-offset: var(--len-2);}
 .dsd-st--focus .dr-pick input + .dr-box,
 .dsd-st--focus .dr-pick:has(input) .dr-box{outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: var(--len-2);}
