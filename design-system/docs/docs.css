@@ -221,12 +221,29 @@ code { font-family: var(--font-mono); font-size: var(--type-meta-size); }
 }
 
 /* -- the burger: on a phone the top links and the sidebar are one drawer ------ */
-.dsd-burger, .dsd-side__top, .dsd-scrim, .dsd-side__theme { display: none; }
+.dsd-burger, .dsd-side__top, .dsd-scrim, .dsd-side__theme, .dsd-themeicon, .dsd-side__back, .dsd-ov-search { display: none; }
 @media (max-width: 900px) {
   .dsd-nav { display: none; }
   .dsd-top { flex-wrap: nowrap; }
   .dsd-top > .dsd-theme { display: none; }
-  .dsd-burger { margin-left: auto; }
+  .dsd-themeicon {
+    display: inline-flex; align-items: center; justify-content: center; margin-left: auto;
+    width: var(--len-44); height: var(--len-44); border: 0; border-radius: var(--len-12);
+    background: transparent; color: var(--text-primary); cursor: pointer;
+  }
+  .dsd-themeicon svg { width: var(--len-24); height: var(--len-24); }
+  .dsd-themeicon__sun { display: none; }
+  html[data-theme="dark"] .dsd-themeicon__sun { display: block; }
+  html[data-theme="dark"] .dsd-themeicon__moon { display: none; }
+  .dsd-themeicon:focus-visible { outline: var(--len-2-5) solid var(--text-primary); outline-offset: var(--len-2); }
+  .dsd-side .dsd-side__filter, .dsd-side .dsd-side__none { display: none; }
+  .dsd-side__back { display: block; margin: 0 0 var(--len-8); padding: 0 0 var(--len-8); border-bottom: var(--len-1) solid var(--border-hairline); }
+  .dsd-side__back a { display: block; padding: var(--len-10) var(--len-8); color: var(--text-primary); text-decoration: none; }
+  .dsd-ov-search { display: block; margin: var(--len-24) 0 0; }
+  .dsd-ov-results { list-style: none; margin: var(--len-8) 0 0; padding: 0; }
+  .dsd-ov-results a { display: block; padding: var(--len-10) var(--len-8); border-bottom: var(--len-1) solid var(--border-hairline); color: var(--text-primary); text-decoration: none; }
+  .dsd-ov-results small { display: block; color: var(--text-muted); font-size: var(--type-caption-size); }
+  .dsd-ov-none { color: var(--text-muted); margin: var(--len-8) 0 0; }
   .dsd-side__theme { display: inline-flex; margin: 0 0 var(--len-12); }
   .dsd-burger {
     display: inline-flex; align-items: center; justify-content: center; order: 3;

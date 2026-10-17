@@ -290,6 +290,7 @@ def topbar(current):
                   for h, t in links)
     return '''<header class="dsd-top">
   <a class="dsd-brand" href="../../research.html">DRON</a>
+  <button class="dsd-themeicon" type="button" aria-label="Switch to dark theme" data-theme-toggle><svg class="dsd-themeicon__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg><svg class="dsd-themeicon__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></svg></button>
   <button class="dsd-burger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="dsd-side" data-burger>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   <nav class="dsd-nav" aria-label="Design system">%s</nav>
@@ -564,6 +565,13 @@ def overview_page(pages, patterns, errors):
             + topbar('overview.html') +
             '''<main id="main" class="dsd-main dsd-home__main">
     <header class="dsd-hero">%s</header>
+    <div class="dsd-ov-search" role="search">
+      <label class="dsd-side__filter"><span class="sr-only">Search the design system</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+        <input type="search" placeholder="Search" autocomplete="off" data-filter-page aria-controls="dsd-ov-results"></label>
+      <ul class="dsd-ov-results" id="dsd-ov-results" role="list" hidden></ul>
+      <p class="dsd-ov-none" hidden>Nothing matches.</p>
+    </div>
     %s
   </main>
 ''' % (hero, ''.join(content)) + FOOT)
@@ -600,15 +608,10 @@ def side_html(current):
                          ' aria-current="page"' if h == current else '', inline(t)) for t, h in items)
         out.append('<details class="dsd-side__grp"%s><summary>%s</summary><ul role="list">%s</ul></details>'
                    % (' open' if open_ else '', html.escape(name), lis))
-    # on a phone the sidebar is the burger's drawer, so it carries the top bar's links too
-    top = [('Overview', 'overview.html'), ('Components', 'index.html'), ('Patterns', 'patterns.html'),
-           ('Tone of voice', 'voice.html'), ('Tokens', 'tokens.html'), ('Why it looks like this', 'why.html'),
-           ('UI kit', '../../ui/kit.html'), ('Back to DRON', '../../research.html')]
-    pages = '<ul class="dsd-side__top" role="list">%s</ul>' % ''.join(
-        '<li><a href="%s"%s>%s</a></li>' % (h, ' aria-current="page"' if h == current else '', t) for t, h in top)
-    theme = ('<div class="dsd-theme dsd-side__theme" role="group" aria-label="Theme">'
-             '<button type="button" data-theme-btn="light" aria-pressed="true">Light</button>'
-             '<button type="button" data-theme-btn="dark" aria-pressed="false">Dark</button></div>')
+    # on a phone the sidebar is the burger's drawer; the groups below already reach every
+    # page, so the drawer adds only the way back to the project (rev 315)
+    pages = '<p class="dsd-side__back"><a href="../../research.html">Back to DRON</a></p>'
+    theme = ''
     return '''<nav class="dsd-side" id="dsd-side" aria-label="Design system sections">
     ''' + pages + theme + '''
     <label class="dsd-side__filter"><span class="sr-only">Filter</span>

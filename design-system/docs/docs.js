@@ -16,6 +16,8 @@
     document.querySelectorAll('[data-theme-btn]').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.getAttribute('data-theme-btn') === t));
     });
+    var ti = document.querySelector('[data-theme-toggle]');
+    if (ti) ti.setAttribute('aria-label', t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
     try { localStorage.setItem('dsd-theme', t); } catch (e) {}
     requestAnimationFrame(function () { pinAll(); resolveTokens(); });
   }
@@ -60,6 +62,8 @@
     document.querySelectorAll('[data-theme-btn]').forEach(function (b) {
       b.addEventListener('click', function () { setTheme(b.getAttribute('data-theme-btn')); });
     });
+    var ti = document.querySelector('[data-theme-toggle]');
+    if (ti) ti.addEventListener('click', function () { setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); });
     var t = 'light';
     try { t = localStorage.getItem('dsd-theme') || 'light'; } catch (e) {}
     setTheme(t);
@@ -164,6 +168,36 @@
         if (hit) any = true;
       });
       none.hidden = any;
+    });
+    // The overview's own search (phone): the same matching, the hits listed in the
+    // page under the field, each with the group it belongs to; nothing typed, no list.
+    var page = document.querySelector('[data-filter-page]');
+    if (!page) return;
+    var list = document.getElementById('dsd-ov-results'), nope = document.querySelector('.dsd-ov-none');
+    page.addEventListener('input', function () {
+      var qs = words(page.value.trim()).map(stem);
+      list.innerHTML = '';
+      if (!qs.length) { list.hidden = true; nope.hidden = true; return; }
+      var hits = [];
+      groups.forEach(function (g) {
+        var name = g.querySelector('summary').textContent;
+        g.querySelectorAll('li').forEach(function (li) {
+          if (!matches(li, qs)) return;
+          var rank = words(li.textContent).some(function (w) { return qs.some(function (q) { return w.indexOf(q) === 0; }); }) ? 0 : 1;
+          hits.push({ rank: rank, a: li.querySelector('a'), group: name });
+        });
+      });
+      hits.sort(function (a, b) { return a.rank - b.rank; }).slice(0, 12).forEach(function (h) {
+        var li = document.createElement('li'), a = document.createElement('a'), sm = document.createElement('small');
+        a.href = h.a.getAttribute('href');
+        a.textContent = h.a.textContent;
+        sm.textContent = h.group;
+        a.appendChild(sm);
+        li.appendChild(a);
+        list.appendChild(li);
+      });
+      list.hidden = !hits.length;
+      nope.hidden = !!hits.length;
     });
   }
   window.addEventListener('load', pinAll);
