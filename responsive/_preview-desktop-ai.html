@@ -63,10 +63,15 @@
   .x-op small { display:block; color: var(--text-muted); font-size: var(--type-caption-size); }
   .x-card .dr-rail { margin:14px 0 4px; }
   .x-agent { position:absolute; left:50%; top:47%; transform:translate(-50%,-50%); width:620px; z-index:2; text-align:center; }
-  .x-orb { width:84px; height:84px; margin:0 auto 18px; border-radius:50%;
-           background: radial-gradient(circle at 35% 30%, #E7F0D2 0%, #9BCF4A 38%, #3E5A1C 72%, #1A1A1A 100%);
-           box-shadow: 0 0 60px 10px color-mix(in srgb, var(--color-action) 35%, transparent); display:grid; place-items:center; color:#1A1A1A; }
-  .x-orb .dr-brand { width:54px; height:20px; background:#1A1A1A; }
+  /* the assistant's mark: the white DRON quadcopter inside rings of green light (generated in Figma,
+     black dropped by the screen blend), turning slowly; still under reduced motion */
+  .x-orb { position:relative; width:180px; height:180px; margin:-34px auto -6px; display:grid; place-items:center; }
+  .x-orb > i { position:absolute; inset:0; border-radius:50%;
+               background: url(preview-art/agent-glow.png) center/cover; opacity:.95;
+               animation: x-spin 24s linear infinite; }
+  @keyframes x-spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .x-orb > i { animation:none; } }
+  .x-orb .dr-brand { position:relative; width:62px; height:23px; background:#F7F5F2; filter: drop-shadow(0 0 10px rgba(247,245,242,.5)); }
   .x-talk .x-orb .dr-brand { width:26px; height:10px; }
   .x-agent h1 { margin:0; font-size:34px; line-height:1.2; font-weight:600; letter-spacing:-.02em; }
   .x-agent p { margin:10px 0 22px; color: var(--text-muted); font-size: var(--type-heading-size); }
@@ -87,7 +92,9 @@
   .x-route svg { width:18px; height:18px; color: var(--text-muted); }
   .x-modal .dr-offers { margin-bottom:16px; }
   .x-talk { color: var(--text-primary); text-decoration:none; display:none; position:absolute; left:50%; bottom:28px; transform:translateX(-50%); z-index:4; align-items:center; gap:10px; padding:8px 20px 8px 8px; border-radius:999px; font-size: var(--type-body-size); }
-  .x-talk .x-orb { width:38px; height:38px; margin:0; box-shadow: 0 0 24px 4px color-mix(in srgb, var(--color-action) 35%, transparent); }
+  .x-talk .x-orb { width:40px; height:40px; margin:0; }
+  .x-talk .x-orb > i { inset:-6px; }
+  .x-talk .x-orb .dr-brand { width:22px; height:8px; }
   .x-talk .x-orb svg { width:18px; height:18px; }
   .x-dim { display:none; position:absolute; inset:0; background: rgba(10,10,10,.45); z-index:3; }
   .is-order .x-modal, .is-order .x-dim { display:block; }
@@ -111,7 +118,7 @@
   <div class="x dr" id="x">
     <div class="x-map" role="img" aria-label="Live map of Kyiv, drones in the air"></div>
     <div class="x-veil"></div>
-    <i class="x-dot" style="left:31%;top:34%"></i><i class="x-dot" style="left:44%;top:58%"></i><i class="x-dot" style="left:63%;top:30%"></i><i class="x-dot" style="left:70%;top:66%"></i><i class="x-dot" style="left:52%;top:22%"></i><i class="x-dot" style="left:38%;top:76%"></i><i class="x-dot" style="left:78%;top:44%"></i><i class="x-dot" style="left:24%;top:60%"></i><i class="x-dot" style="left:58%;top:48%"></i>
+    <i class="x-dot" style="left:31%;top:34%"></i><i class="x-dot" style="left:44%;top:58%"></i><i class="x-dot" style="left:63%;top:30%"></i><i class="x-dot" style="left:70%;top:66%"></i><i class="x-dot" style="left:60%;top:82%"></i><i class="x-dot" style="left:38%;top:76%"></i><i class="x-dot" style="left:78%;top:44%"></i><i class="x-dot" style="left:24%;top:60%"></i><i class="x-dot" style="left:58%;top:48%"></i>
 
     <header class="x-top">
       <span class="x-logo"><span class="dr-brand" role="img" aria-label="DRON"></span></span>
@@ -155,7 +162,7 @@
     </aside>
 
     <section class="x-agent" aria-label="DRON assistant">
-      <div class="x-orb"><span class="dr-brand" role="img" aria-label="DRON"></span></div>
+      <div class="x-orb"><i aria-hidden="true"></i><span class="dr-brand" role="img" aria-label="DRON"></span></div>
       <h1>Good evening, Olena.<br>What do you need done today?</h1>
       <p>Tell me in your own words — I will find the drone, the operator and the price.</p>
       <div class="x-ask glass"><span>Send documents from Podil to Osokorky…</span><span class="x-circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></div>
@@ -197,7 +204,7 @@
         </fieldset>
       <a class="dr-btn dr-btn--primary dr-btn--block" href="#">Order · ₴180</a>
     </section>
-    <a class="x-talk glass" href="#" data-close><span class="x-orb"><span class="dr-brand" role="img" aria-label="DRON"></span></span>Talk to AI</a>
+    <a class="x-talk glass" href="#" data-close><span class="x-orb"><i aria-hidden="true"></i><span class="dr-brand" role="img" aria-label="DRON"></span></span>Talk to AI</a>
   </div>
 </div>
 <script>
