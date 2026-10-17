@@ -60,6 +60,17 @@ inventive: *«замість глобуса карта на весь бекгр�
 - **Folded, the assistant is a Talk to AI button with a ring of green light turning round it**; still
   under reduced motion (`WCAG 2.3.3`).
 
+- **After the order, the green drone flies the route on the map** (the designer, 2026-10-18, *for the
+  future desktop rebuild*): a dotted green route from pickup to drop-off, the agent's drone moving along
+  it, a *Live* line under the header (operator · arrives at), *Talk to AI* at the bottom (`?flying`).
+- **When the order is done, a window opens in the centre** with the outcome, the delivery photos, the
+  record (from · to · operator · paid) and *Rate the order* / *Done* (`?done`). It is the phone's
+  *Delivery confirmation*, laid out once for the wide screen.
+- **The theme switches in the header** with a sun / moon button beside search and the bell (`?light`).
+  The light build takes a light quiet map, the greeting in the main dark, and the flying drone in the
+  main dark with a green glow — green on the light map would be ~1.6:1, under `WCAG 1.4.11`'s 3:1; green
+  stays a fill, as on the phone.
+
 **Not in the system yet, so a preview:** the glass panels and their blur, the glow, the assistant and
 its voice, the dark map and the white drone renders (`responsive/preview-art/`, generated in Figma).
 Each goes into `design-system/` first if kept.
