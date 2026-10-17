@@ -19,8 +19,7 @@
   .mac__dots { display:flex; gap:8px; } .mac__dots i { width:12px; height:12px; border-radius:50%; display:block; }
   .mac__url { margin:0 auto; width:420px; height:26px; border-radius:8px; background:#262626; color:#A9A6A0; display:grid; place-items:center; font-size:12px; }
   .x { position:relative; flex:1; min-height:0; color: var(--text-primary); }
-  .x-map { position:absolute; inset:0; background: url(../assets/map/live-map.jpg) center/cover;
-           filter: invert(1) hue-rotate(180deg) brightness(.9) contrast(1.05) saturate(.6); }
+  .x-map { position:absolute; inset:0; background: url(preview-art/map-dark.jpg) center/cover; }
   .x-veil { position:absolute; inset:0; background: radial-gradient(70% 65% at 50% 48%, rgba(18,18,18,.15) 0%, rgba(18,18,18,.45) 70%, rgba(18,18,18,.8) 100%); }
   .x-dot { position:absolute; width:10px; height:10px; border-radius:50%; background: var(--color-action);
            box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-action) 22%, transparent), 0 0 24px 6px color-mix(in srgb, var(--color-action) 45%, transparent); }
@@ -67,7 +66,8 @@
   .x-orb { width:84px; height:84px; margin:0 auto 18px; border-radius:50%;
            background: radial-gradient(circle at 35% 30%, #E7F0D2 0%, #9BCF4A 38%, #3E5A1C 72%, #1A1A1A 100%);
            box-shadow: 0 0 60px 10px color-mix(in srgb, var(--color-action) 35%, transparent); display:grid; place-items:center; color:#1A1A1A; }
-  .x-orb svg { width:34px; height:34px; }
+  .x-orb .dr-brand { width:54px; height:20px; background:#1A1A1A; }
+  .x-talk .x-orb .dr-brand { width:26px; height:10px; }
   .x-agent h1 { margin:0; font-size:34px; line-height:1.2; font-weight:600; letter-spacing:-.02em; }
   .x-agent p { margin:10px 0 22px; color: var(--text-muted); font-size: var(--type-heading-size); }
   .x-ask { display:flex; align-items:center; gap:10px; padding:8px 8px 8px 22px; border-radius:999px; text-align:left; }
@@ -75,7 +75,7 @@
   .x-ask .x-circ { width:44px; height:44px; background: var(--text-primary); color: var(--bg-page); }
   .x-svcs { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:14px; }
   .x-svc { display:flex; flex-direction:column; align-items:flex-start; gap:2px; padding:14px; text-decoration:none; color: var(--text-primary); text-align:left; }
-  .x-svc img { width:96px; height:64px; object-fit:contain; margin:-4px 0 6px -6px; }
+  .x-svc img { width:100%; height:96px; object-fit:contain; margin:0 0 8px; filter: drop-shadow(0 10px 18px rgba(0,0,0,.45)); }
   .x-svc b { font-size: var(--type-heading-size); font-weight: var(--type-weight-medium); }
   .x-svc span { color: var(--text-muted); font-size: var(--type-caption-size); }
   /* state B: the order window */
@@ -93,6 +93,7 @@
   .is-order .x-modal, .is-order .x-dim { display:block; }
   .is-order .x-talk { display:flex; }
   .is-order .x-agent { display:none; }
+  .is-order .x-order { background: color-mix(in srgb, var(--text-primary) 12%, transparent); color: var(--text-primary); box-shadow:none; }
 </style>
 </head>
 <body>
@@ -107,7 +108,7 @@
       <span class="x-logo glass"><span class="dr-brand" role="img" aria-label="DRON"></span></span>
       <nav class="x-nav glass" aria-label="Primary"><a class="on" href="#">Overview</a><a href="#">Activity</a><a href="#">Help</a><a href="#">Account</a></nav>
       <div class="x-top__end">
-        <a class="dr-btn dr-btn--primary x-order" href="#">Order</a>
+        <a class="dr-btn dr-btn--primary x-order" href="#" data-open>Order</a>
         <span class="x-circ glass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></span>
         <span class="x-circ glass"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4a5.9 5.9 0 0 0-5.9 5.9c0 4.1-1.5 5.3-1.5 5.3h14.8s-1.5-1.2-1.5-5.3A5.9 5.9 0 0 0 12 3.4Z"/><path d="M10.1 18a2.1 2.1 0 0 0 3.8 0"/></svg></span>
         <span class="x-me glass"><img src="../assets/people/thumbs/person-client-olena.png" alt=""><span>Olena B.<small>Kyiv · Podil</small></span></span>
@@ -145,14 +146,14 @@
     </aside>
 
     <section class="x-agent" aria-label="DRON assistant">
-      <div class="x-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l1.8 5.2 5.2 1.8-5.2 1.8L12 17.5l-1.8-5.2L5 10.5l5.2-1.8z"/><path d="M18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg></div>
+      <div class="x-orb"><span class="dr-brand" role="img" aria-label="DRON"></span></div>
       <h1>Good evening, Olena.<br>What do you need done today?</h1>
       <p>Tell me in your own words — I will find the drone, the operator and the price.</p>
       <div class="x-ask glass"><span>Send documents from Podil to Osokorky…</span><span class="x-circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></div>
-      <div class="x-svcs"><a class="x-svc glass" href="#"><img src="../assets/drones/thumbs/drone-02-dark.png" alt=""><b>Package delivery</b><span>from ₴180 · arrives in 6 min</span></a><a class="x-svc glass" href="#"><img src="../assets/drones/thumbs/drone-flight-camera-dark.png" alt=""><b>Photo &amp; video</b><span>from ₴640 · today 14:00</span></a><a class="x-svc glass" href="#"><img src="../assets/drones/thumbs/drone-08-dark.png" alt=""><b>Inspection</b><span>from ₴330 · report the same day</span></a></div>
+      <div class="x-svcs"><a class="x-svc glass" href="#" data-open><img src="preview-art/drone-delivery.png" alt=""><b>Package delivery</b><span>from ₴180 · arrives in 6 min</span></a><a class="x-svc glass" href="#" data-open><img src="preview-art/drone-photo.png" alt=""><b>Photo &amp; video</b><span>from ₴640 · today 14:00</span></a><a class="x-svc glass" href="#" data-open><img src="preview-art/drone-inspection.png" alt=""><b>Inspection</b><span>from ₴330 · report the same day</span></a></div>
     </section>
 
-    <div class="x-dim"></div>
+    <div class="x-dim" data-close></div>
     <section class="x-modal glass" aria-label="New order">
       <h2>Package delivery</h2><p>Arrives in 6 min · the price is locked when you pay</p>
       <div class="x-route"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg> Podil — Naberezhno-Khreshchatytska St, 21</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg> Osokorky — Dniprovska Naberezhna, 14</span></div>
@@ -187,9 +188,18 @@
         </fieldset>
       <a class="dr-btn dr-btn--primary dr-btn--block" href="#">Order · ₴180</a>
     </section>
-    <a class="x-talk glass" href="#"><span class="x-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l1.8 5.2 5.2 1.8-5.2 1.8L12 17.5l-1.8-5.2L5 10.5l5.2-1.8z"/><path d="M18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg></span>Talk to AI</a>
+    <a class="x-talk glass" href="#" data-close><span class="x-orb"><span class="dr-brand" role="img" aria-label="DRON"></span></span>Talk to AI</a>
   </div>
 </div>
-<script>if (location.search.indexOf('order') > -1) document.getElementById('x').classList.add('is-order');</script>
+<script>
+  var x = document.getElementById('x');
+  function set(o) { x.classList.toggle('is-order', o); }
+  if (location.search.indexOf('order') > -1) set(true);
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-open]')) { e.preventDefault(); set(true); }
+    else if (e.target.closest('[data-close]')) { e.preventDefault(); set(false); }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+</script>
 </body>
 </html>
