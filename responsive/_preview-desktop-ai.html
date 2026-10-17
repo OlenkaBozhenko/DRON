@@ -27,7 +27,7 @@
            border:1px solid color-mix(in srgb, var(--text-primary) 10%, transparent); border-radius:22px; }
   .x-top { position:absolute; top:18px; left:24px; right:24px; display:flex; align-items:center; gap:14px; z-index:3; }
   .x-logo { width:52px; height:52px; display:grid; place-items:center; }
-  .x-logo .dr-brand { width:44px; }
+  .x-logo { width:auto; padding:0 6px; } .x-logo .dr-brand { width:66px; height:24px; }
   .x-nav { display:flex; gap:4px; padding:5px; border-radius:999px; }
   .x-nav a { padding:10px 18px; border-radius:999px; color: var(--text-muted); text-decoration:none; font-size: var(--type-body-size); }
   .x-nav a.on { background: color-mix(in srgb, var(--text-primary) 12%, transparent); color: var(--text-primary); }
@@ -93,6 +93,15 @@
   .is-order .x-modal, .is-order .x-dim { display:block; }
   .is-order .x-talk { display:flex; }
   .is-order .x-agent { display:none; }
+  .is-tablet .mac { width:1180px; height:820px; border-radius:36px; border:14px solid #0B0B0B; }
+  .is-tablet .mac__bar { display:none; }
+  .is-tablet .x-left, .is-tablet .x-right { width:236px; top:88px; }
+  .is-tablet .x-stat b { font-size:22px; } .is-tablet .x-stat__ic { width:44px; height:44px; }
+  .is-tablet .x-agent { width:500px; } .is-tablet .x-agent h1 { font-size:28px; }
+  .is-tablet .x-svc img { height:72px; } .is-tablet .x-nav a { padding:9px 13px; }
+  .is-tablet .x-me span { display:none; } .is-tablet .x-me { padding:5px; }
+  .is-tablet .x-modal { width:520px; }
+  .is-tablet .x-card:nth-child(3) { display:none; }
   .is-order .x-order { background: color-mix(in srgb, var(--text-primary) 12%, transparent); color: var(--text-primary); box-shadow:none; }
 </style>
 </head>
@@ -105,7 +114,7 @@
     <i class="x-dot" style="left:31%;top:34%"></i><i class="x-dot" style="left:44%;top:58%"></i><i class="x-dot" style="left:63%;top:30%"></i><i class="x-dot" style="left:70%;top:66%"></i><i class="x-dot" style="left:52%;top:22%"></i><i class="x-dot" style="left:38%;top:76%"></i><i class="x-dot" style="left:78%;top:44%"></i><i class="x-dot" style="left:24%;top:60%"></i><i class="x-dot" style="left:58%;top:48%"></i>
 
     <header class="x-top">
-      <span class="x-logo glass"><span class="dr-brand" role="img" aria-label="DRON"></span></span>
+      <span class="x-logo"><span class="dr-brand" role="img" aria-label="DRON"></span></span>
       <nav class="x-nav glass" aria-label="Primary"><a class="on" href="#">Overview</a><a href="#">Activity</a><a href="#">Help</a><a href="#">Account</a></nav>
       <div class="x-top__end">
         <a class="dr-btn dr-btn--primary x-order" href="#" data-open>Order</a>
@@ -195,6 +204,7 @@
   var x = document.getElementById('x');
   function set(o) { x.classList.toggle('is-order', o); }
   if (location.search.indexOf('order') > -1) set(true);
+  if (location.search.indexOf('tablet') > -1) document.body.classList.add('is-tablet');
   document.addEventListener('click', function (e) {
     if (e.target.closest('[data-open]')) { e.preventDefault(); set(true); }
     else if (e.target.closest('[data-close]')) { e.preventDefault(); set(false); }

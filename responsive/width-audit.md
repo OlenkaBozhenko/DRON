@@ -26,6 +26,33 @@ references: a business dashboard with a left navigation and a wide work area; a 
 with the order summary held on the right; listings beside a large map with prices on it; a filter
 column beside a list beside a map.
 
+### The designer's direction, 2026-10-18 — the map as the ground, an assistant in the centre
+
+Shown a first desktop preview (sidebar, options beside a map), the designer asked for something more
+inventive: *«замість глобуса карта на весь бекграунд, зліва і справа панелі керування та статистика… сайд бар
+можна перенести у верхній хедер та добавити кнопку замовити… по центру над картою AI агент, який вітає клієнта і
+питає, яку послугу ти хочеш замовити, під полем введення три картки послуги»*, and then: *«для планшета теж буде
+таке вю як для десктопа»*. Drawn in `responsive/_preview-desktop-ai.html` (`?order` for the order window,
+`?tablet` for the iPad), images `desktop-ai-*.png` and `tablet-ai-*.png`:
+
+- **The navigation is a header**, not a sidebar: the DRON mark, Overview · Activity · Help · Account,
+  then **Order**, search, the bell and the account.
+- **The live map is the whole ground**, with drones in the air marked on it.
+- **Left panels — what is happening:** drones in the air now, the average delivery price, the average
+  arrival, deliveries by hour. **Right panels — your orders:** the live order with its rail and operator,
+  drones free per service, your month.
+- **The assistant in the centre** greets the client by name, asks what needs doing, takes it in their
+  own words, and offers three service cards under the field.
+- **Order** (or a service card) opens the order window in the centre; the assistant folds into a
+  **Talk to AI** button at the bottom; the header's *Order* steps back so one green control remains.
+- **Tablet takes the same view** (the designer's call), the panels narrower. This supersedes the
+  sidebar rows of the shell table below for both tablet and desktop; the per-screen rows stand for
+  the screens behind *Activity*, *Help* and *Account*.
+
+**Not in the system yet, so a preview:** the glass panels and their blur, the glow, the assistant and
+its voice, the dark map and the white drone renders (`responsive/preview-art/`, generated in Figma).
+Each goes into `design-system/` first if kept.
+
 ### The shell this table assumes
 
 | | Phone (< 768) | Tablet (768–1279) | Desktop (≥ 1280) |
