@@ -74,6 +74,21 @@
   .x-orb .dr-brand { position:relative; width:62px; height:23px; background:#F7F5F2; filter: drop-shadow(0 0 10px rgba(247,245,242,.5)); }
   .x-talk .x-orb .dr-brand { width:26px; height:10px; }
   .x-agent h1 { margin:0; font-size:34px; line-height:1.2; font-weight:600; letter-spacing:-.02em; }
+  /* the designer, 2026-10-18: the greeting is the green in the dark build and her main dark in the light one.
+     #9BCF4A on the dark ground 9.46:1 (WCAG 1.4.3 large text 3:1); light keeps --text-primary. */
+  [data-theme="dark"] .x-agent h1 { color: var(--color-action); }
+  .x-agent h1, .x-agent p { text-shadow: 0 1px 14px rgba(0,0,0,.75); }
+  /* the folded assistant: a ring of green light turning round the whole button */
+  @property --a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+  .x-talk::before, .x-talk::after { content:""; position:absolute; inset:-2px; border-radius:999px; pointer-events:none;
+    background: conic-gradient(from var(--a), transparent 0deg, rgba(155,207,74,.0) 40deg, #9BCF4A 110deg, #E4F59A 150deg,
+                rgba(155,207,74,.0) 210deg, transparent 360deg);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    padding:2px; animation: x-ring 3.2s linear infinite; }
+  .x-talk::after { filter: blur(8px); opacity:.9; inset:-4px; padding:4px; }
+  @keyframes x-ring { to { --a: 360deg; } }
+  @media (prefers-reduced-motion: reduce) { .x-talk::before, .x-talk::after { animation:none; --a: 120deg; } }
   .x-agent p { margin:10px 0 22px; color: var(--text-muted); font-size: var(--type-heading-size); }
   .x-ask { display:flex; align-items:center; gap:10px; padding:8px 8px 8px 22px; border-radius:999px; text-align:left; }
   .x-ask > span:first-child { flex:1; color: var(--text-muted); font-size: var(--type-heading-size); }

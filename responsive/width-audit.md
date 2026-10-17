@@ -49,6 +49,14 @@ inventive: *«замість глобуса карта на весь бекгр�
   sidebar rows of the shell table below for both tablet and desktop; the per-screen rows stand for
   the screens behind *Activity*, *Help* and *Account*.
 
+- **The greeting is green in the dark build, her main dark in the light one** (the designer, 2026-10-18:
+  *«на світлій буде мій основний темний»*). Asked because white read badly over the map. Measured:
+  `#9BCF4A` on the dark ground **9.46:1**, on the map's light road lines **1.95:1**; white **15.99 / 3.30:1**
+  (`WCAG 1.4.3`, large text 3:1). So the green is a **departure from the fill-only accent**, dark build
+  only, the way the wallet plate's mark is (`CLAUDE.md`), and a soft text shadow keeps it off the lines.
+- **Folded, the assistant is a Talk to AI button with a ring of green light turning round it**; still
+  under reduced motion (`WCAG 2.3.3`).
+
 **Not in the system yet, so a preview:** the glass panels and their blur, the glow, the assistant and
 its voice, the dark map and the white drone renders (`responsive/preview-art/`, generated in Figma).
 Each goes into `design-system/` first if kept.
