@@ -63,7 +63,7 @@ kit: —
   </main></div>
 ```
 
-- `.dr-console` — The wide home's layout over `.dr-mapground`: three columns on a desktop (291 · the centre · 291), the centre first and the two rails side by side under it on a tablet.
+- `.dr-console` — The wide home's layout over `.dr-mapground`: three columns on a tablet and a desktop, the rails `clamp(176, 24cqi, 291)`: 291 on a desktop, narrower on a tablet.
 - `.dr-console__centre` — The assistant, centred over the map.
 - `.dr-console__rail--start` — What is happening: stat cards and the bar chart.
 - `.dr-console__rail--end` — Your orders: the live order and the tallies.
@@ -78,10 +78,10 @@ kit: —
 
 The phone keeps its own home and tab bar; nothing here reaches it.
 
-### Tablet (768)
+### Tablet (1024, iPad held sideways)
 
 ```html
-<div class="dr dr-screen" style="width:768px;height:900px;max-width:none"><header class="dr-whead">
+<div class="dr dr-screen" style="width:1024px;height:760px;max-width:none"><header class="dr-whead">
     <span class="dr-brand" role="img" aria-label="DRON"></span>
     <nav class="dr-whead__nav dr-material" aria-label="Primary">
       <a class="dr-whead__link" href="#" aria-current="page">Overview</a>
@@ -132,7 +132,7 @@ The phone keeps its own home and tab bar; nothing here reaches it.
   </main></div>
 ```
 
-The centre on the first row, the two rails under it.
+The same three columns as the desktop (the designer, 2026-10-18), the rails narrower with the width: 238 at 1024, 177 at 768. Upright (768) the header tightens, the profile chip goes (Account is in the navigation), stat cards and tallies take caption type, and the progress rail shows only the current step's name — the others are still read by assistive tech.
 
 ## States
 

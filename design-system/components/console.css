@@ -9,10 +9,12 @@
   min-height: 0;
   overflow: auto;
   display: grid;
-  grid-template-columns: repeat(var(--col-count-tablet), minmax(0, 1fr));
-  gap: var(--len-24);
-  padding: var(--len-16) var(--len-24) var(--len-24);
-  align-content: start;
+  /* the same three columns on a tablet and a desktop (the designer, 2026-10-18:
+     the tablet takes the desktop view); only the rails narrow with the width */
+  grid-template-columns: minmax(0, clamp(var(--len-176), 24cqi, var(--len-291))) minmax(0, 1fr) minmax(0, clamp(var(--len-176), 24cqi, var(--len-291)));
+  gap: clamp(var(--len-12), 2cqi, var(--len-24));
+  padding: var(--len-16) clamp(var(--len-12), 2cqi, var(--len-24)) var(--len-24);
+  align-items: start;
 }
 .dr-console > .dr-mapground{
   position: absolute;
@@ -20,45 +22,55 @@
 .dr-console__centre{
   position: relative;
   z-index: 1;
-  grid-column: 1 / -1;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
   padding: var(--len-24) 0;
 }
 .dr-console__rail{
   position: relative;
   z-index: 1;
+  grid-row: 1;
   display: grid;
   gap: var(--grid-gap);
   align-content: start;
 }
-.dr-console__card{
-  padding: var(--len-18);
+.dr-console__rail--start{
+  grid-column: 1;
 }
-.dr-console__card h3{
-  margin: 0 0 var(--len-4);
-  font-size: var(--type-heading-size);
-  font-weight: var(--type-weight-medium);
+.dr-console__rail--end{
+  grid-column: 3;
 }
-.dr-console__card p{
-  margin: 0;
-  font-size: var(--type-caption-size);
-  color: var(--text-muted);
-}
-@container screen (min-width: 79.875rem){
-  .dr-console{
-    grid-template-columns: minmax(0, var(--len-291)) minmax(0, 1fr) minmax(0, var(--len-291));
-    align-items: start;
+/* a narrow tablet (an iPad held upright): the same three columns, compacted -
+   rails take caption type, the progress rail shows only the current step's name */
+@container screen (max-width: 63.875rem){
+  .dr-console .dr-stat{
+    gap: var(--len-10);
+    padding: var(--len-10);
   }
-  .dr-console__centre{
-    grid-column: 2;
-    grid-row: 1;
-    align-self: center;
+  .dr-console .dr-stat__ic{
+    width: var(--len-36);
+    height: var(--len-36);
+    border-radius: var(--len-12);
   }
-  .dr-console__rail--start{
-    grid-column: 1;
-    grid-row: 1;
+  .dr-console .dr-stat__figure{
+    font-size: var(--type-title-size);
   }
-  .dr-console__rail--end{
-    grid-column: 3;
-    grid-row: 1;
+  .dr-console .dr-stat__trend{
+    display: block;
+    margin-left: 0;
+  }
+  .dr-console .dr-tally{
+    padding: var(--len-14);
+  }
+  .dr-console .dr-tally__row{
+    font-size: var(--type-caption-size);
+  }
+  /* hidden from sight, not from assistive tech: every step is still read */
+  .dr-console .dr-rail__lbl:not(.dr-rail__lbl--now){
+    color: transparent;
+  }
+  .dr-console .dr-tally__who{
+    font-size: var(--type-body-size);
   }
 }

@@ -135,12 +135,41 @@
   outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: var(--len-2);
 }
-/* a tablet keeps the face and drops the words */
+/* a tablet keeps the face and drops the words; an upright tablet drops the chip,
+   whose place is Account in the navigation */
 @container screen (max-width: 79.875rem){
   .dr-profilechip__text{
     display: none;
   }
   .dr-profilechip{
     padding: var(--len-5);
+  }
+}
+@container screen (max-width: 63.875rem){
+  .dr-profilechip{
+    display: none;
+  }
+}
+/* a narrow tablet: the header tightens so the five controls fit beside the nav */
+@container screen (max-width: 63.875rem){
+  .dr-whead{
+    gap: var(--len-8);
+    padding: var(--len-12) var(--len-12);
+  }
+  .dr-whead .dr-brand{
+    width: var(--len-52);
+  }
+  .dr-whead__link{
+    padding: 0 var(--len-12);
+  }
+  .dr-whead__end{
+    gap: var(--len-6);
+  }
+  .dr-whead__end > .dr-btn--primary{
+    padding: 0 var(--len-18);
+  }
+  .dr-iconbtn{
+    width: var(--len-44);
+    height: var(--len-44);
   }
 }

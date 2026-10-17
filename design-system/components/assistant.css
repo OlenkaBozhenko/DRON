@@ -96,6 +96,22 @@
   gap: var(--grid-gap);
   margin-top: var(--grid-gap);
 }
+/* narrower centre on a tablet: the cards keep three across, the picture shrinks */
+@container screen (max-width: 79.875rem){
+  .dr-assistant__title{
+    font-size: var(--type-title-size);
+  }
+  .dr-assistant__orb{
+    width: var(--len-134);
+    height: var(--len-134);
+  }
+  .dr-svc img{
+    height: var(--len-64);
+  }
+  .dr-svc{
+    padding: var(--len-10);
+  }
+}
 /* a service card: the drone, the outcome, from-price and when */
 .dr-svc{
   display: flex;
