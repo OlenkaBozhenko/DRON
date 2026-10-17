@@ -15,6 +15,8 @@
 <a class="dsd-skip" href="#main">Skip to content</a>
 <header class="dsd-top">
   <a class="dsd-brand" href="../../research.html">DRON</a>
+  <button class="dsd-burger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="dsd-side" data-burger>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   <nav class="dsd-nav" aria-label="Design system"><a href="overview.html" aria-current="page">Overview</a><a href="index.html">Components</a><a href="patterns.html">Patterns</a><a href="voice.html">Tone of voice</a><a href="tokens.html">Tokens</a><a href="why.html">Why it looks like this</a><a href="../../ui/kit.html">UI kit</a></nav>
   <div class="dsd-theme" role="group" aria-label="Theme">
     <button type="button" data-theme-btn="light" aria-pressed="true">Light</button>
@@ -22,7 +24,8 @@
   </div>
 </header>
 <div class="dsd-home">
-  <nav class="dsd-side" aria-label="Design system sections">
+  <nav class="dsd-side" id="dsd-side" aria-label="Design system sections">
+    <ul class="dsd-side__top" role="list"><li><a href="overview.html" aria-current="page">Overview</a></li><li><a href="index.html">Components</a></li><li><a href="patterns.html">Patterns</a></li><li><a href="voice.html">Tone of voice</a></li><li><a href="tokens.html">Tokens</a></li><li><a href="why.html">Why it looks like this</a></li><li><a href="../../ui/kit.html">UI kit</a></li><li><a href="../../research.html">Back to DRON</a></li></ul><div class="dsd-theme dsd-side__theme" role="group" aria-label="Theme"><button type="button" data-theme-btn="light" aria-pressed="true">Light</button><button type="button" data-theme-btn="dark" aria-pressed="false">Dark</button></div>
     <label class="dsd-side__filter"><span class="sr-only">Filter</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
       <input type="search" placeholder="Filter" autocomplete="off" data-filter></label>

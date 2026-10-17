@@ -182,13 +182,13 @@ code { font-family: var(--font-mono); font-size: var(--type-meta-size); }
 .dsd-side li a:hover { background: var(--bg-surface); color: var(--text-primary); }
 .dsd-side li a:focus-visible { outline: var(--len-2-5) solid var(--text-primary); outline-offset: var(--len-2); }
 .dsd-side__none { color: var(--text-muted); }
-.dsd-hero h1 {
+.dsd-main.dsd-home__main .dsd-hero h1 {
   font-size: calc(var(--type-display-size) * 2); line-height: var(--num-1-2); font-weight: var(--type-display-weight);
   letter-spacing: var(--type-display-track); margin: 0 0 var(--len-24);
 }
 .dsd-hero p { font-size: calc(var(--type-display-size) * 1.05); line-height: var(--type-lead-line); max-width: 52ch; margin: 0; }
 .dsd-home__sec { margin-top: var(--len-80); }
-.dsd-home__sec h2 { font-size: calc(var(--type-display-size) * 1.45); font-weight: var(--type-display-weight); margin: 0 0 var(--len-12); }
+.dsd-main.dsd-home__main .dsd-home__sec h2 { font-size: calc(var(--type-display-size) * 1.45); font-weight: var(--type-display-weight); margin: 0 0 var(--len-12); padding: 0; border: 0; letter-spacing: var(--type-display-track); }
 .dsd-home__sec > p { font-size: var(--type-heading-size); line-height: var(--type-lead-line); max-width: 70ch; margin: 0 0 var(--len-24); }
 .dsd-home__sec > p a, .dsd-hero a { color: var(--text-primary); }
 .dsd-tiles {
@@ -220,6 +220,42 @@ code { font-family: var(--font-mono); font-size: var(--type-meta-size); }
   .dsd-side__grp { border-bottom: var(--len-1) solid var(--border-hairline); }
 }
 
+/* -- the burger: on a phone the top links and the sidebar are one drawer ------ */
+.dsd-burger, .dsd-side__top, .dsd-scrim, .dsd-side__theme { display: none; }
+@media (max-width: 900px) {
+  .dsd-nav { display: none; }
+  .dsd-top { flex-wrap: nowrap; }
+  .dsd-top > .dsd-theme { display: none; }
+  .dsd-burger { margin-left: auto; }
+  .dsd-side__theme { display: inline-flex; margin: 0 0 var(--len-12); }
+  .dsd-burger {
+    display: inline-flex; align-items: center; justify-content: center; order: 3;
+    width: var(--len-44); height: var(--len-44); border: 0; border-radius: var(--len-12);
+    background: var(--bg-muted); color: var(--text-primary); cursor: pointer;
+  }
+  .dsd-burger svg { width: var(--len-24); height: var(--len-24); }
+  .dsd-burger:focus-visible { outline: var(--len-2-5) solid var(--text-primary); outline-offset: var(--len-2); }
+  .dsd-home .dsd-side {
+    position: fixed; top: 0; bottom: 0; left: 0; z-index: 30; width: min(var(--len-291), 86vw); align-self: stretch;
+    max-height: none; padding: var(--len-16); background: var(--bg-page); overflow-y: auto;
+    border-right: var(--len-1) solid var(--border-hairline);
+    transform: translateX(-100%); visibility: hidden; transition: transform var(--time-0-32), visibility var(--time-0-32);
+  }
+  html.dsd-open .dsd-home .dsd-side { transform: none; visibility: visible; }
+  .dsd-side__top { display: block; list-style: none; margin: 0 0 var(--len-12); padding: 0 0 var(--len-12); border-bottom: var(--len-1) solid var(--border-hairline); }
+  .dsd-side__top a { display: block; padding: var(--len-10) var(--len-8); border-radius: var(--len-10); color: var(--text-primary); text-decoration: none; }
+  .dsd-side__top a[aria-current="page"] { background: var(--bg-accent-tint); font-weight: var(--type-weight-medium); }
+  .dsd-scrim { display: block; position: fixed; inset: 0; z-index: 29; background: var(--scrim); opacity: 0; visibility: hidden; transition: opacity var(--time-0-32), visibility var(--time-0-32); }
+  html.dsd-open .dsd-scrim { opacity: 1; visibility: visible; }
+  html.dsd-open { overflow: hidden; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dsd-home .dsd-side, .dsd-scrim { transition: none; }
+}
+
 @media (max-width: 760px) {
+  .dsd-main.dsd-home__main .dsd-hero h1 { font-size: calc(var(--type-display-size) * 1.45); }
+  .dsd-main.dsd-home__main .dsd-home__sec h2 { font-size: calc(var(--type-display-size) * 1.1); }
+  .dsd-hero p { font-size: var(--type-title-size); }
   .dsd-anatomy { grid-template-columns: minmax(0, 1fr); }
 }

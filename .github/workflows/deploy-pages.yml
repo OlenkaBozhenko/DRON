@@ -75,7 +75,10 @@ jobs:
           # The component docs: the generated pages and their chrome. src/ and
           # build.py are the sources and stay on master, like every .md.
           mkdir -p _site/design-system/docs
-          cp design-system/docs/*.html design-system/docs/docs.css design-system/docs/docs.js _site/design-system/docs/
+          cp design-system/docs/*.html design-system/docs/docs.css design-system/docs/docs.js design-system/docs/states.css _site/design-system/docs/
+          # A screen built from the system alone (2026-10-17); the docs' sidebar links it.
+          mkdir -p _site/design-system/examples
+          cp design-system/examples/*.html _site/design-system/examples/
           # Publish the concept design-direction pages (HTML only).
           # The .md sources stay on master and are not published.
           mkdir -p _site/concept

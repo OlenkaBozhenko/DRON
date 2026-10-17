@@ -290,6 +290,8 @@ def topbar(current):
                   for h, t in links)
     return '''<header class="dsd-top">
   <a class="dsd-brand" href="../../research.html">DRON</a>
+  <button class="dsd-burger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="dsd-side" data-burger>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   <nav class="dsd-nav" aria-label="Design system">%s</nav>
   <div class="dsd-theme" role="group" aria-label="Theme">
     <button type="button" data-theme-btn="light" aria-pressed="true">Light</button>
@@ -598,7 +600,17 @@ def side_html(current):
                          ' aria-current="page"' if h == current else '', inline(t)) for t, h in items)
         out.append('<details class="dsd-side__grp"%s><summary>%s</summary><ul role="list">%s</ul></details>'
                    % (' open' if open_ else '', html.escape(name), lis))
-    return '''<nav class="dsd-side" aria-label="Design system sections">
+    # on a phone the sidebar is the burger's drawer, so it carries the top bar's links too
+    top = [('Overview', 'overview.html'), ('Components', 'index.html'), ('Patterns', 'patterns.html'),
+           ('Tone of voice', 'voice.html'), ('Tokens', 'tokens.html'), ('Why it looks like this', 'why.html'),
+           ('UI kit', '../../ui/kit.html'), ('Back to DRON', '../../research.html')]
+    pages = '<ul class="dsd-side__top" role="list">%s</ul>' % ''.join(
+        '<li><a href="%s"%s>%s</a></li>' % (h, ' aria-current="page"' if h == current else '', t) for t, h in top)
+    theme = ('<div class="dsd-theme dsd-side__theme" role="group" aria-label="Theme">'
+             '<button type="button" data-theme-btn="light" aria-pressed="true">Light</button>'
+             '<button type="button" data-theme-btn="dark" aria-pressed="false">Dark</button></div>')
+    return '''<nav class="dsd-side" id="dsd-side" aria-label="Design system sections">
+    ''' + pages + theme + '''
     <label class="dsd-side__filter"><span class="sr-only">Filter</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
       <input type="search" placeholder="Filter" autocomplete="off" data-filter></label>

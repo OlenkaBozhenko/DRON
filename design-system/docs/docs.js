@@ -68,6 +68,7 @@
       .forEach(function (n) { n.setAttribute('tabindex', '-1'); });
     filterSide();
     resolveTokens();
+    burger();
   });
 
   // Token pages: the browser reads each value in the theme now showing, so the
@@ -167,4 +168,29 @@
   }
   window.addEventListener('load', pinAll);
   window.addEventListener('resize', function () { requestAnimationFrame(pinAll); });
+  // The burger (phone): the sidebar slides in as a drawer over a scrim. Escape,
+  // the scrim, the burger again or a chosen link closes it; focus goes into the
+  // drawer on open and back to the burger on close.
+  function burger() {
+    var btn = document.querySelector('[data-burger]'), side = document.getElementById('dsd-side');
+    if (!btn || !side) return;
+    var scrim = document.createElement('div');
+    scrim.className = 'dsd-scrim';
+    document.body.appendChild(scrim);
+    function set(open) {
+      document.documentElement.classList.toggle('dsd-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      // the drawer turns visible on the next frame, and a hidden element cannot take focus
+      if (open) setTimeout(function () { var f = side.querySelector('a'); if (f) f.focus(); }, 60); else btn.focus();
+    }
+    btn.addEventListener('click', function () { set(!document.documentElement.classList.contains('dsd-open')); });
+    scrim.addEventListener('click', function () { set(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && document.documentElement.classList.contains('dsd-open')) set(false);
+    });
+    side.addEventListener('click', function (e) {
+      if (e.target.closest('a') && document.documentElement.classList.contains('dsd-open')) document.documentElement.classList.remove('dsd-open');
+    });
+  }
 }());
