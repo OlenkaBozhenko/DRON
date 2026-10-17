@@ -1,0 +1,467 @@
+/* card.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   type     -> semantic tokens only (--font-*, --type-*), since 2026-10-14
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-card{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--len-20);
+  padding: var(--len-24) var(--len-20);
+  background: var(--bg-surface);
+  border: 0;
+  border-radius: var(--len-16);
+  box-shadow: none;
+}
+.dr-card--compact{
+  padding: var(--len-20) var(--len-16);
+  gap: var(--len-12);
+}
+.dr-card--row{
+  flex-direction: row;
+  align-items: center;
+  gap: var(--len-12);
+}
+.dr-card--cover{
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+.dr-card--cover > .dr-well{
+  width: var(--pct-100);
+  border-radius: 0;
+}
+.dr-card--cover > .dr-listing__foot{
+  padding: var(--len-12) var(--len-16);
+}
+.dr-card__actions{
+  display: flex;
+  gap: var(--len-8);
+}
+.dr-card__actions .dr-btn{
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+.dr-card__link{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--len-16);
+}
+.dr-card:focus-within{
+  outline: none;
+}
+.dr-card:has(> .dr-card__link:focus-visible){
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-order__top{
+  display: flex;
+  align-items: center;
+  gap: var(--len-16);
+}
+.dr-order__head{
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-4);
+}
+.dr-order__title{
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-heading-weight);
+  line-height: var(--type-heading-line);
+  color: var(--text-primary);
+}
+.dr-order__date{
+  min-width: 0;
+  font-size: var(--type-meta-size);
+  line-height: var(--type-meta-line);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dr-order__fee{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--len-12);
+}
+.dr-order__price{
+  display: block;
+}
+.dr-order__acts{
+  display: flex;
+  align-items: center;
+  gap: var(--len-8);
+  flex: none;
+}
+.dr-listing__body{
+  flex: 1;
+  min-width: 0;
+}
+.dr-listing__name{
+  display: block;
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-heading-weight);
+  line-height: var(--type-heading-line);
+  color: var(--text-primary);
+}
+.dr-listing--service .dr-listing__name{
+  font-size: var(--type-title-size);
+  font-weight: var(--type-weight-regular);
+}
+.dr-listing__desc{
+  display: block;
+  margin-top: var(--len-2);
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-line);
+  color: var(--text-muted);
+}
+.dr-listing__meta{
+  display: flex;
+  align-items: baseline;
+  gap: var(--len-8);
+  margin-top: var(--len-6);
+}
+.dr-listing__foot{
+  display: flex;
+  align-items: center;
+  gap: var(--len-12);
+}
+.dr-choice{
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--len-20);
+  padding: var(--len-16);
+  background: var(--bg-surface);
+  border: 0;
+  border-radius: var(--len-16);
+  text-decoration: none;
+  color: var(--text-primary);
+}
+.dr-choice:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-choice > .dr-well{
+  width: var(--len-56);
+  height: var(--len-44);
+}
+.dr-choice__body{
+  flex: 1;
+  min-width: 0;
+}
+.dr-choice__chev{
+  flex: none;
+  color: var(--text-muted);
+  display: inline-flex;
+}
+.dr-choice__head{
+  display: flex;
+  align-items: center;
+  gap: var(--len-8);
+}
+.dr-choice__head > .dr-choice__title{
+  flex: 1;
+  min-width: 0;
+}
+.dr-choice__title{
+  display: block;
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+  line-height: var(--type-title-line);
+  letter-spacing: var(--type-title-track);
+  color: var(--text-primary);
+}
+.dr-choice__desc{
+  display: block;
+  margin-top: var(--len-4);
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-line);
+  color: var(--text-muted);
+}
+.dr-op{
+  display: flex;
+  align-items: stretch;
+  gap: var(--len-12);
+  padding: var(--len-20) var(--len-16);
+  background: var(--bg-surface);
+  border: 0;
+  border-radius: var(--len-16);
+  overflow: hidden;
+}
+.dr-op__photo{
+  align-self: stretch;
+  flex: none;
+  margin: calc(var(--len-16) * -1) 0 calc(var(--len-16) * -1) calc(var(--len-16) * -1);
+  width: var(--len-117);
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.dr-op__photo img{
+  width: var(--pct-100);
+  height: var(--pct-100);
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.dr-op__info{
+  flex: 1;
+  min-width: 0;
+}
+.dr-op__name{
+  display: block;
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-heading-weight);
+  line-height: var(--type-heading-line);
+  color: var(--text-primary);
+}
+.dr-op__rating{
+  display: block;
+  margin-top: var(--len-2);
+  font-size: var(--type-meta-size);
+  color: var(--text-muted);
+  font-variant-numeric: var(--type-numeric);
+}
+.dr-op__badges{
+  margin-top: var(--len-9);
+}
+.dr-balance{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-4);
+}
+.dr-balance .dr-number{
+  font-size: var(--type-display-size);
+}
+.dr-listing__score{
+  margin-left: var(--len-8);
+  font-size: var(--type-meta-size);
+  font-weight: var(--type-weight-regular);
+  color: var(--text-muted);
+  font-variant-numeric: var(--type-numeric);
+}
+.dr-balance--card, .dr-balance--banner{
+  padding: var(--len-20) var(--len-16);
+  border-radius: var(--len-16);
+}
+.dr-balance--card{
+  flex-direction: row;
+  align-items: center;
+  gap: var(--len-12);
+  background: var(--color-action) url(../../assets/marks/thumbs/wallet-pattern.png) center/cover no-repeat;
+  color: var(--on-action);
+}
+.dr-balance--banner{
+  background: var(--color-action) url(../../assets/marks/thumbs/rating-pattern.png) center/cover no-repeat;
+  color: var(--on-action);
+}
+.dr-balance__glyph{
+  /* the mark has its own role rather than inheriting the card's ink: the plate
+     is a tint on a green card, and what reads on it changes with the theme.
+     Light resolves to --on-action, which is what it inherited before. */
+  color: var(--on-glyph-plate);
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--len-glyph-plate);
+  height: var(--len-glyph-plate);
+  border-radius: var(--len-13);
+  background: var(--bg-accent-tint);
+}
+.dr-balance__glyph .dr-ic{
+  width: var(--len-22);
+  height: var(--len-22);
+}
+.dr-balance__body{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-4);
+  min-width: 0;
+}
+.dr-balance--card .dr-number, .dr-balance--card .dr-note{
+  color: var(--on-action);
+}
+.dr-balance--banner .dr-number, .dr-balance--banner .dr-note{
+  color: var(--on-action);
+}
+.dr-balance--banner{
+  align-items: center;
+  text-align: center;
+}
+.dr-balance--banner .dr-note{
+  font-size: var(--type-body-sm-size);
+}
+.dr-card__row{
+  display: flex;
+  align-items: center;
+  gap: var(--len-12);
+}
+.dr-finder{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+}
+/* WRITTEN AT 0-2-0, and the `.dr ` is load-bearing. This component IS a
+   <fieldset>, and misc.css's reset `.dr fieldset{ padding: 0 }` is 0-1-1 -
+   it out-specifies a bare class, so at 0-1-0 the padding below computes to
+   0px, the row bleeds to the frame edge with its first chip ON it, and,
+   32px short of the box it thinks it has, it never scrolls at all. kit.css
+   carries the same rule at the same weight and warns about this trap for
+   .dr-zone, .dr-range and .dr-segment as well. */
+.dr .dr-finder__services{
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--len-8);
+  border: 0;
+  min-width: 0;
+  padding: var(--len-6) var(--len-16);
+  margin: calc(var(--len-6) * -1) calc(var(--len-16) * -1);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.dr .dr-finder__services::-webkit-scrollbar{
+  display: none;
+}
+.dr-finder__card{
+  background: var(--bg-surface);
+  border-radius: var(--len-16);
+}
+.dr-finder__card > .dr-route, .dr-finder__card > .dr-when{
+  background: transparent;
+}
+.dr-finder__card > .dr-when{
+  position: relative;
+}
+.dr-finder__card > .dr-when::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  height: var(--len-1);
+  background: var(--border-hairline);
+  left: calc(var(--len-16) + var(--len-20) + var(--len-12));
+  right: var(--len-16);
+}
+.dr-finder__card .dr-when__cell{
+  gap: var(--len-12);
+}
+.dr-finder__actions{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-8);
+}
+.dr-finder__actions .dr-btn{
+  width: var(--pct-100);
+  position: relative;
+}
+.dr-finder__actions .dr-btn:has(> .dr-count-badge){
+  gap: 0;
+}
+.dr-finder__actions .dr-btn:has(> .dr-count-badge) > .dr-ic{
+  margin-right: var(--len-8);
+}
+.dr-finder__actions .dr-count-badge{
+  top: var(--len-pill-bleed);
+  right: var(--len-pill-bleed);
+}
+.dr-offers{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-8);
+}
+.dr-offer{
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--len-12);
+  padding: var(--len-8) var(--len-12) var(--len-8) var(--len-8);
+  border: 0;
+  border-radius: var(--len-12);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.dr-offer > .dr-well{
+  width: var(--len-56);
+  height: var(--len-44);
+}
+.dr-offer__body{
+  flex: 1;
+  min-width: 0;
+}
+.dr-offer__name{
+  display: block;
+  font-size: var(--type-title-size);
+  font-weight: var(--type-weight-medium);
+  line-height: var(--type-heading-line);
+  color: var(--text-primary);
+}
+.dr-offer__meta{
+  display: block;
+  margin-top: var(--len-2);
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-line);
+  color: var(--text-muted);
+  font-variant-numeric: var(--type-numeric);
+}
+.dr-offer__price{
+  flex: none;
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+  color: var(--text-primary);
+  font-variant-numeric: var(--type-numeric);
+}
+.dr-offer:has(> input:checked){
+  background: var(--color-action);
+  color: var(--on-action);
+}
+.dr-offer:has(> input:checked) :is(.dr-offer__name, .dr-offer__meta, .dr-offer__price){
+  color: var(--on-action);
+}
+.dr-offer:has(> input:focus-visible){
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+
+/* DISABLED (rev 304, the designer's call on the preview): the control's own
+   colours at 40% over the ground it stands on, painted solid, never an
+   opacity. A card whose one link is unavailable: the ground and ink fade and the
+   live status is not faded but absent. */
+.dr-card__link[aria-disabled="true"]{
+  cursor: not-allowed;
+}
+.dr-card:has(> .dr-card__link[aria-disabled="true"]){
+  background: color-mix(in srgb, var(--bg-surface) 40%, var(--bg-page));
+}
+.dr-card:has(> .dr-card__link[aria-disabled="true"]) :is(.dr-listing__name, .dr-order__title){
+  color: var(--text-disabled);
+}
+.dr-card:has(> .dr-card__link[aria-disabled="true"]) :is(.dr-listing__desc, .dr-order__date){
+  color: color-mix(in srgb, var(--text-muted) 40%, var(--bg-page));
+}
+.dr-card:has(> .dr-card__link[aria-disabled="true"]) .dr-status{
+  display: none;
+}

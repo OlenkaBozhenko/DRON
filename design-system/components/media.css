@@ -1,0 +1,333 @@
+/* media.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   type     -> semantic tokens only (--font-*, --type-*), since 2026-10-14
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-stack{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-8);
+}
+.dr-stack--zones{
+  gap: var(--len-12);
+}
+.dr-well > .dr-btn--onphoto{
+  position: absolute;
+  left: var(--pct-50);
+  top: var(--pct-50);
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
+}
+.dr-well > .dr-btn--onphoto:active{
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1)) scale(var(--num-0-99));
+}
+.dr-well > .dr-btn--onphoto:disabled, .dr-well > .dr-btn--onphoto[aria-disabled="true"]{
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
+}
+.dr-well{
+  position: relative;
+  width: var(--len-96);
+  height: var(--len-96);
+  flex: none;
+  border: 0;
+  border-radius: var(--len-13);
+  padding: var(--len-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+}
+.dr-well img{
+  width: var(--pct-100);
+  height: var(--pct-100);
+  object-fit: contain;
+  display: block;
+}
+.dr-well--photo{
+  width: auto;
+  height: auto;
+  background: var(--bg-well);
+  overflow: hidden;
+  padding: 0;
+}
+.dr-well--map{
+  padding: 0;
+}
+.dr-well--photo img{
+  object-fit: cover;
+}
+.dr-well--map{
+  width: auto;
+  height: auto;
+  aspect-ratio: var(--ratio-map);
+  border-radius: var(--len-16);
+  overflow: hidden;
+  background-color: var(--bg-well);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.dr-well--map img{
+  object-fit: cover;
+}
+.dr-well--acquiring{
+  background: var(--bg-well);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--type-micro-size);
+  letter-spacing: var(--type-micro-track);
+  line-height: var(--type-para-line);
+}
+.dr-stack:has(> .dr-stack__shot){
+  padding: var(--len-8) var(--len-4);
+}
+.dr-stack__shot{
+  position: relative;
+  width: var(--pct-62);
+  aspect-ratio: var(--ratio-stack);
+  border: var(--len-3) solid var(--text-on-night);
+  border-radius: var(--len-13);
+  overflow: hidden;
+  background: var(--bg-well);
+}
+.dr-stack__shot img{
+  width: var(--pct-100);
+  height: var(--pct-100);
+  object-fit: cover;
+  display: block;
+}
+.dr-stack__shot + .dr-stack__shot{
+  margin-top: var(--pct-n14);
+}
+.dr-stack__shot:nth-child(1){
+  align-self: flex-end;
+  transform: rotate(var(--deg-3));
+  z-index: 1;
+}
+.dr-stack__shot:nth-child(2){
+  align-self: flex-start;
+  transform: rotate(var(--deg-n3-5));
+  z-index: 2;
+}
+.dr-stack__shot:nth-child(3){
+  align-self: flex-end;
+  margin-right: var(--pct-6);
+  transform: rotate(var(--deg-2));
+  z-index: 3;
+}
+.dr-pager{
+  display: flex;
+  gap: var(--len-8);
+  justify-content: center;
+  margin-top: var(--len-12);
+}
+.dr-pager > *{
+  width: var(--len-8);
+  height: var(--len-8);
+  flex: none;
+  border: 0;
+  border-radius: var(--len-999);
+  background: var(--bg-muted);
+  transition: background-color var(--time-0-12) var(--ease-out);
+}
+.dr-pager .on{
+  background: var(--color-action);
+}
+.dr-slider{
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  margin: 0 calc(var(--len-16) * -1);
+  padding: var(--len-8) var(--len-16);
+  scrollbar-width: none;
+}
+.dr-slider::-webkit-scrollbar{
+  display: none;
+}
+.dr-slide{
+  flex: 0 0 var(--pct-100);
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--len-16);
+  padding: var(--len-8) var(--len-4);
+}
+.dr-slide__art{
+  width: var(--pct-100);
+  flex: none;
+  border: 0;
+  border-radius: var(--len-13);
+  background: var(--bg-well);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--type-micro-size);
+  font-weight: var(--type-micro-weight);
+  letter-spacing: var(--type-micro-track);
+  line-height: var(--type-para-line);
+}
+.dr-slide__art:has(img){
+  background: none;
+}
+.dr-slide__art img{
+  width: var(--pct-100);
+  height: var(--pct-100);
+  object-fit: contain;
+  display: block;
+}
+.dr-slider--bleed{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  align-items: stretch;
+}
+.dr-slider--bleed .dr-slide{
+  height: var(--pct-100);
+  position: relative;
+  justify-content: flex-start;
+  padding: calc(var(--len-16) + var(--len-32)) var(--len-20) 0;
+  gap: var(--len-12);
+}
+.dr-slider--bleed .dr-slide__art{
+  position: static;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  width: auto;
+  align-self: stretch;
+  margin: 0 calc(var(--len-20) * -1);
+  padding-block: var(--len-32);
+  align-items: center;
+  z-index: 0;
+}
+.dr-slider--bleed .dr-slide__art img{
+  width: var(--pct-100);
+  height: var(--pct-100);
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+}
+.dr-slider--bleed .dr-slide--floor .dr-slide__art{
+  padding-bottom: 0;
+}
+.dr-slider--bleed .dr-slide--floor .dr-slide__art img{
+  object-position: center calc(var(--pct-100) + var(--len-7));
+}
+.dr-slider--bleed + .dr-pager{
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+}
+.dr-slider--bleed .dr-display, .dr-slider--bleed .dr-lead{
+  position: relative;
+  z-index: 1;
+}
+.dr-mapview{
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-bottom: calc(var(--len-22) * -1);
+  background-color: var(--bg-well);
+  background-size: cover;
+  background-position: var(--pct-25) var(--pct-50);
+  background-repeat: no-repeat;
+}
+.dr-mapscreen{
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+/* RENDER IMAGERY AND THE THEME. A drone render is a dark object on a
+   transparent ground, so on a charcoal page it sinks into it - on role-select
+   the drone was all but invisible on its own card. The lift is a token, not a
+   value written here: --img-render-filter is `none` in the light build, so this
+   rule draws nothing there, and inverts the luminance while putting the hue back
+   in the dark one, which lifts the object without turning its green cargo
+   magenta.
+   IT IS SCOPED BY WHAT THE PICTURE IS, not by where it hangs. /drones/ holds
+   renders of an object; /people/ holds photographs of faces, and inverting a
+   face is never right - the operator's photo on these same screens is untouched.
+   The designer's word, 2026-09-25. */
+.dr img[src*="/drones/"]{
+  filter: var(--img-render-filter);
+}
+/* ...except the one that has a real dark asset. `content` replaces the picture
+   itself, so the file changes rather than the light file being tinted, and the
+   filter has to come off it or the new asset would be inverted in turn. Both
+   values come from tokens.css; this rule names no file and no theme. */
+.dr img[src*="drone-flight-front"]{
+  content: var(--img-drone-front);
+  filter: none;
+}
+/* THE ONBOARDING SCENES SWAP THEIR FILE, THEY ARE NOT FILTERED. A scene is a
+   composition - a drone, a person, UI cards with their own surfaces - and a
+   theme changes what those surfaces are, which no filter can do. Each slide
+   therefore has a second artwork, and the token decides which one is drawn.
+   `normal` in light means the element keeps its own src and nothing moves. */
+.dr img[src*="onboarding-dispatch."]{
+  content: var(--img-onb-dispatch);
+}
+.dr img[src*="onboarding-checklist."]{
+  content: var(--img-onb-checklist);
+}
+.dr img[src*="onboarding-payout."]{
+  content: var(--img-onb-payout);
+}
+.dr img[src*="onboarding-verified-operator."]{
+  content: var(--img-onb-verified-operator);
+}
+.dr img[src*="onboarding-live-tracking."]{
+  content: var(--img-onb-live-tracking);
+}
+.dr img[src*="onboarding-report."]{
+  content: var(--img-onb-report);
+}
+/* The remaining drone renders take their own white colourway in dark, the same
+   way the front render does. The selectors end-match the LIGHT file so a -dark
+   file can never match one of them, and the two drone-flight-clean crops are
+   told apart by their folder. */
+.dr img[src$="thumbs/drone-01.png"]{
+  content: var(--img-drone-01);
+  filter: none;
+}
+.dr img[src$="thumbs/drone-02.png"]{
+  content: var(--img-drone-02);
+  filter: none;
+}
+.dr img[src$="thumbs/drone-08.png"]{
+  content: var(--img-drone-08);
+  filter: none;
+}
+.dr img[src$="thumbs/drone-11.png"]{
+  content: var(--img-drone-11);
+  filter: none;
+}
+.dr img[src$="thumbs/drone-flight-camera.png"]{
+  content: var(--img-drone-camera);
+  filter: none;
+}
+.dr img[src$="thumbs/drone-flight-clean.png"]{
+  content: var(--img-drone-clean);
+  filter: none;
+}
+.dr img[src$="wide/drone-flight-clean.png"]{
+  content: var(--img-drone-clean-wide);
+  filter: none;
+}
+/* role-select's operator card (2026-10-10): the camera drone cropped to its own
+   ink, so in the 48x36 well it draws as large as the cargo box beside it. */
+.dr img[src$="tight/drone-flight-camera.png"]{
+  content: var(--img-drone-camera-tight);
+  filter: none;
+}

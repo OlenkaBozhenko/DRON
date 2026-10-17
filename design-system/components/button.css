@@ -1,0 +1,236 @@
+/* button.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   type     -> semantic tokens only (--font-*, --type-*), since 2026-10-14
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-btn{
+  min-height: var(--len-44);
+  padding: 0 var(--len-16);
+  border-radius: var(--len-12);
+  font-family: var(--font-ui);
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-weight-medium);
+  line-height: var(--type-base-line);
+  border: var(--len-1) solid transparent;
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--len-8);
+  text-decoration: none;
+  transition: filter var(--time-0-15), background var(--time-0-15), transform var(--time-0-12);
+}
+.dr-btn:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-btn--primary{
+  background: var(--color-action);
+  color: var(--on-action);
+  box-shadow: var(--shadow-sm);
+}
+.dr-btn--primary:hover{
+  filter: brightness(var(--num-1-03));
+}
+.dr-btn--primary:active{
+  transform: translateY(var(--len-1)) scale(var(--num-0-99));
+}
+.dr-btn--secondary{
+  background: var(--bg-muted);
+  color: var(--text-primary);
+}
+.dr-btn--secondary:hover{
+  background: var(--bg-well);
+}
+.dr-btn--secondary:active{
+  background: var(--bg-well);
+  transform: translateY(var(--len-1)) scale(var(--num-0-99));
+}
+.dr-btn--tertiary{
+  background: transparent;
+  color: var(--text-muted);
+}
+.dr-btn--tertiary:hover{
+  color: var(--text-primary);
+}
+.dr-btn--tertiary:active{
+  color: var(--text-primary);
+  transform: translateY(var(--len-1)) scale(var(--num-0-99));
+}
+.dr-btn--text{
+  background: transparent;
+  color: var(--text-action);
+}
+.dr-btn--text:hover{
+  color: var(--text-primary);
+}
+.dr-btn--text:active{
+  color: var(--text-primary);
+  transform: translateY(var(--len-1)) scale(var(--num-0-99));
+}
+.dr-btn--danger-solid{
+  background: var(--bg-danger-solid);
+  color: var(--text-on-night);
+}
+.dr-btn--danger-solid:hover{
+  filter: brightness(var(--num-1-03));
+}
+.dr-btn--danger-solid:active{
+  transform: translateY(var(--len-1)) scale(var(--num-0-99));
+}
+.dr-btn--block{
+  width: var(--pct-100);
+}
+.dr-btn:disabled, .dr-btn[aria-disabled="true"]{
+  background: var(--bg-disabled);
+  color: var(--text-disabled);
+  box-shadow: none;
+  cursor: not-allowed;
+  filter: none;
+  transform: none;
+}
+.dr-btn--primary:disabled, .dr-btn--primary[aria-disabled="true"]{
+  background: var(--bg-disabled-action);
+  color: var(--on-disabled-action);
+}
+.dr-btn--icon{
+  width: var(--len-44);
+  height: var(--len-44);
+  min-height: var(--len-44);
+  flex: none;
+  padding: 0;
+  border: 0;
+  border-radius: var(--pct-50);
+  background: var(--bg-muted);
+  color: var(--text-primary);
+  position: relative;
+  z-index: 2;
+}
+.dr-btn--icon:hover{
+  background: var(--bg-well);
+}
+.dr-btn--icon .dr-ic{
+  width: var(--len-20);
+  height: var(--len-20);
+}
+.dr-btn--primary.dr-btn--icon{
+  background: var(--color-action);
+  color: var(--on-action);
+  box-shadow: var(--shadow-sm);
+}
+.dr-btn--primary.dr-btn--icon:hover{
+  background: var(--color-action);
+  filter: brightness(var(--num-1-03));
+}
+.dr-paymark{
+  flex: 0 0 auto;
+  width: var(--len-40);
+  height: var(--len-20);
+  display: block;
+}
+.dr-idmark{
+  flex: 0 0 auto;
+  width: var(--len-20);
+  height: var(--len-20);
+  display: block;
+}
+.dr-paymark text{
+  font-family: var(--font-ui);
+}
+.dr-paymark--fit{
+  width: auto;
+}
+.dr-btn--pay{
+  background: var(--bg-pay);
+  color: var(--on-pay);
+}
+/* THE MARKS ARE THE BUTTON'S INK AND HAVE TO TURN WITH IT. The artwork carries
+   fill="#FFF" as a presentation attribute - right while the button was black in
+   both themes, and invisible the moment it went white. CSS `fill` outranks a
+   presentation attribute, so the white parts are re-pointed at --on-pay and
+   nothing in the frames is edited. It resolves to the same #FFF in light, so the
+   light build does not move; in dark the marks go black, which is exactly the
+   variant Apple ships for its white button.
+   THE GOOGLE `G` IS UNTOUCHED: its four brand fills are named colours, not
+   #FFF, so the selector does not reach them and the logo stays as supplied. */
+.dr-btn--pay .dr-paymark [fill="#FFF"],
+.dr-btn--pay .dr-paymark[fill="#FFF"]{
+  fill: var(--on-pay);
+}
+/* The hover/press pair is themed, not hard-coded: black lifts to --ink in the
+   light build (which is what it always did) and white steps DOWN onto the
+   secondary button's ground in the dark one, because white has nowhere to lift
+   to. Both live in tokens.css. */
+.dr-btn--pay:hover{
+  background: var(--bg-pay-hover);
+  color: var(--on-pay-hover);
+}
+.dr-btn--pay:active{
+  background: var(--bg-pay-hover);
+  color: var(--on-pay-hover);
+  transform: translateY(var(--len-1)) scale(var(--num-0-99));
+}
+.dr-paymark--pay{
+  width: var(--len-46);
+  height: var(--len-23);
+}
+.dr-btn--night{
+  background: var(--bg-night);
+  color: var(--text-on-night);
+}
+.dr-btn--night:hover{
+  background: var(--bg-night-raised);
+  filter: brightness(var(--num-1-03));
+}
+.dr-btn--night:focus-visible{
+  outline: var(--len-2-5) solid var(--text-on-night);
+  outline-offset: var(--len-2);
+}
+/* The pressed half inverts the NIGHT pair - the call screen is a fixed dark
+   surface, so its light half is that surface's own ink, not the page role.
+   --bg-page and --bg-night are the same colour in dark, which made this
+   control disappear; both values are unchanged in light. */
+.dr-btn--night[aria-pressed="true"]{
+  background: var(--text-on-night);
+  color: var(--bg-night);
+}
+.dr-btn--night[aria-pressed="true"]:hover{
+  background: var(--text-on-night);
+  filter: brightness(.97);
+}
+.dr-btn--danger-solid.dr-btn--icon{
+  background: var(--bg-danger-solid);
+  color: var(--text-on-night);
+}
+.dr-btn--danger-solid.dr-btn--icon:hover{
+  background: var(--bg-danger-solid);
+  filter: brightness(var(--num-1-03));
+}
+.dr-btn--danger-solid:focus-visible{
+  outline: var(--len-2-5) solid var(--text-on-night);
+  outline-offset: var(--len-2);
+}
+.dr-fab{
+  position: absolute;
+  z-index: 3;
+  left: var(--pct-50);
+  transform: translateX(calc(var(--pct-50) * -1));
+  bottom: calc(var(--len-60) + var(--len-30) + var(--len-12));
+  border-radius: var(--len-999);
+  padding: 0 var(--len-20);
+  box-shadow: var(--shadow-raised);
+}
+.dr-fab:active{
+  transform: translateX(calc(var(--pct-50) * -1)) translateY(var(--len-1)) scale(var(--num-0-99));
+}
+.dr-fab:disabled, .dr-fab[aria-disabled="true"]{
+  transform: translateX(calc(var(--pct-50) * -1));
+}

@@ -1,0 +1,46 @@
+/* icon.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   type     -> semantic tokens only (--font-*, --type-*), since 2026-10-14
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-ic{
+  display: block;
+  flex: none;
+  width: var(--len-20);
+  height: var(--len-20);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--num-1-7);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.dr-ic--12{
+  width: var(--len-12);
+  height: var(--len-12);
+}
+.dr-ic--14{
+  width: var(--len-14);
+  height: var(--len-14);
+}
+.dr-ic--16{
+  width: var(--len-16);
+  height: var(--len-16);
+}
+.dr-ic--20{
+  width: var(--len-20);
+  height: var(--len-20);
+}
+.dr-ic--22{
+  width: var(--len-22);
+  height: var(--len-22);
+}
+.dr-ic--32{
+  width: var(--len-32);
+  height: var(--len-32);
+}

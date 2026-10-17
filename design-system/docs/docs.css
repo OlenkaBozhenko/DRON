@@ -1,0 +1,261 @@
+/* ==========================================================================
+   DRON - design-system/docs/docs.css
+   The chrome around the specimens: layout, captions, the anatomy pins. It is
+   NOT part of the system and no component reads it. Like a component it
+   writes no hex, no px and no font value - every value is a token - so the
+   docs follow the system's theme and type the way a screen does.
+   ========================================================================== */
+
+html, body { margin: 0; background: var(--bg-page); color: var(--text-primary); }
+body {
+  font-family: var(--font-ui);
+  font-size: var(--type-base-size);
+  line-height: var(--type-base-line);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--text-primary); text-underline-offset: var(--len-3); }
+:focus-visible { outline: var(--len-2-5) solid var(--text-primary); outline-offset: var(--len-2); }
+code { font-family: var(--font-mono); font-size: var(--type-meta-size); }
+.dsd-skip { position: absolute; left: var(--len-16); top: calc(-1 * var(--len-60)); z-index: 3; }
+.dsd-skip:focus { top: var(--len-16); }
+
+/* -- top bar ------------------------------------------------------------- */
+.dsd-top {
+  position: sticky; top: 0; z-index: 2;
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--len-8) var(--len-20);
+  padding: var(--len-8) var(--len-16);
+  background: var(--bg-page); border-bottom: var(--len-1) solid var(--border-hairline);
+}
+.dsd-brand { font-weight: var(--type-display-weight); letter-spacing: var(--type-display-track); text-decoration: none; }
+.dsd-nav { display: flex; flex-wrap: wrap; gap: var(--len-4); flex: 1 1 auto; }
+.dsd-nav a {
+  display: inline-flex; align-items: center; min-height: var(--len-44); padding: 0 var(--len-12);
+  border-radius: var(--len-12); text-decoration: none; font-size: var(--type-body-sm-size);
+}
+.dsd-nav a:hover { background: var(--bg-surface); }
+.dsd-nav a[aria-current="page"] { background: var(--bg-muted); font-weight: var(--type-weight-medium); }
+.dsd-theme { display: inline-flex; border-radius: var(--len-12); overflow: hidden; }
+.dsd-theme button {
+  font: inherit; font-size: var(--type-body-sm-size); font-weight: var(--type-weight-medium);
+  min-height: var(--len-44); min-width: var(--len-64); border: 0; cursor: pointer;
+  background: var(--bg-muted); color: var(--text-primary);
+}
+.dsd-theme button[aria-pressed="true"] { background: var(--color-action); color: var(--on-action); }
+
+/* -- page ---------------------------------------------------------------- */
+/* The page's own headings and measure stop at a plate: a specimen copied from a
+   screen keeps the type the screen gives it (patterns put whole screens here). */
+.dsd-main { max-width: calc(var(--len-140) * 8); margin: 0 auto; padding: var(--len-24) var(--len-16) var(--len-80); }
+.dsd-main h1:not(.dsd-plate *) {
+  font-size: var(--type-display-size); font-weight: var(--type-display-weight);
+  line-height: var(--type-display-line); letter-spacing: var(--type-display-track); margin: var(--len-8) 0;
+}
+.dsd-main h2:not(.dsd-plate *) {
+  font-size: var(--type-title-size); font-weight: var(--type-title-weight);
+  letter-spacing: var(--type-title-track); margin: var(--len-48) 0 var(--len-12);
+  padding-bottom: var(--len-8); border-bottom: var(--len-1) solid var(--border-hairline);
+}
+.dsd-main h3:not(.dsd-plate *) { font-size: var(--type-heading-size); font-weight: var(--type-heading-weight); line-height: var(--type-heading-line); margin: 0 0 var(--len-8); }
+.dsd-main p:not(.dsd-plate *), .dsd-main li:not(.dsd-plate *) { max-width: 70ch; }
+.dsd-crumb, .dsd-meta, .dsd-lede, .dsd-sources, .dsd-count, .dsd-foot {
+  color: var(--text-muted); font-size: var(--type-body-sm-size);
+}
+.dsd-meta code { color: var(--text-primary); }
+.dsd-sources { border-top: var(--len-1) solid var(--border-hairline); padding-top: var(--len-8); }
+.dsd-foot { max-width: calc(var(--len-140) * 8); margin: 0 auto; padding: var(--len-24) var(--len-16) var(--len-48); }
+
+/* -- the plate a specimen stands on ---------------------------------------- */
+.dsd-plate {
+  background: var(--bg-page); border: var(--len-1) solid var(--border-hairline); border-radius: var(--len-16);
+  padding: var(--len-20); display: flex; flex-wrap: wrap; gap: var(--len-12); align-items: flex-start;
+  position: relative; overflow: auto; margin: var(--len-8) 0;
+}
+.dsd-plate--anti { border-style: dashed; }
+
+/* -- anatomy -------------------------------------------------------------- */
+.dsd-anatomy { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--len-24); align-items: start; }
+.dsd-stage { position: relative; }
+.dsd-plate--anatomy { padding: var(--len-32); min-height: var(--len-120); justify-content: center; align-items: center; }
+.dsd-parts { list-style: none; margin: 0; padding: 0; counter-reset: none; }
+.dsd-parts li {
+  display: grid; grid-template-columns: var(--len-24) minmax(0, 1fr); gap: var(--len-4) var(--len-12);
+  padding: var(--len-8) 0; border-bottom: var(--len-1) solid var(--border-hairline);
+  font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-line);
+}
+.dsd-parts li code, .dsd-part__txt { grid-column: 2; }
+.dsd-parts li.is-missing { color: var(--text-muted); }
+.dsd-pin-n, .dsd-pin {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: var(--len-22); height: var(--len-22); border-radius: var(--len-999);
+  background: var(--bg-inverse); color: var(--text-on-inverse);
+  font-family: var(--font-ui); font-size: var(--type-caption-size); font-weight: var(--type-caption-weight);
+  line-height: var(--type-glyph-line); grid-row: span 2;
+}
+.dsd-pin { position: absolute; z-index: 1; pointer-events: none; transform: translate(calc(-1 * var(--pct-50)), calc(-1 * var(--pct-50))); }
+.dsd-hl { position: absolute; pointer-events: none; border: var(--len-2) solid var(--bg-inverse); border-radius: var(--len-4); }
+
+/* -- variants -------------------------------------------------------------- */
+.dsd-variants { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--len-375)), 1fr)); gap: var(--len-16); }
+.dsd-variant { margin: 0; background: var(--bg-surface); border-radius: var(--len-16); padding: var(--len-16); }
+.dsd-variant p { font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-line); color: var(--text-muted); margin: var(--len-8) 0 0; }
+.dsd-variant code { color: var(--text-primary); }
+
+/* -- states: every state, light over dark ---------------------------------- */
+.dsd-states__row { background: var(--bg-page); color: var(--text-primary); border-radius: var(--len-16); padding: var(--len-16); margin: var(--len-8) 0; border: var(--len-1) solid var(--border-hairline); }
+.dsd-states__theme { font-size: var(--type-caption-size); line-height: var(--type-caption-line); color: var(--text-muted); margin: 0 0 var(--len-8); }
+.dsd-states__cells { display: flex; flex-wrap: wrap; gap: var(--len-12); }
+.dsd-state { margin: 0; flex: 0 1 auto; min-width: var(--len-140); max-width: var(--pct-100); }
+.dsd-state figcaption { font-size: var(--type-caption-size); line-height: var(--type-caption-line); color: var(--text-muted); margin: 0 0 var(--len-4); }
+.dsd-state .dsd-plate { margin: 0; padding: var(--len-12); }
+.dsd-states__live { margin-top: var(--len-8); }
+
+/* -- rule / anti-rule ------------------------------------------------------- */
+.dsd-rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--len-375)), 1fr)); gap: var(--len-16); }
+.dsd-rule { background: var(--bg-surface); border-radius: var(--len-16); padding: var(--len-16); border-top: var(--len-4) solid var(--color-action); }
+.dsd-rule--dont { border-top-color: var(--color-danger); }
+.dsd-rule p { font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-line); }
+
+/* -- index grid ------------------------------------------------------------ */
+.dsd-count { font-weight: var(--type-weight-regular); }
+.dsd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--len-260)), 1fr)); gap: var(--len-16); }
+.dsd-card {
+  position: relative;
+  display: flex; flex-direction: column; gap: var(--len-4);
+  background: var(--bg-surface); border-radius: var(--len-16); padding: var(--len-12);
+}
+.dsd-card:hover { background: var(--bg-muted); }
+.dsd-card__view { height: var(--len-176); overflow: hidden; border-radius: var(--len-13); position: relative; contain: layout paint; }
+/* A preview draws the component at the 375 frame's width and crops it, never
+   squeezes it: a bar narrowed to the card's 245px overlaps in a way the product
+   never does, and a preview that shows that is a preview that lies. */
+.dsd-card__view .dsd-plate { margin: 0; height: 100%; width: var(--len-375); box-sizing: border-box; justify-content: center; align-items: center; overflow: hidden; }
+.dsd-card__name { font-size: var(--type-heading-size); font-weight: var(--type-heading-weight); margin-top: var(--len-8); text-decoration: none; }
+.dsd-card__name::after { content: ""; position: absolute; inset: 0; border-radius: var(--len-16); }
+.dsd-card__name:focus-visible { outline: none; }
+.dsd-card:has(.dsd-card__name:focus-visible) { outline: var(--len-2-5) solid var(--text-primary); outline-offset: var(--len-2); }
+.dsd-card__sum { font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-line); color: var(--text-muted); }
+
+/* -- prose (why.html) ------------------------------------------------------- */
+.dsd-prose { max-width: calc(var(--len-140) * 6); }
+.dsd-prose p:not(.dsd-plate *), .dsd-prose li:not(.dsd-plate *) { line-height: var(--type-lead-line); }
+.dsd-prose blockquote {
+  margin: var(--len-16) 0; padding: var(--len-12) var(--len-16); border-left: var(--len-4) solid var(--color-action);
+  background: var(--bg-surface); border-radius: 0 var(--len-12) var(--len-12) 0;
+}
+
+/* A media query cannot read a custom property, so the breakpoint is the one
+   literal here: it is where the two-column anatomy stops fitting its legend. */
+/* -- overview: the front page, laid out the way the HIG opens --------------- */
+.dsd-home {
+  display: grid; grid-template-columns: var(--len-260) minmax(0, 1fr); gap: var(--len-48);
+  max-width: calc(var(--len-140) * 9); margin: 0 auto; padding: var(--len-32) var(--len-16) var(--len-80);
+}
+.dsd-side { position: sticky; top: var(--len-80); align-self: start; max-height: calc(100vh - var(--len-96)); overflow: auto; }
+.dsd-side__filter {
+  display: flex; align-items: center; gap: var(--len-8); min-height: var(--len-44); padding: 0 var(--len-12);
+  border: var(--len-1) solid var(--border-hairline); border-radius: var(--len-10); background: var(--bg-page);
+  color: var(--text-muted); margin-bottom: var(--len-16);
+}
+.dsd-side__filter svg { width: var(--len-20); height: var(--len-20); flex: none; }
+.dsd-side__filter input {
+  flex: 1; min-width: 0; border: 0; background: transparent; color: var(--text-primary);
+  font: inherit; font-size: var(--type-heading-size); outline: none;
+}
+.dsd-side__filter:focus-within { outline: var(--len-2-5) solid var(--text-muted); outline-offset: var(--len-2); }
+.dsd-side__grp summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; gap: var(--len-8);
+  min-height: var(--len-44); color: var(--text-primary); font-weight: var(--type-weight-medium);
+}
+.dsd-side__grp summary::-webkit-details-marker { display: none; }
+.dsd-side__grp summary::before {
+  content: ""; width: var(--len-6); height: var(--len-6); flex: none;
+  border-right: var(--len-1-7) solid currentColor; border-bottom: var(--len-1-7) solid currentColor;
+  transform: rotate(-45deg); transition: transform var(--time-0-15);
+}
+.dsd-side__grp[open] summary::before { transform: rotate(45deg); }
+.dsd-side__grp summary:focus-visible { outline: var(--len-2-5) solid var(--text-primary); outline-offset: var(--len-2); border-radius: var(--len-10); }
+.dsd-side ul { list-style: none; margin: 0 0 var(--len-8); padding: 0 0 0 var(--len-16); }
+.dsd-side li a {
+  display: block; padding: var(--len-6) var(--len-8); border-radius: var(--len-10);
+  color: var(--text-muted); text-decoration: none;
+}
+.dsd-side li a:hover { background: var(--bg-surface); color: var(--text-primary); }
+.dsd-side li a:focus-visible { outline: var(--len-2-5) solid var(--text-primary); outline-offset: var(--len-2); }
+.dsd-side__none { color: var(--text-muted); }
+.dsd-main.dsd-home__main .dsd-hero h1 {
+  font-size: calc(var(--type-display-size) * 2); line-height: var(--num-1-2); font-weight: var(--type-display-weight);
+  letter-spacing: var(--type-display-track); margin: 0 0 var(--len-24);
+}
+.dsd-hero p { font-size: calc(var(--type-display-size) * 1.05); line-height: var(--type-lead-line); max-width: 52ch; margin: 0; }
+.dsd-home__sec { margin-top: var(--len-80); }
+.dsd-main.dsd-home__main .dsd-home__sec h2 { font-size: calc(var(--type-display-size) * 1.45); font-weight: var(--type-display-weight); margin: 0 0 var(--len-12); padding: 0; border: 0; letter-spacing: var(--type-display-track); }
+.dsd-home__sec > p { font-size: var(--type-heading-size); line-height: var(--type-lead-line); max-width: 70ch; margin: 0 0 var(--len-24); }
+.dsd-home__sec > p a, .dsd-hero a { color: var(--text-primary); }
+.dsd-tiles {
+  list-style: none; margin: 0; padding: 0; display: grid; gap: var(--len-32) var(--len-24);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--len-260)), 1fr));
+}
+.dsd-tile a { display: block; color: var(--text-primary); text-decoration: none; border-radius: var(--len-16); }
+.dsd-tile img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--len-16); }
+.dsd-tile__name { display: block; margin-top: var(--len-12); font-size: var(--type-title-size); font-weight: var(--type-title-weight); }
+.dsd-tile a:hover .dsd-tile__name { text-decoration: underline; }
+.dsd-tile a:focus-visible { outline: var(--len-2-5) solid var(--text-primary); outline-offset: var(--len-4); }
+.dsd-tile__cap { display: block; margin-top: var(--len-4); color: var(--text-muted); font-size: var(--type-body-sm-size); line-height: var(--type-lead-line); }
+/* every page of the site sits in the same grid as the overview */
+.dsd-home > .dsd-main { max-width: none; margin: 0; padding: 0; min-width: 0; }
+.dsd-side li a[aria-current="page"] { background: var(--bg-accent-tint); color: var(--text-primary); font-weight: var(--type-weight-medium); }
+.dsd-table-wrap { overflow-x: auto; margin: var(--len-12) 0 var(--len-24); }
+.dsd-table { width: 100%; border-collapse: collapse; font-size: var(--type-body-size); }
+.dsd-table th, .dsd-table td { text-align: left; vertical-align: top; padding: var(--len-8) var(--len-12) var(--len-8) 0; border-bottom: var(--len-1) solid var(--border-hairline); }
+.dsd-table th { color: var(--text-muted); font-weight: var(--type-weight-medium); white-space: nowrap; }
+.dsd-tok td:first-child { white-space: nowrap; }
+.dsd-tok td:last-child { color: var(--text-muted); min-width: calc(var(--len-140) * 2); }
+.dsd-sw { display: inline-block; width: var(--len-20); height: var(--len-20); border-radius: var(--len-6); vertical-align: middle; margin-right: var(--len-8); border: var(--len-1) solid var(--border-hairline); }
+.dsd-tok__dark { display: inline-block; font-size: var(--type-caption-size); padding: 0 var(--len-6); border-radius: var(--len-999); background: var(--bg-inverse); color: var(--text-on-inverse); }
+.dsd-tok__val, .dsd-tok__ratio { white-space: nowrap; font-family: var(--font-mono); font-size: var(--type-caption-size); }
+
+@media (max-width: 900px) {
+  .dsd-home { grid-template-columns: minmax(0, 1fr); gap: var(--len-24); }
+  .dsd-side { position: static; max-height: none; }
+  .dsd-side__grp { border-bottom: var(--len-1) solid var(--border-hairline); }
+}
+
+/* -- the burger: on a phone the top links and the sidebar are one drawer ------ */
+.dsd-burger, .dsd-side__top, .dsd-scrim, .dsd-side__theme { display: none; }
+@media (max-width: 900px) {
+  .dsd-nav { display: none; }
+  .dsd-top { flex-wrap: nowrap; }
+  .dsd-top > .dsd-theme { display: none; }
+  .dsd-burger { margin-left: auto; }
+  .dsd-side__theme { display: inline-flex; margin: 0 0 var(--len-12); }
+  .dsd-burger {
+    display: inline-flex; align-items: center; justify-content: center; order: 3;
+    width: var(--len-44); height: var(--len-44); border: 0; border-radius: var(--len-12);
+    background: var(--bg-muted); color: var(--text-primary); cursor: pointer;
+  }
+  .dsd-burger svg { width: var(--len-24); height: var(--len-24); }
+  .dsd-burger:focus-visible { outline: var(--len-2-5) solid var(--text-primary); outline-offset: var(--len-2); }
+  .dsd-home .dsd-side {
+    position: fixed; top: 0; bottom: 0; left: 0; z-index: 30; width: min(var(--len-291), 86vw); align-self: stretch;
+    max-height: none; padding: var(--len-16); background: var(--bg-page); overflow-y: auto;
+    border-right: var(--len-1) solid var(--border-hairline);
+    transform: translateX(-100%); visibility: hidden; transition: transform var(--time-0-32), visibility var(--time-0-32);
+  }
+  html.dsd-open .dsd-home .dsd-side { transform: none; visibility: visible; }
+  .dsd-side__top { display: block; list-style: none; margin: 0 0 var(--len-12); padding: 0 0 var(--len-12); border-bottom: var(--len-1) solid var(--border-hairline); }
+  .dsd-side__top a { display: block; padding: var(--len-10) var(--len-8); border-radius: var(--len-10); color: var(--text-primary); text-decoration: none; }
+  .dsd-side__top a[aria-current="page"] { background: var(--bg-accent-tint); font-weight: var(--type-weight-medium); }
+  .dsd-scrim { display: block; position: fixed; inset: 0; z-index: 29; background: var(--scrim); opacity: 0; visibility: hidden; transition: opacity var(--time-0-32), visibility var(--time-0-32); }
+  html.dsd-open .dsd-scrim { opacity: 1; visibility: visible; }
+  html.dsd-open { overflow: hidden; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dsd-home .dsd-side, .dsd-scrim { transition: none; }
+}
+
+@media (max-width: 760px) {
+  .dsd-main.dsd-home__main .dsd-hero h1 { font-size: calc(var(--type-display-size) * 1.45); }
+  .dsd-main.dsd-home__main .dsd-home__sec h2 { font-size: calc(var(--type-display-size) * 1.1); }
+  .dsd-hero p { font-size: var(--type-title-size); }
+  .dsd-anatomy { grid-template-columns: minmax(0, 1fr); }
+}

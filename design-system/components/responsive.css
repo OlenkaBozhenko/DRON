@@ -1,0 +1,150 @@
+/* responsive.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   type     -> semantic tokens only (--font-*, --type-*), since 2026-10-14
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+
+   THE NARROW TIER IS WRITTEN OUT, NOT RE-BOUND. ui/kit.css spends this
+   breakpoint by redefining four tokens on :root -
+
+       --sp-group 20 -> 16 · --sp-list 28 -> 22 · --sz-well-w/h 96 -> 68
+
+   - and every consumer follows. tokens.css cannot do that: its lengths are
+   named by their value, so --len-20 can never be made to mean 16 without the
+   name becoming a lie, and geometry takes no semantic token (the designer's
+   rule for this layer). So the re-binding is spent where it lands instead:
+   the 17 selectors below are every rule in kit.css whose declarations reach
+   one of the four, found by resolving the token chains rather than by memory.
+   Each one keeps kit.css's computed value at this width.
+
+   One consequence is worth naming: under the :root form a NEW consumer of
+   --sp-group would step at this width for free, and here it would not. When a
+   component starts spending one of the four, its narrow-tier line belongs in
+   this block too.
+   ------------------------------------------------------------------------ */
+
+@media (max-width: 389px){
+
+  /* --sp-list 28 -> 22 */
+  .dr-log{
+    gap: var(--len-22);
+  }
+  .dr-list{
+    gap: var(--len-22);
+  }
+
+  /* AND THE MODIFIER HAS TO BE RE-ASSERTED, WHICH THE RE-BINDING DID NOT NEED.
+     kit.css re-binds --sp-list on :root, so .dr-list--snug's own gap (8) simply
+     kept winning by being a later rule of equal weight. Written out as a rule on
+     .dr-list, the narrow tier lands INSIDE a media block that cascades after
+     list.css - so it beat the modifier and every snug list opened from 8 to 22
+     below 389px. Measured on notifications at 380: the log grew 28px.
+     Re-stating --snug here restores kit's own outcome: base 22, snug 8. */
+  .dr-list--snug{
+    gap: var(--len-8);
+  }
+
+  /* --sp-group 20 -> 16 */
+  /* gap is --sp-18 here, not --sp-group's 16: kit.css's narrow rule lands
+     after the re-binding and wins. Padding still follows --sp-group. */
+  .dr-card{
+    gap: var(--len-18);
+    padding: var(--len-24) var(--len-16);
+  }
+
+  /* THE COVER CARD KEEPS ITS OWN NOTHING. kit.css's narrow block writes only
+     .dr-card{gap} and gets the padding from the --sp-group re-binding, which
+     .dr-card--cover escapes by declaring padding:0 later at equal weight. Here
+     the padding IS written on .dr-card, inside a media block that cascades after
+     card.css, so the cover card would take the 24/16 it was built to refuse.
+     ONLY THE PADDING. The gap is not the same case: kit.css's narrow block
+     writes a literal .dr-card{gap} that beats --cover there too, so 18 at this
+     width is kit's own outcome and restating gap:0 here would be a change, not
+     a restoration - measured at 380 on order-details-aerial, which is the one
+     page that draws the cover card. */
+  .dr-card--cover{
+    padding: 0;
+  }
+  .dr-card--compact{
+    padding: var(--len-16) var(--len-16);
+  }
+  .dr-choice{
+    gap: var(--len-16);
+  }
+  .dr-op{
+    padding: var(--len-16) var(--len-16);
+  }
+  .dr-zone > .dr-picks, .dr-zone > .dr-rows{
+    margin-top: var(--len-16);
+  }
+  .dr-range__band{
+    margin-top: var(--len-16);
+  }
+  .dr-range__fields{
+    margin-top: var(--len-16);
+  }
+  .dr-call .dr-main{
+    gap: var(--len-16);
+  }
+  .dr-toast{
+    bottom: var(--len-16);
+    padding: var(--len-12) var(--len-16);
+  }
+
+  /* AND THE TOAST THAT FLOATS ABOVE A DRAWER KEEPS ITS OWN FLOOR. Same shape,
+     found by reading the cascade rather than by rendering: --over-sheet is
+     script-raised, so no page shows it at rest and no sweep can reach it. Its
+     bottom is calc(100% + 12) off the sheet's top edge, not a distance from the
+     frame floor, and the narrow .dr-toast{bottom} would have dropped it onto
+     the sheet it is meant to clear. */
+  .dr-toast--over-sheet{
+    bottom: calc(var(--pct-100) + var(--len-12));
+  }
+  .dr-slider--bleed .dr-slide{
+    padding: calc(var(--len-16) + var(--len-32)) var(--len-16) 0;
+  }
+  .dr-slider--bleed .dr-slide__art{
+    margin: 0 calc(var(--len-16) * -1);
+  }
+  .dr-balance--card, .dr-balance--banner{
+    padding: var(--len-16) var(--len-16);
+  }
+  .dr-fab{
+    padding: 0 var(--len-16);
+  }
+
+  /* --sz-well-w/h 96 -> 68. The skeleton steps with the well it stands in
+     for, so a loading list and a loaded list keep the same height. */
+  .dr-well{
+    width: var(--len-68);
+    height: var(--len-68);
+  }
+
+  /* AND THE TWO WELLS THAT SIZE THEMSELVES HAVE TO SAY SO AGAIN. Same trap as
+     --snug above, and this one was live: kit.css re-binds --sz-well-w/h, which
+     .dr-well--map and .dr-well--photo never read - they set width/height to auto
+     and take their box from an aspect-ratio or from the picture. Written out as a
+     literal on .dr-well, the narrow tier out-cascaded both and squared them to 68.
+     Measured on job-brief at 380: the map well fell from 322 x 161.80 to 68 x 68
+     and everything under it rose 93.80px. */
+  .dr-well--map, .dr-well--photo{
+    width: auto;
+    height: auto;
+  }
+  .dr-sk-well{
+    width: var(--len-68);
+    height: var(--len-68);
+  }
+
+  /* kit.css's own narrow-tier rules, which were never token re-bindings */
+  .dr-order__top{
+    gap: var(--len-12);
+  }
+  .dr-inset{
+    padding: var(--len-14);
+  }
+}
