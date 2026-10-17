@@ -7,7 +7,7 @@ requires: dr-tabbar dr-brand dr-topbar dr-main
 built: [Wide shell](wide-shell.html) · [Screen shell](screen-shell.html) · [Tab root](patterns.html#tab-root)
 ---
 
-A tab root on a tablet or a desktop: the same screen, the same markup, laid out for the width. The tab
+A tab root on a desktop (the tablet: coming soon, being redesigned): the same screen, the same markup, laid out for the width. The tab
 bar becomes the header's navigation, the status bar and the home indicator go, and the work area is
 the phone column centred until the screen takes a wide layout of its own. Nothing on the screen
 changes: the components carry it (container queries on `.dr-screen`, from 47.875rem).
@@ -15,7 +15,7 @@ changes: the components carry it (container queries on `.dr-screen`, from 47.875
 ## Composition
 
 ```html
-<div class="dr dr-screen" style="width:1024px;height:560px;max-width:none">
+<div class="dr dr-screen" style="width:1280px;height:560px;max-width:none">
     <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
     <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><h1 class="dr-topbar__title">Activity</h1><span class="dr-topbar__spacer"></span></header>
     <main class="dr-main">
@@ -138,7 +138,7 @@ changes: the components carry it (container queries on `.dr-screen`, from 47.875
   </div>
 ```
 
-From `order-history`, in a 1024 frame.
+From `order-history`, in a 1280 frame.
 
 - The header: the brand, the four destinations in a material pill, the current one on the accent tint.
 - The work area: `--container-column` 36rem, centred.

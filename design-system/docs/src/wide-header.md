@@ -34,7 +34,7 @@ kit: —
 - `.dr-whead__nav` — The four destinations as links on a material pill; the current one on `--bg-well`, medium weight.
 - `.dr-whead__end > .dr-btn--primary` — *Order*, the screen's one green control, a pill. It steps back to grey while a window is open.
 - `.dr-iconbtn` — A round 48 button on the material: search, the theme (a moon in light, a sun in dark, named for what it switches to), notifications with the count badge.
-- `.dr-profilechip` — The face, the name and where; on a tablet the face alone.
+- `.dr-profilechip` — The face, the name and where.
 
 ## Variants
 
@@ -73,6 +73,14 @@ The same four destinations as the phone's tab bar, in the same order.
 ```
 
 Order, search, theme, notifications, the profile.
+
+### Tablet
+
+```html
+<p class="dr-note">Coming soon.</p>
+```
+
+The tablet layout is being redesigned from scratch (the designer, 2026-10-18). Until then this page shows the phone and the desktop only.
 
 ## States
 

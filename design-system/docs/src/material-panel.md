@@ -27,13 +27,21 @@ kit: —
 
 The phone has no material panels: its surfaces stay flat and opaque.
 
-### Tablet and desktop
+### Desktop
 
 ```html
 <div class="dr" style="position:relative;width:560px;max-width:100%;height:200px;border-radius:22px;overflow:hidden"><div class="dr-mapground" role="img" aria-label="Live map"><span class="dr-mapground__drone" style="left:30%;top:40%"></span><span class="dr-mapground__drone" style="left:62%;top:28%"></span><span class="dr-mapground__drone" style="left:74%;top:66%"></span></div><div class="dr-material" style="position:absolute;left:24px;top:24px;width:260px;padding:16px"><b>Your month</b><p style="margin:6px 0 0">7 orders · ₴1,940</p></div></div>
 ```
 
 Over the map ground, in both themes: the dark build tints it with `--charcoal-800`.
+
+### Tablet
+
+```html
+<p class="dr-note">Coming soon.</p>
+```
+
+The tablet layout is being redesigned from scratch (the designer, 2026-10-18). Until then this page shows the phone and the desktop only.
 
 ## States
 

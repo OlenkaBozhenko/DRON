@@ -45,6 +45,14 @@ The phone keeps its own home and tab bar; nothing here reaches it.
 
 Free now near you, Your month: key and value rows on the material, a hairline between.
 
+### Tablet
+
+```html
+<p class="dr-note">Coming soon.</p>
+```
+
+The tablet layout is being redesigned from scratch (the designer, 2026-10-18). Until then this page shows the phone and the desktop only.
+
 ## States
 
 No state of its own: read, not pressed.

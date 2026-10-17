@@ -31,7 +31,7 @@ kit: —
 
 The phone keeps its own home and tab bar; nothing here reaches it.
 
-### Tablet and desktop
+### Desktop
 
 ```html
 <div style="width:300px;max-width:100%"><div class="dr-tally dr-material"><h2 class="dr-tally__title">Deliveries today</h2><p class="dr-tally__sub">Kyiv · by hour · busiest 15:00</p>
@@ -40,6 +40,14 @@ The phone keeps its own home and tab bar; nothing here reaches it.
 ```
 
 In the left rail of the wide home.
+
+### Tablet
+
+```html
+<p class="dr-note">Coming soon.</p>
+```
+
+The tablet layout is being redesigned from scratch (the designer, 2026-10-18). Until then this page shows the phone and the desktop only.
 
 ## States
 

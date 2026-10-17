@@ -28,13 +28,21 @@ kit: —
 
 The phone keeps its own map well and results screen.
 
-### Tablet and desktop
+### Desktop
 
 ```html
 <div class="dr" style="position:relative;width:560px;max-width:100%;height:200px;border-radius:22px;overflow:hidden"><div class="dr-mapground" role="img" aria-label="Live map"><span class="dr-mapground__drone" style="left:30%;top:40%"></span><span class="dr-mapground__drone" style="left:62%;top:28%"></span><span class="dr-mapground__drone" style="left:74%;top:66%"></span></div></div>
 ```
 
 Switch the theme in the top bar: the file swaps, it is never filtered.
+
+### Tablet
+
+```html
+<p class="dr-note">Coming soon.</p>
+```
+
+The tablet layout is being redesigned from scratch (the designer, 2026-10-18). Until then this page shows the phone and the desktop only.
 
 ## States
 

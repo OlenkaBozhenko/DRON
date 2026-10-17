@@ -44,6 +44,14 @@ The phone has no assistant (the designer, 2026-10-18).
 
 When the order window opens the assistant folds into this button, a ring of light turning round it in `--time-ring`.
 
+### Tablet
+
+```html
+<p class="dr-note">Coming soon.</p>
+```
+
+The tablet layout is being redesigned from scratch (the designer, 2026-10-18). Until then this page shows the phone and the desktop only.
+
 ## States
 
 ```html

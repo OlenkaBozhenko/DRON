@@ -29,13 +29,21 @@ kit: —
 
 The phone shows no live statistics.
 
-### Tablet and desktop
+### Desktop
 
 ```html
 <div style="display:grid;gap:12px;width:300px;max-width:100%"><div class="dr-stat dr-material"><span class="dr-stat__ic"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><path d="M7.5 6h9M12 6v4"/><rect x="8.5" y="10" width="7" height="5" rx="1.5"/></svg></span><span><span class="dr-stat__label">Average delivery price</span><span class="dr-stat__figure">₴186</span><span class="dr-stat__trend">in your area</span></span></div><div class="dr-stat dr-material"><span class="dr-stat__ic"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><path d="M7.5 6h9M12 6v4"/><rect x="8.5" y="10" width="7" height="5" rx="1.5"/></svg></span><span><span class="dr-stat__label">Average arrival</span><span class="dr-stat__figure">7 min</span><span class="dr-stat__trend">↘ 1 min faster</span></span></div></div>
 ```
 
 In the left column over the map.
+
+### Tablet
+
+```html
+<p class="dr-note">Coming soon.</p>
+```
+
+The tablet layout is being redesigned from scratch (the designer, 2026-10-18). Until then this page shows the phone and the desktop only.
 
 ## States
 

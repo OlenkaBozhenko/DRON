@@ -12,7 +12,7 @@ kit: —
 ## Anatomy
 
 ```html
-<div class="dr dr-screen" style="width:1024px;height:560px;max-width:none">
+<div class="dr dr-screen" style="width:1280px;height:560px;max-width:none">
     <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
     <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><h1 class="dr-topbar__title">Activity</h1><span class="dr-topbar__spacer"></span></header>
     <main class="dr-main">
@@ -135,7 +135,7 @@ kit: —
   </div>
 ```
 
-- `.dr-tabbar` — On a tablet or a desktop the tab bar becomes the header's navigation: the same four destinations in a material pill, centred in the 80 tall header. `HIG · Sidebars` and *Tab bars*: on iPad and Mac the top-level destinations move to the top.
+- `.dr-tabbar` — On a desktop the tab bar becomes the header's navigation: the same four destinations in a material pill, centred in the 80 tall header. `HIG · Sidebars` and *Tab bars*: on iPad and Mac the top-level destinations move to the top.
 - `.dr-tab[aria-current="page"]` — The current destination keeps the phone's accent-tint fill behind charcoal, 14.75:1.
 - `.dr-topbar` — The brand on the left. On a tab root the title is kept for assistive tech only, because the active tab already names the screen; on a pushed screen the back and the title stay where they are.
 - `.dr-main` — The phone column, kept and centred at `--container-column` 36rem, until a screen takes a wide layout of its own.
@@ -270,10 +270,10 @@ kit: —
 
 On the phone: unchanged. The frame is 375 wide, the container query never matches, and every rule here is skipped. The status bar, the bottom tab bar and the home indicator are as built.
 
-### Tablet (768) and desktop (1024+)
+### Desktop (1280)
 
 ```html
-<div class="dr dr-screen" style="width:1024px;height:560px;max-width:none">
+<div class="dr dr-screen" style="width:1280px;height:560px;max-width:none">
     <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
     <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><h1 class="dr-topbar__title">Activity</h1><span class="dr-topbar__spacer"></span></header>
     <main class="dr-main">
@@ -396,11 +396,19 @@ On the phone: unchanged. The frame is 375 wide, the container query never matche
   </div>
 ```
 
-The same markup in a frame of 47.875rem or more (`--bp-tablet` less the 1px border): no status bar or home indicator, navigation in the header, the column centred. A sheet becomes a centred dialog, and the map's docked choices a panel beside the map.
+The same markup in a desktop frame: no status bar or home indicator, navigation in the header, the column centred. A sheet becomes a centred dialog, and the map's docked choices a panel beside the map.
+
+### Tablet
+
+```html
+<p class="dr-note">Coming soon.</p>
+```
+
+The tablet layout is being redesigned from scratch (the designer, 2026-10-18). Until then this page shows the phone and the desktop only.
 
 ## States
 
-The tabs keep the phone's states on a wide screen: Rest, Hover, the current tab's fill, and Focus as the 2.5px `--ink` ring (`--cream-50` in the dark build), checked on 25 flow screens at tablet and desktop in both themes. See [Screen shell](screen-shell.html#s-states) for the tab drawn in each state.
+The tabs keep the phone's states on a wide screen: Rest, Hover, the current tab's fill, and Focus as the 2.5px `--ink` ring (`--cream-50` in the dark build), checked on 25 flow screens at desktop width in both themes. See [Screen shell](screen-shell.html#s-states) for the tab drawn in each state.
 
 ## When to use
 

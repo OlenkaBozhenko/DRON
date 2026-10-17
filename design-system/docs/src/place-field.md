@@ -30,7 +30,7 @@ The phone keeps its own home and tab bar; nothing here reaches it.
 ### The order window
 
 ```html
-<div class="dr dr-screen" style="width:1024px;height:620px;max-width:none"><section class="dr-sheet dr-sheet--picker dr-material" id="sheet-order" role="dialog" aria-modal="true" aria-labelledby="sheet-order-title">
+<div class="dr dr-screen" style="width:1280px;height:620px;max-width:none"><section class="dr-sheet dr-sheet--picker dr-material" id="sheet-order" role="dialog" aria-modal="true" aria-labelledby="sheet-order-title">
     <span class="dr-sheet__grip" aria-hidden="true"></span>
     <h2 class="dr-sheet__title" id="sheet-order-title">Package delivery</h2>
     <p class="dr-sheet__lead">Arrives in 6 min · the price is locked when you pay</p>
@@ -70,6 +70,14 @@ The phone keeps its own home and tab bar; nothing here reaches it.
 ```
 
 On a wide screen the sheet is a centred dialog: the title, the lead line, the two places, the offers and *Continue to pay*.
+
+### Tablet
+
+```html
+<p class="dr-note">Coming soon.</p>
+```
+
+The tablet layout is being redesigned from scratch (the designer, 2026-10-18). Until then this page shows the phone and the desktop only.
 
 ## States
 
