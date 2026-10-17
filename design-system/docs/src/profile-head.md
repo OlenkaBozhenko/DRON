@@ -61,6 +61,18 @@ kit: 1489
 
 `operator-account`: two credentials, both drawn the same way, because two chips of one kind must not be told apart by their drawing. The chips close the column. On both heads *Edit profile* is a [floating action](floating-action.html) above the tab bar, not a button in the head.
 
+### Read-only
+
+```html
+<div class="dr dr-profile" style="width:341px;max-width:100%">
+  <span class="dr-profile__photo"><span class="dr-avatar-lg"><img src="../assets/people/thumbs/operator.png" alt="Andriy M., your operator" loading="lazy" decoding="async"></span></span>
+  <h2 class="dr-profile__name dr-display">Andriy M.</h2>
+  <span class="dr-chips dr-profile__badges"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
+</div>
+```
+
+Someone else's profile, read and not owned (designer, rev 312: *«шапка профілю може бути без кнопки редагувати якщо це перегляд профілю»*). Drawn on `design-system/examples/operator-profile.html`, the client reading the operator who is coming. The photo is a `<span>`, not a link: no edit disc, no focus, and its `alt` names the person, because there the photo is the proof (`RJ-C1`). The name is the screen's heading. Edit is only ever on your own head.
+
 ## States
 
 ```html

@@ -57,7 +57,11 @@ declare. Whatever is missing is written here, with the job that asked for it.
 - **Belongs in:** `components/frame.css` + a docs page — a presentation stage (e.g. `.dr-stage`:
   the page ground, the screen centred, a gutter) that is not part of any product screen.
 
-### B-4 · The profile head's read-only form is undocumented
+---
+
+## Done
+
+### B-4 · The profile head's read-only form is undocumented — **done, rev 312**
 
 - **Found by:** `examples/operator-profile.html`.
 - **What is missing:** nothing in CSS — `.dr-profile__photo` without `.dr-avatar-edit` renders a
@@ -65,9 +69,4 @@ declare. Whatever is missing is written here, with the job that asked for it.
   head with the edit disc, so the read-only head someone else's profile needs cannot be found.
 - **Belongs in:** `docs/src/profile-head.md` — a *Read-only* variant (a `<span>`, no link, no disc,
   `alt` naming the person).
-
----
-
-## Done
-
-*Nothing yet.*
+- **Done:** `docs/src/profile-head.md` has the *Read-only* variant (the designer: *«шапка профілю може бути без кнопки редагувати якщо це перегляд профілю»*) and `ui/kit.html` its specimen.
