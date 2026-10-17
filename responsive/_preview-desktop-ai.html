@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>DRON on a Mac · AI agent preview</title>
+<!-- PREVIEW, scaffolding: the designer's direction 2026-10-18 - the map as the whole ground, glass panels
+     left and right with what is happening, the navigation in a top header with Order, and an AI agent in
+     the centre that greets the client and offers three services. ?order shows the order window, with the
+     agent folded into a Talk to AI button. Not the product: the glass, the glow and the dark map filter are
+     not in design-system/ and would go there first. -->
+<link rel="stylesheet" href="../design-system/index.css">
+<style>
+  :root { color-scheme: dark; }
+  body { margin:0; min-height:100vh; display:grid; place-items:center; font-family: var(--font-ui);
+         background: radial-gradient(110% 90% at 70% 0%, #3A4A2A 0%, #1F241B 45%, #0E0F0D 100%); }
+  .mac { width:1440px; height:900px; border-radius:14px; overflow:hidden; display:flex; flex-direction:column; position:relative;
+         background:#121212; box-shadow: 0 40px 100px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.08); }
+  .mac__bar { height:44px; flex:none; display:flex; align-items:center; gap:14px; padding:0 16px; background:#1C1C1C; border-bottom:1px solid #2A2A2A; }
+  .mac__dots { display:flex; gap:8px; } .mac__dots i { width:12px; height:12px; border-radius:50%; display:block; }
+  .mac__url { margin:0 auto; width:420px; height:26px; border-radius:8px; background:#262626; color:#A9A6A0; display:grid; place-items:center; font-size:12px; }
+  .x { position:relative; flex:1; min-height:0; color: var(--text-primary); }
+  .x-map { position:absolute; inset:0; background: url(../assets/map/live-map.jpg) center/cover;
+           filter: invert(1) hue-rotate(180deg) brightness(.9) contrast(1.05) saturate(.6); }
+  .x-veil { position:absolute; inset:0; background: radial-gradient(70% 65% at 50% 48%, rgba(18,18,18,.15) 0%, rgba(18,18,18,.45) 70%, rgba(18,18,18,.8) 100%); }
+  .x-dot { position:absolute; width:10px; height:10px; border-radius:50%; background: var(--color-action);
+           box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-action) 22%, transparent), 0 0 24px 6px color-mix(in srgb, var(--color-action) 45%, transparent); }
+  .glass { background: color-mix(in srgb, var(--bg-surface) 72%, transparent); backdrop-filter: blur(18px) saturate(1.2);
+           border:1px solid color-mix(in srgb, var(--text-primary) 10%, transparent); border-radius:22px; }
+  .x-top { position:absolute; top:18px; left:24px; right:24px; display:flex; align-items:center; gap:14px; z-index:3; }
+  .x-logo { width:52px; height:52px; display:grid; place-items:center; }
+  .x-logo .dr-brand { width:44px; }
+  .x-nav { display:flex; gap:4px; padding:5px; border-radius:999px; }
+  .x-nav a { padding:10px 18px; border-radius:999px; color: var(--text-muted); text-decoration:none; font-size: var(--type-body-size); }
+  .x-nav a.on { background: color-mix(in srgb, var(--text-primary) 12%, transparent); color: var(--text-primary); }
+  .x-top__end { margin-left:auto; display:flex; align-items:center; gap:10px; }
+  .x-circ { width:48px; height:48px; border-radius:50%; display:grid; place-items:center; }
+  .x-circ svg { width:22px; height:22px; }
+  .x-me { display:flex; align-items:center; gap:10px; padding:5px 16px 5px 5px; border-radius:999px; font-size: var(--type-body-size); }
+  .x-me img { width:38px; height:38px; border-radius:50%; object-fit:cover; }
+  .x-me small { display:block; color: var(--text-muted); font-size: var(--type-caption-size); }
+  .x-order { height:48px; padding:0 26px; border-radius:999px; }
+  .x-left, .x-right { position:absolute; top:96px; bottom:24px; width:300px; display:flex; flex-direction:column; gap:12px; z-index:2; }
+  .x-left { left:24px; } .x-right { right:24px; }
+  .x-stat { display:flex; align-items:center; gap:14px; padding:14px; }
+  .x-stat__ic { width:52px; height:52px; border-radius:16px; display:grid; place-items:center; background: color-mix(in srgb, var(--text-primary) 8%, transparent); }
+  .x-stat__ic svg { width:24px; height:24px; }
+  .x-stat small { display:block; color: var(--text-muted); font-size: var(--type-caption-size); }
+  .x-stat b { font-size:26px; font-weight:600; letter-spacing:-.01em; }
+  .x-stat em { font-style:normal; font-size: var(--type-caption-size); color: var(--color-action); margin-left:6px; }
+  .x-card { padding:18px; }
+  .x-card h3 { margin:0 0 4px; font-size: var(--type-heading-size); font-weight: var(--type-weight-medium); }
+  .x-card p { margin:0; color: var(--text-muted); font-size: var(--type-caption-size); }
+  .x-bars { display:flex; align-items:flex-end; gap:5px; height:84px; margin-top:14px; }
+  .x-bars i { flex:1; border-radius:4px; background: color-mix(in srgb, var(--text-primary) 18%, transparent); }
+  .x-bars i:nth-child(9) { background: var(--color-action); }
+  .x-axis { display:flex; justify-content:space-between; color: var(--text-muted); font-size:11px; margin-top:6px; }
+  .x-row { display:flex; justify-content:space-between; font-size: var(--type-body-size); padding:9px 0; border-bottom:1px solid color-mix(in srgb, var(--text-primary) 8%, transparent); }
+  .x-row:last-child { border-bottom:0; }
+  .x-row span { color: var(--text-muted); }
+  .x-live { display:inline-flex; align-items:center; gap:6px; font-size: var(--type-caption-size); color: var(--color-action); }
+  .x-live::before { content:""; width:7px; height:7px; border-radius:50%; background: var(--color-action); }
+  .x-op { display:flex; align-items:center; gap:12px; margin-top:12px; }
+  .x-op img { width:44px; height:44px; border-radius:50%; object-fit:cover; }
+  .x-op small { display:block; color: var(--text-muted); font-size: var(--type-caption-size); }
+  .x-card .dr-rail { margin:14px 0 4px; }
+  .x-agent { position:absolute; left:50%; top:47%; transform:translate(-50%,-50%); width:620px; z-index:2; text-align:center; }
+  .x-orb { width:84px; height:84px; margin:0 auto 18px; border-radius:50%;
+           background: radial-gradient(circle at 35% 30%, #E7F0D2 0%, #9BCF4A 38%, #3E5A1C 72%, #1A1A1A 100%);
+           box-shadow: 0 0 60px 10px color-mix(in srgb, var(--color-action) 35%, transparent); display:grid; place-items:center; color:#1A1A1A; }
+  .x-orb svg { width:34px; height:34px; }
+  .x-agent h1 { margin:0; font-size:34px; line-height:1.2; font-weight:600; letter-spacing:-.02em; }
+  .x-agent p { margin:10px 0 22px; color: var(--text-muted); font-size: var(--type-heading-size); }
+  .x-ask { display:flex; align-items:center; gap:10px; padding:8px 8px 8px 22px; border-radius:999px; text-align:left; }
+  .x-ask > span:first-child { flex:1; color: var(--text-muted); font-size: var(--type-heading-size); }
+  .x-ask .x-circ { width:44px; height:44px; background: var(--text-primary); color: var(--bg-page); }
+  .x-svcs { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:14px; }
+  .x-svc { display:flex; flex-direction:column; align-items:flex-start; gap:2px; padding:14px; text-decoration:none; color: var(--text-primary); text-align:left; }
+  .x-svc img { width:96px; height:64px; object-fit:contain; margin:-4px 0 6px -6px; }
+  .x-svc b { font-size: var(--type-heading-size); font-weight: var(--type-weight-medium); }
+  .x-svc span { color: var(--text-muted); font-size: var(--type-caption-size); }
+  /* state B: the order window */
+  .x-modal { display:none; position:absolute; left:50%; top:50%; transform:translate(-50%,-48%); width:560px; z-index:4; padding:24px; }
+  .x-modal h2 { margin:0; font-size:22px; font-weight:600; }
+  .x-modal > p { margin:4px 0 16px; color: var(--text-muted); font-size: var(--type-body-size); }
+  .x-route { display:grid; gap:8px; margin-bottom:14px; }
+  .x-route span { display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:14px; background: color-mix(in srgb, var(--text-primary) 7%, transparent); font-size: var(--type-body-size); }
+  .x-route svg { width:18px; height:18px; color: var(--text-muted); }
+  .x-modal .dr-offers { margin-bottom:16px; }
+  .x-talk { color: var(--text-primary); text-decoration:none; display:none; position:absolute; left:50%; bottom:28px; transform:translateX(-50%); z-index:4; align-items:center; gap:10px; padding:8px 20px 8px 8px; border-radius:999px; font-size: var(--type-body-size); }
+  .x-talk .x-orb { width:38px; height:38px; margin:0; box-shadow: 0 0 24px 4px color-mix(in srgb, var(--color-action) 35%, transparent); }
+  .x-talk .x-orb svg { width:18px; height:18px; }
+  .x-dim { display:none; position:absolute; inset:0; background: rgba(10,10,10,.45); z-index:3; }
+  .is-order .x-modal, .is-order .x-dim { display:block; }
+  .is-order .x-talk { display:flex; }
+  .is-order .x-agent { display:none; }
+</style>
+</head>
+<body>
+<div class="mac">
+  <div class="mac__bar"><span class="mac__dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></span><span class="mac__url">dron.app</span></div>
+  <div class="x dr" id="x">
+    <div class="x-map" role="img" aria-label="Live map of Kyiv, drones in the air"></div>
+    <div class="x-veil"></div>
+    <i class="x-dot" style="left:31%;top:34%"></i><i class="x-dot" style="left:44%;top:58%"></i><i class="x-dot" style="left:63%;top:30%"></i><i class="x-dot" style="left:70%;top:66%"></i><i class="x-dot" style="left:52%;top:22%"></i><i class="x-dot" style="left:38%;top:76%"></i><i class="x-dot" style="left:78%;top:44%"></i><i class="x-dot" style="left:24%;top:60%"></i><i class="x-dot" style="left:58%;top:48%"></i>
+
+    <header class="x-top">
+      <span class="x-logo glass"><span class="dr-brand" role="img" aria-label="DRON"></span></span>
+      <nav class="x-nav glass" aria-label="Primary"><a class="on" href="#">Overview</a><a href="#">Activity</a><a href="#">Help</a><a href="#">Account</a></nav>
+      <div class="x-top__end">
+        <a class="dr-btn dr-btn--primary x-order" href="#">Order</a>
+        <span class="x-circ glass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></span>
+        <span class="x-circ glass"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.4a5.9 5.9 0 0 0-5.9 5.9c0 4.1-1.5 5.3-1.5 5.3h14.8s-1.5-1.2-1.5-5.3A5.9 5.9 0 0 0 12 3.4Z"/><path d="M10.1 18a2.1 2.1 0 0 0 3.8 0"/></svg></span>
+        <span class="x-me glass"><img src="../assets/people/thumbs/person-client-olena.png" alt=""><span>Olena B.<small>Kyiv · Podil</small></span></span>
+      </div>
+    </header>
+
+    <aside class="x-left" aria-label="What is happening">
+      <div class="x-stat glass"><span class="x-stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><path d="M7.5 6h9M12 6v4"/><rect x="8.5" y="10" width="7" height="5" rx="1.5"/><path d="M10 15l-1.5 3M14 15l1.5 3"/></svg></span><span><small>Drones in the air now</small><b>128</b><em>↗ 12% vs. yesterday</em></span></div>
+      <div class="x-stat glass"><span class="x-stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5V5h7.5L20 13.5 13.5 20z"/><circle cx="8.5" cy="9" r="1.3"/></svg></span><span><small>Average delivery price</small><b>₴186</b><em>in your area</em></span></div>
+      <div class="x-stat glass"><span class="x-stat__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span><span><small>Average arrival</small><b>7 min</b><em>↘ 1 min faster</em></span></div>
+      <div class="x-card glass"><h3>Deliveries today</h3><p>Kyiv · by hour · busiest 15:00</p><div class="x-bars"><i style="height:22%"></i><i style="height:30%"></i><i style="height:26%"></i><i style="height:38%"></i><i style="height:54%"></i><i style="height:72%"></i><i style="height:64%"></i><i style="height:80%"></i><i style="height:92%"></i><i style="height:76%"></i><i style="height:58%"></i><i style="height:44%"></i><i style="height:36%"></i><i style="height:30%"></i></div><div class="x-axis"><span>08</span><span>12</span><span>16</span><span>20</span></div></div>
+    </aside>
+
+    <aside class="x-right" aria-label="Your orders">
+      <div class="x-card glass">
+        <span class="x-live">Live</span>
+        <h3 style="margin-top:8px">Package delivery</h3><p>Podil → Osokorky · arrives 10:09</p>
+        <span class="dr-rail dr-rail--at2">
+                  <span class="dr-rail__step"><span class="dr-node dr-node--done" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-rail__lbl">Accepted</span></span>
+                  <span class="dr-rail__step" aria-current="step"><span class="dr-node dr-node--now" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/></svg></span><span class="dr-rail__lbl dr-rail__lbl--now">En route</span></span>
+                  <span class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">On&#8209;site</span></span>
+                  <span class="dr-rail__step"><span class="dr-node" aria-hidden="true"></span><span class="dr-rail__lbl">Done</span></span>
+                </span>
+        <div class="x-op"><img src="../assets/people/thumbs/operator.png" alt=""><span>Andriy M.<small>Verified by DRON · 4.9 ★</small></span></div>
+      </div>
+      <div class="x-card glass"><h3>Free now near you</h3>
+        <div class="x-row"><span>Package delivery</span>46 drones</div>
+        <div class="x-row"><span>Photo &amp; video</span>18 drones</div>
+        <div class="x-row"><span>Inspection</span>9 drones</div>
+      </div>
+      <div class="x-card glass"><h3>Your month</h3>
+        <div class="x-row"><span>Orders</span>7</div>
+        <div class="x-row"><span>Spent</span>₴1,940</div>
+      </div>
+    </aside>
+
+    <section class="x-agent" aria-label="DRON assistant">
+      <div class="x-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l1.8 5.2 5.2 1.8-5.2 1.8L12 17.5l-1.8-5.2L5 10.5l5.2-1.8z"/><path d="M18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg></div>
+      <h1>Good evening, Olena.<br>What do you need done today?</h1>
+      <p>Tell me in your own words — I will find the drone, the operator and the price.</p>
+      <div class="x-ask glass"><span>Send documents from Podil to Osokorky…</span><span class="x-circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></div>
+      <div class="x-svcs"><a class="x-svc glass" href="#"><img src="../assets/drones/thumbs/drone-02-dark.png" alt=""><b>Package delivery</b><span>from ₴180 · arrives in 6 min</span></a><a class="x-svc glass" href="#"><img src="../assets/drones/thumbs/drone-flight-camera-dark.png" alt=""><b>Photo &amp; video</b><span>from ₴640 · today 14:00</span></a><a class="x-svc glass" href="#"><img src="../assets/drones/thumbs/drone-08-dark.png" alt=""><b>Inspection</b><span>from ₴330 · report the same day</span></a></div>
+    </section>
+
+    <div class="x-dim"></div>
+    <section class="x-modal glass" aria-label="New order">
+      <h2>Package delivery</h2><p>Arrives in 6 min · the price is locked when you pay</p>
+      <div class="x-route"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg> Podil — Naberezhno-Khreshchatytska St, 21</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg> Osokorky — Dniprovska Naberezhna, 14</span></div>
+      <fieldset class="dr-offers" aria-labelledby="offers-title">
+          <label class="dr-offer">
+            <input type="radio" name="offer" value="2kg" checked class="sr-only">
+            <span class="dr-well"><img src="../assets/drones/thumbs/drone-02.png" alt="" loading="lazy" decoding="async"></span>
+            <span class="dr-offer__body">
+              <span class="dr-offer__name">Up to 2 kg</span>
+              <span class="dr-offer__meta">4 available · arrives in 6 min</span>
+            </span>
+            <span class="dr-offer__price">₴180</span>
+          </label>
+          <label class="dr-offer">
+            <input type="radio" name="offer" value="5kg" class="sr-only">
+            <span class="dr-well"><img src="../assets/drones/thumbs/drone-01.png" alt="" loading="lazy" decoding="async"></span>
+            <span class="dr-offer__body">
+              <span class="dr-offer__name">Up to 5 kg</span>
+              <span class="dr-offer__meta">2 available · arrives in 9 min</span>
+            </span>
+            <span class="dr-offer__price">₴240</span>
+          </label>
+          <label class="dr-offer">
+            <input type="radio" name="offer" value="10kg" class="sr-only">
+            <span class="dr-well"><img src="../assets/drones/thumbs/drone-08.png" alt="" loading="lazy" decoding="async"></span>
+            <span class="dr-offer__body">
+              <span class="dr-offer__name">Up to 10 kg</span>
+              <span class="dr-offer__meta">1 available · arrives in 14 min</span>
+            </span>
+            <span class="dr-offer__price">₴320</span>
+          </label>
+        </fieldset>
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="#">Order · ₴180</a>
+    </section>
+    <a class="x-talk glass" href="#"><span class="x-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l1.8 5.2 5.2 1.8-5.2 1.8L12 17.5l-1.8-5.2L5 10.5l5.2-1.8z"/><path d="M18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg></span>Talk to AI</a>
+  </div>
+</div>
+<script>if (location.search.indexOf('order') > -1) document.getElementById('x').classList.add('is-order');</script>
+</body>
+</html>
