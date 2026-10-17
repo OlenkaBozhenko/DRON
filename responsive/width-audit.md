@@ -60,10 +60,14 @@ inventive: *«замість глобуса карта на весь бекгр�
 - **Folded, the assistant is a Talk to AI button with a ring of green light turning round it**; still
   under reduced motion (`WCAG 2.3.3`).
 
+- **The order window leads to payment, not straight to the flight** (the designer: *«ти пропустив крок
+  оплати»*). *Continue to pay · ₴180* opens a centred *Pay ₴180* window: the four money rows and the pay
+  list exactly as the phone's pay drawer has them (Apple Pay, Google Pay, *Pay with card*), and *Back to
+  the order*. Paying starts the flight (`?pay`).
 - **After the order, the green drone flies the route on the map** (the designer, 2026-10-18, *for the
   future desktop rebuild*): a dotted green route from pickup to drop-off, the agent's drone moving along
   it, a *Live* line under the header (operator · arrives at), *Talk to AI* at the bottom (`?flying`).
-- **When the order is done, a window opens in the centre** with the outcome, the delivery photos, the
+- **When the order is done, a window opens in the centre** with the outcome, the delivery photo, the
   record (from · to · operator · paid) and *Rate the order* / *Done* (`?done`). It is the phone's
   *Delivery confirmation*, laid out once for the wide screen.
 - **The theme switches in the header** with a sun / moon button beside search and the bell (`?light`).
