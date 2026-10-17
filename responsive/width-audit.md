@@ -54,6 +54,9 @@ inventive: *«замість глобуса карта на весь бекгр�
   `#9BCF4A` on the dark ground **9.46:1**, on the map's light road lines **1.95:1**; white **15.99 / 3.30:1**
   (`WCAG 1.4.3`, large text 3:1). So the green is a **departure from the fill-only accent**, dark build
   only, the way the wallet plate's mark is (`CLAUDE.md`), and a soft text shadow keeps it off the lines.
+  **Tablet and desktop only** (the designer, 2026-10-18: *«це виняток лише для десктоп та планшета наразі
+  мобільну версію не трогаємо ніяк»*): the phone keeps every rule as it is, green never text, and nothing
+  in this direction reaches the mobile screens.
 - **Folded, the assistant is a Talk to AI button with a ring of green light turning round it**; still
   under reduced motion (`WCAG 2.3.3`).
 
