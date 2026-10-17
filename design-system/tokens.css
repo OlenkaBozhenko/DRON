@@ -224,6 +224,23 @@
   --ratio-map:   1.99;     /* --map-aspect - the live map's native ratio */
   --icon-grid:   0 0 24 24;   /* --ic-grid - declared in kit.css, spent nowhere */
 
+  /* -- PRIMITIVE / RESPONSIVE (2026-10-18) ---------------------------------
+     Two points, because responsive/width-audit.md names exactly two changes of
+     behaviour after the phone (its shell table, Phone < 768 / Tablet 768-1279 /
+     Desktop >= 1280): the work area goes from one column to two panes, then to
+     two or three. Not one point per device width. In rem, so a user who raises
+     the browser's text size reaches the wider layout later, not with cramped
+     panes (WCAG 1.4.4 / 1.4.10). At the default 16px: 48rem = 768px, 80rem = 1280px.
+     A media query cannot read var(): @media (min-width: 48rem) writes the same
+     number, and this block is where that number is owned. The phone reads none
+     of these - the mobile build is unchanged (designer, 2026-10-18). */
+  --bp-tablet:         48rem;    /* width-audit: Tablet 768-1279, two panes */
+  --bp-desktop:        80rem;    /* width-audit: Desktop >= 1280, two or three panes */
+  --grid-gap:          .75rem;   /* 12 - the gap between the panels and between the service cards in the drawn wide view */
+  --container-max:     90rem;    /* 1440 - the frame the wide view is drawn and measured at */
+  --col-count-tablet:  2;        /* width-audit: "two panes where the screen has two parts" */
+  --col-count-desktop: 3;        /* width-audit: "two or three panes: list - detail - map" */
+
   /* -- PRIMITIVE / PROMOTED FROM A CLASS ------------------------------------
      Six values that were in ui/kit.css all along, but as LITERALS inside a
      component class instead of in :root - the twenty that tokens-audit.md

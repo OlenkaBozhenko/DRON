@@ -670,6 +670,35 @@ follow the box: `result-upload-loading`'s status sentence sits **inside** the tr
 *Add photo* holds on the base frame, so the loading zone and the loaded zone are the same height
 to the pixel instead of the loading one running 28 taller.
 
+### Responsive — two points, and why only two (2026-10-18)
+
+**Tokens:** `--bp-tablet` 48rem · `--bp-desktop` 80rem · `--grid-gap` .75rem · `--container-max` 90rem ·
+`--col-count-tablet` 2 · `--col-count-desktop` 3, in `design-system/tokens.css` § PRIMITIVE / RESPONSIVE.
+
+**A breakpoint sits where the behaviour changes, not at a device's width.**
+[`responsive/width-audit.md`](responsive/width-audit.md) names three behaviours and so two changes:
+
+| Range | Behaviour the audit names | Source in the audit |
+|---|---|---|
+| below 48rem (768px) | One column, one screen at a time; the tab bar at the bottom | *The shell this table assumes*, row *Work area*, column *Phone (< 768)* |
+| 48rem–79.99rem | **Two panes** where the screen has two parts; the same header-and-map view as the desktop, panels narrower | same row, column *Tablet (768–1279)*; *The designer's direction*, bullet *Tablet takes the same view* |
+| 80rem and up | **Two or three panes:** list · detail · map | same row, column *Desktop (≥ 1280)* |
+
+So the column counts are the audit's own: **2** on a tablet, **3** on a desktop. `--grid-gap` is the 12px
+that separates the panels and the service cards in the drawn wide view (`responsive/_preview-desktop-ai.html`),
+and `--container-max` is the 1440px frame that view is drawn and measured at. No other point is added: a
+third tablet size or a "large desktop" would be a behaviour the audit does not name.
+
+**Why rem.** A point in rem moves with the user's text size, not only with the window: someone who sets
+their browser text to 200% reaches the two-pane layout at twice the width, instead of getting two cramped
+panes of enlarged text. That is the reading of `WCAG 1.4.4` (resize text) and `1.4.10` (reflow) the
+layout follows. At the default 16px the points are 768px and 1280px, the audit's figures.
+
+**What the tokens cannot do.** A media query cannot read `var()`, so `@media (min-width: 48rem)` writes
+the number itself; the token is where the number is owned and documented, and a change to it is a change
+to every such query. **The phone reads none of these** — the mobile build is unchanged, by the
+designer's word of 2026-10-18.
+
 ## Elevation & Depth
 
 **Surfaces are flat.** No card and no media surface casts a shadow on any of the ten pages —
