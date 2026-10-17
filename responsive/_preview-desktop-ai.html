@@ -185,6 +185,13 @@
   .is-tablet .x-modal { width:520px; }
   .is-tablet .x-card:nth-child(3) { display:none; }
   [data-theme="light"] .x-stat em, [data-theme="light"] .x-live { color: var(--text-primary); }
+  /* light build, read against HIG for macOS (Materials / Liquid Glass): panels over the map are a light
+     translucent material - near-white, blurred, a hairline edge, a soft shadow - and the map stays as it is.
+     Reduce transparency makes them solid; increase contrast gives the edge weight. Chosen 2026-10-18. */
+  [data-theme="light"] .glass { background: rgba(255,255,255,.72); backdrop-filter: blur(22px) saturate(1.6);
+    border-color: rgba(26,26,26,.08); box-shadow: 0 1px 2px rgba(26,26,26,.06), 0 8px 24px rgba(26,26,26,.10); }
+  @media (prefers-reduced-transparency: reduce) { [data-theme="light"] .glass { background:#FFFFFF; backdrop-filter:none; } .glass { backdrop-filter:none; } }
+  @media (prefers-contrast: more) { [data-theme="light"] .glass { border-color: rgba(26,26,26,.35); } .glass { border-color: color-mix(in srgb, var(--text-primary) 40%, transparent); } }
   .is-done .x-order,
   .is-order .x-order { background: color-mix(in srgb, var(--text-primary) 12%, transparent); color: var(--text-primary); box-shadow:none; }
 </style>

@@ -75,6 +75,13 @@ inventive: *«замість глобуса карта на весь бекгр�
   main dark with a green glow — green on the light map would be ~1.6:1, under `WCAG 1.4.11`'s 3:1; green
   stays a fill, as on the phone.
 
+- **Light build panels follow HIG for macOS** (*Materials*, Liquid Glass; the designer, 2026-10-18,
+  after seeing the panels melt into the light map). They are a light translucent material — near-white,
+  blurred, a hairline edge, a soft shadow — and **the map is not darkened**, since it is the content layer.
+  *Reduce transparency* makes them solid white; *Increase contrast* gives the edge weight. Text on them
+  is over 12:1 (`WCAG 1.4.3`). The shadow is a wide-screen departure from *Surfaces are flat*, on the
+  rule's own terms: these panels float over the map. **Declined:** a darker light map; greyer cards.
+
 **Not in the system yet, so a preview:** the glass panels and their blur, the glow, the assistant and
 its voice, the dark map and the white drone renders (`responsive/preview-art/`, generated in Figma).
 Each goes into `design-system/` first if kept.
