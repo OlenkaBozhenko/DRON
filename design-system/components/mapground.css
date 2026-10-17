@@ -1,0 +1,19 @@
+/* mapground.css - WIDE SCREENS ONLY (2026-10-18)
+   The live map as the whole ground of a wide screen; the panels and the
+   assistant float over it. The theme swaps the file (a light and a dark map,
+   both quiet so they do not compete), the way a themed picture does. */
+.dr-mapground{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--img-map-ground) center / cover no-repeat, var(--bg-page);
+}
+.dr-mapground__drone{
+  position: absolute;
+  width: var(--len-10);
+  height: var(--len-10);
+  border-radius: var(--pct-50);
+  background: var(--color-action);
+  box-shadow: 0 0 0 var(--len-6) color-mix(in srgb, var(--color-action) 22%, transparent);
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
+}

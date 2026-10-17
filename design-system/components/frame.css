@@ -88,3 +88,24 @@
 .dr-main--fab{
   padding-bottom: calc(var(--len-44) + var(--len-12) + var(--len-16));
 }
+
+/* ===========================================================================
+   WIDE SCREENS - tablet and desktop (2026-10-18, the designer's direction,
+   responsive/width-audit.md). Container queries on the screen, never media
+   queries on the window: the behaviour lives in the component and follows the
+   width of the frame it stands in, so a 375 phone frame - on a phone or in the
+   prototype - never matches and the mobile build stays exactly as it is.
+   47.875rem = --bp-tablet 48rem less the frame's 1px border each side (a
+   container measures its content box); 79.875rem likewise for --bp-desktop.
+   A query cannot read var(), so the number is written here and owned there.
+   =========================================================================== */
+.dr-screen{
+  container: screen / inline-size;
+}
+@container screen (min-width: 47.875rem){
+  /* the work area: the phone column kept and centred until a screen takes a
+     wide layout of its own (.dr-wgrid, .dr-split) - width-audit "Same" */
+  .dr-main{
+    padding: var(--len-32) max(var(--len-32), calc((100cqi - var(--container-column)) / 2));
+  }
+}

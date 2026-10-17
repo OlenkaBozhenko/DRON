@@ -699,6 +699,45 @@ the number itself; the token is where the number is owned and documented, and a 
 to every such query. **The phone reads none of these** — the mobile build is unchanged, by the
 designer's word of 2026-10-18.
 
+### Wide screens — the shell adapts, new components for what only a wide screen has (rev 317)
+
+**Where the behaviour lives.** In the components, as **container queries on `.dr-screen`**
+(`container: screen / inline-size`), never as media queries on a screen and never on the window: a
+component follows the width of the frame it stands in. So a 375 phone frame — on a phone, or in the
+prototype's Mobile view on a wide monitor — never matches, and the mobile build is unchanged:
+**measured on 26 screens, 2,400 elements, every box, colour, size and display identical before and
+after.** The queries read `47.875rem` and `79.875rem`: `--bp-tablet` / `--bp-desktop` less the frame's
+1px border on each side, because a container measures its content box.
+
+**The shell on a tablet or a desktop** (`shell.css`, `frame.css`, `sheet.css`):
+- the status bar and the home indicator go — a browser window draws neither;
+- the tab bar becomes the header's navigation: the same four destinations in a material pill, centred
+  in an 80 header (`HIG · Sidebars` / *Tab bars*: top-level destinations at the top on iPad and Mac);
+  the current one keeps the accent-tint fill behind charcoal, 14.75:1, and the 2.5px focus ring;
+- on a tab root the title stays for assistive tech only, since the active tab names the screen;
+- the work area is the phone column centred at `--container-column` 36rem until a screen takes a wide
+  layout (`.dr-wgrid`, `.dr-split`) — the width audit's *Same*;
+- a sheet is a centred dialog (`HIG · Sheets`); the map's docked choices are a 375 panel beside the map.
+
+**Checked on the flows:** navigation (8 tab roots), notifications (2), the client's order (`listings` →
+`listings-map` → `order-setup` → `order-review` → `payment` → `payment-loading` → `order-confirmed` →
+`tracking` → `delivery` → `rate`) and the operator's job and withdrawal (`operator-listings` → `job-offer`
+→ `job-brief` → `job-checklist` → `result-upload` → `wallet` → `withdraw` → `withdraw-loading`), at tablet
+and desktop in both themes: 100 checks, no horizontal overflow, no status bar, the navigation at the top,
+the current tab filled, a focused tab ringed (`--ink` light, `--cream-50` dark).
+
+**Recorded, for the screens' step:** the tab bar is last in the markup, so on a wide screen the
+navigation reads after the content (`WCAG 1.3.2` / `2.4.3`); pushed screens carry no tab bar, so they
+show no header navigation yet; `listings-map` still serves the light map with a drone drawn in it.
+
+**New components, wide screens only** — `material.css` (`.dr-material`), `stat.css` (`.dr-stat`),
+`assistant.css` (`.dr-assistant`, `.dr-svc`, `.dr-fly`, `.dr-talk`), `mapground.css` (`.dr-mapground`),
+`wgrid.css` (`.dr-wgrid`, `.dr-split`). Tokens: `--container-column`, `--shadow-float`, the motion
+primitives, and the semantic `--bg-material`, `--bg-material-solid`, `--border-material`,
+`--text-accent-wide`, `--img-map-ground`, `--img-agent-glow`, each redefined for dark. Docs: the
+*Wide screens* group (six pages, each showing the phone and the wide frame apart) and the
+*Wide workspace* pattern.
+
 ## Elevation & Depth
 
 **Surfaces are flat.** No card and no media surface casts a shadow on any of the ten pages —

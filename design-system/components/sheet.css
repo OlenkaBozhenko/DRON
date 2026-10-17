@@ -206,3 +206,54 @@
     opacity: 1;
   }
 }
+
+/* ===========================================================================
+   WIDE SCREENS - tablet and desktop (2026-10-18, the designer's direction,
+   responsive/width-audit.md). Container queries on the screen, never media
+   queries on the window: the behaviour lives in the component and follows the
+   width of the frame it stands in, so a 375 phone frame - on a phone or in the
+   prototype - never matches and the mobile build stays exactly as it is.
+   47.875rem = --bp-tablet 48rem less the frame's 1px border each side (a
+   container measures its content box); 79.875rem likewise for --bp-desktop.
+   A query cannot read var(), so the number is written here and owned there.
+   =========================================================================== */
+@container screen (min-width: 47.875rem){
+  /* HIG: on a wide screen a sheet is a centred dialog, not a drawer from the bottom */
+  .dr-sheet{
+    left: var(--pct-50);
+    right: auto;
+    top: var(--pct-50);
+    bottom: auto;
+    width: min(var(--container-column), calc(100cqi - 2 * var(--len-32)));
+    max-height: calc(var(--pct-100) - 2 * var(--len-32));
+    overflow: auto;
+    transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
+    border-radius: var(--len-22);
+  }
+  .dr-sheet__grip{
+    display: none;
+  }
+  .dr-sheet--picker{
+    animation: dr-dialog-in var(--time-0-32) var(--ease-out);
+  }
+  /* the map's docked drawer becomes a panel beside the map, the phone's width */
+  .dr-mapscreen{
+    position: relative;
+  }
+  .dr-mapscreen .dr-mapview{
+    margin-bottom: 0;
+  }
+  .dr-sheet--dock{
+    position: absolute;
+    top: var(--len-24);
+    left: var(--len-24);
+    width: var(--len-375);
+    max-height: calc(var(--pct-100) - 2 * var(--len-24));
+    transform: none;
+  }
+}
+@keyframes dr-dialog-in{
+  from{
+    opacity: 0;
+  }
+}

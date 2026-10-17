@@ -28,7 +28,7 @@ PATTERNS = os.path.join(HERE, '..', 'patterns')
 WIREFRAMES = os.path.join(HERE, '..', '..', 'wireframes')
 # a screen's state and service files are the same screen
 SCREEN_SUFFIX = re.compile(r'(-(empty|error|loading|aerial|inspection|filters))+$')
-GROUPS = ['Shell', 'Actions', 'Surfaces', 'Progress', 'States', 'Media', 'Forms']
+GROUPS = ['Shell', 'Actions', 'Surfaces', 'Progress', 'States', 'Media', 'Forms', 'Wide screens']
 SECTIONS = ['Anatomy', 'Variants', 'States', 'When to use', 'Rule', 'Anti-rule']
 STATES = [('rest', 'Rest'), ('hover', 'Hover'), ('active', 'Pressed'), ('focus', 'Focus'), ('disabled', 'Disabled')]
 

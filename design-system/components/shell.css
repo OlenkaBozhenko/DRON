@@ -182,3 +182,80 @@ header.dr-topbar, .dr-topbar{
 .dr-actionbar[hidden]{
   display: none;
 }
+
+/* ===========================================================================
+   WIDE SCREENS - tablet and desktop (2026-10-18, the designer's direction,
+   responsive/width-audit.md). Container queries on the screen, never media
+   queries on the window: the behaviour lives in the component and follows the
+   width of the frame it stands in, so a 375 phone frame - on a phone or in the
+   prototype - never matches and the mobile build stays exactly as it is.
+   47.875rem = --bp-tablet 48rem less the frame's 1px border each side (a
+   container measures its content box); 79.875rem likewise for --bp-desktop.
+   A query cannot read var(), so the number is written here and owned there.
+   =========================================================================== */
+@container screen (min-width: 47.875rem){
+  /* iOS draws the status bar and the home indicator; a browser window has neither */
+  .dr-statusbar, .dr-home{
+    display: none;
+  }
+  header.dr-topbar, .dr-topbar{
+    height: var(--len-80);
+    padding: 0 var(--len-24);
+    gap: var(--len-12);
+  }
+  /* the title leaves the centre for the navigation; on a tab root the active
+     tab already names the screen, so the heading stays for assistive tech only */
+  .dr-topbar__title{
+    position: static;
+    transform: none;
+    max-width: none;
+  }
+  .dr-screen:has(> .dr-tabbar) .dr-topbar__title{
+    position: absolute;
+    width: var(--len-1);
+    height: var(--len-1);
+    overflow: hidden;
+    clip-path: inset(var(--pct-50));
+    white-space: nowrap;
+  }
+  /* the tab bar becomes the header's navigation: HIG on iPad and Mac puts the
+     top-level destinations at the top, the same four, in the same order */
+  .dr-tabbar{
+    position: absolute;
+    top: 0;
+    left: var(--pct-50);
+    transform: translateX(calc(var(--pct-50) * -1));
+    z-index: 3;
+    height: var(--len-80);
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border-top: 0;
+  }
+  .dr-tabs{
+    height: auto;
+    padding: var(--len-4);
+    gap: var(--len-4);
+    border-radius: var(--len-999);
+    background: var(--bg-material);
+    border: var(--len-1) solid var(--border-material);
+    backdrop-filter: blur(var(--len-22));
+  }
+  .dr-tab{
+    flex: none;
+    flex-direction: row;
+    gap: var(--len-8);
+    height: var(--len-44);
+    padding: 0 var(--len-16);
+    border-radius: var(--len-999);
+    font-size: var(--type-body-size);
+  }
+  .dr-tab .dr-ic{
+    width: var(--len-18);
+    height: var(--len-18);
+  }
+  /* the decision stays under the column it closes */
+  .dr-actionbar{
+    padding: var(--len-16) max(var(--len-32), calc((100cqi - var(--container-column)) / 2)) var(--len-24);
+  }
+}

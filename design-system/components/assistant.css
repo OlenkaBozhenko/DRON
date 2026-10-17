@@ -1,0 +1,247 @@
+/* assistant.css - WIDE SCREENS ONLY (2026-10-18)
+   The DRON assistant over the map: the flying mark in rings of light, the
+   greeting, the field that takes the request in the client's own words, and
+   three service cards. Folded, it is the Talk to AI button. The phone has no
+   assistant (the designer, 2026-10-18). */
+.dr-assistant{
+  width: min(var(--pct-100), calc(var(--container-column) + var(--len-44)));
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-primary);
+}
+.dr-assistant__orb{
+  position: relative;
+  width: var(--len-176);
+  height: var(--len-176);
+  margin: 0 auto calc(var(--len-6) * -1);
+  display: grid;
+  place-items: center;
+}
+.dr-assistant__orb::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--pct-50);
+  background: var(--img-agent-glow) center / cover;
+  animation: dr-orb-spin var(--time-orb) linear infinite;
+}
+.dr-assistant__title{
+  margin: 0;
+  font-size: var(--type-display-size);
+  font-weight: var(--type-display-weight);
+  line-height: var(--type-display-line);
+  letter-spacing: var(--type-display-track);
+  color: var(--text-accent-wide);
+}
+.dr-assistant__lead{
+  margin: var(--len-8) 0 var(--len-20);
+  font-size: var(--type-heading-size);
+  color: var(--text-muted);
+}
+.dr-assistant__ask{
+  display: flex;
+  align-items: center;
+  gap: var(--len-8);
+  padding: var(--len-6) var(--len-6) var(--len-6) var(--len-20);
+  border-radius: var(--len-999);
+  text-align: left;
+}
+.dr-assistant__input{
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-ui);
+  font-size: var(--type-heading-size);
+  color: var(--text-primary);
+}
+.dr-assistant__input::placeholder{
+  color: var(--text-muted);
+}
+.dr-assistant__ask:focus-within{
+  outline: var(--len-2-5) solid var(--text-muted);
+  outline-offset: var(--len-2);
+}
+.dr-assistant__send{
+  width: var(--len-44);
+  height: var(--len-44);
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: var(--pct-50);
+  background: var(--text-primary);
+  color: var(--bg-page);
+  cursor: pointer;
+}
+.dr-assistant__send:hover{
+  filter: brightness(var(--num-1-2));
+}
+.dr-assistant__send:active{
+  transform: scale(var(--num-0-99));
+}
+.dr-assistant__send:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-assistant__send:disabled{
+  background: var(--bg-disabled);
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+.dr-assistant__services{
+  display: grid;
+  grid-template-columns: repeat(var(--col-count-desktop), minmax(0, 1fr));
+  gap: var(--grid-gap);
+  margin-top: var(--grid-gap);
+}
+/* a service card: the drone, the outcome, from-price and when */
+.dr-svc{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--len-2);
+  padding: var(--len-14);
+  text-align: left;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+.dr-svc img{
+  width: var(--pct-100);
+  height: var(--len-96);
+  object-fit: contain;
+  margin-bottom: var(--len-8);
+}
+.dr-svc__name{
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-weight-medium);
+}
+.dr-svc__meta{
+  font-size: var(--type-caption-size);
+  color: var(--text-muted);
+}
+.dr-svc:hover{
+  border-color: var(--text-muted);
+}
+.dr-svc:active{
+  transform: translateY(var(--len-1)) scale(var(--num-0-99));
+}
+.dr-svc:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-svc[aria-disabled="true"]{
+  cursor: not-allowed;
+}
+.dr-svc[aria-disabled="true"] .dr-svc__name, .dr-svc[aria-disabled="true"] .dr-svc__meta{
+  color: var(--text-disabled);
+}
+/* the flying mark: the DRON quadcopter, green in the dark build and the main
+   dark in the light one, its propellers turning, the body swaying */
+.dr-fly{
+  position: relative;
+  width: var(--len-68);
+  height: var(--len-24);
+  overflow: visible;
+  fill: var(--text-accent-wide);
+}
+.dr-fly__body{
+  transform-box: fill-box;
+  transform-origin: var(--pct-50) var(--pct-60);
+  animation: dr-fly-sway var(--time-sway) ease-in-out infinite;
+}
+.dr-fly__prop{
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: dr-fly-prop var(--time-prop) linear infinite;
+}
+/* folded: Talk to AI, a ring of green light turning round the button */
+.dr-talk{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--len-10);
+  min-height: var(--len-52);
+  padding: var(--len-6) var(--len-20) var(--len-6) var(--len-6);
+  border-radius: var(--len-999);
+  font-size: var(--type-body-size);
+  font-weight: var(--type-weight-medium);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.dr-talk::before{
+  content: "";
+  position: absolute;
+  inset: calc(var(--len-2) * -1);
+  border-radius: var(--len-999);
+  padding: var(--len-2);
+  background: conic-gradient(from var(--dr-ring), transparent var(--deg-40), var(--color-action) var(--deg-110), transparent var(--deg-210));
+  -webkit-mask: linear-gradient(var(--text-primary) 0 0) content-box, linear-gradient(var(--text-primary) 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(var(--text-primary) 0 0) content-box exclude, linear-gradient(var(--text-primary) 0 0);
+  animation: dr-talk-ring var(--time-ring) linear infinite;
+  pointer-events: none;
+}
+.dr-talk__orb{
+  width: var(--len-40);
+  height: var(--len-40);
+  display: grid;
+  place-items: center;
+  border-radius: var(--pct-50);
+  background: var(--img-agent-glow) center / cover;
+}
+.dr-talk__orb .dr-fly{
+  width: var(--len-24);
+  height: var(--len-9);
+  fill: var(--color-action);
+}
+.dr-talk:hover{
+  border-color: var(--text-muted);
+}
+.dr-talk:active{
+  transform: scale(var(--num-0-99));
+}
+.dr-talk:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-4);
+}
+@property --dr-ring{
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes dr-talk-ring{
+  to{
+    --dr-ring: 360deg;
+  }
+}
+@keyframes dr-orb-spin{
+  to{
+    transform: rotate(360deg);
+  }
+}
+@keyframes dr-fly-prop{
+  50%{
+    transform: scaleX(var(--num-0-18));
+  }
+}
+@keyframes dr-fly-sway{
+  0%, 100%{
+    transform: translate(calc(var(--len-5) * -1), 0) rotate(calc(var(--deg-sway) * -1));
+  }
+  25%{
+    transform: translate(0, calc(var(--len-3) * -1)) rotate(0deg);
+  }
+  50%{
+    transform: translate(var(--len-5), 0) rotate(var(--deg-sway));
+  }
+  75%{
+    transform: translate(0, var(--len-2)) rotate(0deg);
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  .dr-assistant__orb::before, .dr-fly__body, .dr-fly__prop, .dr-talk::before{
+    animation: none;
+  }
+}

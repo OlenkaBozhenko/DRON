@@ -240,6 +240,19 @@
   --container-max:     90rem;    /* 1440 - the frame the wide view is drawn and measured at */
   --col-count-tablet:  2;        /* width-audit: "two panes where the screen has two parts" */
   --col-count-desktop: 3;        /* width-audit: "two or three panes: list - detail - map" */
+  --pct-60:            60%;      /* the flying mark's pivot, a little below its centre */
+  --time-orb:          24s;      /* the assistant's rings, one turn */
+  --time-sway:         3.6s;     /* the flying mark's sway, one cycle */
+  --time-prop:         .14s;     /* a propeller blade, one beat */
+  --time-ring:         3.2s;     /* Talk to AI's ring of light, one turn */
+  --num-0-18:          .18;      /* a turning blade seen edge-on */
+  --deg-sway:          6deg;     /* the flying mark's tilt each way */
+  --deg-40:            40deg;
+  --deg-110:           110deg;
+  --deg-210:           210deg;   /* the Talk to AI ring: dark, light at 110, dark again */
+  --container-column:  36rem;    /* 576 - the phone column kept and centred on a wide screen (width-audit: "Same") */
+  --shadow-float:      0 1px 2px rgba(20,18,15,.06), 0 8px 24px rgba(20,18,15,.10);
+                                 /* a material panel floating over the map (HIG macOS Materials), wide screens only */
 
   /* -- PRIMITIVE / PROMOTED FROM A CLASS ------------------------------------
      Six values that were in ui/kit.css all along, but as LITERALS inside a
@@ -613,6 +626,16 @@
   --type-hidden-size:       var(--len-0);         /* a text label hidden behind an image it describes */
   --type-hidden-line:       var(--num-0);
 
+  /* -- WIDE SCREENS / tablet and desktop only (2026-10-18) ------------------
+     Read only by the wide components (material, stat, assistant, map ground)
+     and by the shell's container-query rules. The phone reads none of them. */
+  --bg-material:      color-mix(in srgb, var(--white) 72%, transparent);   /* HIG macOS light material */
+  --bg-material-solid: var(--white);                                       /* Reduce transparency */
+  --border-material:  color-mix(in srgb, var(--charcoal-900) 8%, transparent);
+  --text-accent-wide: var(--text-primary);   /* the greeting and a trend: the main dark in light */
+  --img-map-ground:   url(../../assets/map/ground-light.jpg);
+  --img-agent-glow:   url(../../assets/design-system/agent-glow.png);
+
   /* -- OVERLAY --------------------------------------------------------------- */
   --scrim:            color-mix(in srgb, var(--charcoal-900) 40%, transparent);
                                             /* §1.7 --scrim: .dr-scrim on 26 pages. Warm, never
@@ -882,4 +905,14 @@
      --bg-danger-solid   the end-call fill; its label holds 4.53:1 either way.
      --color-action / --on-action  see ACTION above.
      --halo-action       the accent at 20%, which reads on both grounds. */
+
+  /* -- WIDE SCREENS ------------------------------------------------------------
+     The greeting and a trend may be green here: #9BCF4A on the dark ground is
+     9.46:1 (WCAG 1.4.3). A wide-screen departure from the fill-only accent, the
+     designer's call 2026-10-18; the phone keeps the rule. */
+  --bg-material:       color-mix(in srgb, var(--charcoal-800) 72%, transparent);
+  --bg-material-solid: var(--charcoal-800);
+  --border-material:   color-mix(in srgb, var(--cream-50) 10%, transparent);
+  --text-accent-wide:  var(--color-action);
+  --img-map-ground:    url(../../assets/map/ground-dark.jpg);
 }

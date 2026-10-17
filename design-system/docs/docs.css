@@ -276,3 +276,10 @@ code { font-family: var(--font-mono); font-size: var(--type-meta-size); }
   .dsd-hero p { font-size: var(--type-title-size); }
   .dsd-anatomy { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* -- wide-screen specimens: a tablet or desktop frame takes the whole row and is
+      drawn at 80%, so a 1024 frame fits the column; zoom keeps its layout width,
+      so the container query still sees 1024 ------------------------------------ */
+.dsd-variants > .dsd-variant:has(.dr-screen[style*="width:1024px"]),
+.dsd-variants > .dsd-variant:has(.dr-screen[style*="width:768px"]) { grid-column: 1 / -1; }
+.dsd-plate .dr-screen[style*="width:1024px"] { zoom: .8; }

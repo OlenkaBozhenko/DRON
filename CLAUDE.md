@@ -274,6 +274,11 @@ design-system/
   backlog.md           what such a screen found missing: orders for the system, never fixed on the screen
 ```
 
+**Wide screens (rev 317).** The shell adapts to tablet and desktop inside its own components, by container
+queries on `.dr-screen` from 47.875rem — never a media query on a screen — so the phone frame never changes
+(measured identical, 26 screens). Wide-only components: `material`, `stat`, `assistant`, `mapground`, `wgrid`;
+docs group *Wide screens*; pattern *Wide workspace*. See `DESIGN.md` § Layout › Wide screens.
+
 **[`design-system.html`](design-system.html) is the design system's tokens page.** Since rev 305 the
 *Design System* group in the sidebar of `research.html` and the other hub pages opens on the front page,
 `design-system/docs/overview.html`, and links Tone of voice, Tokens, Type, Components, Patterns and Why from there. It holds no copy of anything: on load it follows the

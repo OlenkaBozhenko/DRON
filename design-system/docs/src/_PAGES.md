@@ -74,3 +74,17 @@ not a page either.
 | language-switch | Language switch | Forms | — (`components/lang.css`, wireframes) | Language switch |
 | ~~segmented-control~~ | — | — | — | NOT A PAGE: `.dr-segment` lives only in the ui/kit.css archive; retired for the picker row at rev 235 |
 | disclosure-row | Disclosure row | Forms | — (`components/disclosure.css`) | Disclosure row |
+
+## Wide screens (tablet and desktop only, 2026-10-18)
+
+The phone reads none of these. Rules are container queries on `.dr-screen` (shell, frame, sheet) or
+components that only wide screens use. Source: `responsive/width-audit.md`.
+
+| slug | name | group | kit | inventory rows covered |
+|---|---|---|---|---|
+| wide-shell | Wide shell | Wide screens | — | Nav bar, Tab bar, Action bar, Sheet on a wide screen |
+| material-panel | Material panel | Wide screens | — | (new) |
+| stat-card | Stat card | Wide screens | — | (new) |
+| assistant | Assistant | Wide screens | — | (new) — with the service card and Talk to AI |
+| map-ground | Map ground | Wide screens | — | (new) |
+| wide-grid | Wide grid and split | Wide screens | — | (new) |
