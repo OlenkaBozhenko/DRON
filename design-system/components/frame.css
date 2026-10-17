@@ -111,6 +111,10 @@
   border: 0;
   border-radius: 0;
 }
+/* a fluid screen is the whole page: no browser margin round it */
+body:has(> .dr-screen--fluid){
+  margin: 0;
+}
 @container screen (min-width: 47.875rem){
   /* the work area: the phone column kept and centred until a screen takes a
      wide layout of its own (.dr-wgrid, .dr-split) - width-audit "Same" */

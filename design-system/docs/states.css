@@ -74,6 +74,10 @@
   outline-offset: var(--len-2);}
 .dsd-st--focus .dr-offer:has(> input){outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: var(--len-2);}
+.dsd-st--hover .dr-livechip{border-color: var(--text-muted);}
+.dsd-st--active .dr-livechip{transform: translateX(calc(var(--pct-50) * -1)) scale(var(--num-0-99));}
+.dsd-st--focus .dr-livechip{outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);}
 .dsd-st--hover .dr-disclosure__item,
 .dsd-st--hover .dr-picker__item{background: var(--bg-well);}
 .dsd-st--focus .dr-disclosure__item,

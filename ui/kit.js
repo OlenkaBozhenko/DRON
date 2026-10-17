@@ -705,3 +705,36 @@
   });
   label();
 }());
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   A FOLDED PANEL ON AN UPRIGHT TABLET (2026-10-18). [data-panel-toggle]
+   names a panel by aria-controls; pressing it slides the panel in or out
+   (.is-open) and keeps aria-expanded true to what is shown. Escape closes it
+   and gives focus back. More than one control may open the same panel - the
+   header's Your orders and the live chip both do.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+  var last = null;
+  function set(panel, open) {
+    panel.classList.toggle('is-open', open);
+    [].forEach.call(document.querySelectorAll('[data-panel-toggle][aria-controls="' + panel.id + '"]'), function (b) {
+      b.setAttribute('aria-expanded', String(open));
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-panel-toggle]');
+    if (!b) return;
+    var panel = document.getElementById(b.getAttribute('aria-controls'));
+    if (!panel) return;
+    var open = !panel.classList.contains('is-open');
+    set(panel, open);
+    if (open) { last = b; var f = panel.querySelector('a, button'); if (f) f.focus(); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    [].forEach.call(document.querySelectorAll('.is-open'), function (panel) {
+      if (panel.id && document.querySelector('[data-panel-toggle][aria-controls="' + panel.id + '"]')) { set(panel, false); if (last) last.focus(); }
+    });
+  });
+}());
