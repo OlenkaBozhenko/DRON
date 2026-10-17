@@ -1,0 +1,29 @@
+/* chart.css - WIDE SCREENS ONLY (2026-10-18)
+   A small bar chart on a material card: one bar per hour, the busiest bar in
+   the accent (a fill, never text), the hours under it. A bar's height is the
+   data, passed on the bar as --value; colour and geometry are the component's.
+   The bars are aria-hidden: the card's text says what they show. */
+.dr-barchart{
+  display: flex;
+  align-items: flex-end;
+  gap: var(--len-5);
+  height: var(--len-84);
+  margin-top: var(--len-14);
+}
+.dr-barchart__bar{
+  flex: 1;
+  height: var(--value);
+  border-radius: var(--len-4);
+  background: var(--bg-muted);
+}
+.dr-barchart__bar--peak{
+  background: var(--color-action);
+}
+.dr-barchart__axis{
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--len-6);
+  font-size: var(--type-micro-sm-size);
+  color: var(--text-muted);
+  font-variant-numeric: var(--type-numeric);
+}

@@ -105,6 +105,17 @@
   color: color-mix(in srgb, var(--text-muted) 40%, var(--bg-page));
   cursor: not-allowed;}
 .dsd-st--hover .dr-upload--card[role="button"][aria-disabled="true"]{background: color-mix(in srgb, var(--bg-surface) 40%, var(--bg-page));}
+.dsd-st--hover .dr-whead__link{color: var(--text-primary);}
+.dsd-st--active .dr-whead__link{transform: scale(var(--num-0-99));}
+.dsd-st--focus .dr-whead__link{outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);}
+.dsd-st--hover .dr-iconbtn{border-color: var(--text-muted);}
+.dsd-st--active .dr-iconbtn{transform: scale(var(--num-0-99));}
+.dsd-st--focus .dr-iconbtn{outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);}
+.dsd-st--hover .dr-profilechip{border-color: var(--text-muted);}
+.dsd-st--focus .dr-profilechip{outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);}
 .dsd-st--focus .dr-kb__done{outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: var(--len-2);}
 .dsd-st--hover .dr-lang button:not([aria-pressed="true"]){background: var(--bg-well);}

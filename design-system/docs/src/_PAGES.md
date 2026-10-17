@@ -88,3 +88,8 @@ components that only wide screens use. Source: `responsive/width-audit.md`.
 | assistant | Assistant | Wide screens | — | (new) — with the service card and Talk to AI |
 | map-ground | Map ground | Wide screens | — | (new) |
 | wide-grid | Wide grid and split | Wide screens | — | (new) |
+| wide-header | Wide header | Wide screens | — | (new) — navigation pill, Order, icon buttons, theme, profile chip |
+| bar-chart | Bar chart card | Wide screens | — | (new) |
+| tally-card | Tally card and live order | Wide screens | — | (new) |
+| place-field | Place field and order window | Wide screens | — | (new) |
+| console | Console | Wide screens | — | (new) — the wide home's layout |

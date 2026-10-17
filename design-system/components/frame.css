@@ -102,6 +102,15 @@
 .dr-screen{
   container: screen / inline-size;
 }
+/* the screen as the whole window, for a page that is one wide screen (an example,
+   a review page) - closes backlog B-3. Not used on the phone. */
+.dr-screen--fluid{
+  width: var(--pct-100);
+  max-width: none;
+  height: var(--vh-100);
+  border: 0;
+  border-radius: 0;
+}
 @container screen (min-width: 47.875rem){
   /* the work area: the phone column kept and centred until a screen takes a
      wide layout of its own (.dr-wgrid, .dr-split) - width-audit "Same" */

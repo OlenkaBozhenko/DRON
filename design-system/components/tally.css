@@ -1,0 +1,70 @@
+/* tally.css - WIDE SCREENS ONLY (2026-10-18)
+   A material card of a few labelled figures (Free now near you, Your month)
+   and, in the same shape, the live order card: Live, the order, its progress
+   rail, the operator. */
+.dr-tally{
+  padding: var(--len-18);
+}
+.dr-tally__title{
+  margin: 0 0 var(--len-6);
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-weight-medium);
+  color: var(--text-primary);
+}
+.dr-tally__sub{
+  margin: 0;
+  font-size: var(--type-caption-size);
+  color: var(--text-muted);
+}
+.dr-tally__row{
+  display: flex;
+  justify-content: space-between;
+  gap: var(--len-12);
+  padding: var(--len-10) 0;
+  border-bottom: var(--len-1) solid var(--border-material);
+  font-size: var(--type-body-size);
+  font-variant-numeric: var(--type-numeric);
+}
+.dr-tally__row:last-child{
+  border-bottom: 0;
+}
+.dr-tally__key{
+  color: var(--text-muted);
+}
+.dr-live{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--len-6);
+  margin-bottom: var(--len-8);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-weight-medium);
+  color: var(--text-accent-wide);
+}
+.dr-live::before{
+  content: "";
+  width: var(--len-7);
+  height: var(--len-7);
+  border-radius: var(--pct-50);
+  background: var(--color-action);
+}
+.dr-tally .dr-rail{
+  margin: var(--len-14) 0 var(--len-6);
+}
+.dr-tally__who{
+  display: flex;
+  align-items: center;
+  gap: var(--len-12);
+  margin-top: var(--len-10);
+  font-size: var(--type-heading-size);
+}
+.dr-tally__who img{
+  width: var(--len-44);
+  height: var(--len-44);
+  border-radius: var(--pct-50);
+  object-fit: cover;
+}
+.dr-tally__who small{
+  display: block;
+  font-size: var(--type-caption-size);
+  color: var(--text-muted);
+}

@@ -680,3 +680,28 @@
     paint();
   });
 }());
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE THEME BUTTON ON A WIDE SCREEN (2026-10-18). The wide header's sun / moon
+   button flips the theme in one press. The phone's theme control is a switch
+   row ([data-theme-toggle], _wf-shell.js); this is a button, so it says so in
+   its own attribute and shares the stored choice ('wf-theme'). Its name tells
+   what pressing does next.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+  function current() { return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
+  function label() {
+    var next = current() === 'dark' ? 'light' : 'dark';
+    [].forEach.call(document.querySelectorAll('[data-theme-cycle]'), function (b) { b.setAttribute('aria-label', 'Switch to ' + next + ' theme'); });
+  }
+  try { if (localStorage.getItem('wf-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {}
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('[data-theme-cycle]')) return;
+    var next = current() === 'dark' ? 'light' : 'dark';
+    if (next === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); else document.documentElement.removeAttribute('data-theme');
+    try { localStorage.setItem('wf-theme', next); } catch (err) {}
+    label();
+  });
+  label();
+}());

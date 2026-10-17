@@ -85,6 +85,11 @@
 @import url("assistant.css");
 @import url("mapground.css");
 @import url("wgrid.css");
+@import url("console.css");
+@import url("header.css");
+@import url("chart.css");
+@import url("tally.css");
+@import url("place.css");
 @import url("responsive.css");
 @import url("reduced-motion.css");
 

@@ -283,3 +283,7 @@ code { font-family: var(--font-mono); font-size: var(--type-meta-size); }
 .dsd-variants > .dsd-variant:has(.dr-screen[style*="width:1024px"]),
 .dsd-variants > .dsd-variant:has(.dr-screen[style*="width:768px"]) { grid-column: 1 / -1; }
 .dsd-plate .dr-screen[style*="width:1024px"] { zoom: .8; }
+/* a wide frame in the anatomy takes the whole width too, and a 1280 frame is drawn at 70% */
+.dsd-anatomy:has(.dr-screen[style*="width:1024px"]), .dsd-anatomy:has(.dr-screen[style*="width:1280px"]) { grid-template-columns: minmax(0, 1fr); }
+/* a 1280 frame is not zoomed: zoom shrinks the size the container query reads */
+.dsd-variants > .dsd-variant:has(.dr-screen[style*="width:1280px"]) { grid-column: 1 / -1; }

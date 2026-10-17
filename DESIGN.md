@@ -738,6 +738,28 @@ primitives, and the semantic `--bg-material`, `--bg-material-solid`, `--border-m
 *Wide screens* group (six pages, each showing the phone and the wide frame apart) and the
 *Wide workspace* pattern.
 
+**The wide home, as a screen built from the system (rev 318).** Every part of the designer's drawn
+wide home is now a component, and `design-system/examples/home-wide.html` is assembled from them with
+no `<style>` (the one style attribute is data: a bar's height as `--value`):
+
+| On the screen | Component |
+|---|---|
+| The navigation pill, *Order*, search, the theme (moon / sun), notifications, the profile | `header.css` — `.dr-whead`, `.dr-iconbtn`, `.dr-profilechip` |
+| The map as the ground | `mapground.css` — `.dr-mapground` |
+| Drones in the air, the average price, the average arrival | `stat.css` — `.dr-stat` |
+| Deliveries today | `chart.css` — `.dr-barchart` |
+| The assistant, the field, the three services | `assistant.css` — `.dr-assistant`, `.dr-svc`, `.dr-fly` |
+| The live order, Free now near you, Your month | `tally.css` — `.dr-tally`, `.dr-live` |
+| The order window's places | `place.css` — `.dr-place`, `.dr-sheet__lead` (the window itself is `.dr-sheet` on a wide screen) |
+| Talk to AI at the bottom while a window is open | `assistant.css` — `.dr-talk--dock` |
+| The layout: the centre and two rails over the map | `console.css` — `.dr-console`; `.dr-screen--fluid` for a screen that fills the window |
+
+*Order* and a service card open the window through `ui/kit.js`; while it is open the assistant steps
+out, Talk to AI waits at the bottom and the header's *Order* turns grey — one green control. The theme
+button is a new `[data-theme-cycle]` behaviour in `ui/kit.js` sharing the stored choice. **It is not a
+pattern:** it stands on one screen, and the three-screen rule holds. Images moved into the package:
+`assets/map/ground-*.jpg`, `assets/design-system/agent-glow.png`, `assets/drones/wide/*.png`.
+
 ## Elevation & Depth
 
 **Surfaces are flat.** No card and no media surface casts a shadow on any of the ten pages —

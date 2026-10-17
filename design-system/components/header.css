@@ -1,0 +1,146 @@
+/* header.css - WIDE SCREENS ONLY (2026-10-18)
+   The wide header: the DRON mark, the four destinations as a pill of links,
+   then Order, round icon buttons (search, theme, notifications) and the
+   profile chip. On a tablet and a desktop it takes the phone tab bar's job at
+   the top (HIG Sidebars / Tab bars: top-level destinations at the top on iPad
+   and Mac). The phone never uses it. */
+.dr-whead{
+  position: relative;
+  z-index: 3;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--len-12);
+  padding: var(--len-16) var(--len-24);
+}
+.dr-whead .dr-brand{
+  width: var(--len-68);
+  height: var(--len-24);
+}
+.dr-whead__nav{
+  display: flex;
+  gap: var(--len-4);
+  padding: var(--len-5);
+  border-radius: var(--len-999);
+}
+.dr-whead__link{
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--len-44);
+  padding: 0 var(--len-18);
+  border-radius: var(--len-999);
+  font-size: var(--type-body-size);
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.dr-whead__link:hover{
+  color: var(--text-primary);
+}
+.dr-whead__link[aria-current="page"]{
+  background: var(--bg-well);
+  color: var(--text-primary);
+  font-weight: var(--type-weight-medium);
+}
+.dr-whead__link:active{
+  transform: scale(var(--num-0-99));
+}
+.dr-whead__link:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-whead__end{
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--len-10);
+}
+.dr-whead__end > .dr-btn--primary{
+  border-radius: var(--len-999);
+  padding: 0 var(--len-28);
+}
+/* a round icon button on the material: search, the theme, notifications */
+.dr-iconbtn{
+  position: relative;
+  width: var(--len-48);
+  height: var(--len-48);
+  flex: none;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: var(--pct-50);
+  color: var(--text-primary);
+  cursor: pointer;
+  text-decoration: none;
+  font: inherit;
+}
+.dr-iconbtn .dr-ic{
+  width: var(--len-22);
+  height: var(--len-22);
+}
+.dr-iconbtn:hover{
+  border-color: var(--text-muted);
+}
+.dr-iconbtn:active{
+  transform: scale(var(--num-0-99));
+}
+.dr-iconbtn:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-iconbtn:disabled, .dr-iconbtn[aria-disabled="true"]{
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+.dr-iconbtn .dr-count-badge{
+  position: absolute;
+  top: calc(var(--len-2) * -1);
+  right: calc(var(--len-2) * -1);
+}
+/* the theme button: a moon in the light build, a sun in the dark one */
+.dr-iconbtn__sun{
+  display: none;
+}
+[data-theme="dark"] .dr-iconbtn__sun{
+  display: block;
+}
+[data-theme="dark"] .dr-iconbtn__moon{
+  display: none;
+}
+/* the profile chip: the face, the name, where */
+.dr-profilechip{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--len-10);
+  padding: var(--len-5) var(--len-16) var(--len-5) var(--len-5);
+  border-radius: var(--len-999);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: var(--type-body-size);
+}
+.dr-profilechip img{
+  width: var(--len-40);
+  height: var(--len-40);
+  border-radius: var(--pct-50);
+  object-fit: cover;
+}
+.dr-profilechip__place{
+  display: block;
+  font-size: var(--type-caption-size);
+  color: var(--text-muted);
+}
+.dr-profilechip:hover{
+  border-color: var(--text-muted);
+}
+.dr-profilechip:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+/* a tablet keeps the face and drops the words */
+@container screen (max-width: 79.875rem){
+  .dr-profilechip__text{
+    display: none;
+  }
+  .dr-profilechip{
+    padding: var(--len-5);
+  }
+}

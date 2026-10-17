@@ -1,0 +1,64 @@
+/* console.css - WIDE SCREENS ONLY (2026-10-18)
+   The wide home's layout: the live map as the ground, what is happening on the
+   left, your orders on the right, the assistant in the centre over the map.
+   On a desktop three columns; on a tablet the assistant takes the first row and
+   the two rails sit side by side under it. The phone has no console. */
+.dr-console{
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(var(--col-count-tablet), minmax(0, 1fr));
+  gap: var(--len-24);
+  padding: var(--len-16) var(--len-24) var(--len-24);
+  align-content: start;
+}
+.dr-console > .dr-mapground{
+  position: absolute;
+}
+.dr-console__centre{
+  position: relative;
+  z-index: 1;
+  grid-column: 1 / -1;
+  padding: var(--len-24) 0;
+}
+.dr-console__rail{
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--grid-gap);
+  align-content: start;
+}
+.dr-console__card{
+  padding: var(--len-18);
+}
+.dr-console__card h3{
+  margin: 0 0 var(--len-4);
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-weight-medium);
+}
+.dr-console__card p{
+  margin: 0;
+  font-size: var(--type-caption-size);
+  color: var(--text-muted);
+}
+@container screen (min-width: 79.875rem){
+  .dr-console{
+    grid-template-columns: minmax(0, var(--len-291)) minmax(0, 1fr) minmax(0, var(--len-291));
+    align-items: start;
+  }
+  .dr-console__centre{
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+  }
+  .dr-console__rail--start{
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .dr-console__rail--end{
+    grid-column: 3;
+    grid-row: 1;
+  }
+}
