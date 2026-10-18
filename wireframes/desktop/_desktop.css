@@ -249,14 +249,29 @@
   padding: 0;
 }
 
-/* QA 2026-10-18: a panel or window that scrolls drew the UA's classic light
-   scrollbar, a white track on the dark build. Thin, the thumb in the theme's
-   muted ink so it keeps 3:1 (WCAG 1.4.11) in both themes; it inherits. */
-.dk{
-  scrollbar-color: var(--text-muted) transparent;
+/* «скроли у картках такі великі і страшні … зроби невелику по довжині паличку … таким
+   кольором як секондарі кнопки» (2026-10-19): a scrolling panel or window draws a slim
+   rounded bar in the secondary button's grey, no arrows, no track, and kept clear of the
+   rounded corners so it reads short. The standard scrollbar-* properties are left unset
+   on purpose: in Chrome they override these pseudo-elements. */
+:where(.dk) ::-webkit-scrollbar{
+  width: var(--len-6);
+  height: var(--len-6);
 }
-:where(.dk) *{
-  scrollbar-width: thin;
+:where(.dk) ::-webkit-scrollbar-track{
+  background: transparent;
+  margin-block: var(--len-24);
+}
+:where(.dk) ::-webkit-scrollbar-thumb{
+  background: var(--bg-muted);
+  border-radius: var(--pct-50);
+  min-height: var(--len-36);
+}
+:where(.dk) ::-webkit-scrollbar-thumb:hover{
+  background: var(--text-muted);
+}
+:where(.dk) ::-webkit-scrollbar-button{
+  display: none;
 }
 
 /* ---------------------------------------------------------------------------
@@ -756,4 +771,13 @@
    stands 32 from the actions (12 gap + 20), on the 8 grid */
 .dk .dk-entry .dr-pager{
   margin-bottom: var(--len-20);
+}
+
+/* «кнопка "Withdraw" має бути внизу картки»: the panel's one action stands at its foot
+   and stays there while the earnings scroll under it, as the phone's floating Withdraw */
+.dk .dk-panel > .dk-foot{
+  position: sticky;
+  bottom: 0;
+  margin-top: auto;
+  z-index: 1;
 }
