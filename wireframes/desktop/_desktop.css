@@ -1242,3 +1242,9 @@
 .dk.dk-wait:has(> .dk-window) .dk-talk{
   left: 50%;
 }
+
+/* nothing inside a scroll is squeezed to fit: a block keeps its own height and the
+   scroll scrolls (the checklist error's list was being pressed to one row) */
+.dk :is(.dk-window, .dk-panel) > .dk-scroll > *{
+  flex-shrink: 0;
+}
