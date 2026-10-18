@@ -812,3 +812,26 @@
 .dk-status-card .dr-avail{
   margin: 0;
 }
+
+/* «якщо така картка - вирівнювання хедер вверху контент кнопка внизу як футер … і
+   відступи між контентом не тули усе в купу використовуй принцип близькості»
+   (2026-10-19). A window with a head is a form, not a message: the head sits at the top,
+   the content under it, the action at the foot. Proximity: 24 between the head, each
+   group and the action; inside a group its parts stay close (4-12, the components' own).
+   A window without a head (onboarding, welcome, sign in) stays centred. */
+.dk.dk .dk-window.dk-window:has(> .dk-window__head){
+  justify-content: flex-start;
+  gap: var(--len-24);
+}
+.dk .dk-window:has(> .dk-window__head) > .dk-scroll{
+  flex: 1 1 auto;
+  gap: var(--len-24);
+}
+.dk .dk-window:has(> .dk-window__head) > .dk-foot{
+  margin-top: auto;
+  padding-top: 0;
+}
+.dk .dk-scroll > .dr-balance:not(.dr-balance--card){
+  display: grid;
+  gap: var(--len-4);
+}
