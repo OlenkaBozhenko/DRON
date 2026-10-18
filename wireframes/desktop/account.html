@@ -51,40 +51,41 @@
 
   <main class="dk-panel dk-help-fit dr-material">
     <h1 class="sr-only">Account</h1>
-      <section aria-label="Profile">
-
-        <div class="dr-profile dk-help-profile">
-
-          <a class="dr-profile__photo dr-avatar-edit" href="account-photo.html" aria-label="Change profile photo">
-            <span class="dr-avatar-lg"><img src="../../assets/people/thumbs/person-client-olena.png" alt="" loading="lazy" decoding="async"></span>
-            <span class="dr-avatar-edit__badge" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg></span>
-          </a>
-          <span class="dr-profile__name dr-display">Olena B.</span>
-
-          <span class="dr-chips dr-profile__badges"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Verified with Diia<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
-
+      <div class="dk-scroll">
+        <section aria-label="Profile">
+  
+          <div class="dr-profile dk-help-profile">
+  
+            <a class="dr-profile__photo dr-avatar-edit" href="account-photo.html" aria-label="Change profile photo">
+              <span class="dr-avatar-lg"><img src="../../assets/people/thumbs/person-client-olena.png" alt="" loading="lazy" decoding="async"></span>
+              <span class="dr-avatar-edit__badge" aria-hidden="true"><svg class="dr-ic dr-ic--12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg></span>
+            </a>
+            <span class="dr-profile__name dr-display">Olena B.</span>
+  
+            <span class="dr-chips dr-profile__badges"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Verified with Diia<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
+  
+          </div>
+        </section>
+  
+        <section aria-label="User mode">
+          <div class="dr-rows">
+            <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-mode">
+              <span class="dr-field__label">Mode</span>
+              <span class="dr-field__value">Client</span>
+              <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+            </button>
+          </div>
+        </section>
+        <div class="dr-rows" aria-label="Account details">
+  
+          <div class="dr-rows__row"><span class="dr-rows__key">Phone</span><span class="dr-rows__val">+380 •• 4417</span></div>
+          <div class="dr-rows__row"><span class="dr-rows__key">Payment method</span><span class="dr-rows__val">Visa •••• 4921</span></div>
+          <div class="dr-rows__row"><span class="dr-rows__key">Saved address</span><span class="dr-rows__val">Podil, 21</span></div>
+          <div class="dr-rows__row"><span class="dr-rows__key">Language</span><span class="dr-rows__val">English</span></div>
+          <div class="dr-rows__row"><span class="dr-rows__key">Member since</span><span class="dr-rows__val">2026</span></div>
         </div>
-      </section>
-
-      <section aria-label="User mode">
-        <div class="dr-rows">
-          <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-mode">
-            <span class="dr-field__label">Mode</span>
-            <span class="dr-field__value">Client</span>
-            <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
-          </button>
-        </div>
-      </section>
-      <div class="dr-rows" aria-label="Account details">
-
-        <div class="dr-rows__row"><span class="dr-rows__key">Phone</span><span class="dr-rows__val">+380 •• 4417</span></div>
-        <div class="dr-rows__row"><span class="dr-rows__key">Payment method</span><span class="dr-rows__val">Visa •••• 4921</span></div>
-        <div class="dr-rows__row"><span class="dr-rows__key">Saved address</span><span class="dr-rows__val">Podil, 21</span></div>
-        <div class="dr-rows__row"><span class="dr-rows__key">Language</span><span class="dr-rows__val">English</span></div>
-        <div class="dr-rows__row"><span class="dr-rows__key">Member since</span><span class="dr-rows__val">2026</span></div>
       </div>
-
-    <div class="dk-help-panelacts"><a class="dr-btn dr-btn--primary" href="account-edit.html"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</a></div>
+      <div class="dk-foot"><div class="dk-help-panelacts"><a class="dr-btn dr-btn--primary" href="account-edit.html"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</a></div></div>
   </main>
     <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
 

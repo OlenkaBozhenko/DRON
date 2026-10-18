@@ -845,3 +845,45 @@
 .dk .dk-window:not(:has(> .dk-scroll)) > .dr-center:has(.dr-spin){
   margin-block: auto;
 }
+
+/* «ось ці paddings мають бути у всіх картках однакові краще чуть більші як зверху»,
+   «якщо це лоудер не скелетон то цього не потрібно», «усі ці правила … застосуй до
+   усіх» (2026-10-19). Every centred window and every panel:
+   - one padding on all four sides, 32 (was 24 with the title's own space on top only);
+   - head at the top, content, action at the foot, 24 between groups - for a panel
+     (its h1 is the head) as for a window;
+   - a spinner message drops the skeleton lines the phone puts under it: one
+     indicator for one wait (HIG · Progress indicators). */
+.dk.dk.dk.dk :is(.dk-window, .dk-panel):is(.dk-window, .dk-panel){
+  padding: var(--len-32);
+}
+.dk .dk-panel__title,
+.dk .dk-window__title{
+  margin: 0;
+}
+.dk :is(.dk-panel, .dk-window) > .dk-scroll{
+  margin-inline: calc(var(--len-32) * -1);
+  padding-inline: var(--len-32);
+}
+.dk.dk .dk-panel.dk-panel{
+  gap: var(--len-24);
+}
+.dk .dk-panel > .dk-scroll{
+  gap: var(--len-24);
+}
+.dk .dk-panel > .dk-foot{
+  margin-top: auto;
+  padding-top: 0;
+}
+.dk :is(.dk-window, .dk-panel):has(.dr-spin) :is(div, section):has(> .dr-sk-line){
+  display: none;
+}
+.dk :is(.dk-window, .dk-panel) .dr-center:has(.dr-spin){
+  margin-block: auto;
+}
+/* the scroll keeps room for its 6px bar on the right, so its content is exactly as wide
+   as the action under it, scrolling or not */
+.dk :is(.dk-panel, .dk-window) > .dk-scroll{
+  scrollbar-gutter: stable;
+  padding-inline-end: calc(var(--len-32) - var(--len-6));
+}
