@@ -1283,3 +1283,8 @@
 .dk .dk-scroll .dk-help-body{
   overflow: visible;
 }
+/* a text area is its own rounded field; the rows around it took the faint ground too and
+   drew a square slab behind it - the rows stay clear */
+.dk :is(.dk-window, .dk-panel) .dr-rows:has(> .dr-field--area){
+  background: transparent;
+}
