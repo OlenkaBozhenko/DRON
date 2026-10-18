@@ -743,3 +743,11 @@
 .dk .dk-entry:not(.dk-entry--flush) .dr-lead{
   margin-inline: auto;
 }
+
+/* «ось показала де дефекти» (1): the next slide's first letter showed at the window's
+   edge - the slider's side padding left room for it. With no padding a slide is exactly
+   the slider's width, so only one slide is ever in view. */
+.dk.dk .dk-entry .dr-slider{
+  margin: 0;
+  padding: 0;
+}
