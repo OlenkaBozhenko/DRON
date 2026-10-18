@@ -1276,3 +1276,10 @@
   background: var(--bg-material-solid);
   color: var(--text-primary);
 }
+
+/* «тут що не видно по боках обводки»: the help windows' body was a scroller of its own
+   with no padding, so it cut the field's focus ring (2 out + 2 wide) at both sides; the
+   window's .dk-scroll does the scrolling now, so the body no longer clips (WCAG 2.4.7) */
+.dk .dk-scroll .dk-help-body{
+  overflow: visible;
+}
