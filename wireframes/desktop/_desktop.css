@@ -731,3 +731,15 @@
 .dk.dk .dk-window.dk-window{
   justify-content: safe center;
 }
+
+/* «роби довгі текста у дві стрічки вони погано читаються довгі»: a window's lead keeps
+   a short measure, so a long sentence breaks into two balanced lines (WCAG 1.4.8 asks
+   80 characters at most; 36ch sits well inside the comfortable 45-75 range per line pair) */
+.dk .dk-window .dr-lead,
+.dk .dk-window .dk-window__lead{
+  max-inline-size: 36ch;
+  text-wrap: balance;
+}
+.dk .dk-entry:not(.dk-entry--flush) .dr-lead{
+  margin-inline: auto;
+}
