@@ -154,3 +154,33 @@
     setTimeout(function () { pop(t, win); }, 400);
   });
 }());
+
+/* RATING STARS (the designer, 2026-10-19: «зроби щоб натискаючи цю зірочку вона ставала
+   жовта»). A star sets the rating: it and every star before it fill, the rest empty, and
+   it becomes the checked radio. Arrow keys move the rating, as a radio group should
+   (WCAG 2.1.1). */
+(function () {
+  'use strict';
+  [].forEach.call(document.querySelectorAll('.dr-stars, [role="radiogroup"]'), function (group) {
+    var stars = [].slice.call(group.querySelectorAll('.dr-star'));
+    if (!stars.length) return;
+    function set(n, focus) {
+      stars.forEach(function (s, i) {
+        if (i <= n) s.setAttribute('data-on', ''); else s.removeAttribute('data-on');
+        s.setAttribute('aria-checked', i === n ? 'true' : 'false');
+        s.tabIndex = i === n ? 0 : -1;
+      });
+      if (focus) stars[n].focus();
+    }
+    var cur = stars.findIndex(function (s) { return s.getAttribute('aria-checked') === 'true'; });
+    set(cur < 0 ? 0 : cur, false);
+    stars.forEach(function (s, i) {
+      s.addEventListener('click', function () { set(i, false); });
+      s.addEventListener('keydown', function (e) {
+        var k = e.key;
+        if (k === 'ArrowRight' || k === 'ArrowUp') { e.preventDefault(); set(Math.min(stars.length - 1, i + 1), true); }
+        if (k === 'ArrowLeft' || k === 'ArrowDown') { e.preventDefault(); set(Math.max(0, i - 1), true); }
+      });
+    });
+  });
+}());
