@@ -1100,3 +1100,48 @@
 .dk.dk.dk .dk-float .dr-card{
   background: var(--bg-material);
 }
+
+/* «в один ряд з Jobs»: the title and the group pills in one row of glass pills; the
+   group on show is the filled one (a fill behind charcoal, as the header's current tab) */
+.dk .dk-jobs-bar{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--len-8);
+}
+.dk .dk-jobs-tabs{
+  display: flex;
+  gap: var(--len-8);
+}
+.dk .dk-jobs-tab{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--len-8);
+  min-height: var(--len-44);
+  padding: 0 var(--len-18);
+  border-radius: var(--len-999);
+  background: var(--bg-material);
+  border: var(--len-1) solid var(--border-material);
+  backdrop-filter: blur(var(--len-22));
+  color: var(--text-muted);
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-weight-medium);
+  text-decoration: none;
+}
+.dk .dk-jobs-tab[aria-current="true"]{
+  color: var(--text-primary);
+  background: var(--bg-material-solid);
+}
+.dk .dk-jobs-tab:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dk-float .dk-jobs-group[hidden]{
+  display: none;
+}
+.dk .dk-jobs-bar > .dk-panel__title{
+  min-height: var(--len-44);
+  display: inline-flex;
+  align-items: center;
+  padding-block: 0;
+}

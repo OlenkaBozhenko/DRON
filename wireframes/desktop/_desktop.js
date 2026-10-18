@@ -92,3 +92,24 @@
   window.addEventListener('load', place);
   place(); state();
 }());
+
+/* JOB GROUPS AS TABS (the designer, 2026-10-19: «в один ряд з Jobs»). The group pills
+   stand in one row with the Jobs title; a pill shows its group and hides the other, as
+   the phone's group tabs do. aria-current marks the group on show. */
+(function () {
+  'use strict';
+  var bar = document.querySelector('[data-dk-groups]');
+  if (!bar) return;
+  var tabs = [].slice.call(bar.querySelectorAll('a[href^="#"]'));
+  function show(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      var group = document.querySelector(t.getAttribute('href')).closest('.dk-jobs-group');
+      group.hidden = !on;
+      if (on) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current');
+    });
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function (e) { e.preventDefault(); show(t); });
+  });
+}());
