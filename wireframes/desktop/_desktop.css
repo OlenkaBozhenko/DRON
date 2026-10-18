@@ -388,3 +388,40 @@
 .dk .dk-window__title{
   font-size: 22px;
 }
+
+/* THE SEARCH STEP on the desktop home (the designer: «коли я обираю і натискаю
+   кнопку замовити пропадає ось цей степ»): the phone's finder in a centred
+   window, open while the address is #find; the assistant steps out, the map
+   dims, Talk to AI waits, Order steps back. Its drawers open over it. */
+.dk-finderwin, .dk-finderdim{
+  display: none;
+}
+.dk:has(#find:target) .dk-finderwin{
+  display: flex;
+}
+.dk:has(#find:target) .dk-finderdim{
+  display: block;
+}
+.dk:has(#find:target) .dr-console__centre{
+  visibility: hidden;
+}
+.dk:has(#find:target) .dr-whead__end > .dr-btn--primary{
+  background: var(--bg-muted);
+  color: var(--text-primary);
+  box-shadow: none;
+}
+.dk-finderwin .dr-finder{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dk-finderwin .dr-finder__services{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  border: 0;
+}
+.dk-finderwin .dr-finder__actions{
+  display: grid;
+  gap: 10px;
+}
