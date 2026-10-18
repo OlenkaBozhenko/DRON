@@ -1310,3 +1310,11 @@
   padding: var(--len-16);
   border-radius: var(--len-12);
 }
+
+/* «тут на місці іконки логотип нашого дрона»: the drones-in-the-air figure carries the
+   DRON mark in its icon well instead of the generic drone outline; the mark is wide, so it
+   is drawn at the well's width, in the well's ink */
+.dk .dk-stat-brand{
+  width: var(--len-32);
+  height: var(--len-12);
+}
