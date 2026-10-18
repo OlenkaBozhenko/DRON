@@ -795,3 +795,17 @@
   flex: none;
   padding-top: var(--len-4);
 }
+
+/* «картка зі статусом доступності завжди справа і присутня завжди»: the availability
+   card heads the right rail on every operator page, so its rules live here, not in a group file */
+.dk-status-card{
+  display: grid;
+  gap: var(--len-12);
+  justify-items: start;
+}
+.dk-status-card > .dr-rows{
+  justify-self: stretch;
+}
+.dk-status-card .dr-avail{
+  margin: 0;
+}

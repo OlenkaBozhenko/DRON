@@ -91,14 +91,3 @@
   display: grid;
   gap: var(--len-12);
 }
-.dk-status-card{
-  display: grid;
-  gap: var(--len-12);
-  justify-items: start;
-}
-.dk-status-card > .dr-rows{
-  justify-self: stretch;
-}
-.dk-status-card .dr-avail{
-  margin: 0;
-}
