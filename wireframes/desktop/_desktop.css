@@ -688,3 +688,16 @@
 .dk .dk-slidenav--next{
   right: var(--len-24);
 }
+
+/* «ці картинки для світлої і темної теми нагенеруй на фоні бекграундів як на картці
+   вікна» (2026-10-18): the onboarding scenes are drawn again on the window's own ground -
+   #F9F8F6 light, #2A2A2A dark (Figma, DRON card art) - so no square shows. Desktop copies; the phone keeps its files. */
+:root, [data-theme="light"]{
+  --dk-onb-dispatch: url("../../assets/scenes/desktop/onboarding-dispatch.png");
+}
+[data-theme="dark"]{
+  --dk-onb-dispatch: url("../../assets/scenes/desktop/onboarding-dispatch-dark.png");
+}
+.dk.dk img[src*="onboarding-dispatch."]{
+  content: var(--dk-onb-dispatch);
+}
