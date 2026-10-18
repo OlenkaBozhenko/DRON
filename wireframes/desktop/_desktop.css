@@ -1185,3 +1185,9 @@
   display: grid;
   gap: var(--len-12);
 }
+
+/* «теж саме кнопку в нижній бар картки» (Account): Edit profile leaves the title and
+   stands in the panel's foot, the width of the panel, as every other foot action */
+.dk .dk-foot .dk-help-panelacts .dr-btn{
+  flex: 1;
+}
