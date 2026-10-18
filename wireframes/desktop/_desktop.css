@@ -1093,3 +1093,10 @@
 .dk :is(.dk-window, .dk-panel, .dk-side, .dk-rail) :is(.dr-card, .dr-rows, .dr-field, .dr-op, .dr-msg, .dr-listing) :is(.dr-card, .dr-rows, .dr-field, .dr-op, .dr-msg, .dr-listing){
   background: transparent;
 }
+
+/* «колір цих карток такий як і тут» (the rail's stat cards): a hanging card is the rail's
+   material and nothing else - the faint well tint meant for blocks inside a window was
+   landing on it too and greyed it (Jobs and the client's Activity alike) */
+.dk.dk.dk .dk-float .dr-card{
+  background: var(--bg-material);
+}
