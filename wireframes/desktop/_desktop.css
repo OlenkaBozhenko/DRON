@@ -1191,3 +1191,11 @@
 .dk .dk-foot .dk-help-panelacts .dr-btn{
   flex: 1;
 }
+
+/* «кнопки в нижній бар картки» (profile photo): Cancel and Save leave the title bar for the
+   foot - Save the one green control, Cancel under it; the three things you can do to the
+   photo stay with the photo, as one group of equal, quieter choices */
+.dk .dk-photo-acts{
+  display: grid;
+  gap: var(--len-8);
+}
