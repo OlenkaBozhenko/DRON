@@ -1199,3 +1199,8 @@
   display: grid;
   gap: var(--len-8);
 }
+/* «кнопки внизу біля основних»: the two ways to get a photo join the foot, as their own
+   pair (8 apart), 24 above Cancel and Save */
+.dk .dk-foot--stack > .dk-photo-acts{
+  margin-bottom: var(--len-12);
+}
