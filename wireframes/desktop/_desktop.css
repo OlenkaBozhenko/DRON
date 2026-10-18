@@ -1051,3 +1051,38 @@
 .dk .dk-jobs-group > .dr-tally__title{
   margin: 0;
 }
+
+/* «локацію зроби на бекграунді і усі джоби окремо як у флоу з клієнтом на актівіті
+   картками»: Jobs is drawn as the client's Activity - each job its own hanging glass card
+   over the map, the group headings as the same glass pills as the title - and a job's
+   location (the route inset) gets the faint ground the order cards' route has */
+.dk.dk.dk.dk.dk .dk-panel.dk-float{
+  padding: var(--len-4) var(--len-6) var(--len-24);
+  gap: var(--len-14);
+}
+.dk.dk .dk-float .dr-card .dr-inset{
+  background: color-mix(in srgb, var(--bg-well) 70%, transparent);
+  border-radius: var(--len-12);
+  padding: var(--len-12) var(--len-16);
+}
+.dk-float .dk-jobs-group{
+  gap: var(--len-14);
+}
+.dk-float .dk-jobs-group > .dr-tally__title{
+  justify-self: start;
+  padding: var(--len-8) var(--len-18);
+  border-radius: var(--len-999);
+  background: var(--bg-material);
+  border: var(--len-1) solid var(--border-material);
+  backdrop-filter: blur(var(--len-22));
+  font-size: var(--type-heading-size);
+}
+/* inside a job card, by proximity: what the job is, where it is, then the pay with its
+   two answers close under it */
+.dk .dk-jobs-panel .dr-card{
+  gap: var(--len-16);
+  padding: var(--len-20);
+}
+.dk .dk-jobs-panel .dr-order__fee + .dr-card__actions{
+  margin-top: calc(var(--len-8) * -1);
+}
