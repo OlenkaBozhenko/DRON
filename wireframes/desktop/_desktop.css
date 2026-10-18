@@ -1151,3 +1151,29 @@
 .dk .dr-whead__link .dr-grouptab__count{
   margin-inline-start: var(--len-6);
 }
+
+/* «зроби тут елементи як на мобільному, тулбар підправ» (call): as the phone - the
+   top row (minimise, who and how long, chat) at the top of the window, the avatar in the
+   middle of what is left, and the control bar hugging its four buttons at the foot,
+   centred; icons at the phone's 20 */
+.dk.dk.dk .dk-window.dk-call{
+  justify-content: flex-start;
+}
+.dk .dk-call > .dk-scroll{
+  flex: 1 1 auto;
+}
+.dk .dk-call .dr-call__stage{
+  flex: 1 1 auto;
+}
+.dk .dk-call > .dk-foot{
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+}
+.dk .dk-call .dr-call__bar{
+  width: auto;
+}
+.dk .dk-call .dr-btn--icon .dr-ic{
+  width: var(--len-20);
+  height: var(--len-20);
+}
