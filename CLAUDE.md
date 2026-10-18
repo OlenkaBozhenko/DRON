@@ -145,6 +145,24 @@ that satisfies both — the way the selected tab carries the accent as a **fill 
 instead of as a tinted label, because `#9BCF4A` as text is 1.69:1 and HIG's tint pattern would
 fail AA.
 
+### UX principles — always, proximity first (standing rule, set by the designer 2026-10-19)
+
+**Every design is laid out by UX principles, and the first of them is proximity (Gestalt).**
+The designer's words: «при створенні дизайну використовувати UX принципи завжди принцип
+близькості елементів та контенту». What belongs together stands close; what does not stands
+apart, so the grouping is read from the space alone, before any line, card or label:
+
+- the parts of one thing (a title and its lead, a figure and its caption, a name and its meta)
+  — **4–8**;
+- the items of one list or one group — **12**;
+- one group from the next, and the content from its action — **24–32**;
+- a window or panel keeps one padding on all four sides (32 on desktop), its head at the top and
+  its action at the foot.
+
+The gap between groups is always larger than the gap inside them; if two gaps are equal, the
+grouping is ambiguous and is fixed. Proximity is checked with the HIG / WCAG check on every
+screen, not after the designer points at it.
+
 **A conforming departure is recorded, not corrected.** Outline-only icons on the selected tab
 depart from the iOS filled-symbol convention by a deliberate `concept.md` §5 rule; that is
 documented as a decision with its reason, not filed as a defect.

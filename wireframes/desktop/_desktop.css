@@ -1001,3 +1001,21 @@
   font-variant-numeric: var(--type-numeric);
   color: var(--text-primary);
 }
+
+/* «пофіксь відступи … принцип близькості і завжди використовуй його» (role select and
+   every window without a head): what belongs together stands close, what does not stands
+   apart - the title and its lead 8, each group 32 from the next, the items of a list 12.
+   A choice's words sit beside its picture, left-aligned, not floating in the middle. */
+.dk.dk.dk.dk .dk-entry.dk-entry:not(:has(.dr-slider)),
+.dk.dk .dk-entry:not(:has(.dr-slider)) > .dk-scroll{
+  gap: var(--len-32);
+}
+.dk .dk-entry .dr-stack:has(> .dr-display){
+  gap: var(--len-8);
+}
+.dk .dk-entry .dr-list{
+  gap: var(--len-12);
+}
+.dk .dk-entry .dr-choice{
+  text-align: left;
+}
