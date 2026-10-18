@@ -899,3 +899,105 @@
   top: var(--len-12);
   right: var(--len-12);
 }
+
+/* «коли розмова з агентом відкрита на екрані то кнопки немає вона зʼявляється коли
+   користувач лазить по проекту»: on a home where the assistant itself is on screen,
+   Talk to AI is not drawn - the same thing twice is one too many */
+.dk:has(.dr-assistant) .dk-talk{
+  display: none;
+}
+
+/* «вирівняй відгуки та контент у кожному по принципу близькості зроби сучасно та
+   модерно» (her reference: a testimonial card). One review is one card: the quote mark,
+   the words large, then at the foot who wrote it - monogram, name, service and date - with
+   the stars on the right. 12 inside the card, 24 between the words and the foot, 12
+   between cards. Stars follow the icon rule: a charcoal outline with the green as a fill
+   behind it (concept §5); the score is also written, so the stars are not the only cue
+   (WCAG 1.4.1) and the card's rating is named once for a screen reader (1.1.1). */
+.dk .dk-reviews{
+  display: grid;
+  gap: var(--len-12);
+}
+.dk .dk-review{
+  display: grid;
+  gap: var(--len-12);
+  padding: var(--len-24);
+  border-radius: var(--len-16);
+}
+.dk .dk-review__mark{
+  font-size: var(--len-48);
+  line-height: var(--type-glyph-line);
+  height: var(--len-24);
+  font-weight: var(--type-weight-medium);
+  color: var(--text-muted);
+}
+.dk .dk-review__text{
+  margin: 0;
+}
+.dk .dk-review__text p{
+  margin: 0;
+  font-size: var(--type-title-size);
+  line-height: var(--type-para-line);
+  font-weight: var(--type-weight-regular);
+  color: var(--text-primary);
+  text-wrap: pretty;
+}
+.dk .dk-review__foot{
+  display: flex;
+  align-items: center;
+  gap: var(--len-12);
+  margin-top: var(--len-12);
+}
+.dk .dk-review__mono{
+  flex: none;
+  width: var(--len-40);
+  height: var(--len-40);
+  border-radius: var(--pct-50);
+  display: grid;
+  place-items: center;
+  background: var(--bg-muted);
+  color: var(--text-primary);
+  font-size: var(--type-meta-size);
+  font-weight: var(--type-weight-medium);
+}
+.dk .dk-review__who{
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: var(--len-2);
+}
+.dk .dk-review__name{
+  font-size: var(--type-body-size);
+  font-weight: var(--type-weight-medium);
+  color: var(--text-primary);
+}
+.dk .dk-review__meta{
+  font-size: var(--type-meta-size);
+  color: var(--text-muted);
+}
+.dk .dk-review__rating{
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--len-8);
+}
+.dk .dk-review__stars{
+  display: flex;
+  gap: var(--len-2);
+  color: var(--text-primary);
+}
+.dk .dk-review__star{
+  width: var(--len-16);
+  height: var(--len-16);
+  fill: var(--color-action);
+}
+.dk .dk-review__star--off{
+  fill: none;
+  color: var(--text-muted);
+}
+.dk .dk-review__score{
+  font-size: var(--type-body-size);
+  font-weight: var(--type-weight-medium);
+  font-variant-numeric: var(--type-numeric);
+  color: var(--text-primary);
+}
