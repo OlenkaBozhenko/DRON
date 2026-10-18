@@ -773,11 +773,24 @@
   margin-bottom: var(--len-20);
 }
 
-/* «кнопка "Withdraw" має бути внизу картки»: the panel's one action stands at its foot
-   and stays there while the earnings scroll under it, as the phone's floating Withdraw */
+/* «кнопка "Withdraw" має бути внизу картки», then «тут не має так перекриватись при
+   скролі праймері кнопка має бекграунд як ботом бар на мобілці»: the action stands in a
+   bar at the panel's foot, the phone's action bar - the material ground, frosted, a
+   hairline on top - edge to edge, and the list scrolls under it, never through it */
 .dk .dk-panel > .dk-foot{
   position: sticky;
   bottom: 0;
-  margin-top: auto;
-  z-index: 1;
+  z-index: 2;
+  margin: auto calc(var(--len-24) * -1) calc(var(--len-24) * -1);
+  padding: var(--len-12) var(--len-24) var(--len-24);
+  background: var(--bg-material);
+  -webkit-backdrop-filter: blur(var(--len-22)) saturate(var(--num-1-5));
+  backdrop-filter: blur(var(--len-22)) saturate(var(--num-1-5));
+  border-top: var(--len-1) solid var(--border-hairline);
+}
+@media (prefers-reduced-transparency: reduce){
+  .dk .dk-panel > .dk-foot{
+    background: var(--bg-material-solid);
+    backdrop-filter: none;
+  }
 }
