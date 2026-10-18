@@ -60,14 +60,11 @@
           <span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.6L21 19.4H3z"/><path d="M12 9.8v4.2"/><circle cx="12" cy="16.8" r=".9" fill="currentColor" stroke="none"/></svg></span>
           <span class="dr-msg__title">Required steps still open</span>
           <p class="dr-msg__body">You can't close the job until every required step is checked. 'Capture delivery photo' is still open.</p>
-          <div class="dr-msg__actions">
-            <a class="dr-btn dr-btn--primary" href="job-checklist.html">Complete the step</a>
-          </div>
         </div>
       </section>
       <button type="button" class="dr-btn dr-btn--primary dr-btn--block" disabled>Complete all steps to continue</button>
     </div>
-    <div class="dk-foot"><button class="dr-btn dr-btn--secondary dr-btn--block" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-contact">Contact client</button></div>
+    <div class="dk-foot dk-foot--stack"><a class="dr-btn dr-btn--primary dr-btn--block" href="job-checklist.html">Complete the step</a><button class="dr-btn dr-btn--secondary dr-btn--block" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-contact">Contact client</button></div>
   </main>
   <section class="dr-sheet dr-sheet--picker" id="sheet-avail" role="dialog" aria-modal="true" aria-labelledby="sheet-avail-title" hidden>
     <span class="dr-sheet__grip" aria-hidden="true"></span>

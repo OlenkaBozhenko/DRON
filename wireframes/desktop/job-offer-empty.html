@@ -44,17 +44,17 @@
   <div class="dk-dim" aria-hidden="true"></div>
   <main class="dk-window dr-material" aria-labelledby="win-title">
     <div class="dk-window__head"><h1 class="dk-window__title" id="win-title">New job</h1></div>
-    <section aria-label="Offer expired">
-      <div class="dr-msg" role="status">
-        <span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.3 2"/></svg></span>
-        <span class="dr-msg__title">Job expired</span>
-        <p class="dr-msg__body">You didn't respond in time, so this job was reassigned to another operator. New jobs will appear here.</p>
-        <div class="dr-msg__actions">
-          <a class="dr-btn dr-btn--primary" href="operator-listings.html">Back to Jobs</a>
+    <div class="dk-scroll">
+      <section aria-label="Offer expired">
+        <div class="dr-msg" role="status">
+          <span class="dr-mark dr-mark--warn" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.3 2"/></svg></span>
+          <span class="dr-msg__title">Job expired</span>
+          <p class="dr-msg__body">You didn't respond in time, so this job was reassigned to another operator. New jobs will appear here.</p>
         </div>
-      </div>
-    </section>
-    <p class="dr-note">Jobs auto-expire after 10s to keep dispatch moving.</p>
+      </section>
+      <p class="dr-note">Jobs auto-expire after 10s to keep dispatch moving.</p>
+    </div>
+    <div class="dk-foot dk-foot--stack"><a class="dr-btn dr-btn--primary dr-btn--block" href="operator-listings.html">Back to Jobs</a></div>
   </main>
   <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
   <section class="dr-sheet dr-sheet--picker" id="sheet-avail" role="dialog" aria-modal="true" aria-labelledby="sheet-avail-title" hidden>

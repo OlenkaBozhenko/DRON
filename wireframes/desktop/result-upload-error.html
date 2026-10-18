@@ -46,19 +46,18 @@
   <div class="dk-dim" aria-hidden="true"></div>
   <main class="dk-window dr-material" aria-labelledby="dk-title">
     <div class="dk-window__head"><a class="dr-iconbtn dr-material" href="job-checklist.html" aria-label="Back to Checklist"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><h1 class="dk-window__title" id="dk-title">Close job</h1></div>
-    <h2 class="dr-label">Result photo</h2>
-    <section aria-label="Upload error">
-      <div class="dr-msg" role="alert">
-        <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/><path d="M4 4l16 16"/></svg></span>
-        <span class="dr-msg__title">Upload failed</span>
-        <p class="dr-msg__body">The delivery photo didn't upload — weak signal. Try again, or queue it to upload automatically when you're back online. Payment is held until the photo uploads.</p>
-        <div class="dr-msg__actions">
-          <a class="dr-btn dr-btn--primary dr-btn--block" href="result-upload-loading.html">Try again</a>
-          <a class="dr-btn dr-btn--secondary dr-btn--block" href="result-upload.html">Queue offline</a>
+    <div class="dk-scroll">
+      <h2 class="dr-label">Result photo</h2>
+      <section aria-label="Upload error">
+        <div class="dr-msg" role="alert">
+          <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/><path d="M4 4l16 16"/></svg></span>
+          <span class="dr-msg__title">Upload failed</span>
+          <p class="dr-msg__body">The delivery photo didn't upload — weak signal. Try again, or queue it to upload automatically when you're back online. Payment is held until the photo uploads.</p>
         </div>
-      </div>
-    </section>
-    <p class="dr-note">Payment stays held until the delivery photo uploads.</p>
+      </section>
+      <p class="dr-note">Payment stays held until the delivery photo uploads.</p>
+    </div>
+    <div class="dk-foot dk-foot--stack"><a class="dr-btn dr-btn--primary dr-btn--block" href="result-upload-loading.html">Try again</a><a class="dr-btn dr-btn--secondary dr-btn--block" href="result-upload.html">Queue offline</a></div>
   </main>
   <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
   <section class="dr-sheet dr-sheet--picker" id="sheet-avail" role="dialog" aria-modal="true" aria-labelledby="sheet-avail-title" hidden>

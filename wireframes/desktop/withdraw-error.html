@@ -43,19 +43,18 @@
   <div class="dk-dim" aria-hidden="true"></div>
   <main class="dk-window dr-material" aria-labelledby="dk-title">
     <div class="dk-window__head"><a class="dr-iconbtn dr-material" href="wallet.html" aria-label="Back to Earnings"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><h1 class="dk-window__title" id="dk-title">Withdraw</h1></div>
-    <h2 class="dr-label">Amount</h2>
-    <section aria-label="Payout error">
-      <div class="dr-msg" role="alert">
-        <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2.4"/><path d="M3 10.4h18"/><path d="M4 4l16 16"/></svg></span>
-        <span class="dr-msg__title">Withdrawal didn't go through</span>
-        <p class="dr-msg__body">The transfer to your card failed and the &#8372;1,500 is back in your balance. Check the card details, or try a bank transfer instead.</p>
-        <div class="dr-msg__actions">
-          <a class="dr-btn dr-btn--primary" href="withdraw-loading.html">Try again</a>
-          <a class="dr-btn dr-btn--secondary" href="withdraw.html">Use bank transfer</a>
+    <div class="dk-scroll">
+      <h2 class="dr-label">Amount</h2>
+      <section aria-label="Payout error">
+        <div class="dr-msg" role="alert">
+          <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2.4"/><path d="M3 10.4h18"/><path d="M4 4l16 16"/></svg></span>
+          <span class="dr-msg__title">Withdrawal didn't go through</span>
+          <p class="dr-msg__body">The transfer to your card failed and the &#8372;1,500 is back in your balance. Check the card details, or try a bank transfer instead.</p>
         </div>
-      </div>
-    </section>
-    <p class="dr-note">Funds returned to your balance — nothing was lost.</p>
+      </section>
+      <p class="dr-note">Funds returned to your balance — nothing was lost.</p>
+    </div>
+    <div class="dk-foot dk-foot--stack"><a class="dr-btn dr-btn--primary dr-btn--block" href="withdraw-loading.html">Try again</a><a class="dr-btn dr-btn--secondary dr-btn--block" href="withdraw.html">Use bank transfer</a></div>
   </main>
   <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
   <section class="dr-sheet dr-sheet--picker" id="sheet-avail" role="dialog" aria-modal="true" aria-labelledby="sheet-avail-title" hidden>
