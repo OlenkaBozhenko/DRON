@@ -229,14 +229,10 @@
   font-size: var(--type-body-size);
 }
 
-/* ONE GREEN CONTROL: while a step's window is on the screen, the header's Order
-   steps back to grey (the preview does the same), so the window's own action is
-   the only green control. Found by the entry builder on switch-role. */
-.dk:has(.dk-window) .dr-whead__end > .dr-btn--primary{
-  background: var(--bg-muted);
-  color: var(--text-primary);
-  box-shadow: none;
-}
+/* ONE GREEN CONTROL, DEPARTED FROM BY THE DESIGNER (2026-10-19, «кнопка праймері»):
+   the header's Order stays the green primary while a step's window is open, so a step
+   shows two green controls - the header's and the window's own. Recorded, not corrected:
+   the header is the app's frame, not part of the step. (It used to step back to grey.) */
 
 /* The phone components assume _wireframe.css's universal reset, which the twins
    do not link; restated here at zero specificity, so any component rule wins.
@@ -419,11 +415,6 @@
 }
 .dk:has(#find:target) .dr-console__centre{
   visibility: hidden;
-}
-.dk:has(#find:target) .dr-whead__end > .dr-btn--primary{
-  background: var(--bg-muted);
-  color: var(--text-primary);
-  box-shadow: none;
 }
 .dk-finderwin .dr-finder{
   display: flex;
