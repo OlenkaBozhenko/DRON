@@ -1224,3 +1224,11 @@
   margin: 0 0 calc(var(--len-4) * -1);
   text-align: center;
 }
+/* what comes before a message (a balance, a summary) keeps its place at the top; only the
+   message takes the middle of the space left */
+.dk :is(.dk-window, .dk-panel) > .dk-scroll:has(> * > .dr-msg, > .dr-msg){
+  justify-content: flex-start;
+}
+.dk :is(.dk-window, .dk-panel) > .dk-scroll > :is(.dr-msg, :has(> .dr-msg)){
+  margin-block: auto;
+}
