@@ -1019,3 +1019,35 @@
 .dk .dk-entry .dr-choice{
   text-align: left;
 }
+
+/* «застосуй принцип близькості до усіх вікон» (2026-10-19), from a measured sweep of all
+   133 twins: every window - with a head or without (call, delivered, inspection report) -
+   puts 24 between its groups and before its action, and the head stands 32 from the
+   content, a step more than the groups, so it reads as the head and not as one more group.
+   The phone's 28 between a log's days now sits under that head (it was 28 under 24). */
+.dk.dk.dk .dk-window.dk-window,
+.dk.dk .dk-window > .dk-scroll{
+  gap: var(--len-24);
+}
+.dk.dk.dk .dk-window > .dk-window__head,
+.dk.dk.dk .dk-panel > .dk-panel__title{
+  margin-bottom: var(--len-8);
+}
+.dk :is(.dk-window, .dk-panel) .dr-log{
+  gap: var(--len-24);
+}
+.dk .dk-foot > .dk-window__actions,
+.dk .dk-foot > .dk-acts,
+.dk .dk-foot > .dk-entry__acts{
+  margin-top: 0;
+}
+
+/* Jobs (the designer, 2026-10-19): the job list's groups in the centre panel, each with
+   its heading close above its cards (8) and 24 from the next group */
+.dk .dk-jobs-group{
+  display: grid;
+  gap: var(--len-8);
+}
+.dk .dk-jobs-group > .dr-tally__title{
+  margin: 0;
+}
