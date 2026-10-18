@@ -1209,3 +1209,18 @@
 .dk :is(.dk-window, .dk-panel) .dr-zone .dr-field::before{
   display: none;
 }
+
+/* «CTA в нижньому барі картки» (support and every empty or error message): the call to
+   action stands in the foot; a message keeps the middle of the space above it; the
+   support note that explains the button sits right over it (8, proximity) */
+.dk :is(.dk-window, .dk-panel) > .dk-scroll:has(> * > .dr-msg, > .dr-msg){
+  flex: 1 1 auto;
+  justify-content: safe center;
+}
+.dk :is(.dk-window, .dk-panel) > .dk-foot{
+  margin-top: auto;
+}
+.dk .dk-foot__note{
+  margin: 0 0 calc(var(--len-4) * -1);
+  text-align: center;
+}
