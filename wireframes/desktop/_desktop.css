@@ -1,0 +1,43 @@
+/* wireframes/desktop/_desktop.css - TEMPORARY (2026-10-18)
+   The designer's call: the desktop is built on the wireframes first and moves
+   into design-system/ once she has reviewed it. Only what the system does not
+   have yet lives here, written with tokens like a component would be. */
+
+/* the live order card opens its tracking page */
+.dr-tally--link{
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.dr-tally--link:hover{
+  border-color: var(--text-muted);
+}
+.dr-tally--link:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+
+/* prototype chrome, not product: back to the phone twin */
+.wf-twin{
+  position: fixed;
+  right: var(--len-16);
+  bottom: var(--len-16);
+  z-index: 20;
+  padding: var(--len-8) var(--len-14);
+  border-radius: var(--len-999);
+  background: var(--text-primary);
+  color: var(--bg-page);
+  font-family: var(--font-ui);
+  font-size: var(--type-caption-size);
+  text-decoration: none;
+}
+.wf-twin:focus-visible{
+  outline: var(--len-2-5) solid var(--color-action);
+  outline-offset: var(--len-2);
+}
+
+/* the service drones are white renders drawn for the dark map: the phone's
+   dark-build lift (media.css, /drones/ inverted) would turn them dark */
+[data-theme="dark"] .dr .dr-svc img{
+  filter: none;
+}

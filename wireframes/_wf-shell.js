@@ -398,7 +398,15 @@
       try { localStorage.setItem("wf-viewport", key); } catch(e){}
     }
     for (var i=0;i<btns.length;i++){
-      (function(b){ b.addEventListener("click", function(){ apply(b.getAttribute("data-size")); }); })(btns[i]);
+      (function(b){ b.addEventListener("click", function(){
+        apply(b.getAttribute("data-size"));
+        /* DESKTOP TWINS (2026-10-18): a phone page with a twin in desktop/ opens it.
+           Only on the click, never from the stored choice, so a phone page always
+           loads as the phone; the twin's "Phone view" comes back. */
+        if (b.getAttribute("data-size") !== "desktop" || /\/desktop\//.test(location.pathname)) return;
+        var twin = "desktop/" + (location.pathname.split("/").pop() || "index.html");
+        try { fetch(twin, { method: "HEAD" }).then(function(r){ if (r.ok) location.href = twin; }); } catch(e){}
+      }); })(btns[i]);
     }
     var saved = "mobile";
     try { saved = localStorage.getItem("wf-viewport") || "mobile"; } catch(e){}
