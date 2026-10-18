@@ -24,26 +24,28 @@
   <div class="dk-dim" aria-hidden="true"></div>
   <main class="dk-window dr-material" aria-labelledby="win-title">
     <div class="dk-window__head"><a class="dr-iconbtn dr-material" href="operator-signup.html" aria-label="Back to Sign in"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><h1 class="dk-window__title" id="win-title">Verification</h1></div>
-    <form class="dr-stack" aria-label="Verification documents" action="#">
-      <div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="licence-title">
-        <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
-        <span class="dr-upload__action" id="licence-title">Add licence</span>
-      </div>
-      <div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="insurance-title">
-        <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
-        <span class="dr-upload__action" id="insurance-title">Add insurance</span>
-      </div>
-      <div class="dr-rows">
-        <div class="dr-field">
-          <label class="dr-field__label" for="lic">Licence number</label>
-          <span class="dr-field__group"><input class="dr-field__input" id="lic" placeholder="e.g. UA-CAA-102938"></span>
+    <div class="dk-scroll">
+      <form class="dr-stack" aria-label="Verification documents" action="#">
+        <div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="licence-title">
+          <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+          <span class="dr-upload__action" id="licence-title">Add licence</span>
         </div>
-      </div>
-    </form>
-    <p class="dr-note">Review takes 2–3 business days.</p>
-    <div class="dk-acts">
-      <a class="dr-btn dr-btn--primary dr-btn--block" href="operator-verification-loading.html">Submit for review</a>
+        <div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="insurance-title">
+          <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+          <span class="dr-upload__action" id="insurance-title">Add insurance</span>
+        </div>
+        <div class="dr-rows">
+          <div class="dr-field">
+            <label class="dr-field__label" for="lic">Licence number</label>
+            <span class="dr-field__group"><input class="dr-field__input" id="lic" placeholder="e.g. UA-CAA-102938"></span>
+          </div>
+        </div>
+      </form>
+      <p class="dr-note">Review takes 2–3 business days.</p>
     </div>
+    <div class="dk-foot"><div class="dk-acts">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="operator-verification-loading.html">Submit for review</a>
+    </div></div>
   </main>
 </div>
 <a class="wf-twin" href="../operator-verification.html">Phone view</a>

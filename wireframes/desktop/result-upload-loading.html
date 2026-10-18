@@ -45,32 +45,34 @@
   <div class="dk-dim" aria-hidden="true"></div>
   <main class="dk-window dr-material" aria-labelledby="dk-title">
     <div class="dk-window__head"><a class="dr-iconbtn dr-material" href="job-checklist.html" aria-label="Back to Checklist"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><h1 class="dk-window__title" id="dk-title">Close job</h1></div>
-    <h2 class="dr-label">Job</h2>
-    <div class="dr-rows" aria-label="Job summary">
-      <div class="dr-rows__row"><span class="dr-rows__key">Service</span><span class="dr-rows__val">Package delivery</span></div>
-      <div class="dr-rows__row"><span class="dr-rows__key">Client</span><span class="dr-rows__val">Olena H.</span></div>
-      <div class="dr-rows__row"><span class="dr-rows__key">Pay</span><span class="dr-rows__val">₴180</span></div>
+    <div class="dk-scroll">
+      <h2 class="dr-label">Job</h2>
+      <div class="dr-rows" aria-label="Job summary">
+        <div class="dr-rows__row"><span class="dr-rows__key">Service</span><span class="dr-rows__val">Package delivery</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Client</span><span class="dr-rows__val">Olena H.</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Pay</span><span class="dr-rows__val">₴180</span></div>
+      </div>
+      <h2 class="dr-label">Result photo</h2>
+      <section aria-label="Result photo">
+        <div class="dr-stack">
+          <div class="dr-upload dr-sk-tray">
+            <span class="dr-sk-up" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><g class="dr-sk-arrow"><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></g></svg></span>
+            <p class="dr-status-line" role="status">Sending the delivery photo.<br>Keep the app open.</p>
+          </div>
+          <button type="button" class="dr-btn dr-btn--secondary dr-btn--block" disabled>Replace photo</button>
+        </div>
+      </section>
+      <h2 class="dr-label">Notes</h2>
+      <section aria-label="Handover notes">
+        <div class="dr-rows">
+          <div class="dr-field dr-field--area dr-field--area6">
+            <textarea class="dr-field__input" placeholder="Handover notes, client name…" aria-label="Handover notes"></textarea>
+          </div>
+        </div>
+      </section>
+      <p class="dr-note" id="hold-terms">Payment is held until the client confirms — auto-confirms after 2h.</p>
     </div>
-    <h2 class="dr-label">Result photo</h2>
-    <section aria-label="Result photo">
-      <div class="dr-stack">
-        <div class="dr-upload dr-sk-tray">
-          <span class="dr-sk-up" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><g class="dr-sk-arrow"><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></g></svg></span>
-          <p class="dr-status-line" role="status">Sending the delivery photo.<br>Keep the app open.</p>
-        </div>
-        <button type="button" class="dr-btn dr-btn--secondary dr-btn--block" disabled>Replace photo</button>
-      </div>
-    </section>
-    <h2 class="dr-label">Notes</h2>
-    <section aria-label="Handover notes">
-      <div class="dr-rows">
-        <div class="dr-field dr-field--area dr-field--area6">
-          <textarea class="dr-field__input" placeholder="Handover notes, client name…" aria-label="Handover notes"></textarea>
-        </div>
-      </div>
-    </section>
-    <p class="dr-note" id="hold-terms">Payment is held until the client confirms — auto-confirms after 2h.</p>
-    <a class="dr-btn dr-btn--primary dr-btn--block" href="wallet.html" aria-describedby="hold-terms">Uploading…</a>
+    <div class="dk-foot"><a class="dr-btn dr-btn--primary dr-btn--block" href="wallet.html" aria-describedby="hold-terms">Uploading…</a></div>
   </main>
 </div>
 <a class="wf-twin" href="../result-upload-loading.html">Phone view</a>

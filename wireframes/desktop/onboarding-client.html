@@ -23,30 +23,32 @@
   <div class="dk-dim" aria-hidden="true"></div>
   <main class="dk-window dr-material dk-entry" aria-label="How DRON works">
     <!-- The pager is an indicator, not a control (as on the phone). On desktop the slider takes keyboard focus so arrow keys scroll it. -->
-    <div class="dr-slider" role="region" tabindex="0" aria-label="How DRON works">
-      <section class="dr-slide" id="oc1" aria-label="Slide 1 of 3">
-        <h1 class="dr-display">A verified operator</h1>
-        <p class="dr-lead">DRON assigns the nearest certified, insured operator. You don't choose or guess.</p>
-        <span class="dr-slide__art"><img src="../../assets/scenes/thumbs/onboarding-verified-operator.png" alt="" decoding="async"></span>
-      </section>
-      <section class="dr-slide" id="oc2" aria-label="Slide 2 of 3">
-        <p class="dr-display">Track it live</p>
-        <p class="dr-lead">See the operator's name, photo and live position the moment you pay.</p>
-        <span class="dr-slide__art"><img src="../../assets/scenes/thumbs/onboarding-live-tracking.png" alt="" loading="lazy" decoding="async"></span>
-      </section>
-      <section class="dr-slide" id="oc3" aria-label="Slide 3 of 3">
-        <p class="dr-display">A photo or report, every time</p>
-        <p class="dr-lead">Get a photo or a report the moment it's done.</p>
-        <span class="dr-slide__art"><img src="../../assets/scenes/thumbs/onboarding-report.png" alt="" loading="lazy" decoding="async"></span>
-      </section>
+    <div class="dk-scroll">
+      <div class="dr-slider" role="region" tabindex="0" aria-label="How DRON works">
+        <section class="dr-slide" id="oc1" aria-label="Slide 1 of 3">
+          <h1 class="dr-display">A verified operator</h1>
+          <p class="dr-lead">DRON assigns the nearest certified, insured operator. You don't choose or guess.</p>
+          <span class="dr-slide__art"><img src="../../assets/scenes/thumbs/onboarding-verified-operator.png" alt="" decoding="async"></span>
+        </section>
+        <section class="dr-slide" id="oc2" aria-label="Slide 2 of 3">
+          <p class="dr-display">Track it live</p>
+          <p class="dr-lead">See the operator's name, photo and live position the moment you pay.</p>
+          <span class="dr-slide__art"><img src="../../assets/scenes/thumbs/onboarding-live-tracking.png" alt="" loading="lazy" decoding="async"></span>
+        </section>
+        <section class="dr-slide" id="oc3" aria-label="Slide 3 of 3">
+          <p class="dr-display">A photo or report, every time</p>
+          <p class="dr-lead">Get a photo or a report the moment it's done.</p>
+          <span class="dr-slide__art"><img src="../../assets/scenes/thumbs/onboarding-report.png" alt="" loading="lazy" decoding="async"></span>
+        </section>
+      </div>
+      <div class="dr-pager" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+      <button class="dr-iconbtn dr-material dk-slidenav dk-slidenav--prev" type="button" data-slide="-1" aria-label="Previous slide" aria-disabled="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <button class="dr-iconbtn dr-material dk-slidenav dk-slidenav--next" type="button" data-slide="1" aria-label="Next slide"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="dr-pager" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
-    <button class="dr-iconbtn dr-material dk-slidenav dk-slidenav--prev" type="button" data-slide="-1" aria-label="Previous slide" aria-disabled="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-    <button class="dr-iconbtn dr-material dk-slidenav dk-slidenav--next" type="button" data-slide="1" aria-label="Next slide"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
-    <div class="dk-entry__acts">
+    <div class="dk-foot"><div class="dk-entry__acts">
       <a class="dr-btn dr-btn--primary dr-btn--block" href="listings.html">Get started</a>
       <a class="dr-btn dr-btn--secondary dr-btn--block" href="listings.html">Skip</a>
-    </div>
+    </div></div>
   </main>
 </div>
 <a class="wf-twin" href="../onboarding-client.html">Phone view</a>

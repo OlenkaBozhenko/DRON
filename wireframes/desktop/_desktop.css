@@ -778,11 +778,14 @@
    має як і сама картка»: the panel itself does not scroll - its content does, in
    .dk-scroll, and the action stands under it on the panel's own glass, so the bar has
    no ground, no edge and no line of its own, and nothing ever passes under it */
-.dk .dk-panel:has(> .dk-foot){
+.dk :is(.dk-panel, .dk-window):has(> .dk-foot){
   overflow: hidden;
 }
-.dk .dk-panel > .dk-scroll{
-  flex: 1 1 auto;
+/* «тут так само з праймері кнопкою фіксована»: every window and panel whose last
+   child is its action. The scroll only shrinks, never grows, so a short window keeps
+   its content and action together in the middle */
+.dk :is(.dk-panel, .dk-window) > .dk-scroll{
+  flex: 0 1 auto;
   min-height: 0;
   overflow: hidden auto;
   display: flex;
@@ -791,7 +794,7 @@
   margin-inline: calc(var(--len-24) * -1);
   padding-inline: var(--len-24);
 }
-.dk .dk-panel > .dk-foot{
+.dk :is(.dk-panel, .dk-window) > .dk-foot{
   flex: none;
   padding-top: var(--len-4);
 }

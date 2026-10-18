@@ -24,46 +24,48 @@
   <div class="dk-dim" aria-hidden="true"></div>
   <main class="dk-window dr-material" aria-labelledby="win-title">
     <div class="dk-window__head"><a class="dr-iconbtn dr-material" href="operator-verification.html" aria-label="Back to Verification"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><h1 class="dk-window__title" id="win-title">Profile setup</h1></div>
-    <form class="dr-stack dr-stack--zones" aria-label="Profile setup" action="#">
-      <div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="profile-photo-title">
-        <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
-        <span class="dr-upload__action" id="profile-photo-title">Add photo</span>
-      </div>
-      <div class="dr-rows">
-        <div class="dr-field">
-          <label class="dr-field__label" for="nm">Display name</label>
-          <span class="dr-field__group"><input class="dr-field__input" id="nm" placeholder="e.g. Andriy K."></span>
+    <div class="dk-scroll">
+      <form class="dr-stack dr-stack--zones" aria-label="Profile setup" action="#">
+        <div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="profile-photo-title">
+          <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+          <span class="dr-upload__action" id="profile-photo-title">Add photo</span>
         </div>
-        <div class="dr-field dr-field--area">
-          <label class="dr-field__label" for="bio">Short bio</label>
-          <textarea class="dr-field__input" id="bio" placeholder="Certified operator since 2023. Fast, careful deliveries across Kyiv…"></textarea>
-          <span class="dr-field__hint">1–2 lines clients see. Your experience and the area you cover.</span>
+        <div class="dr-rows">
+          <div class="dr-field">
+            <label class="dr-field__label" for="nm">Display name</label>
+            <span class="dr-field__group"><input class="dr-field__input" id="nm" placeholder="e.g. Andriy K."></span>
+          </div>
+          <div class="dr-field dr-field--area">
+            <label class="dr-field__label" for="bio">Short bio</label>
+            <textarea class="dr-field__input" id="bio" placeholder="Certified operator since 2023. Fast, careful deliveries across Kyiv…"></textarea>
+            <span class="dr-field__hint">1–2 lines clients see. Your experience and the area you cover.</span>
+          </div>
         </div>
-      </div>
-      <fieldset class="dr-zone" aria-labelledby="spec-title">
-        <p class="dr-zone__title" id="spec-title">Service specializations</p>
-        <ul class="dr-picks">
-          <li><label class="dr-pick">
-            <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-            <span class="dr-pick__label">Delivery</span>
-            <input type="checkbox" name="specialization" value="delivery" checked class="sr-only">
-          </label></li>
-          <li><label class="dr-pick">
-            <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-            <span class="dr-pick__label">Photo &amp; video</span>
-            <input type="checkbox" name="specialization" value="aerial" checked class="sr-only">
-          </label></li>
-          <li><label class="dr-pick">
-            <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
-            <span class="dr-pick__label">Inspection</span>
-            <input type="checkbox" name="specialization" value="inspection" class="sr-only">
-          </label></li>
-        </ul>
-      </fieldset>
-    </form>
-    <div class="dk-acts">
-      <a class="dr-btn dr-btn--primary dr-btn--block" href="operator-listings.html">Save &amp; go live</a>
+        <fieldset class="dr-zone" aria-labelledby="spec-title">
+          <p class="dr-zone__title" id="spec-title">Service specializations</p>
+          <ul class="dr-picks">
+            <li><label class="dr-pick">
+              <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+              <span class="dr-pick__label">Delivery</span>
+              <input type="checkbox" name="specialization" value="delivery" checked class="sr-only">
+            </label></li>
+            <li><label class="dr-pick">
+              <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+              <span class="dr-pick__label">Photo &amp; video</span>
+              <input type="checkbox" name="specialization" value="aerial" checked class="sr-only">
+            </label></li>
+            <li><label class="dr-pick">
+              <span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span>
+              <span class="dr-pick__label">Inspection</span>
+              <input type="checkbox" name="specialization" value="inspection" class="sr-only">
+            </label></li>
+          </ul>
+        </fieldset>
+      </form>
     </div>
+    <div class="dk-foot"><div class="dk-acts">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="operator-listings.html">Save &amp; go live</a>
+    </div></div>
   </main>
 </div>
 <a class="wf-twin" href="../operator-profile-setup.html">Phone view</a>

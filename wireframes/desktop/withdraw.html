@@ -42,36 +42,38 @@
   <div class="dk-dim" aria-hidden="true"></div>
   <main class="dk-window dr-material" aria-labelledby="dk-title">
     <div class="dk-window__head"><a class="dr-iconbtn dr-material" href="wallet.html" aria-label="Back to Earnings"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><h1 class="dk-window__title" id="dk-title">Withdraw</h1></div>
-    <h2 class="dr-label">Available</h2>
-    <section class="dr-balance" aria-label="Available balance">
-      <p class="dr-number">&#8372;3,240</p>
-      <p class="dr-note dr-note--flush" id="wd-available">Available to withdraw</p>
-    </section>
-    <h2 class="dr-label">Amount</h2>
-    <section aria-label="Amount">
-      <div class="dr-rows dr-rows--card">
-        <div class="dr-field">
-          <label class="dr-field__label" for="wd-amount">Amount</label>
-          <span class="dr-field__group"><input class="dr-field__input" id="wd-amount" name="amount" type="text" inputmode="numeric" value="&#8372;1,500" aria-describedby="wd-available"></span>
+    <div class="dk-scroll">
+      <h2 class="dr-label">Available</h2>
+      <section class="dr-balance" aria-label="Available balance">
+        <p class="dr-number">&#8372;3,240</p>
+        <p class="dr-note dr-note--flush" id="wd-available">Available to withdraw</p>
+      </section>
+      <h2 class="dr-label">Amount</h2>
+      <section aria-label="Amount">
+        <div class="dr-rows dr-rows--card">
+          <div class="dr-field">
+            <label class="dr-field__label" for="wd-amount">Amount</label>
+            <span class="dr-field__group"><input class="dr-field__input" id="wd-amount" name="amount" type="text" inputmode="numeric" value="&#8372;1,500" aria-describedby="wd-available"></span>
+          </div>
         </div>
-      </div>
-    </section>
-    <h2 class="dr-label">Withdrawal method</h2>
-    <section aria-label="Withdrawal method">
-      <ul class="dr-picks">
-        <li><label class="dr-pick">
-          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-          <span class="dr-pick__label">Instant to card &bull;&bull;&bull;&bull; 3318<span class="dr-pick__sub">Arrives in under a minute</span></span>
-          <input type="radio" name="payout" class="sr-only" checked>
-        </label></li>
-        <li><label class="dr-pick">
-          <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
-          <span class="dr-pick__label">Bank transfer<span class="dr-pick__sub">1&ndash;3 business days</span></span>
-          <input type="radio" name="payout" class="sr-only">
-        </label></li>
-      </ul>
-    </section>
-    <a class="dr-btn dr-btn--primary dr-btn--block" href="withdraw-loading.html">Withdraw &#8372;1,500</a>
+      </section>
+      <h2 class="dr-label">Withdrawal method</h2>
+      <section aria-label="Withdrawal method">
+        <ul class="dr-picks">
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">Instant to card &bull;&bull;&bull;&bull; 3318<span class="dr-pick__sub">Arrives in under a minute</span></span>
+            <input type="radio" name="payout" class="sr-only" checked>
+          </label></li>
+          <li><label class="dr-pick">
+            <span class="dr-box dr-box--radio" aria-hidden="true"><i class="dr-box__dot"></i></span>
+            <span class="dr-pick__label">Bank transfer<span class="dr-pick__sub">1&ndash;3 business days</span></span>
+            <input type="radio" name="payout" class="sr-only">
+          </label></li>
+        </ul>
+      </section>
+    </div>
+    <div class="dk-foot"><a class="dr-btn dr-btn--primary dr-btn--block" href="withdraw-loading.html">Withdraw &#8372;1,500</a></div>
   </main>
 </div>
 <a class="wf-twin" href="../withdraw.html">Phone view</a>

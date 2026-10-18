@@ -42,17 +42,19 @@
   <div class="dk-dim" aria-hidden="true"></div>
   <main class="dk-window dr-material" aria-labelledby="dk-title">
     <div class="dk-window__head"><a class="dr-btn dr-btn--tertiary" href="operator-account.html">Cancel</a><h1 class="dk-window__title" id="dk-title">Profile photo</h1><a class="dr-btn dr-btn--text dk-push" href="operator-account.html">Save</a></div>
-    <h2 class="dr-label">Photo</h2>
-    <div class="dr-card">
-      <span class="dr-avatar-lg"><img src="../../assets/people/thumbs/person-operator-ivan.png" alt="Your profile photo" loading="lazy" decoding="async"></span>
-      <div class="dr-stack">
-        <p class="dr-note">Your client sees this photo when they arrive. Without one, they see your initials.</p>
-        <p class="dr-note dr-note--balance" id="photo-rules">JPG or PNG, up to 5 MB. Nothing changes until you save.</p>
+    <div class="dk-scroll">
+      <h2 class="dr-label">Photo</h2>
+      <div class="dr-card">
+        <span class="dr-avatar-lg"><img src="../../assets/people/thumbs/person-operator-ivan.png" alt="Your profile photo" loading="lazy" decoding="async"></span>
+        <div class="dr-stack">
+          <p class="dr-note">Your client sees this photo when they arrive. Without one, they see your initials.</p>
+          <p class="dr-note dr-note--balance" id="photo-rules">JPG or PNG, up to 5 MB. Nothing changes until you save.</p>
+        </div>
       </div>
+      <button class="dr-btn dr-btn--primary dr-btn--block" type="button" aria-describedby="photo-rules">Take a photo</button>
+      <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" aria-describedby="photo-rules">Choose a picture</button>
     </div>
-    <button class="dr-btn dr-btn--primary dr-btn--block" type="button" aria-describedby="photo-rules">Take a photo</button>
-    <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" aria-describedby="photo-rules">Choose a picture</button>
-    <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" aria-describedby="photo-rules">Delete</button>
+    <div class="dk-foot"><button class="dr-btn dr-btn--secondary dr-btn--block" type="button" aria-describedby="photo-rules">Delete</button></div>
   </main>
 </div>
 <a class="wf-twin" href="../operator-account-photo.html">Phone view</a>
