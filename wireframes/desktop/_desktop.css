@@ -1315,6 +1315,6 @@
    DRON mark in its icon well instead of the generic drone outline; the mark is wide, so it
    is drawn at the well's width, in the well's ink */
 .dk .dk-stat-brand{
-  width: var(--len-32);
-  height: var(--len-12);
+  width: var(--len-40);
+  height: var(--len-14);
 }
