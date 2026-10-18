@@ -1248,3 +1248,16 @@
 .dk :is(.dk-window, .dk-panel) > .dk-scroll > *{
   flex-shrink: 0;
 }
+
+/* «ось цю частину замінити на алерт який вискакує на мобілці, він чорний» (checklist
+   error): the error is the phone's black toast, not a card in the content - it pops up in
+   the foot, right over the action that answers it (proximity), and wraps to two lines */
+.dk .dk-foot > .dk-toast{
+  position: static;
+  justify-self: center;
+  width: auto;
+  max-width: none;
+  margin: 0 0 var(--len-4);
+  border-radius: var(--len-22);
+  text-wrap: balance;
+}
