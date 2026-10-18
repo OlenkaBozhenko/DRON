@@ -15,13 +15,8 @@
   padding: 0;
 }
 
-/* the screen carries its own green control: the header's Order steps back,
-   the way assistant.css does it while a dialog is open (one green per screen) */
-.dk-wait--own-green .dr-whead__end > .dr-btn--primary{
-  background: var(--bg-muted);
-  color: var(--text-primary);
-  box-shadow: none;
-}
+/* (the header's Order used to step back to grey here; since 2026-10-19 it stays the
+   green primary everywhere, the designer's call - see _desktop.css) */
 
 /* ---------------------------------------------------------------------------
    THE SIDE PANEL: the order, the operator and the actions, at the right edge

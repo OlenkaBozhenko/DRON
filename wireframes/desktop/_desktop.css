@@ -1232,3 +1232,13 @@
 .dk :is(.dk-window, .dk-panel) > .dk-scroll > :is(.dr-msg, :has(> .dr-msg)){
   margin-block: auto;
 }
+
+/* order confirmed, loading: the spinner is the one wait indicator, so the skeleton of the
+   operator card under it goes, as on every spinner window */
+.dk :is(.dk-window, .dk-panel):has(.dr-spin) section:has(.dr-sk-line){
+  display: none;
+}
+/* order confirmed is a centred window now: Talk to AI goes back to the middle */
+.dk.dk-wait:has(> .dk-window) .dk-talk{
+  left: 50%;
+}
