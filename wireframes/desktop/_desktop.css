@@ -690,14 +690,44 @@
 }
 
 /* «ці картинки для світлої і темної теми нагенеруй на фоні бекграундів як на картці
-   вікна» (2026-10-18): the onboarding scenes are drawn again on the window's own ground -
-   #F9F8F6 light, #2A2A2A dark (Figma, DRON card art) - so no square shows. Desktop copies; the phone keeps its files. */
+   вікна» (2026-10-18), then «видно краї»: the scenes go onto the window with no ground of
+   their own, so the glass is their background in either theme. Dispatch is drawn again in
+   Figma (DRON card art) on a magenta key and cut out, light and dark; the five other dark
+   scenes have their flat #1A1A1A ground keyed out (their light files were already cut
+   out). Desktop copies; the phone keeps its files. */
 :root, [data-theme="light"]{
   --dk-onb-dispatch: url("../../assets/scenes/desktop/onboarding-dispatch.png");
 }
 [data-theme="dark"]{
   --dk-onb-dispatch: url("../../assets/scenes/desktop/onboarding-dispatch-dark.png");
+  --dk-onb-checklist: url("../../assets/scenes/desktop/onboarding-checklist-dark.png");
+  --dk-onb-payout: url("../../assets/scenes/desktop/onboarding-payout-dark.png");
+  --dk-onb-verified-operator: url("../../assets/scenes/desktop/onboarding-verified-operator-dark.png");
+  --dk-onb-live-tracking: url("../../assets/scenes/desktop/onboarding-live-tracking-dark.png");
+  --dk-onb-report: url("../../assets/scenes/desktop/onboarding-report-dark.png");
 }
 .dk.dk img[src*="onboarding-dispatch."]{
   content: var(--dk-onb-dispatch);
+}
+[data-theme="dark"] .dk.dk img[src*="onboarding-checklist."]{
+  content: var(--dk-onb-checklist);
+}
+[data-theme="dark"] .dk.dk img[src*="onboarding-payout."]{
+  content: var(--dk-onb-payout);
+}
+[data-theme="dark"] .dk.dk img[src*="onboarding-verified-operator."]{
+  content: var(--dk-onb-verified-operator);
+}
+[data-theme="dark"] .dk.dk img[src*="onboarding-live-tracking."]{
+  content: var(--dk-onb-live-tracking);
+}
+[data-theme="dark"] .dk.dk img[src*="onboarding-report."]{
+  content: var(--dk-onb-report);
+}
+
+/* «зроби контент по центру а то зверху дуже малий відступ а знизу великий»: a window is
+   one height (640), so its content sits in the middle of it; `safe` keeps a tall
+   window's top in view when it scrolls */
+.dk.dk .dk-window.dk-window{
+  justify-content: safe center;
 }
