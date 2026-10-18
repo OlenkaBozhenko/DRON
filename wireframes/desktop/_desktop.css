@@ -1177,3 +1177,11 @@
   width: var(--len-20);
   height: var(--len-20);
 }
+
+/* «перенеси кнопку у нижній бар картки»: when a window's primary action stood at the end
+   of its content and a second action sat in the foot, both now stand in the foot, the
+   primary on top, 12 apart - one place for what to do next */
+.dk .dk-foot--stack{
+  display: grid;
+  gap: var(--len-12);
+}
