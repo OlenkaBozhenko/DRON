@@ -1288,3 +1288,19 @@
 .dk :is(.dk-window, .dk-panel) .dr-rows:has(> .dr-field--area){
   background: transparent;
 }
+
+/* «добав мені можливість по кліку на лого переходити на проект research.html»: the
+   logo opens the project's hub page; the link wraps the masked mark (a mask would cut its
+   own focus ring), is named, 44 tall (HIG) and shows its ring (WCAG 2.4.7) */
+.dk .dk-brandlink{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--len-44);
+  min-height: var(--len-44);
+  border-radius: var(--len-12);
+}
+.dk .dk-brandlink:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-4);
+}
