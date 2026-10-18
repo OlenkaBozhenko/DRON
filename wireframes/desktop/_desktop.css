@@ -835,3 +835,13 @@
   display: grid;
   gap: var(--len-4);
 }
+
+/* «якщо ми бачимо такого типу лоудери які не є лоудерами скелетона то вони мають бути
+   по центру»: a spinner message (not a skeleton) stands in the middle of the space
+   between the head and the action */
+.dk .dk-window > .dk-scroll:has(.dr-center .dr-spin){
+  justify-content: safe center;
+}
+.dk .dk-window:not(:has(> .dk-scroll)) > .dr-center:has(.dr-spin){
+  margin-block: auto;
+}
