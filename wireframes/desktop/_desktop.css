@@ -485,3 +485,182 @@
 .dk-float .dr-card{
   padding: 18px;
 }
+
+/* ---------------------------------------------------------------------------
+   THE DESIGNER'S REVIEW, 2026-10-19
+   --------------------------------------------------------------------------- */
+/* 2 + 9. every centred screen sits in the same place and has the same height:
+   the middle of the window, 640 tall (less on a short window), scrolling inside */
+.dk.dk .dk-window.dk-window,
+.dk.dk .dk-panel.dk-panel,
+.dk.dk .dk-window.dk-help-split{
+  top: 50%;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  height: min(640px, calc(100% - 232px));
+  max-height: none;
+  overflow: auto;
+}
+/* 3. the inspection report reads top to bottom: the photos full width, the words under them */
+.dk .dk-cols{
+  display: flex;
+  flex-direction: column;
+}
+.dk .dk-cols .dk-col{
+  width: 100%;
+}
+/* 5. one surface per block: a zone or a card is the tint, what sits inside it is not */
+.dk :is(.dk-window, .dk-panel) .dr-zone{
+  background: color-mix(in srgb, var(--bg-well) 45%, transparent);
+}
+.dk :is(.dk-window, .dk-panel) :is(.dr-zone, .dr-card) :is(.dr-rows, .dr-field, .dr-rows--card, .dr-inset){
+  background: transparent;
+}
+/* 1. Activity, compact: smaller drone, tighter rows, the details link a quiet button */
+.dk-float .dr-card{
+  padding: 14px 16px;
+  gap: 8px;
+}
+.dk-float .dr-card .dr-well img{
+  width: 56px;
+  height: 40px;
+  object-fit: contain;
+}
+.dk-float .dr-card .dr-well{
+  width: 64px;
+  height: 48px;
+}
+.dk-float .dr-card .dr-order__title{
+  font-size: var(--type-heading-size);
+}
+.dk-float .dr-card .dr-inset{
+  padding: 8px 0;
+  border-top: 1px solid var(--border-material);
+  border-radius: 0;
+}
+.dk-float .dr-card .dr-rail{
+  margin: 2px 0;
+}
+/* the same height wins over every group's own window rule */
+.dk.dk.dk .dk-window, .dk.dk.dk .dk-panel, .dk.dk.dk #find{
+  top: 50%;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  height: min(640px, calc(100% - 232px));
+  max-height: none;
+  overflow: auto;
+}
+/* 2 + 9, final: outranks every earlier window rule (0,6,0) */
+.dk.dk.dk .dk-window.dk-window.dk-window,
+.dk.dk.dk .dk-panel.dk-panel.dk-panel,
+.dk.dk.dk #find.dk-window.dk-window{
+  top: 50%;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  height: min(640px, calc(100% - 232px));
+  max-height: none;
+  overflow: auto;
+}
+/* a signed-out window (sign in, welcome) has no rails and no Talk to AI, and
+   keeps its own height: it holds two or three lines */
+
+/* 7. THE OPERATOR'S HOME: stats and availability on the left, the operator's
+   jobs on the right (on now, incoming, done with See all), the assistant in the
+   middle, the open jobs as drones on the map - a drone opens its offer */
+.dk-ophome{
+  position: absolute;
+  inset: 96px 348px 96px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+}
+.dk-ophome .dr-assistant{
+  width: min(100%, 620px);
+}
+.dk-ophome .dr-assistant__orb{
+  width: 180px;
+  height: 180px;
+  margin: 0 auto -6px;
+}
+.dk-ophome .dr-assistant__title{
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+.dk-ophome .dr-assistant__lead{
+  margin: 10px 0 22px;
+}
+.dk-act{
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  align-items: center;
+  border-bottom: 1px solid var(--border-material);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: var(--type-body-size);
+}
+.dk-act:last-child{
+  border-bottom: 0;
+}
+.dk-act__k{
+  color: var(--text-muted);
+}
+.dk-act__v{
+  flex: none;
+  font-weight: var(--type-weight-medium);
+  font-variant-numeric: var(--type-numeric);
+}
+.dk-act:hover .dk-act__k{
+  color: var(--text-primary);
+}
+.dk-act:focus-visible, .dk-dronelink:focus-visible{
+  outline: 2.5px solid var(--text-primary);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+.dk-act--more{
+  justify-content: center;
+  font-weight: var(--type-weight-medium);
+}
+.dk .dr-mapground:has(.dk-dronelink){
+  z-index: 2;
+  pointer-events: none;
+}
+.dk .dr-mapground .dk-dronelink{
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  box-shadow: none;
+  pointer-events: auto;
+  cursor: pointer;
+}
+.dk .dk-dronelink::before{
+  content: "";
+  position: absolute;
+  inset: 17px;
+  border-radius: 50%;
+  background: var(--color-action);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-action) 22%, transparent), 0 0 24px 6px color-mix(in srgb, var(--color-action) 45%, transparent);
+}
+.dk .dk-dronelink:hover::before{
+  box-shadow: 0 0 0 10px color-mix(in srgb, var(--color-action) 30%, transparent), 0 0 30px 10px color-mix(in srgb, var(--color-action) 55%, transparent);
+}
+/* the onboarding slider shows one slide at a time inside its window */
+.dk .dk-entry .dr-slider{
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+.dk .dk-entry{
+  overflow-x: hidden;
+}
+/* the assistant over the job drones; the empty map round it still lets a drone be clicked */
+.dk-ophome{
+  z-index: 3;
+  pointer-events: none;
+}
+.dk-ophome .dr-assistant{
+  pointer-events: auto;
+}
