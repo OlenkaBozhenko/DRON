@@ -258,3 +258,38 @@
 :where(.dk) *{
   scrollbar-width: thin;
 }
+
+/* ---------------------------------------------------------------------------
+   THE FRAME ON EVERY SIGNED-IN SCREEN (the designer, 2026-10-18, on her ?order
+   screenshot: «де картки зліва та справа… де AI»). The Overview's two rails stay
+   at the window's edges on every step and tab, the step or the tab's content
+   sits between them, Talk to AI waits at the bottom. Behind a step's window the
+   rails dim with the map.
+   --------------------------------------------------------------------------- */
+.dk-rail{
+  position: absolute;
+  top: 96px;
+  bottom: 24px;
+  z-index: 2;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+}
+.dk-rail--start{
+  left: 24px;
+}
+.dk-rail--end{
+  right: 24px;
+}
+/* the middle between the rails: 1440 - 2 x (24 + 300 + 24) = 744 */
+.dk-window--wide{
+  width: min(760px, calc(100% - 696px));
+}
+.dk:has(.dk-rail) .dk-panel{
+  width: min(720px, calc(100% - 696px));
+}
+.dk:has(.dk-talk) .dk-panel{
+  bottom: 96px;
+}
