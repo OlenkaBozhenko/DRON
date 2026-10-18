@@ -57,3 +57,38 @@
     if (start + 2 < steps.length) setTimeout(function () { go(start + 2); }, 2500);
   });
 }());
+
+/* THE SLIDER TURNS BY MOUSE (the designer, 2026-10-18: «добав тут стрілки я ж не можу
+   вайпати»). Previous / Next scroll the slider one slide; the pager follows from kit.js's
+   own scroll handler. At either end the arrow stays visible and is marked unavailable. */
+(function () {
+  'use strict';
+  var slider = document.querySelector('.dk-entry .dr-slider');
+  var btns = [].slice.call(document.querySelectorAll('.dk-slidenav'));
+  if (!slider || !btns.length) return;
+  var win = slider.closest('.dk-entry');
+  function place() {
+    var art = slider.querySelector('.dr-slide__art');
+    if (!art) return;
+    var a = art.getBoundingClientRect(), w = win.getBoundingClientRect();
+    win.style.setProperty('--dk-slidenav-top', (a.top - w.top + win.scrollTop + a.height / 2) + 'px');
+  }
+  function state() {
+    var max = slider.scrollWidth - slider.clientWidth - 2;
+    btns.forEach(function (b) {
+      var end = b.getAttribute('data-slide') < 0 ? slider.scrollLeft <= 2 : slider.scrollLeft >= max;
+      if (end) b.setAttribute('aria-disabled', 'true'); else b.removeAttribute('aria-disabled');
+    });
+  }
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (b.getAttribute('aria-disabled') === 'true') return;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      slider.scrollBy({ left: slider.clientWidth * b.getAttribute('data-slide'), behavior: reduce ? 'auto' : 'smooth' });
+    });
+  });
+  slider.addEventListener('scroll', state, { passive: true });
+  window.addEventListener('resize', place);
+  window.addEventListener('load', place);
+  place(); state();
+}());

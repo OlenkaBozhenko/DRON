@@ -664,3 +664,27 @@
 .dk-ophome .dr-assistant{
   pointer-events: auto;
 }
+
+/* the designer, 2026-10-18: «кнопки став одна під одною у всіх модалках окрім карток
+   замовлень» - in every window the actions stack, the primary on top; only a job offer
+   keeps Accept and Decline side by side */
+.dk .dk-entry__acts,
+.dk .dk-acts:not(.dk-acts--pair),
+.dk .dk-help-acts--pair{
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* «добав тут стрілки я ж не можу вайпати»: a mouse has no swipe, so the slider gets
+   Previous / Next beside the picture (44pt, HIG; named, WCAG 4.1.2) */
+.dk .dk-slidenav{
+  position: absolute;
+  top: var(--dk-slidenav-top, 50%);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+.dk .dk-slidenav--prev{
+  left: var(--len-24);
+}
+.dk .dk-slidenav--next{
+  right: var(--len-24);
+}
