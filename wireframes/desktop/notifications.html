@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" data-wf-viewport="desktop">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON desktop &#183; Notifications (client) &#183; base</title>
+<meta name="description" content="Desktop twin of wireframes/notifications.html.">
+<!-- DESKTOP TWIN of ../notifications.html (2026-10-18). Notifications in the middle panel; the header's Overview replaces the phone's Back to Home. -->
+<link rel="stylesheet" href="../../design-system/index.css">
+<link rel="stylesheet" href="_desktop.css">
+<link rel="stylesheet" href="_desktop-outcome.css">
+</head>
+<body class="dr">
+<div class="wf-frame dr dr-screen dr-screen--fluid dk">
+  <div class="dr-mapground" role="img" aria-label="Live map of Kyiv, 128 drones in the air"><span class="dr-mapground__drone" style="left:31%;top:34%"></span><span class="dr-mapground__drone" style="left:44%;top:58%"></span><span class="dr-mapground__drone" style="left:63%;top:30%"></span><span class="dr-mapground__drone" style="left:70%;top:66%"></span><span class="dr-mapground__drone" style="left:60%;top:82%"></span><span class="dr-mapground__drone" style="left:38%;top:76%"></span><span class="dr-mapground__drone" style="left:78%;top:44%"></span><span class="dr-mapground__drone" style="left:24%;top:60%"></span><span class="dr-mapground__drone" style="left:58%;top:48%"></span></div>
+  <div class="dk-veil" aria-hidden="true"></div>
+  <header class="dr-whead">
+    <span class="dr-brand" role="img" aria-label="DRON"></span>
+    <nav class="dr-whead__nav dr-material" aria-label="Primary">
+      <a class="dr-whead__link" href="listings.html">Overview</a>
+      <a class="dr-whead__link" href="order-history.html" aria-current="page">Activity</a>
+      <a class="dr-whead__link" href="support.html">Help</a>
+      <a class="dr-whead__link" href="account.html">Account</a>
+    </nav>
+    <div class="dr-whead__end">
+      <a class="dr-btn dr-btn--primary" href="listings-map.html">Order</a>
+      <a class="dr-iconbtn dr-material" href="listings-filters.html" aria-label="Search and filters"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></a>
+      <button class="dr-iconbtn dr-material" type="button" data-theme-cycle aria-label="Switch the theme"><svg class="dr-ic dr-iconbtn__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></svg><svg class="dr-ic dr-iconbtn__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg></button>
+      <a class="dr-iconbtn dr-material" href="notifications.html" aria-label="Notifications, 2 new"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="dr-count-badge">2</span></a>
+      <a class="dr-profilechip dr-material" href="account.html"><img src="../../assets/people/thumbs/person-client-olena.png" alt=""><span class="dr-profilechip__text">Olena B.<span class="dr-profilechip__place">Kyiv · Podil</span></span></a>
+    </div>
+  </header>
+  <main class="dk-panel dr-material">
+    <h1 class="dk-panel__title">Notifications</h1>
+    <div class="dr-log">
+        <section aria-labelledby="ntf-today">
+          <h2 class="dr-sect" id="ntf-today">Today</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="delivery.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">Your delivery photo is ready</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Package delivery &#183; 10:12</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="dr-choice" href="tracking.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">Ivan is 2 minutes away</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Package delivery &#183; 10:03</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="dr-choice" href="order-confirmed.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__head">
+                    <span class="dr-choice__title">Ivan K. accepted your order</span>
+                    <span class="dr-chip dr-chip--sm dr-chip--unread">New</span>
+                  </span>
+                  <span class="dr-choice__desc">Package delivery &#183; 09:41</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-yesterday">
+          <h2 class="dr-sect" id="ntf-yesterday">Yesterday</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="rate.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__title">Rate your order</span>
+                  <span class="dr-choice__desc">Package delivery &#183; 14:41</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-jun14">
+          <h2 class="dr-sect" id="ntf-jun14">14 June</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="order-details-aerial.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__title">Your photo and video set is ready</span>
+                  <span class="dr-choice__desc">Photo &amp; video &#183; 11:30</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="ntf-jun2">
+          <h2 class="dr-sect" id="ntf-jun2">2 June</h2>
+          <ul class="dr-list dr-list--snug" style="list-style:none;">
+            <li>
+              <a class="dr-choice" href="inspection-report.html">
+                <span class="dr-choice__body">
+                  <span class="dr-choice__title">Your inspection report is ready</span>
+                  <span class="dr-choice__desc">Inspection &#183; 09:15</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+  </main>
+</div>
+<a class="wf-twin" href="../notifications.html">Phone view</a>
+<script src="../../ui/kit.js"></script>
+</body>
+</html>

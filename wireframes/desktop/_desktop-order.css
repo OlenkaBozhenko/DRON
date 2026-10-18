@@ -1,0 +1,66 @@
+/* wireframes/desktop/_desktop-order.css - TEMPORARY (2026-10-18)
+   Group 2 · Client: ordering. Only what these screens need beyond _desktop.css,
+   written with tokens like a component; literal lengths become tokens when the
+   desktop moves into design-system/. */
+
+/* a step of the order: the window keeps clear of the header above it and of
+   Talk to AI docked under it, and scrolls on its own when the step is long */
+.dk-window--step{
+  max-height: calc(100% - 232px);
+}
+.dk-window__head .dk-window__title{
+  flex: 1;
+  min-width: 0;
+}
+/* the step's decision closes the window, as the phone's action bar closes the screen */
+.dk-window__actions{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-8);
+  margin-top: var(--len-4);
+}
+.dk-window__sub{
+  margin: var(--len-4) 0 0;
+}
+.dk-window .dr-groups{
+  padding: 0;
+}
+
+/* the places of the order, read and not typed (place.css) */
+.dk-places{
+  display: grid;
+  gap: var(--len-8);
+}
+
+/* Home's states: the search that was run stands where the services stood */
+.dk-search{
+  margin-top: var(--len-14);
+  padding: var(--len-16);
+  display: grid;
+  gap: var(--len-12);
+  text-align: left;
+}
+.dk-search__places{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--len-8);
+}
+.dk-place__key{
+  color: var(--text-muted);
+  min-width: var(--len-36);
+}
+.dk-place--empty{
+  color: var(--text-muted);
+}
+.dk-search .dr-finder__actions{
+  margin: 0;
+}
+.dk-search .dr-msg{
+  padding: var(--len-8) 0 0;
+}
+/* the orb steps down a size so the search and its answer fit the window */
+.dk .dr-assistant:has(.dk-search) .dr-assistant__orb{
+  width: 120px;
+  height: 120px;
+  margin: -20px auto -4px;
+}

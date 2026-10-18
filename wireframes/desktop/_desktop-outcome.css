@@ -1,0 +1,92 @@
+/* wireframes/desktop/_desktop-outcome.css - TEMPORARY (2026-10-18)
+   Group 4 · Client: the outcome (delivery, inspection report, rate, share,
+   order details, Activity, notifications). Linked after _desktop.css on these
+   pages only. Only what the shared layer does not draw; tokens throughout. */
+
+/* Talk to AI waits at the bottom: a window that has it keeps clear of it */
+.dk:has(> .dk-talk) > .dk-window{
+  max-height: calc(var(--pct-100) - 2 * var(--len-96) - var(--len-24));
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1 - var(--len-20)));
+}
+
+/* the outcome's fact: the milestone mark beside the words (preview ?done) */
+.dk-fact{
+  display: flex;
+  align-items: center;
+  gap: var(--len-14);
+}
+.dk-fact__text{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-2);
+  min-width: 0;
+}
+.dk-fact .dr-display,
+.dk-fact .dr-lead{
+  margin: 0;
+}
+
+/* the one photograph of an outcome, the whole width of the window */
+.dk-photo{
+  width: var(--pct-100);
+  height: var(--len-260);
+}
+.dk-photo--short{
+  height: var(--len-176);
+}
+
+/* several photographs of one set, side by side */
+.dk-shots{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--len-8);
+}
+.dk-shots > *{
+  width: auto;
+  height: var(--len-140);
+}
+.dk-shots--small > *{
+  height: var(--len-96);
+}
+.dk-shots img{
+  width: var(--pct-100);
+  height: var(--pct-100);
+  object-fit: cover;
+  display: block;
+}
+
+/* a wide window's two columns */
+.dk-cols{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--len-16);
+  align-items: start;
+}
+.dk-col{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+  min-width: 0;
+}
+
+/* the next step: the primary and its alternative side by side */
+.dk-acts{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--len-10);
+  margin-top: var(--len-4);
+}
+.dk-acts--one{
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* the panel's own list sits flush in it */
+.dk-panel .dr-list,
+.dk-panel .dr-log{
+  margin: 0;
+  padding: 0;
+}
+.dk-window .dr-msg,
+.dk-panel .dr-msg{
+  margin: 0;
+}

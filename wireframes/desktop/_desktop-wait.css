@@ -1,0 +1,205 @@
+/* wireframes/desktop/_desktop-wait.css - TEMPORARY (2026-10-18)
+   Group 3 · Client: the wait (order-confirmed*, tracking*, call*, chat*).
+   Linked after _desktop.css on these pages only. Colour through semantic
+   tokens only; literal lengths become tokens when the desktop moves into
+   design-system/. */
+
+/* the phone components assume _wireframe.css's universal reset; the twin does
+   not link that file, so the same reset is restated at zero specificity (any
+   component rule still wins over it) */
+:where(.dk-wait) *,
+:where(.dk-wait) *::before,
+:where(.dk-wait) *::after{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* the screen carries its own green control: the header's Order steps back,
+   the way assistant.css does it while a dialog is open (one green per screen) */
+.dk-wait--own-green .dr-whead__end > .dr-btn--primary{
+  background: var(--bg-muted);
+  color: var(--text-primary);
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------------------------
+   THE SIDE PANEL: the order, the operator and the actions, at the right edge
+   --------------------------------------------------------------------------- */
+.dk-side{
+  position: absolute;
+  top: 96px;
+  right: 24px;
+  z-index: 2;
+  width: 360px;
+  max-height: calc(100% - 120px);
+  overflow: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dk-side .dr-center{
+  padding: 4px 0 8px;
+}
+.dk-side .dr-label{
+  margin-top: 4px;
+}
+.dk-side__acts{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+/* the live line and Talk to AI sit over the map, left of the panel */
+.dk-wait .dk-status,
+.dk-wait .dk-talk{
+  left: calc(50% - 192px);
+}
+.dk-status .dr-live{
+  margin: 0;
+}
+/* what the phone drew in place of its map well (signal lost): a card on the map */
+.dk-mapnote{
+  position: absolute;
+  bottom: 96px;
+  left: calc(50% - 192px);
+  z-index: 3;
+  transform: translateX(-50%);
+  width: min(420px, calc(100% - 456px));
+  padding: 8px;
+}
+
+/* ---------------------------------------------------------------------------
+   THE ROUTE AND THE FLYING DRONE (the preview's ?flying). The box keeps its
+   own pixel size so the dotted path and the offset-path share one coordinate
+   space; it sits left of the side panel, centred in height.
+   --------------------------------------------------------------------------- */
+.dk-route{
+  position: absolute;
+  top: 50%;
+  right: 408px;
+  z-index: 1;
+  width: 900px;
+  height: 856px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.dk-route__path{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.dk-route__line{
+  fill: none;
+  stroke: var(--color-action);
+  stroke-width: 3;
+  stroke-dasharray: 2 9;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-action) 80%, transparent));
+}
+.dk-route__end{
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.dk-route__end--from{
+  left: 100px;
+  top: 620px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-page);
+  border: 3px solid var(--color-action);
+}
+.dk-route__end--to{
+  left: 850px;
+  top: 200px;
+  color: var(--text-accent-wide);
+}
+.dk-route__end--to .dr-ic{
+  width: 30px;
+  height: 30px;
+  transform: translateY(-12px);
+}
+/* the drone: its centre rides the same path; it stops where the order is */
+.dk-flyer{
+  position: absolute;
+  left: 0;
+  top: 0;
+  offset-path: path('M 100 620 C 210 570, 260 490, 380 440 S 600 400, 670 330 S 780 220, 850 200');
+  offset-rotate: 0deg;
+  offset-distance: var(--dk-at, 62%);
+  animation: dk-flight 7s cubic-bezier(.45,.05,.55,.95) both;
+}
+.dk-route--pickup .dk-flyer{
+  --dk-at: 18%;
+}
+.dk-flyer .dr-fly{
+  display: block;
+  width: 110px;
+  height: 38px;
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--color-action) 90%, transparent))
+          drop-shadow(0 10px 14px color-mix(in srgb, var(--text-primary) 25%, transparent));
+}
+/* signal lost: the drone stays at its last known point, still, with no glow */
+.dk-route--lost .dk-flyer{
+  animation: none;
+}
+.dk-route--lost .dk-flyer .dr-fly{
+  fill: var(--text-muted);
+  filter: none;
+}
+.dk-route--lost .dr-fly__body,
+.dk-route--lost .dr-fly__prop{
+  animation: none;
+}
+@keyframes dk-flight{
+  from{
+    offset-distance: 0%;
+  }
+}
+/* reduced motion: no flight, the drone is placed on the route (the mark's own
+   sway and propellers are already stopped by assistant.css) */
+@media (prefers-reduced-motion: reduce){
+  .dk-flyer{
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   CALL: the night surface as a wide window over the map
+   --------------------------------------------------------------------------- */
+.dk-call{
+  min-height: min(560px, calc(100% - 140px));
+  gap: 24px;
+  border-radius: 22px;
+  box-shadow: var(--shadow-float);
+}
+.dk-call .dr-call__name{
+  margin: 0;
+}
+.dk-call .dr-call__stage{
+  min-height: 200px;
+}
+
+/* ---------------------------------------------------------------------------
+   CHAT: the thread in a wide window, the composer at its foot
+   --------------------------------------------------------------------------- */
+.dk-chat{
+  height: min(640px, calc(100% - 140px));
+}
+.dk-chat .dr-thread{
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  justify-content: flex-end;
+}
+.dk-chat .dr-bubble{
+  max-width: min(70%, 420px);
+}
+.dk-chat .dk-chat__composer{
+  padding-top: 12px;
+  border-top: 1px solid var(--border-hairline);
+}

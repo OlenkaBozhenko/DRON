@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" data-wf-viewport="desktop">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON desktop · Incoming job offer / accept-decline · success (base)</title>
+<meta name="description" content="Desktop twin of wireframes/job-offer.html.">
+<!-- DESKTOP TWIN of ../job-offer.html (2026-10-18), group 6 · Operator: getting in and jobs.
+     A step of the job: a centred window over the map with the jobs on it; Accept is the one green control. -->
+<link rel="stylesheet" href="../../design-system/index.css">
+<link rel="stylesheet" href="_desktop.css">
+<link rel="stylesheet" href="_desktop-op-jobs.css">
+</head>
+<body class="dr">
+<div class="wf-frame dr dr-screen dr-screen--fluid dk">
+  <div class="dr-mapground" role="img" aria-label="Live map of Kyiv with your open jobs"><span class="dr-mapground__drone" style="left:46%;top:40%"></span><span class="dr-mapground__drone" style="left:30%;top:72%"></span><span class="dr-mapground__drone" style="left:66%;top:58%"></span></div>
+  <div class="dk-veil" aria-hidden="true"></div>
+  <header class="dr-whead">
+    <span class="dr-brand" role="img" aria-label="DRON"></span>
+    <nav class="dr-whead__nav dr-material" aria-label="Primary">
+      <a class="dr-whead__link" href="operator-listings.html" aria-current="page">Jobs</a>
+      <a class="dr-whead__link" href="wallet.html">Earnings</a>
+      <a class="dr-whead__link" href="ratings.html">Ratings</a>
+      <a class="dr-whead__link" href="operator-account.html">Account</a>
+    </nav>
+    <div class="dr-whead__end">
+      <button class="dr-iconbtn dr-material" type="button" data-theme-cycle aria-label="Switch the theme"><svg class="dr-ic dr-iconbtn__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></svg><svg class="dr-ic dr-iconbtn__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg></button>
+      <a class="dr-iconbtn dr-material" href="operator-notifications.html" aria-label="Notifications, 3 unread"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="dr-count-badge" aria-hidden="true">3</span></a>
+      <a class="dr-profilechip dr-material" href="operator-account.html"><img src="../../assets/people/thumbs/person-operator-ivan.png" alt=""><span class="dr-profilechip__text">Ivan K.<span class="dr-profilechip__place">Operator · Kyiv</span></span></a>
+    </div>
+  </header>
+  <div class="dk-dim" aria-hidden="true"></div>
+  <main class="dk-window dr-material" aria-labelledby="win-title">
+    <div class="dk-window__head"><h1 class="dk-window__title" id="win-title">New job</h1></div>
+    <article class="dr-card dr-card--row dr-listing">
+      <span class="dr-listing__body">
+        <span class="dr-listing__name">Package delivery</span>
+        <span class="dr-listing__desc">2.3 km · ~18 min</span>
+        <span class="dr-listing__meta"><span><span class="sr-only">Pay</span><span class="dr-number">₴180</span></span></span>
+      </span>
+      <span class="dr-well"><img src="../../assets/drones/thumbs/drone-01.png" alt="" decoding="async"></span>
+    </article>
+    <div class="dr-rows" aria-label="Route">
+      <div class="dr-rows__row"><span class="dr-rows__key">Pickup</span><span class="dr-rows__val">Podil, 21</span></div>
+      <div class="dr-rows__row"><span class="dr-rows__key">Drop-off</span><span class="dr-rows__val">Osokorky, 14</span></div>
+    </div>
+    <p class="dr-display">Expires in 8s</p>
+    <div class="dk-acts">
+      <a class="dr-btn dr-btn--primary dr-btn--block" href="job-brief.html">Accept</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="operator-listings.html">Decline</a>
+    </div>
+  </main>
+</div>
+<a class="wf-twin" href="../job-offer.html">Phone view</a>
+<script src="../../ui/kit.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+/* wireframes/desktop/_desktop-op-jobs.css - TEMPORARY (2026-10-18)
+   Group 6 · Operator: getting in and jobs. Only what these screens need on top
+   of _desktop.css, written with tokens like a component would be. Literal
+   lengths become tokens when the desktop moves into design-system/. */
+
+/* a window's decision: the phone's action bar, stacked the same way
+   (the designer, 2026-08-16: buttons one under another) */
+.dk-acts{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-8);
+  margin-top: var(--len-4);
+}
+.dk-acts .dr-note{
+  margin: 0;
+}
+/* in a wide window the decision keeps the narrow window's measure, centred */
+.dk-acts--narrow{
+  width: min(var(--pct-100), 360px);
+  margin-inline: auto;
+}
+
+/* a waiting state in a window: the mark, the line, the skeleton bars */
+.dk-wait{
+  padding: var(--len-8) 0;
+}
+.dk-sk{
+  width: var(--pct-100);
+  margin-top: var(--len-8);
+}
+
+/* onboarding: the phone's three swipe slides side by side */
+.dk-steps{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--len-20);
+}
+.dk-step{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-8);
+  text-align: center;
+}
+.dk-step .dr-slide__art{
+  height: 180px;
+}
+.dk-step .dr-display, .dk-step .dr-lead{
+  margin: 0;
+}
+
+/* the operator's home: the job list at the left edge, the availability at the
+   right, the map with the open jobs between them */
+.dk-home{
+  position: absolute;
+  top: 96px;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--len-24);
+  pointer-events: none;
+}
+.dk-home > *{
+  pointer-events: auto;
+}
+.dk-jobs{
+  width: min(400px, var(--pct-100));
+  max-height: var(--pct-100);
+  overflow: auto;
+  padding: var(--len-20);
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+}
+/* the group row sits on the material, not on a page-coloured strip */
+.dk-jobs .dr-groups{
+  flex: none;
+  padding: 0;
+  background: transparent;
+  border-bottom: var(--len-1) solid var(--border-material);
+}
+.dk-side{
+  width: 300px;
+  flex: none;
+  display: grid;
+  gap: var(--len-12);
+}
+.dk-status-card{
+  display: grid;
+  gap: var(--len-12);
+  justify-items: start;
+}
+.dk-status-card > .dr-rows{
+  justify-self: stretch;
+}
+.dk-status-card .dr-avail{
+  margin: 0;
+}

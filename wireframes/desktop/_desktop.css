@@ -228,3 +228,23 @@
   border-radius: 999px;
   font-size: var(--type-body-size);
 }
+
+/* ONE GREEN CONTROL: while a step's window is on the screen, the header's Order
+   steps back to grey (the preview does the same), so the window's own action is
+   the only green control. Found by the entry builder on switch-role. */
+.dk:has(.dk-window) .dr-whead__end > .dr-btn--primary{
+  background: var(--bg-muted);
+  color: var(--text-primary);
+  box-shadow: none;
+}
+
+/* The phone components assume _wireframe.css's universal reset, which the twins
+   do not link; restated here at zero specificity, so any component rule wins.
+   (Group 3 found it; it applies to every twin.) */
+:where(.dk) *,
+:where(.dk) *::before,
+:where(.dk) *::after{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
