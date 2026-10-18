@@ -41,3 +41,97 @@
 [data-theme="dark"] .dr .dr-svc img{
   filter: none;
 }
+
+/* ---------------------------------------------------------------------------
+   THE DESKTOP LAYOUT, as responsive/_preview-desktop-ai.html draws it
+   (the designer, 2026-10-18: «подивись як тут гарно і органічно»). The map is
+   the ground of the whole window, header included; a veil darkens its edges;
+   the header floats on it; the rails are 300 wide at the window's edges and the
+   assistant sits in the middle, 620 wide. Literal lengths here become tokens
+   when the desktop moves into design-system/.
+   --------------------------------------------------------------------------- */
+.dk{
+  position: relative;
+  background: var(--bg-page);
+}
+.dk > .dr-mapground{
+  z-index: 0;
+}
+.dk-veil{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(70% 65% at 50% 48%, rgba(247,245,242,.1) 0%, rgba(247,245,242,.4) 70%, rgba(247,245,242,.75) 100%);
+}
+[data-theme="dark"] .dk-veil{
+  background: radial-gradient(70% 65% at 50% 48%, rgba(18,18,18,.15) 0%, rgba(18,18,18,.45) 70%, rgba(18,18,18,.8) 100%);
+}
+/* a drone in the air: the dot and its glow */
+.dk .dr-mapground__drone{
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-action) 22%, transparent),
+              0 0 24px 6px color-mix(in srgb, var(--color-action) 45%, transparent);
+}
+/* the header floats on the map */
+.dk > .dr-whead{
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  right: 24px;
+  padding: 0;
+  gap: 14px;
+}
+.dk .dr-whead .dr-brand{
+  width: 66px;
+}
+/* the console: two 300 rails at the edges, the assistant in the middle */
+.dk > .dr-console{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  grid-template-columns: 300px minmax(0, 1fr) 300px;
+  gap: 24px;
+  padding: 96px 24px 24px;
+  align-items: start;
+}
+.dk .dr-console__rail{
+  gap: 12px;
+}
+.dk .dr-console__centre{
+  align-self: center;
+  margin-top: -40px;
+  padding: 0;
+}
+.dk .dr-assistant{
+  width: min(100%, 620px);
+}
+.dk .dr-assistant__orb{
+  width: 180px;
+  height: 180px;
+  margin: -34px auto -6px;
+}
+.dk .dr-assistant__title{
+  font-size: 34px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+.dk .dr-assistant__lead{
+  margin: 10px 0 22px;
+  text-shadow: 0 1px 14px rgba(247,245,242,.9);
+}
+[data-theme="dark"] .dk .dr-assistant__lead{
+  text-shadow: 0 1px 14px rgba(0,0,0,.75);
+}
+.dk .dr-assistant__ask{
+  padding: 8px 8px 8px 22px;
+}
+.dk .dr-assistant__services{
+  margin-top: 14px;
+}
+.dk .dr-svc img{
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.25));
+}
+[data-theme="dark"] .dk .dr-svc img{
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.45));
+}
