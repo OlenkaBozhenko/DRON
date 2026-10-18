@@ -887,3 +887,15 @@
   scrollbar-gutter: stable;
   padding-inline-end: calc(var(--len-32) - var(--len-6));
 }
+
+/* «добав сюди іконку чату та як на нотифікаціях відмітку скільки повідомлень»: the job
+   on now carries its chat with the client at the card's top right, the unread count as
+   the bell's badge; the count is in the button's name too (WCAG 4.1.2) */
+.dk .dk-tally--chat{
+  position: relative;
+}
+.dk .dk-tally__chat{
+  position: absolute;
+  top: var(--len-12);
+  right: var(--len-12);
+}
