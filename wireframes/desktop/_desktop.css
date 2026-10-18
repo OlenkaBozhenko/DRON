@@ -362,9 +362,9 @@
    inspection report) 480. Smaller type and spacing to match the rails. */
 .dk.dk .dk-panel.dk-panel,
 .dk.dk .dk-window.dk-window:not(.dk-window--wide){
-  width: 380px;
-  padding: 18px;
-  gap: 10px;
+  width: 560px;
+  padding: 24px;
+  gap: 12px;
 }
 .dk.dk .dk-window.dk-window--wide{
   width: 480px;
@@ -372,4 +372,19 @@
 .dk .dk-panel__title,
 .dk .dk-window__title{
   font-size: 17px;
+}
+
+/* «зроби усі картки що відкриваються по центру однакової ширини … як тут»
+   (the preview's order window): every centred window and panel, wide ones
+   included, is 560 with 24 padding and the 22 title - one width everywhere. */
+.dk.dk .dk-panel.dk-panel,
+.dk.dk .dk-window.dk-window,
+.dk.dk .dk-window.dk-window--wide{
+  width: 560px;
+  padding: 24px;
+  gap: 12px;
+}
+.dk .dk-panel__title,
+.dk .dk-window__title{
+  font-size: 22px;
 }
