@@ -425,3 +425,63 @@
   display: grid;
   gap: 10px;
 }
+
+/* ---------------------------------------------------------------------------
+   ACTIVITY AS HANGING CARDS (the designer, 2026-10-18: «зробити висячими
+   картками, якось дуже модерно»). No panel round the list: the title floats on
+   the map and each order is its own glass card, hanging over the map with the
+   float shadow, lifting on hover; the live order carries a soft green halo.
+   --------------------------------------------------------------------------- */
+.dk.dk .dk-panel.dk-float{
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  padding: 0 6px 24px;
+  gap: 14px;
+  scrollbar-width: none;
+  max-height: calc(100% - 192px);
+}
+.dk-float .dk-panel__title{
+  align-self: flex-start;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--bg-material);
+  border: 1px solid var(--border-material);
+  backdrop-filter: blur(22px);
+  font-size: 15px;
+}
+.dk-float .dr-card{
+  background: var(--bg-material);
+  border: 1px solid var(--border-material);
+  backdrop-filter: blur(22px) saturate(1.5);
+  box-shadow: var(--shadow-float);
+  border-radius: 22px;
+  transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
+}
+.dk-float .dr-card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 2px 4px rgba(20,18,15,.06), 0 18px 40px rgba(20,18,15,.16);
+}
+.dk-float .dr-card:has(.dr-rail){
+  box-shadow: var(--shadow-float), 0 0 0 1px color-mix(in srgb, var(--color-action) 45%, transparent), 0 0 28px color-mix(in srgb, var(--color-action) 25%, transparent);
+}
+/* the inner blocks become hairline rows on the glass, not grey slabs */
+.dk-float .dr-card :is(.dr-route, .dr-rows, .dr-card__place, .dr-loc){
+  background: color-mix(in srgb, var(--bg-well) 35%, transparent);
+}
+@media (prefers-reduced-motion: reduce){
+  .dk-float .dr-card{ transition: none; }
+  .dk-float .dr-card:hover{ transform: none; }
+}
+.dk-float .dr-card:not(:has(.dr-rail)){
+  box-shadow: var(--shadow-float);
+}
+/* (a fade mask on the list was tried and dropped: it isolates the cards, their
+   glass stops blurring the map, and map lines read through the text) */
+.dk.dk .dk-panel.dk-float{
+  padding-top: 4px;
+}
+.dk-float .dr-card{
+  padding: 18px;
+}
