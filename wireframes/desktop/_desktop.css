@@ -1210,3 +1210,11 @@
   margin-bottom: 0;
   gap: var(--len-12);
 }
+
+/* «що за лінії видали їх» (edit account): a zone already groups its fields by its own
+   ground and its title, so the phone's hairlines between the fields inside it are a
+   second grouping on top of the first - gone on desktop; the rows' own height keeps them
+   apart */
+.dk :is(.dk-window, .dk-panel) .dr-zone .dr-field::before{
+  display: none;
+}
