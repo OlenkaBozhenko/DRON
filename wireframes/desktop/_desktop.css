@@ -751,3 +751,9 @@
   margin: 0;
   padding: 0;
 }
+
+/* «зроби більший відступ між слайдером та кнопками не роби таке зажате»: the pager
+   stands 32 from the actions (12 gap + 20), on the 8 grid */
+.dk .dk-entry .dr-pager{
+  margin-bottom: var(--len-20);
+}
