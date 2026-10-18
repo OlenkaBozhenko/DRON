@@ -1261,3 +1261,18 @@
   border-radius: var(--len-22);
   text-wrap: balance;
 }
+
+/* «коли відкривається вибір часу на темній темі не видно»: the hour and minute lists are
+   the browser's own select popups; they took the theme's light ink on the browser's white
+   list, so in dark nothing showed. The frame now tells the browser which scheme it is in,
+   and each option carries the theme's ground and ink. */
+[data-theme="dark"] .dk{
+  color-scheme: dark;
+}
+[data-theme="light"] .dk{
+  color-scheme: light;
+}
+.dk .dr-cal__unit option{
+  background: var(--bg-material-solid);
+  color: var(--text-primary);
+}
