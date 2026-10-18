@@ -293,3 +293,83 @@
 .dk:has(.dk-talk) .dk-panel{
   bottom: 96px;
 }
+
+/* ---------------------------------------------------------------------------
+   The designer's review, 2026-10-18:
+   - «дуже широке вікно … як у ширину так і в висоту»: a tab's panel is the
+     window's width and ends where its content ends;
+   - «це видали»: the zone labels (PROGRESS, ETA, OPERATOR, DETAILS, NOTES,
+     BALANCE, RECENT…) leave the desktop. They stay as headings for screen
+     readers (WCAG 1.3.1), drawn nowhere.
+   --------------------------------------------------------------------------- */
+.dk .dk-panel{
+  width: min(560px, calc(100% - 696px));
+  bottom: auto;
+  max-height: calc(100% - 120px);
+}
+.dk:has(.dk-talk) .dk-panel{
+  bottom: auto;
+  max-height: calc(100% - 192px);
+}
+.dk .dr-label{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------
+   LIGHTER, FINER (the designer, 2026-10-18: «знов те саме таке велечезне …
+   воно має бути все витончене легке й космічне»).
+   - a tab's panel and a step's window are one size, 520 wide, as tall as their
+     content (the earlier panel rule lost to a :has() rule; this one wins);
+   - the phone's heavy grey blocks inside them become a faint tint of the
+     material, the secondary button a faint wash, so the glass reads through.
+   --------------------------------------------------------------------------- */
+.dk.dk .dk-panel.dk-panel,
+.dk.dk .dk-window.dk-window:not(.dk-window--wide){
+  width: min(520px, calc(100% - 696px));
+  height: auto;
+  bottom: auto;
+  max-height: calc(100% - 200px);
+  padding: 22px;
+  gap: 10px;
+}
+.dk.dk .dk-panel.dk-panel{
+  top: 96px;
+  transform: translateX(-50%);
+}
+.dk .dk-panel__title,
+.dk .dk-window__title{
+  font-size: 20px;
+  letter-spacing: -.01em;
+}
+.dk :is(.dk-window, .dk-panel, .dk-side, .dk-rail) :is(.dr-card, .dr-rows, .dr-field, .dr-op, .dr-msg, .dr-offer:not(:has(:checked)), .dr-listing){
+  background: color-mix(in srgb, var(--bg-well) 45%, transparent);
+}
+.dk :is(.dk-window, .dk-panel, .dk-side) .dr-btn--secondary{
+  background: color-mix(in srgb, var(--bg-muted) 55%, transparent);
+  box-shadow: none;
+}
+.dk :is(.dk-window, .dk-panel, .dk-side) .dr-btn{
+  min-height: 44px;
+}
+
+/* «вікна що відкриваються по центру мають бути трохи більші ніж ось ці» (the
+   300 rails): a centred window or panel is 380, a wide one (call, chat,
+   inspection report) 480. Smaller type and spacing to match the rails. */
+.dk.dk .dk-panel.dk-panel,
+.dk.dk .dk-window.dk-window:not(.dk-window--wide){
+  width: 380px;
+  padding: 18px;
+  gap: 10px;
+}
+.dk.dk .dk-window.dk-window--wide{
+  width: 480px;
+}
+.dk .dk-panel__title,
+.dk .dk-window__title{
+  font-size: 17px;
+}
