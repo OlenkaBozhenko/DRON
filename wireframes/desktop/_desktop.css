@@ -1301,3 +1301,12 @@
   outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: var(--len-4);
 }
+
+/* «дивись як у картках локація зроблена (на телефоні) так і ти зроби на desktop»: a
+   card's location strip takes the phone's own inset ground (--bg-inset) and padding, in
+   every card on desktop - not the faint desktop tint it was given before */
+.dk.dk.dk .dr-card .dr-inset{
+  background: var(--bg-inset);
+  padding: var(--len-16);
+  border-radius: var(--len-12);
+}
