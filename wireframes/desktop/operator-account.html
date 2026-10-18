@@ -75,6 +75,17 @@
     </div>
     <div class="dk-foot"><a class="dr-btn dr-btn--primary dr-btn--block" href="account-edit.html"><svg class="dr-ic dr-ic--20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.2l4.3 4.3L8.4 19.9l-4.9 1.1 1.1-4.9z"/><path d="M12.9 6.8l4.3 4.3"/></svg>Edit profile</a></div>
   </main>
+  <section class="dr-sheet dr-sheet--picker" id="sheet-avail" role="dialog" aria-modal="true" aria-labelledby="sheet-avail-title" hidden>
+    <span class="dr-sheet__grip" aria-hidden="true"></span>
+    <p class="dr-sheet__title" id="sheet-avail-title">Availability</p>
+    <div class="dr-picker__list">
+      <button class="dr-picker__item" type="button" data-state="available" aria-current="true"><span class="dr-picker__label">Available</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+      <button class="dr-picker__item" type="button" data-state="busy"><span class="dr-picker__label">Busy</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+      <button class="dr-picker__item" type="button" data-state="offline"><span class="dr-picker__label">Offline</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+    </div>
+    <button class="dr-btn dr-btn--secondary dr-btn--block" type="button" data-close>Cancel</button>
+  </section>
+
   <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
   <section class="dr-sheet dr-sheet--picker" id="sheet-mode" role="dialog" aria-modal="true" aria-labelledby="sheet-mode-title" hidden>
     <span class="dr-sheet__grip" aria-hidden="true"></span>
@@ -88,5 +99,25 @@
 </div>
 <a class="wf-twin" href="../operator-account.html">Phone view</a>
 <script src="../../ui/kit.js"></script>
+<!-- the badge follows the select: the word is read off the tapped option's own label (the phone's script) -->
+<script>
+(function () {
+  'use strict';
+  var badge = document.querySelector('[data-avail-badge]');
+  var word  = document.querySelector('[data-avail-word]');
+  if (!badge || !word) return;
+  var items = document.querySelectorAll('#sheet-avail .dr-picker__item');
+  if (!items.length) return;
+  function sync(item) {
+    badge.setAttribute('data-state', item.getAttribute('data-state'));
+    word.textContent = item.querySelector('.dr-picker__label').textContent.trim();
+  }
+  items.forEach(function (item) {
+    item.addEventListener('click', function () { sync(item); });
+  });
+  var current = document.querySelector('#sheet-avail .dr-picker__item[aria-current="true"]');
+  if (current) sync(current);
+}());
+</script>
 </body>
 </html>
