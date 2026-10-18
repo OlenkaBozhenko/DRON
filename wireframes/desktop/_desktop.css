@@ -135,3 +135,96 @@
 [data-theme="dark"] .dk .dr-svc img{
   filter: drop-shadow(0 10px 18px rgba(0,0,0,.45));
 }
+
+/* ---------------------------------------------------------------------------
+   SHARED BY EVERY DESKTOP TWIN (set before the agents start, so all 133 pages
+   draw the same window and the same panel). Group files (_desktop-<group>.css)
+   add only what their own screens need.
+   --------------------------------------------------------------------------- */
+/* a step of a flow: a centred window over the map (order setup, review, pay,
+   delivered, sign in...). It is the page's content, always open. */
+.dk-window{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 4;
+  transform: translate(-50%, -48%);
+  width: min(560px, calc(100% - 48px));
+  max-height: calc(100% - 140px);
+  overflow: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dk-window--wide{
+  width: min(760px, calc(100% - 48px));
+}
+.dk-window__title{
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+.dk-window__lead{
+  margin: -6px 0 4px;
+  color: var(--text-muted);
+  font-size: var(--type-body-size);
+}
+/* the window's back: a round icon button at its top left */
+.dk-window__head{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+/* the map dims behind a window */
+.dk-dim{
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: color-mix(in srgb, var(--bg-page) 35%, transparent);
+  pointer-events: none;
+}
+/* a tab root's content (Activity, Help, Account, Jobs, Earnings...): a column
+   panel in the middle, between the rails, scrolling on its own */
+.dk-panel{
+  position: absolute;
+  left: 50%;
+  top: 96px;
+  bottom: 24px;
+  z-index: 2;
+  transform: translateX(-50%);
+  width: min(720px, calc(100% - 2 * 348px));
+  overflow: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dk-panel__title{
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+/* Talk to AI waits at the bottom while a window is open */
+.dk-talk{
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  z-index: 5;
+  transform: translateX(-50%);
+}
+/* a live line under the header (operator flying, arrives at) */
+.dk-status{
+  position: absolute;
+  left: 50%;
+  top: 96px;
+  z-index: 4;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: var(--type-body-size);
+}
