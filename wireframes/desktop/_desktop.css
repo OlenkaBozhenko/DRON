@@ -1204,3 +1204,9 @@
 .dk .dk-foot--stack > .dk-photo-acts{
   margin-bottom: var(--len-12);
 }
+/* «пофіксь відступи між кнопками має бути однакова»: the four buttons of the photo
+   window's foot stand 12 apart, one even column */
+.dk .dk-foot--stack > .dk-photo-acts{
+  margin-bottom: 0;
+  gap: var(--len-12);
+}
