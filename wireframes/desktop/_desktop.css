@@ -1086,3 +1086,10 @@
 .dk .dk-jobs-panel .dr-order__fee + .dr-card__actions{
   margin-top: calc(var(--len-8) * -1);
 }
+
+/* «що це за прямокутник з гострими кутами додатковий»: the faint ground of a block was
+   laid on a block inside another one too (a field inside its rows), so a second, square
+   slab showed within the rounded one. A block inside a tinted block takes no ground. */
+.dk :is(.dk-window, .dk-panel, .dk-side, .dk-rail) :is(.dr-card, .dr-rows, .dr-field, .dr-op, .dr-msg, .dr-listing) :is(.dr-card, .dr-rows, .dr-field, .dr-op, .dr-msg, .dr-listing){
+  background: transparent;
+}
