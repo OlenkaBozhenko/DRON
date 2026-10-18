@@ -1145,3 +1145,9 @@
   align-items: center;
   padding-block: 0;
 }
+
+/* «тут можеш додати бейдж з кількістю нових варіантів»: Jobs in the header carries the
+   count of new offers, the group tab's own count; it is read as "Jobs 2 new" */
+.dk .dr-whead__link .dr-grouptab__count{
+  margin-inline-start: var(--len-6);
+}
