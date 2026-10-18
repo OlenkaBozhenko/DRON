@@ -1249,17 +1249,14 @@
   flex-shrink: 0;
 }
 
-/* «ось цю частину замінити на алерт який вискакує на мобілці, він чорний» (checklist
-   error): the error is the phone's black toast, not a card in the content - it pops up in
-   the foot, right over the action that answers it (proximity), and wraps to two lines */
-.dk .dk-foot > .dk-toast{
-  position: static;
-  justify-self: center;
-  width: auto;
-  max-width: none;
-  margin: 0 0 var(--len-4);
-  border-radius: var(--len-22);
+/* «ось цю частину замінити на алерт який вискакує на мобілці, він чорний», then «он як
+   вискакувало увідомлення - так зроби»: the error is the phone's toast - it pops up over
+   the content just above the window's foot, stays 4 s and goes (a click dismisses it);
+   _desktop.js places it, as the shell does on the phone. Two lines at most. */
+.dk .dk-window > .dk-toast{
   text-wrap: balance;
+  max-width: calc(var(--pct-100) - var(--len-64));
+  border-radius: var(--len-22);
 }
 
 /* «коли відкривається вибір часу на темній темі не видно»: the hour and minute lists are

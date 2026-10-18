@@ -56,7 +56,8 @@
         <li><label class="dr-pick"><span class="dr-box dr-box--check" aria-hidden="true"><svg class="dr-ic dr-ic--14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6"/></svg></span><span class="dr-pick__label">Confirm handover with the client</span><input type="checkbox" class="sr-only"></label></li>
       </ul>
     </div>
-    <div class="dk-foot dk-foot--stack"><p class="dr-toast is-on dk-toast" role="alert">You can't close the job until every required step is checked. 'Capture delivery photo' is still open.</p><a class="dr-btn dr-btn--primary dr-btn--block" href="job-checklist.html">Complete the step</a><button class="dr-btn dr-btn--secondary dr-btn--block" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-contact">Contact client</button></div>
+    <div class="dk-foot dk-foot--stack"><a class="dr-btn dr-btn--primary dr-btn--block" href="job-checklist.html">Complete the step</a><button class="dr-btn dr-btn--secondary dr-btn--block" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-contact">Contact client</button></div>
+    <p class="dr-toast dk-toast" data-autoshow role="alert">You can't close the job until every required step is checked. 'Capture delivery photo' is still open.</p>
   </main>
   <section class="dr-sheet dr-sheet--picker" id="sheet-avail" role="dialog" aria-modal="true" aria-labelledby="sheet-avail-title" hidden>
     <span class="dr-sheet__grip" aria-hidden="true"></span>
@@ -82,6 +83,7 @@
 </div>
 <a class="wf-twin" href="../job-checklist-error.html">Phone view</a>
 <script src="../../ui/kit.js"></script>
+<script src="_desktop.js"></script>
 <!-- the badge follows the select: the word is read off the tapped option's own label (the phone's script) -->
 <script>
 (function () {

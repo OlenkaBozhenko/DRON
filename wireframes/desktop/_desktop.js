@@ -113,3 +113,44 @@
     t.addEventListener('click', function (e) { e.preventDefault(); show(t); });
   });
 }());
+
+/* TOASTS, AS ON THE PHONE (the designer, 2026-10-19: «он як вискакувало увідомлення - так
+   зроби»). A [data-toast] control pops its words up over the content of its window, just
+   above the window's foot, for 4 s; a click dismisses it. A toast that is the page's own
+   state ([data-autoshow], the checklist error) pops up the same way when the page opens.
+   The phone's shell does this for phone frames; the desktop twins do not load it. */
+(function () {
+  'use strict';
+  function place(t, win) {
+    var foot = win.querySelector(':scope > .dk-foot');
+    t.style.bottom = ((foot ? win.getBoundingClientRect().bottom - foot.getBoundingClientRect().top : 0) + 16) + 'px';
+  }
+  function pop(t, win) {
+    place(t, win);
+    if (t._hide) clearTimeout(t._hide);
+    void t.offsetWidth;
+    t.classList.add('is-on');
+    t._hide = setTimeout(function () { t.classList.remove('is-on'); }, 4000);
+    t.onclick = function () { clearTimeout(t._hide); t.classList.remove('is-on'); };
+  }
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-toast]');
+    if (!el) return;
+    var win = el.closest('.dk-window, .dk-panel');
+    if (!win) return;
+    e.preventDefault();
+    var t = win.querySelector(':scope > .dk-toast:not([data-autoshow])');
+    if (!t) {
+      t = document.createElement('p');
+      t.className = 'dr-toast dk-toast';
+      t.setAttribute('role', 'status');
+      win.appendChild(t);
+    }
+    t.textContent = el.getAttribute('data-toast');
+    pop(t, win);
+  });
+  [].forEach.call(document.querySelectorAll('.dk-toast[data-autoshow]'), function (t) {
+    var win = t.closest('.dk-window, .dk-panel');
+    setTimeout(function () { pop(t, win); }, 400);
+  });
+}());
