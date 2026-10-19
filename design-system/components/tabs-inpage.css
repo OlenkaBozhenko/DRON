@@ -16,9 +16,7 @@
   align-items: center;
   gap: var(--len-8);
   padding: 0 var(--len-16);
-  /* no ground of its own: the row takes whatever it stands on - the page on a
-     phone (identical), the panel on a wide screen (2026-10-19) */
-  background: transparent;
+  background: var(--bg-page);
   border-bottom: var(--len-1) solid var(--border-hairline);
   overflow-x: auto;
   scrollbar-width: none;
@@ -119,9 +117,12 @@
   outline-offset: var(--len-2);
 }
 @container screen (min-width: 47.875rem){
-  /* on a wide screen the row sits in the panel with no rule under it: the
-     work area's 32 top padding does the separating (2026-10-19); the phone
-     keeps its hairline */
+  /* on a wide screen the row sits in the panel with no ground and no rule:
+     it takes the panel's surface, and the work area's 32 top padding does the
+     separating (2026-10-19); the phone stays exactly as it was */
+  .dr-groups{
+    background: transparent;
+  }
   .dr-groups:not(.dr-groups--tabs){
     border-bottom: 0;
   }
