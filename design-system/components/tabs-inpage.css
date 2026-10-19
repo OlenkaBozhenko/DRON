@@ -118,3 +118,11 @@
   outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: var(--len-2);
 }
+@container screen (min-width: 47.875rem){
+  /* on a wide screen the row sits in the panel with no rule under it: the
+     work area's 32 top padding does the separating (2026-10-19); the phone
+     keeps its hairline */
+  .dr-groups:not(.dr-groups--tabs){
+    border-bottom: 0;
+  }
+}
