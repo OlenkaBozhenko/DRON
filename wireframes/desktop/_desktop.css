@@ -2015,7 +2015,7 @@
   --dk-sphere: url("../../assets/scenes/desktop/sphere-dark.png");
 }
 .dk .dr-assistant__orb::before{
-  inset: -56px;
+  inset: -36px;
   background: var(--dk-sphere) center / contain no-repeat;
   filter: none;
   -webkit-mask-image: none;
