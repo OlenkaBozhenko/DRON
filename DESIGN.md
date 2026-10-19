@@ -888,6 +888,79 @@ chose to soften it. The six-radius ramp above them does not move.
 **The Cut-By-The-Parent Rule.** A full-bleed child is square and the parent's `overflow:hidden`
 gives it the corner. It never restates the parent's radius.
 
+## Motion
+
+Added rev 341 (2026-10-19) on the designer's word. Motion in DRON is an interface's, not a
+presentation's: short, moderate, and always for a reason.
+
+### Three jobs, and the rule
+
+Every animation in the product does one of three jobs:
+
+1. **It shows how two states connect.** A sheet rises from the edge it will close back into; a
+   chevron turns as its row opens; a switch's thumb travels from off to on. The movement tells the
+   user where the new state came from and where it goes.
+2. **It shows that a process is running.** A status disc pings while the operator is live, a
+   skeleton pulses while a list loads, an arrow leaves the upload tray while a file goes up. The
+   movement stands for work the user cannot otherwise see.
+3. **It answers an action.** A button sinks under a press, a row lifts under a hover. The movement
+   says *the tap was received* before the result arrives.
+
+**The rule: an animation that does none of these three jobs is not added.** Decoration, attention-
+seeking and "making it feel alive" are not jobs. A proposed animation names its job in the change
+that adds it; one that cannot is declined.
+
+### The scale
+
+Three durations, three curves, two distances: primitives in `design-system/tokens.css`,
+§ *PRIMITIVE / MOTION*. Where the build already spent a number, the token reads it rather than
+writing it again; `.2s` and the two new curves are the only new values.
+
+| Token | Value | For |
+|---|---|---|
+| `--dur-fast` | .12s (`--time-0-12`) | a micro-response: hover, press. Job 3 |
+| `--dur-base` | .2s (`--time-0-2`) | a change inside a component: a thumb, a fill, a chevron. Job 1 |
+| `--dur-slow` | .32s (`--time-0-32`) | an element entering: a sheet, a toast, a panel. Job 1 |
+| `--ease-standard` | `cubic-bezier(.4,0,.2,1)` | most movement, from one resting place to another |
+| `--ease-enter` | `cubic-bezier(.22,.61,.36,1)` (`--ease-out`) | appearing: arrives fast, settles slowly |
+| `--ease-exit` | `cubic-bezier(.4,0,1,1)` | leaving: starts slowly, leaves fast |
+| `--move-sm` | 4px (`--len-4`) | a nudge: a lift on hover, a press |
+| `--move-md` | 12px (`--len-12`) | the travel of an entering element |
+
+**Moderate on purpose.** The longest step is .32s: anything longer makes the user wait for the
+interface. An exit is not slower than its entrance: it takes the entrance's step or the one below,
+because a thing leaving needs no attention. The loops that trace something physical (`dr-ping`,
+`dr-pulse`, `dr-up`, `dr-spin`, the desktop flight) are job 2 and keep their own cadence on the
+time ramp; they are listed under *Components › Motion*.
+
+### Reduced motion, and the check
+
+- **`WCAG 2.3.3` Animation from Interactions** (AAA) and **`HIG · Motion`** ("make motion optional",
+  replace movement with a dissolve): under `prefers-reduced-motion: reduce`, `--move-sm` and
+  `--move-md` resolve to **0**, so anything that slides in on them fades in place instead. The
+  durations stay, because a fade still says that something changed. Loops keep their own
+  `animation: none` rule, as before.
+- **`WCAG 2.2.2` Pause, Stop, Hide** (A): the scale holds nothing that runs longer than 5s. A loop
+  that does (the desktop flight, 7s) is job 2 and stops when its process does.
+- **`WCAG 2.3.1` Three Flashes** (A): no step of the scale repeats; the fastest loop in the build,
+  `dr-spin`, is 0.91 Hz.
+
+### What has not moved yet
+
+The scale is declared and nothing reads it yet. Components still read the time ramp directly
+(`--time-0-12`, `--time-0-15`, `--time-0-25`, `--time-0-32`, `--ease-out`). Moving them onto the scale
+is a separate change and changes what is drawn in two places: the button's `.15s` would become
+`.2s`, and the desktop hanging card's `.25s` hover would become `.12s` or `.2s`. That is the
+designer's call.
+
+### Named rules
+
+**The Three-Jobs Rule.** An animation connects two states, shows a process, or answers an action.
+One that does none of these is not added.
+
+**The Moderate Rule.** Three durations, .12 / .2 / .32s. Nothing in the interface takes longer to
+move than a sheet takes to arrive.
+
 ## Components
 
 ### Buttons
