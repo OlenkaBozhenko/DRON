@@ -24,9 +24,10 @@ question in a place a newcomer will find.
    A newcomer cannot tell which document is the authority. → G-1, §9, S-1…S-6
 2. **There is no "how do I run it, and where do I start".** Three different home pages; some pages
    need a server and some do not; `serve.py` is never mentioned. → G-2, G-3, G-4
-3. **Which build is current — phone or desktop?** "The phone is frozen" is written only in change-log
-   lines, `motion.md` and `animations/state-tone.md`; the brief still says *mobile-first*, and
-   `landing.md` says *there is no desktop view*. → W-1, S-7
+3. **Which build is current — phone or desktop?** Nothing tells the newcomer. "The phone is frozen"
+   is written only in change-log lines, `motion.md` and `animations/state-tone.md`; the brief still
+   says *mobile-first*. **Answered by the designer (2026-10-20): both are current.** The handoff has
+   to say so where a newcomer looks first. → W-1
 4. **Nothing says what the repo hands to real code.** `handoff/` holds only `.gitkeep` (**checked**):
    no stack, no data model, no API, no browser support, no word on whether the `dr-*` CSS ships.
    → H-1…H-5
@@ -161,9 +162,12 @@ styles or undeclared classes. `wireframes/payment.html` line 142 carries
 
 ## 4. Screens — phone and desktop, states, scripts
 
-**W-1. Phone or desktop: which is current, where do I build?** "The phone is frozen" (motion.md,
-`responsive/desktop-brief.md`) vs "Primary: mobile web, mobile-first" (`CLAUDE.md`) vs "there is no
-desktop view of DRON" (`landing.md`). Do I fix a bug on the phone at all?
+**W-1. Phone or desktop: which is current, where do I build?** "The phone is frozen" (`motion.md`,
+`responsive/desktop-brief.md`) vs "Primary: mobile web, mobile-first" (`CLAUDE.md`). Do I fix a bug on
+the phone at all? **Answered by the designer, 2026-10-20: «і телефон і десктоп актуально» — the phone
+and the desktop are both current.** Still open for the handoff: writing that down where a newcomer
+reads first, and saying which kinds of change each build takes now (the phone has been held as built
+while new work went to the desktop).
 
 **W-2. Grayscale or painted?** `CLAUDE.md` and `_conventions.md`: "Grayscale only — no colour,
 shadow, icon". `wireframes/payment.html` is fully painted with SVG icons. `CLAUDE.md` says 19 screens
@@ -258,6 +262,11 @@ educational / portfolio design project… every name, number, price… is synthe
 JetBrains Mono and defaults to dark; `index.html` is "deliberately single-theme… off the DESIGN.md
 ramp". Both break the product's own rules, on purpose, with no rule saying so.
 
+**P-5. Which documents describe the product, and which present the project?** `landing.md` (and
+`landing.html`) read like product copy and say "there is no desktop view of DRON". **Answered by the
+designer, 2026-10-20: `landing.md` is only for presenting the project; it has no bearing on the
+desktop.** Nothing in the file or the README says so, so a newcomer reads it as a spec.
+
 ## 7. Handoff to real code
 
 **H-1. Is this the product or a prototype, and what ships?** `handoff/` holds only `.gitkeep`; README:
@@ -287,7 +296,7 @@ says "SF Symbols on mobile + a matching custom set on web"; there is no icon sou
 | S-4 | `patterns/`, `docs/`, `examples/` "empty for now" | `design-system/index.css`; `README.md` l.26 | 13 patterns, 114 docs files, 1 example |
 | S-5 | "61 live component pages" | `README.md` l.27 | `CLAUDE.md` 82; the build prints 83 |
 | S-6 | "most recently rev 284" | `README.md` l.118 | the change log reaches rev 348 |
-| S-7 | "there is no desktop view of DRON" | `landing.md` | 135 desktop twins |
+| S-7 | ~~"there is no desktop view of DRON"~~ | `landing.md` | **Not a contradiction** (the designer, 2026-10-20): `landing.md` presents the project and has no bearing on the desktop build. What is left is a gap, P-5 |
 | S-8 | "19 screens still grayscale" | `README.md`, `CLAUDE.md` | `ui/inventory.md`: "none"; 50 vs 53 screens |
 | S-9 | twins link `_desktop.js` | `DESIGN.md`; `CLAUDE.md` | 17 of 135; all load `_arrive.js` |
 | S-10 | tokens "GENERATED… nothing added" | `tokens.css` header | desktop and motion tokens added since |
@@ -320,7 +329,8 @@ Read as an order, the items group into six documents:
 
 1. **A developer README** — what this is (a design prototype and portfolio, P-2), how to run it
    (`serve.py`, G-2…G-4), the repo map with live vs archive (M-1…M-11), and the current status
-   (phone frozen, desktop active, W-1).
+   (the phone and the desktop are both current, W-1), and which documents present the project
+   rather than describe the product (`landing.md`, P-5).
 2. **A contributing guide** — the change order, «залишаємо» and how approval is recorded, "done" and
    how to check it, where a change is recorded (C-1…C-9), and what a rev is (C-4).
 3. **The page contract** — root classes, scripts, file naming and states, scaffolding vs product
