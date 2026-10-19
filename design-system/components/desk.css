@@ -141,6 +141,11 @@
 .dr-desk:has(.dr-assistant) .dr-talkdock{
   display: none;
 }
+/* «має бути коли чат з агентом згортається у цю кнопку»: when a window opens over
+   the home, the assistant steps out and folds into Talk to AI */
+.dr-desk:has(> .dr-sheet:not([hidden])) .dr-talkdock{
+  display: inline-flex;
+}
 
 /* «коли відкривається вибір часу на темній темі не видно»: the hour and minute lists are
    the browser's own select popups; they took the theme's light ink on the browser's white
