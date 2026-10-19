@@ -116,8 +116,10 @@ body:has(> .dr-screen--fluid){
   margin: 0;
 }
 @container screen (min-width: 47.875rem){
-  /* the work area: the phone column kept and centred until a screen takes a
-     wide layout of its own (.dr-wgrid, .dr-split) - width-audit "Same" */
+  /* the work area: the phone column kept and centred - width-audit "Same".
+     Drawn only when a phone page is previewed wider (the tablet, being redesigned);
+     the desktop is its own twin page (desk.css). .dr-wgrid / .dr-split were removed
+     2026-10-19: no twin drew them. */
   .dr-main{
     padding: var(--len-32) max(var(--len-32), calc((100cqi - var(--container-column)) / 2));
   }

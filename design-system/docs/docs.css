@@ -287,3 +287,17 @@ code { font-family: var(--font-mono); font-size: var(--type-meta-size); }
 .dsd-anatomy:has(.dr-screen[style*="width:1024px"]), .dsd-anatomy:has(.dr-screen[style*="width:1280px"]) { grid-template-columns: minmax(0, 1fr); }
 /* a 1280 frame is not zoomed: zoom shrinks the size the container query reads */
 .dsd-variants > .dsd-variant:has(.dr-screen[style*="width:1280px"]) { grid-column: 1 / -1; }
+/* a desktop twin's frame (1440, the width the twins are drawn at) takes the whole row and the whole
+   anatomy too; the plate scrolls it rather than zoom it, so nothing it measures changes (2026-10-19) */
+.dsd-variants > .dsd-variant:has(.dr-desk[style*="width:1440px"]),
+.dsd-variants > .dsd-variant:has(.dr-desk[style*="width:640px"]),
+.dsd-variants > .dsd-variant:has(.dr-desk[style*="width:680px"]) { grid-column: 1 / -1; }
+.dsd-anatomy:has(.dr-desk[style*="width:1440px"]),
+.dsd-anatomy:has(.dr-desk[style*="width:640px"]),
+.dsd-anatomy:has(.dr-desk[style*="width:680px"]) { grid-template-columns: minmax(0, 1fr); }
+/* a 1440 frame is drawn at 60% with a transform, not zoom: a transform leaves the box the
+   container queries measure at 1440, and the negative margins give back the space it frees */
+.dsd-plate .dr-desk[style*="width:1440px"] { transform: scale(.6); transform-origin: 0 0; flex: none;
+  margin: 0 -576px 0 0; }
+.dsd-plate .dr-desk[style*="width:1440px"][style*="height:900px"] { margin-bottom: -360px; }
+.dsd-plate .dr-desk[style*="width:1440px"][style*="height:96px"] { margin-bottom: -38.4px; }

@@ -75,21 +75,35 @@ not a page either.
 | ~~segmented-control~~ | — | — | — | NOT A PAGE: `.dr-segment` lives only in the ui/kit.css archive; retired for the picker row at rev 235 |
 | disclosure-row | Disclosure row | Forms | — (`components/disclosure.css`) | Disclosure row |
 
-## Wide screens (tablet and desktop only, 2026-10-18)
+## Wide screens (desktop, 2026-10-19)
 
-The phone reads none of these. Rules are container queries on `.dr-screen` (shell, frame, sheet) or
-components that only wide screens use. Source: `responsive/width-audit.md`.
+What the desktop twins in `wireframes/desktop/` draw. Every desktop rule matches only inside `.dr-desk`, the
+twins' frame, so the phone never reads any of it. Each page's specimens are copied from a named twin. The
+tablet is being redesigned and shows *Coming soon*. Replaced on 2026-10-19 (phase 3 of
+`responsive/desktop-to-system-brief.md`): *Wide shell* (the phone shell stretched, a mistake from the wrong
+desktop) is now *Desktop shell*; *Wide grid and split* is removed — no twin draws it — and so is the
+*Wide workspace* pattern.
 
 | slug | name | group | kit | inventory rows covered |
 |---|---|---|---|---|
-| wide-shell | Wide shell | Wide screens | — | Nav bar, Tab bar, Action bar, Sheet on a wide screen |
-| material-panel | Material panel | Wide screens | — | (new) |
-| stat-card | Stat card | Wide screens | — | (new) |
-| assistant | Assistant | Wide screens | — | (new) — with the service card and Talk to AI |
-| map-ground | Map ground | Wide screens | — | (new) |
-| wide-grid | Wide grid and split | Wide screens | — | (new) |
-| wide-header | Wide header | Wide screens | — | (new) — navigation pill, Order, icon buttons, theme, profile chip |
-| bar-chart | Bar chart card | Wide screens | — | (new) |
-| tally-card | Tally card and live order | Wide screens | — | (new) |
-| place-field | Place field and order window | Wide screens | — | (new) |
-| console | Console | Wide screens | — | (new) — the wide home's layout |
+| desktop-shell | Desktop shell | Wide screens | 3210 | Nav bar, Tab bar, Action bar (desktop: replaced by the frame, the header, the rails, Talk to AI) |
+| wide-header | Desktop header | Wide screens | 3364 | (new) — navigation pill, Order, icon buttons, theme, profile chip, the logo link |
+| desktop-window | Desktop window | Wide screens | 3391 | (new) — the step of a flow: head, scroll, foot; the search window; the window toast |
+| desktop-panel | Desktop panel | Wide screens | 3468 | (new) — a tab root's content between the rails |
+| hanging-cards | Hanging cards and Jobs tabs | Wide screens | 3546 | (new) — Activity and Jobs |
+| side-panel | Side panel and flight | Wide screens | 3667 | (new) — the wait: side panel, live line, the route and the flying drone, the note on the map |
+| map-route | Map route and pin | Wide screens | 3737 | (new) |
+| call-chat-window | Call and chat windows | Wide screens | 3797 | Call surface, Message thread (desktop) |
+| entry-window | Entry window | Wide screens | 3836 | Onboarding carousel (desktop) — signed-out windows, Previous / Next |
+| operator-home | Operator home | Wide screens | 3883 | (new) — drone links, rail rows, availability card |
+| window-outcome | Outcome in a window | Wide screens | 3930 | Outcome heading, Milestone mark (desktop) |
+| review-card | Review card | Wide screens | 3958 | (new) |
+| drop-zone | Drop zone | Wide screens | 3975 | Upload zone (desktop) |
+| material-panel | Material panel | Wide screens | 3984 | (new) |
+| stat-card | Stat card | Wide screens | 4008 | (new) |
+| assistant | Assistant | Wide screens | 4017 | (new) — with the service card and Talk to AI |
+| map-ground | Map ground | Wide screens | 4033 | (new) |
+| bar-chart | Bar chart card | Wide screens | 4045 | (new) |
+| tally-card | Tally card and live order | Wide screens | 4056 | (new) |
+| place-field | Place field and last search | Wide screens | 4072 | (new) |
+| console | Console | Wide screens | 4084 | (new) — the client home's layout |
