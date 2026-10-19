@@ -43,7 +43,7 @@ From `desktop/signin`.
 
 - `.dr-whead` — the logo and the theme switch; no navigation, no *Order*, no profile chip.
 - No rails and no Talk to AI.
-- `.dr-window.dr-entry` — the centred window, 560 (narrower on a narrow screen: below 1336 it keeps 64 of map to each rail, down to 420) × `min(640, the window − 232)`, padding 32, with no head: the copy is held in the middle of the window (`.dr-entry--flush` sets it flush left).
+- `.dr-window.dr-entry` — the centred window, 560 (narrower on a narrow screen: below 1336 it keeps 64 of map to each rail, down to 420); below a 1600 window it starts on the rails' top line, 96, from 1600 up it is centred × `min(640, the window − 232)`, padding 32, with no head: the copy is held in the middle of the window (`.dr-entry--flush` sets it flush left).
 - `.dr-entry__acts` in `.dr-foot` — the ways in, stacked, the primary on top, the terms note under them.
 
 Measured at 1600 × 900 on `signin`: the padding 32; the title, the lead and the note 8 apart; the two ways in 10 apart and the terms note 10 under them. The 10 sits between the 8 of the parts of one thing and the 12 of one group, so the actions and their note read as one group, far from the copy above them.

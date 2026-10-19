@@ -719,7 +719,8 @@ designer's word of 2026-10-18.
 `wireframes/desktop/` (135 pages), built in the look the designer drew and corrected: the map as the
 ground under a veil, a floating header, two 300 rails of material cards, and the work of the screen in a
 centred window or panel between them (560 wide; below a 1336 window it gives way to keep 64 of map to each
-rail, down to 420), with *Talk to AI* docked at the bottom centre of the screen on every desk. **Since 2026-10-19 the twins
+rail, down to 420; below a 1600 window it starts on the rails' top line, from 1600 up it is centred; the
+home's assistant is not a window and stays centred), with *Talk to AI* docked at the bottom centre of the screen on every desk. **Since 2026-10-19 the twins
 consume the system like every other page** — they link only `design-system/index.css` (and
 `_desktop.js` for their behaviour); the temporary `wireframes/desktop/_desktop*.css` are one-line
 pointers that no page links. Every desktop rule matches only inside `.dr-desk`, the twins' frame, so the

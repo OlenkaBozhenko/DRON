@@ -713,3 +713,17 @@
 .dr-push{
   margin-left: auto;
 }
+
+/* «на менших екранах центральне вікно вирівнювалось по верхньому краю з картками а на
+   великих по центру» (2026-10-19): below a 1600 window the centred window or panel
+   starts on the rails' top line, 96, instead of the middle; from 1600 up it stays
+   centred. The height rule above is kept. The query reads the desk's own width (the
+   fluid frame has no border, so 100rem is 1600); it cannot read var(). */
+@container screen (max-width: 99.9375rem){
+  .dr-desk.dr-desk.dr-desk .dr-window.dr-window.dr-window,
+  .dr-desk.dr-desk.dr-desk .dr-panel.dr-panel.dr-panel,
+  .dr-desk.dr-desk.dr-desk #find.dr-window.dr-window{
+    top: var(--len-96);
+    transform: translateX(calc(var(--pct-50) * -1));
+  }
+}

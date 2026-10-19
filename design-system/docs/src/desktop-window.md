@@ -83,7 +83,7 @@ kit: 3391
 </div>
 ```
 
-- `.dr-window` — A step of a flow, centred in the window over the dimmed map: 560 wide (narrower on a narrow screen: below 1336 it keeps 64 of map to each rail, down to 420), `min(640, the window − 232)` tall, one padding of 32 on all four sides, the material (radius 22, the float shadow).
+- `.dr-window` — A step of a flow, centred in the window over the dimmed map: 560 wide (narrower on a narrow screen: below 1336 it keeps 64 of map to each rail, down to 420); below a 1600 window it starts on the rails' top line, 96, from 1600 up it is centred, `min(640, the window − 232)` tall, one padding of 32 on all four sides, the material (radius 22, the float shadow).
 - `.dr-window__head` — The back — a round 48 icon button named *Back to …* — and the title, 22 on the window-title step. It stands 32 above the content (the 24 gap and 8), one step more than the groups, so it reads as the head.
 - `.dr-scroll` — The content, the only part that scrolls; its groups 24 apart (proximity). It keeps a stable gutter for the slim 6 bar, so the content is exactly as wide as the action under it.
 - `.dr-foot` — The action at the foot, on the window's own glass — no line, no ground, nothing passes under it. Actions stack, the primary on top (the designer, 2026-10-18).

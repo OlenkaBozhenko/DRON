@@ -73,7 +73,7 @@ From `desktop/job-brief`.
 - `.dr-whead` — the header, unchanged from the tab the step was opened from: Overview · Activity · Help and the green *Order* for the client; Overview · Jobs · Earnings · Ratings for the operator.
 - `.dr-deskrail--start` and `--end` — the rails, unchanged from that tab.
 - `.dr-dim` — the map and the rails at 35% behind the window, so the step is what is read.
-- `.dr-window` — 560 wide (narrower on a narrow screen: below 1336 it keeps 64 of map to each rail, down to 420), `min(640, the window − 232)` tall, centred, one padding of 32 on all four sides.
+- `.dr-window` — 560 wide (narrower on a narrow screen: below 1336 it keeps 64 of map to each rail, down to 420); below a 1600 window it starts on the rails' top line, 96, from 1600 up it is centred, `min(640, the window − 232)` tall, centred, one padding of 32 on all four sides.
 - `.dr-window__head` — the back, a round 48 icon button named *Back to …*, and the title. A step that cannot be left (the payment hand-over) has the title alone.
 - `.dr-scroll` — the content, the only part that scrolls, one group after another.
 - `.dr-foot` — the action, on the window's own glass; several actions stack, the primary on top.

@@ -84,7 +84,7 @@ kit: 3468
 </div>
 ```
 
-- `.dr-panel` — A tab root's content — Help, Account, Earnings, Ratings, the alerts — between the rails, in the window's place and size: 560 (narrower on a narrow screen: below 1336 it keeps 64 of map to each rail, down to 420) × `min(640, the window − 232)`, padding 32, the material.
+- `.dr-panel` — A tab root's content — Help, Account, Earnings, Ratings, the alerts — between the rails, in the window's place and size: 560 (narrower on a narrow screen: below 1336 it keeps 64 of map to each rail, down to 420); below a 1600 window it starts on the rails' top line, 96, from 1600 up it is centred × `min(640, the window − 232)`, padding 32, the material.
 - `.dr-scroll` — The content; its groups 24 apart. Inside a panel the phone's grey blocks are a faint tint of the well (45%), so the glass reads through.
 - `.dr-help-profile` — The profile head keeps its air: 8 above, 4 below.
 - `.dr-help-panelacts` — The panel's action at its foot, the panel's width (*Edit profile*).
