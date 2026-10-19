@@ -53,6 +53,39 @@
   background: radial-gradient(var(--pct-70) var(--pct-65) at var(--pct-50) var(--pct-48), var(--veil-map-centre) 0%, var(--veil-map-mid) var(--pct-70), var(--veil-map-edge) var(--pct-100));
 }
 
+/* «роби варіант A» (rev 335): the first Tab stop skips the header and the rails to the
+   content (WCAG 2.4.1 Bypass blocks). Out of sight until it holds the focus, so nothing
+   changes for a mouse; then it stands under the logo as a solid pill (no glass, so the card under it cannot show
+   through the words) with the focus ring. */
+.dr-skip{
+  position: absolute;
+  left: var(--len-24);
+  top: var(--len-96);
+  z-index: 9;
+  width: var(--len-1);
+  height: var(--len-1);
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+.dr-skip:focus-visible{
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--len-44);
+  padding: 0 var(--len-20);
+  border-radius: var(--len-999);
+  background: var(--bg-material-solid);
+  color: var(--text-primary);
+  font-size: var(--type-body-size);
+  font-weight: var(--type-weight-medium);
+  text-decoration: none;
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+
 /* Talk to AI waits at the bottom while a window is open */
 .dr-talkdock{
   position: absolute;

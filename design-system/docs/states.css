@@ -76,6 +76,22 @@
   outline-offset: var(--len-2);}
 .dsd-st--focus .wf-twin{outline: var(--len-2-5) solid var(--color-action);
   outline-offset: var(--len-2);}
+.dsd-st--focus .dr-skip{width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--len-44);
+  padding: 0 var(--len-20);
+  border-radius: var(--len-999);
+  background: var(--bg-material-solid);
+  color: var(--text-primary);
+  font-size: var(--type-body-size);
+  font-weight: var(--type-weight-medium);
+  text-decoration: none;
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);}
 .dsd-st--hover :where(.dr-desk) ::-webkit-scrollbar-thumb{background: var(--text-muted);}
 .dsd-st--hover .dr-disclosure__item,
 .dsd-st--hover .dr-picker__item{background: var(--bg-well);}

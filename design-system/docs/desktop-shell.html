@@ -454,7 +454,7 @@ Sources: wireframes/desktop/order-history.html, operator-listings.html; design-s
 <p class="dsd-sources">Sources: wireframes/desktop/ (the twins); design-system/components/desk.css, rail.css, window.css; responsive/desktop-to-system-brief.md</p></section>
   <section aria-labelledby="s-rule"><h2 id="s-rule">Rule and anti-rule</h2>
     <div class="dsd-rules">
-      <div class="dsd-rule dsd-rule--do"><h3>Do</h3><p>The map is always the ground and everything floats on it: the header, the two 300 rails, one panel or window in the middle, Talk to AI at the bottom. Navigation is the header's.</p></div>
+      <div class="dsd-rule dsd-rule--do"><h3>Do</h3><p>The map is always the ground and everything floats on it: the header, the two 300 rails, one panel or window in the middle, Talk to AI at the bottom. Navigation is the header's. The first Tab stop is <code>.dr-skip</code>, <em>Skip to content</em>, linking to the page's one <code>&lt;main id="content"&gt;</code>: out of sight until it holds the focus, then a solid pill under the logo (<code>--bg-material-solid</code>) with the 2.5 focus ring (<code>WCAG 2.4.1</code>, met; rev 335, the designer: «роби варіант A»).</p></div>
       <div class="dsd-rule dsd-rule--dont"><h3>Don&rsquo;t</h3><p>Do not stretch the phone screen to the window: no status bar, no tab bar, no phone column, no home indicator. Do not write a media query on a screen: the desktop is its own twin page that consumes the system.</p></div>
     </div></section>
 </main>

@@ -482,7 +482,7 @@ Sources: wireframes/desktop/ (the twins); design-system/components/desk.css, rai
 
 ## Rule
 
-The map is always the ground and everything floats on it: the header, the two 300 rails, one panel or window in the middle, Talk to AI at the bottom. Navigation is the header's.
+The map is always the ground and everything floats on it: the header, the two 300 rails, one panel or window in the middle, Talk to AI at the bottom. Navigation is the header's. The first Tab stop is `.dr-skip`, *Skip to content*, linking to the page's one `<main id="content">`: out of sight until it holds the focus, then a solid pill under the logo (`--bg-material-solid`) with the 2.5 focus ring (`WCAG 2.4.1`, met; rev 335, the designer: «роби варіант A»).
 
 ## Anti-rule
 

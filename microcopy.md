@@ -16,6 +16,7 @@ First screens rewritten against `voice.md` (Step 02). **Text only — structure 
 | Screen | Zone | Type | Before | After | Why (voice.md) |
 |---|---|---|---|---|---|
 | listings-error | Counter | State message | List unavailable | Couldn't load | Plain status |
+| every desktop twin | First Tab stop | Skip link | — | Skip to content | Names where it goes, not the blocks it skips; seen only by keyboard (WCAG 2.4.1), rev 335 |
 | listings-error | Service list | State message (title) | Couldn't load the list | Couldn't load services | Dictionary word *services*, not "the list"; Microcopy › error: what happened |
 | listings-error | Service list | State message (body) | No connection to the server. Check your internet and try again. | No internet connection. Check it and try again. | P4 plain (drop "server"); Microcopy › error: what to do |
 | listings-error | Service list | Button | Help | Contact support | Vocabulary **A2** — one label to reach a human |
