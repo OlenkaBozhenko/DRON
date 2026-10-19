@@ -807,11 +807,11 @@ corrected:
 | Flight route and map route, the accent as a stroke (1.69:1) | The fill-only rule; `WCAG 1.4.11` | Against the project rule; decoration, `aria-hidden`, the live line says it in words |
 | Two green controls on a client step: the header's *Order* beside the window's primary | The project's *one green control per screen* (her call, 2026-10-19, keeps *Order* green) | Neither HIG nor WCAG is failed; the operator's steps have one |
 | No skip link: header and both rails come before `main` | `WCAG 2.4.1` bypass blocks; `2.4.3` focus order | 2.4.3 met; 2.4.1 served only by the `main` landmark, for screen readers, not for keyboard users |
-| Welcome: the pager 36 under the slider it counts, 16 above the first action | Proximity: the parts of one thing stand close, apart from the next group | Reads with the actions by space alone |
+| Welcome: the pager 36 under the slider it counts, 12 above the first action (re-measured 2026-10-19) | Proximity: the parts of one thing stand close, apart from the next group | Reads with the actions by space alone |
 | Wallet: the earnings 8 apart in the list | Proximity: the items of one list 12 | −4; still a third of the 24 between groups |
 | Signed-out windows: the two ways in 10 apart, the terms note 10 under them | One group 12 | −2; reads as one group |
 | Live order card: its three groups 20 apart | Between groups 24–32 | −4 |
-| Hanging cards: 14 apart | One list 12, under the 24 between groups | +2; still one list |
+| Hanging cards: 8 apart on `operator-jobs`, 28 on `order-history` (re-measured 2026-10-19) | One list 12, under the 24 between groups | Jobs −4, Activity +16: the two screens do not match each other |
 | Message, outcome and waiting blocks: mark, title and body 12 apart | The parts of one thing 4–8 | +4; half of the 24 that would split them |
 
 ## Elevation & Depth
