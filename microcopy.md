@@ -2024,3 +2024,13 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-listings · job-offer · operator-dispute (+error) | Job card | Pay | Accessible name (`sr-only`) | **new 2026-08-18 (rev 157)** — six money figures were drawn bare, so a screen reader said "one hundred and eighty" with no word for what the number was. The idiom is painted `order-history`'s own (`Delivery fee`, `Total`); the word is **`Pay`**, which this file already registers for the same figure on `job-brief` and `result-upload`. Nothing visible changed |
 | operator-fee-terms | — | Back | Accessible name (`aria-label`) | **changed 2026-08-18 (rev 157)** — read `Back to Back`, which named nothing twice: D9 asks for `Back to {destination}` and this control returns to `onboarding-operator`, whose nav bar carries the DRON mark and no title. Her call: «не потрібно назви». The bare verb is what iOS says when a pushed screen has no titled parent |
 | withdraw | Withdrawal method | Withdraw ₴1,500 | Button | **changed 2026-08-18 (rev 157)** — the CTA names the sum asked for, not the whole balance |
+
+## Desktop assistant greeting (2026-10-19)
+
+The designer: *«привітання зроби теж більш універсальне, якщо я зайду і то не вечір буде - не роби привʼязки до часу»*. The greeting no longer names a time of day (it read *Good evening* at any hour). Per `voice.md` (say what DRON does, not hello) it is the person's name and the job, with no hello:
+
+| Screen | String | Note |
+|---|---|---|
+| listings (desktop) | Olena, what do you need done today? | was "Good evening, Olena. What do you need done today?" |
+| operator-listings (desktop) | Ivan, 2 jobs are waiting near you. | was "Good evening, Ivan. …" |
+| operator-listings-empty (desktop) | Ivan, you are offline. | was "Good evening, Ivan. You are offline." |
