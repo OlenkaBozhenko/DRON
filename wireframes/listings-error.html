@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DRON wireframe · Home / start an order · error — nothing found</title>
+<title>DRON wireframe · Home / start an order · error · nothing found</title>
 <!--
   SCREEN (name from _screens.md §3): "Home / start an order" — A SEARCH from 2026-09-14.
   PERSONA: Client C-1 (primary — CLAUDE.md "Primary persona — C-1").
@@ -234,7 +234,7 @@
            NO SECOND GREEN: `Clear filters` is secondary and `Find` stays the screen's one green control.
            THE MARK IS THIS PAGE'S OWN STRUCK MAGNIFIER (rev 77) — we looked, there is nothing here — so
            the icon system gains nothing. -->
-      <p class="zlabel dr-label">Result <span class="dr-label__act">▸ nothing found — loosen it (exit)</span></p>
+      <p class="zlabel dr-label">Result <span class="dr-label__act">▸ nothing found: loosen it (exit)</span></p>
       <section aria-label="Nothing found">
         <div class="dr-msg" role="status">
           <span class="dr-mark" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/><path d="M13.5 8.5l-5 5"/></svg></span>
@@ -593,7 +593,7 @@
         addrCount = addrSh.querySelector('[data-addr-count]'),
         addrFor   = null;   /* the row whose drawer is up */
 
-    /* words, not characters: «pod 21» finds Podil — Naberezhno-Khreshchatytska St, 21 */
+    /* words, not characters: «pod 21» finds Podil, Naberezhno-Khreshchatytska St, 21 */
     function words(s) { return s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim(); }
     function narrow() {
       var q = words(addrIn.value), left = 0;

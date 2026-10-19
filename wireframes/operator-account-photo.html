@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DRON wireframe · Operator account — profile photo</title>
+<title>DRON wireframe · Operator account · profile photo</title>
 <!--
   SCREEN: "Operator account" — STATE: photo (sub-view of operator-account.html).
   PERSONA: Operator O-1. JOB: identity utility (sitemap §7.4) — change the picture the CLIENT
@@ -36,7 +36,7 @@
       <a href="account-edit.html">edit</a>
       <a href="operator-account-photo.html" class="cur" aria-current="page">photo</a>
     </nav>
-    <h1>Operator account — profile photo</h1>
+    <h1>Operator account · profile photo</h1>
     <p class="sub">Operator · Account utility · sub-view: <b>photo</b> · file: operator-account-photo.html</p>
     <div class="flow"><b>Job (jtbd):</b> change the profile photo — the picture the <b>client</b> matches against on arrival (sitemap §7.4 identity utility; the operator half of <b>RJ-C1</b>'s two-way recognition).<br><b>Entry:</b> the pencil badge on the avatar, <b>Operator account</b>.<br><b>Exit:</b> Cancel or Save → <b>Operator account</b>. No dead-end, and no back chevron — a modal is dismissed by its named Cancel (<code>HIG · Modality</code>).<br><b>States:</b> none — an empty avatar is the base (the initials fallback, <code>IK</code>), and no <code>flows.md</code> node produces an error or loading state here.</div>
     <div class="legend"><p><b>Zones:</b></p><p><b>Nav bar</b> ▸ Cancel · Profile photo · Save</p><p><b>Photo</b> ▸ the picture as it stands, at 120, over the sentence that says why it matters and the file rule under it</p><p><b>Action bar</b> ▸ Take a photo · Choose a picture · Delete</p></div>

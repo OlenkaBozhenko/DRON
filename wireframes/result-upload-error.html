@@ -17,7 +17,7 @@
     </nav>
     <h1>Result upload / close job</h1>
     <p class="sub">Operator · MJ-2 · state: <b>error</b> · file: result-upload-error.html</p>
-    <div class="flow"><b>Error:</b> the result photo didn't upload — weak signal (flows.md MJ-2: "slow or failed upload").<br><b>Exit (not a dead-end):</b> retry now, or queue it to upload when back online. Payment is held until the proof arrives.</div>
+    <div class="flow"><b>Error:</b> the result photo didn't upload: weak signal (flows.md MJ-2: "slow or failed upload").<br><b>Exit (not a dead-end):</b> retry now, or queue it to upload when back online. Payment is held until the proof arrives.</div>
     <div class="legend"><p><b>Only the content changes:</b></p><p><b>Result photo</b> → upload-failed notice + retry / queue offline</p></div>
   </aside>
 
@@ -35,7 +35,7 @@
         <div class="dr-msg" role="alert">
           <span class="dr-mark dr-mark--danger" aria-hidden="true"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/><path d="M4 4l16 16"/></svg></span>
           <span class="dr-msg__title">Upload failed</span>
-          <p class="dr-msg__body">The delivery photo didn't upload — weak signal. Try again, or queue it to upload automatically when you're back online. Payment is held until the photo uploads.</p>
+          <p class="dr-msg__body">The delivery photo didn't upload: weak signal. Try again, or queue it to upload automatically when you're back online. Payment is held until the photo uploads.</p>
           <div class="dr-msg__actions">
             <a class="dr-btn dr-btn--primary dr-btn--block" href="result-upload-loading.html">Try again</a>
             <a class="dr-btn dr-btn--secondary dr-btn--block" href="result-upload.html">Queue offline</a>

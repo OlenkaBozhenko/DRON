@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DRON wireframe · Home / start an order · loading — searching</title>
+<title>DRON wireframe · Home / start an order · loading · searching</title>
 <!--
   SCREEN (name from _screens.md §3): "Home / start an order" — A SEARCH from 2026-09-14.
   PERSONA: Client C-1 (primary — CLAUDE.md "Primary persona — C-1").
@@ -122,7 +122,7 @@
          with the service list it filtered: the designer rebuilt Home as a search. -->
     <main class="dr-main">
 
-      <p class="zlabel dr-label">Search <span class="dr-label__act">▸ searching — Find is working</span></p>
+      <p class="zlabel dr-label">Search <span class="dr-label__act">▸ searching: Find is working</span></p>
       <!-- role="search" names the landmark; the form never submits — Find is a link, so the
            prototype walks without a server and the link can say where it goes (WCAG 2.4.4). -->
       <form class="dr-finder" role="search" aria-label="Find a service" action="#">
@@ -578,7 +578,7 @@
         addrCount = addrSh.querySelector('[data-addr-count]'),
         addrFor   = null;   /* the row whose drawer is up */
 
-    /* words, not characters: «pod 21» finds Podil — Naberezhno-Khreshchatytska St, 21 */
+    /* words, not characters: «pod 21» finds Podil, Naberezhno-Khreshchatytska St, 21 */
     function words(s) { return s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim(); }
     function narrow() {
       var q = words(addrIn.value), left = 0;

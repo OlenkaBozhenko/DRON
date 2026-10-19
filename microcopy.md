@@ -7,7 +7,7 @@ _Every interface string across all 83 wireframe pages (`wireframes/*.html`), tra
 > Language: English, per the project rule that all repo files are written in English (`CLAUDE.md` › Content Rules). The UI copy itself is already English.
 
 
-> **No long dash (2026-10-19, rev 338).** The designer: «оці тире видають текст написаний AI». `voice.md` › *The long dash* now bans the em dash in product copy. **90 strings on the desktop twins and in the design system's specimens** (`docs/src/*`, `patterns/*`, `ui/kit.html` › Desktop) were rewritten with a full stop, a comma or a colon, e.g. *Secure national ID. Your data stays with the provider.* · *Small, up to 2 kg* · *Inspection job, open brief*. The phone pages are frozen and still carry the strings below as written; this table is their record until the designer lets the phone take the rule.
+> **No long dash (2026-10-19, rev 338).** The designer: «оці тире видають текст написаний AI». `voice.md` › *The long dash* now bans the em dash in product copy. **90 strings on the desktop twins, the phone screens and the design system's specimens** (`docs/src/*`, `patterns/*`, `ui/kit.html` › Desktop) were rewritten with a full stop, a comma or a colon, e.g. *Secure national ID. Your data stays with the provider.* · *Small, up to 2 kg* · *Inspection job, open brief*. Since rev 340 the phone takes the rule too (the designer: «так телефон теж хай бере це правило»): every cell below that holds a screen's current string is rewritten; a *Before* cell is history and keeps its dash.
 
 ## Rewrite log — Batch 1: listings (base · empty · error · loading)
 
@@ -45,7 +45,7 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 
 | Screen | File | Zone | Type | Before | After |
 |---|---|---|---|---|---|
-| account | account.html | Mode | body | Operator — provide services | Operator — take jobs |
+| account | account.html | Mode | body | Operator — provide services | Operator: take jobs |
 | account | account-edit.html | Header / topbar | button | ‹ Back | ‹ Back to Account |
 | account | account-edit.html | Documents (Drone documents) | button | Upload document | Add document |
 | account | account-edit.html | Documents (Insurance) | button | Upload document | Add document |
@@ -85,7 +85,7 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | onboarding-client | onboarding-client.html | Slider · Slide 3 (proof) | heading | Proof every time | A photo or report, every time |
 | onboarding-client | onboarding-client.html | Slider · Slide 3 (proof) | body | Get a photo or a report the moment the job is done. | Get a photo or a report the moment it's done. |
 | onboarding-client | onboarding-client-empty.html | Explainer · one-card fallback | heading | The short version | How DRON works |
-| onboarding-client | onboarding-client-empty.html | Explainer · one-card fallback | body | A certified, insured operator does the job. You track it live and pay only online — nothing to manage. | A certified, insured operator does the work. You track it live and pay only online — nothing to manage. |
+| onboarding-client | onboarding-client-empty.html | Explainer · one-card fallback | body | A certified, insured operator does the job. You track it live and pay only online — nothing to manage. | A certified, insured operator does the work. You track it live and pay only online. Nothing to manage. |
 | onboarding-client | onboarding-client-empty.html | Action bar | button | Start ordering | Get started |
 | operator-dispute | operator-dispute.html | Client claim | body | Client reports | Client's issue |
 | operator-dispute | operator-dispute.html | Your response | field label | Reply to the client | Your response |
@@ -97,14 +97,14 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | operator-fee-terms | operator-fee-terms.html | Fee terms | field label | Minimum payout | Minimum withdrawal |
 | operator-listings | operator-listings.html | Status | state message | · receiving offers near Podil | · receiving jobs near Podil |
 | operator-listings | operator-listings.html | Counter | state message | 2 new offers · 1 active job · nearest first | 2 new jobs · 1 active job · nearest first |
-| operator-listings | operator-listings.html | Incoming offers | placeholder | Package delivery offer — open brief | Package delivery job — open brief |
-| operator-listings | operator-listings.html | Incoming offers | placeholder | Roof inspection offer — open brief | Inspection job — open brief |
+| operator-listings | operator-listings.html | Incoming offers | placeholder | Package delivery offer — open brief | Package delivery job, open brief |
+| operator-listings | operator-listings.html | Incoming offers | placeholder | Roof inspection offer — open brief | Inspection job, open brief |
 | operator-listings | operator-listings-empty.html | Status | state message | · no offers while offline | · no jobs while offline |
 | operator-listings | operator-listings-empty.html | Offers (empty state) | state message | No offers while you're offline | No jobs while you're offline |
 | operator-profile-setup | operator-profile-setup.html | Topbar | button | ‹ Back | ‹ Back to Verification |
 | operator-profile-setup | operator-profile-setup.html | Name & bio — Short bio | placeholder | Need help? Start from a template — 1–2 lines is enough. | 1–2 lines clients see. Your experience and the area you cover. |
 | operator-signup | operator-signup.html | Header / top bar | heading | Sign up | Sign in |
-| operator-signup | operator-signup.html | Sign up (identity) | body | DRON verifies every operator. Confirm who you are with Diia or BankID — then upload your licence and insurance. | DRON verifies every operator. Confirm who you are with Diia or BankID — then add your licence and insurance. |
+| operator-signup | operator-signup.html | Sign up (identity) | body | DRON verifies every operator. Confirm who you are with Diia or BankID — then upload your licence and insurance. | DRON verifies every operator. Confirm who you are with Diia or BankID, then add your licence and insurance. |
 | operator-signup | operator-signup-error.html | Header / top bar | heading | Sign up | Sign in |
 | operator-signup | operator-signup-error.html | Sign up (error) | state message | Diia declined the request or the details didn't match. You can try again, or get help if this keeps happening. | Diia declined the request or the details didn't match. You're not verified yet. Try again, or contact support if this keeps happening. |
 | operator-signup | operator-signup-error.html | Sign up (error) — action bar | button | Get help | Contact support |
@@ -140,21 +140,21 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | rate | rate.html | Review | field label | Share your review of this order | Your review — screen-reader only (designer, 2026-08-13: the compose card is one surface; the visible line comes off and the placeholder is the one sentence of help text) |
 | contact-support | contact-support.html | Message | field label | Your message | Your message — screen-reader only (designer, 2026-08-15: *remove “your message text”*; the visible line comes off and the placeholder carries the naming, the pattern `rate` took on 2026-08-13) |
 | order-setup | order-setup.html | Details form · Notes | field label | Notes for the operator | Notes for the operator — screen-reader only (designer, 2026-08-16: *забери цей текст*; the visible line comes off, the name stays on the control. Third compose card to take the `rate` pattern — and the first where the placeholder does **not** carry the naming, since *Floor, entrance code, what's inside…* is examples only. Open: whether the placeholder should name the field) |
-| ratings | ratings-empty.html | Overall (no ratings yet) | state message | You haven't been rated yet. Ratings build from your first jobs — the platform keeps auto-dispatching work to you until they do. | You haven't been rated yet. Ratings build from your first jobs — the platform keeps sending you jobs until they do. |
+| ratings | ratings-empty.html | Overall (no ratings yet) | state message | You haven't been rated yet. Ratings build from your first jobs — the platform keeps auto-dispatching work to you until they do. | You haven't been rated yet. Ratings build from your first jobs, and the platform keeps sending you jobs until they do. |
 | ratings | ratings-empty.html | Overall (no ratings yet) | button | See available jobs | Find jobs |
 | report-issue | report-issue.html | Topbar | button | ‹ Back | ‹ Back to Help |
-| report-issue | report-issue.html | Report form · Issue type | field label | Poor quality — result not as expected | Poor quality — not as expected |
+| report-issue | report-issue.html | Report form · Issue type | field label | Poor quality — result not as expected | Poor quality: not as expected |
 | report-issue | report-issue.html | Report form · What happened? | placeholder | Describe the problem — e.g. the roof photos were blurry and missed the north side. | Describe the issue — e.g. the roof photos were blurry and missed the north side. |
 | report-issue | report-issue-empty.html | Topbar | button | ‹ Back | ‹ Back to Help |
 | report-issue | report-issue-empty.html | Actionbar | button | Contact human support | Contact support |
 | report-issue | report-issue-loading.html | Topbar | button | ‹ Back | ‹ Back to Help |
 | resolution | resolution.html | Outcome | body | We reviewed your report and refunded this order — no questions asked. | We reviewed your report and refunded this order in full. |
 | resolution | resolution.html | Outcome | body | Refunded to Visa •••• 4921. Prefer a fresh attempt instead? Book a free re-do below. | Refunded to Visa •••• 4921. Or book this order again for free below. |
-| resolution | resolution.html | Next steps | button | Book a free re-do | Book again — free |
+| resolution | resolution.html | Next steps | button | Book a free re-do | Book again for free |
 | resolution | resolution.html | Next steps | button | Still not resolved? | Contact support |
 | result-upload | result-upload.html | Notes | placeholder | Handover notes, recipient name… | Handover notes, client name… |
 | result-upload | result-upload.html | Result photo | button | Add photo | **Add photo** — and the round trip is the record. 2026-08-16 the base frame took the delivery photograph, so the control's object changed and the word became **Replace photo**: `voice.md` A3's one attach verb — **Add …** — names attaching a file that is *not there yet*, and with the photo on screen the same word would have offered a second one. **2026-08-21 the designer took the photograph back off the base frame** (*«тут має бути загрузити фото, кнопка "Replace photo" не активна відповідно»*), so the tray is empty again and **Add …** is once more the right verb for it. **`Replace photo` does not go away with the picture** — it stays under the tray carrying `disabled`, and goes live the moment a file lands. `Replace` is still a new verb in the product and is still **open for her word**. |
-| result-upload | result-upload-error.html | Result photo (upload error) | state message | The result photo didn't upload — weak signal. Retry now, or queue it to upload automatically when you're back online. Payment is held until proof arrives. | The delivery photo didn't upload — weak signal. Try again, or queue it to upload automatically when you're back online. Payment is held until the photo uploads. |
+| result-upload | result-upload-error.html | Result photo (upload error) | state message | The result photo didn't upload — weak signal. Retry now, or queue it to upload automatically when you're back online. Payment is held until proof arrives. | The delivery photo didn't upload: weak signal. Try again, or queue it to upload automatically when you're back online. Payment is held until the photo uploads. |
 | result-upload | result-upload-error.html | Result photo (upload error) | button | Retry upload | Try again |
 | result-upload | result-upload-error.html | Action bar note | state message | Payment stays held until the proof photo uploads. | Payment stays held until the delivery photo uploads. |
 | result-upload | result-upload-loading.html | Uploading status | state message | Uploading result… | Uploading delivery photo… |
@@ -175,7 +175,7 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | switch-role | switch-role.html | Confirm / Cancel (actionbar) | button | Confirm & switch | Switch to Operator |
 | switch-role | switch-role.html | What happens (fact panel) | body | In-progress order · Kept — resume from Client / First time as Operator · Runs onboarding once / Switch back · Any time from Account | **cut from the build 2026-09-10 (rev 234)** — the designer, against the built block: *«delete this block for both roles operator and client»*. One file serves both directions (`_screens.md` S1, base only), so one deletion covers Client→Operator and Operator→Client alike. **Six strings retire and one fact is kept, not deleted**: *Switch back → Any time from Account* is what the `.dr-note` under it already says in a sentence — *Switching is always reversible from the same Account entry.* — and that note stays. **Two facts leave the product entirely and are recorded here rather than lost quietly**: that an in-progress order survives the switch, and that the first switch runs that side's onboarding once. Both still live in `flows.md` and in the page's `.meta` panel; neither is said to the user any more. `voice.md` P5 is not engaged (no trouble state), P2 is: the panel was proof, and the screen now proves less. Open for her word. |
 | switch-role | switch-role.html | What happens (note) | body | Switching is always reversible from the same Account entry. | **cut from the build 2026-09-10 (rev 237)** — the designer, against the note whose break she had set that same morning: *«Remove this and all the other content aligne by center of the page»*. **The words read as a deletion of the whole centred block, so she was asked before anything was touched** — the photo mark, the `Switch to Operator?` heading and the lead deleted with it, or kept and left-aligned, or the note alone. She chose **the note alone**: the `h1` and the lead stay exactly as built, centred, and only this string leaves. **The zone leaves with it** — `WHAT HAPPENS ▸ NOTHING IS LOST` had nothing left to head once rev 234 took the fact panel and this took the note, so `main` is one zone (`SWITCH`) and the action bar. **Third fact out of the product in one day**: that an in-progress order survives the switch, that the first switch runs onboarding once, and now that the switch is reversible at all. All three still live in `flows.md` and in the page's `.meta` panel; none of them is said to the user. `voice.md` P2 (*show the proof*) is what is being spent down — the confirm now proves only what the lead says. **The `<br>` departure of rev 236 is retired with the line it was written for** (`_conventions.md` §95, `DESIGN.md`), recorded so it is not re-proposed as a new idea. |
-| time-slot | time-slot-empty.html | Slots (empty state) | state message | Every operator is booked that day. Try another date — Fri 4 and Sat 5 still have openings. | Every operator is booked that day. Pick another day — Fri 4 and Sat 5 still have openings. |
+| time-slot | time-slot-empty.html | Slots (empty state) | state message | Every operator is booked that day. Try another date — Fri 4 and Sat 5 still have openings. | Every operator is booked that day. Pick another day: Fri 4 and Sat 5 still have openings. |
 | tracking | tracking.html | Actionbar (footer) | button | Delivery details | View details |
 | tracking | tracking-error.html | Live map / tracking lost | state message | We've lost the live signal from the operator's device. The job is still active. | We've lost the live signal from the operator's device. Your order is still active. |
 | tracking | tracking-error.html | Live map / tracking lost | button | Refresh | Try again |
@@ -186,7 +186,7 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | wallet | wallet-empty.html | Keep earning / empty | state message | You need ₴500 to cash out. Take one more job to reach the payout minimum. | You need ₴500 to withdraw. Take one more job to reach the minimum. |
 | wallet | wallet-empty.html | Keep earning / empty | placeholder | KEEP GOING | EMPTY |
 | welcome | welcome.html | Slider · slide 3 (drone facts) | body | It flies a set route, keeps its distance, and only records what your job needs. Brief low noise on take-off and landing; no filming of your neighbours. | It flies a set route, keeps its distance, and only records what your order needs. Brief low noise on take-off and landing; no filming of your neighbours. |
-| welcome | welcome-empty.html | One-card fallback (15-second version) | body | Order a drone service — a certified, insured operator does the flying. You see their name, photo and live position the moment you pay, and get proof when it's done. The drone flies a set route and only records what your job needs. | Order a drone service — a certified, insured operator does the flying. You see their name, photo and live position the moment you pay, and get a photo or report when it's done. The drone flies a set route and only records what your order needs. |
+| welcome | welcome-empty.html | One-card fallback (15-second version) | body | Order a drone service — a certified, insured operator does the flying. You see their name, photo and live position the moment you pay, and get proof when it's done. The drone flies a set route and only records what your job needs. | Order a drone service and a certified, insured operator does the flying. You see their name, photo and live position the moment you pay, and get a photo or report when it's done. The drone flies a set route and only records what your order needs. |
 | withdraw | withdraw.html | Withdrawal method | field label | Payout method | Withdrawal method |
 | withdraw | withdraw.html | Withdrawal method | field label | aria-label="Payout method" | aria-label="Withdrawal method" |
 | withdraw | withdraw-error.html | Payout error | state message | Payout didn't go through | Withdrawal didn't go through |
@@ -357,10 +357,10 @@ _All rows below were the Step-01 finding; **all resolved** in the voice rewrite 
 | Screen | Zone | String |
 |---|---|---|
 | job-brief | Notes | Leave with the concierge, entrance code 4417. |
-| job-brief-inspection · job-offer-inspection | Notes | Sunflowers, 12 ha. Access by the dirt road from the south. The east half dried out, and cattle got into the north edge last week — the damage needs to be on record. |
-| operator-dispute | Client claim | “The photos are blurry — I can't use them for the listing.” |
+| job-brief-inspection · job-offer-inspection | Notes | Sunflowers, 12 ha. Access by the dirt road from the south. The east half dried out, and cattle got into the north edge last week. The damage needs to be on record. |
+| operator-dispute | Client claim | “The photos are blurry. I can't use them for the listing.” |
 | operator-profile-setup | Profile photo | Certified operator since 2023. Fast, careful deliveries across Kyiv… |
-| ratings | Recent reviews | “Fast and careful — package arrived sealed and on time.” |
+| ratings | Recent reviews | “Fast and careful. Package arrived sealed and on time.” |
 | ratings | Recent reviews | “Good shots overall, a couple came out a bit dark.” |
 | ratings | Recent reviews | “Clear field footage, showed exactly where the cattle got in.” |
 
@@ -784,8 +784,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | account | Profile | Edit profile | Button | rev 182 — the head ends with a worded action, so this is a **visible label** here, not the `aria-label` the icon-only disc carried. Kept distinct from `Change profile photo` above it so a screen reader announces two objects and not one word twice (`WCAG 2.4.6`). Same string as `operator-account`. |
 | account | Mode | Mode | Field label | rev 111 — the picker became a settings row, so the row gains a label and the drawer takes `Mode` as its title |
 | account | Mode | Client | Field value | rev 111 — replaces `Client mode`, which said the noun twice once the row was labelled |
-| account | Mode | Client — order services | Body |  |
-| account | Mode | Operator — take jobs | Body |  |
+| account | Mode | Client: order services | Body |  |
+| account | Mode | Operator: take jobs | Body |  |
 | account | Mode | switch | Body |  |
 | account | Account | Phone | Body | rev 182 — the row the phone number moved into from the profile card. `Phone` is the word `account-edit` already labels the same field with, so one concept keeps one word (`voice.md` vocabulary). |
 | account | Account | Payment method | Body |  |
@@ -848,7 +848,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | chat-client | Thread | Today | Body | the day mark over the group, the same one word as on `chat` |
 | chat-client | Thread | Olena H.: · You: | Body | SR-ONLY, one per message — **and the pair is swapped against `chat`**, which is the whole point: *You* is the operator here. Which side said it is carried by the edge the bubble is anchored to, so each row names its speaker for assistive tech (`WCAG 1.4.1`) |
 | chat-client | Thread | Your parcel is picked up from Podil, 21. On the way to Osokorky, 14. | Body | DATA — USER content, and **`chat`'s own message read from the other end**: the operator sent it, so it is `--out` here and `--in` there. Not a second copy of the conversation — the same five strings, one thread, two frames |
-| chat-client | Thread | The courtyard gate is locked — the code is 4471. | Body | DATA — USER content. **The sentence that justifies this frame as well as the client's:** it is the client's answer, and the operator standing at the gate is the person who needed it. `RJ-O2` — execute without improvising |
+| chat-client | Thread | The courtyard gate is locked. The code is 4471. | Body | DATA — USER content. **The sentence that justifies this frame as well as the client's:** it is the client's answer, and the operator standing at the gate is the person who needed it. `RJ-O2` — execute without improvising |
 | chat-client | Thread | Got it. I'll land at the entrance and send the delivery photo. | Body | DATA — USER content. *Delivery photo* is `voice.md` **O5**'s word for this deliverable, and the same act the checklist behind this screen has open as a step |
 | chat-client | Thread | Which entrance? | Body | DATA — USER content |
 | chat-client | Thread | The one facing the playground. About 6 minutes out. | Body | DATA — USER content |
@@ -859,7 +859,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | chat | Thread | Today | Body | the day mark over the group. One word, not *Today, 16 August* — the times below it are all within the hour of a live job, and the longer form is the `wallet` list's rung, where entries span days |
 | chat | Thread | Andriy M.: · You: | Body | SR-ONLY, one per message. Which side said it is carried **by the edge the bubble is anchored to**, and the two grounds are 1.25:1 apart — no eye separates them and nothing announces an alignment, so each row names its speaker for assistive tech (`WCAG 1.4.1`, `1.3.1`). Written with the operator's own name rather than *Operator*, because the bar above already introduced them by it |
 | chat | Thread | Your parcel is picked up from Podil, 21. On the way to Osokorky, 14. | Body | DATA — USER content, one side of a real conversation, and the addresses are `order-review`'s own (*Podil, 21* → *Osokorky, 14*). Conversation is not system copy, but it is still held to `voice.md`'s floor: no exclamation marks, no emoji, no cheer. The operator states the fact and the next move |
-| chat | Thread | The courtyard gate is locked — the code is 4471. | Body | DATA — USER content. **This is the sentence that justifies the screen:** a gate code cannot be collected at order time and cannot wait for `EJ-2`, and it is the Bolt in-ride message verbatim — the thing `sitemap.md §4`'s deleted pre-booking chat was never for |
+| chat | Thread | The courtyard gate is locked. The code is 4471. | Body | DATA — USER content. **This is the sentence that justifies the screen:** a gate code cannot be collected at order time and cannot wait for `EJ-2`, and it is the Bolt in-ride message verbatim — the thing `sitemap.md §4`'s deleted pre-booking chat was never for |
 | chat | Thread | Got it. I'll land at the entrance and send the delivery photo. | Body | DATA — USER content. *Delivery photo* is `voice.md` **O5**'s dictionary word for the deliverable, so the operator's own sentence names it the same way the product does |
 | chat | Thread | Which entrance? | Body | DATA — USER content |
 | chat | Thread | The one facing the playground. About 6 minutes out. | Body | DATA — USER content. *About 6 minutes* is the same figure `tracking`'s ETA row shows (*~6 min*) — one fact, one number, on both surfaces |
@@ -933,10 +933,10 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | inspection-report | Findings | Plants withered across ~6 ha, soil dry and cracked. | Body |  |
 | inspection-report | Findings | Severity · High | Body |  |
 | inspection-report | Findings | Livestock · north edge | Heading |  |
-| inspection-report | Findings | Cows and horses got in — ~1.5 ha trampled flat. | Body | DATA |
+| inspection-report | Findings | Cows and horses got in: ~1.5 ha trampled flat. | Body | DATA |
 | inspection-report | Findings | Severity · Medium | Body |  |
 | inspection-report | Findings | Sunflowers · west half | Heading |  |
-| inspection-report | Findings | In full bloom — no action needed. | Body |  |
+| inspection-report | Findings | In full bloom. No action needed. | Body |  |
 | inspection-report | Findings | Severity · None | Body |  |
 | inspection-report | Photo set | INSPECTION IMAGE | Body | WF-PH |
 | inspection-report | Photo set | INSPECTION IMAGE | Body | WF-PH |
@@ -953,8 +953,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | job-brief-error | — | ‹ Jobs | Button |  |
 | job-brief-error | — | Job brief | Heading |  |
 | job-brief-error | Brief | GROUNDED | State message | WF-PH |
-| job-brief-error | Brief | Stood down — airspace restricted | State message |  |
-| job-brief-error | Brief | Flights are grounded at this location right now (airspace / weather). The job was re-dispatched and the client refunded — no action needed. | State message |  |
+| job-brief-error | Brief | Stood down: airspace restricted | State message |  |
+| job-brief-error | Brief | Flights are grounded at this location right now (airspace / weather). The job was re-dispatched and the client refunded. No action needed. | State message |  |
 | job-brief-error | Brief | Back to Jobs | Button |  |
 | job-brief-error | Brief | No penalty. A stand-down isn't counted against you. | Body |  |
 | job-brief | — | ‹ Jobs | Button |  |
@@ -1151,7 +1151,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-notifications-empty | Notifications | No notifications yet | Title | new 2026-08-31 — the client's title, unchanged: the state is the same state and inventing a second phrasing would break A8 |
 | operator-notifications-empty | Notifications | Nothing has been sent to you yet. Job offers, payouts and ratings land here. | Body | new 2026-08-31 — the second sentence changes and the first does not, which is the same reading rev 90 took on the two *Notify me* toasts: same act, different object. It names the three things that will arrive, in his words — job offers (`OE-6`), payouts (`RJ-O3`), ratings (`EJ-3`) |
 | operator-notifications-empty | Notifications | Find jobs | Button | 2026-08-31 — **not a new string**: `wallet-empty`'s own exit, reused. Same operator, same door |
-| onboarding-client-empty | Explainer | A certified, insured operator does the work. You track it live and pay only online — nothing to manage. | State message |  |
+| onboarding-client-empty | Explainer | A certified, insured operator does the work. You track it live and pay only online. Nothing to manage. | State message |  |
 | onboarding-client-empty | Explainer | Get started | Button |  |
 | onboarding-client | — | VERIFIED | Body | WF-PH |
 | onboarding-client | — | A verified operator | Body |  |
@@ -1166,7 +1166,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | onboarding-client | — | Get started | Button |  |
 | onboarding-operator | — | JOBS | Body | WF-PH |
 | onboarding-operator | — | Jobs come to you | Body |  |
-| onboarding-operator | — | Auto-dispatch sends pre-qualified jobs. Accept or decline in seconds — no bidding. | Body |  |
+| onboarding-operator | — | Auto-dispatch sends pre-qualified jobs. Accept or decline in seconds, no bidding. | Body |  |
 | onboarding-operator | — | STEPS | Body | WF-PH |
 | onboarding-operator | — | Follow the checklist | Body |  |
 | onboarding-operator | — | Every job has a step-by-step checklist so nothing is missed on site. | Body |  |
@@ -1184,9 +1184,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-account | Profile | CAA licence | Body |  |
 | operator-account | Profile | Edit profile | Button |  |
 | operator-account | Mode | Operator mode | Body |  |
-| operator-account | Mode | Operator — take jobs | Body |  |
+| operator-account | Mode | Operator: take jobs | Body |  |
 | operator-account | Mode | current | Body |  |
-| operator-account | Mode | Client — order services | Body |  |
+| operator-account | Mode | Client: order services | Body |  |
 | operator-account | Mode | switch | Body |  |
 | operator-account | Account | Withdrawal method | Body |  |
 | operator-account | Account | Card •••• 4921 | Body | DATA |
@@ -1228,7 +1228,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-dispute | Job | Client: Olena H. · closed 22 min ago | Body | DATA |
 | operator-dispute | Job | · disputed | Body |  |
 | operator-dispute | Client claim | Client's issue | Body |  |
-| operator-dispute | Client claim | “The photos are blurry — I can't use them for the listing.” | Body | USER |
+| operator-dispute | Client claim | “The photos are blurry. I can't use them for the listing.” | Body | USER |
 | operator-dispute | Client claim | Payment held | Body |  |
 | operator-dispute | Your response | Your response | Field label |  |
 | operator-dispute | Your response | Explain what was delivered, weather, capture settings… | Field placeholder |  |
@@ -1351,11 +1351,11 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-signup | — | ‹ Operator terms | Button |  |
 | operator-signup | — | Sign in | Heading |  |
 | operator-signup | Sign up | Confirm your identity | Body |  |
-| operator-signup | Sign up | DRON verifies every operator. Confirm who you are with Diia or BankID — then add your licence and insurance. | Body |  |
+| operator-signup | Sign up | DRON verifies every operator. Confirm who you are with Diia or BankID, then add your licence and insurance. | Body |  |
 | operator-signup | Sign up | Diia and BankID confirm who you are. DRON never sees your password. | Body |  |
 | operator-signup | Sign up | Continue with Diia | Button |  |
 | operator-signup | Sign up | Continue with BankID | Button |  |
-| operator-signup | Sign up | Secure national ID — your data stays with the provider. | Body |  |
+| operator-signup | Sign up | Secure national ID. Your data stays with the provider. | Body |  |
 | operator-verification-error | — | ‹ Sign in | Button |  |
 | operator-verification-error | — | Verification | Heading |  |
 | operator-verification-error | Documents | DOCS | State message | WF-PH |
@@ -1367,7 +1367,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | operator-verification-loading | — | Verification | Heading |  |
 | operator-verification-loading | Documents | DOCS | State message | WF-PH |
 | operator-verification-loading | Documents | Documents submitted | State message |  |
-| operator-verification-loading | Documents | Under review — ETA 2–3 business days | State message |  |
+| operator-verification-loading | Documents | Under review, ETA 2–3 business days | State message |  |
 | operator-verification-loading | Documents | We'll notify you when it's approved. | State message |  |
 | operator-verification-loading | Documents | Continue (approved) | Button |  |
 | operator-verification-loading | Documents | Back to Jobs | Button |  |
@@ -1461,7 +1461,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-details-inspection | Summary | Location · Structure · Delivered · Operator · Paid | Field labels | **Location**, not *From ▸ To* — an inspection has one stop, and the card it opens from already shows a single `Location` row. **Structure** is the inspection's analogue of `Parcel`: the thing the order was about. **Delivered** is the same word the delivery record uses, and for the same reason — `voice.md` keeps one word per concept, and the concept is *the deliverable landed*, not *a parcel landed*; all three cards already carry `Delivered` as the accessible name of their settled check |
 | order-details-inspection | Summary | Hlevakha, field 3 · Field · sunflowers · 2 Jun · 09:15 · Andriy M. | Values | DATA — every value is read off what is already built: the address and date/time from the `order-history` card, and `Roof · gutters · chimney` from the three findings `inspection-report` actually carries (north slope, east gutter run, chimney flashing), so the record names the same scope the report documents |
 | order-details-inspection | Inspection report | Inspection report | Section name | `voice.md` **O5** — the per-service name of what the operator hands over. Not *proof*, not *result* |
-| order-details-inspection | Inspection report | A sunflower field split in two — half in full bloom, half dried out — the cover of this order's report. | Alt text | the same frame `inspection-report` opens with, so the record and the report agree on what the job found; the alt is that page's wording with *report* pointed back at this order |
+| order-details-inspection | Inspection report | A sunflower field split in two, half in full bloom and half dried out: the cover of this order's report. | Alt text | the same frame `inspection-report` opens with, so the record and the report agree on what the job found; the alt is that page's wording with *report* pointed back at this order |
 | order-details-inspection | Summary | Paid | Field label | the one string, no breakdown — rev 132's rule holds for every record file, and from rev 136 so does its place: the summary card's last row, not a `Payment` zone |
 | order-details-inspection | Summary | ₴650 | Values | DATA — the sum on the card that opens it |
 | order-details-inspection | Action bar | Book again · Delete order | Buttons | identical to `order-details`, including the grey secondary rung (rev 131) |
@@ -1598,32 +1598,32 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-setup-empty | Availability | Notify me when available | Button |  |
 | order-setup-empty | Availability | Saved. We'll tell you when an operator is free. | Toast | raised by `Notify me when available`; `flows.md`'s own word at this terminal node |
 | order-setup-empty | Availability | Pick a later time | Button |  |
-| order-setup-empty | Availability | We'll hold your details — no need to re-enter them. | Body |  |
+| order-setup-empty | Availability | We'll hold your details, so there's no need to re-enter them. | Body |  |
 | order-setup-error | — | ‹ Order | Button |  |
 | order-setup-error | — | Package delivery | Heading |  |
 | order-setup-error | Details form | Pickup address: | Field label | colon added 2026-08-03 |
-| order-setup-error | Details form | Podil — Naberezhno-Khreshchatytska St, 21 | Field value | DATA |
+| order-setup-error | Details form | Podil, Naberezhno-Khreshchatytska St, 21 | Field value | DATA |
 | order-setup-error | Details form | Drop-off address: | Field label | colon added 2026-08-03 |
-| order-setup-error | Details form | Irpin — Sadova St, 3 | Field value | DATA |
+| order-setup-error | Details form | Irpin, Sadova St, 3 | Field value | DATA |
 | order-setup-error | Details form | Outside the service zone. | State message |  |
-| order-setup-error | Details form | DRON delivers within Kyiv city — enter an address in the city. | State message |  |
+| order-setup-error | Details form | DRON delivers within Kyiv city. Enter an address in the city. | State message |  |
 | order-setup-error | Details form | Parcel size | Field label |  |
-| order-setup-error | Details form | Small — up to 2 kg | State message | DATA · the row's value and the current option |
-| order-setup-error | Details form | Medium — up to 5 kg | Body | picker option, new 2026-08-16 (rev 111) |
-| order-setup-error | Details form | Large — up to 10 kg | Body | picker option, new 2026-08-16 (rev 111) |
+| order-setup-error | Details form | Small, up to 2 kg | State message | DATA · the row's value and the current option |
+| order-setup-error | Details form | Medium, up to 5 kg | Body | picker option, new 2026-08-16 (rev 111) |
+| order-setup-error | Details form | Large, up to 10 kg | Body | picker option, new 2026-08-16 (rev 111) |
 | order-setup-error | Details form | Cancel | Button | the drawer's dismissal (rev 111) |
 | order-setup-error | Details form | Edit drop-off address | Button |  |
 | order-setup-error | Details form | Coverage: Kyiv (UA). More cities are rolling out. | Body |  |
 | order-setup | — | ‹ Order | Button |  |
 | order-setup | — | Package delivery | Heading |  |
 | order-setup | Details form | Pickup address: | Field label | colon added 2026-08-03 |
-| order-setup | Details form | Podil — Naberezhno-Khreshchatytska St, 21 | Field value | DATA |
+| order-setup | Details form | Podil, Naberezhno-Khreshchatytska St, 21 | Field value | DATA |
 | order-setup | Details form | Drop-off address: | Field label | colon added 2026-08-03 |
-| order-setup | Details form | Osokorky — Dniprovska Naberezhna, 14 | Field value | DATA |
+| order-setup | Details form | Osokorky, Dniprovska Naberezhna, 14 | Field value | DATA |
 | order-setup | Details form | Parcel size | Field label |  |
-| order-setup | Details form | Small — up to 2 kg | Body | DATA · the row's value and the current option |
-| order-setup | Details form | Medium — up to 5 kg | Body | picker option, **new 2026-08-16 (rev 111)** — the product had only ever written the smallest size, because the picker that would have shown its siblings did not open |
-| order-setup | Details form | Large — up to 10 kg | Body | picker option, **new 2026-08-16 (rev 111)** — same |
+| order-setup | Details form | Small, up to 2 kg | Body | DATA · the row's value and the current option |
+| order-setup | Details form | Medium, up to 5 kg | Body | picker option, **new 2026-08-16 (rev 111)** — the product had only ever written the smallest size, because the picker that would have shown its siblings did not open |
+| order-setup | Details form | Large, up to 10 kg | Body | picker option, **new 2026-08-16 (rev 111)** — same |
 | order-setup | Details form | Cancel | Button | the drawer's dismissal (rev 111) — `HIG · Action sheets` asks for the cancel by name |
 | order-setup | Details form | Notes for the operator | Field label | SR-ONLY — spoken, not drawn; visually the field shows the placeholder alone (designer, 2026-08-16) |
 | order-setup | Details form | Floor, entrance code, what's inside… | Field placeholder |  |
@@ -1649,9 +1649,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | order-setup-inspection | — | Inspection | Heading | the listings card's name for the service. **Not *Roof inspection***, which is what the record is headed: the record names the job that was done, the form is opened before the client has said which structure |
 | order-setup-inspection | Details form | enter location, what to inspect | Zone label | two things asked, so two named |
 | order-setup-inspection | Details form | Location: | Field label | one place, as on the aerial file — a building does not travel |
-| order-setup-inspection | Details form | Hlevakha — field 3, by the Kyiv road | Field value | DATA — **the inspection record's address written out.** The record's card shortens it to *Osokorky, 14* because a summary row has one line; a field the client is about to edit shows the whole address, exactly as the delivery form's two fields do. Same place, two renderings |
+| order-setup-inspection | Details form | Hlevakha, field 3, by the Kyiv road | Field value | DATA — **the inspection record's address written out.** The record's card shortens it to *Osokorky, 14* because a summary row has one line; a field the client is about to edit shows the whole address, exactly as the delivery form's two fields do. Same place, two renderings |
 | order-setup-inspection | Details form | Subject | Field label | **the record's own word**, this service's analogue of `Parcel` / `Shoot` |
-| order-setup-inspection | Details form | What the operator should inspect — pick as many as apply | Zone sub | **states that the group takes more than one answer, before the tap** (`voice.md` **P3**'s discipline: say the rule as a fact, not as an error afterwards). `WCAG 3.3.2 Labels or Instructions` |
+| order-setup-inspection | Details form | What the operator should inspect: pick as many as apply | Zone sub | **states that the group takes more than one answer, before the tap** (`voice.md` **P3**'s discipline: say the rule as a fact, not as an error afterwards). `WCAG 3.3.2 Labels or Instructions` |
 | order-setup-inspection | Details form | Field · Roof · Facade · Gutters · Chimney | Checkbox labels | **2026-10-10: Field is added first and is the one ticked — the designer's priority inside the Inspection category; Roof stays as an option.** Before that: **a group, not a picker — read off the built record**, whose `Structure` row says *Roof · gutters · chimney*: three things, so the control that produces it takes more than one. **The four options are the ones the product has already named and no fifth is invented** — the listings card offers *Roofs, facades, hard-to-reach structures*, the record adds gutters and chimney. Roof, Gutters and Chimney are ticked, which is exactly the record this screen books again |
 | order-setup-inspection | Details form | Field size, access road, what you want checked… | Field placeholder | examples only, as on the other two files |
 | order-setup-inspection | Details form | Notes for the operator | Field label | SR-ONLY, as on the delivery file |
@@ -1691,7 +1691,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | ratings-empty | — | Ratings | Heading |  |
 | ratings-empty | Overall | NEW | State message | WF-PH |
 | ratings-empty | Overall | No ratings yet | State message |  |
-| ratings-empty | Overall | You haven't been rated yet. Ratings build from your first jobs — the platform keeps sending you jobs until they do. | State message |  |
+| ratings-empty | Overall | You haven't been rated yet. Ratings build from your first jobs, and the platform keeps sending you jobs until they do. | State message |  |
 | ratings-empty | Overall | Find jobs | Button |  |
 | ratings-empty | Overall | Jobs | Button |  |
 | ratings-empty | Overall | Earnings | Button |  |
@@ -1703,7 +1703,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | ratings | Per service | Photo & video | Body |  |
 | ratings | Per service | Inspection | Body |  |
 | ratings | Recent reviews | Olena H. | Heading | DATA |
-| ratings | Recent reviews | “Fast and careful — package arrived sealed and on time.” | Body | USER |
+| ratings | Recent reviews | “Fast and careful. Package arrived sealed and on time.” | Body | USER |
 | ratings | Recent reviews | Package delivery | Body |  |
 | ratings | Recent reviews | Today | Body |  |
 | ratings | Recent reviews | Andriy P. | Heading | DATA |
@@ -1721,25 +1721,25 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | report-issue-empty | — | ‹ Help | Button |  |
 | report-issue-empty | — | Report an issue | Heading |  |
 | report-issue-empty | Report status | No evidence attached | State message |  |
-| report-issue-empty | Report status | Without a photo or note this is a weaker claim, so it goes to manual review only — which takes longer. Adding evidence gets you a faster decision. | State message |  |
+| report-issue-empty | Report status | Without a photo or note this is a weaker claim, so it goes to manual review only, which takes longer. Adding evidence gets you a faster decision. | State message |  |
 | report-issue-empty | Report status | Contact support | Button |  |
 | report-issue-empty | Report status | Add evidence | Button |  |
 | report-issue-loading | — | ‹ Help | Button |  |
 | report-issue-loading | — | Report an issue | Heading |  |
 | report-issue-loading | Review status | Issue under review… | State message |  |
 | report-issue-loading | Review status | We're checking your report for order #DR-4821. This usually takes a few minutes. | State message |  |
-| report-issue-loading | Review status | You can leave this screen — we'll notify you when the outcome is ready. | State message |  |
+| report-issue-loading | Review status | You can leave this screen. We'll notify you when the outcome is ready. | State message |  |
 | report-issue-loading | Review status | View resolution | Button |  |
 | report-issue | — | ‹ Help | Button |  |
 | report-issue | — | Report an issue | Heading |  |
 | report-issue | Report form | Issue type | Field label |  |
-| report-issue | Report form | Poor quality — not as expected | Body |  |
+| report-issue | Report form | Poor quality: not as expected | Body |  |
 | report-issue | Report form | Damaged item | Body | picker option (rev 111) — was a name inside the `Also:` hint, now an option in the drawer |
 | report-issue | Report form | Wrong location | Body | picker option (rev 111) — same |
 | report-issue | Report form | Cancel | Button | the drawer's dismissal (rev 111) |
 | ~~report-issue~~ | ~~Report form~~ | ~~Also: Damaged item · Wrong location~~ | ~~Body~~ | **RETIRED 2026-08-16 (rev 111).** It existed because the picker did not open — the only place the other two types could be shown. A caption that lists a control's own options is a caption for a control that does not work |
 | report-issue | Report form | What happened? | Field label |  |
-| report-issue | Report form | Describe the issue — e.g. the field photos were blurry and missed the east half. | Field placeholder |  |
+| report-issue | Report form | Describe the issue, e.g. the field photos were blurry and missed the east half. | Field placeholder |  |
 | report-issue | Report form | ADD PHOTO / NOTE | Body | WF-PH |
 | report-issue | Report form | A photo makes your claim stronger. Order #DR-4821. | Body |  |
 | report-issue | Report form | Submit report | Button |  |
@@ -1759,13 +1759,13 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | resolution | Outcome | To card in 1–3 days | Body |  |
 | resolution | Outcome | Refunded to Visa •••• 4921. Or book this order again for free below. | Body | DATA |
 | resolution | Outcome | Done | Button |  |
-| resolution | Outcome | Book again — free | Button |  |
+| resolution | Outcome | Book again for free | Button |  |
 | resolution | Outcome | Contact support | Button |  |
 | result-upload-error | — | ‹ Checklist | Button |  |
 | result-upload-error | — | Close job | Heading |  |
 | result-upload-error | Result photo | UPLOAD | State message | WF-PH |
 | result-upload-error | Result photo | Upload failed | State message |  |
-| result-upload-error | Result photo | The delivery photo didn't upload — weak signal. Try again, or queue it to upload automatically when you're back online. Payment is held until the photo uploads. | State message |  |
+| result-upload-error | Result photo | The delivery photo didn't upload: weak signal. Try again, or queue it to upload automatically when you're back online. Payment is held until the photo uploads. | State message |  |
 | result-upload-error | Result photo | Try again | Button |  |
 | result-upload-error | Result photo | Queue offline | Button |  |
 | result-upload-error | Result photo | Payment stays held until the delivery photo uploads. | Body |  |
@@ -1776,7 +1776,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | result-upload-loading | Result photo | Sending the delivery photo. Keep the app open. | State message | `role="status"` **inside** the tray, under the upload glyph — the slot *Add photo* holds on the base frame (the designer, 2026-08-24: *«write this text under the loading upload icon»*). Re-homed from the takeover block that left 2026-08-21, so `WCAG 4.1.3` survives both moves; the `aria-hidden` came off the tray onto the glyph, since a live region inside an `aria-hidden` container is never announced. **The break is at the full stop, not where the box runs out (2026-08-24: *«речення Keep the app open make in the second row»*)** — a `<br>` after *photo.*, so line one says what is happening and line two says what you do about it. The line already ran to two (276.63 × 39.16 at 19.6 of leading) and still does, so no height moves; the string is unchanged and is still inventoried here once. `WCAG 1.4.10` / `1.4.12` are not engaged — a `<br>` ends a line without stopping the one before it from wrapping again at 200% text. `--slate` on `--media`, **5.51:1** at 14px |
 | result-upload-loading | Result photo | Replace photo | Button | carries `disabled`, exactly as on the base frame — nothing under the thumb moves between the two states |
 | result-upload-loading | Notes | Handover notes, client name… | Field placeholder | the base placeholder, unchanged |
-| result-upload-loading | Action bar note | Payment is held until the client confirms — auto-confirms after 2h. | Body | **moved and re-faced 2026-08-24** — stood at the foot of `.dr-main` as `.dr-hint`, SF Mono 11px, left, after Notes. Two faults. **The face:** `.dr-hint` is the kit's loading voice and `kit.css:699` says why — *"mono, because it names structure that is still arriving"* — while this sentence is true before the upload, during it and after it. Its class is `.dr-note`, the kit's *"explanatory caption under a block"* (`kit.css:745`), which is what 40 pages spend on a standing condition, `result-upload-error` included, where the same term already reads *Payment stays held until the delivery photo uploads.* **The place:** the term is a condition of the submission, and `HIG` puts a term that takes effect on tap with the control that carries it — the shape `account-photo` already builds, `.dr-note` first in `.dr-actionbar` with the button `aria-describedby` it. That also closes `WCAG 1.3.1`: the sentence had no programmatic tie to anything. Contrast unchanged at **6.62:1** (`--slate` on `--page`, `WCAG 1.4.3` ✓); size 11 → 12, off HIG's 11pt floor; leading 1.4 → 1.5. String unchanged |
+| result-upload-loading | Action bar note | Payment is held until the client confirms. It auto-confirms after 2h. | Body | **moved and re-faced 2026-08-24** — stood at the foot of `.dr-main` as `.dr-hint`, SF Mono 11px, left, after Notes. Two faults. **The face:** `.dr-hint` is the kit's loading voice and `kit.css:699` says why — *"mono, because it names structure that is still arriving"* — while this sentence is true before the upload, during it and after it. Its class is `.dr-note`, the kit's *"explanatory caption under a block"* (`kit.css:745`), which is what 40 pages spend on a standing condition, `result-upload-error` included, where the same term already reads *Payment stays held until the delivery photo uploads.* **The place:** the term is a condition of the submission, and `HIG` puts a term that takes effect on tap with the control that carries it — the shape `account-photo` already builds, `.dr-note` first in `.dr-actionbar` with the button `aria-describedby` it. That also closes `WCAG 1.3.1`: the sentence had no programmatic tie to anything. Contrast unchanged at **6.62:1** (`--slate` on `--page`, `WCAG 1.4.3` ✓); size 11 → 12, off HIG's 11pt floor; leading 1.4 → 1.5. String unchanged |
 | result-upload-loading | — | Uploading… | Button |  |
 | result-upload | — | ‹ Checklist | Button |  |
 | result-upload | — | Close job | Heading |  |
@@ -1799,7 +1799,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | share-empty | — | Share DRON | Heading |  |
 | share-empty | Invite | NOT SENT | State message | WF-PH |
 | share-empty | Invite | Invite not sent yet | State message |  |
-| share-empty | Invite | Your link is ready — dron.app/r/anna-k4. Pick a channel to send it, and you both get ₴100 off the next order. | State message | DATA |
+| share-empty | Invite | Your link is ready: dron.app/r/anna-k4. Pick a channel to send it, and you both get ₴100 off the next order. | State message | DATA |
 | share-empty | Invite | Share again | Button |  |
 | share-empty | Invite | Maybe later | Button |  |
 | share-empty | Invite | Share again | Button |  |
@@ -1807,7 +1807,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | share | — | Share DRON | Heading |  |
 | share | — | SHARE | Body | WF-PH |
 | share | — | Invite a friend | Body |  |
-| share | — | Send your link — you both get ₴100 off the next order. | Body | DATA |
+| share | — | Send your link and you both get ₴100 off the next order. | Body | DATA |
 | share | Your link | Referral link | Field label |  |
 | share | Your link | dron.app/r/anna-k4 | Body | DATA |
 | share | Your link | COPY | Body | WF-PH |
@@ -1829,7 +1829,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | signin-loading | Sign in | Continue | Button |  |
 | signin-loading | Sign in | Cancel | Button |  |
 | signin | Sign in | Sign in to DRON | Body |  |
-| signin | Sign in | One verification lets you order drone services — or take jobs as a certified operator. | Body |  |
+| signin | Sign in | One verification lets you order drone services or take jobs as a certified operator. | Body |  |
 | signin | Sign in | Diia and BankID confirm who you are. DRON never sees your password. | Body |  |
 | signin | Sign in | Continue with Diia | Button |  |
 | signin | Sign in | Continue with BankID | Button |  |
@@ -1850,7 +1850,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | switch-role | — | Switch role | Heading |  |
 | switch-role | Switch | SWITCH | Body | WF-PH |
 | switch-role | Switch | Switch to Operator? | Heading |  |
-| switch-role | Switch | You're in Client mode. Switching shows the Operator app — jobs, earnings and ratings. Your Diia identity stays the same. | Body |  |
+| switch-role | Switch | You're in Client mode. Switching shows the Operator app: jobs, earnings and ratings. Your Diia identity stays the same. | Body |  |
 | switch-role | Confirm / Cancel | Switch to Operator | Button |  |
 | switch-role | Confirm / Cancel | Cancel | Button |  |
 | time-slot-empty | — | ‹ Package delivery | Button |  |
@@ -1862,7 +1862,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | time-slot-empty | — | Sat 5 | Button |  |
 | time-slot-empty | Slots · Thu 3 Jul | EMPTY | State message | WF-PH |
 | time-slot-empty | Slots · Thu 3 Jul | No free slots on Thu 3 Jul | State message | DATA |
-| time-slot-empty | Slots · Thu 3 Jul | Every operator is booked that day. Pick another day — Fri 4 and Sat 5 still have openings. | State message |  |
+| time-slot-empty | Slots · Thu 3 Jul | Every operator is booked that day. Pick another day: Fri 4 and Sat 5 still have openings. | State message |  |
 | time-slot-empty | Slots · Thu 3 Jul | Pick another day | Button |  |
 | time-slot-empty | Slots · Thu 3 Jul | Back to Order setup | Button |  |
 | time-slot-empty | Slots · Thu 3 Jul | No slot selected | Field label |  |
@@ -1988,17 +1988,17 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | welcome-empty | — | Skip | Body |  |
 | welcome-empty | One-card fallback | DRON | State message | WF-PH |
 | welcome-empty | One-card fallback | DRON in 15 seconds | State message |  |
-| welcome-empty | One-card fallback | Order a drone service — a certified, insured operator does the flying. You see their name, photo and live position the moment you pay, and get a photo or report when it's done. The drone flies a set route and only records what your order needs. | State message |  |
+| welcome-empty | One-card fallback | Order a drone service and a certified, insured operator does the flying. You see their name, photo and live position the moment you pay, and get a photo or report when it's done. The drone flies a set route and only records what your order needs. | State message |  |
 | welcome-empty | One-card fallback | Continue | Button |  |
 | welcome | — | Skip | Body |  |
 | welcome | — | ORDER | Body | WF-PH |
 | welcome | — | You order, a pro handles it | Body |  |
-| welcome | — | Pick a service and pay. A certified DRON operator does the flying — you never touch the drone. | Body |  |
+| welcome | — | Pick a service and pay. A certified DRON operator does the flying, and you never touch the drone. | Body |  |
 | welcome | — | OPERATOR | Body | WF-PH |
 | welcome | — | A verified, insured operator | Body |  |
 | welcome | — | The moment you pay you see their name, photo and live position. Someone accountable is on the way. | Body |  |
 | welcome | — | DRONE | Body | WF-PH |
-| welcome | — | What the drone does — and doesn't | Body |  |
+| welcome | — | What the drone does and doesn't | Body |  |
 | welcome | — | It flies a set route, keeps its distance, and only records what your order needs. Brief low noise on take-off and landing; no filming of your neighbours. | Body |  |
 | welcome | — | Get started | Button |  |
 | withdraw-error | — | ‹ Earnings | Button |  |
@@ -2008,14 +2008,14 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | withdraw-error | Amount | The transfer to your card failed and the ₴3,240 is back in your balance. Check the card details, or try a bank transfer instead. | State message | DATA |
 | withdraw-error | Amount | Try again | Button |  |
 | withdraw-error | Amount | Use bank transfer | Button |  |
-| withdraw-error | Amount | Funds returned to your balance — nothing was lost. | Body |  |
+| withdraw-error | Amount | Funds returned to your balance. Nothing was lost. | Body |  |
 | withdraw-loading | — | ‹ Earnings | Button |  |
 | withdraw-loading | — | Withdraw | Heading |  |
 | withdraw-loading | — | SEND | State message | WF-PH |
 | withdraw-loading | — | Sending to your card… | State message |  |
-| withdraw-loading | — | Instant transfer to Visa •••• 3318 — usually under a minute. | State message | DATA |
+| withdraw-loading | — | Instant transfer to Visa •••• 3318, usually under a minute. | State message | DATA |
 | withdraw-sent | — | ₴1,500 sent to your card | State message |  |
-| withdraw-sent | — | Visa •••• 3318 — it usually shows within a minute. ₴1,740 stays on your balance. | State message | DATA |
+| withdraw-sent | — | Visa •••• 3318. It usually shows within a minute. ₴1,740 stays on your balance. | State message | DATA |
 | withdraw-sent | — | Done | Button | secondary - the flow is over, nothing is committed |
 | withdraw | — | ‹ Earnings | Button |  |
 | withdraw | — | Withdraw | Heading |  |
