@@ -66,7 +66,7 @@ kit: 3737
 </div>
 ```
 
-- `.dr-maproute__line` — A job's route under its window: dotted, 3 wide, the accent; the stroke does not scale with the box.
+- `.dr-maproute__line` — A job's route under its window: dotted, 3 wide, `--color-route` (the ink in light, green in dark); the stroke does not scale with the box.
 - `.dr-maproute__from` — The start: a 14 ring of the accent, 3 wide, the page colour inside.
 - `.dr-pin` — The end, or the one site of a shoot or an inspection: a 30 filled pin in the accent with a hairline of `--on-action` and the page colour for its eye. The accent stays a fill.
 
@@ -151,7 +151,7 @@ No state of its own: decoration under the window, `aria-hidden`; the map's own l
 
 ## When to use
 
-Behind an operator's job windows (brief, checklist, close job). The dotted line is the same recorded departure as the flight's route (accent as a stroke, decoration only).
+Behind an operator's job windows (brief, checklist, close job). The dotted line takes `--color-route` like the flight's route: the ink in light, green in dark (rev 333).
 
 Sources: wireframes/desktop/ (the twins); design-system/components/maproute.css
 

@@ -79,7 +79,7 @@ kit: 3667
 - `.dr-side` — The order, the operator and the actions in one material panel at the right edge: 360 wide, 96 from the top, padding 20, its parts 12 apart.
 - `.dr-side__acts` — *Contact operator* — the screen's one green control — over *View details*, 10 apart.
 - `.dr-livestatus` — The live line under the header, a pill 96 from the top: *Live*, who, where, the ETA; a `status` region, so a screen reader hears it change.
-- `.dr-flight__line` — The route, dotted, 3 wide, in the accent with a soft glow.
+- `.dr-flight__line` — The route, dotted, 3 wide, in `--color-route` (the ink in light, green in dark) with a soft green glow.
 - `.dr-flyer` — The DRON mark rides the route to where the order is (62% of the way; 18% before pickup): 7 s, once. Still under reduced motion (`WCAG 2.3.3`).
 
 ## Variants
@@ -256,7 +256,7 @@ No state of its own: the panel's buttons take [Button](button.html)'s. The route
 
 ## When to use
 
-The wait: the order is paid and on its way (tracking, the call and chat behind it). **A recorded departure:** the route is the accent as a stroke, which the fill-only rule forbids — 1.69:1 on the light page. It is decoration (`aria-hidden`), so `WCAG 1.4.11` is not engaged; the live line carries the same information as text.
+The wait: the order is paid and on its way (tracking, the call and chat behind it). The route is `--color-route`: the ink in light, so green stays a fill, and green in dark (rev 333, the designer: «світла тема чорна лінія темна тема зелена»). It is decoration (`aria-hidden`), so `WCAG 1.4.11` is not engaged; the live line carries the same information as text.
 
 Sources: wireframes/desktop/ (the twins); design-system/components/flight.css, desk.css
 

@@ -441,6 +441,7 @@ retuned. None of them is a text ground: text on the desktop stands on the materi
 | `--mask-opaque` | `--black` (one value) | Not drawn. | A mask's opaque stop. A mask reads only alpha, so this token gets no dark value. |
 | `--shadow-float-lift` | `rgba(20,18,15,.06)` / `.16` | Not a colour pair. | A depth rung for a hanging card on hover, one rung above `--shadow-float`. |
 | `--border-strong` (rev 331) | `--cream-700` / `--cream-500` | The drop zone's dashed edge on the window: **7.20:1** light, **9.00:1** dark. `WCAG 1.4.11` 3:1, met. | A component's own edge that must be seen; the primitives `--text-muted` already spends, so no new value. |
+| `--color-route` (rev 333) | `--charcoal-900` / `--green-500` | The drone's dotted route on the map. Decoration (`aria-hidden`); the live line carries it in words, so `WCAG 1.4.11` is not engaged. | Light: ink, so green stays a fill. Dark: green, as the dark wallet plate's mark. |
 
 ### Named rules
 
@@ -805,7 +806,7 @@ corrected:
 | ~~Drop zone's remove control, 28 × 28~~ — **closed 2026-10-19 (rev 330):** drawn 28, tapped on 44 | `HIG · 44pt target`; `WCAG 2.5.8` (2.2) asks 24 | Both met |
 | ~~Drop zone's dashed edge 1.46:1 (1.97:1 dark)~~ — **closed 2026-10-19 (rev 331):** `--border-strong`, 7.20:1 light, 9.00:1 dark. Still open: the drag-over accent edge 1.84:1 | `WCAG 1.4.11` asks 3:1 for a component's boundary | Edge met; drag-over fails, transient feedback during a drag |
 | Review stars, yellow, 2.23:1 on the light panel — **kept 2026-10-19 (rev 332), the designer: «лиши як є»** | `WCAG 1.4.11` 3:1 applies only to graphics *required* to understand the content | **Conforms:** the score is written beside the stars, so they are not required and 1.4.11 is not engaged; same yellow as the phone's Rate screen. Declined: a dark outline round each star |
-| Flight route and map route, the accent as a stroke (1.69:1) | The fill-only rule; `WCAG 1.4.11` | Against the project rule; decoration, `aria-hidden`, the live line says it in words |
+| ~~Flight route and map route, the accent as a stroke (1.69:1)~~ — **closed 2026-10-19 (rev 333):** `--color-route`, the ink in light, green in dark | The Fill-Only Rule; `WCAG 1.4.11` (decoration, `aria-hidden`, the live line says it in words) | Light keeps the rule; dark takes the wallet-plate reading, green standing as a line on the dark map |
 | Two green controls on a client step: the header's *Order* beside the window's primary | The project's *one green control per screen* (her call, 2026-10-19, keeps *Order* green) | Neither HIG nor WCAG is failed; the operator's steps have one |
 | No skip link: header and both rails come before `main` | `WCAG 2.4.1` bypass blocks; `2.4.3` focus order | 2.4.3 met; 2.4.1 served only by the `main` landmark, for screen readers, not for keyboard users |
 | Welcome: the pager 36 under the slider it counts, 12 above the first action (re-measured 2026-10-19) | Proximity: the parts of one thing stand close, apart from the next group | Reads with the actions by space alone |

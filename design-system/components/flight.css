@@ -82,7 +82,7 @@
 }
 .dr-flight__line{
   fill: none;
-  stroke: var(--color-action);
+  stroke: var(--color-route);
   stroke-width: var(--len-3);
   stroke-dasharray: var(--len-2) var(--len-9);
   stroke-linecap: round;

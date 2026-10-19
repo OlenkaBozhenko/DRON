@@ -441,6 +441,10 @@
   --on-action:        var(--charcoal-900);  /* §1.1 --on-green: the ONLY colour allowed on a green
                                                fill - 17 colour sites - and the fill of
                                                .dr-switch__knob:checked and .dr-rating-arc. */
+  --color-route:      var(--charcoal-900);  /* the dotted line a drone flies along on the desktop map
+                                               (.dr-flight__line, .dr-maproute__line). Light: the ink, so
+                                               green stays a fill (the Fill-Only Rule); dark: green, below.
+                                               The designer, rev 333: «світла тема чорна лінія темна тема зелена». */
 
   /* -- THE ONE TINT / resolved the way the frames resolve it ----------------
      This was drafted as two tokens - --bg-selected and --color-verified - both
@@ -854,6 +858,8 @@
      a dark ground than on a pale one. */
   --border-hairline:    color-mix(in srgb, var(--cream-50) 22%, var(--charcoal-800));    /* #5A5A59 */
   --border-strong:      var(--cream-500);     /* #D6D2C9 - the drop zone's edge, 9.00:1 on the dark window */
+  --color-route:        var(--green-500);     /* the route in dark is green: on the dark map the accent
+                                               stands as a line (the wallet-plate reading, rev 333) */
 
   /* -- ACTION / DELIBERATELY NOT REDEFINED ----------------------------------
      Signal Green is the brand's one accent and it does not owe the theme a
