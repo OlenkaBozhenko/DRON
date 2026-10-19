@@ -3,7 +3,7 @@ name: Skeleton
 slug: skeleton
 group: States
 order: 40
-classes: .dr-sk-line · --pill · .dr-sk-w90/70/50/40/30 · .dr-sk-title · .dr-sk-date · .dr-sk-head · .dr-sk-well · .dr-sk-route · .dr-sk-money · .dr-sk-price · .dr-sk-btn · .dr-sk-block · .dr-sk-up · .dr-sk-arrow · .dr-sk-tray · .dr-inset--sk · .dr-sk-d1/d2
+classes: .dr-sk-line · --pill · .dr-sk-w90/70/50/40/30 · .dr-sk-title · .dr-sk-date · .dr-sk-head · .dr-sk-well · .dr-sk-route · .dr-sk-money · .dr-sk-price · .dr-sk-btn · .dr-sk-block · .dr-sk-up · .dr-sk-arrow · .dr-sk-tray · .dr-inset--sk · .dr-sk-d1/d2 · .dr-sk-leave
 file: skeleton.css
 inventory: Skeleton bar; Skeleton card; Skeleton block; Skeleton body · media
 kit: 2446
@@ -93,6 +93,26 @@ A row card: a pulsing well, then a column of bars. From `order-confirmed-loading
 ```
 
 A media placeholder sized to what it waits for: 180 tall on `delivery-loading`, against the delivery photo's 180 on `delivery`. Radius 13, `--bg-well`. The block holds still; only the 32px arrow leaves, on a 1.6s cadence, resting visible at 0% and 100% so a dropped animation leaves a legible icon. `inspection-report-loading` builds an empty block 200 tall for the cover photo, and `report-issue-loading` an empty block with no height set.
+
+### Motion (desktop): the placeholder leaves
+
+```html
+<div data-motion-demo="replay"><div class="dr dr-desk" style="width:420px;max-width:100%;padding:16px"><div class="dr-sk-leave"><div class="dr-card" style="width:341px;max-width:100%">
+  <span class="dr-order__top">
+    <span class="dr-sk-head"><span class="dr-sk-line dr-sk-title" style="width:62%"></span><span class="dr-sk-line dr-sk-date" style="width:40%"></span></span>
+    <span class="dr-sk-well"></span>
+  </span>
+  <span class="dr-inset dr-inset--sk">
+    <span class="dr-sk-route"></span>
+  </span>
+  <span class="dr-order__fee">
+    <span class="dr-sk-money"><span class="dr-sk-line dr-sk-price"></span></span>
+    <span class="dr-order__acts"><span class="dr-sk-btn"></span><span class="dr-sk-btn"></span></span>
+  </span>
+</div></div></div></div>
+```
+
+**Job 2 · status.** While loading, the skeleton pulses (`dr-pulse`, above). When the content comes in place (on desktop `payment-loading`, the window turns into *Payment confirmed*), the script adds `.dr-sk-leave` and the placeholder fades out over `--dur-base` (.2s) on `--ease-exit` before it is removed. Click the specimen to play it again. Desktop only (rev 345); the phone is not touched.
 
 ## States
 

@@ -1,0 +1,102 @@
+/* _proposed-motion-desktop.css - SCAFFOLDING for one decision (2026-10-20).
+   Microinteractions for the DESKTOP only (the phone is frozen: every selector
+   starts with .dr-desk). Nothing links this file; _compare-motion-desktop.html
+   injects it into the right-hand frames. On «залишаємо» each block moves into
+   the component file named in its heading, and this file is deleted.
+   Every duration and curve is a motion token; no number of its own. */
+
+/* ANSWER: hover and press, --dur-fast. Focus: the ring is there on the first
+   frame (WCAG 2.4.7) and only its offset settles, 0 -> 2. */
+
+/* header.css */
+.dr-desk :is(.dr-whead__link, .dr-iconbtn, .dr-profilechip){
+  transition-property: background-color, color, border-color, transform, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.dr-desk .dr-profilechip:active{ transform: scale(var(--num-0-99)); }
+
+/* assistant.css */
+.dr-desk :is(.dr-svc, .dr-assistant__send, .dr-talk){
+  transition-property: background-color, color, border-color, box-shadow, transform, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}
+
+/* calendar.css */
+.dr-desk :is(.dr-cal__day, .dr-cal__nav, .dr-when__cell, .dr-cal__unit){
+  transition-property: background-color, color, border-color, transform, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.dr-desk :is(.dr-cal__day, .dr-cal__nav):not(:disabled, [aria-disabled="true"]):active{
+  transform: scale(var(--num-0-99));
+}
+
+/* disclosure.css */
+.dr-desk :is(.dr-disclosure__item, .dr-picker__item){
+  transition-property: background-color, color, transform, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.dr-desk :is(.dr-disclosure__item, .dr-picker__item):active{ transform: scale(var(--num-0-99)); }
+
+/* tally.css */
+.dr-desk .dr-tally--link{
+  transition-property: background-color, color, transform, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.dr-desk .dr-tally--link:active{ transform: scale(var(--num-0-99)); }
+
+/* ophome.css */
+.dr-desk .dr-act, .dr-desk .dr-act__k{
+  transition-property: background-color, color, transform, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.dr-desk .dr-act:active{ transform: scale(var(--num-0-99)); }
+
+/* sheet.css */
+.dr-desk .dr-channel{
+  transition-property: background-color, color, border-color, transform, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.dr-desk .dr-channel:active{ transform: scale(var(--num-0-99)); }
+
+/* form.css */
+.dr-desk :is(.dr-field__input, .dr-field--action, .dr-upload[role="button"]){
+  transition-property: background-color, border-color, box-shadow, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}
+
+/* CONNECT inside a component: the selected fill moves between choices, --dur-base. */
+
+/* tabs-inpage.css, float.css, lang.css */
+.dr-desk :is(.dr-grouptab, .dr-jobs-tab, .dr-lang button){
+  transition-property: background-color, color, outline-offset;
+  transition-duration: var(--dur-base);
+  transition-timing-function: var(--ease-standard);
+}
+
+/* APPEARANCE: a window arrives, --dur-slow on the enter curve, rising --move-md.
+   It uses `translate`, so the window's own centring `transform` is untouched.
+   Arriving from its own loading state it stays put and only its content fades
+   in over --dur-base: the placeholder is replaced, the screen is the same.
+   Under reduced motion --move-md is 0, so the window fades in place. */
+
+/* window.css */
+.dr-desk .dr-window{ animation: dr-window-in var(--dur-slow) var(--ease-enter) both; }
+@keyframes dr-window-in{ from{ opacity: 0; translate: 0 var(--move-md); } }
+.dr-desk .dr-window--stay{ animation: none; }
+.dr-desk .dr-window--stay > .dr-scroll{ animation: dr-content-in var(--dur-base) var(--ease-enter) both; }
+@keyframes dr-content-in{ from{ opacity: 0; } }
+
+/* STATUS: the skeleton pulses while loading (built, dr-pulse); when the content
+   comes in place it leaves by fading out over --dur-base on the exit curve. */
+
+/* skeleton.css */
+.dr-desk .dr-sk-leave{ animation: dr-sk-leave var(--dur-base) var(--ease-exit) forwards; }
+@keyframes dr-sk-leave{ to{ opacity: 0; } }

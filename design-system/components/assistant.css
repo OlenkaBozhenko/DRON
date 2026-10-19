@@ -1043,3 +1043,12 @@
 .dr-desk .dr-assistant__orb{
   isolation: isolate;
 }
+
+/* DESKTOP MOTION (rev 345) - Job 3 (answer): hover and press over --dur-fast on --ease-standard; a press sinks to .99.
+   Focus: the ring shows on the first frame (WCAG 2.4.7); only its offset settles, over --dur-fast.
+   The phone never reads it. */
+.dr-desk :is(.dr-svc, .dr-assistant__send, .dr-talk){
+  transition-property: background-color, color, border-color, box-shadow, transform, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}

@@ -49,6 +49,18 @@ The three ways to pay in the drawer on `order-review`, each 341 × 44. The expre
 
 A channel is a glyph over a label, not a button with an icon: 22px glyph, 12/600 caption, on the secondary pair at 11.54:1, each an equal share of the row and at least 44 tall. Used on `share`, where the channels are the send action.
 
+### Motion (desktop)
+
+```html
+<div data-motion-demo><div class="dr dr-desk" style="width:420px;max-width:100%;padding:16px"><div class="dr-sheet__channels" style="width:341px;max-width:100%">
+<button type="button" class="dr-channel"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.6a8.5 8.5 0 0 1-8.5 8.4c-1.6 0-3.1-.4-4.4-1.2L3 20l1.2-5.1A8.5 8.5 0 1 1 21 11.6z"/></svg>Message</button>
+<button type="button" class="dr-channel"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7.5l9 6 9-6"/></svg>Email</button>
+<button type="button" class="dr-channel"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>More</button>
+</div></div></div>
+```
+
+**Job 3 · answer.** Hover the specimen, press it, or reach it with Tab: the fill and colour change over `--dur-fast` (.12s) on `--ease-standard`, a press sinks to .99, and the focus ring is there on the first frame (`WCAG 2.4.7`) while only its offset settles 2 outward. Desktop only (rev 345): every rule matches inside `.dr-desk`, so the phone keeps its instant states. Under reduced motion nothing here travels; colour changes stay.
+
 ## States
 
 ```html

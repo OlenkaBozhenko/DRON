@@ -127,3 +127,11 @@
     border-bottom: 0;
   }
 }
+
+/* DESKTOP MOTION (rev 345) - Job 1 (connect): the selected fill moves to the chosen item over --dur-base.
+   The phone never reads it. */
+.dr-desk .dr-grouptab{
+  transition-property: background-color, color, outline-offset;
+  transition-duration: var(--dur-base);
+  transition-timing-function: var(--ease-standard);
+}

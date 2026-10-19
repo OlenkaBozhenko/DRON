@@ -60,6 +60,17 @@ A second line in `.dr-note` says what is accepted, slate 5.95:1, tied by `aria-d
 
 The base zone with the role takes the `--bg-well` ground (#E4E1DA) at radius 13; glyph 5.51:1, verb 14.09:1. From `result-upload`, where the empty well and the filled photo are one box; `operator-dispute` builds the same, *Add evidence*. Screens split here: two of three well zones carry a `.dr-upload__action` verb line named by `aria-labelledby`; `report-issue` instead puts a `.dr-field__hint` line (*A photo makes your claim stronger. Order #DR-4821.*) in the zone and names it with `aria-label="Add a photo or note"`. `result-upload-loading` reuses the box with no role as its skeleton tray, `.dr-upload .dr-sk-tray`.
 
+### Motion (desktop)
+
+```html
+<div data-motion-demo><div class="dr dr-desk" style="width:420px;max-width:100%;padding:16px"><div class="dr-upload dr-upload--card" role="button" tabindex="0" aria-labelledby="uz-a-licence-title" style="width:341px;max-width:100%">
+  <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
+  <span class="dr-upload__action" id="uz-a-licence-title">Add licence</span>
+</div></div></div>
+```
+
+**Job 3 · answer.** Hover the specimen, press it, or reach it with Tab: the fill and colour change over `--dur-fast` (.12s) on `--ease-standard`, a press sinks to .99, and the focus ring is there on the first frame (`WCAG 2.4.7`) while only its offset settles 2 outward. Desktop only (rev 345): every rule matches inside `.dr-desk`, so the phone keeps its instant states. Under reduced motion nothing here travels; colour changes stay.
+
 ## States
 
 ```html

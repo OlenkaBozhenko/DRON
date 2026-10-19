@@ -563,3 +563,12 @@
   color: color-mix(in srgb, var(--text-muted) 40%, var(--bg-page));
   -webkit-text-fill-color: color-mix(in srgb, var(--text-muted) 40%, var(--bg-page));
 }
+
+/* DESKTOP MOTION (rev 345) - Job 3 (answer): hover and press over --dur-fast on --ease-standard; a press sinks to .99.
+   Focus: the ring shows on the first frame (WCAG 2.4.7); only its offset settles, over --dur-fast.
+   The phone never reads it. */
+.dr-desk :is(.dr-field__input, .dr-field--action, .dr-upload[role="button"]){
+  transition-property: background-color, border-color, box-shadow, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}

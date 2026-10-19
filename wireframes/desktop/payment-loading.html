@@ -74,7 +74,9 @@ setTimeout(function () {
   box.querySelector('.dr-mark').innerHTML = '<svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>';
   box.querySelector('.dr-display').textContent = 'Payment confirmed';
   box.querySelector('.dr-lead').textContent = '₴180 paid with Apple Pay. Finding your operator.';
-  box.querySelector('.dr-stack').remove();
+  var sk = box.querySelector('.dr-stack');
+  sk.classList.add('dr-sk-leave');   /* fades out over --dur-base, then goes (skeleton.css, rev 345) */
+  sk.addEventListener('animationend', function () { sk.remove(); }, { once: true });
   setTimeout(function () { location.replace('order-confirmed.html'); }, 2000);
 }, 3000);
 </script>

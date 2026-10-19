@@ -212,3 +212,13 @@
   outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: var(--len-4);
 }
+
+/* DESKTOP MOTION (rev 345) - Job 3 (answer): hover and press over --dur-fast on --ease-standard; a press sinks to .99.
+   Focus: the ring shows on the first frame (WCAG 2.4.7); only its offset settles, over --dur-fast.
+   The phone never reads it. */
+.dr-desk :is(.dr-whead__link, .dr-iconbtn, .dr-profilechip){
+  transition-property: background-color, color, border-color, transform, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.dr-desk .dr-profilechip:active{ transform: scale(var(--num-0-99)); }

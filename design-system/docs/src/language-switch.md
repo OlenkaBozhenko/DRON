@@ -29,6 +29,14 @@ kit: —
 
 One shape, two states. The two fills are only 1.22:1 apart and carry the same ink, so the shadow on the chosen half is the second signal that keeps the state off hue alone (`WCAG 1.4.1`). `aria-pressed` carries it to assistive tech. Each half is 32 visible and 44 to the touch: a transparent `::after` reaches 8 above and below.
 
+### Motion (desktop)
+
+```html
+<div data-motion-demo><div class="dr dr-desk" style="width:420px;max-width:100%;padding:16px"><div class="dr-lang" role="group" aria-label="Language"><button type="button" aria-pressed="true">EN</button><button type="button" aria-pressed="false">UA</button></div></div></div>
+```
+
+**Job 1 · connect.** Pick another item: the selected fill moves to it over `--dur-base` (.2s) on `--ease-standard`, so the eye follows the choice from one to the other. Desktop only (rev 345): every rule matches inside `.dr-desk`, so the phone keeps its instant states. Under reduced motion nothing here travels; colour changes stay.
+
 ## States
 
 ```html

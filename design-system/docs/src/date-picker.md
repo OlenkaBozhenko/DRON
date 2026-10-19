@@ -105,6 +105,34 @@ The second drawer, *Pick a time*, as it opens: *Now* chosen, and *At a set time*
 
 *Now* is offered only while the chosen day is today; on any other day it is disabled, slate on `--card` 5.95:1, and the time becomes a set one. The search never says *Now* about next Tuesday.
 
+### Motion (desktop)
+
+```html
+<div data-motion-demo><div class="dr dr-desk" style="width:420px;max-width:100%;padding:16px"><div style="width:341px;max-width:100%">
+<p class="dr-sheet__title" id="dp-datepick-title">Pick a date</p>
+<div class="dr-cal">
+  <div class="dr-cal__bar">
+    <button class="dr-cal__nav" type="button" aria-label="Previous month" disabled><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <span class="dr-cal__month" aria-live="polite">September 2026</span>
+    <button class="dr-cal__nav" type="button" aria-label="Next month"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+  <table class="dr-cal__grid" role="grid" aria-labelledby="dp-datepick-title">
+    <thead><tr><th scope="col" aria-label="Monday">Mo</th><th scope="col" aria-label="Tuesday">Tu</th><th scope="col" aria-label="Wednesday">We</th><th scope="col" aria-label="Thursday">Th</th><th scope="col" aria-label="Friday">Fr</th><th scope="col" aria-label="Saturday">Sa</th><th scope="col" aria-label="Sunday">Su</th></tr></thead>
+    <tbody>
+        <tr role="row"><td role="gridcell"></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Tue 1 Sep 2026" tabindex="-1" disabled>1</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Wed 2 Sep 2026" tabindex="-1" disabled>2</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Thu 3 Sep 2026" tabindex="-1" disabled>3</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Fri 4 Sep 2026" tabindex="-1" disabled>4</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Sat 5 Sep 2026" tabindex="-1" disabled>5</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Sun 6 Sep 2026" tabindex="-1" disabled>6</button></td></tr>
+        <tr role="row"><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Mon 7 Sep 2026" tabindex="-1" disabled>7</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Tue 8 Sep 2026" tabindex="-1" disabled>8</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Wed 9 Sep 2026" tabindex="-1" disabled>9</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Thu 10 Sep 2026" tabindex="-1" disabled>10</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Fri 11 Sep 2026" tabindex="-1" disabled>11</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Sat 12 Sep 2026" tabindex="-1" disabled>12</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Sun 13 Sep 2026" tabindex="-1" disabled>13</button></td></tr>
+        <tr role="row"><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Mon 14 Sep 2026" tabindex="-1" disabled>14</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Tue 15 Sep 2026" tabindex="-1" disabled>15</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Wed 16 Sep 2026" tabindex="-1" disabled>16</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Thu 17 Sep 2026" tabindex="-1" disabled>17</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Fri 18 Sep 2026" tabindex="-1" disabled>18</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Sat 19 Sep 2026" tabindex="-1" disabled>19</button></td><td role="gridcell"><button class="dr-cal__day dr-cal__day--today" type="button" aria-label="Sun 20 Sep 2026, today" tabindex="-1">20</button></td></tr>
+        <tr role="row"><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Mon 21 Sep 2026" tabindex="-1">21</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Tue 22 Sep 2026" tabindex="-1">22</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Wed 23 Sep 2026" tabindex="-1">23</button></td><td role="gridcell" aria-selected="true"><button class="dr-cal__day" type="button" aria-label="Thu 24 Sep 2026" tabindex="0">24</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Fri 25 Sep 2026" tabindex="-1">25</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Sat 26 Sep 2026" tabindex="-1">26</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Sun 27 Sep 2026" tabindex="-1">27</button></td></tr>
+        <tr role="row"><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Mon 28 Sep 2026" tabindex="-1">28</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Tue 29 Sep 2026" tabindex="-1">29</button></td><td role="gridcell"><button class="dr-cal__day" type="button" aria-label="Wed 30 Sep 2026" tabindex="-1">30</button></td><td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td></tr>
+        <tr role="row"><td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td></tr>
+    </tbody>
+  </table>
+</div>
+</div></div></div>
+```
+
+**Job 3 · answer.** Hover the specimen, press it, or reach it with Tab: the fill and colour change over `--dur-fast` (.12s) on `--ease-standard`, a press sinks to .99, and the focus ring is there on the first frame (`WCAG 2.4.7`) while only its offset settles 2 outward. Desktop only (rev 345): every rule matches inside `.dr-desk`, so the phone keeps its instant states. Under reduced motion nothing here travels; colour changes stay.
+
 ## States
 
 ```html

@@ -149,3 +149,10 @@
     transform: rotate(var(--deg-360));
   }
 }
+
+/* DESKTOP MOTION (rev 345) - Job 2 (status): the skeleton pulses while loading (dr-pulse, above); when the content comes
+   in place, the script adds .dr-sk-leave and the placeholder fades out over --dur-base on
+   --ease-exit before it is removed.
+   The phone never reads it. */
+.dr-desk .dr-sk-leave{ animation: dr-sk-leave var(--dur-base) var(--ease-exit) forwards; }
+@keyframes dr-sk-leave{ to{ opacity: 0; } }

@@ -63,6 +63,14 @@ The one field with a ground of its own: `--media` at radius 10, `min-height` 44,
 
 `.dr-search-row` puts the same field beside a 44 icon button, 8 apart. It has no glyph, and its name is a hidden *Message* label. The composer on `chat`, `chat-aerial`, `chat-client` and `chat-inspection`.
 
+### Motion (desktop)
+
+```html
+<div data-motion-demo><div class="dr dr-desk" style="width:420px;max-width:100%;padding:16px"><div class="dr-rows dr-rows--card" style="width:341px;max-width:100%"><div class="dr-field"><label class="dr-field__label" for="field-name">Full name</label><span class="dr-field__group"><input class="dr-field__input" id="field-name" name="name" value="Olena B."></span></div><div class="dr-field"><label class="dr-field__label" for="field-phone">Phone</label><span class="dr-field__group"><input class="dr-field__input" id="field-phone" name="phone" type="tel" value="+380 67 000 4417"></span></div><div class="dr-field"><label class="dr-field__label" for="field-addr">Saved address</label><span class="dr-field__group"><input class="dr-field__input" id="field-addr" name="addr" value="Podil, 21"></span></div></div></div></div>
+```
+
+**Job 3 · answer.** Hover or focus the field: its edge and ground change over `--dur-fast` (.12s) on `--ease-standard`; the focus ring shows on the first frame (`WCAG 2.4.7`). Desktop only (rev 345): every rule matches inside `.dr-desk`, so the phone keeps its instant states. Under reduced motion nothing here travels; colour changes stay.
+
 ## States
 
 ```html

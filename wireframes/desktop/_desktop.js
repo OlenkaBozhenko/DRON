@@ -277,3 +277,17 @@
     }, 1000);
   });
 }());
+
+/* ARRIVING FROM ITS OWN LOADING STATE (rev 345, DESIGN.md § Motion). A step's window rises
+   in when it arrives (window.css). When the page before was this screen's -loading state,
+   it is the same screen and the same window: it stays put (.dr-window--stay) and only the
+   content fades in where the placeholders stood. */
+(function () {
+  'use strict';
+  var win = document.querySelector('.dr-window');
+  if (!win || !document.referrer) return;
+  var name = function (u) { return u.split('?')[0].split('#')[0].split('/').pop(); };
+  var here = name(location.pathname), ref = name(document.referrer);
+  var strip = function (n) { return n.replace(/-loading(?=[-.])/, ''); };
+  if (/-loading/.test(ref) && !/-loading/.test(here) && strip(ref) === strip(here)) win.classList.add('dr-window--stay');
+}());

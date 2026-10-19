@@ -20,6 +20,8 @@ A moment that cannot name one of these is **not in the table** and gets no anima
 that were considered and left out are listed at the end, with the reason, so they are not proposed
 again as new.
 
+**Built rev 345 (desktop only):** the microinteractions of §1 (answer on hover, press and focus), the group-tab and language selections, a step window arriving, content arriving in place after its own loading state, and the skeleton leaving on payment. See `DESIGN.md` § Motion.
+
 **Where:** *Phone*, *Desktop* or *Both*. The phone is frozen as built (designer, 2026-10-18), so a
 phone moment here is an inventory entry only; animating it would first need her word to reopen
 the phone. **Built** means the motion already exists in `design-system/components/` today.

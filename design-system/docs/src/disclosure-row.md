@@ -24,6 +24,14 @@ No screen builds this now, and `ui/kit.html` does not show it. The specimen is d
 
 No screen builds a disclosure row now, and `ui/kit.html` shows none, so no variant is documented. The *Option list* variant this page used to show was removed for that reason. The row's rules are shared, selector for selector, with `.dr-picker__item`, which every screen does build: see [Picker row](picker-row.html).
 
+### Motion (desktop)
+
+```html
+<div data-motion-demo><div class="dr dr-desk" style="width:420px;max-width:100%;padding:16px"><div class="dr-picker__list" style="width:341px;max-width:100%"><a class="dr-disclosure__item" href="#" aria-current="true">Client: order services<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a><a class="dr-disclosure__item" href="#">Operator: take jobs</a></div></div></div>
+```
+
+**Job 3 · answer.** Hover the specimen, press it, or reach it with Tab: the fill and colour change over `--dur-fast` (.12s) on `--ease-standard`, a press sinks to .99, and the focus ring is there on the first frame (`WCAG 2.4.7`) while only its offset settles 2 outward. Desktop only (rev 345): every rule matches inside `.dr-desk`, so the phone keeps its instant states. Under reduced motion nothing here travels; colour changes stay.
+
 ## States
 
 ```html

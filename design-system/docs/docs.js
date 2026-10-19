@@ -228,3 +228,31 @@
     });
   }
 }());
+
+/* 3. MOTION DEMOS (rev 345). A specimen wrapped in [data-motion-demo] is played, not
+   just shown: inside it a link does not navigate, a click moves aria-current /
+   aria-pressed to the item clicked (so a selection's motion can be seen), and in a
+   [data-motion-demo="replay"] specimen a click plays its animations again. The
+   motion itself is the component's own CSS; this only gives it a trigger. */
+(function () {
+  'use strict';
+  document.addEventListener('click', function (e) {
+    var demo = e.target.closest('[data-motion-demo]');
+    if (!demo) return;
+    var link = e.target.closest('a');
+    if (link) e.preventDefault();
+    if (demo.getAttribute('data-motion-demo') === 'replay') {
+      demo.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); a.play(); });
+      return;
+    }
+    var item = e.target.closest('[aria-current], [aria-pressed]');
+    var sib = item && item.parentElement;
+    if (!item && link && link.parentElement.querySelector('[aria-current]')) { item = link; sib = link.parentElement; }
+    if (!item) return;
+    var attr = sib.querySelector('[aria-pressed]') ? 'aria-pressed' : 'aria-current';
+    [].forEach.call(sib.children, function (c) {
+      if (attr === 'aria-pressed') c.setAttribute('aria-pressed', c === item ? 'true' : 'false');
+      else if (c === item) c.setAttribute('aria-current', 'true'); else c.removeAttribute('aria-current');
+    });
+  });
+}());

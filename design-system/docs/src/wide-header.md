@@ -125,6 +125,32 @@ From `signin`: the logo and the theme, nothing else.
 
 The tablet layout is being redesigned from scratch (the designer, 2026-10-18). Until then this page shows the phone and the desktop only.
 
+### Motion (desktop)
+
+```html
+<div data-motion-demo><div class="dr dr-screen dr-desk" style="width:1440px;height:96px;max-width:none">
+<div class="dr-mapground" role="img" aria-label="Live map of Kyiv, 128 drones in the air"><span class="dr-mapground__drone" style="left:31%;top:34%"></span><span class="dr-mapground__drone" style="left:44%;top:58%"></span><span class="dr-mapground__drone" style="left:63%;top:30%"></span><span class="dr-mapground__drone" style="left:70%;top:66%"></span><span class="dr-mapground__drone" style="left:60%;top:82%"></span><span class="dr-mapground__drone" style="left:38%;top:76%"></span><span class="dr-mapground__drone" style="left:78%;top:44%"></span><span class="dr-mapground__drone" style="left:24%;top:60%"></span><span class="dr-mapground__drone" style="left:58%;top:48%"></span></div>
+<div class="dr-veil" aria-hidden="true"></div>
+<header class="dr-whead">
+    <a class="dr-brandlink" href="../../research.html" aria-label="DRON project"><span class="dr-brand" aria-hidden="true"></span></a>
+    <nav class="dr-whead__nav dr-material" aria-label="Primary">
+      <a class="dr-whead__link" href="../../wireframes/desktop/listings.html">Overview</a>
+      <a class="dr-whead__link" href="../../wireframes/desktop/order-history.html" aria-current="page">Activity</a>
+      <a class="dr-whead__link" href="../../wireframes/desktop/support.html">Help</a>
+    </nav>
+    <div class="dr-whead__end">
+      <a class="dr-btn dr-btn--primary" href="../../wireframes/desktop/listings-map.html">Order</a>
+      <a class="dr-iconbtn dr-material" href="../../wireframes/desktop/listings-filters.html" aria-label="Search and filters"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></a>
+      <button class="dr-iconbtn dr-material" type="button" data-theme-cycle aria-label="Switch the theme"><svg class="dr-ic dr-iconbtn__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></svg><svg class="dr-ic dr-iconbtn__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg></button>
+      <a class="dr-iconbtn dr-material" href="../../wireframes/desktop/notifications.html" aria-label="Notifications, 2 new"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="dr-count-badge">2</span></a>
+      <a class="dr-profilechip dr-material" href="../../wireframes/desktop/account.html"><img src="../../assets/people/thumbs/person-client-olena.png" alt=""><span class="dr-profilechip__text">Olena B.<span class="dr-profilechip__place">Kyiv · Podil</span></span></a>
+    </div>
+  </header>
+</div></div>
+```
+
+**Job 3 · answer.** Hover the specimen, press it, or reach it with Tab: the fill and colour change over `--dur-fast` (.12s) on `--ease-standard`, a press sinks to .99, and the focus ring is there on the first frame (`WCAG 2.4.7`) while only its offset settles 2 outward. Desktop only (rev 345): every rule matches inside `.dr-desk`, so the phone keeps its instant states. Under reduced motion nothing here travels; colour changes stay.
+
 ## States
 
 ```html

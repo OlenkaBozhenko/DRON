@@ -942,6 +942,20 @@ time ramp; they are listed under *Components › Motion*.
 - **Operator revealed** (`.dr-op--reveal`): on `order-confirmed` the card rises `--move-md` into
   place over `--dur-slow` on `--ease-enter`; under reduced motion it fades in place. Job 1.
 
+- **Microinteractions** (rev 345, desktop only, every rule inside `.dr-desk`). *Answer*, `--dur-fast`
+  on `--ease-standard`: hover and press on the header pills and icon buttons, the profile chip, the
+  service cards, Send and Talk to AI, calendar days and arrows, disclosure and picker rows, the rail's
+  link rows, the operator's action rows, the share channels, fields and the upload zone; a press
+  sinks to .99. Focus: the ring is drawn on the first frame (`WCAG 2.4.7`); only `outline-offset`
+  settles 0 → 2. *Connect*, `--dur-base`: the selected fill of the group tabs, the Jobs tabs and the
+  language switch. *Appearance*: a step's `.dr-window` rises `--move-md` and fades in over
+  `--dur-slow` on `--ease-enter`, on `translate` so the centring `transform` is untouched; arriving
+  from its own `-loading` page it stays (`.dr-window--stay`, set by `_desktop.js`) and only the
+  content fades in over `--dur-base`. Tab roots are `.dr-panel` and do not move (`HIG · Tab bars`).
+  *Status*: the skeleton pulses (built) and, where content replaces it in place (`payment-loading`),
+  leaves by `.dr-sk-leave`, fading out over `--dur-base` on `--ease-exit`. Under reduced motion
+  `--move-md` is 0, so arrivals only fade.
+
 ### Reduced motion, and the check
 
 - **`WCAG 2.3.3` Animation from Interactions** (AAA) and **`HIG · Motion`** ("make motion optional",

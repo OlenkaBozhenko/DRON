@@ -238,3 +238,15 @@
   background: var(--bg-material-solid);
   color: var(--text-primary);
 }
+
+/* DESKTOP MOTION (rev 345) - Job 3 (answer): hover and press over --dur-fast on --ease-standard; a press sinks to .99.
+   Focus: the ring shows on the first frame (WCAG 2.4.7); only its offset settles, over --dur-fast.
+   The phone never reads it. */
+.dr-desk :is(.dr-cal__day, .dr-cal__nav, .dr-when__cell, .dr-cal__unit){
+  transition-property: background-color, color, border-color, transform, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.dr-desk :is(.dr-cal__day, .dr-cal__nav):not(:disabled, [aria-disabled="true"]):active{
+  transform: scale(var(--num-0-99));
+}

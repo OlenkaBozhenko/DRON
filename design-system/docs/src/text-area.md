@@ -45,6 +45,14 @@ No height modifier: the box's floor is 56 and the row's 80. A `<textarea>` defau
 
 `--half` gives the review half the 812 frame: the input 382, the row 406, because a review is the one place the product asks for prose. It stands on `rate`, `rate-aerial` and `rate-inspection`.
 
+### Motion (desktop)
+
+```html
+<div data-motion-demo><div class="dr dr-desk" style="width:420px;max-width:100%;padding:16px"><div class="dr-field dr-field--area dr-field--area6" style="width:341px;max-width:100%"><label class="sr-only" for="text-area-nt">Notes for the operator</label><textarea class="dr-field__input" id="text-area-nt" placeholder="Floor, entrance code, what's inside…"></textarea></div></div></div>
+```
+
+**Job 3 · answer.** Hover or focus the field: its edge and ground change over `--dur-fast` (.12s) on `--ease-standard`; the focus ring shows on the first frame (`WCAG 2.4.7`). Desktop only (rev 345): every rule matches inside `.dr-desk`, so the phone keeps its instant states. Under reduced motion nothing here travels; colour changes stay.
+
 ## States
 
 ```html

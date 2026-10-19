@@ -201,3 +201,11 @@
   padding: var(--len-16);
   border-radius: var(--len-12);
 }
+
+/* DESKTOP MOTION (rev 345) - Job 1 (connect): the selected fill moves to the chosen item over --dur-base.
+   The phone never reads it. */
+.dr-desk .dr-jobs-tab{
+  transition-property: background-color, color, outline-offset;
+  transition-duration: var(--dur-base);
+  transition-timing-function: var(--ease-standard);
+}

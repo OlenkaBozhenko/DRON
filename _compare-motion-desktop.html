@@ -95,7 +95,7 @@
     /* arriving from its own loading state: the window stays, the content fades in */
     var here = win.location.pathname.split('/').pop(), ref = doc.referrer.split('/').pop();
     var strip = function(n){ return n.replace(/-loading(?=[-.])/, ''); };
-    var mark = function(){ var w = doc.querySelector('.dr-window'); if (w && ref && ref !== here && strip(ref) === strip(here)) w.classList.add('dr-window--stay'); };
+    var mark = function(){ var w = doc.querySelector('.dr-window'); if (w && /-loading/.test(ref) && !/-loading/.test(here) && strip(ref) === strip(here)) w.classList.add('dr-window--stay'); };
     if (doc.querySelector('.dr-window')) mark(); else doc.addEventListener('DOMContentLoaded', mark);
     /* the skeleton fades out before it is removed */
     var rm = win.Element.prototype.remove;
@@ -120,7 +120,8 @@
     requestAnimationFrame(fit); addEventListener('resize', fit);
     return f;
   }
-  function go(f, src, isNew){ if (isNew) { f.contentWindow.location.href = BASE + src; watch(f); } else f.contentWindow.location.href = BASE + src; }
+  /* navigate from inside the frame, so the new page's referrer is the old page, as on a real click */
+  function go(f, src, isNew){ var d = f.contentDocument, a = d.createElement('a'); a.href = src; d.body.appendChild(a); a.click(); if (isNew) watch(f); }
 
   fetch('_proposed-motion-desktop.css').then(function(r){ return r.text(); }).then(function(t){
     CSS = t;

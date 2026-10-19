@@ -109,3 +109,13 @@
 .dr-availcard .dr-avail{
   margin: 0;
 }
+
+/* DESKTOP MOTION (rev 345) - Job 3 (answer): hover and press over --dur-fast on --ease-standard; a press sinks to .99.
+   Focus: the ring shows on the first frame (WCAG 2.4.7); only its offset settles, over --dur-fast.
+   The phone never reads it. */
+.dr-desk .dr-act, .dr-desk .dr-act__k{
+  transition-property: background-color, color, transform, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.dr-desk .dr-act:active{ transform: scale(var(--num-0-99)); }

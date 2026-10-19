@@ -85,6 +85,19 @@ The service badges on the [finder](finder.html), on `listings`, `listings-error`
 
 The four `listings` pages: the row stands empty and `hidden` in the markup, and the page's script writes one chip per value the filter drawer applied, each drone type and then the price band. 12/600 on `--bg-accent-tint` under `--text-primary`, 14.75:1, with no edge; padding 5 5 5 12, gap 6, chips 8 apart. The remove mark is an 18px `--color-action` pill with a charcoal cross, 9.46:1. The name is *Remove filter: {label}*, which contains the visible text (`WCAG 2.5.3`).
 
+### Motion (desktop)
+
+```html
+<div data-motion-demo><div class="dr dr-desk" style="width:420px;max-width:100%;padding:16px"><div class="dr dr-main" style="width:375px;max-width:100%;padding-block:0;background:var(--bg-page)">
+  <nav class="dr-groups" aria-label="Job groups">
+    <a class="dr-grouptab" href="../../wireframes/operator-listings.html#incoming" aria-current="true">Incoming <span class="dr-grouptab__count">2</span></a>
+    <a class="dr-grouptab" href="../../wireframes/operator-listings.html#active">Active <span class="dr-grouptab__count">1</span></a>
+  </nav>
+</div></div></div>
+```
+
+**Job 1 · connect.** Pick another item: the selected fill moves to it over `--dur-base` (.2s) on `--ease-standard`, so the eye follows the choice from one to the other. Desktop only (rev 345): every rule matches inside `.dr-desk`, so the phone keeps its instant states. Under reduced motion nothing here travels; colour changes stay.
+
 ## States
 
 ```html
