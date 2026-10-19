@@ -2218,3 +2218,8 @@
 .dk .dr-assistant__orb{
   isolation: isolate;
 }
+/* «тут прибери зовсім ефект» (light): no sphere and no glow behind the drone in light -
+   the mark stands on the map alone; dark keeps its specks */
+:root, [data-theme="light"]{
+  --dk-sphere: none;
+}
