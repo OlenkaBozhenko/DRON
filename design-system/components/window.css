@@ -728,13 +728,23 @@
   }
 }
 
-/* DESKTOP MOTION (rev 345) - Job 1 (connect): a step's window arrives, rising --move-md and fading in over --dur-slow on
-   --ease-enter; `translate`, so the centring `transform` is untouched. Arriving from its own
-   loading state (_desktop.js sets --stay) it stays put and only its content fades in, --dur-base.
+/* DESKTOP MOTION (rev 345, tones rev 346) - Job 1 (connect): a step's window arrives, rising --move-md and fading in over
+   --dur-slow on --ease-enter; `translate`, so the centring `transform` is untouched. The same
+   screen in another state keeps its window (_arrive.js sets --stay) and only its content
+   arrives, in the tone of the state's words (animations/state-tone.md): error --dur-fast,
+   --ease-standard, --move-sm; success --dur-base, --ease-enter, --move-md; empty, loading and
+   back to the form --dur-base, --ease-standard, no movement. Nothing overshoots.
    Tab roots use .dr-panel and do not move (HIG · Tab bars). Reduced motion: --move-md is 0.
    The phone never reads it. */
 .dr-desk .dr-window{ animation: dr-window-in var(--dur-slow) var(--ease-enter) both; }
 @keyframes dr-window-in{ from{ opacity: 0; translate: 0 var(--move-md); } }
-.dr-desk .dr-window--stay{ animation: none; }
-.dr-desk .dr-window--stay > .dr-scroll{ animation: dr-content-in var(--dur-base) var(--ease-enter) both; }
-@keyframes dr-content-in{ from{ opacity: 0; } }
+.dr-desk .dr-window--stay{ animation: none; --state-dur: var(--dur-base); --state-ease: var(--ease-standard); --state-move: 0; }
+.dr-desk .dr-window--stay > .dr-scroll{ animation: dr-state-in var(--state-dur) var(--state-ease) both; }
+.dr-desk .dr-window--arrive-error{ --state-dur: var(--dur-fast); --state-move: var(--move-sm); }
+.dr-desk .dr-window--arrive-success{ --state-ease: var(--ease-enter); --state-move: var(--move-md); }
+@keyframes dr-state-in{ from{ opacity: 0; translate: 0 var(--state-move); } }
+/* a success said in place (payment's "Payment confirmed"): the block settles in, success tone */
+.dr-desk .dr-window .dr-center--arrive{ animation: dr-state-in var(--dur-base) var(--ease-enter) both; --state-move: var(--move-md); }
+/* list -> detail: a window opened from the list on the right rail comes in from that side */
+.dr-desk .dr-window--from-end{ animation: dr-from-end var(--dur-slow) var(--ease-enter) both; }
+@keyframes dr-from-end{ from{ opacity: 0; translate: var(--move-md) 0; } }

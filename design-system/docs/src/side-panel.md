@@ -3,7 +3,7 @@ name: Side panel and flight
 slug: side-panel
 group: Wide screens
 order: 6
-classes: .dr-side · __acts · .dr-livestatus · .dr-flight · __path · __line · __end · --from · --to · --pickup · --lost · .dr-flyer · .dr-mapnote
+classes: .dr-side · __acts · .dr-livestatus · .dr-flight · __path · __line · __end · --from · --to · --pickup · --lost · .dr-flyer · .dr-mapnote · --arrive-error · --arrive-empty
 file: flight.css · desk.css
 inventory: (new, desktop) — the wait: tracking
 kit: 3667
@@ -240,7 +240,7 @@ The phone never draws it: every rule here matches only inside `.dr-desk`, the fr
 </div>
 ```
 
-`tracking-error`: `.dr-flight--lost` holds the drone still at its last point, muted, with no glow; `.dr-mapnote` puts the phone's message on the map, 420 wide, 96 above the bottom.
+`tracking-error`: `.dr-flight--lost` holds the drone still at its last point, muted, with no glow; `.dr-mapnote` puts the phone's message on the map, 420 wide, in the middle of the screen, centred like a window (the designer, rev 346: *«повідомлення має зявлятись по середині»*). Arriving from the same screen it takes the tone of its words (`animations/state-tone.md`): *Live tracking lost* is an error, `--dur-fast` .12s on `--ease-standard` from `--move-sm` 4 (`.dr-mapnote--arrive-error`); *Running a few minutes late* is an empty state, a fade over `--dur-base` (`.dr-mapnote--arrive-empty`).
 
 ### Tablet
 

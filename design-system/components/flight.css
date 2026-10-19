@@ -47,13 +47,15 @@
   margin: 0;
 }
 
-/* what the phone drew in place of its map well (signal lost): a card on the map */
+/* what the phone drew in place of its map well (signal lost): a card on the map, in the
+   middle of the screen (the designer, rev 346: «повідомлення має зявлятись по середині»),
+   centred the way a window is */
 .dr-mapnote{
   position: absolute;
-  bottom: var(--len-96);
-  left: calc(var(--pct-50) - var(--len-192));
+  top: var(--pct-50);
+  left: var(--pct-50);
   z-index: 3;
-  transform: translateX(calc(var(--pct-50) * -1));
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
   width: min(var(--len-420), calc(var(--pct-100) - var(--len-456)));
   padding: var(--len-8);
 }
@@ -159,3 +161,10 @@
     animation: none;
   }
 }
+
+/* DESKTOP MOTION (rev 346) - the note arrives in the tone of its words (animations/state-tone.md):
+   *Live tracking lost* is an error, --dur-fast on --ease-standard from --move-sm; *Running a few
+   minutes late* is an empty state, --dur-base, a fade. _arrive.js sets the class when the page
+   before was the same screen. `translate`, so the centring `transform` is untouched. */
+.dr-desk .dr-mapnote--arrive-error{ animation: dr-state-in var(--dur-fast) var(--ease-standard) both; --state-move: var(--move-sm); }
+.dr-desk .dr-mapnote--arrive-empty{ animation: dr-state-in var(--dur-base) var(--ease-standard) both; --state-move: 0; }

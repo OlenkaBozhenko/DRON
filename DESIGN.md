@@ -956,6 +956,16 @@ time ramp; they are listed under *Components › Motion*.
   leaves by `.dr-sk-leave`, fading out over `--dur-base` on `--ease-exit`. Under reduced motion
   `--move-md` is 0, so arrivals only fade.
 
+- **State tone** (rev 346, desktop only; `animations/state-tone.md`). A state arrives in the tone of
+  its words. The same screen in another state keeps its window (`.dr-window--stay`, set by
+  `_arrive.js`) and only the content arrives: **error** `--dur-fast`, `--ease-standard`, from
+  `--move-sm` (`--arrive-error`); **success** `--dur-base`, `--ease-enter`, from `--move-md`
+  (`--arrive-success`, and `.dr-center--arrive` in place); **empty, loading, back to the form** a fade
+  over `--dur-base`. A window opened from the right rail's list comes in from the right
+  (`--from-end`, `--dur-slow`). The note on the map (`.dr-mapnote`) stands in the middle of the
+  screen and takes the error or empty tone. No curve overshoots; under reduced motion every tone
+  is a fade.
+
 ### Reduced motion, and the check
 
 - **`WCAG 2.3.3` Animation from Interactions** (AAA) and **`HIG · Motion`** ("make motion optional",

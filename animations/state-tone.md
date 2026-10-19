@@ -1,7 +1,9 @@
 # State tone: how a screen's state arrives
 
-**Status:** proposal, 2026-10-20, shown live on `_compare-state-tone.html`. Desktop only (the phone
-is frozen). Nothing here is built until the designer says so.
+**Status:** built rev 346 (2026-10-20), desktop only (the phone is frozen). Shown live on
+`_compare-state-tone.html`; the designer: *«ось тут повідомлення має зявлятись по середині все інше
+роби як запропонував»*. The rules live in `window.css` and `flight.css`; `wireframes/desktop/_arrive.js`
+(loaded on every desktop page) sets the classes. The note on the map now stands in the middle of the screen.
 
 **Sources:** `voice.md` § Microcopy (the state rows: error, empty, loading, success, toast) and
 `animations/motion-inventory.md`.
@@ -44,10 +46,10 @@ Each is a defect: the words say one thing and the movement says another.
 | # | Where | The words | The motion as built | Why it is a mismatch | Status |
 |---|---|---|---|---|---|
 | **T-1** | desktop `job-checklist-error`; desktop `result-upload` (*Submit* with no photo) | *You can't close the job until every required step is checked. 'Capture delivery photo' is still open.* / *Add a delivery photo to close the job.* Calm, plain errors | a **toast** (`role="alert"`): arrives over `--dur-slow` .32s, rises `--move-md` 12, **leaves after 4s** | The slowest, largest arrival in the system, for a calm error, and then it disappears. `voice.md` § Toast: *never for an error: an error is a state the user must be able to re-read, and a toast leaves.* The words are an error and the motion is a notification | **Open, the designer's call:** keep the toast but in error tone (.12s, 4), or make it an error message that stays in the window |
-| **T-2** | every desktop error, empty and loading page (`payment-error`, `order-setup-empty`, `payment-loading` and the rest) | calm, short | the whole window **arrives again** over `--dur-slow` .32s, rising 12 (rev 345), as if it were a new screen | A calm error gets the largest movement there is, and the same screen pretends to be another one | **Fixed by this proposal:** the window stays, the content arrives in its tone |
+| **T-2** | every desktop error, empty and loading page (`payment-error`, `order-setup-empty`, `payment-loading` and the rest) | calm, short | the whole window **arrives again** over `--dur-slow` .32s, rising 12 (rev 345), as if it were a new screen | A calm error gets the largest movement there is, and the same screen pretends to be another one | **Fixed rev 346:** the window stays, the content arrives in its tone |
 | **T-3** | every desktop error and loading page | calm error; a named, specific loading line | the assistant's rings (24s), the light round *Talk to AI* (3.2s) and the drone mark's sway keep turning | Endless decorative motion beside a calm error, and a second, meaningless loop beside the real loading loop | **Kept by the designer** (rev 343, with the `WCAG 2.2.2` cost recorded). Listed so the mismatch is known |
-| **T-4** | desktop `payment-loading` → *Payment confirmed* | the fact and the next step | the words swap **in one frame**, no motion | Not a contradiction, a gap: the only success said in place has none of the success tone | **Fixed by this proposal:** the confirmed block settles in, success tone |
-| **T-5** | desktop `tracking-error`, `tracking-empty` (the note on the map) | *Live tracking lost* / *Running a few minutes late* | appears in one frame | A gap, not a contradiction | **Fixed by this proposal:** error tone / empty tone |
+| **T-4** | desktop `payment-loading` → *Payment confirmed* | the fact and the next step | the words swap **in one frame**, no motion | Not a contradiction, a gap: the only success said in place has none of the success tone | **Fixed rev 346:** the confirmed block settles in, success tone (`.dr-center--arrive`) |
+| **T-5** | desktop `tracking-error`, `tracking-empty` (the note on the map) | *Live tracking lost* / *Running a few minutes late* | appears in one frame | A gap, not a contradiction | **Fixed rev 346:** error tone / empty tone; the note now stands in the middle of the screen |
 
 No mismatch found in: the countdown reaching *Offer expired* (the words change, nothing moves);
 the success screens' check mark (static); the skeleton and spinner loops (even, as above).
