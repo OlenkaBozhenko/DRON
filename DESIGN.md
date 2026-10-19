@@ -429,6 +429,18 @@ Every pair carried on a product surface, verified in the browser.
 | `--card` pending rail node on `--page` | 1.11:1 | Same rail, same reading — the unwalked step is identified by holding *no* mark, not by its fill. |
 | `--line` rail track on `--page` | 1.34:1 | The 2px connector behind the nodes. A decorative join, not a state indicator; the walked span is redrawn in `--green` over it and the milestone shapes carry the state. |
 
+**Desktop atmosphere, tokenised 2026-10-19.** These values were already drawn by the temporary
+desktop CSS (`wireframes/desktop/_desktop*.css`). They are now tokens, copied exactly and not
+retuned. None of them is a text ground: text on the desktop stands on the material.
+
+| Token (light / dark) | Value (light / dark) | Pair and ratio | Why it stands |
+|---|---|---|---|
+| `--veil-map-centre` · `-mid` · `-edge` | `--cream-50` at .10 / .40 / .75 · `#121212` at .15 / .45 / .80 | No ink pair. | The veil darkens the map's edges under the floating header and rails. It is decorative, so neither `WCAG 1.4.3` nor `1.4.11` applies. `#121212` is a new raw value, used only at an alpha. |
+| `--halo-on-map` | `--cream-50` at .90 · black at .75 | `--text-muted` on the halo, worst case (the halo over a black map in light, over a white map in dark): **5.29:1** light, **6.90:1** dark. `WCAG 1.4.3` asks 4.5:1. Both pass. | A blurred text-shadow under the assistant's lead. It only adds to the lead's contrast against the map. |
+| `--color-render-shadow` | black at .25 · black at .45 | No ink pair. | The drop shadow under a service drone render. Decorative. |
+| `--mask-opaque` | `--black` (one value) | Not drawn. | A mask's opaque stop. A mask reads only alpha, so this token gets no dark value. |
+| `--shadow-float-lift` | `rgba(20,18,15,.06)` / `.16` | Not a colour pair. | A depth rung for a hanging card on hover, one rung above `--shadow-float`. |
+
 ### Named rules
 
 **The Fill-Only Rule.** Green is a fill, a tint, or a ring. It is never a text colour, never an

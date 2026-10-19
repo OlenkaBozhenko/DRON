@@ -23,33 +23,33 @@
    --------------------------------------------------------------------------- */
 .dk-side{
   position: absolute;
-  top: 96px;
-  right: 24px;
+  top: var(--len-96);
+  right: var(--len-24);
   z-index: 2;
-  width: 360px;
-  max-height: calc(100% - 120px);
+  width: var(--len-360);
+  max-height: calc(var(--pct-100) - var(--len-120));
   overflow: auto;
-  padding: 20px;
+  padding: var(--len-20);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--len-12);
 }
 .dk-side .dr-center{
-  padding: 4px 0 8px;
+  padding: var(--len-4) 0 var(--len-8);
 }
 .dk-side .dr-label{
-  margin-top: 4px;
+  margin-top: var(--len-4);
 }
 .dk-side__acts{
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 4px;
+  gap: var(--len-10);
+  margin-top: var(--len-4);
 }
 /* the live line and Talk to AI sit over the map, left of the panel */
 .dk-wait .dk-status,
 .dk-wait .dk-talk{
-  left: calc(50% - 192px);
+  left: calc(var(--pct-50) - var(--len-192));
 }
 .dk-status .dr-live{
   margin: 0;
@@ -57,12 +57,12 @@
 /* what the phone drew in place of its map well (signal lost): a card on the map */
 .dk-mapnote{
   position: absolute;
-  bottom: 96px;
-  left: calc(50% - 192px);
+  bottom: var(--len-96);
+  left: calc(var(--pct-50) - var(--len-192));
   z-index: 3;
-  transform: translateX(-50%);
-  width: min(420px, calc(100% - 456px));
-  padding: 8px;
+  transform: translateX(calc(var(--pct-50) * -1));
+  width: min(var(--len-420), calc(var(--pct-100) - var(--len-456)));
+  padding: var(--len-8);
 }
 
 /* ---------------------------------------------------------------------------
@@ -72,71 +72,72 @@
    --------------------------------------------------------------------------- */
 .dk-route{
   position: absolute;
-  top: 50%;
-  right: 408px;
+  top: var(--pct-50);
+  right: var(--len-408);
   z-index: 1;
-  width: 900px;
-  height: 856px;
-  transform: translateY(-50%);
+  width: var(--len-900);
+  height: var(--len-856);
+  transform: translateY(calc(var(--pct-50) * -1));
   pointer-events: none;
 }
 .dk-route__path{
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: var(--pct-100);
+  height: var(--pct-100);
   overflow: visible;
 }
 .dk-route__line{
   fill: none;
   stroke: var(--color-action);
-  stroke-width: 3;
-  stroke-dasharray: 2 9;
+  stroke-width: var(--len-3);
+  stroke-dasharray: var(--len-2) var(--len-9);
   stroke-linecap: round;
-  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-action) 80%, transparent));
+  filter: drop-shadow(0 0 var(--len-6) color-mix(in srgb, var(--color-action) 80%, transparent));
 }
 .dk-route__end{
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
 }
 .dk-route__end--from{
-  left: 100px;
-  top: 620px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
+  left: var(--len-100);
+  top: var(--len-620);
+  width: var(--len-14);
+  height: var(--len-14);
+  border-radius: var(--pct-50);
   background: var(--bg-page);
-  border: 3px solid var(--color-action);
+  border: var(--len-3) solid var(--color-action);
 }
 .dk-route__end--to{
-  left: 850px;
-  top: 200px;
+  left: var(--len-850);
+  top: var(--len-200);
   color: var(--text-accent-wide);
 }
 .dk-route__end--to .dr-ic{
-  width: 30px;
-  height: 30px;
-  transform: translateY(-12px);
+  width: var(--len-30);
+  height: var(--len-30);
+  transform: translateY(calc(var(--len-12) * -1));
 }
 /* the drone: its centre rides the same path; it stops where the order is */
 .dk-flyer{
   position: absolute;
   left: 0;
   top: 0;
+  /* the path's numbers are the route's coordinates in the 900 x 856 box (the same as the svg's d), data and not design values, so they stay literal */
   offset-path: path('M 100 620 C 210 570, 260 490, 380 440 S 600 400, 670 330 S 780 220, 850 200');
   offset-rotate: 0deg;
-  offset-distance: var(--dk-at, 62%);
-  animation: dk-flight 7s cubic-bezier(.45,.05,.55,.95) both;
+  offset-distance: var(--dk-at, var(--pct-62));
+  animation: dk-flight var(--time-7) var(--ease-flight) both;
 }
 .dk-route--pickup .dk-flyer{
-  --dk-at: 18%;
+  --dk-at: var(--pct-18);
 }
 .dk-flyer .dr-fly{
   display: block;
-  width: 110px;
-  height: 38px;
-  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--color-action) 90%, transparent))
-          drop-shadow(0 10px 14px color-mix(in srgb, var(--text-primary) 25%, transparent));
+  width: var(--len-110);
+  height: var(--len-38);
+  filter: drop-shadow(0 0 var(--len-10) color-mix(in srgb, var(--color-action) 90%, transparent))
+          drop-shadow(0 var(--len-10) var(--len-14) color-mix(in srgb, var(--text-primary) 25%, transparent));
 }
 /* signal lost: the drone stays at its last known point, still, with no glow */
 .dk-route--lost .dk-flyer{
@@ -167,23 +168,23 @@
    CALL: the night surface as a wide window over the map
    --------------------------------------------------------------------------- */
 .dk-call{
-  min-height: min(560px, calc(100% - 140px));
-  gap: 24px;
-  border-radius: 22px;
+  min-height: min(var(--len-560), calc(var(--pct-100) - var(--len-140)));
+  gap: var(--len-24);
+  border-radius: var(--len-22);
   box-shadow: var(--shadow-float);
 }
 .dk-call .dr-call__name{
   margin: 0;
 }
 .dk-call .dr-call__stage{
-  min-height: 200px;
+  min-height: var(--len-200);
 }
 
 /* ---------------------------------------------------------------------------
    CHAT: the thread in a wide window, the composer at its foot
    --------------------------------------------------------------------------- */
 .dk-chat{
-  height: min(640px, calc(100% - 140px));
+  height: min(var(--len-640), calc(var(--pct-100) - var(--len-140)));
 }
 .dk-chat .dr-thread{
   flex: 1;
@@ -192,9 +193,9 @@
   justify-content: flex-end;
 }
 .dk-chat .dr-bubble{
-  max-width: min(70%, 420px);
+  max-width: min(var(--pct-70), var(--len-420));
 }
 .dk-chat .dk-chat__composer{
-  padding-top: 12px;
-  border-top: 1px solid var(--border-hairline);
+  padding-top: var(--len-12);
+  border-top: var(--len-1) solid var(--border-hairline);
 }

@@ -62,78 +62,78 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: radial-gradient(70% 65% at 50% 48%, rgba(247,245,242,.1) 0%, rgba(247,245,242,.4) 70%, rgba(247,245,242,.75) 100%);
+  background: radial-gradient(var(--pct-70) var(--pct-65) at var(--pct-50) var(--pct-48), var(--veil-map-centre) 0%, var(--veil-map-mid) var(--pct-70), var(--veil-map-edge) var(--pct-100));
 }
 [data-theme="dark"] .dk-veil{
-  background: radial-gradient(70% 65% at 50% 48%, rgba(18,18,18,.15) 0%, rgba(18,18,18,.45) 70%, rgba(18,18,18,.8) 100%);
+  background: radial-gradient(var(--pct-70) var(--pct-65) at var(--pct-50) var(--pct-48), var(--veil-map-centre) 0%, var(--veil-map-mid) var(--pct-70), var(--veil-map-edge) var(--pct-100));
 }
 /* a drone in the air: the dot and its glow */
 .dk .dr-mapground__drone{
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-action) 22%, transparent),
-              0 0 24px 6px color-mix(in srgb, var(--color-action) 45%, transparent);
+  box-shadow: 0 0 0 var(--len-6) color-mix(in srgb, var(--color-action) 22%, transparent),
+              0 0 var(--len-24) var(--len-6) color-mix(in srgb, var(--color-action) 45%, transparent);
 }
 /* the header floats on the map */
 .dk > .dr-whead{
   position: absolute;
-  top: 18px;
-  left: 24px;
-  right: 24px;
+  top: var(--len-18);
+  left: var(--len-24);
+  right: var(--len-24);
   padding: 0;
-  gap: 14px;
+  gap: var(--len-14);
 }
 .dk .dr-whead .dr-brand{
-  width: 66px;
+  width: var(--len-66);
 }
 /* the console: two 300 rails at the edges, the assistant in the middle */
 .dk > .dr-console{
   position: absolute;
   inset: 0;
   z-index: 1;
-  grid-template-columns: 300px minmax(0, 1fr) 300px;
-  gap: 24px;
-  padding: 96px 24px 24px;
+  grid-template-columns: var(--len-300) minmax(0, 1fr) var(--len-300);
+  gap: var(--len-24);
+  padding: var(--len-96) var(--len-24) var(--len-24);
   align-items: start;
 }
 .dk .dr-console__rail{
-  gap: 12px;
+  gap: var(--len-12);
 }
 .dk .dr-console__centre{
   align-self: center;
-  margin-top: -40px;
+  margin-top: calc(var(--len-40) * -1);
   padding: 0;
 }
 .dk .dr-assistant{
-  width: min(100%, 620px);
+  width: min(var(--pct-100), var(--len-620));
 }
 .dk .dr-assistant__orb{
-  width: 180px;
-  height: 180px;
-  margin: -34px auto -6px;
+  width: var(--len-180);
+  height: var(--len-180);
+  margin: calc(var(--len-34) * -1) auto calc(var(--len-6) * -1);
 }
 .dk .dr-assistant__title{
-  font-size: 34px;
-  line-height: 1.2;
-  font-weight: 600;
-  letter-spacing: -.02em;
+  font-size: var(--type-hero-size);
+  line-height: var(--type-hero-line);
+  font-weight: var(--type-hero-weight);
+  letter-spacing: var(--type-hero-track);
 }
 .dk .dr-assistant__lead{
-  margin: 10px 0 22px;
-  text-shadow: 0 1px 14px rgba(247,245,242,.9);
+  margin: var(--len-10) 0 var(--len-22);
+  text-shadow: 0 var(--len-1) var(--len-14) var(--halo-on-map);
 }
 [data-theme="dark"] .dk .dr-assistant__lead{
-  text-shadow: 0 1px 14px rgba(0,0,0,.75);
+  text-shadow: 0 var(--len-1) var(--len-14) var(--halo-on-map);
 }
 .dk .dr-assistant__ask{
-  padding: 8px 8px 8px 22px;
+  padding: var(--len-8) var(--len-8) var(--len-8) var(--len-22);
 }
 .dk .dr-assistant__services{
-  margin-top: 14px;
+  margin-top: var(--len-14);
 }
 .dk .dr-svc img{
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,.25));
+  filter: drop-shadow(0 var(--len-10) var(--len-18) var(--color-render-shadow));
 }
 [data-theme="dark"] .dk .dr-svc img{
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,.45));
+  filter: drop-shadow(0 var(--len-10) var(--len-18) var(--color-render-shadow));
 }
 
 /* ---------------------------------------------------------------------------
@@ -145,29 +145,29 @@
    delivered, sign in...). It is the page's content, always open. */
 .dk-window{
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: var(--pct-50);
+  top: var(--pct-50);
   z-index: 4;
-  transform: translate(-50%, -48%);
-  width: min(560px, calc(100% - 48px));
-  max-height: calc(100% - 140px);
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-48) * -1));
+  width: min(var(--len-560), calc(var(--pct-100) - var(--len-48)));
+  max-height: calc(var(--pct-100) - var(--len-140));
   overflow: auto;
-  padding: 24px;
+  padding: var(--len-24);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--len-12);
 }
 .dk-window--wide{
-  width: min(760px, calc(100% - 48px));
+  width: min(var(--len-760), calc(var(--pct-100) - var(--len-48)));
 }
 .dk-window__title{
   margin: 0;
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -.01em;
+  font-size: var(--type-window-title-size);
+  font-weight: var(--type-window-title-weight);
+  letter-spacing: var(--type-window-title-track);
 }
 .dk-window__lead{
-  margin: -6px 0 4px;
+  margin: calc(var(--len-6) * -1) 0 var(--len-4);
   color: var(--text-muted);
   font-size: var(--type-body-size);
 }
@@ -175,7 +175,7 @@
 .dk-window__head{
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--len-12);
 }
 /* the map dims behind a window */
 .dk-dim{
@@ -189,43 +189,43 @@
    panel in the middle, between the rails, scrolling on its own */
 .dk-panel{
   position: absolute;
-  left: 50%;
-  top: 96px;
-  bottom: 24px;
+  left: var(--pct-50);
+  top: var(--len-96);
+  bottom: var(--len-24);
   z-index: 2;
-  transform: translateX(-50%);
-  width: min(720px, calc(100% - 2 * 348px));
+  transform: translateX(calc(var(--pct-50) * -1));
+  width: min(var(--len-720), calc(var(--pct-100) - 2 * var(--len-348)));
   overflow: auto;
-  padding: 24px;
+  padding: var(--len-24);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--len-12);
 }
 .dk-panel__title{
   margin: 0;
-  font-size: 22px;
-  font-weight: 600;
+  font-size: var(--type-window-title-size);
+  font-weight: var(--type-window-title-weight);
 }
 /* Talk to AI waits at the bottom while a window is open */
 .dk-talk{
   position: absolute;
-  left: 50%;
-  bottom: 24px;
+  left: var(--pct-50);
+  bottom: var(--len-24);
   z-index: 5;
-  transform: translateX(-50%);
+  transform: translateX(calc(var(--pct-50) * -1));
 }
 /* a live line under the header (operator flying, arrives at) */
 .dk-status{
   position: absolute;
-  left: 50%;
-  top: 96px;
+  left: var(--pct-50);
+  top: var(--len-96);
   z-index: 4;
-  transform: translateX(-50%);
+  transform: translateX(calc(var(--pct-50) * -1));
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 18px;
-  border-radius: 999px;
+  gap: var(--len-10);
+  padding: var(--len-10) var(--len-18);
+  border-radius: var(--len-999);
   font-size: var(--type-body-size);
 }
 
@@ -279,30 +279,30 @@
    --------------------------------------------------------------------------- */
 .dk-rail{
   position: absolute;
-  top: 96px;
-  bottom: 24px;
+  top: var(--len-96);
+  bottom: var(--len-24);
   z-index: 2;
-  width: 300px;
+  width: var(--len-300);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--len-12);
   overflow: hidden auto;   /* a short screen scrolls the rail rather than cut its last card */
 }
 .dk-rail--start{
-  left: 24px;
+  left: var(--len-24);
 }
 .dk-rail--end{
-  right: 24px;
+  right: var(--len-24);
 }
 /* the middle between the rails: 1440 - 2 x (24 + 300 + 24) = 744 */
 .dk-window--wide{
-  width: min(760px, calc(100% - 696px));
+  width: min(var(--len-760), calc(var(--pct-100) - var(--len-696)));
 }
 .dk:has(.dk-rail) .dk-panel{
-  width: min(720px, calc(100% - 696px));
+  width: min(var(--len-720), calc(var(--pct-100) - var(--len-696)));
 }
 .dk:has(.dk-talk) .dk-panel{
-  bottom: 96px;
+  bottom: var(--len-96);
 }
 
 /* ---------------------------------------------------------------------------
@@ -314,20 +314,20 @@
      readers (WCAG 1.3.1), drawn nowhere.
    --------------------------------------------------------------------------- */
 .dk .dk-panel{
-  width: min(560px, calc(100% - 696px));
+  width: min(var(--len-560), calc(var(--pct-100) - var(--len-696)));
   bottom: auto;
-  max-height: calc(100% - 120px);
+  max-height: calc(var(--pct-100) - var(--len-120));
 }
 .dk:has(.dk-talk) .dk-panel{
   bottom: auto;
-  max-height: calc(100% - 192px);
+  max-height: calc(var(--pct-100) - var(--len-192));
 }
 .dk .dr-label{
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: var(--len-1);
+  height: var(--len-1);
   overflow: hidden;
-  clip-path: inset(50%);
+  clip-path: inset(var(--pct-50));
   white-space: nowrap;
 }
 
@@ -341,21 +341,21 @@
    --------------------------------------------------------------------------- */
 .dk.dk .dk-panel.dk-panel,
 .dk.dk .dk-window.dk-window:not(.dk-window--wide){
-  width: min(520px, calc(100% - 696px));
+  width: min(var(--len-520), calc(var(--pct-100) - var(--len-696)));
   height: auto;
   bottom: auto;
-  max-height: calc(100% - 200px);
-  padding: 22px;
-  gap: 10px;
+  max-height: calc(var(--pct-100) - var(--len-200));
+  padding: var(--len-22);
+  gap: var(--len-10);
 }
 .dk.dk .dk-panel.dk-panel{
-  top: 96px;
-  transform: translateX(-50%);
+  top: var(--len-96);
+  transform: translateX(calc(var(--pct-50) * -1));
 }
 .dk .dk-panel__title,
 .dk .dk-window__title{
-  font-size: 20px;
-  letter-spacing: -.01em;
+  font-size: var(--type-window-title-md-size);
+  letter-spacing: var(--type-window-title-track);
 }
 .dk :is(.dk-window, .dk-panel, .dk-side, .dk-rail) :is(.dr-card, .dr-rows, .dr-field, .dr-op, .dr-msg, .dr-offer:not(:has(:checked)), .dr-listing){
   background: color-mix(in srgb, var(--bg-well) 45%, transparent);
@@ -365,7 +365,7 @@
   box-shadow: none;
 }
 .dk :is(.dk-window, .dk-panel, .dk-side) .dr-btn{
-  min-height: 44px;
+  min-height: var(--len-44);
 }
 
 /* «вікна що відкриваються по центру мають бути трохи більші ніж ось ці» (the
@@ -373,16 +373,16 @@
    inspection report) 480. Smaller type and spacing to match the rails. */
 .dk.dk .dk-panel.dk-panel,
 .dk.dk .dk-window.dk-window:not(.dk-window--wide){
-  width: 560px;
-  padding: 24px;
-  gap: 12px;
+  width: var(--len-560);
+  padding: var(--len-24);
+  gap: var(--len-12);
 }
 .dk.dk .dk-window.dk-window--wide{
-  width: 480px;
+  width: var(--len-480);
 }
 .dk .dk-panel__title,
 .dk .dk-window__title{
-  font-size: 17px;
+  font-size: var(--type-title-size);
 }
 
 /* «зроби усі картки що відкриваються по центру однакової ширини … як тут»
@@ -391,13 +391,13 @@
 .dk.dk .dk-panel.dk-panel,
 .dk.dk .dk-window.dk-window,
 .dk.dk .dk-window.dk-window--wide{
-  width: 560px;
-  padding: 24px;
-  gap: 12px;
+  width: var(--len-560);
+  padding: var(--len-24);
+  gap: var(--len-12);
 }
 .dk .dk-panel__title,
 .dk .dk-window__title{
-  font-size: 22px;
+  font-size: var(--type-window-title-size);
 }
 
 /* THE SEARCH STEP on the desktop home (the designer: «коли я обираю і натискаю
@@ -419,17 +419,17 @@
 .dk-finderwin .dr-finder{
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--len-12);
 }
 .dk-finderwin .dr-finder__services{
   display: flex;
-  gap: 8px;
+  gap: var(--len-8);
   flex-wrap: wrap;
   border: 0;
 }
 .dk-finderwin .dr-finder__actions{
   display: grid;
-  gap: 10px;
+  gap: var(--len-10);
 }
 
 /* ---------------------------------------------------------------------------
@@ -443,34 +443,34 @@
   border: 0;
   box-shadow: none;
   backdrop-filter: none;
-  padding: 0 6px 24px;
-  gap: 14px;
+  padding: 0 var(--len-6) var(--len-24);
+  gap: var(--len-14);
   scrollbar-width: none;
-  max-height: calc(100% - 192px);
+  max-height: calc(var(--pct-100) - var(--len-192));
 }
 .dk-float .dk-panel__title{
   align-self: flex-start;
-  padding: 8px 18px;
-  border-radius: 999px;
+  padding: var(--len-8) var(--len-18);
+  border-radius: var(--len-999);
   background: var(--bg-material);
-  border: 1px solid var(--border-material);
-  backdrop-filter: blur(22px);
-  font-size: 15px;
+  border: var(--len-1) solid var(--border-material);
+  backdrop-filter: blur(var(--len-22));
+  font-size: var(--type-heading-size);
 }
 .dk-float .dr-card{
   background: var(--bg-material);
-  border: 1px solid var(--border-material);
-  backdrop-filter: blur(22px) saturate(1.5);
+  border: var(--len-1) solid var(--border-material);
+  backdrop-filter: blur(var(--len-22)) saturate(var(--num-1-5));
   box-shadow: var(--shadow-float);
-  border-radius: 22px;
-  transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
+  border-radius: var(--len-22);
+  transition: transform var(--time-0-25) var(--ease-out), box-shadow var(--time-0-25) var(--ease-out);
 }
 .dk-float .dr-card:hover{
-  transform: translateY(-3px);
-  box-shadow: 0 2px 4px rgba(20,18,15,.06), 0 18px 40px rgba(20,18,15,.16);
+  transform: translateY(calc(var(--len-3) * -1));
+  box-shadow: var(--shadow-float-lift);
 }
 .dk-float .dr-card:has(.dr-rail){
-  box-shadow: var(--shadow-float), 0 0 0 1px color-mix(in srgb, var(--color-action) 45%, transparent), 0 0 28px color-mix(in srgb, var(--color-action) 25%, transparent);
+  box-shadow: var(--shadow-float), 0 0 0 var(--len-1) color-mix(in srgb, var(--color-action) 45%, transparent), 0 0 var(--len-28) color-mix(in srgb, var(--color-action) 25%, transparent);
 }
 /* the inner blocks become hairline rows on the glass, not grey slabs */
 .dk-float .dr-card :is(.dr-route, .dr-rows, .dr-card__place, .dr-loc){
@@ -486,10 +486,10 @@
 /* (a fade mask on the list was tried and dropped: it isolates the cards, their
    glass stops blurring the map, and map lines read through the text) */
 .dk.dk .dk-panel.dk-float{
-  padding-top: 4px;
+  padding-top: var(--len-4);
 }
 .dk-float .dr-card{
-  padding: 18px;
+  padding: var(--len-18);
 }
 
 /* ---------------------------------------------------------------------------
@@ -500,10 +500,10 @@
 .dk.dk .dk-window.dk-window,
 .dk.dk .dk-panel.dk-panel,
 .dk.dk .dk-window.dk-help-split{
-  top: 50%;
+  top: var(--pct-50);
   bottom: auto;
-  transform: translate(-50%, -50%);
-  height: min(640px, calc(100% - 232px));
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
+  height: min(var(--len-640), calc(var(--pct-100) - var(--len-232)));
   max-height: none;
   overflow: auto;
 }
@@ -513,7 +513,7 @@
   flex-direction: column;
 }
 .dk .dk-cols .dk-col{
-  width: 100%;
+  width: var(--pct-100);
 }
 /* 5. one surface per block: a zone or a card is the tint, what sits inside it is not */
 .dk :is(.dk-window, .dk-panel) .dr-zone{
@@ -524,35 +524,35 @@
 }
 /* 1. Activity, compact: smaller drone, tighter rows, the details link a quiet button */
 .dk-float .dr-card{
-  padding: 14px 16px;
-  gap: 8px;
+  padding: var(--len-14) var(--len-16);
+  gap: var(--len-8);
 }
 .dk-float .dr-card .dr-well img{
-  width: 56px;
-  height: 40px;
+  width: var(--len-56);
+  height: var(--len-40);
   object-fit: contain;
 }
 .dk-float .dr-card .dr-well{
-  width: 64px;
-  height: 48px;
+  width: var(--len-64);
+  height: var(--len-48);
 }
 .dk-float .dr-card .dr-order__title{
   font-size: var(--type-heading-size);
 }
 .dk-float .dr-card .dr-inset{
-  padding: 8px 0;
-  border-top: 1px solid var(--border-material);
+  padding: var(--len-8) 0;
+  border-top: var(--len-1) solid var(--border-material);
   border-radius: 0;
 }
 .dk-float .dr-card .dr-rail{
-  margin: 2px 0;
+  margin: var(--len-2) 0;
 }
 /* the same height wins over every group's own window rule */
 .dk.dk.dk .dk-window, .dk.dk.dk .dk-panel, .dk.dk.dk #find{
-  top: 50%;
+  top: var(--pct-50);
   bottom: auto;
-  transform: translate(-50%, -50%);
-  height: min(640px, calc(100% - 232px));
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
+  height: min(var(--len-640), calc(var(--pct-100) - var(--len-232)));
   max-height: none;
   overflow: auto;
 }
@@ -560,10 +560,10 @@
 .dk.dk.dk .dk-window.dk-window.dk-window,
 .dk.dk.dk .dk-panel.dk-panel.dk-panel,
 .dk.dk.dk #find.dk-window.dk-window{
-  top: 50%;
+  top: var(--pct-50);
   bottom: auto;
-  transform: translate(-50%, -50%);
-  height: min(640px, calc(100% - 232px));
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
+  height: min(var(--len-640), calc(var(--pct-100) - var(--len-232)));
   max-height: none;
   overflow: auto;
 }
@@ -575,35 +575,35 @@
    middle, the open jobs as drones on the map - a drone opens its offer */
 .dk-ophome{
   position: absolute;
-  inset: 96px 348px 96px;
+  inset: var(--len-96) var(--len-348) var(--len-96);
   z-index: 1;
   display: grid;
   place-items: center;
 }
 .dk-ophome .dr-assistant{
-  width: min(100%, 620px);
+  width: min(var(--pct-100), var(--len-620));
 }
 .dk-ophome .dr-assistant__orb{
-  width: 180px;
-  height: 180px;
-  margin: 0 auto -6px;
+  width: var(--len-180);
+  height: var(--len-180);
+  margin: 0 auto calc(var(--len-6) * -1);
 }
 .dk-ophome .dr-assistant__title{
-  font-size: 30px;
-  line-height: 1.2;
-  font-weight: 600;
-  letter-spacing: -.02em;
+  font-size: var(--type-hero-sm-size);
+  line-height: var(--type-hero-sm-line);
+  font-weight: var(--type-hero-sm-weight);
+  letter-spacing: var(--type-hero-sm-track);
 }
 .dk-ophome .dr-assistant__lead{
-  margin: 10px 0 22px;
+  margin: var(--len-10) 0 var(--len-22);
 }
 .dk-act{
   display: flex;
   justify-content: space-between;
-  gap: 12px;
-  min-height: 44px;
+  gap: var(--len-12);
+  min-height: var(--len-44);
   align-items: center;
-  border-bottom: 1px solid var(--border-material);
+  border-bottom: var(--len-1) solid var(--border-material);
   color: var(--text-primary);
   text-decoration: none;
   font-size: var(--type-body-size);
@@ -623,9 +623,9 @@
   color: var(--text-primary);
 }
 .dk-act:focus-visible, .dk-dronelink:focus-visible{
-  outline: 2.5px solid var(--text-primary);
-  outline-offset: 2px;
-  border-radius: 8px;
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+  border-radius: var(--len-8);
 }
 .dk-act--more{
   justify-content: center;
@@ -636,8 +636,8 @@
   pointer-events: none;
 }
 .dk .dr-mapground .dk-dronelink{
-  width: 44px;
-  height: 44px;
+  width: var(--len-44);
+  height: var(--len-44);
   background: transparent;
   box-shadow: none;
   pointer-events: auto;
@@ -646,13 +646,13 @@
 .dk .dk-dronelink::before{
   content: "";
   position: absolute;
-  inset: 17px;
-  border-radius: 50%;
+  inset: var(--len-17);
+  border-radius: var(--pct-50);
   background: var(--color-action);
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-action) 22%, transparent), 0 0 24px 6px color-mix(in srgb, var(--color-action) 45%, transparent);
+  box-shadow: 0 0 0 var(--len-6) color-mix(in srgb, var(--color-action) 22%, transparent), 0 0 var(--len-24) var(--len-6) color-mix(in srgb, var(--color-action) 45%, transparent);
 }
 .dk .dk-dronelink:hover::before{
-  box-shadow: 0 0 0 10px color-mix(in srgb, var(--color-action) 30%, transparent), 0 0 30px 10px color-mix(in srgb, var(--color-action) 55%, transparent);
+  box-shadow: 0 0 0 var(--len-10) color-mix(in srgb, var(--color-action) 30%, transparent), 0 0 var(--len-30) var(--len-10) color-mix(in srgb, var(--color-action) 55%, transparent);
 }
 /* the onboarding slider shows one slide at a time inside its window */
 .dk .dk-entry .dr-slider{
@@ -684,8 +684,8 @@
    Previous / Next beside the picture (44pt, HIG; named, WCAG 4.1.2) */
 .dk .dk-slidenav{
   position: absolute;
-  top: var(--dk-slidenav-top, 50%);
-  transform: translateY(-50%);
+  top: var(--dk-slidenav-top, var(--pct-50));
+  transform: translateY(calc(var(--pct-50) * -1));
   z-index: 1;
 }
 .dk .dk-slidenav--prev{
@@ -743,7 +743,7 @@
    80 characters at most; 36ch sits well inside the comfortable 45-75 range per line pair) */
 .dk .dk-window .dr-lead,
 .dk .dk-window .dk-window__lead{
-  max-inline-size: 36ch;
+  max-inline-size: var(--ch-36);
   text-wrap: balance;
 }
 .dk .dk-entry:not(.dk-entry--flush) .dr-lead{
@@ -916,7 +916,7 @@
   border-radius: var(--len-16);
 }
 .dk .dk-review__mark{
-  font-size: var(--len-48);
+  font-size: var(--type-quote-size);
   line-height: var(--type-glyph-line);
   height: var(--len-24);
   font-weight: var(--type-weight-medium);
@@ -1243,7 +1243,7 @@
 }
 /* order confirmed is a centred window now: Talk to AI goes back to the middle */
 .dk.dk-wait:has(> .dk-window) .dk-talk{
-  left: 50%;
+  left: var(--pct-50);
 }
 
 /* nothing inside a scroll is squeezed to fit: a block keeps its own height and the
@@ -1358,7 +1358,7 @@
 }
 .dk .dk-drop__item{
   position: relative;
-  aspect-ratio: 1;
+  aspect-ratio: var(--num-1);
   border-radius: var(--len-12);
   overflow: hidden;
   background: var(--bg-well);
@@ -1472,11 +1472,12 @@
    glow at the centre and scattered specks that fade out toward the edge, still turning
    slowly (still under reduced motion, as before) */
 .dk .dr-assistant__orb .dr-fly{
-  width: 116px;
-  height: 41px;
+  width: var(--len-116);
+  height: var(--len-41);
 }
 .dk .dr-assistant__orb::before{
-  inset: -24px;
+  inset: calc(var(--len-24) * -1);
+  /* the circle-at stops below are generated coordinate data (where each speck sits and its radius), not design values, so they stay literal */
   background:
     radial-gradient(circle at 33.8% 17.9%, color-mix(in srgb, var(--color-action) 35%, transparent) 0, transparent 2.5px),
     radial-gradient(circle at 10.7% 53.3%, color-mix(in srgb, var(--color-action) 35%, transparent) 0, transparent 1.5px),
@@ -1524,19 +1525,20 @@
     radial-gradient(circle at 51.5% 22.9%, color-mix(in srgb, var(--color-action) 70%, transparent) 0, transparent 2.0px),
     radial-gradient(circle at 17.5% 54.0%, color-mix(in srgb, var(--color-action) 70%, transparent) 0, transparent 1.0px),
     radial-gradient(circle at 94.0% 83.4%, color-mix(in srgb, var(--color-action) 70%, transparent) 0, transparent 2.5px),
-    radial-gradient(closest-side, color-mix(in srgb, var(--color-action) 22%, transparent), transparent 70%);
-  -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
-  mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
+    radial-gradient(closest-side, color-mix(in srgb, var(--color-action) 22%, transparent), transparent var(--pct-70));
+  -webkit-mask-image: radial-gradient(closest-side, var(--mask-opaque) var(--pct-55), transparent var(--pct-100));
+  mask-image: radial-gradient(closest-side, var(--mask-opaque) var(--pct-55), transparent var(--pct-100));
 }
 
 /* «трішки густішу пиль зроби щоб вона сяяла, а дрона ще більшим»: twice the specks, larger
    and brighter, glowing (a soft green bloom on the field); the mark a step larger again */
 .dk .dr-assistant__orb .dr-fly{
-  width: 140px;
-  height: 49px;
+  width: var(--len-140);
+  height: var(--len-49);
 }
 .dk .dr-assistant__orb::before{
-  inset: -32px;
+  inset: calc(var(--len-32) * -1);
+  /* the circle-at stops below are generated coordinate data (where each speck sits and its radius), not design values, so they stay literal */
   background:
     radial-gradient(circle at 45.5% 55.6%, color-mix(in srgb, var(--color-action) 100%, transparent) 0, transparent 3.5px),
     radial-gradient(circle at 45.5% 83.4%, color-mix(in srgb, var(--color-action) 75%, transparent) 0, transparent 1.5px),
@@ -1618,13 +1620,14 @@
     radial-gradient(circle at 93.1% 67.3%, color-mix(in srgb, var(--color-action) 100%, transparent) 0, transparent 1.5px),
     radial-gradient(circle at 27.1% 70.1%, color-mix(in srgb, var(--color-action) 100%, transparent) 0, transparent 3.5px),
     radial-gradient(circle at 53.3% 6.4%, color-mix(in srgb, var(--color-action) 90%, transparent) 0, transparent 1.5px),
-    radial-gradient(closest-side, color-mix(in srgb, var(--color-action) 12%, transparent), transparent 70%);
-  filter: drop-shadow(0 0 2px color-mix(in srgb, var(--color-action) 90%, transparent)) drop-shadow(0 0 5px color-mix(in srgb, var(--color-action) 50%, transparent));
+    radial-gradient(closest-side, color-mix(in srgb, var(--color-action) 12%, transparent), transparent var(--pct-70));
+  filter: drop-shadow(0 0 var(--len-2) color-mix(in srgb, var(--color-action) 90%, transparent)) drop-shadow(0 0 var(--len-5) color-mix(in srgb, var(--color-action) 50%, transparent));
 }
 
 /* «більше мілкіших кружечків і щоб вони були із сяйвом»: many more, smaller specks, each a
    bright core in its own soft halo */
 .dk .dr-assistant__orb::before{
+  /* the circle-at stops below are generated coordinate data (where each speck sits and its radius), not design values, so they stay literal */
   background:
     radial-gradient(circle at 89.9% 92.2%, color-mix(in srgb, var(--color-action) 62%, white 10%) 0 1.5px, color-mix(in srgb, var(--color-action) 35%, transparent) 2.1px, transparent 7.0px),
     radial-gradient(circle at 4.6% 31.8%, color-mix(in srgb, var(--color-action) 90%, white 10%) 0 1.0px, color-mix(in srgb, var(--color-action) 35%, transparent) 1.6px, transparent 5.0px),
@@ -1776,8 +1779,8 @@
     radial-gradient(circle at 34.9% 54.1%, color-mix(in srgb, var(--color-action) 76%, white 10%) 0 1.0px, color-mix(in srgb, var(--color-action) 35%, transparent) 1.6px, transparent 5.0px),
     radial-gradient(circle at 82.9% 7.8%, color-mix(in srgb, var(--color-action) 76%, white 10%) 0 1.0px, color-mix(in srgb, var(--color-action) 35%, transparent) 1.6px, transparent 5.0px),
     radial-gradient(circle at 58.6% 72.1%, color-mix(in srgb, var(--color-action) 62%, white 10%) 0 0.6px, color-mix(in srgb, var(--color-action) 35%, transparent) 1.2px, transparent 3.4px),
-    radial-gradient(closest-side, color-mix(in srgb, var(--color-action) 12%, transparent), transparent 70%);
-  filter: drop-shadow(0 0 2px color-mix(in srgb, var(--color-action) 70%, transparent));
+    radial-gradient(closest-side, color-mix(in srgb, var(--color-action) 12%, transparent), transparent var(--pct-70));
+  filter: drop-shadow(0 0 var(--len-2) color-mix(in srgb, var(--color-action) 70%, transparent));
 }
 
 /* «на кнопці ось це сяйво зроби щоб крутилось навколо кнопки, а дрон біленький в середині
@@ -1796,7 +1799,7 @@
 .dk .dr-talk::before{
   inset: calc(var(--len-3) * -1);
   padding: var(--len-3);
-  filter: drop-shadow(0 0 4px var(--color-action)) drop-shadow(0 0 10px color-mix(in srgb, var(--color-action) 60%, transparent));
+  filter: drop-shadow(0 0 var(--len-4) var(--color-action)) drop-shadow(0 0 var(--len-10) color-mix(in srgb, var(--color-action) 60%, transparent));
 }
 
 /* «зроби цей пил на фоні як тут, щоб були наче і хмари, і він по всій сторінці був; оці
@@ -1817,6 +1820,7 @@
   pointer-events: none;
 }
 .dk .dr-assistant__orb::before{
+  /* the circle-at stops below are generated coordinate data (where each speck sits and its radius), not design values, so they stay literal */
   background:
     radial-gradient(circle at 4.2% 13.6%, color-mix(in srgb, var(--color-action) 62%, white 10%) 0 0.6px, color-mix(in srgb, var(--color-action) 30%, transparent) 1.0px, transparent 2.8px),
     radial-gradient(circle at 67.3% 16.0%, color-mix(in srgb, var(--color-action) 90%, white 10%) 0 0.4px, color-mix(in srgb, var(--color-action) 30%, transparent) 0.8px, transparent 2.2px),
@@ -1988,7 +1992,7 @@
     radial-gradient(circle at 51.4% 59.0%, color-mix(in srgb, var(--color-action) 76%, white 10%) 0 0.6px, color-mix(in srgb, var(--color-action) 30%, transparent) 1.0px, transparent 2.8px),
     radial-gradient(circle at 36.2% 50.4%, color-mix(in srgb, var(--color-action) 90%, white 10%) 0 0.8px, color-mix(in srgb, var(--color-action) 30%, transparent) 1.2px, transparent 3.4px),
     radial-gradient(circle at 3.8% 59.8%, color-mix(in srgb, var(--color-action) 62%, white 10%) 0 0.8px, color-mix(in srgb, var(--color-action) 30%, transparent) 1.2px, transparent 3.4px),
-    radial-gradient(closest-side, color-mix(in srgb, var(--color-action) 12%, transparent), transparent 70%);
+    radial-gradient(closest-side, color-mix(in srgb, var(--color-action) 12%, transparent), transparent var(--pct-70));
 }
 /* «прибери бекграунд за іконкою»: the drone stands on the button itself, no disc; with no
    dark ground under it the mark takes the button's own ink - white in dark, charcoal in
@@ -2015,7 +2019,7 @@
   --dk-sphere: url("../../assets/scenes/desktop/sphere-dark.png");
 }
 .dk .dr-assistant__orb::before{
-  inset: -36px;
+  inset: calc(var(--len-36) * -1);
   background: var(--dk-sphere) center / contain no-repeat;
   filter: none;
   -webkit-mask-image: none;
@@ -2031,8 +2035,9 @@
 [data-theme="dark"] .dk .dr-assistant__orb::after{
   content: "";
   position: absolute;
-  inset: -32px;
-  border-radius: 50%;
+  inset: calc(var(--len-32) * -1);
+  border-radius: var(--pct-50);
+  /* the circle-at stops below are generated coordinate data (where each speck sits and its radius), not design values, so they stay literal */
   background:
     radial-gradient(circle at 4.2% 13.6%, color-mix(in srgb, var(--color-action) 62%, white 10%) 0 0.6px, color-mix(in srgb, var(--color-action) 30%, transparent) 1.0px, transparent 2.8px),
     radial-gradient(circle at 67.3% 16.0%, color-mix(in srgb, var(--color-action) 90%, white 10%) 0 0.4px, color-mix(in srgb, var(--color-action) 30%, transparent) 0.8px, transparent 2.2px),
@@ -2204,10 +2209,10 @@
     radial-gradient(circle at 51.4% 59.0%, color-mix(in srgb, var(--color-action) 76%, white 10%) 0 0.6px, color-mix(in srgb, var(--color-action) 30%, transparent) 1.0px, transparent 2.8px),
     radial-gradient(circle at 36.2% 50.4%, color-mix(in srgb, var(--color-action) 90%, white 10%) 0 0.8px, color-mix(in srgb, var(--color-action) 30%, transparent) 1.2px, transparent 3.4px),
     radial-gradient(circle at 3.8% 59.8%, color-mix(in srgb, var(--color-action) 62%, white 10%) 0 0.8px, color-mix(in srgb, var(--color-action) 30%, transparent) 1.2px, transparent 3.4px),
-    radial-gradient(closest-side, color-mix(in srgb, var(--color-action) 12%, transparent), transparent 70%);;
-  filter: drop-shadow(0 0 2px color-mix(in srgb, var(--color-action) 70%, transparent));
-  -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
-  mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
+    radial-gradient(closest-side, color-mix(in srgb, var(--color-action) 12%, transparent), transparent var(--pct-70));;
+  filter: drop-shadow(0 0 var(--len-2) color-mix(in srgb, var(--color-action) 70%, transparent));
+  -webkit-mask-image: radial-gradient(closest-side, var(--mask-opaque) var(--pct-55), transparent var(--pct-100));
+  mask-image: radial-gradient(closest-side, var(--mask-opaque) var(--pct-55), transparent var(--pct-100));
   animation: dr-orb-spin var(--time-orb) linear infinite;
   pointer-events: none;
   z-index: -1;

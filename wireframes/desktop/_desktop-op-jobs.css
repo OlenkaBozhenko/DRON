@@ -16,7 +16,7 @@
 }
 /* in a wide window the decision keeps the narrow window's measure, centred */
 .dk-acts--narrow{
-  width: min(var(--pct-100), 360px);
+  width: min(var(--pct-100), var(--len-360));
   margin-inline: auto;
 }
 
@@ -45,7 +45,7 @@
   text-align: center;
 }
 .dk-step .dr-slide__art{
-  height: 180px;
+  height: var(--len-180);
 }
 .dk-step .dr-display, .dk-step .dr-lead{
   margin: 0;
@@ -55,10 +55,10 @@
    right, the map with the open jobs between them */
 .dk-home{
   position: absolute;
-  top: 96px;
-  left: 24px;
-  right: 24px;
-  bottom: 24px;
+  top: var(--len-96);
+  left: var(--len-24);
+  right: var(--len-24);
+  bottom: var(--len-24);
   z-index: 2;
   display: flex;
   justify-content: space-between;
@@ -70,7 +70,7 @@
   pointer-events: auto;
 }
 .dk-jobs{
-  width: min(400px, var(--pct-100));
+  width: min(var(--len-400), var(--pct-100));
   max-height: var(--pct-100);
   overflow: auto;
   padding: var(--len-20);
@@ -86,7 +86,7 @@
   border-bottom: var(--len-1) solid var(--border-material);
 }
 .dk-side{
-  width: 300px;
+  width: var(--len-300);
   flex: none;
   display: grid;
   gap: var(--len-12);
