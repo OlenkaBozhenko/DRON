@@ -342,12 +342,14 @@ screen. Do not add a pattern that cannot name three screens.
 Apple's HIG opens, at the designer's request: a filterable sidebar of every section, the title *DRON design
 system and guidelines*, then one row of picture cards per section — **Tone of voice** (made part of the design
 system; its source stays `voice.md`), **Tokens**, **Components**, **Patterns**. Text and cards are
-`docs/src/overview.md` (a card is `- card: [Title](href) · image · caption`); the 25 pictures are
-`assets/design-system/cards/*.webp`, drawn in Figma (*DRON design system — card art*,
-`hyqXavjJY7H7hUzhgpPobt`) as a DRON gradient behind a product outline icon, and the build fails on a missing one.
+`docs/src/overview.md` (a card is `- card: [Title](href) · image · caption`); the 32 pictures are
+`assets/design-system/cards/*.webp`: 25 drawn in Figma (*DRON design system — card art*,
+`hyqXavjJY7H7hUzhgpPobt`) as a DRON gradient behind a product outline icon, and the seven *Motion* cards (rev 348,
+last on the page) shot from `assets/design-system/cards/_motion-cards.html` in the same style; the build fails on a
+missing one.
 
 **The docs are one small site (rev 306).** Every generated page carries the same sidebar — Getting started,
-Tone of voice, Tokens, Motion, Components, Patterns — and whatever is chosen opens on the right with the sidebar kept,
+Tone of voice, Tokens, Components, Patterns, Motion — and whatever is chosen opens on the right with the sidebar kept,
 the way the HIG works; `build.py`'s `wrap()` puts it beside each page's `<main>`. **Tone of voice** is one page per
 `voice.md` section (`voice-*.html`) and **Tokens** one page per kind (`tokens-*.html`), listed from `tokens.css` at build
 time, so both open from a file with no server; **Motion** (rev 347) is one page per section of

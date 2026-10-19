@@ -603,9 +603,9 @@ def side_html(current):
                              ('Example screen', '../examples/operator-profile.html'), ('Backlog', 'backlog.html')]),
         ('Tone of voice', NAV.get('voice', [])),
         ('Tokens', NAV.get('tokens', [])),
-        ('Motion', NAV.get('motion', [])),
         ('Components', [('All components', 'index.html')] + NAV.get('components', [])),
         ('Patterns', [('All patterns', 'patterns.html')] + NAV.get('patterns', [])),
+        ('Motion', NAV.get('motion', [])),   # last, by the designer's word (rev 348)
     ]
     out = []
     for name, items in groups:

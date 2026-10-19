@@ -32,10 +32,6 @@ measured in both themes. For more, see [Tokens](tokens.html).
 - card: [Motion](tokens-motion.html) · tokens-motion · The times and easings, and what reduced motion keeps.
 - card: [Light and dark](tokens-light-and-dark.html) · tokens-themes · The semantic tier redrawn for the dark build.
 
-## Motion
-
-How DRON moves: three jobs (connect, status, answer), three durations, three curves, two distances, and the tone each state arrives in. Every page plays the motion it describes.
-
 ## Components
 
 The bricks: 61 components, each drawn live by the stylesheet the product links, with its anatomy,
@@ -62,3 +58,15 @@ screen does a job an existing one already does. For more, see [Patterns](pattern
 - card: [Labelled detail rows](patterns.html#labelled-rows) · pat-rows · Facts grouped by topic, key and value.
 - card: [Labelled card list](patterns.html#card-feed) · pat-cards · Records of one kind, one card each.
 - card: [Balance first](patterns.html#balance-head) · pat-balance · One figure leads; the rest explains it.
+
+## Motion
+
+How DRON moves: three jobs (connect, status, answer), three durations, three curves, two distances, and the tone each state arrives in. Every page plays the motion it describes.
+
+- card: [About motion](motion.html) · motion-about · The three jobs, and the rule: no job, no animation.
+- card: [The scale](motion-the-scale.html) · motion-scale · Three durations, three curves, two distances, played live.
+- card: [Microinteractions](motion-microinteractions.html) · motion-micro · Hover, press and focus, in the component itself.
+- card: [Windows and states](motion-windows-and-states.html) · motion-states · How a screen arrives, in the tone of its words.
+- card: [Loops](motion-loops.html) · motion-loops · The motion that repeats, and what it reports.
+- card: [Accessibility](motion-accessibility.html) · motion-access · Reduced motion, pause, focus and flashes.
+- card: [Decisions and departures](motion-decisions-and-departures.html) · motion-decisions · What was kept, what was declined, what is open.
