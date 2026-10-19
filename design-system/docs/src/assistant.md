@@ -50,7 +50,7 @@ On the operator's home the assistant has no services: *Tap a drone on the map to
 </div>
 ```
 
-Away from the home the assistant is folded into *Talk to AI*, docked centred 24 above the bottom of every signed-in screen (`.dr-talkdock`); where the assistant itself is on screen the dock is not drawn, until a window opens over it: then the assistant steps out and folds into the dock (`listings-filters`, the designer 2026-10-19: «має бути коли чат з агентом згортається у цю кнопку»).
+Away from the home the assistant is folded into *Talk to AI*, docked centred 24 above the bottom of every signed-in screen (`.dr-talkdock`); where the assistant itself is on screen the dock is not drawn, until a window opens over it: then the assistant steps out and folds into the dock (`listings-filters`, the designer 2026-10-19: «має бути коли чат з агентом згортається у цю кнопку»). The same when a card takes the centre: with the last search (`.dr-lastsearch`, `listings-loading` / `-error`) the chat's own parts go and Talk to AI docks (rev 339).
 
 ### Tablet
 

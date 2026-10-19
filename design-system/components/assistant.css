@@ -276,6 +276,16 @@
    How this component is tuned inside the desktop frame (.dr-desk, desk.css).
    Nothing here matches a phone page. */
 
+/* «тут не може бути і AI chat відкритий і картка, коли є картка по центру то чат ховається у
+   кнопку внизу» (rev 339): when the last search takes the centre, the chat's own parts go and
+   Talk to AI docks at the bottom */
+.dr-desk .dr-assistant:has(> .dr-lastsearch) > :not(.dr-lastsearch){
+  display: none;
+}
+.dr-desk:has(.dr-assistant > .dr-lastsearch) .dr-talkdock{
+  display: inline-flex;
+}
+
 /* the service drones are white renders drawn for the dark map: the phone's
    dark-build lift (media.css, /drones/ inverted) would turn them dark */
 [data-theme="dark"] .dr:where(.dr-desk) .dr-svc img{
