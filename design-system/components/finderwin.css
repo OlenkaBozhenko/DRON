@@ -1,0 +1,51 @@
+/* finderwin.css - DESKTOP: THE SEARCH STEP on the home, the phone's finder in a centred window open while the address is #find (moved from wireframes/desktop/, 2026-10-19) */
+
+/* THE SEARCH STEP on the desktop home (the designer: «коли я обираю і натискаю
+   кнопку замовити пропадає ось цей степ»): the phone's finder in a centred
+   window, open while the address is #find; the assistant steps out, the map
+   dims, Talk to AI waits, Order steps back. Its drawers open over it. */
+.dr-finderwin, .dr-finderdim{
+  display: none;
+}
+.dr-desk:has(#find:target) .dr-finderwin{
+  display: flex;
+}
+.dr-desk:has(#find:target) .dr-finderdim{
+  display: block;
+}
+.dr-desk:has(#find:target) .dr-console__centre{
+  visibility: hidden;
+}
+.dr-finderwin .dr-finder{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+}
+.dr-finderwin .dr-finder__services{
+  display: flex;
+  gap: var(--len-8);
+  flex-wrap: wrap;
+  border: 0;
+}
+.dr-finderwin .dr-finder__actions{
+  display: grid;
+  gap: var(--len-10);
+}
+
+/* «кнопки в нижній бар» (Find a service): the finder is one form, so its Filters and Find
+   stay inside it; the form fills the window and its actions sit at its foot, the window's
+   bottom bar, as in every other window */
+.dr-desk .dr-finderwin > .dr-finder{
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.dr-desk .dr-finderwin .dr-finder__actions{
+  margin-top: auto;
+}
+
+/* «відступи у формі покращ»: the service pills stood 6 from the route card (their 44pt
+   hit area reaches past the pill); they choose what the card asks, so they stay close, but
+   at 20 they read as their own row, not as the card's top edge */
+.dr-desk .dr-finderwin .dr-finder__services{
+  margin-bottom: var(--len-2);
+}

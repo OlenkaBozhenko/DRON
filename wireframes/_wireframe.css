@@ -1,0 +1,576 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   DRON wireframes — shared stylesheet (_conventions.md §7)
+   Grayscale only, San Francisco system font, no colour, no shadows, no icons.
+   Tokens/values match the inline styles in listings.html (the sample) exactly,
+   plus the extra components the remaining screens need.
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root{
+  --wf-surface:#FFFFFF; --wf-bg:#F4F4F4; --wf-recessed:#EEEEEE; --wf-fill:#E2E2E2;
+  --wf-skeleton:#D8D8D8; --wf-muted:#909090; --wf-text-2:#5A5A5A; --wf-text:#252525;
+  --wf-ink:#111111; --wf-ink-max:#000000;
+  --wf-border:rgba(0,0,0,0.09); --wf-border-2:rgba(0,0,0,0.15);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,sans-serif;
+  background:var(--wf-recessed); color:var(--wf-text);
+  font-size:15px; line-height:1.4;
+  display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start; padding:24px;
+}
+.sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+
+/* ── wireframe annotation (NOT part of the screen) ── */
+.meta{ width:320px; font-size:13px; color:var(--wf-text-2); }
+.meta h1{ font-size:17px; font-weight:600; color:var(--wf-text); margin-bottom:4px; }
+.meta .sub{ color:var(--wf-muted); margin-bottom:16px; }
+.meta dl{ display:grid; grid-template-columns:auto 1fr; gap:4px 8px; margin-bottom:16px; }
+.meta dt{ color:var(--wf-muted); text-transform:uppercase; font-size:11px; letter-spacing:.06em; padding-top:1px; }
+.meta dd{ color:var(--wf-text-2); }
+.meta .flow{ border:1px dashed var(--wf-border-2); border-radius:6px; padding:12px; margin-bottom:16px; line-height:1.6; }
+.meta .flow b{ color:var(--wf-text); font-weight:600; }
+.meta .flow .cur{ background:var(--wf-ink); color:var(--wf-surface); padding:1px 6px; border-radius:4px; font-weight:600; }
+.meta .legend{ border-top:1px solid var(--wf-border); padding-top:12px; }
+.meta .legend p{ margin-bottom:6px; }
+.meta .legend b{ color:var(--wf-text); font-weight:600; }
+
+.state-switch{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+.state-switch a{ font-size:12px; padding:5px 10px; border:1px solid var(--wf-border-2); border-radius:6px;
+  text-decoration:none; color:var(--wf-text-2); background:var(--wf-surface); }
+.state-switch a:hover{ background:var(--wf-recessed); color:var(--wf-text); }
+.state-switch a.cur{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+
+/* ── phone frame 375 × 812 ── */
+.wf-frame{
+  width:375px; height:812px; flex:none;
+  background:var(--wf-bg); border:1px solid var(--wf-border-2); border-radius:8px;
+  overflow:hidden; display:flex; flex-direction:column; position:relative;
+}
+
+/* status bar (system, safe area) */
+.statusbar{ height:44px; flex:none; display:flex; align-items:center; justify-content:space-between;
+  padding:0 16px; background:var(--wf-surface); color:var(--wf-text-2); font-size:13px; font-weight:600; }
+.statusbar .sysph{ display:flex; gap:4px; }
+.sq{ display:inline-block; border:1px solid var(--wf-border-2); border-radius:4px; }
+.sq-16{ width:16px; height:16px; } .sq-20{ width:20px; height:20px; } .sq-24{ width:24px; height:24px; }
+
+/* header / top bar */
+header.topbar{ height:56px; flex:none; display:flex; align-items:center; gap:8px;
+  padding:0 16px; background:var(--wf-surface); border-bottom:1px solid var(--wf-border);
+  position:relative; }   /* the title centres against this box (rev 94) */
+.brand-ph{ width:44px; height:24px; border:1px dashed var(--wf-border-2); border-radius:4px;
+  display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.08em; color:var(--wf-muted); }
+/* The DRON mark (_conventions.md §8). Drawn as a mask rather than an image
+   element so it takes the wireframe ink and stays inside the grayscale ramp;
+   an embedded file would carry its own black and ignore --wf-text.
+   60 x 20 keeps the 2.99:1 artwork legible; #252525 on the white topbar
+   is 15.33:1. */
+.brand{ width:60px; height:20px; flex:none; background:var(--wf-text);
+  -webkit-mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat;
+  mask:url(../assets/brand/dron-logo.svg) center/contain no-repeat; }
+.avatar{ width:28px; height:28px; border-radius:999px;
+  display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; color:var(--wf-text-2); }
+/* A real face replaces the initials. The portrait is a cutout with a
+   transparent ground, so the circle keeps a fill of its own — otherwise the
+   top bar shows through the gap beside the shoulders and the head floats.
+   `cover`, not `contain`: the crop is already square and head-tight, and
+   contain would letterbox it inside the circle. */
+.avatar:has(img), .op-avatar:has(img){
+  background:var(--wf-recessed); overflow:hidden; padding:0;
+  font-size:0; line-height:0; color:transparent; }
+.avatar img, .op-avatar img{
+  width:100%; height:100%; display:block; object-fit:cover; border-radius:999px; }
+.who{ font-size:15px; font-weight:600; color:var(--wf-text); }
+.loc{ font-size:15px; font-weight:600; color:var(--wf-text); }
+.topbar .spacer{ flex:1; }
+/* HIG · Navigation bars centres the title. It used to flow after the back label and
+   drift with its length; rev 93 removed the label, so nothing can collide with it —
+   the chevron's box is 34px of the bar. Absolute, not a 3-column grid: two grayscale
+   bars carry a third child (job-checklist's operator name). pointer-events:none so a
+   long title never swallows a click meant for the control under it. */
+.topbar .title{ position:absolute; left:50%; transform:translateX(-50%);
+  max-width:calc(100% - 120px); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  pointer-events:none;
+  font-size:17px; font-weight:600; color:var(--wf-text); }
+/* nav-bar back — see _conventions.md §11.1. Always an <a href>, never a bare <button>:
+   _wf-shell.js only calls history.back() when history.length > 1, so a page opened
+   directly needs the href to have anywhere to go.
+
+   No text: the chevron icon alone (rev 93, microcopy.md D9). The bar carries one
+   name — the title of the screen you are on. The destination lives on in
+   aria-label="Back to …", which WCAG 4.1.2 requires on an icon-only control.
+
+   Sized as a target, not as padding around text: the label used to supply the
+   width, and a bare glyph is ~10px. 44 × 44 with the icon centred; margin-left
+   returns the icon's edge to the 16px gutter so the bar's left edge holds. */
+.back{ flex:none; width:44px; height:44px; margin-left:-10px;
+  display:inline-flex; align-items:center; justify-content:center;
+  color:var(--wf-text); background:transparent; border:0; cursor:pointer; text-decoration:none; }
+.back svg{ width:22px; height:22px; display:block; }
+.back:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:0; border-radius:6px; }
+
+/* nav — category chips / group tabs */
+nav.cats{ height:48px; flex:none; display:flex; align-items:center; gap:8px;
+  padding:0 16px; background:var(--wf-surface); border-bottom:1px solid var(--wf-border); overflow-x:auto; }
+.chip{ flex:none; height:32px; padding:0 12px; border-radius:6px; border:1px solid var(--wf-border-2);
+  background:var(--wf-surface); color:var(--wf-text-2); font-size:13px; font-weight:600; }
+.chip[aria-current="true"]{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+nav.groups{ height:48px; flex:none; display:flex; align-items:center; gap:8px;
+  padding:0 16px; background:var(--wf-surface); border-bottom:1px solid var(--wf-border); }
+.grouptab{ flex:none; height:32px; padding:0 12px; border-radius:6px; border:1px solid var(--wf-border-2);
+  background:var(--wf-surface); color:var(--wf-text-2); font-size:13px; font-weight:600; text-decoration:none;
+  display:flex; align-items:center; }
+.grouptab[aria-current="true"]{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+
+/* main scroll area */
+main{ flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:16px; }
+.stack{ display:flex; flex-direction:column; gap:12px; }
+
+/* zone annotation label */
+.zlabel{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--wf-muted);
+  display:flex; flex-wrap:wrap; gap:6px; align-items:baseline; border-left:2px solid var(--wf-border-2);
+  padding-left:8px; margin-bottom:-4px; }
+.zlabel .act{ color:var(--wf-text-2); text-transform:none; letter-spacing:0; font-size:12px; }
+
+/* search & filters */
+.search-row{ display:flex; gap:8px; }
+.field{ flex:1; height:44px; display:flex; align-items:center; gap:8px; padding:0 12px;
+  background:var(--wf-surface); border:1px solid var(--wf-border-2); border-radius:6px; }
+.field input{ flex:1; border:0; background:transparent; font:inherit; color:var(--wf-text); outline:none; }
+.field input::placeholder{ color:var(--wf-muted); }
+
+/* counter */
+.counter{ display:flex; align-items:center; justify-content:space-between; }
+.counter .count{ font-size:13px; color:var(--wf-text-2); }
+.counter .count b{ color:var(--wf-text); font-weight:600; }
+
+/* forms — labelled fields
+   THE FIELD IS THE ROW THAT ACCEPTS TYPING, not a box drawn around one — the
+   anatomy the painted kit has carried since rev 98/100, brought across to the
+   grayscale layer on the designer's call 2026-08-16 (rev 103), pointing at the
+   built `order-setup`: «мені подобається як тут відпрацьовують інпути і
+   текстові поля — тепер зроби по всьому проекту по усіх wireframes і стейтах
+   так». HIG ships two form styles and BOTH conform: the grouped inset list
+   (Settings — a card, rows, separators) and the plain list (Notes — rows on
+   the page, a hairline between, a caret, a grey placeholder). She chose the
+   plain list on 2026-08-16, so no field on either layer wears a box.
+   THE BORDER THAT CAME OFF, measured before it went: `--wf-border-2` over the
+   control's own white fill composites to #D9D9D9 — 1.42:1 against that fill
+   and 1.29:1 against the #F4F4F4 page. A drawn boundary is what identifies a
+   control, so `WCAG 1.4.11` asks 3:1 and this failed by 2.1×. Nothing replaces
+   it: the label, the typed ink and the hairline carry the row, exactly as on
+   the painted side, and 1.4.11 governs a boundary that is DRAWN, not one that
+   is absent.
+   SCOPED BY :has(> .control), because .form-field is this layer's generic
+   labelled block — it also wraps a checklist (operator-profile-setup) and an
+   upload zone (operator-dispute), and those keep the stacked 13/600 label. */
+.form-field{ display:flex; flex-direction:column; gap:6px; }
+.field-label{ font-size:13px; font-weight:600; color:var(--wf-text); }   /* 13.94:1 */
+
+/* the typing row: label left, value right, one line, no box */
+.form-field:has(> .control){
+  position:relative;
+  min-height:44px; flex-direction:row; align-items:center; flex-wrap:wrap; gap:10px;
+  border:0; background:transparent;
+}
+/* the label drops to the row's own voice — 15/400 slate, the .dr-field__label
+   step, not the 13/600 heading a stacked block needs to sit above itself */
+.form-field:has(> .control) > .field-label{
+  flex:1; font-size:15px; font-weight:400; color:var(--wf-text-2);       /* 6.27:1 on --wf-bg */
+}
+/* THE INPUT GROUP IS A PLAIN LIST — `.dr-rows:has(> .dr-field)` brought over.
+   Adjacent typing rows sit flush and take a hairline between them; the card
+   and the radius are already absent, because this layer never gave them one.
+   A LONE field gets no line, the way `.dr-field + .dr-field` draws only
+   between two — so only operator-profile-setup carries this wrapper. */
+.field-rows{ display:flex; flex-direction:column; }
+.field-rows > .form-field{ position:relative; }
+.field-rows > .form-field + .form-field::before{
+  content:""; position:absolute; left:0; right:0; top:0;
+  height:1px; background:var(--wf-border);   /* 1.22:1 — the painted hairline's own 1.21 */
+}
+/* the input side of a row, when built markup wraps it — anatomy, not layout */
+.control:not(textarea){
+  flex:1; min-width:0; display:flex; align-items:center; gap:10px;
+  height:auto; padding:0; border:0; background:transparent;
+  font-size:15px; color:var(--wf-text);
+}
+.control input,.control select{ flex:1; min-width:0; border:0; background:transparent;
+  font:inherit; color:var(--wf-text); outline:none; }                    /* 13.94:1 */
+/* NO RING ON A TEXT FIELD, AND A DECLARED CARET — rev 100's reading, carried
+   across unchanged: `WCAG 2.4.7` Understanding names the text cursor in a text
+   field as a visible focus indicator, so the caret carries the criterion where
+   the ring used to, declared rather than left to a browser default. It does
+   NOT generalise — every control without a caret keeps its ring, because it
+   has nothing else to fall back on. */
+.control input,.control select,textarea.control{ caret-color:var(--wf-text); }
+/* The placeholder was `--wf-muted` #909090 at 3.19:1 on white — a live `WCAG
+   1.4.3` failure older than this pass and fixed with it, since the ground was
+   moving anyway. `--wf-text-2` reads 6.27:1 on the page, 5.95:1 on the area. */
+.control input::placeholder,textarea.control::placeholder{ color:var(--wf-text-2); }
+.control.select{ justify-content:space-between; cursor:pointer; }
+/* the multiline field: the row that grows. The label takes its own line and
+   the area runs the full width — HIG's own multiline pattern and the shape
+   `.dr-field--area` holds on the painted side. THE GROUND STAYS: rev 100 gave
+   it back there, and `--wf-recessed` is the token whose declared role in
+   _conventions.md §4.1 is already "input field fill". Typed 13.22:1,
+   placeholder 5.95:1 on it. */
+.form-field:has(> textarea.control){ align-items:stretch; padding:12px 0; }
+.form-field:has(> textarea.control) > .field-label{ flex:0 0 100%; }
+textarea.control{ height:auto; min-height:80px; padding:12px; align-items:stretch;
+  resize:none; font:inherit; width:100%; flex-basis:100%; outline:none;
+  border:0; background:var(--wf-recessed); border-radius:6px;
+  font-size:15px; color:var(--wf-text); line-height:1.4; }
+.field-hint{ flex-basis:100%; font-size:12px; color:var(--wf-text-2); }  /* 6.27:1, was 3.19:1 */
+
+/* key-value & price rows */
+.kv{ background:var(--wf-surface); border:1px solid var(--wf-border); border-radius:8px; padding:4px 16px; }
+.kv-row{ display:flex; justify-content:space-between; gap:12px; padding:12px 0; border-bottom:1px solid var(--wf-border); font-size:15px; }
+.kv-row:last-child{ border-bottom:0; }
+.kv-key{ color:var(--wf-text-2); } .kv-val{ color:var(--wf-text); font-weight:600; text-align:right; }
+.price-total{ font-size:17px; } .price-total .kv-val{ font-size:17px; }
+
+/* cards & list */
+ul.list{ list-style:none; display:flex; flex-direction:column; gap:12px; }
+article.card{ position:relative; display:flex; align-items:center; gap:12px; padding:16px;
+  background:var(--wf-surface); border:1px solid var(--wf-border); border-radius:8px; }
+article.card.stack-card{ flex-direction:column; align-items:stretch; gap:12px; }
+article.card:hover{ border-color:var(--wf-border-2); background:var(--wf-recessed); }
+article.card:focus-within{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+.card-link{ position:absolute; inset:0; z-index:1; border-radius:8px; }
+.card-link:focus{ outline:none; }
+.card-top{ display:flex; align-items:center; gap:12px; }
+.media-ph{ width:56px; height:56px; flex:none; border:1px dashed var(--wf-border-2); border-radius:6px;
+  display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.04em; color:var(--wf-muted);
+  background:var(--wf-recessed); text-align:center; }
+
+/* ── IMAGERY ──────────────────────────────────────────────────────────────
+   A placeholder that carries a picture stops being a placeholder: the dashed
+   well and the label ground come off, because the label was standing in for
+   the picture that is now there (concept.md §6.3 — in the product a cutout
+   sits straight on the surface, no well).
+
+   Two treatments, one rule (DESIGN.md → Imagery):
+     · a transparent cutout sits IN the layout and is `contain`-ed — default;
+     · a photograph IS the surface and `cover`s it edge to edge — `.shot`.
+   A photo floated inside a well reads as a sticker, so the two never swap.
+
+   The service wells grow 56 → 96 × 72 to carry a render at all: §6.3 puts the
+   floor at ~96px, below which the rotors stop resolving, and `order-history`
+   already took this exact step for the same reason. 96 × 72 is landscape
+   because the subject is — a 1024² canvas holding a ~1.37 subject would spend
+   a fifth of a square well on nothing.
+   :has() is baseline in every browser this prototype targets; an older one
+   loses the well removal, not the picture.                                  */
+.media-ph:has(img), .slide-ph:has(img), .map-ph:has(img){
+  border:0; background:none; padding:0; overflow:hidden;
+  font-size:0; line-height:0; color:transparent; }
+.media-ph img, .slide-ph img, .map-ph img{
+  width:100%; height:100%; display:block; object-fit:contain; }
+/* the card well grows only when it actually carries a render; a .media-ph
+   given an explicit size inline (the report cover, the photo strip) keeps it */
+.media-ph:has(img):not([style*="height"]){ width:96px; height:72px; border-radius:8px; }
+/* A solid subject is inset; an airy one is not. Two cutouts at the same 96 x 72
+   do not carry the same weight: the cargo box is 91% opaque and fills its own
+   bounds, the drone is 43% — a skeleton of arms and rotors. Drawn flush, the
+   box has 5.2x the ink of the drone and the card above reads twice as heavy as
+   the card below.
+   Matching ink exactly would put the box at 42 x 30, which is the wrong
+   correction — the drone is light because it is airy, not because it is small.
+   Splitting the two normalisations (ink parity 0.44, bounds parity 1.00) lands
+   on 0.66, and the four scales rendered side by side agree: 100 and 80 stay
+   top-heavy, 55 loses the box, 66 balances. 12/16 padding is the 4px-grid
+   value that hits it — content 64 x 48, two thirds of the well. */
+.media-ph.inset:has(img){ padding:12px 16px; }
+.media-ph.shot img, .map-ph img{ object-fit:cover; }
+
+.card .body{ flex:1; min-width:0; }
+.card .name{ font-size:17px; font-weight:600; color:var(--wf-text); }
+.card .desc{ font-size:13px; color:var(--wf-text-2); margin:2px 0 6px; }
+.card .meta-row{ display:flex; align-items:baseline; gap:8px; }
+.card .price{ font-size:15px; font-weight:600; color:var(--wf-text); }
+.card .avail{ font-size:13px; color:var(--wf-muted); }
+.card .chev{ flex:none; font-size:22px; line-height:1; color:var(--wf-muted); align-self:center; }
+.card .actions{ display:flex; gap:8px; }
+.card .actions .btn{ flex:1; position:relative; z-index:2; }
+
+/* operator reveal card (order-confirmed) */
+.op-card{ display:flex; align-items:center; gap:12px; padding:16px; background:var(--wf-surface);
+  border:1px solid var(--wf-border); border-radius:8px; }
+.op-avatar{ width:56px; height:56px; flex:none; border-radius:999px;
+  display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:600; color:var(--wf-text-2); background:var(--wf-recessed); }
+.op-info{ flex:1; min-width:0; }
+.op-name{ font-size:17px; font-weight:600; color:var(--wf-text); }
+.op-rating{ font-size:13px; color:var(--wf-text-2); margin-top:2px; }
+.badges{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.badge{ font-size:11px; font-weight:600; letter-spacing:.04em; color:var(--wf-text-2);
+  border:1px solid var(--wf-border-2); border-radius:4px; padding:3px 8px; background:var(--wf-surface); }
+
+/* status toggle (operator) */
+.status-head{ display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+.dot{ width:10px; height:10px; border-radius:999px; background:var(--wf-ink); flex:none; }
+.status-head b{ font-weight:600; } .status-head span{ color:var(--wf-muted); font-size:13px; }
+.segment{ display:flex; border:1px solid var(--wf-border-2); border-radius:6px; overflow:hidden; }
+.seg{ flex:1; height:44px; display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:600; color:var(--wf-text-2); background:var(--wf-surface);
+  border-right:1px solid var(--wf-border); cursor:pointer; }
+.seg:last-child{ border-right:0; }
+.seg input{ position:absolute; opacity:0; width:0; height:0; }
+.seg:has(input:checked){ background:var(--wf-ink); color:var(--wf-surface); }
+.seg:has(input:focus-visible){ outline:2px solid var(--wf-border-2); outline-offset:-2px; }
+
+/* rating (rate screen) */
+.rating{ display:flex; gap:8px; }
+.star{ flex:1; height:56px; border:1px solid var(--wf-border-2); border-radius:6px; background:var(--wf-surface);
+  font-size:17px; font-weight:600; color:var(--wf-text-2); cursor:pointer; }
+.star[aria-pressed="true"]{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+
+/* checklist (operator) */
+.checklist{ list-style:none; display:flex; flex-direction:column; gap:8px; }
+.check-item{ display:flex; align-items:center; gap:12px; padding:14px 16px; background:var(--wf-surface);
+  border:1px solid var(--wf-border); border-radius:8px; font-size:15px; color:var(--wf-text); }
+.check-box{ width:24px; height:24px; flex:none; border:1px solid var(--wf-border-2); border-radius:6px;
+  display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--wf-muted); }
+.check-item.done .check-box{ background:var(--wf-ink); color:var(--wf-surface); border-color:var(--wf-ink); }
+.check-item.done .check-label{ color:var(--wf-text-2); }
+.check-label{ flex:1; }
+.check-note{ font-size:12px; color:var(--wf-muted); }
+
+/* upload zone (operator) */
+.upload-zone{ border:1px dashed var(--wf-border-2); border-radius:8px; background:var(--wf-recessed);
+  min-height:140px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:24px; text-align:center; }
+.upload-zone .up-ph{ font-size:11px; letter-spacing:.06em; color:var(--wf-muted); }
+/* A tray that has its picture stops being a tray — the same move the media
+   wells make above: the dashed frame and the label ground come off, because
+   the label was standing in for the photograph that is now there. The
+   control does not leave with the label — an attached photo has to be
+   replaceable. A photograph covers; only a transparent cutout is contained.
+
+   The band is 180px, not the empty tray's 140px, and that is measured rather
+   than chosen. `delivered-at-door.jpg` is 652 x 522 into a 341px box, so
+   `cover` draws it 341 x 273 and crops the middle: at 180 that cuts 47px top
+   and bottom and the parcel survives; at 140 it cuts 67px and takes the
+   parcel — the proof the screen exists for — off the bottom edge. 180 is
+   also exactly the well delivery.html draws, so the operator is looking at
+   the frame the client will be shown. Filling the tray grows the page 40px,
+   which is what an attachment does. */
+.upload-zone:has(.up-shot){ border:0; background:none; padding:0; min-height:0; gap:12px; }
+.up-shot{ display:block; width:100%; height:180px; border-radius:8px; overflow:hidden; background:var(--wf-recessed); }
+.up-shot img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* map placeholder (tracking) */
+.map-ph{ border:1px dashed var(--wf-border-2); border-radius:8px; background:var(--wf-recessed);
+  height:200px; display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.06em; color:var(--wf-muted); }
+
+/* timeline (tracking status) */
+.timeline{ list-style:none; display:flex; flex-direction:column; }
+.tl-item{ display:flex; gap:12px; padding-bottom:16px; position:relative; }
+.tl-item:last-child{ padding-bottom:0; }
+.tl-dot{ width:12px; height:12px; border-radius:999px; border:1px solid var(--wf-border-2); background:var(--wf-surface); flex:none; margin-top:3px; }
+.tl-item.done .tl-dot{ background:var(--wf-ink); border-color:var(--wf-ink); }
+.tl-text{ font-size:14px; color:var(--wf-text-2); } .tl-item.done .tl-text{ color:var(--wf-text); font-weight:600; }
+
+/* amount (wallet / withdraw) */
+.amount{ font-size:34px; font-weight:600; color:var(--wf-text); letter-spacing:-0.01em; }
+.amount-sub{ font-size:13px; color:var(--wf-muted); margin-top:2px; }
+
+/* big title + success mark (success/onboarding screens) */
+.big-title{ font-size:22px; font-weight:600; color:var(--wf-text); }
+.lead{ font-size:15px; color:var(--wf-text-2); }
+.success-mark{ width:64px; height:64px; border:1px solid var(--wf-border-2); border-radius:999px; background:var(--wf-recessed);
+  display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.06em; color:var(--wf-muted); }
+.center{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; }
+.hint{ font-size:12px; color:var(--wf-muted); }
+.note{ font-size:12px; color:var(--wf-muted); text-align:center; line-height:1.5; }
+
+/* choice cards (role select / onboarding) */
+.choice-list{ display:flex; flex-direction:column; gap:12px; }
+.choice-card{ position:relative; display:flex; align-items:center; gap:12px; padding:20px 16px; text-decoration:none; color:inherit;
+  background:var(--wf-surface); border:1px solid var(--wf-border-2); border-radius:8px; }
+.choice-card:hover{ background:var(--wf-recessed); }
+.choice-card .body{ flex:1; }
+.choice-title{ font-size:17px; font-weight:600; color:var(--wf-text); }
+.choice-desc{ font-size:13px; color:var(--wf-text-2); margin-top:2px; }
+.choice-card .chev{ font-size:22px; color:var(--wf-muted); }
+/* stacked label spans (card / operator / choice) — force block so they don't run inline */
+.card .name,.card .desc,.op-name,.op-rating,.choice-title,.choice-desc{ display:block; }
+
+/* message block (empty / error) */
+.msg-block{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px;
+  padding:32px 20px; background:var(--wf-surface); border:1px solid var(--wf-border); border-radius:8px; }
+.msg-ph{ width:56px; height:56px; border:1px dashed var(--wf-border-2); border-radius:8px; background:var(--wf-recessed);
+  display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.06em; color:var(--wf-muted); }
+.msg-title{ font-size:17px; font-weight:600; color:var(--wf-text); }
+.msg-body{ font-size:13px; color:var(--wf-text-2); max-width:260px; line-height:1.5; }
+.msg-actions{ display:flex; flex-direction:column; gap:8px; width:100%; margin-top:4px; }
+.msg-actions .btn{ width:100%; }
+
+/* loading skeletons */
+.sk-card{ display:flex; align-items:center; gap:12px; padding:16px;
+  background:var(--wf-surface); border:1px solid var(--wf-border); border-radius:8px; }
+.sk-media{ width:56px; height:56px; border-radius:6px; background:var(--wf-skeleton); flex:none; }
+.sk-body{ flex:1; display:flex; flex-direction:column; gap:8px; }
+.sk-line{ height:12px; border-radius:2px; background:var(--wf-skeleton); }
+.sk-block{ height:56px; border-radius:8px; background:var(--wf-skeleton); }
+.sk-w90{ width:90%; } .sk-w70{ width:70%; } .sk-w50{ width:50%; } .sk-w40{ width:40%; } .sk-w30{ width:30%; }
+
+/* buttons — variants + all interaction states (_conventions §11)
+   min-height, not height. `main` is a scrolling flex column, so a button that is
+   its direct child is a flex item: with a fixed height it shrinks the moment the
+   page overflows, and the 44px HIG target collapsed to whatever the line box was
+   (measured 22.6px on delivery). min-height is a floor flex-shrink cannot cross,
+   and it also lets a wrapped label grow the button instead of overflowing it.
+   Six pages put a .btn directly in main and were all exposed. */
+.btn{ min-height:44px; padding:0 16px; border-radius:6px; font-size:15px; font-weight:600;
+  border:1px solid transparent; background:transparent; color:var(--wf-text); cursor:pointer;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; }
+.btn:focus-visible{ outline:2px solid var(--wf-border-2); outline-offset:2px; }
+.btn:disabled{ background:var(--wf-fill); color:var(--wf-muted); border-color:transparent; cursor:not-allowed; }
+.btn-primary{ background:var(--wf-ink); color:var(--wf-surface); }
+.btn-primary:hover{ background:var(--wf-ink-max); }
+.btn-primary:active{ background:var(--wf-ink-max); }
+.btn-secondary{ background:var(--wf-surface); border-color:var(--wf-border-2); color:var(--wf-text); }
+.btn-secondary:hover{ background:var(--wf-recessed); }
+.btn-secondary:active{ background:var(--wf-fill); }
+.btn-tertiary{ background:transparent; color:var(--wf-text-2); }
+.btn-tertiary:hover{ color:var(--wf-text); }
+.btn-block{ width:100%; }
+/* the small variant has to restate the floor, or the base 44px min-height wins */
+.btn-sm{ min-height:32px; height:32px; padding:0 12px; font-size:13px; border-radius:6px; }
+
+/* footer — bottom tab bar */
+footer.tabbar{ flex:none; background:var(--wf-surface); border-top:1px solid var(--wf-border); }
+footer .tabs{ height:56px; display:flex; }
+footer .tab{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  text-decoration:none; color:var(--wf-muted); font-size:11px; }
+footer .tab .sq{ border-radius:4px; }
+footer .tab[aria-current="page"]{ color:var(--wf-ink); }
+footer .tab[aria-current="page"] .sq{ border-color:var(--wf-ink); background:var(--wf-fill); }
+footer .home-indicator{ height:34px; display:flex; align-items:center; justify-content:center; }
+footer .home-indicator span{ width:134px; height:5px; border-radius:2px; background:var(--wf-skeleton); }
+
+/* footer — sticky action bar (flow / task screens) */
+footer.actionbar{ flex:none; background:var(--wf-surface); border-top:1px solid var(--wf-border);
+  padding:12px 16px 24px; display:flex; flex-direction:column; gap:8px; }
+footer.actionbar .price-line{ display:flex; align-items:baseline; justify-content:space-between; }
+footer.actionbar .price-line .lbl{ font-size:13px; color:var(--wf-text-2); }
+footer.actionbar .price-line .val{ font-size:17px; font-weight:600; color:var(--wf-text); }
+footer.actionbar .btn{ width:100%; }
+footer.actionbar .row2{ display:flex; gap:8px; } footer.actionbar .row2 .btn{ flex:1; }
+
+/* onboarding slider — 3 slides, CSS scroll-snap, no JS */
+.slider{ display:flex; overflow-x:auto; scroll-snap-type:x mandatory; margin:0 -16px; padding:8px 16px; scrollbar-width:none; }
+.slider::-webkit-scrollbar{ display:none; }
+.slide{ flex:0 0 100%; scroll-snap-align:center; display:flex; flex-direction:column; align-items:center; text-align:center; gap:16px; padding:8px 4px; }
+.slide-ph{ width:120px; height:120px; border:1px dashed var(--wf-border-2); border-radius:8px; background:var(--wf-recessed);
+  display:flex; align-items:center; justify-content:center; font-size:11px; letter-spacing:.06em; color:var(--wf-muted); }
+/* ── FULL-BLEED SLIDER ────────────────────────────────────────────────────
+   The picture is the background of the whole screen, not of the slide box.
+   Designer call 2026-08-02, second pass: the first build pinned the picture
+   inside the slider, so it started under the top bar and stopped above the
+   pager — a 373 x 573 window, not a background.
+
+   The mechanism: the slider is lifted out of the flow and pinned to `main`,
+   which is made the containing block for it. That is what stops the action bar
+   covering the artwork — main already ends where the bar begins, so the layer
+   sizes itself to whatever height the bar happens to be, one button or two, on
+   this screen or the next. No number in this block names the bar.
+
+   It was pinned to the frame first, and that put 47% of the picture behind a
+   133px action bar. Since the bars are opaque, a layer that reaches under them
+   shows nothing extra — so nothing is lost by stopping at the content edge.
+
+   The picture stays a child of its slide, so swiping still changes it. Three
+   slides, three backgrounds, one layer.
+
+   Opt-in with .is-bleed on the slider, not automatic on :has(img), because a
+   slider whose slides mix the two treatments reads as broken — and two of the
+   nine slides in onboarding-* are still text labels waiting on a picture.
+   Switch those on the day their images land. */
+.slider.is-bleed{
+  position:absolute; inset:0; z-index:0;
+  margin:0; padding:0; align-items:stretch;
+}
+.slider.is-bleed .slide{
+  height:100%; position:relative; justify-content:center; padding:0 20px; gap:12px;
+}
+
+/* The bars keep everything they had — their ground, their hairline, their
+   place in the column. The only reason they are named here at all is paint
+   order: an absolutely positioned slider paints above its static siblings, so
+   without this it would cover them. Nothing else about them changes.
+
+   Recorded because it was got wrong once: the first attempt at this pass also
+   made the status bar, the top bar and the action bar transparent, which moved
+   the CTA and Skip onto the artwork. Nobody asked for that and no guideline
+   supports it — `HIG · Buttons` wants the primary action on a stable ground,
+   and moving it was a change to a component that was not in scope. */
+.wf-frame:has(.slider.is-bleed) > .statusbar,
+.wf-frame:has(.slider.is-bleed) > .topbar,
+.wf-frame:has(.slider.is-bleed) > .actionbar{ position:relative; z-index:1; }
+
+/* main is the containing block for the layer, and it holds only the pager once
+   the slider leaves the flow. Sent to the bottom so the pager stays exactly
+   where it sat before — under the picture, above the action bar — instead of
+   jumping up under the top bar. */
+.wf-frame:has(.slider.is-bleed) > main{ position:relative; justify-content:flex-end; }
+
+/* The layer runs the full width, out to both side edges, and stands on the
+   content floor — the top of the action bar. Its height is capped so no
+   subject can climb into the copy: the copy is centred in the same box, and
+   the longest slide (three of `welcome`, four lines) has to clear the artwork
+   with the pager's band still between them.
+
+   The cap only ever binds a portrait subject. The two landscape cutouts are
+   width-bound and draw the same size with or without it: handover 750 x 533
+   renders 375 x 266, drone-flight 409 x 174 renders 375 x 160. The operator,
+   595 x 702, is the one it catches — uncapped it filled the frame and put a
+   dark cap straight under the title at 1.00:1. Capped, all three share one
+   composition: the subject stands on the floor, the copy sits clear above it. */
+.slider.is-bleed .slide-ph{
+  position:absolute; left:0; right:0; bottom:0; top:auto; height:35%; z-index:0;
+  width:auto; min-height:0; margin:0;
+}
+/* Only a well that has its picture drops its frame. A slide still waiting on
+   one keeps the dashed well and its label, stretched across the same band —
+   so a half-supplied slider reads as "this picture is pending", not as a
+   broken layout, and the composition does not jump as you swipe.
+   Three of the nine slides across welcome + onboarding-* are in that state
+   (`REPORT`, `STEPS`, `PAID`); they close themselves the day the file lands. */
+.slider.is-bleed .slide-ph:has(img){ border:0; background:none; padding:0; }
+/* contain, never cover: these are transparent cutouts, and covering a 375-wide
+   portrait would throw away most of a landscape's width. Anchored bottom, so
+   the figure meets the edge of the screen rather than floating above it. */
+.slider.is-bleed .slide-ph img{ object-fit:contain; object-position:center bottom; }
+.slider.is-bleed + .pager{ position:relative; z-index:1; margin-top:0; }
+
+.slider.is-bleed .big-title,
+.slider.is-bleed .lead{ position:relative; z-index:1; }
+
+.pager{ display:flex; gap:8px; justify-content:center; margin-top:12px; }
+.pager a{ width:8px; height:8px; border-radius:999px; background:var(--wf-fill); border:1px solid var(--wf-border-2); }
+.pager a.on{ background:var(--wf-ink); border-color:var(--wf-ink); }
+.skip{ font-size:15px; font-weight:600; color:var(--wf-text-2); text-decoration:none; }
+.skip:hover{ color:var(--wf-text); }
+
+/* profile role switcher — native <details> disclosure used as a dropdown, no JS */
+details.dropdown{ border:1px solid var(--wf-border-2); border-radius:6px; background:var(--wf-surface); }
+details.dropdown > summary{ list-style:none; height:44px; display:flex; align-items:center; justify-content:space-between;
+  padding:0 12px; cursor:pointer; font-size:15px; font-weight:600; color:var(--wf-text); }
+details.dropdown > summary::-webkit-details-marker{ display:none; }
+details.dropdown[open] > summary{ border-bottom:1px solid var(--wf-border); }
+details.dropdown a{ display:flex; align-items:center; justify-content:space-between; gap:8px; padding:12px;
+  text-decoration:none; color:var(--wf-text); font-size:15px; border-top:1px solid var(--wf-border); }
+details.dropdown a:first-of-type{ border-top:0; }
+details.dropdown a:hover{ background:var(--wf-recessed); }
+details.dropdown a .tag{ color:var(--wf-muted); font-size:13px; font-weight:400; }
+
+
+
+
+
+
+
+
+

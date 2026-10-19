@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operator profile · DRON design-system example</title>
+<meta name="description" content="A screen the product does not have yet, built only from design-system components, patterns and tokens.">
+<!-- EXAMPLE, design-system/examples/. The client reads the operator who is coming
+     (sitemap.md CE-5 Operator profile, read for trust), the job RJ-C1 and EJ-1 ask for.
+     Built from the system only: no <style>, no style attribute, every class declared by
+     a component. Patterns: Pushed screen (no action bar), Labelled detail rows, Labelled
+     card list. What the system could not supply is in design-system/backlog.md, not here. -->
+<link rel="stylesheet" href="../index.css">
+</head>
+<body class="dr">
+  <div class="dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="dr-topbar"><a class="dr-back" href="../../wireframes/tracking.html" aria-label="Back to Tracking"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><h1 class="dr-topbar__title">Your operator</h1><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <section class="dr-profile" aria-label="Andriy M.">
+        <span class="dr-profile__photo"><span class="dr-avatar-lg"><img src="../../assets/people/thumbs/operator.png" alt="Andriy M., your operator" decoding="async"></span></span>
+        <h2 class="dr-profile__name dr-display">Andriy M.</h2>
+        <span class="dr-chips dr-profile__badges"><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/><path d="M9 11.5l2.2 2.2L15 10"/></svg>Verified by DRON<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>Insured<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="dr-chip dr-chip--claim"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5v5.5c0 4-3 7.2-7 8.9-4-1.7-7-4.9-7-8.9V5.5z"/></svg>CAA licence<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span></span>
+      </section>
+
+      <p class="dr-label">Record <span class="dr-label__act">&#9656; what the badges stand on</span></p>
+      <div class="dr-rows" aria-label="Operator record">
+        <div class="dr-rows__row"><span class="dr-rows__key">Rating</span><span class="dr-rows__val">4.9 from 186 reviews</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Jobs done</span><span class="dr-rows__val">214</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Identity</span><span class="dr-rows__val">Checked with Diia</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Licence</span><span class="dr-rows__val">CAA operator licence, checked by DRON</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Insurance</span><span class="dr-rows__val">Covered by DRON on every job</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">With DRON</span><span class="dr-rows__val">Since March 2025</span></div>
+      </div>
+
+      <p class="dr-label">By service <span class="dr-label__act">&#9656; rating per job type</span></p>
+      <div class="dr-rows" aria-label="Rating by service">
+        <div class="dr-rows__row"><span class="dr-rows__key">Package delivery</span><span class="dr-rows__val">4.9</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Photo &amp; video</span><span class="dr-rows__val">4.7</span></div>
+        <div class="dr-rows__row"><span class="dr-rows__key">Inspection</span><span class="dr-rows__val">4.8</span></div>
+      </div>
+
+      <p class="dr-label">Recent reviews <span class="dr-label__act">&#9656; from clients</span></p>
+      <section aria-label="Recent reviews">
+        <ul class="dr-list dr-list--snug">
+          <li>
+            <article class="dr-card dr-card--row dr-listing">
+              <div class="dr-listing__body">
+                <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
+                <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
+                <span class="dr-listing__meta"><span class="dr-chip">Package delivery</span><span class="dr-chip">Today</span></span>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="dr-card dr-card--row dr-listing">
+              <div class="dr-listing__body">
+                <span class="dr-listing__name">Andriy P.<span class="dr-listing__score">· 4.0</span></span>
+                <p class="dr-listing__desc">“Good shots overall, a couple came out a bit dark.”</p>
+                <span class="dr-listing__meta"><span class="dr-chip">Photo &amp; video</span><span class="dr-chip">Yesterday</span></span>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="dr-card dr-card--row dr-listing">
+              <div class="dr-listing__body">
+                <span class="dr-listing__name">Maria D.<span class="dr-listing__score">· 5.0</span></span>
+                <p class="dr-listing__desc">“Clear field footage, showed exactly where the cattle got in.”</p>
+                <span class="dr-listing__meta"><span class="dr-chip">Inspection</span><span class="dr-chip">2 days ago</span></span>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

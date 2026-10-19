@@ -1,0 +1,750 @@
+/* window.css - DESKTOP: THE CENTRED WINDOW AND THE TAB PANEL (moved from
+   wireframes/desktop/, 2026-10-19). A step of a flow is .dr-window over the dimmed
+   map; a tab root's content is .dr-panel between the rails. Both are one width and
+   one height, with one padding on all four sides: the head at the top (.dr-window__head
+   or .dr-panel__title), the content in .dr-scroll, the action in .dr-foot. The call
+   (.dr-callwin) and the chat (.dr-chatwin) are wide windows of the same kind. The rules
+   keep the order the designer's reviews added them in: later rules override earlier
+   ones, and the specificity ladders (.dr-desk.dr-desk...) are what made them win. */
+
+/* ---------------------------------------------------------------------------
+   SHARED BY EVERY DESKTOP TWIN (set before the agents start, so all 133 pages
+   draw the same window and the same panel). Group files (_desktop-<group>.css)
+   add only what their own screens need.
+   --------------------------------------------------------------------------- */
+/* a step of a flow: a centred window over the map (order setup, review, pay,
+   delivered, sign in...). It is the page's content, always open. */
+.dr-window{
+  position: absolute;
+  left: var(--pct-50);
+  top: var(--pct-50);
+  z-index: 4;
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-48) * -1));
+  width: min(var(--len-560), calc(var(--pct-100) - var(--len-48)));
+  max-height: calc(var(--pct-100) - var(--len-140));
+  overflow: auto;
+  padding: var(--len-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+}
+.dr-window--wide{
+  width: min(var(--len-760), calc(var(--pct-100) - var(--len-48)));
+}
+.dr-window__title{
+  margin: 0;
+  font-size: var(--type-window-title-size);
+  font-weight: var(--type-window-title-weight);
+  letter-spacing: var(--type-window-title-track);
+}
+.dr-window__lead{
+  margin: calc(var(--len-6) * -1) 0 var(--len-4);
+  color: var(--text-muted);
+  font-size: var(--type-body-size);
+}
+
+/* the window's back: a round icon button at its top left */
+.dr-window__head{
+  display: flex;
+  align-items: center;
+  gap: var(--len-12);
+}
+
+/* the map dims behind a window */
+.dr-dim{
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: color-mix(in srgb, var(--bg-page) 35%, transparent);
+  pointer-events: none;
+}
+
+/* a tab root's content (Activity, Help, Account, Jobs, Earnings...): a column
+   panel in the middle, between the rails, scrolling on its own */
+.dr-panel{
+  position: absolute;
+  left: var(--pct-50);
+  top: var(--len-96);
+  bottom: var(--len-24);
+  z-index: 2;
+  transform: translateX(calc(var(--pct-50) * -1));
+  width: min(var(--len-720), calc(var(--pct-100) - 2 * var(--len-348)));
+  overflow: auto;
+  padding: var(--len-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+}
+.dr-panel__title{
+  margin: 0;
+  font-size: var(--type-window-title-size);
+  font-weight: var(--type-window-title-weight);
+}
+
+/* the middle between the rails: 1440 - 2 x (24 + 300 + 24) = 744 */
+.dr-window--wide{
+  width: min(var(--len-760), calc(var(--pct-100) - var(--len-696)));
+}
+.dr-desk:has(.dr-deskrail) .dr-panel{
+  width: min(var(--len-720), calc(var(--pct-100) - var(--len-696)));
+}
+.dr-desk:has(.dr-talkdock) .dr-panel{
+  bottom: var(--len-96);
+}
+
+/* ---------------------------------------------------------------------------
+   The designer's review, 2026-10-18:
+   - «дуже широке вікно … як у ширину так і в висоту»: a tab's panel is the
+     window's width and ends where its content ends;
+   - «це видали»: the zone labels (PROGRESS, ETA, OPERATOR, DETAILS, NOTES,
+     BALANCE, RECENT…) leave the desktop. They stay as headings for screen
+     readers (WCAG 1.3.1), drawn nowhere.
+   --------------------------------------------------------------------------- */
+.dr-desk .dr-panel{
+  width: min(var(--len-560), calc(var(--pct-100) - var(--len-696)));
+  bottom: auto;
+  max-height: calc(var(--pct-100) - var(--len-120));
+}
+.dr-desk:has(.dr-talkdock) .dr-panel{
+  bottom: auto;
+  max-height: calc(var(--pct-100) - var(--len-192));
+}
+
+/* ---------------------------------------------------------------------------
+   LIGHTER, FINER (the designer, 2026-10-18: «знов те саме таке велечезне …
+   воно має бути все витончене легке й космічне»).
+   - a tab's panel and a step's window are one size, 520 wide, as tall as their
+     content (the earlier panel rule lost to a :has() rule; this one wins);
+   - the phone's heavy grey blocks inside them become a faint tint of the
+     material, the secondary button a faint wash, so the glass reads through.
+   --------------------------------------------------------------------------- */
+.dr-desk.dr-desk .dr-panel.dr-panel,
+.dr-desk.dr-desk .dr-window.dr-window:not(.dr-window--wide){
+  width: min(var(--len-520), calc(var(--pct-100) - var(--len-696)));
+  height: auto;
+  bottom: auto;
+  max-height: calc(var(--pct-100) - var(--len-200));
+  padding: var(--len-22);
+  gap: var(--len-10);
+}
+.dr-desk.dr-desk .dr-panel.dr-panel{
+  top: var(--len-96);
+  transform: translateX(calc(var(--pct-50) * -1));
+}
+.dr-desk .dr-panel__title,
+.dr-desk .dr-window__title{
+  font-size: var(--type-window-title-md-size);
+  letter-spacing: var(--type-window-title-track);
+}
+.dr-desk :is(.dr-window, .dr-panel, .dr-side, .dr-deskrail) :is(.dr-card, .dr-rows, .dr-field, .dr-op, .dr-msg, .dr-offer:not(:has(:checked)), .dr-listing){
+  background: color-mix(in srgb, var(--bg-well) 45%, transparent);
+}
+.dr-desk :is(.dr-window, .dr-panel, .dr-side) .dr-btn--secondary{
+  background: color-mix(in srgb, var(--bg-muted) 55%, transparent);
+  box-shadow: none;
+}
+.dr-desk :is(.dr-window, .dr-panel, .dr-side) .dr-btn{
+  min-height: var(--len-44);
+}
+
+/* «вікна що відкриваються по центру мають бути трохи більші ніж ось ці» (the
+   300 rails): a centred window or panel is 380, a wide one (call, chat,
+   inspection report) 480. Smaller type and spacing to match the rails. */
+.dr-desk.dr-desk .dr-panel.dr-panel,
+.dr-desk.dr-desk .dr-window.dr-window:not(.dr-window--wide){
+  width: var(--len-560);
+  padding: var(--len-24);
+  gap: var(--len-12);
+}
+.dr-desk.dr-desk .dr-window.dr-window--wide{
+  width: var(--len-480);
+}
+.dr-desk .dr-panel__title,
+.dr-desk .dr-window__title{
+  font-size: var(--type-title-size);
+}
+
+/* «зроби усі картки що відкриваються по центру однакової ширини … як тут»
+   (the preview's order window): every centred window and panel, wide ones
+   included, is 560 with 24 padding and the 22 title - one width everywhere.
+   «на вузьких екранах картка ставала трохи вужчою щоб було достатньо вільного
+   простору» (2026-10-19): below 1336 the window gives way so 64 of map stays
+   between it and each rail (24 + 300 rail + 64), down to 420 at 1196 */
+.dr-desk.dr-desk .dr-panel.dr-panel,
+.dr-desk.dr-desk .dr-window.dr-window,
+.dr-desk.dr-desk .dr-window.dr-window--wide{
+  width: clamp(var(--len-420), calc(var(--pct-100) - 2 * (var(--len-348) + var(--len-40))), var(--len-560));
+  padding: var(--len-24);
+  gap: var(--len-12);
+}
+.dr-desk .dr-panel__title,
+.dr-desk .dr-window__title{
+  font-size: var(--type-window-title-size);
+}
+
+/* ---------------------------------------------------------------------------
+   THE DESIGNER'S REVIEW, 2026-10-19
+   --------------------------------------------------------------------------- */
+/* 2 + 9. every centred screen sits in the same place and has the same height:
+   the middle of the window, 640 tall (less on a short window), scrolling inside */
+.dr-desk.dr-desk .dr-window.dr-window,
+.dr-desk.dr-desk .dr-panel.dr-panel,
+.dr-desk.dr-desk .dr-window.dr-help-split{
+  top: var(--pct-50);
+  bottom: auto;
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
+  height: min(var(--len-640), calc(var(--pct-100) - var(--len-232)));
+  max-height: none;
+  overflow: auto;
+}
+
+/* 3. the inspection report reads top to bottom: the photos full width, the words under them */
+.dr-desk .dr-cols{
+  display: flex;
+  flex-direction: column;
+}
+.dr-desk .dr-cols .dr-col{
+  width: var(--pct-100);
+}
+
+/* 5. one surface per block: a zone or a card is the tint, what sits inside it is not */
+.dr-desk :is(.dr-window, .dr-panel) .dr-zone{
+  background: color-mix(in srgb, var(--bg-well) 45%, transparent);
+}
+.dr-desk :is(.dr-window, .dr-panel) :is(.dr-zone, .dr-card) :is(.dr-rows, .dr-field, .dr-rows--card, .dr-inset){
+  background: transparent;
+}
+
+/* the same height wins over every group's own window rule */
+.dr-desk.dr-desk.dr-desk .dr-window, .dr-desk.dr-desk.dr-desk .dr-panel, .dr-desk.dr-desk.dr-desk #find{
+  top: var(--pct-50);
+  bottom: auto;
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
+  height: min(var(--len-640), calc(var(--pct-100) - var(--len-232)));
+  max-height: none;
+  overflow: auto;
+}
+
+/* 2 + 9, final: outranks every earlier window rule (0,6,0) */
+.dr-desk.dr-desk.dr-desk .dr-window.dr-window.dr-window,
+.dr-desk.dr-desk.dr-desk .dr-panel.dr-panel.dr-panel,
+.dr-desk.dr-desk.dr-desk #find.dr-window.dr-window{
+  top: var(--pct-50);
+  bottom: auto;
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
+  height: min(var(--len-640), calc(var(--pct-100) - var(--len-232)));
+  max-height: none;
+  overflow: auto;
+}
+
+/* the designer, 2026-10-18: «кнопки став одна під одною у всіх модалках окрім карток
+   замовлень» - in every window the actions stack, the primary on top; only a job offer
+   keeps Accept and Decline side by side */
+.dr-desk .dr-entry__acts,
+.dr-desk .dr-acts:not(.dr-acts--pair){
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* «зроби контент по центру а то зверху дуже малий відступ а знизу великий»: a window is
+   one height (640), so its content sits in the middle of it; `safe` keeps a tall
+   window's top in view when it scrolls */
+.dr-desk.dr-desk .dr-window.dr-window{
+  justify-content: safe center;
+}
+
+/* «роби довгі текста у дві стрічки вони погано читаються довгі»: a window's lead keeps
+   a short measure, so a long sentence breaks into two balanced lines (WCAG 1.4.8 asks
+   80 characters at most; 36ch sits well inside the comfortable 45-75 range per line pair) */
+.dr-desk .dr-window .dr-lead,
+.dr-desk .dr-window .dr-window__lead{
+  max-inline-size: var(--ch-36);
+  text-wrap: balance;
+}
+
+/* «кнопка "Withdraw" має бути внизу картки», «тут не має так перекриватись при скролі»,
+   then «не потрібна лінія розділення фон не прозорий і країв не видно такий бекграунд
+   має як і сама картка»: the panel itself does not scroll - its content does, in
+   .dr-scroll, and the action stands under it on the panel's own glass, so the bar has
+   no ground, no edge and no line of its own, and nothing ever passes under it */
+.dr-desk :is(.dr-panel, .dr-window):has(> .dr-foot){
+  overflow: hidden;
+}
+
+/* «тут так само з праймері кнопкою фіксована»: every window and panel whose last
+   child is its action. The scroll only shrinks, never grows, so a short window keeps
+   its content and action together in the middle */
+.dr-desk :is(.dr-panel, .dr-window) > .dr-scroll{
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow: hidden auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+  margin-inline: calc(var(--len-24) * -1);
+  padding-inline: var(--len-24);
+}
+.dr-desk :is(.dr-panel, .dr-window) > .dr-foot{
+  flex: none;
+  padding-top: var(--len-4);
+}
+
+/* «якщо така картка - вирівнювання хедер вверху контент кнопка внизу як футер … і
+   відступи між контентом не тули усе в купу використовуй принцип близькості»
+   (2026-10-19). A window with a head is a form, not a message: the head sits at the top,
+   the content under it, the action at the foot. Proximity: 24 between the head, each
+   group and the action; inside a group its parts stay close (4-12, the components' own).
+   A window without a head (onboarding, welcome, sign in) stays centred. */
+.dr-desk.dr-desk .dr-window.dr-window:has(> .dr-window__head){
+  justify-content: flex-start;
+  gap: var(--len-24);
+}
+.dr-desk .dr-window:has(> .dr-window__head) > .dr-scroll{
+  flex: 1 1 auto;
+  gap: var(--len-24);
+}
+.dr-desk .dr-window:has(> .dr-window__head) > .dr-foot{
+  margin-top: auto;
+  padding-top: 0;
+}
+.dr-desk .dr-scroll > .dr-balance:not(.dr-balance--card){
+  display: grid;
+  gap: var(--len-4);
+}
+
+/* «якщо ми бачимо такого типу лоудери які не є лоудерами скелетона то вони мають бути
+   по центру»: a spinner message (not a skeleton) stands in the middle of the space
+   between the head and the action */
+.dr-desk .dr-window > .dr-scroll:has(.dr-center .dr-spin){
+  justify-content: safe center;
+}
+.dr-desk .dr-window:not(:has(> .dr-scroll)) > .dr-center:has(.dr-spin){
+  margin-block: auto;
+}
+
+/* «ось ці paddings мають бути у всіх картках однакові краще чуть більші як зверху»,
+   «якщо це лоудер не скелетон то цього не потрібно», «усі ці правила … застосуй до
+   усіх» (2026-10-19). Every centred window and every panel:
+   - one padding on all four sides, 32 (was 24 with the title's own space on top only);
+   - head at the top, content, action at the foot, 24 between groups - for a panel
+     (its h1 is the head) as for a window;
+   - a spinner message drops the skeleton lines the phone puts under it: one
+     indicator for one wait (HIG · Progress indicators). */
+.dr-desk.dr-desk.dr-desk.dr-desk :is(.dr-window, .dr-panel):is(.dr-window, .dr-panel){
+  padding: var(--len-32);
+}
+.dr-desk .dr-panel__title,
+.dr-desk .dr-window__title{
+  margin: 0;
+}
+.dr-desk :is(.dr-panel, .dr-window) > .dr-scroll{
+  margin-inline: calc(var(--len-32) * -1);
+  padding-inline: var(--len-32);
+}
+.dr-desk.dr-desk .dr-panel.dr-panel{
+  gap: var(--len-24);
+}
+.dr-desk .dr-panel > .dr-scroll{
+  gap: var(--len-24);
+}
+.dr-desk .dr-panel > .dr-foot{
+  margin-top: auto;
+  padding-top: 0;
+}
+.dr-desk :is(.dr-window, .dr-panel):has(.dr-spin) :is(div, section):has(> .dr-sk-line){
+  display: none;
+}
+.dr-desk :is(.dr-window, .dr-panel) .dr-center:has(.dr-spin){
+  margin-block: auto;
+}
+
+/* the scroll keeps room for its 6px bar on the right, so its content is exactly as wide
+   as the action under it, scrolling or not */
+.dr-desk :is(.dr-panel, .dr-window) > .dr-scroll{
+  scrollbar-gutter: stable;
+  padding-inline-end: calc(var(--len-32) - var(--len-6));
+}
+
+/* «застосуй принцип близькості до усіх вікон» (2026-10-19), from a measured sweep of all
+   133 twins: every window - with a head or without (call, delivered, inspection report) -
+   puts 24 between its groups and before its action, and the head stands 32 from the
+   content, a step more than the groups, so it reads as the head and not as one more group.
+   The phone's 28 between a log's days now sits under that head (it was 28 under 24). */
+.dr-desk.dr-desk.dr-desk .dr-window.dr-window,
+.dr-desk.dr-desk .dr-window > .dr-scroll{
+  gap: var(--len-24);
+}
+.dr-desk.dr-desk.dr-desk .dr-window > .dr-window__head,
+.dr-desk.dr-desk.dr-desk .dr-panel > .dr-panel__title{
+  margin-bottom: var(--len-8);
+}
+.dr-desk :is(.dr-window, .dr-panel) .dr-log{
+  gap: var(--len-24);
+}
+.dr-desk .dr-foot > .dr-window__actions,
+.dr-desk .dr-foot > .dr-acts,
+.dr-desk .dr-foot > .dr-entry__acts{
+  margin-top: 0;
+}
+
+/* «зроби тут елементи як на мобільному, тулбар підправ» (call): as the phone - the
+   top row (minimise, who and how long, chat) at the top of the window, the avatar in the
+   middle of what is left, and the control bar hugging its four buttons at the foot,
+   centred; icons at the phone's 20 */
+.dr-desk.dr-desk.dr-desk .dr-window.dr-callwin{
+  justify-content: flex-start;
+}
+.dr-desk .dr-callwin > .dr-scroll{
+  flex: 1 1 auto;
+}
+.dr-desk .dr-callwin .dr-call__stage{
+  flex: 1 1 auto;
+}
+.dr-desk .dr-callwin > .dr-foot{
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+}
+.dr-desk .dr-callwin .dr-call__bar{
+  width: auto;
+}
+.dr-desk .dr-callwin .dr-btn--icon .dr-ic{
+  width: var(--len-20);
+  height: var(--len-20);
+}
+
+/* «перенеси кнопку у нижній бар картки»: when a window's primary action stood at the end
+   of its content and a second action sat in the foot, both now stand in the foot, the
+   primary on top, 12 apart - one place for what to do next */
+.dr-desk .dr-foot--stack{
+  display: grid;
+  gap: var(--len-12);
+}
+
+/* «теж саме кнопку в нижній бар картки» (Account): Edit profile leaves the title and
+   stands in the panel's foot, the width of the panel, as every other foot action */
+.dr-desk .dr-foot .dr-help-panelacts .dr-btn{
+  flex: 1;
+}
+
+/* «кнопки в нижній бар картки» (profile photo): Cancel and Save leave the title bar for the
+   foot - Save the one green control, Cancel under it; the three things you can do to the
+   photo stay with the photo, as one group of equal, quieter choices */
+.dr-desk .dr-photo-acts{
+  display: grid;
+  gap: var(--len-8);
+}
+
+/* «кнопки внизу біля основних»: the two ways to get a photo join the foot, as their own
+   pair (8 apart), 24 above Cancel and Save */
+.dr-desk .dr-foot--stack > .dr-photo-acts{
+  margin-bottom: var(--len-12);
+}
+
+/* «пофіксь відступи між кнопками має бути однакова»: the four buttons of the photo
+   window's foot stand 12 apart, one even column */
+.dr-desk .dr-foot--stack > .dr-photo-acts{
+  margin-bottom: 0;
+  gap: var(--len-12);
+}
+
+/* «що за лінії видали їх» (edit account): a zone already groups its fields by its own
+   ground and its title, so the phone's hairlines between the fields inside it are a
+   second grouping on top of the first - gone on desktop; the rows' own height keeps them
+   apart */
+.dr-desk :is(.dr-window, .dr-panel) .dr-zone .dr-field::before{
+  display: none;
+}
+
+/* «CTA в нижньому барі картки» (support and every empty or error message): the call to
+   action stands in the foot; a message keeps the middle of the space above it; the
+   support note that explains the button sits right over it (8, proximity) */
+.dr-desk :is(.dr-window, .dr-panel) > .dr-scroll:has(> * > .dr-msg, > .dr-msg){
+  flex: 1 1 auto;
+  justify-content: safe center;
+}
+.dr-desk :is(.dr-window, .dr-panel) > .dr-foot{
+  margin-top: auto;
+}
+.dr-desk .dr-foot__note{
+  margin: 0 0 calc(var(--len-4) * -1);
+  text-align: center;
+}
+
+/* what comes before a message (a balance, a summary) keeps its place at the top; only the
+   message takes the middle of the space left */
+.dr-desk :is(.dr-window, .dr-panel) > .dr-scroll:has(> * > .dr-msg, > .dr-msg){
+  justify-content: flex-start;
+}
+.dr-desk :is(.dr-window, .dr-panel) > .dr-scroll > :is(.dr-msg, :has(> .dr-msg)){
+  margin-block: auto;
+}
+
+/* order confirmed, loading: the spinner is the one wait indicator, so the skeleton of the
+   operator card under it goes, as on every spinner window */
+.dr-desk :is(.dr-window, .dr-panel):has(.dr-spin) section:has(.dr-sk-line):not(:has(.dr-spin)){
+  display: none;
+}
+
+
+/* nothing inside a scroll is squeezed to fit: a block keeps its own height and the
+   scroll scrolls (the checklist error's list was being pressed to one row) */
+.dr-desk :is(.dr-window, .dr-panel) > .dr-scroll > *{
+  flex-shrink: 0;
+}
+
+/* «ось цю частину замінити на алерт який вискакує на мобілці, він чорний», then «он як
+   вискакувало увідомлення - так зроби»: the error is the phone's toast - it pops up over
+   the content just above the window's foot, stays 4 s and goes (a click dismisses it);
+   _desktop.js places it, as the shell does on the phone. Two lines at most. */
+.dr-desk .dr-window > .dr-toast--window{
+  text-wrap: balance;
+  max-width: calc(var(--pct-100) - var(--len-64));
+  border-radius: var(--len-22);
+}
+
+/* «тут що не видно по боках обводки»: the help windows' body was a scroller of its own
+   with no padding, so it cut the field's focus ring (2 out + 2 wide) at both sides; the
+   window's .dr-scroll does the scrolling now, so the body no longer clips (WCAG 2.4.7) */
+.dr-desk .dr-scroll .dr-help-body{
+  overflow: visible;
+}
+
+/* a text area is its own rounded field; the rows around it took the faint ground too and
+   drew a square slab behind it - the rows stay clear */
+.dr-desk :is(.dr-window, .dr-panel) .dr-rows:has(> .dr-field--area){
+  background: transparent;
+}
+
+/* a window whose whole content is one status message (withdraw sent) holds it in the
+   middle, as a spinner is held */
+.dr-desk .dr-window > .dr-scroll:has(> .dr-center:only-child){
+  justify-content: safe center;
+}
+
+/* a window's decision: the phone's action bar, stacked the same way
+   (the designer, 2026-08-16: buttons one under another) */
+:where(.dr-desk--jobs) .dr-acts{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-8);
+  margin-top: var(--len-4);
+}
+:where(.dr-desk--jobs) .dr-acts .dr-note{
+  margin: 0;
+}
+
+/* a waiting state in a window: the mark, the line, the skeleton bars */
+.dr-waitmsg{
+  padding: var(--len-8) 0;
+}
+.dr-waitmsg__sk{
+  width: var(--pct-100);
+  margin-top: var(--len-8);
+}
+
+/* a step of the order: the window keeps clear of the header above it and of
+   Talk to AI docked under it, and scrolls on its own when the step is long */
+.dr-window--step{
+  max-height: calc(var(--pct-100) - var(--len-232));
+}
+:where(.dr-desk--order) .dr-window__head .dr-window__title{
+  flex: 1;
+  min-width: 0;
+}
+
+/* the step's decision closes the window, as the phone's action bar closes the screen */
+.dr-window__actions{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-8);
+  margin-top: var(--len-4);
+}
+.dr-window__sub{
+  margin: var(--len-4) 0 0;
+}
+.dr-window .dr-groups{
+  padding: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   CALL: the night surface as a wide window over the map
+   --------------------------------------------------------------------------- */
+.dr-callwin{
+  min-height: min(var(--len-560), calc(var(--pct-100) - var(--len-140)));
+  gap: var(--len-24);
+  border-radius: var(--len-22);
+  box-shadow: var(--shadow-float);
+}
+.dr-callwin .dr-call__name{
+  margin: 0;
+}
+.dr-callwin .dr-call__stage{
+  min-height: var(--len-200);
+}
+
+/* ---------------------------------------------------------------------------
+   CHAT: the thread in a wide window, the composer at its foot
+   --------------------------------------------------------------------------- */
+.dr-chatwin{
+  height: min(var(--len-640), calc(var(--pct-100) - var(--len-140)));
+}
+.dr-chatwin .dr-thread{
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  justify-content: flex-end;
+}
+.dr-chatwin .dr-bubble{
+  max-width: min(var(--pct-70), var(--len-420));
+}
+.dr-chatwin .dr-chatwin__composer{
+  padding-top: var(--len-12);
+  border-top: var(--len-1) solid var(--border-hairline);
+}
+
+/* Talk to AI waits at the bottom: a window that has it keeps clear of it */
+.dr-desk:where(.dr-desk--outcome):has(> .dr-talkdock) > .dr-window{
+  max-height: calc(var(--pct-100) - 2 * var(--len-96) - var(--len-24));
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1 - var(--len-20)));
+}
+
+/* a wide window's two columns */
+.dr-cols{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--len-16);
+  align-items: start;
+}
+.dr-col{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+  min-width: 0;
+}
+
+/* the next step: the primary and its alternative side by side */
+:where(.dr-desk--outcome) .dr-acts{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--len-10);
+  margin-top: var(--len-4);
+}
+:where(.dr-desk--outcome) .dr-acts--one{
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* the panel's own list sits flush in it */
+:where(.dr-desk--outcome) .dr-panel .dr-list,
+:where(.dr-desk--outcome) .dr-panel .dr-log{
+  margin: 0;
+  padding: 0;
+}
+:where(.dr-desk--outcome) .dr-window .dr-msg,
+:where(.dr-desk--outcome) .dr-panel .dr-msg{
+  margin: 0;
+}
+
+/* (the header's Order used to step back to a neutral tint here; since 2026-10-19 it
+   stays the green primary everywhere, the designer's call - see _desktop.css) */
+/* a tab root with little content: the panel ends where its content does */
+.dr-panel.dr-help-fit{
+  bottom: auto;
+  max-height: calc(var(--pct-100) - var(--len-120));
+}
+.dr-help-zones{
+  gap: var(--len-24);
+}
+.dr-help-zones > section{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+}
+.dr-help-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* a window that keeps its actions in view: the body scrolls, the actions stay.
+   It stops short of Talk to AI at the bottom of the window. */
+.dr-window.dr-help-split{
+  overflow: hidden;
+  max-height: calc(var(--pct-100) - 2 * var(--len-120));
+}
+.dr-help-body{
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+}
+
+/* the window's decision: stacked on a narrow window, the primary first */
+.dr-help-acts{
+  flex: none;
+  display: grid;
+  gap: var(--len-8);
+  padding-top: var(--len-4);
+}
+
+/* an outcome (resolution): the mark beside the fact, as the preview's ?done */
+.dr-help-done{
+  display: flex;
+  align-items: center;
+  gap: var(--len-14);
+}
+.dr-help-done .dr-lead{
+  margin: var(--len-2) 0 0;
+}
+
+/* the profile head on the Account panel keeps its air */
+.dr-help-profile{
+  padding: var(--len-8) 0 var(--len-4);
+}
+.dr-help-panelacts{
+  display: flex;
+  justify-content: center;
+  padding-top: var(--len-4);
+}
+
+/* a window's trailing control (the checklist count, Save) sits at the end of
+   its head row */
+.dr-push{
+  margin-left: auto;
+}
+
+/* «на менших екранах центральне вікно вирівнювалось по верхньому краю з картками а на
+   великих по центру» (2026-10-19): below a 1600 window the centred window or panel
+   starts on the rails' top line, 96, instead of the middle; from 1600 up it stays
+   centred. The height rule above is kept. The query reads the desk's own width (the
+   fluid frame has no border, so 100rem is 1600); it cannot read var(). */
+@container screen (max-width: 99.9375rem){
+  .dr-desk.dr-desk.dr-desk .dr-window.dr-window.dr-window,
+  .dr-desk.dr-desk.dr-desk .dr-panel.dr-panel.dr-panel,
+  .dr-desk.dr-desk.dr-desk #find.dr-window.dr-window{
+    top: var(--len-96);
+    transform: translateX(calc(var(--pct-50) * -1));
+  }
+}
+
+/* DESKTOP MOTION (rev 345, tones rev 346) - Job 1 (connect): a step's window arrives, rising --move-md and fading in over
+   --dur-slow on --ease-enter; `translate`, so the centring `transform` is untouched. The same
+   screen in another state keeps its window (_arrive.js sets --stay) and only its content
+   arrives, in the tone of the state's words (animations/state-tone.md): error --dur-fast,
+   --ease-standard, --move-sm; success --dur-base, --ease-enter, --move-md; empty, loading and
+   back to the form --dur-base, --ease-standard, no movement. Nothing overshoots.
+   Tab roots use .dr-panel and do not move (HIG · Tab bars). Reduced motion: --move-md is 0.
+   The phone never reads it. */
+.dr-desk .dr-window{ animation: dr-window-in var(--dur-slow) var(--ease-enter) both; }
+@keyframes dr-window-in{ from{ opacity: 0; translate: 0 var(--move-md); } }
+.dr-desk .dr-window--stay{ animation: none; --state-dur: var(--dur-base); --state-ease: var(--ease-standard); --state-move: 0; }
+.dr-desk .dr-window--stay > .dr-scroll{ animation: dr-state-in var(--state-dur) var(--state-ease) both; }
+.dr-desk .dr-window--arrive-error{ --state-dur: var(--dur-fast); --state-move: var(--move-sm); }
+.dr-desk .dr-window--arrive-success{ --state-ease: var(--ease-enter); --state-move: var(--move-md); }
+@keyframes dr-state-in{ from{ opacity: 0; translate: 0 var(--state-move); } }
+/* a success said in place (payment's "Payment confirmed"): the block settles in, success tone */
+.dr-desk .dr-window .dr-center--arrive{ animation: dr-state-in var(--dur-base) var(--ease-enter) both; --state-move: var(--move-md); }
+/* list -> detail: a window opened from the list on the right rail comes in from that side */
+.dr-desk .dr-window--from-end{ animation: dr-from-end var(--dur-slow) var(--ease-enter) both; }
+@keyframes dr-from-end{ from{ opacity: 0; translate: var(--move-md) 0; } }

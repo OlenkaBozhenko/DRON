@@ -1,0 +1,151 @@
+/* tally.css - WIDE SCREENS ONLY (2026-10-18)
+   A material card of a few labelled figures (Free now near you, Your month)
+   and, in the same shape, the live order card: Live, the order, its progress
+   rail, the operator. */
+.dr-tally{
+  padding: var(--len-18);
+}
+.dr-tally__title{
+  margin: 0 0 var(--len-6);
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-weight-medium);
+  color: var(--text-primary);
+}
+.dr-tally__sub{
+  margin: 0;
+  font-size: var(--type-caption-size);
+  color: var(--text-muted);
+}
+.dr-tally__row{
+  display: flex;
+  justify-content: space-between;
+  gap: var(--len-12);
+  padding: var(--len-10) 0;
+  border-bottom: var(--len-1) solid var(--border-material);
+  font-size: var(--type-body-size);
+  font-variant-numeric: var(--type-numeric);
+}
+.dr-tally__row:last-child{
+  border-bottom: 0;
+}
+.dr-tally__key{
+  color: var(--text-muted);
+}
+.dr-live{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--len-6);
+  margin-bottom: var(--len-8);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-weight-medium);
+  color: var(--text-accent-wide);
+}
+.dr-live::before{
+  content: "";
+  width: var(--len-7);
+  height: var(--len-7);
+  border-radius: var(--pct-50);
+  background: var(--color-action);
+}
+.dr-tally .dr-rail{
+  margin: var(--len-14) 0 var(--len-6);
+}
+.dr-tally__who{
+  display: flex;
+  align-items: center;
+  gap: var(--len-12);
+  margin-top: var(--len-10);
+  font-size: var(--type-heading-size);
+}
+.dr-tally__who img{
+  width: var(--len-44);
+  height: var(--len-44);
+  border-radius: var(--pct-50);
+  object-fit: cover;
+}
+.dr-tally__who small{
+  display: block;
+  font-size: var(--type-caption-size);
+  color: var(--text-muted);
+}
+
+/* -- DESKTOP (moved from wireframes/desktop/, 2026-10-19) --------------------
+   How this component is tuned inside the desktop frame (.dr-desk, desk.css).
+   Nothing here matches a phone page. */
+
+/* the live order card opens its tracking page */
+.dr-tally--link{
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.dr-tally--link:hover{
+  border-color: var(--text-muted);
+}
+.dr-tally--link:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+
+/* «добав сюди іконку чату та як на нотифікаціях відмітку скільки повідомлень»: the job
+   on now carries its chat with the client at the card's top right, the unread count as
+   the bell's badge; the count is in the button's name too (WCAG 4.1.2) */
+.dr-desk .dr-tally--chat{
+  position: relative;
+}
+.dr-desk .dr-tally__chat{
+  position: absolute;
+  top: var(--len-12);
+  right: var(--len-12);
+}
+
+/* «тут теж зроби більші відступи застосовуючи принцип близькості» (the live order card in
+   the right rail): three groups - what and where (Live, title, route), the progress, who
+   is flying it. Inside a group 4-8; between groups 20; the rail's labels keep their own
+   room under the nodes */
+.dr-desk .dr-tally:has(> .dr-rail) > .dr-tally__sub{
+  margin-top: var(--len-4);
+}
+.dr-desk .dr-tally:has(> .dr-rail) > .dr-rail{
+  margin-top: var(--len-20);
+}
+.dr-desk .dr-tally:has(> .dr-rail) > .dr-tally__who{
+  margin-top: var(--len-20);
+}
+
+/* «чат де» - the job on now carries its chat on every operator page, not only on the
+   home. The card stays one target (its title's link stretches over it) and the chat is
+   a second, separate control above that layer - a link is never nested in a link */
+.dr-desk .dr-tally--chat .dr-tally__stretch{
+  color: inherit;
+  text-decoration: none;
+}
+.dr-desk .dr-tally--chat .dr-tally__stretch::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.dr-desk .dr-tally--chat .dr-tally__stretch:focus-visible{
+  outline: none;
+}
+.dr-desk .dr-tally--chat:has(.dr-tally__stretch:focus-visible){
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-desk .dr-tally--chat .dr-tally__chat{
+  z-index: 2;
+}
+.dr-desk .dr-tally--chat > .dr-tally__sub{
+  padding-right: var(--len-8);
+}
+
+/* DESKTOP MOTION (rev 345) - Job 3 (answer): hover and press over --dur-fast on --ease-standard; a press sinks to .99.
+   Focus: the ring shows on the first frame (WCAG 2.4.7); only its offset settles, over --dur-fast.
+   The phone never reads it. */
+.dr-desk .dr-tally--link{
+  transition-property: background-color, color, transform, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.dr-desk .dr-tally--link:active{ transform: scale(var(--num-0-99)); }

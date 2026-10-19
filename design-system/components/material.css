@@ -1,0 +1,26 @@
+/* material.css - WIDE SCREENS ONLY (2026-10-18)
+   The panel that floats over the map on a tablet or a desktop: HIG macOS
+   Materials / Liquid Glass. Translucent, blurred, a hairline edge, a soft
+   float shadow - the one surface allowed a shadow on a wide screen, because it
+   floats. Solid when the user asks for less transparency; a firmer edge when
+   they ask for more contrast. The phone never uses it.
+   ------------------------------------------------------------------------ */
+.dr-material{
+  background: var(--bg-material);
+  backdrop-filter: blur(var(--len-22)) saturate(var(--num-1-5));
+  border: var(--len-1) solid var(--border-material);
+  border-radius: var(--len-22);
+  box-shadow: var(--shadow-float);
+  color: var(--text-primary);
+}
+@media (prefers-reduced-transparency: reduce){
+  .dr-material{
+    background: var(--bg-material-solid);
+    backdrop-filter: none;
+  }
+}
+@media (prefers-contrast: more){
+  .dr-material{
+    border-color: var(--text-muted);
+  }
+}

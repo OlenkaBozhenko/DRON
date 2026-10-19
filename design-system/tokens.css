@@ -1,0 +1,1084 @@
+/* ==========================================================================
+   DRON - tokens.css
+   Two tiers. PRIMITIVE holds raw values and knows nothing about roles;
+   SEMANTIC names a role and points at a primitive through var().
+
+   GENERATED FROM ui/kit.css AT rev 272 (d3c4fb7), NOT AUTHORED. Every value
+   below already existed in kit.css. Nothing was invented, nothing rounded,
+   nothing added. The roles are the candidates already named in
+   tokens/tokens-audit.md §5 - no new search was made for them.
+
+   WHAT COLLAPSED. kit.css spends 238 names on 129 distinct values, because
+   one number is written under as many as eight names (tokens-audit.md §A5).
+   Here each value is declared ONCE and its comment lists every kit.css name
+   that lands on it. That is the whole of the collapse: no value moved, and
+   the grayscale palette in wireframes/_wireframe.css (§A1) does not enter -
+   it is the prototype's scaffold, not the product's.
+
+   WHY LENGTHS ARE ONE RAMP AND NOT space / radius / size. The three scales
+   share their numbers: 2px is a radius, a gap AND five box sizes; 12px is a
+   type step, a radius, a gap, a glyph and a skeleton bar; 16px is a radius,
+   the screen gutter, a bar, a glyph and a background offset. Splitting them
+   into three families would re-mint the second and third name for one number,
+   which is the drift this file closes. A component reads the number it needs
+   - border-radius: var(--len-16) - which is what the brief asks: geometry
+   gets no token of its own above PRIMITIVE.
+
+   [data-theme="light"] carries the same block, so a light plate can stand
+   inside a page that is in the dark build (the docs' States grid shows both
+   side by side). No screen sets it; :root alone is what every page resolves.
+   ========================================================================== */
+
+:root, [data-theme="light"]{
+
+  /* -- PRIMITIVE / COLOUR --------------------------------------------------
+     Five hue families read off the painted surfaces. Named by hue and step,
+     so the name carries no job. DESIGN.md's own words for them: the four
+     painted surfaces, the two inks, Signal Green, three semantic washes. */
+  --cream-50:      #F7F5F2;   /* --page */
+  --cream-100:     #F2F0EC;   /* --inset */
+  --cream-200:     #ECE9E4;   /* --card */
+  --cream-300:     #E4E1DA;   /* --media */
+  --cream-400:     #D9D5CE;   /* --line */
+  --cream-500:     #D6D2C9;   /* --btn2 */
+  --cream-700:     #5A5751;   /* --slate */
+  --charcoal-800:  #2E2E2E;   /* --night-raised */
+  --charcoal-900:  #1A1A1A;   /* --ink + --on-green + --night   COLLAPSED: one value, 3 names */
+  --green-100:     #E7F0D2;   /* --green-wash */
+  --green-300:     #B7DA7C;   /* --green-soft */
+  --green-500:     #9BCF4A;   /* --green */
+  --green-700:     #4F6B22;   /* --green-ink */
+  --amber-100:     #F6E7C4;   /* --warn-wash */
+  --amber-500:     #E4A11B;   /* --warn */
+  --amber-800:     #7A5200;   /* --warn-ink */
+  --rust-100:      #F2D8CF;   /* --danger-wash */
+  --rust-500:      #C4462A;   /* --danger */
+  --rust-700:      #9A3115;   /* --danger-ink */
+  --blue-100:      #D8E6F2;   /* --trust-wash */
+  --blue-700:      #2A5C7D;   /* --trust-ink */
+
+  /* -- PRIMITIVE / COLOUR AT AN ALPHA (added for the desktop, 2026-10-19) ----
+     The desktop's veil over the map, the halo under the assistant's lead and the
+     service renders' drop shadow were written as rgba() in the temporary desktop
+     CSS. Each is a raw value, so it is a primitive here, copied exactly - not
+     rewritten as color-mix(), which would move a radial gradient into a
+     different interpolation space. #121212 (18,18,18) is new to the palette:
+     the dark veil's ink, a step under --charcoal-900, spent only at an alpha. */
+  --cream-50-a10:      rgba(247,245,242,.1);    /* the light veil, at the centre */
+  --cream-50-a40:      rgba(247,245,242,.4);    /* the light veil, at 70% out */
+  --cream-50-a75:      rgba(247,245,242,.75);   /* the light veil, at the edge */
+  --cream-50-a90:      rgba(247,245,242,.9);    /* the light halo under the assistant's lead */
+  --charcoal-950-a15:  rgba(18,18,18,.15);      /* the dark veil, at the centre */
+  --charcoal-950-a45:  rgba(18,18,18,.45);      /* the dark veil, at 70% out */
+  --charcoal-950-a80:  rgba(18,18,18,.8);       /* the dark veil, at the edge */
+  --black-a25:         rgba(0,0,0,.25);         /* a service render's drop shadow, light */
+  --black-a45:         rgba(0,0,0,.45);         /* a service render's drop shadow, dark */
+  --black-a75:         rgba(0,0,0,.75);         /* the dark halo under the assistant's lead */
+
+  /* -- PRIMITIVE / LENGTH --------------------------------------------------
+     Every px value in kit.css, once. The comment is the full list of names
+     that resolved to it; where the list crosses a radius, a gap and a box,
+     the crossing is the finding, not a mistake to hide. */
+  --len-n3-2:        -3.2px;   /* --up-out */
+  --len-0:           0px;   /* --mark-shift */
+  --len-1:           1px;   /* --hair + --lift-active   COLLAPSED 2 names */
+  --len-1-7:         1.7px;   /* --box-edge */
+  --len-2:           2px;   /* --r-hairline + --sp-2 + --sz-node-border + --sz-track + --sz-status-ring + --w-badge-ring + --sz-tick-h + --focus-offset   COLLAPSED 8 names */
+  --len-2-5:         2.5px;   /* --focus-w */
+  --len-2-6:         2.6px;   /* --up-in */
+  --len-3:           3px;   /* --sp-3 + --w-shot-edge   COLLAPSED 2 names */
+  --len-4:           4px;   /* --r-detail + --sp-within + --sz-rail + --sz-today-dot   COLLAPSED 4 names */
+  --len-5:           5px;   /* --r-key + --sp-5 + --h-home-bar + --sz-grip-h   COLLAPSED 4 names */
+  --len-6:           6px;   /* --sp-6 */
+  --len-7:           7px;   /* --sk-stop-gap */
+  --len-8:           8px;   /* --r-detail-lg + --sp-within-lg + --sk-head-gap + --ping-reach + --sz-pager-dot   COLLAPSED 5 names */
+  --len-9:           9px;   /* --sp-9 */
+  --len-10:          10px;   /* --r-input + --sp-10 + --sz-dot + --sk-date-h   COLLAPSED 4 names */
+  --len-10-5:        10.5px;   /* --t-microsm-size */
+  --len-11:          11px;   /* --t-micro-size */
+  --len-12:          12px;   /* --t-caption-size + --r-btn + --sp-snug + --sz-node-glyph + --sk-lbl-h + --ic-12   COLLAPSED 6 names */
+  --len-12-5:        12.5px;   /* --t-meta-size */
+  --len-13:          13px;   /* --t-bodysm-size + --r-media + --sp-13 + --ic-13   COLLAPSED 4 names */
+  --len-14:          14px;   /* --t-body-size + --sp-14 + --sk-title-h + --ic-14   COLLAPSED 4 names */
+  --len-15:          15px;   /* --t-heading-size + --t-lead-size + --t-base-size   COLLAPSED 3 names */
+  --len-16:          16px;   /* --r-card + --sp-screen + --sk-place-h + --ic-16 + --banner-top   COLLAPSED 5 names */
+  --len-17:          17px;   /* --t-title-size + --ic-17   COLLAPSED 2 names */
+  --len-18:          18px;   /* --sp-18 + --sk-price-h + --sz-fchip-x   COLLAPSED 3 names */
+  --len-20:          20px;   /* --t-number-size + --sp-group + --sz-status + --sz-avatar-badge + --sz-brand-h + --ic-20   COLLAPSED 6 names */
+  --len-22:          22px;   /* --t-display-size + --r-panel + --sp-22 + --sz-node + --sk-lbl-w-sm + --ic-22   COLLAPSED 6 names */
+  --len-24:          24px;   /* --sp-24 + --sz-box + --sz-photo-mark   COLLAPSED 3 names */
+  --len-26:          26px;   /* --sz-arrow + --ic-26   COLLAPSED 2 names */
+  --len-28:          28px;   /* --sp-list + --sz-avatar-sm   COLLAPSED 2 names */
+  --len-30:          30px;   /* --h-home + --sz-tick   COLLAPSED 2 names */
+  --len-32:          32px;   /* --sp-cta + --h-pill + --ic-32 + --sz-star   COLLAPSED 4 names */
+  --len-34:          34px;   /* added for the desktop (2026-10-19) */
+  --len-36:          36px;   /* --sz-switch + --sz-grip-w   COLLAPSED 2 names */
+  --len-38:          38px;   /* --sk-lbl-w */
+  --len-41:          41px;   /* added for the desktop (2026-10-19) */
+  --len-44:          44px;   /* --h-control + --h-statusbar + --sz-action + --sz-well-h-xs + --sz-head-mark (= --sz-action)   COLLAPSED 5 names */
+  --len-45:          45px;   /* --h-kb-quick */
+  --len-48:          48px;   /* --h-groups + --sz-hist   COLLAPSED 2 names */
+  --len-49:          49px;   /* added for the desktop (2026-10-19) */
+  --len-50:          50px;   /* --h-tab */
+  --len-52:          52px;   /* --sz-mark */
+  --len-56:          56px;   /* --h-topbar + --sz-well-w-xs + --sz-avatar-md + --sz-rating-w + --banner-shift   COLLAPSED 5 names */
+  --len-60:          60px;   /* --h-tabs + --sz-brand-w   COLLAPSED 2 names */
+  --len-64:          64px;   /* --sz-mark-lg */
+  --len-66:          66px;   /* added for the desktop (2026-10-19) */
+  --len-68:          68px;   /* --sz-well-w-sm + --sz-well-h-sm   COLLAPSED 2 names */
+  --len-80:          80px;   /* --sz-area-min */
+  --len-84:          84px;   /* --sk-price-w */
+  --len-96:          96px;   /* --sz-well-w + --sz-well-h + --sz-rowkey   COLLAPSED 3 names */
+  --len-100:         100px;   /* added for the desktop (2026-10-19) */
+  --len-110:         110px;   /* added for the desktop (2026-10-19) */
+  --len-116:         116px;   /* added for the desktop (2026-10-19) */
+  --len-117:         117px;   /* --sz-avatar */
+  --len-120:         120px;   /* --sz-avatar-xl */
+  --len-134:         134px;   /* --w-home-bar */
+  --len-140:         140px;   /* --sz-upload-min */
+  --len-150:         150px;   /* --banner-h */
+  --len-176:         176px;   /* --sz-avatar-call */
+  --len-180:         180px;   /* added for the desktop (2026-10-19) */
+  --len-192:         192px;   /* added for the desktop (2026-10-19) */
+  --len-200:         200px;   /* added for the desktop (2026-10-19) */
+  --len-232:         232px;   /* added for the desktop (2026-10-19) */
+  --len-260:         260px;   /* --measure-msg */
+  --len-291:         291px;   /* --h-kb */
+  --len-300:         300px;   /* added for the desktop (2026-10-19) */
+  --len-348:         348px;   /* added for the desktop (2026-10-19) */
+  --len-360:         360px;   /* added for the desktop (2026-10-19) */
+  --len-375:         375px;   /* --screen-w */
+  --len-400:         400px;   /* added for the desktop (2026-10-19) */
+  --len-408:         408px;   /* added for the desktop (2026-10-19) */
+  --len-420:         420px;   /* added for the desktop (2026-10-19) */
+  --len-456:         456px;   /* added for the desktop (2026-10-19) */
+  --len-480:         480px;   /* added for the desktop (2026-10-19) */
+  --len-520:         520px;   /* added for the desktop (2026-10-19) */
+  --len-560:         560px;   /* added for the desktop (2026-10-19) */
+  --len-620:         620px;   /* added for the desktop (2026-10-19) */
+  --len-640:         640px;   /* added for the desktop (2026-10-19) */
+  --len-696:         696px;   /* added for the desktop (2026-10-19) */
+  --len-720:         720px;   /* added for the desktop (2026-10-19) */
+  --len-760:         760px;   /* added for the desktop (2026-10-19) */
+  --len-812:         812px;   /* --screen-h */
+  --len-850:         850px;   /* added for the desktop (2026-10-19) */
+  --len-856:         856px;   /* added for the desktop (2026-10-19) */
+  --len-900:         900px;   /* added for the desktop (2026-10-19) */
+  --len-999:         999px;   /* --r-pill */
+
+  /* -- PRIMITIVE / PERCENTAGE ----------------------------------------------
+     Spans and shares, not boxes: rail fill, skeleton bar widths, the pile. */
+  --pct-n14:         -14%;   /* --sp-stack-lap */
+  --pct-6:           6%;   /* --sp-stack-in */
+  --pct-12-5:        12.5%;   /* --rail-track-start */
+  --pct-18:          18%;   /* added for the desktop (2026-10-19) */
+  --pct-25:          25%;   /* --fill-2of4 + --dr-fill (= --fill-2of4)   COLLAPSED 2 names */
+  --pct-30:          30%;   /* --sk-w30 */
+  --pct-40:          40%;   /* --sk-w40 */
+  --pct-48:          48%;   /* added for the desktop (2026-10-19) */
+  --pct-50:          50%;   /* --r-circle + --sk-w50   COLLAPSED 2 names */
+  --pct-55:          55%;   /* added for the desktop (2026-10-19) */
+  --pct-62:          62%;   /* --w-stack-shot */
+  --pct-65:          65%;   /* added for the desktop (2026-10-19) */
+  --pct-70:          70%;   /* --sk-w70 */
+  --pct-75:          75%;   /* --rail-track-span */
+  --pct-78:          78%;   /* --banner-art */
+  --pct-90:          90%;   /* --sk-w90 */
+  --pct-100:         100%;   /* the sheet and the keyboard rise their own height */
+
+  /* -- PRIMITIVE / UNITLESS  (leading, weight, factor) --------------------- */
+  --num-0:           0;   /* added 2026-10-14: line-height 0 on a label hidden behind an image */
+  --num-0-5:         .5;   /* --pulse-floor */
+  --num-0-99:        .99;   /* --scale-active */
+  --num-1:           1;   /* --t-number-line */
+  --num-1-03:        1.03;   /* --bright-hover */
+  --num-1-2:         1.2;   /* --t-heading-line + --t-meta-line   COLLAPSED 2 names */
+  --num-1-3:         1.3;   /* --t-body-line */
+  --num-1-4:         1.4;   /* --t-display-line + --t-title-line + --t-bodysm-line + --t-caption-line + --t-micro-line + --t-microsm-line + --t-base-line   COLLAPSED 7 names */
+  --num-1-5:         1.5;   /* --t-para-line */
+  --num-1-55:        1.55;   /* --t-lead-line */
+  --num-1-7:         1.7;   /* --ic-stroke */
+  --num-1-99:        1.99;   /* --map-aspect - DUPLICATE of --ratio-map below, which is
+                                the one components/ reads. Two primitive names on one
+                                raw value is the drift this file exists to end; left
+                                standing rather than deleted without the designer's
+                                word, and filed in design-system/_critique.md 09c. */
+  --num-400:         400;   /* --t-lead-weight + --t-body-weight + --t-bodysm-weight + --t-meta-weight + --t-microsm-weight + --weight-regular   COLLAPSED 6 names */
+  --num-600:         600;   /* --t-title-weight + --t-heading-weight + --t-caption-weight + --t-micro-weight + --weight-medium   COLLAPSED 5 names */
+  --num-700:         700;   /* --t-display-weight + --t-number-weight   COLLAPSED 2 names */
+
+  /* -- PRIMITIVE / TRACKING, MEASURE, ANGLE -------------------------------- */
+  --track-n0-02:     -.02em;   /* --t-display-track + --t-number-track   COLLAPSED 2 names */
+  --track-n0-01:     -.01em;   /* --t-title-track */
+  --track-0-02:      .02em;   /* --t-act-track */
+  --track-0-05:      .05em;   /* --t-micro-track-tight */
+  --track-0-09:      .09em;   /* --t-micro-track */
+  --ch-18:           18ch;   /* --t-display-measure */
+  --ch-30:           30ch;   /* --t-note-measure */
+  --ch-36:           36ch;   /* added for the desktop (2026-10-19): a desktop window's lead, two balanced lines */
+  --ch-44:           44ch;   /* a slide's lead in a desktop slider window: two lines, so the pager stays in sight (rev 336) */
+  --deg-n3-5:        -3.5deg;   /* --tilt-2 */
+  --deg-2:           2deg;   /* --tilt-3 */
+  --deg-3:           3deg;   /* --tilt-1 */
+  --deg-180:         180deg;   /* --turn-open */
+  --deg-360:         360deg;   /* one turn of the activity ring */
+
+  /* -- PRIMITIVE / TIME and EASING ----------------------------------------- */
+  --time-0-12:       .12s;   /* --dur-fast */
+  --time-0-15:       .15s;   /* --dur-base */
+  --time-0-2:        .2s;    /* added rev 341: the motion scale's --dur-base */
+  --time-0-25:      .25s;   /* added for the desktop (2026-10-19): a hanging card lifting on hover */
+  --time-0-32:       .32s;   /* --dur-sheet */
+  --time-1-1:        1.1s;   /* --dur-spin */
+  --time-10:         10s;    /* added rev 344: the operator's time to accept a job offer (flows.md MJ-2, "Accept within 10s?") */
+  --time-1-4:        1.4s;   /* --dur-pulse */
+  --time-1-6:        1.6s;   /* --dur-upload */
+  --time-1-8:        1.8s;   /* --dur-ping */
+  --time-7:          7s;   /* added for the desktop (2026-10-19): the drone's flight along the route */
+  --ease-out:        cubic-bezier(.22,.61,.36,1);   /* --ease-out */
+  --ease-flight:     cubic-bezier(.45,.05,.55,.95);   /* added for the desktop (2026-10-19): the flight: eases in and out */
+
+  /* -- PRIMITIVE / MOTION: TIME, EASING, DISTANCE (rev 341) ----------------
+     The motion scale, on the designer's word (2026-10-19): three durations,
+     three curves, two distances. Moderate on purpose - this is an interface,
+     not a presentation. A transition or animation picks from here; the ramp
+     above stays for what the build already spends, and a loop that traces
+     something physical (ping, upload, spin, flight) keeps its own time there.
+
+     WHERE THE NUMBER ALREADY EXISTS IT IS READ, NOT WRITTEN AGAIN: .12s, .32s,
+     the decelerate curve, 4 and 12 are values the build spends, so each step
+     points at its primitive and no number gets a second home. Only .2s and the
+     two new curves are new values.
+
+     EVERY ANIMATION DOES ONE OF THREE JOBS (DESIGN.md § Motion): it shows how
+     two states connect, it shows that a process is running, or it answers an
+     action. Motion that does none of them is not added.
+
+     REDUCED MOTION (WCAG 2.3.3, HIG · Motion): the two distances fall to 0
+     under prefers-reduced-motion: reduce (see the block after this one), so
+     anything that slides in on --move-* dissolves in place instead. */
+  --dur-fast:        var(--time-0-12);   /* .12s - a micro-response: hover, press */
+  --dur-base:        var(--time-0-2);    /* .2s  - a change inside a component: a thumb, a fill, a chevron */
+  --dur-slow:        var(--time-0-32);   /* .32s - an element entering: a sheet, a toast, a panel */
+  --ease-standard:   cubic-bezier(.4,0,.2,1);   /* most movement: from one resting place to another */
+  --ease-enter:      var(--ease-out);           /* appearing: arrives fast, settles slowly */
+  --ease-exit:       cubic-bezier(.4,0,1,1);    /* leaving: starts slowly, leaves fast */
+  --move-sm:         var(--len-4);    /* 4  - a nudge: a lift on hover, a press */
+  --move-md:         var(--len-12);   /* 12 - the travel of an entering element */
+
+  /* -- PRIMITIVE / SHADOW --------------------------------------------------
+     Four declared rungs. Two are spent in the build, two are not; that is
+     recorded in tokens-audit.md §1.7 and not decided here.
+
+     NO SEMANTIC TIER, AND THAT IS THE RULE, NOT AN OVERSIGHT. A shadow holds
+     an rgba, so it looks like colour and the two-tier rule would seem to bind
+     it. It does not. A shadow here is DEPTH, and depth is geometry: there are
+     two spent rungs, and a component picks the one its elevation calls for the
+     way it picks a --len-*. Giving them roles would mean a name per surface
+     (--shadow-sheet, --shadow-toast) when the job is already the component's
+     own name. So the seven components that read --shadow-sm / --shadow-raised
+     read them DIRECTLY and correctly. Written down because the 2026-10-10
+     audit had to infer it from the absence of roles instead of reading it. */
+  --shadow-sm: 0 1px 2px rgba(20,18,15,.05);   /* --sh-sm */
+  --shadow-card: 0 1px 3px rgba(20,18,15,.06), 0 12px 30px -24px rgba(20,18,15,.30);   /* --sh-card */
+  --shadow-raised: 0 2px 6px rgba(20,18,15,.08), 0 18px 44px -26px rgba(20,18,15,.34);   /* --sh-raised */
+  --shadow-onphoto: 0 2px 8px rgba(20,18,15,.18);   /* --sh-onphoto */
+
+  /* -- PRIMITIVE / TYPEFACE ------------------------------------------------
+     The two font stacks as raw values. Until 2026-10-14 they were declared
+     here under --font-ui / --font-mono, which components read directly; those
+     two names are now SEMANTIC roles (see SEMANTIC / TYPE) pointing here, so
+     every page and partial that reads them is unchanged. */
+  --family-sf:   -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;   /* kit.css --font-ui */
+  --family-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;   /* kit.css --font-mono */
+
+  /* -- PRIMITIVE / THE DERIVED LENGTHS -------------------------------------
+     kit.css computes these from other tokens so the arithmetic cannot drift.
+     Re-pointed at the ramp above; not one number changed. */
+  --len-node-centre: calc((var(--len-22) - var(--len-2)) / 2);   /* --node-centre    (--sz-node 22 - --sz-track 2) / 2 */
+  --len-pick-indent: calc(var(--len-24) + var(--len-12));   /* --pick-indent    --sz-box 24 + --sp-snug 12 */
+  --len-pill-bleed: calc((var(--len-44) - var(--len-32)) / -2);   /* --pill-bleed     (--h-control 44 - --h-pill 32) / -2 */
+  --len-hist-seat: calc(var(--len-4) / 2 - var(--len-44) / 2);   /* --hist-seat      --sz-rail 4 / 2 - --h-control 44 / 2 */
+  --len-glyph-plate: calc(var(--len-22) * var(--num-1) + var(--len-4) + var(--len-12) * var(--num-1-5));   /* --sz-glyph-plate  22*1 + 4 + 12*1.5 = 44 */
+  --len-star-ink: calc(var(--len-32) * 17.4 / 24);   /* --sz-star-ink */
+  --len-star-inset: calc(var(--len-32) * 3.3 / 24);   /* --sz-star-inset */
+  --len-star-mid: calc(var(--len-32) * .73);   /* --sz-star-mid */
+  --len-star-out: calc(var(--len-32) * .44);   /* --sz-star-out */
+
+  /* -- PRIMITIVE / NEITHER LENGTH NOR COLOUR ------------------------------- */
+  --ratio-stack: 3 / 2;   /* --stack-aspect - the shoot's own ratio, uncropped */
+  --ratio-map:   1.99;     /* --map-aspect - the live map's native ratio */
+  --icon-grid:   0 0 24 24;   /* --ic-grid - declared in kit.css, spent nowhere */
+
+  /* -- PRIMITIVE / RESPONSIVE (2026-10-18) ---------------------------------
+     Two points, because responsive/width-audit.md names exactly two changes of
+     behaviour after the phone (its shell table, Phone < 768 / Tablet 768-1279 /
+     Desktop >= 1280): the work area goes from one column to two panes, then to
+     two or three. Not one point per device width. In rem, so a user who raises
+     the browser's text size reaches the wider layout later, not with cramped
+     panes (WCAG 1.4.4 / 1.4.10). At the default 16px: 48rem = 768px, 80rem = 1280px.
+     A media query cannot read var(): @media (min-width: 48rem) writes the same
+     number, and this block is where that number is owned. The phone reads none
+     of these - the mobile build is unchanged (designer, 2026-10-18). */
+  --bp-tablet:         48rem;    /* width-audit: Tablet 768-1279, two panes */
+  --bp-desktop:        80rem;    /* width-audit: Desktop >= 1280, two or three panes */
+  --grid-gap:          .75rem;   /* 12 - the gap between the panels and between the service cards in the drawn wide view */
+  --container-max:     90rem;    /* 1440 - the frame the wide view is drawn and measured at */
+  --col-count-tablet:  2;        /* width-audit: "two panes where the screen has two parts" */
+  --col-count-desktop: 3;        /* width-audit: "two or three panes: list - detail - map" */
+  --pct-60:            60%;      /* the flying mark's pivot, a little below its centre */
+  --time-orb:          24s;      /* the assistant's rings, one turn */
+  --time-sway:         3.6s;     /* the flying mark's sway, one cycle */
+  --time-prop:         .14s;     /* a propeller blade, one beat */
+  --time-ring:         3.2s;     /* Talk to AI's ring of light, one turn */
+  --num-0-18:          .18;      /* a turning blade seen edge-on */
+  --deg-sway:          6deg;     /* the flying mark's tilt each way */
+  --deg-40:            40deg;
+  --deg-110:           110deg;
+  --deg-210:           210deg;   /* the Talk to AI ring: dark, light at 110, dark again */
+  --vh-100:            100dvh;   /* a fluid screen fills the window */
+  --len-320:           20rem;    /* the folded orders inspector on an upright tablet */
+  --container-column:  36rem;    /* 576 - the phone column kept and centred on a wide screen (width-audit: "Same") */
+  --shadow-float:      0 1px 2px rgba(20,18,15,.06), 0 8px 24px rgba(20,18,15,.10);
+                                 /* a material panel floating over the map (HIG macOS Materials), wide screens only */
+  --shadow-float-lift: 0 2px 4px rgba(20,18,15,.06), 0 18px 40px rgba(20,18,15,.16);
+                                 /* added for the desktop (2026-10-19): a hanging card lifted on hover, one rung above --shadow-float */
+
+  /* -- PRIMITIVE / PROMOTED FROM A CLASS ------------------------------------
+     Six values that were in ui/kit.css all along, but as LITERALS inside a
+     component class instead of in :root - the twenty that tokens-audit.md
+     §C1 lists. A component may not write a literal, so each is a token now.
+     Nothing is invented: every one is the number kit.css already draws. */
+  --len-23:          23px;   /* .dr-paymark--pay height - the 40x20 mark scaled 15/13 */
+  --len-40:          40px;   /* .dr-paymark width - the payment mark's fixed box */
+  --len-46:          46px;   /* .dr-paymark--pay width */
+  --track-0-04:      .04em;  /* .dr-lang button - off the tracking scale, and kit.css says so */
+  --black:           #000;   /* .dr-btn--pay only. The palette's rule at kit.css line 55 reads
+                                "No #FFFFFF and no #000000 anywhere"; Apple's and Google's brand
+                                requirement is the one exception, and naming it is how the
+                                exception stops being invisible. */
+  --white:           #FFF;   /* the same button's label, the same exception */
+
+  /* == SEMANTIC ===============================================================
+     A role, and the primitive it points at. Colour, and since 2026-10-14
+     TYPE: every font property a component writes - family, size, weight,
+     leading, tracking - reads a --font-* / --type-* role (the designer's
+     call). Other geometry still gets no semantic token, so a component reads
+     --len-* / --pct-* / --num-* directly for space, radius and size.
+
+     Every role below is one the audit already found in the built frames; each
+     comment names the uses it grew out of. Names come from tokens-audit.md §5
+     and from DESIGN.md's own vocabulary - the four painted surfaces, the two
+     inks, Signal Green, the washes - not from a ready-made set.
+
+     A role may point at the same primitive as another role. That is not a
+     mistake to collapse: two jobs that happen to share a value today are still
+     two jobs, and the file says so rather than hiding it.
+     ======================================================================== */
+
+  /* -- SURFACE / the four painted rungs, plus the one dark screen -----------
+     Audit §5 "Card background": the evidence says this is a FOUR-RUNG RAMP and
+     not one role, because .dr-card > .dr-inset > .dr-well stacks them. */
+  --bg-page:          var(--cream-50);      /* §1.1 --page: background on .dr, .dr-screen and every
+                                               system bar - .dr-statusbar, .dr-topbar, .dr-tabbar,
+                                               .dr-actionbar, .dr-groups, .dr-sheet, .dr-kb__key.
+                                               14 background sites over 131 pages. */
+  --bg-surface:       var(--cream-200);     /* §1.1 --card: 21 background sites - .dr-card, .dr-rows,
+                                               .dr-msg, .dr-choice, .dr-op, .dr-picks, .dr-zone,
+                                               .dr-range, .dr-cal, .dr-when, .dr-route, .dr-offer,
+                                               .dr-finder__card. 116 pages. */
+  --bg-inset:         var(--cream-100);     /* §1.1 --inset: 1 use, .dr-inset, 3 pages - a plane
+                                               INSIDE a card, which is the rung's whole point.
+                                               Rests on a single class; see the critique. */
+  --bg-well:          var(--cream-300);     /* §1.1 --media: 30 background sites - .dr-well--photo,
+                                               .dr-mark, .dr-chip, .dr-avatar-*, .dr-search,
+                                               .dr-sk-well, .dr-slide__art. 117 pages. */
+  --bg-muted:         var(--cream-500);     /* §1.1 --btn2: 20 background sites - .dr-btn--secondary,
+                                               .dr-btn--icon, the switch track, .dr-range__rail,
+                                               .dr-sk-line, .dr-pager, .dr-kb__plane. 121 pages. */
+  --bg-night:         var(--charcoal-900);  /* §1.1 --night: .dr-call and its own status and action
+                                               bars, .dr-btn--night. 3 call pages. The product's one
+                                               dark surface - a platform takeover, not a theme. */
+  --bg-night-raised:  var(--charcoal-800);  /* §1.1 --night-raised: .dr-call__avatar, .dr-call__bar,
+                                               .dr-btn--night:hover. One tone step above it. */
+
+  /* -- RAISED / a surface that FLOATS over the page ------------------------
+     Added 2026-09-25, and the dark theme is what found it. .dr-sheet was
+     painted with --bg-page, the same role as the screen it floats over, and
+     in light nothing showed because the scrim carries the separation: the
+     page behind resolves to #9F9D9C and the drawer stands at 2.48:1 over it.
+     On a dark page there is nothing left to darken into - at 66% black the
+     page behind is #090909 and the drawer stands at 1.15:1. The role, not the
+     scrim, was the problem: one name was doing two jobs. In light this is the
+     page's own value, so the light build does not move by a pixel. */
+  --bg-raised:        var(--cream-50);
+
+  /* -- INVERSE / the surface that is the OPPOSITE of the page ---------------
+     Added 2026-09-25, and this one was live: .dr-toast painted its GROUND
+     with --text-primary (an ink role) and its INK with --text-on-night (a
+     different surface's ink). In light the two happen to land on the right
+     colours; in dark both resolve to #F7F5F2 and the toast measured 1:1 -
+     the text was invisible. A toast is an inverse surface, so it is named as
+     one and flips with the theme. Light values are identical to what the
+     misused roles resolved to, so nothing moves in the light build. */
+  --bg-inverse:       var(--charcoal-900);  /* the pill under a toast */
+  --bg-meter:         var(--charcoal-900);  /* rev 344: the part of a countdown still left; never green, the screen's green is its one action */
+  --text-on-inverse:  var(--cream-50);      /* 15.99:1 on it, either theme */
+
+  /* -- INK ------------------------------------------------------------------
+     Audit §5 "Text primary" / "Text secondary". The secondary ink has TWO
+     values by surface, because --slate fails on the night ground at 2.42:1. */
+  --text-primary:     var(--charcoal-900);  /* §1.1 --ink: colour on 79 selectors - every title,
+                                               value, button label, row value, current tab. */
+  --text-muted:       var(--cream-700);     /* §1.1 --slate: colour on 59 selectors - every __desc,
+                                               __sub, __label, __hint, __key, __meta, and every
+                                               ::placeholder. 133 pages. */
+  --text-on-night:       var(--cream-50);   /* §1.1 --page used as INK: .dr-call, .dr-call__name,
+                                               .dr-toast, .dr-btn--danger-solid. 9 colour sites. */
+  --text-on-night-muted: var(--cream-500);  /* §1.1 --btn2 used as INK: .dr-call .dr-label,
+                                               .dr-call__time, .dr-star, .dr-stars. The secondary
+                                               ink on the dark surface, because --slate is barred
+                                               there - 2.42:1, a real 1.4.3 failure. */
+
+  /* -- DISABLED / the faded look, painted solid (designer, rev 294) ---------
+     She chose the look of the control at 40% opacity over the page, and asked
+     for it as a real colour rather than as opacity. Each value is that blend,
+     computed once: the control's own ground or ink 40%, the page 60%. A
+     colour-mix ratio is a proportion, not a length, so it takes no token.
+     WCAG 1.4.3 / 1.4.11 exempt an inactive control; the pairs are recorded:
+     action #9F9D9C on #D2E6AF 2.01:1, secondary #9F9D9C on #EAE7E2 2.18:1. */
+  --bg-disabled:        color-mix(in srgb, var(--cream-500) 40%, var(--cream-50));     /* #EAE7E2 */
+  --text-disabled:      color-mix(in srgb, var(--charcoal-900) 40%, var(--cream-50));  /* #9F9D9C */
+  --bg-disabled-action: color-mix(in srgb, var(--green-500) 40%, var(--cream-50));     /* #D2E6AF - pale green */
+  --on-disabled-action: color-mix(in srgb, var(--charcoal-900) 40%, var(--cream-50));  /* #9F9D9C */
+
+  /* -- LINE -----------------------------------------------------------------
+     Audit §5 "Line": 25 sites, of which 10 are not borders at all but the fill
+     of a separator element or of .dr-sheet__grip. One token, two jobs - the
+     split is recorded, not resolved here. */
+  --border-hairline:  var(--cream-400);     /* §1.1 --line: border-top/-bottom/-left on .dr-topbar,
+                                               .dr-tabbar, .dr-actionbar, .dr-rows__row, .dr-groups,
+                                               .dr-picker__item; and 10 separator backgrounds. */
+  --border-strong:    var(--cream-700);     /* a component's own edge that must stand 3:1 (WCAG 1.4.11):
+                                               the drop zone's dashed edge, 7.20:1 on the window (rev 331,
+                                               «тут А»). The same primitive as --text-muted. */
+
+  /* -- ACTION ---------------------------------------------------------------
+     Audit §5 "Action": the role is complete as a cluster - fill, ink, shadow,
+     hover, press - and it is the one green spend the "one green control per
+     screen" rule counts. */
+  --color-action:     var(--green-500);     /* §1.1 --green on .dr-btn--primary and
+                                               .dr-btn--primary.dr-btn--icon. The token does eight
+                                               other jobs besides (§3); this names only the first. */
+  --on-action:        var(--charcoal-900);  /* §1.1 --on-green: the ONLY colour allowed on a green
+                                               fill - 17 colour sites - and the fill of
+                                               .dr-switch__knob:checked and .dr-rating-arc. */
+  --color-route:      var(--charcoal-900);  /* the dotted line a drone flies along on the desktop map
+                                               (.dr-flight__line, .dr-maproute__line). Light: the ink, so
+                                               green stays a fill (the Fill-Only Rule); dark: green, below.
+                                               The designer, rev 333: «світла тема чорна лінія темна тема зелена». */
+
+  /* -- THE ONE TINT / resolved the way the frames resolve it ----------------
+     This was drafted as two tokens - --bg-selected and --color-verified - both
+     pointing here, on the reading that "chosen" and "confirmed" are two roles
+     sharing a value. THE FRAMES SAY OTHERWISE, in four separate rules, and the
+     frames are the design:
+
+       .dr-tab[aria-current]   "HIG tints the selected label with the accent.
+                                Raw green as a label is 1.69:1, so the accent
+                                moves into the FILL and THE INK DARKENS WITH IT
+                                - two signals where the convention gives one."
+       .dr-chip--claim         "A chip is NEVER REDUCED TO A COLOUR - each keeps
+                                its words... Same word, same geometry, two jobs,
+                                and THE WORD IS WHAT CARRIES IT."
+       .dr-mark--milestone     "Delivered and waiting SHARE ONE WELL... THE
+                                DIFFERENCE IS THE GLYPH AND THE TITLE."
+       .dr-grouptab__count     "THE HUE CARRIES IT, NOT THE LUMINANCE."
+
+     And the kit states the governing rule out loud where three of these
+     selectors share a single declaration: "the kit's own rule is that A VALUE
+     IS STATED ONCE - so the badge is named here beside the claim rung rather
+     than repeating --green-wash / --ink in its own block further down."
+
+     So there is ONE role here, not two. The tint is a GROUND that never carries
+     the meaning; the word, the glyph or the title carries it and the tint only
+     agrees. Naming it twice would claim a distinction the build does not make -
+     and would be the same second name for one value that §A5 of the audit is
+     about. DESIGN.md and kit.css both call it, in those words, "the one tint".
+
+     Its ink is --text-primary at 14.75:1, never --on-action: charcoal here is
+     the plain primary ink, which is what makes the second signal a DARKENING
+     rather than a swap. */
+  --bg-accent-tint:   var(--green-100);     /* §1.1 --green-wash - 6 declarations, 8 selectors,
+                                               48 pages. The current bottom tab
+                                               (.dr-tab[aria-current]); the claimed criterion,
+                                               the live-now availability badge and the unread
+                                               alert mark (.dr-chip--claim, .dr-avail-badge
+                                               [data-state="available"], .dr-chip--unread - one
+                                               declaration between them); the applied filter
+                                               (.dr-fchip); the count on an in-page tab
+                                               (.dr-grouptab__count); the reached milestone
+                                               (.dr-mark--milestone); the balance glyph's plate
+                                               (.dr-balance__glyph).
+
+                                               VERIFIED LIVES HERE TOO, and that is not a second
+                                               role: the blue pair was retired at rev 157 and
+                                               .dr-chip--trust became .dr-chip--claim on 17 pages,
+                                               so DESIGN.md's rule reads in one line - green means
+                                               DRON confirmed this document, grey means a plain
+                                               supporting fact. The word Insured is what says
+                                               which, exactly as the chip block prescribes. */
+
+  /* -- TROUBLE / each family is a wash carrying its own ink (DESIGN.md) ----- */
+  --color-danger:     var(--rust-700);      /* §1.1 --danger-ink: .dr-btn--danger, .dr-mark--danger,
+                                               .dr-field__err. 3 classes, 9 error pages. The hue
+                                               that is a WORD; the solid one is a fill, see below. */
+  --bg-danger:        var(--rust-100);      /* §1.1 --danger-wash: .dr-mark--danger's ground. */
+  --color-warning:    var(--amber-800);     /* §1.1 --warn-ink: .dr-mark--warn. 7 pages. */
+  --bg-warning:       var(--amber-100);     /* §1.1 --warn-wash: .dr-mark--warn's ground. The pair
+                                               is only ever used together. */
+
+  /* -- FOUR THE COMPONENT RULE FORCED ---------------------------------------
+     `components/` may read colour only through a semantic token. These four
+     colours are drawn by the wireframes, so they had to be given a name or the
+     component could not be written. Each name is the sources' own word.
+
+     THIS SUPERSEDES §06.1 OF design-system/_critique.md for --amber-500. That
+     section held the rating's yellow at PRIMITIVE because it stands in one file
+     and one class. It still does - rate.html x .dr-star - and the component
+     rule outranks that, because the frames draw it. The reasoning is kept
+     there rather than deleted, and the promotion is recorded, not silent. */
+  --color-rating:       var(--amber-500);   /* .dr-star[aria-pressed="true"]. kit.css: "a filled
+                                               star is yellow - the palette's own --warn". The
+                                               state is never colour alone: the fill pairs with
+                                               aria-pressed, 1.84:1 being under 1.4.11's 3:1. */
+  --color-rating-empty: var(--cream-500);   /* .dr-star at rest. The same sentence names it:
+                                               "an unfilled star is grey with no outline". */
+  --bg-danger-solid:    var(--rust-500);    /* .dr-btn--danger-solid - the end-call button, the
+                                               only place the danger hue is a FILL rather than a
+                                               word. 3 call pages. */
+  --text-action:        var(--green-700);   /* .dr-btn--text. kit.css: "the green that may SPEAK
+                                               ... where green must stand alone as a word or a
+                                               lone glyph, it is this one". */
+
+  /* -- THE PAY BUTTON / the palette's one licensed exception ----------------
+     Apple Pay and Google Pay ship their own black button and neither brand
+     permits it recoloured, so this pair leaves the warm palette on purpose.
+     kit.css: hover "lifts to --ink because filter:brightness multiplies black
+     by nothing". At handoff both brands' supplied buttons replace it outright. */
+  --bg-pay:           var(--black);
+  --on-pay:           var(--white);
+  --bg-pay-hover:     var(--text-primary);  /* kit.css: hover "lifts to --ink because filter:brightness
+                                               multiplies black by nothing" - the same value it has always had */
+  --on-pay-hover:     var(--white);         /* the label does not move on hover in the light build */
+
+  /* -- THE GLYPH PLATE'S MARK ------------------------------------------------
+     Added 2026-09-25. .dr-balance__glyph is a --bg-accent-tint plate sitting on
+     a --color-action card, and its mark took the card's ink by inheritance. That
+     is right in light and wrong in dark, where the tint darkens under a green
+     card, so the mark needs a name of its own to be themed. Light value is the
+     inherited one, so nothing moves. */
+  --on-glyph-plate:   var(--on-action);
+
+  /* -- RENDER IMAGERY -------------------------------------------------------
+     Added 2026-09-25. A drone render is a dark object on a transparent ground:
+     on the cream page it reads, on a charcoal one it disappears into it. This is
+     the one place a theme has to touch a PICTURE, and it does it through a token
+     like everything else. `none` in light - the asset is drawn as shot. */
+  --img-render-filter: none;
+
+  /* -- A THEMED PICTURE ----------------------------------------------------
+     Added 2026-09-25. Where a real dark-theme asset exists, the theme swaps the
+     FILE rather than filtering the light one - the designer, on the filtered
+     render: it looked awful, and she supplied the white version from Figma
+     (My-projects, node 155:59104). `normal` is the CSS-wide value that leaves a
+     replaced element showing its own src, so the light build is untouched.
+     THE PATH IS RELATIVE TO components/, NOT TO THIS FILE, and that is measured
+     rather than assumed: a relative url() inside a custom property resolves
+     against the stylesheet where the variable is SUBSTITUTED, not where it is
+     declared. Written as `assets/...` from this file it resolved to
+     /components/assets/... and 404'd. Every component file sits at the same
+     depth and card.css already writes `../../assets/...` for the wallet pattern, so
+     this matches what the layer does. */
+  --img-drone-front:   normal;
+
+  /* The other seven drone renders. Same story as --img-drone-front: a white
+     colourway of the same object, not a filtered negative. `normal` leaves each
+     one showing its own src, so the light build is untouched. */
+  --img-drone-01:         normal;
+  --img-drone-02:         normal;
+  --img-drone-08:         normal;
+  --img-drone-11:         normal;
+  --img-drone-camera:     normal;
+  --img-drone-clean:      normal;
+  --img-drone-clean-wide:  normal;
+  --img-drone-camera-tight: normal;
+
+  /* The six onboarding illustrations. Each is a whole SCENE drawn for its
+     theme, not a cut-out tinted by a filter: the dark ones are painted on
+     #1A1A1A edge to edge, so there is no alpha edge to fringe. `normal` here
+     leaves every slide showing its own src, so the light build is untouched. */
+  --img-onb-dispatch:             normal;
+  --img-onb-checklist:            normal;
+  --img-onb-payout:               normal;
+  --img-onb-verified-operator:    normal;
+  --img-onb-live-tracking:        normal;
+  --img-onb-report:               normal;
+
+  /* -- TYPE ------------------------------------------------------------------
+     Added 2026-10-14, the designer's call: every font in a component reads a
+     semantic token. These are not new values and not new names - they are
+     kit.css's own type roles (--t-display-size, --t-title-weight ...), which
+     the 2026-09 port collapsed into bare primitives. Each component
+     declaration was given back the role kit.css wrote for that same selector,
+     so the role is read off the archive, not guessed from the number. The ten
+     steps are DESIGN.md's; lead, base, para, act and lang are the five
+     narrower roles kit.css also named.
+
+     A step is a set: size, weight, line, and tracking where it has one. A
+     component that writes a size writes the weight and leading of the SAME
+     step, or a reason. Light and dark share every value - type has no theme.
+
+     HIG / WCAG:
+       HIG Typography   iOS's smallest default style (Caption 2) is 11pt.
+                        micro-sm was 10.5px, 0.5 below it, on 3 declarations
+                        (the count badge, the tracker's step labels, the group
+                        tab count). Raised to 11 on 2026-10-14, the designer's
+                        call: no step is below 11 now.
+       WCAG 1.4.4       sizes are px; the frame zooms as a whole at 200%,
+                        nothing is clipped by a fixed line box.
+
+     ALSO TOKENS, SINCE THE SAME DAY: every other font value a component
+     writes - case, figure style, a glyph's or a tab's line box, the zero that
+     hides a label. The one thing that is NOT a token is `inherit`
+     (.dr-fchip's family and line-height): a custom property set to inherit
+     inherits the PARENT'S VARIABLE, not the parent's line-height, so a token
+     would change what it resolves to. It stays the keyword, and the value it
+     takes is the parent's, which is itself a token. */
+  --font-ui:                var(--family-sf);     /* every product string */
+  --font-mono:              var(--family-mono);   /* codes, coordinates, specimens */
+
+  --type-display-size:      var(--len-22);        /* 22 display - the screen's one big line */
+  --type-display-weight:    var(--num-700);
+  --type-display-line:      var(--num-1-4);
+  --type-display-track:     var(--track-n0-02);
+
+  --type-number-size:       var(--len-20);        /* 20 number - a price, a balance, a count */
+  --type-number-weight:     var(--num-700);
+  --type-number-line:       var(--num-1);
+  --type-number-track:      var(--track-n0-02);
+
+  --type-title-size:        var(--len-17);        /* 17 title - HIG's Headline / Body size */
+  --type-title-weight:      var(--num-600);
+  --type-title-line:        var(--num-1-4);
+  --type-title-track:       var(--track-n0-01);
+
+  --type-heading-size:      var(--len-15);        /* 15 heading - a card's or a row's name */
+  --type-heading-weight:    var(--num-600);
+  --type-heading-line:      var(--num-1-2);
+
+  --type-lead-size:         var(--len-15);        /* 15 lead - a regular-weight opening paragraph */
+  --type-lead-weight:       var(--num-400);
+  --type-lead-line:         var(--num-1-55);
+
+  --type-body-size:         var(--len-14);        /* 14 body */
+  --type-body-weight:       var(--num-400);
+  --type-body-line:         var(--num-1-3);
+
+  --type-body-sm-size:      var(--len-13);        /* 13 body-sm - descriptions, secondary lines */
+  --type-body-sm-weight:    var(--num-400);
+  --type-body-sm-line:      var(--num-1-4);
+
+  --type-meta-size:         var(--len-12-5);      /* 12.5 meta - time, distance, a row's fact */
+  --type-meta-weight:       var(--num-400);
+  --type-meta-line:         var(--num-1-2);
+
+  --type-caption-size:      var(--len-12);        /* 12 caption - labels over a value */
+  --type-caption-weight:    var(--num-600);
+  --type-caption-line:      var(--num-1-4);
+
+  --type-micro-size:        var(--len-11);        /* 11 micro - uppercase eyebrows, badges */
+  --type-micro-weight:      var(--num-600);
+  --type-micro-line:        var(--num-1-4);
+  --type-micro-track:       var(--track-0-09);
+  --type-micro-track-tight: var(--track-0-05);    /* the FROM / TO route labels */
+
+  --type-micro-sm-size:     var(--len-11);        /* 11 micro-sm - was 10.5 until 2026-10-14, see above */
+  --type-micro-sm-weight:   var(--num-400);
+  --type-micro-sm-line:     var(--num-1-4);
+
+  --type-base-size:         var(--len-15);        /* the frame's inherited default */
+  --type-base-line:         var(--num-1-4);
+  --type-para-line:         var(--num-1-5);       /* a message body's own leading */
+  --type-act-track:         var(--track-0-02);    /* the zone label's trailing note */
+  --type-lang-track:        var(--track-0-04);    /* the language toggle - off the scale, kit.css says so */
+
+  --type-weight-regular:    var(--num-400);       /* a weight set on its own, not as part of a step */
+  --type-weight-medium:     var(--num-600);
+
+  --type-micro-case:        uppercase;            /* the eyebrow and inset labels */
+  --type-act-case:          none;                 /* the label's trailing note keeps its own case */
+  --type-numeric:           tabular-nums;         /* prices, times, counts - figures that line up */
+  --type-glyph-line:        var(--num-1);         /* a single glyph centred in a circle (the chip's x) */
+  --type-tab-line:          calc(var(--len-48) - var(--len-1));  /* the group tab: its height less the hairline */
+  --type-hidden-size:       var(--len-0);         /* a text label hidden behind an image it describes */
+  --type-hidden-line:       var(--num-0);
+
+  /* Added for the desktop (2026-10-19), read only by wireframes/desktop/. Each
+     is the value the temporary desktop CSS wrote, now named as a step. */
+  --type-hero-size:         var(--len-34);        /* the assistant's greeting on the client's desktop home */
+  --type-hero-weight:       var(--num-600);
+  --type-hero-line:         var(--num-1-2);
+  --type-hero-track:        var(--track-n0-02);
+  --type-hero-sm-size:      var(--len-30);        /* the same greeting on the operator's desktop home */
+  --type-hero-sm-weight:    var(--num-600);
+  --type-hero-sm-line:      var(--num-1-2);
+  --type-hero-sm-track:     var(--track-n0-02);
+  --type-window-title-size: var(--len-22);        /* a desktop window's or panel's title */
+  --type-window-title-weight: var(--num-600);
+  --type-window-title-track: var(--track-n0-01);
+  --type-window-title-md-size: var(--len-20);     /* the same title a step down (an earlier rule the cascade later overrides) */
+  --type-quote-size:        var(--len-48);        /* the quote mark at the head of a review card */
+
+  /* -- WIDE SCREENS / tablet and desktop only (2026-10-18) ------------------
+     Read only by the wide components (material, stat, assistant, map ground)
+     and by the shell's container-query rules. The phone reads none of them. */
+  --bg-material:      color-mix(in srgb, var(--white) 72%, transparent);   /* HIG macOS light material */
+  --bg-material-solid: var(--white);                                       /* Reduce transparency */
+  --border-material:  color-mix(in srgb, var(--charcoal-900) 8%, transparent);
+  --text-accent-wide: var(--text-primary);   /* the greeting and a trend: the main dark in light */
+  --img-map-ground:   url(../../assets/map/ground-light.jpg);
+  --img-agent-glow:   url(../../assets/design-system/agent-glow.png);
+  /* the desktop's own scene copies (2026-10-18/19, moved here from _desktop.css in
+     phase 2): the onboarding art cut out so the window's glass is its ground. In
+     light only Dispatch has a desktop copy - the other five light scenes were already
+     cut out and the desktop draws the phone's own files - so only it is named here.
+     The stardust field is declared but drawn nowhere (its ::after is content: none).
+     The sphere behind the assistant's drone was retired by the designer in both
+     themes («тут прибери зовсім ефект»): its token is none, sphere.png and
+     sphere-dark.png stay in assets/ unread. */
+  --img-desk-onb-dispatch: url(../../assets/scenes/desktop/onboarding-dispatch.png);
+  --img-desk-stardust:     url(../../assets/scenes/desktop/stardust.png);
+  --img-desk-sphere:       none;
+
+  /* Added for the desktop (2026-10-19). The veil darkens the map's edges under
+     the floating header and rails; the halo lifts the assistant's lead off the
+     map; the render shadow sits under a service drone. None is a text ground -
+     text on the desktop stands on the material, not on these. */
+  --veil-map-centre:     var(--cream-50-a10);
+  --veil-map-mid:        var(--cream-50-a40);
+  --veil-map-edge:       var(--cream-50-a75);
+  --halo-on-map:         var(--cream-50-a90);
+  --color-render-shadow: var(--black-a25);
+  --mask-opaque:         var(--black);   /* a mask's opaque stop; a mask reads only alpha, so it has no dark value */
+
+  /* -- OVERLAY --------------------------------------------------------------- */
+  --scrim:            color-mix(in srgb, var(--charcoal-900) 40%, transparent);
+                                            /* §1.7 --scrim: .dr-scrim on 26 pages. Warm, never
+                                               black - the ink at 40%, not a flat overlay. */
+  --halo-action:      0 0 0 4px color-mix(in srgb, var(--green-500) 20%, transparent);
+                                            /* §1.7 --halo-now: .dr-node--now, 10 pages. The ring
+                                               that marks the step being walked. */
+
+  /* -- NOT GIVEN A SEMANTIC TOKEN, ON PURPOSE -------------------------------
+     A colour that stands in exactly one place is not a role yet. These four
+     stay PRIMITIVE-only and are argued in design-system/_critique.md §06:
+
+       --amber-500  #E4A11B  one file, one class: rate.html x .dr-star. Its two
+                             other declarations - .dr-profile__rating and
+                             .dr-stars__fill - are in no page's markup.
+       --blue-700   #2A5C7D  .dr-chip--trust. ZERO pages. Retired at rev 157.
+       --blue-100   #D8E6F2  the same chip, the same zero.
+       --green-300  #B7DA7C  zero uses anywhere. Its one site went back to
+                             --green-500 on 2026-09-03.
+
+     Six more are spent on a SINGLE CLASS across several files - not excluded
+     by the rule, but not repeated either: --cream-100 (.dr-inset), --green-700
+     (.dr-btn--text), --amber-800 and --amber-100 (.dr-mark--warn), --rust-500
+     (.dr-btn--danger-solid), --rust-100 (.dr-mark--danger). Four of those six
+     are given a role above because the audit names the family shape they
+     belong to; all six are listed in the critique so that a second spend is
+     noticed when it arrives. */
+}
+
+/* Reduced motion (rev 341). WCAG 2.3.3 Animation from Interactions and
+   HIG · Motion ("replace movement with a dissolve"): the distances go to zero,
+   so an element that slides in on --move-* fades in place instead. Durations
+   are kept - a fade still says that something changed. Written on one line so
+   the docs build does not list the override as a second declaration. */
+@media (prefers-reduced-motion: reduce){
+  :root, [data-theme="light"], [data-theme="dark"] { --move-sm: 0px; --move-md: 0px; }
+}
+
+/* ==========================================================================
+   DARK - A STRESS TEST OF THE SEMANTIC TIER, NOT A PRODUCT DECISION.
+   Added 2026-09-25 on the designer's word, to answer one question: does the
+   semantic layer actually hold, or does colour leak past it? A theme is the
+   only honest way to ask, because anything that does NOT flip here is
+   something reading below the role it should be reading.
+
+   THE RULE IT OBEYS: this block redefines SEMANTIC roles only. Not one
+   PRIMITIVE moves, and every value below is built out of primitives that
+   already existed - charcoal, cream, green, rust, amber - lifted with
+   color-mix(), the same mechanism --scrim and --halo-action already use. No
+   new hex enters the file.
+
+   WHETHER DARK STAYS IN THE PRODUCT IS A SEPARATE DECISION AND IT IS HERS.
+   Nothing here turns it on: it costs a data-theme="dark" on <html> and
+   otherwise sits inert.
+
+   THE RAMP INVERTS AND THE RELATIONSHIPS ARE KEPT. Light stacks
+   page > inset > card > well > muted downwards in lightness; dark stacks them
+   upwards from the page, so a raised plane is still lighter than what holds it
+   and a recessed well is still darker than the card it sits in.
+
+   EVERY PAIR IS MEASURED, as the standing rule requires - computed in a
+   browser with the browser resolving the color-mix(), never asserted. The
+   number after each is the DARK ratio, with the light one beside it so the two
+   builds can be compared at a glance.
+   ========================================================================== */
+
+[data-theme="dark"]{
+
+  /* -- SURFACE -------------------------------------------------------------
+     --bg-page is the product's own night ground, so the dark theme opens on a
+     colour the palette already owns rather than a new one. */
+  --bg-page:            var(--charcoal-900);                                             /* #1A1A1A */
+  --bg-well:            color-mix(in srgb, var(--cream-50) 5%,  var(--charcoal-900));    /* #252525 - recessed: 1.13:1 under the card, light 1.08:1 */
+  --bg-surface:         var(--charcoal-800);                                             /* #2E2E2E - card on page 1.28:1, light 1.11:1 */
+  --bg-inset:           color-mix(in srgb, var(--cream-50) 8%,  var(--charcoal-800));    /* #3E3E3E - raised inside a card 1.27:1, light 1.06:1 */
+  --bg-muted:           color-mix(in srgb, var(--cream-50) 16%, var(--charcoal-800));    /* #4E4E4D - secondary button, 1.63:1 on the card, light 1.25:1 */
+
+  /* -- RAISED / what the scrim could not buy back -------------------------
+     The drawer is lifted off the page instead of being darkened away from it.
+     Measured: 1.60:1 over the page, and 1.84:1 over the SCRIMMED page behind
+     it, against light's 2.48:1 - so dark gets three quarters of the light
+     build's separation, and gets it from a real tone step where light has
+     none at all (its drawer and its page are the same colour, 1:1).
+     THE LIFT IS CAPPED BY WHAT SITS ON THE DRAWER, not by the page under it:
+     at 24% the separation reaches 2.42:1 and matches light exactly, but the
+     surface lands on --bg-muted and a secondary button standing on the drawer
+     disappears into it. At 16% that button reads 1.28:1 on the drawer, which
+     is the light build's own 1.34:1. The primary ink holds 9.97:1. */
+  --bg-raised:          color-mix(in srgb, var(--cream-50) 16%, var(--charcoal-900));   /* #3D3D3D */
+
+  /* -- INVERSE / it flips, which is the whole point ------------------------
+     The toast becomes a light pill with charcoal text - 15.99:1, the same
+     ratio it has in light, and 15.99:1 against the page so it cannot be lost
+     in it. */
+  --bg-inverse:         var(--cream-50);      /* #F7F5F2 */
+  --bg-meter:           var(--cream-50);      /* rev 344: the countdown's remaining part turns light with the ground */
+  --text-on-inverse:    var(--charcoal-900);  /* #1A1A1A */
+
+  /* -- INK ------------------------------------------------------------------
+     WCAG 1.4.3 asks 4.5:1 for body text. Measured dark / light:
+       --text-primary  on page  15.99 / 15.99   on card  12.48 / 14.37
+                       on inset  9.84 / 15.29   on well  14.09 / 13.33
+                       on muted  7.66 / 11.54
+       --text-muted    on page  11.54 /  6.62   on card   9.00 /  5.95
+                       on well  10.17 /  5.51   on muted  5.53 /  4.77
+     Every one clears AA, and the secondary ink clears it by more than it does
+     in light. */
+  --text-primary:       var(--cream-50);      /* #F7F5F2 */
+  --text-muted:         var(--cream-500);     /* #D6D2C9 - the value the night surface already uses for its
+                                                 secondary ink, because --slate is barred there at 2.42:1 */
+
+  /* -- DISABLED / the faded look, painted solid (designer, rev 294) ---------
+     The same 40/60 blend over the dark page. Charcoal on the green stays
+     charcoal, because the page it blends into is charcoal. Recorded, exempt
+     under 1.4.3: action #1A1A1A on #4E622D 2.59:1, secondary #727270 on
+     #2F2F2F 2.78:1. */
+  --bg-disabled:        color-mix(in srgb, color-mix(in srgb, var(--cream-50) 16%, var(--charcoal-800)) 40%, var(--charcoal-900));  /* #2F2F2F */
+  --text-disabled:      color-mix(in srgb, var(--cream-50) 40%, var(--charcoal-900));    /* #727270 */
+  --bg-disabled-action: color-mix(in srgb, var(--green-500) 40%, var(--charcoal-900));   /* #4E622D */
+  --on-disabled-action: var(--charcoal-900);                                             /* #1A1A1A */
+
+  /* -- LINE -----------------------------------------------------------------
+     A separator, not a boundary: 1.4.11's 3:1 governs a control's edge and this
+     draws none. It is stronger than its light counterpart all the same -
+     1.96:1 on a card against light's 1.21:1 - because a hairline loses more on
+     a dark ground than on a pale one. */
+  --border-hairline:    color-mix(in srgb, var(--cream-50) 22%, var(--charcoal-800));    /* #5A5A59 */
+  --border-strong:      var(--cream-500);     /* #D6D2C9 - the drop zone's edge, 9.00:1 on the dark window */
+  --color-route:        var(--green-500);     /* the route in dark is green: on the dark map the accent
+                                               stands as a line (the wallet-plate reading, rev 333) */
+
+  /* -- ACTION / DELIBERATELY NOT REDEFINED ----------------------------------
+     Signal Green is the brand's one accent and it does not owe the theme a
+     second value. It gets BETTER in the dark, which is the point: the fill
+     stands at 9.46:1 against the page where in light it stands at 1.69:1, so
+     the "one green control per screen" rule reads louder, not weaker. Charcoal
+     stays the only ink allowed on it - 9.46:1, unmoved, because neither side of
+     that pair changes. */
+
+  /* -- THE GREEN THAT MAY SPEAK --------------------------------------------
+     --text-action is the exception where green stands alone as a word. Its
+     light value is the dark olive --green-700, which on a charcoal page is
+     2.03:1 and fails outright. Dark takes the ramp's other end: --green-300,
+     11.05:1 on the page and 8.62:1 on a card, against light's 5.58 / 5.01. It
+     is the one primitive in the palette with no other spend, so nothing is
+     borrowed from a live role. */
+  --text-action:        var(--green-300);     /* #B7DA7C */
+
+  /* -- THE ONE TINT ---------------------------------------------------------
+     The tint is a GROUND that never carries the meaning, and its ink is
+     --text-primary. Light's --green-100 is a pale wash; under cream ink it
+     would be unreadable, so dark mixes the accent into the page instead and
+     keeps the relationship: 9.84:1 under the primary ink (light 14.75:1), and
+     1.62:1 against the page so the selected tab still reads as a fill
+     (light 1.08:1). */
+  --bg-accent-tint:     color-mix(in srgb, var(--green-500) 22%, var(--charcoal-900));   /* #364225 */
+
+  /* -- TROUBLE --------------------------------------------------------------
+     Both inks are dark on purpose in the light build and both fail on a dark
+     ground - --danger-ink at 2.61:1, --warn-ink at 1.72:1 - so each takes the
+     lighter member of its own family and each wash is mixed into the page.
+     Measured: danger 6.39 on page / 4.99 on card / 5.09 on its own wash;
+     warning 7.80 on page / 5.35 on its own wash. All clear AA. */
+  --color-danger:       color-mix(in srgb, var(--rust-500) 62%, var(--cream-50));        /* #D78876 */
+  --bg-danger:          color-mix(in srgb, var(--rust-500) 24%, var(--charcoal-900));    /* #43251E */
+  --color-warning:      var(--amber-500);                                                /* #E4A11B */
+  --bg-warning:         color-mix(in srgb, var(--amber-500) 20%, var(--charcoal-900));   /* #42351A */
+
+  /* -- RATING ---------------------------------------------------------------
+     The filled star keeps --amber-500 and gains contrast: 7.80:1 on the page
+     against light's 2.05:1, well past 1.4.11's 3:1 for a graphic. The EMPTY
+     star has to move: its light value is a pale grey that would read as filled
+     on a dark page, so it becomes the same distance below the card that light
+     puts it above - 1.65:1, light 1.25:1. */
+  --color-rating-empty: color-mix(in srgb, var(--cream-50) 24%, var(--charcoal-900));    /* #4F4F4E */
+
+  /* -- OVERLAY / AND THE ONE THING A TOKEN COULD NOT FIX --------------------
+     The scrim is what separates an open drawer from the screen behind it,
+     because .dr-sheet is painted with --bg-page - the same role as the page it
+     floats over. In light the scrim carries that separation: the page behind
+     resolves to #9F9D9C and the sheet stands at 2.48:1 over it. In dark there
+     is no room left below the page to darken into. At 66% black the page
+     behind resolves to #090909 and the sheet stands at 1.15:1 - less than half
+     the separation, and the strongest scrim available cannot buy it back.
+     THAT IS A FINDING ABOUT THE ROLES, NOT ABOUT THIS VALUE; it is written up
+     in design-system/_critique.md. */
+  --scrim:              color-mix(in srgb, var(--black) 66%, transparent);
+
+  /* -- THE PAY BUTTON / THE BRANDS' OWN DARK VARIANT ------------------------
+     Corrected 2026-09-25 on the designer's word. The first version of this block
+     left the pay pair alone and said "a theme does not get to override a
+     licence" - which was too broad, and wrong here. `HIG - Apple Pay Buttons`
+     ships THREE variants and says which to use: black on a light background,
+     WHITE on a dark one. Google Pay's brand kit ships the same pair. So white on
+     a charcoal page is not a recolour, it is the variant the brand prescribes,
+     and using black there is the departure.
+     Measured: the label holds 15.99:1 on the white button (light: 21:1 on the
+     black one), and the button against the page is 15.99:1.
+     ON HOVER IT TAKES THE SECONDARY BUTTON'S HOVER, her call, corrected the
+     same day: white is the top of the ramp and has nowhere to lift to, so the
+     press reads as a step DOWN. The first reading put it on --bg-muted, the
+     secondary button at REST; she meant the secondary button ON HOVER, which is
+     --bg-well - a deeper step, and the one a hand actually sees when it moves
+     across the two controls in the same drawer. The label goes with it:
+     --text-primary on --bg-well is 14.09:1. */
+  --bg-pay:             var(--white);       /* #F7F5F2 is the page; the button is true #FFF, as shipped */
+  --on-pay:             var(--black);
+  --bg-pay-hover:       var(--bg-well);     /* the secondary button's HOVER ground, her correction 2026-09-25 */
+  --on-pay-hover:       var(--text-primary);
+
+  /* -- THE GLYPH PLATE'S MARK / A DEPARTURE, RECORDED ------------------------
+     The designer, 2026-09-25, on the built wallet in dark: make the mark on
+     `Available to withdraw` green.
+     WHAT IT DEPARTS FROM, said plainly: concept.md SS0's fill-only rule -
+     "Signal Green is a fill or a tint, NEVER text and never an icon stroke".
+     That rule exists because green as a STROKE on a light surface is 1.52:1 and
+     fails `WCAG 1.4.11`'s 3:1 for a graphic. The reason does not carry into the
+     dark build: on the tint plate the same green measures 5.82:1, and the plate
+     itself sits on the green card. So the departure is scoped to dark, where the
+     failure the rule prevents cannot happen, and light keeps charcoal.
+     The mark is aria-hidden and the words `Available to withdraw` carry the
+     meaning, so `1.4.1` is not engaged either way. */
+  --on-glyph-plate:     var(--color-action);
+
+  /* -- RENDER IMAGERY -------------------------------------------------------
+     The designer, 2026-09-25: the drone renders on the cards and in onboarding
+     have to be white in the dark build. They are dark objects on a transparent
+     ground - on role-select the drone was all but invisible on its card.
+     invert() ALONE WOULD HAVE BROKEN THE PALETTE: it turns the green cargo on a
+     render magenta. Inverting the luminance and putting the hue back is what
+     keeps a green drone green and only lifts it off the dark ground, so the
+     picture stays a render rather than becoming a silhouette - which is the
+     `Imagery is real, never decoration` rule. A flat white silhouette
+     (brightness(0) invert(1)) was the alternative and is the designer's to take.
+     It reaches ONLY /drones/ renders. People are photographs: inverting a face
+     is never right, and the operator's photo on the same screens is untouched. */
+  --img-render-filter:  invert(1) hue-rotate(180deg);
+
+  /* THE ONE RENDER THAT HAS A REAL DARK ASSET, so it does not need the filter
+     at all: the white drone from her Figma, cropped to the light thumb's own
+     aspect so the box on the card is identical in both themes (48 x 36,
+     object-fit: contain, unmoved). The seven other drone renders in the product
+     have no white variant yet and keep the filter until they do. */
+  --img-drone-front:    url("../../assets/drones/thumbs/drone-flight-front-dark.png");
+
+  /* THE OTHER SEVEN, DERIVED RATHER THAN DRAWN, and the derivation was checked
+     against the one render she supplied. Measured on that pair, a white shell is
+     not an inversion: the deep blacks STAY black (p5 21 -> 17) while the mid
+     tones lift hard (p50 52 -> 174, p25 40 -> 104). So the curve holds the darks
+     and lifts the shell, and it is gated by saturation, which is why the lime
+     cargo boxes and drone-11's yellow shell move by 0.00 rgb units. Applied to
+     the light render it lands at p25/p50/p75/p95 of 104/187/214/236 against the
+     reference's 104/174/208/237. */
+  --img-drone-01:         url("../../assets/drones/thumbs/drone-01-dark.png");
+  --img-drone-02:         url("../../assets/drones/thumbs/drone-02-dark.png");
+  --img-drone-08:         url("../../assets/drones/thumbs/drone-08-dark.png");
+  --img-drone-11:         url("../../assets/drones/thumbs/drone-11-dark.png");
+  --img-drone-camera:     url("../../assets/drones/thumbs/drone-flight-camera-dark.png");
+  --img-drone-clean:      url("../../assets/drones/thumbs/drone-flight-clean-dark.png");
+  --img-drone-clean-wide:  url("../../assets/drones/thumbs/wide/drone-flight-clean-dark.png");
+  --img-drone-camera-tight: url("../../assets/drones/thumbs/tight/drone-flight-camera-dark.png");
+
+  /* THE SIX ONBOARDING SCENES, painted for this theme rather than filtered.
+     The light artwork is a cut-out matted against the cream page, so on a dark
+     ground every silhouette carried a pale fringe and the white UI cards inside
+     the scene stayed white - neither is fixable with a filter. These are drawn
+     on the dark ground instead, which is why they are opaque and why there is
+     no edge at all. Paths are relative to components/, see --img-drone-front. */
+  --img-onb-dispatch:             url("../../assets/scenes/thumbs/onboarding-dispatch-dark.png");
+  --img-onb-checklist:            url("../../assets/scenes/thumbs/onboarding-checklist-dark.png");
+  --img-onb-payout:               url("../../assets/scenes/thumbs/onboarding-payout-dark.png");
+  --img-onb-verified-operator:    url("../../assets/scenes/thumbs/onboarding-verified-operator-dark.png");
+  --img-onb-live-tracking:        url("../../assets/scenes/thumbs/onboarding-live-tracking-dark.png");
+  --img-onb-report:               url("../../assets/scenes/thumbs/onboarding-report-dark.png");
+
+  /* -- NOT REDEFINED, EACH FOR A STATED REASON ------------------------------
+     --bg-night / --bg-night-raised / --text-on-night / --text-on-night-muted
+       the call screen is a platform takeover that was already dark. The pair is
+       unchanged and still measures 15.99:1 and 11.54:1.
+     --bg-danger-solid   the end-call fill; its label holds 4.53:1 either way.
+     --color-action / --on-action  see ACTION above.
+     --halo-action       the accent at 20%, which reads on both grounds. */
+
+  /* -- WIDE SCREENS ------------------------------------------------------------
+     The greeting and a trend may be green here: #9BCF4A on the dark ground is
+     9.46:1 (WCAG 1.4.3). A wide-screen departure from the fill-only accent, the
+     designer's call 2026-10-18; the phone keeps the rule. */
+  --bg-material:       color-mix(in srgb, var(--charcoal-800) 72%, transparent);
+  --bg-material-solid: var(--charcoal-800);
+  --border-material:   color-mix(in srgb, var(--cream-50) 10%, transparent);
+  --text-accent-wide:  var(--color-action);
+  --img-map-ground:    url(../../assets/map/ground-dark.jpg);
+  /* the desktop's dark scene copies: each flat #1A1A1A ground keyed out, Dispatch
+     drawn again in Figma and cut out (see the light block) */
+  --img-desk-onb-dispatch:          url(../../assets/scenes/desktop/onboarding-dispatch-dark.png);
+  --img-desk-onb-checklist:         url(../../assets/scenes/desktop/onboarding-checklist-dark.png);
+  --img-desk-onb-payout:            url(../../assets/scenes/desktop/onboarding-payout-dark.png);
+  --img-desk-onb-verified-operator: url(../../assets/scenes/desktop/onboarding-verified-operator-dark.png);
+  --img-desk-onb-live-tracking:     url(../../assets/scenes/desktop/onboarding-live-tracking-dark.png);
+  --img-desk-onb-report:            url(../../assets/scenes/desktop/onboarding-report-dark.png);
+  --img-desk-stardust:              url(../../assets/scenes/desktop/stardust-dark.png);
+  --img-desk-sphere:                none;
+  /* the desktop (2026-10-19): the veil turns to the dark ink, the halo to black,
+     the render shadow deepens. --mask-opaque is not redefined: a mask reads alpha. */
+  --veil-map-centre:     var(--charcoal-950-a15);
+  --veil-map-mid:        var(--charcoal-950-a45);
+  --veil-map-edge:       var(--charcoal-950-a80);
+  --halo-on-map:         var(--black-a75);
+  --color-render-shadow: var(--black-a45);
+}

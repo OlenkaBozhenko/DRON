@@ -1,0 +1,70 @@
+/* dropzone.css - DESKTOP: THE DROP ZONE for the result photos, with the thumbnails it took (moved from wireframes/desktop/, 2026-10-19) */
+
+/* the result photo's drop zone (2026-10-19): a dashed edge says "drop here"; while a file
+   is held over it the edge and ground take the accent tint (a fill, never ink); the files
+   it takes are written under the action; the photos added sit under it as thumbnails,
+   each with its remove control (named for a screen reader) */
+.dr-desk .dr-drop{
+  border: var(--len-1-7) dashed var(--border-strong);
+  gap: var(--len-8);
+  cursor: pointer;
+}
+.dr-desk .dr-drop:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-desk .dr-drop--over{
+  border-color: var(--color-action);
+  background: color-mix(in srgb, var(--color-action) 14%, transparent);
+}
+.dr-desk .dr-drop__hint{
+  font-size: var(--type-meta-size);
+  color: var(--text-muted);
+  text-align: center;
+  text-wrap: balance;
+}
+.dr-desk .dr-drop__list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--len-8);
+}
+.dr-desk .dr-drop__list:empty{
+  display: none;
+}
+.dr-desk .dr-drop__item{
+  position: relative;
+  aspect-ratio: var(--num-1);
+  border-radius: var(--len-12);
+  background: var(--bg-well);
+}
+.dr-desk .dr-drop__item img{
+  width: var(--pct-100);
+  height: var(--pct-100);
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+.dr-desk .dr-drop__rm{
+  position: absolute;
+  top: var(--len-4);
+  right: var(--len-4);
+  width: var(--len-28);
+  height: var(--len-28);
+  border: 0;
+  border-radius: var(--pct-50);
+  background: var(--bg-inverse);
+  color: var(--text-on-inverse);
+  font-size: var(--type-heading-size);
+  line-height: var(--type-glyph-line);
+  cursor: pointer;
+}
+/* «тут A»: drawn 28, tapped on 44 (HIG 44pt) - an invisible ring 8 wide round the circle */
+.dr-desk .dr-drop__rm::before{
+  content: "";
+  position: absolute;
+  inset: calc(var(--len-8) * -1);
+  border-radius: var(--pct-50);
+}

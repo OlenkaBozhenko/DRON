@@ -1,0 +1,114 @@
+/* console.css - WIDE SCREENS ONLY (2026-10-18)
+   The wide home's layout: the live map as the ground, what is happening on the
+   left, your orders on the right, the assistant in the centre over the map.
+   On a desktop three columns; on a tablet the assistant takes the first row and
+   the two rails sit side by side under it. The phone has no console. */
+.dr-console{
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden auto;   /* the folded inspector waits off the right edge, never scrolled to */
+  display: grid;
+  /* the same three columns on a tablet and a desktop (the designer, 2026-10-18:
+     the tablet takes the desktop view); only the rails narrow with the width */
+  grid-template-columns: minmax(0, clamp(var(--len-176), 24cqi, var(--len-291))) minmax(0, 1fr) minmax(0, clamp(var(--len-176), 24cqi, var(--len-291)));
+  gap: clamp(var(--len-12), 2cqi, var(--len-24));
+  padding: var(--len-16) clamp(var(--len-12), 2cqi, var(--len-24)) var(--len-24);
+  align-items: start;
+}
+.dr-console > .dr-mapground{
+  position: absolute;
+}
+.dr-console__centre{
+  position: relative;
+  z-index: 1;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  padding: var(--len-24) 0;
+}
+.dr-console__rail{
+  position: relative;
+  z-index: 1;
+  grid-row: 1;
+  display: grid;
+  gap: var(--grid-gap);
+  align-content: start;
+}
+.dr-console__rail--start{
+  grid-column: 1;
+}
+.dr-console__rail--end{
+  grid-column: 3;
+}
+/* A TABLET, THE WAY IPAD DOES IT (the designer, 2026-10-18): no statistics rail.
+   Held sideways (64-80rem) two columns, the assistant and your orders. Held
+   upright (under 64rem) the assistant takes the width and your orders collapse
+   into an inspector that slides in from the right over the map, opened from the
+   header or from the live chip at the bottom (HIG Split views: a narrow window
+   collapses its side panels and offers them from the toolbar). */
+@container screen (max-width: 79.875rem){
+  .dr-console{
+    grid-template-columns: minmax(0, 1fr) minmax(0, clamp(var(--len-260), 30cqi, var(--len-291)));
+  }
+  .dr-console__rail--start{
+    display: none;
+  }
+  .dr-console__centre{
+    grid-column: 1;
+  }
+  .dr-console__rail--end{
+    grid-column: 2;
+  }
+}
+@container screen (max-width: 63.875rem){
+  .dr-console{
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .dr-console__centre{
+    grid-column: 1;
+  }
+  .dr-console__rail--end{
+    position: absolute;
+    top: var(--len-8);
+    right: var(--len-12);
+    bottom: var(--len-12);
+    width: var(--len-320);
+    z-index: 6;
+    overflow: auto;
+    transform: translateX(calc(var(--pct-100) + var(--len-24)));
+    visibility: hidden;
+    transition: transform var(--dur-slow) var(--ease-enter), visibility var(--dur-slow);
+  }
+  .dr-console__rail--end.is-open{
+    transform: none;
+    visibility: visible;
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  .dr-console__rail--end{
+    transition: none;
+  }
+}
+/* -- DESKTOP (moved from wireframes/desktop/, 2026-10-19) --------------------
+   How this component is tuned inside the desktop frame (.dr-desk, desk.css).
+   Nothing here matches a phone page. */
+
+/* the console: two 300 rails at the edges, the assistant in the middle */
+.dr-desk > .dr-console{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  grid-template-columns: var(--len-300) minmax(0, 1fr) var(--len-300);
+  gap: var(--len-24);
+  padding: var(--len-96) var(--len-24) var(--len-24);
+  align-items: start;
+}
+.dr-desk .dr-console__rail{
+  gap: var(--len-12);
+}
+.dr-desk .dr-console__centre{
+  align-self: center;
+  margin-top: calc(var(--len-40) * -1);
+  padding: 0;
+}

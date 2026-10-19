@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Order history · empty</title>
+<!--
+  SCREEN (_screens.md STEP 8): "Order history" — STATE: empty.
+  PERSONA: Client C-1. JOB: RJ-C5 — repeat without starting over.
+  STATE: empty — no orders yet; first-timer routed into the full order flow. Same shell as order-history.html; only the list changes. Activity tab current.
+  flows.md node: RELATED · RJ-C5 → "Empty: no history — full first-time flow".
+  VISUAL LAYER (2026-07-23): Studio design language from concept/concept.html applied to the
+  screen frame — palette, type, form, Phosphor-line icons; the EMPTY placeholder is now the
+  concept's drone render (the service the first order summons). Structure and copy unchanged.
+-->
+<link rel="stylesheet" href="_wireframe.css?v=fa258fd4">
+<link rel="stylesheet" href="../design-system/index.css?v=fa258fd4">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="order-history.html">success</a>
+      <a href="order-history-empty.html" class="cur" aria-current="page">empty</a>
+      <a href="order-history-loading.html">loading</a>
+    </nav>
+    <h1>Order history</h1>
+    <p class="sub">Client · Activity tab · state: <b>empty</b> · file: order-history-empty.html</p>
+    <div class="flow"><b>Empty — no orders yet.</b><br>flows.md RJ-C5: "Empty: no history — full first-time flow" → Service catalogue → Order setup.<br><b>Exit:</b> Browse services → <b>Home / start an order</b>.</div>
+    <div class="legend"><p><b>Only the content changes</b> vs order-history.html:</p><p><b>List</b> ▸ empty block + primary "Browse services"</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><span class="dr-brand" role="img" aria-label="DRON"></span><h1 class="dr-topbar__title">Activity</h1><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <p class="zlabel dr-label">Order history <span class="dr-label__act">▸ nothing yet: start the first order</span></p>
+      <section aria-label="Past orders">
+        <div class="dr-msg dr-msg--banner" role="status">
+          <span class="dr-msg__banner" aria-hidden="true" style="background-image:url(../assets/drones/drone-cargo-banner.jpg)"></span>
+          <span class="dr-msg__title">No orders yet</span>
+          <p class="dr-msg__body">Your orders appear here, ready to re-book in a tap.</p>
+          <div class="dr-msg__actions">
+            <a class="dr-btn dr-btn--primary" href="listings.html">Browse services</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="dr-tabbar">
+      <nav class="dr-tabs" aria-label="Primary">
+        <a class="dr-tab" href="listings.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>Order</a>
+        <a class="dr-tab" href="order-history.html" aria-current="page"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.6" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg>Activity</a>
+        <a class="dr-tab" href="support.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.4 9.4a2.7 2.7 0 0 1 5.2 1c0 1.8-2.6 2.1-2.6 3.9"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>Help</a>
+        <a class="dr-tab" href="account.html"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c0-3.4 2.9-5.8 6.5-5.8s6.5 2.4 6.5 5.8"/></svg>Account</a>
+      </nav>
+      <div class="dr-home"><span></span></div>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fa258fd4"></script>
+</body>
+</html>

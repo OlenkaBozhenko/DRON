@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON Design System</title>
+<meta name="description" content="DRON design system: the tokens and components in design-system/, read live from the package so the page always shows what the product loads.">
+<!-- ONE LINK, THE SAME ONE THE PRODUCT USES. This page renders nothing of its
+     own data: every token, value, tier, section and component below is read at
+     load time from design-system/ itself - the CSSOM for the resolved values,
+     the source text for the sections and the comments. Edit the system and this
+     page follows on the next load; there is no copy here to fall out of date. -->
+<link rel="stylesheet" href="design-system/index.css">
+<style>
+  /* The page's own chrome. Tokens only, like a component: a hex or a px here
+     would be a value the system does not know about. */
+  html, body { margin: 0; background: var(--bg-page); color: var(--text-primary); }
+  body {
+    font-family: var(--font-ui);
+    font-size: var(--type-base-size);
+    line-height: var(--type-base-line);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--text-primary); text-underline-offset: var(--len-3); }
+  :focus-visible { outline: var(--len-2) solid var(--text-primary); outline-offset: var(--len-2); }
+  .ds-skip { position: absolute; left: var(--len-16); top: calc(-1 * var(--len-48)); }
+  .ds-skip:focus { top: var(--len-16); }
+
+  .ds-wrap { max-width: calc(var(--len-140) * 8); margin: 0 auto; padding: var(--len-24) var(--len-16) var(--len-64); }
+  .ds-top { display: flex; flex-wrap: wrap; gap: var(--len-12); align-items: center; justify-content: space-between; }
+  .ds-top a { font-size: var(--type-body-sm-size); }
+  .ds-h1 { font-size: var(--type-display-size); font-weight: var(--type-display-weight); letter-spacing: var(--type-display-track); margin: var(--len-24) 0 var(--len-8); }
+  .ds-lede { color: var(--text-muted); max-width: 64ch; margin: 0; }
+  .ds-h2 { font-size: var(--type-title-size); font-weight: var(--type-title-weight); letter-spacing: var(--type-title-track); margin: var(--len-40) 0 var(--len-8); }
+  .ds-h3 { font-size: var(--type-heading-size); font-weight: var(--type-heading-weight); margin: var(--len-24) 0 var(--len-4); }
+  .ds-note { color: var(--text-muted); font-size: var(--type-body-sm-size); margin: 0 0 var(--len-12); max-width: 72ch; }
+  code, .ds-mono { font-family: var(--font-mono); font-size: var(--type-meta-size); }
+
+  .ds-bar { display: flex; flex-wrap: wrap; gap: var(--len-8); align-items: center; margin-top: var(--len-16); }
+  .ds-btn {
+    font: inherit; font-size: var(--type-body-sm-size); min-height: var(--len-44); padding: 0 var(--len-16);
+    border-radius: var(--len-12); border: 0; background: var(--bg-muted); color: var(--text-primary); cursor: pointer;
+  }
+  .ds-btn[aria-pressed="true"] { background: var(--color-action); color: var(--on-action); }
+  .ds-search {
+    font: inherit; font-size: var(--type-base-size); min-height: var(--len-44); padding: 0 var(--len-12);
+    border-radius: var(--len-10); border: var(--len-1) solid var(--text-muted);
+    background: var(--bg-raised); color: var(--text-primary); min-width: 0; flex: 1 1 var(--len-176);
+  }
+
+  .ds-card { background: var(--bg-surface); border-radius: var(--len-16); padding: var(--len-16); margin-top: var(--len-12); }
+  .ds-tree { margin: 0; padding-left: var(--len-16); list-style: none; }
+  .ds-tree li { margin: var(--len-2) 0; }
+  .ds-tree .ds-tree { border-left: var(--len-1) solid var(--text-muted); margin-left: var(--len-4); }
+  .ds-count { color: var(--text-muted); font-size: var(--type-caption-size); }
+
+  .ds-table-wrap { overflow-x: auto; margin-top: var(--len-8); }
+  table { border-collapse: collapse; width: 100%; font-size: var(--type-body-sm-size); }
+  th, td { text-align: left; vertical-align: top; padding: var(--len-8); border-bottom: var(--len-1) solid var(--bg-muted); }
+  th { font-weight: var(--type-weight-medium); color: var(--text-muted); font-size: var(--type-caption-size); }
+  td.ds-val { word-break: break-word; max-width: 28ch; }
+  td.ds-why { color: var(--text-muted); max-width: 44ch; }
+
+  .ds-sw { display: inline-block; width: var(--len-32); height: var(--len-24); border-radius: var(--len-10);
+    border: var(--len-1) solid var(--text-muted); vertical-align: middle; }
+  .ds-len { display: inline-block; height: var(--len-8); background: var(--text-primary); border-radius: var(--len-2); vertical-align: middle; max-width: 100%; }
+  .ds-shadow { display: inline-block; width: var(--len-48); height: var(--len-32); border-radius: var(--len-10); background: var(--bg-raised); }
+  .ds-step { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--len-4) var(--len-16); align-items: baseline;
+    padding: var(--len-12) 0; border-bottom: var(--len-1) solid var(--bg-muted); }
+  .ds-step:last-child { border-bottom: 0; }
+  .ds-step__spec { font-family: var(--font-ui); overflow-wrap: anywhere; }
+  .ds-step__meta { color: var(--text-muted); font-size: var(--type-caption-size); text-align: right; }
+  .ds-pass { font-weight: var(--type-weight-medium); }
+  .ds-fail { font-weight: var(--type-weight-medium); text-decoration: underline; }
+
+  .ds-comp { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--len-260), 1fr)); gap: var(--len-12); margin-top: var(--len-12); }
+  .ds-comp .ds-card { margin: 0; }
+  .ds-comp h3 { margin: 0 0 var(--len-4); font-size: var(--type-heading-size); font-weight: var(--type-heading-weight); }
+  .ds-tags { display: flex; flex-wrap: wrap; gap: var(--len-4); margin-top: var(--len-8); }
+  .ds-tag { background: var(--bg-page); border-radius: var(--len-999); padding: var(--len-2) var(--len-8); font-size: var(--type-caption-size); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<a class="ds-skip" href="#main">Skip to content</a>
+<div class="ds-wrap">
+  <header class="ds-top">
+    <a href="research.html">&larr; Back to DRON</a>
+    <nav aria-label="Design system pages">
+      <a href="design-system/docs/overview.html">Overview</a> &middot;
+      <a href="design-system/docs/index.html">Components</a> &middot;
+      <a href="design-system/docs/patterns.html">Patterns</a> &middot;
+      <a href="design-system/docs/why.html">Why it looks like this</a> &middot;
+      <a href="ui/kit.html">UI kit</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h1 class="ds-h1">Design System</h1>
+    <p class="ds-lede">The package every product page loads through one link,
+      <code>design-system/index.css</code>. Everything below is read from that package when
+      the page opens, so a change made in <code>design-system/</code> appears here on the next load.</p>
+
+    <div class="ds-bar" role="group" aria-label="Theme">
+      <button class="ds-btn" type="button" data-theme-btn="light" aria-pressed="true">Light</button>
+      <button class="ds-btn" type="button" data-theme-btn="dark" aria-pressed="false">Dark</button>
+      <input class="ds-search" id="q" type="search" placeholder="Filter tokens and components" aria-label="Filter tokens and components">
+    </div>
+    <p class="ds-note" id="status" role="status" aria-live="polite">Reading design-system/&hellip;</p>
+
+    <section aria-labelledby="h-package">
+      <h2 class="ds-h2" id="h-package">Package</h2>
+      <p class="ds-note">The import tree, followed from <code>index.css</code>. Order is cascade order.
+        <code>patterns/</code>, <code>docs/</code> and <code>examples/</code> are part of the package and
+        appear here once something in them is imported.</p>
+      <div class="ds-card" id="tree"></div>
+    </section>
+
+    <section aria-labelledby="h-tokens">
+      <h2 class="ds-h2" id="h-tokens">Tokens</h2>
+      <p class="ds-note">Every custom property in <code>tokens.css</code>, grouped by the section it is
+        declared under. <strong>Primitive</strong> is a raw value; <strong>semantic</strong> points at one.
+        Values are the browser's resolved values in the theme selected above. Ink tokens carry their
+        contrast against <code>--bg-page</code> and <code>--bg-surface</code>, measured on this page
+        (<code>WCAG 1.4.3</code>: 4.5:1 for body text, 3:1 for large text and UI).</p>
+      <div id="tokens"></div>
+    </section>
+
+    <section aria-labelledby="h-type">
+      <h2 class="ds-h2" id="h-type">Type</h2>
+      <p class="ds-note">Every step the components may use, drawn from its semantic tokens
+        (<code>--type-{step}-size</code>, <code>-weight</code>, <code>-line</code>, <code>-track</code>) in
+        <code>--font-ui</code>. A component never writes a font value of its own. <code>HIG &middot; Typography</code>:
+        iOS's smallest default style is 11pt, and a step below it is marked.</p>
+      <div class="ds-card" id="type"></div>
+    </section>
+
+    <section aria-labelledby="h-components">
+      <h2 class="ds-h2" id="h-components">Components</h2>
+      <p class="ds-note">One file per component in <code>components/</code>, with the blocks each one
+        declares. Specimens of every component in every state are in the
+        <a href="ui/kit.html">UI kit</a>.</p>
+      <div class="ds-comp" id="components"></div>
+    </section>
+  </main>
+</div>
+
+<script>
+(() => {
+  const ROOT = 'design-system/';
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const status = $('#status');
+
+  /* ---- theme: the same attribute the product uses ---------------------- */
+  let probes = {};
+  function setTheme(t) {
+    if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else document.documentElement.removeAttribute('data-theme');
+    document.querySelectorAll('[data-theme-btn]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.themeBtn === t)));
+    try { localStorage.setItem('ds-theme', t); } catch (e) {}
+    if (model) renderTokens();
+  }
+  document.querySelectorAll('[data-theme-btn]').forEach(b => b.addEventListener('click', () => setTheme(b.dataset.themeBtn)));
+
+  /* ---- reading the package ---------------------------------------------- */
+  const IMPORT = /@import\s+(?:url\()?\s*["']?([^"')\s;]+)["']?\s*\)?[^;]*;/g;
+  async function readTree(path) {
+    const res = await fetch(path, { cache: 'no-store' });
+    if (!res.ok) throw new Error(path + ' answered ' + res.status);
+    const text = await res.text();
+    const base = path.slice(0, path.lastIndexOf('/') + 1);
+    const node = { path, text, children: [] };
+    const body = text.replace(/\/\*[\s\S]*?\*\//g, '');
+    for (const m of body.matchAll(IMPORT)) node.children.push(await readTree(normal(base + m[1])));
+    return node;
+  }
+  function normal(p) {
+    const out = [];
+    for (const part of p.split('/')) { if (part === '..') out.pop(); else if (part !== '.') out.push(part); }
+    return out.join('/');
+  }
+  function flat(node, acc = []) { acc.push(node); node.children.forEach(c => flat(c, acc)); return acc; }
+  const rel = p => p.startsWith(ROOT) ? p.slice(ROOT.length) : p;
+
+  /* ---- tokens: sections and comments come from the source text --------- */
+  function parseTokens(text) {
+    const groups = [];
+    let scope = null, group = null;
+    const lines = text.split('\n');
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      /* the light block opens as ":root, [data-theme="light"]{" since rev 296 */
+      const open = line.match(/^\s*(:root|\[data-theme="dark"\])(?:\s*,\s*\[data-theme="light"\])?\s*\{/);
+      if (open) { scope = open[1]; continue; }
+      if (/^\}/.test(line)) { scope = null; continue; }
+      if (scope !== ':root') continue;
+      const head = line.match(/^\s*\/\*\s*--\s*(.+?)\s*-*\s*(\*\/)?\s*$/);
+      if (head) { group = { name: head[1].replace(/-+$/, '').trim(), tokens: [] }; groups.push(group); continue; }
+      const decl = line.match(/^\s*(--[a-z0-9-]+)\s*:\s*([^;]+);\s*(?:\/\*\s*(.*?)(?:\*\/|$))?/i);
+      if (decl && group) group.tokens.push({ name: decl[1], raw: decl[2].trim(), why: (decl[3] || '').trim() });
+    }
+    return groups.filter(g => g.tokens.length);
+  }
+
+  /* ---- measuring --------------------------------------------------------- */
+  const probe = document.createElement('div');
+  probe.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden;visibility:hidden';
+  document.body.appendChild(probe);
+  function resolved(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+  function asColour(name) {
+    const v = resolved(name);
+    if (!v || !CSS.supports('color', v)) return null;
+    probe.style.color = v;
+    return getComputedStyle(probe).color;
+  }
+  function rgb(c) {
+    const m = c && c.match(/rgba?\(([^)]+)\)/);
+    if (!m) return null;
+    const p = m[1].split(/[ ,/]+/).filter(Boolean).map(Number);
+    return { r: p[0], g: p[1], b: p[2], a: p[3] === undefined ? 1 : p[3] };
+  }
+  function lum({ r, g, b }) {
+    const f = v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+  }
+  function ratio(fg, bg) {
+    const a = rgb(fg), b = rgb(bg);
+    if (!a || !b || a.a < 1 || b.a < 1) return null;
+    const l1 = lum(a), l2 = lum(b);
+    return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+  }
+  function ratioCell(r) {
+    if (r === null) return '<span class="ds-count">n/a</span>';
+    const v = r.toFixed(2) + ':1';
+    if (r >= 4.5) return '<span class="ds-pass">' + v + ' AA</span>';
+    if (r >= 3) return '<span class="ds-pass">' + v + ' large/UI</span>';
+    return '<span class="ds-fail">' + v + ' below 3:1</span>';
+  }
+  const isInk = n => /^--(text-|on-|ink)/.test(n);
+
+  function preview(t) {
+    const col = asColour(t.name);
+    if (col) return '<span class="ds-sw" style="background:var(' + t.name + ')"></span>';
+    if (/^--shadow/.test(t.name)) return '<span class="ds-shadow" style="box-shadow:var(' + t.name + ')"></span>';
+    if (/^--len-/.test(t.name)) {
+      const v = resolved(t.name);
+      if (/px$/.test(v) && parseFloat(v) <= 400) return '<span class="ds-len" style="width:' + v + '"></span>';
+    }
+    if (/^--font/.test(t.name)) return '<span style="font-family:var(' + t.name + ')">Order a drone operator</span>';
+    return '';
+  }
+
+  /* ---- rendering --------------------------------------------------------- */
+  let model = null;
+  function renderTree() {
+    const li = n => '<li><a href="' + esc(n.path) + '"><code>' + esc(rel(n.path)) + '</code></a>' +
+      (n.children.length ? ' <span class="ds-count">imports ' + n.children.length + '</span><ul class="ds-tree">' + n.children.map(li).join('') + '</ul>' : '') + '</li>';
+    $('#tree').innerHTML = '<ul class="ds-tree">' + li(model.tree) + '</ul>';
+  }
+  function renderTokens() {
+    const page = asColour('--bg-page'), surface = asColour('--bg-surface');
+    $('#tokens').innerHTML = model.groups.map((g, gi) => {
+      const rows = g.tokens.map(t => {
+        const semantic = /var\(--/.test(t.raw);
+        const col = asColour(t.name);
+        const c = col && isInk(t.name);
+        return '<tr data-q="' + esc((g.name + ' ' + t.name + ' ' + t.raw + ' ' + t.why).toLowerCase()) + '">' +
+          '<td><code>' + esc(t.name) + '</code></td>' +
+          '<td>' + preview(t) + '</td>' +
+          '<td class="ds-val"><code>' + esc(t.raw) + '</code>' + (semantic ? '<br><span class="ds-count">' + esc(col || resolved(t.name)) + '</span>' : '') + '</td>' +
+          '<td>' + (semantic ? 'semantic' : 'primitive') + '</td>' +
+          '<td>' + (c ? ratioCell(ratio(col, page)) : '') + '</td>' +
+          '<td>' + (c ? ratioCell(ratio(col, surface)) : '') + '</td>' +
+          '<td class="ds-why">' + esc(t.why) + '</td></tr>';
+      }).join('');
+      return '<div class="ds-group"><h3 class="ds-h3" id="g' + gi + '">' + esc(g.name) +
+        ' <span class="ds-count">' + g.tokens.length + '</span></h3><div class="ds-table-wrap"><table aria-labelledby="g' + gi + '">' +
+        '<thead><tr><th scope="col">Token</th><th scope="col">Preview</th><th scope="col">Value</th><th scope="col">Tier</th>' +
+        '<th scope="col">On page</th><th scope="col">On surface</th><th scope="col">Note</th></tr></thead><tbody>' + rows + '</tbody></table></div></div>';
+    }).join('');
+    filter();
+  }
+  function renderType() {
+    const all = model.groups.flatMap(g => g.tokens.map(t => t.name));
+    const steps = all.filter(n => /^--type-.+-size$/.test(n)).map(n => n.slice(7, -5));
+    $('#type').innerHTML = steps.map(st => {
+      const has = p => all.includes('--type-' + st + '-' + p);
+      const style = ['size:font-size', 'weight:font-weight', 'line:line-height', 'track:letter-spacing']
+        .filter(x => has(x.split(':')[0])).map(x => x.split(':')[1] + ':var(--type-' + st + '-' + x.split(':')[0] + ')').join(';');
+      const v = p => has(p) ? resolved('--type-' + st + '-' + p) : '';
+      const px = parseFloat(v('size'));
+      const meta = [v('size'), v('weight'), v('line') && v('line') + ' leading', v('track')].filter(Boolean).join(' &middot; ');
+      return '<div class="ds-step" data-q="' + esc(('type ' + st).toLowerCase()) + '">' +
+        '<div class="ds-step__spec" style="' + style + '">Your operator is on the way</div>' +
+        '<div class="ds-step__meta"><code>' + esc(st) + '</code><br>' + meta +
+        (px < 11 ? '<br><strong>below HIG 11pt</strong>' : '') + '</div></div>';
+    }).join('');
+  }
+  function renderComponents() {
+    $('#components').innerHTML = model.components.map(c => {
+      const body = c.text.replace(/\/\*[\s\S]*?\*\//g, '');
+      const rules = (body.match(/\{/g) || []).length;
+      const blocks = [...new Set([...body.matchAll(/\.(dr-[a-z0-9]+(?:-[a-z0-9]+)*)/g)].map(m => m[1].replace(/(__|--).*/, '')))].sort();
+      const name = rel(c.path).replace(/^components\//, '').replace(/\.css$/, '');
+      return '<article class="ds-card" data-q="' + esc((name + ' ' + blocks.join(' ')).toLowerCase()) + '">' +
+        '<h3><a href="' + esc(c.path) + '">' + esc(name) + '</a></h3>' +
+        '<span class="ds-count">' + rules + ' rules &middot; ' + blocks.length + ' blocks</span>' +
+        '<div class="ds-tags">' + blocks.map(b => '<span class="ds-tag ds-mono">.' + esc(b) + '</span>').join('') + '</div></article>';
+    }).join('');
+  }
+  function filter() {
+    const q = $('#q').value.trim().toLowerCase();
+    document.querySelectorAll('[data-q]').forEach(el => { el.hidden = !!q && !el.dataset.q.includes(q); });
+    document.querySelectorAll('.ds-group').forEach(g => { g.hidden = !!q && !g.querySelector('tbody tr:not([hidden])'); });
+  }
+  $('#q').addEventListener('input', filter);
+
+  (async () => {
+    try {
+      let t = 'light'; try { t = localStorage.getItem('ds-theme') || 'light'; } catch (e) {}
+      const tree = await readTree(ROOT + 'index.css');
+      const all = flat(tree);
+      const tokens = all.find(n => /(^|\/)tokens\.css$/.test(n.path));
+      const components = all.filter(n => /\/components\//.test(n.path) && !/\/index\.css$/.test(n.path));
+      model = { tree, groups: tokens ? parseTokens(tokens.text) : [], components };
+      renderTree(); renderType(); renderComponents(); setTheme(t);
+      const n = model.groups.reduce((s, g) => s + g.tokens.length, 0);
+      status.textContent = all.length + ' files, ' + n + ' tokens in ' + model.groups.length + ' sections, ' + components.length + ' component files.';
+    } catch (e) {
+      status.textContent = 'Could not read design-system/ (' + e.message + '). Open this page through a server, for example python serve.py.';
+    }
+  })();
+})();
+</script>
+</body>
+</html>

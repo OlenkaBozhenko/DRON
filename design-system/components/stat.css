@@ -1,0 +1,53 @@
+/* stat.css - WIDE SCREENS ONLY (2026-10-18)
+   One figure about what is happening now, on a material panel: drones in the
+   air, the average price, the average arrival. */
+.dr-stat{
+  display: flex;
+  align-items: center;
+  gap: var(--len-14);
+  padding: var(--len-14);
+}
+.dr-stat__ic{
+  width: var(--len-52);
+  height: var(--len-52);
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--len-16);
+  background: var(--bg-well);
+  color: var(--text-primary);
+}
+.dr-stat__ic .dr-ic{
+  width: var(--len-24);
+  height: var(--len-24);
+}
+.dr-stat__label{
+  display: block;
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-line);
+  color: var(--text-muted);
+}
+.dr-stat__figure{
+  font-size: var(--type-display-size);
+  font-weight: var(--type-display-weight);
+  letter-spacing: var(--type-display-track);
+  font-variant-numeric: var(--type-numeric);
+}
+.dr-stat__trend{
+  margin-left: var(--len-6);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-weight-medium);
+  color: var(--text-accent-wide);
+}
+
+/* -- DESKTOP (moved from wireframes/desktop/, 2026-10-19) --------------------
+   How this component is tuned inside the desktop frame (.dr-desk, desk.css).
+   Nothing here matches a phone page. */
+
+/* «тут на місці іконки логотип нашого дрона»: the drones-in-the-air figure carries the
+   DRON mark in its icon well instead of the generic drone outline; the mark is wide, so it
+   is drawn at the well's width, in the well's ink */
+.dr-desk .dr-stat__brand{
+  width: var(--len-40);
+  height: var(--len-14);
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRON wireframe · Withdraw to card / bank account · sent</title>
+<!-- SCREEN: "Withdraw to card / bank account" — STATE: sent (the transfer went through; withdraw-loading hands over after 3 s, the designer 2026-10-19). EXIT: Done → wallet.html. -->
+<link rel="stylesheet" href="_wireframe.css?v=fa258fd4">
+<link rel="stylesheet" href="../design-system/index.css?v=fa258fd4">
+</head>
+<body>
+  <aside class="meta">
+    <nav class="state-switch" aria-label="States of this screen">
+      <a href="withdraw.html">success</a>
+      <a href="withdraw-error.html">error</a>
+      <a href="withdraw-loading.html">loading</a>
+      <a href="withdraw-sent.html" class="cur" aria-current="page">sent</a>
+    </nav>
+    <h1>Withdraw to card / bank account</h1>
+    <p class="sub">Operator · MJ-2 · state: <b>sent</b> · file: withdraw-sent.html</p>
+    <div class="flow"><b>Sent:</b> the transfer went through. The amount, the card and what stays on the balance; Done goes back to Earnings.</div>
+    <div class="legend"><p><b>Only the content changes:</b></p><p>spinner → check mark · status → the fact</p></div>
+  </aside>
+
+  <div class="wf-frame dr dr-screen">
+    <div class="dr-statusbar"><span>9:41</span><span class="dr-statusbar__sys"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18v-3.2M9.7 18v-6.4M14.3 18v-9.6M19 18V6"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5a11 11 0 0 1 15 0"/><path d="M7.5 14.7a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></svg><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 10.8v2.4"/><rect x="4.5" y="10" width="9" height="4" rx="1" fill="currentColor" stroke="none"/></svg></span></div>
+    <header class="topbar dr-topbar"><a class="dr-back" href="wallet.html" aria-label="Back to Earnings"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><h1 class="dr-topbar__title">Withdraw</h1><span class="dr-topbar__spacer"></span></header>
+    <main class="dr-main">
+      <section class="dr-center" role="status" aria-live="polite" style="padding:32px 20px;">
+        <span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+        <p class="dr-display">&#8372;1,500 sent to your card</p>
+        <p class="dr-lead">Visa •••• 3318. It usually shows within a minute. &#8372;1,740 stays on your balance.</p>
+      </section>
+    </main>
+    <footer class="dr-actionbar">
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="wallet.html">Done</a>
+    </footer>
+  </div>
+
+  <script src="_wf-shell.js?v=fa258fd4"></script>
+</body>
+</html>

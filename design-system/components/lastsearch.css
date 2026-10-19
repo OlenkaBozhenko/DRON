@@ -1,0 +1,41 @@
+/* lastsearch.css - DESKTOP: THE HOME'S LAST SEARCH, standing where the services stood, and the places of an order read rather than typed (moved from wireframes/desktop/, 2026-10-19) */
+
+/* the places of the order, read and not typed (place.css) */
+.dr-places{
+  display: grid;
+  gap: var(--len-8);
+}
+
+/* Home's states: the search that was run stands where the services stood */
+.dr-lastsearch{
+  margin-top: var(--len-14);
+  padding: var(--len-16);
+  display: grid;
+  gap: var(--len-12);
+  text-align: left;
+}
+.dr-lastsearch__places{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--len-8);
+}
+.dr-place__key{
+  color: var(--text-muted);
+  min-width: var(--len-36);
+}
+.dr-place--empty{
+  color: var(--text-muted);
+}
+.dr-lastsearch .dr-finder__actions{
+  margin: 0;
+}
+.dr-lastsearch .dr-msg{
+  padding: var(--len-8) 0 0;
+}
+
+/* the orb steps down a size so the search and its answer fit the window */
+.dr-desk .dr-assistant:has(.dr-lastsearch) .dr-assistant__orb{
+  width: var(--len-120);
+  height: var(--len-120);
+  margin: calc(var(--len-20) * -1) auto calc(var(--len-4) * -1);
+}

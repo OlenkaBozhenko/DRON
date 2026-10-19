@@ -1,0 +1,224 @@
+/* header.css - WIDE SCREENS ONLY (2026-10-18)
+   The wide header: the DRON mark, the four destinations as a pill of links,
+   then Order, round icon buttons (search, theme, notifications) and the
+   profile chip. On a tablet and a desktop it takes the phone tab bar's job at
+   the top (HIG Sidebars / Tab bars: top-level destinations at the top on iPad
+   and Mac). The phone never uses it. */
+.dr-whead{
+  position: relative;
+  z-index: 3;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--len-12);
+  padding: var(--len-16) var(--len-24);
+}
+.dr-whead .dr-brand{
+  width: var(--len-68);
+  height: var(--len-24);
+}
+.dr-whead__nav{
+  display: flex;
+  gap: var(--len-4);
+  padding: var(--len-5);
+  border-radius: var(--len-999);
+}
+.dr-whead__link{
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--len-44);
+  padding: 0 var(--len-18);
+  border-radius: var(--len-999);
+  font-size: var(--type-body-size);
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.dr-whead__link:hover{
+  color: var(--text-primary);
+}
+.dr-whead__link[aria-current="page"]{
+  background: var(--bg-well);
+  color: var(--text-primary);
+  font-weight: var(--type-weight-medium);
+}
+.dr-whead__link:active{
+  transform: scale(var(--num-0-99));
+}
+.dr-whead__link:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-whead__end{
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--len-10);
+}
+.dr-whead__end > .dr-btn--primary{
+  border-radius: var(--len-999);
+  padding: 0 var(--len-28);
+}
+/* a round icon button on the material: search, the theme, notifications */
+.dr-iconbtn{
+  position: relative;
+  width: var(--len-48);
+  height: var(--len-48);
+  flex: none;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: var(--pct-50);
+  color: var(--text-primary);
+  cursor: pointer;
+  text-decoration: none;
+  font: inherit;
+}
+.dr-iconbtn .dr-ic{
+  width: var(--len-22);
+  height: var(--len-22);
+}
+.dr-iconbtn:hover{
+  border-color: var(--text-muted);
+}
+.dr-iconbtn:active{
+  transform: scale(var(--num-0-99));
+}
+.dr-iconbtn:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-iconbtn:disabled, .dr-iconbtn[aria-disabled="true"]{
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+.dr-iconbtn .dr-count-badge{
+  position: absolute;
+  top: calc(var(--len-2) * -1);
+  right: calc(var(--len-2) * -1);
+}
+/* the theme button: a moon in the light build, a sun in the dark one */
+.dr-iconbtn__sun{
+  display: none;
+}
+[data-theme="dark"] .dr-iconbtn__sun{
+  display: block;
+}
+[data-theme="dark"] .dr-iconbtn__moon{
+  display: none;
+}
+/* the profile chip: the face, the name, where */
+.dr-profilechip{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--len-10);
+  padding: var(--len-5) var(--len-16) var(--len-5) var(--len-5);
+  border-radius: var(--len-999);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: var(--type-body-size);
+}
+.dr-profilechip img{
+  width: var(--len-40);
+  height: var(--len-40);
+  border-radius: var(--pct-50);
+  object-fit: cover;
+}
+.dr-profilechip__place{
+  display: block;
+  font-size: var(--type-caption-size);
+  color: var(--text-muted);
+}
+.dr-profilechip:hover{
+  border-color: var(--text-muted);
+}
+.dr-profilechip:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+/* a tablet keeps the face and drops the words; an upright tablet drops the chip,
+   whose place is Account in the navigation */
+@container screen (max-width: 79.875rem){
+  .dr-profilechip__text{
+    display: none;
+  }
+  .dr-profilechip{
+    padding: var(--len-5);
+  }
+}
+@container screen (max-width: 63.875rem){
+  .dr-profilechip{
+    display: none;
+  }
+}
+/* a narrow tablet: the header tightens so the five controls fit beside the nav */
+@container screen (max-width: 63.875rem){
+  .dr-whead{
+    gap: var(--len-8);
+    padding: var(--len-12) var(--len-12);
+  }
+  .dr-whead .dr-brand{
+    width: var(--len-52);
+  }
+  .dr-whead__link{
+    padding: 0 var(--len-12);
+  }
+  .dr-whead__end{
+    gap: var(--len-6);
+  }
+  .dr-whead__end > .dr-btn--primary{
+    padding: 0 var(--len-18);
+  }
+  .dr-iconbtn{
+    width: var(--len-44);
+    height: var(--len-44);
+  }
+}
+
+/* -- DESKTOP (moved from wireframes/desktop/, 2026-10-19) --------------------
+   How this component is tuned inside the desktop frame (.dr-desk, desk.css).
+   Nothing here matches a phone page. */
+
+/* the header floats on the map */
+.dr-desk > .dr-whead{
+  position: absolute;
+  top: var(--len-18);
+  left: var(--len-24);
+  right: var(--len-24);
+  padding: 0;
+  gap: var(--len-14);
+}
+.dr-desk .dr-whead .dr-brand{
+  width: var(--len-66);
+}
+
+/* «тут можеш додати бейдж з кількістю нових варіантів»: Jobs in the header carries the
+   count of new offers, the group tab's own count; it is read as "Jobs 2 new" */
+.dr-desk .dr-whead__link .dr-grouptab__count{
+  margin-inline-start: var(--len-6);
+}
+
+/* «добав мені можливість по кліку на лого переходити на проект research.html»: the
+   logo opens the project's hub page; the link wraps the masked mark (a mask would cut its
+   own focus ring), is named, 44 tall (HIG) and shows its ring (WCAG 2.4.7) */
+.dr-desk .dr-brandlink{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--len-44);
+  min-height: var(--len-44);
+  border-radius: var(--len-12);
+}
+.dr-desk .dr-brandlink:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-4);
+}
+
+/* DESKTOP MOTION (rev 345) - Job 3 (answer): hover and press over --dur-fast on --ease-standard; a press sinks to .99.
+   Focus: the ring shows on the first frame (WCAG 2.4.7); only its offset settles, over --dur-fast.
+   The phone never reads it. */
+.dr-desk :is(.dr-whead__link, .dr-iconbtn, .dr-profilechip){
+  transition-property: background-color, color, border-color, transform, outline-offset;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-standard);
+}
+.dr-desk .dr-profilechip:active{ transform: scale(var(--num-0-99)); }

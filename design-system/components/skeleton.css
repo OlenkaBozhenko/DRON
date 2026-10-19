@@ -1,0 +1,158 @@
+/* skeleton.css
+   DRON component - ported out of ui/kit.css, not re-authored. Selectors and
+   declaration order are kit.css's; only the token names moved.
+
+   colour   -> semantic tokens in tokens.css (never a primitive colour)
+   geometry -> primitive tokens directly (--len-*, --pct-*, --num-*)
+   type     -> semantic tokens only (--font-*, --type-*), since 2026-10-14
+   The reasoning for every value stays in ui/kit.css, which is still the
+   archive; it is not copied here, so it cannot drift from itself.
+   ------------------------------------------------------------------------ */
+
+.dr-sk-line{
+  height: var(--len-13);
+  border-radius: var(--len-4);
+  background: var(--bg-muted);
+}
+.dr-sk-line--pill{
+  border-radius: var(--len-999);
+}
+.dr-sk-title{
+  height: var(--len-14);
+}
+.dr-sk-date{
+  height: var(--len-10);
+}
+.dr-sk-w90{
+  width: var(--pct-90);
+}
+.dr-sk-w70{
+  width: var(--pct-70);
+}
+.dr-sk-w50{
+  width: var(--pct-50);
+}
+.dr-sk-w40{
+  width: var(--pct-40);
+}
+.dr-sk-w30{
+  width: var(--pct-30);
+}
+.dr-sk-well{
+  width: var(--len-96);
+  height: var(--len-96);
+  flex: none;
+  border-radius: var(--len-13);
+  background: var(--bg-well);
+}
+.dr-sk-block{
+  background: var(--bg-well);
+  border-radius: var(--len-13);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+.dr-sk-btn{
+  width: var(--len-44);
+  height: var(--len-44);
+  border-radius: var(--pct-50);
+  background: var(--bg-muted);
+}
+.dr-sk-head{
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-8);
+}
+.dr-sk-route{
+  flex: 1;
+  min-width: 0;
+  height: calc(var(--len-12) + var(--len-7) + var(--len-16));
+  border-radius: var(--len-4);
+  background: var(--bg-muted);
+}
+.dr-sk-money{
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.dr-sk-price{
+  height: var(--len-18);
+  width: var(--len-84);
+  border-radius: var(--len-4);
+}
+.dr-sk-line, .dr-sk-well, .dr-sk-btn, .dr-sk-dir, .dr-sk-route{
+  animation: dr-pulse var(--time-1-4) ease-in-out infinite;
+}
+/* THE TWO NEGATIVE DELAYS BELOW STAY AS NUMBERS, and that is a decision, not
+   a miss. -.47s and -.93s are not lengths and not a scale: they are offsets
+   into a running shimmer, picked so three skeleton rows never pulse in step.
+   A primitive for each would be a token with one spend and no second reader,
+   and the audit of 2026-10-10 left them deliberately. They and one colour-mix
+   ratio are all that is left of the literal values in components/. */
+.dr-sk-d1 *{
+  animation-delay: -.47s;
+}
+.dr-sk-d2 *{
+  animation-delay: -.93s;
+}
+.dr-sk-tray{
+  background: var(--bg-well);
+}
+.dr-sk-up .dr-ic{
+  width: var(--len-32);
+  height: var(--len-32);
+}
+.dr-sk-arrow{
+  animation: dr-up var(--time-1-6) var(--ease-out) infinite;
+}
+.dr-spin{
+  animation: dr-spin var(--time-1-1) linear infinite;
+  transform-origin: var(--pct-50) var(--pct-50);
+}
+
+/* The loop this file's rule names. kit.css keeps the reasoning; only the
+   token names moved. */
+@keyframes dr-pulse{
+  0%, 100%{
+    opacity: 1;
+  }
+  50%{
+    opacity: var(--num-0-5);
+  }
+}
+/* The tray holds still and only the arrow leaves it. It rests VISIBLE at 0%
+   and 100%, so a dropped animation leaves a legible icon. */
+@keyframes dr-up{
+  0%, 10%{
+    transform: translateY(0);
+    opacity: 1;
+  }
+  55%{
+    transform: translateY(var(--len-n3-2));
+    opacity: 0;
+  }
+  56%{
+    transform: translateY(var(--len-2-6));
+    opacity: 0;
+  }
+  100%{
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes dr-spin{
+  to{
+    transform: rotate(var(--deg-360));
+  }
+}
+
+/* DESKTOP MOTION (rev 345) - Job 2 (status): the skeleton pulses while loading (dr-pulse, above); when the content comes
+   in place, the script adds .dr-sk-leave and the placeholder fades out over --dur-base on
+   --ease-exit before it is removed.
+   The phone never reads it. */
+.dr-desk .dr-sk-leave{ animation: dr-sk-leave var(--dur-base) var(--ease-exit) forwards; }
+@keyframes dr-sk-leave{ to{ opacity: 0; } }

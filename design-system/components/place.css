@@ -1,0 +1,21 @@
+/* place.css - WIDE SCREENS ONLY (2026-10-18)
+   An address in the order window: a pin and the place, on the well. Read here,
+   not typed - the assistant or Home already took it - and the lead line under
+   the window's title. */
+.dr-place{
+  display: flex;
+  align-items: center;
+  gap: var(--len-10);
+  min-height: var(--len-48);
+  padding: 0 var(--len-14);
+  border-radius: var(--len-14);
+  background: var(--bg-well);
+  font-size: var(--type-body-size);
+  color: var(--text-primary);
+}
+.dr-place .dr-ic{
+  width: var(--len-18);
+  height: var(--len-18);
+  flex: none;
+  color: var(--text-muted);
+}
