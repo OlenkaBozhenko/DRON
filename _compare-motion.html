@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Motion scale compare</title>
+<link rel="stylesheet" href="design-system/index.css">
+<style>
+  /* Scaffolding for one decision (rev 341): what moving the components onto the
+     motion scale changes. Not linked from anything; nothing reads it. */
+  body{ --k: 1; background:var(--bg-page); color:var(--text-primary); margin:0; padding:32px 16px 64px;
+        font-family:var(--font-ui); }
+  body.is-slow{ --k: 5; }
+  .cmp-wrap{ max-width:880px; margin:0 auto; }
+  .cmp-title{ font-size:22px; font-weight:700; margin:0 0 8px; }
+  .cmp-lede{ font-size:14px; line-height:20px; color:var(--text-muted); margin:0; max-width:70ch; }
+  .cmp-tools{ display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:24px 0 40px;
+              padding:12px 16px; background:var(--bg-card); border-radius:12px; font-size:13px; }
+  .cmp-tools label{ display:flex; gap:8px; align-items:center; cursor:pointer; }
+  .cmp-row{ margin:0 0 48px; }
+  .cmp-h{ font-size:17px; font-weight:600; margin:0 0 4px; }
+  .cmp-what{ font-size:13px; line-height:18px; color:var(--text-muted); margin:0 0 12px; }
+  .cmp-act{ margin:0 0 12px; }
+  .cmp-pair{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:640px){ .cmp-pair{ grid-template-columns:1fr; } }
+  .cmp-col{ background:var(--bg-card); border-radius:16px; padding:16px; position:relative; min-height:120px; }
+  .cmp-tag{ font-size:12px; font-weight:600; margin:0 0 4px; }
+  .cmp-val{ font-family:var(--font-mono); font-size:12px; color:var(--text-muted); margin:0 0 16px; }
+  .cmp-same{ font-size:14px; line-height:20px; margin:0; }
+  .cmp-stage{ position:relative; height:120px; overflow:hidden; border-radius:12px; background:var(--bg-page); }
+  .cmp-floatstage{ padding:24px 16px; border-radius:12px; background:var(--bg-page); }
+
+  /* 1. Button: hover fill */
+  .now .dr-btn  { transition: filter calc(var(--time-0-15) * var(--k)), background calc(var(--time-0-15) * var(--k)), transform calc(var(--time-0-12) * var(--k)); }
+  .scale .dr-btn{ transition: filter calc(var(--dur-fast) * var(--k)), background calc(var(--dur-fast) * var(--k)), transform calc(var(--dur-fast) * var(--k)); }
+  .dr-btn--primary.is-hover{ filter: brightness(var(--num-1-03)); }
+
+  /* 2. Switch knob */
+  .now .dr-switch__knob  { transition: transform calc(var(--time-0-12) * var(--k)) var(--ease-out), background calc(var(--time-0-12) * var(--k)); }
+  .scale .dr-switch__knob{ transition: transform calc(var(--dur-base) * var(--k)) var(--ease-standard), background calc(var(--dur-base) * var(--k)); }
+
+  /* 3. Pager dot */
+  .now .dr-pager > *  { transition: background-color calc(var(--time-0-12) * var(--k)) var(--ease-out); }
+  .scale .dr-pager > *{ transition: background-color calc(var(--dur-base) * var(--k)) var(--ease-standard); }
+
+  /* 4. Toast: now one value both ways; on the scale it enters slow, leaves at base */
+  .now .dr-toast{ transition: opacity calc(var(--time-0-15) * var(--k)) var(--ease-out), transform calc(var(--time-0-15) * var(--k)) var(--ease-out); }
+  .scale .dr-toast{ transform: translateY(var(--move-md));
+    transition: opacity calc(var(--dur-base) * var(--k)) var(--ease-exit), transform calc(var(--dur-base) * var(--k)) var(--ease-exit); }
+  .scale .dr-toast.is-on{ transform: none;
+    transition: opacity calc(var(--dur-slow) * var(--k)) var(--ease-enter), transform calc(var(--dur-slow) * var(--k)) var(--ease-enter); }
+
+  /* 5. Desktop hanging card: hover lift */
+  .now .dr-float .dr-card  { transition: transform calc(var(--time-0-25) * var(--k)) var(--ease-out), box-shadow calc(var(--time-0-25) * var(--k)) var(--ease-out); }
+  .scale .dr-float .dr-card{ transition: transform calc(var(--dur-fast) * var(--k)) var(--ease-standard), box-shadow calc(var(--dur-fast) * var(--k)) var(--ease-standard); }
+  .now .dr-float .dr-card.is-lift  { transform: translateY(calc(var(--len-3) * -1)); box-shadow: var(--shadow-float-lift); }
+  .scale .dr-float .dr-card:hover,
+  .scale .dr-float .dr-card.is-lift{ transform: translateY(calc(var(--move-sm) * -1)); box-shadow: var(--shadow-float-lift); }
+</style>
+</head>
+<body>
+<div class="cmp-wrap">
+  <h1 class="cmp-title">What moves if the components take the motion scale</h1>
+  <p class="cmp-lede">Each row is one component, built from <code>design-system/index.css</code>: <b>Now</b> as built,
+  <b>On the scale</b> with <code>--dur-*</code>, <code>--ease-*</code> and <code>--move-*</code>. Press the row's button to
+  play both at once. The differences are tens of milliseconds, so slow motion (×5) helps to see them.</p>
+
+  <div class="cmp-tools">
+    <label><input type="checkbox" id="slow"> Slow motion ×5</label>
+    <span>Five components change. The sheet, the dialog and the desktop chat panel already sit on <code>--dur-slow</code> + <code>--ease-enter</code> and do not change.</span>
+  </div>
+
+  <section class="cmp-row">
+    <h2 class="cmp-h">1. Button: the hover fill</h2>
+    <p class="cmp-what">Job 3, an answer to an action. The press already takes .12s; only the hover brightening goes .15 → .12s. Hard to see even slowed down.</p>
+    <p class="cmp-act"><button class="dr-btn dr-btn--secondary" type="button" data-play="hover">Hover both</button></p>
+    <div class="cmp-pair">
+      <div class="cmp-col now"><p class="cmp-tag">Now</p><p class="cmp-val">hover .15s · press .12s</p>
+        <button class="dr-btn dr-btn--primary dr-btn--block" type="button">Book for ₴180</button></div>
+      <div class="cmp-col scale"><p class="cmp-tag">On the scale</p><p class="cmp-val">--dur-fast .12s for both</p>
+        <button class="dr-btn dr-btn--primary dr-btn--block" type="button">Book for ₴180</button></div>
+    </div>
+  </section>
+
+  <section class="cmp-row">
+    <h2 class="cmp-h">2. Switch: the knob</h2>
+    <p class="cmp-what">Job 1, it connects off and on. The knob's 14px travel goes .12 → .2s, on the standard curve.</p>
+    <p class="cmp-act"><button class="dr-btn dr-btn--secondary" type="button" data-play="switch">Switch both</button></p>
+    <div class="cmp-pair">
+      <div class="cmp-col now"><p class="cmp-tag">Now</p><p class="cmp-val">.12s · ease-out</p>
+        <div class="dr-rows dr-rows--card"><label class="dr-field dr-field--toggle"><span class="dr-field__label">Order updates</span><input type="checkbox" role="switch"><span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span></label></div></div>
+      <div class="cmp-col scale"><p class="cmp-tag">On the scale</p><p class="cmp-val">--dur-base .2s · --ease-standard</p>
+        <div class="dr-rows dr-rows--card"><label class="dr-field dr-field--toggle"><span class="dr-field__label">Order updates</span><input type="checkbox" role="switch"><span class="dr-switch" aria-hidden="true"><span class="dr-switch__knob"></span></span></label></div></div>
+    </div>
+  </section>
+
+  <section class="cmp-row">
+    <h2 class="cmp-h">3. Pager: the current dot</h2>
+    <p class="cmp-what">Job 1, it connects one slide to the next. The green moves to the next dot in .2s instead of .12s.</p>
+    <p class="cmp-act"><button class="dr-btn dr-btn--secondary" type="button" data-play="pager">Next slide</button></p>
+    <div class="cmp-pair">
+      <div class="cmp-col now"><p class="cmp-tag">Now</p><p class="cmp-val">.12s · ease-out</p>
+        <div class="dr-pager" aria-hidden="true"><span class="on"></span><span></span><span></span></div></div>
+      <div class="cmp-col scale"><p class="cmp-tag">On the scale</p><p class="cmp-val">--dur-base .2s · --ease-standard</p>
+        <div class="dr-pager" aria-hidden="true"><span class="on"></span><span></span><span></span></div></div>
+    </div>
+  </section>
+
+  <section class="cmp-row">
+    <h2 class="cmp-h">4. Toast: arriving and leaving</h2>
+    <p class="cmp-what">Job 1, an element entering. This is the biggest change: the toast now arrives in .15s from 8px below. On the scale it arrives in .32s from 12px, settling slowly, and leaves faster than it came, in .2s.</p>
+    <p class="cmp-act"><button class="dr-btn dr-btn--secondary" type="button" data-play="toast">Show, then hide</button></p>
+    <div class="cmp-pair">
+      <div class="cmp-col now"><p class="cmp-tag">Now</p><p class="cmp-val">in .15s · out .15s · 8px · ease-out</p>
+        <div class="cmp-stage"><div class="dr-toast" role="status">Address saved</div></div></div>
+      <div class="cmp-col scale"><p class="cmp-tag">On the scale</p><p class="cmp-val">in --dur-slow .32s --ease-enter · out --dur-base .2s --ease-exit · --move-md 12</p>
+        <div class="cmp-stage"><div class="dr-toast" role="status">Address saved</div></div></div>
+    </div>
+  </section>
+
+  <section class="cmp-row">
+    <h2 class="cmp-h">5. Desktop hanging card: the hover lift</h2>
+    <p class="cmp-what">Job 3, an answer to a hover. Now it rises 3px in .25s, slower than any other answer in the product. On the scale it rises 4px in .12s. Hover the cards or press the button.</p>
+    <p class="cmp-act"><button class="dr-btn dr-btn--secondary" type="button" data-play="lift">Lift both</button></p>
+    <div class="cmp-pair">
+      <div class="cmp-col now"><p class="cmp-tag">Now</p><p class="cmp-val">.25s · ease-out · 3px</p>
+        <div class="cmp-floatstage dr-float"><div class="dr-card"><p class="cmp-same">Roof inspection<br>Today, 14:00</p></div></div></div>
+      <div class="cmp-col scale"><p class="cmp-tag">On the scale</p><p class="cmp-val">--dur-fast .12s · --ease-standard · --move-sm 4px</p>
+        <div class="cmp-floatstage dr-float"><div class="dr-card"><p class="cmp-same">Roof inspection<br>Today, 14:00</p></div></div></div>
+    </div>
+  </section>
+</div>
+<script>
+  document.getElementById('slow').addEventListener('change', e => document.body.classList.toggle('is-slow', e.target.checked));
+  const all = s => document.querySelectorAll(s);
+  const k = () => document.body.classList.contains('is-slow') ? 5 : 1;
+  const play = {
+    hover(){ all('.dr-btn--primary').forEach(b => { b.classList.add('is-hover'); setTimeout(() => b.classList.remove('is-hover'), 900 * k()); }); },
+    switch(){ all('.dr-field--toggle input').forEach(i => { i.checked = !i.checked; }); },
+    pager(){ all('.dr-pager').forEach(p => { const d = [...p.children], n = d.findIndex(x => x.classList.contains('on')); d[n].classList.remove('on'); d[(n + 1) % d.length].classList.add('on'); }); },
+    toast(){ all('.dr-toast').forEach(t => { t.classList.add('is-on'); setTimeout(() => t.classList.remove('is-on'), 1400 * k()); }); },
+    lift(){ all('.dr-float .dr-card').forEach(c => { c.classList.add('is-lift'); setTimeout(() => c.classList.remove('is-lift'), 900 * k()); }); }
+  };
+  all('[data-play]').forEach(b => b.addEventListener('click', () => play[b.dataset.play]()));
+</script>
+</body>
+</html>
