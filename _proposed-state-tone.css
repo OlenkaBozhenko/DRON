@@ -1,0 +1,35 @@
+/* _proposed-state-tone.css - SCAFFOLDING for one decision (2026-10-20).
+   How a screen's STATE arrives on the desktop, set by the tone of its words
+   (voice.md § Microcopy: error, empty, loading, success). Four quantities:
+   duration, curve, amplitude, direction. Only motion tokens. Desktop only.
+   _compare-state-tone.html injects it into the right-hand frames.
+
+   tone      words (voice.md)                         dur          curve            amplitude  direction
+   error     what happened + what to do; plain, no !  --dur-fast   --ease-standard  --move-sm  up, in place
+   empty     why it is empty + one way out; calm      --dur-base   --ease-standard  0          none, a fade
+   loading   names what is loading                    --dur-base   --ease-standard  0          none; then the
+                                                      (built loops: dr-pulse 1.4s ease-in-out, dr-spin linear)
+   success   the fact, then the next step; no fuss    --dur-base   --ease-enter     --move-md  up, settling
+   back      returning to the form (from an error)    --dur-base   --ease-standard  0          none, a fade
+   list -> detail (a rail's list opens a window)      --dur-slow   --ease-enter     --move-md  from the list's side
+
+   No curve in the system overshoots, so nothing springs or bounces. Under
+   reduced motion both distances are 0: every tone becomes a fade. */
+
+/* window.css - the same screen in another state: the window stays, the content arrives in its tone */
+.dr-desk .dr-window--stay{ animation: none; --state-dur: var(--dur-base); --state-ease: var(--ease-standard); --state-move: 0; }
+.dr-desk .dr-window--stay > .dr-scroll{ animation: dr-state-in var(--state-dur) var(--state-ease) both; }
+.dr-desk .dr-window--arrive-error{ --state-dur: var(--dur-fast); --state-move: var(--move-sm); }
+.dr-desk .dr-window--arrive-success{ --state-ease: var(--ease-enter); --state-move: var(--move-md); }
+@keyframes dr-state-in{ from{ opacity: 0; translate: 0 var(--state-move); } }
+
+/* window.css - a success said in place (payment's "Payment confirmed") */
+.dr-desk .dr-window .dr-center--arrive{ animation: dr-state-in var(--dur-base) var(--ease-enter) both; --state-move: var(--move-md); }
+
+/* window.css - list -> detail: a window opened from the list on the right rail comes from that side */
+.dr-desk .dr-window--from-end{ animation: dr-from-end var(--dur-slow) var(--ease-enter) both; }
+@keyframes dr-from-end{ from{ opacity: 0; translate: var(--move-md) 0; } }
+
+/* flight.css - the note on the map (tracking: lost signal, running late) arrives in its tone */
+.dr-desk .dr-mapnote--arrive-error{ animation: dr-state-in var(--dur-fast) var(--ease-standard) both; --state-move: var(--move-sm); }
+.dr-desk .dr-mapnote--arrive-empty{ animation: dr-state-in var(--dur-base) var(--ease-standard) both; --state-move: 0; }
