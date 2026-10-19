@@ -1,0 +1,170 @@
+/* desk.css - THE DESKTOP FRAME (moved from wireframes/desktop/, 2026-10-19)
+   .dr-desk is the frame of every desktop twin: the map is the ground of the whole
+   window, the veil darkens its edges, the header, the rails, a window or a panel
+   and Talk to AI float on it. Its modifiers name the flow a twin belongs to and
+   carry no rule of their own; they only scope a flow's rules (at zero specificity,
+   with :where()) where two flows tune the same part differently:
+     .dr-desk--order   ordering (order setup, review, pay, the home's states)
+     .dr-desk--wait    the wait (order confirmed, tracking, call, chat)
+     .dr-desk--outcome the outcome (delivery, report, rate, Activity, notifications)
+     .dr-desk--jobs    the operator getting in and taking jobs
+   Everything here, and in every desktop component, matches only inside .dr-desk:
+   the phone never draws it. */
+
+/* prototype chrome, not product: back to the phone twin */
+.wf-twin{
+  position: fixed;
+  right: var(--len-16);
+  bottom: var(--len-16);
+  z-index: 20;
+  padding: var(--len-8) var(--len-14);
+  border-radius: var(--len-999);
+  background: var(--text-primary);
+  color: var(--bg-page);
+  font-family: var(--font-ui);
+  font-size: var(--type-caption-size);
+  text-decoration: none;
+}
+.wf-twin:focus-visible{
+  outline: var(--len-2-5) solid var(--color-action);
+  outline-offset: var(--len-2);
+}
+
+/* ---------------------------------------------------------------------------
+   THE DESKTOP LAYOUT, as responsive/_preview-desktop-ai.html draws it
+   (the designer, 2026-10-18: «подивись як тут гарно і органічно»). The map is
+   the ground of the whole window, header included; a veil darkens its edges;
+   the header floats on it; the rails are 300 wide at the window's edges and the
+   assistant sits in the middle, 620 wide. Every length is a token
+   since phase 1 (2026-10-19).
+   --------------------------------------------------------------------------- */
+.dr-desk{
+  position: relative;
+  background: var(--bg-page);
+}
+.dr-veil{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(var(--pct-70) var(--pct-65) at var(--pct-50) var(--pct-48), var(--veil-map-centre) 0%, var(--veil-map-mid) var(--pct-70), var(--veil-map-edge) var(--pct-100));
+}
+[data-theme="dark"] .dr-veil{
+  background: radial-gradient(var(--pct-70) var(--pct-65) at var(--pct-50) var(--pct-48), var(--veil-map-centre) 0%, var(--veil-map-mid) var(--pct-70), var(--veil-map-edge) var(--pct-100));
+}
+
+/* Talk to AI waits at the bottom while a window is open */
+.dr-talkdock{
+  position: absolute;
+  left: var(--pct-50);
+  bottom: var(--len-24);
+  z-index: 5;
+  transform: translateX(calc(var(--pct-50) * -1));
+}
+
+/* a live line under the header (operator flying, arrives at) */
+.dr-livestatus{
+  position: absolute;
+  left: var(--pct-50);
+  top: var(--len-96);
+  z-index: 4;
+  transform: translateX(calc(var(--pct-50) * -1));
+  display: inline-flex;
+  align-items: center;
+  gap: var(--len-10);
+  padding: var(--len-10) var(--len-18);
+  border-radius: var(--len-999);
+  font-size: var(--type-body-size);
+}
+
+/* ONE GREEN CONTROL, DEPARTED FROM BY THE DESIGNER (2026-10-19, «кнопка праймері»):
+   the header's Order stays the green primary while a step's window is open, so a step
+   shows two green controls - the header's and the window's own. Recorded, not corrected:
+   the header is the app's frame, not part of the step. (It used to step back to grey.) */
+/* The phone components assume _wireframe.css's universal reset, which the twins
+   do not link; restated here at zero specificity, so any component rule wins.
+   (Group 3 found it; it applies to every twin.) */
+:where(.dr-desk) *,
+:where(.dr-desk) *::before,
+:where(.dr-desk) *::after{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* «скроли у картках такі великі і страшні … зроби невелику по довжині паличку … таким
+   кольором як секондарі кнопки» (2026-10-19): a scrolling panel or window draws a slim
+   rounded bar in the secondary button's grey, no arrows, no track, and kept clear of the
+   rounded corners so it reads short. The standard scrollbar-* properties are left unset
+   on purpose: in Chrome they override these pseudo-elements. */
+:where(.dr-desk) ::-webkit-scrollbar{
+  width: var(--len-6);
+  height: var(--len-6);
+}
+:where(.dr-desk) ::-webkit-scrollbar-track{
+  background: transparent;
+  margin-block: var(--len-24);
+}
+:where(.dr-desk) ::-webkit-scrollbar-thumb{
+  background: var(--bg-muted);
+  border-radius: var(--pct-50);
+  min-height: var(--len-36);
+}
+:where(.dr-desk) ::-webkit-scrollbar-thumb:hover{
+  background: var(--text-muted);
+}
+:where(.dr-desk) ::-webkit-scrollbar-button{
+  display: none;
+}
+.dr-desk.dr-desk img[src*="onboarding-dispatch."]{
+  content: var(--img-desk-onb-dispatch);
+}
+[data-theme="dark"] .dr-desk.dr-desk img[src*="onboarding-checklist."]{
+  content: var(--img-desk-onb-checklist);
+}
+[data-theme="dark"] .dr-desk.dr-desk img[src*="onboarding-payout."]{
+  content: var(--img-desk-onb-payout);
+}
+[data-theme="dark"] .dr-desk.dr-desk img[src*="onboarding-verified-operator."]{
+  content: var(--img-desk-onb-verified-operator);
+}
+[data-theme="dark"] .dr-desk.dr-desk img[src*="onboarding-live-tracking."]{
+  content: var(--img-desk-onb-live-tracking);
+}
+[data-theme="dark"] .dr-desk.dr-desk img[src*="onboarding-report."]{
+  content: var(--img-desk-onb-report);
+}
+
+/* «коли розмова з агентом відкрита на екрані то кнопки немає вона зʼявляється коли
+   користувач лазить по проекту»: on a home where the assistant itself is on screen,
+   Talk to AI is not drawn - the same thing twice is one too many */
+.dr-desk:has(.dr-assistant) .dr-talkdock{
+  display: none;
+}
+
+/* «коли відкривається вибір часу на темній темі не видно»: the hour and minute lists are
+   the browser's own select popups; they took the theme's light ink on the browser's white
+   list, so in dark nothing showed. The frame now tells the browser which scheme it is in,
+   and each option carries the theme's ground and ink. */
+[data-theme="dark"] .dr-desk{
+  color-scheme: dark;
+}
+[data-theme="light"] .dr-desk{
+  color-scheme: light;
+}
+.dr-desk:has(.dr-assistant) .dr-veil::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--img-desk-stardust) center / cover no-repeat;
+  pointer-events: none;
+}
+
+/* «забери на бекграунді той весь пил, на світлій темі виглядає погано, та зроби таке коло
+   на бекграунді у дрона, лиш у моїх кольорах» (2026-10-19, her reference: Sphere, an agentic
+   AI orb by AmazingUI): the starfield and the specks go; behind the drone turns a braided
+   sphere of translucent ribbons in the brand greens - bright on the dark map, deep green on
+   the light one, so it reads in both. It turns slowly (still under reduced motion). */
+.dr-desk:has(.dr-assistant) .dr-veil::after{
+  content: none;
+}

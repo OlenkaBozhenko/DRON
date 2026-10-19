@@ -68,3 +68,74 @@
   font-size: var(--type-caption-size);
   color: var(--text-muted);
 }
+
+/* -- DESKTOP (moved from wireframes/desktop/, 2026-10-19) --------------------
+   How this component is tuned inside the desktop frame (.dr-desk, desk.css).
+   Nothing here matches a phone page. */
+
+/* the live order card opens its tracking page */
+.dr-tally--link{
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.dr-tally--link:hover{
+  border-color: var(--text-muted);
+}
+.dr-tally--link:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+
+/* «добав сюди іконку чату та як на нотифікаціях відмітку скільки повідомлень»: the job
+   on now carries its chat with the client at the card's top right, the unread count as
+   the bell's badge; the count is in the button's name too (WCAG 4.1.2) */
+.dr-desk .dr-tally--chat{
+  position: relative;
+}
+.dr-desk .dr-tally__chat{
+  position: absolute;
+  top: var(--len-12);
+  right: var(--len-12);
+}
+
+/* «тут теж зроби більші відступи застосовуючи принцип близькості» (the live order card in
+   the right rail): three groups - what and where (Live, title, route), the progress, who
+   is flying it. Inside a group 4-8; between groups 20; the rail's labels keep their own
+   room under the nodes */
+.dr-desk .dr-tally:has(> .dr-rail) > .dr-tally__sub{
+  margin-top: var(--len-4);
+}
+.dr-desk .dr-tally:has(> .dr-rail) > .dr-rail{
+  margin-top: var(--len-20);
+}
+.dr-desk .dr-tally:has(> .dr-rail) > .dr-tally__who{
+  margin-top: var(--len-20);
+}
+
+/* «чат де» - the job on now carries its chat on every operator page, not only on the
+   home. The card stays one target (its title's link stretches over it) and the chat is
+   a second, separate control above that layer - a link is never nested in a link */
+.dr-desk .dr-tally--chat .dr-tally__stretch{
+  color: inherit;
+  text-decoration: none;
+}
+.dr-desk .dr-tally--chat .dr-tally__stretch::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.dr-desk .dr-tally--chat .dr-tally__stretch:focus-visible{
+  outline: none;
+}
+.dr-desk .dr-tally--chat:has(.dr-tally__stretch:focus-visible){
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-desk .dr-tally--chat .dr-tally__chat{
+  z-index: 2;
+}
+.dr-desk .dr-tally--chat > .dr-tally__sub{
+  padding-right: var(--len-8);
+}

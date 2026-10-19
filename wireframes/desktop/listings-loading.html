@@ -7,15 +7,13 @@
 <meta name="description" content="Desktop twin of wireframes/listings-loading.html.">
 <!-- DESKTOP TWIN of ../listings-loading.html (2026-10-18). Home, the search is running: Find is a disabled Searching…, and nothing on the page wears the green. -->
 <link rel="stylesheet" href="../../design-system/index.css">
-<link rel="stylesheet" href="_desktop.css">
-<link rel="stylesheet" href="_desktop-order.css">
 </head>
 <body class="dr">
-<div class="wf-frame dr dr-screen dr-screen--fluid dk">
+<div class="wf-frame dr dr-screen dr-screen--fluid dr-desk dr-desk--order">
   <div class="dr-mapground" role="img" aria-label="Live map of Kyiv, 128 drones in the air"><span class="dr-mapground__drone" style="left:31%;top:34%"></span><span class="dr-mapground__drone" style="left:44%;top:58%"></span><span class="dr-mapground__drone" style="left:63%;top:30%"></span><span class="dr-mapground__drone" style="left:70%;top:66%"></span><span class="dr-mapground__drone" style="left:60%;top:82%"></span><span class="dr-mapground__drone" style="left:38%;top:76%"></span><span class="dr-mapground__drone" style="left:78%;top:44%"></span><span class="dr-mapground__drone" style="left:24%;top:60%"></span><span class="dr-mapground__drone" style="left:58%;top:48%"></span></div>
-  <div class="dk-veil" aria-hidden="true"></div>
+  <div class="dr-veil" aria-hidden="true"></div>
   <header class="dr-whead">
-    <a class="dk-brandlink" href="../../research.html" aria-label="DRON project"><span class="dr-brand" aria-hidden="true"></span></a>
+    <a class="dr-brandlink" href="../../research.html" aria-label="DRON project"><span class="dr-brand" aria-hidden="true"></span></a>
     <nav class="dr-whead__nav dr-material" aria-label="Primary">
       <a class="dr-whead__link" href="listings.html" aria-current="page">Overview</a>
       <a class="dr-whead__link" href="order-history.html">Activity</a>
@@ -39,7 +37,7 @@
         <p class="dr-assistant__lead">Tell me in your own words — I will find the drone, the operator and the price.</p>
         <form class="dr-assistant__ask dr-material" role="search" action="listings-map.html"><label class="sr-only" for="ask">Tell DRON what you need</label>
           <input class="dr-assistant__input" id="ask" placeholder="Send documents from Podil to Osokorky…"><button class="dr-assistant__send" type="submit" aria-label="Send"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button></form>
-        <section class="dk-search dr-material" aria-label="Your search">
+        <section class="dr-lastsearch dr-material" aria-label="Your search">
           <fieldset class="dr-finder__services" aria-label="Service">
             <label class="dr-grouptab dr-grouptab--icon">
               <input type="radio" name="service" value="delivery" checked class="sr-only">
@@ -54,11 +52,11 @@
               <svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5v-3A1.5 1.5 0 0 1 5.5 4h3M15.5 4h3A1.5 1.5 0 0 1 20 5.5v3M20 15.5v3a1.5 1.5 0 0 1-1.5 1.5h-3M8.5 20h-3A1.5 1.5 0 0 1 4 18.5v-3"/><path d="M8 12.6L12 9l4 3.6V16H8z"/></svg>Inspection
             </label>
           </fieldset>
-          <div class="dk-search__places">
-            <span class="dr-place"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg><span class="dk-place__key">From</span>Podil, 21</span>
-            <span class="dr-place"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg><span class="dk-place__key">To</span>Osokorky, 14</span>
-            <span class="dr-place"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14" rx="2.4"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></svg><span class="dk-place__key">Date</span>Today</span>
-            <span class="dr-place"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg><span class="dk-place__key">Time</span>Now</span>
+          <div class="dr-lastsearch__places">
+            <span class="dr-place"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg><span class="dr-place__key">From</span>Podil, 21</span>
+            <span class="dr-place"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg><span class="dr-place__key">To</span>Osokorky, 14</span>
+            <span class="dr-place"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14" rx="2.4"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></svg><span class="dr-place__key">Date</span>Today</span>
+            <span class="dr-place"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg><span class="dr-place__key">Time</span>Now</span>
           </div>
           <div class="dr-fchips" role="group" aria-label="Applied filters" data-fchips hidden></div>
           <div class="dr-finder__actions">
@@ -71,10 +69,10 @@
     </section>
 
     <aside class="dr-console__rail dr-console__rail--start" aria-label="What is happening">
-      <div class="dr-stat dr-material"><span class="dr-stat__ic"><span class="dr-brand dk-stat-brand" aria-hidden="true"></span></span><span><span class="dr-stat__label">Drones in the air now</span><span class="dr-stat__figure">128</span><span class="dr-stat__trend">↗ 12% vs. yesterday</span></span></div><div class="dr-stat dr-material"><span class="dr-stat__ic"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5V5h7.5L20 13.5 13.5 20z"/><circle cx="8.5" cy="9" r="1.3"/></svg></span><span><span class="dr-stat__label">Average delivery price</span><span class="dr-stat__figure">₴186</span><span class="dr-stat__trend">in your area</span></span></div><div class="dr-stat dr-material"><span class="dr-stat__ic"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span><span><span class="dr-stat__label">Average arrival</span><span class="dr-stat__figure">7 min</span><span class="dr-stat__trend">↘ 1 min faster</span></span></div>
+      <div class="dr-stat dr-material"><span class="dr-stat__ic"><span class="dr-brand dr-stat__brand" aria-hidden="true"></span></span><span><span class="dr-stat__label">Drones in the air now</span><span class="dr-stat__figure">128</span><span class="dr-stat__trend">↗ 12% vs. yesterday</span></span></div><div class="dr-stat dr-material"><span class="dr-stat__ic"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5V5h7.5L20 13.5 13.5 20z"/><circle cx="8.5" cy="9" r="1.3"/></svg></span><span><span class="dr-stat__label">Average delivery price</span><span class="dr-stat__figure">₴186</span><span class="dr-stat__trend">in your area</span></span></div><div class="dr-stat dr-material"><span class="dr-stat__ic"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span><span><span class="dr-stat__label">Average arrival</span><span class="dr-stat__figure">7 min</span><span class="dr-stat__trend">↘ 1 min faster</span></span></div>
       <div class="dr-tally dr-material"><h2 class="dr-tally__title">Deliveries today</h2><p class="dr-tally__sub">Kyiv · by hour · busiest 15:00</p>
         <div class="dr-barchart" aria-hidden="true"><span class="dr-barchart__bar" style="--value:22%"></span><span class="dr-barchart__bar" style="--value:30%"></span><span class="dr-barchart__bar" style="--value:26%"></span><span class="dr-barchart__bar" style="--value:38%"></span><span class="dr-barchart__bar" style="--value:54%"></span><span class="dr-barchart__bar" style="--value:72%"></span><span class="dr-barchart__bar" style="--value:64%"></span><span class="dr-barchart__bar" style="--value:80%"></span><span class="dr-barchart__bar dr-barchart__bar--peak" style="--value:92%"></span><span class="dr-barchart__bar" style="--value:76%"></span><span class="dr-barchart__bar" style="--value:58%"></span><span class="dr-barchart__bar" style="--value:44%"></span><span class="dr-barchart__bar" style="--value:36%"></span><span class="dr-barchart__bar" style="--value:30%"></span></div>
-        <div class="dr-barchart__axis dk-axis--each" aria-hidden="true"><span></span><span>08</span><span></span><span></span><span></span><span>12</span><span></span><span></span><span></span><span>16</span><span></span><span></span><span></span><span>20</span></div></div>
+        <div class="dr-barchart__axis dr-barchart__axis--each" aria-hidden="true"><span></span><span>08</span><span></span><span></span><span></span><span>12</span><span></span><span></span><span></span><span>16</span><span></span><span></span><span></span><span>20</span></div></div>
     </aside>
 
     <aside class="dr-console__rail dr-console__rail--end" id="your-orders" aria-label="Your orders">

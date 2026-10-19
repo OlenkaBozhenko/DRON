@@ -1,0 +1,203 @@
+/* float.css - DESKTOP: HANGING CARDS, a panel with no glass of its own whose cards hang over the map (Activity, Jobs), and the Jobs bar with its group tabs (moved from wireframes/desktop/, 2026-10-19) */
+
+/* ---------------------------------------------------------------------------
+   ACTIVITY AS HANGING CARDS (the designer, 2026-10-18: «зробити висячими
+   картками, якось дуже модерно»). No panel round the list: the title floats on
+   the map and each order is its own glass card, hanging over the map with the
+   float shadow, lifting on hover; the live order carries a soft green halo.
+   --------------------------------------------------------------------------- */
+.dr-desk.dr-desk .dr-panel.dr-float{
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  padding: 0 var(--len-6) var(--len-24);
+  gap: var(--len-14);
+  scrollbar-width: none;
+  max-height: calc(var(--pct-100) - var(--len-192));
+}
+.dr-float .dr-panel__title{
+  align-self: flex-start;
+  padding: var(--len-8) var(--len-18);
+  border-radius: var(--len-999);
+  background: var(--bg-material);
+  border: var(--len-1) solid var(--border-material);
+  backdrop-filter: blur(var(--len-22));
+  font-size: var(--type-heading-size);
+}
+.dr-float .dr-card{
+  background: var(--bg-material);
+  border: var(--len-1) solid var(--border-material);
+  backdrop-filter: blur(var(--len-22)) saturate(var(--num-1-5));
+  box-shadow: var(--shadow-float);
+  border-radius: var(--len-22);
+  transition: transform var(--time-0-25) var(--ease-out), box-shadow var(--time-0-25) var(--ease-out);
+}
+.dr-float .dr-card:hover{
+  transform: translateY(calc(var(--len-3) * -1));
+  box-shadow: var(--shadow-float-lift);
+}
+.dr-float .dr-card:has(.dr-rail){
+  box-shadow: var(--shadow-float), 0 0 0 var(--len-1) color-mix(in srgb, var(--color-action) 45%, transparent), 0 0 var(--len-28) color-mix(in srgb, var(--color-action) 25%, transparent);
+}
+
+/* the inner blocks become hairline rows on the glass, not grey slabs */
+.dr-float .dr-card :is(.dr-route, .dr-rows, .dr-card__place, .dr-loc){
+  background: color-mix(in srgb, var(--bg-well) 35%, transparent);
+}
+@media (prefers-reduced-motion: reduce){
+  .dr-float .dr-card{ transition: none; }
+  .dr-float .dr-card:hover{ transform: none; }
+}
+.dr-float .dr-card:not(:has(.dr-rail)){
+  box-shadow: var(--shadow-float);
+}
+
+/* (a fade mask on the list was tried and dropped: it isolates the cards, their
+   glass stops blurring the map, and map lines read through the text) */
+.dr-desk.dr-desk .dr-panel.dr-float{
+  padding-top: var(--len-4);
+}
+.dr-float .dr-card{
+  padding: var(--len-18);
+}
+
+/* 1. Activity, compact: smaller drone, tighter rows, the details link a quiet button */
+.dr-float .dr-card{
+  padding: var(--len-14) var(--len-16);
+  gap: var(--len-8);
+}
+.dr-float .dr-card .dr-well img{
+  width: var(--len-56);
+  height: var(--len-40);
+  object-fit: contain;
+}
+.dr-float .dr-card .dr-well{
+  width: var(--len-64);
+  height: var(--len-48);
+}
+.dr-float .dr-card .dr-order__title{
+  font-size: var(--type-heading-size);
+}
+.dr-float .dr-card .dr-inset{
+  padding: var(--len-8) 0;
+  border-top: var(--len-1) solid var(--border-material);
+  border-radius: 0;
+}
+.dr-float .dr-card .dr-rail{
+  margin: var(--len-2) 0;
+}
+
+/* Jobs (the designer, 2026-10-19): the job list's groups in the centre panel, each with
+   its heading close above its cards (8) and 24 from the next group */
+.dr-desk .dr-jobs-group{
+  display: grid;
+  gap: var(--len-8);
+}
+.dr-desk .dr-jobs-group > .dr-tally__title{
+  margin: 0;
+}
+
+/* «локацію зроби на бекграунді і усі джоби окремо як у флоу з клієнтом на актівіті
+   картками»: Jobs is drawn as the client's Activity - each job its own hanging glass card
+   over the map, the group headings as the same glass pills as the title - and a job's
+   location (the route inset) gets the faint ground the order cards' route has */
+.dr-desk.dr-desk.dr-desk.dr-desk.dr-desk .dr-panel.dr-float{
+  padding: var(--len-4) var(--len-6) var(--len-24);
+  gap: var(--len-14);
+}
+.dr-desk.dr-desk .dr-float .dr-card .dr-inset{
+  background: color-mix(in srgb, var(--bg-well) 70%, transparent);
+  border-radius: var(--len-12);
+  padding: var(--len-12) var(--len-16);
+}
+.dr-float .dr-jobs-group{
+  gap: var(--len-14);
+}
+.dr-float .dr-jobs-group > .dr-tally__title{
+  justify-self: start;
+  padding: var(--len-8) var(--len-18);
+  border-radius: var(--len-999);
+  background: var(--bg-material);
+  border: var(--len-1) solid var(--border-material);
+  backdrop-filter: blur(var(--len-22));
+  font-size: var(--type-heading-size);
+}
+
+/* inside a job card, by proximity: what the job is, where it is, then the pay with its
+   two answers close under it */
+.dr-desk .dr-jobs-panel .dr-card{
+  gap: var(--len-16);
+  padding: var(--len-20);
+}
+.dr-desk .dr-jobs-panel .dr-order__fee + .dr-card__actions{
+  margin-top: calc(var(--len-8) * -1);
+}
+
+/* «що це за прямокутник з гострими кутами додатковий»: the faint ground of a block was
+   laid on a block inside another one too (a field inside its rows), so a second, square
+   slab showed within the rounded one. A block inside a tinted block takes no ground. */
+.dr-desk :is(.dr-window, .dr-panel, .dr-side, .dr-deskrail) :is(.dr-card, .dr-rows, .dr-field, .dr-op, .dr-msg, .dr-listing) :is(.dr-card, .dr-rows, .dr-field, .dr-op, .dr-msg, .dr-listing){
+  background: transparent;
+}
+
+/* «колір цих карток такий як і тут» (the rail's stat cards): a hanging card is the rail's
+   material and nothing else - the faint well tint meant for blocks inside a window was
+   landing on it too and greyed it (Jobs and the client's Activity alike) */
+.dr-desk.dr-desk.dr-desk .dr-float .dr-card{
+  background: var(--bg-material);
+}
+
+/* «в один ряд з Jobs»: the title and the group pills in one row of glass pills; the
+   group on show is the filled one (a fill behind charcoal, as the header's current tab) */
+.dr-desk .dr-jobs-bar{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--len-8);
+}
+.dr-desk .dr-jobs-tabs{
+  display: flex;
+  gap: var(--len-8);
+}
+.dr-desk .dr-jobs-tab{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--len-8);
+  min-height: var(--len-44);
+  padding: 0 var(--len-18);
+  border-radius: var(--len-999);
+  background: var(--bg-material);
+  border: var(--len-1) solid var(--border-material);
+  backdrop-filter: blur(var(--len-22));
+  color: var(--text-muted);
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-weight-medium);
+  text-decoration: none;
+}
+.dr-desk .dr-jobs-tab[aria-current="true"]{
+  color: var(--text-primary);
+  background: var(--bg-material-solid);
+}
+.dr-desk .dr-jobs-tab:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dr-float .dr-jobs-group[hidden]{
+  display: none;
+}
+.dr-desk .dr-jobs-bar > .dr-panel__title{
+  min-height: var(--len-44);
+  display: inline-flex;
+  align-items: center;
+  padding-block: 0;
+}
+
+/* «дивись як у картках локація зроблена (на телефоні) так і ти зроби на desktop»: a
+   card's location strip takes the phone's own inset ground (--bg-inset) and padding, in
+   every card on desktop - not the faint desktop tint it was given before */
+.dr-desk.dr-desk.dr-desk .dr-card .dr-inset{
+  background: var(--bg-inset);
+  padding: var(--len-16);
+  border-radius: var(--len-12);
+}

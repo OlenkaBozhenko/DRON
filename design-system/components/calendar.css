@@ -230,3 +230,11 @@
   outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: calc(var(--len-2) * -1);
 }
+
+/* -- DESKTOP (moved from wireframes/desktop/, 2026-10-19) --------------------
+   How this component is tuned inside the desktop frame (.dr-desk, desk.css).
+   Nothing here matches a phone page. */
+.dr-desk .dr-cal__unit option{
+  background: var(--bg-material-solid);
+  color: var(--text-primary);
+}

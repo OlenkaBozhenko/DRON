@@ -94,3 +94,20 @@
 @import url("reduced-motion.css");
 
 @import url("wireframe-compat.css");
+
+/* THE DESKTOP (2026-10-19): the components of the desktop twins, moved from
+   wireframes/desktop/_desktop*.css in the order those files declared them, so
+   the cascade is unchanged. Each matches only inside the .dr-desk frame. */
+@import url("desk.css");
+@import url("window.css");
+@import url("rail.css");
+@import url("finderwin.css");
+@import url("float.css");
+@import url("ophome.css");
+@import url("entry.css");
+@import url("review.css");
+@import url("dropzone.css");
+@import url("outcome.css");
+@import url("lastsearch.css");
+@import url("flight.css");
+@import url("maproute.css");

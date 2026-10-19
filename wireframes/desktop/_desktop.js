@@ -1,20 +1,20 @@
 /* wireframes/desktop/_desktop.js - TEMPORARY (2026-10-18)
    THE PROGRESS FOLLOWS THE FLIGHT (the designer: «тут має змінюватись поки дрон
-   летить»). On a tracking page the drone flies the route (.dk-flyer, _desktop-wait.css);
+   летить»). On a tracking page the drone flies the route (.dr-flyer, _desktop-wait.css);
    while it flies the rail stays on its step and the ETA counts down, and when it lands
    the rail moves to the next step, then to Done. The words are the rail's own labels.
    Reduced motion: the drone does not fly, so the page stays as built. */
 (function () {
   'use strict';
-  var flyer = document.querySelector('.dk-flyer');
-  var rail = document.querySelector('.dk-side .dr-rail');
+  var flyer = document.querySelector('.dr-flyer');
+  var rail = document.querySelector('.dr-side .dr-rail');
   if (!flyer || !rail) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var steps = [].slice.call(rail.querySelectorAll('.dr-rail__step'));
   var CHECK = '<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg>';
   var DOT = '<svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/></svg>';
-  var rows = [].slice.call(document.querySelectorAll('.dk-side .dr-rows__row'));
+  var rows = [].slice.call(document.querySelectorAll('.dr-side .dr-rows__row'));
   function row(key) {
     for (var i = 0; i < rows.length; i++) {
       var k = rows[i].querySelector('.dr-rows__key');
@@ -23,7 +23,7 @@
     return null;
   }
   var eta = row('ETA'), status = row('Status');
-  var pill = document.querySelector('.dk-status');
+  var pill = document.querySelector('.dr-livestatus');
   var who = pill ? pill.textContent.replace(/^\s*Live\s*/, '').split('·')[0].trim() : '';
 
   function label(i) { return steps[i].querySelector('.dr-rail__lbl').textContent.trim(); }
@@ -63,15 +63,15 @@
    own scroll handler. At either end the arrow stays visible and is marked unavailable. */
 (function () {
   'use strict';
-  var slider = document.querySelector('.dk-entry .dr-slider');
-  var btns = [].slice.call(document.querySelectorAll('.dk-slidenav'));
+  var slider = document.querySelector('.dr-entry .dr-slider');
+  var btns = [].slice.call(document.querySelectorAll('.dr-slidenav'));
   if (!slider || !btns.length) return;
-  var win = slider.closest('.dk-entry');
+  var win = slider.closest('.dr-entry');
   function place() {
     var art = slider.querySelector('.dr-slide__art');
     if (!art) return;
     var a = art.getBoundingClientRect(), w = win.getBoundingClientRect();
-    win.style.setProperty('--dk-slidenav-top', (a.top - w.top + win.scrollTop + a.height / 2) + 'px');
+    win.style.setProperty('--slidenav-top', (a.top - w.top + win.scrollTop + a.height / 2) + 'px');
   }
   function state() {
     var max = slider.scrollWidth - slider.clientWidth - 2;
@@ -104,7 +104,7 @@
   function show(tab) {
     tabs.forEach(function (t) {
       var on = t === tab;
-      var group = document.querySelector(t.getAttribute('href')).closest('.dk-jobs-group');
+      var group = document.querySelector(t.getAttribute('href')).closest('.dr-jobs-group');
       group.hidden = !on;
       if (on) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current');
     });
@@ -122,7 +122,7 @@
 (function () {
   'use strict';
   function place(t, win) {
-    var foot = win.querySelector(':scope > .dk-foot');
+    var foot = win.querySelector(':scope > .dr-foot');
     t.style.bottom = ((foot ? win.getBoundingClientRect().bottom - foot.getBoundingClientRect().top : 0) + 16) + 'px';
   }
   function pop(t, win) {
@@ -136,21 +136,21 @@
   document.addEventListener('click', function (e) {
     var el = e.target.closest('[data-toast]');
     if (!el) return;
-    var win = el.closest('.dk-window, .dk-panel');
+    var win = el.closest('.dr-window, .dr-panel');
     if (!win) return;
     e.preventDefault();
-    var t = win.querySelector(':scope > .dk-toast:not([data-autoshow])');
+    var t = win.querySelector(':scope > .dr-toast--window:not([data-autoshow])');
     if (!t) {
       t = document.createElement('p');
-      t.className = 'dr-toast dk-toast';
+      t.className = 'dr-toast dr-toast--window';
       t.setAttribute('role', 'status');
       win.appendChild(t);
     }
     t.textContent = el.getAttribute('data-toast');
     pop(t, win);
   });
-  [].forEach.call(document.querySelectorAll('.dk-toast[data-autoshow]'), function (t) {
-    var win = t.closest('.dk-window, .dk-panel');
+  [].forEach.call(document.querySelectorAll('.dr-toast--window[data-autoshow]'), function (t) {
+    var win = t.closest('.dr-window, .dr-panel');
     setTimeout(function () { pop(t, win); }, 400);
   });
 }());
@@ -204,13 +204,13 @@
     list.innerHTML = '';
     files.forEach(function (f, i) {
       var li = document.createElement('li');
-      li.className = 'dk-drop__item';
+      li.className = 'dr-drop__item';
       var img = document.createElement('img');
       img.alt = f.name;
       img.src = URL.createObjectURL(f);
       var rm = document.createElement('button');
       rm.type = 'button';
-      rm.className = 'dk-drop__rm';
+      rm.className = 'dr-drop__rm';
       rm.setAttribute('aria-label', 'Remove ' + f.name);
       rm.textContent = '×';
       rm.addEventListener('click', function (e) { e.stopPropagation(); files.splice(i, 1); render(); });
@@ -224,7 +224,7 @@
   function add(fl) {
     [].forEach.call(fl, function (f) { if (OK.test(f.type) && f.size <= 10 * 1024 * 1024) files.push(f); });
     render();
-    var t = zone.closest('.dk-window').querySelector(':scope > .dk-toast.is-on');
+    var t = zone.closest('.dr-window').querySelector(':scope > .dr-toast--window.is-on');
     if (t && files.length) t.classList.remove('is-on');
   }
   zone.addEventListener('click', function (e) { if (e.target !== input) input.click(); });
@@ -233,26 +233,26 @@
   });
   input.addEventListener('change', function () { add(input.files); input.value = ''; });
   ['dragenter', 'dragover'].forEach(function (t) {
-    zone.addEventListener(t, function (e) { e.preventDefault(); zone.classList.add('dk-drop--over'); });
+    zone.addEventListener(t, function (e) { e.preventDefault(); zone.classList.add('dr-drop--over'); });
   });
   ['dragleave', 'drop'].forEach(function (t) {
-    zone.addEventListener(t, function (e) { e.preventDefault(); zone.classList.remove('dk-drop--over'); });
+    zone.addEventListener(t, function (e) { e.preventDefault(); zone.classList.remove('dr-drop--over'); });
   });
   zone.addEventListener('drop', function (e) { add(e.dataTransfer.files); });
   if (replace) replace.addEventListener('click', function () { files = []; render(); input.click(); });
   if (submit) submit.addEventListener('click', function (e) {
     if (files.length) return;
     e.preventDefault();
-    var win = submit.closest('.dk-window');
-    var t = win.querySelector(':scope > .dk-toast:not([data-autoshow])');
+    var win = submit.closest('.dr-window');
+    var t = win.querySelector(':scope > .dr-toast--window:not([data-autoshow])');
     if (!t) {
       t = document.createElement('p');
-      t.className = 'dr-toast dk-toast';
+      t.className = 'dr-toast dr-toast--window';
       t.setAttribute('role', 'alert');
       win.appendChild(t);
     }
     t.textContent = submit.getAttribute('data-needs-photo');
-    var foot = win.querySelector(':scope > .dk-foot');
+    var foot = win.querySelector(':scope > .dr-foot');
     t.style.bottom = ((foot ? win.getBoundingClientRect().bottom - foot.getBoundingClientRect().top : 0) + 16) + 'px';
     if (t._hide) clearTimeout(t._hide);
     void t.offsetWidth;

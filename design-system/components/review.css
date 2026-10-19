@@ -1,0 +1,99 @@
+/* review.css - DESKTOP: A REVIEW CARD - the quote, the words, and at the foot who wrote it with the stars (moved from wireframes/desktop/, 2026-10-19) */
+
+/* «вирівняй відгуки та контент у кожному по принципу близькості зроби сучасно та
+   модерно» (her reference: a testimonial card). One review is one card: the quote mark,
+   the words large, then at the foot who wrote it - monogram, name, service and date - with
+   the stars on the right. 12 inside the card, 24 between the words and the foot, 12
+   between cards. Stars are the rating's own yellow (--color-rating, as the Rate screen's stars; the
+   designer, 2026-10-19), empty ones a muted outline; the score is also written, so the stars are not the only cue
+   (WCAG 1.4.1) and the card's rating is named once for a screen reader (1.1.1). */
+.dr-desk .dr-reviews{
+  display: grid;
+  gap: var(--len-12);
+}
+.dr-desk .dr-review{
+  display: grid;
+  gap: var(--len-12);
+  padding: var(--len-24);
+  border-radius: var(--len-16);
+}
+.dr-desk .dr-review__mark{
+  font-size: var(--type-quote-size);
+  line-height: var(--type-glyph-line);
+  height: var(--len-24);
+  font-weight: var(--type-weight-medium);
+  color: var(--text-muted);
+}
+.dr-desk .dr-review__text{
+  margin: 0;
+}
+.dr-desk .dr-review__text p{
+  margin: 0;
+  font-size: var(--type-title-size);
+  line-height: var(--type-para-line);
+  font-weight: var(--type-weight-regular);
+  color: var(--text-primary);
+  text-wrap: pretty;
+}
+.dr-desk .dr-review__foot{
+  display: flex;
+  align-items: center;
+  gap: var(--len-12);
+  margin-top: var(--len-12);
+}
+.dr-desk .dr-review__mono{
+  flex: none;
+  width: var(--len-40);
+  height: var(--len-40);
+  border-radius: var(--pct-50);
+  display: grid;
+  place-items: center;
+  background: var(--bg-muted);
+  color: var(--text-primary);
+  font-size: var(--type-meta-size);
+  font-weight: var(--type-weight-medium);
+}
+.dr-desk .dr-review__who{
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: var(--len-2);
+}
+.dr-desk .dr-review__name{
+  font-size: var(--type-body-size);
+  font-weight: var(--type-weight-medium);
+  color: var(--text-primary);
+}
+.dr-desk .dr-review__meta{
+  font-size: var(--type-meta-size);
+  color: var(--text-muted);
+}
+.dr-desk .dr-review__rating{
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--len-8);
+}
+.dr-desk .dr-review__stars{
+  display: flex;
+  gap: var(--len-2);
+  color: var(--text-primary);
+}
+.dr-desk .dr-review__star{
+  width: var(--len-16);
+  height: var(--len-16);
+  fill: var(--color-rating);
+  stroke: none;
+  color: var(--color-rating);
+}
+.dr-desk .dr-review__star--off{
+  fill: none;
+  stroke: currentColor;
+  color: var(--text-muted);
+}
+.dr-desk .dr-review__score{
+  font-size: var(--type-body-size);
+  font-weight: var(--type-weight-medium);
+  font-variant-numeric: var(--type-numeric);
+  color: var(--text-primary);
+}

@@ -99,3 +99,15 @@
 .dr-note--flush{
   text-align: left;
 }
+
+/* -- DESKTOP (moved from wireframes/desktop/, 2026-10-19) --------------------
+   How this component is tuned inside the desktop frame (.dr-desk, desk.css).
+   Nothing here matches a phone page. */
+.dr-desk .dr-label{
+  position: absolute;
+  width: var(--len-1);
+  height: var(--len-1);
+  overflow: hidden;
+  clip-path: inset(var(--pct-50));
+  white-space: nowrap;
+}

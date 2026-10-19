@@ -1,0 +1,161 @@
+/* flight.css - DESKTOP: THE SIDE PANEL AND THE FLIGHT - the wait's side panel (and the operator home's side column, the same name scoped by flow), the live line, the note on the map, and the route with the flying drone (moved from wireframes/desktop/, 2026-10-19) */
+
+:where(.dr-desk--jobs) .dr-side{
+  width: var(--len-300);
+  flex: none;
+  display: grid;
+  gap: var(--len-12);
+}
+
+/* (the header's Order used to step back to grey here; since 2026-10-19 it stays the
+   green primary everywhere, the designer's call - see _desktop.css) */
+/* ---------------------------------------------------------------------------
+   THE SIDE PANEL: the order, the operator and the actions, at the right edge
+   --------------------------------------------------------------------------- */
+:where(.dr-desk--wait) .dr-side{
+  position: absolute;
+  top: var(--len-96);
+  right: var(--len-24);
+  z-index: 2;
+  width: var(--len-360);
+  max-height: calc(var(--pct-100) - var(--len-120));
+  overflow: auto;
+  padding: var(--len-20);
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-12);
+}
+:where(.dr-desk--wait) .dr-side .dr-center{
+  padding: var(--len-4) 0 var(--len-8);
+}
+:where(.dr-desk--wait) .dr-side .dr-label{
+  margin-top: var(--len-4);
+}
+.dr-side__acts{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-10);
+  margin-top: var(--len-4);
+}
+
+/* the live line and Talk to AI sit over the map, left of the panel */
+.dr-desk--wait .dr-livestatus,
+.dr-desk--wait .dr-talkdock{
+  left: calc(var(--pct-50) - var(--len-192));
+}
+.dr-livestatus .dr-live{
+  margin: 0;
+}
+
+/* what the phone drew in place of its map well (signal lost): a card on the map */
+.dr-mapnote{
+  position: absolute;
+  bottom: var(--len-96);
+  left: calc(var(--pct-50) - var(--len-192));
+  z-index: 3;
+  transform: translateX(calc(var(--pct-50) * -1));
+  width: min(var(--len-420), calc(var(--pct-100) - var(--len-456)));
+  padding: var(--len-8);
+}
+
+/* ---------------------------------------------------------------------------
+   THE ROUTE AND THE FLYING DRONE (the preview's ?flying). The box keeps its
+   own pixel size so the dotted path and the offset-path share one coordinate
+   space; it sits left of the side panel, centred in height.
+   --------------------------------------------------------------------------- */
+.dr-flight{
+  position: absolute;
+  top: var(--pct-50);
+  right: var(--len-408);
+  z-index: 1;
+  width: var(--len-900);
+  height: var(--len-856);
+  transform: translateY(calc(var(--pct-50) * -1));
+  pointer-events: none;
+}
+.dr-flight__path{
+  position: absolute;
+  inset: 0;
+  width: var(--pct-100);
+  height: var(--pct-100);
+  overflow: visible;
+}
+.dr-flight__line{
+  fill: none;
+  stroke: var(--color-action);
+  stroke-width: var(--len-3);
+  stroke-dasharray: var(--len-2) var(--len-9);
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 var(--len-6) color-mix(in srgb, var(--color-action) 80%, transparent));
+}
+.dr-flight__end{
+  position: absolute;
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
+}
+.dr-flight__end--from{
+  left: var(--len-100);
+  top: var(--len-620);
+  width: var(--len-14);
+  height: var(--len-14);
+  border-radius: var(--pct-50);
+  background: var(--bg-page);
+  border: var(--len-3) solid var(--color-action);
+}
+.dr-flight__end--to{
+  left: var(--len-850);
+  top: var(--len-200);
+  color: var(--text-accent-wide);
+}
+.dr-flight__end--to .dr-ic{
+  width: var(--len-30);
+  height: var(--len-30);
+  transform: translateY(calc(var(--len-12) * -1));
+}
+
+/* the drone: its centre rides the same path; it stops where the order is */
+.dr-flyer{
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* the path's numbers are the route's coordinates in the 900 x 856 box (the same as the svg's d), data and not design values, so they stay literal */
+  offset-path: path('M 100 620 C 210 570, 260 490, 380 440 S 600 400, 670 330 S 780 220, 850 200');
+  offset-rotate: 0deg;
+  offset-distance: var(--flyer-at, var(--pct-62));
+  animation: dr-flyer-flight var(--time-7) var(--ease-flight) both;
+}
+.dr-flight--pickup .dr-flyer{
+  --flyer-at: var(--pct-18);
+}
+.dr-flyer .dr-fly{
+  display: block;
+  width: var(--len-110);
+  height: var(--len-38);
+  filter: drop-shadow(0 0 var(--len-10) color-mix(in srgb, var(--color-action) 90%, transparent))
+          drop-shadow(0 var(--len-10) var(--len-14) color-mix(in srgb, var(--text-primary) 25%, transparent));
+}
+
+/* signal lost: the drone stays at its last known point, still, with no glow */
+.dr-flight--lost .dr-flyer{
+  animation: none;
+}
+.dr-flight--lost .dr-flyer .dr-fly{
+  fill: var(--text-muted);
+  filter: none;
+}
+.dr-flight--lost .dr-fly__body,
+.dr-flight--lost .dr-fly__prop{
+  animation: none;
+}
+@keyframes dr-flyer-flight{
+  from{
+    offset-distance: 0%;
+  }
+}
+
+/* reduced motion: no flight, the drone is placed on the route (the mark's own
+   sway and propellers are already stopped by assistant.css) */
+@media (prefers-reduced-motion: reduce){
+  .dr-flyer{
+    animation: none;
+  }
+}

@@ -139,3 +139,26 @@
 .dr-screen:has(> .dr-sheet:not([hidden])) .dr-livechip{
   display: none;
 }
+
+/* -- DESKTOP (moved from wireframes/desktop/, 2026-10-19) --------------------
+   How this component is tuned inside the desktop frame (.dr-desk, desk.css).
+   Nothing here matches a phone page. */
+
+/* the console: two 300 rails at the edges, the assistant in the middle */
+.dr-desk > .dr-console{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  grid-template-columns: var(--len-300) minmax(0, 1fr) var(--len-300);
+  gap: var(--len-24);
+  padding: var(--len-96) var(--len-24) var(--len-24);
+  align-items: start;
+}
+.dr-desk .dr-console__rail{
+  gap: var(--len-12);
+}
+.dr-desk .dr-console__centre{
+  align-self: center;
+  margin-top: calc(var(--len-40) * -1);
+  padding: 0;
+}

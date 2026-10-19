@@ -710,6 +710,17 @@
   --text-accent-wide: var(--text-primary);   /* the greeting and a trend: the main dark in light */
   --img-map-ground:   url(../../assets/map/ground-light.jpg);
   --img-agent-glow:   url(../../assets/design-system/agent-glow.png);
+  /* the desktop's own scene copies (2026-10-18/19, moved here from _desktop.css in
+     phase 2): the onboarding art cut out so the window's glass is its ground. In
+     light only Dispatch has a desktop copy - the other five light scenes were already
+     cut out and the desktop draws the phone's own files - so only it is named here.
+     The stardust field is declared but drawn nowhere (its ::after is content: none).
+     The sphere behind the assistant's drone was retired by the designer in both
+     themes («тут прибери зовсім ефект»): its token is none, sphere.png and
+     sphere-dark.png stay in assets/ unread. */
+  --img-desk-onb-dispatch: url(../../assets/scenes/desktop/onboarding-dispatch.png);
+  --img-desk-stardust:     url(../../assets/scenes/desktop/stardust.png);
+  --img-desk-sphere:       none;
 
   /* Added for the desktop (2026-10-19). The veil darkens the map's edges under
      the floating header and rails; the halo lifts the assistant's lead off the
@@ -1001,6 +1012,16 @@
   --border-material:   color-mix(in srgb, var(--cream-50) 10%, transparent);
   --text-accent-wide:  var(--color-action);
   --img-map-ground:    url(../../assets/map/ground-dark.jpg);
+  /* the desktop's dark scene copies: each flat #1A1A1A ground keyed out, Dispatch
+     drawn again in Figma and cut out (see the light block) */
+  --img-desk-onb-dispatch:          url(../../assets/scenes/desktop/onboarding-dispatch-dark.png);
+  --img-desk-onb-checklist:         url(../../assets/scenes/desktop/onboarding-checklist-dark.png);
+  --img-desk-onb-payout:            url(../../assets/scenes/desktop/onboarding-payout-dark.png);
+  --img-desk-onb-verified-operator: url(../../assets/scenes/desktop/onboarding-verified-operator-dark.png);
+  --img-desk-onb-live-tracking:     url(../../assets/scenes/desktop/onboarding-live-tracking-dark.png);
+  --img-desk-onb-report:            url(../../assets/scenes/desktop/onboarding-report-dark.png);
+  --img-desk-stardust:              url(../../assets/scenes/desktop/stardust-dark.png);
+  --img-desk-sphere:                none;
   /* the desktop (2026-10-19): the veil turns to the dark ink, the halo to black,
      the render shadow deepens. --mask-opaque is not redefined: a mask reads alpha. */
   --veil-map-centre:     var(--charcoal-950-a15);

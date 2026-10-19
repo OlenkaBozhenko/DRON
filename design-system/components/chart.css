@@ -27,3 +27,27 @@
   color: var(--text-muted);
   font-variant-numeric: var(--type-numeric);
 }
+
+/* -- DESKTOP (moved from wireframes/desktop/, 2026-10-19) --------------------
+   How this component is tuned inside the desktop frame (.dr-desk, desk.css).
+   Nothing here matches a phone page. */
+
+/* «на чарті надписи місяців не відповідають стовпцям»: one label under each bar, on the
+   bars' own columns (same flex, same gap), centred - not four labels spread edge to edge */
+.dr-desk .dr-barchart__axis--each{
+  justify-content: flex-start;
+  gap: var(--len-5);
+}
+.dr-desk .dr-barchart__axis--each > span{
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+/* an hour label is wider than its bar: it stays centred on the bar and may overhang */
+.dr-desk .dr-barchart__axis--each > span{
+  overflow: visible;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+}

@@ -39,3 +39,15 @@
   font-weight: var(--type-weight-medium);
   color: var(--text-accent-wide);
 }
+
+/* -- DESKTOP (moved from wireframes/desktop/, 2026-10-19) --------------------
+   How this component is tuned inside the desktop frame (.dr-desk, desk.css).
+   Nothing here matches a phone page. */
+
+/* «тут на місці іконки логотип нашого дрона»: the drones-in-the-air figure carries the
+   DRON mark in its icon well instead of the generic drone outline; the mark is wide, so it
+   is drawn at the well's width, in the well's ink */
+.dr-desk .dr-stat__brand{
+  width: var(--len-40);
+  height: var(--len-14);
+}

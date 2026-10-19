@@ -17,3 +17,16 @@
   box-shadow: 0 0 0 var(--len-6) color-mix(in srgb, var(--color-action) 22%, transparent);
   transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
 }
+
+/* -- DESKTOP (moved from wireframes/desktop/, 2026-10-19) --------------------
+   How this component is tuned inside the desktop frame (.dr-desk, desk.css).
+   Nothing here matches a phone page. */
+.dr-desk > .dr-mapground{
+  z-index: 0;
+}
+
+/* a drone in the air: the dot and its glow */
+.dr-desk .dr-mapground__drone{
+  box-shadow: 0 0 0 var(--len-6) color-mix(in srgb, var(--color-action) 22%, transparent),
+              0 0 var(--len-24) var(--len-6) color-mix(in srgb, var(--color-action) 45%, transparent);
+}

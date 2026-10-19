@@ -1,0 +1,111 @@
+/* ophome.css - DESKTOP: THE OPERATOR'S HOME - the assistant over the job drones, the drone links on the map, the rail's action rows and the availability card (moved from wireframes/desktop/, 2026-10-19) */
+
+/* a signed-out window (sign in, welcome) has no rails and no Talk to AI, and
+   keeps its own height: it holds two or three lines */
+/* 7. THE OPERATOR'S HOME: stats and availability on the left, the operator's
+   jobs on the right (on now, incoming, done with See all), the assistant in the
+   middle, the open jobs as drones on the map - a drone opens its offer */
+.dr-ophome{
+  position: absolute;
+  inset: var(--len-96) var(--len-348) var(--len-96);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+}
+.dr-ophome .dr-assistant{
+  width: min(var(--pct-100), var(--len-620));
+}
+.dr-ophome .dr-assistant__orb{
+  width: var(--len-180);
+  height: var(--len-180);
+  margin: 0 auto calc(var(--len-6) * -1);
+}
+.dr-ophome .dr-assistant__title{
+  font-size: var(--type-hero-sm-size);
+  line-height: var(--type-hero-sm-line);
+  font-weight: var(--type-hero-sm-weight);
+  letter-spacing: var(--type-hero-sm-track);
+}
+.dr-ophome .dr-assistant__lead{
+  margin: var(--len-10) 0 var(--len-22);
+}
+.dr-act{
+  display: flex;
+  justify-content: space-between;
+  gap: var(--len-12);
+  min-height: var(--len-44);
+  align-items: center;
+  border-bottom: var(--len-1) solid var(--border-material);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: var(--type-body-size);
+}
+.dr-act:last-child{
+  border-bottom: 0;
+}
+.dr-act__k{
+  color: var(--text-muted);
+}
+.dr-act__v{
+  flex: none;
+  font-weight: var(--type-weight-medium);
+  font-variant-numeric: var(--type-numeric);
+}
+.dr-act:hover .dr-act__k{
+  color: var(--text-primary);
+}
+.dr-act:focus-visible, .dr-dronelink:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+  border-radius: var(--len-8);
+}
+.dr-act--more{
+  justify-content: center;
+  font-weight: var(--type-weight-medium);
+}
+.dr-desk .dr-mapground:has(.dr-dronelink){
+  z-index: 2;
+  pointer-events: none;
+}
+.dr-desk .dr-mapground .dr-dronelink{
+  width: var(--len-44);
+  height: var(--len-44);
+  background: transparent;
+  box-shadow: none;
+  pointer-events: auto;
+  cursor: pointer;
+}
+.dr-desk .dr-dronelink::before{
+  content: "";
+  position: absolute;
+  inset: var(--len-17);
+  border-radius: var(--pct-50);
+  background: var(--color-action);
+  box-shadow: 0 0 0 var(--len-6) color-mix(in srgb, var(--color-action) 22%, transparent), 0 0 var(--len-24) var(--len-6) color-mix(in srgb, var(--color-action) 45%, transparent);
+}
+.dr-desk .dr-dronelink:hover::before{
+  box-shadow: 0 0 0 var(--len-10) color-mix(in srgb, var(--color-action) 30%, transparent), 0 0 var(--len-30) var(--len-10) color-mix(in srgb, var(--color-action) 55%, transparent);
+}
+
+/* the assistant over the job drones; the empty map round it still lets a drone be clicked */
+.dr-ophome{
+  z-index: 3;
+  pointer-events: none;
+}
+.dr-ophome .dr-assistant{
+  pointer-events: auto;
+}
+
+/* «картка зі статусом доступності завжди справа і присутня завжди»: the availability
+   card heads the right rail on every operator page, so its rules live here, not in a group file */
+.dr-availcard{
+  display: grid;
+  gap: var(--len-12);
+  justify-items: start;
+}
+.dr-availcard > .dr-rows{
+  justify-self: stretch;
+}
+.dr-availcard .dr-avail{
+  margin: 0;
+}

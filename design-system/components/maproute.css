@@ -1,0 +1,56 @@
+/* maproute.css - DESKTOP: A JOB'S ROUTE ON THE MAP - the dotted line, the ring at the start, the pin at the end (moved from wireframes/desktop/, 2026-10-19) */
+
+/* the job's route on the map ground, as the preview's ?flying draws it: a
+   dotted line, a ring at the start, a pin at the end. Decoration under the
+   window: the map's own aria-label names the route. */
+.dr-maproute{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: var(--pct-100);
+  height: var(--pct-100);
+  pointer-events: none;
+}
+.dr-maproute__line{
+  fill: none;
+  stroke: var(--color-action);
+  stroke-width: var(--len-3);
+  stroke-dasharray: var(--len-2) var(--len-9);
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.dr-maproute__from{
+  position: absolute;
+  z-index: 1;
+  width: var(--len-14);
+  height: var(--len-14);
+  border-radius: var(--pct-50);
+  background: var(--bg-page);
+  border: var(--len-3) solid var(--color-action);
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-50) * -1));
+  pointer-events: none;
+}
+
+/* the end of the route, or the one site of a shoot or an inspection: a filled
+   pin (the accent stays a fill, never a stroke) with the page's ground inside */
+.dr-pin{
+  position: absolute;
+  z-index: 1;
+  width: var(--len-30);
+  height: var(--len-30);
+  transform: translate(calc(var(--pct-50) * -1), calc(var(--pct-100) * -1));
+  pointer-events: none;
+}
+.dr-pin svg{
+  display: block;
+  width: var(--pct-100);
+  height: var(--pct-100);
+}
+.dr-pin__body{
+  fill: var(--color-action);
+  stroke: var(--on-action);
+  stroke-width: var(--len-1);
+}
+.dr-pin__eye{
+  fill: var(--bg-page);
+}
