@@ -801,7 +801,7 @@ corrected:
 
 | What is built | Guideline | Result |
 |---|---|---|
-| Drop zone's remove control, 28 × 28 | `HIG · 44pt target`; `WCAG 2.5.8` (2.2) asks 24; 2.1 AA sets none | −16 against HIG; +4 against 2.2 |
+| ~~Drop zone's remove control, 28 × 28~~ — **closed 2026-10-19 (rev 330):** drawn 28, tapped on 44 | `HIG · 44pt target`; `WCAG 2.5.8` (2.2) asks 24 | Both met |
 | Drop zone's dashed edge 1.46:1 (1.97:1 dark); drag-over accent edge 1.84:1 | `WCAG 1.4.11` asks 3:1 for a component's boundary | Fails as a boundary; the zone is named by its text |
 | Review stars, yellow, 2.23:1 on the light panel | `WCAG 1.4.11` 3:1 | Fails; the score is also written, so colour is not the carrier |
 | Flight route and map route, the accent as a stroke (1.69:1) | The fill-only rule; `WCAG 1.4.11` | Against the project rule; decoration, `aria-hidden`, the live line says it in words |

@@ -38,7 +38,6 @@
   position: relative;
   aspect-ratio: var(--num-1);
   border-radius: var(--len-12);
-  overflow: hidden;
   background: var(--bg-well);
 }
 .dr-desk .dr-drop__item img{
@@ -46,6 +45,7 @@
   height: var(--pct-100);
   object-fit: cover;
   display: block;
+  border-radius: inherit;
 }
 .dr-desk .dr-drop__rm{
   position: absolute;
@@ -60,4 +60,11 @@
   font-size: var(--type-heading-size);
   line-height: var(--type-glyph-line);
   cursor: pointer;
+}
+/* «тут A»: drawn 28, tapped on 44 (HIG 44pt) - an invisible ring 8 wide round the circle */
+.dr-desk .dr-drop__rm::before{
+  content: "";
+  position: absolute;
+  inset: calc(var(--len-8) * -1);
+  border-radius: var(--pct-50);
 }
