@@ -123,9 +123,11 @@
     win.sessionStorage.removeItem('dr-from');
     doc.addEventListener('click', function(e){ if (e.target.closest('.dr-deskrail--end a[href]')) win.sessionStorage.setItem('dr-from', 'end'); }, true);
     var box = doc.querySelector('#content [role="status"]');
-    if (box && box.classList.contains('dr-center')) new win.MutationObserver(function(){
-      if (/confirmed/i.test(box.getAttribute('aria-label') || '')) box.classList.add('dr-center--arrive');
-    }).observe(box, {attributes: true});
+    /* only the aria-label is watched, and the class is added once: adding a class is itself
+       an attribute change, so watching every attribute would loop */
+    if (box && box.classList.contains('dr-center')) new win.MutationObserver(function(_, obs){
+      if (/confirmed/i.test(box.getAttribute('aria-label') || '')) { obs.disconnect(); box.classList.add('dr-center--arrive'); }
+    }).observe(box, {attributes: true, attributeFilter: ['aria-label']});
   }
   function inject(f){
     var doc = f.contentDocument, win = f.contentWindow;
