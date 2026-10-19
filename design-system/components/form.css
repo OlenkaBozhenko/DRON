@@ -308,7 +308,7 @@
   flex: none;
   border-radius: var(--pct-50);
   background: var(--text-primary);
-  transition: transform var(--time-0-12) var(--ease-out), background var(--time-0-12);
+  transition: transform var(--dur-base) var(--ease-standard), background var(--dur-base);
 }
 .dr-field--toggle:has(input:checked) .dr-switch{
   background: var(--color-action);

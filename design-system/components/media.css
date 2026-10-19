@@ -133,7 +133,7 @@
   border: 0;
   border-radius: var(--len-999);
   background: var(--bg-muted);
-  transition: background-color var(--time-0-12) var(--ease-out);
+  transition: background-color var(--dur-base) var(--ease-standard);
 }
 .dr-pager .on{
   background: var(--color-action);

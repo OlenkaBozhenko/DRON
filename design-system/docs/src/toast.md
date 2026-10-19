@@ -16,7 +16,7 @@ kit: —
 ```
 
 - `.dr-toast` — The surface: a pill with 12 / 20 padding, body 14 at weight 600 and line 1.4, `--text-on-inverse` on `--bg-inverse` at 15.99:1. It floats, so it spends `--shadow-raised`.
-- `.is-on` — The shown state: opacity 1, no offset. Without it the toast sits 8px low at opacity 0 and takes no clicks; the rise is 0.15s.
+- `.is-on` — The shown state: opacity 1, no offset. Without it the toast sits 12px low (`--move-md`) at opacity 0 and takes no clicks. It arrives in .32s (`--dur-slow`, `--ease-enter`) and leaves faster, in .2s (`--dur-base`, `--ease-exit`); under reduced motion it fades in place.
 - `[role="status"]` — Announced without taking focus (`WCAG 4.1.3`). No screen writes this markup: the shell (`_wf-shell.js`) builds this one `div` the first time a `data-toast` control is tapped.
 
 ## Variants

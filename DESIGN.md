@@ -945,13 +945,24 @@ time ramp; they are listed under *Components › Motion*.
 - **`WCAG 2.3.1` Three Flashes** (A): no step of the scale repeats; the fastest loop in the build,
   `dr-spin`, is 0.91 Hz.
 
-### What has not moved yet
+### Where the scale stands (rev 342)
 
-The scale is declared and nothing reads it yet. Components still read the time ramp directly
-(`--time-0-12`, `--time-0-15`, `--time-0-25`, `--time-0-32`, `--ease-out`). Moving them onto the scale
-is a separate change and changes what is drawn in two places: the button's `.15s` would become
-`.2s`, and the desktop hanging card's `.25s` hover would become `.12s` or `.2s`. That is the
-designer's call.
+Every short transition reads the scale since rev 342, on the designer's word after the compare page
+(*«добре можеш змінювати»*). Five changed what is drawn:
+
+| Component | Before | On the scale | Job |
+|---|---|---|---|
+| Toast | in and out .15s, 8px, `--ease-out` | in `--dur-slow` .32s `--ease-enter`, out `--dur-base` .2s `--ease-exit`, `--move-md` 12px | 1 |
+| Hanging card (desktop) | hover lift 3px in .25s, `--ease-out` | `--move-sm` 4px in `--dur-fast` .12s, `--ease-standard` | 3 |
+| Switch knob | .12s, `--ease-out` | `--dur-base` .2s, `--ease-standard` | 1 |
+| Pager dot | .12s, `--ease-out` | `--dur-base` .2s, `--ease-standard` | 1 |
+| Button | hover .15s, press .12s | `--dur-fast` .12s for both | 3 |
+
+The sheet, the dialog and the desktop chat panel took the new names with the same values
+(`--dur-slow` + `--ease-enter`), so they draw as before. Under reduced motion the hanging card no
+longer lifts at all, because `--move-sm` is 0: the deeper shadow alone answers the hover. Before, it
+jumped 3px with no transition. `--time-0-15` and `--time-0-25` are now spent nowhere. They are left
+in place, not deleted, and are the designer's to retire.
 
 ### Named rules
 
@@ -1228,7 +1239,7 @@ designer's call and this is its price, recorded rather than corrected.
 `--sh-raised`, measured **373 wide** with its bottom flush to the frame — plus `.dr-sheet--picker`,
 which is only the rise: `translateY(100%) → 0` over **`--dur-sheet` .32s** `--ease-out`, the scrim
 fading with it, both `animation: none` under reduced motion. `--dur-sheet` is the one new token:
-`--dur-base` .15s is the button's own tick and snaps on a surface that crosses 400px. Scrim
+`--dur-base` .15s is the button's own tick and snaps on a surface that crosses 400px. (Those were kit.css names; since rev 341 the sheet reads the motion scale's `--dur-slow` + `--ease-enter`, the same .32s and curve, and `--dur-base` is the scale's .2s.) Scrim
 `--scrim` (warm ink at 40%), measured **373 × 810** — it covers the nav bar and the action bar, not
 just the scroll area.
 
@@ -1521,8 +1532,8 @@ state announces "on"/"off" rather than "checked" (`4.1.2`) and the visible line 
 name (`1.3.1`). The target is the **row**, measured **326.2 × 44** on the 375 frame — `HIG · 44pt`
 carried at **7.41×** the 44 × 44 area and `WCAG 2.5.8` at **24.9×** its 24 × 24 floor, not by the
 36 × 22 track. (The row was recorded as 44 × 341 before rev 202; re-measured on the built frame it
-is 326.2 wide, and the row's width never depended on the switch.) Motion is `--dur-fast` on `transform` with a
-`prefers-reduced-motion` opt-out. **Green budget:** a switch counts as a status mark, like the
+is 326.2 wide, and the row's width never depended on the switch.) Motion is `--dur-base` (.2s, `--ease-standard`) on `transform`, job 1 of § Motion, with a
+`prefers-reduced-motion` opt-out (.12s until rev 342). **Green budget:** a switch counts as a status mark, like the
 checked box and the walked node — not as the screen's one green control.
 
 ### Circular icon action
@@ -3146,8 +3157,7 @@ announces *Slide n of 3*, so the dot is never the sole carrier — but the figur
 than left to be found: 1.22:1 is why an 8px row reads as undifferentiated even with the right dot
 lit. Open, and the designer's to spend.
 
-**The fade is `--dur-fast` (.12s) on `background-color` only,** the rung the switch knob and the
-disclosure chevron already use, with a `prefers-reduced-motion: reduce` counterpart beside the rule
+**The fade is `--dur-base` (.2s, `--ease-standard`) on `background-color` only** since rev 342 (.12s before), the step the switch knob also takes, with a `prefers-reduced-motion: reduce` counterpart beside the rule
 (`WCAG 2.3.3`). Nothing moves, grows or travels — the dot's size, place and shape are constant.
 
 **`--bleed` is opt-in, not automatic on `:has(img)`:** a slider whose slides mix the two treatments
@@ -3386,7 +3396,7 @@ inside an `aria-hidden` container is never announced (`WCAG 4.1.3`).
 
 | Name | Duration | Easing | What moves |
 |---|---|---|---|
-| button | .15s / .12s | default | `filter`, `background`, `transform` |
+| button | `--dur-fast` .12s (hover .15s until rev 342) | default | `filter`, `background`, `transform` |
 | `dr-ping` | 1.8s | `cubic-bezier(.22,.61,.36,1)` | a ring leaving a live status disc |
 | `dr-pulse` | 1.4s | `ease-in-out` | skeleton opacity 1 → .5 |
 | `dr-up` | 1.6s | `cubic-bezier(.22,.61,.36,1)` | the arrow leaving an upload tray |

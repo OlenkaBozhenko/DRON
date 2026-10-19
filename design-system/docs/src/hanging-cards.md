@@ -128,7 +128,7 @@ kit: 3546
 ```
 
 - `.dr-panel__title` — No panel round the list: the title floats on the map on its own glass pill, 15 on the heading step.
-- `.dr-card` — Each order is its own glass card: `--bg-material`, the hairline, radius 22, the float shadow; it lifts 3 on hover (still under reduced motion). The live order carries a soft green halo (a fill, never ink).
+- `.dr-card` — Each order is its own glass card: `--bg-material`, the hairline, radius 22, the float shadow; it lifts 4 (`--move-sm`) in .12s (`--dur-fast`) on hover; under reduced motion it does not move and the deeper shadow alone answers the hover. The live order carries a soft green halo (a fill, never ink).
 - `.dr-inset` — The location strip keeps the phone's own `--bg-inset` and 16 padding: ink 15.29:1, the labels 6.33:1 light; 9.83:1 / 7.09:1 dark.
 
 ## Variants

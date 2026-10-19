@@ -32,14 +32,17 @@
   box-shadow: var(--shadow-raised);
   cursor: pointer;
   opacity: 0;
-  transform: translateY(var(--len-8));
-  transition: opacity var(--time-0-15) var(--ease-out), transform var(--time-0-15) var(--ease-out);
+  transform: translateY(var(--move-md));
+  /* leaving: faster than it came (DESIGN.md § Motion) */
+  transition: opacity var(--dur-base) var(--ease-exit), transform var(--dur-base) var(--ease-exit);
   pointer-events: none;
 }
 .dr-toast.is-on{
   opacity: 1;
   transform: none;
   pointer-events: auto;
+  /* arriving: an element entering */
+  transition: opacity var(--dur-slow) var(--ease-enter), transform var(--dur-slow) var(--ease-enter);
 }
 .dr-toast--over-sheet{
   left: 0;

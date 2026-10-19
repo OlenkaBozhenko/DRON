@@ -31,10 +31,10 @@
   backdrop-filter: blur(var(--len-22)) saturate(var(--num-1-5));
   box-shadow: var(--shadow-float);
   border-radius: var(--len-22);
-  transition: transform var(--time-0-25) var(--ease-out), box-shadow var(--time-0-25) var(--ease-out);
+  transition: transform var(--dur-fast) var(--ease-standard), box-shadow var(--dur-fast) var(--ease-standard);
 }
 .dr-float .dr-card:hover{
-  transform: translateY(calc(var(--len-3) * -1));
+  transform: translateY(calc(var(--move-sm) * -1));
   box-shadow: var(--shadow-float-lift);
 }
 .dr-float .dr-card:has(.dr-rail){

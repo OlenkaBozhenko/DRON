@@ -78,7 +78,7 @@
     overflow: auto;
     transform: translateX(calc(var(--pct-100) + var(--len-24)));
     visibility: hidden;
-    transition: transform var(--time-0-32) var(--ease-out), visibility var(--time-0-32);
+    transition: transform var(--dur-slow) var(--ease-enter), visibility var(--dur-slow);
   }
   .dr-console__rail--end.is-open{
     transform: none;

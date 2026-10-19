@@ -26,7 +26,7 @@
   justify-content: center;
   gap: var(--len-8);
   text-decoration: none;
-  transition: filter var(--time-0-15), background var(--time-0-15), transform var(--time-0-12);
+  transition: filter var(--dur-fast), background var(--dur-fast), transform var(--dur-fast);
 }
 .dr-btn:focus-visible{
   outline: var(--len-2-5) solid var(--text-primary);

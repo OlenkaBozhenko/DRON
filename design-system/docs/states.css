@@ -103,7 +103,7 @@
 .dsd-st--focus .dr-entry .dr-slider{outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: calc(var(--len-2-5) * -1);
   border-radius: var(--len-16);}
-.dsd-st--hover .dr-float .dr-card{transform: translateY(calc(var(--len-3) * -1));
+.dsd-st--hover .dr-float .dr-card{transform: translateY(calc(var(--move-sm) * -1));
   box-shadow: var(--shadow-float-lift);}
 .dsd-st--focus .dr-desk .dr-jobs-tab{outline: var(--len-2-5) solid var(--text-primary);
   outline-offset: var(--len-2);}

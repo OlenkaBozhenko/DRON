@@ -37,10 +37,10 @@
   display: none;
 }
 .dr-sheet--picker{
-  animation: dr-sheet-rise var(--time-0-32) var(--ease-out);
+  animation: dr-sheet-rise var(--dur-slow) var(--ease-enter);
 }
 .dr-sheet--picker ~ .dr-scrim, .dr-scrim--picker{
-  animation: dr-scrim-in var(--time-0-32) var(--ease-out);
+  animation: dr-scrim-in var(--dur-slow) var(--ease-enter);
 }
 .dr-scrim{
   position: absolute;
@@ -234,7 +234,7 @@
     display: none;
   }
   .dr-sheet--picker{
-    animation: dr-dialog-in var(--time-0-32) var(--ease-out);
+    animation: dr-dialog-in var(--dur-slow) var(--ease-enter);
   }
   /* the map's docked drawer becomes a panel beside the map, the phone's width */
   .dr-mapscreen{
