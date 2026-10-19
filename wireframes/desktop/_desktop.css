@@ -902,8 +902,8 @@
    модерно» (her reference: a testimonial card). One review is one card: the quote mark,
    the words large, then at the foot who wrote it - monogram, name, service and date - with
    the stars on the right. 12 inside the card, 24 between the words and the foot, 12
-   between cards. Stars follow the icon rule: a charcoal outline with the green as a fill
-   behind it (concept §5); the score is also written, so the stars are not the only cue
+   between cards. Stars are the rating's own yellow (--color-rating, as the Rate screen's stars; the
+   designer, 2026-10-19), empty ones a muted outline; the score is also written, so the stars are not the only cue
    (WCAG 1.4.1) and the card's rating is named once for a screen reader (1.1.1). */
 .dk .dk-reviews{
   display: grid;
@@ -980,10 +980,13 @@
 .dk .dk-review__star{
   width: var(--len-16);
   height: var(--len-16);
-  fill: var(--color-action);
+  fill: var(--color-rating);
+  stroke: none;
+  color: var(--color-rating);
 }
 .dk .dk-review__star--off{
   fill: none;
+  stroke: currentColor;
   color: var(--text-muted);
 }
 .dk .dk-review__score{

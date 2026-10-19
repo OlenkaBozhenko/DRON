@@ -2011,7 +2011,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | withdraw-loading | — | Instant transfer to Visa •••• 3318 — usually under a minute. | State message | DATA |
 | withdraw-sent | — | ₴1,500 sent to your card | State message |  |
 | withdraw-sent | — | Visa •••• 3318 — it usually shows within a minute. ₴1,740 stays on your balance. | State message | DATA |
-| withdraw-sent | — | Done | Button |  |
+| withdraw-sent | — | Done | Button | secondary - the flow is over, nothing is committed |
 | withdraw | — | ‹ Earnings | Button |  |
 | withdraw | — | Withdraw | Heading |  |
 | withdraw | Amount | ₴3,240 | Body | the available balance, and **the screen's opening line since 2026-08-18** — her call («зроби великим заголовком зверху») after I had put it in a 12px note under the field. An operator opens a payout screen to spend a balance, so the balance is stated first and the amount answers it |
