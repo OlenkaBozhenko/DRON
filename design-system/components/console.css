@@ -85,61 +85,11 @@
     visibility: visible;
   }
 }
-/* the controls that open the inspector exist only while it is folded */
-.dr-iconbtn.dr-console__toggle, .dr-livechip{
-  display: none;
-}
-@container screen (max-width: 63.875rem){
-  .dr-iconbtn.dr-console__toggle{
-    display: grid;
-  }
-  .dr-livechip{
-    display: inline-flex;
-  }
-}
-/* the live chip: the order going on now, at the bottom of the map */
-.dr-livechip{
-  position: absolute;
-  left: var(--pct-50);
-  bottom: var(--len-24);
-  z-index: 5;
-  transform: translateX(calc(var(--pct-50) * -1));
-  align-items: center;
-  gap: var(--len-10);
-  min-height: var(--len-48);
-  padding: var(--len-6) var(--len-18) var(--len-6) var(--len-6);
-  border-radius: var(--len-999);
-  font: inherit;
-  font-size: var(--type-body-size);
-  color: var(--text-primary);
-  cursor: pointer;
-}
-.dr-livechip img{
-  width: var(--len-36);
-  height: var(--len-36);
-  border-radius: var(--pct-50);
-  object-fit: cover;
-}
-.dr-livechip:hover{
-  border-color: var(--text-muted);
-}
-.dr-livechip:active{
-  transform: translateX(calc(var(--pct-50) * -1)) scale(var(--num-0-99));
-}
-.dr-livechip:focus-visible{
-  outline: var(--len-2-5) solid var(--text-primary);
-  outline-offset: var(--len-2);
-}
 @media (prefers-reduced-motion: reduce){
   .dr-console__rail--end{
     transition: none;
   }
 }
-/* while the order window is open, Talk to AI holds the bottom; the chip steps aside */
-.dr-screen:has(> .dr-sheet:not([hidden])) .dr-livechip{
-  display: none;
-}
-
 /* -- DESKTOP (moved from wireframes/desktop/, 2026-10-19) --------------------
    How this component is tuned inside the desktop frame (.dr-desk, desk.css).
    Nothing here matches a phone page. */

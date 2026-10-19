@@ -261,20 +261,8 @@
     animation: none;
   }
 }
-/* in the console: Talk to AI waits at the bottom while a window is open, the
-   assistant steps out of the centre, and the header's Order steps back so one
-   green control stays on the screen */
-.dr-talk--dock{
-  display: none;
-  position: absolute;
-  left: var(--pct-50);
-  bottom: var(--len-24);
-  z-index: 7;
-  transform: translateX(calc(var(--pct-50) * -1));
-}
-.dr-screen:has(> .dr-sheet:not([hidden])) .dr-talk--dock{
-  display: inline-flex;
-}
+/* while a window is open the assistant steps out of the centre, and the
+   header's Order steps back so one green control stays on the screen */
 .dr-screen:has(> .dr-sheet:not([hidden])) .dr-assistant{
   visibility: hidden;
 }

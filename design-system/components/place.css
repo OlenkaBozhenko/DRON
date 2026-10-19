@@ -19,8 +19,3 @@
   flex: none;
   color: var(--text-muted);
 }
-.dr-sheet__lead{
-  margin: calc(var(--len-8) * -1) 0 0;
-  font-size: var(--type-body-size);
-  color: var(--text-muted);
-}
