@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>State tone compare</title>
+<link rel="stylesheet" href="design-system/index.css">
+<style>
+  /* Scaffolding for one decision: how each state arrives, in the tone of its words.
+     Left as built (rev 345), right with _proposed-state-tone.css. Needs a server. */
+  body{ background:var(--bg-page); color:var(--text-primary); margin:0; padding:32px 16px 64px; font-family:var(--font-ui); }
+  .w{ max-width:1200px; margin:0 auto; }
+  h1{ font-size:22px; margin:0 0 8px; }
+  .lede{ font-size:14px; line-height:20px; color:var(--text-muted); margin:0 0 16px; max-width:86ch; }
+  .tools{ display:flex; gap:24px; flex-wrap:wrap; align-items:center; padding:12px 16px; background:var(--bg-surface); border-radius:12px; font-size:13px; margin:0 0 40px; }
+  .tools label{ display:flex; gap:8px; align-items:center; cursor:pointer; }
+  table{ border-collapse:collapse; font-size:13px; margin:0 0 48px; width:100%; }
+  th, td{ text-align:left; padding:8px 12px; border-bottom:1px solid var(--border-hairline); vertical-align:top; }
+  th{ font-weight:600; }
+  section.q{ margin:0 0 56px; }
+  .q h2{ font-size:20px; margin:0 0 4px; }
+  .std{ font-size:13px; line-height:18px; color:var(--text-muted); margin:0 0 12px; max-width:96ch; }
+  .std b, .std q{ color:var(--text-primary); }
+  .pair{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .col{ background:var(--bg-inset); border-radius:16px; padding:12px; }
+  .col.new{ box-shadow: inset 0 0 0 2px var(--color-action); }
+  .tag{ font-size:12px; font-weight:600; margin:0 0 8px; }
+  .crop{ position:relative; overflow:hidden; border-radius:12px; background:var(--bg-surface); }
+  .crop iframe{ position:absolute; border:0; transform-origin:0 0; }
+  .acts{ display:flex; gap:8px; flex-wrap:wrap; margin:0 0 12px; }
+</style>
+</head>
+<body>
+<div class="w">
+  <h1>States arrive in the tone of their words</h1>
+  <p class="lede">Left: the desktop as built. Right, green outline: the proposal. Each button plays the moment on both
+  sides at once, as a real click inside the screen. Desktop only.</p>
+  <div class="tools"><label><input type="checkbox" id="slow"> Slow motion ×5 (right side)</label></div>
+
+  <table>
+    <thead><tr><th>Tone</th><th>Words (voice.md)</th><th>Duration</th><th>Curve</th><th>Amplitude</th><th>Direction</th></tr></thead>
+    <tbody>
+      <tr><td>Error</td><td>what happened + what to do; plain, no "!"</td><td>--dur-fast .12s</td><td>--ease-standard</td><td>--move-sm 4</td><td>up, in place</td></tr>
+      <tr><td>Empty</td><td>why it is empty + one way out</td><td>--dur-base .2s</td><td>--ease-standard</td><td>0</td><td>none, a fade</td></tr>
+      <tr><td>Loading</td><td>names what is loading</td><td>--dur-base .2s in; then the built loops</td><td>pulse ease-in-out, spinner linear</td><td>0</td><td>none</td></tr>
+      <tr><td>Success</td><td>the fact, then the next step</td><td>--dur-base .2s</td><td>--ease-enter (soft)</td><td>--move-md 12</td><td>up, settling</td></tr>
+      <tr><td>List → detail</td><td></td><td>--dur-slow .32s</td><td>--ease-enter</td><td>--move-md 12</td><td>from the list's side</td></tr>
+    </tbody>
+  </table>
+
+  <section class="q">
+    <h2>1. Error: payment declined</h2>
+    <p class="std"><q>Apple Pay couldn't complete the charge. Nothing was taken from your account. Try again or use another method.</q> Calm and plain. <b>Now</b> the error page arrives like a new screen: the whole window rises 12px over .32s. <b>Proposed</b>: the window stays, the message appears in .12s from 4px.</p>
+    <div class="acts"><button class="dr-btn dr-btn--secondary" type="button" data-go="pay-err">Pay</button><button class="dr-btn dr-btn--secondary" type="button" data-reset="pay-err">Reset</button></div>
+    <div class="pair" data-row="pay-err" data-src="payment.html" data-to="payment-error.html" data-crop="400|40|640|820"></div>
+  </section>
+
+  <section class="q">
+    <h2>2. Error on the map: tracking lost</h2>
+    <p class="std"><q>We've lost the live signal from the operator's device. Your order is still active.</q> <b>Now</b> the note is simply there. <b>Proposed</b>: it appears in .12s from 4px.</p>
+    <div class="acts"><button class="dr-btn dr-btn--secondary" type="button" data-go="track-err">Lose the signal</button><button class="dr-btn dr-btn--secondary" type="button" data-reset="track-err">Reset</button></div>
+    <div class="pair" data-row="track-err" data-src="tracking.html" data-to="tracking-error.html" data-crop="300|80|840|760"></div>
+  </section>
+
+  <section class="q">
+    <h2>3. Empty: no operator free</h2>
+    <p class="std"><q>All nearby operators are on jobs. The next one is likely free in about 40 minutes.</q> <b>Now</b>: the window rises like a new screen. <b>Proposed</b>: the window stays and the content fades in, no movement.</p>
+    <div class="acts"><button class="dr-btn dr-btn--secondary" type="button" data-go="setup-empty">Check availability</button><button class="dr-btn dr-btn--secondary" type="button" data-reset="setup-empty">Reset</button></div>
+    <div class="pair" data-row="setup-empty" data-src="order-setup.html" data-to="order-setup-empty.html" data-crop="400|40|640|820"></div>
+  </section>
+
+  <section class="q">
+    <h2>4. Loading: the charge is in progress</h2>
+    <p class="std"><b>Now</b>: the loading page rises like a new screen. <b>Proposed</b>: the window stays, the content fades in, then the built loops run: the skeleton pulses 1 → .5 → 1 over 1.4s ease-in-out and the spinner turns linear, an even repeat with no jerk (checked in the keyframes).</p>
+    <div class="acts"><button class="dr-btn dr-btn--secondary" type="button" data-go="pay-load">Pay</button><button class="dr-btn dr-btn--secondary" type="button" data-reset="pay-load">Reset</button></div>
+    <div class="pair" data-row="pay-load" data-src="payment.html" data-to="payment-loading.html" data-crop="400|40|640|820"></div>
+  </section>
+
+  <section class="q">
+    <h2>5. Success: the money is sent</h2>
+    <p class="std"><q>₴1,500 sent to your card. Visa •••• 3318. It usually shows within a minute.</q> <b>Now</b> (rev 345): the content fades in, no movement. <b>Proposed</b>: it rises 12px and settles over .2s on the soft curve.</p>
+    <div class="acts"><button class="dr-btn dr-btn--secondary" type="button" data-go="sent">Transfer done</button><button class="dr-btn dr-btn--secondary" type="button" data-reset="sent">Reset</button></div>
+    <div class="pair" data-row="sent" data-src="withdraw-loading.html" data-to="withdraw-sent.html" data-crop="400|40|640|820"></div>
+  </section>
+
+  <section class="q">
+    <h2>6. Success said in place: payment confirmed</h2>
+    <p class="std">After 3s the loading window turns into <q>Payment confirmed. ₴180 paid with Apple Pay. Finding your operator.</q> <b>Now</b> the words swap in one frame. <b>Proposed</b>: the confirmed block settles in, success tone.</p>
+    <div class="acts"><button class="dr-btn dr-btn--secondary" type="button" data-reset="pay-ok">Play again</button></div>
+    <div class="pair" data-row="pay-ok" data-src="payment-loading.html" data-crop="400|40|640|820"></div>
+  </section>
+
+  <section class="q">
+    <h2>7. List → detail: a job opened from the rail</h2>
+    <p class="std">On the operator's screens the right rail lists <i>Your work</i>. <b>Now</b> a job opened from it rises in the centre like any window. <b>Proposed</b>: it comes in from the right, the side the list is on, 12px over .32s.</p>
+    <div class="acts"><button class="dr-btn dr-btn--secondary" type="button" data-rail="rail">Open the checklist from the rail</button><button class="dr-btn dr-btn--secondary" type="button" data-reset="rail">Reset</button></div>
+    <div class="pair" data-row="rail" data-src="job-brief.html" data-crop="360|40|1080|820"></div>
+  </section>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var VW = 1440, VH = 900, BASE = 'wireframes/desktop/', CSS = '', rows = {};
+  var SLOW = ':root,[data-theme]{--time-0-12:.6s;--time-0-2:1s;--time-0-32:1.6s}';
+  var STATE = /-(loading|error|empty)(?=[-.])/;
+  var name = function(u){ return u.split('?')[0].split('#')[0].split('/').pop(); };
+
+  /* the proposal's script part, as it would run in _desktop.js */
+  function behave(doc, win){
+    var here = name(win.location.pathname), ref = name(doc.referrer || '');
+    var st = function(n){ var m = n.match(STATE); return m ? m[1] : 'success'; };
+    var strip = function(n){ return n.replace(STATE, ''); };
+    var w = doc.querySelector('.dr-window'), note = doc.querySelector('.dr-mapnote');
+    if (ref && ref !== here && strip(ref) === strip(here)) {
+      var tone = st(here);
+      if (tone === 'success' && st(ref) !== 'loading') tone = 'back';
+      if (w) { w.classList.add('dr-window--stay'); if (tone === 'error' || tone === 'success') w.classList.add('dr-window--arrive-' + tone); }
+      if (note && (tone === 'error' || tone === 'empty')) note.classList.add('dr-mapnote--arrive-' + tone);
+    } else if (w && win.sessionStorage.getItem('dr-from') === 'end') {
+      w.classList.add('dr-window--from-end');
+    }
+    win.sessionStorage.removeItem('dr-from');
+    doc.addEventListener('click', function(e){ if (e.target.closest('.dr-deskrail--end a[href]')) win.sessionStorage.setItem('dr-from', 'end'); }, true);
+    var box = doc.querySelector('#content [role="status"]');
+    if (box && box.classList.contains('dr-center')) new win.MutationObserver(function(){
+      if (/confirmed/i.test(box.getAttribute('aria-label') || '')) box.classList.add('dr-center--arrive');
+    }).observe(box, {attributes: true});
+  }
+  function inject(f){
+    var doc = f.contentDocument, win = f.contentWindow;
+    if (!doc || !doc.head || doc.__tone || win.location.href === 'about:blank') return false;
+    doc.__tone = true;
+    var s = doc.createElement('style'); s.textContent = CSS + (document.getElementById('slow').checked ? SLOW : ''); doc.head.appendChild(s);
+    if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', function(){ behave(doc, win); }); else behave(doc, win);
+    return true;
+  }
+  function watch(f){ var t = setInterval(function(){ try { if (inject(f)) clearInterval(t); } catch(e){} }, 4); setTimeout(function(){ clearInterval(t); }, 5000); }
+
+  function crop(host, src, x, y, w, h, isNew){
+    var col = document.createElement('div'); col.className = 'col' + (isNew ? ' new' : '');
+    col.innerHTML = '<p class="tag">' + (isNew ? 'Proposed' : 'As built') + '</p>';
+    var box = document.createElement('div'); box.className = 'crop';
+    var f = document.createElement('iframe'); f.width = VW; f.height = VH; f.title = (isNew ? 'Proposed: ' : 'As built: ') + src;
+    box.appendChild(f); col.appendChild(box); host.appendChild(col);
+    function fit(){ var s = box.clientWidth / w; box.style.height = (h * s) + 'px'; f.style.transform = 'scale(' + s + ')'; f.style.left = (-x * s) + 'px'; f.style.top = (-y * s) + 'px'; }
+    if (isNew) { f.addEventListener('load', function(){ inject(f); }); }
+    f.src = BASE + src; if (isNew) watch(f);
+    requestAnimationFrame(fit); addEventListener('resize', fit);
+    return f;
+  }
+  /* a real click inside the frame, so the next page's referrer is this one */
+  function click(f, href, isNew){ var d = f.contentDocument, a = d.createElement('a'); a.href = href; d.body.appendChild(a); a.click(); if (isNew) watch(f); }
+
+  fetch('_proposed-state-tone.css').then(function(r){ return r.text(); }).then(function(t){
+    CSS = t;
+    document.querySelectorAll('[data-row]').forEach(function(host){
+      var n = host.dataset.crop.split('|').map(Number);
+      rows[host.dataset.row] = {src: host.dataset.src, to: host.dataset.to,
+        now: crop(host, host.dataset.src, n[0], n[1], n[2], n[3], false),
+        neu: crop(host, host.dataset.src, n[0], n[1], n[2], n[3], true)};
+    });
+  });
+  document.querySelectorAll('[data-go]').forEach(function(b){ b.addEventListener('click', function(){ var r = rows[b.dataset.go]; click(r.now, r.to, false); click(r.neu, r.to, true); }); });
+  document.querySelectorAll('[data-reset]').forEach(function(b){ b.addEventListener('click', function(){ var r = rows[b.dataset.reset]; r.now.src = BASE + r.src; r.neu.src = BASE + r.src; watch(r.neu); }); });
+  document.querySelector('[data-rail]').addEventListener('click', function(){
+    var r = rows.rail;
+    [r.now, r.neu].forEach(function(f){ var a = f.contentDocument.querySelector('.dr-deskrail--end a[href="job-checklist.html"]'); if (a) { a.click(); } });
+    watch(r.neu);
+  });
+  document.getElementById('slow').addEventListener('change', function(){
+    document.querySelectorAll('.col.new iframe').forEach(function(f){ f.contentWindow.location.reload(); watch(f); });
+  });
+}());
+</script>
+</body>
+</html>
