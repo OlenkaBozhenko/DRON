@@ -175,7 +175,7 @@ The phone never draws it: every rule here matches only inside `.dr-desk`, the fr
         <li>
           <article class="dr-card dr-review">
             <span class="dr-review__mark" aria-hidden="true">“</span>
-            <blockquote class="dr-review__text"><p>Fast and careful — package arrived sealed and on time.</p></blockquote>
+            <blockquote class="dr-review__text"><p>Fast and careful. Package arrived sealed and on time.</p></blockquote>
             <footer class="dr-review__foot">
               <span class="dr-review__mono" aria-hidden="true">OH</span>
               <span class="dr-review__who"><span class="dr-review__name">Olena H.</span><span class="dr-review__meta">Package delivery · Today</span></span>

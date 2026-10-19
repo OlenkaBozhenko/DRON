@@ -56,15 +56,15 @@ kit: 3391
         <div class="dr-rows">
       <div class="dr-field">
           <label class="dr-field__label" for="pk--s14">Pickup address:</label>
-          <span class="dr-field__group"><input class="dr-field__input" id="pk--s14" value="Podil — Naberezhno-Khreshchatytska St, 21"></span>
+          <span class="dr-field__group"><input class="dr-field__input" id="pk--s14" value="Podil, Naberezhno-Khreshchatytska St, 21"></span>
         </div>
         <div class="dr-field">
           <label class="dr-field__label" for="dp--s14">Drop-off address:</label>
-          <span class="dr-field__group"><input class="dr-field__input" id="dp--s14" value="Osokorky — Dniprovska Naberezhna, 14"></span>
+          <span class="dr-field__group"><input class="dr-field__input" id="dp--s14" value="Osokorky, Dniprovska Naberezhna, 14"></span>
         </div>
         <button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="sheet-size--s14">
           <span class="dr-field__label">Parcel size</span>
-          <span class="dr-field__value">Small — up to 2 kg</span>
+          <span class="dr-field__value">Small, up to 2 kg</span>
           <span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
         </button>
         <div class="dr-field dr-field--area dr-field--area6">
@@ -183,13 +183,13 @@ A window without a head stays centred in its height (`delivery`: the fact, the p
       <div class="dr-cols">
         <div class="dr-col">
           <section aria-label="Cover photo">
-            <span class="dr-well dr-well--photo dr-photo"><img src="../../assets/scenes/thumbs/inspection-field-split.jpg" alt="A sunflower field split in two — the west half in full bloom, the east half dried out — the subject of this report" decoding="async"></span>
+            <span class="dr-well dr-well--photo dr-photo"><img src="../../assets/scenes/thumbs/inspection-field-split.jpg" alt="A sunflower field split in two, the west half in full bloom and the east half dried out: the subject of this report" decoding="async"></span>
           </section>
           <section aria-label="Inspection photos">
             <div class="dr-shots dr-shots--small">
-            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/inspection-field-drought.jpg" alt="Evidence 1 of 3 — the east half from above: withered plants and cracked dry soil, with the healthy rows at the edge" loading="lazy" decoding="async"></span>
-            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/inspection-field-livestock.jpg" alt="Evidence 2 of 3 — cows and horses in the north edge of the field, the plants around them trampled flat" loading="lazy" decoding="async"></span>
-            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/inspection-field-healthy.jpg" alt="Evidence 3 of 3 — the west half: healthy sunflowers in full bloom" loading="lazy" decoding="async"></span>
+            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/inspection-field-drought.jpg" alt="Evidence 1 of 3. The east half from above: withered plants and cracked dry soil, with the healthy rows at the edge" loading="lazy" decoding="async"></span>
+            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/inspection-field-livestock.jpg" alt="Evidence 2 of 3: cows and horses in the north edge of the field, the plants around them trampled flat" loading="lazy" decoding="async"></span>
+            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/inspection-field-healthy.jpg" alt="Evidence 3 of 3. The west half: healthy sunflowers in full bloom" loading="lazy" decoding="async"></span>
           </div>
           </section>
         </div>
@@ -209,7 +209,7 @@ A window without a head stays centred in its height (`delivery`: the fact, the p
               <article class="dr-card dr-card--row dr-listing">
                 <span class="dr-listing__body">
                   <span class="dr-listing__name">Livestock · north edge</span>
-                  <span class="dr-listing__desc">Cows and horses got in — ~1.5 ha trampled flat.</span>
+                  <span class="dr-listing__desc">Cows and horses got in: ~1.5 ha trampled flat.</span>
                   <span class="dr-listing__meta"><span class="dr-chip">Severity · Medium</span></span>
                 </span>
               </article>
@@ -218,7 +218,7 @@ A window without a head stays centred in its height (`delivery`: the fact, the p
               <article class="dr-card dr-card--row dr-listing">
                 <span class="dr-listing__body">
                   <span class="dr-listing__name">Sunflowers · west half</span>
-                  <span class="dr-listing__desc">In full bloom — no action needed.</span>
+                  <span class="dr-listing__desc">In full bloom. No action needed.</span>
                   <span class="dr-listing__meta"><span class="dr-chip">Severity · None</span></span>
                 </span>
               </article>

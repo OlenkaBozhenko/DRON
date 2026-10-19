@@ -104,14 +104,14 @@ Checked against the standards: the back is 48 × 48 (`HIG · 44pt target`, +4; `
     <div class="dr-scroll">
       <section class="dr-stack" aria-label="Sign up">
         <p class="dr-display">Confirm your identity</p>
-        <p class="dr-lead">DRON verifies every operator. Confirm who you are with Diia or BankID — then add your licence and insurance.</p>
+        <p class="dr-lead">DRON verifies every operator. Confirm who you are with Diia or BankID, then add your licence and insurance.</p>
         <p class="dr-note dr-note--flush">Diia and BankID confirm who you are. DRON never sees your password.</p>
       </section>
     </div>
     <div class="dr-foot"><div class="dr-acts">
       <a class="dr-btn dr-btn--primary dr-btn--block" href="../../wireframes/desktop/operator-signup-loading.html">Continue with Diia</a>
       <a class="dr-btn dr-btn--secondary dr-btn--block" href="../../wireframes/desktop/operator-signup-loading.html">Continue with BankID</a>
-      <p class="dr-note">Secure national ID — your data stays with the provider.</p>
+      <p class="dr-note">Secure national ID. Your data stays with the provider.</p>
     </div></div>
   </main>
 </div>

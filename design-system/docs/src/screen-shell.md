@@ -59,7 +59,7 @@ A tab root carries the brand at the leading edge and the screen's title centred,
   <main class="dr-main">
     <p class="zlabel dr-label">Cover <span class="dr-label__act">▸ hero shot (RJ-C4)</span></p>
     <section aria-label="Cover photo">
-      <span class="dr-well dr-well--photo" style="width:100%;height:200px;"><img src="../assets/scenes/thumbs/inspection-field-split.jpg" alt="A sunflower field split in two — the west half in full bloom, the east half dried out — the subject of this report" loading="lazy" decoding="async"></span>
+      <span class="dr-well dr-well--photo" style="width:100%;height:200px;"><img src="../assets/scenes/thumbs/inspection-field-split.jpg" alt="A sunflower field split in two, the west half in full bloom and the east half dried out: the subject of this report" loading="lazy" decoding="async"></span>
     </section>
   </main>
   <footer class="dr-actionbar">

@@ -29,7 +29,7 @@ Copied from the *Package delivery* offer on `operator-listings`.
 
 ```html
 <span class="dr-card__actions" style="width:303px;max-width:100%">
-  <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details.html" aria-label="View details &#8212; Package delivery, today at 10:07">View details</a>
+  <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details.html" aria-label="View details, Package delivery, today at 10:07">View details</a>
 </span>
 ```
 
@@ -70,7 +70,7 @@ Sources: inventory.md § 1 (Card action slot) · DESIGN.md § Cards · § The in
     <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;180</span></span>
   </span>
   <span class="dr-card__actions">
-    <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details.html" aria-label="View details &#8212; Package delivery, today at 10:07">View details</a>
+    <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details.html" aria-label="View details, Package delivery, today at 10:07">View details</a>
   </span>
 </article>
 ```

@@ -74,7 +74,7 @@ Gap 28, the one step above any gap inside a card. For a list that is the screen:
     <article class="dr-card dr-card--row dr-listing">
       <div class="dr-listing__body">
         <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
-        <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
+        <p class="dr-listing__desc">“Fast and careful. Package arrived sealed and on time.”</p>
         <span class="dr-listing__meta"><span class="dr-chip">Package delivery</span><span class="dr-chip">Today</span></span>
       </div>
     </article>
@@ -117,7 +117,7 @@ Sources: DESIGN.md § Layout (Two list rungs) · inventory.md § 1.3 (List conta
     <article class="dr-card dr-card--row dr-listing">
       <div class="dr-listing__body">
         <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
-        <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
+        <p class="dr-listing__desc">“Fast and careful. Package arrived sealed and on time.”</p>
         <span class="dr-listing__meta"><span class="dr-chip">Package delivery</span><span class="dr-chip">Today</span></span>
       </div>
     </article>

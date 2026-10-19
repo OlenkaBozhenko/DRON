@@ -13,7 +13,7 @@ kit: 666
 
 ```html
 <article class="dr-card" style="width:341px;max-width:100%">
-  <a class="dr-card__link" href="#" aria-label="Package delivery, in progress — view details"></a>
+  <a class="dr-card__link" href="#" aria-label="Package delivery, in progress, view details"></a>
     <span class="dr-order__top">
       <span class="dr-order__head">
         <span class="dr-order__title">Package delivery</span>
@@ -45,7 +45,7 @@ kit: 666
 </article>
 ```
 
-- `.dr-card__link` — An empty link stretched over the whole card (`inset: 0`, z-index 1), named for the order: *Package delivery, in progress — view details*. The buttons stand above it at z-index 2.
+- `.dr-card__link` — An empty link stretched over the whole card (`inset: 0`, z-index 1), named for the order: *Package delivery, in progress, view details*. The buttons stand above it at z-index 2.
 - `.dr-order__head` — The name over the date, first in the DOM. Title 15/600 in `--text-primary`; date in the meta step, `--text-muted`, ellipsised on one line.
 - `.dr-well` — The drone doing the job, a 96 × 96 cutout with no ground, closing the row on the right.
 - `.dr-status` — The status indicator: a 20px disc on the well's top-right corner with a 2px card-coloured cutout ring.
@@ -60,7 +60,7 @@ kit: 666
 
 ```html
 <article class="dr-card" style="width:341px;max-width:100%">
-  <a class="dr-card__link" href="#" aria-label="Package delivery, in progress — view details"></a>
+  <a class="dr-card__link" href="#" aria-label="Package delivery, in progress, view details"></a>
     <span class="dr-order__top">
       <span class="dr-order__head">
         <span class="dr-order__title">Package delivery</span>
@@ -98,7 +98,7 @@ An order in progress: rail, ETA chip and the green CTA. It is the only card on t
 
 ```html
 <article class="dr-card" style="width:341px;max-width:100%">
-  <a class="dr-card__link" href="#" aria-label="Package delivery, 28 Jun 2026, delivered — open order"></a>
+  <a class="dr-card__link" href="#" aria-label="Package delivery, 28 Jun 2026, delivered, open order"></a>
     <span class="dr-order__top">
       <span class="dr-order__head">
         <span class="dr-order__title">Package delivery</span>
@@ -147,7 +147,7 @@ From-stop left, To-stop right-aligned. The direction chip is neutral, not green:
 
 ```html
 <article class="dr-card" style="width:341px;max-width:100%">
-  <a class="dr-card__link" href="#" aria-label="Package delivery, in progress — view details"></a>
+  <a class="dr-card__link" href="#" aria-label="Package delivery, in progress, view details"></a>
     <span class="dr-order__top">
       <span class="dr-order__head">
         <span class="dr-order__title">Package delivery</span>
@@ -179,7 +179,7 @@ Sources: DESIGN.md § Cards · § Inset strip · § Status indicator · inventor
 <ul class="dr-list" style="width:341px;max-width:100%">
   <li>
     <article class="dr-card">
-      <a class="dr-card__link" href="#" aria-label="Package delivery, in progress — view details"></a>
+      <a class="dr-card__link" href="#" aria-label="Package delivery, in progress, view details"></a>
         <span class="dr-order__top">
           <span class="dr-order__head">
             <span class="dr-order__title">Package delivery</span>
@@ -212,7 +212,7 @@ Sources: DESIGN.md § Cards · § Inset strip · § Status indicator · inventor
   </li>
   <li>
     <article class="dr-card">
-      <a class="dr-card__link" href="#" aria-label="Package delivery, 28 Jun 2026, delivered — open order"></a>
+      <a class="dr-card__link" href="#" aria-label="Package delivery, 28 Jun 2026, delivered, open order"></a>
         <span class="dr-order__top">
           <span class="dr-order__head">
             <span class="dr-order__title">Package delivery</span>

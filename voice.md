@@ -168,6 +168,20 @@ Each row: the pattern we ban, and a real fix. "Was" quotes come from our own `mi
 | the word **"successfully"** / «успішно» | ~~"Payment completed successfully!"~~ → **"Payment received. ₴180 charged to Visa ···· 4921."** (a fact is proof; "successfully" adds nothing) |
 | "How was it?" and other cute prompts | ~~"How was it?"~~ *(rate)* → **"Rate this order."** |
 
+### The long dash (—)
+
+The designer, 2026-10-19: «оці тире видають текст написаний AI … не використовувати це довге тире». A long dash in the middle of a sentence reads as machine-written copy. **Product copy carries no em dash (—).** Write the sentence so it does not need one:
+
+| Instead of the dash | Write | Example |
+|---|---|---|
+| a second thought joined on | a full stop, two sentences | ~~"Secure national ID — your data stays with the provider."~~ → **"Secure national ID. Your data stays with the provider."** |
+| the next step in one sentence | a comma, or *and* / *then* | ~~"Confirm who you are with Diia or BankID — then add your licence"~~ → **"Confirm who you are with Diia or BankID, then add your licence"** |
+| a list or an explanation follows | a colon | ~~"Pick another day — Fri 4 and Sat 5 still have openings."~~ → **"Pick another day: Fri 4 and Sat 5 still have openings."** |
+| a name and its detail in one label | a comma | ~~"Small — up to 2 kg"~~ → **"Small, up to 2 kg"** · ~~"Podil — Naberezhno-Khreshchatytska St, 21"~~ → **"Podil, Naberezhno-Khreshchatytska St, 21"** |
+| an accessible name and its action | a comma | ~~"Inspection job — open brief"~~ → **"Inspection job, open brief"** |
+
+A range stays the short en dash with no spaces (*2–3 business days*, *10:00–12:00*); that is a number range, not a dash in a sentence. In Ukrainian copy the same holds: rewrite with a full stop, a comma or a colon (*«Перевір особу через Дію або BankID, потім додай ліцензію»*).
+
 **One line to remember:** if a string cheers, hedges, or decorates, it is hiding the absence of a fact. Delete it and state the fact.
 
 ---

@@ -55,14 +55,14 @@ A picker row is a form row whose value is chosen, not typed. Where the list appe
 
 The drawer keeps the modal contract. Everything behind it is `inert`, Tab cycles inside it, and it closes three ways: Esc, the scrim, and *Cancel*, which `HIG · Action sheets` asks for by name. Each returns focus to the row, which by then shows the new value. An option is a `<button>` when it sets a value and an `<a>` when it is a route, like the mode picker's options.
 
-The label is the dictionary noun for what is being set, and the value is the option's own words, so the row reads as a sentence: *Parcel size* · *Small — up to 2 kg*.
+The label is the dictionary noun for what is being set, and the value is the option's own words, so the row reads as a sentence: *Parcel size* · *Small, up to 2 kg*.
 
 Sources: DESIGN.md § The picker row — a form row whose value is chosen, not typed · inventory.md § 1.5 · voice.md P4
 
 ## Rule
 
 ```html
-<div class="dr-rows" style="width:341px;max-width:100%"><div class="dr-field"><label class="dr-field__label" for="pr-pk">Pickup address:</label><span class="dr-field__group"><input class="dr-field__input" id="pr-pk" value="Podil — Naberezhno-Khreshchatytska St, 21"></span></div><div class="dr-field"><label class="dr-field__label" for="pr-dp">Drop-off address:</label><span class="dr-field__group"><input class="dr-field__input" id="pr-dp" value="Osokorky — Dniprovska Naberezhna, 14"></span></div><button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="pr-sheet-size"><span class="dr-field__label">Parcel size</span><span class="dr-field__value">Small — up to 2 kg</span><span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span></button></div>
+<div class="dr-rows" style="width:341px;max-width:100%"><div class="dr-field"><label class="dr-field__label" for="pr-pk">Pickup address:</label><span class="dr-field__group"><input class="dr-field__input" id="pr-pk" value="Podil, Naberezhno-Khreshchatytska St, 21"></span></div><div class="dr-field"><label class="dr-field__label" for="pr-dp">Drop-off address:</label><span class="dr-field__group"><input class="dr-field__input" id="pr-dp" value="Osokorky, Dniprovska Naberezhna, 14"></span></div><button class="dr-field dr-field--action" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="pr-sheet-size"><span class="dr-field__label">Parcel size</span><span class="dr-field__value">Small, up to 2 kg</span><span class="dr-field__chev"><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span></button></div>
 ```
 
 `order-setup`'s parcel size: three fixed answers, so the row opens a drawer and the value is never typed. It shares a plain list with the two typed addresses.

@@ -65,7 +65,7 @@ One of the tabs on the desktop: the phone's [tab root](#tab-root) drawn as one p
                 <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;180</span></span>
               </span>
               <span class="dr-card__actions">
-                <a class="dr-btn dr-btn--secondary" href="../../wireframes/desktop/earning-details.html" aria-label="View details &#8212; Package delivery, today at 10:07">View details</a>
+                <a class="dr-btn dr-btn--secondary" href="../../wireframes/desktop/earning-details.html" aria-label="View details, Package delivery, today at 10:07">View details</a>
               </span>
             </article>
           </li>
@@ -79,7 +79,7 @@ One of the tabs on the desktop: the phone's [tab root](#tab-root) drawn as one p
                 <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;800</span></span>
               </span>
               <span class="dr-card__actions">
-                <a class="dr-btn dr-btn--secondary" href="../../wireframes/desktop/earning-details-aerial.html" aria-label="View details &#8212; Photo and video, today at 08:20">View details</a>
+                <a class="dr-btn dr-btn--secondary" href="../../wireframes/desktop/earning-details-aerial.html" aria-label="View details, Photo and video, today at 08:20">View details</a>
               </span>
             </article>
           </li>
@@ -93,7 +93,7 @@ One of the tabs on the desktop: the phone's [tab root](#tab-root) drawn as one p
                 <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;650</span></span>
               </span>
               <span class="dr-card__actions">
-                <a class="dr-btn dr-btn--secondary" href="../../wireframes/desktop/earning-details-inspection.html" aria-label="View details &#8212; Inspection, yesterday">View details</a>
+                <a class="dr-btn dr-btn--secondary" href="../../wireframes/desktop/earning-details-inspection.html" aria-label="View details, Inspection, yesterday">View details</a>
               </span>
             </article>
           </li>
@@ -171,7 +171,7 @@ Checked against the standards: the open tab is named by `aria-current` and by a 
         <li>
           <article class="dr-card dr-review">
             <span class="dr-review__mark" aria-hidden="true">“</span>
-            <blockquote class="dr-review__text"><p>Fast and careful — package arrived sealed and on time.</p></blockquote>
+            <blockquote class="dr-review__text"><p>Fast and careful. Package arrived sealed and on time.</p></blockquote>
             <footer class="dr-review__foot">
               <span class="dr-review__mono" aria-hidden="true">OH</span>
               <span class="dr-review__who"><span class="dr-review__name">Olena H.</span><span class="dr-review__meta">Package delivery · Today</span></span>

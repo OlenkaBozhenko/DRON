@@ -26,7 +26,7 @@ Records of one kind, one card each, under the zone label that names them.
               <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;180</span></span>
             </span>
             <span class="dr-card__actions">
-              <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details.html" aria-label="View details &#8212; Package delivery, today at 10:07">View details</a>
+              <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details.html" aria-label="View details, Package delivery, today at 10:07">View details</a>
             </span>
           </article>
         </li>
@@ -40,7 +40,7 @@ Records of one kind, one card each, under the zone label that names them.
               <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;800</span></span>
             </span>
             <span class="dr-card__actions">
-              <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details-aerial.html" aria-label="View details &#8212; Photo and video, today at 08:20">View details</a>
+              <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details-aerial.html" aria-label="View details, Photo and video, today at 08:20">View details</a>
             </span>
           </article>
         </li>
@@ -54,7 +54,7 @@ Records of one kind, one card each, under the zone label that names them.
               <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;650</span></span>
             </span>
             <span class="dr-card__actions">
-              <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details-inspection.html" aria-label="View details &#8212; Inspection, yesterday">View details</a>
+              <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details-inspection.html" aria-label="View details, Inspection, yesterday">View details</a>
             </span>
           </article>
         </li>

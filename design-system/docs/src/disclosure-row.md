@@ -12,7 +12,7 @@ kit: —
 ## Anatomy
 
 ```html
-<div class="dr-picker__list" style="width:341px;max-width:100%"><a class="dr-disclosure__item" href="#" aria-current="true">Client — order services<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a><a class="dr-disclosure__item" href="#">Operator — take jobs</a></div>
+<div class="dr-picker__list" style="width:341px;max-width:100%"><a class="dr-disclosure__item" href="#" aria-current="true">Client: order services<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a><a class="dr-disclosure__item" href="#">Operator: take jobs</a></div>
 ```
 
 - `.dr-disclosure__item` — One option: `min-height` 44, padding 0 16, gap 8, `--ink` at the heading step 15, 14.37:1 on the card. A hairline above every row but the first. Hover `--media`; the keyboard ring is 2.5px `--ink`, drawn inside.
@@ -27,7 +27,7 @@ No screen builds a disclosure row now, and `ui/kit.html` shows none, so no varia
 ## States
 
 ```html
-<div class="dr-picker__list" style="width:341px;max-width:100%"><a class="dr-disclosure__item" href="#" aria-current="true">Client — order services<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a><a class="dr-disclosure__item" href="#">Operator — take jobs</a></div>
+<div class="dr-picker__list" style="width:341px;max-width:100%"><a class="dr-disclosure__item" href="#" aria-current="true">Client: order services<svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a><a class="dr-disclosure__item" href="#">Operator: take jobs</a></div>
 ```
 
 The Anatomy specimen: no screen builds the row now.
@@ -38,7 +38,7 @@ The disclosure row is the option row of an in-flow list: a native `<details>` th
 
 Only the option row was ported into `components/`. The `<details>` container, its `<summary>` and the chevron that turns 180° on open are kept in the `ui/kit.css` archive. The first screen that needs an in-flow disclosure brings the container in, and this page follows.
 
-An option is named by its own value, *Client — order services*, *Operator — take jobs*, and the current one is marked by the checkmark, never by the word *current*.
+An option is named by its own value, *Client: order services*, *Operator: take jobs*, and the current one is marked by the checkmark, never by the word *current*.
 
 Sources: inventory.md § 1.5 (Disclosure row) · DESIGN.md § The picker row (options) · ui/kit.css (archive, `.dr-disclosure`) · wireframes/account.html, operator-account.html
 
@@ -46,8 +46,8 @@ Sources: inventory.md § 1.5 (Disclosure row) · DESIGN.md § The picker row (op
 
 ```html
 <div class="dr-picker__list" style="width:341px;max-width:100%">
-        <a class="dr-picker__item" href="#" aria-current="true"><span class="dr-picker__label">Client — order services</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
-        <a class="dr-picker__item" href="#"><span class="dr-picker__label">Operator — take jobs</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="#" aria-current="true"><span class="dr-picker__label">Client: order services</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
+        <a class="dr-picker__item" href="#"><span class="dr-picker__label">Operator: take jobs</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></a>
       </div>
 ```
 

@@ -7,6 +7,8 @@ _Every interface string across all 83 wireframe pages (`wireframes/*.html`), tra
 > Language: English, per the project rule that all repo files are written in English (`CLAUDE.md` › Content Rules). The UI copy itself is already English.
 
 
+> **No long dash (2026-10-19, rev 338).** The designer: «оці тире видають текст написаний AI». `voice.md` › *The long dash* now bans the em dash in product copy. **90 strings on the desktop twins and in the design system's specimens** (`docs/src/*`, `patterns/*`, `ui/kit.html` › Desktop) were rewritten with a full stop, a comma or a colon, e.g. *Secure national ID. Your data stays with the provider.* · *Small, up to 2 kg* · *Inspection job, open brief*. The phone pages are frozen and still carry the strings below as written; this table is their record until the designer lets the phone take the rule.
+
 ## Rewrite log — Batch 1: listings (base · empty · error · loading)
 
 First screens rewritten against `voice.md` (Step 02). **Text only — structure and markup unchanged.** Base `listings.html` was already voice-compliant, so its strings are kept. User content and wireframe placeholders are left as-is. The master table below still shows the pre-rewrite strings; it will be regenerated across all screens once this approach is approved.

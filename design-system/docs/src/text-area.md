@@ -66,7 +66,7 @@ Sources: DESIGN.md § Text areas, and the focus rule they changed · voice.md §
 ## Rule
 
 ```html
-<div class="dr-field dr-field--area dr-field--area6" style="width:341px;max-width:100%"><label class="dr-field__label" for="text-area-ds">What happened?</label><textarea class="dr-field__input" id="text-area-ds" placeholder="Describe the issue — e.g. the field photos were blurry and missed the east half."></textarea></div>
+<div class="dr-field dr-field--area dr-field--area6" style="width:341px;max-width:100%"><label class="dr-field__label" for="text-area-ds">What happened?</label><textarea class="dr-field__input" id="text-area-ds" placeholder="Describe the issue, e.g. the field photos were blurry and missed the east half."></textarea></div>
 ```
 
 `report-issue`'s description: a drawn question, six lines of room, and a placeholder that shows the kind of detail that settles a claim.

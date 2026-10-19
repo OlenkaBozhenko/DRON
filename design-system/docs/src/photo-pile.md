@@ -14,9 +14,9 @@ kit: 2568
 ```html
 <div style="width:220px;background:var(--bg-page);border-radius:var(--len-16);padding:4px">
   <div class="dr-stack">
-    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-crew.jpg" alt="Photo 1 of 3 — the crew head-on in white water, helmets up and both blades in the air." loading="lazy" decoding="async"></span>
-    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-drop.jpg" alt="Photo 2 of 3 — the raft airborne off the waterfall, the whole crew's arms raised." loading="lazy" decoding="async"></span>
-    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-overhead.jpg" alt="Photo 3 of 3 — the raft from directly overhead, running the rapid between wet rock and green water." loading="lazy" decoding="async"></span>
+    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-crew.jpg" alt="Photo 1 of 3: the crew head-on in white water, helmets up and both blades in the air." loading="lazy" decoding="async"></span>
+    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-drop.jpg" alt="Photo 2 of 3: the raft airborne off the waterfall, the whole crew's arms raised." loading="lazy" decoding="async"></span>
+    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-overhead.jpg" alt="Photo 3 of 3: the raft from directly overhead, running the rapid between wet rock and green water." loading="lazy" decoding="async"></span>
   </div>
 </div>
 ```
@@ -34,9 +34,9 @@ kit: 2568
 ```html
 <div style="width:220px;background:var(--bg-page);border-radius:var(--len-16);padding:4px">
   <div class="dr-stack">
-    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-crew.jpg" alt="Photo 1 of 3 — the crew head-on in white water, helmets up and both blades in the air." loading="lazy" decoding="async"></span>
-    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-drop.jpg" alt="Photo 2 of 3 — the raft airborne off the waterfall, the whole crew's arms raised." loading="lazy" decoding="async"></span>
-    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-overhead.jpg" alt="Photo 3 of 3 — the raft from directly overhead, running the rapid between wet rock and green water." loading="lazy" decoding="async"></span>
+    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-crew.jpg" alt="Photo 1 of 3: the crew head-on in white water, helmets up and both blades in the air." loading="lazy" decoding="async"></span>
+    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-drop.jpg" alt="Photo 2 of 3: the raft airborne off the waterfall, the whole crew's arms raised." loading="lazy" decoding="async"></span>
+    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-overhead.jpg" alt="Photo 3 of 3: the raft from directly overhead, running the rapid between wet rock and green water." loading="lazy" decoding="async"></span>
   </div>
 </div>
 ```
@@ -62,9 +62,9 @@ Sources: DESIGN.md § The photo pile · kit.html Photo pile · § Imagery
 ```html
 <div style="width:220px;background:var(--bg-page);border-radius:var(--len-16);padding:4px">
   <div class="dr-stack">
-    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-crew.jpg" alt="Photo 1 of 3 — the crew head-on in white water, helmets up and both blades in the air." loading="lazy" decoding="async"></span>
-    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-drop.jpg" alt="Photo 2 of 3 — the raft airborne off the waterfall, the whole crew's arms raised." loading="lazy" decoding="async"></span>
-    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-overhead.jpg" alt="Photo 3 of 3 — the raft from directly overhead, running the rapid between wet rock and green water." loading="lazy" decoding="async"></span>
+    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-crew.jpg" alt="Photo 1 of 3: the crew head-on in white water, helmets up and both blades in the air." loading="lazy" decoding="async"></span>
+    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-drop.jpg" alt="Photo 2 of 3: the raft airborne off the waterfall, the whole crew's arms raised." loading="lazy" decoding="async"></span>
+    <span class="dr-stack__shot"><img src="../assets/scenes/thumbs/aerial-rafting-overhead.jpg" alt="Photo 3 of 3: the raft from directly overhead, running the rapid between wet rock and green water." loading="lazy" decoding="async"></span>
   </div>
 </div>
 ```

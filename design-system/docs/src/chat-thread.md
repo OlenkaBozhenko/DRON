@@ -16,7 +16,7 @@ kit: 831
   <p class="dr-note">Today</p>
   <ul class="dr-list dr-list--snug" aria-label="Messages">
     <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Andriy M.:</span>Your parcel is picked up from Podil, 21. On the way to Osokorky, 14.<time class="dr-bubble__time" datetime="2026-08-16T09:32">9:32</time></li>
-    <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>The courtyard gate is locked — the code is 4471.<time class="dr-bubble__time" datetime="2026-08-16T09:34">9:34</time></li>
+    <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>The courtyard gate is locked. The code is 4471.<time class="dr-bubble__time" datetime="2026-08-16T09:34">9:34</time></li>
     <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Andriy M.:</span>Got it. I'll land at the entrance and send the delivery photo.<time class="dr-bubble__time" datetime="2026-08-16T09:35">9:35</time></li>
   </ul>
 </section>
@@ -78,7 +78,7 @@ Sources: DESIGN.md § Message bubble and thread · inventory.md § 1 Message thr
 <section class="dr-stack dr-thread" aria-label="Thread" style="width:341px;max-width:100%">
   <p class="dr-note">Today</p>
   <ul class="dr-list dr-list--snug" aria-label="Messages">
-    <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>The courtyard gate is locked — the code is 4471.<time class="dr-bubble__time" datetime="2026-08-16T09:34">9:34</time></li>
+    <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>The courtyard gate is locked. The code is 4471.<time class="dr-bubble__time" datetime="2026-08-16T09:34">9:34</time></li>
     <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Andriy M.:</span>Got it. I'll land at the entrance and send the delivery photo.<time class="dr-bubble__time" datetime="2026-08-16T09:35">9:35</time></li>
   </ul>
 </section>

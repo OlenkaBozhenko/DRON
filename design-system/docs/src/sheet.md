@@ -43,9 +43,9 @@ kit: 990
   <span class="dr-sheet__grip" aria-hidden="true"></span>
   <p class="dr-sheet__title" id="doc-p-sheet-size-title">Parcel size</p>
   <div class="dr-picker__list">
-    <button class="dr-picker__item" type="button" aria-current="true"><span class="dr-picker__label">Small — up to 2 kg</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
-    <button class="dr-picker__item" type="button"><span class="dr-picker__label">Medium — up to 5 kg</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
-    <button class="dr-picker__item" type="button"><span class="dr-picker__label">Large — up to 10 kg</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+    <button class="dr-picker__item" type="button" aria-current="true"><span class="dr-picker__label">Small, up to 2 kg</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+    <button class="dr-picker__item" type="button"><span class="dr-picker__label">Medium, up to 5 kg</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+    <button class="dr-picker__item" type="button"><span class="dr-picker__label">Large, up to 10 kg</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
   </div>
   <button class="dr-btn dr-btn--secondary dr-btn--block" type="button">Cancel</button>
 </section>
@@ -113,7 +113,7 @@ Sources: DESIGN.md § Action sheet · § The picker row · § Elevation & Depth 
   <span class="dr-sheet__grip" aria-hidden="true"></span>
   <p class="dr-sheet__title" id="doc-r-sheet-issue-title">Issue type</p>
   <div class="dr-picker__list">
-    <button class="dr-picker__item" type="button" aria-current="true"><span class="dr-picker__label">Poor quality — not as expected</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
+    <button class="dr-picker__item" type="button" aria-current="true"><span class="dr-picker__label">Poor quality: not as expected</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
     <button class="dr-picker__item" type="button"><span class="dr-picker__label">Damaged item</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
     <button class="dr-picker__item" type="button"><span class="dr-picker__label">Wrong location</span><svg class="dr-ic dr-ic--16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 6"/></svg></button>
   </div>

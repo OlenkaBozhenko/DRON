@@ -44,7 +44,7 @@ The markup is `job-offer`'s. Every row card also carries `dr-listing`, as on the
                 <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;180</span></span>
               </span>
               <span class="dr-card__actions">
-                <a class="dr-btn dr-btn--secondary" href="#" aria-label="View details &#8212; Package delivery, today at 10:07">View details</a>
+                <a class="dr-btn dr-btn--secondary" href="#" aria-label="View details, Package delivery, today at 10:07">View details</a>
               </span>
             </article>
 ```
@@ -72,7 +72,7 @@ A column: inset 24 / 20, 20 between groups. Its parts are the [card row](card-ro
 <article class="dr-card dr-card--row dr-listing" style="width:341px;max-width:100%">
               <div class="dr-listing__body">
                 <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
-                <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
+                <p class="dr-listing__desc">“Fast and careful. Package arrived sealed and on time.”</p>
                 <span class="dr-listing__meta"><span class="dr-chip">Package delivery</span><span class="dr-chip">Today</span></span>
               </div>
             </article>
@@ -108,7 +108,7 @@ Sources: DESIGN.md § Cards · § Do's and Don'ts · inventory.md § 1.3 (Card, 
 <ul class="dr-list dr-list--snug" style="width:341px;max-width:100%"><li><article class="dr-card dr-card--row dr-listing">
               <div class="dr-listing__body">
                 <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
-                <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
+                <p class="dr-listing__desc">“Fast and careful. Package arrived sealed and on time.”</p>
                 <span class="dr-listing__meta"><span class="dr-chip">Package delivery</span><span class="dr-chip">Today</span></span>
               </div>
             </article></li><li><article class="dr-card dr-card--row dr-listing">

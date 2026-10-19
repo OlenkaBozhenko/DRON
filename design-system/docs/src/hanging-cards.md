@@ -22,7 +22,7 @@ kit: 3546
         <ul class="dr-list">
           <li>
             <article class="dr-card">
-              <a class="dr-card__link" href="../../wireframes/desktop/tracking.html" aria-label="Package delivery, in progress — view details"></a>
+              <a class="dr-card__link" href="../../wireframes/desktop/tracking.html" aria-label="Package delivery, in progress, view details"></a>
                 <span class="dr-order__top">
                   <span class="dr-order__head">
                     <span class="dr-order__title">Package delivery</span>
@@ -55,7 +55,7 @@ kit: 3546
           </li>
           <li>
             <article class="dr-card">
-              <a class="dr-card__link" href="../../wireframes/desktop/order-details.html" aria-label="Package delivery, 28 Jun 2026, delivered — open order"></a>
+              <a class="dr-card__link" href="../../wireframes/desktop/order-details.html" aria-label="Package delivery, 28 Jun 2026, delivered, open order"></a>
                 <span class="dr-order__top">
                   <span class="dr-order__head">
                     <span class="dr-order__title">Package delivery</span>
@@ -79,7 +79,7 @@ kit: 3546
           </li>
           <li>
             <article class="dr-card">
-              <a class="dr-card__link" href="../../wireframes/desktop/order-details-aerial.html" aria-label="Photo and video, 14 Jun 2026, delivered — open order"></a>
+              <a class="dr-card__link" href="../../wireframes/desktop/order-details-aerial.html" aria-label="Photo and video, 14 Jun 2026, delivered, open order"></a>
                 <span class="dr-order__top">
                   <span class="dr-order__head">
                     <span class="dr-order__title">Photo &amp; video</span>
@@ -101,7 +101,7 @@ kit: 3546
           </li>
           <li>
             <article class="dr-card">
-              <a class="dr-card__link" href="../../wireframes/desktop/order-details-inspection.html" aria-label="Inspection, 2 Jun 2026, delivered — open order"></a>
+              <a class="dr-card__link" href="../../wireframes/desktop/order-details-inspection.html" aria-label="Inspection, 2 Jun 2026, delivered, open order"></a>
                 <span class="dr-order__top">
                   <span class="dr-order__head">
                     <span class="dr-order__title">Inspection</span>
@@ -159,7 +159,7 @@ The phone never draws it: every rule here matches only inside `.dr-desk`, the fr
       <ul class="dr-list dr-list--snug">
         <li>
           <article class="dr-card">
-            <a class="dr-card__link" href="../../wireframes/desktop/job-offer.html" aria-label="Package delivery job — open brief"></a>
+            <a class="dr-card__link" href="../../wireframes/desktop/job-offer.html" aria-label="Package delivery job, open brief"></a>
             <span class="dr-order__top">
               <span class="dr-order__head">
                 <span class="dr-order__title">Package delivery</span>
@@ -184,7 +184,7 @@ The phone never draws it: every rule here matches only inside `.dr-desk`, the fr
         </li>
         <li>
           <article class="dr-card">
-            <a class="dr-card__link" href="../../wireframes/desktop/job-offer-inspection.html" aria-label="Inspection job — open brief"></a>
+            <a class="dr-card__link" href="../../wireframes/desktop/job-offer-inspection.html" aria-label="Inspection job, open brief"></a>
             <span class="dr-order__top">
               <span class="dr-order__head">
                 <span class="dr-order__title">Inspection</span>
@@ -214,7 +214,7 @@ The phone never draws it: every rule here matches only inside `.dr-desk`, the fr
       <ul class="dr-list dr-list--snug">
         <li>
           <article class="dr-card">
-            <a class="dr-card__link" href="../../wireframes/desktop/job-brief-aerial.html" aria-label="Photo and video — open job"></a>
+            <a class="dr-card__link" href="../../wireframes/desktop/job-brief-aerial.html" aria-label="Photo and video, open job"></a>
             <span class="dr-order__top">
               <span class="dr-order__head">
                 <span class="dr-order__title">Photo &amp; video</span>

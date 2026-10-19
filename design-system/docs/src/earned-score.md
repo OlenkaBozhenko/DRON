@@ -15,7 +15,7 @@ kit: 2019
 <article class="dr-card dr-card--row dr-listing" style="width:341px;max-width:100%">
   <div class="dr-listing__body">
     <span class="dr-listing__name">Olena H.<span class="dr-listing__score">· 5.0</span></span>
-    <p class="dr-listing__desc">“Fast and careful — package arrived sealed and on time.”</p>
+    <p class="dr-listing__desc">“Fast and careful. Package arrived sealed and on time.”</p>
     <span class="dr-listing__meta"><span class="dr-chip">Package delivery</span><span class="dr-chip">Today</span></span>
   </div>
 </article>

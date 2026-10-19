@@ -59,9 +59,9 @@ The phone never draws it: every rule here matches only inside `.dr-desk`, the fr
       <div class="dr-fact"><span class="dr-mark dr-mark--milestone" aria-hidden="true"><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><h1 class="dr-window__title">Done</h1></div>
       <section aria-label="Photo and video set">
         <div class="dr-shots">
-            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/aerial-rafting-crew.jpg" alt="Photo 1 of 3 — the crew head-on in white water, helmets up and both blades in the air." loading="lazy" decoding="async"></span>
-            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/aerial-rafting-drop.jpg" alt="Photo 2 of 3 — the raft airborne off the waterfall, the whole crew's arms raised." loading="lazy" decoding="async"></span>
-            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/aerial-rafting-overhead.jpg" alt="Photo 3 of 3 — the raft from directly overhead, running the rapid between wet rock and green water." loading="lazy" decoding="async"></span>
+            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/aerial-rafting-crew.jpg" alt="Photo 1 of 3: the crew head-on in white water, helmets up and both blades in the air." loading="lazy" decoding="async"></span>
+            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/aerial-rafting-drop.jpg" alt="Photo 2 of 3: the raft airborne off the waterfall, the whole crew's arms raised." loading="lazy" decoding="async"></span>
+            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/aerial-rafting-overhead.jpg" alt="Photo 3 of 3: the raft from directly overhead, running the rapid between wet rock and green water." loading="lazy" decoding="async"></span>
           </div>
       </section>
       <div class="dr-rows" aria-label="Shoot details">
@@ -92,13 +92,13 @@ The phone never draws it: every rule here matches only inside `.dr-desk`, the fr
       <div class="dr-cols">
         <div class="dr-col">
           <section aria-label="Cover photo">
-            <span class="dr-well dr-well--photo dr-photo"><img src="../../assets/scenes/thumbs/inspection-field-split.jpg" alt="A sunflower field split in two — the west half in full bloom, the east half dried out — the subject of this report" decoding="async"></span>
+            <span class="dr-well dr-well--photo dr-photo"><img src="../../assets/scenes/thumbs/inspection-field-split.jpg" alt="A sunflower field split in two, the west half in full bloom and the east half dried out: the subject of this report" decoding="async"></span>
           </section>
           <section aria-label="Inspection photos">
             <div class="dr-shots dr-shots--small">
-            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/inspection-field-drought.jpg" alt="Evidence 1 of 3 — the east half from above: withered plants and cracked dry soil, with the healthy rows at the edge" loading="lazy" decoding="async"></span>
-            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/inspection-field-livestock.jpg" alt="Evidence 2 of 3 — cows and horses in the north edge of the field, the plants around them trampled flat" loading="lazy" decoding="async"></span>
-            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/inspection-field-healthy.jpg" alt="Evidence 3 of 3 — the west half: healthy sunflowers in full bloom" loading="lazy" decoding="async"></span>
+            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/inspection-field-drought.jpg" alt="Evidence 1 of 3. The east half from above: withered plants and cracked dry soil, with the healthy rows at the edge" loading="lazy" decoding="async"></span>
+            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/inspection-field-livestock.jpg" alt="Evidence 2 of 3: cows and horses in the north edge of the field, the plants around them trampled flat" loading="lazy" decoding="async"></span>
+            <span class="dr-well dr-well--photo"><img src="../../assets/scenes/thumbs/inspection-field-healthy.jpg" alt="Evidence 3 of 3. The west half: healthy sunflowers in full bloom" loading="lazy" decoding="async"></span>
           </div>
           </section>
         </div>
@@ -118,7 +118,7 @@ The phone never draws it: every rule here matches only inside `.dr-desk`, the fr
               <article class="dr-card dr-card--row dr-listing">
                 <span class="dr-listing__body">
                   <span class="dr-listing__name">Livestock · north edge</span>
-                  <span class="dr-listing__desc">Cows and horses got in — ~1.5 ha trampled flat.</span>
+                  <span class="dr-listing__desc">Cows and horses got in: ~1.5 ha trampled flat.</span>
                   <span class="dr-listing__meta"><span class="dr-chip">Severity · Medium</span></span>
                 </span>
               </article>
@@ -127,7 +127,7 @@ The phone never draws it: every rule here matches only inside `.dr-desk`, the fr
               <article class="dr-card dr-card--row dr-listing">
                 <span class="dr-listing__body">
                   <span class="dr-listing__name">Sunflowers · west half</span>
-                  <span class="dr-listing__desc">In full bloom — no action needed.</span>
+                  <span class="dr-listing__desc">In full bloom. No action needed.</span>
                   <span class="dr-listing__meta"><span class="dr-chip">Severity · None</span></span>
                 </span>
               </article>

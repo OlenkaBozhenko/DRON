@@ -21,7 +21,7 @@ kit: 1423
     <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;180</span></span>
   </span>
   <span class="dr-card__actions">
-    <a class="dr-btn dr-btn--secondary" href="#" aria-label="View details &#8212; Package delivery, today at 10:07">View details</a>
+    <a class="dr-btn dr-btn--secondary" href="#" aria-label="View details, Package delivery, today at 10:07">View details</a>
   </span>
 </article>
 ```
@@ -45,7 +45,7 @@ kit: 1423
     <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;180</span></span>
   </span>
   <span class="dr-card__actions">
-    <a class="dr-btn dr-btn--secondary" href="#" aria-label="View details &#8212; Package delivery, today at 10:07">View details</a>
+    <a class="dr-btn dr-btn--secondary" href="#" aria-label="View details, Package delivery, today at 10:07">View details</a>
   </span>
 </article>
 ```
@@ -76,7 +76,7 @@ Sources: DESIGN.md § Cards (`.dr-card__row`) · inventory.md § 1.3 (Card row b
     <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;180</span></span>
   </span>
   <span class="dr-card__actions">
-    <a class="dr-btn dr-btn--secondary" href="#" aria-label="View details &#8212; Package delivery, today at 10:07">View details</a>
+    <a class="dr-btn dr-btn--secondary" href="#" aria-label="View details, Package delivery, today at 10:07">View details</a>
   </span>
 </article>
 ```
@@ -93,7 +93,7 @@ A column card that opens with a name-and-figure line and closes with its action 
       <span class="dr-listing__meta"><span class="dr-listing__desc">Today, 10:07</span></span>
     </span>
     <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;180</span></span>
-    <a class="dr-btn dr-btn--secondary" href="#" aria-label="View details &#8212; Package delivery, today at 10:07">View details</a>
+    <a class="dr-btn dr-btn--secondary" href="#" aria-label="View details, Package delivery, today at 10:07">View details</a>
   </span>
 </article>
 ```

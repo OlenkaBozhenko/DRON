@@ -52,7 +52,7 @@ kit: 1762
   <p class="zlabel dr-label">Sign up <span class="dr-label__act">▸ verify your identity to operate</span></p>
   <section class="dr-stack" aria-label="Sign up">
     <p class="dr-display">Confirm your identity</p>
-    <p class="dr-lead">DRON verifies every operator. Confirm who you are with Diia or BankID — then add your licence and insurance.</p>
+    <p class="dr-lead">DRON verifies every operator. Confirm who you are with Diia or BankID, then add your licence and insurance.</p>
     <p class="dr-note dr-note--flush">Diia and BankID confirm who you are. DRON never sees your password.</p>
   </section>
 </main>
@@ -69,7 +69,7 @@ kit: 1762
     <section aria-label="Switch role" class="dr-center">
       <span class="success-mark" aria-hidden="true"><img src="../assets/people/thumbs/person-client-olena.png" alt="" loading="lazy" decoding="async"></span>
       <h1 class="dr-display">Switch to Operator?</h1>
-      <p class="dr-lead">You're in Client mode. Switching shows the Operator app — jobs, earnings and ratings. Your Diia identity stays the same.</p>
+      <p class="dr-lead">You're in Client mode. Switching shows the Operator app: jobs, earnings and ratings. Your Diia identity stays the same.</p>
     </section>
   </main>
   <footer class="dr-actionbar">

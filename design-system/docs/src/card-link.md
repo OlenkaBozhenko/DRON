@@ -13,7 +13,7 @@ kit: 1381
 
 ```html
 <article class="dr-card" style="width:341px;max-width:100%">
-  <a class="dr-card__link" href="#" aria-label="Package delivery, in progress — view details"></a>
+  <a class="dr-card__link" href="#" aria-label="Package delivery, in progress, view details"></a>
     <span class="dr-order__top">
       <span class="dr-order__head">
         <span class="dr-order__title">Package delivery</span>
@@ -55,7 +55,7 @@ kit: 1381
 
 ```html
 <article class="dr-card" style="width:341px;max-width:100%">
-  <a class="dr-card__link" href="#" aria-label="Package delivery, 28 Jun 2026, delivered — open order"></a>
+  <a class="dr-card__link" href="#" aria-label="Package delivery, 28 Jun 2026, delivered, open order"></a>
     <span class="dr-order__top">
       <span class="dr-order__head">
         <span class="dr-order__title">Package delivery</span>
@@ -84,7 +84,7 @@ A past order on `order-history`. One tab stop and one announcement instead of a 
 
 ```html
 <article class="dr-card" style="width:341px;max-width:100%">
-              <a class="dr-card__link" href="#" aria-label="Package delivery job — open brief"></a>
+              <a class="dr-card__link" href="#" aria-label="Package delivery job, open brief"></a>
               <span class="dr-order__top">
                 <span class="dr-order__head">
                   <span class="dr-order__title">Package delivery</span>
@@ -144,7 +144,7 @@ Four screens build a card this way: `order-history`, `operator-listings`, `time-
 
 Focus is keyboard only. `.dr-card:focus-within` clears the default outline, because `:focus-within` fires on a pointer click too, and the ring is re-hung on `.dr-card:has(> .dr-card__link:focus-visible)`. It takes the card's radius, 16: the link has no shape of its own, and a ring that rounded differently would announce a second element that is not there. A ring on the empty anchor would trace the card's inner edge, so the shape the user tapped is the one that is outlined (`WCAG 2.4.11`).
 
-The `aria-label` reads the card in order and ends in the action: *Package delivery, in progress — view details* on the live order, *Package delivery, 28 Jun 2026, delivered — open order* on a past one, *Book 09:00 to 10:00, operator free* on a time slot. On the operator side the noun is *job*: *Package delivery job — open brief*.
+The `aria-label` reads the card in order and ends in the action: *Package delivery, in progress, view details* on the live order, *Package delivery, 28 Jun 2026, delivered, open order* on a past one, *Book 09:00 to 10:00, operator free* on a time slot. On the operator side the noun is *job*: *Package delivery job, open brief*.
 
 Sources: DESIGN.md § Cards (whole-card link, focus) · inventory.md § 1.3 (Card) · ui/kit.html The card that is one link
 
@@ -152,7 +152,7 @@ Sources: DESIGN.md § Cards (whole-card link, focus) · inventory.md § 1.3 (Car
 
 ```html
 <ul class="dr-list" style="width:341px;max-width:100%"><li><article class="dr-card">
-  <a class="dr-card__link" href="#" aria-label="Package delivery, 28 Jun 2026, delivered — open order"></a>
+  <a class="dr-card__link" href="#" aria-label="Package delivery, 28 Jun 2026, delivered, open order"></a>
     <span class="dr-order__top">
       <span class="dr-order__head">
         <span class="dr-order__title">Package delivery</span>
@@ -173,7 +173,7 @@ Sources: DESIGN.md § Cards (whole-card link, focus) · inventory.md § 1.3 (Car
       <span class="dr-order__acts"><button class="dr-btn dr-btn--icon" type="button" aria-label="Delete order"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.6h16"/><path d="M9.6 6.6V4.9a1.1 1.1 0 0 1 1.1-1.1h2.6a1.1 1.1 0 0 1 1.1 1.1v1.7"/><path d="M6.3 6.6l.85 12.1a1.6 1.6 0 0 0 1.6 1.5h6.5a1.6 1.6 0 0 0 1.6-1.5l.85-12.1"/><path d="M10.3 10.4v6M13.7 10.4v6"/></svg></button><a class="dr-btn dr-btn--icon" href="#" aria-label="View details"><svg class="dr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="6" r="2.1"/><circle cx="18.5" cy="6" r="2.1"/><circle cx="5.5" cy="18" r="2.1"/><circle cx="18.5" cy="18" r="2.1"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.3"/></svg></a></span>
     </span>
 </article></li><li><article class="dr-card">
-  <a class="dr-card__link" href="#" aria-label="Photo and video, 14 Jun 2026, delivered — open order"></a>
+  <a class="dr-card__link" href="#" aria-label="Photo and video, 14 Jun 2026, delivered, open order"></a>
     <span class="dr-order__top">
       <span class="dr-order__head">
         <span class="dr-order__title">Photo &amp; video</span>

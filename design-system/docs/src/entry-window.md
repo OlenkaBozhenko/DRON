@@ -80,7 +80,7 @@ The phone never draws it: every rule here matches only inside `.dr-desk`, the fr
     <div class="dr-scroll">
       <section class="dr-stack" aria-label="Sign in">
         <h1 class="dr-display">Sign in to DRON</h1>
-        <p class="dr-lead">One verification lets you order drone services — or take jobs as a certified operator.</p>
+        <p class="dr-lead">One verification lets you order drone services or take jobs as a certified operator.</p>
         <p class="dr-note dr-note--flush">Diia and BankID confirm who you are. DRON never sees your password.</p>
       </section>
     </div>

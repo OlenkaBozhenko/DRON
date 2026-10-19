@@ -34,7 +34,7 @@ kit: 2618
 ### Plain list
 
 ```html
-<div class="dr-rows" style="width:341px;max-width:100%"><div class="dr-field"><label class="dr-field__label" for="field-pk">Pickup address:</label><span class="dr-field__group"><input class="dr-field__input" id="field-pk" value="Podil — Naberezhno-Khreshchatytska St, 21"></span></div><div class="dr-field"><label class="dr-field__label" for="field-dp">Drop-off address:</label><span class="dr-field__group"><input class="dr-field__input" id="field-dp" value="Osokorky — Dniprovska Naberezhna, 14"></span></div></div>
+<div class="dr-rows" style="width:341px;max-width:100%"><div class="dr-field"><label class="dr-field__label" for="field-pk">Pickup address:</label><span class="dr-field__group"><input class="dr-field__input" id="field-pk" value="Podil, Naberezhno-Khreshchatytska St, 21"></span></div><div class="dr-field"><label class="dr-field__label" for="field-dp">Drop-off address:</label><span class="dr-field__group"><input class="dr-field__input" id="field-dp" value="Osokorky, Dniprovska Naberezhna, 14"></span></div></div>
 ```
 
 The default input group: no card, no radius, no side padding, the hairline kept and run to both edges. Typed `--ink` on the page is 15.99:1; the label and the placeholder are `--slate` at 6.62:1, above `WCAG 1.4.3`'s 4.5:1. From `order-setup`; it also stands on `order-setup-aerial`, `order-setup-inspection`, `order-setup-error`, `operator-profile-setup` and `operator-verification`.
@@ -42,7 +42,7 @@ The default input group: no card, no radius, no side padding, the hairline kept 
 ### Hint and error
 
 ```html
-<div class="dr-rows" style="width:341px;max-width:100%"><div class="dr-field"><label class="dr-field__label" for="field-dp-err">Drop-off address:</label><span class="dr-field__group"><input class="dr-field__input" id="field-dp-err" value="Irpin — Sadova St, 3"></span><span class="dr-field__hint"><b>Outside the service zone.</b> DRON delivers within Kyiv city — enter an address in the city.</span></div></div>
+<div class="dr-rows" style="width:341px;max-width:100%"><div class="dr-field"><label class="dr-field__label" for="field-dp-err">Drop-off address:</label><span class="dr-field__group"><input class="dr-field__input" id="field-dp-err" value="Irpin, Sadova St, 3"></span><span class="dr-field__hint"><b>Outside the service zone.</b> DRON delivers within Kyiv city. Enter an address in the city.</span></div></div>
 ```
 
 `.dr-field__hint` takes the full row under the input, 12/400 `--slate` with 9 below it. An error is the same line, led by the fact in bold and followed by what to do; words carry it, never a boundary alone. From `order-setup-error`, the one screen that builds an error hint on a typed field.
@@ -78,14 +78,14 @@ From `withdraw` and `listings`.
 
 A field is the row that accepts typing. It has never had a border: what separates it is the hairline between rows and, where the group keeps one, the card. iOS ships two form styles and the product uses both, keyed by what the panel holds. A group that composes something (`order-setup`, `operator-profile-setup`, `operator-verification`) is a plain list. A group that configures or pays (`account-edit`, `payment`, `withdraw`) keeps its card. Every row holds 44, so `HIG · 44pt` and `WCAG 2.5.8` are met by the row.
 
-The label says *what* to enter, as the dictionary noun: *Drop-off address*, not *Address 2*. The screens write it two ways: four files end the label with a colon (`order-setup`, `order-setup-aerial`, `order-setup-inspection`, `order-setup-error`: *Pickup address:*, *Location:*), and seven files do not (`account-edit`, `payment`, `payment-aerial`, `payment-inspection`, `operator-profile-setup`, `operator-verification`, `withdraw`). The hint or placeholder says *how*, by a real example: *e.g. UA-CAA-102938*. It never repeats the label. A validation error names exactly what to fix and states the fact without blaming the user: *Outside the service zone. DRON delivers within Kyiv city — enter an address in the city.* Never *Invalid input*.
+The label says *what* to enter, as the dictionary noun: *Drop-off address*, not *Address 2*. The screens write it two ways: four files end the label with a colon (`order-setup`, `order-setup-aerial`, `order-setup-inspection`, `order-setup-error`: *Pickup address:*, *Location:*), and seven files do not (`account-edit`, `payment`, `payment-aerial`, `payment-inspection`, `operator-profile-setup`, `operator-verification`, `withdraw`). The hint or placeholder says *how*, by a real example: *e.g. UA-CAA-102938*. It never repeats the label. A validation error names exactly what to fix and states the fact without blaming the user: *Outside the service zone. DRON delivers within Kyiv city. Enter an address in the city.* Never *Invalid input*.
 
 Sources: DESIGN.md § Form rows — two panels, not one · § Text areas (the focus rule) · voice.md § Microcopy — rules by element type · inventory.md § 1.5
 
 ## Rule
 
 ```html
-<div class="dr-rows" style="width:341px;max-width:100%"><div class="dr-field"><label class="dr-field__label" for="field-r-pk">Pickup address:</label><span class="dr-field__group"><input class="dr-field__input" id="field-r-pk" value="Podil — Naberezhno-Khreshchatytska St, 21"></span></div><div class="dr-field"><label class="dr-field__label" for="field-r-dp">Drop-off address:</label><span class="dr-field__group"><input class="dr-field__input" id="field-r-dp" value="Osokorky — Dniprovska Naberezhna, 14"></span></div></div>
+<div class="dr-rows" style="width:341px;max-width:100%"><div class="dr-field"><label class="dr-field__label" for="field-r-pk">Pickup address:</label><span class="dr-field__group"><input class="dr-field__input" id="field-r-pk" value="Podil, Naberezhno-Khreshchatytska St, 21"></span></div><div class="dr-field"><label class="dr-field__label" for="field-r-dp">Drop-off address:</label><span class="dr-field__group"><input class="dr-field__input" id="field-r-dp" value="Osokorky, Dniprovska Naberezhna, 14"></span></div></div>
 ```
 
 `order-setup`'s address group: two typed values in a plain list, each with a visible label tied to its input by `for`.

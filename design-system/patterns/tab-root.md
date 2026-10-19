@@ -21,7 +21,7 @@ One of the four places the tab bar leads to. It has no back, because nothing is 
         <ul class="dr-list">
           <li>
             <article class="dr-card">
-              <a class="dr-card__link" href="../../wireframes/tracking.html" aria-label="Package delivery, in progress — view details"></a>
+              <a class="dr-card__link" href="../../wireframes/tracking.html" aria-label="Package delivery, in progress, view details"></a>
                 <span class="dr-order__top">
                   <span class="dr-order__head">
                     <span class="dr-order__title">Package delivery</span>
@@ -54,7 +54,7 @@ One of the four places the tab bar leads to. It has no back, because nothing is 
           </li>
           <li>
             <article class="dr-card">
-              <a class="dr-card__link" href="../../wireframes/order-details.html" aria-label="Package delivery, 28 Jun 2026, delivered — open order"></a>
+              <a class="dr-card__link" href="../../wireframes/order-details.html" aria-label="Package delivery, 28 Jun 2026, delivered, open order"></a>
                 <span class="dr-order__top">
                   <span class="dr-order__head">
                     <span class="dr-order__title">Package delivery</span>
@@ -78,7 +78,7 @@ One of the four places the tab bar leads to. It has no back, because nothing is 
           </li>
           <li>
             <article class="dr-card">
-              <a class="dr-card__link" href="../../wireframes/order-details-aerial.html" aria-label="Photo and video, 14 Jun 2026, delivered — open order"></a>
+              <a class="dr-card__link" href="../../wireframes/order-details-aerial.html" aria-label="Photo and video, 14 Jun 2026, delivered, open order"></a>
                 <span class="dr-order__top">
                   <span class="dr-order__head">
                     <span class="dr-order__title">Photo &amp; video</span>
@@ -100,7 +100,7 @@ One of the four places the tab bar leads to. It has no back, because nothing is 
           </li>
           <li>
             <article class="dr-card">
-              <a class="dr-card__link" href="../../wireframes/order-details-inspection.html" aria-label="Inspection, 2 Jun 2026, delivered — open order"></a>
+              <a class="dr-card__link" href="../../wireframes/order-details-inspection.html" aria-label="Inspection, 2 Jun 2026, delivered, open order"></a>
                 <span class="dr-order__top">
                   <span class="dr-order__head">
                     <span class="dr-order__title">Inspection</span>
@@ -172,7 +172,7 @@ The tab's one action floats above the tab bar instead of standing in `main`: `.d
                 <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;180</span></span>
               </span>
               <span class="dr-card__actions">
-                <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details.html" aria-label="View details &#8212; Package delivery, today at 10:07">View details</a>
+                <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details.html" aria-label="View details, Package delivery, today at 10:07">View details</a>
               </span>
             </article>
           </li>
@@ -186,7 +186,7 @@ The tab's one action floats above the tab bar instead of standing in `main`: `.d
                 <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;800</span></span>
               </span>
               <span class="dr-card__actions">
-                <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details-aerial.html" aria-label="View details &#8212; Photo and video, today at 08:20">View details</a>
+                <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details-aerial.html" aria-label="View details, Photo and video, today at 08:20">View details</a>
               </span>
             </article>
           </li>
@@ -200,7 +200,7 @@ The tab's one action floats above the tab bar instead of standing in `main`: `.d
                 <span><span class="sr-only">Earned</span><span class="dr-number">&#8372;650</span></span>
               </span>
               <span class="dr-card__actions">
-                <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details-inspection.html" aria-label="View details &#8212; Inspection, yesterday">View details</a>
+                <a class="dr-btn dr-btn--secondary" href="../../wireframes/earning-details-inspection.html" aria-label="View details, Inspection, yesterday">View details</a>
               </span>
             </article>
           </li>

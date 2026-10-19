@@ -75,7 +75,7 @@ The phone never draws it: every rule here matches only inside `.dr-desk`, the fr
       <p class="dr-note">Today</p>
       <ul class="dr-list dr-list--snug" aria-label="Messages">
       <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Andriy M.:</span>Your parcel is picked up from Podil, 21. On the way to Osokorky, 14.<time class="dr-bubble__time" datetime="2026-08-16T09:32">9:32</time></li>
-      <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>The courtyard gate is locked — the code is 4471.<time class="dr-bubble__time" datetime="2026-08-16T09:34">9:34</time></li>
+      <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>The courtyard gate is locked. The code is 4471.<time class="dr-bubble__time" datetime="2026-08-16T09:34">9:34</time></li>
       <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Andriy M.:</span>Got it. I'll land at the entrance and send the delivery photo.<time class="dr-bubble__time" datetime="2026-08-16T09:35">9:35</time></li>
       <li class="dr-bubble dr-bubble--out"><span class="dr-sr">You:</span>Which entrance?<time class="dr-bubble__time" datetime="2026-08-16T09:36">9:36</time></li>
       <li class="dr-bubble dr-bubble--in"><span class="dr-sr">Andriy M.:</span>The one facing the playground. About 6 minutes out.<time class="dr-bubble__time" datetime="2026-08-16T09:38">9:38</time></li>

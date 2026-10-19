@@ -33,7 +33,7 @@ Something finished. The screen says so in one line, then shows the record of wha
     </main>
     <footer class="dr-actionbar">
       <a class="dr-btn dr-btn--primary dr-btn--block" href="../../wireframes/listings.html">Done</a>
-      <a class="dr-btn dr-btn--secondary dr-btn--block" href="../../wireframes/order-confirmed.html">Book again — free</a>
+      <a class="dr-btn dr-btn--secondary dr-btn--block" href="../../wireframes/order-confirmed.html">Book again for free</a>
       <a class="dr-btn dr-btn--secondary dr-btn--block" href="../../wireframes/contact-support.html">Contact support</a>
     </footer>
   </div>

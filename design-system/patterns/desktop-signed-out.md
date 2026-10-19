@@ -26,7 +26,7 @@ Before sign-in there is nothing of the user's to show, so the desktop is the map
     <div class="dr-scroll">
       <section class="dr-stack" aria-label="Sign in">
         <h1 class="dr-display">Sign in to DRON</h1>
-        <p class="dr-lead">One verification lets you order drone services — or take jobs as a certified operator.</p>
+        <p class="dr-lead">One verification lets you order drone services or take jobs as a certified operator.</p>
         <p class="dr-note dr-note--flush">Diia and BankID confirm who you are. DRON never sees your password.</p>
       </section>
     </div>
@@ -69,7 +69,7 @@ Checked against the standards: the buttons are 44 tall (`HIG · 44pt`); the wind
       <div class="dr-slider" role="region" tabindex="0" aria-label="What to expect from DRON">
         <section class="dr-slide" id="w1--sign2" aria-label="Slide 1 of 3">
           <h1 class="dr-display">You order, a pro handles it</h1>
-          <p class="dr-lead">Pick a service and pay. A certified DRON operator does the flying — you never touch the drone.</p>
+          <p class="dr-lead">Pick a service and pay. A certified DRON operator does the flying, and you never touch the drone.</p>
           <span class="dr-slide__art"><img src="../../assets/scenes/thumbs/handover.png" alt="" decoding="async"></span>
         </section>
         <section class="dr-slide" id="w2--sign2" aria-label="Slide 2 of 3">
@@ -78,7 +78,7 @@ Checked against the standards: the buttons are 44 tall (`HIG · 44pt`); the wind
           <span class="dr-slide__art"><img src="../../assets/people/thumbs/wide/operator.png" alt="" loading="lazy" decoding="async"></span>
         </section>
         <section class="dr-slide" id="w3--sign2" aria-label="Slide 3 of 3">
-          <p class="dr-display">What the drone does — and doesn't</p>
+          <p class="dr-display">What the drone does and doesn't</p>
           <p class="dr-lead">It flies a set route, keeps its distance, and only records what your order needs. Brief low noise on take-off and landing; no filming of your neighbours.</p>
           <span class="dr-slide__art"><img src="../../assets/drones/thumbs/wide/drone-flight-clean.png" alt="" loading="lazy" decoding="async"></span>
         </section>
