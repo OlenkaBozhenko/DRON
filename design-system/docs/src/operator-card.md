@@ -62,6 +62,19 @@ Both shapes are allowed (designer, rev 292). The full photo `.dr-op__photo` with
 
 On `contact-support` the leading element is the 60 × 20 DRON mark instead of a photo, placed on the right: text left, mark right, card 341 × 105.3. The chips are plain facts, so they keep the grey pair.
 
+### Revealed (desktop)
+
+```html
+<div class="dr dr-desk" style="width:420px;padding:16px"><article class="dr-op dr-op--reveal">
+  <span class="dr-op__info">
+    <span class="dr-op__name">Andriy M.</span>
+    <span class="dr-op__rating">4.9 ★ · 214 jobs</span>
+  </span>
+</article></div>
+```
+
+`.dr-op--reveal`, on the desktop `order-confirmed` screens only (rev 344, the designer: *«зроби The card rises into place»*): the card rises 12 (`--move-md`) into the place the loading placeholder stood, fading in over `--dur-slow` .32s on `--ease-enter`. Job 1 of `DESIGN.md` § Motion: it connects *Finding your operator* to the named person. Under reduced motion `--move-md` is 0, so it fades in place. The phone keeps the card still.
+
 ## States
 
 No state of its own: the card is read, not pressed, and nothing in it takes focus. Its [credential chips](chip.html) are facts, not controls.

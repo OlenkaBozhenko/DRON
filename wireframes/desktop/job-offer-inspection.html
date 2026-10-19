@@ -57,7 +57,10 @@
         <div class="dr-rows__row"><span class="dr-rows__key">Subject</span><span class="dr-rows__val">Field · sunflowers</span></div>
       </div>
       <article class="dr-card dr-card--compact"><span class="dr-listing__body">Sunflowers, 12 ha. Access by the dirt road from the south. The east half dried out, and cattle got into the north edge last week. The damage needs to be on record.</span></article>
-      <p class="dr-display">Expires in 6s</p>
+      <div class="dr-countdown">
+        <p class="dr-display" role="timer" data-countdown="10">Expires in 10s</p>
+        <span class="dr-countdown__bar" aria-hidden="true"><span class="dr-countdown__fill"></span></span>
+      </div>
     </div>
     <div class="dr-foot"><div class="dr-acts dr-acts--pair">
       <a class="dr-btn dr-btn--primary dr-btn--block" href="job-brief-inspection.html">Accept</a>
@@ -79,6 +82,7 @@
 </div>
 <a class="wf-twin" href="../job-offer-inspection.html">Phone view</a>
 <script src="../../ui/kit.js"></script>
+<script src="_desktop.js"></script>
 <!-- the badge follows the select: the word is read off the tapped option's own label (the phone's script) -->
 <script>
 (function () {

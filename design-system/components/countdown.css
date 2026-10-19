@@ -1,0 +1,40 @@
+/* countdown.css - DESKTOP: A DECISION WITH A FIXED TIME (backlog B-5, rev 344)
+   The time left, in words and as a bar that empties in step with them. The
+   words carry it (WCAG 1.4.1); the bar shows the same thing at a glance
+   (HIG · Progress indicators: a known duration is shown as determinate
+   progress). Job 2 of DESIGN.md § Motion: it shows that a process is running.
+   The remaining part is charcoal, never green: the screen's one green control
+   is the action the countdown is about. Every rule matches only inside
+   .dr-desk; the phone never draws it. */
+.dr-desk .dr-countdown{
+  display: flex;
+  flex-direction: column;
+  gap: var(--len-8);   /* the words and their bar are one thing: 8 apart (proximity) */
+}
+.dr-desk .dr-countdown__bar{
+  display: block;
+  height: var(--len-4);
+  border-radius: var(--len-999);
+  background: var(--bg-muted);
+  overflow: hidden;
+}
+.dr-desk .dr-countdown__fill{
+  display: block;
+  height: var(--pct-100);
+  border-radius: var(--len-999);
+  background: var(--bg-meter);
+  transform-origin: 0 var(--pct-50);
+  animation: dr-countdown var(--time-10) linear forwards;
+}
+@keyframes dr-countdown{
+  to{
+    transform: scaleX(0);
+  }
+}
+/* reduced motion: no glide; the bar drops one tenth with each second the words
+   count, so it still says how much time is left (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce){
+  .dr-desk .dr-countdown__fill{
+    animation-timing-function: steps(10, end);
+  }
+}

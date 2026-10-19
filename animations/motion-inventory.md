@@ -63,7 +63,7 @@ the phone. **Built** means the motion already exists in `design-system/component
 | `payment-loading` · Apple Pay / card is being charged (Both) | Status | Activity spinner (`dr-spin`) + Skeleton. **Built** |
 | `payment-loading` (desktop) · *Payment confirmed*, then `order-confirmed` opens by itself (rev 339) | Status (ended), then Connect | Milestone mark, then Desktop window |
 | `order-confirmed-loading` · finding the nearest certified operator (Both) | Status | Skeleton on the operator card. **Built** |
-| `order-confirmed-loading` → `order-confirmed` · the placeholder becomes the named operator: photo, name, verified, insured (Both) | Connect | Operator card. **Decided 2026-10-19: stays an instant swap, as built.** No animation |
+| `order-confirmed-loading` → `order-confirmed` · the placeholder becomes the named operator: photo, name, verified, insured (Both) | Connect | Operator card. **Built rev 344 (desktop):** `.dr-op--reveal`, the card rises into place (`--move-md`, `--dur-slow`, `--ease-enter`). The designer first kept the instant swap, then chose this |
 
 ## 4. The wait (RJ-C1, RJ-C2)
 
@@ -109,7 +109,7 @@ the phone. **Built** means the motion already exists in `design-system/component
 |---|---|---|
 | `operator-listings` · the status toggle goes Available ⇄ Offline (Both) | Connect | Availability badge / Switch |
 | `operator-listings`, `operator-jobs` · the job group tab is switched (Both) | Connect | In-page tabs (`dr-groups`) |
-| `job-offer` · the offer counts down: *decide before it expires* (10s, `flows.md` MJ-2) (Both) | Status | **Decided 2026-10-19: words + a bar that empties.** No component yet; ordered as `design-system/backlog.md` B-5 |
+| `job-offer` · the offer counts down: *decide before it expires* (10s, `flows.md` MJ-2) (Both) | Status | **Built rev 344 (desktop):** Countdown (`countdown.css`), backlog B-5 done. The phone keeps its still figure |
 | `job-offer` → `job-brief` · *Accept* opens the job (Both) | Connect | Pushed screen / Desktop window |
 | `job-checklist` · a step is ticked (Both) | Answer | Checkbox (`dr-pick`) |
 | `job-checklist-error` · *Close* with a step open: the alert appears (desktop shows it on open) | Answer | Toast (`role="alert"`). **Built** |

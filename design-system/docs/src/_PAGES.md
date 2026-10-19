@@ -95,6 +95,7 @@ desktop) is now *Desktop shell*; *Wide grid and split* is removed — no twin dr
 | map-route | Map route and pin | Wide screens | 3737 | (new) |
 | call-chat-window | Call and chat windows | Wide screens | 3797 | Call surface, Message thread (desktop) |
 | entry-window | Entry window | Wide screens | 3836 | Onboarding carousel (desktop) — signed-out windows, Previous / Next |
+| countdown | Countdown | Wide screens | 3983 | (new) — a decision with a fixed time: words and a bar that empties (backlog B-5, rev 344) |
 | operator-home | Operator home | Wide screens | 3883 | (new) — drone links, rail rows, availability card |
 | window-outcome | Outcome in a window | Wide screens | 3930 | Outcome heading, Milestone mark (desktop) |
 | review-card | Review card | Wide screens | 3958 | (new) |

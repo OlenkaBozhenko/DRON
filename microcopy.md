@@ -1017,6 +1017,8 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | job-offer | Route | Drop-off | Body |  |
 | job-offer | Route | Osokorky, 14 | Body |  |
 | job-offer | Decide fast | Expires in 8s | Body |  |
+| job-offer (desktop) | Decide fast · countdown | Expires in 10s … Expires in 1s | Body | rev 344, B-5: counts down once a second over the emptying bar; `role="timer"`, so it is not announced each second |
+| job-offer (desktop) | Decide fast · countdown at 0 | Offer expired | Body | rev 344: the words `job-offer-empty` already uses (O2 keeps *offer* for the incoming unit) |
 | job-offer | Decide fast | Accept | Button |  |
 | job-offer | Decide fast | Decline | Button |  |
 | — *(six deleted pages)* | — | `listings-empty` · `listings-filtered` · `listings-filter-country` · `-region` · `-city` · `-district` | — | **DELETED 2026-09-19** — *«все що сховала тепер зітри»*, after a day out of the walk. Their rows are gone from this table because the table inventories what the product draws, and it draws none of it: the applied-filter row is a state `listings.html` writes itself, the four place picks lost their entrance when *Location* left the Filters drawer (2026-09-15), and the empty said what `listings-error` says. **Nothing is lost:** every string is in git and the reasoning is in `concept.md` revs 261, 275, 277 and 279–282. If the region empty is drawn again it belongs to *Results on the map* |

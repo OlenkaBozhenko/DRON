@@ -230,6 +230,7 @@
   --time-0-25:      .25s;   /* added for the desktop (2026-10-19): a hanging card lifting on hover */
   --time-0-32:       .32s;   /* --dur-sheet */
   --time-1-1:        1.1s;   /* --dur-spin */
+  --time-10:         10s;    /* added rev 344: the operator's time to accept a job offer (flows.md MJ-2, "Accept within 10s?") */
   --time-1-4:        1.4s;   /* --dur-pulse */
   --time-1-6:        1.6s;   /* --dur-upload */
   --time-1-8:        1.8s;   /* --dur-ping */
@@ -421,6 +422,7 @@
      one and flips with the theme. Light values are identical to what the
      misused roles resolved to, so nothing moves in the light build. */
   --bg-inverse:       var(--charcoal-900);  /* the pill under a toast */
+  --bg-meter:         var(--charcoal-900);  /* rev 344: the part of a countdown still left; never green, the screen's green is its one action */
   --text-on-inverse:  var(--cream-50);      /* 15.99:1 on it, either theme */
 
   /* -- INK ------------------------------------------------------------------
@@ -865,6 +867,7 @@
      ratio it has in light, and 15.99:1 against the page so it cannot be lost
      in it. */
   --bg-inverse:         var(--cream-50);      /* #F7F5F2 */
+  --bg-meter:           var(--cream-50);      /* rev 344: the countdown's remaining part turns light with the ground */
   --text-on-inverse:    var(--charcoal-900);  /* #1A1A1A */
 
   /* -- INK ------------------------------------------------------------------

@@ -59,24 +59,20 @@ declare. Whatever is missing is written here, with the job that asked for it.
 
 ---
 
-### B-5 · A countdown for a decision with a fixed time
-
-- **Found by:** `animations/motion-inventory.md` §8 (2026-10-19), the operator's job offer.
-- **What is missing:** `job-offer` gives the operator 10 seconds to accept (`flows.md` MJ-2, *Accept
-  within 10s?*), and the time is shown only as a still figure, *Expires in 8s*. The system has no
-  determinate countdown.
-- **What was chosen:** the designer, 2026-10-19, after the live compare (`_compare-findings.html`,
-  question 2): *words + a bar that empties*. The figure counts 10 → 0 and a thin bar under it
-  empties in step, linear over the whole time; at 0 the words read *Offer expired*.
-- **Standards:** `HIG · Progress indicators`: a known duration gets determinate progress.
-  `WCAG 2.2.1`: a real-time offer is the allowed exception to adjustable timing. `WCAG 1.4.1`: the
-  seconds stay in words, the bar is never the only carrier. `WCAG 1.4.11`: the bar is 4px, charcoal
-  `--text-primary` on `--bg-muted`, never green, because the screen's one green control is *Accept*.
-  The ratio is measured when it is built. Job 2 of `DESIGN.md` § Motion: it shows a process running.
-- **Belongs in:** `components/` with its `docs/src/` page and a `ui/kit.html` specimen, then
-  `job-offer` (phone and desktop). Not built yet.
-
 ## Done
+
+### B-5 · A countdown for a decision with a fixed time — **done, rev 344**
+
+- **Found by:** `animations/motion-inventory.md` §8 (2026-10-19): `job-offer` gave the operator 10
+  seconds to accept (`flows.md` MJ-2) and showed them as a still figure.
+- **Chosen:** the designer, on the live compare: *words + a bar that empties*.
+- **Built:** `components/countdown.css` (`.dr-countdown` · `__bar` · `__fill`), desktop only, page
+  `docs/countdown.html`, kit specimen; tokens `--time-10` and `--bg-meter`. Words count 10 → 0 in
+  `_desktop.js` (`role="timer"`), at 0 *Offer expired*; the bar empties linear over 10s, in steps
+  under reduced motion. Measured: the remaining part on its track **11.54:1** light / **19.26:1**
+  dark, on the window ground **17.40:1** / **12.48:1** (`WCAG 1.4.11`); words and bar 8 apart.
+  On `wireframes/desktop/job-offer` and `-inspection`. The phone is frozen and keeps its still
+  figure.
 
 ### B-4 · The profile head's read-only form is undocumented — **done, rev 312**
 

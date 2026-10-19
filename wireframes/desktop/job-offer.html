@@ -56,7 +56,10 @@
         <div class="dr-rows__row"><span class="dr-rows__key">Pickup</span><span class="dr-rows__val">Podil, 21</span></div>
         <div class="dr-rows__row"><span class="dr-rows__key">Drop-off</span><span class="dr-rows__val">Osokorky, 14</span></div>
       </div>
-      <p class="dr-display">Expires in 8s</p>
+      <div class="dr-countdown">
+        <p class="dr-display" role="timer" data-countdown="10">Expires in 10s</p>
+        <span class="dr-countdown__bar" aria-hidden="true"><span class="dr-countdown__fill"></span></span>
+      </div>
     </div>
     <div class="dr-foot"><div class="dr-acts dr-acts--pair">
       <a class="dr-btn dr-btn--primary dr-btn--block" href="job-brief.html">Accept</a>
@@ -78,6 +81,7 @@
 </div>
 <a class="wf-twin" href="../job-offer.html">Phone view</a>
 <script src="../../ui/kit.js"></script>
+<script src="_desktop.js"></script>
 <!-- the badge follows the select: the word is read off the tapped option's own label (the phone's script) -->
 <script>
 (function () {

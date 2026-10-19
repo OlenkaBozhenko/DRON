@@ -261,3 +261,19 @@
     zone.focus();
   });
 }());
+
+/* COUNTDOWN (backlog B-5, rev 344; the designer, 2026-10-19: «words + a bar that empties»).
+   The words count down once a second in step with .dr-countdown__fill, which empties in CSS
+   over the same --time-10; at 0 they read "Offer expired". role="timer" keeps a screen reader
+   from announcing every second. */
+(function () {
+  'use strict';
+  [].forEach.call(document.querySelectorAll('[data-countdown]'), function (el) {
+    var left = parseInt(el.getAttribute('data-countdown'), 10);
+    var tick = setInterval(function () {
+      left -= 1;
+      el.textContent = left > 0 ? 'Expires in ' + left + 's' : 'Offer expired';
+      if (left <= 0) clearInterval(tick);
+    }, 1000);
+  });
+}());

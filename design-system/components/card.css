@@ -465,3 +465,18 @@
 .dr-card:has(> .dr-card__link[aria-disabled="true"]) .dr-status{
   display: none;
 }
+
+/* DESKTOP (rev 344) - the operator revealed. On order-confirmed the card rises
+   into the place the loading placeholder stood: --move-md up, fading in, over
+   --dur-slow on the enter curve. Job 1 of DESIGN.md § Motion: it connects
+   "finding your operator" to the named person. Under reduced motion --move-md
+   is 0, so it fades in place. The phone never draws it. */
+.dr-desk .dr-op--reveal{
+  animation: dr-op-reveal var(--dur-slow) var(--ease-enter) both;
+}
+@keyframes dr-op-reveal{
+  from{
+    opacity: 0;
+    transform: translateY(var(--move-md));
+  }
+}

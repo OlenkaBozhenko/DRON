@@ -933,6 +933,15 @@ because a thing leaving needs no attention. The loops that trace something physi
 `dr-pulse`, `dr-up`, `dr-spin`, the desktop flight) are job 2 and keep their own cadence on the
 time ramp; they are listed under *Components › Motion*.
 
+### Built on the scale since (rev 344, desktop only)
+
+- **Countdown** (`.dr-countdown`, backlog B-5): the job offer's 10 seconds as words counting down
+  over a bar that empties, linear over `--time-10`; in steps under reduced motion. The remaining
+  part is `--bg-meter`, charcoal / cream, never green: **11.54:1** on its track and **17.40:1** on
+  the window in light, **19.26:1** and **12.48:1** in dark (`WCAG 1.4.11`). Job 2.
+- **Operator revealed** (`.dr-op--reveal`): on `order-confirmed` the card rises `--move-md` into
+  place over `--dur-slow` on `--ease-enter`; under reduced motion it fades in place. Job 1.
+
 ### Reduced motion, and the check
 
 - **`WCAG 2.3.3` Animation from Interactions** (AAA) and **`HIG · Motion`** ("make motion optional",
