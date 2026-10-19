@@ -1397,3 +1397,17 @@
 .dk .dk-finderwin .dr-finder__services{
   margin-bottom: var(--len-2);
 }
+
+/* «тут теж зроби більші відступи застосовуючи принцип близькості» (the live order card in
+   the right rail): three groups - what and where (Live, title, route), the progress, who
+   is flying it. Inside a group 4-8; between groups 20; the rail's labels keep their own
+   room under the nodes */
+.dk .dr-tally:has(> .dr-rail) > .dr-tally__sub{
+  margin-top: var(--len-4);
+}
+.dk .dr-tally:has(> .dr-rail) > .dr-rail{
+  margin-top: var(--len-20);
+}
+.dk .dr-tally:has(> .dr-rail) > .dr-tally__who{
+  margin-top: var(--len-20);
+}
