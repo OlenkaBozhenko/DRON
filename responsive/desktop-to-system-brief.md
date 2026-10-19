@@ -12,10 +12,13 @@ move into `design-system/`, and the twins consume the system.
 ## The one hard rule: not one pixel changes
 
 - Every phone page and every desktop twin, light and dark, must render **identically** before and
-  after. The gate is `node .playwright-mcp/pixel/shoot.js <dir>` then
-  `node .playwright-mcp/pixel/shoot.js --diff .playwright-mcp/pixel/base <dir>`; it must print
-  `IDENTICAL`. The baseline `base/` was taken before any change. Run the gate after every phase and
-  before every commit. A phase that is not IDENTICAL is not done — find the cause and fix it.
+  after. The gate, run from `.playwright-mcp/pixel/`: `node shoot.js --gate gold <new-dir>` (use a
+  fresh folder name each time, e.g. `p1-a`, `p1-b`; `rm -rf` is not allowed here). It shoots all 538
+  pages (~8 min), reshoots any that differ up to twice (one-off render flicker), and prints
+  `IDENTICAL 538/538` or the list that still differs. A ±3 colour-level noise tolerance is built in
+  (glass blur). `gold/` is the baseline, taken before any change. Run the gate after every phase and
+  before every commit. A phase that is not IDENTICAL is not done — find the cause and fix it. To look
+  at a difference, open both PNGs (`gold/<name>` and `<new-dir>/<name>`).
 - The dev server must be running at `http://localhost:8765` (`python serve.py 8765` from the repo
   root). Do not start a second one.
 
