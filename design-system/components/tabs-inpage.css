@@ -16,7 +16,9 @@
   align-items: center;
   gap: var(--len-8);
   padding: 0 var(--len-16);
-  background: var(--bg-page);
+  /* no ground of its own: the row takes whatever it stands on - the page on a
+     phone (identical), the panel on a wide screen (2026-10-19) */
+  background: transparent;
   border-bottom: var(--len-1) solid var(--border-hairline);
   overflow-x: auto;
   scrollbar-width: none;
