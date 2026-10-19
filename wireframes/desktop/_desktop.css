@@ -1391,3 +1391,9 @@
 .dk .dk-finderwin .dr-finder__actions{
   margin-top: auto;
 }
+/* «відступи у формі покращ»: the service pills stood 6 from the route card (their 44pt
+   hit area reaches past the pill); they choose what the card asks, so they stay close, but
+   at 20 they read as their own row, not as the card's top edge */
+.dk .dk-finderwin .dr-finder__services{
+  margin-bottom: var(--len-2);
+}
