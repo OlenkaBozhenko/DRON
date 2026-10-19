@@ -184,3 +184,80 @@
     });
   });
 }());
+
+/* DROP ZONE FOR THE RESULT PHOTO (the designer, 2026-10-19: «зроби цю зону drag and drop,
+   напиши які файли може загрузити … поки юзер не загрузить фото натискаючи підтвердити -
+   сповіщення загрузи фото»). Photos dropped on the zone, or chosen with a click or Enter,
+   appear as thumbnails under it, each with a remove control; Replace photo clears them and
+   opens the chooser. Submit with no photo stays on the page and pops the toast instead. */
+(function () {
+  'use strict';
+  var zone = document.querySelector('[data-drop]');
+  if (!zone) return;
+  var input = zone.querySelector('[data-drop-input]');
+  var list = document.querySelector('[data-drop-list]');
+  var replace = document.querySelector('[data-drop-replace]');
+  var submit = document.querySelector('[data-needs-photo]');
+  var files = [];
+  var OK = /^image\/(jpeg|png|heic)$/;
+  function render() {
+    list.innerHTML = '';
+    files.forEach(function (f, i) {
+      var li = document.createElement('li');
+      li.className = 'dk-drop__item';
+      var img = document.createElement('img');
+      img.alt = f.name;
+      img.src = URL.createObjectURL(f);
+      var rm = document.createElement('button');
+      rm.type = 'button';
+      rm.className = 'dk-drop__rm';
+      rm.setAttribute('aria-label', 'Remove ' + f.name);
+      rm.textContent = '×';
+      rm.addEventListener('click', function (e) { e.stopPropagation(); files.splice(i, 1); render(); });
+      li.appendChild(img);
+      li.appendChild(rm);
+      list.appendChild(li);
+    });
+    zone.querySelector('.dr-upload__action').textContent = files.length ? 'Add more photos' : 'Add photo';
+    if (replace) replace.disabled = !files.length;
+  }
+  function add(fl) {
+    [].forEach.call(fl, function (f) { if (OK.test(f.type) && f.size <= 10 * 1024 * 1024) files.push(f); });
+    render();
+    var t = zone.closest('.dk-window').querySelector(':scope > .dk-toast.is-on');
+    if (t && files.length) t.classList.remove('is-on');
+  }
+  zone.addEventListener('click', function (e) { if (e.target !== input) input.click(); });
+  zone.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); }
+  });
+  input.addEventListener('change', function () { add(input.files); input.value = ''; });
+  ['dragenter', 'dragover'].forEach(function (t) {
+    zone.addEventListener(t, function (e) { e.preventDefault(); zone.classList.add('dk-drop--over'); });
+  });
+  ['dragleave', 'drop'].forEach(function (t) {
+    zone.addEventListener(t, function (e) { e.preventDefault(); zone.classList.remove('dk-drop--over'); });
+  });
+  zone.addEventListener('drop', function (e) { add(e.dataTransfer.files); });
+  if (replace) replace.addEventListener('click', function () { files = []; render(); input.click(); });
+  if (submit) submit.addEventListener('click', function (e) {
+    if (files.length) return;
+    e.preventDefault();
+    var win = submit.closest('.dk-window');
+    var t = win.querySelector(':scope > .dk-toast:not([data-autoshow])');
+    if (!t) {
+      t = document.createElement('p');
+      t.className = 'dr-toast dk-toast';
+      t.setAttribute('role', 'alert');
+      win.appendChild(t);
+    }
+    t.textContent = submit.getAttribute('data-needs-photo');
+    var foot = win.querySelector(':scope > .dk-foot');
+    t.style.bottom = ((foot ? win.getBoundingClientRect().bottom - foot.getBoundingClientRect().top : 0) + 16) + 'px';
+    if (t._hide) clearTimeout(t._hide);
+    void t.offsetWidth;
+    t.classList.add('is-on');
+    t._hide = setTimeout(function () { t.classList.remove('is-on'); }, 4000);
+    zone.focus();
+  });
+}());

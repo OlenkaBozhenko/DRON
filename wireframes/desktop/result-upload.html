@@ -56,11 +56,9 @@
       <h2 class="dr-label">Result photo</h2>
       <section aria-label="Result photo">
         <div class="dr-stack">
-          <div class="dr-upload" role="button" tabindex="0" aria-labelledby="result-photo-act">
-            <svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg>
-            <span class="dr-upload__action" id="result-photo-act">Add photo</span>
-          </div>
-          <button type="button" class="dr-btn dr-btn--secondary dr-btn--block" disabled>Replace photo</button>
+          <div class="dr-upload dk-drop" role="button" tabindex="0" aria-labelledby="result-photo-act" aria-describedby="result-photo-hint" data-drop><svg class="dr-ic dr-ic--32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13v5a1.6 1.6 0 0 0 1.6 1.6h8.8A1.6 1.6 0 0 0 18 18v-5"/><path d="M12 4.2v10.3"/><path d="M8.4 7.8L12 4.2l3.6 3.6"/></svg><span class="dr-upload__action" id="result-photo-act">Add photo</span><span class="dk-drop__hint" id="result-photo-hint">Drag photos here or click to choose · JPG, PNG or HEIC, up to 10 MB each</span><input class="sr-only" type="file" accept="image/jpeg,image/png,image/heic" multiple tabindex="-1" aria-hidden="true" data-drop-input></div>
+          <ul class="dk-drop__list" aria-label="Added photos" aria-live="polite" data-drop-list></ul>
+          <button type="button" class="dr-btn dr-btn--secondary dr-btn--block" disabled data-drop-replace>Replace photo</button>
         </div>
       </section>
       <h2 class="dr-label">Notes</h2>
@@ -72,7 +70,7 @@
         </div>
       </section>
     </div>
-    <div class="dk-foot"><a class="dr-btn dr-btn--primary dr-btn--block" href="wallet.html">Submit &amp; close job</a></div>
+    <div class="dk-foot"><a class="dr-btn dr-btn--primary dr-btn--block" href="wallet.html" data-needs-photo="Add a delivery photo to close the job.">Submit &amp; close job</a></div>
   </main>
   <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
   <section class="dr-sheet dr-sheet--picker" id="sheet-avail" role="dialog" aria-modal="true" aria-labelledby="sheet-avail-title" hidden>
@@ -89,6 +87,7 @@
 </div>
 <a class="wf-twin" href="../result-upload.html">Phone view</a>
 <script src="../../ui/kit.js"></script>
+<script src="_desktop.js"></script>
 <!-- the badge follows the select: the word is read off the tapped option's own label (the phone's script) -->
 <script>
 (function () {

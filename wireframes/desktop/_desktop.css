@@ -1318,3 +1318,65 @@
   width: var(--len-40);
   height: var(--len-14);
 }
+
+/* the result photo's drop zone (2026-10-19): a dashed edge says "drop here"; while a file
+   is held over it the edge and ground take the accent tint (a fill, never ink); the files
+   it takes are written under the action; the photos added sit under it as thumbnails,
+   each with its remove control (named for a screen reader) */
+.dk .dk-drop{
+  border: var(--len-1-7) dashed var(--border-hairline);
+  gap: var(--len-8);
+  cursor: pointer;
+}
+.dk .dk-drop:focus-visible{
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dk .dk-drop--over{
+  border-color: var(--color-action);
+  background: color-mix(in srgb, var(--color-action) 14%, transparent);
+}
+.dk .dk-drop__hint{
+  font-size: var(--type-meta-size);
+  color: var(--text-muted);
+  text-align: center;
+  text-wrap: balance;
+}
+.dk .dk-drop__list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--len-8);
+}
+.dk .dk-drop__list:empty{
+  display: none;
+}
+.dk .dk-drop__item{
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--len-12);
+  overflow: hidden;
+  background: var(--bg-well);
+}
+.dk .dk-drop__item img{
+  width: var(--pct-100);
+  height: var(--pct-100);
+  object-fit: cover;
+  display: block;
+}
+.dk .dk-drop__rm{
+  position: absolute;
+  top: var(--len-4);
+  right: var(--len-4);
+  width: var(--len-28);
+  height: var(--len-28);
+  border: 0;
+  border-radius: var(--pct-50);
+  background: var(--bg-inverse);
+  color: var(--text-on-inverse);
+  font-size: var(--type-heading-size);
+  line-height: var(--type-glyph-line);
+  cursor: pointer;
+}
