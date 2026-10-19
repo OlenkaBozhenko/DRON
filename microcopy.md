@@ -177,7 +177,7 @@ Step 02, wave 2 — the other 36 screens (79 files) rewritten to `voice.md`, one
 | tracking | tracking-error.html | Live map / tracking lost | state message | We've lost the live signal from the operator's device. The job is still active. | We've lost the live signal from the operator's device. Your order is still active. |
 | tracking | tracking-error.html | Live map / tracking lost | button | Refresh | Try again |
 | wallet | wallet.html | Balance | state message | Paid: ₴800 for 'Aerial photo & video' added 12 min ago. | ~~₴800 paid for 'Aerial photo & video', added to your balance 12 min ago.~~ **String deleted 2026-08-21** (designer: *«видали цей текст»*). The fact it carried did not go with it — the Payout zone on each `earning-details` record now states it as three rows (Status · Released · To), which is where a settled payment belongs once it stops being news |
-| wallet | wallet.html | Balance | button | Withdraw | Withdraw ₴3,240 — **unchanged 2026-08-21 when the button left the column for the floating capsule above the tab bar.** Same words, same destination; only its place on the screen moved, so `voice.md` **P3** (the price as a fact before the tap) still reads with the amount on the card above it |
+| wallet | wallet.html | Balance | button | Withdraw | Withdraw — **the amount came off on 2026-10-19, the designer's word: «не пиши тут суму на кнопці … бо потім ще є степ де юзер вводить скільки хоче зняти».** The sum is chosen on `withdraw`, whose button keeps it (*Withdraw ₴1,500*); the balance card above still states what is available, so `voice.md` P3 holds. Before that: Withdraw ₴3,240, **unchanged 2026-08-21 when the button left the column for the floating capsule above the tab bar.** Same words, same destination; only its place on the screen moved, so `voice.md` **P3** (the price as a fact before the tap) still reads with the amount on the card above it |
 | wallet | wallet.html | Recent | button | Details | **View details** — the designer asked for *«кнопкою details»* (2026-08-21); the visible label is the one **A6** already settled. `voice.md` keeps one word per concept and opening a record is **View details** across the product (`order-history`, `tracking`). Each of the three carries its own `aria-label` — *View details — Package delivery, today at 10:07* and so on — because three links reading the same words and going three places is `WCAG 2.4.4`; the label opens with the visible text, so `WCAG 2.5.3` holds |
 | wallet | wallet-empty.html | Keep earning / empty | heading | Almost there | Below the withdrawal minimum |
 | wallet | wallet-empty.html | Keep earning / empty | state message | You need ₴500 to cash out. Take one more job to reach the payout minimum. | You need ₴500 to withdraw. Take one more job to reach the minimum. |
@@ -1969,7 +1969,7 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | wallet | — | Earnings | Heading |  |
 | wallet | Balance | Available to withdraw | Body |  |
 | wallet | Balance | ₴800 paid for 'Aerial photo & video', added to your balance 12 min ago. | Body | DATA |
-| wallet | Balance | Withdraw ₴3,240 | Button |  |
+| wallet | Balance | Withdraw | Button |  |
 | wallet | Recent | Package delivery | Heading |  |
 | wallet | Recent | Today, 10:07 | Body | DATA |
 | wallet | Recent | Photo & video | Heading |  |

@@ -207,7 +207,7 @@ The tab's one action floats above the tab bar instead of standing in `main`: `.d
         </ul>
       </section>
     </main>
-    <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/withdraw.html">Withdraw &#8372;3,240</a>
+    <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/withdraw.html">Withdraw</a>
     <footer class="dr-tabbar">
       <nav class="dr-tabs" aria-label="Primary">
         <a class="dr-tab" href="../../wireframes/operator-listings.html"><svg class="dr-ic dr-ic--22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="7.4" width="17.2" height="12.2" rx="2.2"/><path d="M9 7.4V6.1A1.7 1.7 0 0 1 10.7 4.4h2.6A1.7 1.7 0 0 1 15 6.1v1.3"/><path d="M3.4 12.6h17.2"/></svg>Jobs</a>

@@ -32,11 +32,11 @@ kit: 558
 ```html
 <div class="dr" style="position:relative;width:375px;max-width:100%;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
   <div class="dr-main dr-main--fab" style="padding-top:var(--len-16)"></div>
-  <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/withdraw.html">Withdraw &#8372;3,240</a>
+  <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/withdraw.html">Withdraw</a>
 </div>
 ```
 
-`wallet`'s *Withdraw ₴3,240*: 173.1 × 44, label `--on-green` on green at 9.46:1. The amount sits in the label, so the price is stated before the tap.
+`wallet`'s *Withdraw*: 44 tall, label `--on-green` on green at 9.46:1. It carries no amount: the amount is chosen on the next step, and the balance card above already states what is available (the designer, 2026-10-19).
 
 ### With a leading glyph
 
@@ -53,7 +53,7 @@ kit: 558
 
 ```html
 <div class="dr" style="position:relative;width:375px;max-width:100%;height:150px;border-radius:var(--len-22);overflow:hidden;background:var(--bg-page)">
-  <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/withdraw.html">Withdraw &#8372;3,240</a>
+  <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/withdraw.html">Withdraw</a>
 </div>
 ```
 
@@ -65,7 +65,7 @@ The floating action is the screen's primary action when that screen is a tab roo
 
 It is one of three things in the product that take `--shadow-raised`, with the [sheet](sheet.html) and the [toast](toast.html), because it is over the page rather than in it. The cost is recorded rather than hidden: on `operator-account` the pill is 2.06% of the frame and 84.5% of the screen's green; on `wallet`, with the balance card, solid green reaches 11.32% against the ~5% ceiling, a departure the designer was shown and kept.
 
-The label is a verb and its object, with the amount where there is one: *Withdraw ₴3,240*, *Edit profile*. No exclamation marks, no *successfully*.
+The label is a verb and its object: *Withdraw*, *Edit profile*. An amount goes in a label only where the tap commits it, as on `withdraw`'s *Withdraw ₴1,500*. No exclamation marks, no *successfully*.
 
 Sources: DESIGN.md § The floating action · § Elevation & Depth · inventory.md § 1 (Floating action) · microcopy.md § wallet · voice.md P3
 
@@ -76,7 +76,7 @@ Sources: DESIGN.md § The floating action · § Elevation & Depth · inventory.m
   <div class="dr-main dr-main--fab" style="padding-top:var(--len-16)">
     <div class="dr-rows" aria-label="Account details"><div class="dr-rows__row"><span class="dr-rows__key">Language</span><span class="dr-rows__val">English</span></div><div class="dr-rows__row"><span class="dr-rows__key">Member since</span><span class="dr-rows__val">2026</span></div></div>
   </div>
-  <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/withdraw.html">Withdraw &#8372;3,240</a>
+  <a class="dr-btn dr-btn--primary dr-fab" href="../../wireframes/withdraw.html">Withdraw</a>
 </div>
 ```
 

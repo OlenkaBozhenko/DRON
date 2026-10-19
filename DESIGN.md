@@ -1855,7 +1855,7 @@ Added 2026-08-21 (rev 163) on the built `wallet`, against the designer's own ref
 ### The floating action (`.dr-fab`, `.dr-main--fab`)
 
 Added 2026-08-21 (rev 163): *«додай floating button посередині біля ботом бару відповідно до HIG»*.
-**Three users**, and all left a column for this place: `wallet`'s **Withdraw ₴3,240**; since
+**Three users**, and all left a column for this place: `wallet`'s **Withdraw** (no amount since 2026-10-19 - it is chosen on the next step); since
 2026-08-24 (rev 187), *«make edit profile button as a green float button»*, `operator-account`'s
 **Edit profile**; and since rev 195 the client `account`'s **Edit profile**. The later two added no
 class, no token and no page CSS.
