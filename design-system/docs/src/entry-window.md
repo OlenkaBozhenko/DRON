@@ -56,7 +56,7 @@ kit: 3836
 - `.dr-entry` — A signed-out window: no head, the phone's centred reading; no rails and no Talk to AI round it.
 - `.dr-slider` — One slide at a time inside the window, the picture 260 tall so the window does not grow with the art.
 - `.dr-slidenav--prev` — A mouse has no swipe, so the slider gets *Previous* and *Next* beside the picture, 24 in: round 48 icon buttons, named (`WCAG 4.1.2`). On the first slide *Previous* is `aria-disabled` and drawn `--text-disabled`.
-- `.dr-pager` — The pager stands 32 above the actions (its 20 and the 12 gap).
+- `.dr-pager` — The pager stands 32 above the actions (its 20 and the 12 gap). It must stay in sight under the picture, so a slide's lead takes a 44ch measure, not the window's 36: two lines on every short slide (rev 336, the designer on `welcome`, pointing at `onboarding-client`: «ось так роби»). Every slider window carries *Previous* and *Next*.
 - `.dr-entry__acts` — The actions at the foot, stacked, the primary on top, 10 apart.
 
 ## Variants

@@ -809,7 +809,7 @@ corrected:
 | ~~Flight route and map route, the accent as a stroke (1.69:1)~~ — **closed 2026-10-19 (rev 333):** `--color-route`, the ink in light, green in dark | The Fill-Only Rule; `WCAG 1.4.11` (decoration, `aria-hidden`, the live line says it in words) | Light keeps the rule; dark takes the wallet-plate reading, green standing as a line on the dark map |
 | Two green controls on a client step: the header's *Order* beside the window's primary — **kept 2026-10-19 (rev 334), the designer: «лишити»** | The project's *one green control per screen*; HIG asks one primary action, WCAG sets nothing | A conforming departure from the project rule, her call: *Order* is always green. Declined: *Order* grey while a step is open |
 | ~~No skip link~~ — **closed 2026-10-19 (rev 335):** `.dr-skip`, *Skip to content*, the first Tab stop on every twin | `WCAG 2.4.1` bypass blocks; `2.4.3` focus order | Both met |
-| Welcome: the pager 36 under the slider it counts, 12 above the first action (re-measured 2026-10-19) | Proximity: the parts of one thing stand close, apart from the next group | Reads with the actions by space alone |
+| ~~Welcome: the pager~~ — **closed 2026-10-19 (rev 336):** it was out of sight, not mis-spaced; a slide's lead now takes 44ch and welcome has Previous / Next, as onboarding | `HIG · Page controls`; proximity | Met |
 | Wallet: the earnings 8 apart in the list | Proximity: the items of one list 12 | −4; still a third of the 24 between groups |
 | Signed-out windows: the two ways in 10 apart, the terms note 10 under them | One group 12 | −2; reads as one group |
 | Live order card: its three groups 20 apart | Between groups 24–32 | −4 |

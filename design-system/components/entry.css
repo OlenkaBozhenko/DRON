@@ -35,6 +35,13 @@
   padding: 0;
 }
 
+/* «ось так роби» (rev 336, welcome made like onboarding-client): a slide's lead takes 44ch,
+   not the window's 36, so a long sentence still breaks in two lines and the pager under the
+   picture is not pushed out of sight */
+.dr-desk .dr-entry .dr-slide .dr-lead{
+  max-inline-size: var(--ch-44);
+}
+
 /* «зроби більший відступ між слайдером та кнопками не роби таке зажате»: the pager
    stands 32 from the actions (12 gap + 20), on the 8 grid */
 .dr-desk .dr-entry .dr-pager{

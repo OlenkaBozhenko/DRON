@@ -216,6 +216,7 @@
   --ch-18:           18ch;   /* --t-display-measure */
   --ch-30:           30ch;   /* --t-note-measure */
   --ch-36:           36ch;   /* added for the desktop (2026-10-19): a desktop window's lead, two balanced lines */
+  --ch-44:           44ch;   /* a slide's lead in a desktop slider window: two lines, so the pager stays in sight (rev 336) */
   --deg-n3-5:        -3.5deg;   /* --tilt-2 */
   --deg-2:           2deg;   /* --tilt-3 */
   --deg-3:           3deg;   /* --tilt-1 */
