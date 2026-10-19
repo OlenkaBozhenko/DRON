@@ -1458,3 +1458,10 @@
   min-width: 0;
   text-align: center;
 }
+/* an hour label is wider than its bar: it stays centred on the bar and may overhang */
+.dk .dk-axis--each > span{
+  overflow: visible;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+}
