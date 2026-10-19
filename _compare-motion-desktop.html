@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desktop microinteractions compare</title>
+<link rel="stylesheet" href="design-system/index.css">
+<style>
+  /* Scaffolding for one decision. Real desktop screens in frames: left as built,
+     right with _proposed-motion-desktop.css injected. Needs a server. */
+  body{ background:var(--bg-page); color:var(--text-primary); margin:0; padding:32px 16px 64px; font-family:var(--font-ui); }
+  .w{ max-width:1200px; margin:0 auto; }
+  h1{ font-size:22px; margin:0 0 8px; }
+  .lede{ font-size:14px; line-height:20px; color:var(--text-muted); margin:0 0 16px; max-width:84ch; }
+  .tools{ display:flex; gap:24px; flex-wrap:wrap; align-items:center; padding:12px 16px; background:var(--bg-surface); border-radius:12px; font-size:13px; margin:0 0 48px; }
+  .tools label{ display:flex; gap:8px; align-items:center; cursor:pointer; }
+  section.q{ margin:0 0 56px; }
+  .q h2{ font-size:20px; margin:0 0 4px; }
+  .std{ font-size:13px; line-height:18px; color:var(--text-muted); margin:0 0 12px; max-width:96ch; }
+  .std b{ color:var(--text-primary); }
+  .pair{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .pair.stack{ grid-template-columns:1fr; }
+  .col{ background:var(--bg-inset); border-radius:16px; padding:12px; }
+  .col.new{ box-shadow: inset 0 0 0 2px var(--color-action); }
+  .tag{ font-size:12px; font-weight:600; margin:0 0 8px; }
+  .crop{ position:relative; overflow:hidden; border-radius:12px; background:var(--bg-surface); }
+  .crop iframe{ position:absolute; border:0; transform-origin:0 0; }
+  .acts{ display:flex; gap:8px; flex-wrap:wrap; margin:0 0 12px; }
+</style>
+</head>
+<body>
+<div class="w">
+  <h1>Desktop microinteractions: as built and proposed</h1>
+  <p class="lede">Left: the desktop as it is. Right, with the green outline: the same screen with the proposal. Hover, press and Tab
+  through the right-hand frames yourself; they are live. The phone is not touched.</p>
+  <div class="tools">
+    <label><input type="checkbox" id="slow"> Slow motion ×5 (right side)</label>
+    <span>Every value is a motion token: <code>--dur-fast</code> .12s for hover and press, <code>--dur-base</code> .2s inside a component, <code>--dur-slow</code> .32s for a window arriving.</span>
+  </div>
+
+  <section class="q">
+    <h2>1. Header: hover, press, focus</h2>
+    <p class="std"><b>Job: answer.</b> Now the pill's fill snaps on hover. Proposed: it fades in over .12s; a press sinks; on Tab the focus ring is there at once (<b>WCAG 2.4.7</b>) and only settles 2px outward.</p>
+    <div class="pair stack" data-crop="order-history.html|0|0|1440|96"></div>
+  </section>
+
+  <section class="q">
+    <h2>2. Left rail rows and the home's service cards</h2>
+    <p class="std"><b>Job: answer.</b> Hover a row or a card, press it.</p>
+    <div class="pair" data-crop="order-history.html|0|96|380|560"></div>
+    <div style="height:16px"></div>
+    <div class="pair" data-crop="listings.html|380|360|680|420"></div>
+  </section>
+
+  <section class="q">
+    <h2>3. Operator home: actions and the job groups</h2>
+    <p class="std"><b>Answer</b> on the action rows (.12s); <b>connect</b> on the group tabs: the selected fill moves to the tab you pick over .2s.</p>
+    <div class="pair" data-crop="operator-listings.html|300|80|840|700"></div>
+  </section>
+
+  <section class="q">
+    <h2>4. A window arrives</h2>
+    <p class="std"><b>Job: connect.</b> Now a step's window is simply there. Proposed: it rises 12px and fades in over .32s on the enter curve. Under reduce motion it only fades (<b>WCAG 2.3.3</b>). Tab roots (Activity, Jobs) do not move: switching tabs stays instant (<b>HIG · Tab bars</b>).</p>
+    <div class="acts"><button class="dr-btn dr-btn--secondary" type="button" data-replay="arrive">Open the screen again</button></div>
+    <div class="pair" data-crop="job-brief.html|400|40|640|820" data-name="arrive"></div>
+  </section>
+
+  <section class="q">
+    <h2>5. Loading, then the content arrives</h2>
+    <p class="std"><b>Status, then connect.</b> The skeleton pulses while loading (built). Now the loaded screen simply replaces it. Proposed: the window stays where it is, and the content fades in over .2s where the placeholders were.</p>
+    <div class="acts"><button class="dr-btn dr-btn--secondary" type="button" data-load>Load the price</button><button class="dr-btn dr-btn--secondary" type="button" data-replay="review">Back to loading</button></div>
+    <div class="pair" data-crop="order-review-loading.html|400|40|640|820" data-name="review"></div>
+  </section>
+
+  <section class="q">
+    <h2>6. The skeleton leaves in place</h2>
+    <p class="std"><b>Status.</b> On payment the window turns into <i>Payment confirmed</i> after 3s. Now the grey lines vanish in one frame. Proposed: they fade out over .2s on the exit curve.</p>
+    <div class="acts"><button class="dr-btn dr-btn--secondary" type="button" data-replay="pay">Pay again</button></div>
+    <div class="pair" data-crop="payment-loading.html|400|40|640|820" data-name="pay"></div>
+  </section>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var VW = 1440, VH = 900, BASE = 'wireframes/desktop/', CSS = '', groups = {};
+  var SLOW = ':root,[data-theme]{--time-0-12:.6s;--time-0-2:1s;--time-0-32:1.6s}';
+
+  /* the proposal, plus the two things its script part does on a screen */
+  function inject(f){
+    var doc = f.contentDocument, win = f.contentWindow;
+    if (!doc || !doc.head || doc.__motion) return false;
+    doc.__motion = true;
+    var s = doc.createElement('style'); s.textContent = CSS + (document.getElementById('slow').checked ? SLOW : ''); doc.head.appendChild(s);
+    /* arriving from its own loading state: the window stays, the content fades in */
+    var here = win.location.pathname.split('/').pop(), ref = doc.referrer.split('/').pop();
+    var strip = function(n){ return n.replace(/-loading(?=[-.])/, ''); };
+    var mark = function(){ var w = doc.querySelector('.dr-window'); if (w && ref && ref !== here && strip(ref) === strip(here)) w.classList.add('dr-window--stay'); };
+    if (doc.querySelector('.dr-window')) mark(); else doc.addEventListener('DOMContentLoaded', mark);
+    /* the skeleton fades out before it is removed */
+    var rm = win.Element.prototype.remove;
+    win.Element.prototype.remove = function(){
+      var el = this;
+      if (el.querySelector && el.querySelector('[class*="dr-sk-"]')) { el.classList.add('dr-sk-leave'); el.addEventListener('animationend', function(){ rm.call(el); }, {once:true}); }
+      else rm.call(el);
+    };
+    return true;
+  }
+  function watch(f){ var t = setInterval(function(){ try { if (inject(f)) clearInterval(t); } catch(e){} }, 4); setTimeout(function(){ clearInterval(t); }, 4000); }
+
+  function crop(host, src, x, y, w, h, isNew){
+    var col = document.createElement('div'); col.className = 'col' + (isNew ? ' new' : '');
+    col.innerHTML = '<p class="tag">' + (isNew ? 'Proposed' : 'As built') + '</p>';
+    var box = document.createElement('div'); box.className = 'crop';
+    var f = document.createElement('iframe'); f.width = VW; f.height = VH; f.title = (isNew ? 'Proposed: ' : 'As built: ') + src;
+    box.appendChild(f); col.appendChild(box); host.appendChild(col);
+    function fit(){ var s = box.clientWidth / w; box.style.height = (h * s) + 'px'; f.style.transform = 'scale(' + s + ')'; f.style.left = (-x * s) + 'px'; f.style.top = (-y * s) + 'px'; }
+    if (isNew) f.addEventListener('load', function(){ inject(f); });
+    f.src = BASE + src; if (isNew) watch(f);
+    requestAnimationFrame(fit); addEventListener('resize', fit);
+    return f;
+  }
+  function go(f, src, isNew){ if (isNew) { f.contentWindow.location.href = BASE + src; watch(f); } else f.contentWindow.location.href = BASE + src; }
+
+  fetch('_proposed-motion-desktop.css').then(function(r){ return r.text(); }).then(function(t){
+    CSS = t;
+    document.querySelectorAll('[data-crop]').forEach(function(host){
+      var p = host.dataset.crop.split('|'), src = p[0], n = p.slice(1).map(Number);
+      var a = crop(host, src, n[0], n[1], n[2], n[3], false), b = crop(host, src, n[0], n[1], n[2], n[3], true);
+      if (host.dataset.name) groups[host.dataset.name] = {src: src, now: a, neu: b};
+    });
+  });
+
+  document.querySelectorAll('[data-replay]').forEach(function(btn){
+    btn.addEventListener('click', function(){ var g = groups[btn.dataset.replay]; go(g.now, g.src, false); go(g.neu, g.src, true); });
+  });
+  document.querySelector('[data-load]').addEventListener('click', function(){
+    var g = groups.review; go(g.now, 'order-review.html', false); go(g.neu, 'order-review.html', true);
+  });
+  document.getElementById('slow').addEventListener('change', function(){
+    document.querySelectorAll('.col.new iframe').forEach(function(f){ f.contentWindow.location.reload(); watch(f); });
+  });
+}());
+</script>
+</body>
+</html>
