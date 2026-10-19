@@ -798,7 +798,7 @@ only it used — `.dr-livechip`, `.dr-console__toggle`, `.dr-talk--dock` (the de
 `.dr-talkdock`) and `.dr-sheet__lead`. Under the filters (`listings-filters`) the assistant steps out and
 *Talk to AI* takes its place, so the chat folds into that button rather than vanishing (rev 329).
 
-**Recorded departures, awaiting the designer** — measured on the twins at 1600 × 900, kept as built, not
+**Recorded departures** (gone through with the designer 2026-10-19, revs 330–337; the rest kept as the desktop is built, her word: «те що не знаєш як зроби як на десктоп і все») — measured on the twins at 1600 × 900, kept as built, not
 corrected:
 
 | What is built | Guideline | Result |
@@ -810,11 +810,11 @@ corrected:
 | Two green controls on a client step: the header's *Order* beside the window's primary — **kept 2026-10-19 (rev 334), the designer: «лишити»** | The project's *one green control per screen*; HIG asks one primary action, WCAG sets nothing | A conforming departure from the project rule, her call: *Order* is always green. Declined: *Order* grey while a step is open |
 | ~~No skip link~~ — **closed 2026-10-19 (rev 335):** `.dr-skip`, *Skip to content*, the first Tab stop on every twin | `WCAG 2.4.1` bypass blocks; `2.4.3` focus order | Both met |
 | ~~Welcome: the pager~~ — **closed 2026-10-19 (rev 336):** it was out of sight, not mis-spaced; a slide's lead now takes 44ch and welcome has Previous / Next, as onboarding | `HIG · Page controls`; proximity | Met |
-| Wallet: the earnings 8 apart in the list | Proximity: the items of one list 12 | −4; still a third of the 24 between groups |
-| Signed-out windows: the two ways in 10 apart, the terms note 10 under them | One group 12 | −2; reads as one group |
-| Live order card: its three groups 20 apart | Between groups 24–32 | −4 |
-| Hanging cards: 8 apart on `operator-jobs`, 28 on `order-history` (re-measured 2026-10-19) | One list 12, under the 24 between groups | Jobs −4, Activity +16: the two screens do not match each other |
-| Message, outcome and waiting blocks: mark, title and body 12 apart | The parts of one thing 4–8 | +4; half of the 24 that would split them |
+| Wallet: the earnings 8 apart in the list — **kept as built 2026-10-19 (rev 337)** | Proximity: the items of one list 12 | −4; still a third of the 24 between groups |
+| Signed-out windows: the two ways in 10 apart, the terms note 10 under them — **kept as built 2026-10-19 (rev 337)** | One group 12 | −2; reads as one group |
+| Live order card: its three groups 20 apart — **kept as built 2026-10-19 (rev 337)** | Between groups 24–32 | −4 |
+| Hanging cards: 8 apart on `operator-jobs`, 28 on `order-history` (re-measured 2026-10-19) — **kept as built 2026-10-19 (rev 337)** | One list 12, under the 24 between groups | Jobs −4, Activity +16: the two screens do not match each other |
+| Message, outcome and waiting blocks: mark, title and body 12 apart — **kept as built 2026-10-19 (rev 337)** | The parts of one thing 4–8 | +4; half of the 24 that would split them |
 
 ## Elevation & Depth
 
