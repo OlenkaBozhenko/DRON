@@ -1990,3 +1990,12 @@
     radial-gradient(circle at 3.8% 59.8%, color-mix(in srgb, var(--color-action) 62%, white 10%) 0 0.8px, color-mix(in srgb, var(--color-action) 30%, transparent) 1.2px, transparent 3.4px),
     radial-gradient(closest-side, color-mix(in srgb, var(--color-action) 12%, transparent), transparent 70%);
 }
+/* «прибери бекграунд за іконкою»: the drone stands on the button itself, no disc; with no
+   dark ground under it the mark takes the button's own ink - white in dark, charcoal in
+   light - so it reads in both themes */
+.dk .dr-talk__orb{
+  background: none;
+}
+.dk .dr-talk__orb .dr-fly{
+  fill: var(--text-primary);
+}
