@@ -804,7 +804,7 @@ corrected:
 |---|---|---|
 | ~~Drop zone's remove control, 28 × 28~~ — **closed 2026-10-19 (rev 330):** drawn 28, tapped on 44 | `HIG · 44pt target`; `WCAG 2.5.8` (2.2) asks 24 | Both met |
 | ~~Drop zone's dashed edge 1.46:1 (1.97:1 dark)~~ — **closed 2026-10-19 (rev 331):** `--border-strong`, 7.20:1 light, 9.00:1 dark. Still open: the drag-over accent edge 1.84:1 | `WCAG 1.4.11` asks 3:1 for a component's boundary | Edge met; drag-over fails, transient feedback during a drag |
-| Review stars, yellow, 2.23:1 on the light panel | `WCAG 1.4.11` 3:1 | Fails; the score is also written, so colour is not the carrier |
+| Review stars, yellow, 2.23:1 on the light panel — **kept 2026-10-19 (rev 332), the designer: «лиши як є»** | `WCAG 1.4.11` 3:1 applies only to graphics *required* to understand the content | **Conforms:** the score is written beside the stars, so they are not required and 1.4.11 is not engaged; same yellow as the phone's Rate screen. Declined: a dark outline round each star |
 | Flight route and map route, the accent as a stroke (1.69:1) | The fill-only rule; `WCAG 1.4.11` | Against the project rule; decoration, `aria-hidden`, the live line says it in words |
 | Two green controls on a client step: the header's *Order* beside the window's primary | The project's *one green control per screen* (her call, 2026-10-19, keeps *Order* green) | Neither HIG nor WCAG is failed; the operator's steps have one |
 | No skip link: header and both rails come before `main` | `WCAG 2.4.1` bypass blocks; `2.4.3` focus order | 2.4.3 met; 2.4.1 served only by the `main` landmark, for screen readers, not for keyboard users |
