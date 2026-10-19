@@ -1664,7 +1664,9 @@ _Columns: Screen · Zone · Text (verbatim) · Type · Flag. One row per string,
 | payment-loading | — | Payment | Heading |  |
 | payment-loading | — | Authorizing your payment… | State message |  |
 | payment-loading | — | Confirming your payment with Apple Pay. Don't close the app. | State message |  |
-| payment-loading | — | Continue | Button |  |
+| payment-loading | — | Continue | Button | phone only - the desktop has no button since 2026-10-19: the confirmed state follows by itself |
+| payment-loading | — | Payment confirmed | State message | desktop, 2026-10-19 - after 3 s, in place of the spinner; then the next step opens by itself |
+| payment-loading | — | ₴180 paid with Apple Pay. Finding your operator. | State message | DATA - desktop; ₴800 aerial, ₴650 inspection. Success = the fact + the next step (voice.md), no *successfully* |
 | payment | — | ‹ Order review | Button |  |
 | payment | — | Card details | Heading | was `Payment` until 2026-08-16 — `HIG · Navigation bars` asks the title to name the current screen, and after the drawer took the method this screen asks only for the card. `payment-error` / `payment-loading` keep `Payment`, serving all three methods |
 | payment | Amount | Package delivery · Podil → Osokorky | Body | DATA |
