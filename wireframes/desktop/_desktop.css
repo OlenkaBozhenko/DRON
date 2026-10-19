@@ -1999,3 +1999,25 @@
 .dk .dr-talk__orb .dr-fly{
   fill: var(--text-primary);
 }
+
+/* «забери на бекграунді той весь пил, на світлій темі виглядає погано, та зроби таке коло
+   на бекграунді у дрона, лиш у моїх кольорах» (2026-10-19, her reference: Sphere, an agentic
+   AI orb by AmazingUI): the starfield and the specks go; behind the drone turns a braided
+   sphere of translucent ribbons in the brand greens - bright on the dark map, deep green on
+   the light one, so it reads in both. It turns slowly (still under reduced motion). */
+.dk:has(.dr-assistant) .dk-veil::after{
+  content: none;
+}
+:root, [data-theme="light"]{
+  --dk-sphere: url("../../assets/scenes/desktop/sphere.png");
+}
+[data-theme="dark"]{
+  --dk-sphere: url("../../assets/scenes/desktop/sphere-dark.png");
+}
+.dk .dr-assistant__orb::before{
+  inset: -56px;
+  background: var(--dk-sphere) center / contain no-repeat;
+  filter: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
