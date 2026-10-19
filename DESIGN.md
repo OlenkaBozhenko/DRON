@@ -890,7 +890,9 @@ gives it the corner. It never restates the parent's radius.
 
 ## Motion
 
-Added rev 341 (2026-10-19) on the designer's word. Motion in DRON is an interface's, not a
+Added rev 341 (2026-10-19) on the designer's word. **The guidelines are `design-system/motion.md`**
+(rev 347), rendered as the *Motion* section of the design system's docs (`docs/motion*.html`), where
+every page plays the motion it describes. This section keeps the values. Motion in DRON is an interface's, not a
 presentation's: short, moderate, and always for a reason.
 
 ### Three jobs, and the rule

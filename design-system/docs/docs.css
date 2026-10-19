@@ -301,3 +301,21 @@ code { font-family: var(--font-mono); font-size: var(--type-meta-size); }
   margin: 0 -576px 0 0; }
 .dsd-plate .dr-desk[style*="width:1440px"][style*="height:900px"] { margin-bottom: -360px; }
 .dsd-plate .dr-desk[style*="width:1440px"][style*="height:96px"] { margin-bottom: -38.4px; }
+
+/* -- motion demos (rev 347): the Motion pages play what they describe. A track and a
+   dot for a duration or a curve, a box rising by a distance, a stage for a note on the
+   map. docs.js plays a [data-motion-demo="replay"] specimen again on click. Tokens only. */
+.dsd-mdemo { display: grid; gap: var(--len-8); width: 100%; cursor: pointer; }
+.dsd-mdemo--row { grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: var(--len-24); }
+.dsd-mdemo__k { margin: 0; font-family: var(--font-mono); font-size: var(--type-caption-size); color: var(--text-muted); }
+.dsd-mtrack { position: relative; height: var(--len-28); border-radius: var(--len-999); background: var(--bg-surface); }
+.dsd-mdot { position: absolute; top: var(--len-6); left: var(--len-6); width: var(--len-16); height: var(--len-16); border-radius: var(--len-999); background: var(--bg-meter); animation-name: dsd-mdot; animation-fill-mode: both; }
+@keyframes dsd-mdot { from { left: var(--len-6); } to { left: calc(var(--pct-100) - var(--len-22)); } }
+.dsd-mrise { display: grid; justify-items: center; gap: var(--len-12); padding-top: var(--len-16); }
+.dsd-mbox { width: var(--len-44); height: var(--len-44); border-radius: var(--len-12); background: var(--bg-muted); animation: dsd-mrise var(--dur-slow) var(--ease-enter) both; }
+@keyframes dsd-mrise { from { translate: 0 var(--rise); opacity: 0; } }
+.dsd-mstage { position: relative; height: calc(var(--len-140) * 2); border-radius: var(--len-16); background: var(--bg-surface); overflow: hidden; }
+/* a section on the overview with no card art yet lists its pages as rows */
+.dsd-linkrow a { display: block; padding: var(--len-16) var(--len-20); border-radius: var(--len-16); background: var(--bg-surface); color: var(--text-primary); text-decoration: none; font-size: var(--type-title-size); font-weight: var(--type-title-weight); }
+.dsd-linkrow a:hover { text-decoration: underline; }
+.dsd-linkrow a:focus-visible { outline: var(--len-2-5) solid var(--text-primary); outline-offset: var(--len-4); }

@@ -283,9 +283,10 @@ def head(title, desc):
 
 def topbar(current):
     links = [('overview.html', 'Overview'), ('index.html', 'Components'), ('patterns.html', 'Patterns'),
-             ('voice.html', 'Tone of voice'), ('tokens.html', 'Tokens'), ('why.html', 'Why it looks like this'),
+             ('voice.html', 'Tone of voice'), ('tokens.html', 'Tokens'), ('motion.html', 'Motion'),
+             ('why.html', 'Why it looks like this'),
              ('../../ui/kit.html', 'UI kit')]
-    sec = current.split('-')[0] + '.html' if current.startswith(('voice-', 'tokens-')) else current
+    sec = current.split('-')[0] + '.html' if current.startswith(('voice-', 'tokens-', 'motion-')) else current
     nav = ''.join('<a href="%s"%s>%s</a>' % (h, ' aria-current="page"' if h in (current, sec) else '', t)
                   for h, t in links)
     return '''<header class="dsd-top">
@@ -547,6 +548,9 @@ def overview_page(pages, patterns, errors):
             tiles.append('<li class="dsd-tile"><a href="%s"><img src="../../assets/design-system/cards/%s.webp" '
                          'alt="" width="560" height="315"><span class="dsd-tile__name">%s</span></a>'
                          '<span class="dsd-tile__cap">%s</span></li>' % (href, img, inline(title), inline(cap)))
+        if not cards and NAV.get(name.lower()):
+            # a section with no card art yet lists its pages as rows (Motion, rev 347)
+            tiles = ['<li class="dsd-linkrow"><a href="%s">%s</a></li>' % (h, inline(t)) for t, h in NAV[name.lower()]]
         sid = slug(name)
         content.append('<section class="dsd-home__sec" aria-labelledby="%s"><h2 id="%s">%s</h2>%s'
                        '<ul class="dsd-tiles" role="list">%s</ul></section>'
@@ -556,6 +560,8 @@ def overview_page(pages, patterns, errors):
             items = [(p['name'], '%s.html' % p['slug']) for p in sorted(pages, key=lambda p: p['name'])]
         elif name == 'Patterns':
             items = [(m['name'], 'patterns.html#%s' % m['slug']) for m in patterns]
+        elif not cards and NAV.get(name.lower()):
+            items = NAV[name.lower()]
         else:
             items = [(m.group(1), m.group(2)) for m in cards if m]
         side.append('<details class="dsd-side__grp" open><summary>%s</summary><ul role="list">%s</ul></details>'
@@ -585,6 +591,7 @@ def overview_page(pages, patterns, errors):
 # built once from what the pages are, and wrap() puts it beside each page's main.
 
 VOICE = os.path.join(HERE, '..', '..', 'voice.md')
+MOTION = os.path.join(HERE, '..', 'motion.md')
 TOKENS = os.path.join(HERE, '..', 'tokens.css')
 NAV = {}
 KEYS = {}   # href -> the words the sidebar filter also searches: a page's description, classes, tokens
@@ -596,6 +603,7 @@ def side_html(current):
                              ('Example screen', '../examples/operator-profile.html'), ('Backlog', 'backlog.html')]),
         ('Tone of voice', NAV.get('voice', [])),
         ('Tokens', NAV.get('tokens', [])),
+        ('Motion', NAV.get('motion', [])),
         ('Components', [('All components', 'index.html')] + NAV.get('components', [])),
         ('Patterns', [('All patterns', 'patterns.html')] + NAV.get('patterns', [])),
     ]
@@ -659,6 +667,36 @@ def voice_pages():
                                   '<p class="dsd-sources">Source: <code>voice.md</code> at the repo root; every product '
                                   'string is inventoried in <code>microcopy.md</code>.</p>' % (intro, toc))
     NAV['voice'] = [('About the voice', 'voice.html')] + nav
+    return out
+
+
+# --- Motion: design-system/motion.md, one page per section (rev 347) ----------------
+# Built like Tone of voice, with one difference: a ```html block is a LIVE specimen,
+# drawn by design-system/index.css, so each page can play the motion it describes.
+
+def motion_pages():
+    text = open(MOTION, encoding='utf-8').read()
+    text = re.sub(r'^# .+\n', '', text, count=1)
+    secs = split_sections(text, 2)
+    out, nav = {}, []
+    live = lambda mk: plate(mk)
+    intro = blocks(secs[0][1], live)
+    for name, body in secs[1:]:
+        short = re.split(r' — ', name)[0]
+        f = 'motion-%s.html' % slug(short)
+        nav.append((short, f))
+        KEYS[f] = name + ' ' + ' '.join(re.findall(r'(?m)^###? (.+)$', body)) + ' ' + ' '.join(re.findall(r'--[a-z]+-[a-z]+', body))
+        out[f] = site_page(f, short, 'Motion: %s.' % short,
+                           '<a href="motion.html">Motion</a> / %s' % html.escape(short),
+                           '<h1>%s</h1>%s<p class="dsd-sources">Source: <code>design-system/motion.md</code>, section <em>%s</em>.</p>'
+                           % (inline(name), blocks(body, live), html.escape(name)))
+    toc = ''.join('<li><a href="%s">%s</a></li>' % (f, inline(n)) for n, f in nav)
+    out['motion.html'] = site_page('motion.html', 'Motion', 'How DRON moves.', 'Motion',
+                                   '<h1>Motion</h1>%s<h2>Sections</h2><ul>%s</ul>'
+                                   '<p class="dsd-sources">Source: <code>design-system/motion.md</code>; the moments, '
+                                   'screen by screen, in <code>animations/motion-inventory.md</code>; the state tones in '
+                                   '<code>animations/state-tone.md</code>.</p>' % (intro, toc))
+    NAV['motion'] = [('About motion', 'motion.html')] + nav
     return out
 
 
@@ -790,6 +828,7 @@ def main():
             errors.append('%s: slug %s does not match the file name' % (f, meta['slug']))
         out[meta['slug'] + '.html'] = component_page(meta, body, known, errors, pages)
     out.update(voice_pages())
+    out.update(motion_pages())
     # the backlog: what a screen built from the system alone found missing (design-system/backlog.md)
     bl = open(os.path.join(HERE, '..', 'backlog.md'), encoding='utf-8').read()
     bl = re.sub(r'^# .+\n', '', bl, count=1)

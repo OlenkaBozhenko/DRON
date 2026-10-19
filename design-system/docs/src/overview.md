@@ -32,6 +32,10 @@ measured in both themes. For more, see [Tokens](tokens.html).
 - card: [Motion](tokens-motion.html) · tokens-motion · The times and easings, and what reduced motion keeps.
 - card: [Light and dark](tokens-light-and-dark.html) · tokens-themes · The semantic tier redrawn for the dark build.
 
+## Motion
+
+How DRON moves: three jobs (connect, status, answer), three durations, three curves, two distances, and the tone each state arrives in. Every page plays the motion it describes.
+
 ## Components
 
 The bricks: 61 components, each drawn live by the stylesheet the product links, with its anatomy,
