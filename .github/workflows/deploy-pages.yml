@@ -59,6 +59,15 @@ jobs:
           mkdir -p _site/wireframes
           cp wireframes/*.html _site/wireframes/
           cp wireframes/_wireframe.css wireframes/_wf-shell.js _site/wireframes/
+          # THE DESKTOP TWINS (2026-10-20). Since 2026-10-18 every phone page has
+          # a desktop twin in wireframes/desktop/, and the kit, the docs and the
+          # phone pages link them; they were never added here, so the first push
+          # after they were built failed the self-check below with 59 dead links.
+          # The pages ship with their two scripts: _arrive.js (how a screen
+          # arrives, on every twin) and _desktop.js (the twins' behaviour). The
+          # emptied _desktop*.css pointers are linked by nothing and stay behind.
+          mkdir -p _site/wireframes/desktop
+          cp wireframes/desktop/*.html wireframes/desktop/_arrive.js wireframes/desktop/_desktop.js _site/wireframes/desktop/
           # THE TOKEN + COMPONENT LAYER, which every page has linked since the
           # 2026-09-24 move off ui/kit.css. Leaving it out is how the live site
           # came up on 2026-10-10 with only the prototype chrome styled: every
@@ -107,7 +116,11 @@ jobs:
           find _site/wireframes -name '*.html' -print0 | xargs -0 sed -i \
             -e "s#\"_wireframe.css\"#\"_wireframe.css?v=${STAMP}\"#g" \
             -e "s#\"_wf-shell.js\"#\"_wf-shell.js?v=${STAMP}\"#g" \
-            -e "s#\"../design-system/index.css\"#\"../design-system/index.css?v=${STAMP}\"#g"
+            -e "s#\"../design-system/index.css\"#\"../design-system/index.css?v=${STAMP}\"#g" \
+            -e "s#\"../../design-system/index.css\"#\"../../design-system/index.css?v=${STAMP}\"#g" \
+            -e "s#\"../../ui/kit.js\"#\"../../ui/kit.js?v=${STAMP}\"#g" \
+            -e "s#\"_arrive.js\"#\"_arrive.js?v=${STAMP}\"#g" \
+            -e "s#\"_desktop.js\"#\"_desktop.js?v=${STAMP}\"#g"
           echo "Stamped shared-asset URLs with v=${STAMP}"
 
       - name: Fail if a published page links something that is not published
