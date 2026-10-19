@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Motion findings compare</title>
+<link rel="stylesheet" href="design-system/index.css">
+<style>
+  /* Scaffolding for three decisions from animations/motion-inventory.md.
+     Not linked from anything. Real desktop screens in frames; each option is
+     injected into its own frame, nothing in the system changes. Needs a server. */
+  body{ background:var(--bg-page); color:var(--text-primary); margin:0; padding:32px 16px 64px; font-family:var(--font-ui); }
+  .w{ max-width:1180px; margin:0 auto; }
+  h1{ font-size:22px; margin:0 0 8px; }
+  .lede{ font-size:14px; line-height:20px; color:var(--text-muted); margin:0 0 16px; max-width:80ch; }
+  .tools{ display:flex; gap:16px; align-items:center; padding:12px 16px; background:var(--bg-surface); border-radius:12px; font-size:13px; margin:0 0 48px; }
+  .tools label{ display:flex; gap:8px; align-items:center; cursor:pointer; }
+  section.q{ margin:0 0 64px; }
+  .q h2{ font-size:20px; margin:0 0 4px; }
+  .std{ font-size:13px; line-height:18px; color:var(--text-muted); margin:0 0 16px; max-width:90ch; }
+  .std b{ color:var(--text-primary); }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(420px, 1fr)); gap:16px; }
+  .opt{ background:var(--bg-inset); border-radius:16px; padding:16px; }
+  .opt.rec{ box-shadow: inset 0 0 0 2px var(--color-action); }
+  .opt h3{ font-size:15px; margin:0 0 4px; }
+  .opt p{ font-size:13px; line-height:18px; color:var(--text-muted); margin:0 0 12px; }
+  .verdict{ display:inline-block; font-size:12px; font-weight:600; padding:2px 8px; border-radius:999px; margin:0 0 12px; }
+  .pass{ background:var(--bg-accent-tint); }
+  .fail{ background:var(--bg-danger-tint, #F2D8CF); }
+  .crops{ display:flex; flex-direction:column; gap:8px; }
+  .crop{ position:relative; overflow:hidden; border-radius:12px; background:var(--bg-surface); }
+  .crop iframe{ position:absolute; border:0; transform-origin:0 0; pointer-events:none; }
+  .crop .cap{ position:absolute; left:8px; top:8px; z-index:2; font-size:11px; font-weight:600; background:var(--bg-page); padding:2px 8px; border-radius:999px; }
+  .acts{ display:flex; gap:8px; flex-wrap:wrap; margin:0 0 12px; }
+</style>
+</head>
+<body>
+<div class="w">
+  <h1>Motion findings: as built and the options</h1>
+  <p class="lede">Real desktop screens in frames. Each card is one option; the green outline is the one I recommend.
+  Buttons play the moment. Nothing in the system has changed.</p>
+  <div class="tools"><label><input type="checkbox" id="slow"> Slow motion ×5 (questions 2 and 3)</label></div>
+
+  <!-- 1 -->
+  <section class="q">
+    <h2>1. Three loops that never stop</h2>
+    <p class="std"><b>WCAG 2.2.2 Pause, Stop, Hide (A):</b> motion that starts by itself, runs over 5s beside other content, must be stoppable on the page, unless it is essential (a loading indicator is). The system "reduce motion" setting does not count. Measured: assistant rings, one turn per 24s; the light round Talk to AI, 3.2s; the drone mark sways 3.6s. All endless.</p>
+    <div class="grid">
+      <div class="opt" data-opt="now">
+        <h3>As built</h3><span class="verdict fail">Fails 2.2.2: endless, no stop</span>
+        <p>Rings turn, light circles the button, the mark sways, propellers spin, all the time.</p>
+        <div class="crops" data-crops="1"></div>
+      </div>
+      <div class="opt" data-opt="off">
+        <h3>A · Remove all three</h3><span class="verdict pass">Passes</span>
+        <p>Everything stands still. The desktop is quieter.</p>
+        <div class="crops" data-crops="1"></div>
+      </div>
+      <div class="opt rec" data-opt="job">
+        <h3>B · Move only while the assistant answers</h3><span class="verdict pass">Passes: a status indicator</span>
+        <p>At rest all still. While it composes an answer the rings and the propellers turn: then the motion means "working".</p>
+        <div class="acts"><button class="dr-btn dr-btn--secondary" type="button" data-compose>Ask the assistant (4s answer)</button></div>
+        <div class="crops" data-crops="1"></div>
+      </div>
+      <div class="opt" data-opt="pause">
+        <h3>C · Keep all, add a pause control</h3><span class="verdict pass">Passes, formally</span>
+        <p>Everything moves as now; a control on the page stops it. A control added only to stop motion that says nothing.</p>
+        <div class="acts"><button class="dr-btn dr-btn--secondary" type="button" data-pause aria-pressed="false">Pause motion</button></div>
+        <div class="crops" data-crops="1"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="q">
+    <h2>2. The job offer's 10 seconds</h2>
+    <p class="std"><b>HIG · Progress indicators:</b> when the duration is known, show determinate progress. <b>WCAG 2.2.1:</b> a real-time offer is an allowed exception. <b>WCAG 1.4.1:</b> the seconds stay in words too. Both options pass.</p>
+    <div class="grid">
+      <div class="opt" data-opt2="now">
+        <h3>As built</h3><span class="verdict pass">Passes</span>
+        <p>"Expires in 8s" in words, standing still.</p>
+        <div class="crops" data-crops="2"></div>
+      </div>
+      <div class="opt rec" data-opt2="bar">
+        <h3>Countdown: words + a bar that empties</h3><span class="verdict pass">Passes</span>
+        <p>The figure counts 10 → 0 and a thin charcoal bar empties with it (green stays only on Accept). Into the backlog as a component; not built now.</p>
+        <div class="acts"><button class="dr-btn dr-btn--secondary" type="button" data-countdown>Start the offer</button></div>
+        <div class="crops" data-crops="2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="q">
+    <h2>3. The operator replaces the placeholder</h2>
+    <p class="std"><b>HIG · Motion:</b> movement shows how two states relate. <b>WCAG 2.3.3:</b> under reduce motion it becomes a fade. Both options pass.</p>
+    <div class="acts"><button class="dr-btn dr-btn--secondary" type="button" data-reveal>Find the operator (both)</button></div>
+    <div class="grid">
+      <div class="opt" data-opt3="now">
+        <h3>As built: instant swap</h3><span class="verdict pass">Passes</span>
+        <p>The grey placeholder is replaced by Andriy M. in one frame.</p>
+        <div class="crops" data-crops="3"></div>
+      </div>
+      <div class="opt rec" data-opt3="fade">
+        <h3>The card rises into place</h3><span class="verdict pass">Passes</span>
+        <p>The operator card fades in from 12px below where the placeholder stood: <code>--dur-slow</code> .32s, <code>--ease-enter</code>, <code>--move-md</code>.</p>
+        <div class="crops" data-crops="3"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var VW = 1440, VH = 900;
+  var k = function(){ return document.getElementById('slow').checked ? 5 : 1; };
+
+  /* a crop: one region of a real desktop page, scaled to the card's width */
+  function crop(host, src, x, y, w, h, cap, onload){
+    var box = document.createElement('div'); box.className = 'crop';
+    var f = document.createElement('iframe'); f.src = src; f.width = VW; f.height = VH; f.tabIndex = -1; f.setAttribute('aria-hidden','true');
+    var label = document.createElement('span'); label.className = 'cap'; label.textContent = cap;
+    box.appendChild(label); box.appendChild(f); host.appendChild(box);
+    function fit(){
+      var s = host.clientWidth / w;
+      box.style.height = (h * s) + 'px';
+      f.style.transform = 'scale(' + s + ')';
+      f.style.left = (-x * s) + 'px'; f.style.top = (-y * s) + 'px';
+    }
+    fit(); addEventListener('resize', fit);
+    f.addEventListener('load', function(){ if (onload) onload(f.contentDocument, f); });
+    return f;
+  }
+  function style(doc, css){ var s = doc.createElement('style'); s.textContent = css; doc.head.appendChild(s); }
+
+  /* 1 ---------------------------------------------------------------- */
+  var STOP = '.dr-assistant__orb::before,.dr-assistant__orb::after,.dr-fly__body,.dr-fly__prop,.dr-talk::before{animation:none!important}';
+  var COMPOSE = 'body.is-composing .dr-assistant__orb::before,body.is-composing .dr-assistant__orb::after{animation:dr-orb-spin var(--time-ring) linear infinite!important}' +
+                'body.is-composing .dr-assistant .dr-fly__prop{animation:dr-fly-prop var(--time-prop) linear infinite!important}';
+  var PAUSED = 'body.is-paused *,body.is-paused *::before,body.is-paused *::after{animation-play-state:paused!important}';
+  var frames1 = {};
+  document.querySelectorAll('[data-opt]').forEach(function(card){
+    var opt = card.dataset.opt, host = card.querySelector('[data-crops]');
+    frames1[opt] = [];
+    var inject = function(doc){
+      if (opt === 'off') style(doc, STOP);
+      if (opt === 'job') style(doc, STOP + COMPOSE);
+      if (opt === 'pause') style(doc, PAUSED);
+    };
+    frames1[opt].push(crop(host, 'wireframes/desktop/listings.html', 420, 40, 600, 330, 'Home: the assistant', inject));
+    frames1[opt].push(crop(host, 'wireframes/desktop/order-history.html', 560, 800, 320, 100, 'Activity: Talk to AI', inject));
+  });
+  document.querySelector('[data-compose]').addEventListener('click', function(){
+    frames1.job.forEach(function(f){ var b = f.contentDocument.body; b.classList.add('is-composing'); setTimeout(function(){ b.classList.remove('is-composing'); }, 4000); });
+  });
+  document.querySelector('[data-pause]').addEventListener('click', function(e){
+    var on = e.currentTarget.getAttribute('aria-pressed') !== 'true';
+    e.currentTarget.setAttribute('aria-pressed', on); e.currentTarget.textContent = on ? 'Resume motion' : 'Pause motion';
+    frames1.pause.forEach(function(f){ f.contentDocument.body.classList.toggle('is-paused', on); });
+  });
+
+  /* 2 ---------------------------------------------------------------- */
+  var bar2;
+  document.querySelectorAll('[data-opt2]').forEach(function(card){
+    var opt = card.dataset.opt2, host = card.querySelector('[data-crops]');
+    var f = crop(host, 'wireframes/desktop/job-offer.html', 420, 60, 600, 560, 'Job offer', function(doc){
+      if (opt !== 'bar') return;
+      style(doc, '.cmp-cd{height:4px;border-radius:999px;background:var(--bg-muted);overflow:hidden;margin-top:8px}' +
+                 '.cmp-cd>span{display:block;height:100%;width:100%;background:var(--text-primary);transform-origin:0 50%}');
+      var d = doc.querySelector('.dr-scroll .dr-display');
+      var t = doc.createElement('div'); t.className = 'cmp-cd'; t.setAttribute('aria-hidden','true'); t.innerHTML = '<span></span>';
+      d.after(t); d.textContent = 'Expires in 10s';
+    });
+    if (opt === 'bar') bar2 = f;
+  });
+  var tick;
+  document.querySelector('[data-countdown]').addEventListener('click', function(){
+    var doc = bar2.contentDocument, d = doc.querySelector('.dr-scroll .dr-display'), fill = doc.querySelector('.cmp-cd > span');
+    clearInterval(tick); var n = 10; d.textContent = 'Expires in 10s';
+    fill.getAnimations().forEach(function(a){ a.cancel(); });
+    fill.animate([{transform:'scaleX(1)'},{transform:'scaleX(0)'}], {duration:10000, easing:'linear', fill:'forwards'});
+    tick = setInterval(function(){ n--; d.textContent = n > 0 ? 'Expires in ' + n + 's' : 'Offer expired'; if (n <= 0) clearInterval(tick); }, 1000);
+  });
+
+  /* 3 ---------------------------------------------------------------- */
+  var frames3 = {}, opHTML = '';
+  fetch('wireframes/desktop/order-confirmed.html').then(function(r){ return r.text(); }).then(function(t){
+    var d = new DOMParser().parseFromString(t, 'text/html');
+    opHTML = d.querySelector('article.dr-op').outerHTML.replace(/\.\.\/\.\.\//g, '../../');
+  });
+  document.querySelectorAll('[data-opt3]').forEach(function(card){
+    var opt = card.dataset.opt3;
+    frames3[opt] = crop(card.querySelector('[data-crops]'), 'wireframes/desktop/order-confirmed-loading.html', 420, 60, 600, 560, 'Order confirmed', null);
+  });
+  function reveal(opt){
+    var f = frames3[opt];
+    f.addEventListener('load', function go(){
+      f.removeEventListener('load', go);
+      setTimeout(function(){
+        var doc = f.contentDocument, slot = doc.querySelector('section[aria-label^="Operator"]');
+        doc.querySelector('.dr-center .dr-display').textContent = 'Payment received';
+        doc.querySelector('.dr-center .dr-lead').textContent = 'Your operator is on the way.';
+        slot.innerHTML = opHTML;
+        if (opt === 'fade') slot.firstElementChild.animate(
+          [{opacity:0, transform:'translateY(12px)'}, {opacity:1, transform:'none'}],
+          {duration:320 * k(), easing:'cubic-bezier(.22,.61,.36,1)'});
+      }, 1600);
+    });
+    f.contentWindow.location.reload();
+  }
+  document.querySelector('[data-reveal]').addEventListener('click', function(){ reveal('now'); reveal('fade'); });
+}());
+</script>
+</body>
+</html>
