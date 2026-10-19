@@ -292,10 +292,17 @@ design-system/
   backlog.md           what such a screen found missing: orders for the system, never fixed on the screen
 ```
 
-**Wide screens (rev 317).** The shell adapts to tablet and desktop inside its own components, by container
-queries on `.dr-screen` from 47.875rem — never a media query on a screen — so the phone frame never changes
-(measured identical, 26 screens). Wide-only components: `material`, `stat`, `assistant`, `mapground`, `wgrid`;
-docs group *Wide screens*; pattern *Wide workspace*. See `DESIGN.md` § Layout › Wide screens.
+**Wide screens — the desktop (rev 317, rewritten rev 327).** The desktop twins in `wireframes/desktop/`
+consume the system like every other page: they link only `design-system/index.css` (plus `_desktop.js`), and
+the temporary `_desktop*.css` exception is over — those files are one-line pointers no page links. Every
+desktop rule matches only inside the `.dr-desk` frame, so the phone never reads it; the move was measured
+identical, 536 of 538 page-states plus the two known-flaky ones within their noise. Desktop components: `desk`, `window`, `rail`, `finderwin`, `float`,
+`ophome`, `entry`, `review`, `dropzone`, `outcome`, `lastsearch`, `flight`, `maproute`, plus a DESKTOP section
+in `tally`, `header`, `chart`, `stat`, `mapground`, `console`, `assistant`, `calendar`, `type`. The docs group
+*Wide screens* lists the desktop pages (Desktop shell, header, window, panel and the rest); the patterns are
+the five desktop ones (step window, tab panel, message window, waiting window, signed-out window). *Wide
+shell*, *Wide workspace*, `wgrid` and the stretched `examples/home-wide.html` are gone. See `DESIGN.md`
+§ Layout › Wide screens.
 
 **[`design-system.html`](design-system.html) is the design system's tokens page.** Since rev 305 the
 *Design System* group in the sidebar of `research.html` and the other hub pages opens on the front page,
@@ -307,7 +314,7 @@ there on the next load. A new file reaches the page by being imported from `inde
 The move was measured as a refactor: every page computes identically before and after, light and
 dark, at 1280 and at 380. Asset `url()`s in the package went one level deeper (`../../assets/`).
 
-**Component docs — `design-system/docs/` (2026-10-14).** One page per component (61) plus
+**Component docs — `design-system/docs/` (2026-10-14).** One page per component (82 since the desktop move, 2026-10-19) plus
 `index.html` (the showcase) and `why.html` (where the visual language came from — the first page for
 a new developer). Each component page has five parts: anatomy (the live component with numbered
 pins measured onto its parts), variants and sizes, states (rest, hover, pressed, focus and disabled,
@@ -323,7 +330,7 @@ rebuild.
 
 **Patterns — `design-system/patterns/` (2026-10-17).** A pattern is a fixed composition of components
 that already stands on three or more screens; it has no CSS and no class of its own. Eight were found by
-reading every wireframe: Pushed screen, Tab root (and its floating-action variant), Whole-screen message,
+reading every wireframe (thirteen since the five desktop ones, 2026-10-19): Pushed screen, Tab root (and its floating-action variant), Whole-screen message,
 Outcome with its record, Waiting outcome, Labelled detail rows, Labelled card list, Balance first. Each is
 one `patterns/<slug>.md` whose specimen is copied from a named screen; `docs/patterns.html` draws them all,
 with `docs/src/patterns.md` saying when to take a pattern and when to build from components. **The build

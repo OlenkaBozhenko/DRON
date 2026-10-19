@@ -3,8 +3,17 @@
 The designer, 2026-10-18: *«Пара одна телефонна сторінка — одна десктопна»*. Every phone page in `wireframes/`
 gets a desktop twin of the same name in `wireframes/desktop/`, built in the look of
 `responsive/_preview-desktop-ai.html` (map as the ground, the wide header, material panels, centred windows),
-light and dark. The phone pages are not touched. New CSS lives in `wireframes/desktop/_desktop.css` until the
-designer approves the desktop; then it moves into `design-system/`.
+light and dark. The phone pages are not touched. New CSS lived in `wireframes/desktop/_desktop.css` until the
+designer approved the desktop.
+
+**Moved into the system — done, 2026-10-19 (`concept.md` rev 327).** Every rule of `_desktop*.css` is now a token
+in `design-system/tokens.css` and a component in `design-system/components/` (`desk`, `window`, `rail`, `finderwin`,
+`float`, `ophome`, `entry`, `review`, `dropzone`, `outcome`, `lastsearch`, `flight`, `maproute`, and DESKTOP sections
+of existing files), documented in the docs' *Wide screens* group, with five desktop patterns. The twins link only
+`design-system/index.css`; the `_desktop*.css` files are one-line pointers. Measured identical before and after on
+every phone page and twin, light and dark. A desktop change now goes through the system first, like any other: see
+`CLAUDE.md` *Contributing to the system* and `DESIGN.md` § Layout › Wide screens. The phases are in
+`desktop-to-system-brief.md`.
 
 A row is done when the twin exists, every link on it leads to a twin, it renders in both themes, and its step
 in `flows.md` is reachable from the step before it.

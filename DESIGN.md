@@ -711,66 +711,108 @@ the number itself; the token is where the number is owned and documented, and a 
 to every such query. **The phone reads none of these** — the mobile build is unchanged, by the
 designer's word of 2026-10-18.
 
-### Wide screens — the shell adapts, new components for what only a wide screen has (rev 317)
+### Wide screens — the desktop twins, in the system (rev 317, rewritten rev 327)
 
-**Where the behaviour lives.** In the components, as **container queries on `.dr-screen`**
-(`container: screen / inline-size`), never as media queries on a screen and never on the window: a
-component follows the width of the frame it stands in. So a 375 phone frame — on a phone, or in the
-prototype's Mobile view on a wide monitor — never matches, and the mobile build is unchanged:
-**measured on 26 screens, 2,400 elements, every box, colour, size and display identical before and
-after.** The queries read `47.875rem` and `79.875rem`: `--bp-tablet` / `--bp-desktop` less the frame's
-1px border on each side, because a container measures its content box.
+**What the desktop is.** Every phone page in `wireframes/` has a desktop twin of the same name in
+`wireframes/desktop/` (135 pages), built in the look the designer drew and corrected: the map as the
+ground under a veil, a floating header, two 300 rails of material cards, and the work of the screen in a
+centred window or panel between them, with *Talk to AI* docked at the bottom. **Since 2026-10-19 the twins
+consume the system like every other page** — they link only `design-system/index.css` (and
+`_desktop.js` for their behaviour); the temporary `wireframes/desktop/_desktop*.css` are one-line
+pointers that no page links. Every desktop rule matches only inside `.dr-desk`, the twins' frame, so the
+phone never reads any of it.
 
-**The shell on a tablet or a desktop** (`shell.css`, `frame.css`, `sheet.css`):
-- the status bar and the home indicator go — a browser window draws neither;
-- the tab bar becomes the header's navigation: the same four destinations in a material pill, centred
-  in an 80 header (`HIG · Sidebars` / *Tab bars*: top-level destinations at the top on iPad and Mac);
-  the current one keeps the accent-tint fill behind charcoal, 14.75:1, and the 2.5px focus ring;
-- on a tab root the title stays for assistive tech only, since the active tab names the screen;
-- the work area is the phone column centred at `--container-column` 36rem until a screen takes a wide
-  layout (`.dr-wgrid`, `.dr-split`) — the width audit's *Same*;
-- a sheet is a centred dialog (`HIG · Sheets`); the map's docked choices are a 375 panel beside the map.
+**The move was measured as a refactor, not a change** (phases 1–4 of
+`responsive/desktop-to-system-brief.md`). After each phase all 538 page-states — every phone page and every
+twin, light and dark — were shot against the baseline taken before the first change: **IDENTICAL 536/538**,
+the two left over being the known-flaky dark `listings-map` and `tracking-inspection`, each within its
+measured noise (phase 4: 537 + 1). In phase 2 the computed style of every element was also compared on all
+270 desktop page-states: identical.
 
-**Checked on the flows:** navigation (8 tab roots), notifications (2), the client's order (`listings` →
-`listings-map` → `order-setup` → `order-review` → `payment` → `payment-loading` → `order-confirmed` →
-`tracking` → `delivery` → `rate`) and the operator's job and withdrawal (`operator-listings` → `job-offer`
-→ `job-brief` → `job-checklist` → `result-upload` → `wallet` → `withdraw` → `withdraw-loading`), at tablet
-and desktop in both themes: 100 checks, no horizontal overflow, no status bar, the navigation at the top,
-the current tab filled, a focused tab ringed (`--ink` light, `--cream-50` dark).
+**Where the behaviour lives.** The desktop is its own frame, `.dr-desk`, laid out by the desktop components
+below. The older container queries on `.dr-screen` (`47.875rem` / `79.875rem`) stay in `shell.css`,
+`frame.css`, `sheet.css`, `console.css`, `header.css` and `assistant.css`: they draw the phone pages in the
+prototype's tablet preview, and the sheet-as-dialog rule is what the twins' drawers use. A 375 phone frame
+never matches them; the mobile build is unchanged.
 
-**Recorded, for the screens' step:** the tab bar is last in the markup, so on a wide screen the
-navigation reads after the content (`WCAG 1.3.2` / `2.4.3`); pushed screens carry no tab bar, so they
-show no header navigation yet; `listings-map` still serves the light map with a drone drawn in it.
+**The desktop components** — new files, imported from `components/index.css` after everything else, in the
+order the desktop CSS declared them, so the cascade is the one the twins already had:
 
-**New components, wide screens only** — `material.css` (`.dr-material`), `stat.css` (`.dr-stat`),
-`assistant.css` (`.dr-assistant`, `.dr-svc`, `.dr-fly`, `.dr-talk`), `mapground.css` (`.dr-mapground`),
-`wgrid.css` (`.dr-wgrid`, `.dr-split`). Tokens: `--container-column`, `--shadow-float`, the motion
-primitives, and the semantic `--bg-material`, `--bg-material-solid`, `--border-material`,
-`--text-accent-wide`, `--img-map-ground`, `--img-agent-glow`, each redefined for dark. Docs: the
-*Wide screens* group (six pages, each showing the phone and the wide frame apart) and the
-*Wide workspace* pattern.
-
-**The wide home, as a screen built from the system (rev 318).** Every part of the designer's drawn
-wide home is now a component, and `design-system/examples/home-wide.html` is assembled from them with
-no `<style>` (the one style attribute is data: a bar's height as `--value`):
-
-| On the screen | Component |
+| File | What it draws |
 |---|---|
-| The navigation pill, *Order*, search, the theme (moon / sun), notifications, the profile | `header.css` — `.dr-whead`, `.dr-iconbtn`, `.dr-profilechip` |
-| The map as the ground | `mapground.css` — `.dr-mapground` |
-| Drones in the air, the average price, the average arrival | `stat.css` — `.dr-stat` |
-| Deliveries today | `chart.css` — `.dr-barchart` |
-| The assistant, the field, the three services | `assistant.css` — `.dr-assistant`, `.dr-svc`, `.dr-fly` |
-| The live order, Free now near you, Your month | `tally.css` — `.dr-tally`, `.dr-live` |
-| The order window's places | `place.css` — `.dr-place`, `.dr-sheet__lead` (the window itself is `.dr-sheet` on a wide screen) |
-| Talk to AI at the bottom while a window is open | `assistant.css` — `.dr-talk--dock` |
-| The layout: the centre and two rails over the map | `console.css` — `.dr-console`; `.dr-screen--fluid` for a screen that fills the window |
+| `desk.css` | The frame `.dr-desk`: map ground, veil, header placement, the rails, *Talk to AI* docked (`.dr-talkdock`), the brand link |
+| `window.css` | The centred window and panel: head, scroll, foot, actions, the window toast |
+| `rail.css` | The 300 rails and their cards |
+| `finderwin.css` | The search window |
+| `float.css` | The hanging cards over the map and the Jobs tabs |
+| `ophome.css` | The operator's home: drone links, rail rows, the availability card |
+| `entry.css` | The signed-out windows: sign in, the role choice, the onboarding with *Previous* / *Next* |
+| `review.css` | The review card |
+| `dropzone.css` | The drop zone of `result-upload` |
+| `outcome.css` | The outcome inside a window |
+| `lastsearch.css` | The last search under the place field |
+| `flight.css` | The wait: side panel, live line, the drone flying the route |
+| `maproute.css` | The route and the pin on the map |
 
-*Order* and a service card open the window through `ui/kit.js`; while it is open the assistant steps
-out, Talk to AI waits at the bottom and the header's *Order* turns grey — one green control. The theme
-button is a new `[data-theme-cycle]` behaviour in `ui/kit.js` sharing the stored choice. **It is not a
-pattern:** it stands on one screen, and the three-screen rule holds. Images moved into the package:
-`assets/map/ground-*.jpg`, `assets/design-system/agent-glow.png`, `assets/drones/wide/*.png`.
+**Tunings of existing components** went into a `DESKTOP` section at the end of their own files: `tally`,
+`header`, `chart`, `stat`, `mapground`, `console`, `assistant`, `calendar`, `type`. The earlier wide-only
+components stay and are what the twins draw: `material` (`.dr-material`), `stat` (`.dr-stat`, with the DRON
+mark `.dr-stat__brand`), `assistant` (`.dr-assistant`, `.dr-svc`, `.dr-fly`), `mapground`, `chart`
+(`.dr-barchart`, one label per bar `__axis--each`), `tally` (`.dr-tally`, `.dr-live`, `--link`, `--chat`),
+`place` (`.dr-place`, `.dr-places`), `header` (`.dr-whead`, `.dr-iconbtn`, `.dr-profilechip`,
+`.dr-brandlink`). The header's navigation is the twins': *Overview · Activity · Help* for the client and
+*Overview · Jobs · Earnings · Ratings* for the operator; *Order* is a green button, *Account* is the profile
+chip, the logo links to `research.html`, and the operator has no *Order* and no search.
+
+**Tokens.** Every literal of the desktop CSS became a token in phase 1, copied and never rounded, each
+marked *added for the desktop (2026-10-19)* in `tokens.css`: 29 lengths (`--len-34` … `--len-900`), four
+percentages (`--pct-18/48/55/65`), `--ch-36`, `--time-0-25`, `--time-7`, `--ease-flight`,
+`--shadow-float-lift`; ten alpha primitives (`--cream-50-a*`, `--charcoal-950-a*`, `--black-a*`); the colour
+roles `--veil-map-centre/-mid/-edge`, `--halo-on-map`, `--color-render-shadow` (each redefined in dark) and
+`--mask-opaque`; the type roles `--type-hero-*`, `--type-hero-sm-*`, `--type-window-title-*`,
+`--type-window-title-md-size`, `--type-quote-size`; and the `--img-desk-*` image tokens (phase 2). The colour
+roles and their measured pairs are the *Desktop atmosphere* table in § Colors. The rev 317 wide tokens stay:
+`--container-column`, `--shadow-float`, the motion primitives, `--bg-material(-solid)`, `--border-material`,
+`--text-accent-wide`, `--img-map-ground`, `--img-agent-glow`.
+
+**Docs.** The *Wide screens* group of `design-system/docs/` lists the desktop pages, each specimen copied
+from a named twin: Desktop shell, Desktop header, Desktop window, Desktop panel, Hanging cards and Jobs tabs,
+Side panel and flight, Map route and pin, Call and chat windows, Entry window, Operator home, Outcome in a
+window, Review card, Drop zone, Material panel, Stat card, Assistant, Map ground, Bar chart card, Tally card
+and live order, Place field and last search, Console. The tablet is being redesigned and shows *Coming soon*.
+82 component pages in all.
+
+**Patterns — five desktop compositions**, each on three or more twins with states folded: *Desktop step
+window* (head, scroll, foot; 21 twins), *Desktop tab panel* (7), *Desktop message window* (16), *Desktop
+waiting window* (5), *Signed-out window* (4). 13 patterns in all. Not patterns, fewer than three screens:
+the hanging cards, the side panel, the outcome window with no head, the wide window.
+
+**Removed, by the designer's rule** *«те що не відповідає існуючому десктоп вю, що я правила, з дизайн
+системи прибирається, а нове добавляється»*: *Wide shell* (the phone shell stretched to 1280 — the
+designer: *«Wide shell в дизайн системі не вірно зроблено, бо це була помилка із неправильного desktop»*),
+replaced by *Desktop shell*; the *Wide workspace* pattern; `wgrid.css` (`.dr-wgrid`, `.dr-split`), drawn by
+no page; `design-system/examples/home-wide.html`, the stretched wide home of rev 318, and with it the classes
+only it used — `.dr-livechip`, `.dr-console__toggle`, `.dr-talk--dock` (the desktop *Talk to AI* is
+`.dr-talkdock`) and `.dr-sheet__lead`. Under the filters (`listings-filters`) the assistant steps out and
+*Talk to AI* takes its place, so the chat folds into that button rather than vanishing (rev 329).
+
+**Recorded departures, awaiting the designer** — measured on the twins at 1600 × 900, kept as built, not
+corrected:
+
+| What is built | Guideline | Result |
+|---|---|---|
+| Drop zone's remove control, 28 × 28 | `HIG · 44pt target`; `WCAG 2.5.8` (2.2) asks 24; 2.1 AA sets none | −16 against HIG; +4 against 2.2 |
+| Drop zone's dashed edge 1.46:1 (1.97:1 dark); drag-over accent edge 1.84:1 | `WCAG 1.4.11` asks 3:1 for a component's boundary | Fails as a boundary; the zone is named by its text |
+| Review stars, yellow, 2.23:1 on the light panel | `WCAG 1.4.11` 3:1 | Fails; the score is also written, so colour is not the carrier |
+| Flight route and map route, the accent as a stroke (1.69:1) | The fill-only rule; `WCAG 1.4.11` | Against the project rule; decoration, `aria-hidden`, the live line says it in words |
+| Two green controls on a client step: the header's *Order* beside the window's primary | The project's *one green control per screen* (her call, 2026-10-19, keeps *Order* green) | Neither HIG nor WCAG is failed; the operator's steps have one |
+| No skip link: header and both rails come before `main` | `WCAG 2.4.1` bypass blocks; `2.4.3` focus order | 2.4.3 met; 2.4.1 served only by the `main` landmark, for screen readers, not for keyboard users |
+| Welcome: the pager 36 under the slider it counts, 16 above the first action | Proximity: the parts of one thing stand close, apart from the next group | Reads with the actions by space alone |
+| Wallet: the earnings 8 apart in the list | Proximity: the items of one list 12 | −4; still a third of the 24 between groups |
+| Signed-out windows: the two ways in 10 apart, the terms note 10 under them | One group 12 | −2; reads as one group |
+| Live order card: its three groups 20 apart | Between groups 24–32 | −4 |
+| Hanging cards: 14 apart | One list 12, under the 24 between groups | +2; still one list |
+| Message, outcome and waiting blocks: mark, title and body 12 apart | The parts of one thing 4–8 | +4; half of the 24 that would split them |
 
 ## Elevation & Depth
 
