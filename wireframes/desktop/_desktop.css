@@ -1419,3 +1419,30 @@
 .dk .dk-window > .dk-scroll:has(> .dr-center:only-child){
   justify-content: safe center;
 }
+
+/* «чат де» - the job on now carries its chat on every operator page, not only on the
+   home. The card stays one target (its title's link stretches over it) and the chat is
+   a second, separate control above that layer - a link is never nested in a link */
+.dk .dk-tally--chat .dk-stretch{
+  color: inherit;
+  text-decoration: none;
+}
+.dk .dk-tally--chat .dk-stretch::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.dk .dk-tally--chat .dk-stretch:focus-visible{
+  outline: none;
+}
+.dk .dk-tally--chat:has(.dk-stretch:focus-visible){
+  outline: var(--len-2-5) solid var(--text-primary);
+  outline-offset: var(--len-2);
+}
+.dk .dk-tally--chat .dk-tally__chat{
+  z-index: 2;
+}
+.dk .dk-tally--chat > .dr-tally__sub{
+  padding-right: var(--len-8);
+}
