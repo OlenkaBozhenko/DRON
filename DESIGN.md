@@ -440,6 +440,7 @@ retuned. None of them is a text ground: text on the desktop stands on the materi
 | `--color-render-shadow` | black at .25 · black at .45 | No ink pair. | The drop shadow under a service drone render. Decorative. |
 | `--mask-opaque` | `--black` (one value) | Not drawn. | A mask's opaque stop. A mask reads only alpha, so this token gets no dark value. |
 | `--shadow-float-lift` | `rgba(20,18,15,.06)` / `.16` | Not a colour pair. | A depth rung for a hanging card on hover, one rung above `--shadow-float`. |
+| `--border-strong` (rev 331) | `--cream-700` / `--cream-500` | The drop zone's dashed edge on the window: **7.20:1** light, **9.00:1** dark. `WCAG 1.4.11` 3:1, met. | A component's own edge that must be seen; the primitives `--text-muted` already spends, so no new value. |
 
 ### Named rules
 
@@ -802,7 +803,7 @@ corrected:
 | What is built | Guideline | Result |
 |---|---|---|
 | ~~Drop zone's remove control, 28 × 28~~ — **closed 2026-10-19 (rev 330):** drawn 28, tapped on 44 | `HIG · 44pt target`; `WCAG 2.5.8` (2.2) asks 24 | Both met |
-| Drop zone's dashed edge 1.46:1 (1.97:1 dark); drag-over accent edge 1.84:1 | `WCAG 1.4.11` asks 3:1 for a component's boundary | Fails as a boundary; the zone is named by its text |
+| ~~Drop zone's dashed edge 1.46:1 (1.97:1 dark)~~ — **closed 2026-10-19 (rev 331):** `--border-strong`, 7.20:1 light, 9.00:1 dark. Still open: the drag-over accent edge 1.84:1 | `WCAG 1.4.11` asks 3:1 for a component's boundary | Edge met; drag-over fails, transient feedback during a drag |
 | Review stars, yellow, 2.23:1 on the light panel | `WCAG 1.4.11` 3:1 | Fails; the score is also written, so colour is not the carrier |
 | Flight route and map route, the accent as a stroke (1.69:1) | The fill-only rule; `WCAG 1.4.11` | Against the project rule; decoration, `aria-hidden`, the live line says it in words |
 | Two green controls on a client step: the header's *Order* beside the window's primary | The project's *one green control per screen* (her call, 2026-10-19, keeps *Order* green) | Neither HIG nor WCAG is failed; the operator's steps have one |

@@ -98,7 +98,7 @@ The zone from `result-upload`: hover steps the ground as the upload zone does, f
 
 ## When to use
 
-Where the operator adds the result photos. The remove control is drawn 28 × 28 and takes the tap on 44 × 44 (`HIG · 44pt target`, met; `WCAG 2.5.8` 24, met): an invisible ring 8 wide round the circle, so the photo keeps its corner (the designer, 2026-10-19: «тут A»). The thumbnail clips its picture by the picture's own radius, not by `overflow`, so the ring reaches past the corner. **Measured, not corrected:** the dashed edge is 1.46:1 light, 1.97:1 dark: the zone is identified by its glyph and its words, as the phone's upload zone is. The drag-over accent edge is 1.84:1; the state is transient feedback during a drag.
+Where the operator adds the result photos. The remove control is drawn 28 × 28 and takes the tap on 44 × 44 (`HIG · 44pt target`, met; `WCAG 2.5.8` 24, met): an invisible ring 8 wide round the circle, so the photo keeps its corner (the designer, 2026-10-19: «тут A»). The thumbnail clips its picture by the picture's own radius, not by `overflow`, so the ring reaches past the corner. The dashed edge is `--border-strong`, 7.20:1 on the window in light and 9.00:1 in dark (`WCAG 1.4.11` 3:1, met; it was the hairline at 1.46 / 1.97 until rev 331, «тут А»). **Measured, not corrected:** the drag-over accent edge is 1.84:1; the state is transient feedback during a drag.
 
 Sources: wireframes/desktop/ (the twins); design-system/components/dropzone.css
 

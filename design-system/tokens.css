@@ -427,6 +427,9 @@
   --border-hairline:  var(--cream-400);     /* §1.1 --line: border-top/-bottom/-left on .dr-topbar,
                                                .dr-tabbar, .dr-actionbar, .dr-rows__row, .dr-groups,
                                                .dr-picker__item; and 10 separator backgrounds. */
+  --border-strong:    var(--cream-700);     /* a component's own edge that must stand 3:1 (WCAG 1.4.11):
+                                               the drop zone's dashed edge, 7.20:1 on the window (rev 331,
+                                               «тут А»). The same primitive as --text-muted. */
 
   /* -- ACTION ---------------------------------------------------------------
      Audit §5 "Action": the role is complete as a cluster - fill, ink, shadow,
@@ -850,6 +853,7 @@
      1.96:1 on a card against light's 1.21:1 - because a hairline loses more on
      a dark ground than on a pale one. */
   --border-hairline:    color-mix(in srgb, var(--cream-50) 22%, var(--charcoal-800));    /* #5A5A59 */
+  --border-strong:      var(--cream-500);     /* #D6D2C9 - the drop zone's edge, 9.00:1 on the dark window */
 
   /* -- ACTION / DELIBERATELY NOT REDEFINED ----------------------------------
      Signal Green is the brand's one accent and it does not owe the theme a

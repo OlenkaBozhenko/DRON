@@ -5,7 +5,7 @@
    it takes are written under the action; the photos added sit under it as thumbnails,
    each with its remove control (named for a screen reader) */
 .dr-desk .dr-drop{
-  border: var(--len-1-7) dashed var(--border-hairline);
+  border: var(--len-1-7) dashed var(--border-strong);
   gap: var(--len-8);
   cursor: pointer;
 }
