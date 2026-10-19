@@ -110,7 +110,7 @@ From `desktop/wallet`.
 
 - `.dr-whead` — the header; the open tab is the current link of `.dr-whead__nav` (`aria-current="page"`), *Account* is the profile chip.
 - `.dr-deskrail--start` and `--end` — the rails: the client's day and orders, or the operator's day, availability and jobs.
-- `.dr-panel` — 560 wide, `min(640, the window − 232)` tall, centred between the rails, one padding of 32 on all four sides. No `.dr-dim`: the panel is the tab's own content.
+- `.dr-panel` — 560 wide (narrower on a narrow screen: below 1336 it keeps 64 of map to each rail, down to 420), `min(640, the window − 232)` tall, centred between the rails, one padding of 32 on all four sides. No `.dr-dim`: the panel is the tab's own content.
 - `.dr-panel__title` — the tab's name as its `h1`. Where a display heading leads the content (`account`, `support`), the `h1` stays for assistive tech only.
 - `.dr-scroll` — the content, one group after another; the zone labels are headings for screen readers and are drawn nowhere.
 - `.dr-foot` — the tab's one action (*Withdraw*, *Edit profile*, *Contact support*), the width of the panel.

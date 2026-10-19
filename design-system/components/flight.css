@@ -38,9 +38,9 @@
   margin-top: var(--len-4);
 }
 
-/* the live line and Talk to AI sit over the map, left of the panel */
-.dr-desk--wait .dr-livestatus,
-.dr-desk--wait .dr-talkdock{
+/* the live line sits over the map, left of the panel; Talk to AI stays in the
+   middle of the screen, as on every other desk («кнопка не по центру», 2026-10-19) */
+.dr-desk--wait .dr-livestatus{
   left: calc(var(--pct-50) - var(--len-192));
 }
 .dr-livestatus .dr-live{
