@@ -1779,3 +1779,22 @@
     radial-gradient(closest-side, color-mix(in srgb, var(--color-action) 12%, transparent), transparent 70%);
   filter: drop-shadow(0 0 2px color-mix(in srgb, var(--color-action) 70%, transparent));
 }
+
+/* «на кнопці ось це сяйво зроби щоб крутилось навколо кнопки, а дрон біленький в середині
+   кнопки анімований, але навколо нього щоб не крутилось сяйво» (Talk to AI): the glow leaves
+   the drone and runs round the whole button - a wider green arc with a bloom - and the drone
+   sits white and flying on a still night disc (the call screen's ground, dark in both
+   themes, so the white mark reads in light and dark alike) */
+.dk .dr-talk__orb{
+  background: var(--bg-night);
+}
+.dk .dr-talk__orb .dr-fly{
+  width: var(--len-28);
+  height: var(--len-10);
+  fill: var(--text-on-night);
+}
+.dk .dr-talk::before{
+  inset: calc(var(--len-3) * -1);
+  padding: var(--len-3);
+  filter: drop-shadow(0 0 4px var(--color-action)) drop-shadow(0 0 10px color-mix(in srgb, var(--color-action) 60%, transparent));
+}
