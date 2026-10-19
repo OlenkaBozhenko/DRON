@@ -54,7 +54,6 @@
         <div class="dr-sk-line dr-sk-w50"></div>
       </section>
     </div>
-    <div class="dk-foot"><a class="dr-btn dr-btn--primary dr-btn--block" href="wallet.html">Transferring…</a></div>
   </main>
   <div class="dr-scrim dr-scrim--picker" data-scrim hidden></div>
   <section class="dr-sheet dr-sheet--picker" id="sheet-avail" role="dialog" aria-modal="true" aria-labelledby="sheet-avail-title" hidden>
@@ -71,6 +70,11 @@
 </div>
 <a class="wf-twin" href="../withdraw-loading.html">Phone view</a>
 <script src="../../ui/kit.js"></script>
+<script>
+/* the transfer completes after 3 s and the sent state takes over (the designer, 2026-10-19); replace() keeps Back from landing on the spinner again */
+setTimeout(function () { location.replace('withdraw-sent.html'); }, 3000);
+</script>
+
 <!-- the badge follows the select: the word is read off the tapped option's own label (the phone's script) -->
 <script>
 (function () {

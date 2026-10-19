@@ -45,7 +45,7 @@
       { name: "Job checklist (in progress)",           file: "job-checklist.html",      states: [["call the client","call-client.html"],["chat with client","chat-client.html"],["error","job-checklist-error.html"]] },
       { name: "Result upload / close job",             file: "result-upload.html",      states: [["error","result-upload-error.html"],["loading","result-upload-loading.html"]] },
       { name: "Wallet / earnings",                     file: "wallet.html",         success: true, states: [["details · delivery","earning-details.html"],["details · aerial","earning-details-aerial.html"],["details · inspection","earning-details-inspection.html"],["empty","wallet-empty.html"]] },
-      { name: "Withdraw to card / bank account",       file: "withdraw.html",       success: true, states: [["error","withdraw-error.html"],["loading","withdraw-loading.html"]] }
+      { name: "Withdraw to card / bank account",       file: "withdraw.html",       success: true, states: [["error","withdraw-error.html"],["loading","withdraw-loading.html"],["sent","withdraw-sent.html"]] }
     ]},
     { title: "Client · step 8 (EJ-1/2 · C-2 · repeat)", screens: [
       { name: "Welcome / first-use explainer",         file: "welcome.html",            states: [["empty","welcome-empty.html"]] },

@@ -920,6 +920,7 @@ operator's side is what they kept, so *Earned* says it without either screen bor
   - **Error ✓** — *"invalid card / bank details"* and *"payout failed, funds returned to balance"*.
   - **Loading ✓** — *"link and verify card / bank"*, *"instant transfer to card"*, *"bank transfer, 1-3 business days"*.
   - **Success ✓** — the dedicated final "it worked" screen: *"money on card / bank account — flow complete"*.
+  - **Sent (2026-10-19, the designer: «після затримки 3с зʼявляється вітання»)** — `withdraw-sent.html`. The loading state carries no button and gives way to this one after 3 s: the amount sent, the card, what stays on the balance, and *Done* back to Earnings. The loading state's *Transferring…* button is gone (a button that only names the wait is not an action).
 
 ---
 

@@ -17,7 +17,8 @@
   painted set has one idiom for this block and a wireframe-only value is not it.
   THE SKELETON STAYS ITS OWN ZONE, as the frame draws it — main's 12px gap separates it from the
   status block, so no inline width or margin is needed.
-  GREEN: one control, the `Transferring…` CTA. The milestone mark is --green-wash, a tint, which
+  NO BUTTON (2026-10-19, the designer): the wait is not an action; after 3 s withdraw-sent takes over.
+  GREEN: none. The milestone mark is --green-wash, a tint, which
   the budget does not count.
 -->
 <link rel="stylesheet" href="_wireframe.css">
@@ -29,6 +30,7 @@
       <a href="withdraw.html">success</a>
       <a href="withdraw-error.html">error</a>
       <a href="withdraw-loading.html" class="cur" aria-current="page">loading</a>
+      <a href="withdraw-sent.html">sent</a>
     </nav>
     <h1>Withdraw to card / bank account</h1>
     <p class="sub">Operator · MJ-2 · state: <b>loading</b> · file: withdraw-loading.html</p>
@@ -50,11 +52,13 @@
         <div class="dr-sk-line dr-sk-w50"></div>
       </section>
     </main>
-    <footer class="dr-actionbar">
-      <a class="dr-btn dr-btn--primary dr-btn--block" href="wallet.html">Transferring…</a>
-    </footer>
   </div>
 
   <script src="_wf-shell.js"></script>
+<script>
+/* the transfer completes after 3 s and the sent state takes over (the designer, 2026-10-19); replace() keeps Back from landing on the spinner again */
+setTimeout(function () { location.replace('withdraw-sent.html'); }, 3000);
+</script>
+
 </body>
 </html>

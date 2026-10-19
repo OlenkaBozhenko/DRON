@@ -1411,3 +1411,8 @@
 .dk .dr-tally:has(> .dr-rail) > .dr-tally__who{
   margin-top: var(--len-20);
 }
+/* a window whose whole content is one status message (withdraw sent) holds it in the
+   middle, as a spinner is held */
+.dk .dk-window > .dk-scroll:has(> .dr-center:only-child){
+  justify-content: safe center;
+}
