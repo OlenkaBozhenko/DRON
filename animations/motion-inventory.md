@@ -63,7 +63,7 @@ the phone. **Built** means the motion already exists in `design-system/component
 | `payment-loading` · Apple Pay / card is being charged (Both) | Status | Activity spinner (`dr-spin`) + Skeleton. **Built** |
 | `payment-loading` (desktop) · *Payment confirmed*, then `order-confirmed` opens by itself (rev 339) | Status (ended), then Connect | Milestone mark, then Desktop window |
 | `order-confirmed-loading` · finding the nearest certified operator (Both) | Status | Skeleton on the operator card. **Built** |
-| `order-confirmed-loading` → `order-confirmed` · the placeholder becomes the named operator: photo, name, verified, insured (Both) | Connect | Operator card (the skeleton card is replaced in the same place). RJ-C2's key moment |
+| `order-confirmed-loading` → `order-confirmed` · the placeholder becomes the named operator: photo, name, verified, insured (Both) | Connect | Operator card. **Decided 2026-10-19: stays an instant swap, as built.** No animation |
 
 ## 4. The wait (RJ-C1, RJ-C2)
 
@@ -109,7 +109,7 @@ the phone. **Built** means the motion already exists in `design-system/component
 |---|---|---|
 | `operator-listings` · the status toggle goes Available ⇄ Offline (Both) | Connect | Availability badge / Switch |
 | `operator-listings`, `operator-jobs` · the job group tab is switched (Both) | Connect | In-page tabs (`dr-groups`) |
-| `job-offer` · the offer counts down: *decide before it expires* (10s, `flows.md` MJ-2) (Both) | Status | **No component yet.** Today the time is only in words; this would be a backlog order |
+| `job-offer` · the offer counts down: *decide before it expires* (10s, `flows.md` MJ-2) (Both) | Status | **Decided 2026-10-19: words + a bar that empties.** No component yet; ordered as `design-system/backlog.md` B-5 |
 | `job-offer` → `job-brief` · *Accept* opens the job (Both) | Connect | Pushed screen / Desktop window |
 | `job-checklist` · a step is ticked (Both) | Answer | Checkbox (`dr-pick`) |
 | `job-checklist-error` · *Close* with a step open: the alert appears (desktop shows it on open) | Answer | Toast (`role="alert"`). **Built** |
@@ -137,7 +137,10 @@ the phone. **Built** means the motion already exists in `design-system/component
 ## Already moving, with no job named
 
 The rule applies to what is built too. These loops run today and the inventory could not name a
-job for them. They are reported, not changed:
+job for them. **Decided 2026-10-19: kept as built**, by the designer's choice after the live compare
+(`_compare-findings.html`, question 1), with the cost stated: endless motion with no stop control on
+the page fails `WCAG 2.2.2 Pause, Stop, Hide` (level A). The options declined were: remove all three,
+turn only while the assistant answers, keep and add a pause control.
 
 | Built motion | Where | Why no job was found |
 |---|---|---|

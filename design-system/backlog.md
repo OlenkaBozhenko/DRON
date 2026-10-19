@@ -59,6 +59,23 @@ declare. Whatever is missing is written here, with the job that asked for it.
 
 ---
 
+### B-5 · A countdown for a decision with a fixed time
+
+- **Found by:** `animations/motion-inventory.md` §8 (2026-10-19), the operator's job offer.
+- **What is missing:** `job-offer` gives the operator 10 seconds to accept (`flows.md` MJ-2, *Accept
+  within 10s?*), and the time is shown only as a still figure, *Expires in 8s*. The system has no
+  determinate countdown.
+- **What was chosen:** the designer, 2026-10-19, after the live compare (`_compare-findings.html`,
+  question 2): *words + a bar that empties*. The figure counts 10 → 0 and a thin bar under it
+  empties in step, linear over the whole time; at 0 the words read *Offer expired*.
+- **Standards:** `HIG · Progress indicators`: a known duration gets determinate progress.
+  `WCAG 2.2.1`: a real-time offer is the allowed exception to adjustable timing. `WCAG 1.4.1`: the
+  seconds stay in words, the bar is never the only carrier. `WCAG 1.4.11`: the bar is 4px, charcoal
+  `--text-primary` on `--bg-muted`, never green, because the screen's one green control is *Accept*.
+  The ratio is measured when it is built. Job 2 of `DESIGN.md` § Motion: it shows a process running.
+- **Belongs in:** `components/` with its `docs/src/` page and a `ui/kit.html` specimen, then
+  `job-offer` (phone and desktop). Not built yet.
+
 ## Done
 
 ### B-4 · The profile head's read-only form is undocumented — **done, rev 312**

@@ -148,7 +148,7 @@
       if (opt === 'job') style(doc, STOP + COMPOSE);
       if (opt === 'pause') style(doc, PAUSED);
     };
-    frames1[opt].push(crop(host, 'wireframes/desktop/listings.html', 420, 40, 600, 330, 'Home: the assistant', inject));
+    frames1[opt].push(crop(host, 'wireframes/desktop/listings.html', 420, 60, 600, 400, 'Home: the assistant', inject));
     frames1[opt].push(crop(host, 'wireframes/desktop/order-history.html', 560, 800, 320, 100, 'Activity: Talk to AI', inject));
   });
   document.querySelector('[data-compose]').addEventListener('click', function(){
@@ -164,7 +164,7 @@
   var bar2;
   document.querySelectorAll('[data-opt2]').forEach(function(card){
     var opt = card.dataset.opt2, host = card.querySelector('[data-crops]');
-    var f = crop(host, 'wireframes/desktop/job-offer.html', 420, 60, 600, 560, 'Job offer', function(doc){
+    var f = crop(host, 'wireframes/desktop/job-offer.html', 420, 60, 600, 720, 'Job offer', function(doc){
       if (opt !== 'bar') return;
       style(doc, '.cmp-cd{height:4px;border-radius:999px;background:var(--bg-muted);overflow:hidden;margin-top:8px}' +
                  '.cmp-cd>span{display:block;height:100%;width:100%;background:var(--text-primary);transform-origin:0 50%}');
@@ -191,7 +191,7 @@
   });
   document.querySelectorAll('[data-opt3]').forEach(function(card){
     var opt = card.dataset.opt3;
-    frames3[opt] = crop(card.querySelector('[data-crops]'), 'wireframes/desktop/order-confirmed-loading.html', 420, 60, 600, 560, 'Order confirmed', null);
+    frames3[opt] = crop(card.querySelector('[data-crops]'), 'wireframes/desktop/order-confirmed-loading.html', 420, 60, 600, 760, 'Order confirmed', null);
   });
   function reveal(opt){
     var f = frames3[opt];

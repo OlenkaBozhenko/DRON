@@ -942,6 +942,12 @@ time ramp; they are listed under *Components › Motion*.
   `animation: none` rule, as before.
 - **`WCAG 2.2.2` Pause, Stop, Hide** (A): the scale holds nothing that runs longer than 5s. A loop
   that does (the desktop flight, 7s) is job 2 and stops when its process does.
+- **A recorded departure from `WCAG 2.2.2`** (2026-10-19, the designer's call): the desktop
+  assistant's three loops (`dr-orb-spin` 24s, `dr-talk-ring` 3.2s, `dr-fly-sway` 3.6s with
+  `dr-fly-prop`) run without end and have no stop control on the page. That fails `2.2.2` (level A).
+  The system's reduced-motion setting stops them, but that is not a mechanism on the page. Kept as
+  built after the live compare; removing them, running them only while the assistant answers, and a
+  pause control were declined. `animations/motion-inventory.md` names no job for them.
 - **`WCAG 2.3.1` Three Flashes** (A): no step of the scale repeats; the fastest loop in the build,
   `dr-spin`, is 0.91 Hz.
 
